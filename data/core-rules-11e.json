@@ -1,0 +1,611 @@
+{
+  "version": "11.0",
+  "source": "Warhammer 40,000 11th Edition Core Rules PDF",
+  "abilities": [
+    {
+      "name": "ANTI",
+      "ref": "24.03",
+      "form": "[ANTI‑X Y+]",
+      "description": "Certain weapons are the bane of particular foes. This ability always takes the form [ANTI‑X Y+]. Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X, an unmodified wound roll of Y+ is a critical wound. Example: An attack made with an [ANTI‑VEHICLE 4+] weapon against a VEHICLE unit will result in a critical wound on an unmodified wound roll of 4+, while an attack made with an [ANTI‑PSYKER 2+] weapon against a PSYKER unit will result in a critical wound on an unmodified wound roll of 2+."
+    },
+    {
+      "name": "ASSAULT",
+      "ref": "24.04",
+      "form": null,
+      "description": "Folding stocks, shortened barrels or lightweight construction enable some weapons to be easily fired on the move. Units containing one or more models with an [ASSAULT] weapon can shoot using assault shooting (10.05)."
+    },
+    {
+      "name": "BLAST",
+      "ref": "24.05",
+      "form": null,
+      "description": "High‑explosive rounds can fell several warriors in a single blast, but firing them too close to comrades is unwise. Each time you gather attack dice for a [BLAST] weapon, add one additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X], each time you gather attack dice for such a weapon, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down) instead. Example: If a [BLAST 2] weapon with an A characteristic of 3 targets a unit containing 12 models, you would gather four additional attack dice for that weapon (for a total of seven for that weapon)."
+    },
+    {
+      "name": "CLEAVE",
+      "ref": "24.06",
+      "form": "[CLEAVE X]",
+      "description": "With sufficient might or skill, warriors may sweep blades or talons through their foes in long lethal arcs. This ability always takes the form [CLEAVE X]. Each time you gather attack dice for a [CLEAVE] weapon, if you only selected one target for all of that weapon’s attacks, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). Example: If a [CLEAVE 1] weapon with an A characteristic of 3 targets one unit containing 16 models, you would gather three additional attack dice for that weapon (for a total of six for that weapon)."
+    },
+    {
+      "name": "CLOSE-QUARTERS",
+      "ref": "24.07",
+      "form": null,
+      "description": "Weapons designed for close‑quarters fighting can be wielded effectively even in the press of melee combat. Units containing one or more models with a [CLOSE‑QUARTERS] weapon can shoot using close‑quarters shooting (10.06). When using another shooting type, for each model in that unit (excluding MONSTER/VEHICLE models), you can only select one of the following to make attacks with: ▪\u0007One or more of its [CLOSE‑QUARTERS] weapons. ▪\u0007One or more of its other ranged weapons."
+    },
+    {
+      "name": "DEADLY DEMISE",
+      "ref": "24.08",
+      "form": "Deadly Demise X",
+      "description": "From detonating ammo stores to corrosive innards or frenzied death throes, some targets are deadly even in defeat. This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield."
+    },
+    {
+      "name": "DEEP STRIKE",
+      "ref": "24.09",
+      "form": null,
+      "description": "There are many ways by which to deploy troops to the field of battle including tunnels, teleportation devices and other esoteric means of transportation. Each time this unit makes an ingress move (20.04), if every model in this unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from all enemy units, even if that is within your opponent’s deployment zone."
+    },
+    {
+      "name": "DEVASTATING WOUNDS",
+      "ref": "24.10",
+      "form": null,
+      "description": "The most potent weapons strike with such power that they make a mockery of armour and can cleave through several foes. Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. Mortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. Example: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost."
+    },
+    {
+      "name": "EXTRA ATTACKS",
+      "ref": "24.11",
+      "form": null,
+      "description": "Some warriors ride to battle atop trusty mounts that gore and trample nearby foes. Others wield combat weapons that deliver a frenzy of additional blows. Each time a unit containing one or more models with an [EXTRA ATTACKS] weapon fights, those models will make attacks with those weapons in addition to any others. In the Select Weapons step (04.01), for each of those models, you must select: ▪\u0007All of that model’s [EXTRA ATTACKS] weapons. ▪\u0007One of that model’s other melee weapons, if possible."
+    },
+    {
+      "name": "FEEL NO PAIN",
+      "ref": "24.12",
+      "form": "Feel No Pain X+",
+      "description": "The hardiest warriors refuse to be laid low, even by wounds that should by all rights prove lethal. This ability always takes the form Feel No Pain X+. Each time a model with this ability would lose a wound, roll one D6: on an X+, that wound is not lost."
+    },
+    {
+      "name": "FIGHTS FIRST",
+      "ref": "24.13",
+      "form": null,
+      "description": "Those possessed of lightning‑fast reactions may strike before the opponent can react. While every model in a unit has this ability, that unit is a Fights First unit. See the Resolve Fights First Combats step in the Fight phase (12.04)."
+    },
+    {
+      "name": "FIRING DECK",
+      "ref": "24.14",
+      "form": "Firing Deck X",
+      "description": "Some transports have dedicated platforms or firing ports from which embarked passengers can lay down a withering hail of munitions. This ability always takes the form Firing Deck X. In your Shooting phase, each time this TRANSPORT is selected to shoot, if one or more units are embarked within it, resolve the following sequence: \u00071. \u0007Select up to X models embarked within this TRANSPORT (excluding models whose units have already been selected to shoot this phase). \u00072. \u0007For each selected model, select one of its ranged weapons (excluding [ONE SHOT] weapons). \u00073. \u0007Until this TRANSPORT has resolved all of its attacks, it has all of those selected weapons in addition to its other weapons. \u00074. \u0007Until the end of the turn, units embarked within this TRANSPORT are not eligible to shoot."
+    },
+    {
+      "name": "HAZARDOUS",
+      "ref": "24.15",
+      "form": null,
+      "description": "Weapons powered by unstable and dangerous energy sources pose a substantial risk to the wielder and those that stand beside them. Each time a unit is selected to shoot or selected to fight, after that unit has resolved all of its attacks, make a number of hazard rolls (06.03) for that unit equal to the number of [HAZARDOUS] weapons you selected in the Select Weapons step."
+    },
+    {
+      "name": "HEAVY",
+      "ref": "24.16",
+      "form": null,
+      "description": "Heavy weapons are amongst the biggest guns on the battlefield, but require bracing to fire at full effect. In your Shooting phase, each time an attack is made with a [HEAVY] weapon, add 1 to the hit roll if all of the following apply to the attacking unit: ▪That unit is unengaged.\u0007 ▪\u0007That unit was not set up on the battlefield this turn. ▪\u0007No model in that unit has moved more than 3\" this turn."
+    },
+    {
+      "name": "HOVER",
+      "ref": "24.17",
+      "form": null,
+      "description": "Some airborne vehicles can use vectored thrusters or anti-gravity technology to hover and skim over the battlefield, the better to hunt their prey or deploy embarked troops. Each time this unit takes to the skies (21.03), do not subtract 2\" from the maximum distance."
+    },
+    {
+      "name": "IGNORES COVER",
+      "ref": "24.18",
+      "form": null,
+      "description": "Some weapons are designed to root enemy formations out of entrenched positions. Each time an attack is made with an [IGNORES COVER] weapon, the target cannot have the benefit of cover against that attack (13.08), including from rules that give a model or unit the benefit of cover (e.g. Stealth)."
+    },
+    {
+      "name": "INDIRECT FIRE",
+      "ref": "24.19",
+      "form": null,
+      "description": "Indirect fire weapons launch munitions over or around intervening obstacles – nowhere is safe from their fury. Units containing one or more models with an [INDIRECT FIRE] weapon can shoot using indirect shooting (10.07)."
+    },
+    {
+      "name": "INFILTRATORS",
+      "ref": "24.20",
+      "form": null,
+      "description": "Many armies employ reconnaissance units who can sit concealed, waiting for the right moment to strike. During deployment, if every model in a unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from your opponent’s deployment zone and all enemy units."
+    },
+    {
+      "name": "LANCE",
+      "ref": "24.21",
+      "form": null,
+      "description": "With the momentum of a warrior at full‑tilt, lance weapons are deadly on the charge. Each time an attack is made with a [LANCE] weapon, if the attacking model’s unit made a charge move this turn, add 1 to the wound roll."
+    },
+    {
+      "name": "LEADER",
+      "ref": "24.22",
+      "form": null,
+      "description": "Mighty heroes fight at the forefront of battle. See Attached Units (19)."
+    },
+    {
+      "name": "LETHAL HITS",
+      "ref": "24.23",
+      "form": null,
+      "description": "Many deadly weapons can inflict fatal injuries on any foe, no matter their resilience. Each time an attack made with a [LETHAL HITS] weapon results in a critical hit, you can choose for that attack to automatically wound the target. Designer’s Note: Choosing to automatically wound the target means that no wound roll is made for that attack. You may decide against this, as it means that attack cannot result in a critical wound and so cannot trigger other abilities such as [DEVASTATING WOUNDS]."
+    },
+    {
+      "name": "LONE OPERATIVE",
+      "ref": "24.24",
+      "form": null,
+      "description": "Assassins and other covert agents are difficult to pinpoint in the storm of battle. Unless part of an attached unit, this unit is not visible to enemy models unless they are within 12\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within 12\" of this unit. If this ability takes the form Lone Operative X\", unless part of an attached unit, this unit is not visible to enemy models unless they are within X\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within X\" of this unit."
+    },
+    {
+      "name": "MELTA",
+      "ref": "24.25",
+      "form": "[MELTA X]",
+      "description": "Melta weapons are powerful heat rays whose fury is magnified at close range. This ability always takes the form [MELTA X]. Each time a model makes an attack with a [MELTA] weapon, if the target unit was within half range of that weapon in the Select Targets step, until the attacking unit’s attacks have been resolved, add X to that weapon’s D characteristic. Example: A model targets a unit that is within half range of a [MELTA 2] weapon with a D characteristic of D6. While resolving those attacks, that weapon has a D characteristic of D6+2."
+    },
+    {
+      "name": "ONE SHOT",
+      "ref": "24.26",
+      "form": null,
+      "description": "Some weapons are so rare, or so complex and slow to reload, that they can only be used once. Each weapon with this ability can only be selected to make attacks with once per battle. If a destroyed model is returned to a unit, all of its [ONE SHOT] weapons that have already been selected to make attacks with during the battle cannot be selected to make attacks with again. If a new unit is added to an army, all [ONE SHOT] weapons in that unit can be selected to make attacks with once per battle."
+    },
+    {
+      "name": "PISTOL",
+      "ref": "24.27",
+      "form": null,
+      "description": "Pistols can be wielded even at point‑blank range. [PISTOL] and [CLOSE‑QUARTERS] are identical for all rules purposes. See [CLOSE‑QUARTERS]. Designer’s Note: [PISTOL] is a pre-existing ability that will be superseded by [CLOSE-QUARTERS] as this edition of Warhammer 40,000 progresses. Both are functionally the same, but the latter is a more suitable term for weapons that function in this way."
+    },
+    {
+      "name": "PRECISION",
+      "ref": "24.28",
+      "form": null,
+      "description": "Precision attacks can pick high‑value targets out in a crowd. While resolving attacks made with one or more [PRECISION] weapons, at the start of the Allocation Order step (05.03), if the target unit contains one or more CHARACTER models visible to one or more of the attacking models, the active player can select one allocation group that contains one of those visible CHARACTER models. If they do, until those attacks are resolved, or until that CHARACTER group is destroyed (whichever happens first), that CHARACTER group is the current allocation group."
+    },
+    {
+      "name": "PSYCHIC",
+      "ref": "24.29",
+      "form": null,
+      "description": "Some weapons can channel the bearer’s psychic might to empower their blows. Each time an attack is made with a [PSYCHIC] weapon, you can ignore any or all modifiers to that attack’s BS or WS characteristic and any or all modifiers to the hit roll. Attacks made with [PSYCHIC] weapons are known as psychic attacks (this can be important for the triggering of other rules)."
+    },
+    {
+      "name": "RAPID FIRE",
+      "ref": "24.30",
+      "form": "[RAPID FIRE X]",
+      "description": "Rapid fire weapons are capable of long‑ranged precision shots or controlled bursts at nearby targets. This ability always takes the form [RAPID FIRE X]. Each time you gather attack dice for a [RAPID FIRE] weapon, add X additional attack dice if the target unit was within half range of that weapon in the Select Targets step. Example: If a [RAPID FIRE 1] weapon with an A characteristic of 1 targets a unit that is within half range, you would gather one additional attack dice for that weapon (for a total of two for that weapon)."
+    },
+    {
+      "name": "SCOUTS",
+      "ref": "24.31",
+      "form": "Scouts X\"",
+      "description": "Scouts form the vanguard of many armies. Unnoticed by the enemy, they range ahead of the main force. This ability always takes the form Scouts X\". In the Resolve Pre‑battle Abilities step, if every model in a unit has this ability, you can do one of the following: ▪\u0007If that unit is in strategic reserves, you can set up that unit anywhere that is wholly within your deployment zone. ▪\u0007If that unit is wholly within your deployment zone, it can make a scout move (see below). ▪\u0007If that unit is embarked within a DEDICATED TRANSPORT that is wholly within your deployment zone, and if every model embarked within that DEDICATED TRANSPORT has the Scouts ability, that DEDICATED TRANSPORT can make a scout move. SCOUT MOVE 24.32 MAXIMUM DISTANCE: The X\" in Scouts X\". ELIGIBLE IF: It is the Resolve Pre-battle Abilities step, and your unit is wholly within your deployment zone. EFFECT: Your unit moves as described in Moving (03). AFTER MOVING: Your unit must be more than 8\" horizontally from all enemy units."
+    },
+    {
+      "name": "STEALTH",
+      "ref": "24.33",
+      "form": null,
+      "description": "The stealthiest warriors can evade the attentions, and the bullets, of their foes. If every model in a unit has this ability, each time a ranged attack targets that unit, that unit has the benefit of cover against that attack (13.08)."
+    },
+    {
+      "name": "SUPPORT",
+      "ref": "24.34",
+      "form": null,
+      "description": "Specialist combatants may be assigned to front-line squads to bolster their fighting effectiveness. See Attached Units (19)."
+    },
+    {
+      "name": "SUPER-HEAVY WALKER",
+      "ref": "24.35",
+      "form": null,
+      "description": "Monstrous creatures and gigantic engines of war loom over the battlefield like gods given form, striding over combatants and smashing through almost any obstacle that bars their passage. Each time a unit with this ability makes a normal, advance or fall-back move: ▪\u0007Models in that unit can move through models (including MONSTER/VEHICLE models, but excluding TITANIC models) and can move horizontally through sections of terrain features that are 4\" or less in height. ▪\u0007Before moving that unit, you can select for all models in that unit to have the MOBILE keyword until that move ends. If you do, when that move ends, roll one D6: on a 1, that unit is battle-shocked. Designer’s Note: Gaining the MOBILE keyword for the duration of a move will enable models in that unit to move horizontally through dense terrain features (13.06)."
+    },
+    {
+      "name": "SUSTAINED HITS",
+      "ref": "24.36",
+      "form": "[SUSTAINED HITS X]",
+      "description": "Some weapons possess a punishing rate of fire, or can land devastating flurries of blows, tearing the foe apart with relentless ferocity. This ability always takes the form [SUSTAINED HITS X]. Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit, that attack results in a number of additional hits on the target as denoted by X. Example: An attack made with a [SUSTAINED HITS 2] weapon results in a critical hit. That attack therefore hits the target three times (once from the critical hit, and twice more from the [SUSTAINED HITS 2] ability)."
+    },
+    {
+      "name": "TORRENT",
+      "ref": "24.37",
+      "form": null,
+      "description": "Torrent weapons project clouds of fire, gas or other lethal substances that few foes can hope to evade. Each time an attack is made with a [TORRENT] weapon, that attack automatically hits the target."
+    },
+    {
+      "name": "TWIN-LINKED",
+      "ref": "24.38",
+      "form": null,
+      "description": "Dual weapons are often grafted to the same targeting system for greater lethality. Each time an attack is made with a [TWIN‑LINKED] weapon, you can re‑roll the wound roll. ++ VIGILANCE IS YOUR SHIELD ++"
+    }
+  ],
+  "cover_rules": {
+    "benefit_of_cover": "Each time a ranged attack targets a unit, if every model in that unit meets one or more of the following conditions, that unit has the benefit of cover against that attack: ▪\u0007That model has the INFANTRY/BEASTS/SWARM keyword and is within a terrain area. ▪\u0007That model is not fully visible to the attacking model due to one or more intervening terrain features and/or one or more intervening obscuring terrain areas (see below). Each time a ranged attack targets a unit that has the benefit of cover against it, worsen the BS characteristic of that attack by 1.",
+    "cover_modifier": "worsen the BS characteristic of that attack by 1",
+    "plunging_fire": "Each time a model makes a ranged attack that targets a visible unit containing one or more models on ground level, if one or more of the following conditions apply, improve the BS characteristic of that attack by 1: ▪\u0007The attacking model is on a section of a terrain feature that is 3\" or more in height. ▪\u0007The attacking model has the TOWERING keyword and the target unit is within 12\". PLUNGING FIRE This attacking model is on ground level, but has the TOWERING keyword. The target unit is within 12\" and contains models on ground level, so Plunging Fire improves the BS characteristic of those attacks by 1. All of these attacking models are on a section of terrain feature that is 3\" or more in height, and the target unit contains models on ground level, so Plunging Fire improves the BS characteristic of those attacks by 1. +1 BS +1 BS 73 AIRCRAFT 23",
+    "ignores_cover": null
+  },
+  "stratagems": [
+    {
+      "name": "Heroic Intervention",
+      "ref": "15.11"
+    },
+    {
+      "name": "Command Re-Roll",
+      "ref": "15.02"
+    },
+    {
+      "name": "Epic Challenge",
+      "ref": "15.03"
+    },
+    {
+      "name": "Insane Bravery",
+      "ref": "15.04"
+    },
+    {
+      "name": "Explosives",
+      "ref": "15.05"
+    },
+    {
+      "name": "Crushing Impact",
+      "ref": "15.06"
+    },
+    {
+      "name": "Rapid Ingress",
+      "ref": "15.07"
+    },
+    {
+      "name": "Fire Overwatch",
+      "ref": "15.08"
+    },
+    {
+      "name": "Snap Shooting",
+      "ref": "15.09"
+    },
+    {
+      "name": "Smokescreen",
+      "ref": "15.10"
+    },
+    {
+      "name": "Counteroffensive",
+      "ref": "15.12"
+    },
+    {
+      "name": "Performing Actions",
+      "ref": "16.01"
+    }
+  ],
+  "phases": {
+    "battle_round": {
+      "ref": "07",
+      "steps": [
+        {
+          "name": "START OF BATTLE ROUND",
+          "ref": "07.01"
+        },
+        {
+          "name": "PLAYER TURNS",
+          "ref": "07.02"
+        },
+        {
+          "name": "END OF BATTLE ROUND",
+          "ref": "07.03"
+        }
+      ]
+    },
+    "command_phase": {
+      "ref": "08",
+      "steps": [
+        {
+          "name": "START OF COMMAND PHASE",
+          "ref": "08.01"
+        },
+        {
+          "name": "GAIN CORE CP",
+          "ref": "08.02"
+        },
+        {
+          "name": "BATTLE-SHOCK",
+          "ref": "08.03"
+        },
+        {
+          "name": "COMMAND ABILITIES",
+          "ref": "08.04"
+        },
+        {
+          "name": "END OF COMMAND PHASE",
+          "ref": "08.05"
+        }
+      ]
+    },
+    "movement_phase": {
+      "ref": "09",
+      "steps": [
+        {
+          "name": "START OF MOVEMENT PHASE",
+          "ref": "09.01"
+        },
+        {
+          "name": "MOVE UNITS",
+          "ref": "09.02"
+        },
+        {
+          "name": "END OF MOVEMENT PHASE",
+          "ref": "09.03"
+        }
+      ]
+    },
+    "charge_phase": {
+      "ref": "11",
+      "steps": [
+        {
+          "name": "START OF CHARGE PHASE",
+          "ref": "11.01"
+        },
+        {
+          "name": "CHARGE",
+          "ref": "11.02"
+        },
+        {
+          "name": "END OF CHARGE PHASE",
+          "ref": "11.03"
+        }
+      ]
+    },
+    "fight_phase": {
+      "ref": "12",
+      "steps": [
+        {
+          "name": "START OF FIGHT PHASE",
+          "ref": "12.01"
+        },
+        {
+          "name": "PILE IN",
+          "ref": "12.02"
+        },
+        {
+          "name": "FIGHT",
+          "ref": "12.04"
+        },
+        {
+          "name": "CONSOLIDATE",
+          "ref": "12.07"
+        },
+        {
+          "name": "END OF FIGHT PHASE",
+          "ref": "12.09"
+        }
+      ]
+    },
+    "shooting_phase": {
+      "ref": "10",
+      "steps": [
+        {
+          "name": "START OF SHOOTING PHASE",
+          "ref": "10.01"
+        },
+        {
+          "name": "SHOOT",
+          "ref": "10.02"
+        },
+        {
+          "name": "END OF SHOOTING PHASE",
+          "ref": "10.03"
+        }
+      ]
+    }
+  },
+  "terrain_keywords": {
+    "dense": "Dense terrain is an obstacle to even the largest war machines, and can shelter entire squads from enemy sight. Examples: Buildings, ruins, armoured containers, woods. A mission’s deployment map may define which terrain categories should be present within each terrain area. Meeting these requirements will create the best gaming experience. Note that terrain features sharing the same terrain area can belong to different terrain categories. This section provides rules for using terrain to transform",
+    "obscuring": "Terrain areas containing one or more light or dense terrain features are obscuring terrain areas. If every line of sight drawn between two models crosses one or more obscuring terrain areas (excluding obscuring terrain areas that one or both of those models are within), those two models are not visible to each other."
+  },
+  "_meta": {
+    "total_pages": 88
+  },
+  "abilities_index": {
+    "ANTI": {
+      "name": "ANTI",
+      "ref": "24.03",
+      "form": "[ANTI‑X Y+]",
+      "description": "Certain weapons are the bane of particular foes. This ability always takes the form [ANTI‑X Y+]. Each time an attack is made with an [ANTI] weapon, if the target unit has the keyword denoted by X, an unmodified wound roll of Y+ is a critical wound. Example: An attack made with an [ANTI‑VEHICLE 4+] weapon against a VEHICLE unit will result in a critical wound on an unmodified wound roll of 4+, while an attack made with an [ANTI‑PSYKER 2+] weapon against a PSYKER unit will result in a critical wound on an unmodified wound roll of 2+."
+    },
+    "ASSAULT": {
+      "name": "ASSAULT",
+      "ref": "24.04",
+      "form": null,
+      "description": "Folding stocks, shortened barrels or lightweight construction enable some weapons to be easily fired on the move. Units containing one or more models with an [ASSAULT] weapon can shoot using assault shooting (10.05)."
+    },
+    "BLAST": {
+      "name": "BLAST",
+      "ref": "24.05",
+      "form": null,
+      "description": "High‑explosive rounds can fell several warriors in a single blast, but firing them too close to comrades is unwise. Each time you gather attack dice for a [BLAST] weapon, add one additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). If this ability takes the form [BLAST X], each time you gather attack dice for such a weapon, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down) instead. Example: If a [BLAST 2] weapon with an A characteristic of 3 targets a unit containing 12 models, you would gather four additional attack dice for that weapon (for a total of seven for that weapon)."
+    },
+    "CLEAVE": {
+      "name": "CLEAVE",
+      "ref": "24.06",
+      "form": "[CLEAVE X]",
+      "description": "With sufficient might or skill, warriors may sweep blades or talons through their foes in long lethal arcs. This ability always takes the form [CLEAVE X]. Each time you gather attack dice for a [CLEAVE] weapon, if you only selected one target for all of that weapon’s attacks, add X additional attack dice for every five models that were in the target unit in the Select Targets step (rounding down). Example: If a [CLEAVE 1] weapon with an A characteristic of 3 targets one unit containing 16 models, you would gather three additional attack dice for that weapon (for a total of six for that weapon)."
+    },
+    "CLOSE-QUARTERS": {
+      "name": "CLOSE-QUARTERS",
+      "ref": "24.07",
+      "form": null,
+      "description": "Weapons designed for close‑quarters fighting can be wielded effectively even in the press of melee combat. Units containing one or more models with a [CLOSE‑QUARTERS] weapon can shoot using close‑quarters shooting (10.06). When using another shooting type, for each model in that unit (excluding MONSTER/VEHICLE models), you can only select one of the following to make attacks with: ▪\u0007One or more of its [CLOSE‑QUARTERS] weapons. ▪\u0007One or more of its other ranged weapons."
+    },
+    "DEADLY DEMISE": {
+      "name": "DEADLY DEMISE",
+      "ref": "24.08",
+      "form": "Deadly Demise X",
+      "description": "From detonating ammo stores to corrosive innards or frenzied death throes, some targets are deadly even in defeat. This ability always takes the form Deadly Demise X. Each time a model in this unit is destroyed, after the units embarked within it (if any) have made their emergency disembark moves, roll one D6. On a 6, that model suffers a deadly demise; each unit within 6\" of that model suffers a number of mortal wounds denoted by X (if this is a random number, roll separately for each unit within 6\"). Example: An Impulsor with a unit of Intercessors embarked within it is destroyed by ranged attacks. First, any unresolved attacks made by the attacking unit are resolved. Then the Intercessors make an emergency disembark move. Then the roll is made for the Deadly Demise ability, and on a 6, that ability is resolved. Finally, the Impulsor is removed from the battlefield."
+    },
+    "DEEP STRIKE": {
+      "name": "DEEP STRIKE",
+      "ref": "24.09",
+      "form": null,
+      "description": "There are many ways by which to deploy troops to the field of battle including tunnels, teleportation devices and other esoteric means of transportation. Each time this unit makes an ingress move (20.04), if every model in this unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from all enemy units, even if that is within your opponent’s deployment zone."
+    },
+    "DEVASTATING WOUNDS": {
+      "name": "DEVASTATING WOUNDS",
+      "ref": "24.10",
+      "form": null,
+      "description": "The most potent weapons strike with such power that they make a mockery of armour and can cleave through several foes. Each time an attack made with a [DEVASTATING WOUNDS] weapon results in a critical wound, the attack sequence for that attack ends and the target unit suffers a number of mortal wounds equal to the D characteristic of that weapon. These are inflicted after resolving any normal damage inflicted by those attacks. Mortal wounds inflicted by [DEVASTATING WOUNDS] weapons can damage a maximum of one model for each critical wound; any remaining mortal wounds inflicted by that attack are lost. Example: An attack made with a [DEVASTATING WOUNDS] weapon with a D characteristic of 3 results in a critical wound against an Intercessor Squad, so inflicts 3 mortal wounds. The first 2 mortal wounds are sufficient to destroy 1 Intercessor model, so the remaining mortal wound is lost."
+    },
+    "EXTRA ATTACKS": {
+      "name": "EXTRA ATTACKS",
+      "ref": "24.11",
+      "form": null,
+      "description": "Some warriors ride to battle atop trusty mounts that gore and trample nearby foes. Others wield combat weapons that deliver a frenzy of additional blows. Each time a unit containing one or more models with an [EXTRA ATTACKS] weapon fights, those models will make attacks with those weapons in addition to any others. In the Select Weapons step (04.01), for each of those models, you must select: ▪\u0007All of that model’s [EXTRA ATTACKS] weapons. ▪\u0007One of that model’s other melee weapons, if possible."
+    },
+    "FEEL NO PAIN": {
+      "name": "FEEL NO PAIN",
+      "ref": "24.12",
+      "form": "Feel No Pain X+",
+      "description": "The hardiest warriors refuse to be laid low, even by wounds that should by all rights prove lethal. This ability always takes the form Feel No Pain X+. Each time a model with this ability would lose a wound, roll one D6: on an X+, that wound is not lost."
+    },
+    "FIGHTS FIRST": {
+      "name": "FIGHTS FIRST",
+      "ref": "24.13",
+      "form": null,
+      "description": "Those possessed of lightning‑fast reactions may strike before the opponent can react. While every model in a unit has this ability, that unit is a Fights First unit. See the Resolve Fights First Combats step in the Fight phase (12.04)."
+    },
+    "FIRING DECK": {
+      "name": "FIRING DECK",
+      "ref": "24.14",
+      "form": "Firing Deck X",
+      "description": "Some transports have dedicated platforms or firing ports from which embarked passengers can lay down a withering hail of munitions. This ability always takes the form Firing Deck X. In your Shooting phase, each time this TRANSPORT is selected to shoot, if one or more units are embarked within it, resolve the following sequence: \u00071. \u0007Select up to X models embarked within this TRANSPORT (excluding models whose units have already been selected to shoot this phase). \u00072. \u0007For each selected model, select one of its ranged weapons (excluding [ONE SHOT] weapons). \u00073. \u0007Until this TRANSPORT has resolved all of its attacks, it has all of those selected weapons in addition to its other weapons. \u00074. \u0007Until the end of the turn, units embarked within this TRANSPORT are not eligible to shoot."
+    },
+    "HAZARDOUS": {
+      "name": "HAZARDOUS",
+      "ref": "24.15",
+      "form": null,
+      "description": "Weapons powered by unstable and dangerous energy sources pose a substantial risk to the wielder and those that stand beside them. Each time a unit is selected to shoot or selected to fight, after that unit has resolved all of its attacks, make a number of hazard rolls (06.03) for that unit equal to the number of [HAZARDOUS] weapons you selected in the Select Weapons step."
+    },
+    "HEAVY": {
+      "name": "HEAVY",
+      "ref": "24.16",
+      "form": null,
+      "description": "Heavy weapons are amongst the biggest guns on the battlefield, but require bracing to fire at full effect. In your Shooting phase, each time an attack is made with a [HEAVY] weapon, add 1 to the hit roll if all of the following apply to the attacking unit: ▪That unit is unengaged.\u0007 ▪\u0007That unit was not set up on the battlefield this turn. ▪\u0007No model in that unit has moved more than 3\" this turn."
+    },
+    "HOVER": {
+      "name": "HOVER",
+      "ref": "24.17",
+      "form": null,
+      "description": "Some airborne vehicles can use vectored thrusters or anti-gravity technology to hover and skim over the battlefield, the better to hunt their prey or deploy embarked troops. Each time this unit takes to the skies (21.03), do not subtract 2\" from the maximum distance."
+    },
+    "IGNORES COVER": {
+      "name": "IGNORES COVER",
+      "ref": "24.18",
+      "form": null,
+      "description": "Some weapons are designed to root enemy formations out of entrenched positions. Each time an attack is made with an [IGNORES COVER] weapon, the target cannot have the benefit of cover against that attack (13.08), including from rules that give a model or unit the benefit of cover (e.g. Stealth)."
+    },
+    "INDIRECT FIRE": {
+      "name": "INDIRECT FIRE",
+      "ref": "24.19",
+      "form": null,
+      "description": "Indirect fire weapons launch munitions over or around intervening obstacles – nowhere is safe from their fury. Units containing one or more models with an [INDIRECT FIRE] weapon can shoot using indirect shooting (10.07)."
+    },
+    "INFILTRATORS": {
+      "name": "INFILTRATORS",
+      "ref": "24.20",
+      "form": null,
+      "description": "Many armies employ reconnaissance units who can sit concealed, waiting for the right moment to strike. During deployment, if every model in a unit has this ability, it can be set up anywhere on the battlefield that is more than 8\" horizontally from your opponent’s deployment zone and all enemy units."
+    },
+    "LANCE": {
+      "name": "LANCE",
+      "ref": "24.21",
+      "form": null,
+      "description": "With the momentum of a warrior at full‑tilt, lance weapons are deadly on the charge. Each time an attack is made with a [LANCE] weapon, if the attacking model’s unit made a charge move this turn, add 1 to the wound roll."
+    },
+    "LEADER": {
+      "name": "LEADER",
+      "ref": "24.22",
+      "form": null,
+      "description": "Mighty heroes fight at the forefront of battle. See Attached Units (19)."
+    },
+    "LETHAL HITS": {
+      "name": "LETHAL HITS",
+      "ref": "24.23",
+      "form": null,
+      "description": "Many deadly weapons can inflict fatal injuries on any foe, no matter their resilience. Each time an attack made with a [LETHAL HITS] weapon results in a critical hit, you can choose for that attack to automatically wound the target. Designer’s Note: Choosing to automatically wound the target means that no wound roll is made for that attack. You may decide against this, as it means that attack cannot result in a critical wound and so cannot trigger other abilities such as [DEVASTATING WOUNDS]."
+    },
+    "LONE OPERATIVE": {
+      "name": "LONE OPERATIVE",
+      "ref": "24.24",
+      "form": null,
+      "description": "Assassins and other covert agents are difficult to pinpoint in the storm of battle. Unless part of an attached unit, this unit is not visible to enemy models unless they are within 12\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within 12\" of this unit. If this ability takes the form Lone Operative X\", unless part of an attached unit, this unit is not visible to enemy models unless they are within X\" of this unit, and it cannot be targeted by [INDIRECT FIRE] weapons unless the attacking model is within X\" of this unit."
+    },
+    "MELTA": {
+      "name": "MELTA",
+      "ref": "24.25",
+      "form": "[MELTA X]",
+      "description": "Melta weapons are powerful heat rays whose fury is magnified at close range. This ability always takes the form [MELTA X]. Each time a model makes an attack with a [MELTA] weapon, if the target unit was within half range of that weapon in the Select Targets step, until the attacking unit’s attacks have been resolved, add X to that weapon’s D characteristic. Example: A model targets a unit that is within half range of a [MELTA 2] weapon with a D characteristic of D6. While resolving those attacks, that weapon has a D characteristic of D6+2."
+    },
+    "ONE SHOT": {
+      "name": "ONE SHOT",
+      "ref": "24.26",
+      "form": null,
+      "description": "Some weapons are so rare, or so complex and slow to reload, that they can only be used once. Each weapon with this ability can only be selected to make attacks with once per battle. If a destroyed model is returned to a unit, all of its [ONE SHOT] weapons that have already been selected to make attacks with during the battle cannot be selected to make attacks with again. If a new unit is added to an army, all [ONE SHOT] weapons in that unit can be selected to make attacks with once per battle."
+    },
+    "PISTOL": {
+      "name": "PISTOL",
+      "ref": "24.27",
+      "form": null,
+      "description": "Pistols can be wielded even at point‑blank range. [PISTOL] and [CLOSE‑QUARTERS] are identical for all rules purposes. See [CLOSE‑QUARTERS]. Designer’s Note: [PISTOL] is a pre-existing ability that will be superseded by [CLOSE-QUARTERS] as this edition of Warhammer 40,000 progresses. Both are functionally the same, but the latter is a more suitable term for weapons that function in this way."
+    },
+    "PRECISION": {
+      "name": "PRECISION",
+      "ref": "24.28",
+      "form": null,
+      "description": "Precision attacks can pick high‑value targets out in a crowd. While resolving attacks made with one or more [PRECISION] weapons, at the start of the Allocation Order step (05.03), if the target unit contains one or more CHARACTER models visible to one or more of the attacking models, the active player can select one allocation group that contains one of those visible CHARACTER models. If they do, until those attacks are resolved, or until that CHARACTER group is destroyed (whichever happens first), that CHARACTER group is the current allocation group."
+    },
+    "PSYCHIC": {
+      "name": "PSYCHIC",
+      "ref": "24.29",
+      "form": null,
+      "description": "Some weapons can channel the bearer’s psychic might to empower their blows. Each time an attack is made with a [PSYCHIC] weapon, you can ignore any or all modifiers to that attack’s BS or WS characteristic and any or all modifiers to the hit roll. Attacks made with [PSYCHIC] weapons are known as psychic attacks (this can be important for the triggering of other rules)."
+    },
+    "RAPID FIRE": {
+      "name": "RAPID FIRE",
+      "ref": "24.30",
+      "form": "[RAPID FIRE X]",
+      "description": "Rapid fire weapons are capable of long‑ranged precision shots or controlled bursts at nearby targets. This ability always takes the form [RAPID FIRE X]. Each time you gather attack dice for a [RAPID FIRE] weapon, add X additional attack dice if the target unit was within half range of that weapon in the Select Targets step. Example: If a [RAPID FIRE 1] weapon with an A characteristic of 1 targets a unit that is within half range, you would gather one additional attack dice for that weapon (for a total of two for that weapon)."
+    },
+    "SCOUTS": {
+      "name": "SCOUTS",
+      "ref": "24.31",
+      "form": "Scouts X\"",
+      "description": "Scouts form the vanguard of many armies. Unnoticed by the enemy, they range ahead of the main force. This ability always takes the form Scouts X\". In the Resolve Pre‑battle Abilities step, if every model in a unit has this ability, you can do one of the following: ▪\u0007If that unit is in strategic reserves, you can set up that unit anywhere that is wholly within your deployment zone. ▪\u0007If that unit is wholly within your deployment zone, it can make a scout move (see below). ▪\u0007If that unit is embarked within a DEDICATED TRANSPORT that is wholly within your deployment zone, and if every model embarked within that DEDICATED TRANSPORT has the Scouts ability, that DEDICATED TRANSPORT can make a scout move. SCOUT MOVE 24.32 MAXIMUM DISTANCE: The X\" in Scouts X\". ELIGIBLE IF: It is the Resolve Pre-battle Abilities step, and your unit is wholly within your deployment zone. EFFECT: Your unit moves as described in Moving (03). AFTER MOVING: Your unit must be more than 8\" horizontally from all enemy units."
+    },
+    "STEALTH": {
+      "name": "STEALTH",
+      "ref": "24.33",
+      "form": null,
+      "description": "The stealthiest warriors can evade the attentions, and the bullets, of their foes. If every model in a unit has this ability, each time a ranged attack targets that unit, that unit has the benefit of cover against that attack (13.08)."
+    },
+    "SUPPORT": {
+      "name": "SUPPORT",
+      "ref": "24.34",
+      "form": null,
+      "description": "Specialist combatants may be assigned to front-line squads to bolster their fighting effectiveness. See Attached Units (19)."
+    },
+    "SUPER-HEAVY WALKER": {
+      "name": "SUPER-HEAVY WALKER",
+      "ref": "24.35",
+      "form": null,
+      "description": "Monstrous creatures and gigantic engines of war loom over the battlefield like gods given form, striding over combatants and smashing through almost any obstacle that bars their passage. Each time a unit with this ability makes a normal, advance or fall-back move: ▪\u0007Models in that unit can move through models (including MONSTER/VEHICLE models, but excluding TITANIC models) and can move horizontally through sections of terrain features that are 4\" or less in height. ▪\u0007Before moving that unit, you can select for all models in that unit to have the MOBILE keyword until that move ends. If you do, when that move ends, roll one D6: on a 1, that unit is battle-shocked. Designer’s Note: Gaining the MOBILE keyword for the duration of a move will enable models in that unit to move horizontally through dense terrain features (13.06)."
+    },
+    "SUSTAINED HITS": {
+      "name": "SUSTAINED HITS",
+      "ref": "24.36",
+      "form": "[SUSTAINED HITS X]",
+      "description": "Some weapons possess a punishing rate of fire, or can land devastating flurries of blows, tearing the foe apart with relentless ferocity. This ability always takes the form [SUSTAINED HITS X]. Each time an attack made with a [SUSTAINED HITS] weapon results in a critical hit, that attack results in a number of additional hits on the target as denoted by X. Example: An attack made with a [SUSTAINED HITS 2] weapon results in a critical hit. That attack therefore hits the target three times (once from the critical hit, and twice more from the [SUSTAINED HITS 2] ability)."
+    },
+    "TORRENT": {
+      "name": "TORRENT",
+      "ref": "24.37",
+      "form": null,
+      "description": "Torrent weapons project clouds of fire, gas or other lethal substances that few foes can hope to evade. Each time an attack is made with a [TORRENT] weapon, that attack automatically hits the target."
+    },
+    "TWIN-LINKED": {
+      "name": "TWIN-LINKED",
+      "ref": "24.38",
+      "form": null,
+      "description": "Dual weapons are often grafted to the same targeting system for greater lethality. Each time an attack is made with a [TWIN‑LINKED] weapon, you can re‑roll the wound roll. ++ VIGILANCE IS YOUR SHIELD ++"
+    }
+  }
+}
