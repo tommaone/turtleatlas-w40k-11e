@@ -48,6 +48,66 @@ MISSION_PROFILES = {
     "Purge (general)": {"dps": 0.60, "surv": 0.25, "mob": 0.15},
 }
 
+# ── Meta profiles (multi-target weighted optimisation) ─────────────
+# Used with --meta flag. Optimises loadouts against a weighted mix of targets.
+# Each entry: list of (target_name, weight) — weights re-normalised to sum 1.0
+META_PROFILES = {
+    "competitive": [
+        ("MEQ",     0.35),
+        ("TEQ",     0.15),
+        ("Light V", 0.25),
+        ("Heavy V", 0.15),
+        ("Knight",  0.10),
+    ],
+    "infantry": [
+        ("GEQ",     0.15),
+        ("MEQ",     0.45),
+        ("TEQ",     0.25),
+        ("Light V", 0.10),
+        ("Heavy V", 0.05),
+    ],
+    "vehicle": [
+        ("Light V", 0.25),
+        ("Heavy V", 0.35),
+        ("C'tan",   0.15),
+        ("Knight",  0.25),
+    ],
+    "elite": [
+        ("TEQ",     0.30),
+        ("Heavy V", 0.30),
+        ("C'tan",   0.20),
+        ("Knight",  0.20),
+    ],
+    "all-comers": [
+        ("GEQ",     0.15),
+        ("MEQ",     0.25),
+        ("TEQ",     0.15),
+        ("Light V", 0.20),
+        ("Heavy V", 0.15),
+        ("C'tan",   0.05),
+        ("Knight",  0.05),
+    ],
+}
+
+
+def _resolve_meta(meta_spec):
+    """Convert a meta profile name or list into (targets_with_profiles, weights) list.
+    
+    Returns list of (target_name, TargetProfile, weight).
+    Weights are re-normalised to sum to 1.0.
+    """
+    if isinstance(meta_spec, str):
+        spec = META_PROFILES[meta_spec]
+    else:
+        spec = meta_spec
+    total_w = sum(w for _, w in spec)
+    result = []
+    for tn, w in spec:
+        tp = TARGET_PROFILES[tn]
+        result.append((tn, tp, w / total_w))
+    return result
+
+
 # Shorthand: load a weapon from the catalog
 def W(name, **kw):
     return _CATALOG.load(name, **kw)
@@ -58,6 +118,11 @@ def W(name, **kw):
 # ---------------------------------------------------------------------------
 
 def _wp_dmg(wp, target=MEQ):
+    """Damage against a single target or weighted across multiple targets."""
+    if isinstance(target, list):
+        # target is a list of (name, TargetProfile, weight)
+        return sum(w * compute_weapon_dpp(wp, tp, hit_mode=HitMode.NORMAL)["total_damage"]
+                   for _, tp, w in target)
     return compute_weapon_dpp(wp, target, hit_mode=HitMode.NORMAL)["total_damage"]
 
 def _ld_dmg(ranged, melee, innate, target=MEQ):
@@ -408,7 +473,19 @@ STATIC_LOADOUTS["Champion of Titan [Crucible]"] = (
     {"M": "6\"", "T": 4, "SV": 3, "W": 2, "OC": 1, "INV": 4},
 )
 
-# Characters — fixed loadout, not target-optimised
+# Characters with weapon options (swap Storm Bolter for Vortex of Doom / Combi-weapon, etc.)
+# Each entry: {"ranged": [[opt1_list], [opt2_list], ...], "melee": [[opt1_list], ...]}
+CHARACTER_WEAPON_OPTIONS = {
+    "Brotherhood Librarian": {
+        "ranged": [
+            [W("Storm bolter", unit_name="Brotherhood Librarian")],
+            [W("Combi-weapon", unit_name="Brotherhood Librarian")],
+            [W("Vortex of Doom", unit_name="Brotherhood Librarian")],
+        ],
+    },
+}
+
+# Characters — fixed loadout (base/default weapon)
 CHARACTER_LOADOUTS = {
     "Brother-Captain": (95, [W("Storm bolter", unit_name="Brother-Captain")],
                         [W("Nemesis force weapon", unit_name="Brother-Captain")], []),
@@ -475,9 +552,18 @@ def resolve_loadout(name, target=MEQ, pricing=None):
         info = {"M": "8\"", "T": 8, "SV": 2, "W": 13, "OC": 4, "INV": 4}
         return (pts, bv["ranged"], bv["melee"], bv["innate"], info)
 
-    # Character: fixed loadout
+    # Character: fixed loadout (with optional weapon choice for some models)
     if name in CHARACTER_LOADOUTS:
         pts, ranged, melee, innate = CHARACTER_LOADOUTS[name]
+        # Check for weapon options (e.g. Brotherhood Librarian can swap Storm Bolter for Vortex of Doom / Combi-weapon)
+        if name in CHARACTER_WEAPON_OPTIONS:
+            ranged_options = CHARACTER_WEAPON_OPTIONS[name].get("ranged", [ranged])
+            # Pick the ranged option that maximises damage vs target
+            best_ranged = max(ranged_options, key=lambda wp_set: _ld_dmg(wp_set, melee, innate, target))
+            # Also consider swapping melee if options exist
+            melee_options = CHARACTER_WEAPON_OPTIONS[name].get("melee", [melee])
+            best_melee = max(melee_options, key=lambda wp_set: _ld_dmg(best_ranged, wp_set, innate, target))
+            return (pts, best_ranged, best_melee, innate, None)
         return (pts, ranged, melee, innate, None)
 
     # Static: fixed loadout
@@ -498,10 +584,18 @@ def resolve_loadout(name, target=MEQ, pricing=None):
 # ---------------------------------------------------------------------------
 
 def compute_weapons_dpp(profiles, unit_points, target=MEQ):
+    """Compute total damage for a list of weapon profiles.
+    
+    If target is a list of (name, TargetProfile, weight), computes weighted average.
+    """
     total_damage = 0.0
     for wp in profiles:
-        r = compute_weapon_dpp(wp, target, unit_points=unit_points, hit_mode=HitMode.NORMAL)
-        total_damage += r["total_damage"]
+        if isinstance(target, list):
+            d = sum(w * compute_weapon_dpp(wp, tp, unit_points=unit_points, hit_mode=HitMode.NORMAL)["total_damage"]
+                    for _, tp, w in target)
+        else:
+            d = compute_weapon_dpp(wp, target, unit_points=unit_points, hit_mode=HitMode.NORMAL)["total_damage"]
+        total_damage += d
     return total_damage
 
 
@@ -563,6 +657,36 @@ def get_unit_info(name, profile_data):
             kw.append("TERMINATOR")
         return kw, t, sv, w, oc_val, inv
 
+    # Fallback: read from profile data (handles Nemesis Dreadknight, GMNDK, and any future units)
+    stats = profile_data.get("stats", {})
+    if stats.get("T"):
+        t = int(str(stats.get("T", "4")).replace('"', ""))
+        sv = int(str(stats.get("SV", "3+")).replace("+", "").replace('"', ""))
+        w = int(str(stats.get("W", "2")).replace('"', ""))
+        oc_val = int(str(stats.get("OC", "1")).replace('"', ""))
+        # Normalise keywords to UPPER for consistency with other branches
+        raw_kw = [k.upper() for k in profile_data.get("keywords", [])]
+        kw = []
+        if "INFANTRY" in raw_kw:
+            kw.append("INFANTRY")
+        if "VEHICLE" in raw_kw:
+            kw.append("VEHICLE")
+        if "WALKER" in raw_kw:
+            kw.append("WALKER")
+        if "CHARACTER" in raw_kw:
+            kw.append("CHARACTER")
+        if "FLY" in raw_kw:
+            kw.append("FLY")
+        kw.append("FACTION: GREY KNIGHTS")
+        inv = None
+        for rule in profile_data.get("rules", []):
+            rl = rule.upper()
+            if "INVULNERABLE" in rl:
+                m = re.search(r'(\d+)\+', rl)
+                if m:
+                    inv = int(m.group(1))
+        return kw, t, sv, w, oc_val, inv
+
     return [], 4, 3, 2, 1, None
 
 
@@ -621,21 +745,33 @@ def _get_notes(name):
     return notes_map.get(name, "")
 
 
-def compute_ranking(target=MEQ, mission=None):
+def compute_ranking(target=MEQ, mission=None, meta_name=None):
     """Compute unit ranking for a given target, optionally weighted by mission.
 
     Args:
-        target: TargetProfile to evaluate DPP against.
+        target: TargetProfile to evaluate DPP against (single target).
+                 Ignored if meta_name is set.
         mission: Mission name from MISSION_PROFILES, or None for unweighted.
+        meta_name: Meta profile name from META_PROFILES. When set, loadouts
+                    optimise for the weighted multi-target mix.
 
     Returns:
         list of dicts sorted by mission score (or DPP if no mission).
+                 Each entry includes '_meta_name' if meta mode is used.
     """
     data_path = Path(__file__).resolve().parent.parent / "data" / "merged" / "grey-knights.json"
     data = json.loads(data_path.read_text())
 
-    # Allow all known or static units
-    known = set(SQUAD_INFO) | set(STATIC_LOADOUTS) | set(CHARACTER_LOADOUTS)
+    # Resolve meta target list if meta mode
+    meta_targets = None
+    actual_target = target
+    if meta_name:
+        meta_targets = _resolve_meta(meta_name)
+        actual_target = meta_targets  # pass list to loadout resolution
+
+    # Units handled by resolve_loadout but not in any lookup dict (vehicles with weapon options)
+    _EXTRA_KNOWN = {"Nemesis Dreadknight", "Grand Master In Nemesis Dreadknight"}
+    known = set(SQUAD_INFO) | set(STATIC_LOADOUTS) | set(CHARACTER_LOADOUTS) | _EXTRA_KNOWN
 
     results = []
 
@@ -653,16 +789,16 @@ def compute_ranking(target=MEQ, mission=None):
         pricing = unit.get("pricing", [])
         stats = profile.get("stats", {})
 
-        # Resolve loadout for this specific target
-        resolved = resolve_loadout(name, target, pricing)
+        # Resolve loadout for this specific target (or meta mix)
+        resolved = resolve_loadout(name, actual_target, pricing)
         if resolved is None:
             continue
         pts, ranged_profiles, melee_profiles, innate_profiles, info = resolved
 
-        # DPP vs target
-        dmg_ranged = compute_weapons_dpp(ranged_profiles, pts, target) if ranged_profiles else 0
-        dmg_melee = compute_weapons_dpp(melee_profiles, pts, target) if melee_profiles else 0
-        dmg_innate = compute_weapons_dpp(innate_profiles, pts, target) if innate_profiles else 0
+        # DPP vs target (or weighted meta mix)
+        dmg_ranged = compute_weapons_dpp(ranged_profiles, pts, actual_target) if ranged_profiles else 0
+        dmg_melee = compute_weapons_dpp(melee_profiles, pts, actual_target) if melee_profiles else 0
+        dmg_innate = compute_weapons_dpp(innate_profiles, pts, actual_target) if innate_profiles else 0
         total_dmg = dmg_ranged + dmg_melee + dmg_innate
         dpp_val = total_dmg / pts if pts > 0 else 0
 
@@ -718,7 +854,7 @@ def compute_ranking(target=MEQ, mission=None):
 
         notes = _get_notes(name)
 
-        results.append({
+        result_entry = {
             "name": name,
             "points": pts,
             "dpp": round(dpp_val, 4),
@@ -727,7 +863,10 @@ def compute_ranking(target=MEQ, mission=None):
             "mob": mob,
             "loadout_desc": _loadout_desc(name, ranged_profiles, melee_profiles, innate_profiles),
             "notes": notes,
-        })
+        }
+        if meta_name:
+            result_entry["_meta_name"] = meta_name
+        results.append(result_entry)
 
     # Sort by mission-weighted score or DPP
     if mission and mission in MISSION_PROFILES:
@@ -821,13 +960,29 @@ def _bar(pct, width=10):
     return "█" * filled + "░" * (width - filled)
 
 
-def print_ranking(results, target_name="MEQ", mission_name=None):
+def print_ranking(results, target_name="MEQ", mission_name=None, meta_name=None):
+    """Print ranking table and detail.
+
+    Args:
+        results: list of result dicts from compute_ranking.
+        target_name: Single target label (used if meta_name is None).
+        mission_name: Optional mission profile name.
+        meta_name: Optional meta profile name — overrides target_name display.
+    """
     n = len(results)
     if not n:
         print("No results.")
         return
 
-    title = f"## Grey Knights — Ranking vs {target_name}"
+    is_meta = bool(meta_name)
+    display_target = meta_name or target_name
+
+    if is_meta:
+        meta_targets = _resolve_meta(meta_name)
+        meta_desc = ", ".join(f"{tn}×{w:.0%}" for tn, _, w in meta_targets)
+        title = f"## Grey Knights — Meta Ranking: {meta_name}  ({meta_desc})"
+    else:
+        title = f"## Grey Knights — Ranking vs {target_name}"
     if mission_name:
         title += f" (mission: {mission_name})"
     print(f"{title}\n")
@@ -884,12 +1039,13 @@ def print_ranking(results, target_name="MEQ", mission_name=None):
         ds_str = " DS" if mob["deep_strike"] else ""
         goi_str = " GoI" if mob.get("gate_of_infinity") else ""
         tier = mob["mobility_tier"]
+        dpp_label = f"DPP vs {display_target}" if not is_meta else f"DPP weighted ({meta_name})"
         line = (
             f'### {r["name"]} ({r["points"]}pts)\n'
             f'**Profile:** DPS {_bar(r["_dps_bar"])} {r["_dps_bar"]:>2d}%  '
             f'SURV {_bar(r["_surv_bar"])} {r["_surv_bar"]:>2d}%  '
             f'MOB {_bar(r["_mob_bar"])} {r["_mob_bar"]:>2d}%\n'
-            f'**DPS:** DPP vs {target_name} = {r["dpp"]:.4f} (total dmg={r["total_damage"]:.2f}) | '
+            f'**DPS:** {dpp_label} = {r["dpp"]:.4f} (total dmg={r["total_damage"]:.2f}) | '
             f'**SURV:** effW@AP0={ew["ap0"]} AP2={ew["ap2"]} AP4={ew["ap4"]}, pts/effW={ppe} | '
             f'**MOB:** raw={r["_mob_raw"]}/100 (M={m}{fly_str}{ds_str}{goi_str} OC={mob["objective_control"]} [{tier}])\n'
             f'**Loadout:** {r["loadout_desc"]}\n'
@@ -899,9 +1055,14 @@ def print_ranking(results, target_name="MEQ", mission_name=None):
 
     # ── assumption registry ──
     print("---\n## Assumption Registry")
+    if is_meta:
+        meta_targets = _resolve_meta(meta_name)
+        opp_desc = ", ".join(f"{tn} ({w:.0%})" for tn, _, w in meta_targets)
+    else:
+        opp_desc = target_name
     print(f"""
 **Assumptions:**
-- Opponent: {target_name}
+- Opponent: {opp_desc}
 - Range context: ≤12" for Storm Bolters (Rapid Fire 2 active), standard range for others
 - No detachment buffs, stratagems, or command rerolls
 - No cover modifiers (Psychic weapons ignore Cover [24.29]; Storm Bolters evaluated without Cover)
@@ -967,24 +1128,42 @@ def main():
     parser = argparse.ArgumentParser(description="GK Unit Ranking — three-vector DPS/SURV/MOB")
     parser.add_argument("--target", "-t", default="MEQ",
                         choices=list(TARGET_PROFILES.keys()),
-                        help="Target profile to evaluate DPP against")
+                        help="Target profile to evaluate DPP against (ignored if --meta set)")
     parser.add_argument("--mission", "-m", default=None,
                         choices=list(MISSION_PROFILES.keys()),
                         help="Mission profile for weighted ranking")
     parser.add_argument("--matrix", action="store_true",
                         help="Print cross-target DPP matrix and exit")
+    parser.add_argument("--meta", default=None,
+                        choices=list(META_PROFILES.keys()),
+                        help="Multi-target meta profile (loadouts optimised for weighted mix)")
     args = parser.parse_args()
 
+    meta_name = args.meta
+
     if args.matrix:
-        by_target = {}
-        for tn, tp in TARGET_PROFILES.items():
-            by_target[tn] = compute_ranking(target=tp)
-        print_matrix(by_target)
+        if meta_name:
+            by_target = {}
+            meta_targets = _resolve_meta(meta_name)
+            for tn, _, _ in meta_targets:
+                tp = TARGET_PROFILES[tn]
+                by_target[tn] = compute_ranking(target=tp)
+            print(f"## Meta Matrix: {meta_name}\n")
+            print_matrix(by_target)
+        else:
+            by_target = {}
+            for tn, tp in TARGET_PROFILES.items():
+                by_target[tn] = compute_ranking(target=tp)
+            print_matrix(by_target)
         return
 
-    target = TARGET_PROFILES[args.target]
-    results = compute_ranking(target=target, mission=args.mission)
-    print_ranking(results, target_name=args.target, mission_name=args.mission)
+    if meta_name:
+        results = compute_ranking(target=MEQ, mission=args.mission, meta_name=meta_name)
+        print_ranking(results, target_name=None, mission_name=args.mission, meta_name=meta_name)
+    else:
+        target = TARGET_PROFILES[args.target]
+        results = compute_ranking(target=target, mission=args.mission)
+        print_ranking(results, target_name=args.target, mission_name=args.mission)
 
 
 if __name__ == "__main__":
