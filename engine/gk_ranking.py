@@ -449,7 +449,13 @@ def get_unit_info(name, profile_data):
 
     if name in STATIC_LOADOUTS:
         _, _, _, _, info = STATIC_LOADOUTS[name]
-        kw = ["VEHICLE", "WALKER", "DEEP STRIKE", "FACTION: GREY KNIGHTS"]
+        kw = ["VEHICLE", "FACTION: GREY KNIGHTS"]
+        if "DREADNOUGHT" in name.upper():
+            kw.append("DREADNOUGHT")
+        if info.get("INV"):
+            # Walkers with invuln are Dreadnought/NDK chassis
+            kw.append("WALKER")
+            kw.append("DEEP STRIKE")
         return kw, info["T"], info["SV"], info["W"], info["OC"], info.get("INV")
 
     # Characters — read from profile data
@@ -613,12 +619,15 @@ def compute_ranking(target=MEQ, mission=None):
             if "DEEP STRIKE" in rule.upper():
                 has_deep_strike = True
 
+        has_gate = is_infantry or "DREADNOUGHT" in kw_list or "WALKER" in kw_list
+
         mob = compute_mob(
             movement=m_val,
             fly=has_fly,
             deep_strike=has_deep_strike,
             oc=oc_val,
             keywords=kw_list,
+            gate_of_infinity=has_gate,
         )
 
         notes = _get_notes(name)
@@ -680,13 +689,45 @@ def compute_ranking(target=MEQ, mission=None):
 
 
 def mob_score(mob):
-    tier_map = {"static": 10, "slow": 25, "standard": 45, "fast": 65, "cavalry": 80, "flyer": 95, "transporter": 70}
-    base = tier_map.get(mob["mobility_tier"], 30)
-    bonuses = 0
-    if mob.get("fly"): bonuses += 10
-    if mob.get("deep_strike"): bonuses += 10
-    oc_bonus = min(mob.get("objective_control", 0) * 3, 15)
-    return min(base + bonuses + oc_bonus, 100)
+    """Mobility score 0-100.
+
+    Units with Gate of Infinity (per-turn teleport redeploy) get a massive
+    strategic mobility boost — they can be anywhere on the board each turn.
+    Their movement speed only matters for charge threat range after arrival.
+    Units without GoI rely on physical movement + FLY + transport.
+    """
+    has_goi = mob.get("gate_of_infinity", False)
+    has_ds = mob.get("deep_strike", False)
+    has_fly = mob.get("fly", False)
+    oc = mob.get("objective_control", 1)
+    tier = mob.get("mobility_tier", "slow")
+
+    if has_goi:
+        # Strategic mobility MAX — can redeploy anywhere each turn
+        # Movement only matters for charge threat after arrival
+        base = 75
+        # M bonus: faster = better charge threat after DS
+        m_bonus = {
+            "skyborne": 0,    # flyers don't charge
+            "fast": 10,       # 10-12" = decent charge threat after DS
+            "cavalry": 8,     # 8" = OK
+            "standard": 5,    # 6" = passable
+            "slow": 3,        # 5" = short charge threat
+            "transporter": 5,
+            "static": 0,
+        }.get(tier, 0)
+        fly_bonus = 5 if has_fly else 0  # Better movement/charge over terrain
+        oc_bonus = min(oc * 3, 12)
+        return min(base + m_bonus + fly_bonus + oc_bonus, 100)
+    else:
+        # Physical movement only
+        tier_map = {"static": 10, "slow": 25, "standard": 45, "fast": 65, "cavalry": 80, "flyer": 95, "skyborne": 95, "transporter": 70}
+        base = tier_map.get(tier, 30)
+        bonuses = 0
+        if has_fly: bonuses += 10
+        if has_ds: bonuses += 10
+        oc_bonus = min(oc * 3, 15)
+        return min(base + bonuses + oc_bonus, 100)
 
 
 def _bar(pct, width=10):
@@ -707,23 +748,40 @@ def print_ranking(results, target_name="MEQ", mission_name=None):
 
     has_mission = "_mission_score" in results[0] if results else False
 
+    # Compute raw scores for display bars (min-max normalized for each vector)
+    dps_vals = [r["dpp"] for r in results]
+    surv_vals = [r["surv"]["effective_wounds"]["ap0"] for r in results]
+    mob_vals = [mob_score(r["mob"]) for r in results]
+
+    def _norm(val, series):
+        lo, hi = min(series), max(series)
+        if hi == lo:
+            return 100
+        return round((val - lo) / (hi - lo) * 100)
+
+    for r in results:
+        r["_dps_bar"] = _norm(r["dpp"], dps_vals)
+        r["_surv_bar"] = _norm(r["surv"]["effective_wounds"]["ap0"], surv_vals)
+        r["_mob_bar"] = _norm(mob_score(r["mob"]), mob_vals)
+        r["_mob_raw"] = mob_score(r["mob"])
+
     print("```")
     if has_mission:
-        header = f'{"Unit":<42s} {"Pts":>5s} {"Scr":>4s} {"DPS%":>5s} {"SURV%":>6s} {"MOB%":>5s}  Profile'
+        header = f'{"Unit":<42s} {"Pts":>5s} {"Scr":>4s} {"DPS":>5s} {"SURV":>6s} {"MOB":>5s}  Bars'
     else:
-        header = f'{"Unit":<42s} {"Pts":>5s} {"DPS%":>5s} {"SURV%":>6s} {"MOB%":>5s}  Profile'
+        header = f'{"Unit":<42s} {"Pts":>5s} {"DPS":>5s} {"SURV":>6s} {"MOB":>5s}  Bars'
     print(header)
     print("-" * len(header))
     for r in results:
-        dpb = _bar(r["_dps_pct"])
-        svb = _bar(r["_surv_pct"])
-        mob = _bar(r["_mob_pct"])
+        dpb = _bar(r["_dps_bar"])
+        svb = _bar(r["_surv_bar"])
+        mob_b = _bar(r["_mob_bar"])
         if has_mission:
-            print(f'{r["name"]:<42s} {r["points"]:>5d} {r["_mission_score"]:>3d}  {r["_dps_pct"]:>3d}% {r["_surv_pct"]:>3d}%  {r["_mob_pct"]:>3d}%  {dpb} {svb} {mob}')
+            print(f'{r["name"]:<42s} {r["points"]:>5d} {r["_mission_score"]:>3.0f}  {r["_dps_bar"]:>3d}% {r["_surv_bar"]:>3d}%  {r["_mob_bar"]:>3d}%  {dpb} {svb} {mob_b}')
         else:
-            print(f'{r["name"]:<42s} {r["points"]:>5d} {r["_dps_pct"]:>3d}% {r["_surv_pct"]:>3d}%  {r["_mob_pct"]:>3d}%  {dpb} {svb} {mob}')
+            print(f'{r["name"]:<42s} {r["points"]:>5d} {r["_dps_bar"]:>3d}% {r["_surv_bar"]:>3d}%  {r["_mob_bar"]:>3d}%  {dpb} {svb} {mob_b}')
     print("```")
-    print(f"  DPS% = DPP vs {target_name} percentile | SURV% = effW@AP0 percentile | MOB% = mobility score percentile")
+    print(f"  Bars are min-max normalised within faction (0% = min, 100% = max)")
     if has_mission:
         print(f"  Scr  = mission-weighted score (higher = better fit for {mission_name})\n")
     else:
@@ -738,15 +796,16 @@ def print_ranking(results, target_name="MEQ", mission_name=None):
         m = mob["movement"]
         fly_str = " Fly" if mob["fly"] else ""
         ds_str = " DS" if mob["deep_strike"] else ""
+        goi_str = " GoI" if mob.get("gate_of_infinity") else ""
         tier = mob["mobility_tier"]
         line = (
             f'### {r["name"]} ({r["points"]}pts)\n'
-            f'**Profile:** DPS {_bar(r["_dps_pct"])} {r["_dps_pct"]:>2d}%  '
-            f'SURV {_bar(r["_surv_pct"])} {r["_surv_pct"]:>2d}%  '
-            f'MOB {_bar(r["_mob_pct"])} {r["_mob_pct"]:>2d}%\n'
+            f'**Profile:** DPS {_bar(r["_dps_bar"])} {r["_dps_bar"]:>2d}%  '
+            f'SURV {_bar(r["_surv_bar"])} {r["_surv_bar"]:>2d}%  '
+            f'MOB {_bar(r["_mob_bar"])} {r["_mob_bar"]:>2d}%\n'
             f'**DPS:** DPP vs {target_name} = {r["dpp"]:.4f} (total dmg={r["total_damage"]:.2f}) | '
             f'**SURV:** effW@AP0={ew["ap0"]} AP2={ew["ap2"]} AP4={ew["ap4"]}, pts/effW={ppe} | '
-            f'**MOB:** M={m}{fly_str}{ds_str} OC={mob["objective_control"]} [{tier}]\n'
+            f'**MOB:** raw={r["_mob_raw"]}/100 (M={m}{fly_str}{ds_str}{goi_str} OC={mob["objective_control"]} [{tier}])\n'
             f'**Loadout:** {r["loadout_desc"]}\n'
             f'**Notes:** {r["notes"]}\n'
         )
@@ -785,6 +844,38 @@ def print_ranking(results, target_name="MEQ", mission_name=None):
 """)
 
 
+def print_matrix(results_by_target):
+    """Print cross-target DPP matrix for top units."""
+    target_names = list(results_by_target.keys())
+    # Pick key units across all results
+    all_units = {}
+    for tn, results in results_by_target.items():
+        for r in results:
+            all_units.setdefault(r["name"], {})[tn] = r["dpp"]
+
+    # Sort by average DPP across targets
+    scored = []
+    for uname, tdps in all_units.items():
+        avg = sum(tdps.values()) / len(tdps)
+        scored.append((avg, uname, tdps))
+    scored.sort(reverse=True)
+
+    print("## Cross-Target DPP Matrix (top 12)\n")
+    print("```")
+    header = f'{"Unit":<40s}'
+    for tn in target_names:
+        header += f' {tn:>9s}'
+    print(header)
+    print("-" * len(header))
+    for avg, uname, tdps in scored[:12]:
+        line = f'{uname:<40s}'
+        for tn in target_names:
+            val = tdps.get(tn, 0)
+            line += f' {val:>9.4f}'
+        print(line)
+    print("```\n")
+
+
 def main():
     import argparse
     parser = argparse.ArgumentParser(description="GK Unit Ranking — three-vector DPS/SURV/MOB")
@@ -794,7 +885,16 @@ def main():
     parser.add_argument("--mission", "-m", default=None,
                         choices=list(MISSION_PROFILES.keys()),
                         help="Mission profile for weighted ranking")
+    parser.add_argument("--matrix", action="store_true",
+                        help="Print cross-target DPP matrix and exit")
     args = parser.parse_args()
+
+    if args.matrix:
+        by_target = {}
+        for tn, tp in TARGET_PROFILES.items():
+            by_target[tn] = compute_ranking(target=tp)
+        print_matrix(by_target)
+        return
 
     target = TARGET_PROFILES[args.target]
     results = compute_ranking(target=target, mission=args.mission)
