@@ -285,16 +285,41 @@ SQUAD_INFO = {
 }
 
 # Fixed loadout units (vehicles, characters — their loadout doesn't depend on target)
+def _LR(name):
+    """Helper: load a weapon for a Land Raider variant."""
+    return W(name, unit_name="Land Raider")
+
+def _SR(name):
+    return W(name, unit_name="Stormraven Gunship")
+
+def _SH(name):
+    return W(name, unit_name="Stormhawk Interceptor")
+
+def _ST(name):
+    return W(name, unit_name="Stormtalon Gunship")
+
+def _RZ(name):
+    return W(name, unit_name="Razorback")
+
+def _T(name):
+    return W(name, unit_name="Grey Knights Thunderhawk Gunship")
+
 STATIC_LOADOUTS = {
     "Venerable Dreadnought": (
         130,
-        [W("Storm bolter", unit_name="Grey Knights Dreadnought")],
+        [W("Storm bolter", unit_name="Grey Knights Dreadnought"),
+         W("Assault cannon", unit_name="Grey Knights Dreadnought")],
         [W("Dreadnought combat weapon", unit_name="Grey Knights Dreadnought")],
         [],
         {"M": "8\"", "T": 9, "SV": 2, "W": 8, "OC": 3, "INV": 4},
     ),
     "Grey Knights Thunderhawk Gunship": (
-        805, [W("Storm bolter")], [], [],
+        855,
+        [_T("Twin heavy bolter"), _T("Lascannon"),
+         _T("Thunderhawk heavy cannon"), _T("Turbo-laser destructor"),
+         _T("Hellstrike missile battery")],
+        [_T("Armoured Hull")],
+        [],
         {"M": "20+\"", "T": 12, "SV": 2, "W": 30, "OC": 0},
     ),
     "Dreadknight Champion [Crucible]": (
@@ -307,14 +332,75 @@ STATIC_LOADOUTS = {
         [],
         {"M": "8\"", "T": 9, "SV": 2, "W": 8, "OC": 3, "INV": 4},
     ),
-    "Land Raider": (220, [W("Storm bolter")], [], [], {"M": "10\"", "T": 12, "SV": 2, "W": 16, "OC": 5}),
-    "Land Raider Crusader": (220, [W("Storm bolter")], [], [], {"M": "12\"", "T": 12, "SV": 2, "W": 16, "OC": 5}),
-    "Land Raider Redeemer": (250, [W("Storm bolter")], [], [], {"M": "12\"", "T": 12, "SV": 2, "W": 16, "OC": 5}),
-    "Razorback": (85, [W("Storm bolter")], [], [], {"M": "12\"", "T": 9, "SV": 3, "W": 10, "OC": 2}),
-    "Rhino": (80, [W("Storm bolter")], [], [], {"M": "12\"", "T": 9, "SV": 3, "W": 10, "OC": 2}),
-    "Stormraven Gunship": (280, [W("Storm bolter")], [], [], {"M": "20+\"", "T": 10, "SV": 3, "W": 14, "OC": 0}),
-    "Stormhawk Interceptor": (160, [W("Storm bolter")], [], [], {"M": "20+\"", "T": 9, "SV": 3, "W": 10, "OC": 0}),
-    "Stormtalon Gunship": (170, [W("Storm bolter")], [], [], {"M": "20+\"", "T": 9, "SV": 3, "W": 10, "OC": 0}),
+    "Land Raider": (
+        220,
+        [_LR("Godhammer lascannon"), _LR("Twin heavy bolter"),
+         _LR("Multi-melta"), _LR("Hunter-killer missile"),
+         W("Storm bolter", unit_name="Land Raider")],
+        [_LR("Armoured tracks")],
+        [],
+        {"M": "10\"", "T": 12, "SV": 2, "W": 16, "OC": 5},
+    ),
+    "Land Raider Crusader": (
+        220,
+        [_LR("Twin assault cannon"), _LR("Hurricane bolter"),
+         _LR("Multi-melta"), _LR("Hunter-killer missile"),
+         W("Storm bolter", unit_name="Land Raider")],
+        [_LR("Armoured tracks")],
+        [],
+        {"M": "12\"", "T": 12, "SV": 2, "W": 16, "OC": 5},
+    ),
+    "Land Raider Redeemer": (
+        250,
+        [_LR("Flamestorm cannon"), _LR("Twin assault cannon"),
+         _LR("Multi-melta"), _LR("Hunter-killer missile"),
+         W("Storm bolter", unit_name="Land Raider")],
+        [_LR("Armoured tracks")],
+        [],
+        {"M": "12\"", "T": 12, "SV": 2, "W": 16, "OC": 5},
+    ),
+    "Razorback": (
+        85,
+        [_RZ("Twin lascannon"), _RZ("Storm bolter"),
+         _RZ("Hunter-killer missile")],
+        [_RZ("Armoured tracks")],
+        [],
+        {"M": "12\"", "T": 9, "SV": 3, "W": 10, "OC": 2},
+    ),
+    "Rhino": (
+        80,
+        [W("Storm bolter", unit_name="Rhino"),
+         W("Hunter-killer missile", unit_name="Rhino")],
+        [W("Armoured tracks", unit_name="Rhino")],
+        [],
+        {"M": "12\"", "T": 9, "SV": 3, "W": 10, "OC": 2},
+    ),
+    "Stormraven Gunship": (
+        280,
+        [_SR("Twin lascannon"), _SR("Twin heavy bolter"),
+         _SR("Twin assault cannon"), _SR("Hurricane bolter"),
+         _SR("Stormstrike missile launcher"),
+         _SR("Twin multi-melta")],
+        [_SR("Armoured hull")],
+        [],
+        {"M": "20+\"", "T": 10, "SV": 3, "W": 14, "OC": 0},
+    ),
+    "Stormhawk Interceptor": (
+        160,
+        [_SH("Twin assault cannon"), _SH("Las-talon"),
+         _SH("Icarus stormcannon"), _SH("Twin heavy bolter")],
+        [_SH("Armoured hull")],
+        [],
+        {"M": "20+\"", "T": 9, "SV": 3, "W": 10, "OC": 0},
+    ),
+    "Stormtalon Gunship": (
+        170,
+        [_ST("Twin lascannon"), _ST("Twin assault cannon"),
+         _ST("Twin heavy bolter"), _ST("Skyhammer missile launcher")],
+        [_ST("Armoured hull")],
+        [],
+        {"M": "20+\"", "T": 9, "SV": 3, "W": 10, "OC": 0},
+    ),
 }
 
 STATIC_LOADOUTS["Champion of Titan [Crucible]"] = (
