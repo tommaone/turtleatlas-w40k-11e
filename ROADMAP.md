@@ -16,7 +16,7 @@ Three-vector (DPS/SURV/MOB) 40k unit ranking engine with MCP server.
 ### DPP Engine (`engine/dpp.py`)
 - [x] `compute_weapon_dpp` — DPP vs target profile (11e rules: Cover=BS mod, Psychic ignores all hit modifiers)
 - [x] `UnitDefense` + `compute_surv` — effective wounds with multi-model, invuln, FNP
-- [x] `compute_mob` — mobility score tiered by M, FLY, Deep Strike, OC
+- [x] `compute_mob` — mobility score with M, FLY, Deep Strike, OC, Gate of Infinity
 - [x] `WeaponProfile` + `TargetProfile` + `HitMode` types
 - [x] Anti-Keyword support (Anti-Infantry 2+ changes wound threshold)
 - [x] Torrent auto-hit handling
@@ -48,19 +48,26 @@ Three-vector (DPS/SURV/MOB) 40k unit ranking engine with MCP server.
 
 ---
 
-## 🔄 In Progress
+## 🔄 Done This Session (commit #2)
 
 - [x] Refactor `compute_ranking()` to accept `target` and `mission` parameters
 - [x] Add `--target` / `--mission` CLI flags to `main()`
 - [x] Print cross-target DPP matrix via `--matrix`
 - [x] Mission-weighted percentile ranking (DPS/SURV/MOB weighted per mission profile)
+- [x] `ROADMAP.md` — project feature tracking file
+- [x] `gate_of_infinity` parameter in `compute_mob` — GK army rule modeled
+- [x] MOB score overhaul: GoI units get strategic mobility base 75 + M/FLY/OC modifiers; non-GoI units use physical mobility
+- [x] Min-max normalized display bars (0% = worst in faction, 100% = best) — no more misleading percentile
+- [x] Fixed `get_unit_info` for STATIC_LOADOUTS: only Dreadnoughts/NDKs get WALKER+DEEP STRIKE keywords
+- [x] Fixed non-GoI MOB tier to include `skyborne` mapping
 
 ---
 
 ## 📋 Planned (no order)
 
 ### Engine
-- [ ] Detachment modifier system — apply detachment buffs to DPP (Warpbane rerolls, Argent Assault, etc.)
+- [ ] Detachment modifier system — apply detachment buffs to DPP (Warpbane rerolls, Argent Assault, etc.) and MOB (Force Wave through walls, Celerity Advance+Charge, etc.)
+- [ ] No T1 Reinforcements rule — 11e rule: no Deep Strike/Reserves arrive turn 1. Affects DS mobility value.
 - [ ] Add Rapid Fire keyword processing (remove pre-doubled `ranged_a` hack)
 - [ ] Add Blast keyword processing (min attacks based on squad size)
 - [ ] Add Melta half-range bonus

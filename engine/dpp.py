@@ -412,6 +412,7 @@ def compute_mob(
     keywords: Optional[list[str]] = None,
     transport_capacity: Optional[str] = None,
     abilities: Optional[list[str]] = None,
+    gate_of_infinity: bool = False,
 ) -> dict:
     """
     Compute a mobility/utility profile for a unit.
@@ -426,6 +427,7 @@ def compute_mob(
         keywords: list of keywords
         transport_capacity: e.g. "6 INFANTRY"
         abilities: list of relevant mobility abilities
+        gate_of_infinity: has Gate of Infinity army rule (GK redeploy per turn)
 
     Returns:
         dict with mobility profile
@@ -440,7 +442,7 @@ def compute_mob(
     is_walker = "WALKER" in kw
     is_terminator = "TERMINATOR" in kw or "TERMINATOR" in str(keywords)
     is_character = "CHARACTER" in kw
-    has_gate = "GATE OF INFINITY" in ab
+    has_gate = gate_of_infinity or "GATE OF INFINITY" in ab
 
     # Mobility tier: simple heuristic based on movement + Fly
     if movement >= 20:
