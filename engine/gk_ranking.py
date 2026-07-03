@@ -24,25 +24,47 @@ _CATALOG = WeaponCatalog(
     str(Path(__file__).resolve().parent.parent / "data" / "merged" / "grey-knights.json")
 )
 
-MEQ = TargetProfile(toughness=4, save=3, invuln=None)
+# ── Target profiles ──────────────────────────────────────────────
+# Keys: (toughness, save, invuln, wounds_per_model, description)
+TARGET_PROFILES = {
+    "GEQ":     TargetProfile(toughness=3, save=5,  invuln=None),
+    "MEQ":     TargetProfile(toughness=4, save=3,  invuln=None),
+    "TEQ":     TargetProfile(toughness=5, save=2,  invuln=4),
+    "Light V": TargetProfile(toughness=7, save=3,  invuln=None),
+    "Heavy V": TargetProfile(toughness=10, save=2, invuln=4),
+    "C'tan":   TargetProfile(toughness=11, save=4, invuln=4),
+    "Knight":  TargetProfile(toughness=13, save=2, invuln=5),
+}
+MEQ = TARGET_PROFILES["MEQ"]  # backward compat
 
-# Shorthand: load a weapon from the catalog with sensible defaults
+# ── Mission profiles ─────────────────────────────────────────────
+# Weights for (DPS, SURV, MOB) — sum to 1.0
+MISSION_PROFILES = {
+    "Purge the Foe":    {"dps": 0.70, "surv": 0.20, "mob": 0.10},
+    "Take and Hold":    {"dps": 0.20, "surv": 0.50, "mob": 0.30},
+    "Reconnaissance":   {"dps": 0.15, "surv": 0.25, "mob": 0.60},
+    "Priority Assets":  {"dps": 0.50, "surv": 0.30, "mob": 0.20},
+    "Disruption":       {"dps": 0.35, "surv": 0.35, "mob": 0.30},
+    "Purge (general)": {"dps": 0.60, "surv": 0.25, "mob": 0.15},
+}
+
+# Shorthand: load a weapon from the catalog
 def W(name, **kw):
     return _CATALOG.load(name, **kw)
 
 
 # ---------------------------------------------------------------------------
-# DPP helpers
+# DPP helpers (target-aware)
 # ---------------------------------------------------------------------------
 
 def _wp_dmg(wp, target=MEQ):
     return compute_weapon_dpp(wp, target, hit_mode=HitMode.NORMAL)["total_damage"]
 
-def _ld_dmg(ranged, melee, innate):
+def _ld_dmg(ranged, melee, innate, target=MEQ):
     d = 0
-    for wp in ranged: d += _wp_dmg(wp)
-    for wp in melee: d += _wp_dmg(wp)
-    for wp in innate: d += _wp_dmg(wp)
+    for wp in ranged: d += _wp_dmg(wp, target)
+    for wp in melee: d += _wp_dmg(wp, target)
+    for wp in innate: d += _wp_dmg(wp, target)
     return d
 
 
@@ -172,7 +194,7 @@ def _eval_variant(cfg, spec_indices):
     return {"ranged": ranged, "melee": melee, "innate": innate}
 
 
-def best_squad_variant(name):
+def best_squad_variant(name, target=MEQ):
     cfg = SQUAD_CONFIG.get(name)
     if not cfg:
         return None
@@ -183,7 +205,7 @@ def best_squad_variant(name):
             ld = _eval_variant(cfg, list(indices))
             if ld is None:
                 continue
-            d = _ld_dmg(ld["ranged"], ld["melee"], ld["innate"])
+            d = _ld_dmg(ld["ranged"], ld["melee"], ld["innate"], target)
             if d > best_d:
                 best_d = d
                 best = ld
@@ -198,6 +220,12 @@ def best_squad_variant(name):
         i_counts = {}
         for wp in best["innate"]:
             i_counts[wp.name] = i_counts.get(wp.name, 0) + 1
+        target_tag = None
+        for tname, tp in TARGET_PROFILES.items():
+            if target == tp:
+                target_tag = tname
+                break
+        tag = target_tag or "custom"
         parts = []
         if r_counts:
             parts.append("Ranged: " + ", ".join(f"{c}×{n}" for n, c in sorted(r_counts.items())))
@@ -205,7 +233,7 @@ def best_squad_variant(name):
             parts.append("Melee: " + ", ".join(f"{c}×{n}" for n, c in sorted(m_counts.items())))
         if i_counts:
             parts.append("Innate: " + ", ".join(f"{c}×{n}" for n, c in sorted(i_counts.items())))
-        parts.append("[auto-optimised for MEQ]")
+        parts.append(f"[optimised for {tag}]")
         best["_desc"] = "; ".join(parts)
     return best
 
@@ -224,7 +252,7 @@ GMNDK_MELEE = [
 ]
 
 
-def best_vehicle_variant(ranged_names, melee_names, unit_name):
+def best_vehicle_variant(ranged_names, melee_names, unit_name, target=MEQ):
     """Try all ranged+melee combos, return highest-DPP loadout."""
     best, best_d = None, -1
     for (rf1_name,), (rf2_name,) in itertools.combinations_with_replacement(
@@ -233,54 +261,31 @@ def best_vehicle_variant(ranged_names, melee_names, unit_name):
         for mm_name in melee_names:
             ranged = [W(rf1_name, unit_name=unit_name), W(rf2_name, unit_name=unit_name)]
             melee = [W(mm_name, unit_name=unit_name)]
-            d = _ld_dmg(ranged, melee, [])
+            d = _ld_dmg(ranged, melee, [], target)
             if d > best_d:
                 best_d = d
                 best = {
                     "ranged": ranged,
                     "melee": melee,
                     "innate": [],
-                    "_desc": f"Ranged: {rf1_name}+{rf2_name}; Melee: {mm_name} [auto-optimised]",
+                    "_desc": f"Ranged: {rf1_name}+{rf2_name}; Melee: {mm_name} [optimised]",
                 }
     return best
 
 
-# Pre-evaluate optimal Dreadknight loadouts
-_ndk_best = best_vehicle_variant(NDK_RANGED, NDK_MELEE, "Nemesis Dreadknight")
-_gmndk_best = best_vehicle_variant(GMNDK_RANGED, GMNDK_MELEE, "Grand Master In Nemesis Dreadknight")
+# ── Unit info (stats, not loadouts) ──────────────────────────────
 
-# ---------------------------------------------------------------------------
-# Unit-to-loadout mapping
-# ---------------------------------------------------------------------------
-
-SQUAD_LOADOUTS: dict[str, tuple] = {}
-SQUAD_DETAILS = {
-    "Strike Squad": {"pts": 120, "info": {"M": "6\"", "T": 4, "SV": 3, "W": 2, "OC": 2, "INV": 4}},
-    "Interceptor Squad": {"pts": 125, "info": {"M": "6\"", "T": 4, "SV": 3, "W": 2, "OC": 2, "INV": 4, "FLY": True}},
-    "Purifier Squad": {"pts": 130, "info": {"M": "6\"", "T": 4, "SV": 3, "W": 2, "OC": 1, "INV": 4}},
-    "Purgation Squad": {"pts": 110, "info": {"M": "6\"", "T": 4, "SV": 3, "W": 2, "OC": 1, "INV": 4}},
-    "Brotherhood Terminator Squad": {"pts": 140, "info": {"M": "5\"", "T": 5, "SV": 2, "W": 3, "OC": 2, "INV": 4}},
-    "Paladin Squad": {"pts": 170, "info": {"M": "5\"", "T": 5, "SV": 2, "W": 3, "OC": 1, "INV": 4}},
+SQUAD_INFO = {
+    "Strike Squad": {"pts": 120, "n": 5, "info": {"M": "6\"", "T": 4, "SV": 3, "W": 2, "OC": 2, "INV": 4}},
+    "Interceptor Squad": {"pts": 125, "n": 5, "info": {"M": "6\"", "T": 4, "SV": 3, "W": 2, "OC": 2, "INV": 4, "FLY": True}},
+    "Purifier Squad": {"pts": 130, "n": 5, "info": {"M": "6\"", "T": 4, "SV": 3, "W": 2, "OC": 1, "INV": 4}},
+    "Purgation Squad": {"pts": 110, "n": 4, "info": {"M": "6\"", "T": 4, "SV": 3, "W": 2, "OC": 1, "INV": 4}},
+    "Brotherhood Terminator Squad": {"pts": 140, "n": 5, "info": {"M": "5\"", "T": 5, "SV": 2, "W": 3, "OC": 2, "INV": 4}},
+    "Paladin Squad": {"pts": 170, "n": 5, "info": {"M": "5\"", "T": 5, "SV": 2, "W": 3, "OC": 1, "INV": 4}},
 }
 
-for sname, sdetail in SQUAD_DETAILS.items():
-    SQUAD_LOADOUTS[sname] = (
-        lambda pts, sn=sname: best_squad_variant(sn),
-        SQUAD_CONFIG[sname]["n"],
-        sdetail["pts"],
-        sdetail["info"],
-    )
-
-
-OTHER_LOADOUTS = {
-    "Nemesis Dreadknight": (
-        195, _ndk_best["ranged"], _ndk_best["melee"], [],
-        {"M": "8\"", "T": 8, "SV": 2, "W": 13, "OC": 4, "INV": 4},
-    ),
-    "Grand Master In Nemesis Dreadknight": (
-        200, _gmndk_best["ranged"], _gmndk_best["melee"], [],
-        {"M": "8\"", "T": 8, "SV": 2, "W": 13, "OC": 4, "INV": 4},
-    ),
+# Fixed loadout units (vehicles, characters — their loadout doesn't depend on target)
+STATIC_LOADOUTS = {
     "Venerable Dreadnought": (
         130,
         [W("Storm bolter", unit_name="Grey Knights Dreadnought")],
@@ -297,8 +302,7 @@ OTHER_LOADOUTS = {
         {"M": "8\"", "T": 8, "SV": 2, "W": 13, "OC": 4, "INV": 4},
     ),
     "Venerable Daemon Slayer [Crucible]": (
-        175,
-        [],
+        175, [],
         [W("Dreadnought combat weapon", unit_name="Grey Knights Dreadnought")],
         [],
         {"M": "8\"", "T": 9, "SV": 2, "W": 8, "OC": 3, "INV": 4},
@@ -313,73 +317,104 @@ OTHER_LOADOUTS = {
     "Stormtalon Gunship": (170, [W("Storm bolter")], [], [], {"M": "20+\"", "T": 9, "SV": 3, "W": 10, "OC": 0}),
 }
 
+STATIC_LOADOUTS["Champion of Titan [Crucible]"] = (
+    90, [], [W("Nemesis force weapon", unit_name="Strike Squad")], [],
+    {"M": "6\"", "T": 4, "SV": 3, "W": 2, "OC": 1, "INV": 4},
+)
+
+# Characters — fixed loadout, not target-optimised
 CHARACTER_LOADOUTS = {
-    "Brother-Captain": (
-        95,
-        [W("Storm bolter", unit_name="Brother-Captain")],
-        [W("Nemesis force weapon", unit_name="Brother-Captain")],
-        [],
-    ),
-    "Brotherhood Champion": (
-        70,
-        [W("Storm bolter", unit_name="Brotherhood Champion")],
-        [W("Nemesis force weapon", unit_name="Brotherhood Champion",
-            abilities=["Precision", "Psychic"])],
-        [],
-    ),
-    "Brotherhood Chaplain": (
-        65,
-        [W("Storm bolter", unit_name="Brotherhood Chaplain")],
-        [W("Crozius arcanum", unit_name="Brotherhood Chaplain")],
-        [],
-    ),
-    "Brotherhood Librarian": (
-        90,
-        [W("Storm bolter", unit_name="Brotherhood Librarian")],
-        [W("Nemesis force weapon", unit_name="Brotherhood Librarian")],
-        [],
-    ),
-    "Brotherhood Techmarine": (
-        70,
-        [W("Storm bolter", unit_name="Brotherhood Techmarine")],
-        [W("Omnissian power axe", unit_name="Brotherhood Techmarine")],
-        [],
-    ),
-    "Castellan Crowe": (
-        100,
-        [W("Storm bolter", unit_name="Castellan Crowe")],
-        [W("Black Blade of Antwyr", unit_name="Castellan Crowe")],
-        [W("Purifying Flame", unit_name="Castellan Crowe")],
-    ),
-    "Grand Master": (
-        95,
-        [W("Storm bolter", unit_name="Grand Master")],
-        [W("Nemesis force weapon", unit_name="Grand Master")],
-        [],
-    ),
-    "Grand Master Voldus": (
-        140,
-        [W("Storm bolter", unit_name="Grand Master Voldus")],
-        [W("Malleus Argyrum", unit_name="Grand Master Voldus")],
-        [],
-    ),
-    "Champion of Titan [Crucible]": (
-        90,
-        [],
-        [W("Nemesis force weapon", unit_name="Strike Squad")],
-        [],
-    ),
+    "Brother-Captain": (95, [W("Storm bolter", unit_name="Brother-Captain")],
+                        [W("Nemesis force weapon", unit_name="Brother-Captain")], []),
+    "Brotherhood Champion": (70, [W("Storm bolter", unit_name="Brotherhood Champion")],
+                             [W("Nemesis force weapon", unit_name="Brotherhood Champion",
+                                 abilities=["Precision", "Psychic"])], []),
+    "Brotherhood Chaplain": (65, [W("Storm bolter", unit_name="Brotherhood Chaplain")],
+                             [W("Crozius arcanum", unit_name="Brotherhood Chaplain")], []),
+    "Brotherhood Librarian": (90, [W("Storm bolter", unit_name="Brotherhood Librarian")],
+                              [W("Nemesis force weapon", unit_name="Brotherhood Librarian")], []),
+    "Brotherhood Techmarine": (70, [W("Storm bolter", unit_name="Brotherhood Techmarine")],
+                               [W("Omnissian power axe", unit_name="Brotherhood Techmarine")], []),
+    "Castellan Crowe": (100, [W("Storm bolter", unit_name="Castellan Crowe")],
+                        [W("Black Blade of Antwyr", unit_name="Castellan Crowe")],
+                        [W("Purifying Flame", unit_name="Castellan Crowe")]),
+    "Grand Master": (95, [W("Storm bolter", unit_name="Grand Master")],
+                     [W("Nemesis force weapon", unit_name="Grand Master")], []),
+    "Grand Master Voldus": (140, [W("Storm bolter", unit_name="Grand Master Voldus")],
+                            [W("Malleus Argyrum", unit_name="Grand Master Voldus")], []),
 }
+
+
+def resolve_loadout(name, target=MEQ, pricing=None):
+    """Resolve a unit's loadout for a given target.
+
+    Returns (points, ranged_profiles, melee_profiles, innate_profiles, info_dict)
+    or None if the unit isn't supported.
+    """
+    # Squad: optimised per target
+    if name in SQUAD_CONFIG:
+        sdetail = SQUAD_INFO[name]
+        pts = sdetail["pts"]
+        if pricing:
+            for pr in pricing:
+                for cost in pr.get("costs", []):
+                    if cost.get("models") == sdetail["n"]:
+                        pts = cost["points"]
+                        break
+                if pts:
+                    break
+        ld = best_squad_variant(name, target)
+        return (pts, ld["ranged"], ld["melee"], ld["innate"], sdetail["info"])
+
+    # Vehicle with weapon options: NDK / GMNDK
+    if name == "Nemesis Dreadknight":
+        pts = 195
+        if pricing:
+            for pr in pricing:
+                for cost in pr.get("costs", []):
+                    if cost.get("models") == 1:
+                        pts = cost["points"]
+        bv = best_vehicle_variant(NDK_RANGED, NDK_MELEE, name, target)
+        info = {"M": "8\"", "T": 8, "SV": 2, "W": 13, "OC": 4, "INV": 4}
+        return (pts, bv["ranged"], bv["melee"], bv["innate"], info)
+
+    if name == "Grand Master In Nemesis Dreadknight":
+        pts = 200
+        if pricing:
+            for pr in pricing:
+                for cost in pr.get("costs", []):
+                    if cost.get("models") == 1:
+                        pts = cost["points"]
+        bv = best_vehicle_variant(GMNDK_RANGED, GMNDK_MELEE, name, target)
+        info = {"M": "8\"", "T": 8, "SV": 2, "W": 13, "OC": 4, "INV": 4}
+        return (pts, bv["ranged"], bv["melee"], bv["innate"], info)
+
+    # Character: fixed loadout
+    if name in CHARACTER_LOADOUTS:
+        pts, ranged, melee, innate = CHARACTER_LOADOUTS[name]
+        return (pts, ranged, melee, innate, None)
+
+    # Static: fixed loadout
+    if name in STATIC_LOADOUTS:
+        pts, ranged, melee, innate, info = STATIC_LOADOUTS[name]
+        if pricing:
+            for pr in pricing:
+                for cost in pr.get("costs", []):
+                    if cost.get("models") == 1:
+                        pts = cost["points"]
+        return (pts, ranged, melee, innate, info)
+
+    return None
 
 
 # ---------------------------------------------------------------------------
 # Ranking computation
 # ---------------------------------------------------------------------------
 
-def compute_weapons_dpp(profiles, unit_points, is_ranged=True):
+def compute_weapons_dpp(profiles, unit_points, target=MEQ):
     total_damage = 0.0
     for wp in profiles:
-        r = compute_weapon_dpp(wp, MEQ, unit_points=unit_points, hit_mode=HitMode.NORMAL)
+        r = compute_weapon_dpp(wp, target, unit_points=unit_points, hit_mode=HitMode.NORMAL)
         total_damage += r["total_damage"]
     return total_damage
 
@@ -399,20 +434,26 @@ def format_mob(mob_dict):
     return f'M={m}{fly}{ds} OC={oc} [{tier}]'
 
 
-def get_keywords(name, profile_data):
-    if name in SQUAD_LOADOUTS:
-        _, _, _, info = SQUAD_LOADOUTS[name]
-        kw = []
+def get_unit_info(name, profile_data):
+    """Return (keywords, toughness, save, wounds, oc, invuln) for a unit."""
+    if name in SQUAD_INFO:
+        info = SQUAD_INFO[name]["info"]
+        kw = ["INFANTRY", "DEEP STRIKE", "FACTION: GREY KNIGHTS"]
         if info.get("FLY"):
             kw.append("FLY")
-        kw.extend(["INFANTRY", "DEEP STRIKE", "FACTION: GREY KNIGHTS"])
+        if name == "Paladin Squad":
+            kw.append("TERMINATOR")
+        if "Terminator" in name:
+            kw.append("TERMINATOR")
         return kw, info["T"], info["SV"], info["W"], info["OC"], info.get("INV")
-    if name in OTHER_LOADOUTS:
-        _, _, _, _, info = OTHER_LOADOUTS[name]
-        kw = ["VEHICLE", "WALKER", "DEEP STRIKE", "FACTION: GREY KNIGHTS", f"T:{info['T']}", f"W:{info['W']}"]
+
+    if name in STATIC_LOADOUTS:
+        _, _, _, _, info = STATIC_LOADOUTS[name]
+        kw = ["VEHICLE", "WALKER", "DEEP STRIKE", "FACTION: GREY KNIGHTS"]
         return kw, info["T"], info["SV"], info["W"], info["OC"], info.get("INV")
+
+    # Characters — read from profile data
     if name in CHARACTER_LOADOUTS:
-        pts, ranged, melee, innate = CHARACTER_LOADOUTS[name]
         ps = profile_data.get("stats", {})
         t = int(str(ps.get("T", "4")).replace('"', ""))
         sv = int(str(ps.get("SV", "3+")).replace("+", "").replace('"', ""))
@@ -429,6 +470,7 @@ def get_keywords(name, profile_data):
         if t >= 5:
             kw.append("TERMINATOR")
         return kw, t, sv, w, oc_val, inv
+
     return [], 4, 3, 2, 1, None
 
 
@@ -487,81 +529,60 @@ def _get_notes(name):
     return notes_map.get(name, "")
 
 
-def compute_ranking():
+def compute_ranking(target=MEQ, mission=None):
+    """Compute unit ranking for a given target, optionally weighted by mission.
+
+    Args:
+        target: TargetProfile to evaluate DPP against.
+        mission: Mission name from MISSION_PROFILES, or None for unweighted.
+
+    Returns:
+        list of dicts sorted by mission score (or DPP if no mission).
+    """
     data_path = Path(__file__).resolve().parent.parent / "data" / "merged" / "grey-knights.json"
     data = json.loads(data_path.read_text())
+
+    # Allow all known or static units
+    known = set(SQUAD_INFO) | set(STATIC_LOADOUTS) | set(CHARACTER_LOADOUTS)
 
     results = []
 
     for unit in data["units"]:
         name = unit["name"]
         profile = unit.get("profile", {})
-        kws = [k.upper() for k in profile.get("keywords", [])]
+        kws_upper = [k.upper() for k in profile.get("keywords", [])]
 
-        if "FACTION: GREY KNIGHTS" not in kws:
+        if "FACTION: GREY KNIGHTS" not in kws_upper:
             continue
 
-        if "[Crucible]" in name and name not in CHARACTER_LOADOUTS and name not in OTHER_LOADOUTS:
+        if name not in known:
             continue
 
-        stats = profile.get("stats", {})
         pricing = unit.get("pricing", [])
+        stats = profile.get("stats", {})
 
-        pts = 0
-        ranged_profiles = []
-        melee_profiles = []
-        innate_profiles = []
-
-        if name in CHARACTER_LOADOUTS:
-            pts, ranged_profiles, melee_profiles, innate_profiles = CHARACTER_LOADOUTS[name]
-        elif name in SQUAD_LOADOUTS:
-            load_fn, n_models, base_pts, info = SQUAD_LOADOUTS[name]
-            if pricing:
-                for pr in pricing:
-                    for cost in pr.get("costs", []):
-                        if cost.get("models") == n_models:
-                            pts = cost["points"]
-                            break
-                    if pts:
-                        break
-            if not pts:
-                pts = base_pts
-            ld = load_fn(pts)
-            ranged_profiles = ld["ranged"]
-            melee_profiles = ld["melee"]
-            innate_profiles = ld["innate"]
-        elif name in OTHER_LOADOUTS:
-            pts, ranged_profiles, melee_profiles, innate_profiles, info = OTHER_LOADOUTS[name]
-            if pricing:
-                for pr in pricing:
-                    for cost in pr.get("costs", []):
-                        if cost.get("models") == 1:
-                            pts = cost["points"]
-                            break
-                    if pts:
-                        break
-        else:
+        # Resolve loadout for this specific target
+        resolved = resolve_loadout(name, target, pricing)
+        if resolved is None:
             continue
+        pts, ranged_profiles, melee_profiles, innate_profiles, info = resolved
 
-        # Compute DPP vs MEQ
-        all_profiles = ranged_profiles + melee_profiles + innate_profiles
-        dmg_ranged = compute_weapons_dpp(ranged_profiles, pts, is_ranged=True) if ranged_profiles else 0
-        dmg_melee = compute_weapons_dpp(melee_profiles, pts, is_ranged=False) if melee_profiles else 0
-        dmg_innate = compute_weapons_dpp(innate_profiles, pts, is_ranged=True) if innate_profiles else 0
+        # DPP vs target
+        dmg_ranged = compute_weapons_dpp(ranged_profiles, pts, target) if ranged_profiles else 0
+        dmg_melee = compute_weapons_dpp(melee_profiles, pts, target) if melee_profiles else 0
+        dmg_innate = compute_weapons_dpp(innate_profiles, pts, target) if innate_profiles else 0
         total_dmg = dmg_ranged + dmg_melee + dmg_innate
         dpp_val = total_dmg / pts if pts > 0 else 0
 
-        # Defensive stats
-        kw_list, t_val, sv_val, w_val, oc_val, inv_val = get_keywords(name, profile)
+        # Unit info
+        kw_list, t_val, sv_val, w_val, oc_val, inv_val = get_unit_info(name, profile)
         fnp_val = 6
 
         is_infantry = "INFANTRY" in kw_list
-        is_terminator = "TERMINATOR" in kw_list
-        is_vehicle = "VEHICLE" in kw_list
 
         n_models = 1
-        if name in SQUAD_LOADOUTS:
-            n_models = SQUAD_LOADOUTS[name][1]
+        if name in SQUAD_INFO:
+            n_models = SQUAD_INFO[name]["n"]
 
         # SURV
         defense = UnitDefense(
@@ -576,14 +597,10 @@ def compute_ranking():
 
         # MOB
         m_val = 6
-        if name in SQUAD_LOADOUTS:
-            mob_info = SQUAD_LOADOUTS[name][3]
-            m_val = int(re.search(r'(\d+)', mob_info.get("M", "6\"")).group(1))
-            if mob_info.get("FLY"):
+        if info:
+            m_val = int(re.search(r'(\d+)', str(info.get("M", "6\""))).group(1))
+            if info.get("FLY"):
                 kw_list.append("FLY")
-        elif name in OTHER_LOADOUTS:
-            mob_info = OTHER_LOADOUTS[name][4]
-            m_val = int(re.search(r'(\d+)', mob_info.get("M", "6\"")).group(1))
         else:
             m_str = stats.get("M", "6\"")
             m_m = re.search(r'(\d+)', str(m_str))
@@ -604,13 +621,12 @@ def compute_ranking():
             keywords=kw_list,
         )
 
-        # Notes
         notes = _get_notes(name)
 
         results.append({
             "name": name,
             "points": pts,
-            "dpp_meq": round(dpp_val, 4),
+            "dpp": round(dpp_val, 4),
             "total_damage": round(total_dmg, 2),
             "surv": surv,
             "mob": mob,
@@ -618,7 +634,48 @@ def compute_ranking():
             "notes": notes,
         })
 
-    results.sort(key=lambda r: r["dpp_meq"], reverse=True)
+    # Sort by mission-weighted score or DPP
+    if mission and mission in MISSION_PROFILES:
+        w = MISSION_PROFILES[mission]
+        # Compute percentiles for each vector
+        dps_vals = [r["dpp"] for r in results]
+        surv_vals = [r["surv"]["effective_wounds"]["ap0"] for r in results]
+        mob_vals = [mob_score(r["mob"]) for r in results]
+        n = len(results)
+
+        def _pct(val, series):
+            if n <= 1:
+                return 100
+            return round(sum(1 for x in series if x < val) / (n - 1) * 100)
+
+        for r in results:
+            r["_dps_pct"] = _pct(r["dpp"], dps_vals)
+            r["_surv_pct"] = _pct(r["surv"]["effective_wounds"]["ap0"], surv_vals)
+            r["_mob_pct"] = _pct(mob_score(r["mob"]), mob_vals)
+            r["_mission_score"] = (
+                w["dps"] * r["_dps_pct"] +
+                w["surv"] * r["_surv_pct"] +
+                w["mob"] * r["_mob_pct"]
+            )
+        results.sort(key=lambda r: r["_mission_score"], reverse=True)
+    else:
+        # Percentiles for standard display
+        dps_vals = [r["dpp"] for r in results]
+        surv_vals = [r["surv"]["effective_wounds"]["ap0"] for r in results]
+        mob_vals = [mob_score(r["mob"]) for r in results]
+        n = len(results)
+
+        def _pct(val, series):
+            if n <= 1:
+                return 100
+            return round(sum(1 for x in series if x < val) / (n - 1) * 100)
+
+        for r in results:
+            r["_dps_pct"] = _pct(r["dpp"], dps_vals)
+            r["_surv_pct"] = _pct(r["surv"]["effective_wounds"]["ap0"], surv_vals)
+            r["_mob_pct"] = _pct(mob_score(r["mob"]), mob_vals)
+        results.sort(key=lambda r: r["dpp"], reverse=True)
+
     return results
 
 
@@ -637,34 +694,40 @@ def _bar(pct, width=10):
     return "█" * filled + "░" * (width - filled)
 
 
-def print_ranking(results):
+def print_ranking(results, target_name="MEQ", mission_name=None):
     n = len(results)
-    dps_vals = [r["dpp_meq"] for r in results]
-    surv_vals = [r["surv"]["effective_wounds"]["ap0"] for r in results]
-    mob_vals = [mob_score(r["mob"]) for r in results]
+    if not n:
+        print("No results.")
+        return
 
-    def pct(val, series):
-        if n <= 1:
-            return 100
-        rank = sum(1 for x in series if x < val)
-        return round(rank / (n - 1) * 100)
+    title = f"## Grey Knights — Ranking vs {target_name}"
+    if mission_name:
+        title += f" (mission: {mission_name})"
+    print(f"{title}\n")
 
-    for r in results:
-        r["_dps_pct"] = pct(r["dpp_meq"], dps_vals)
-        r["_surv_pct"] = pct(r["surv"]["effective_wounds"]["ap0"], surv_vals)
-        r["_mob_pct"] = pct(mob_score(r["mob"]), mob_vals)
+    has_mission = "_mission_score" in results[0] if results else False
 
-    # ── purge ranking ──
-    print("## Grey Knights — Purge Ranking (sorted by DPS vs MEQ)\n")
     print("```")
-    header = f'{"Unit":<42s} {"Pts":>5s} {"DPS%":>5s} {"SURV%":>6s} {"MOB%":>5s}  Profile'
+    if has_mission:
+        header = f'{"Unit":<42s} {"Pts":>5s} {"Scr":>4s} {"DPS%":>5s} {"SURV%":>6s} {"MOB%":>5s}  Profile'
+    else:
+        header = f'{"Unit":<42s} {"Pts":>5s} {"DPS%":>5s} {"SURV%":>6s} {"MOB%":>5s}  Profile'
     print(header)
     print("-" * len(header))
     for r in results:
-        b = f'{_bar(r["_dps_pct"]):>10s} {_bar(r["_surv_pct"]):>10s} {_bar(r["_mob_pct"]):>10s}'
-        print(f'{r["name"]:<42s} {r["points"]:>5d} {r["_dps_pct"]:>3d}% {r["_surv_pct"]:>3d}%  {r["_mob_pct"]:>3d}%  {b}')
+        dpb = _bar(r["_dps_pct"])
+        svb = _bar(r["_surv_pct"])
+        mob = _bar(r["_mob_pct"])
+        if has_mission:
+            print(f'{r["name"]:<42s} {r["points"]:>5d} {r["_mission_score"]:>3d}  {r["_dps_pct"]:>3d}% {r["_surv_pct"]:>3d}%  {r["_mob_pct"]:>3d}%  {dpb} {svb} {mob}')
+        else:
+            print(f'{r["name"]:<42s} {r["points"]:>5d} {r["_dps_pct"]:>3d}% {r["_surv_pct"]:>3d}%  {r["_mob_pct"]:>3d}%  {dpb} {svb} {mob}')
     print("```")
-    print("  DPS% = DPP vs MEQ percentile   SURV% = effW@AP0 percentile   MOB% = mobility score percentile\n")
+    print(f"  DPS% = DPP vs {target_name} percentile | SURV% = effW@AP0 percentile | MOB% = mobility score percentile")
+    if has_mission:
+        print(f"  Scr  = mission-weighted score (higher = better fit for {mission_name})\n")
+    else:
+        print()
 
     # ── per-unit detail ──
     for r in results:
@@ -681,7 +744,7 @@ def print_ranking(results):
             f'**Profile:** DPS {_bar(r["_dps_pct"])} {r["_dps_pct"]:>2d}%  '
             f'SURV {_bar(r["_surv_pct"])} {r["_surv_pct"]:>2d}%  '
             f'MOB {_bar(r["_mob_pct"])} {r["_mob_pct"]:>2d}%\n'
-            f'**DPS:** DPP vs MEQ = {r["dpp_meq"]:.4f} (total dmg={r["total_damage"]:.2f}) | '
+            f'**DPS:** DPP vs {target_name} = {r["dpp"]:.4f} (total dmg={r["total_damage"]:.2f}) | '
             f'**SURV:** effW@AP0={ew["ap0"]} AP2={ew["ap2"]} AP4={ew["ap4"]}, pts/effW={ppe} | '
             f'**MOB:** M={m}{fly_str}{ds_str} OC={mob["objective_control"]} [{tier}]\n'
             f'**Loadout:** {r["loadout_desc"]}\n'
@@ -691,9 +754,9 @@ def print_ranking(results):
 
     # ── assumption registry ──
     print("---\n## Assumption Registry")
-    print("""
+    print(f"""
 **Assumptions:**
-- Opponent: MEQ (T4, SV3+, no INV)
+- Opponent: {target_name}
 - Range context: ≤12" for Storm Bolters (Rapid Fire 2 active), standard range for others
 - No detachment buffs, stratagems, or command rerolls
 - No cover modifiers (Psychic weapons ignore Cover [24.29]; Storm Bolters evaluated without Cover)
@@ -723,8 +786,19 @@ def print_ranking(results):
 
 
 def main():
-    results = compute_ranking()
-    print_ranking(results)
+    import argparse
+    parser = argparse.ArgumentParser(description="GK Unit Ranking — three-vector DPS/SURV/MOB")
+    parser.add_argument("--target", "-t", default="MEQ",
+                        choices=list(TARGET_PROFILES.keys()),
+                        help="Target profile to evaluate DPP against")
+    parser.add_argument("--mission", "-m", default=None,
+                        choices=list(MISSION_PROFILES.keys()),
+                        help="Mission profile for weighted ranking")
+    args = parser.parse_args()
+
+    target = TARGET_PROFILES[args.target]
+    results = compute_ranking(target=target, mission=args.mission)
+    print_ranking(results, target_name=args.target, mission_name=args.mission)
 
 
 if __name__ == "__main__":
