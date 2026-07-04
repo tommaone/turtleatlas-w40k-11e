@@ -482,7 +482,7 @@ def parse_faction_pack(pdf_path: str | Path) -> dict:
                 "rules": [],
                 "enhancements": [],
                 "stratagems": [],
-                "dp_cost": 2,  # existing detachment from 10e
+                "dp_cost": 3,  # 11e: 3DP (powerful detachment)
             }
             j = i + 1
             current_section = None

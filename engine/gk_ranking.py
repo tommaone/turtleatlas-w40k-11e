@@ -379,7 +379,7 @@ STATIC_LOADOUTS = {
         {"M": "8\"", "T": 9, "SV": 2, "W": 8, "OC": 3, "INV": 4},
     ),
     "Grey Knights Thunderhawk Gunship": (
-        855,
+        805,  # MFM v1.0: 1st unit 805pts, 2nd+ 855pts
         [_T("Twin heavy bolter"), _T("Lascannon"),
          _T("Thunderhawk heavy cannon"), _T("Turbo-laser destructor"),
          _T("Hellstrike missile battery")],
@@ -533,10 +533,15 @@ def resolve_loadout(name, target=MEQ, pricing=None):
     if name == "Nemesis Dreadknight":
         pts = 195
         if pricing:
+            found = False
             for pr in pricing:
                 for cost in pr.get("costs", []):
                     if cost.get("models") == 1:
                         pts = cost["points"]
+                        found = True
+                        break
+                if found:
+                    break
         bv = best_vehicle_variant(NDK_RANGED, NDK_MELEE, name, target)
         info = {"M": "8\"", "T": 8, "SV": 2, "W": 13, "OC": 4, "INV": 4}
         return (pts, bv["ranged"], bv["melee"], bv["innate"], info)
@@ -544,10 +549,15 @@ def resolve_loadout(name, target=MEQ, pricing=None):
     if name == "Grand Master In Nemesis Dreadknight":
         pts = 200
         if pricing:
+            found = False
             for pr in pricing:
                 for cost in pr.get("costs", []):
                     if cost.get("models") == 1:
                         pts = cost["points"]
+                        found = True
+                        break
+                if found:
+                    break
         bv = best_vehicle_variant(GMNDK_RANGED, GMNDK_MELEE, name, target)
         info = {"M": "8\"", "T": 8, "SV": 2, "W": 13, "OC": 4, "INV": 4}
         return (pts, bv["ranged"], bv["melee"], bv["innate"], info)
@@ -570,10 +580,15 @@ def resolve_loadout(name, target=MEQ, pricing=None):
     if name in STATIC_LOADOUTS:
         pts, ranged, melee, innate, info = STATIC_LOADOUTS[name]
         if pricing:
+            found = False
             for pr in pricing:
                 for cost in pr.get("costs", []):
                     if cost.get("models") == 1:
                         pts = cost["points"]
+                        found = True
+                        break
+                if found:
+                    break
         return (pts, ranged, melee, innate, info)
 
     return None
