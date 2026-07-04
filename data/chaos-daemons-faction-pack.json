@@ -77,7 +77,17 @@
           "effect": "Until the end of the phase, each time an invulnerable saving throw is made for a model in your unit, re-roll a saving throw of 1."
         }
       ],
-      "dp_cost": 1
+      "dp_cost": 1,
+      "modifiers": {
+        "description": "Warp Rifts — 6\" Deep Strike wholly in Shadow of Chaos",
+        "choices": [
+          {
+            "name": "Warp Rifts",
+            "affects": "mob",
+            "description": "6\" Deep Strike (improved positioning — modeled as +3 MOB movement)"
+          }
+        ]
+      }
     },
     {
       "name": "SHADOW LEGION",
@@ -225,7 +235,19 @@
           "effect": "When an enemy unit engaged with your unit Falls Back, it must use desperate escape mode. If battle-shocked, -1 to hazard rolls."
         }
       ],
-      "dp_cost": 1
+      "dp_cost": 1,
+      "modifiers": {
+        "description": "Unholy Avalanche — MOUNTED fall back and shoot/charge",
+        "choices": [
+          {
+            "name": "Unholy Avalanche",
+            "affects": "mob",
+            "fallback_and_shoot": true,
+            "fallback_and_charge": true,
+            "description": "MOUNTED can fall back and shoot/charge"
+          }
+        ]
+      }
     },
     {
       "name": "LORDS OF THE WARP",
@@ -329,7 +351,18 @@
           "effect": "Ranged attacks that target your unit with a S greater than your unit's T have -1 to wound rolls."
         }
       ],
-      "dp_cost": 1
+      "dp_cost": 1,
+      "modifiers": {
+        "description": "Shudderblink — BATTLELINE Advance with Assault + charge eligible",
+        "choices": [
+          {
+            "name": "Shudderblink",
+            "affects": "dpp",
+            "assault": true,
+            "description": "BATTLELINE ranged attacks have Assault after advancing; still eligible to charge"
+          }
+        ]
+      }
     },
     {
       "name": "BLOOD LEGION",
@@ -410,7 +443,18 @@
           "effect": "Until end of phase, models in your unit have a Save characteristic of 3+."
         }
       ],
-      "dp_cost": 2
+      "dp_cost": 2,
+      "modifiers": {
+        "description": "Murdercall — D6\" surge when enemy moves within 8\"",
+        "choices": [
+          {
+            "name": "Murdercall (Surge)",
+            "affects": "mob",
+            "movement_bonus": 3,
+            "description": "D6\" surge when enemy ends move within 8\" (avg 3.5\", modeled as +3\" MOB)"
+          }
+        ]
+      }
     },
     {
       "name": "SCINTILLATING LEGION",
@@ -487,7 +531,30 @@
           "effect": "Remove your units from the battlefield and place them into Strategic Reserves."
         }
       ],
-      "dp_cost": 2
+      "dp_cost": 2,
+      "modifiers": {
+        "description": "Fates in Flux — Flux tokens for re-rolls",
+        "choices": [
+          {
+            "name": "Fates in Flux (Re-roll Hits)",
+            "affects": "dpp",
+            "reroll_hits": "1s",
+            "description": "Spend Flux token to re-roll Hit roll of 1"
+          },
+          {
+            "name": "Fates in Flux (Re-roll Wounds)",
+            "affects": "dpp",
+            "reroll_wounds": "1s",
+            "description": "Spend Flux token to re-roll Wound roll of 1"
+          },
+          {
+            "name": "Fates in Flux (Re-roll Save)",
+            "affects": "surv",
+            "invulnerable_save": 4,
+            "description": "Spend Flux token to re-roll saving throw (modeled as 4++ approximation)"
+          }
+        ]
+      }
     },
     {
       "name": "PLAGUE LEGION",
@@ -656,7 +723,24 @@
           "effect": "Select one enemy unit within Engagement Range, then roll one D6 for each model in your unit within Engagement Range of that enemy unit (or six D6 if Monster): for each 4+, that enemy unit suffers 1 mortal wound."
         }
       ],
-      "dp_cost": 2
+      "dp_cost": 2,
+      "modifiers": {
+        "description": "Beguiling Aura + Seductive Gambit",
+        "choices": [
+          {
+            "name": "Beguiling Aura",
+            "affects": "mob",
+            "fallback_and_charge": true,
+            "description": "Eligible to charge after Falling Back"
+          },
+          {
+            "name": "Seductive Gambit",
+            "affects": "dpp",
+            "reroll_hits": "all",
+            "description": "Re-roll Hit rolls after charging (loses Fights First)"
+          }
+        ]
+      }
     }
   ]
 }

@@ -112,6 +112,7 @@ class DetachmentModifier:
     affects: str = "dpp"               # "dpp", "surv", or "mob"
 
     # DPP modifiers — applied via WeaponModifier or toggle
+    hit_modifier: int = 0              # net BS modifier (e.g. -1 for +1 to hit)
     reroll_hits: str | None = None     # "all", "1s"
     reroll_wounds: str | None = None
     plus1_to_wound: bool = False
@@ -140,6 +141,7 @@ class DetachmentModifier:
         return DetachmentModifier(
             name=d.get("name", "Unnamed"),
             affects=d.get("affects", "dpp"),
+            hit_modifier=d.get("hit_modifier", 0),
             reroll_hits=d.get("reroll_hits"),
             reroll_wounds=d.get("reroll_wounds"),
             plus1_to_wound=d.get("plus1_to_wound", False),
@@ -162,6 +164,7 @@ class DetachmentModifier:
     def to_weapon_modifier(self) -> WeaponModifier:
         """Convert DPP-affecting fields to a WeaponModifier."""
         return WeaponModifier(
+            hit_modifier=self.hit_modifier,
             sustained_hits_extra=self.sustained_hits_extra,
             lethal_hits=self.lethal_hits,
             reroll_hits=self.reroll_hits,
@@ -683,13 +686,16 @@ def compute_weapon_dpp(weapon: WeaponProfile,
             reroll=mod.reroll_hits,
         )
 
-    # Wound roll
+    # Wound roll (plus1_to_wound maps to wound_mod -1)
+    effective_wound_mod = mod.wound_modifier
+    if mod.plus1_to_wound:
+        effective_wound_mod -= 1
     regular_wounds, mortal_wounds = expected_wounds(
         hits=total_hits - lethal_wounds,
         lethal_wounds=lethal_wounds,
         strength=weapon.strength,
         toughness=target.toughness,
-        wound_mod=mod.wound_modifier,
+        wound_mod=effective_wound_mod,
         reroll=mod.reroll_wounds,
         twin_linked=twin_linked,
         devastating=devastating,

@@ -46,7 +46,18 @@
           "effect": "Select one enemy unit hit by those attacks. That enemy unit is suppressed until the start of your next Command phase: While a unit is suppressed, that unit's attacks have -1 to hit rolls."
         }
       ],
-      "dp_cost": 1
+      "dp_cost": 1,
+      "modifiers": {
+        "description": "Annihilate the Unworthy — Knight Tyrant +1 to hit vs battle-shocked",
+        "choices": [
+          {
+            "name": "Annihilate the Unworthy",
+            "affects": "dpp",
+            "hit_modifier": -1,
+            "description": "+1 to hit rolls vs battle-shocked (modeled as always-on)"
+          }
+        ]
+      }
     },
     {
       "name": "HUNTING WARPACK",
