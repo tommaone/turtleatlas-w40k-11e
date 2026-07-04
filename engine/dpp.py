@@ -542,10 +542,14 @@ def compute_weapon_dpp(weapon: WeaponProfile,
 
     has_torrent = any("TORRENT" in a for a in ab_set)
     has_ignore_cover = any("IGNORES COVER" in a or "IGNORES_COVER" in a for a in ab_set)
+    is_psychic = any(a == "PSYCHIC" for a in ab_set)
 
-    # Ignore Cover negates the cover penalty
-    if has_ignore_cover and hit_mode == HitMode.COVER:
-        hit_mod = 0  # no cover penalty
+    # Psychic [24.29]: ignore ALL BS/WS and hit roll modifiers
+    # This includes Cover, Plunging Fire, Heavy, and external mods
+    if is_psychic:
+        hit_mod = 0
+    elif has_ignore_cover and hit_mode == HitMode.COVER:
+        hit_mod = 0  # Ignore Cover negates the cover penalty
 
     # Torrent: auto-hit, skip hit roll
     if has_torrent:
