@@ -111,7 +111,10 @@ class WeaponCatalog:
             uname = u.get("name", "")
             self.by_unit.setdefault(uname, [])
 
-            for w in u.get("profile", {}).get("weapons", []):
+            prof = u.get("profile")
+            if prof is None or not isinstance(prof, dict):
+                continue
+            for w in prof.get("weapons", []):
                 for p in w.get("profiles", []):
                     raw_name = p.get("name", "").replace("\u27a4 ", "").strip()
                     key = raw_name.lower()

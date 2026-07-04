@@ -101,6 +101,84 @@ class WeaponModifier:
     twin_linked: bool = False
 
 
+@dataclass
+class DetachmentModifier:
+    """Modifiers applied by a detachment rule to DPP/SURV/MOB computation.
+
+    Loaded from faction pack JSON `modifiers` field. A detachment may have
+    multiple modifier options (e.g. Infernal Lance chooses one of three).
+    """
+    name: str                          # human-readable name
+    affects: str = "dpp"               # "dpp", "surv", or "mob"
+    unit_filter: list[str] | None = None  # if set, only applies to units whose name matches (case-insensitive substring)
+    condition: str | None = None       # human-readable condition (e.g. "only vs battle-shocked")
+
+    # DPP modifiers — applied via WeaponModifier or toggle
+    hit_modifier: int = 0              # net BS modifier (e.g. -1 for +1 to hit)
+    reroll_hits: str | None = None     # "all", "1s"
+    reroll_wounds: str | None = None
+    plus1_to_wound: bool = False
+    sustained_hits_extra: int = 0
+    lethal_hits: bool = False
+    extra_ap: int = 0
+    ignore_cover: bool = False
+    assault: bool = False              # Assault — advance & shoot
+    heavy_ignore: bool = False         # ignore Heavy movement penalty
+
+    # SURV modifiers
+    invulnerable_save: int | None = None   # e.g. 5 for 5++
+    feel_no_pain: int | None = None        # e.g. 6 for FNP6+
+    stealth: bool = False                  # -1 to hit the unit
+    cover_save: bool = False               # improved cover save
+
+    # MOB modifiers
+    movement_bonus: int = 0
+    advance_and_charge: bool = False
+    fallback_and_shoot: bool = False
+    fallback_and_charge: bool = False
+
+    @staticmethod
+    def from_dict(d: dict) -> "DetachmentModifier":
+        """Create from JSON dict (from faction pack modifiers)."""
+        return DetachmentModifier(
+            name=d.get("name", "Unnamed"),
+            affects=d.get("affects", "dpp"),
+            unit_filter=d.get("unit_filter"),
+            condition=d.get("condition"),
+            hit_modifier=d.get("hit_modifier", 0),
+            reroll_hits=d.get("reroll_hits"),
+            reroll_wounds=d.get("reroll_wounds"),
+            plus1_to_wound=d.get("plus1_to_wound", False),
+            sustained_hits_extra=d.get("sustained_hits_extra", 0),
+            lethal_hits=d.get("lethal_hits", False),
+            extra_ap=d.get("extra_ap", 0),
+            ignore_cover=d.get("ignore_cover", False),
+            assault=d.get("assault", False),
+            heavy_ignore=d.get("heavy_ignore", False),
+            invulnerable_save=d.get("invulnerable_save"),
+            feel_no_pain=d.get("feel_no_pain"),
+            stealth=d.get("stealth", False),
+            cover_save=d.get("cover_save", False),
+            movement_bonus=d.get("movement_bonus", 0),
+            advance_and_charge=d.get("advance_and_charge", False),
+            fallback_and_shoot=d.get("fallback_and_shoot", False),
+            fallback_and_charge=d.get("fallback_and_charge", False),
+        )
+
+    def to_weapon_modifier(self) -> WeaponModifier:
+        """Convert DPP-affecting fields to a WeaponModifier."""
+        return WeaponModifier(
+            hit_modifier=self.hit_modifier,
+            sustained_hits_extra=self.sustained_hits_extra,
+            lethal_hits=self.lethal_hits,
+            reroll_hits=self.reroll_hits,
+            reroll_wounds=self.reroll_wounds,
+            plus1_to_wound=self.plus1_to_wound,
+            extra_ap=self.extra_ap,
+            ignore_cover=self.ignore_cover,
+        )
+
+
 # ---------------------------------------------------------------------------
 # Core computation
 # ---------------------------------------------------------------------------
@@ -178,6 +256,8 @@ ANTI_KEYWORD_TOUGHNESS: dict[str, tuple[int, int]] = {
     "PSYKER": (3, 5),
     "TITANIC": (13, 14),
     "WALKER": (7, 10),
+    "CHARACTER": (3, 10),   # wide range: from T3 to T10+
+    "FLY": (3, 12),          # everything from T3 infantry to T12 monsters
     "BEHIND COVER": (0, 0),  # situational, never auto-matches
 }
 
@@ -441,6 +521,7 @@ def compute_mob(
     transport_capacity: Optional[str] = None,
     abilities: Optional[list[str]] = None,
     gate_of_infinity: bool = False,
+    no_t1_reinforcements: bool = True,
 ) -> dict:
     """
     Compute a mobility/utility profile for a unit.
@@ -456,6 +537,7 @@ def compute_mob(
         transport_capacity: e.g. "6 INFANTRY"
         abilities: list of relevant mobility abilities
         gate_of_infinity: has Gate of Infinity army rule (GK redeploy per turn)
+        no_t1_reinforcements: 11e rule — no reserves on T1 (reduces DS value)
 
     Returns:
         dict with mobility profile
@@ -499,6 +581,7 @@ def compute_mob(
         "is_character": is_character,
         "transport_capacity": transport_capacity,
         "mobility_tier": mob_tier,
+        "no_t1_reinforcements": no_t1_reinforcements,
     }
 
 
@@ -541,10 +624,16 @@ def compute_weapon_dpp(weapon: WeaponProfile,
         if ab.startswith("SUSTAINED HITS"):
             parts = ab.split()
             if len(parts) >= 3:
-                try:
-                    sustained = int(parts[2])
-                except ValueError:
-                    sustained = 1
+                raw = parts[2]
+                if raw == "D3":
+                    sustained = 2  # average of D3 = 2
+                elif raw == "D6":
+                    sustained = 3  # average of D6 = 3.5, floor = 3
+                else:
+                    try:
+                        sustained = int(raw)
+                    except ValueError:
+                        sustained = 1
         elif ab == "LETHAL HITS":
             lethal = True
         elif ab == "DEVASTATING WOUNDS":
@@ -566,6 +655,9 @@ def compute_weapon_dpp(weapon: WeaponProfile,
                     rapid_fire_extra = 1
         elif ab == "HEAVY" and hit_mode in (HitMode.COVER, HitMode.NORMAL):
             pass  # Heavy: +1 to hit if unit didn't move (simplified)
+
+    # Apply external sustained hits (from detachment modifiers, etc.)
+    sustained += mod.sustained_hits_extra
 
     # Hit modifier
     # 11e: Cover = worsen BS by 1 (higher target number, e.g. 3+ → 4+)
@@ -606,13 +698,16 @@ def compute_weapon_dpp(weapon: WeaponProfile,
             reroll=mod.reroll_hits,
         )
 
-    # Wound roll
+    # Wound roll (plus1_to_wound maps to wound_mod -1)
+    effective_wound_mod = mod.wound_modifier
+    if mod.plus1_to_wound:
+        effective_wound_mod -= 1
     regular_wounds, mortal_wounds = expected_wounds(
         hits=total_hits - lethal_wounds,
         lethal_wounds=lethal_wounds,
         strength=weapon.strength,
         toughness=target.toughness,
-        wound_mod=mod.wound_modifier,
+        wound_mod=effective_wound_mod,
         reroll=mod.reroll_wounds,
         twin_linked=twin_linked,
         devastating=devastating,

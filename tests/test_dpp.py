@@ -214,6 +214,23 @@ class TestComputeMob:
         assert result["mobility_tier"] in ("slow", "standard", "cavalry", "fast", "skyborne")
         assert result["objective_control"] >= 0
 
+    def test_no_t1_reinforcements_flag(self):
+        """no_t1_reinforcements should default to True and reduce DS value."""
+        default = compute_mob(movement=6, deep_strike=True, oc=1, keywords=["INFANTRY"])
+        assert default["no_t1_reinforcements"] is True
+        assert default["deep_strike"] is True
+        non_t1 = compute_mob(movement=6, deep_strike=True, oc=1, keywords=["INFANTRY"], no_t1_reinforcements=False)
+        assert non_t1["no_t1_reinforcements"] is False
+
+        # Verify the flag is propagated
+        from engine.ranking import RankingEngine
+        score_default = RankingEngine.mob_score(default)
+        score_nont1 = RankingEngine.mob_score(non_t1)
+        # With no_t1, DS gives +5 instead of +10 → score_default < score_nont1
+        assert score_default < score_nont1, (
+            f"Expected lower score with T1 restriction: {score_default} vs {score_nont1}"
+        )
+
     def test_fly_increases_mobility(self):
         """FLY keyword should be reflected in the fly field."""
         no_fly = compute_mob(movement=8, fly=False, deep_strike=False, oc=1, keywords=["VEHICLE"], gate_of_infinity=False)
