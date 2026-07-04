@@ -44,9 +44,11 @@ _init()
 
 # ── Public API ─────────────────────────────────────────────────────
 
-def compute_ranking(target=MEQ, mission=None, meta_name=None, tier="1st"):
+def compute_ranking(target=MEQ, mission=None, meta_name=None, tier="1st",
+                    detachment=None, detachment_choice=None):
     """Compute unit ranking delegating to generic engine."""
-    return _engine().compute_ranking(target=target, mission=mission, meta_name=meta_name, tier=tier)
+    return _engine().compute_ranking(target=target, mission=mission, meta_name=meta_name, tier=tier,
+                                      detachment=detachment, detachment_choice=detachment_choice)
 
 
 def print_ranking(results, target_name="MEQ", mission_name=None, meta_name=None, tier="1st"):
@@ -98,7 +100,27 @@ def main():
     parser.add_argument("--meta", default=None,
                         choices=list(metas.keys()),
                         help="Multi-target meta profile (loadouts optimised for weighted mix)")
+    parser.add_argument("--detachment", "-d", default=None,
+                        choices=eng.list_detachments_with_modifiers() or None,
+                        help="Detachment name to apply modifiers from")
+    parser.add_argument("--detachment-choice", "-dc", type=int, default=None,
+                        help="Index of modifier choice (0-based, default 0)")
+    parser.add_argument("--list-detachments", action="store_true",
+                        help="List detachments with defined modifiers and exit")
     args = parser.parse_args()
+
+    if args.list_detachments:
+        dets = eng.list_detachments_with_modifiers()
+        if not dets:
+            print("No detachments with defined modifiers.")
+            return
+        print("## Detachments with Modifiers\n")
+        for dname in dets:
+            choices = eng.get_detachment_modifiers(dname)
+            print(f"  {dname}")
+            for i, c in enumerate(choices):
+                print(f"    [{i}] {c.name} ({c.affects})")
+        return
 
     if args.matrix:
         if args.meta:
@@ -117,11 +139,13 @@ def main():
         return
 
     if args.meta:
-        results = compute_ranking(target=MEQ, mission=args.mission, meta_name=args.meta, tier=args.tier)
+        results = compute_ranking(target=MEQ, mission=args.mission, meta_name=args.meta, tier=args.tier,
+                                  detachment=args.detachment, detachment_choice=args.detachment_choice)
         print_ranking(results, target_name=None, mission_name=args.mission, meta_name=args.meta, tier=args.tier)
     else:
         target = targets[args.target]
-        results = compute_ranking(target=target, mission=args.mission, tier=args.tier)
+        results = compute_ranking(target=target, mission=args.mission, tier=args.tier,
+                                  detachment=args.detachment, detachment_choice=args.detachment_choice)
         print_ranking(results, target_name=args.target, mission_name=args.mission, tier=args.tier)
 
 
