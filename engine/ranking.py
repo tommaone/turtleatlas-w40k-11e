@@ -551,6 +551,22 @@ class RankingEngine:
 
         weapon_mod = detachment_mod.to_weapon_modifier() if detachment_mod else None
 
+        def _modifier_applies(mod: Optional[DetachmentModifier], unit_name: str, unit_kw: list[str]) -> bool:
+            """Check if a detachment modifier applies to a given unit.
+
+            Matches unit_filter against both unit name and keywords.
+            """
+            if mod is None:
+                return False
+            if not mod.unit_filter:
+                return True  # no filter = applies to all
+            upper_name = unit_name.upper()
+            upper_kw = [k.upper() for k in unit_kw]
+            return any(
+                f.upper() in upper_name or f.upper() in upper_kw
+                for f in mod.unit_filter
+            )
+
         # Resolve meta
         meta_targets = None
         actual_target = target
@@ -571,6 +587,9 @@ class RankingEngine:
             if name not in self.config.known_units:
                 continue
 
+            # Unit info (needed before modifier check for keyword-based filters)
+            kw_list, t_val, sv_val, w_val, oc_val, inv_val = self.get_unit_info(name, profile)
+
             pricing = unit.get("pricing", [])
             stats = profile.get("stats", {})
 
@@ -579,15 +598,17 @@ class RankingEngine:
                 continue
             pts, ranged_profiles, melee_profiles, innate_profiles, info = resolved
 
+            # Per-unit modifier check (respects unit_filter against name + keywords)
+            unit_weapon_mod = weapon_mod if _modifier_applies(detachment_mod, name, kw_list) else None
+            unit_surv_mod = detachment_mod if _modifier_applies(detachment_mod, name, kw_list) else None
+            unit_mob_mod = detachment_mod if _modifier_applies(detachment_mod, name, kw_list) else None
+
             # DPP (with optional detachment modifier)
-            dmg_ranged = _ld_dmg(ranged_profiles, [], [], actual_target, weapon_mod) if ranged_profiles else 0
-            dmg_melee = _ld_dmg([], melee_profiles, [], actual_target, weapon_mod) if melee_profiles else 0
-            dmg_innate = _ld_dmg([], [], innate_profiles, actual_target, weapon_mod) if innate_profiles else 0
+            dmg_ranged = _ld_dmg(ranged_profiles, [], [], actual_target, unit_weapon_mod) if ranged_profiles else 0
+            dmg_melee = _ld_dmg([], melee_profiles, [], actual_target, unit_weapon_mod) if melee_profiles else 0
+            dmg_innate = _ld_dmg([], [], innate_profiles, actual_target, unit_weapon_mod) if innate_profiles else 0
             total_dmg = dmg_ranged + dmg_melee + dmg_innate
             dpp_val = total_dmg / pts if pts > 0 else 0
-
-            # Unit info
-            kw_list, t_val, sv_val, w_val, oc_val, inv_val = self.get_unit_info(name, profile)
             is_infantry = "INFANTRY" in kw_list
             fnp_val = 6 if is_infantry else None
 
@@ -595,14 +616,10 @@ class RankingEngine:
             if name in self.config.squads:
                 n_models = self.config.squads[name]["n"]
 
-            # SURV (with optional detachment modifier)
-            if detachment_mod and detachment_mod.affects == "surv":
-                invuln_override = inv_val if inv_val else (
-                    detachment_mod.invulnerable_save
-                )
-                # Use detachment invuln if unit has none native
-                final_invuln = inv_val or detachment_mod.invulnerable_save
-                final_fnp = detachment_mod.feel_no_pain
+            # SURV (with optional detachment modifier, respecting unit_filter)
+            if unit_surv_mod and unit_surv_mod.affects == "surv":
+                final_invuln = inv_val or unit_surv_mod.invulnerable_save
+                final_fnp = unit_surv_mod.feel_no_pain
             else:
                 final_invuln = inv_val
                 final_fnp = fnp_val
@@ -631,9 +648,9 @@ class RankingEngine:
                 if m_m:
                     m_val = int(m_m.group(1))
 
-            # Apply movement bonus from detachment
-            if detachment_mod and detachment_mod.affects == "mob":
-                m_val += detachment_mod.movement_bonus
+            # Apply movement bonus from detachment (respects unit_filter)
+            if unit_mob_mod and unit_mob_mod.affects == "mob":
+                m_val += unit_mob_mod.movement_bonus
 
             has_fly = "FLY" in kw_list
             has_deep_strike = "DEEP STRIKE" in kw_list

@@ -110,6 +110,8 @@ class DetachmentModifier:
     """
     name: str                          # human-readable name
     affects: str = "dpp"               # "dpp", "surv", or "mob"
+    unit_filter: list[str] | None = None  # if set, only applies to units whose name matches (case-insensitive substring)
+    condition: str | None = None       # human-readable condition (e.g. "only vs battle-shocked")
 
     # DPP modifiers — applied via WeaponModifier or toggle
     hit_modifier: int = 0              # net BS modifier (e.g. -1 for +1 to hit)
@@ -141,6 +143,8 @@ class DetachmentModifier:
         return DetachmentModifier(
             name=d.get("name", "Unnamed"),
             affects=d.get("affects", "dpp"),
+            unit_filter=d.get("unit_filter"),
+            condition=d.get("condition"),
             hit_modifier=d.get("hit_modifier", 0),
             reroll_hits=d.get("reroll_hits"),
             reroll_wounds=d.get("reroll_wounds"),
