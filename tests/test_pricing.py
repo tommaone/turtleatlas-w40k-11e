@@ -44,7 +44,7 @@ def _load_config_units(slug: str) -> dict[str, dict]:
             data = json.load(f)
         for name, entry in data.items():
             if isinstance(entry, dict) and "pts" in entry and entry["pts"] is not None:
-                units[name.lower().strip()] = (name, entry, fn)
+                units[_norm(name)] = (name, entry, fn)
     return units
 
 

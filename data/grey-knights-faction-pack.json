@@ -46,7 +46,22 @@
           "effect": "That enemy unit’s melee attacks have [HAZARDOUS]."
         }
       ],
-      "dp_cost": 1
+      "dp_cost": 1,
+      "modifiers": {
+        "description": "Dauntless Champions — Paladin Squad +1 to wound vs higher-T",
+        "choices": [
+          {
+            "name": "Dauntless Champions",
+            "affects": "dpp",
+            "plus1_to_wound": true,
+            "description": "+1 to wound rolls when S < T (modeled as always-on)",
+            "unit_filter": [
+              "Paladin Squad"
+            ],
+            "condition": "only when S < T"
+          }
+        ]
+      }
     },
     {
       "name": "FIRES OF PURGATION",
@@ -138,7 +153,22 @@
           "effect": "Your unit can make a normal move of up to D3+3\"."
         }
       ],
-      "dp_cost": 1
+      "dp_cost": 1,
+      "modifiers": {
+        "description": "EchoJump — Interceptors D6+1\" surge after shooting",
+        "choices": [
+          {
+            "name": "EchoJump",
+            "affects": "mob",
+            "movement_bonus": 4,
+            "description": "D6+1\" surge after shooting (avg 4.5\", modeled as +4\" MOB)",
+            "unit_filter": [
+              "Interceptor Squad"
+            ],
+            "condition": "after shooting, if no ingress move"
+          }
+        ]
+      }
     },
     {
       "name": "WARPBANE TASK FORCE",
@@ -215,7 +245,18 @@
           "effect": "Until the end of the phase, each time an enemy unit declares a charge and your unit is one of the targets of that charge, subtract 1 from the Charge roll, or subtract 2 instead if your unit is wholly within your army's Hallowed Ground."
         }
       ],
-      "dp_cost": 2
+      "dp_cost": 2,
+      "modifiers": {
+        "description": "Hallowed Ground — re-roll 1s to hit",
+        "choices": [
+          {
+            "name": "Hallowed Ground",
+            "affects": "dpp",
+            "reroll_hits": "1s",
+            "description": "Re-roll 1s to hit in Hallowed Ground"
+          }
+        ]
+      }
     }
   ],
   "datasheets": [
