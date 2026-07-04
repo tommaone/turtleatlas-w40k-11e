@@ -1,0 +1,330 @@
+{
+  "faction": "CHAOS KNIGHTS",
+  "version": "1.0",
+  "detachments": [
+    {
+      "name": "BASTIONS OF TYRANNY",
+      "description": "Focuses on the Knight Tyrant with buffs specific to Dominus chassis.",
+      "rules": [
+        {
+          "name": "ANNIHILATE THE UNWORTHY",
+          "description": "Friendly KNIGHT TYRANT units' attacks that target a battle-shocked unit have +1 to the hit roll."
+        }
+      ],
+      "enhancements": [
+        {
+          "name": "PTERRORSHADE ROOKERY",
+          "cp_cost": null,
+          "description": "KNIGHT TYRANT model only. When this unit is selected to shoot, select one enemy unit within 24\" of this unit. That enemy unit has +6\" detection range until this unit has shot."
+        },
+        {
+          "name": "HATE-FILLED DOMINION",
+          "cp_cost": null,
+          "description": "KNIGHT TYRANT model only. This unit can re-roll rolls to determine the A of a weapon."
+        }
+      ],
+      "stratagems": [
+        {
+          "name": "RUNE-CURSED STRONGHOLD",
+          "cp_cost": 1,
+          "when": "Any phase, when a friendly KNIGHT TYRANT unit suffers a mortal wound.",
+          "target": "That KNIGHT TYRANT unit.",
+          "effect": "Your unit has Feel No Pain 5+ against mortal wounds."
+        },
+        {
+          "name": "PITILESS FOCUS",
+          "cp_cost": 1,
+          "when": "Your Movement phase, when a friendly KNIGHT TYRANT unit is selected to make a fall-back move.",
+          "target": "That KNIGHT TYRANT unit.",
+          "effect": "That move does not prevent your unit from being eligible to shoot."
+        },
+        {
+          "name": "INTIMIDATING REMINDER",
+          "cp_cost": 1,
+          "when": "Your Shooting phase, when a friendly KNIGHT TYRANT unit has shot.",
+          "target": "That KNIGHT TYRANT unit.",
+          "effect": "Select one enemy unit hit by those attacks. That enemy unit is suppressed until the start of your next Command phase: While a unit is suppressed, that unit's attacks have -1 to hit rolls."
+        }
+      ],
+      "dp_cost": 1
+    },
+    {
+      "name": "HUNTING WARPACK",
+      "description": "WAR DOG only detachment. Hybrid ranged/melee detachment for War Dogs.",
+      "rules": [
+        {
+          "name": "SCENTING FEAR",
+          "description": "(Once per battle round, per army) In your Shooting phase, you can select one visible enemy unit within 12\" of a friendly WAR DOG unit. That enemy unit has +6\" detection range."
+        }
+      ],
+      "enhancements": [
+        {
+          "name": "SOUL-SPOOR AUSPICATOR  UPGRADE",
+          "cp_cost": null,
+          "description": "HUNTSMAN unit only. This unit's ranged attacks have +6\" R."
+        },
+        {
+          "name": "SNARLING RIVALRY  UPGRADE",
+          "cp_cost": null,
+          "description": "EXECUTIONER unit only. This unit's ranged attacks have [IGNORES COVER]."
+        }
+      ],
+      "stratagems": [
+        {
+          "name": "INSENSATE BLOODTHIRST",
+          "cp_cost": 1,
+          "when": "Fight phase, when an enemy unit targets a friendly WAR DOG unit.",
+          "target": "That WAR DOG unit.",
+          "effect": "Your unit has Feel No Pain 5+."
+        },
+        {
+          "name": "LEASH OF THE MASTERS",
+          "cp_cost": 1,
+          "when": "Your Shooting phase, when a friendly WAR DOG unit has shot.",
+          "target": "That WAR DOG unit.",
+          "effect": "Those attacks do not prevent your unit from being eligible to start an action."
+        },
+        {
+          "name": "STALKING FOCUS",
+          "cp_cost": 1,
+          "when": "Your opponent's Shooting phase, when an enemy unit targets a friendly WAR DOG unit within range of an objective.",
+          "target": "That WAR DOG unit.",
+          "effect": "Ranged attacks that target your unit have -1 AP until that enemy unit has attacked."
+        }
+      ],
+      "dp_cost": 1
+    },
+    {
+      "name": "ICONOCLAST FIEFDOM",
+      "description": "Allows DAMNED keyword allies from CSM (Cultists, Traitor Guardsmen, etc.) up to 500pt. DAMNED allies get leadership re-roll.",
+      "rules": [
+        {
+          "name": "WRETCHED THRALLS",
+          "description": "You can include DAMNED units in your army (see Codex: Chaos Space Marines). The combined points cost of such units cannot exceed 500 points. Friendly DAMNED units can re-roll leadership rolls."
+        }
+      ],
+      "enhancements": [
+        {
+          "name": "CRUEL LASHMASTER (AURA)",
+          "cp_cost": null,
+          "description": "CHAOS KNIGHTS model only. While a friendly DAMNED unit is within 6\" of this model, when that unit is selected to make a normal/advance/fall-back move that unit has +2\" M until the end of the phase."
+        },
+        {
+          "name": "ICONOCLAST IDOL (AURA)",
+          "cp_cost": null,
+          "description": "CHAOS KNIGHTS model only. While a friendly DAMNED unit is within 6\" of this model, when you target that unit with the Heroic Intervention stratagem, that use is -1 CP."
+        }
+      ],
+      "stratagems": [
+        {
+          "name": "AVENGE THE MASTERS!",
+          "cp_cost": 1,
+          "when": "Any phase, when a friendly CHAOS KNIGHTS unit is destroyed by an enemy unit.",
+          "target": "That enemy unit.",
+          "effect": "That enemy unit is marked until the end of the battle. Friendly DAMNED units' attacks that target a marked unit have [LETHAL HITS]."
+        },
+        {
+          "name": "DARK SACRIFICE",
+          "cp_cost": 1,
+          "when": "Your Command phase.",
+          "target": "One friendly DAMNED unit (excluding ACCURSED CULTISTS units) within 9\" of a friendly CHAOS KNIGHTS model.",
+          "effect": "Select one CHAOS KNIGHTS model within 9\" of your unit and roll D3+3: Your DAMNED unit suffers that number of mortal wounds. That CHAOS KNIGHTS model heals that number of wounds."
+        },
+        {
+          "name": "COURSING THRALLS",
+          "cp_cost": 1,
+          "when": "Start of your Shooting phase.",
+          "target": "One friendly DAMNED unit.",
+          "effect": "Select one visible enemy unit within 12\" of your unit. That enemy unit is hunted: While a unit is hunted, that unit has +6\" detection range."
+        }
+      ],
+      "dp_cost": 1
+    },
+    {
+      "name": "HELHUNT LANCE",
+      "description": "All-around detachment with synergy between War Dogs and big knights.",
+      "rules": [
+        {
+          "name": "MASTERS OF THE PACK",
+          "description": "If a Titanic Chaos Knights unit from your army has an Aura ability that affects friendly War Dog units, while two or more friendly War Dog models are within range of that Titanic Chaos Knights unit's Aura ability, that Titanic Chaos Knights unit is affected by that Aura ability as well."
+        }
+      ],
+      "enhancements": [
+        {
+          "name": "HUNTER'S HELM",
+          "cp_cost": null,
+          "description": "Chaos Knights model only. You can re-roll Advance and Charge rolls made for the bearer's unit."
+        },
+        {
+          "name": "OCTAGRAM OF CONJURATION",
+          "cp_cost": null,
+          "description": "Knight Abominant model only. The bearer has the following ability: Octagram of Conjuration (Aura): While a friendly War Dog model is within 9\" of this model, after that War Dog model has shot, you can select one enemy unit hit by one or more of those attacks. That enemy unit must take a Battle-shock test."
+        },
+        {
+          "name": "THRONE TYRANNICUS",
+          "cp_cost": null,
+          "description": "Titanic Chaos Knights model only. In your Command phase, select one other Chaos Knights Character model within 9\" of the bearer. If the bearer has one or more Aura abilities that affect friendly War Dog units, until the start of your next Command phase, the selected Chaos Knights Character model is affected by those Aura abilities as well."
+        },
+        {
+          "name": "ASPECT OF THE BEAST",
+          "cp_cost": null,
+          "description": "Chaos Knights model only. At the start of your Command phase, select one Dread ability to be active for the bearer until the start of your next Command phase, in addition to the Dread abilities active for your army."
+        }
+      ],
+      "stratagems": [
+        {
+          "name": "FERAL ARROGANCE",
+          "cp_cost": 1,
+          "when": "Any phase, just after a mortal wound is allocated to a Chaos Knights unit from your army.",
+          "target": "That Chaos Knights unit.",
+          "effect": "Until the end of the phase, models in your unit have the Feel No Pain 5+ ability against mortal wounds."
+        },
+        {
+          "name": "MERCILESS FUSILLADE",
+          "cp_cost": 1,
+          "when": "Start of your Shooting phase or the start of the Fight phase.",
+          "target": "One Titanic Chaos Knights unit from your army, and up to two friendly War Dog units, that have not been selected to shoot or fight this phase.",
+          "effect": "Select one enemy unit that is an eligible target for each of those Chaos Knights units. Until the end of the phase, each time one of those Chaos Knights units is selected to shoot or fight, if that enemy unit is an eligible target, you can only select that enemy unit as the target for all of those attacks and those attacks have the [SUSTAINED HITS 1] ability."
+        },
+        {
+          "name": "BEASTHIDE MANIFESTATION",
+          "cp_cost": 1,
+          "when": "Your opponent's Shooting phase or the Fight phase, just after an enemy unit has selected its targets.",
+          "target": "One Chaos Knights unit from your army that was selected as the target of one or more of the attacking unit's attacks.",
+          "effect": "Until the attacking unit has finished making its attacks, each time an attack targets your unit, worsen the Armour Penetration characteristic of that attack by 1."
+        },
+        {
+          "name": "FLUSH THE QUARRY",
+          "cp_cost": 1,
+          "when": "Start of your Movement phase.",
+          "target": "One Titanic Chaos Knights unit from your army and up to three friendly War Dog units within 6\" of that Titanic Chaos Knights unit.",
+          "effect": "Until the end of the phase, each time one of those War Dog units makes a Normal, Advance or Fall Back move, its models can move through models and terrain features. When doing so, they can move within Engagement Range of such models but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+        },
+        {
+          "name": "CONTEMPTUOUS VOLLEYS",
+          "cp_cost": 1,
+          "when": "Your Movement phase, just after a Chaos Knights unit from your army Falls Back.",
+          "target": "That Chaos Knights unit.",
+          "effect": "Until the end of the turn, your unit is eligible to shoot and declare a charge in a turn in which it Fell Back."
+        },
+        {
+          "name": "GOADED BEAST",
+          "cp_cost": 1,
+          "when": "Your opponent's Shooting phase, just after an enemy unit has shot.",
+          "target": "One Chaos Knights unit from your army that lost one or more wounds as a result of those attacks.",
+          "effect": "Your unit can make a surge move of up to D6\"."
+        }
+      ],
+      "dp_cost": 2
+    },
+    {
+      "name": "HOUNDPACK LANCE",
+      "description": "WAR DOG only detachment. Buffs for War Dog units in packs.",
+      "rules": [
+        {
+          "name": "HOUNDPACK LANCE",
+          "description": "WAR DOG only detachment rules. (Extract from codex.)"
+        }
+      ],
+      "enhancements": [
+        {
+          "name": "HOUNDPACK ENHANCEMENTS",
+          "cp_cost": null,
+          "description": "Enhancements from codex."
+        }
+      ],
+      "stratagems": [
+        {
+          "name": "ANIMALISTIC RAGE",
+          "cp_cost": 1,
+          "when": "Your opponent's Shooting phase or the Fight phase, just after a WAR DOG unit from your army that has not been selected to attack this phase is destroyed.",
+          "target": "That WAR DOG unit.",
+          "effect": "(Effect from codex.)"
+        },
+        {
+          "name": "HARRYING HOUNDS",
+          "cp_cost": null,
+          "when": null,
+          "target": "(Range changed to 8\" per FP update.)",
+          "effect": null
+        }
+      ],
+      "dp_cost": 2
+    },
+    {
+      "name": "LORDS OF DREAD",
+      "description": "Objective play detachment. Battleshock synergy, board control.",
+      "rules": [
+        {
+          "name": "LORDS OF DREAD",
+          "description": "Objective play detachment rules. (Extract from codex.)"
+        }
+      ],
+      "enhancements": [
+        {
+          "name": "MIRROR OF FATES",
+          "cp_cost": null,
+          "description": "CHAOS KNIGHTS model only. Once per turn, when your opponent targets a unit from their army within 12\" of this model with a stratagem, you can use this ability. If you do, increase the CP cost of that use of that stratagem by 1CP."
+        }
+      ],
+      "stratagems": [
+        {
+          "name": "CLAIMED FOR THE DARK GODS",
+          "cp_cost": null,
+          "when": "Start of your Command phase.",
+          "target": null,
+          "effect": "(Effect from codex.)"
+        }
+      ],
+      "dp_cost": 2
+    },
+    {
+      "name": "TRAITORIS LANCE",
+      "description": "Purge detachment. Kill-focused buffs.",
+      "rules": [
+        {
+          "name": "TRAITORIS LANCE",
+          "description": "Purge detachment rules. (Extract from codex.)"
+        }
+      ],
+      "enhancements": [],
+      "stratagems": [
+        {
+          "name": "IMPERIOUS ADVANCE",
+          "cp_cost": null,
+          "when": null,
+          "target": null,
+          "effect": "Until the end of the phase, each time a model in one of your units makes a Normal, Advance, Fall Back or Charge move, it can move through models and terrain features. When doing so, it can move within Engagement Range of such models but, unless it made a Charge move, cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed (the Super-heavy Walker ability does not apply while using this Stratagem)."
+        }
+      ],
+      "dp_cost": 2
+    },
+    {
+      "name": "INFERNAL LANCE",
+      "description": "3DP detachment. Malefic Surge: Command phase LD test (fail = D3 mortals) to become Empowered. Choose ONE per activation: +3\" move, Lethal/Sustained 1, or 5++/FNP6+.",
+      "rules": [
+        {
+          "name": "MALEFIC SURGE",
+          "description": "In your Command phase, one or more CHAOS KNIGHTS units can make a Malefic Surge. Each that does takes a Leadership test; if failed, suffer D3 mortal wounds. Until your next Command phase, the unit is Empowered. When an Empowered unit is activated (selected to move/shoot/fight/targeted), choose ONE: Unholy Hunger: +3\" movement when selected to Move; Diabolic Power: [LETHAL HITS] or [SUSTAINED HITS 1] when selected to Shoot or Fight; Unnatural Fortitude: when this unit is selected as the target of an attack, models have 5+ invulnerable save or Feel No Pain 6+."
+        }
+      ],
+      "enhancements": [
+        {
+          "name": "INFERNAL ENHANCEMENTS",
+          "cp_cost": null,
+          "description": "Enhancements from codex."
+        }
+      ],
+      "stratagems": [
+        {
+          "name": "HELLFORGED CONSTRUCTION",
+          "cp_cost": null,
+          "when": null,
+          "target": null,
+          "effect": "Until the attacking unit has finished making its attacks, each time an attack targets your unit, worsen the Armour Penetration characteristic of that attack by 1."
+        }
+      ],
+      "dp_cost": 3
+    }
+  ]
+}
