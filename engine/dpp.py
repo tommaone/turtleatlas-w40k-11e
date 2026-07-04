@@ -447,6 +447,8 @@ def compute_mob(
     # Mobility tier: simple heuristic based on movement + Fly
     if movement >= 20:
         mob_tier = "skyborne"
+    elif movement >= 14:
+        mob_tier = "very_fast"
     elif movement >= 10:
         mob_tier = "fast"
     elif movement >= 8:

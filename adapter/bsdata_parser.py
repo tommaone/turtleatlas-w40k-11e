@@ -236,7 +236,8 @@ class BSDataParser:
 
             # Find origin for ally tagging
             for origin_name, r in all_roots:
-                if r.find(f".//bs:sharedSelectionEntries/bs:selectionEntry[@name='{name}']", NS) is not None:
+                safe_name = name.replace('"', '&quot;')
+                if r.find(f'.//bs:sharedSelectionEntries/bs:selectionEntry[@name="{safe_name}"]', NS) is not None:
                     if origin_name and origin_name != faction_name:
                         unit_entry["ally_of"] = origin_name
                     break
