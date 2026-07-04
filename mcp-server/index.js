@@ -43,6 +43,10 @@ class TurtleAtlasW40kServer {
         factionPack: this.#loadJson("chaos-knights-faction-pack.json"),
         mergedUnits: this.#loadJson("merged/chaos-knights.json"),
       },
+      "chaos-daemons": {
+        factionPack: this.#loadJson("chaos-daemons-faction-pack.json"),
+        mergedUnits: this.#loadJson("merged/chaos-daemons.json"),
+      },
     };
     this.defaultFaction = "grey-knights";
 

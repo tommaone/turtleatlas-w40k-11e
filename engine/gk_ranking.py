@@ -44,15 +44,15 @@ _init()
 
 # ── Public API ─────────────────────────────────────────────────────
 
-def compute_ranking(target=MEQ, mission=None, meta_name=None):
+def compute_ranking(target=MEQ, mission=None, meta_name=None, tier="1st"):
     """Compute unit ranking delegating to generic engine."""
-    return _engine().compute_ranking(target=target, mission=mission, meta_name=meta_name)
+    return _engine().compute_ranking(target=target, mission=mission, meta_name=meta_name, tier=tier)
 
 
-def print_ranking(results, target_name="MEQ", mission_name=None, meta_name=None):
+def print_ranking(results, target_name="MEQ", mission_name=None, meta_name=None, tier="1st"):
     """Print ranking delegating to generic engine."""
     return _engine().print_ranking(results, target_name=target_name,
-                                    mission_name=mission_name, meta_name=meta_name)
+                                    mission_name=mission_name, meta_name=meta_name, tier=tier)
 
 
 def mob_score(mob):
@@ -84,13 +84,15 @@ def main():
     missions = eng.config.mission_profiles
     metas = eng.config.meta_profiles
 
-    parser = argparse.ArgumentParser(description="GK Unit Ranking — three-vector DPS/SURV/MOB")
+    parser = argparse.ArgumentParser(description="Unit Ranking — three-vector DPS/SURV/MOB")
     parser.add_argument("--target", "-t", default="MEQ",
                         choices=list(targets.keys()),
                         help="Target profile to evaluate DPP against (ignored if --meta set)")
     parser.add_argument("--mission", "-m", default=None,
                         choices=list(missions.keys()),
                         help="Mission profile for weighted ranking")
+    parser.add_argument("--tier", default="1st", choices=["1st", "3rd"],
+                        help="Pricing tier: 1st unit (default) or 3rd+ unit")
     parser.add_argument("--matrix", action="store_true",
                         help="Print cross-target DPP matrix and exit")
     parser.add_argument("--meta", default=None,
@@ -104,23 +106,23 @@ def main():
             meta_targets = eng.config._resolve_meta(args.meta)
             for tn, _, _ in meta_targets:
                 tp = targets[tn]
-                by_target[tn] = compute_ranking(target=tp)
+                by_target[tn] = compute_ranking(target=tp, tier=args.tier)
             print(f"## Meta Matrix: {args.meta}\n")
             _print_matrix(by_target)
         else:
             by_target = {}
             for tn, tp in targets.items():
-                by_target[tn] = compute_ranking(target=tp)
+                by_target[tn] = compute_ranking(target=tp, tier=args.tier)
             _print_matrix(by_target)
         return
 
     if args.meta:
-        results = compute_ranking(target=MEQ, mission=args.mission, meta_name=args.meta)
-        print_ranking(results, target_name=None, mission_name=args.mission, meta_name=args.meta)
+        results = compute_ranking(target=MEQ, mission=args.mission, meta_name=args.meta, tier=args.tier)
+        print_ranking(results, target_name=None, mission_name=args.mission, meta_name=args.meta, tier=args.tier)
     else:
         target = targets[args.target]
-        results = compute_ranking(target=target, mission=args.mission)
-        print_ranking(results, target_name=args.target, mission_name=args.mission)
+        results = compute_ranking(target=target, mission=args.mission, tier=args.tier)
+        print_ranking(results, target_name=args.target, mission_name=args.mission, tier=args.tier)
 
 
 def _print_matrix(results_by_target):

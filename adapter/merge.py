@@ -51,7 +51,8 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
     bsdata = bsdata_parser.query_faction(faction_name, include_legends=with_legends) if faction_name else None
 
     def norm(name: str) -> str:
-        return name.lower().strip()
+        # Normalize Unicode apostrophes to ASCII for matching
+        return name.lower().strip().replace('\u2019', "'")
 
     # -- BSData profiles --
     bsdata_unit_map: dict[str, dict] = {}
