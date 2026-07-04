@@ -32,8 +32,19 @@ class TurtleAtlasW40kServer {
   constructor() {
     // Load data at startup (best-effort)
     this.coreRules = this.#loadJson("core-rules-11e.json");
-    this.factionPack = this.#loadJson("grey-knights-faction-pack.json");
-    this.mergedUnits = this.#loadJson("merged/grey-knights.json");
+
+    // Per-faction data
+    this.factions = {
+      "grey-knights": {
+        factionPack: this.#loadJson("grey-knights-faction-pack.json"),
+        mergedUnits: this.#loadJson("merged/grey-knights.json"),
+      },
+      "chaos-knights": {
+        factionPack: this.#loadJson("chaos-knights-faction-pack.json"),
+        mergedUnits: this.#loadJson("merged/chaos-knights.json"),
+      },
+    };
+    this.defaultFaction = "grey-knights";
 
     this.server = new Server(
       {
@@ -183,6 +194,15 @@ print(json.dumps(r))
     server.setRequestHandler(ListToolsRequestSchema, async () => ({
       tools: [
         {
+          name: "list_factions",
+          description:
+            "List available factions with loaded data status.",
+          inputSchema: {
+            type: "object",
+            properties: {},
+          },
+        },
+        {
           name: "get_core_rules",
           description:
             "Get 11e core rules overview: abilities, phases, stratagems, cover.",
@@ -218,7 +238,11 @@ print(json.dumps(r))
             properties: {
               name: {
                 type: "string",
-                description: "Detachment name (e.g. Argent Assault)",
+                description: "Detachment name (e.g. Argent Assault, Infernal Lance)",
+              },
+              faction: {
+                type: "string",
+                description: "Faction key (e.g. grey-knights, chaos-knights). Default: grey-knights",
               },
             },
             required: ["name"],
@@ -291,6 +315,10 @@ print(json.dumps(r))
                 type: "string",
                 description: "Optional search filter",
               },
+              faction: {
+                type: "string",
+                description: "Faction key (e.g. grey-knights, chaos-knights). Default: grey-knights",
+              },
             },
           },
         },
@@ -304,6 +332,10 @@ print(json.dumps(r))
               name: {
                 type: "string",
                 description: "Unit name (case-insensitive partial match)",
+              },
+              faction: {
+                type: "string",
+                description: "Faction key (e.g. grey-knights, chaos-knights). Default: grey-knights",
               },
             },
             required: ["name"],
@@ -320,6 +352,10 @@ print(json.dumps(r))
               detachment: {
                 type: "string",
                 description: "Optional detachment name to narrow search",
+              },
+              faction: {
+                type: "string",
+                description: "Faction key (e.g. grey-knights, chaos-knights). Default: grey-knights",
               },
             },
             required: ["name"],
@@ -375,6 +411,8 @@ print(json.dumps(r))
     server.setRequestHandler(CallToolRequestSchema, async (request) => {
       const { name, arguments: args } = request.params;
       switch (name) {
+        case "list_factions":
+          return this.#handleListFactions();
         case "get_core_rules":
           return this.#handleGetCoreRules(args);
         case "get_ability":
@@ -486,17 +524,19 @@ print(json.dumps(r))
   // -------- Detachment lookup ---------------------------------------------
 
   #handleGetDetachment(args) {
-    if (!this.factionPack) {
-      return this.#text("Faction Pack not loaded.");
+    const fd = this.#getFactionData(args?.faction);
+    if (fd.error) return this.#text(fd.error);
+    if (!fd.factionPack) {
+      return this.#text("Faction Pack data not loaded.");
     }
     const query = (args?.name || "").toUpperCase().trim();
-    const det = this.factionPack.detachments.find(
+    const det = fd.factionPack.detachments.find(
       (d) =>
         d.name.toUpperCase().includes(query) ||
         query.includes(d.name.toUpperCase()),
     );
     if (!det) {
-      const names = this.factionPack.detachments.map((d) => d.name).join(", ");
+      const names = fd.factionPack.detachments.map((d) => d.name).join(", ");
       return this.#text(`Detachment not found. Available: ${names}`);
     }
     let out = `# ${det.name} (DP: ${det.dp_cost})\n\n`;
@@ -618,16 +658,44 @@ print(json.dumps(r))
     return this.#text(out);
   }
 
+  // -------- Faction data helper -------------------------------------------
+
+  #getFactionData(factionKey) {
+    const key = (factionKey || this.defaultFaction).toLowerCase();
+    const data = this.factions[key];
+    if (!data) {
+      const available = Object.keys(this.factions).join(", ");
+      return { error: `Faction "${key}" not found. Available: ${available}` };
+    }
+    if (!data.mergedUnits) {
+      return { error: `Merged unit data not loaded for "${key}".` };
+    }
+    return data;
+  }
+
+  // -------- List factions -------------------------------------------------
+
+  #handleListFactions() {
+    const lines = ["# Available Factions\n"];
+    for (const [key, data] of Object.entries(this.factions)) {
+      const unitsLoaded = data.mergedUnits ? "yes" : "no";
+      const fpLoaded = data.factionPack ? "yes" : "no";
+      lines.push(
+        `- **${key}**: units=${unitsLoaded}, factionPack=${fpLoaded}`,
+      );
+    }
+    return this.#text(lines.join("\n"));
+  }
+
   // -------- List units ----------------------------------------------------
 
   #handleListUnits(args) {
-    if (!this.mergedUnits) {
-      return this.#text("Merged unit data not loaded.");
-    }
+    const fd = this.#getFactionData(args?.faction);
+    if (fd.error) return this.#text(fd.error);
     const search = (args?.search || "").toLowerCase();
-    let out = `# Units (${this.mergedUnits.units.length} total)\n\n`;
+    let out = `# Units (${fd.mergedUnits.units.length} total)\n\n`;
     out += `| Name | Points | Role |\n|------|--------|------|\n`;
-    for (const u of this.mergedUnits.units) {
+    for (const u of fd.mergedUnits.units) {
       if (search && !u.name.toLowerCase().includes(search)) continue;
       const pricing = u.pricing?.[0]?.costs?.[0]?.points || "-";
       out += `| ${u.name} | ${pricing} | ${u.role || ""} |\n`;
@@ -638,11 +706,10 @@ print(json.dumps(r))
   // -------- Get unit ------------------------------------------------------
 
   #handleGetUnit(args) {
-    if (!this.mergedUnits) {
-      return this.#text("Merged unit data not loaded.");
-    }
+    const fd = this.#getFactionData(args?.faction);
+    if (fd.error) return this.#text(fd.error);
     const query = (args?.name || "").toLowerCase();
-    const unit = this.mergedUnits.units.find((u) =>
+    const unit = fd.mergedUnits.units.find((u) =>
       u.name.toLowerCase().includes(query),
     );
     if (!unit) {
@@ -685,6 +752,8 @@ print(json.dumps(r))
   #handleGetStratagem(args) {
     const query = (args?.name || "").toUpperCase().trim();
     const detName = (args?.detachment || "").toUpperCase().trim();
+    const fd = this.#getFactionData(args?.faction);
+    if (fd.error) return this.#text(fd.error);
     const results = [];
 
     // Core stratagems
@@ -700,8 +769,8 @@ print(json.dumps(r))
     }
 
     // Detachment stratagems
-    if (this.factionPack?.detachments) {
-      for (const d of this.factionPack.detachments) {
+    if (fd.factionPack?.detachments) {
+      for (const d of fd.factionPack.detachments) {
         if (
           detName &&
           !d.name.toUpperCase().includes(detName) &&
