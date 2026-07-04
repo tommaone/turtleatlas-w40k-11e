@@ -105,18 +105,40 @@ class FactionConfig:
 # Ranking engine
 # ---------------------------------------------------------------------------
 
-def _load_catalog(merged_path: str) -> WeaponCatalog:
+def _load_catalog(merged_path: str, faction: str | None = None) -> WeaponCatalog:
     """Load WeaponCatalog from a merged JSON path."""
-    return WeaponCatalog(merged_path)
+    return WeaponCatalog(merged_path, faction=faction)
 
 
 def _ld_dmg(ranged, melee, innate, target):
-    """Total damage across all weapon lists against a target."""
+    """Total damage across all weapon lists against a target.
+
+    11e melee rule [24.11]: [Extra Attacks] weapons are ALWAYS used in
+    addition to one other melee weapon. So for melee:
+      - All [EA] weapons are summed
+      - The best non-[EA] weapon is chosen
+      - If all weapons are [EA], sum all
+    """
     d = 0
     for wp in ranged:
         d += _wp_dmg(wp, target)
+
+    ea_melee = []
+    other_melee = []
     for wp in melee:
-        d += _wp_dmg(wp, target)
+        if "Extra Attacks" in wp.abilities or "Extra Attack" in wp.abilities:
+            ea_melee.append(wp)
+        else:
+            other_melee.append(wp)
+
+    if ea_melee:
+        for wp in ea_melee:
+            d += _wp_dmg(wp, target)
+        if other_melee:
+            d += max(_wp_dmg(wp, target) for wp in other_melee)
+    elif other_melee:
+        d += max(_wp_dmg(wp, target) for wp in other_melee)
+
     for wp in innate:
         d += _wp_dmg(wp, target)
     return d
@@ -147,7 +169,7 @@ class RankingEngine:
 
         # Merged data: data/merged/{faction_key}.json
         self.merged_path = str(repo_root / "data" / "merged" / f"{faction_key}.json")
-        self.catalog = _load_catalog(self.merged_path)
+        self.catalog = _load_catalog(self.merged_path, faction=faction_key)
         self.data = json.loads(Path(self.merged_path).read_text())
 
     # ── Helper: load weapon via catalog ───────────────────────────────
@@ -616,22 +638,23 @@ class RankingEngine:
         if has_goi:
             base = 75
             m_bonus = {
-                "skyborne": 0, "fast": 10, "cavalry": 8,
+                "skyborne": 0, "very_fast": 12, "fast": 10, "cavalry": 8,
                 "standard": 5, "slow": 3, "transporter": 5, "static": 0,
             }.get(tier, 0)
             fly_bonus = 5 if has_fly else 0
-            oc_bonus = min(oc * 3, 12)
+            oc_bonus = min(oc * 3, 20)
             return min(base + m_bonus + fly_bonus + oc_bonus, 100)
         else:
-            tier_map = {"static": 10, "slow": 25, "standard": 45, "fast": 65,
-                        "cavalry": 80, "flyer": 95, "skyborne": 95, "transporter": 70}
+            tier_map = {"static": 10, "slow": 25, "standard": 45,
+                        "fast": 55, "very_fast": 70, "cavalry": 80,
+                        "flyer": 95, "skyborne": 95, "transporter": 70}
             base = tier_map.get(tier, 30)
             bonuses = 0
             if has_fly:
                 bonuses += 10
             if has_ds:
                 bonuses += 10
-            oc_bonus = min(oc * 3, 15)
+            oc_bonus = min(oc * 3, 20)
             return min(base + bonuses + oc_bonus, 100)
 
     @staticmethod
