@@ -75,6 +75,8 @@ def _parse_keywords(s: str) -> list[str]:
 FACTION_OVERLAYS: dict[str, list[str]] = {
     # Grey Knights: Psychic is a faction rule — all weapons add it
     "grey-knights": ["Psychic"],
+    # Chaos Knights: no faction-wide weapon overlay
+    "chaos-knights": [],
     # Future factions can add their own overlays
 }
 

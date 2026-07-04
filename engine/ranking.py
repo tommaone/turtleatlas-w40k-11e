@@ -105,18 +105,40 @@ class FactionConfig:
 # Ranking engine
 # ---------------------------------------------------------------------------
 
-def _load_catalog(merged_path: str) -> WeaponCatalog:
+def _load_catalog(merged_path: str, faction: str | None = None) -> WeaponCatalog:
     """Load WeaponCatalog from a merged JSON path."""
-    return WeaponCatalog(merged_path)
+    return WeaponCatalog(merged_path, faction=faction)
 
 
 def _ld_dmg(ranged, melee, innate, target):
-    """Total damage across all weapon lists against a target."""
+    """Total damage across all weapon lists against a target.
+
+    11e melee rule [24.11]: [Extra Attacks] weapons are ALWAYS used in
+    addition to one other melee weapon. So for melee:
+      - All [EA] weapons are summed
+      - The best non-[EA] weapon is chosen
+      - If all weapons are [EA], sum all
+    """
     d = 0
     for wp in ranged:
         d += _wp_dmg(wp, target)
+
+    ea_melee = []
+    other_melee = []
     for wp in melee:
-        d += _wp_dmg(wp, target)
+        if "Extra Attacks" in wp.abilities or "Extra Attack" in wp.abilities:
+            ea_melee.append(wp)
+        else:
+            other_melee.append(wp)
+
+    if ea_melee:
+        for wp in ea_melee:
+            d += _wp_dmg(wp, target)
+        if other_melee:
+            d += max(_wp_dmg(wp, target) for wp in other_melee)
+    elif other_melee:
+        d += max(_wp_dmg(wp, target) for wp in other_melee)
+
     for wp in innate:
         d += _wp_dmg(wp, target)
     return d
@@ -147,7 +169,7 @@ class RankingEngine:
 
         # Merged data: data/merged/{faction_key}.json
         self.merged_path = str(repo_root / "data" / "merged" / f"{faction_key}.json")
-        self.catalog = _load_catalog(self.merged_path)
+        self.catalog = _load_catalog(self.merged_path, faction=faction_key)
         self.data = json.loads(Path(self.merged_path).read_text())
 
     # ── Helper: load weapon via catalog ───────────────────────────────
