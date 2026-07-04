@@ -54,7 +54,11 @@
             "name": "Dauntless Champions",
             "affects": "dpp",
             "plus1_to_wound": true,
-            "description": "+1 to wound rolls when S < T (modeled as always-on)"
+            "description": "+1 to wound rolls when S < T (modeled as always-on)",
+            "unit_filter": [
+              "Paladin Squad"
+            ],
+            "condition": "only when S < T"
           }
         ]
       }
@@ -157,7 +161,11 @@
             "name": "EchoJump",
             "affects": "mob",
             "movement_bonus": 4,
-            "description": "D6+1\" surge after shooting (avg 4.5\", modeled as +4\" MOB)"
+            "description": "D6+1\" surge after shooting (avg 4.5\", modeled as +4\" MOB)",
+            "unit_filter": [
+              "Interceptor Squad"
+            ],
+            "condition": "after shooting, if no ingress move"
           }
         ]
       }

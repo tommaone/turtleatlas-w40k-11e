@@ -244,7 +244,11 @@
             "affects": "mob",
             "fallback_and_shoot": true,
             "fallback_and_charge": true,
-            "description": "MOUNTED can fall back and shoot/charge"
+            "description": "MOUNTED can fall back and shoot/charge",
+            "unit_filter": [
+              "MOUNTED"
+            ],
+            "condition": "only MOUNTED Legiones Daemonica units"
           }
         ]
       }
@@ -359,7 +363,11 @@
             "name": "Shudderblink",
             "affects": "dpp",
             "assault": true,
-            "description": "BATTLELINE ranged attacks have Assault after advancing; still eligible to charge"
+            "description": "BATTLELINE ranged attacks have Assault after advancing; still eligible to charge",
+            "unit_filter": [
+              "BATTLELINE"
+            ],
+            "condition": "only BATTLELINE Legiones Daemonica on Advance"
           }
         ]
       }
@@ -451,7 +459,11 @@
             "name": "Murdercall (Surge)",
             "affects": "mob",
             "movement_bonus": 3,
-            "description": "D6\" surge when enemy ends move within 8\" (avg 3.5\", modeled as +3\" MOB)"
+            "description": "D6\" surge when enemy ends move within 8\" (avg 3.5\", modeled as +3\" MOB)",
+            "unit_filter": [
+              "Khorne"
+            ],
+            "condition": "Khorne unit within 8\" of enemy ending move"
           }
         ]
       }
@@ -539,19 +551,31 @@
             "name": "Fates in Flux (Re-roll Hits)",
             "affects": "dpp",
             "reroll_hits": "1s",
-            "description": "Spend Flux token to re-roll Hit roll of 1"
+            "description": "Spend Flux token to re-roll Hit roll of 1",
+            "unit_filter": [
+              "Tzeentch"
+            ],
+            "condition": "spend Flux token"
           },
           {
             "name": "Fates in Flux (Re-roll Wounds)",
             "affects": "dpp",
             "reroll_wounds": "1s",
-            "description": "Spend Flux token to re-roll Wound roll of 1"
+            "description": "Spend Flux token to re-roll Wound roll of 1",
+            "unit_filter": [
+              "Tzeentch"
+            ],
+            "condition": "spend Flux token"
           },
           {
             "name": "Fates in Flux (Re-roll Save)",
             "affects": "surv",
             "invulnerable_save": 4,
-            "description": "Spend Flux token to re-roll saving throw (modeled as 4++ approximation)"
+            "description": "Spend Flux token to re-roll saving throw (modeled as 4++ approximation)",
+            "unit_filter": [
+              "Tzeentch"
+            ],
+            "condition": "spend Flux token"
           }
         ]
       }
@@ -731,13 +755,21 @@
             "name": "Beguiling Aura",
             "affects": "mob",
             "fallback_and_charge": true,
-            "description": "Eligible to charge after Falling Back"
+            "description": "Eligible to charge after Falling Back",
+            "unit_filter": [
+              "Slaanesh"
+            ],
+            "condition": "after Falling Back"
           },
           {
             "name": "Seductive Gambit",
             "affects": "dpp",
             "reroll_hits": "all",
-            "description": "Re-roll Hit rolls after charging (loses Fights First)"
+            "description": "Re-roll Hit rolls after charging (loses Fights First)",
+            "unit_filter": [
+              "Slaanesh"
+            ],
+            "condition": "after charging (loses Fights First)"
           }
         ]
       }

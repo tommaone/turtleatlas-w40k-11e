@@ -54,7 +54,11 @@
             "name": "Annihilate the Unworthy",
             "affects": "dpp",
             "hit_modifier": -1,
-            "description": "+1 to hit rolls vs battle-shocked (modeled as always-on)"
+            "description": "+1 to hit rolls vs battle-shocked (modeled as always-on)",
+            "unit_filter": [
+              "Knight Tyrant"
+            ],
+            "condition": "only vs battle-shocked units"
           }
         ]
       }
