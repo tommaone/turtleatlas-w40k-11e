@@ -162,7 +162,24 @@
           "effect": "Remove selected units from the battlefield and place them into Strategic Reserves."
         }
       ],
-      "dp_cost": 1
+      "dp_cost": 1,
+      "modifiers": {
+        "description": "First Prince of Chaos — choose god keyword for specific buff",
+        "choices": [
+          {
+            "name": "Murderer's Cowl (Khorne)",
+            "affects": "mob",
+            "advance_and_charge": true,
+            "description": "Eligible to shoot/charge in a turn it Advanced"
+          },
+          {
+            "name": "Penumbral Puppetry (Tzeentch)",
+            "affects": "surv",
+            "stealth": true,
+            "description": "Stealth (-1 to Hit roll from ranged attacks); -1 to Hit roll from melee attacks"
+          }
+        ]
+      }
     },
     {
       "name": "CAVALCADE OF CHAOS",
@@ -256,7 +273,17 @@
           "effect": "Your unit's ranged attacks have [LETHAL HITS]."
         }
       ],
-      "dp_cost": 1
+      "dp_cost": 1,
+      "modifiers": {
+        "description": "Loci of Power — CHARACTER (non-MONSTER) get +1 Ld and +1 OC",
+        "choices": [
+          {
+            "name": "Loci of Power",
+            "affects": "mob",
+            "description": "+1 OC for CHARACTER models (non-MONSTER)"
+          }
+        ]
+      }
     },
     {
       "name": "WARPTIDE",
@@ -537,7 +564,18 @@
           "effect": "Until end of phase, after an enemy unit takes a Battle-shock test from Melancholic Miasma, select one other enemy unit within 9\" of your unit; that enemy unit must also take a Battle-shock test."
         }
       ],
-      "dp_cost": 2
+      "dp_cost": 2,
+      "modifiers": {
+        "description": "Melancholic Miasma — enemy within 9\" is in Shadow of Chaos",
+        "choices": [
+          {
+            "name": "Melancholic Miasma",
+            "affects": "surv",
+            "stealth": true,
+            "description": "Enemy within 9\" suffers -1 to hit (approximated as Stealth)"
+          }
+        ]
+      }
     },
     {
       "name": "LEGION OF EXCESS",

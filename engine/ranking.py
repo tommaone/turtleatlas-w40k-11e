@@ -22,9 +22,10 @@ from typing import Optional
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from engine.dpp import (
-    WeaponProfile, TargetProfile,
+    WeaponProfile, TargetProfile, WeaponModifier,
     compute_weapon_dpp, HitMode,
     UnitDefense, compute_surv, compute_mob,
+    DetachmentModifier,
 )
 from engine.weapon_loader import WeaponCatalog
 
@@ -110,7 +111,7 @@ def _load_catalog(merged_path: str, faction: str | None = None) -> WeaponCatalog
     return WeaponCatalog(merged_path, faction=faction)
 
 
-def _ld_dmg(ranged, melee, innate, target):
+def _ld_dmg(ranged, melee, innate, target, modifier: Optional[WeaponModifier] = None):
     """Total damage across all weapon lists against a target.
 
     11e melee rule [24.11]: [Extra Attacks] weapons are ALWAYS used in
@@ -121,7 +122,7 @@ def _ld_dmg(ranged, melee, innate, target):
     """
     d = 0
     for wp in ranged:
-        d += _wp_dmg(wp, target)
+        d += _wp_dmg(wp, target, modifier)
 
     ea_melee = []
     other_melee = []
@@ -133,30 +134,31 @@ def _ld_dmg(ranged, melee, innate, target):
 
     if ea_melee:
         for wp in ea_melee:
-            d += _wp_dmg(wp, target)
+            d += _wp_dmg(wp, target, modifier)
         if other_melee:
-            d += max(_wp_dmg(wp, target) for wp in other_melee)
+            d += max(_wp_dmg(wp, target, modifier) for wp in other_melee)
     elif other_melee:
-        d += max(_wp_dmg(wp, target) for wp in other_melee)
+        d += max(_wp_dmg(wp, target, modifier) for wp in other_melee)
 
     for wp in innate:
-        d += _wp_dmg(wp, target)
+        d += _wp_dmg(wp, target, modifier)
     return d
 
 
-def _wp_dmg(wp, target):
+def _wp_dmg(wp, target, modifier: Optional[WeaponModifier] = None):
     """Damage for a single weapon against target (single or weighted list)."""
     if isinstance(target, list):
-        return sum(w * compute_weapon_dpp(wp, tp, unit_points=1, hit_mode=HitMode.NORMAL)["total_damage"]
+        return sum(w * compute_weapon_dpp(wp, tp, modifier=modifier, unit_points=1, hit_mode=HitMode.NORMAL)["total_damage"]
                    for _, tp, w in target)
-    return compute_weapon_dpp(wp, target, unit_points=1, hit_mode=HitMode.NORMAL)["total_damage"]
+    return compute_weapon_dpp(wp, target, modifier=modifier, unit_points=1, hit_mode=HitMode.NORMAL)["total_damage"]
 
 
 class RankingEngine:
     """Ranking engine for a specific faction."""
 
-    def __init__(self, faction_key: str):
+    def __init__(self, faction_key: str, no_t1_reinforcements: bool = True):
         self.faction_key = faction_key
+        self.no_t1_reinforcements = no_t1_reinforcements
         repo_root = Path(__file__).resolve().parent.parent
 
         # Config dir: data/config/{faction_key}/
@@ -171,6 +173,46 @@ class RankingEngine:
         self.merged_path = str(repo_root / "data" / "merged" / f"{faction_key}.json")
         self.catalog = _load_catalog(self.merged_path, faction=faction_key)
         self.data = json.loads(Path(self.merged_path).read_text())
+
+        # Detachment modifiers — loaded lazily on first access
+        self._detachment_modifiers: dict[str, list[DetachmentModifier]] | None = None
+
+    # ── Detachment modifiers ───────────────────────────────────────────
+
+    def _load_detachment_modifiers(self) -> dict[str, list[DetachmentModifier]]:
+        """Load detachment modifiers from faction pack JSON.
+
+        Returns dict mapping detachment name → list of DetachmentModifier choices.
+        """
+        if self._detachment_modifiers is not None:
+            return self._detachment_modifiers
+
+        repo_root = Path(__file__).resolve().parent.parent
+        fp_name = f"{self.faction_key}-faction-pack.json"
+        fp_path = repo_root / "data" / fp_name
+        if not fp_path.exists():
+            self._detachment_modifiers = {}
+            return self._detachment_modifiers
+
+        fp = json.loads(fp_path.read_text())
+        result = {}
+        for det in fp.get("detachments", []):
+            mods_data = det.get("modifiers", {})
+            choices = mods_data.get("choices", [])
+            if choices:
+                mods = [DetachmentModifier.from_dict(c) for c in choices]
+                result[det["name"]] = mods
+        self._detachment_modifiers = result
+        return result
+
+    def get_detachment_modifiers(self, detachment_name: str) -> list[DetachmentModifier]:
+        """Get modifier choices for a given detachment."""
+        mods = self._load_detachment_modifiers()
+        return mods.get(detachment_name.upper(), [])
+
+    def list_detachments_with_modifiers(self) -> list[str]:
+        """List detachment names that have defined modifiers."""
+        return list(self._load_detachment_modifiers().keys())
 
     # ── Helper: load weapon via catalog ───────────────────────────────
 
@@ -480,7 +522,9 @@ class RankingEngine:
 
     # ── Ranking computation ──────────────────────────────────────────
 
-    def compute_ranking(self, target=None, mission=None, meta_name=None, tier="1st"):
+    def compute_ranking(self, target=None, mission=None, meta_name=None, tier="1st",
+                         detachment: Optional[str] = None,
+                         detachment_choice: Optional[int] = None):
         """Compute unit ranking for a given target, optionally weighted by mission or tier.
 
         Args:
@@ -488,11 +532,24 @@ class RankingEngine:
             mission: Mission profile name.
             meta_name: Meta profile name — loadouts optimised for weighted mix.
             tier: Pricing tier — '1st' (default) or '3rd' (3rd+ unit pricing).
+            detachment: Detachment name to apply modifiers from.
+            detachment_choice: Index of the modifier choice (0-based).
 
         Returns:
             list of result dicts sorted by mission score (or DPP).
         """
         target = target or self.config.target_profiles.get("MEQ")
+
+        # Resolve detachment modifier
+        detachment_mod: Optional[DetachmentModifier] = None
+        if detachment:
+            choices = self.get_detachment_modifiers(detachment)
+            if choices:
+                choice_idx = detachment_choice if detachment_choice is not None else 0
+                if 0 <= choice_idx < len(choices):
+                    detachment_mod = choices[choice_idx]
+
+        weapon_mod = detachment_mod.to_weapon_modifier() if detachment_mod else None
 
         # Resolve meta
         meta_targets = None
@@ -522,10 +579,10 @@ class RankingEngine:
                 continue
             pts, ranged_profiles, melee_profiles, innate_profiles, info = resolved
 
-            # DPP
-            dmg_ranged = _ld_dmg(ranged_profiles, [], [], actual_target) if ranged_profiles else 0
-            dmg_melee = _ld_dmg([], melee_profiles, [], actual_target) if melee_profiles else 0
-            dmg_innate = _ld_dmg([], [], innate_profiles, actual_target) if innate_profiles else 0
+            # DPP (with optional detachment modifier)
+            dmg_ranged = _ld_dmg(ranged_profiles, [], [], actual_target, weapon_mod) if ranged_profiles else 0
+            dmg_melee = _ld_dmg([], melee_profiles, [], actual_target, weapon_mod) if melee_profiles else 0
+            dmg_innate = _ld_dmg([], [], innate_profiles, actual_target, weapon_mod) if innate_profiles else 0
             total_dmg = dmg_ranged + dmg_melee + dmg_innate
             dpp_val = total_dmg / pts if pts > 0 else 0
 
@@ -538,18 +595,29 @@ class RankingEngine:
             if name in self.config.squads:
                 n_models = self.config.squads[name]["n"]
 
-            # SURV
+            # SURV (with optional detachment modifier)
+            if detachment_mod and detachment_mod.affects == "surv":
+                invuln_override = inv_val if inv_val else (
+                    detachment_mod.invulnerable_save
+                )
+                # Use detachment invuln if unit has none native
+                final_invuln = inv_val or detachment_mod.invulnerable_save
+                final_fnp = detachment_mod.feel_no_pain
+            else:
+                final_invuln = inv_val
+                final_fnp = fnp_val
+
             defense = UnitDefense(
                 toughness=t_val,
                 wounds_per_model=w_val,
                 save=sv_val,
-                invuln=inv_val,
-                fnp=fnp_val if is_infantry else None,
+                invuln=final_invuln,
+                fnp=final_fnp if is_infantry else final_fnp,
                 models=n_models,
             )
             surv = compute_surv(defense, pts)
 
-            # MOB
+            # MOB (with optional detachment modifier)
             m_val = 6
             if info:
                 m_m = re.search(r'(\d+)', str(info.get("M", '6"')))
@@ -562,6 +630,10 @@ class RankingEngine:
                 m_m = re.search(r'(\d+)', str(m_str))
                 if m_m:
                     m_val = int(m_m.group(1))
+
+            # Apply movement bonus from detachment
+            if detachment_mod and detachment_mod.affects == "mob":
+                m_val += detachment_mod.movement_bonus
 
             has_fly = "FLY" in kw_list
             has_deep_strike = "DEEP STRIKE" in kw_list
@@ -578,6 +650,7 @@ class RankingEngine:
                 oc=oc_val,
                 keywords=kw_list,
                 gate_of_infinity=has_gate,
+                no_t1_reinforcements=self.no_t1_reinforcements,
             )
 
             notes = self.config.notes.get(name, "")
@@ -648,6 +721,10 @@ class RankingEngine:
         has_fly = mob.get("fly", False)
         oc = mob.get("objective_control", 1)
         tier = mob.get("mobility_tier", "slow")
+        no_t1 = mob.get("no_t1_reinforcements", True)
+
+        # No T1 Reinforcements (11e core rule) reduces Deep Strike value
+        ds_bonus = 5 if (has_ds and no_t1) else (10 if has_ds else 0)
 
         if has_goi:
             base = 75
@@ -657,16 +734,14 @@ class RankingEngine:
             }.get(tier, 0)
             fly_bonus = 5 if has_fly else 0
             oc_bonus = min(oc * 3, 20)
-            return min(base + m_bonus + fly_bonus + oc_bonus, 100)
+            return min(base + m_bonus + fly_bonus + ds_bonus + oc_bonus, 100)
         else:
             tier_map = {"static": 10, "slow": 25, "standard": 45,
                         "fast": 55, "very_fast": 70, "cavalry": 80,
                         "flyer": 95, "skyborne": 95, "transporter": 70}
             base = tier_map.get(tier, 30)
-            bonuses = 0
+            bonuses = ds_bonus
             if has_fly:
-                bonuses += 10
-            if has_ds:
                 bonuses += 10
             oc_bonus = min(oc * 3, 20)
             return min(base + bonuses + oc_bonus, 100)

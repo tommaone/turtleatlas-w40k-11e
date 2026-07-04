@@ -215,7 +215,18 @@
           "effect": "Until the end of the phase, each time an enemy unit declares a charge and your unit is one of the targets of that charge, subtract 1 from the Charge roll, or subtract 2 instead if your unit is wholly within your army's Hallowed Ground."
         }
       ],
-      "dp_cost": 2
+      "dp_cost": 2,
+      "modifiers": {
+        "description": "Hallowed Ground — re-roll 1s to hit",
+        "choices": [
+          {
+            "name": "Hallowed Ground",
+            "affects": "dpp",
+            "reroll_hits": "1s",
+            "description": "Re-roll 1s to hit in Hallowed Ground"
+          }
+        ]
+      }
     }
   ],
   "datasheets": [

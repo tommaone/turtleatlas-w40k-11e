@@ -190,6 +190,76 @@ print(json.dumps(r))
     return this.#runPython(code, args);
   }
 
+  /**
+   * Call the Python ranking engine via subprocess.
+   */
+  #runRankEngine(args) {
+    const code = `
+import sys, json
+sys.path.insert(0, ${JSON.stringify(BASE_DIR)})
+from engine.ranking import RankingEngine
+
+a = json.loads(sys.stdin.read())
+
+faction = a.get("faction", "grey-knights")
+target_name = a.get("target", "MEQ")
+mission_name = a.get("mission")
+tier = a.get("tier", "1st")
+meta_name = a.get("meta")
+detachment = a.get("detachment")
+detachment_choice = a.get("detachment_choice")
+top_n = a.get("top_n", 10)
+
+eng = RankingEngine(faction)
+targets = eng.config.target_profiles
+
+# Resolve target
+if meta_name:
+    target = targets.get("MEQ")
+else:
+    target = targets.get(target_name)
+
+if not target:
+    print(json.dumps({"error": f"Target profile '{target_name}' not found. Available: {list(targets.keys())}"}))
+    sys.exit(0)
+
+results = eng.compute_ranking(
+    target=target,
+    mission=mission_name,
+    meta_name=meta_name,
+    tier=tier,
+    detachment=detachment,
+    detachment_choice=detachment_choice,
+)
+
+output = []
+for r in results[:top_n]:
+    entry = {
+        "name": r["name"],
+        "points": r["points"],
+        "dpp": r["dpp"],
+        "total_damage": r["total_damage"],
+        "surv_ew_ap0": r["surv"]["effective_wounds"]["ap0"],
+        "surv_ew_ap2": r["surv"]["effective_wounds"]["ap2"],
+        "surv_ew_ap4": r["surv"]["effective_wounds"]["ap4"],
+        "mob_tier": r["mob"]["mobility_tier"],
+        "mob_movement": r["mob"]["movement"],
+        "mob_deep_strike": r["mob"]["deep_strike"],
+        "loadout": r.get("loadout_desc", ""),
+    }
+    if "_mission_score" in r:
+        entry["mission_score"] = r["_mission_score"]
+    if "_dps_pct" in r:
+        entry["dps_pct"] = r["_dps_pct"]
+        entry["surv_pct"] = r["_surv_pct"]
+        entry["mob_pct"] = r["_mob_pct"]
+    output.append(entry)
+
+print(json.dumps(output))
+`;
+    return this.#runPython(code, args);
+  }
+
   // -------------------------------------------------------------------------
   // Tool handlers
   // -------------------------------------------------------------------------
@@ -409,6 +479,49 @@ print(json.dumps(r))
             required: ["movement", "oc"],
           },
         },
+        {
+          name: "rank_units",
+          description:
+            "Compute three-vector (DPS/SURV/MOB) ranking for all units in a faction. Supports target profile, mission weighting, pricing tier, meta profile, and detachment modifiers.",
+          inputSchema: {
+            type: "object",
+            properties: {
+              faction: {
+                type: "string",
+                description: "Faction key (e.g. grey-knights, chaos-knights). Default: grey-knights",
+              },
+              target: {
+                type: "string",
+                description: "Target profile name (e.g. MEQ, TEQ, GEQ). Default: MEQ",
+              },
+              mission: {
+                type: "string",
+                description: "Mission profile name (e.g. Purge the Foe, Take and Hold)",
+              },
+              tier: {
+                type: "string",
+                enum: ["1st", "3rd"],
+                description: "Pricing tier. Default: 1st",
+              },
+              meta: {
+                type: "string",
+                description: "Multi-target meta profile name (e.g. all-comers, vehicle-heavy)",
+              },
+              detachment: {
+                type: "string",
+                description: "Detachment name to apply modifiers from (e.g. Infernal Lance, Warpbane Task Force)",
+              },
+              detachment_choice: {
+                type: "number",
+                description: "Index of modifier choice (0-based). Default: 0",
+              },
+              top_n: {
+                type: "number",
+                description: "Number of results to return. Default: 10",
+              },
+            },
+          },
+        },
       ],
     }));
 
@@ -435,6 +548,8 @@ print(json.dumps(r))
           return this.#handleComputeSurv(args);
         case "compute_mob":
           return this.#handleComputeMob(args);
+        case "rank_units":
+          return this.#handleRankUnits(args);
         default:
           throw new McpError(
             ErrorCode.MethodNotFound,
@@ -748,6 +863,67 @@ print(json.dumps(r))
         out += `- ${a}\n`;
       }
     }
+    return this.#text(out);
+  }
+
+  // -------- Rank units ----------------------------------------------------
+
+  #handleRankUnits(args) {
+    if (!args) return this.#text("Missing arguments.");
+
+    const result = this.#runRankEngine(args);
+    if (result.error) {
+      return this.#text(`Ranking error: ${result.error}`);
+    }
+
+    const data = result;
+    if (!Array.isArray(data)) {
+      if (data.error) return this.#text(`Ranking error: ${data.error}`);
+      return this.#text(`Unexpected result: ${JSON.stringify(data)}`);
+    }
+
+    if (data.length === 0) {
+      return this.#text("No ranking results returned.");
+    }
+
+    const faction = args.faction || "grey-knights";
+    const target = args.target || "MEQ";
+    const mission = args.mission || "none";
+    const tier = args.tier || "1st";
+    const det = args.detachment || "";
+
+    let out = `# Unit Ranking — ${faction} vs ${target}`;
+    if (mission !== "none") out += ` (Mission: ${mission})`;
+    if (det) out += ` [Detachment: ${det}]`;
+    out += `\nTier: ${tier}\n\n`;
+
+    // Table header
+    let hasMissionScore = false;
+    for (const r of data) {
+      if (r.mission_score !== undefined) { hasMissionScore = true; break; }
+    }
+
+    if (hasMissionScore) {
+      out += `| # | Unit | Pts | DPP | Dmg | Surv(AP0) | Mob | Score |\n`;
+      out += `|---|------|-----|-----|-----|-----------|-----|-------|\n`;
+      for (let i = 0; i < data.length; i++) {
+        const r = data[i];
+        out += `| ${i + 1} | ${r.name} | ${r.points} | ${r.dpp.toFixed(4)} | ${r.total_damage.toFixed(2)} | ${r.surv_ew_ap0} | ${r.mob_tier} | ${r.mission_score?.toFixed(0) || "-"} |\n`;
+      }
+    } else {
+      out += `| # | Unit | Pts | DPP | Dmg | Surv(AP0) | Mob Tier |\n`;
+      out += `|---|------|-----|-----|-----|-----------|----------|\n`;
+      for (let i = 0; i < data.length; i++) {
+        const r = data[i];
+        out += `| ${i + 1} | ${r.name} | ${r.points} | ${r.dpp.toFixed(4)} | ${r.total_damage.toFixed(2)} | ${r.surv_ew_ap0} | ${r.mob_tier} |\n`;
+      }
+    }
+
+    out += `\n---\n`;
+    out += `**Context:** target=${target}, mission=${mission || "none"}, tier=${tier}, detachment=${det || "none"}\n`;
+    out += `**Formula:** DPP = total_damage / points. SURV = effective wound pool at AP0/AP2/AP4. MOB = mobility tier (static/slow/standard/cavalry/fast/very_fast/skyborne).\n`;
+    out += `**Limitation:** Does not model stratagems, command rerolls, or conditional buffs beyond selected detachment modifier.\n`;
+
     return this.#text(out);
   }
 

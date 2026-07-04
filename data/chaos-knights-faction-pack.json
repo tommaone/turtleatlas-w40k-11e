@@ -324,7 +324,32 @@
           "effect": "Until the attacking unit has finished making its attacks, each time an attack targets your unit, worsen the Armour Penetration characteristic of that attack by 1."
         }
       ],
-      "dp_cost": 3
+      "dp_cost": 3,
+      "modifiers": {
+        "description": "Malefic Surge → Empowered. Choose ONE per activation.",
+        "choices": [
+          {
+            "name": "Unholy Hunger",
+            "affects": "mob",
+            "movement_bonus": 3,
+            "description": "+3\" movement when selected to Move"
+          },
+          {
+            "name": "Diabolic Power",
+            "affects": "dpp",
+            "sustained_hits_extra": 1,
+            "lethal_hits": true,
+            "description": "Lethal Hits or Sustained Hits 1 when shooting/fighting"
+          },
+          {
+            "name": "Unnatural Fortitude",
+            "affects": "surv",
+            "invulnerable_save": 5,
+            "feel_no_pain": 6,
+            "description": "5+ invuln or Feel No Pain 6+"
+          }
+        ]
+      }
     }
   ]
 }
