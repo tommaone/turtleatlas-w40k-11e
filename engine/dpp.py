@@ -256,6 +256,8 @@ ANTI_KEYWORD_TOUGHNESS: dict[str, tuple[int, int]] = {
     "PSYKER": (3, 5),
     "TITANIC": (13, 14),
     "WALKER": (7, 10),
+    "CHARACTER": (3, 10),   # wide range: from T3 to T10+
+    "FLY": (3, 12),          # everything from T3 infantry to T12 monsters
     "BEHIND COVER": (0, 0),  # situational, never auto-matches
 }
 
@@ -622,10 +624,16 @@ def compute_weapon_dpp(weapon: WeaponProfile,
         if ab.startswith("SUSTAINED HITS"):
             parts = ab.split()
             if len(parts) >= 3:
-                try:
-                    sustained = int(parts[2])
-                except ValueError:
-                    sustained = 1
+                raw = parts[2]
+                if raw == "D3":
+                    sustained = 2  # average of D3 = 2
+                elif raw == "D6":
+                    sustained = 3  # average of D6 = 3.5, floor = 3
+                else:
+                    try:
+                        sustained = int(raw)
+                    except ValueError:
+                        sustained = 1
         elif ab == "LETHAL HITS":
             lethal = True
         elif ab == "DEVASTATING WOUNDS":

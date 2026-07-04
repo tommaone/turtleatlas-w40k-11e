@@ -263,10 +263,11 @@ class RankingEngine:
             else:
                 is_apoth = apoth and i == n - 1
                 if not is_apoth:
-                    kw = {}
-                    if "ranged_a" in cfg:
-                        kw["a"] = cfg["ranged_a"]
-                    ranged.append(self.W(cfg["ranged"], unit_name=unit_name, **kw))
+                    if cfg.get("ranged"):
+                        kw = {}
+                        if "ranged_a" in cfg:
+                            kw["a"] = cfg["ranged_a"]
+                        ranged.append(self.W(cfg["ranged"], unit_name=unit_name, **kw))
                 melee.append(self.W(cfg["melee"], unit_name=unit_name))
         return {"ranged": ranged, "melee": melee, "innate": innate}
 
@@ -577,14 +578,18 @@ class RankingEngine:
         results = []
         for unit in self.data["units"]:
             name = unit["name"]
-            profile = unit.get("profile", {})
-            kws_upper = [k.upper() for k in profile.get("keywords", [])]
+            profile = unit.get("profile")
+            if profile is None:
+                profile = {}
 
-            # Skip units without faction keyword
-            if not any(fk in kws_upper for fk in self.config.faction_keywords):
+            # Skip units not in our config (fast path)
+            if name not in self.config.known_units:
                 continue
 
-            if name not in self.config.known_units:
+            kws_upper = [k.upper() for k in profile.get("keywords", [])]
+
+            # Skip units without faction keyword (unless no profile data — still rank if config has it)
+            if profile and not any(fk in kws_upper for fk in self.config.faction_keywords):
                 continue
 
             # Unit info (needed before modifier check for keyword-based filters)
