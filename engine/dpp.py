@@ -164,12 +164,36 @@ def expected_hits(attacks: float, bs: int, hit_mod: int = 0,
     return total_hits, lethal_wounds
 
 
+# Toughness-based heuristic for Anti-Keyword matching.
+# Maps an Anti keyword (e.g. "INFANTRY", "VEHICLE") to a toughness range.
+# This avoids requiring TargetProfile to carry keywords, at the cost of
+# edge cases (e.g. T6 Wraithlord is INFANTRY, not VEHICLE).
+ANTI_KEYWORD_TOUGHNESS: dict[str, tuple[int, int]] = {
+    "INFANTRY": (3, 5),
+    "VEHICLE": (6, 13),
+    "MONSTER": (6, 12),
+    "DAEMON": (3, 5),
+    "MOUNTED": (4, 5),
+    "SWARM": (2, 3),
+    "PSYKER": (3, 5),
+    "TITANIC": (13, 14),
+    "WALKER": (7, 10),
+    "BEHIND COVER": (0, 0),  # situational, never auto-matches
+}
+
+
+def _anti_keyword_matches(keyword: str, toughness: int) -> bool:
+    """Check if an Anti-X keyword applies based on target toughness."""
+    lo, hi = ANTI_KEYWORD_TOUGHNESS.get(keyword.upper(), (0, 999))
+    return lo <= toughness <= hi
+
+
 def expected_wounds(hits: float, lethal_wounds: float,
                     strength: int, toughness: int,
                     wound_mod: int = 0, reroll: str | None = None,
                     twin_linked: bool = False,
                     devastating: bool = False,
-                    anti_info: Optional[tuple[int, int]] = None,
+                    anti_info: Optional[tuple[int, str]] = None,
                     lance: bool = False) -> tuple[float, float]:
     """
     Compute expected wounds after wound roll.
@@ -183,7 +207,7 @@ def expected_wounds(hits: float, lethal_wounds: float,
         reroll: "all", "1s", or None
         twin_linked: reroll wounds
         devastating: crit wounds cause mortal wounds
-        anti_info: (anti_value, anti_target_toughness) e.g. (4, 5) for ANTI-VEHICLE 4+
+        anti_info: (anti_value, anti_keyword) e.g. (4, "VEHICLE") for ANTI-VEHICLE 4+
         lance: if S < T, +1 to wound
 
     Returns:
@@ -192,28 +216,18 @@ def expected_wounds(hits: float, lethal_wounds: float,
     effective_s = strength
     effective_t = toughness
 
-    # Determine wound target
-    if anti_info:
-        anti_val, anti_t = anti_info
-        if tough := anti_t == toughness:
-            # Anti-X: critical wounds on Anti value
-            wound_target = max(2, anti_val)  # wounds on anti_val+ basically
-            # Actually ANTI means: unmodified wound roll of X+ is a critical wound
-            # The wound roll still needs to meet the normal threshold OR be a crit
-            pass
-
-    # S vs T comparison for wound target
+    # S vs T comparison for wound target (11e Core Rules)
     ratio = effective_s / effective_t
     if ratio >= 2:
-        base_wound_target = 2
+        base_wound_target = 2   # S >= 2x T
     elif ratio > 1:
-        base_wound_target = 3
+        base_wound_target = 3   # S > T
     elif ratio == 1:
-        base_wound_target = 4
-    elif ratio >= 0.5:
-        base_wound_target = 5
+        base_wound_target = 4   # S == T
+    elif ratio > 0.5:
+        base_wound_target = 5   # S > 0.5x T (but < T)
     else:
-        base_wound_target = 6
+        base_wound_target = 6   # S <= 0.5x T
 
     wound_target = base_wound_target + wound_mod
 
@@ -228,8 +242,22 @@ def expected_wounds(hits: float, lethal_wounds: float,
     else:
         p_wound = (7 - wound_target) / 6.0
 
-    p_crit_wound = 1.0 / 6  # unmodified 6
-    p_normal_wound = p_wound - p_crit_wound
+    # Critical wound threshold:
+    # - Without Anti: unmodified 6 is the only crit
+    # - With Anti-X: unmodified X+ is also critical (if keyword matches)
+    crit_roll = 6  # natural crit on unmodified 6
+    if anti_info:
+        anti_val, anti_kw = anti_info
+        if anti_kw and _anti_keyword_matches(anti_kw, toughness):
+            crit_roll = min(anti_val, 6)
+
+    # A crit wound requires both wounding AND rolling at or above the crit threshold
+    crit_wound_threshold = max(wound_target, crit_roll)
+    if crit_wound_threshold <= 6:
+        p_crit_wound = (7 - crit_wound_threshold) / 6.0
+    else:
+        p_crit_wound = 0.0
+    p_normal_wound = max(0.0, p_wound - p_crit_wound)
 
     # Rerolls
     if reroll == "all" or twin_linked:
@@ -506,6 +534,7 @@ def compute_weapon_dpp(weapon: WeaponProfile,
     anti_info = None
     ignore_cover = mod.ignore_cover
     lance = False
+    rapid_fire_extra = 0  # from Rapid Fire X: extra attacks at ≤12"
 
     ab_set = [a.upper() for a in weapon.abilities]
     for ab in ab_set:
@@ -527,7 +556,14 @@ def compute_weapon_dpp(weapon: WeaponProfile,
         elif ab.startswith("ANTI"):
             m = __import__('re').match(r'ANTI[-\s]?(\w+)\s+(\d+)\+?', ab)
             if m:
-                anti_info = (int(m.group(2)), None)
+                anti_info = (int(m.group(2)), m.group(1).upper())
+        elif ab.startswith("RAPID FIRE"):
+            parts = ab.split()
+            if len(parts) >= 3:
+                try:
+                    rapid_fire_extra = int(parts[2])
+                except ValueError:
+                    rapid_fire_extra = 1
         elif ab == "HEAVY" and hit_mode in (HitMode.COVER, HitMode.NORMAL):
             pass  # Heavy: +1 to hit if unit didn't move (simplified)
 
@@ -553,13 +589,16 @@ def compute_weapon_dpp(weapon: WeaponProfile,
     elif has_ignore_cover and hit_mode == HitMode.COVER:
         hit_mod = 0  # Ignore Cover negates the cover penalty
 
+    # Apply Rapid Fire (assume ≤12" range — the "melee reach" equivalent)
+    effective_attacks = weapon.attacks + rapid_fire_extra
+
     # Torrent: auto-hit, skip hit roll
     if has_torrent:
-        total_hits = weapon.attacks
+        total_hits = effective_attacks
         lethal_wounds = 0
     else:
         total_hits, lethal_wounds = expected_hits(
-            attacks=weapon.attacks,
+            attacks=effective_attacks,
             bs=weapon.bs,
             hit_mod=hit_mod,
             sustained=sustained,

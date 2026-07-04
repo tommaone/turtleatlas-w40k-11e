@@ -299,41 +299,67 @@ class RankingEngine:
                     }
         return best
 
-    def resolve_loadout(self, name, target, pricing=None):
+    def _resolve_pts(self, pts_base, pts_3rd, pricing, models, tier):
+        """Resolve points for a unit given tier and pricing overrides.
+
+        Args:
+            pts_base: Base pts from config (1st unit).
+            pts_3rd: pts for 3rd+ unit (None if same as base).
+            pricing: Pricing data from merged JSON (list of tier dicts).
+            models: Number of models in the unit.
+            tier: '1st' (default) or '3rd'.
+
+        Returns resolved points.
+        """
+        if tier == "3rd" and pts_3rd is not None:
+            pts = pts_3rd
+        else:
+            pts = pts_base
+
+        if pricing:
+            # For 3rd tier: try to find [3,) range pricing entry
+            target_range = "[3,)" if tier == "3rd" else None
+            for pr in pricing:
+                if target_range and pr.get("range") != target_range:
+                    continue
+                for cost in pr.get("costs", []):
+                    if cost.get("models") == models:
+                        pts = cost["points"]
+                        break
+                else:
+                    continue
+                break
+
+        return pts
+
+    def resolve_loadout(self, name, target, pricing=None, tier="1st"):
         """Resolve a unit's weapons for a given target.
+
+        Args:
+            name: Unit name.
+            target: TargetProfile (or weighted list).
+            pricing: Pricing data from merged JSON.
+            tier: '1st' (default) or '3rd' (progressive pricing).
 
         Returns (points, ranged, melee, innate, info_dict) or None.
         """
         # Squad: optimise special weapons per target
         if name in self.config.squads:
             sdetail = self.config.squads[name]
-            pts = sdetail["pts"]
-            if pricing:
-                for pr in pricing:
-                    for cost in pr.get("costs", []):
-                        if cost.get("models") == sdetail["n"]:
-                            pts = cost["points"]
-                            break
-                    else:
-                        continue
-                    break
+            pts = self._resolve_pts(
+                sdetail["pts"], sdetail.get("pts_3rd"),
+                pricing, sdetail["n"], tier,
+            )
             ld = self._best_squad_variant(name, target)
             return (pts, ld["ranged"], ld["melee"], ld["innate"], sdetail["info"])
 
         # Vehicle with weapon options (NDK / GMNDK)
         if name in self.config.weapon_options:
             wo = self.config.weapon_options[name]
-            pts = wo.get("pts", 0)
-            if pricing:
-                found = False
-                for pr in pricing:
-                    for cost in pr.get("costs", []):
-                        if cost.get("models") == 1:
-                            pts = cost["points"]
-                            found = True
-                            break
-                    if found:
-                        break
+            pts = self._resolve_pts(
+                wo.get("pts", 0), wo.get("pts_3rd"),
+                pricing, 1, tier,
+            )
             bv = self._best_vehicle_variant(wo["ranged"], wo["melee"], name, target)
             info = wo.get("info", {})
             return (pts, bv["ranged"], bv["melee"], bv["innate"], info)
@@ -341,16 +367,10 @@ class RankingEngine:
         # Character: fixed loadout (with optional weapon choice)
         if name in self.config.characters:
             ch = self.config.characters[name]
-            pts = ch["pts"]
-            if pricing:
-                for pr in pricing:
-                    for cost in pr.get("costs", []):
-                        if cost.get("models") == 1:
-                            pts = cost["points"]
-                            break
-                    else:
-                        continue
-                    break
+            pts = self._resolve_pts(
+                ch["pts"], ch.get("pts_3rd"),
+                pricing, 1, tier,
+            )
             ranged = [self.W(rn, unit_name=name) for rn in ch["ranged"]]
             melee = [self.W(mn, unit_name=name) for mn in ch["melee"]]
             innate = [self.W(inn, unit_name=name) for inn in ch.get("innate", [])]
@@ -374,17 +394,10 @@ class RankingEngine:
         # Fixed vehicle loadout
         if name in self.config.vehicles:
             vh = self.config.vehicles[name]
-            pts = vh["pts"]
-            if pricing:
-                found = False
-                for pr in pricing:
-                    for cost in pr.get("costs", []):
-                        if cost.get("models") == 1:
-                            pts = cost["points"]
-                            found = True
-                            break
-                    if found:
-                        break
+            pts = self._resolve_pts(
+                vh["pts"], vh.get("pts_3rd"),
+                pricing, 1, tier,
+            )
             ranged = [self.W(w["name"], unit_name=w.get("unit_name", name))
                       for w in vh.get("ranged", [])]
             melee = [self.W(w["name"], unit_name=w.get("unit_name", name))
@@ -467,13 +480,14 @@ class RankingEngine:
 
     # ── Ranking computation ──────────────────────────────────────────
 
-    def compute_ranking(self, target=None, mission=None, meta_name=None):
-        """Compute unit ranking for a given target, optionally weighted by mission.
+    def compute_ranking(self, target=None, mission=None, meta_name=None, tier="1st"):
+        """Compute unit ranking for a given target, optionally weighted by mission or tier.
 
         Args:
             target: TargetProfile (or weighted list). Ignored if meta_name set.
             mission: Mission profile name.
             meta_name: Meta profile name — loadouts optimised for weighted mix.
+            tier: Pricing tier — '1st' (default) or '3rd' (3rd+ unit pricing).
 
         Returns:
             list of result dicts sorted by mission score (or DPP).
@@ -503,7 +517,7 @@ class RankingEngine:
             pricing = unit.get("pricing", [])
             stats = profile.get("stats", {})
 
-            resolved = self.resolve_loadout(name, actual_target, pricing)
+            resolved = self.resolve_loadout(name, actual_target, pricing, tier=tier)
             if resolved is None:
                 continue
             pts, ranged_profiles, melee_profiles, innate_profiles, info = resolved
@@ -700,7 +714,7 @@ class RankingEngine:
         ppe = defense_dict.get("pts_per_eff_w_ap0", "?")
         return f'effW@AP0={ew["ap0"]} AP2={ew["ap2"]} AP4={ew["ap4"]}, pts/effW={ppe}'
 
-    def print_ranking(self, results, target_name="MEQ", mission_name=None, meta_name=None):
+    def print_ranking(self, results, target_name="MEQ", mission_name=None, meta_name=None, tier="1st"):
         """Print ranking table and detail."""
         n = len(results)
         if not n:
@@ -716,8 +730,10 @@ class RankingEngine:
             title = f"## {self.config.supported['name']} — Meta Ranking: {meta_name}  ({meta_desc})"
         else:
             title = f"## {self.config.supported['name']} — Ranking vs {display_target}"
+        tier_label = " — 3rd+ unit pricing" if tier == "3rd" else ""
         if mission_name:
             title += f" (mission: {mission_name})"
+        title += tier_label
         print(f"{title}\n")
 
         has_mission = "_mission_score" in results[0] if results else False
