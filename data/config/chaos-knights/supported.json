@@ -3,6 +3,20 @@
   "name": "Chaos Knights",
   "army_rules": ["Harbingers of Dread (Darkness: Stealth)", "Super-heavy Walker"],
   "keywords": ["FACTION: CHAOS KNIGHTS"],
+  "allies": {
+    "daemons": {
+      "faction": "chaos-daemons",
+      "allowed": true,
+      "rule": "Daemonic Pact: If all models have Chaos Knights or Heretic Astartes keyword, can include Legiones Daemonica units up to 500pt (Strike Force). Battleline tax per god keyword. Cannot be Warlord or get Enhancements.",
+      "notes": "Allied Daemons do NOT benefit from CK detachment rules, Harbingers of Dread, OR The Shadow of Chaos. The Shadow of Chaos is gated on 'If your Army Faction is Legiones Daemonica' — in CK army, Army Faction is CHAOS KNIGHTS, so condition fails. They keep only their CORE abilities (Deep Strike, etc.) and individual datasheet abilities (e.g., Daemon Prince's 'Daemonic Lord', Karanak's 'Prey of the Blood God'). Specific named units (Be'lakor) may have their own battleshock rules that still work."
+    },
+    "damned": {
+      "faction": "chaos-space-marines",
+      "allowed": true,
+      "rule": "Iconoclast Fiefdom allows DAMNED keyword units (Cultists, Traitor Guardsmen, etc.). Max: Incursion 500pt, Strike Force 1000pt, Onslaught 1500pt. Not all DAMNED — Gellerpox, Renegade Enforcers, etc. are Legends.",
+      "notes": "DAMNED allies do NOT benefit from CK detachment rules, Harbingers of Dread, OR Dark Pacts. Dark Pacts is gated on 'If your Army Faction is Heretic Astartes' — condition fails in CK army. They keep CORE abilities and individual datasheet abilities. Iconoclast Fiefdom gives them leadership re-roll and makes them targets for detachment auras/stratagems (which affect CK too)."
+    }
+  },
   "target_profiles": {
     "GEQ": { "toughness": 3, "save": 5 },
     "MEQ": { "toughness": 4, "save": 3 },
