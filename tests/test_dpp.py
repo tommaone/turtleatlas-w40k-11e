@@ -480,7 +480,7 @@ class TestWeaponSlots:
             f"Expected high-S weapon vs Knight, got: {names}"
 
     def test_tyrant_resolves(self):
-        """Tyrant should resolve with all fixed weapons + 2 carapace choices."""
+        """Tyrant should resolve with fixed meltaguns + 1 arm set + 3 carapace."""
         from ranking import RankingEngine
         engine = RankingEngine('chaos-knights')
         comp_meta = engine.config._resolve_meta('competitive')
@@ -488,19 +488,27 @@ class TestWeaponSlots:
         assert resolved is not None
         pts, ranged, melee, innate, info = resolved
         assert pts == 400
-        assert len(ranged) >= 5  # 5 fixed + carapace choices
         names = [w.name for w in ranged + melee]
-        assert 'Brimstone volcano lance' in names
-        assert 'Ectoplasma decimator - supercharge' in names
-        assert 'Darkflame cannon' in names
-        assert 'Warpshock harpoon' in names
+        # Fixed weapons always present
         assert 'Twin daemonbreath meltagun' in names
         assert 'Titanic feet' in names
-        # Carapace picks — should have gheiststrike missile launcher(s)
+        # Exactly 2 meltaguns
+        meltas = sum(1 for n in names if 'Twin daemonbreath meltagun' in n)
+        assert meltas == 2, f"Expected 2 meltaguns, got {meltas}"
+        # One arm set chosen — check we never have both sets
+        set_a = {'Brimstone volcano lance', 'Ectoplasma decimator - supercharge'}
+        set_b = {'Darkflame cannon', 'Warpshock harpoon'}
+        has_a = set_a.issubset(names)
+        has_b = set_b.issubset(names)
+        assert has_a != has_b, \
+            f"Expected exactly one arm set, got A={has_a} B={has_b}: {names}"
+        # Carapace: 3 mounts, max 2 of each type
         gheist_count = sum(1 for n in names if 'Gheiststrike' in n)
         desecrator_count = sum(1 for n in names if 'Twin desecrator' in n)
-        assert gheist_count + desecrator_count == 2, \
-            f"Expected 2 carapace weapons, got {names}"
+        assert gheist_count + desecrator_count == 3, \
+            f"Expected 3 carapace weapons (gheist={gheist_count} desecrator={desecrator_count}), got {names}"
+        assert gheist_count <= 2
+        assert desecrator_count <= 2
 
     def test_backward_compat_war_dog(self):
         """War Dogs (no weapon_slots) must still resolve with old system."""

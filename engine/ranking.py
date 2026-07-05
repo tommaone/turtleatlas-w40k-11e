@@ -498,9 +498,17 @@ class RankingEngine:
             slot_ranged = list(fixed_ranged)
             slot_melee = list(fixed_melee)
             slot_innate = list(fixed_innate)
+            skip_combo = False
 
             for slot_idx, choice_indices in enumerate(combo):
                 entries = slots[slot_idx]["from"]
+                max_dup = slots[slot_idx].get("max_duplicates", slots[slot_idx].get("choose", 1))
+                # Check max_duplicates constraint
+                from collections import Counter
+                idx_counts = Counter(choice_indices)
+                if any(c > max_dup for c in idx_counts.values()):
+                    skip_combo = True
+                    break
                 for entry_idx in choice_indices:
                     entry = entries[entry_idx]
                     slot_pts += entry.get("pts", 0)
@@ -523,6 +531,8 @@ class RankingEngine:
                             wp._slot_pts = entry.get("pts", 0)
                             slot_melee.append(wp)
 
+            if skip_combo:
+                continue
             d = _ld_dmg(slot_ranged, slot_melee, slot_innate, target)
             if d > best_d:
                 best_d = d
