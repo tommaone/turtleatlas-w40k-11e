@@ -428,4 +428,112 @@ class TestComputeMob:
         assert with_fly["mobility_tier"] == "cavalry"
 
 
+# ---------------------------------------------------------------------------
+# Weapon slots
+# ---------------------------------------------------------------------------
+
+
+class TestWeaponSlots:
+    """weapon_slots-based loadout resolution must produce valid results."""
+
+    def test_despoiler_resolves_vs_meq(self):
+        """Despoiler should pick gatling + melee arm + carapace vs MEQ-heavy meta."""
+        from ranking import RankingEngine
+        engine = RankingEngine('chaos-knights')
+        comp_meta = engine.config._resolve_meta('competitive')
+        resolved = engine.resolve_loadout('Knight Despoiler', comp_meta)
+        assert resolved is not None
+        pts, ranged, melee, innate, info = resolved
+        assert pts >= 355  # base 330 + at least arm+carapace+hull
+        assert pts <= 400  # not exceeding max possible cost
+        assert len(ranged) >= 2  # at least some ranged
+        assert len(melee) >= 1   # at least titanic feet
+        names = [w.name for w in ranged + melee]
+        assert 'Titanic feet' in names
+        # Should NOT have duplicate Despoiler gatling cannon (optimizer picks 1 gatling + 1 melee arm)
+        gat_count = sum(1 for n in names if n == 'Despoiler gatling cannon')
+        assert gat_count <= 1, f"Expected ≤1 gatling vs MEQ, got {gat_count}: {names}"
+
+    def test_despoiler_picks_anti_armour_vs_lightv(self):
+        """Despoiler should pick thermal/battle cannon vs Light Vehicles."""
+        from ranking import RankingEngine
+        engine = RankingEngine('chaos-knights')
+        lv = engine.config.target_profiles['Light V']
+        resolved = engine.resolve_loadout('Knight Despoiler', lv)
+        assert resolved is not None
+        pts, ranged, melee, innate, info = resolved
+        names = [w.name for w in ranged + melee]
+        anti_armour = [n for n in names if any(x in n.lower() for x in ['thermal', 'battle cannon', 'warpstrike', 'ruinspear'])]
+        assert len(anti_armour) >= 2, f"Expected anti-armour vs LightV, got: {names}"
+
+    def test_despoiler_vs_knight_picks_thermal(self):
+        """Despoiler should pick thermal cannons vs Knight targets (high S/AP)."""
+        from ranking import RankingEngine
+        engine = RankingEngine('chaos-knights')
+        knight_tp = engine.config.target_profiles['Knight']
+        resolved = engine.resolve_loadout('Knight Despoiler', knight_tp)
+        assert resolved is not None
+        pts, ranged, melee, innate, info = resolved
+        names = [w.name for w in ranged + melee]
+        thermal_count = sum(1 for n in names if 'thermal' in n.lower() or 'battle cannon' in n.lower())
+        assert thermal_count >= 1 or any('Daemonbreath' in n for n in names), \
+            f"Expected high-S weapon vs Knight, got: {names}"
+
+    def test_tyrant_resolves(self):
+        """Tyrant should resolve with all fixed weapons + 2 carapace choices."""
+        from ranking import RankingEngine
+        engine = RankingEngine('chaos-knights')
+        comp_meta = engine.config._resolve_meta('competitive')
+        resolved = engine.resolve_loadout('Knight Tyrant', comp_meta)
+        assert resolved is not None
+        pts, ranged, melee, innate, info = resolved
+        assert pts == 400
+        assert len(ranged) >= 5  # 5 fixed + carapace choices
+        names = [w.name for w in ranged + melee]
+        assert 'Brimstone volcano lance' in names
+        assert 'Ectoplasma decimator - supercharge' in names
+        assert 'Darkflame cannon' in names
+        assert 'Warpshock harpoon' in names
+        assert 'Twin daemonbreath meltagun' in names
+        assert 'Titanic feet' in names
+        # Carapace picks — should have gheiststrike missile launcher(s)
+        gheist_count = sum(1 for n in names if 'Gheiststrike' in n)
+        desecrator_count = sum(1 for n in names if 'Twin desecrator' in n)
+        assert gheist_count + desecrator_count == 2, \
+            f"Expected 2 carapace weapons, got {names}"
+
+    def test_backward_compat_war_dog(self):
+        """War Dogs (no weapon_slots) must still resolve with old system."""
+        from ranking import RankingEngine
+        engine = RankingEngine('chaos-knights')
+        comp_meta = engine.config._resolve_meta('competitive')
+        for wd in ['War Dog Karnivore', 'War Dog Stalker', 'War Dog Brigand']:
+            resolved = engine.resolve_loadout(wd, comp_meta)
+            assert resolved is not None, f"{wd} failed to resolve"
+            pts, ranged, melee, innate, info = resolved
+            assert pts > 0
+            assert len(ranged) >= 1
+            assert len(melee) >= 1
+
+    def test_slot_loadout_changes_per_target(self):
+        """Despoiler should pick different weapons for different targets."""
+        from ranking import RankingEngine
+        engine = RankingEngine('chaos-knights')
+
+        targets = {
+            'GEQ': engine.config.target_profiles['GEQ'],
+            'MEQ': engine.config.target_profiles['MEQ'],
+            'Knight': engine.config.target_profiles['Knight'],
+        }
+        loadouts = {}
+        for tname, tp in targets.items():
+            resolved = engine.resolve_loadout('Knight Despoiler', tp)
+            assert resolved is not None
+            pts, ranged, melee, innate, info = resolved
+            loadouts[tname] = sorted(w.name for w in ranged + melee)
+
+        # At least one target pair should produce different loadouts
+        assert loadouts['GEQ'] != loadouts['Knight'] or loadouts['MEQ'] != loadouts['Knight'], \
+            f"All targets produced same loadout: {loadouts}"
+
 

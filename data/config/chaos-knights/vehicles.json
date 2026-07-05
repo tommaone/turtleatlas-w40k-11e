@@ -31,8 +31,7 @@
       "T": 9,
       "SV": 3,
       "W": 14,
-      "OC": 6,
-      "INV": 5
+      "OC": 6
     }
   },
   "War Dog Executioner": {
@@ -63,8 +62,7 @@
       "T": 9,
       "SV": 3,
       "W": 14,
-      "OC": 6,
-      "INV": 5
+      "OC": 6
     }
   },
   "War Dog Huntsman": {
@@ -99,8 +97,7 @@
       "T": 9,
       "SV": 3,
       "W": 14,
-      "OC": 6,
-      "INV": 5
+      "OC": 6
     }
   },
   "War Dog Karnivore": {
@@ -131,8 +128,7 @@
       "T": 9,
       "SV": 3,
       "W": 14,
-      "OC": 6,
-      "INV": 5
+      "OC": 6
     }
   },
   "War Dog Moirax": {
@@ -175,8 +171,7 @@
       "T": 9,
       "SV": 3,
       "W": 14,
-      "OC": 6,
-      "INV": 5
+      "OC": 6
     },
     "pts_3rd": 160
   },
@@ -220,8 +215,7 @@
       "T": 9,
       "SV": 3,
       "W": 14,
-      "OC": 6,
-      "INV": 5
+      "OC": 6
     }
   },
   "Knight Abominant": {
@@ -299,36 +293,7 @@
     "pts_3rd": 370
   },
   "Knight Despoiler": {
-    "pts": 380,
-    "ranged": [
-      {
-        "name": "Despoiler gatling cannon",
-        "unit_name": "Knight Despoiler"
-      },
-      {
-        "name": "Despoiler gatling cannon",
-        "unit_name": "Knight Despoiler"
-      },
-      {
-        "name": "Hellstorm autocannons",
-        "unit_name": "Knight Despoiler"
-      },
-      {
-        "name": "Havoc missile pod",
-        "unit_name": "Knight Despoiler"
-      },
-      {
-        "name": "Diabolus heavy stubber",
-        "unit_name": "Knight Despoiler"
-      }
-    ],
-    "melee": [
-      {
-        "name": "Titanic feet",
-        "unit_name": "Knight Despoiler"
-      }
-    ],
-    "innate": [],
+    "pts": 330,
     "info": {
       "M": "10\"",
       "T": 11,
@@ -336,7 +301,35 @@
       "W": 26,
       "OC": 10,
       "INV": 5
-    }
+    },
+    "fixed_melee": ["Titanic feet"],
+    "weapon_slots": [
+      {
+        "choose": 2,
+        "from": [
+          {"weapon": "Despoiler gatling cannon", "pts": 25},
+          {"weapon": "Despoiler battle cannon", "pts": 15},
+          {"weapon": "Daemonbreath thermal cannon", "pts": 20},
+          {"melee_weapons": ["Reaper chainsword - strike", "Reaper chainsword - sweep"], "pts": 10},
+          {"melee_weapons": ["Warpstrike claw - strike", "Warpstrike claw - sweep"], "pts": 10}
+        ]
+      },
+      {
+        "choose": 1,
+        "from": [
+          {"weapon": "Hellstorm autocannons", "pts": 0},
+          {"weapon": "Havoc missile pod", "pts": 0},
+          {"weapon": "Ruinspear rocket pod", "pts": 5}
+        ]
+      },
+      {
+        "choose": 1,
+        "from": [
+          {"weapon": "Diabolus heavy stubber", "pts": 0},
+          {"weapon": "Daemonbreath meltagun", "pts": 0}
+        ]
+      }
+    ]
   },
   "Knight Rampager": {
     "pts": 365,
@@ -410,43 +403,6 @@
   },
   "Knight Tyrant": {
     "pts": 400,
-    "ranged": [
-      {
-        "name": "Brimstone volcano lance",
-        "unit_name": "Knight Tyrant"
-      },
-      {
-        "name": "Twin desecrator cannon",
-        "unit_name": "Knight Tyrant"
-      },
-      {
-        "name": "Gheiststrike missile launcher",
-        "unit_name": "Knight Tyrant"
-      },
-      {
-        "name": "Twin daemonbreath meltagun",
-        "unit_name": "Knight Tyrant"
-      },
-      {
-        "name": "Darkflame cannon",
-        "unit_name": "Knight Tyrant"
-      },
-      {
-        "name": "Ectoplasma decimator - supercharge",
-        "unit_name": "Knight Tyrant"
-      },
-      {
-        "name": "Warpshock harpoon",
-        "unit_name": "Knight Tyrant"
-      }
-    ],
-    "melee": [
-      {
-        "name": "Titanic feet",
-        "unit_name": "Knight Tyrant"
-      }
-    ],
-    "innate": [],
     "info": {
       "M": "8\"",
       "T": 12,
@@ -454,7 +410,34 @@
       "W": 28,
       "OC": 10,
       "INV": 5
-    }
+    },
+    "fixed_ranged": [
+      "Twin daemonbreath meltagun"
+    ],
+    "fixed_melee": ["Titanic feet"],
+    "weapon_slots": [
+      {
+        "choose": 1,
+        "from": [
+          {"weapons": ["Brimstone volcano lance", "Ectoplasma decimator - supercharge"], "pts": 0},
+          {"weapon": "Twin desecrator cannon", "pts": 0}
+        ]
+      },
+      {
+        "choose": 1,
+        "from": [
+          {"weapons": ["Darkflame cannon", "Warpshock harpoon"], "pts": 0},
+          {"weapon": "Twin desecrator cannon", "pts": 0}
+        ]
+      },
+      {
+        "choose": 2,
+        "from": [
+          {"weapon": "Gheiststrike missile launcher", "pts": 0},
+          {"weapon": "Twin desecrator cannon", "pts": 0}
+        ]
+      }
+    ]
   },
   "Chaos Acastus Knight Asterius": {
     "pts": 785,

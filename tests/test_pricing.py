@@ -98,6 +98,9 @@ def test_first_unit_pts_match_mfm(slug: str):
     for norm_name, (display, entry, fn) in sorted(config_units.items()):
         if _is_exempt(display):
             continue
+        # Skip weapon_slot vehicles — pts is chassis base, not full price
+        if "weapon_slots" in entry:
+            continue
         config_pts = entry["pts"]
         mfm_val = mfm_pts.get(norm_name)
         if mfm_val is None:

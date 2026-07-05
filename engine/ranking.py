@@ -441,9 +441,11 @@ class RankingEngine:
                     melee = best_ml
             return (pts, ranged, melee, innate, ch.get("info"))
 
-        # Fixed vehicle loadout
+        # Fixed vehicle loadout — or weapon_slots based
         if name in self.config.vehicles:
             vh = self.config.vehicles[name]
+            if "weapon_slots" in vh:
+                return self._resolve_slots(name, vh, target, pricing, tier)
             pts = self._resolve_pts(
                 vh["pts"], vh.get("pts_3rd"),
                 pricing, 1, tier,
@@ -457,6 +459,78 @@ class RankingEngine:
             return (pts, ranged, melee, innate, vh.get("info"))
 
         return None
+
+    # ── Weapon slot resolution ───────────────────────────────────────
+
+    def _resolve_slots(self, name, vh, target, pricing, tier):
+        """Resolve a vehicle's loadout from weapon_slots — finds best combo vs target."""
+        base_pts = self._resolve_pts(
+            vh["pts"], vh.get("pts_3rd"),
+            pricing, 1, tier,
+        )
+        fixed_ranged = [self.W(wn, unit_name=name)
+                        for wn in vh.get("fixed_ranged", [])]
+        fixed_melee = [self.W(wn, unit_name=name)
+                       for wn in vh.get("fixed_melee", [])]
+        fixed_innate = [self.W(wn, unit_name=name)
+                        for wn in vh.get("fixed_innate", [])]
+
+        slots = vh["weapon_slots"]
+        import itertools
+
+        best_ranged, best_melee = list(fixed_ranged), list(fixed_melee)
+        best_d, best_pts = -1, base_pts
+
+        # Build lists of choices per slot
+        slot_choices = []
+        for slot in slots:
+            choose = slot.get("choose", 1)
+            entries = slot["from"]
+            # Each entry is { "weapon": "name" } or { "weapons": ["n1", "n2"] }
+            # combinations_with_replacement with length = choose
+            slot_choices.append(list(itertools.combinations_with_replacement(
+                range(len(entries)), choose
+            )))
+
+        # Iterate all slot combinations
+        for combo in itertools.product(*slot_choices):
+            slot_pts = base_pts
+            slot_ranged = list(fixed_ranged)
+            slot_melee = list(fixed_melee)
+            slot_innate = list(fixed_innate)
+
+            for slot_idx, choice_indices in enumerate(combo):
+                entries = slots[slot_idx]["from"]
+                for entry_idx in choice_indices:
+                    entry = entries[entry_idx]
+                    slot_pts += entry.get("pts", 0)
+                    if "weapon" in entry:
+                        wp = self.W(entry["weapon"], unit_name=name)
+                        wp._slot_pts = entry.get("pts", 0)  # annotate
+                        slot_ranged.append(wp)
+                    if "weapons" in entry:
+                        for wn in entry["weapons"]:
+                            wp = self.W(wn, unit_name=name)
+                            wp._slot_pts = entry.get("pts", 0)
+                            slot_ranged.append(wp)
+                    if "melee_weapon" in entry:
+                        wp = self.W(entry["melee_weapon"], unit_name=name)
+                        wp._slot_pts = entry.get("pts", 0)
+                        slot_melee.append(wp)
+                    if "melee_weapons" in entry:
+                        for wn in entry["melee_weapons"]:
+                            wp = self.W(wn, unit_name=name)
+                            wp._slot_pts = entry.get("pts", 0)
+                            slot_melee.append(wp)
+
+            d = _ld_dmg(slot_ranged, slot_melee, slot_innate, target)
+            if d > best_d:
+                best_d = d
+                best_ranged = slot_ranged
+                best_melee = slot_melee
+                best_pts = slot_pts
+
+        return (best_pts, best_ranged, best_melee, fixed_innate, vh.get("info"))
 
     # ── Unit info ────────────────────────────────────────────────────
 
