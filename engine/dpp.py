@@ -491,10 +491,21 @@ def _shots_to_kill(
 
 # Benchmark attacker profiles: (name, bs, strength, ap, avg_damage)
 BENCHMARK_ATTACKERS = [
-    ("bolter",     3,  4,  0, 1.0),   # BS3+ S4  AP0  D1
-    ("lascannon",  3,  9, -3, 3.0),   # BS3+ S9  AP-3 D3
-    ("melta",      3, 14, -4, 4.5),   # BS3+ S14 AP-4 D6+1 (~4.5 avg)
+    ("bolter",     3,  4,  0, 1.0),   # BS3+ S4  AP0  D1  — volume fire
+    ("plasma",     3,  7, -3, 2.0),   # BS3+ S7  AP-3 D2  — anti-MEQ
+    ("lascannon",  3,  9, -3, 3.0),   # BS3+ S9  AP-3 D3  — anti-heavy
+    ("melta",      3,  9, -4, 3.5),   # BS3+ S9  AP-4 D6 (~3.5 avg) — anti-vehicle
+    ("heavy",      3, 14, -4, 4.5),   # BS3+ S14 AP-4 D6+1 (~4.5 avg) — dedicated anti-tank
 ]
+
+
+def _primary_surv_metric(toughness: int) -> str:
+    """Single universal benchmark — heavy anti-tank (S14 AP-4 D6+1).
+
+    Used as primary metric for ALL toughnesses. This gives a consistent
+    cross-unit comparison: "how well does this unit eat the biggest guns?"
+    """
+    return "heavy"
 
 
 def compute_surv(
@@ -568,6 +579,13 @@ def compute_surv(
         shots_vs[f"shots_{name}"] = sk
         pts_per_shot[f"pts_per_shot_{name}"] = round(unit_points / sk, 2) if sk != float('inf') else None
 
+    # Determine toughness-bracketed primary metric
+    prim = _primary_surv_metric(defense.toughness)
+    prim_key = f"shots_{prim}"
+    prim_pps_key = f"pts_per_shot_{prim}"
+    primary_shots = shots_vs.get(prim_key, float('inf'))
+    primary_pps = pts_per_shot.get(prim_pps_key)
+
     return {
         "toughness": defense.toughness,
         "wounds_per_model": defense.wounds_per_model,
@@ -578,6 +596,9 @@ def compute_surv(
         "fnp": f"{fnp}+" if fnp else None,
         "effective_wounds": eff_wounds,
         "pts_per_eff_w_ap0": pts_per_eff_w,
+        "primary_metric": prim,
+        "primary_shots": primary_shots,
+        "primary_pps": primary_pps,
         **shots_vs,
         **pts_per_shot,
     }

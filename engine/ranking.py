@@ -849,7 +849,7 @@ class RankingEngine:
             dps_vals = [r["dpp"] for r in results]
             # toughness-aware SURV: lascannon shots absorbed per point
             surv_vals = [
-                r["surv"]["shots_lascannon"] / max(r["points"], 1)
+                r["surv"]["primary_shots"] / max(r["points"], 1)
                 for r in results
             ]
             mob_vals = [self.mob_score(r["mob"]) for r in results]
@@ -862,7 +862,7 @@ class RankingEngine:
 
             for r in results:
                 r["_dps_pct"] = _pct(r["dpp"], dps_vals)
-                surv_val = r["surv"]["shots_lascannon"] / max(r["points"], 1)
+                surv_val = r["surv"]["primary_shots"] / max(r["points"], 1)
                 r["_surv_pct"] = _pct(surv_val, surv_vals)
                 r["_mob_pct"] = _pct(self.mob_score(r["mob"]), mob_vals)
                 r["_mission_score"] = (
@@ -874,7 +874,7 @@ class RankingEngine:
         else:
             dps_vals = [r["dpp"] for r in results]
             surv_vals = [
-                r["surv"]["shots_lascannon"] / max(r["points"], 1)
+                r["surv"]["primary_shots"] / max(r["points"], 1)
                 for r in results
             ]
             mob_vals = [self.mob_score(r["mob"]) for r in results]
@@ -887,7 +887,7 @@ class RankingEngine:
 
             for r in results:
                 r["_dps_pct"] = _pct(r["dpp"], dps_vals)
-                surv_val = r["surv"]["shots_lascannon"] / max(r["points"], 1)
+                surv_val = r["surv"]["primary_shots"] / max(r["points"], 1)
                 r["_surv_pct"] = _pct(surv_val, surv_vals)
                 r["_mob_pct"] = _pct(self.mob_score(r["mob"]), mob_vals)
             results.sort(key=lambda r: r["dpp"], reverse=True)
@@ -969,14 +969,16 @@ class RankingEngine:
     def format_surv(self, defense_dict):
         """Human-readable survivability string."""
         ew = defense_dict["effective_wounds"]
-        ppe = defense_dict.get("pts_per_eff_w_ap0", "?")
+        prim = defense_dict.get("primary_metric", "lascannon")
+        pps_prim = defense_dict.get(f"pts_per_shot_{prim}", "?")
         pps_l = defense_dict.get("pts_per_shot_lascannon", "?")
         pps_m = defense_dict.get("pts_per_shot_melta", "?")
+        prim_label = prim.upper()[:3]
         return (f'T{defense_dict["toughness"]} W{defense_dict["total_wounds"]} '
                 f'SV{defense_dict["save"]}{defense_dict.get("invuln","") or ""}'
                 f'{defense_dict.get("fnp","") or ""} '
                 f'| effW {ew["ap0"]}/{ew["ap2"]}/{ew["ap4"]} '
-                f'| LC={pps_l}pts/shot MC={pps_m}pts/shot')
+                f'| ★{prim_label}={pps_prim}pts/shot LC={pps_l}pts/shot MC={pps_m}pts/shot')
 
     def print_ranking(self, results, target_name="MEQ", mission_name=None, meta_name=None, tier="1st"):
         """Print ranking table and detail."""
@@ -1002,10 +1004,11 @@ class RankingEngine:
 
         has_mission = bool(mission_name) and "_mission_score" in (results[0] if results else {})
 
-        # Survivability: toughness-aware metric = lascannon shots absorbed per point
-        # Higher = more durable for your points (better focus-fire resistance)
+        # Survivability: heavy anti-tank (S14 AP-4 D6+1) benchmark
+        # Single universal metric — how well does each unit eat the biggest guns?
+        # Higher = more durable for your points
         surv_vals = [
-            r["surv"]["shots_lascannon"] / r["points"]
+            r["surv"]["primary_shots"] / r["points"]
             for r in results if r["points"] > 0
         ]
         dps_vals = [r["dpp"] for r in results]
@@ -1025,7 +1028,7 @@ class RankingEngine:
 
         for r in results:
             r["_dps_bar"] = _norm(r["dpp"], dps_vals)
-            surv_val = r["surv"]["shots_lascannon"] / max(r["points"], 1)
+            surv_val = r["surv"]["primary_shots"] / max(r["points"], 1)
             r["_surv_bar"] = _norm(surv_val, surv_vals)
             r["_mob_bar"] = _norm(self.mob_score(r["mob"]), mob_vals)
             r["_mob_raw"] = self.mob_score(r["mob"])
@@ -1068,8 +1071,11 @@ class RankingEngine:
                   f'SURV {self._bar(r["_surv_bar"])} {r["_surv_bar"]:>2d}%  '
                   f'MOB {self._bar(r["_mob_bar"])} {r["_mob_bar"]:>2d}%')
             print(f'**Loadout:** {r["loadout_desc"]}')
+            prim = r["surv"].get("primary_metric", "lascannon")
+            prim_shots_key = f"shots_{prim}"
+            prim_shots = r["surv"].get(prim_shots_key, r["surv"].get("shots_lascannon", 1))
             print(f'**SURV:** {self.format_surv(r["surv"])}'
-                  f'  |  LC shots/pt: {r["surv"]["shots_lascannon"]/max(r["points"],1):.3f}')
+                  f'  |  {prim.upper()[:3]} shots/pt: {prim_shots/max(r["points"],1):.3f}')
             print(f'**MOB:** raw={r["_mob_raw"]}/100 ({self.format_mob(r["mob"])})')
             if r["notes"]:
                 print(f'*{r["notes"]}*')
