@@ -847,9 +847,10 @@ class RankingEngine:
         if mission and mission in self.config.mission_profiles:
             w = self.config.mission_profiles[mission]
             dps_vals = [r["dpp"] for r in results]
-            # toughness-aware SURV: lascannon shots absorbed per point
+            # Surv turns: expected turns to die vs 5 heavy AT shots/turn (same as display)
+            SURV_SHOTS_PER_TURN = 5
             surv_vals = [
-                r["surv"]["primary_shots"] / max(r["points"], 1)
+                r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
                 for r in results
             ]
             mob_vals = [self.mob_score(r["mob"]) for r in results]
@@ -862,8 +863,9 @@ class RankingEngine:
 
             for r in results:
                 r["_dps_pct"] = _pct(r["dpp"], dps_vals)
-                surv_val = r["surv"]["primary_shots"] / max(r["points"], 1)
-                r["_surv_pct"] = _pct(surv_val, surv_vals)
+                surv_turns = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
+                r["_surv_turns"] = round(surv_turns, 1)
+                r["_surv_pct"] = _pct(surv_turns, surv_vals)
                 r["_mob_pct"] = _pct(self.mob_score(r["mob"]), mob_vals)
                 r["_mission_score"] = (
                     w["dps"] * r["_dps_pct"] +
@@ -873,8 +875,9 @@ class RankingEngine:
             results.sort(key=lambda r: r["_mission_score"], reverse=True)
         else:
             dps_vals = [r["dpp"] for r in results]
+            SURV_SHOTS_PER_TURN = 5
             surv_vals = [
-                r["surv"]["primary_shots"] / max(r["points"], 1)
+                r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
                 for r in results
             ]
             mob_vals = [self.mob_score(r["mob"]) for r in results]
@@ -887,8 +890,9 @@ class RankingEngine:
 
             for r in results:
                 r["_dps_pct"] = _pct(r["dpp"], dps_vals)
-                surv_val = r["surv"]["primary_shots"] / max(r["points"], 1)
-                r["_surv_pct"] = _pct(surv_val, surv_vals)
+                surv_turns = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
+                r["_surv_turns"] = round(surv_turns, 1)
+                r["_surv_pct"] = _pct(surv_turns, surv_vals)
                 r["_mob_pct"] = _pct(self.mob_score(r["mob"]), mob_vals)
             results.sort(key=lambda r: r["dpp"], reverse=True)
 
@@ -1005,12 +1009,15 @@ class RankingEngine:
         has_mission = bool(mission_name) and "_mission_score" in (results[0] if results else {})
 
         # Survivability: heavy anti-tank (S14 AP-4 D6+1) benchmark
-        # Single universal metric — how well does each unit eat the biggest guns?
-        # Higher = more durable for your points
-        surv_vals = [
-            r["surv"]["primary_shots"] / r["points"]
-            for r in results if r["points"] > 0
-        ]
+        # Computed as expected turns to kill: 5 heavy shots per turn.
+        # 100% = survives 5+ turns, 0% = dies instantly.
+        SURV_SHOTS_PER_TURN = 5  # assumed incoming heavy shots per turn
+        surv_vals = []
+        for r in results:
+            prim_shots = r["surv"]["primary_shots"]
+            turns = prim_shots / SURV_SHOTS_PER_TURN
+            r["_surv_turns"] = round(turns, 1)
+            surv_vals.append(turns)
         dps_vals = [r["dpp"] for r in results]
         mob_vals = [self.mob_score(r["mob"]) for r in results]
 
@@ -1028,8 +1035,8 @@ class RankingEngine:
 
         for r in results:
             r["_dps_bar"] = _norm(r["dpp"], dps_vals)
-            surv_val = r["surv"]["primary_shots"] / max(r["points"], 1)
-            r["_surv_bar"] = _norm(surv_val, surv_vals)
+            r["_surv_turns"] = r.get("_surv_turns", r["surv"]["primary_shots"] / 5)
+            r["_surv_bar"] = min(int(r["_surv_turns"] / 5 * 100), 100)
             r["_mob_bar"] = _norm(self.mob_score(r["mob"]), mob_vals)
             r["_mob_raw"] = self.mob_score(r["mob"])
 
@@ -1059,7 +1066,7 @@ class RankingEngine:
             print(f'{name_display:<42s} {pts:>5d} {score_display:>4s}  {r["_dps_bar"]:>3d}% {r["_surv_bar"]:>3d}%  {r["_mob_bar"]:>3d}%  {dps_b} {surv_b} {mob_b}')
 
         print("```")
-        print("  Bars are min-max normalised within faction (0% = min, 100% = max)")
+        print("  SURV bars show expected turns to die (100% = 5+ turns vs 5 heavy AT shots/turn)")
         if has_mission:
             print(f"  Scr  = mission-weighted score (higher = better fit for {mission_name})")
         print()
@@ -1071,11 +1078,9 @@ class RankingEngine:
                   f'SURV {self._bar(r["_surv_bar"])} {r["_surv_bar"]:>2d}%  '
                   f'MOB {self._bar(r["_mob_bar"])} {r["_mob_bar"]:>2d}%')
             print(f'**Loadout:** {r["loadout_desc"]}')
-            prim = r["surv"].get("primary_metric", "lascannon")
-            prim_shots_key = f"shots_{prim}"
-            prim_shots = r["surv"].get(prim_shots_key, r["surv"].get("shots_lascannon", 1))
+            surv_turns = r.get("_surv_turns", 0)
             print(f'**SURV:** {self.format_surv(r["surv"])}'
-                  f'  |  {prim.upper()[:3]} shots/pt: {prim_shots/max(r["points"],1):.3f}')
+                  f'  |  ~{surv_turns:.1f}t vs heavy AT (at 5 shots/turn)')
             print(f'**MOB:** raw={r["_mob_raw"]}/100 ({self.format_mob(r["mob"])})')
             if r["notes"]:
                 print(f'*{r["notes"]}*')
