@@ -58,6 +58,24 @@ for r in sorted(results, key=lambda r: r['dpp'], reverse=True):
 
 print()
 print("=" * 80)
-print("RUN 7: verifying engine import (already done above)")
+print("RUN 7: competitive meta — Purge the Foe + Infernal Lance (Sustained 1 + Lethal Hits on ALL)")
+print("=" * 80)
+
+results = engine.compute_ranking(meta_name="competitive", mission="Purge the Foe",
+                                  detachment="INFERNAL LANCE", detachment_choice=1)
+engine.print_ranking(results, meta_name="competitive", mission_name="Purge the Foe (Infernal Lance: Sust/Lethal)")
+
+print()
+print("=" * 80)
+print("RUN 8: all-comers meta — Infernal Lance (Sustained 1 + Lethal Hits)")
+print("=" * 80)
+
+results = engine.compute_ranking(meta_name="all-comers", mission="Purge the Foe",
+                                  detachment="INFERNAL LANCE", detachment_choice=1)
+engine.print_ranking(results, meta_name="all-comers", mission_name="Purge the Foe (Infernal Lance: Sust/Lethal)")
+
+print()
+print("=" * 80)
+print("RUN 9: verifying engine import (already done above)")
 print("=" * 80)
 print("Import OK (all runs completed successfully)")

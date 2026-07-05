@@ -872,12 +872,16 @@ class RankingEngine:
         mob_vals = [self.mob_score(r["mob"]) for r in results]
 
         def _norm(val, series):
+            """Normalise as percentage of max (ratio-of-max, not min-max).
+            
+            A unit with half the top DPP shows as 50%, not 0%.
+            """
             if not series:
                 return 0
-            mn, mx = min(series), max(series)
-            if mx == mn:
-                return 100
-            return round((val - mn) / (mx - mn) * 100)
+            mx = max(series)
+            if mx == 0:
+                return 0
+            return round(val / mx * 100)
 
         for r in results:
             r["_dps_bar"] = _norm(r["dpp"], dps_vals)
@@ -951,6 +955,15 @@ class RankingEngine:
         print("**What DPP does NOT model:**")
         print("- Detachment buffs")
         print("- Stratagem support")
-        print("- Gate of Infinity redeployment value")
-        print("- Purifying Flame Anti-Infantry 2+ critical wounds bonus")
-        print("- Interceptor's Personal Teleporters mobility")
+        # Faction-specific limitations
+        fk = self.config.faction_key.lower() if self.config.faction_key else ""
+        if "grey knight" in fk:
+            print("- Gate of Infinity redeployment value")
+            print("- Purifying Flame Anti-Infantry 2+ critical wounds bonus")
+            print("- Interceptor's Personal Teleporters mobility")
+        elif "chaos knight" in fk:
+            print("- Harbingers of Dread abilities")
+            print("- Malefic Surge mortal wound risk")
+            print("- Super-heavy Walker ignore terrain / stomp attacks")
+            print("- DAMNED ally interactions")
+            print("- Aura effects (Dread auras, battleshock synergies)")
