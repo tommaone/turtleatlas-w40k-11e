@@ -36,19 +36,19 @@
           "cp_cost": 1,
           "when": "Fight phase, when a friendly PALADIN SQUAD unit is selected to fight.",
           "target": "That PALADIN SQUAD unit.",
-          "effect": "Your unit’s melee attacks have [PRECISION]."
+          "effect": "Your unit\u2019s melee attacks have [PRECISION]."
         },
         {
           "name": "AURA OF VENGEANCE",
           "cp_cost": 1,
           "when": "Fight phase, when an enemy unit targets a friendly PALADIN SQUAD unit.",
           "target": "That PALADIN SQUAD unit.",
-          "effect": "That enemy unit’s melee attacks have [HAZARDOUS]."
+          "effect": "That enemy unit\u2019s melee attacks have [HAZARDOUS]."
         }
       ],
       "dp_cost": 1,
       "modifiers": {
-        "description": "Dauntless Champions — Paladin Squad +1 to wound vs higher-T",
+        "description": "Dauntless Champions \u2014 Paladin Squad +1 to wound vs higher-T",
         "choices": [
           {
             "name": "Dauntless Champions",
@@ -61,7 +61,8 @@
             "condition": "only when S < T"
           }
         ]
-      }
+      },
+      "disposition": "purge-the-foe"
     },
     {
       "name": "FIRES OF PURGATION",
@@ -107,7 +108,8 @@
           "effect": "Select one battle-shocked enemy unit hit by those attacks. That enemy unit suffers D3+1 mortal wounds."
         }
       ],
-      "dp_cost": 1
+      "dp_cost": 1,
+      "disposition": "disruption"
     },
     {
       "name": "IMMATERIAL INTERDICTION",
@@ -115,7 +117,7 @@
       "rules": [
         {
           "name": "ECHOJUMP",
-          "description": "In your Shooting phase, when a friendly INTERCEPTOR SQUAD unit has shot, if that unit did not make an ingress move this turn, you can use this ability. If you do: ▪That unit cannot use its Personal Teleporters ability. ▪That unit can make a surge move of up to D6+1\"."
+          "description": "In your Shooting phase, when a friendly INTERCEPTOR SQUAD unit has shot, if that unit did not make an ingress move this turn, you can use this ability. If you do: \u25aaThat unit cannot use its Personal Teleporters ability. \u25aaThat unit can make a surge move of up to D6+1\"."
         }
       ],
       "enhancements": [
@@ -155,7 +157,7 @@
       ],
       "dp_cost": 1,
       "modifiers": {
-        "description": "EchoJump — Interceptors D6+1\" surge after shooting",
+        "description": "EchoJump \u2014 Interceptors D6+1\" surge after shooting",
         "choices": [
           {
             "name": "EchoJump",
@@ -168,7 +170,8 @@
             "condition": "after shooting, if no ingress move"
           }
         ]
-      }
+      },
+      "disposition": "priority-assets"
     },
     {
       "name": "WARPBANE TASK FORCE",
@@ -176,14 +179,14 @@
       "rules": [
         {
           "name": "HALLOWED GROUND",
-          "description": "Purging corrupted nodes of Warp energy, the Grey Knights establish an ever-expanding area of hallowed ground within which their psychic powers and indomitable resolve are greatly enhanced. Certain areas of the battlefield are within your army's Hallowed Ground, as follows: ▪Your deployment zone is always within your army's Hallowed Ground. ▪The area of the battlefield within 6\" of one or more Purifier Squad units from your army is within your army's Hallowed Ground. ▪At the start of any phase, if you control at least half of the objective markers within No Man's Land, until the end of that phase, No Man's Land is within your army's Hallowed Ground. ▪At the start of any phase, if you control at least half of the objective markers within your opponent's deployment zone, until the end of that phase, your opponent's deployment zone is within your army's Hallowed Ground. Each time a model in a Grey Knights unit from your army makes a ranged attack that targets a visible target or makes a melee attack, re-roll a Hit roll of 1. If that unit is a Purifier Squad and/or is wholly within your army's Hallowed Ground, you can re-roll the Hit roll instead."
+          "description": "Purging corrupted nodes of Warp energy, the Grey Knights establish an ever-expanding area of hallowed ground within which their psychic powers and indomitable resolve are greatly enhanced. Certain areas of the battlefield are within your army's Hallowed Ground, as follows: \u25aaYour deployment zone is always within your army's Hallowed Ground. \u25aaThe area of the battlefield within 6\" of one or more Purifier Squad units from your army is within your army's Hallowed Ground. \u25aaAt the start of any phase, if you control at least half of the objective markers within No Man's Land, until the end of that phase, No Man's Land is within your army's Hallowed Ground. \u25aaAt the start of any phase, if you control at least half of the objective markers within your opponent's deployment zone, until the end of that phase, your opponent's deployment zone is within your army's Hallowed Ground. Each time a model in a Grey Knights unit from your army makes a ranged attack that targets a visible target or makes a melee attack, re-roll a Hit roll of 1. If that unit is a Purifier Squad and/or is wholly within your army's Hallowed Ground, you can re-roll the Hit roll instead."
         }
       ],
       "enhancements": [
         {
           "name": "MANDULIAN RELIQUARY",
           "cp_cost": null,
-          "description": "This reliquary contains a single finger bone taken from the body of the feted former Grand Master, Mandulis. It serves as a symbol of unity and duty. Grey Knights model only. While the bearer’s unit is not Battle‑shocked, add 3 to the bearer’s Objective Control characteristic."
+          "description": "This reliquary contains a single finger bone taken from the body of the feted former Grand Master, Mandulis. It serves as a symbol of unity and duty. Grey Knights model only. While the bearer\u2019s unit is not Battle\u2011shocked, add 3 to the bearer\u2019s Objective Control characteristic."
         },
         {
           "name": "RADIANT CHAMPION",
@@ -247,7 +250,7 @@
       ],
       "dp_cost": 2,
       "modifiers": {
-        "description": "Hallowed Ground — re-roll 1s to hit",
+        "description": "Hallowed Ground \u2014 re-roll 1s to hit",
         "choices": [
           {
             "name": "Hallowed Ground",
@@ -256,7 +259,8 @@
             "description": "Re-roll 1s to hit in Hallowed Ground"
           }
         ]
-      }
+      },
+      "disposition": "purge-the-foe"
     }
   ],
   "datasheets": [
@@ -401,11 +405,11 @@
             "stats": {}
           },
           {
-            "name": "■\u0007This model’s Thunderhawk heavy cannon can be replaced with 1 turbo-laser destructor.",
+            "name": "\u25a0\u0007This model\u2019s Thunderhawk heavy cannon can be replaced with 1 turbo-laser destructor.",
             "stats": {}
           },
           {
-            "name": "■\u0007This model’s Thunderhawk cluster bombs can be replaced with 1 hellstrike missile battery.",
+            "name": "\u25a0\u0007This model\u2019s Thunderhawk cluster bombs can be replaced with 1 hellstrike missile battery.",
             "stats": {}
           }
         ]
@@ -646,11 +650,11 @@
             "stats": {}
           },
           {
-            "name": "■\u0007None",
+            "name": "\u25a0\u0007None",
             "stats": {}
           },
           {
-            "name": "■1 Brother-Captain Stern – Epic Hero",
+            "name": "\u25a01 Brother-Captain Stern \u2013 Epic Hero",
             "stats": {}
           },
           {
@@ -670,11 +674,11 @@
             "stats": {}
           },
           {
-            "name": "■Brotherhood Terminator Squad",
+            "name": "\u25a0Brotherhood Terminator Squad",
             "stats": {}
           },
           {
-            "name": "■Paladin Squad",
+            "name": "\u25a0Paladin Squad",
             "stats": {}
           },
           {
@@ -796,11 +800,11 @@
             "stats": {}
           },
           {
-            "name": "■\u0007None",
+            "name": "\u25a0\u0007None",
             "stats": {}
           },
           {
-            "name": "■1 Kaldor Draigo – Epic Hero",
+            "name": "\u25a01 Kaldor Draigo \u2013 Epic Hero",
             "stats": {}
           },
           {
@@ -820,11 +824,11 @@
             "stats": {}
           },
           {
-            "name": "■Brotherhood Terminator Squad",
+            "name": "\u25a0Brotherhood Terminator Squad",
             "stats": {}
           },
           {
-            "name": "■Paladin Squad",
+            "name": "\u25a0Paladin Squad",
             "stats": {}
           },
           {
@@ -894,7 +898,7 @@
             "stats": {}
           },
           {
-            "name": "Plasma cannon – standard [BLAST, HEAVY]",
+            "name": "Plasma cannon \u2013 standard [BLAST, HEAVY]",
             "stats": {
               "RANGE": "36\""
             }
@@ -909,7 +913,7 @@
             }
           },
           {
-            "name": "Plasma cannon – supercharge",
+            "name": "Plasma cannon \u2013 supercharge",
             "stats": {}
           },
           {
@@ -921,7 +925,7 @@
         ],
         "melee": [
           {
-            "name": "Servitor’s servo-arm",
+            "name": "Servitor\u2019s servo-arm",
             "stats": {
               "RANGE": "Melee",
               "A": "1",
@@ -932,7 +936,7 @@
             }
           },
           {
-            "name": "Servitor’s tools",
+            "name": "Servitor\u2019s tools",
             "stats": {
               "RANGE": "Melee",
               "A": "1",
@@ -1040,7 +1044,7 @@
             "stats": {}
           },
           {
-            "name": "Plasma cannon – standard [BLAST, HEAVY]",
+            "name": "Plasma cannon \u2013 standard [BLAST, HEAVY]",
             "stats": {
               "RANGE": "36\""
             }
@@ -1055,7 +1059,7 @@
             }
           },
           {
-            "name": "Plasma cannon – supercharge",
+            "name": "Plasma cannon \u2013 supercharge",
             "stats": {}
           },
           {
@@ -1067,7 +1071,7 @@
         ],
         "melee": [
           {
-            "name": "Servitor’s servo-arm",
+            "name": "Servitor\u2019s servo-arm",
             "stats": {
               "RANGE": "Melee",
               "A": "1",
@@ -1078,7 +1082,7 @@
             }
           },
           {
-            "name": "Servitor’s tools",
+            "name": "Servitor\u2019s tools",
             "stats": {
               "RANGE": "Melee",
               "A": "1",
@@ -1171,16 +1175,16 @@
       "target": "HALLOWED CONCLAVE DETACHMENT",
       "changes": [
         "Change to: 'GREY KNIGHTS model only. You can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:",
-        "▪\u0007That use is -1 CP.",
-        "▪\u0007That use does not prevent any uses of that stratagem on other units this phase.' Stormtalon Gunship, Stormhawk Interceptor",
-        "▪Core Abilities: Remove 'Hover'.",
-        "▪Profile: Change M and OC to '-'. Stormraven Gunship",
-        "▪Profile: Change M to 14\".",
-        "▪\u0007 Keywords: Remove 'AIRCRAFT'. Brotherhood Chaplain, Abilities, Core Abilities",
-        "Add ‘Leader’. Brotherhood Techmarine, Guardians of the Machine Ability",
+        "\u25aa\u0007That use is -1 CP.",
+        "\u25aa\u0007That use does not prevent any uses of that stratagem on other units this phase.' Stormtalon Gunship, Stormhawk Interceptor",
+        "\u25aaCore Abilities: Remove 'Hover'.",
+        "\u25aaProfile: Change M and OC to '-'. Stormraven Gunship",
+        "\u25aaProfile: Change M to 14\".",
+        "\u25aa\u0007 Keywords: Remove 'AIRCRAFT'. Brotherhood Chaplain, Abilities, Core Abilities",
+        "Add \u2018Leader\u2019. Brotherhood Techmarine, Guardians of the Machine Ability",
         "Change to: 'Each time an enemy unit ends a charge move engaged with one or more friendly GREY KNIGHTS VEHICLE units and within 6\" of this unit, you can target this unit with the Heroic Intervention stratagem, regardless of any other uses of that stratagem this phase. If you do:",
-        "▪\u0007That use is -1 CP.",
-        "▪\u0007That use does not prevent any uses of that stratagem on other units this phase.' Land Raider, Land Raider Crusader, Land Raider Redeemer, Razorback, Rhino, Stormhawk Interceptor, Stormraven Gunship, and Stormtalon Gunship – Keywords Section",
+        "\u25aa\u0007That use is -1 CP.",
+        "\u25aa\u0007That use does not prevent any uses of that stratagem on other units this phase.' Land Raider, Land Raider Crusader, Land Raider Redeemer, Razorback, Rhino, Stormhawk Interceptor, Stormraven Gunship, and Stormtalon Gunship \u2013 Keywords Section",
         "Add 'FRAME'."
       ]
     }

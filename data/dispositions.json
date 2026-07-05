@@ -1,0 +1,73 @@
+{
+  "version": "11.0",
+  "dispositions": [
+    {
+      "id": "purge-the-foe",
+      "name": "Purge the Foe",
+      "description": "Kill-focused mission — rewards high DPS, trading efficiency, threat range",
+      "live": true,
+      "meta_weight": "primary",
+      "keywords": ["kill", "dps", "trading", "threat-range"],
+      "profile": { "dps": 0.70, "surv": 0.20, "mob": 0.10 }
+    },
+    {
+      "id": "take-and-hold",
+      "name": "Take and Hold",
+      "description": "Objective-focused mission — rewards durability, OC, mobility for board control",
+      "live": true,
+      "meta_weight": "secondary",
+      "keywords": ["objective", "oc", "durability", "board-control"],
+      "profile": { "dps": 0.20, "surv": 0.50, "mob": 0.30 }
+    },
+    {
+      "id": "reconnaissance",
+      "name": "Reconnaissance",
+      "description": "Mobility and positioning focused — rewards speed, infiltration, deep strike",
+      "live": true,
+      "meta_weight": "tertiary",
+      "keywords": ["mobility", "positioning", "speed", "deep-strike"],
+      "profile": { "dps": 0.15, "surv": 0.25, "mob": 0.60 }
+    },
+    {
+      "id": "priority-assets",
+      "name": "Priority Assets",
+      "description": "Balanced with assassination focus — rewards efficient trading and character kills",
+      "live": true,
+      "meta_weight": "secondary",
+      "keywords": ["balanced", "assassination", "trading", "character-kill"],
+      "profile": { "dps": 0.50, "surv": 0.30, "mob": 0.20 }
+    },
+    {
+      "id": "disruption",
+      "name": "Disruption",
+      "description": "Deny and control focused — rewards battleshock, area denial, movement blocking",
+      "live": true,
+      "meta_weight": "tertiary",
+      "keywords": ["deny", "control", "battleshock", "area-denial"],
+      "profile": { "dps": 0.35, "surv": 0.35, "mob": 0.30 }
+    }
+  ],
+  "dp_budget": {
+    "combat_patrol": { "max_dp": 1, "description": "500pts games, 1 detachment" },
+    "incursion": { "max_dp": 2, "description": "1000pts games, 1-2 detachments" },
+    "strike_force": { "max_dp": 3, "description": "2000pts games, 2-3 detachments" },
+    "onslaught": { "max_dp": 4, "description": "3000pts games, 2-4 detachments" }
+  },
+  "rules": {
+    "one_disposition_per_detachment": "Each detachment enables exactly one disposition. A detachment's disposition is defined in its faction pack.",
+    "mission_alignment": "Your army must include at least one detachment whose disposition matches your chosen mission. If no detachment matches, your army is unaligned (no mission bonus).",
+    "detachment_points": "Detachment Point (DP) costs vary by detachment. Total DP across all detachments cannot exceed the game size's max_dp."
+  },
+  "mission_alignment": {
+    "purge-the-foe": { "viable": true, "note": "Default for competitive ranking (see meta-bias.md)" },
+    "take-and-hold": { "viable": true, "note": "Objective-focused. Rewards durability, OC, mobility." },
+    "reconnaissance": { "viable": false, "note": "Effectively dead per Mordian Glory community consensus (July 2026)" },
+    "priority-assets": { "viable": false, "note": "Effectively dead per community consensus" },
+    "disruption": { "viable": false, "note": "Effectively dead per community consensus" }
+  },
+  "meta_bias": {
+    "source": "Mordian Glory (community consensus, July 2026)",
+    "default_mission": "purge-the-foe",
+    "note": "This bias expires if GW releases a new GT Mission Pack"
+  }
+}
