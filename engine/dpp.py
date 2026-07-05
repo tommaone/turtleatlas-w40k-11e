@@ -439,6 +439,64 @@ class UnitDefense:
     feel_no_pain: Optional[int] = None  # alias for fnp
 
 
+def _wound_prob(strength: int, toughness: int) -> float:
+    """11e wound table: probability to wound."""
+    if strength >= 2 * toughness:
+        return 5.0 / 6.0   # 2+
+    if strength > toughness:
+        return 4.0 / 6.0   # 3+
+    if strength == toughness:
+        return 3.0 / 6.0   # 4+
+    if strength > toughness / 2:
+        return 2.0 / 6.0   # 5+
+    return 1.0 / 6.0       # 6+
+
+
+def _shots_to_kill(
+    total_wounds: int, toughness: int, save: int, invuln: Optional[int],
+    fnp: Optional[int], bs: int, strength: int, ap: int, damage: float,
+) -> float:
+    """
+    Expected number of shots (from a given weapon) to kill the unit.
+
+    Factors in: ballistic skill, wound table, save/AP, invuln, FNP.
+    """
+    p_hit = (7 - bs) / 6.0
+    p_wound = _wound_prob(strength, toughness)
+
+    # Save
+    modified_save = save - ap
+    if invuln and invuln < modified_save:
+        save_target = invuln
+    else:
+        save_target = modified_save
+    if save_target >= 7:
+        p_unsaved = 1.0
+    elif save_target <= 1:
+        p_unsaved = 0.0
+    else:
+        p_unsaved = 1.0 - (7 - save_target) / 6.0
+
+    # FNP
+    if fnp:
+        p_fnp_through = (fnp - 1) / 6.0  # FNP 5+ → 4/6 damage gets through
+    else:
+        p_fnp_through = 1.0
+
+    expected_dmg = p_hit * p_wound * p_unsaved * damage * p_fnp_through
+    if expected_dmg <= 0:
+        return float('inf')
+    return round(total_wounds / expected_dmg, 1)
+
+
+# Benchmark attacker profiles: (name, bs, strength, ap, avg_damage)
+BENCHMARK_ATTACKERS = [
+    ("bolter",     3,  4,  0, 1.0),   # BS3+ S4  AP0  D1
+    ("lascannon",  3,  9, -3, 3.0),   # BS3+ S9  AP-3 D3
+    ("melta",      3, 14, -4, 4.5),   # BS3+ S14 AP-4 D6+1 (~4.5 avg)
+]
+
+
 def compute_surv(
     defense: UnitDefense,
     unit_points: float = 1.0,
@@ -447,14 +505,16 @@ def compute_surv(
     Compute survivability metrics for a unit at different AP levels.
 
     Returns effective wound pool (how much raw damage must be dealt to
-    kill the unit before saves) and points-per-effective-wound efficiency.
+    kill the unit before saves) and points-per-effective-wound efficiency,
+    plus toughness-aware survival vs benchmark weapons.
 
     Args:
         defense: unit defense profile
         unit_points: unit points cost
 
     Returns:
-        dict with effective wounds at AP0, AP-2, AP-4 and efficiency
+        dict with effective wounds at AP0, AP-2, AP-4, and
+        ``_shots_vs_<weapon>`` fields for benchmark profiles.
     """
     fnp = defense.fnp or defense.feel_no_pain
     total_w = defense.wounds_per_model * defense.models
@@ -499,6 +559,15 @@ def compute_surv(
 
     pts_per_eff_w = round(unit_points / eff_wounds["ap0"], 2) if eff_wounds["ap0"] != float('inf') else None
 
+    # Toughness-aware survival: expected shots to kill by benchmark weapons
+    shots_vs = {}
+    pts_per_shot = {}
+    for name, bs, st, ap, dmg in BENCHMARK_ATTACKERS:
+        sk = _shots_to_kill(total_w, defense.toughness, defense.save, defense.invuln,
+                            fnp, bs, st, ap, dmg)
+        shots_vs[f"shots_{name}"] = sk
+        pts_per_shot[f"pts_per_shot_{name}"] = round(unit_points / sk, 2) if sk != float('inf') else None
+
     return {
         "toughness": defense.toughness,
         "wounds_per_model": defense.wounds_per_model,
@@ -509,6 +578,8 @@ def compute_surv(
         "fnp": f"{fnp}+" if fnp else None,
         "effective_wounds": eff_wounds,
         "pts_per_eff_w_ap0": pts_per_eff_w,
+        **shots_vs,
+        **pts_per_shot,
     }
 
 

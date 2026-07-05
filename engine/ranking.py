@@ -42,7 +42,21 @@ class FactionConfig:
 
         def _load(name):
             p = self._dir / f"{name}.json"
-            return json.loads(p.read_text())
+            data = json.loads(p.read_text())
+            # Support _extends inheritance — faction overrides base keys
+            extends = data.pop("_extends", None)
+            if extends:
+                # Resolve base relative to data/config/ (parent of faction dir)
+                base_p = self._dir.parent / f"{extends}.json"
+                if not base_p.exists():
+                    # Fallback: same dir
+                    base_p = self._dir / f"{extends}.json"
+                base_data = json.loads(base_p.read_text())
+                merged = {}
+                merged.update(base_data)
+                merged.update(data)  # faction keys override base
+                return merged
+            return data
 
         self.supported: dict = _load("supported")
         self.squads: dict = _load("squads")
@@ -96,9 +110,11 @@ class FactionConfig:
     def _resolve_meta(self, meta_spec):
         """Convert meta profile name or list to (name, TargetProfile, weight) list."""
         if isinstance(meta_spec, str):
-            spec = self.meta_profiles[meta_spec]
+            raw = self.meta_profiles[meta_spec]
         else:
-            spec = meta_spec
+            raw = meta_spec
+        # Support both old format (list of [name, weight]) and new format (dict with "profiles" key)
+        spec = raw["profiles"] if isinstance(raw, dict) else raw
         total = sum(w for _, w in spec)
         return [(tn, self.target_profiles[tn], w / total) for tn, w in spec]
 
@@ -195,6 +211,21 @@ class RankingEngine:
             return self._detachment_modifiers
 
         repo_root = Path(__file__).resolve().parent.parent
+
+        # Try config dir first (our own data, no GW IP)
+        config_mod_path = repo_root / "data" / "config" / self.faction_key / "detachment_modifiers.json"
+        if config_mod_path.exists():
+            config_data = json.loads(config_mod_path.read_text())
+            raw = config_data.get("detachments", {})
+            result = {}
+            for det_name, det_data in raw.items():
+                choices = det_data.get("choices", [])
+                if choices:
+                    result[det_name] = [DetachmentModifier.from_dict(c) for c in choices]
+            self._detachment_modifiers = result
+            return result
+
+        # Fallback: old faction-pack JSON location (may not exist after GW IP cleanup)
         fp_name = f"{self.faction_key}-faction-pack.json"
         fp_path = repo_root / "data" / fp_name
         if not fp_path.exists():
@@ -464,9 +495,10 @@ class RankingEngine:
 
     def _resolve_slots(self, name, vh, target, pricing, tier):
         """Resolve a vehicle's loadout from weapon_slots — finds best combo vs target."""
+        # Slot-based units: pts is chassis base, don't override with MFM (which quotes full price)
         base_pts = self._resolve_pts(
             vh["pts"], vh.get("pts_3rd"),
-            pricing, 1, tier,
+            None, 1, tier,
         )
         fixed_ranged = [self.W(wn, unit_name=name)
                         for wn in vh.get("fixed_ranged", [])]
@@ -668,7 +700,11 @@ class RankingEngine:
         # Resolve meta
         meta_targets = None
         actual_target = target
+        melee_penalty = 1.0
         if meta_name:
+            mp_spec = self.config.meta_profiles.get(meta_name, [])
+            if isinstance(mp_spec, dict):
+                melee_penalty = mp_spec.get("melee_penalty", 1.0)
             meta_targets = self.config._resolve_meta(meta_name)
             actual_target = meta_targets
 
@@ -728,7 +764,7 @@ class RankingEngine:
             dmg_innate = _ld_dmg([], [], innate_profiles, actual_target, unit_weapon_mod,
                                  melta_active=melta_active, heavy_stationary=heavy_stationary,
                                  hit_mode=unit_hit_mode) if innate_profiles else 0
-            total_dmg = dmg_ranged + dmg_melee + dmg_innate
+            total_dmg = dmg_ranged + (dmg_melee * melee_penalty) + dmg_innate
             dpp_val = total_dmg / pts if pts > 0 else 0
             is_infantry = "INFANTRY" in kw_list
             fnp_val = 6 if is_infantry else None
@@ -811,7 +847,11 @@ class RankingEngine:
         if mission and mission in self.config.mission_profiles:
             w = self.config.mission_profiles[mission]
             dps_vals = [r["dpp"] for r in results]
-            surv_vals = [r["surv"]["effective_wounds"]["ap0"] for r in results]
+            # toughness-aware SURV: lascannon shots absorbed per point
+            surv_vals = [
+                r["surv"]["shots_lascannon"] / max(r["points"], 1)
+                for r in results
+            ]
             mob_vals = [self.mob_score(r["mob"]) for r in results]
             n = len(results)
 
@@ -822,7 +862,8 @@ class RankingEngine:
 
             for r in results:
                 r["_dps_pct"] = _pct(r["dpp"], dps_vals)
-                r["_surv_pct"] = _pct(r["surv"]["effective_wounds"]["ap0"], surv_vals)
+                surv_val = r["surv"]["shots_lascannon"] / max(r["points"], 1)
+                r["_surv_pct"] = _pct(surv_val, surv_vals)
                 r["_mob_pct"] = _pct(self.mob_score(r["mob"]), mob_vals)
                 r["_mission_score"] = (
                     w["dps"] * r["_dps_pct"] +
@@ -832,7 +873,10 @@ class RankingEngine:
             results.sort(key=lambda r: r["_mission_score"], reverse=True)
         else:
             dps_vals = [r["dpp"] for r in results]
-            surv_vals = [r["surv"]["effective_wounds"]["ap0"] for r in results]
+            surv_vals = [
+                r["surv"]["shots_lascannon"] / max(r["points"], 1)
+                for r in results
+            ]
             mob_vals = [self.mob_score(r["mob"]) for r in results]
             n = len(results)
 
@@ -843,7 +887,8 @@ class RankingEngine:
 
             for r in results:
                 r["_dps_pct"] = _pct(r["dpp"], dps_vals)
-                r["_surv_pct"] = _pct(r["surv"]["effective_wounds"]["ap0"], surv_vals)
+                surv_val = r["surv"]["shots_lascannon"] / max(r["points"], 1)
+                r["_surv_pct"] = _pct(surv_val, surv_vals)
                 r["_mob_pct"] = _pct(self.mob_score(r["mob"]), mob_vals)
             results.sort(key=lambda r: r["dpp"], reverse=True)
 
@@ -925,7 +970,13 @@ class RankingEngine:
         """Human-readable survivability string."""
         ew = defense_dict["effective_wounds"]
         ppe = defense_dict.get("pts_per_eff_w_ap0", "?")
-        return f'effW@AP0={ew["ap0"]} AP2={ew["ap2"]} AP4={ew["ap4"]}, pts/effW={ppe}'
+        pps_l = defense_dict.get("pts_per_shot_lascannon", "?")
+        pps_m = defense_dict.get("pts_per_shot_melta", "?")
+        return (f'T{defense_dict["toughness"]} W{defense_dict["total_wounds"]} '
+                f'SV{defense_dict["save"]}{defense_dict.get("invuln","") or ""}'
+                f'{defense_dict.get("fnp","") or ""} '
+                f'| effW {ew["ap0"]}/{ew["ap2"]}/{ew["ap4"]} '
+                f'| LC={pps_l}pts/shot MC={pps_m}pts/shot')
 
     def print_ranking(self, results, target_name="MEQ", mission_name=None, meta_name=None, tier="1st"):
         """Print ranking table and detail."""
@@ -949,16 +1000,21 @@ class RankingEngine:
         title += tier_label
         print(f"{title}\n")
 
-        has_mission = "_mission_score" in results[0] if results else False
+        has_mission = bool(mission_name) and "_mission_score" in (results[0] if results else {})
 
+        # Survivability: toughness-aware metric = lascannon shots absorbed per point
+        # Higher = more durable for your points (better focus-fire resistance)
+        surv_vals = [
+            r["surv"]["shots_lascannon"] / r["points"]
+            for r in results if r["points"] > 0
+        ]
         dps_vals = [r["dpp"] for r in results]
-        surv_vals = [r["surv"]["effective_wounds"]["ap0"] for r in results]
         mob_vals = [self.mob_score(r["mob"]) for r in results]
 
         def _norm(val, series):
             """Normalise as percentage of max (ratio-of-max, not min-max).
             
-            A unit with half the top DPP shows as 50%, not 0%.
+            A unit with half the top value shows as 50%, not 0%.
             """
             if not series:
                 return 0
@@ -969,7 +1025,8 @@ class RankingEngine:
 
         for r in results:
             r["_dps_bar"] = _norm(r["dpp"], dps_vals)
-            r["_surv_bar"] = _norm(r["surv"]["effective_wounds"]["ap0"], surv_vals)
+            surv_val = r["surv"]["shots_lascannon"] / max(r["points"], 1)
+            r["_surv_bar"] = _norm(surv_val, surv_vals)
             r["_mob_bar"] = _norm(self.mob_score(r["mob"]), mob_vals)
             r["_mob_raw"] = self.mob_score(r["mob"])
 
@@ -1011,7 +1068,8 @@ class RankingEngine:
                   f'SURV {self._bar(r["_surv_bar"])} {r["_surv_bar"]:>2d}%  '
                   f'MOB {self._bar(r["_mob_bar"])} {r["_mob_bar"]:>2d}%')
             print(f'**Loadout:** {r["loadout_desc"]}')
-            print(f'**SURV:** {self.format_surv(r["surv"])}')
+            print(f'**SURV:** {self.format_surv(r["surv"])}'
+                  f'  |  LC shots/pt: {r["surv"]["shots_lascannon"]/max(r["points"],1):.3f}')
             print(f'**MOB:** raw={r["_mob_raw"]}/100 ({self.format_mob(r["mob"])})')
             if r["notes"]:
                 print(f'*{r["notes"]}*')

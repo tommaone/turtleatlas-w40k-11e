@@ -2,34 +2,64 @@
 
 11th Edition Warhammer 40k structured data + DPP engine + MCP server.
 
+## IP & Copyright Notice
+
+**This repository contains NO Games Workshop copyrighted rule text or PDFs.**
+- `data/merged/*.json` — Community-maintained BSData game data (points, profiles, keywords). Game mechanics data only, no verbatim rule text.
+- `data/config/*/` — Our own derived configuration files. Machine-readable modifiers only.
+- Engine code — Original work. No GW IP.
+
+**NEVER commit GW copyrighted material:**
+- ⛔ No PDFs of rulebooks, faction packs, or indexes
+- ⛔ No verbatim rule text (ability descriptions, stratagem text, lore)
+- ⛔ No official GW images, logos, or artwork
+
+**Safe to include (game mechanics / community data):**
+- ✅ Points values (Munitorum Field Manual data)
+- ✅ Unit profiles (M/WS/BS/S/T/W/A/Ld/Sv — game stats)
+- ✅ Weapon profiles (range, type, S, AP, D, ability keywords)
+- ✅ Keywords
+- ✅ Machine-readable modifier data (+1 to hit, Sustained Hits, etc.)
+- ✅ Our own analysis, rankings, and derived metrics (DPP, SURV)
+
+This is an unofficial, non-commercial fan project. Warhammer 40,000 is a registered trademark of Games Workshop Limited.
+
 ## Architecture
 
 ```
-data/                          # Parsed raw data
-├── core-rules-11e.json        # Core rules (abilities, phases, stratagems, terrain)
-├── grey-knights-faction-pack.pdf/json  # GK 11e Faction Pack
-└── merged/grey-knights.json   # BSData profiles + MFM points merged
+data/                          # Game data (community sources, no GW IP)
+├── merged/                    # BSData profiles + MFM points merged
+│   ├── grey-knights.json
+│   ├── chaos-knights.json
+│   └── chaos-daemons.json
+└── config/                    # Our own config per faction
+    ├── _base.json             # Shared target/mission profiles
+    ├── chaos-knights/
+    ├── chaos-daemons/
+    └── grey-knights/
 
-adapter/                       # Parsers
+adapter/                       # Data parsers (run locally, not in repo)
 ├── bsdata_parser.py           # BSData XML → JSON profiles
-├── merge.py                   # Merge profiles + points (+faction <slug>)
-├── core_rules_parser.py       # Core Rules PDF → JSON
-└── faction_pack_parser.py     # Faction Pack PDF → JSON
+├── merge.py                   # Merge profiles + points
+├── core_rules_parser.py       # Local PDF → JSON (output not committed)
+└── faction_pack_parser.py     # Local PDF → JSON (output not committed)
 
 engine/                        # DPP engine
-├── dpp.py                     # Damage Per Point engine (11e rules: Cover=BS mod, Psychic)
-└── gk_demo.py                 # GK weapon DPP demo
+├── dpp.py                     # Damage Per Point engine (11e rules)
+├── ranking.py                 # Generic 3-vector ranking engine
+└── weapon_loader.py           # Weapon catalog from merged data
 
 mcp-server/                    # MCP server
 ├── index.js                   # 7 tools, stdio or HTTP
 └── package.json               # @modelcontextprotocol/sdk ^1.29.0
 
 resources/                     # Human-readable knowledge files
-├── guardrails.md              # General 11e rules reference & DPP pitfalls
-└── experts/grey-knights.md    # GK domain knowledge (weapons, limits, gotchas)
+├── guardrails.md              # 11e rules reference & DPP pitfalls
+├── non-dpp-value.md           # OC/screening/SURV framework
+└── experts/                   # Faction domain knowledge
+    └── grey-knights.md
 
-opencode.jsonc                 # Project-level opencode config
-AGENTS.md                      # ← you are here
+run_dpp.py                     # CLI runner (any faction)
 ```
 
 ## Key 11e Rule Changes

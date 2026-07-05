@@ -1,25 +1,9 @@
 {
+  "_extends": "_base",
   "key": "grey-knights",
   "name": "Grey Knights",
   "army_rules": ["Gate of Infinity", "Psychic"],
   "keywords": ["FACTION: GREY KNIGHTS"],
-  "target_profiles": {
-    "GEQ": { "toughness": 3, "save": 5, "model_count": 20 },
-    "MEQ": { "toughness": 4, "save": 3, "model_count": 5 },
-    "TEQ": { "toughness": 5, "save": 2, "invuln": 4, "model_count": 3 },
-    "Light V": { "toughness": 7, "save": 3, "model_count": 1 },
-    "Heavy V": { "toughness": 10, "save": 2, "invuln": 4, "model_count": 1 },
-    "C'tan": { "toughness": 11, "save": 4, "invuln": 4, "model_count": 1 },
-    "Knight": { "toughness": 13, "save": 2, "invuln": 5, "model_count": 1 }
-  },
-  "mission_profiles": {
-    "Purge the Foe": { "dps": 0.70, "surv": 0.20, "mob": 0.10 },
-    "Take and Hold": { "dps": 0.20, "surv": 0.50, "mob": 0.30 },
-    "Reconnaissance": { "dps": 0.15, "surv": 0.25, "mob": 0.60 },
-    "Priority Assets": { "dps": 0.50, "surv": 0.30, "mob": 0.20 },
-    "Disruption": { "dps": 0.35, "surv": 0.35, "mob": 0.30 },
-    "Purge (general)": { "dps": 0.60, "surv": 0.25, "mob": 0.15 }
-  },
   "dispositions": {
     "argent-assault": "purge-the-foe",
     "fires-of-purgation": "disruption",
@@ -32,10 +16,10 @@
     "sanctic-spearhead": "priority-assets"
   },
   "meta_profiles": {
-    "competitive": [["MEQ", 0.35], ["TEQ", 0.15], ["Light V", 0.25], ["Heavy V", 0.15], ["Knight", 0.10]],
-    "infantry": [["GEQ", 0.15], ["MEQ", 0.45], ["TEQ", 0.25], ["Light V", 0.10], ["Heavy V", 0.05]],
-    "vehicle": [["Light V", 0.25], ["Heavy V", 0.35], ["C'tan", 0.15], ["Knight", 0.25]],
-    "elite": [["TEQ", 0.30], ["Heavy V", 0.30], ["C'tan", 0.20], ["Knight", 0.20]],
-    "all-comers": [["GEQ", 0.15], ["MEQ", 0.25], ["TEQ", 0.15], ["Light V", 0.20], ["Heavy V", 0.15], ["C'tan", 0.05], ["Knight", 0.05]]
+    "competitive": { "profiles": [["MEQ", 0.35], ["TEQ", 0.15], ["Light V", 0.25], ["Heavy V", 0.15], ["Knight", 0.10]], "melee_penalty": 0.8 },
+    "infantry": { "profiles": [["GEQ", 0.15], ["MEQ", 0.45], ["TEQ", 0.25], ["Light V", 0.10], ["Heavy V", 0.05]], "melee_penalty": 0.8 },
+    "vehicle": { "profiles": [["Light V", 0.25], ["Heavy V", 0.35], ["C'tan", 0.15], ["Knight", 0.25]], "melee_penalty": 0.8 },
+    "elite": { "profiles": [["TEQ", 0.30], ["Heavy V", 0.30], ["C'tan", 0.20], ["Knight", 0.20]], "melee_penalty": 0.8 },
+    "all-comers": { "profiles": [["GEQ", 0.15], ["MEQ", 0.25], ["TEQ", 0.15], ["Light V", 0.20], ["Heavy V", 0.15], ["C'tan", 0.05], ["Knight", 0.05]], "melee_penalty": 1.0 }
   }
 }
