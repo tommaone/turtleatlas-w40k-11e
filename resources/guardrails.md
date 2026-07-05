@@ -5,6 +5,23 @@ Read this BEFORE calling MCP tools to avoid common DPP calculation errors.
 
 ---
 
+## 0. Faction-Specific Rules
+
+Faction-specific domain knowledge (squad limits, weapon gotchas, army rules) is maintained
+in `resources/experts/`. Each faction has its own file:
+
+| Faction | Expert File |
+|---------|-------------|
+| Grey Knights | `resources/experts/grey-knights.md` |
+| Chaos Daemons | `resources/experts/chaos-daemons.md` |
+| Chaos Knights | `resources/experts/chaos-knights.md` |
+
+**Before computing DPP for any squad, load the relevant expert file.**
+Squad limits (e.g. "max 2 special weapons per 5 models") vary by faction and
+datasheet — the expert files document these alongside army-specific gotchas.
+
+---
+
 ## 1. MCP Tools
 
 | Tool | Purpose |
@@ -78,7 +95,7 @@ When computing DPP for a squad unit (multiple models), you must account for its 
 ### Key rules
 1. **Not every model carries the same weapon.** Squads have fixed limits on special/heavy weapons per X models.
 2. **A model that takes a special weapon loses its default weapon** (usually a bolt weapon).
-3. **Some units have innate weapons** that every model carries in addition to their chosen loadout (e.g. Purifying Flame on Purifiers).
+3. **Some units have innate weapons** that every model carries in addition to their chosen loadout (e.g. Purifying Flame on Purifiers — GK example).
 4. **Character/single-model units** have their full weapon loadout — no limits to track.
 
 ### How to model correctly
@@ -86,7 +103,7 @@ For a 5-model squad with "max 2 special weapons":
 ```
 - 2 models with special weapon (e.g. Incinerator): attacks × 2
 - 3 models with default weapon (e.g. Bolt weapon): attacks × 3
-- Add any innate weapons (e.g. 5× Purifying Flame): attacks × 5
+- Add any innate weapons (e.g. 5× Purifying Flame — GK example): attacks × 5
 ```
 Call `compute_dpp` separately for each weapon type, then sum the damage.
 
@@ -130,6 +147,15 @@ Example: SV3+ AP-2 → modified_save = 3 - (-2) = 5, need 5+ to save → 2/6 uns
 - Heavy movement penalty/bonus
 - Charge bonuses for melee
 - Defensive durability (wounds, toughness, saves)
+- Enhancement effects on the attacking unit (e.g. +melee attacks, +damage, rerolls)
+- Detachment Disposition alignment (whether your detachment's mission matches the game mission)
+- CP economy (stratagem access and CP generation)
+- OC/scoring potential (objective control value not captured by damage)
+- Screening capacity (board control, deep strike denial)
+- Action efficiency (how cheaply a unit can perform secondary objectives)
+- Transport capacity (value of delivering units across the board)
+- Reserves manipulation (denying enemy reserves, redeployment value)
+- **Machine-readable boundaries: see `data/dispositions.json` and `resources/non-dpp-value.md`**
 
 Always note these limitations when presenting DPP results.
 

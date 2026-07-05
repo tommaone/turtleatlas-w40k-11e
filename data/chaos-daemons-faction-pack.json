@@ -79,15 +79,16 @@
       ],
       "dp_cost": 1,
       "modifiers": {
-        "description": "Warp Rifts — 6\" Deep Strike wholly in Shadow of Chaos",
+        "description": "Warp Rifts \u2014 6\" Deep Strike wholly in Shadow of Chaos",
         "choices": [
           {
             "name": "Warp Rifts",
             "affects": "mob",
-            "description": "6\" Deep Strike (improved positioning — modeled as +3 MOB movement)"
+            "description": "6\" Deep Strike (improved positioning \u2014 modeled as +3 MOB movement)"
           }
         ]
-      }
+      },
+      "disposition": "priority-assets"
     },
     {
       "name": "SHADOW LEGION",
@@ -174,7 +175,7 @@
       ],
       "dp_cost": 1,
       "modifiers": {
-        "description": "First Prince of Chaos — choose god keyword for specific buff",
+        "description": "First Prince of Chaos \u2014 choose god keyword for specific buff",
         "choices": [
           {
             "name": "Murderer's Cowl (Khorne)",
@@ -189,7 +190,8 @@
             "description": "Stealth (-1 to Hit roll from ranged attacks); -1 to Hit roll from melee attacks"
           }
         ]
-      }
+      },
+      "disposition": "disruption"
     },
     {
       "name": "CAVALCADE OF CHAOS",
@@ -237,7 +239,7 @@
       ],
       "dp_cost": 1,
       "modifiers": {
-        "description": "Unholy Avalanche — MOUNTED fall back and shoot/charge",
+        "description": "Unholy Avalanche \u2014 MOUNTED fall back and shoot/charge",
         "choices": [
           {
             "name": "Unholy Avalanche",
@@ -251,7 +253,8 @@
             "condition": "only MOUNTED Legiones Daemonica units"
           }
         ]
-      }
+      },
+      "disposition": "reconnaissance"
     },
     {
       "name": "LORDS OF THE WARP",
@@ -301,7 +304,7 @@
       ],
       "dp_cost": 1,
       "modifiers": {
-        "description": "Loci of Power — CHARACTER (non-MONSTER) get +1 Ld and +1 OC",
+        "description": "Loci of Power \u2014 CHARACTER (non-MONSTER) get +1 Ld and +1 OC",
         "choices": [
           {
             "name": "Loci of Power",
@@ -309,7 +312,8 @@
             "description": "+1 OC for CHARACTER models (non-MONSTER)"
           }
         ]
-      }
+      },
+      "disposition": "priority-assets"
     },
     {
       "name": "WARPTIDE",
@@ -357,7 +361,7 @@
       ],
       "dp_cost": 1,
       "modifiers": {
-        "description": "Shudderblink — BATTLELINE Advance with Assault + charge eligible",
+        "description": "Shudderblink \u2014 BATTLELINE Advance with Assault + charge eligible",
         "choices": [
           {
             "name": "Shudderblink",
@@ -370,7 +374,8 @@
             "condition": "only BATTLELINE Legiones Daemonica on Advance"
           }
         ]
-      }
+      },
+      "disposition": "take-and-hold"
     },
     {
       "name": "BLOOD LEGION",
@@ -453,7 +458,7 @@
       ],
       "dp_cost": 2,
       "modifiers": {
-        "description": "Murdercall — D6\" surge when enemy moves within 8\"",
+        "description": "Murdercall \u2014 D6\" surge when enemy moves within 8\"",
         "choices": [
           {
             "name": "Murdercall (Surge)",
@@ -466,7 +471,8 @@
             "condition": "Khorne unit within 8\" of enemy ending move"
           }
         ]
-      }
+      },
+      "disposition": "purge-the-foe"
     },
     {
       "name": "SCINTILLATING LEGION",
@@ -474,14 +480,14 @@
       "rules": [
         {
           "name": "FATES IN FLUX",
-          "description": "Start with 3 Flux tokens. Spend one to re-roll an Advance, Hit, Wound, Damage, saving throw or Hazardous test for a Tzeentch unit. Opponent gains spent tokens. Opponent can spend theirs too. In your Command phase, if opponent has ≥1 token, you gain 1."
+          "description": "Start with 3 Flux tokens. Spend one to re-roll an Advance, Hit, Wound, Damage, saving throw or Hazardous test for a Tzeentch unit. Opponent gains spent tokens. Opponent can spend theirs too. In your Command phase, if opponent has \u22651 token, you gain 1."
         }
       ],
       "enhancements": [
         {
           "name": "INESCAPABLE EYE",
           "cp_cost": null,
-          "description": "Legiones Daemonica Tzeentch model only. In your Command phase, if bearer is on the battlefield, if your opponent has ≥1 Flux token, you gain 1 additional Flux token."
+          "description": "Legiones Daemonica Tzeentch model only. In your Command phase, if bearer is on the battlefield, if your opponent has \u22651 Flux token, you gain 1 additional Flux token."
         },
         {
           "name": "INFERNAL PUPPETEER",
@@ -545,7 +551,7 @@
       ],
       "dp_cost": 2,
       "modifiers": {
-        "description": "Fates in Flux — Flux tokens for re-rolls",
+        "description": "Fates in Flux \u2014 Flux tokens for re-rolls",
         "choices": [
           {
             "name": "Fates in Flux (Re-roll Hits)",
@@ -578,7 +584,8 @@
             "condition": "spend Flux token"
           }
         ]
-      }
+      },
+      "disposition": "disruption"
     },
     {
       "name": "PLAGUE LEGION",
@@ -657,7 +664,7 @@
       ],
       "dp_cost": 2,
       "modifiers": {
-        "description": "Melancholic Miasma — enemy within 9\" is in Shadow of Chaos",
+        "description": "Melancholic Miasma \u2014 enemy within 9\" is in Shadow of Chaos",
         "choices": [
           {
             "name": "Melancholic Miasma",
@@ -666,7 +673,8 @@
             "description": "Enemy within 9\" suffers -1 to hit (approximated as Stealth)"
           }
         ]
-      }
+      },
+      "disposition": "take-and-hold"
     },
     {
       "name": "LEGION OF EXCESS",
@@ -772,7 +780,8 @@
             "condition": "after charging (loses Fights First)"
           }
         ]
-      }
+      },
+      "disposition": "purge-the-foe"
     }
   ]
 }
