@@ -27,3 +27,13 @@ This bias expires if:
 3. Mordian Glory or equivalent community authority revises the statement
 
 Check `https://www.warhammer-community.com/` for GT pack updates before each major ranking refresh.
+
+## Structured Data
+
+The mission weight data and disposition viability flags are now machine-readable in 
+`data/dispositions.json`. When querying by agent, load that file instead of parsing 
+this markdown document.
+
+## Disposition System
+
+See `resources/disposition-system.md` for the full Detachment Disposition system rules.
