@@ -45,10 +45,14 @@ _init()
 # ── Public API ─────────────────────────────────────────────────────
 
 def compute_ranking(target=MEQ, mission=None, meta_name=None, tier="1st",
-                    detachment=None, detachment_choice=None):
+                    detachment=None, detachment_choice=None,
+                    melta_active=False, heavy_stationary=False,
+                    plunging=True):
     """Compute unit ranking delegating to generic engine."""
     return _engine().compute_ranking(target=target, mission=mission, meta_name=meta_name, tier=tier,
-                                      detachment=detachment, detachment_choice=detachment_choice)
+                                      detachment=detachment, detachment_choice=detachment_choice,
+                                      melta_active=melta_active, heavy_stationary=heavy_stationary,
+                                      plunging=plunging)
 
 
 def print_ranking(results, target_name="MEQ", mission_name=None, meta_name=None, tier="1st"):
@@ -107,6 +111,12 @@ def main():
                         help="Index of modifier choice (0-based, default 0)")
     parser.add_argument("--list-detachments", action="store_true",
                         help="List detachments with defined modifiers and exit")
+    parser.add_argument("--melta", action="store_true",
+                        help="Model Melta bonus damage at half range")
+    parser.add_argument("--heavy", action="store_true",
+                        help="Model Heavy +1 to hit (unit remained stationary)")
+    parser.add_argument("--no-plunging", action="store_true",
+                        help="Disable auto-Plunging Fire for TOWERING units")
     args = parser.parse_args()
 
     if args.list_detachments:
@@ -138,14 +148,19 @@ def main():
             _print_matrix(by_target)
         return
 
+    use_plunging = not args.no_plunging
     if args.meta:
         results = compute_ranking(target=MEQ, mission=args.mission, meta_name=args.meta, tier=args.tier,
-                                  detachment=args.detachment, detachment_choice=args.detachment_choice)
+                                  detachment=args.detachment, detachment_choice=args.detachment_choice,
+                                  melta_active=args.melta, heavy_stationary=args.heavy,
+                                  plunging=use_plunging)
         print_ranking(results, target_name=None, mission_name=args.mission, meta_name=args.meta, tier=args.tier)
     else:
         target = targets[args.target]
         results = compute_ranking(target=target, mission=args.mission, tier=args.tier,
-                                  detachment=args.detachment, detachment_choice=args.detachment_choice)
+                                  detachment=args.detachment, detachment_choice=args.detachment_choice,
+                                  melta_active=args.melta, heavy_stationary=args.heavy,
+                                  plunging=use_plunging)
         print_ranking(results, target_name=args.target, mission_name=args.mission, tier=args.tier)
 
 
