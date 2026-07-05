@@ -82,7 +82,7 @@ class TargetProfile:
     save: int                # base save (3 = 3+)
     invuln: Optional[int] = None  # e.g. 4 for 4++
     wounds_per_model: int = 1
-    model_count: int = 1
+    model_count: int = 1    # unit size — affects Blast bonus (per 5 models)
 
 
 @dataclass
@@ -593,7 +593,9 @@ def compute_weapon_dpp(weapon: WeaponProfile,
                        target: TargetProfile,
                        modifier: Optional[WeaponModifier] = None,
                        hit_mode: HitMode = HitMode.NORMAL,
-                       unit_points: float = 1.0) -> dict:
+                       unit_points: float = 1.0,
+                       melta_active: bool = False,
+                       heavy_stationary: bool = False) -> dict:
     """
     Compute expected damage per point for a single weapon against a target.
 
@@ -603,6 +605,8 @@ def compute_weapon_dpp(weapon: WeaponProfile,
         modifier: external modifiers
         hit_mode: cover / plunging fire mode
         unit_points: total unit points cost
+        melta_active: assume ≤ half range for Melta bonus
+        heavy_stationary: assume the unit remained stationary for Heavy bonus
 
     Returns:
         dict with breakdown
@@ -618,6 +622,9 @@ def compute_weapon_dpp(weapon: WeaponProfile,
     ignore_cover = mod.ignore_cover
     lance = False
     rapid_fire_extra = 0  # from Rapid Fire X: extra attacks at ≤12"
+    blast_x = 0           # from Blast / Blast X: bonus attacks per 5 models
+    melta_x = 0           # from Melta X: bonus damage at half range
+    has_heavy = False     # Heavy: +1 to hit if stationary
 
     ab_set = [a.upper() for a in weapon.abilities]
     for ab in ab_set:
@@ -649,12 +656,30 @@ def compute_weapon_dpp(weapon: WeaponProfile,
         elif ab.startswith("RAPID FIRE"):
             parts = ab.split()
             if len(parts) >= 3:
-                try:
-                    rapid_fire_extra = int(parts[2])
-                except ValueError:
-                    rapid_fire_extra = 1
-        elif ab == "HEAVY" and hit_mode in (HitMode.COVER, HitMode.NORMAL):
-            pass  # Heavy: +1 to hit if unit didn't move (simplified)
+                raw = parts[2]
+                if raw == "D3":
+                    rapid_fire_extra = 2  # average of D3 = 2
+                elif raw == "D6":
+                    rapid_fire_extra = 3  # average of D6 = 3.5, floor = 3
+                else:
+                    try:
+                        rapid_fire_extra = int(raw)
+                    except ValueError:
+                        rapid_fire_extra = 1
+        elif ab.upper().startswith("BLAST"):
+            parts = ab.split()
+            try:
+                blast_x = int(parts[1])
+            except (ValueError, IndexError):
+                blast_x = 1  # plain "Blast" = Blast 1
+        elif ab.upper().startswith("MELTA"):
+            parts = ab.split()
+            try:
+                melta_x = int(parts[1])
+            except (ValueError, IndexError):
+                melta_x = 0
+        elif ab == "HEAVY":
+            has_heavy = True
 
     # Apply external sustained hits (from detachment modifiers, etc.)
     sustained += mod.sustained_hits_extra
@@ -670,6 +695,10 @@ def compute_weapon_dpp(weapon: WeaponProfile,
     elif hit_mode == HitMode.COVER_PLUNGING:
         pass  # net 0
 
+    # Heavy: +1 to hit if the unit remained stationary
+    if has_heavy and heavy_stationary:
+        hit_mod -= 1  # improve BS by 1
+
     has_torrent = any("TORRENT" in a for a in ab_set)
     has_ignore_cover = any("IGNORES COVER" in a or "IGNORES_COVER" in a for a in ab_set)
     is_psychic = any(a == "PSYCHIC" for a in ab_set)
@@ -681,8 +710,12 @@ def compute_weapon_dpp(weapon: WeaponProfile,
     elif has_ignore_cover and hit_mode == HitMode.COVER:
         hit_mod = 0  # Ignore Cover negates the cover penalty
 
+    # Blast bonus (11e [24.05]): add X attacks per 5 models in target unit
+    blast_bonus = blast_x * (target.model_count // 5)
+
     # Apply Rapid Fire (assume ≤12" range — the "melee reach" equivalent)
-    effective_attacks = weapon.attacks + rapid_fire_extra
+    # and Blast bonus (scales with target unit size)
+    effective_attacks = weapon.attacks + blast_bonus + rapid_fire_extra
 
     # Torrent: auto-hit, skip hit roll
     if has_torrent:
@@ -715,6 +748,9 @@ def compute_weapon_dpp(weapon: WeaponProfile,
         lance=lance,
     )
 
+    # Melta: add X to damage at half range
+    effective_damage = weapon.damage + (melta_x if melta_active else 0)
+
     # Damage after save
     total_damage = expected_damage(
         wounds=regular_wounds,
@@ -722,7 +758,7 @@ def compute_weapon_dpp(weapon: WeaponProfile,
         ap=weapon.ap + mod.extra_ap,
         save=target.save,
         invuln=target.invuln,
-        damage=weapon.damage,
+        damage=effective_damage,
         ignore_cover=ignore_cover,
     )
 
@@ -741,6 +777,9 @@ def compute_weapon_dpp(weapon: WeaponProfile,
         "conditions": {
             "hit_mode": hit_mode.value,
             "hit_mod": hit_mod,
+            "blast_bonus": blast_bonus,
+            "melta_x": melta_x if melta_active else 0,
+            "heavy_stationary": heavy_stationary and has_heavy,
         },
     }
 
@@ -749,7 +788,9 @@ def compute_unit_dpp(weapons: list[WeaponProfile],
                      target: TargetProfile,
                      points: float,
                      hit_mode: HitMode = HitMode.NORMAL,
-                     modifiers: Optional[list[WeaponModifier]] = None) -> dict:
+                     modifiers: Optional[list[WeaponModifier]] = None,
+                     melta_active: bool = False,
+                     heavy_stationary: bool = False) -> dict:
     """
     Compute total DPP for a unit (all weapons combined).
 
@@ -759,6 +800,8 @@ def compute_unit_dpp(weapons: list[WeaponProfile],
         points: unit points cost
         hit_mode: cover / plunging fire
         modifiers: per-weapon modifiers (or same for all)
+        melta_active: assume ≤ half range for Melta bonus
+        heavy_stationary: assume the unit remained stationary for Heavy bonus
 
     Returns:
         dict with per-weapon breakdown + total
@@ -770,7 +813,9 @@ def compute_unit_dpp(weapons: list[WeaponProfile],
     total_damage = 0
     for i, wp in enumerate(weapons):
         mod = modifiers[i] if i < len(modifiers) else WeaponModifier()
-        r = compute_weapon_dpp(wp, target, mod, hit_mode, points)
+        r = compute_weapon_dpp(wp, target, mod, hit_mode, points,
+                               melta_active=melta_active,
+                               heavy_stationary=heavy_stationary)
         results.append(r)
         total_damage += r["total_damage"]
 

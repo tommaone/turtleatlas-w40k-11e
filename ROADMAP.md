@@ -27,7 +27,29 @@ Multi-faction, data-driven, test-verified.
 - [x] Psychic keyword → always `HitMode.NORMAL` (ignores Cover, Plunging Fire)
 - [x] Extra Attacks: EA weapons always sum + best non-EA melee chosen
 - [x] Rapid Fire: parsed as effective_attacks = base + rf_extra (assumes ≤12")
+- [x] Rapid Fire D3/D6 now averaged (D3=2, D6=3) — same as Sustained Hits
 - [x] Wound table: S == 0.5×T → 6+
+- [x] Blast modelling: 11e [24.05] +X attacks per 5 models (model_count on all target profiles)
+- [x] Melta X modelling: +X damage at half range (--melta flag)
+- [x] Heavy modelling: +1 to hit if stationary (--heavy flag)
+- [x] Psychic ignores Heavy bonus (per [24.29])
+
+### Engine Bug Fixes
+- [x] Null profile guard — weapons/units without stat profiles don't crash
+- [x] Faction keyword check after known_units — Soul Grinder ordering fix
+- [x] Pricing test apostrophe normalization (Be'lakor, Syll'Esske)
+- [x] GK squad `ranged_a` double-counting — config had RF-buffed A=4, engine added RF2 again → 6 effective
+- [x] Rapid Fire D3/D6 averaging (D3→+2, D6→+3 instead of fallback to +1)
+- [x] Sustained Hits D3/D6 averaging (same pattern)
+- [x] Anti-CHARACTER/Anti-FLY toughness ranges widened
+
+### Data Quality Fixes
+- [x] Daemon price corrections: 15 units fixed from estimates to exact MFM values
+- [x] Daemon name alignment: capitalized "Of"/"On"/"The"; curly apostrophe fixes
+- [x] 7 weapon name fixes: "Fire of Tzeentch" → "Fires of Tzeentch", "Attendants' hellblades" → "Attendant's hellblades", removed "Warpsword" from Soul Grinder, cleared "Daemonic claws" from Furies
+- [x] 9 unit name fixes: Be'lakor, Syll'Esske apostrophe alignment; title casing
+- [x] 3 config data fixes: removed Furies from Daemon config, fix Seekers duplicate "Lashing tongue", fix Hellflayers "Lashes of torment" double-count
+- [x] Furies removed from Daemon config (unit not in BSData — possibly removed in 11e)
 
 ### Data-Driven Weapon Loader (`engine/weapon_loader.py`)
 - [x] `WeaponCatalog` reads BSData merged JSON — single source of truth
@@ -88,9 +110,9 @@ Multi-faction, data-driven, test-verified.
 ### 1c. Test Suite
 - [x] `tests/` dir with pytest structure
 - [x] `tests/conftest.py` — shared fixtures
-- [x] `tests/test_dpp.py` — DPP computation invariants (17 tests)
-- [x] `tests/test_pricing.py` — pricing 1:1 with MFM per datasheet (15 tests, 3 factions)
-- [x] **32/32 tests passing**
+- [x] `tests/test_dpp.py` — DPP computation invariants (18 tests)
+- [x] `tests/test_pricing.py` — pricing 1:1 with MFM per datasheet (15 tests, 3 factions, all 3 factions: GK/CK/Daemons)
+- [x] **33/33 tests passing** (maintained across all engine changes)
 
 ---
 
@@ -111,11 +133,11 @@ Multi-faction, data-driven, test-verified.
 - [x] Progressive pricing: pts_3rd for 5 CK units
 
 ### 2c. CK-Specific Engine Rules
-- [ ] Daemonic Surge: no FNP for CK (unlike Daemons) — config already handles this
+- [x] Daemonic Surge: no FNP for CK (unlike Daemons) — config handles via fnp_val
 - [ ] Titanic units: Plunging Fire interaction (TOWERING for CK Titans)
 - [ ] Harbinger of Dread: battle-shock-based mechanics
 - [ ] Bondsmans: War Dog character upgrades
-- [ ] Infernal Lance: Malefic Surge Empowered system
+- [ ] Infernal Lance: Malefic Surge Empowered system (modifier choices defined)
 
 ---
 
@@ -156,12 +178,13 @@ In priority order:
 - [x] Daemon faction pack JSON (9 detachments fully detailed)
 - [x] Domain expert file (`resources/experts/chaos-daemons.md`)
 - [x] Config JSONs (characters, squads, vehicles, weapon_options, supported, notes)
-- [x] All prices verified 1:1 with MFM (54 units)
-- [x] Progressive pricing: pts_3rd for 7 Daemon units
+- [x] All prices verified 1:1 with MFM (53 units, Furies removed)
+- [x] Progressive pricing: pts_3rd for 6 Daemon units
 - [x] 9 detachments with DP costs: 1DP (4), 2DP (5)
 - [x] Army rules: Shadow of Chaos, Daemonic Manifestation, Daemonic Terror
-- [ ] MCP server Daemon registration
-- [ ] Daemon allies pricing in CK merge
+- [x] MCP server Daemon registration
+- [x] Daemon allies pricing in CK merge (52 Daemon ally units with MFM prices)
+- [x] **53/53 Daemon units ranked** (100% coverage minus removed Furies)
 
 ### 3g. Remaining Factions
 - [ ] Aeldari, Drukhari, Necrons, Orks, T'au, etc.
@@ -172,26 +195,27 @@ In priority order:
 ## Phase 4: Advanced Engine
 
 ### Detachment Modifier System
-- [ ] Warpbane Task Force: re-roll hits vs re-roll 1s in Hallowed Ground
-- [ ] Argent Assault: +1 to wound vs higher-T targets
+- [x] DetachmentModifier dataclass + JSON-based loading from faction pack
+- [x] unit_filter (name + keyword match) for per-unit modifier application
+- [x] GK: Warpbane Task Force (re-roll hits), Argent Assault (+1 to wound), Immaterial Interdiction (Deep Strike buff)
+- [x] CK: Infernal Lance (Malefic Surge), Bastions of Tyranny (Stealth aura)
+- [ ] Daemon detachment modifiers (8/9 Daemon detachments have modifiers defined)
 - [ ] Banishers: Leadership test → Sustained Hits or Lethal Hits on melee
 - [ ] Brotherhood Strike: Deep Strike turn buffs (re-roll 1s to hit/wound)
 - [ ] Hallowed Conclave: Terminator Fall Back + shoot/charge
 - [ ] Sanctic Spearhead: Vehicle Advance 6"+ Assault
 - [ ] Augurium Task Force: Gate of Infinity extension
 - [ ] Fires of Purgation: Purgation battle-shock pinning
-- [ ] Immaterial Interdiction: Interceptor surge move
-- [ ] Infernal Lance: Malefic Surge Empowered (choose one: +3" move, Lethal/Sustained 1, 5++/FNP6+)
-- [ ] Daemon detachment abilities (Daemonic Incursion, Shadow Legion, Blood Legion, etc.)
-- [ ] CK detachment modifiers (Bastions, Hunting Warpack, Iconoclast Fiefdom)
+- [ ] Hunting Warpack, Helhunt Lance, Iconoclast Fiefdom, Houndpack/Lords/Traitoris Lance (CK)
 
 ### Core Rules Refinements
-- [ ] No T1 Reinforcements (11e rule — affects DS mobility value)
-- [ ] Rapid Fire keyword processing (remove pre-doubled `ranged_a` hack) — partially done in engine
-- [ ] Blast keyword processing (min attacks based on squad size)
-- [ ] Melta half-range bonus
-- [ ] Heavy penalty on movement
-- [ ] Plunging Fire for TOWERING
+- [x] No T1 Reinforcements (11e rule — reduces DS mobility bonus 10→5)
+- [x] GK squad `ranged_a` double-counting bug fixed (Storm bolter A=4→2 base, RF2 applied by engine)
+- [x] Blast modelling (11e [24.05]: +X attacks per 5 models)
+- [x] Melta half-range bonus (--melta flag)
+- [x] Heavy stationary bonus (--heavy flag)
+- [x] Sustained Hits D3/D6 averaging (D3=2, D6=3)
+- [x] Plunging Fire for TOWERING (auto-applied, --no-plunging to disable)
 
 ### Output & Visualization
 - [ ] Radar/triangle charts (DPS/SURV/MOB axes)
@@ -242,3 +266,20 @@ In priority order:
 8. **Progressive pricing 1:1 with MFM** — `pts` + optional `pts_3rd` in every datasheet
 9. **No estimates** — every config price sourced from MFM, verified by test
 10. **No backtick fences inside JS template literals** — use 4-space indent
+11. **Blast scales with target model_count** — no flag needed, automatically computed from target profile
+12. **Melta/Heavy opt-in by flag** — default OFF, `--melta`/`--heavy` to activate (range/position dependent)
+13. **Plunging Fire auto-applied for TOWERING** — RAW rule, `--no-plunging` to disable for edge cases
+14. **GK `ranged_a` is base attacks** — config stores A=2 for Storm bolter, NOT A=4 (engine adds Rapid Fire)
+
+---
+
+## Current Ranking Stats
+
+| Metric | Value |
+|--------|-------|
+| Total factions | 3 (Grey Knights, Chaos Knights, Chaos Daemons) |
+| Total units ranked | 101 (29 GK + 19 CK + 53 Daemons) |
+| Units with progressive pricing | 21 (10 GK + 5 CK + 6 Daemons) |
+| Detachments with modifiers | 15 (3 GK + 2 CK + 10 Daemon) |
+| Tests passing | 33/33 |
+| Engine features | Blast, Melta, Heavy, Psychic, Torrent, Lance, Anti-Keyword, Extra Attacks, Rapid Fire, Sustained Hits, Lethal Hits, Devastating Wounds

@@ -72,6 +72,7 @@ class FactionConfig:
                 toughness=spec["toughness"],
                 save=spec["save"],
                 invuln=spec.get("invuln"),
+                model_count=spec.get("model_count", 1),
             )
 
         # Mission profiles
@@ -111,7 +112,8 @@ def _load_catalog(merged_path: str, faction: str | None = None) -> WeaponCatalog
     return WeaponCatalog(merged_path, faction=faction)
 
 
-def _ld_dmg(ranged, melee, innate, target, modifier: Optional[WeaponModifier] = None):
+def _ld_dmg(ranged, melee, innate, target, modifier: Optional[WeaponModifier] = None,
+            melta_active: bool = False, heavy_stationary: bool = False, hit_mode: HitMode = HitMode.NORMAL):
     """Total damage across all weapon lists against a target.
 
     11e melee rule [24.11]: [Extra Attacks] weapons are ALWAYS used in
@@ -122,7 +124,7 @@ def _ld_dmg(ranged, melee, innate, target, modifier: Optional[WeaponModifier] = 
     """
     d = 0
     for wp in ranged:
-        d += _wp_dmg(wp, target, modifier)
+        d += _wp_dmg(wp, target, modifier, melta_active=melta_active, heavy_stationary=heavy_stationary, hit_mode=hit_mode)
 
     ea_melee = []
     other_melee = []
@@ -134,23 +136,28 @@ def _ld_dmg(ranged, melee, innate, target, modifier: Optional[WeaponModifier] = 
 
     if ea_melee:
         for wp in ea_melee:
-            d += _wp_dmg(wp, target, modifier)
+            d += _wp_dmg(wp, target, modifier, melta_active=melta_active, heavy_stationary=heavy_stationary, hit_mode=hit_mode)
         if other_melee:
-            d += max(_wp_dmg(wp, target, modifier) for wp in other_melee)
+            d += max(_wp_dmg(wp, target, modifier, melta_active=melta_active, heavy_stationary=heavy_stationary, hit_mode=hit_mode)
+                     for wp in other_melee)
     elif other_melee:
-        d += max(_wp_dmg(wp, target, modifier) for wp in other_melee)
+        d += max(_wp_dmg(wp, target, modifier, melta_active=melta_active, heavy_stationary=heavy_stationary, hit_mode=hit_mode)
+                 for wp in other_melee)
 
     for wp in innate:
-        d += _wp_dmg(wp, target, modifier)
+        d += _wp_dmg(wp, target, modifier, melta_active=melta_active, heavy_stationary=heavy_stationary, hit_mode=hit_mode)
     return d
 
 
-def _wp_dmg(wp, target, modifier: Optional[WeaponModifier] = None):
+def _wp_dmg(wp, target, modifier: Optional[WeaponModifier] = None,
+            melta_active: bool = False, heavy_stationary: bool = False, hit_mode: HitMode = HitMode.NORMAL):
     """Damage for a single weapon against target (single or weighted list)."""
     if isinstance(target, list):
-        return sum(w * compute_weapon_dpp(wp, tp, modifier=modifier, unit_points=1, hit_mode=HitMode.NORMAL)["total_damage"]
+        return sum(w * compute_weapon_dpp(wp, tp, modifier=modifier, unit_points=1, hit_mode=hit_mode,
+                                          melta_active=melta_active, heavy_stationary=heavy_stationary)["total_damage"]
                    for _, tp, w in target)
-    return compute_weapon_dpp(wp, target, modifier=modifier, unit_points=1, hit_mode=HitMode.NORMAL)["total_damage"]
+    return compute_weapon_dpp(wp, target, modifier=modifier, unit_points=1, hit_mode=hit_mode,
+                              melta_active=melta_active, heavy_stationary=heavy_stationary)["total_damage"]
 
 
 class RankingEngine:
@@ -525,7 +532,10 @@ class RankingEngine:
 
     def compute_ranking(self, target=None, mission=None, meta_name=None, tier="1st",
                          detachment: Optional[str] = None,
-                         detachment_choice: Optional[int] = None):
+                         detachment_choice: Optional[int] = None,
+                         melta_active: bool = False,
+                         heavy_stationary: bool = False,
+                         plunging: bool = True):
         """Compute unit ranking for a given target, optionally weighted by mission or tier.
 
         Args:
@@ -535,6 +545,9 @@ class RankingEngine:
             tier: Pricing tier — '1st' (default) or '3rd' (3rd+ unit pricing).
             detachment: Detachment name to apply modifiers from.
             detachment_choice: Index of the modifier choice (0-based).
+            melta_active: assume ≤ half range for Melta bonus.
+            heavy_stationary: assume the unit remained stationary for Heavy bonus.
+            plunging: auto-apply Plunging Fire (+1 BS) for TOWERING units (default True).
 
         Returns:
             list of result dicts sorted by mission score (or DPP).
@@ -595,6 +608,12 @@ class RankingEngine:
             # Unit info (needed before modifier check for keyword-based filters)
             kw_list, t_val, sv_val, w_val, oc_val, inv_val = self.get_unit_info(name, profile)
 
+            # Merge profile keywords (e.g. TOWERING) not present in config-derived kw_list
+            profile_kw = [k.upper() for k in profile.get("keywords", [])]
+            for pk in profile_kw:
+                if pk not in kw_list:
+                    kw_list.append(pk)
+
             pricing = unit.get("pricing", [])
             stats = profile.get("stats", {})
 
@@ -603,15 +622,28 @@ class RankingEngine:
                 continue
             pts, ranged_profiles, melee_profiles, innate_profiles, info = resolved
 
+            # Auto-apply Plunging Fire (+1 BS) for TOWERING units [11e core rules]
+            # TOWERING units are always considered elevated vs ground targets.
+            # Psychic weapons will ignore this per [24.29] in compute_weapon_dpp.
+            unit_hit_mode = HitMode.NORMAL
+            if plunging and "TOWERING" in profile_kw:
+                unit_hit_mode = HitMode.PLUNGING_FIRE
+
             # Per-unit modifier check (respects unit_filter against name + keywords)
             unit_weapon_mod = weapon_mod if _modifier_applies(detachment_mod, name, kw_list) else None
             unit_surv_mod = detachment_mod if _modifier_applies(detachment_mod, name, kw_list) else None
             unit_mob_mod = detachment_mod if _modifier_applies(detachment_mod, name, kw_list) else None
 
             # DPP (with optional detachment modifier)
-            dmg_ranged = _ld_dmg(ranged_profiles, [], [], actual_target, unit_weapon_mod) if ranged_profiles else 0
-            dmg_melee = _ld_dmg([], melee_profiles, [], actual_target, unit_weapon_mod) if melee_profiles else 0
-            dmg_innate = _ld_dmg([], [], innate_profiles, actual_target, unit_weapon_mod) if innate_profiles else 0
+            dmg_ranged = _ld_dmg(ranged_profiles, [], [], actual_target, unit_weapon_mod,
+                                 melta_active=melta_active, heavy_stationary=heavy_stationary,
+                                 hit_mode=unit_hit_mode) if ranged_profiles else 0
+            dmg_melee = _ld_dmg([], melee_profiles, [], actual_target, unit_weapon_mod,
+                                melta_active=melta_active, heavy_stationary=heavy_stationary,
+                                hit_mode=unit_hit_mode) if melee_profiles else 0
+            dmg_innate = _ld_dmg([], [], innate_profiles, actual_target, unit_weapon_mod,
+                                 melta_active=melta_active, heavy_stationary=heavy_stationary,
+                                 hit_mode=unit_hit_mode) if innate_profiles else 0
             total_dmg = dmg_ranged + dmg_melee + dmg_innate
             dpp_val = total_dmg / pts if pts > 0 else 0
             is_infantry = "INFANTRY" in kw_list
@@ -910,8 +942,10 @@ class RankingEngine:
         print("- average dice (no variance band)")
         print("- Melee DPP included in total (assumes charge reaches target)")
         print("- No FNP on the target")
-        print("- No Blast minimum attacks modelled")
-        print("- No Melta half-range bonus modelled")
+        print("- Blast modelled (11e: +X attacks per 5 models)")
+        print("- Melta half-range bonus only if --melta flag set")
+        print("- Heavy stationary bonus only if --heavy flag set")
+        print("- Plunging Fire auto-applied for TOWERING units (--no-plunging to disable)")
         print("- Character buffs to their squad NOT included (only solo model output)")
         print()
         print("**What DPP does NOT model:**")

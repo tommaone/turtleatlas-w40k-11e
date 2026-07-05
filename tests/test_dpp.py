@@ -124,6 +124,192 @@ class TestComputeWeaponDPP:
         # MEQ has no invuln, total_damage should be non-negative
         assert result["total_damage"] >= 0
 
+    # ── Plunging Fire ─────────────────────────────────────────────
+
+    def test_plunging_fire_improves_hits(self, MEQ):
+        """Plunging Fire should increase expected hits."""
+        wp = WeaponProfile(
+            name="Test", attacks=6, bs=3, strength=4, ap=-1, damage=1, abilities=[],
+        )
+        normal = compute_weapon_dpp(wp, MEQ, unit_points=100, hit_mode=HitMode.NORMAL)
+        plung = compute_weapon_dpp(wp, MEQ, unit_points=100, hit_mode=HitMode.PLUNGING_FIRE)
+        assert plung["expected_hits"] > normal["expected_hits"]
+        # BS3+ → 2+: 4/6 → 5/6 = +25%
+        assert abs(plung["expected_hits"] / normal["expected_hits"] - 5/4) < 0.01
+
+    def test_psychic_ignores_plunging_fire(self, MEQ):
+        """Psychic weapons should ignore Plunging Fire."""
+        wp = WeaponProfile(
+            name="Psychic Test", attacks=6, bs=3, strength=8, ap=-2, damage=2,
+            abilities=["Psychic"],
+        )
+        normal = compute_weapon_dpp(wp, MEQ, unit_points=100, hit_mode=HitMode.NORMAL)
+        plung = compute_weapon_dpp(wp, MEQ, unit_points=100, hit_mode=HitMode.PLUNGING_FIRE)
+        assert plung["expected_hits"] == normal["expected_hits"]
+        assert plung["total_damage"] == normal["total_damage"]
+
+    def test_plunging_and_cover_cancel(self, MEQ):
+        """COVER_PLUNGING mode should net zero modifier."""
+        wp = WeaponProfile(
+            name="Test", attacks=6, bs=3, strength=4, ap=-1, damage=1, abilities=[],
+        )
+        normal = compute_weapon_dpp(wp, MEQ, unit_points=100, hit_mode=HitMode.NORMAL)
+        both = compute_weapon_dpp(wp, MEQ, unit_points=100, hit_mode=HitMode.COVER_PLUNGING)
+        assert both["expected_hits"] == normal["expected_hits"]
+
+    def test_torrent_ignores_plunging_fire(self, MEQ):
+        """Torrent weapons should auto-hit regardless of Plunging Fire."""
+        wp = WeaponProfile(
+            name="Torrent Flamer", attacks=7, bs=6, strength=4, ap=-1, damage=1,
+            abilities=["Torrent"],
+        )
+        plung = compute_weapon_dpp(wp, MEQ, unit_points=100, hit_mode=HitMode.PLUNGING_FIRE)
+        # Torrent: always auto-hit regardless of BS or modifiers
+        assert plung["expected_hits"] == 7.0
+
+    # ── Blast ─────────────────────────────────────────────────────
+
+    def test_blast_bonus_vs_large_unit(self, MEQ):
+        """Blast adds (model_count // 5) * X bonus attacks."""
+        wp_blast = WeaponProfile(
+            name="Blast Cannon", attacks=3, bs=3, strength=5, ap=-1, damage=1,
+            abilities=["Blast"],
+        )
+        # vs 1 model: 0 bonus
+        solo = TargetProfile(toughness=MEQ.toughness, save=MEQ.save, model_count=1)
+        r_solo = compute_weapon_dpp(wp_blast, solo, unit_points=100)
+        # vs 20 models: 20//5*1 = 4 bonus (total 7 attacks)
+        horde = TargetProfile(toughness=MEQ.toughness, save=MEQ.save, model_count=20)
+        r_horde = compute_weapon_dpp(wp_blast, horde, unit_points=100)
+        assert r_horde["conditions"]["blast_bonus"] == 4
+        assert r_horde["expected_hits"] > r_solo["expected_hits"]
+        # 7/3 ≈ 2.33x more attacks
+        ratio = r_horde["expected_hits"] / r_solo["expected_hits"]
+        assert abs(ratio - 7/3) < 0.1
+
+    def test_blast_x_bonus(self, MEQ):
+        """Blast X adds X * (model_count // 5) bonus attacks."""
+        wp = WeaponProfile(
+            name="Blast 2 Cannon", attacks=2, bs=3, strength=6, ap=-1, damage=1,
+            abilities=["Blast 2"],
+        )
+        horde = TargetProfile(toughness=MEQ.toughness, save=MEQ.save, model_count=15)
+        r = compute_weapon_dpp(wp, horde, unit_points=100)
+        assert r["conditions"]["blast_bonus"] == 6  # 15//5=3, 3*2=6
+        # Total attacks: 2 + 6 = 8
+
+    def test_no_blast_bonus_vs_small_unit(self, MEQ):
+        """Blast vs <5 models gives no bonus."""
+        wp = WeaponProfile(
+            name="Blast Test", attacks=4, bs=3, strength=4, ap=0, damage=1,
+            abilities=["Blast"],
+        )
+        for count in [1, 2, 3, 4]:
+            tp = TargetProfile(toughness=MEQ.toughness, save=MEQ.save, model_count=count)
+            r = compute_weapon_dpp(wp, tp, unit_points=100)
+            assert r["conditions"]["blast_bonus"] == 0, f"Expected 0 bonus for {count} models"
+
+    def test_blast_and_rapid_fire_stack(self, MEQ):
+        """Blast bonus and Rapid Fire should both add to effective attacks."""
+        wp = WeaponProfile(
+            name="Frag Cannon", attacks=2, bs=3, strength=6, ap=-1, damage=1,
+            abilities=["Blast", "Rapid Fire 2"],
+        )
+        horde = TargetProfile(toughness=MEQ.toughness, save=MEQ.save, model_count=10)
+        r = compute_weapon_dpp(wp, horde, unit_points=50)
+        # Blast: 10//5*1 = 2, RF: 2, total: 2+2+2 = 6
+        hits_no_blast = 2 + 2  # base + RF only
+        hits_total = 2 + 2 + 2  # base + blast + RF
+        assert r["conditions"]["blast_bonus"] == 2
+        assert abs(r["expected_hits"] - hits_total * 4/6) < 0.1  # BS3+
+
+    # ── Melta ─────────────────────────────────────────────────────
+
+    def test_melta_inactive_by_default(self, MEQ):
+        """Melta should not apply unless melta_active=True."""
+        wp = WeaponProfile(
+            name="Melta Gun", attacks=1, bs=3, strength=8, ap=-4, damage=1,
+            abilities=["Melta 2"],
+        )
+        r_off = compute_weapon_dpp(wp, MEQ, unit_points=50, melta_active=False)
+        r_on = compute_weapon_dpp(wp, MEQ, unit_points=50, melta_active=True)
+        assert r_on["total_damage"] > r_off["total_damage"]
+
+    def test_melta_adds_damage(self, MEQ):
+        """Melta X adds X damage at half range."""
+        wp = WeaponProfile(
+            name="Multi-melta", attacks=2, bs=3, strength=9, ap=-4, damage=2,
+            abilities=["Melta 2"],
+        )
+        # D=2 base, Melta 2 → D=4 at half range → 2x damage before overkill
+        r_off = compute_weapon_dpp(wp, MEQ, unit_points=50, melta_active=False)
+        r_on = compute_weapon_dpp(wp, MEQ, unit_points=50, melta_active=True)
+        # Damage exactly doubles (no overkill for 2W MEQ with D=2 vs D=4)
+        ratio = r_on["total_damage"] / r_off["total_damage"]
+        assert abs(ratio - 2.0) < 0.01
+
+    # ── Heavy ─────────────────────────────────────────────────────
+
+    def test_heavy_stationary_improves_hits(self, MEQ):
+        """Heavy gives +1 to hit if stationary."""
+        wp = WeaponProfile(
+            name="Heavy Bolter", attacks=3, bs=3, strength=5, ap=-1, damage=1,
+            abilities=["Heavy"],
+        )
+        r_moved = compute_weapon_dpp(wp, MEQ, unit_points=60, heavy_stationary=False)
+        r_still = compute_weapon_dpp(wp, MEQ, unit_points=60, heavy_stationary=True)
+        assert r_still["expected_hits"] > r_moved["expected_hits"]
+        # BS3+ → 2+: 4/6 → 5/6 = +25%
+        ratio = r_still["expected_hits"] / r_moved["expected_hits"]
+        assert abs(ratio - 5/4) < 0.01
+
+    def test_psychic_ignores_heavy(self, MEQ):
+        """Psychic weapons should ignore Heavy bonus."""
+        wp = WeaponProfile(
+            name="Psychic Cannon", attacks=3, bs=3, strength=7, ap=-2, damage=2,
+            abilities=["Psychic", "Heavy"],
+        )
+        r_still = compute_weapon_dpp(wp, MEQ, unit_points=80, heavy_stationary=True)
+        r_moved = compute_weapon_dpp(wp, MEQ, unit_points=80, heavy_stationary=False)
+        assert r_still["expected_hits"] == r_moved["expected_hits"]
+
+    def test_heavy_does_not_penalise_on_move(self, MEQ):
+        """Heavy in 11e has no penalty when moving — only bonus when stationary."""
+        wp = WeaponProfile(
+            name="Heavy Gun", attacks=3, bs=3, strength=5, ap=-1, damage=1,
+            abilities=["Heavy"],
+        )
+        r_moved = compute_weapon_dpp(wp, MEQ, unit_points=60, heavy_stationary=False)
+        # Same as non-Heavy weapon with same stats
+        wp2 = WeaponProfile(
+            name="Regular Gun", attacks=3, bs=3, strength=5, ap=-1, damage=1,
+            abilities=[],
+        )
+        r_regular = compute_weapon_dpp(wp2, MEQ, unit_points=60)
+        assert r_moved["expected_hits"] == r_regular["expected_hits"]
+
+    # ── Rapid Fire D3/D6 ──────────────────────────────────────────
+
+    def test_rapid_fire_d3_averaged(self, MEQ):
+        """Rapid Fire D3 should average to +2 extra attacks."""
+        wp = WeaponProfile(
+            name="RF D3 Gun", attacks=3, bs=3, strength=4, ap=0, damage=1,
+            abilities=["Rapid Fire D3"],
+        )
+        r = compute_weapon_dpp(wp, MEQ, unit_points=50)
+        # 3 base + 2 RF = 5 attacks, BS3+ → 4/6 * 5 = 3.33 hits
+        assert abs(r["expected_hits"] - 3.33) < 0.1
+
+    def test_rapid_fire_d6_averaged(self, MEQ):
+        """Rapid Fire D6 should average to +3 extra attacks."""
+        wp = WeaponProfile(
+            name="RF D6 Gun", attacks=2, bs=3, strength=4, ap=0, damage=1,
+            abilities=["Rapid Fire D6"],
+        )
+        r = compute_weapon_dpp(wp, MEQ, unit_points=50)
+        # 2 base + 3 RF = 5 attacks
+        assert abs(r["expected_hits"] - 5 * 4/6) < 0.1
+
 
 # ---------------------------------------------------------------------------
 # compute_surv
