@@ -143,43 +143,41 @@ print("=" * 120)
 print("TABLE 3: DETACHMENT ANALYSIS — all 8 CK detachments")
 print("=" * 120)
 
-fp_path = engine.data  # We'll load from the file directly
-with open(engine.merged_path.replace("merged/chaos-knights.json", "chaos-knights-faction-pack.json")) as f:
-    fp_data = json.load(f)
-
-# Disposition descriptions
 disp_names = {
-    "purge-the-foe": "Kill-focused (DPS 70%, SURV 20%, MOB 10%)",
-    "take-and-hold": "Objective-focused (DPS 20%, SURV 50%, MOB 30%)", 
-    "priority-assets": "Balanced/assassination (DPS 50%, SURV 30%, MOB 20%)",
-    "reconnaissance": "Mobility-focused (DPS 15%, SURV 25%, MOB 60%)",
-    "disruption": "Deny/control (DPS 35%, SURV 35%, MOB 30%)",
+    "PURGE THE FOE": "Kill-focused (DPS 70%, SURV 20%, MOB 10%)",
+    "TAKE AND HOLD": "Objective-focused (DPS 20%, SURV 50%, MOB 30%)",
+    "PRIORITY ASSETS": "Balanced/assassination (DPS 50%, SURV 30%, MOB 20%)",
+    "RECONNAISSANCE": "Mobility-focused (DPS 15%, SURV 25%, MOB 60%)",
+    "DISRUPTION": "Deny/control (DPS 35%, SURV 35%, MOB 30%)",
 }
 
-for det in fp_data["detachments"]:
+# Load modifier data from config (machine-readable, no GW IP)
+mod_config_path = engine.merged_path.replace("merged/chaos-knights.json", "../config/chaos-knights/detachment_modifiers.json")
+import os
+mod_config_path = os.path.normpath(mod_config_path)
+mod_data = {}
+if os.path.exists(mod_config_path):
+    with open(mod_config_path) as f:
+        mod_data = json.load(f).get("detachments", {})
+
+for det in engine.data["detachments"]:
     name = det["name"]
-    dp = det.get("dp_cost", "?")
-    disp = det.get("disposition", "none")
-    disp_desc = disp_names.get(disp, disp)
+    dp = det.get("dp", "?")
+    objective = det.get("objective", "NONE")
+    disp_desc = disp_names.get(objective, objective)
 
     print(f"\n### {name}  (DP={dp}, Disposition: {disp_desc})")
-    
-    # Rules
-    for r in det.get("rules", []):
-        print(f"  Rule: {r['name']} — {r['description']}")
-    
-    # Modifiers
-    mods = det.get("modifiers", {})
-    choices = mods.get("choices", [])
+
+    # Modifiers from config
+    det_mods = mod_data.get(name.upper(), {})
+    choices = det_mods.get("choices", [])
     if choices:
-        print(f"  Modifiers description: {mods.get('description', 'N/A')}")
         for c in choices:
             filter_str = f" (filter: {', '.join(c.get('unit_filter', ['all']))})" if c.get('unit_filter') else " (all units)"
             cond = f" [{c.get('condition', 'always-on')}]" if c.get('condition') else ""
-            
-            # Summarise the buff
+
             buff_parts = []
-            if c.get('hit_modifier'): buff_parts.append(f"{'hit_mod'}")
+            if c.get('hit_modifier'): buff_parts.append("hit_mod")
             if c.get('sustained_hits_extra'): buff_parts.append(f"Sustained Hits +{c['sustained_hits_extra']}")
             if c.get('lethal_hits'): buff_parts.append("Lethal Hits")
             if c.get('plus1_to_wound'): buff_parts.append("+1 to wound")
@@ -189,20 +187,20 @@ for det in fp_data["detachments"]:
             if c.get('movement_bonus'): buff_parts.append(f"+{c['movement_bonus']}\" M")
             if c.get('invulnerable_save'): buff_parts.append(f"INV {c['invulnerable_save']}+")
             if c.get('feel_no_pain'): buff_parts.append(f"FNP {c['feel_no_pain']}+")
-            
+
             buff_str = ", ".join(buff_parts) if buff_parts else c.get('description', 'see above')
             print(f"    {c['name']}: {c.get('description', '')}{filter_str}{cond}")
             if buff_parts:
                 print(f"      → {buff_str}")
     else:
-        print(f"  No DPP modifiers defined in faction pack (detachment's effects are stratagem/enhancement-based)")
+        print(f"  No DPP modifiers defined (detachment's effects are stratagem/enhancement-based)")
 
-    # Enhancements
+    # Enhancements from merged data
     enhs = det.get("enhancements", [])
     if enhs:
         print(f"  Enhancements ({len(enhs)}):")
         for e in enhs:
-            print(f"    • {e['name']}: {e.get('description', '')}")
+            print(f"    • {e['name']} ({e.get('points', '?')}pts)")
     else:
         print(f"  Enhancements: none listed")
 

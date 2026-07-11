@@ -22,6 +22,7 @@ from engine.ranking import RankingEngine
 REPO_ROOT = Path(__file__).resolve().parent.parent
 VALID_AFFECTS = {"dpp", "surv", "mob"}
 VALID_DP_COST = {1, 2, 3}
+VALID_DISPOSITION_IDS = {"purge-the-foe", "take-and-hold", "reconnaissance", "priority-assets", "disruption"}
 
 # Cached merged data for checking unit weapon counts
 _MERGED_CACHE: dict[str, list[str]] = {}
@@ -566,3 +567,110 @@ class TestTier25InertFields:
                 if len(locations) > 5:
                     report.append(f"    ... and {len(locations)-5} more")
             pytest.skip("Inert fields: " + "\n".join(report))
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# TIER 3: FORCE DISPOSITIONS
+# ═══════════════════════════════════════════════════════════════════════
+
+class TestTier3ForceDispositions:
+    """Validate force disposition mapping and engine gating."""
+
+    def test_ck_has_8_dispositions(self):
+        """Chaos Knights must have exactly 8 disposition entries (one per detachment)."""
+        from engine.ranking import RankingEngine
+        eng = RankingEngine("chaos-knights")
+        assert len(eng.config.dispositions) == 8, (
+            f"Expected 8 dispositions, got {len(eng.config.dispositions)}: "
+            f"{list(eng.config.dispositions.keys())}"
+        )
+
+    def test_all_disposition_values_are_valid(self):
+        """Every disposition value must be one of the 5 valid IDs."""
+        from engine.ranking import RankingEngine
+        eng = RankingEngine("chaos-knights")
+        for det, disp in eng.config.dispositions.items():
+            assert disp in VALID_DISPOSITION_IDS, (
+                f"Detachment '{det}' has invalid disposition '{disp}'. "
+                f"Valid IDs: {VALID_DISPOSITION_IDS}"
+            )
+
+    def test_gk_dispositions_not_empty(self):
+        """Grey Knights must also have dispositions loaded."""
+        from engine.ranking import RankingEngine
+        eng = RankingEngine("grey-knights")
+        assert len(eng.config.dispositions) > 0, "Grey Knights dispositions empty"
+
+    @pytest.mark.parametrize("detachment,expected_disposition", [
+        ("infernal-lance", "purge-the-foe"),
+        ("iconoclast-fiefdom", "take-and-hold"),
+        ("bastions-of-tyranny", "disruption"),
+        ("hunting-warpack", "reconnaissance"),
+        ("lords-of-dread", "priority-assets"),
+        ("traitoris-lance", "purge-the-foe"),
+        ("helhunt-lance", "disruption"),
+        ("houndpack-lance", "reconnaissance"),
+    ])
+    def test_ck_disposition_spot_checks(self, detachment, expected_disposition):
+        """Spot-check each CK detachment maps to the right disposition."""
+        from engine.ranking import RankingEngine
+        eng = RankingEngine("chaos-knights")
+        actual = eng.config.dispositions.get(detachment)
+        assert actual == expected_disposition, (
+            f"{detachment}: expected '{expected_disposition}', got '{actual}'"
+        )
+
+    def test_invalid_disposition_raises(self):
+        """Using a detachment that can't play the given disposition must raise ValueError."""
+        from engine.ranking import RankingEngine
+        eng = RankingEngine("chaos-knights")
+        with pytest.raises(ValueError, match="cannot be used"):
+            eng.compute_ranking(
+                detachment="INFERNAL LANCE",
+                disposition="take-and-hold",
+            )
+
+    def test_valid_disposition_succeeds(self):
+        """Using a valid detachment+disposition combo must not raise."""
+        from engine.ranking import RankingEngine
+        eng = RankingEngine("chaos-knights")
+        results = eng.compute_ranking(
+            detachment="INFERNAL LANCE",
+            disposition="purge-the-foe",
+        )
+        assert isinstance(results, list)
+        assert len(results) > 0
+
+    def test_no_disposition_backward_compat(self):
+        """compute_ranking without disposition must still work (backward compat)."""
+        from engine.ranking import RankingEngine
+        eng = RankingEngine("chaos-knights")
+        results = eng.compute_ranking(detachment="INFERNAL LANCE")
+        assert isinstance(results, list)
+        assert len(results) > 0
+
+    def test_get_detachments_for_disposition(self):
+        """get_detachments_for_disposition returns the right detachments."""
+        from engine.ranking import RankingEngine
+        eng = RankingEngine("chaos-knights")
+        purge_dets = eng.config.get_detachments_for_disposition("purge-the-foe")
+        assert set(purge_dets) == {"infernal-lance", "traitoris-lance"}
+
+    def test_can_detachment_play_disposition(self):
+        """can_detachment_play_disposition works with kebab-case and space-separated names."""
+        from engine.ranking import RankingEngine
+        eng = RankingEngine("chaos-knights")
+        assert eng.config.can_detachment_play_disposition("infernal-lance", "purge-the-foe")
+        assert eng.config.can_detachment_play_disposition("INFERNAL LANCE", "purge-the-foe")
+        assert not eng.config.can_detachment_play_disposition("infernal-lance", "take-and-hold")
+
+    def test_compute_disposition_ranking(self):
+        """compute_disposition_ranking evaluates all valid detachments for a disposition."""
+        from engine.ranking import RankingEngine
+        eng = RankingEngine("chaos-knights")
+        results = eng.compute_disposition_ranking("purge-the-foe")
+        assert isinstance(results, dict)
+        # Should have 2 entries: infernal-lance and traitoris-lance
+        assert len(results) == 2, f"Expected 2 detachments, got {len(results)}: {list(results.keys())}"
+        for det_name, r in results.items():
+            assert isinstance(r, list), f"{det_name}: expected list, got {type(r)}"

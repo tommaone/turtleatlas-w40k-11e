@@ -95,6 +95,9 @@ class FactionConfig:
         # Meta profiles
         self.meta_profiles: dict = self.supported.get("meta_profiles", {})
 
+        # Force Dispositions — maps detachment kebab-case name → disposition ID
+        self.dispositions: dict[str, str] = self.supported.get("dispositions", {})
+
     @property
     def faction_key(self) -> str:
         return self.supported.get("key", "")
@@ -106,6 +109,18 @@ class FactionConfig:
     @property
     def faction_keywords(self) -> list[str]:
         return self.supported.get("keywords", [])
+
+    def get_detachments_for_disposition(self, disposition_id: str) -> list[str]:
+        """Return detachment names whose disposition matches the given ID."""
+        return [
+            det_name for det_name, disp in self.dispositions.items()
+            if disp == disposition_id
+        ]
+
+    def can_detachment_play_disposition(self, det_name: str, disposition_id: str) -> bool:
+        """Check if a detachment is valid for a given disposition."""
+        actual = self.dispositions.get(det_name.lower().replace(" ", "-"))
+        return actual == disposition_id
 
     def _resolve_meta(self, meta_spec):
         """Convert meta profile name or list to (name, TargetProfile, weight) list."""
@@ -649,6 +664,7 @@ class RankingEngine:
     def compute_ranking(self, target=None, mission=None, meta_name=None, tier="1st",
                          detachment: Optional[str] = None,
                          detachment_choice: Optional[int] = None,
+                         disposition: Optional[str] = None,
                          melta_active: bool = False,
                          heavy_stationary: bool = False,
                          plunging: bool = True):
@@ -661,6 +677,7 @@ class RankingEngine:
             tier: Pricing tier — '1st' (default) or '3rd' (3rd+ unit pricing).
             detachment: Detachment name to apply modifiers from.
             detachment_choice: Index of the modifier choice (0-based).
+            disposition: Mission disposition ID — validates detachment is playable.
             melta_active: assume ≤ half range for Melta bonus.
             heavy_stationary: assume the unit remained stationary for Heavy bonus.
             plunging: auto-apply Plunging Fire (+1 BS) for TOWERING units (default True).
@@ -668,6 +685,15 @@ class RankingEngine:
         Returns:
             list of result dicts sorted by mission score (or DPP).
         """
+        # Validate disposition constraint
+        if disposition and detachment and self.config.dispositions:
+            if not self.config.can_detachment_play_disposition(detachment, disposition):
+                valid = self.config.get_detachments_for_disposition(disposition)
+                raise ValueError(
+                    f"Detachment '{detachment}' cannot be used in '{disposition}' mission. "
+                    f"Valid detachments: {valid}"
+                )
+
         target = target or self.config.target_profiles.get("MEQ")
 
         # Resolve detachment modifier
@@ -896,6 +922,25 @@ class RankingEngine:
                 r["_mob_pct"] = _pct(self.mob_score(r["mob"]), mob_vals)
             results.sort(key=lambda r: r["dpp"], reverse=True)
 
+        return results
+
+    def compute_disposition_ranking(self, disposition: str, target=None, mission=None,
+                                     meta_name: Optional[str] = None, **kwargs) -> dict:
+        """Compute ranking for all detachments valid for a given disposition.
+
+        Returns dict mapping detachment name → ranking results (or error dict).
+        """
+        valid = self.config.get_detachments_for_disposition(disposition)
+        results = {}
+        for det_name in valid:
+            try:
+                r = self.compute_ranking(
+                    target=target, mission=mission, meta_name=meta_name,
+                    detachment=det_name, disposition=disposition, **kwargs
+                )
+                results[det_name] = r
+            except Exception as e:
+                results[det_name] = {"error": str(e)}
         return results
 
     # ── Helpers ──────────────────────────────────────────────────────
