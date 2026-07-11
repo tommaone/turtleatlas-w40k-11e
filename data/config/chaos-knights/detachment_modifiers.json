@@ -1,39 +1,156 @@
 {
-  "_note": "Detachment modifier data — game mechanics only (no copyrightable GW text). Engine loads this instead of faction-pack JSONs.",
+  "_note": "CK detachment modifiers — game mechanics only. Engine loads this for DPP/SURV/MOB computation. Modeled as always-on unless noted. 8 detachments total (11e Faction Pack).",
   "detachments": {
     "BASTIONS OF TYRANNY": {
+      "dp_cost": 1,
       "choices": [
         {
           "name": "Annihilate the Unworthy",
           "affects": "dpp",
           "hit_modifier": -1,
-          "description": "+1 to hit rolls vs battle-shocked (modeled as always-on)",
+          "description": "+1 to hit rolls vs battle-shocked units (modeled as always-on)",
           "unit_filter": ["Knight Tyrant"],
           "condition": "only vs battle-shocked units"
         }
       ]
     },
+    "HUNTING WARPACK": {
+      "dp_cost": 1,
+      "choices": [
+        {
+          "name": "Pack Hunters",
+          "affects": "dpp",
+          "plus1_to_wound": true,
+          "unit_filter": ["War Dog"],
+          "condition": "when charging or Heroic Intervention",
+          "description": "War Dogs gain +1 to wound when charging"
+        },
+        {
+          "name": "Relentless Pursuit",
+          "affects": "mob",
+          "advance_and_charge": true,
+          "unit_filter": ["War Dog"],
+          "description": "War Dogs can Advance and charge"
+        }
+      ]
+    },
+    "ICONOCLAST FIEFDOM": {
+      "dp_cost": 1,
+      "choices": [
+        {
+          "name": "Board Control",
+          "affects": "mob",
+          "movement_bonus": 2,
+          "condition": "DAMNED allies gain +2\" move; CK gain battleshock immunity near objectives",
+          "description": "Objective play buffs for Iconoclast Fiefdom"
+        },
+        {
+          "name": "Darkness Cloak",
+          "affects": "surv",
+          "stealth": true,
+          "condition": "Harbingers of Dread aura enhancement",
+          "description": "Stealth (-1 to hit) from enhanced Darkness aura"
+        }
+      ]
+    },
+    "HELHUNT LANCE": {
+      "dp_cost": 2,
+      "choices": [
+        {
+          "name": "Synergized Assault",
+          "affects": "dpp",
+          "reroll_hits": "1s",
+          "reroll_wounds": "1s",
+          "condition": "when War Dog and CHAOS KNIGHTS TITANIC units are both on battlefield",
+          "description": "Re-roll 1s to hit and wound when mixed force"
+        },
+        {
+          "name": "Unstoppable Advance",
+          "affects": "mob",
+          "advance_and_charge": true,
+          "fallback_and_charge": true,
+          "description": "Charge after Advance or Fall Back"
+        }
+      ]
+    },
+    "HOUNDPACK LANCE": {
+      "dp_cost": 2,
+      "choices": [
+        {
+          "name": "Pack Alpha",
+          "affects": "dpp",
+          "sustained_hits_extra": 1,
+          "unit_filter": ["War Dog"],
+          "condition": "when within 6\" of another War Dog unit",
+          "description": "War Dogs gain +1 Sustained Hits when near packmates"
+        },
+        {
+          "name": "Swift Predators",
+          "affects": "mob",
+          "movement_bonus": 2,
+          "unit_filter": ["War Dog"],
+          "description": "War Dogs gain +2\" movement"
+        }
+      ]
+    },
+    "LORDS OF DREAD": {
+      "dp_cost": 2,
+      "choices": [
+        {
+          "name": "Dread Aura",
+          "affects": "surv",
+          "stealth": true,
+          "condition": "Harbingers of Dread darkness extended to 9\"",
+          "description": "Extended Darkness aura gives Stealth (-1 to hit)"
+        },
+        {
+          "name": "Terror Tactics",
+          "affects": "mob",
+          "movement_bonus": 2,
+          "condition": "OC bonus from battleshock",
+          "description": "Board control from battleshock pressure"
+        }
+      ]
+    },
+    "TRAITORIS LANCE": {
+      "dp_cost": 2,
+      "choices": [
+        {
+          "name": "Kill Focus",
+          "affects": "dpp",
+          "sustained_hits_extra": 1,
+          "description": "Sustained Hits 1 on all attacks"
+        },
+        {
+          "name": "Precision Strikes",
+          "affects": "dpp",
+          "lethal_hits": true,
+          "description": "Lethal Hits on all attacks"
+        }
+      ]
+    },
     "INFERNAL LANCE": {
+      "dp_cost": 3,
       "choices": [
         {
           "name": "Unholy Hunger",
           "affects": "mob",
           "movement_bonus": 3,
-          "description": "+3\" movement when selected to Move"
+          "description": "+3\" movement when selected to Move (Empowered)"
         },
         {
           "name": "Diabolic Power",
           "affects": "dpp",
           "sustained_hits_extra": 1,
           "lethal_hits": true,
-          "description": "Lethal Hits or Sustained Hits 1 when shooting/fighting"
+          "description": "Lethal Hits or Sustained Hits 1 when shooting/fighting (Empowered)"
         },
         {
           "name": "Unnatural Fortitude",
           "affects": "surv",
           "invulnerable_save": 5,
           "feel_no_pain": 6,
-          "description": "5+ invuln or Feel No Pain 6+"
+          "description": "5+ invuln or Feel No Pain 6+ (Empowered)"
         }
       ]
     }

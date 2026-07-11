@@ -357,8 +357,8 @@ def expected_wounds(hits: float, lethal_wounds: float,
     mortal_wounds = crit_wounds if devastating else 0
     regular_wounds = normal_wounds + (crit_wounds - mortal_wounds)
 
-    # Add lethal hits
-    regular_wounds += lethal_wounds * p_wound
+    # Add lethal hits — auto-wounds bypass the wound roll entirely [11e core]
+    regular_wounds += lethal_wounds
     mortal_wounds += lethal_wounds * (1 - p_wound) if devastating else 0
 
     return regular_wounds, mortal_wounds

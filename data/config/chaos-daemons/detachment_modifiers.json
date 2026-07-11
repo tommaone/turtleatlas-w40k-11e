@@ -1,0 +1,297 @@
+{
+  "_note": "Daemon detachment modifiers \u2014 game mechanics only. Engine loads this for DPP/SURV/MOB computation. Modeled as always-on unless noted. 9 detachments total (11e Faction Pack).",
+  "detachments": {
+    "DAEMONIC INCURSION": {
+      "dp_cost": 1,
+      "choices": [
+        {
+          "name": "Warp Rifts",
+          "affects": "mob",
+          "movement_bonus": 3,
+          "condition": "Deep Strike >6\" instead of >9\" wholly within Shadow of Chaos or near matching-god Greater Daemon",
+          "description": "Improved Deep Strike range (avg +3\" placement flexibility)"
+        },
+        {
+          "name": "Denizens of the Warp",
+          "affects": "mob",
+          "movement_bonus": 2,
+          "condition": "stratagem: Deep Strike after normal move",
+          "description": "Mobile Deep Strike positioning"
+        }
+      ]
+    },
+    "SHADOW LEGION": {
+      "dp_cost": 1,
+      "choices": [
+        {
+          "name": "First Prince of Chaos - Khorne",
+          "affects": "dpp",
+          "lethal_hits": true,
+          "unit_filter": [
+            "Khorne"
+          ],
+          "condition": "Khorne: Murderer's Cowl \u2014 Advance/charge/shoot",
+          "description": "Khorne units gain Lethal Hits"
+        },
+        {
+          "name": "First Prince of Chaos - Tzeentch",
+          "affects": "surv",
+          "stealth": true,
+          "unit_filter": [
+            "Tzeentch"
+          ],
+          "condition": "Tzeentch: Penumbral Puppetry \u2014 Stealth, -1 hit in melee",
+          "description": "Tzeentch units gain Stealth"
+        },
+        {
+          "name": "First Prince of Chaos - Nurgle",
+          "affects": "surv",
+          "cover_save": true,
+          "unit_filter": [
+            "Nurgle"
+          ],
+          "condition": "Nurgle: Gloam Rot \u2014 S > T = -1 to wound the unit",
+          "description": "Nurgle units have -1 to wound when S > T"
+        },
+        {
+          "name": "First Prince of Chaos - Slaanesh",
+          "affects": "dpp",
+          "sustained_hits_extra": 1,
+          "unit_filter": [
+            "Slaanesh"
+          ],
+          "condition": "Slaanesh: Shadow's Caress \u2014 cannot be snap shot",
+          "description": "Slaanesh units gain Sustained Hits 1"
+        },
+        {
+          "name": "Dark Pacts (Undivided)",
+          "affects": "dpp",
+          "lethal_hits": true,
+          "unit_filter": [
+            "Undivided"
+          ],
+          "condition": "Undivided: Dark Pacts \u2014 choose Lethal Hits or Sustained Hits 1 per activation",
+          "description": "Undivided units gain Lethal Hits (modeled as Lethal)"
+        }
+      ]
+    },
+    "CAVALCADE OF CHAOS": {
+      "dp_cost": 1,
+      "choices": [
+        {
+          "name": "Unholy Avalanche",
+          "affects": "mob",
+          "fallback_and_shoot": true,
+          "fallback_and_charge": true,
+          "advance_and_charge": true,
+          "unit_filter": [
+            "Mounted"
+          ],
+          "condition": "MOUNTED units: Fall Back can still shoot/charge",
+          "description": "Mounted units full mobility \u2014 Advance and charge, Fall Back and shoot/charge"
+        },
+        {
+          "name": "Warp-Riders",
+          "affects": "mob",
+          "movement_bonus": 3,
+          "unit_filter": [
+            "Mounted"
+          ],
+          "condition": "MOUNTED units: +3\" effective movement from stratagems",
+          "description": "Mounted units enhanced mobility"
+        }
+      ]
+    },
+    "LORDS OF THE WARP": {
+      "dp_cost": 1,
+      "choices": [
+        {
+          "name": "Loci of Power",
+          "affects": "surv",
+          "stealth": true,
+          "unit_filter": [
+            "Character"
+          ],
+          "condition": "CHARACTER non-MONSTER: +1 LD, +1 OC",
+          "description": "Character units gain Stealth"
+        },
+        {
+          "name": "Swollen With Power",
+          "affects": "surv",
+          "invulnerable_save": 4,
+          "unit_filter": [
+            "Character"
+          ],
+          "condition": "enhancement: +2 Wounds for CHARACTER",
+          "description": "Characters gain improved invuln"
+        }
+      ]
+    },
+    "WARPTIDE": {
+      "dp_cost": 1,
+      "choices": [
+        {
+          "name": "Shudderblink",
+          "affects": "mob",
+          "assault": true,
+          "advance_and_charge": true,
+          "unit_filter": [
+            "Battleline"
+          ],
+          "condition": "BATTLELINE: Advance with Assault weapons and still charge",
+          "description": "Battleline units Advance with Assault weapons and can charge"
+        },
+        {
+          "name": "Daemonic Infestation",
+          "affects": "surv",
+          "feel_no_pain": 5,
+          "unit_filter": [
+            "Battleline"
+          ],
+          "condition": "stratagem: heal 3 wounds / return models",
+          "description": "Battleline sustain from stratagems"
+        }
+      ]
+    },
+    "BLOOD LEGION": {
+      "dp_cost": 2,
+      "choices": [
+        {
+          "name": "Murdercall",
+          "affects": "mob",
+          "movement_bonus": 3,
+          "unit_filter": [
+            "Khorne"
+          ],
+          "condition": "Enemy ends move within 8\" \u2192 D6\" surge move",
+          "description": "Khorne units gain reactive D6\" surge move (avg 3.5\")"
+        },
+        {
+          "name": "Gore-Hungry Onslaught",
+          "affects": "dpp",
+          "sustained_hits_extra": 1,
+          "unit_filter": [
+            "Khorne"
+          ],
+          "description": "Khorne units gain Sustained Hits 1"
+        },
+        {
+          "name": "Wrath Undeniable",
+          "affects": "surv",
+          "feel_no_pain": 5,
+          "unit_filter": [
+            "Khorne"
+          ],
+          "condition": "stratagem: fight on death",
+          "description": "Khorne units have FNP 5+ (fight on death effect)"
+        }
+      ]
+    },
+    "SCINTILLATING LEGION": {
+      "dp_cost": 2,
+      "choices": [
+        {
+          "name": "Fates in Flux",
+          "affects": "dpp",
+          "reroll_hits": "all",
+          "unit_filter": [
+            "Tzeentch"
+          ],
+          "condition": "Spend Flux token to re-roll any roll for Tzeentch unit",
+          "description": "Tzeentch units can re-roll all hits (Flux tokens)"
+        },
+        {
+          "name": "Pyrogenesis",
+          "affects": "dpp",
+          "extra_ap": -1,
+          "unit_filter": [
+            "Tzeentch"
+          ],
+          "condition": "stratagem: +2S or +3S +1AP for Tzeentch unit",
+          "description": "Tzeentch ranged gains +1 AP"
+        },
+        {
+          "name": "Flickering Reality",
+          "affects": "surv",
+          "invulnerable_save": 3,
+          "unit_filter": [
+            "Tzeentch"
+          ],
+          "condition": "stratagem: 'no hit on X' for Tzeentch unit",
+          "description": "Tzeentch units gain improved invuln vs shooting (3++)"
+        }
+      ]
+    },
+    "PLAGUE LEGION": {
+      "dp_cost": 2,
+      "choices": [
+        {
+          "name": "Melancholic Miasma",
+          "affects": "surv",
+          "stealth": true,
+          "unit_filter": [
+            "Nurgle"
+          ],
+          "condition": "Enemy within 9\" of Nurgle unit is in Shadow of Chaos",
+          "description": "Nurgle units extend Shadow of Chaos (Stealth-like debuff)"
+        },
+        {
+          "name": "Seeping Virulence",
+          "affects": "dpp",
+          "sustained_hits_extra": 1,
+          "unit_filter": [
+            "Nurgle"
+          ],
+          "condition": "stratagem: critical hits on 5+",
+          "description": "Nurgle ranged attacks gain Sustained Hits 1"
+        },
+        {
+          "name": "Rot and Renewal",
+          "affects": "surv",
+          "feel_no_pain": 5,
+          "unit_filter": [
+            "Nurgle"
+          ],
+          "condition": "stratagem: return models / heal unit",
+          "description": "Nurgle units have FNP 5+"
+        }
+      ]
+    },
+    "LEGION OF EXCESS": {
+      "dp_cost": 2,
+      "choices": [
+        {
+          "name": "Beguiling Aura",
+          "affects": "mob",
+          "fallback_and_charge": true,
+          "unit_filter": [
+            "Slaanesh"
+          ],
+          "condition": "Slaanesh units can charge after Falling Back",
+          "description": "Slaanesh units: Fall Back and charge"
+        },
+        {
+          "name": "Seductive Gambit",
+          "affects": "dpp",
+          "reroll_hits": "all",
+          "reroll_wounds": "1s",
+          "unit_filter": [
+            "Slaanesh"
+          ],
+          "condition": "After charge, trade Fights First for re-roll all hits and re-roll wounds of 1",
+          "description": "Slaanesh units: re-roll all hits and wounds of 1 after charge"
+        },
+        {
+          "name": "False Majesty",
+          "affects": "dpp",
+          "plus1_to_wound": true,
+          "unit_filter": [
+            "Slaanesh"
+          ],
+          "condition": "enhancement: +1 to wound in melee",
+          "description": "Slaanesh characters: +1 to wound in melee"
+        }
+      ]
+    }
+  }
+}

@@ -545,3 +545,66 @@ class TestWeaponSlots:
             f"All targets produced same loadout: {loadouts}"
 
 
+# ---------------------------------------------------------------------------
+# Detachment modifiers
+# ---------------------------------------------------------------------------
+
+
+class TestDetachmentModifiers:
+    """Detachment modifiers must load and have expected structure."""
+
+    def test_gk_all_9_detachments_have_modifiers(self):
+        """GK should have all 9 detachments with modifier choices."""
+        from ranking import RankingEngine
+        eng = RankingEngine('grey-knights')
+        dets = eng.list_detachments_with_modifiers()
+        expected = {
+            'ARGENT ASSAULT', 'AUGURIUM TASK FORCE', 'BANISHERS',
+            'BROTHERHOOD STRIKE', 'FIRES OF PURGATION', 'HALLOWED CONCLAVE',
+            'IMMATERIAL INTERDICTION', 'SANCTIC SPEARHEAD', 'WARPBANE TASK FORCE',
+        }
+        assert set(dets) == expected, f"GK detachments mismatch: missing={expected - set(dets)}, extra={set(dets) - expected}"
+
+    def test_ck_all_8_detachments_have_modifiers(self):
+        """CK should have all 8 detachments with modifier choices."""
+        from ranking import RankingEngine
+        eng = RankingEngine('chaos-knights')
+        dets = eng.list_detachments_with_modifiers()
+        expected = {
+            'BASTIONS OF TYRANNY', 'HUNTING WARPACK', 'ICONOCLAST FIEFDOM',
+            'HELHUNT LANCE', 'HOUNDPACK LANCE', 'LORDS OF DREAD',
+            'TRAITORIS LANCE', 'INFERNAL LANCE',
+        }
+        assert set(dets) == expected, f"CK detachments mismatch: missing={expected - set(dets)}, extra={set(dets) - expected}"
+
+    def test_daemon_all_9_detachments_have_modifiers(self):
+        """Daemons should have all 9 detachments with modifier choices."""
+        from ranking import RankingEngine
+        eng = RankingEngine('chaos-daemons')
+        dets = eng.list_detachments_with_modifiers()
+        expected = {
+            'DAEMONIC INCURSION', 'SHADOW LEGION', 'CAVALCADE OF CHAOS',
+            'LORDS OF THE WARP', 'WARPTIDE', 'BLOOD LEGION',
+            'SCINTILLATING LEGION', 'PLAGUE LEGION', 'LEGION OF EXCESS',
+        }
+        assert set(dets) == expected, f"Daemon detachments mismatch: missing={expected - set(dets)}, extra={set(dets) - expected}"
+
+    def test_each_detachment_has_at_least_one_choice(self):
+        """Every detachment must have at least one modifier choice."""
+        from ranking import RankingEngine
+        for faction in ['grey-knights', 'chaos-knights', 'chaos-daemons']:
+            eng = RankingEngine(faction)
+            for det in eng.list_detachments_with_modifiers():
+                mods = eng.get_detachment_modifiers(det)
+                assert len(mods) >= 1, f"{faction}/{det} has no choices"
+
+    def test_detachment_choices_have_valid_affects(self):
+        """Each modifier must affect 'dpp', 'surv', or 'mob'."""
+        from ranking import RankingEngine
+        valid = {'dpp', 'surv', 'mob'}
+        for faction in ['grey-knights', 'chaos-knights', 'chaos-daemons']:
+            eng = RankingEngine(faction)
+            for det in eng.list_detachments_with_modifiers():
+                for mod in eng.get_detachment_modifiers(det):
+                    assert mod.affects in valid, f"{faction}/{det}/{mod.name}: affects={mod.affects}"
+

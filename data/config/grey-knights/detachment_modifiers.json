@@ -1,0 +1,156 @@
+{
+  "_note": "GK detachment modifiers — game mechanics only. Engine loads this for DPP/SURV/MOB computation. Modeled as always-on; conditional effects noted in 'condition' field.",
+  "detachments": {
+    "WARPBANE TASK FORCE": {
+      "dp_cost": 3,
+      "choices": [
+        {
+          "name": "Hallowed Re-rolls",
+          "affects": "dpp",
+          "reroll_hits": "1s",
+          "description": "Re-roll Hit rolls of 1 for GREY KNIGHTS units"
+        },
+        {
+          "name": "Purifier Zeal",
+          "affects": "dpp",
+          "reroll_hits": "all",
+          "unit_filter": ["Purifier"],
+          "description": "Purifier Squads re-roll all failed hits when wholly within Hallowed Ground"
+        }
+      ]
+    },
+    "ARGENT ASSAULT": {
+      "dp_cost": 1,
+      "choices": [
+        {
+          "name": "Dauntless Champions",
+          "affects": "dpp",
+          "plus1_to_wound": true,
+          "unit_filter": ["Paladin"],
+          "description": "Paladin Squads gain +1 to wound when their Strength exceeds target Toughness"
+        },
+        {
+          "name": "Truesilver Aegis",
+          "affects": "surv",
+          "feel_no_pain": 4,
+          "unit_filter": ["Paladin"],
+          "condition": "only vs mortal wounds",
+          "description": "Feel No Pain 4+ vs mortal wounds for Paladin Squads"
+        }
+      ]
+    },
+    "IMMATERIAL INTERDICTION": {
+      "dp_cost": 1,
+      "choices": [
+        {
+          "name": "Echojump Surge",
+          "affects": "mob",
+          "movement_bonus": 4,
+          "unit_filter": ["Interceptor"],
+          "condition": "after shooting, cannot charge same turn",
+          "description": "Interceptor Squads make D6+1\" surge move after shooting (avg 4.5\", rounded to 4)"
+        },
+        {
+          "name": "Astral Overlap",
+          "affects": "surv",
+          "stealth": true,
+          "unit_filter": ["Interceptor"],
+          "condition": "enhancement 10pts",
+          "description": "Interceptor Squad gains Stealth (-1 to hit from ranged)"
+        }
+      ]
+    },
+    "BANISHERS": {
+      "dp_cost": 2,
+      "choices": [
+        {
+          "name": "Sustained Hatred",
+          "affects": "dpp",
+          "sustained_hits_extra": 1,
+          "condition": "melee only, after passing Leadership test",
+          "description": "Melee attacks gain Sustained Hits 1 after passing Leadership test"
+        },
+        {
+          "name": "Lethal Hatred",
+          "affects": "dpp",
+          "lethal_hits": true,
+          "condition": "melee only, after passing Leadership test",
+          "description": "Melee attacks gain Lethal Hits after passing Leadership test"
+        }
+      ]
+    },
+    "BROTHERHOOD STRIKE": {
+      "dp_cost": 2,
+      "choices": [
+        {
+          "name": "Rapid Redeployment",
+          "affects": "dpp",
+          "reroll_hits": "1s",
+          "reroll_wounds": "1s",
+          "condition": "after Deep Strike arrival",
+          "description": "Re-roll 1s to hit and wound after Deep Strike arrival"
+        }
+      ]
+    },
+    "HALLOWED CONCLAVE": {
+      "dp_cost": 2,
+      "choices": [
+        {
+          "name": "Terminator Mobility",
+          "affects": "mob",
+          "fallback_and_shoot": true,
+          "fallback_and_charge": true,
+          "unit_filter": ["Terminator"],
+          "description": "Terminator-armoured units can Fall Back and shoot/charge"
+        }
+      ]
+    },
+    "SANCTIC SPEARHEAD": {
+      "dp_cost": 2,
+      "choices": [
+        {
+          "name": "Vehicle Assault Advance",
+          "affects": "mob",
+          "assault": true,
+          "movement_bonus": 6,
+          "unit_filter": ["Dreadknight", "Dreadnought", "Land Raider", "Rhino", "Razorback"],
+          "condition": "Advance 6\" and still shoot with Assault weapons",
+          "description": "Vehicles advance 6\" and treat weapons as Assault"
+        }
+      ]
+    },
+    "AUGURIUM TASK FORCE": {
+      "dp_cost": 2,
+      "choices": [
+        {
+          "name": "Gate Extension",
+          "affects": "mob",
+          "movement_bonus": 3,
+          "condition": "Gate of Infinity redeployment range extension",
+          "description": "Extended Gate of Infinity redeployment range"
+        }
+      ]
+    },
+    "FIRES OF PURGATION": {
+      "dp_cost": 1,
+      "choices": [
+        {
+          "name": "Searing Soulflame",
+          "affects": "dpp",
+          "sustained_hits_extra": 1,
+          "unit_filter": ["Purgation"],
+          "condition": "when shooting",
+          "description": "Purgation Squad ranged attacks gain Sustained Hits 1"
+        },
+        {
+          "name": "Soul-Locked Advance",
+          "affects": "mob",
+          "assault": true,
+          "unit_filter": ["Purgation"],
+          "condition": "move does not prevent shooting",
+          "description": "Purgation Squads can move and still shoot"
+        }
+      ]
+    }
+  }
+}
