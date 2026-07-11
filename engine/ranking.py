@@ -760,10 +760,10 @@ class RankingEngine:
                                  hit_mode=unit_hit_mode) if ranged_profiles else 0
             dmg_melee = _ld_dmg([], melee_profiles, [], actual_target, unit_weapon_mod,
                                 melta_active=melta_active, heavy_stationary=heavy_stationary,
-                                hit_mode=unit_hit_mode) if melee_profiles else 0
+                                hit_mode=HitMode.NORMAL) if melee_profiles else 0
             dmg_innate = _ld_dmg([], [], innate_profiles, actual_target, unit_weapon_mod,
                                  melta_active=melta_active, heavy_stationary=heavy_stationary,
-                                 hit_mode=unit_hit_mode) if innate_profiles else 0
+                                 hit_mode=HitMode.NORMAL) if innate_profiles else 0
             total_dmg = dmg_ranged + (dmg_melee * melee_penalty) + dmg_innate
             dpp_val = total_dmg / pts if pts > 0 else 0
             is_infantry = "INFANTRY" in kw_list

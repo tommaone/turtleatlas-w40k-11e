@@ -1,31 +1,17 @@
 {
   "War Dog Brigand": {
     "pts": 140,
-    "ranged": [
+    "fixed_ranged": ["Avenger chaincannon", "Daemonbreath spear"],
+    "fixed_melee": ["Armoured feet"],
+    "weapon_slots": [
       {
-        "name": "Avenger chaincannon",
-        "unit_name": "War Dog Brigand"
-      },
-      {
-        "name": "Daemonbreath spear",
-        "unit_name": "War Dog Brigand"
-      },
-      {
-        "name": "Diabolus heavy stubber",
-        "unit_name": "War Dog Brigand"
-      },
-      {
-        "name": "Havoc multi-launcher",
-        "unit_name": "War Dog Brigand"
+        "choose": 1,
+        "from": [
+          {"weapon": "Diabolus heavy stubber"},
+          {"weapon": "Havoc multi-launcher"}
+        ]
       }
     ],
-    "melee": [
-      {
-        "name": "Armoured feet",
-        "unit_name": "War Dog Brigand"
-      }
-    ],
-    "innate": [],
     "info": {
       "M": "12\"",
       "T": 9,
@@ -36,27 +22,17 @@
   },
   "War Dog Executioner": {
     "pts": 130,
-    "ranged": [
+    "fixed_ranged": ["War Dog autocannon"],
+    "fixed_melee": ["Armoured feet"],
+    "weapon_slots": [
       {
-        "name": "War Dog autocannon",
-        "unit_name": "War Dog Executioner"
-      },
-      {
-        "name": "Daemonbreath meltagun",
-        "unit_name": "War Dog Executioner"
-      },
-      {
-        "name": "Diabolus heavy stubber",
-        "unit_name": "War Dog Executioner"
+        "choose": 1,
+        "from": [
+          {"weapon": "Diabolus heavy stubber"},
+          {"weapon": "Havoc multi-launcher"}
+        ]
       }
     ],
-    "melee": [
-      {
-        "name": "Armoured feet",
-        "unit_name": "War Dog Executioner"
-      }
-    ],
-    "innate": [],
     "info": {
       "M": "12\"",
       "T": 9,
@@ -67,31 +43,17 @@
   },
   "War Dog Huntsman": {
     "pts": 140,
-    "ranged": [
+    "fixed_ranged": ["Daemonbreath meltagun"],
+    "fixed_melee": ["Reaper chaintalon - strike", "Reaper chaintalon - sweep"],
+    "weapon_slots": [
       {
-        "name": "Daemonbreath spear",
-        "unit_name": "War Dog Huntsman"
-      },
-      {
-        "name": "Daemonbreath meltagun",
-        "unit_name": "War Dog Huntsman"
-      },
-      {
-        "name": "Diabolus heavy stubber",
-        "unit_name": "War Dog Huntsman"
+        "choose": 1,
+        "from": [
+          {"weapon": "Diabolus heavy stubber"},
+          {"weapon": "Havoc multi-launcher"}
+        ]
       }
     ],
-    "melee": [
-      {
-        "name": "Reaper chaintalon - strike",
-        "unit_name": "War Dog Huntsman"
-      },
-      {
-        "name": "Reaper chaintalon - sweep",
-        "unit_name": "War Dog Huntsman"
-      }
-    ],
-    "innate": [],
     "info": {
       "M": "12\"",
       "T": 9,
@@ -102,27 +64,22 @@
   },
   "War Dog Karnivore": {
     "pts": 155,
-    "ranged": [
+    "weapon_slots": [
       {
-        "name": "Diabolus heavy stubber",
-        "unit_name": "War Dog Karnivore"
+        "choose": 1,
+        "from": [
+          {"melee_weapon": "Reaper chaintalon"},
+          {"melee_weapon": "Slaughterclaw"}
+        ]
       },
       {
-        "name": "Havoc multi-launcher",
-        "unit_name": "War Dog Karnivore"
+        "choose": 1,
+        "from": [
+          {"weapon": "Diabolus heavy stubber"},
+          {"weapon": "Havoc multi-launcher"}
+        ]
       }
     ],
-    "melee": [
-      {
-        "name": "Reaper chaintalon",
-        "unit_name": "War Dog Karnivore"
-      },
-      {
-        "name": "Slaughterclaw",
-        "unit_name": "War Dog Karnivore"
-      }
-    ],
-    "innate": [],
     "info": {
       "M": "14\"",
       "T": 9,
@@ -133,36 +90,21 @@
   },
   "War Dog Moirax": {
     "pts": 150,
-    "ranged": [
-      {
-        "name": "Volkite veuglaire",
-        "unit_name": "War Dog Moirax"
-      },
-      {
-        "name": "Conversion beam cannon",
-        "unit_name": "War Dog Moirax"
-      },
-      {
-        "name": "Graviton pulsar",
-        "unit_name": "War Dog Moirax"
-      },
-      {
-        "name": "Lightning lock",
-        "unit_name": "War Dog Moirax"
-      },
-      {
-        "name": "Rad cleanser",
-        "unit_name": "War Dog Moirax"
-      }
+    "fixed_ranged": [],
+    "fixed_melee": [
+      "Siege claw",
+      "Armoured feet"
     ],
-    "melee": [
+    "weapon_slots": [
       {
-        "name": "Siege claw",
-        "unit_name": "War Dog Moirax"
-      },
-      {
-        "name": "Armoured feet",
-        "unit_name": "War Dog Moirax"
+        "choose": 2,
+        "from": [
+          {"weapon": "Volkite veuglaire"},
+          {"weapon": "Conversion beam cannon"},
+          {"weapon": "Graviton pulsar"},
+          {"weapon": "Lightning lock"},
+          {"weapon": "Rad cleanser"}
+        ]
       }
     ],
     "innate": [],
@@ -177,39 +119,29 @@
   },
   "War Dog Stalker": {
     "pts": 140,
-    "ranged": [
+    "weapon_slots": [
       {
-        "name": "Avenger chaincannon",
-        "unit_name": "War Dog Stalker"
+        "choose": 1,
+        "from": [
+          {"weapon": "Avenger chaincannon"},
+          {"weapon": "Daemonbreath spear"}
+        ]
       },
       {
-        "name": "Daemonbreath spear",
-        "unit_name": "War Dog Stalker"
+        "choose": 1,
+        "from": [
+          {"melee_weapon": "Slaughterclaw"},
+          {"melee_weapons": ["Reaper chaintalon - strike", "Reaper chaintalon - sweep"]}
+        ]
       },
       {
-        "name": "Diabolus heavy stubber",
-        "unit_name": "War Dog Stalker"
-      },
-      {
-        "name": "Havoc multi-launcher",
-        "unit_name": "War Dog Stalker"
+        "choose": 1,
+        "from": [
+          {"weapon": "Diabolus heavy stubber"},
+          {"weapon": "Havoc multi-launcher"}
+        ]
       }
     ],
-    "melee": [
-      {
-        "name": "Slaughterclaw",
-        "unit_name": "War Dog Stalker"
-      },
-      {
-        "name": "Reaper chaintalon - strike",
-        "unit_name": "War Dog Stalker"
-      },
-      {
-        "name": "Reaper chaintalon - sweep",
-        "unit_name": "War Dog Stalker"
-      }
-    ],
-    "innate": [],
     "info": {
       "M": "12\"",
       "T": 9,

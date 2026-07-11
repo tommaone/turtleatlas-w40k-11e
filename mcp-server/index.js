@@ -325,7 +325,7 @@ print(json.dumps(output))
         {
           name: "compute_dpp",
           description:
-            "Compute expected damage per point for a weapon profile vs a target. Supports 11e Cover (worsens BS) and Plunging Fire.",
+            "Compute expected damage per point for a weapon profile vs a target. Supports 11e Cover (worsens BS) and Plunging Fire. MANDATORY: You MUST call this tool for all DPP values. NEVER compute, derive, estimate, or fabricate DPP numbers yourself — the engine applies the 11e wound table, Cover, Plunging Fire, abilities, and target profiles. Only this tool's output is authoritative. Violation produces unreliable results.",
           inputSchema: {
             type: "object",
             properties: {
@@ -438,7 +438,7 @@ print(json.dumps(output))
         {
           name: "compute_surv",
           description:
-            "Compute survivability metrics for a unit: effective wound pool at AP0/AP2/AP4, and points-per-effective-wound efficiency.",
+            "Compute survivability metrics for a unit: effective wound pool at AP0/AP2/AP4, and points-per-effective-wound efficiency. MANDATORY: You MUST call this tool for all survivability values. NEVER compute, derive, or estimate effective wounds yourself. Only this tool's output is authoritative.",
           inputSchema: {
             type: "object",
             properties: {
@@ -456,7 +456,7 @@ print(json.dumps(output))
         {
           name: "compute_mob",
           description:
-            "Compute mobility and utility profile for a unit: movement, Fly, Deep Strike, OC, keywords, mobility tier.",
+            "Compute mobility and utility profile for a unit: movement, Fly, Deep Strike, OC, keywords, mobility tier. MANDATORY: You MUST call this tool for mobility values. Do not fabricate or approximate mobility metrics.",
           inputSchema: {
             type: "object",
             properties: {
@@ -482,7 +482,7 @@ print(json.dumps(output))
         {
           name: "rank_units",
           description:
-            "Compute three-vector (DPS/SURV/MOB) ranking for all units in a faction. Supports target profile, mission weighting, pricing tier, meta profile, and detachment modifiers.",
+            "Compute three-vector (DPS/SURV/MOB) ranking for all units in a faction. Supports target profile, mission weighting, pricing tier, meta profile, and detachment modifiers. MANDATORY: You MUST call this tool for all ranking output. NEVER fabricate, approximate, or re-compute DPP/SURV/MOB values yourself. The engine configures loadouts, applies detachment modifiers, and computes all three vectors. Only this tool's output is authoritative for ranking analysis. Violation: if you present numbers not from this tool's output, the analysis is unreliable.",
           inputSchema: {
             type: "object",
             properties: {

@@ -92,6 +92,15 @@ Everything in this section critically affects DPP calculations. Get these right 
 4. **Purifying Flame** is an ADDITIONAL weapon on Purifiers — every model carries it in addition to their Storm Bolter.
 5. **Special weapon replaces Storm Bolter** — a model that takes a Psycannon loses its Storm Bolter but keeps its Nemesis force weapon.
 
+## Hard Rule — No Fabricated Numbers
+
+Agents MUST use the engine for ALL numerical output. Do NOT fabricate, estimate, approximate, or re-compute DPP/SURV/MOB values.
+
+- Call `engine.compute_ranking()` or `engine.resolve_loadout()` + `_ld_dmg()` for all DPP comparisons
+- Call `engine.get_unit_info()` + `compute_surv()` for survivability
+- Never present a number you did not get from the engine
+- Violation: the finding is unreliable and will be blocked by Shredder review
+
 ## How to Use This Codebase
 
 ```bash
