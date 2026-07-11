@@ -4,28 +4,28 @@
   "detachments": {
     "WARPBANE TASK FORCE": {
       "dp_cost": 3,
-      "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
-      "_engine_note": "Detachment listed in article but rules not detailed. Modifiers from 10e codex — needs independent verification.",
+      "_source": "https://www.40k.app/factions/grey-knights/detachments/warpbane-task-force",
+      "_engine_note": "Verified 11e from 40k.app. Hallowed Ground rule: all GK re-roll hits of 1; PURIFIER SQUAD units always re-roll the Hit roll (full re-roll) as do any GK unit wholly within Hallowed Ground.",
       "choices": [
         {
           "name": "Hallowed Re-rolls",
           "affects": "dpp",
           "reroll_hits": "1s",
           "unit_filter": ["GREY KNIGHTS"],
-          "condition": "wholly within Hallowed Ground",
-          "description": "Re-roll Hit rolls of 1 for GREY KNIGHTS units wholly within Hallowed Ground",
-          "_source": "10e codex (detachment listed at GH 11e review but not detailed)",
-          "_engine_note": "Conditional on Hallowed Ground placement — modelled as always-on for DPP estimation."
+          "condition": "all GREY KNIGHTS units re-roll hits of 1; units wholly within Hallowed Ground re-roll the Hit roll instead",
+          "description": "All GREY KNIGHTS re-roll Hit rolls of 1. Units wholly within Hallowed Ground re-roll the Hit roll (full re-roll) instead.",
+          "_source": "https://www.40k.app/factions/grey-knights/detachments/warpbane-task-force",
+          "_engine_note": "Base level: all GK get re-roll 1s to hit. Units wholly within Hallowed Ground upgrade to full re-roll. Modelled as reroll_hits 1s for DPP estimation with Hallowed Ground assumed."
         },
         {
           "name": "Purifier Zeal",
           "affects": "dpp",
           "reroll_hits": "all",
           "unit_filter": ["Purifier"],
-          "condition": "wholly within Hallowed Ground",
-          "description": "Purifier Squads re-roll all failed hits when wholly within Hallowed Ground",
-          "_source": "10e codex (detachment listed at GH 11e review but not detailed)",
-          "_engine_note": "Conditional on Hallowed Ground placement — modelled as always-on for DPP estimation."
+          "condition": "PURIFIER SQUAD units always re-roll the Hit roll (unconditional — not dependent on Hallowed Ground)",
+          "description": "Purifier Squads always re-roll the Hit roll, regardless of Hallowed Ground position",
+          "_source": "https://www.40k.app/factions/grey-knights/detachments/warpbane-task-force",
+          "_engine_note": "Purifiers get full re-roll to hit unconditionally (not conditional on Hallowed Ground). PREVIOUSLY had incorrect condition requiring Hallowed Ground."
         }
       ]
     },
@@ -81,96 +81,90 @@
     },
     "BANISHERS": {
       "dp_cost": 2,
-      "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
-      "_engine_note": "Detachment listed in article but rules not detailed. Modifiers from 10e codex — needs independent verification.",
+      "_source": "https://www.40k.app/factions/grey-knights/detachments/banishers",
+      "_engine_note": "Verified 11e from 40k.app. Channelled Force: GK unit takes LD test → choose Sustained Hits 1 or Lethal Hits for melee Psychic weapons for the phase.",
       "choices": [
         {
           "name": "Sustained Hatred",
           "affects": "dpp",
           "sustained_hits_extra": 1,
+          "unit_filter": ["GREY KNIGHTS"],
           "condition": "melee only, after passing Leadership test",
-          "description": "Melee attacks gain Sustained Hits 1 after passing Leadership test",
-          "_source": "10e codex (detachment listed at GH 11e review but not detailed)",
-          "_engine_note": "Conditional on Leadership test — modelled as always-on for DPP estimation."
+          "description": "Melee Psychic weapons gain Sustained Hits 1 after passing Leadership test",
+          "_source": "https://www.40k.app/factions/grey-knights/detachments/banishers",
+          "_engine_note": "Channelled Force: choose Sustained Hits 1 OR Lethal Hits per activation after passed LD test. Modelled as always-on for DPP estimation."
         },
         {
           "name": "Lethal Hatred",
           "affects": "dpp",
           "lethal_hits": true,
+          "unit_filter": ["GREY KNIGHTS"],
           "condition": "melee only, after passing Leadership test",
-          "description": "Melee attacks gain Lethal Hits after passing Leadership test",
-          "_source": "10e codex (detachment listed at GH 11e review but not detailed)",
-          "_engine_note": "Conditional on Leadership test — modelled as always-on for DPP estimation."
+          "description": "Melee Psychic weapons gain Lethal Hits after passing Leadership test",
+          "_source": "https://www.40k.app/factions/grey-knights/detachments/banishers",
+          "_engine_note": "Channelled Force: choose Sustained Hits 1 OR Lethal Hits per activation after passed LD test. Modelled as always-on for DPP estimation."
         }
       ]
     },
     "BROTHERHOOD STRIKE": {
       "dp_cost": 2,
-      "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
-      "_engine_note": "Detachment listed in article but rules not detailed. Modifiers from 10e codex — needs independent verification.",
+      "_source": "https://www.40k.app/factions/grey-knights/detachments/brotherhood-strike",
+      "_engine_note": "Verified 11e from 40k.app. Fury of Titan: unit set up via Deep Strike re-rolls Hit and Wound rolls of 1 until end of turn.",
       "choices": [
         {
-          "name": "Rapid Redeployment",
+          "name": "Fury of Titan",
           "affects": "dpp",
           "reroll_hits": "1s",
           "reroll_wounds": "1s",
-          "condition": "after Deep Strike arrival",
-          "description": "Re-roll 1s to hit and wound after Deep Strike arrival",
-          "_source": "10e codex (detachment listed at GH 11e review but not detailed)",
-          "_engine_note": "Conditional on Deep Strike arrival — modelled as always-on for DPP estimation."
+          "unit_filter": ["GREY KNIGHTS"],
+          "condition": "after Deep Strike arrival, until end of turn",
+          "description": "Re-roll 1s to hit and wound after Deep Strike arrival until end of turn",
+          "_source": "https://www.40k.app/factions/grey-knights/detachments/brotherhood-strike",
+          "_engine_note": "Conditional on Deep Strike arrival — modelled as always-on for DPP estimation. Correct from 10e codex."
         }
       ]
     },
     "HALLOWED CONCLAVE": {
       "dp_cost": 2,
-      "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
-      "_engine_note": "Detachment listed in article but rules not detailed. Modifiers from 10e codex — needs independent verification.",
+      "_source": "https://www.40k.app/factions/grey-knights/detachments/hallowed-conclave",
+      "_engine_note": "Verified 11e from 40k.app. Duty Before All: TERMINATOR units eligible to shoot and charge in a turn they Fell Back.",
       "choices": [
         {
-          "name": "Terminator Mobility",
+          "name": "Duty Before All",
           "affects": "mob",
           "fallback_and_shoot": true,
           "fallback_and_charge": true,
           "unit_filter": ["Terminator"],
+          "condition": "TERMINATOR units only",
           "description": "Terminator-armoured units can Fall Back and shoot/charge",
-          "_source": "10e codex (detachment listed at GH 11e review but not detailed)",
-          "_engine_note": "Needs verification — may be from Hallowed Conclave detachment rule or a stratagem."
+          "_source": "https://www.40k.app/factions/grey-knights/detachments/hallowed-conclave",
+          "_engine_note": "Verified from 40k.app. Correct from 10e codex — no 11e change to this rule."
         }
       ]
     },
     "SANCTIC SPEARHEAD": {
       "dp_cost": 2,
-      "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
-      "_engine_note": "Detachment listed in article but rules not detailed. Modifiers from 10e codex — needs independent verification.",
+      "_source": "https://www.40k.app/factions/grey-knights/detachments/sanctic-spearhead",
+      "_engine_note": "Verified 11e from 40k.app. Mailed Fist: VEHICLE units that Advance skip the roll, get +6\" M, and ranged weapons gain ASSAULT.",
       "choices": [
         {
-          "name": "Vehicle Assault Advance",
+          "name": "Mailed Fist",
           "affects": "mob",
           "assault": true,
           "movement_bonus": 6,
-          "unit_filter": ["Dreadknight", "Dreadnought", "Land Raider", "Rhino", "Razorback"],
-          "condition": "Advance 6\" and still shoot with Assault weapons",
-          "description": "Vehicles advance 6\" and treat weapons as Assault",
-          "_source": "10e codex (detachment listed at GH 11e review but not detailed)",
-          "_engine_note": "Needs verification — may be the detachment rule or a stratagem."
+          "unit_filter": ["VEHICLE"],
+          "condition": "when Advancing: no Advance roll, +6\" M, ASSAULT on ranged weapons until end of turn",
+          "description": "GREY KNIGHTS VEHICLE units: when Advancing, add 6\" to Move and weapons gain ASSAULT",
+          "_source": "https://www.40k.app/factions/grey-knights/detachments/sanctic-spearhead",
+          "_engine_note": "Applies to ALL GREY KNIGHTS VEHICLE units, not just specific vehicle types. PREVIOUS unit_filter was incorrectly limited to specific vehicle names."
         }
       ]
     },
     "AUGURIUM TASK FORCE": {
       "dp_cost": 2,
-      "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
-      "_engine_note": "Detachment listed in article but rules not detailed. Modifiers from 10e codex — needs independent verification.",
-      "choices": [
-        {
-          "name": "Gate Extension",
-          "affects": "mob",
-          "movement_bonus": 3,
-          "condition": "Gate of Infinity redeployment range extension",
-          "description": "Extended Gate of Infinity redeployment range",
-          "_source": "10e codex (detachment listed at GH 11e review but not detailed)",
-          "_engine_note": "Approximation — actual rule modifies Gate of Infinity range, not a movement bonus."
-        }
-      ]
+      "_source": "https://www.40k.app/factions/grey-knights/detachments/augurium-task-force",
+      "_engine_note": "Verified 11e from 40k.app. Prescient Redeployment: from round 2, can place a GK unit into Strategic Reserves at start of Movement phase if didn't use max Gate of Infinity. No numeric MOB modifier applicable — this is a redeployment flexibility rule, not a movement speed increase. PREVIOUSLY fabricated as movement_bonus: 3. Stripped per AGENTS.md detachment integrity rules.",
+      "choices": []
     },
     "FIRES OF PURGATION": {
       "dp_cost": 1,
