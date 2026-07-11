@@ -25,7 +25,7 @@ MFM_DIR = REPO_ROOT / "mfm"
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from adapter.bsdata_parser import BSDataParser
+from adapter.bsdata_parser_11e import BSDataParser11e
 
 
 # -- MFM (11e points / detachments) -----------------------------------------
@@ -125,9 +125,9 @@ def main():
         ap.print_help()
         return
 
-    # Init BSData parser
-    bsdata = BSDataParser()
-    print(f"BSData factions found: {len(bsdata.list_factions())}", file=sys.stderr)
+    # Init BSData 11e parser
+    bsdata = BSDataParser11e()
+    print(f"BSData 11e factions found: {len(bsdata.list_factions())}", file=sys.stderr)
 
     slugs = []
     if args.faction:
