@@ -1,156 +1,167 @@
 {
-  "_note": "CK detachment modifiers — game mechanics only. Engine loads this for DPP/SURV/MOB computation. Modeled as always-on unless noted. 8 detachments total (11e Faction Pack).",
+  "_note": "CK detachment modifiers — game mechanics only. Engine loads this for DPP/SURV/MOB computation. All data verified from 40k.app (official 11e database) or Goonhammer faction pack review.",
+  "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-knights + https://www.40k.app/factions/chaos-knights/detachments",
   "detachments": {
     "BASTIONS OF TYRANNY": {
       "dp_cost": 1,
+      "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-knights",
       "choices": [
         {
           "name": "Annihilate the Unworthy",
           "affects": "dpp",
           "hit_modifier": -1,
-          "description": "+1 to hit rolls vs battle-shocked units (modeled as always-on)",
+          "description": "+1 to hit rolls vs battle-shocked units (modelled as always-on)",
           "unit_filter": ["Knight Tyrant"],
-          "condition": "only vs battle-shocked units"
+          "condition": "only vs battle-shocked units",
+          "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-knights",
+          "_engine_note": "Conditional on target being battle-shocked. Modelled as always-on for DPP estimation. GH article notes this is hard to trigger reliably."
         }
       ]
     },
     "HUNTING WARPACK": {
       "dp_cost": 1,
+      "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-knights",
+      "_engine_note": "Detachment rule (Scenting Fear): Once/BR, pick unit visible within 12\" of a War Dog, +6\" detection range. No direct DPP/SURV/MOB modifier. Recon disposition — bad for CK.",
       "choices": [
         {
-          "name": "Pack Hunters",
+          "name": "Snarling Rivalry",
           "affects": "dpp",
-          "plus1_to_wound": true,
           "unit_filter": ["War Dog"],
-          "condition": "when charging or Heroic Intervention",
-          "description": "War Dogs gain +1 to wound when charging"
+          "condition": "upgrade enhancement for Executioners — Ignores Cover",
+          "description": "Executioners gain Ignores Cover from upgrade enhancement. Targeting qualifier, not a stat modifier.",
+          "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-knights",
+          "_engine_note": "Ignores Cover cannot be expressed as a numeric modifier. Listed for reference only. GH rates as excellent for Executioners."
         },
         {
-          "name": "Relentless Pursuit",
-          "affects": "mob",
-          "advance_and_charge": true,
+          "name": "Insensate Bloodthirst",
+          "affects": "surv",
           "unit_filter": ["War Dog"],
-          "description": "War Dogs can Advance and charge"
+          "condition": "1CP stratagem — 5+ Feel No Pain in Fight phase",
+          "description": "1CP strat giving War Dogs 5+ FNP in the Fight phase. Not always-on.",
+          "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-knights",
+          "_engine_note": "1CP stratagem, not always-on. GH rates as amazing for Karnivores."
         }
       ]
     },
     "ICONOCLAST FIEFDOM": {
       "dp_cost": 1,
+      "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-knights",
+      "_engine_note": "Detachment rule (Wretched Thralls): include DAMNED units up to 500pts, reroll LD for DAMNED. List-building flexibility — no DPP/SURV/MOB modifier. Take and Hold disposition.",
       "choices": [
         {
-          "name": "Board Control",
+          "name": "Wretched Thralls",
           "affects": "mob",
-          "movement_bonus": 2,
-          "condition": "DAMNED allies gain +2\" move; CK gain battleshock immunity near objectives",
-          "description": "Objective play buffs for Iconoclast Fiefdom"
-        },
-        {
-          "name": "Darkness Cloak",
-          "affects": "surv",
-          "stealth": true,
-          "condition": "Harbingers of Dread aura enhancement",
-          "description": "Stealth (-1 to hit) from enhanced Darkness aura"
+          "condition": "allows up to 500pts of DAMNED units in army",
+          "description": "Include DAMNED units (Cultists, Accursed Cultists, Traitor Guard, Dark Communes) up to 500pts. Enables objective play and actions via cheap bodies.",
+          "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-knights",
+          "_engine_note": "List-building rule, not a DPP/SURV/MOB modifier. Iconoclast is the most impactful 1DP detachment for CK because it fixes the faction's biggest weakness (low model count, can't do actions/objectives)."
         }
       ]
     },
     "HELHUNT LANCE": {
       "dp_cost": 2,
+      "_source": "https://www.40k.app/factions/chaos-knights/detachments/helhunt-lance",
+      "_engine_note": "Detachment rule (Masters of the Pack): TITANIC Knight with aura affecting War Dogs gets self-aura when 2+ War Dogs in range. Situational — only benefits Desecrator (reroll 1s), Ruinator (+1AP). Contemptuous Volleys strat gives fallback+shoot/charge for 1CP. GH article (10e) rated as faction's worst.",
       "choices": [
         {
-          "name": "Synergized Assault",
+          "name": "Masters of the Pack",
           "affects": "dpp",
-          "reroll_hits": "1s",
-          "reroll_wounds": "1s",
-          "condition": "when War Dog and CHAOS KNIGHTS TITANIC units are both on battlefield",
-          "description": "Re-roll 1s to hit and wound when mixed force"
+          "condition": "TITANIC Knight gains own auras when 2+ War Dogs within 6\"",
+          "description": "Aura self-affection — depends on specific auras carried by the Knight. Cannot be modelled as a universal DPP modifier.",
+          "_source": "https://www.40k.app/factions/chaos-knights/detachments/helhunt-lance",
+          "_engine_note": "No engine-applied modifier. Only impactful for Desecrator (reroll 1s to hit) or Ruinator (+1AP). Abominant, Lancer, Tyrant get minimal benefit."
         },
         {
-          "name": "Unstoppable Advance",
+          "name": "Contemptuous Volleys",
           "affects": "mob",
-          "advance_and_charge": true,
-          "fallback_and_charge": true,
-          "description": "Charge after Advance or Fall Back"
+          "condition": "1CP stratagem: after Fall Back, can shoot and charge",
+          "description": "1CP strat: unit can shoot and declare a charge in a turn it Fell Back.",
+          "_source": "https://www.40k.app/factions/chaos-knights/detachments/helhunt-lance",
+          "_engine_note": "1CP stratagem, not always-on. Listed for reference."
         }
       ]
     },
     "HOUNDPACK LANCE": {
       "dp_cost": 2,
+      "_source": "https://www.40k.app/factions/chaos-knights/detachments/houndpack-lance",
+      "_engine_note": "Detachment rule (Marked Prey): start of Command phase, pick one enemy unit → all War Dogs get Sustained Hits 1 vs it until next Command phase. Must include 3+ War Dog units. War Dogs are BATTLELINE. Pick 3 War Dogs as CHARACTERS for Enhancements. Recon disposition.",
       "choices": [
         {
-          "name": "Pack Alpha",
+          "name": "Marked Prey",
           "affects": "dpp",
           "sustained_hits_extra": 1,
           "unit_filter": ["War Dog"],
-          "condition": "when within 6\" of another War Dog unit",
-          "description": "War Dogs gain +1 Sustained Hits when near packmates"
-        },
-        {
-          "name": "Swift Predators",
-          "affects": "mob",
-          "movement_bonus": 2,
-          "unit_filter": ["War Dog"],
-          "description": "War Dogs gain +2\" movement"
+          "condition": "select one enemy unit per Command phase; all War Dogs gain Sustained Hits 1 vs it until next Command phase",
+          "description": "War Dogs gain Sustained Hits 1 against a single marked prey each turn. Modelled as always-on for DPP estimation.",
+          "_source": "https://www.40k.app/factions/chaos-knights/detachments/houndpack-lance",
+          "_engine_note": "Single-target per turn — modelled as always-on for DPP estimation. In practice, you can re-target each turn. Excellent War Dog detachment with strong stratagem support (reactive 6\" move, fight on death, crit on 5+)."
         }
       ]
     },
     "LORDS OF DREAD": {
       "dp_cost": 2,
+      "_source": "https://www.40k.app/factions/chaos-knights/detachments/lords-of-dread",
+      "_engine_note": "Detachment rule (Tyrannical Court): CHAOS KNIGHTS CHARACTER models get +2 OC. Once/BR, if Warlord on battlefield, use Claimed for the Dark Gods strat for 0CP (sticky objective with OC5). Priority Assets disposition. GH 11e review: 'still kinda bad.'",
       "choices": [
         {
-          "name": "Dread Aura",
-          "affects": "surv",
-          "stealth": true,
-          "condition": "Harbingers of Dread darkness extended to 9\"",
-          "description": "Extended Darkness aura gives Stealth (-1 to hit)"
-        },
-        {
-          "name": "Terror Tactics",
+          "name": "Tyrannical Court",
           "affects": "mob",
-          "movement_bonus": 2,
-          "condition": "OC bonus from battleshock",
-          "description": "Board control from battleshock pressure"
+          "unit_filter": ["CHAOS KNIGHTS CHARACTER"],
+          "condition": "+2 OC for CHARACTER models; 0CP sticky objective once/round",
+          "description": "+2 Objective Control for CHARACTER models and free sticky objective strat once per round.",
+          "_source": "https://www.40k.app/factions/chaos-knights/detachments/lords-of-dread",
+          "_engine_note": "OC bonus and free strat use. No direct DPP/SURV modifier. +2 OC helps with objective control but engine doesn't model OC directly."
         }
       ]
     },
     "TRAITORIS LANCE": {
       "dp_cost": 2,
+      "_source": "https://www.40k.app/factions/chaos-knights/detachments/traitoris-lance",
+      "_engine_note": "Detachment rule (Paragons of Terror): At start of first battle round, after selecting Dread abilities, select one additional Dread ability to be active. Effectively have 2 Dread abilities active instead of 1. Dread abilities include: Despair (-1 Ld), Doom (+1 to wound vs battle-shocked), Darkness (Stealth), Dismay (extra battleshock tests), Delirium (mortals on failed shock), Dominion (+3\" aura). NOT Sustained Hits or Lethal Hits — PREVIOUSLY FABRICATED. Purge the Foe disposition.",
       "choices": [
         {
-          "name": "Kill Focus",
+          "name": "Paragons of Terror",
           "affects": "dpp",
-          "sustained_hits_extra": 1,
-          "description": "Sustained Hits 1 on all attacks"
-        },
-        {
-          "name": "Precision Strikes",
-          "affects": "dpp",
-          "lethal_hits": true,
-          "description": "Lethal Hits on all attacks"
+          "condition": "one additional Dread ability active for the army; Doom gives +1 to wound vs battle-shocked, but requires opponent to be battle-shocked",
+          "description": "Extra Dread ability at start of game. Meta pick: Doom (+1 to wound vs battle-shocked) + Darkness (Stealth) or Dismay (battleshock tests). Conditional damage buff dependent on battle-shock.",
+          "_source": "https://www.40k.app/factions/chaos-knights/detachments/traitoris-lance",
+          "_engine_note": "No universal DPP modifier. The damage buff (Doom: +1 to wound vs battle-shocked) is conditional on opponent failing battleshock. GH notes 'the ruleset there leaves a lot to be desired.' Purge disposition is the main draw."
         }
       ]
     },
     "INFERNAL LANCE": {
       "dp_cost": 3,
+      "_source": "https://www.40k.app/factions/chaos-knights/detachments/infernal-lance",
+      "_engine_note": "Detachment rule (Malefic Surge): In Command phase, pick CHAOS KNIGHTS units to take LD test. Fail = D3 mortals, but unit becomes Empowered. Use one Malefic Surge ability per unit per round: Unholy Hunger (+3\" move), Diabolic Power (Lethal Hits or Sustained Hits 1), Unnatural Fortitude (5++ or 6+++). Purge the Foe disposition. High risk/reward.",
       "choices": [
-        {
-          "name": "Unholy Hunger",
-          "affects": "mob",
-          "movement_bonus": 3,
-          "description": "+3\" movement when selected to Move (Empowered)"
-        },
         {
           "name": "Diabolic Power",
           "affects": "dpp",
           "sustained_hits_extra": 1,
           "lethal_hits": true,
-          "description": "Lethal Hits or Sustained Hits 1 when shooting/fighting (Empowered)"
+          "condition": "Empowered only: select Lethal Hits OR Sustained Hits 1 for the phase when shooting/fighting. Risk: D3 mortals on failed LD test.",
+          "description": "Choose Lethal Hits or Sustained Hits 1 for a unit for one activation. Modelled as both for estimation but actual rule is pick one per activation.",
+          "_source": "https://www.40k.app/factions/chaos-knights/detachments/infernal-lance",
+          "_engine_note": "One-use per unit per round, requires Empowered (LD test + possible D3 mortals). Modelled as always-on for DPP estimation but actual use is once per round per unit."
+        },
+        {
+          "name": "Unholy Hunger",
+          "affects": "mob",
+          "movement_bonus": 3,
+          "condition": "Empowered only: +3\" to Move characteristic when making Normal/Advance/Fall Back move for the phase",
+          "description": "+3\" movement for one activation when Empowered.",
+          "_source": "https://www.40k.app/factions/chaos-knights/detachments/infernal-lance",
+          "_engine_note": "One-use per unit per round, requires Empowered."
         },
         {
           "name": "Unnatural Fortitude",
           "affects": "surv",
           "invulnerable_save": 5,
           "feel_no_pain": 6,
-          "description": "5+ invuln or Feel No Pain 6+ (Empowered)"
+          "condition": "Empowered only: when targeted by attacks, gain 5++ invuln OR 6+++ FNP for the phase",
+          "description": "5+ invuln or 6+ FNP for one activation when Empowered. Modelled as both active but actual rule is pick one.",
+          "_source": "https://www.40k.app/factions/chaos-knights/detachments/infernal-lance",
+          "_engine_note": "One-use per unit per round, requires Empowered."
         }
       ]
     }

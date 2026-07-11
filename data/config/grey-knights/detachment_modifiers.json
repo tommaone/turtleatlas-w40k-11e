@@ -1,86 +1,113 @@
 {
-  "_note": "GK detachment modifiers — game mechanics only. Engine loads this for DPP/SURV/MOB computation. Modeled as always-on; conditional effects noted in 'condition' field.",
+  "_note": "GK detachment modifiers — game mechanics only. Engine loads this for DPP/SURV/MOB computation. Modeled as always-on unless noted.",
+  "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
   "detachments": {
     "WARPBANE TASK FORCE": {
       "dp_cost": 3,
+      "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
+      "_engine_note": "Detachment listed in article but rules not detailed. Modifiers from 10e codex — needs independent verification.",
       "choices": [
         {
           "name": "Hallowed Re-rolls",
           "affects": "dpp",
           "reroll_hits": "1s",
-          "description": "Re-roll Hit rolls of 1 for GREY KNIGHTS units"
+          "unit_filter": ["GREY KNIGHTS"],
+          "condition": "wholly within Hallowed Ground",
+          "description": "Re-roll Hit rolls of 1 for GREY KNIGHTS units wholly within Hallowed Ground",
+          "_source": "10e codex (detachment listed at GH 11e review but not detailed)",
+          "_engine_note": "Conditional on Hallowed Ground placement — modelled as always-on for DPP estimation."
         },
         {
           "name": "Purifier Zeal",
           "affects": "dpp",
           "reroll_hits": "all",
           "unit_filter": ["Purifier"],
-          "description": "Purifier Squads re-roll all failed hits when wholly within Hallowed Ground"
+          "condition": "wholly within Hallowed Ground",
+          "description": "Purifier Squads re-roll all failed hits when wholly within Hallowed Ground",
+          "_source": "10e codex (detachment listed at GH 11e review but not detailed)",
+          "_engine_note": "Conditional on Hallowed Ground placement — modelled as always-on for DPP estimation."
         }
       ]
     },
     "ARGENT ASSAULT": {
       "dp_cost": 1,
+      "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
       "choices": [
         {
           "name": "Dauntless Champions",
           "affects": "dpp",
           "plus1_to_wound": true,
           "unit_filter": ["Paladin"],
-          "description": "Paladin Squads gain +1 to wound when their Strength exceeds target Toughness"
+          "condition": "when S of attacks is lower than T of target (not greater)",
+          "description": "Paladin Squads gain +1 to wound when their Strength is LOWER than target Toughness",
+          "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
+          "_engine_note": "Condition fixed per GH article: +1 to wound triggers when S < T (not S > T as previously listed). Typical use case: S6 melee vs T8+ vehicles/monsters."
         },
         {
           "name": "Truesilver Aegis",
           "affects": "surv",
-          "feel_no_pain": 4,
-          "unit_filter": ["Paladin"],
-          "condition": "only vs mortal wounds",
-          "description": "Feel No Pain 4+ vs mortal wounds for Paladin Squads"
+          "condition": "1CP stratagem — not always-on",
+          "description": "1CP stratagem: 4+ Feel No Pain vs mortal wounds for Paladin Squads. Cannot be modelled as always-on FNP.",
+          "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
+          "_engine_note": "This is a 1CP stratagem (Truesilver Aegis), not an always-on ability. Engine models always-on modifiers only. No numeric FNP modifier applied — usage is CP-dependent and situational."
         }
       ]
     },
     "IMMATERIAL INTERDICTION": {
       "dp_cost": 1,
+      "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
       "choices": [
         {
           "name": "Echojump Surge",
           "affects": "mob",
           "movement_bonus": 4,
           "unit_filter": ["Interceptor"],
-          "condition": "after shooting, cannot charge same turn",
-          "description": "Interceptor Squads make D6+1\" surge move after shooting (avg 4.5\", rounded to 4)"
+          "condition": "after shooting, cannot teleport or charge same turn; surge D6+1\"",
+          "description": "Interceptor Squads make D6+1\" surge move after shooting (avg 4.5\", rounded to 4). Cannot use Personal Teleporters or charge same turn.",
+          "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
+          "_engine_note": "Surge move (D6+1\") is modelled as movement_bonus for MOB approximation. Actual rule is an out-of-sequence move after shooting, not a static speed increase. Cannot charge same turn."
         },
         {
           "name": "Astral Overlap",
           "affects": "surv",
           "stealth": true,
           "unit_filter": ["Interceptor"],
-          "condition": "enhancement 10pts",
-          "description": "Interceptor Squad gains Stealth (-1 to hit from ranged)"
+          "condition": "enhancement (upgrade) — costs points",
+          "description": "Interceptor Squad gains Stealth (-1 to hit from ranged) as an upgrade enhancement",
+          "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
+          "_engine_note": "Listed as an upgrade enhancement in the GH article. GH notes it's not great because cover is easy to get in 11e."
         }
       ]
     },
     "BANISHERS": {
       "dp_cost": 2,
+      "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
+      "_engine_note": "Detachment listed in article but rules not detailed. Modifiers from 10e codex — needs independent verification.",
       "choices": [
         {
           "name": "Sustained Hatred",
           "affects": "dpp",
           "sustained_hits_extra": 1,
           "condition": "melee only, after passing Leadership test",
-          "description": "Melee attacks gain Sustained Hits 1 after passing Leadership test"
+          "description": "Melee attacks gain Sustained Hits 1 after passing Leadership test",
+          "_source": "10e codex (detachment listed at GH 11e review but not detailed)",
+          "_engine_note": "Conditional on Leadership test — modelled as always-on for DPP estimation."
         },
         {
           "name": "Lethal Hatred",
           "affects": "dpp",
           "lethal_hits": true,
           "condition": "melee only, after passing Leadership test",
-          "description": "Melee attacks gain Lethal Hits after passing Leadership test"
+          "description": "Melee attacks gain Lethal Hits after passing Leadership test",
+          "_source": "10e codex (detachment listed at GH 11e review but not detailed)",
+          "_engine_note": "Conditional on Leadership test — modelled as always-on for DPP estimation."
         }
       ]
     },
     "BROTHERHOOD STRIKE": {
       "dp_cost": 2,
+      "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
+      "_engine_note": "Detachment listed in article but rules not detailed. Modifiers from 10e codex — needs independent verification.",
       "choices": [
         {
           "name": "Rapid Redeployment",
@@ -88,12 +115,16 @@
           "reroll_hits": "1s",
           "reroll_wounds": "1s",
           "condition": "after Deep Strike arrival",
-          "description": "Re-roll 1s to hit and wound after Deep Strike arrival"
+          "description": "Re-roll 1s to hit and wound after Deep Strike arrival",
+          "_source": "10e codex (detachment listed at GH 11e review but not detailed)",
+          "_engine_note": "Conditional on Deep Strike arrival — modelled as always-on for DPP estimation."
         }
       ]
     },
     "HALLOWED CONCLAVE": {
       "dp_cost": 2,
+      "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
+      "_engine_note": "Detachment listed in article but rules not detailed. Modifiers from 10e codex — needs independent verification.",
       "choices": [
         {
           "name": "Terminator Mobility",
@@ -101,12 +132,16 @@
           "fallback_and_shoot": true,
           "fallback_and_charge": true,
           "unit_filter": ["Terminator"],
-          "description": "Terminator-armoured units can Fall Back and shoot/charge"
+          "description": "Terminator-armoured units can Fall Back and shoot/charge",
+          "_source": "10e codex (detachment listed at GH 11e review but not detailed)",
+          "_engine_note": "Needs verification — may be from Hallowed Conclave detachment rule or a stratagem."
         }
       ]
     },
     "SANCTIC SPEARHEAD": {
       "dp_cost": 2,
+      "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
+      "_engine_note": "Detachment listed in article but rules not detailed. Modifiers from 10e codex — needs independent verification.",
       "choices": [
         {
           "name": "Vehicle Assault Advance",
@@ -115,40 +150,49 @@
           "movement_bonus": 6,
           "unit_filter": ["Dreadknight", "Dreadnought", "Land Raider", "Rhino", "Razorback"],
           "condition": "Advance 6\" and still shoot with Assault weapons",
-          "description": "Vehicles advance 6\" and treat weapons as Assault"
+          "description": "Vehicles advance 6\" and treat weapons as Assault",
+          "_source": "10e codex (detachment listed at GH 11e review but not detailed)",
+          "_engine_note": "Needs verification — may be the detachment rule or a stratagem."
         }
       ]
     },
     "AUGURIUM TASK FORCE": {
       "dp_cost": 2,
+      "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
+      "_engine_note": "Detachment listed in article but rules not detailed. Modifiers from 10e codex — needs independent verification.",
       "choices": [
         {
           "name": "Gate Extension",
           "affects": "mob",
           "movement_bonus": 3,
           "condition": "Gate of Infinity redeployment range extension",
-          "description": "Extended Gate of Infinity redeployment range"
+          "description": "Extended Gate of Infinity redeployment range",
+          "_source": "10e codex (detachment listed at GH 11e review but not detailed)",
+          "_engine_note": "Approximation — actual rule modifies Gate of Infinity range, not a movement bonus."
         }
       ]
     },
     "FIRES OF PURGATION": {
       "dp_cost": 1,
+      "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
       "choices": [
         {
           "name": "Searing Soulflame",
           "affects": "dpp",
-          "sustained_hits_extra": 1,
-          "unit_filter": ["Purgation"],
-          "condition": "when shooting",
-          "description": "Purgation Squad ranged attacks gain Sustained Hits 1"
+          "condition": "battleshock debuff — not a DPP modifier",
+          "description": "When a Purgation Squad pins a target via Righteous Persecution, that target makes a battleshock roll at -1. No direct damage modifier.",
+          "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
+          "_engine_note": "PREVIOUSLY FABRICATED as Sustained Hits 1. Actual rule: battleshock debuff on pinned targets (-1 to battleshock roll). Cannot be modelled as a DPP modifier — it's a control/board effect, not a damage buff. Previous modifier stripped per AGENTS.md detachment integrity rules."
         },
         {
           "name": "Soul-Locked Advance",
           "affects": "mob",
-          "assault": true,
+          "fallback_and_shoot": true,
           "unit_filter": ["Purgation"],
-          "condition": "move does not prevent shooting",
-          "description": "Purgation Squads can move and still shoot"
+          "condition": "1CP stratagem: falling back does not prevent shooting",
+          "description": "1CP stratagem: Purgation Squads can Fall Back and still be eligible to shoot",
+          "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-grey-knights",
+          "_engine_note": "This is a 1CP stratagem (Soul-Locked), not an always-on ability. Modelled as fallback_and_shoot for MOB estimation. GH article rates it as fine but unlikely to be worth CP."
         }
       ]
     }

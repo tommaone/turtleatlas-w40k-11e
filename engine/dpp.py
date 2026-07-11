@@ -180,6 +180,96 @@ class DetachmentModifier:
 
 
 # ---------------------------------------------------------------------------
+# Merge helpers — combine multiple modifiers (multi-detachment)
+# ---------------------------------------------------------------------------
+
+def merge_weapon_modifiers(modifiers: list[WeaponModifier]) -> WeaponModifier:
+    """Merge multiple WeaponModifiers into one (additive where applicable).
+
+    Rules:
+      - Numeric fields (hit_modifier, sustained_hits, extra_ap): sum
+      - Boolean fields: True if any
+      - Reroll fields: "all" > "1s" > None
+    """
+    if not modifiers:
+        return WeaponModifier()
+    if len(modifiers) == 1:
+        return modifiers[0]
+
+    base = WeaponModifier()
+    base.hit_modifier = sum(m.hit_modifier for m in modifiers)
+    base.sustained_hits_extra = sum(m.sustained_hits_extra for m in modifiers)
+    base.extra_ap = sum(m.extra_ap for m in modifiers)
+    base.lethal_hits = any(m.lethal_hits for m in modifiers)
+    base.plus1_to_wound = any(m.plus1_to_wound for m in modifiers)
+    base.ignore_cover = any(m.ignore_cover for m in modifiers)
+    base.devastating_wounds = any(m.devastating_wounds for m in modifiers)
+    base.twin_linked = any(m.twin_linked for m in modifiers)
+
+    # Reroll priority: "all" > "1s" > None
+    for field in ("reroll_hits", "reroll_wounds"):
+        vals = [getattr(m, field) for m in modifiers if getattr(m, field)]
+        if "all" in vals:
+            setattr(base, field, "all")
+        elif "1s" in vals:
+            setattr(base, field, "1s")
+    return base
+
+
+def merge_detachment_modifiers(modifiers: list[DetachmentModifier]) -> DetachmentModifier:
+    """Merge multiple DetachmentModifiers for SURV/MOB fields.
+
+    Rules:
+      - DPP-affecting fields: best/first (use merge_weapon_modifiers instead)
+      - SURV fields: best value (lowest invuln/FNP), True if any stealth
+      - MOB numeric fields: sum
+      - MOB boolean fields: True if any
+      - unit_filter: None if any has no filter (universal), else union
+      - name: concatenated
+    """
+    if not modifiers:
+        return DetachmentModifier(name="none")
+    if len(modifiers) == 1:
+        return modifiers[0]
+
+    # Determine combined unit_filter: if any mod has no filter, combined has no filter
+    has_universal = any(m.unit_filter is None for m in modifiers)
+    combined_filter = None
+    if not has_universal:
+        combined_filter = list(set(f for m in modifiers for f in (m.unit_filter or [])))
+
+    combined_name = " + ".join(m.name for m in modifiers if m.name and m.name != "Unnamed")
+    if not combined_name:
+        combined_name = "Combined"
+
+    return DetachmentModifier(
+        name=combined_name,
+        affects="dpp",  # arbitrary; per-field checking used downstream
+        unit_filter=combined_filter,
+        condition=None,
+        # DPP fields — use short-circuit: first non-zero/non-None/True wins
+        hit_modifier=sum(m.hit_modifier for m in modifiers),
+        sustained_hits_extra=sum(m.sustained_hits_extra for m in modifiers),
+        lethal_hits=any(m.lethal_hits for m in modifiers),
+        plus1_to_wound=any(m.plus1_to_wound for m in modifiers),
+        extra_ap=sum(m.extra_ap for m in modifiers),
+        ignore_cover=any(m.ignore_cover for m in modifiers),
+        assault=any(m.assault for m in modifiers),
+        heavy_ignore=any(m.heavy_ignore for m in modifiers),
+        # SURV fields — best value
+        invulnerable_save=min((m.invulnerable_save for m in modifiers if m.invulnerable_save), default=None),
+        feel_no_pain=min((m.feel_no_pain for m in modifiers if m.feel_no_pain), default=None),
+        stealth=any(m.stealth for m in modifiers),
+        cover_save=any(m.cover_save for m in modifiers),
+        # MOB fields — additive for numeric, any for boolean
+        movement_bonus=sum(m.movement_bonus for m in modifiers),
+        advance_and_charge=any(m.advance_and_charge for m in modifiers),
+        fallback_and_shoot=any(m.fallback_and_shoot for m in modifiers),
+        fallback_and_charge=any(m.fallback_and_charge for m in modifiers),
+    )
+
+
+# ---------------------------------------------------------------------------
 # Core computation
 # ---------------------------------------------------------------------------
 

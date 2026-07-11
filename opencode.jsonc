@@ -4,5 +4,12 @@
     "w40k-11e-guardrails": {
       "description": "Guardrails pre LLM agentov — squad loadout limity, 11e rules (Psychic ignoruje cover), ako používať MCP tooly. Načítaj pred prvým volaním compute_dpp."
     }
+  },
+  // Turtleman mode: loads turtle-dojo skill + enforces TMNT subagent discipline
+  "mode": {
+    "turtleman": {
+      "description": "TMNT turtle mode — auto-loads turtle-dojo rules for subagent workflow, git discipline, Shredder review",
+      "prompt": "{file:.opencode/modes/turtleman.md}"
+    }
   }
 }
