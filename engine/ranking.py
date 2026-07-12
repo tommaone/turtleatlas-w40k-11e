@@ -603,7 +603,7 @@ class RankingEngine:
                 kw.append("FLY")
             if "Terminator" in name:
                 kw.append("TERMINATOR")
-            return kw, info["T"], info["SV"], info["W"], info["OC"], info.get("INV")
+            return kw, info["T"], info["SV"], info["W"], info["OC"], info.get("invuln") or info.get("INV")
 
         # Vehicle info
         if name in self.config.vehicles:
@@ -613,10 +613,10 @@ class RankingEngine:
             kw.extend(self.config.faction_keywords)
             if "DREADNOUGHT" in name.upper():
                 kw.append("DREADNOUGHT")
-            if info.get("INV"):
+            if info.get("invuln") or info.get("INV"):
                 kw.append("WALKER")
                 kw.append("DEEP STRIKE")
-            return kw, info["T"], info["SV"], info["W"], info["OC"], info.get("INV")
+            return kw, info["T"], info["SV"], info["W"], info["OC"], info.get("invuln") or info.get("INV")
 
         # Weapon-option vehicle info (NDK / GMNDK)
         if name in self.config.weapon_options:
@@ -624,7 +624,7 @@ class RankingEngine:
             info = wo.get("info", {})
             kw = ["VEHICLE", "WALKER", "DEEP STRIKE"]
             kw.extend(self.config.faction_keywords)
-            return kw, info["T"], info["SV"], info["W"], info["OC"], info.get("INV")
+            return kw, info["T"], info["SV"], info["W"], info["OC"], info.get("invuln") or info.get("INV")
 
         # Character info
         if name in self.config.characters:
@@ -635,7 +635,7 @@ class RankingEngine:
             kw.extend(self.config.faction_keywords)
             if t_val >= 5:
                 kw.append("TERMINATOR")
-            return kw, info["T"], info["SV"], info["W"], info["OC"], info.get("INV")
+            return kw, info["T"], info["SV"], info["W"], info["OC"], info.get("invuln") or info.get("INV")
 
         # Fallback: from profile data
         stats = profile_data.get("stats", {})
