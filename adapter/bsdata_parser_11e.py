@@ -145,13 +145,18 @@ class BSDataParser11e:
         return roots
 
     def _build_entry_index(self, roots: list[dict]) -> dict[str, dict]:
-        """Build id -> entry index from all sharedSelectionEntries across roots."""
+        """Build id -> entry index from all sharedSelectionEntries and sharedProfiles across roots."""
         index: dict[str, dict] = {}
         for root in roots:
             for entry in root.get("sharedSelectionEntries", []):
                 eid = entry.get("id", "")
                 if eid:
                     index[eid] = entry
+            # Also index sharedProfiles (e.g. Invulnerable Save)
+            for profile in root.get("sharedProfiles", []):
+                pid = profile.get("id", "")
+                if pid:
+                    index[pid] = profile
         return index
 
     # -- Entry resolution ------------------------------------------------------
@@ -286,6 +291,25 @@ class BSDataParser11e:
                         "name": p.get("name", ""),
                         "description": desc,
                     })
+
+            # -- Resolve profile entryLinks (e.g. Invulnerable Save) --
+            for el in entry.get("entryLinks", []):
+                if el.get("hidden") == "true":
+                    continue
+                el_type = el.get("type", "")
+                if el_type == "profile":
+                    tid = el.get("targetId", "")
+                    if tid:
+                        target = self._resolve_entry(tid, entry_index)
+                        if target is not None:
+                            for p in target.get("profiles", []):
+                                if p.get("typeName", "") in ("Abilities", "Ability"):
+                                    chars = self._get_chars_dict(p)
+                                    desc = chars.get("Description", "")
+                                    abilities.append({
+                                        "name": p.get("name", ""),
+                                        "description": desc,
+                                    })
 
             # -- Weapons --
             weapons: list[dict] = []
