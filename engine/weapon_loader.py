@@ -289,7 +289,20 @@ class WeaponCatalog:
         final_kw = abilities if abilities is not None else parsed_kw
 
         # Apply faction overlay: add faction-wide keywords (e.g. Psychic for GK)
+        #
+        # Per BSData, some GK weapons already have the correct keywords
+        # (e.g. Psycannon has Psychic, Incinerator has Torrent but NOT Psychic).
+        # We only add Psychic to weapons that don't already have a keyword
+        # that would conflict — specifically "Rapid Fire" (Storm Bolters) and
+        # "Torrent" (Incinerators). These weapons are explicitly NOT Psychic
+        # per the 11e Grey Knights Faction Pack.
+        NON_PSychIC_OVERLAP = {"Rapid Fire", "Torrent"}
         for fk in self._faction_keywords:
+            if fk == "Psychic" and any(
+                any(overlap in kw for overlap in NON_PSychIC_OVERLAP)
+                for kw in final_kw
+            ):
+                continue  # skip Psychic for non-Psychic GK weapons
             if fk not in final_kw:
                 final_kw = final_kw + [fk]
 

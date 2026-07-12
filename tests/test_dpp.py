@@ -16,6 +16,7 @@ from dpp import (
     compute_mob,
     UnitDefense,
     WeaponProfile,
+    WeaponModifier,
     TargetProfile,
     HitMode,
 )
@@ -607,4 +608,156 @@ class TestDetachmentModifiers:
             for det in eng.list_detachments_with_modifiers():
                 for mod in eng.get_detachment_modifiers(det):
                     assert mod.affects in valid, f"{faction}/{det}/{mod.name}: affects={mod.affects}"
+
+
+# ---------------------------------------------------------------------------
+# Psychic weapon overlay tests
+# ---------------------------------------------------------------------------
+
+
+class TestPsychicOverlay:
+    """Faction overlay should add Psychic to GK weapons, but NOT to Storm Bolters.
+
+    Per BSData: Storm Bolter has only 'Rapid Fire 2' — no Psychic.
+    Incinerator has 'Ignores Cover, Torrent' — no Psychic.
+    Psycannon already has 'Psychic' in BSData.
+    """
+
+    def test_storm_bolter_not_psychic(self, weapon_catalog):
+        """Storm Bolter must NOT have Psychic after faction overlay."""
+        sb = weapon_catalog.load("Storm Bolter", unit_name="Strike Squad")
+        assert "Psychic" not in sb.abilities, (
+            f"Storm Bolter should not be Psychic, got: {sb.abilities}"
+        )
+
+    def test_psycannon_has_psychic(self, weapon_catalog):
+        """Psycannon should have Psychic (from BSData, not overlay)."""
+        pc = weapon_catalog.load("Psycannon")
+        assert "Psychic" in pc.abilities
+
+    def test_incinerator_not_psychic(self, weapon_catalog):
+        """Incinerator should NOT have Psychic — it's Torrent, not Psychic."""
+        inc = weapon_catalog.load("Incinerator")
+        assert "Psychic" not in inc.abilities, (
+            f"Incinerator should not be Psychic, got: {inc.abilities}"
+        )
+
+    def test_incinerator_has_torrent(self, weapon_catalog):
+        """Incinerator should have Torrent and Ignores Cover."""
+        inc = weapon_catalog.load("Incinerator")
+        assert "Torrent" in inc.abilities
+        assert "Ignores Cover" in inc.abilities
+
+    def test_purifying_flame_has_psychic(self, weapon_catalog):
+        """Purifying Flame should have Psychic (from BSData)."""
+        pf = weapon_catalog.load("Purifying Flame")
+        assert "Psychic" in pf.abilities
+        assert "Anti-Infantry 2+" in pf.abilities
+
+    def test_purifying_flame_not_torrent(self, weapon_catalog):
+        """Purifying Flame is NOT Torrent per BSData — it requires a hit roll."""
+        pf = weapon_catalog.load("Purifying Flame")
+        assert "Torrent" not in pf.abilities, (
+            f"Purifying Flame should not be Torrent, got: {pf.abilities}"
+        )
+
+    def test_heavy_psycannon_has_ignores_cover(self, weapon_catalog):
+        """Heavy Psycannon should have Ignores Cover + Psychic per BSData."""
+        hpc = weapon_catalog.load("Heavy Psycannon")
+        assert "Psychic" in hpc.abilities
+        assert "Ignores Cover" in hpc.abilities
+
+    def test_gatling_psilencer_sustained_hits_1(self, weapon_catalog):
+        """Gatling Psilencer should have Sustained Hits 1 (not 2) per BSData."""
+        gp = weapon_catalog.load("Gatling Psilencer")
+        assert "Sustained Hits 1" in gp.abilities
+        assert "Sustained Hits 2" not in gp.abilities
+
+
+# ---------------------------------------------------------------------------
+# Psychic + external hit_modifier
+# ---------------------------------------------------------------------------
+
+
+class TestPsychicIgnoresExternalModifier:
+    """Psychic [24.29] should zero out external hit modifiers (e.g. detachment buffs).
+
+    The engine accumulates hit_mod from external modifiers, Cover, Plunging, Heavy —
+    then resets to 0 for Psychic weapons. This test verifies the external modifier
+    path is also zeroed.
+    """
+
+    def test_psychic_ignores_plus1_hit(self, MEQ):
+        """Psychic weapon with +1 to hit modifier should behave like no modifier."""
+        wp = WeaponProfile(
+            name="Psycannon", attacks=3, bs=3, strength=8, ap=-1, damage=2,
+            abilities=["Psychic"],
+        )
+        mod_no = WeaponModifier(hit_modifier=0)
+        mod_plus1 = WeaponModifier(hit_modifier=-1)  # -1 = +1 to hit (lower BS)
+
+        r_no = compute_weapon_dpp(wp, MEQ, modifier=mod_no, unit_points=100)
+        r_plus1 = compute_weapon_dpp(wp, MEQ, modifier=mod_plus1, unit_points=100)
+
+        # Psychic should zero the external modifier — damage must be equal
+        assert r_no["total_damage"] == r_plus1["total_damage"], (
+            f"Psychic should ignore +1 hit modifier: "
+            f"no_mod={r_no['total_damage']}, plus1={r_plus1['total_damage']}"
+        )
+
+    def test_psychic_ignores_minus1_hit(self, MEQ):
+        """Psychic weapon with -1 to hit modifier should behave like no modifier."""
+        wp = WeaponProfile(
+            name="Psycannon", attacks=3, bs=3, strength=8, ap=-1, damage=2,
+            abilities=["Psychic"],
+        )
+        mod_no = WeaponModifier(hit_modifier=0)
+        mod_minus1 = WeaponModifier(hit_modifier=1)  # +1 = -1 to hit (worsen BS)
+
+        r_no = compute_weapon_dpp(wp, MEQ, modifier=mod_no, unit_points=100)
+        r_minus1 = compute_weapon_dpp(wp, MEQ, modifier=mod_minus1, unit_points=100)
+
+        assert r_no["total_damage"] == r_minus1["total_damage"], (
+            f"Psychic should ignore -1 hit modifier: "
+            f"no_mod={r_no['total_damage']}, minus1={r_minus1['total_damage']}"
+        )
+
+    def test_non_psychic_respects_hit_modifier(self, MEQ):
+        """Non-psychic weapon SHOULD be affected by external hit modifiers."""
+        wp = WeaponProfile(
+            name="Bolter", attacks=3, bs=3, strength=4, ap=0, damage=1,
+            abilities=[],
+        )
+        mod_no = WeaponModifier(hit_modifier=0)
+        mod_plus1 = WeaponModifier(hit_modifier=-1)  # +1 to hit
+
+        r_no = compute_weapon_dpp(wp, MEQ, modifier=mod_no, unit_points=100)
+        r_plus1 = compute_weapon_dpp(wp, MEQ, modifier=mod_plus1, unit_points=100)
+
+        # Non-psychic weapon should benefit from +1 to hit
+        assert r_plus1["total_damage"] > r_no["total_damage"], (
+            f"Non-psychic should benefit from +1 hit: "
+            f"no_mod={r_no['total_damage']}, plus1={r_plus1['total_damage']}"
+        )
+
+    def test_psychic_ignores_all_modifiers_combined(self, MEQ):
+        """Psychic weapon with Cover + Heavy + external modifier — all zeroed."""
+        wp = WeaponProfile(
+            name="Psycannon", attacks=3, bs=3, strength=8, ap=-1, damage=2,
+            abilities=["Psychic", "Heavy"],
+        )
+        mod = WeaponModifier(hit_modifier=-1)  # +1 to hit
+
+        # With all modifiers active
+        r_all = compute_weapon_dpp(
+            wp, MEQ, modifier=mod, hit_mode=HitMode.COVER,
+            unit_points=100, heavy_stationary=True,
+        )
+        # With no modifiers
+        r_none = compute_weapon_dpp(wp, MEQ, unit_points=100)
+
+        assert r_all["total_damage"] == r_none["total_damage"], (
+            f"Psychic should ignore Cover + Heavy + external: "
+            f"all_mods={r_all['total_damage']}, none={r_none['total_damage']}"
+        )
 

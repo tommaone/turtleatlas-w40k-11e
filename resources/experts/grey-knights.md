@@ -88,18 +88,18 @@ All GK weapons have the [PSYCHIC] keyword except Storm Bolters.
 |--------|-----|---|----|----|----|---|-----------|
 | Storm Bolter | 24" | 2 | 3+ | 4 | 0 | 1 | Rapid Fire 2 |
 | Storm Bolter (Paladin) | 24" | 2 | **2+** | 4 | 0 | 1 | Rapid Fire 2 |
-| Incinerator | 12" | D6 | N/A | 6 | -1 | 1 | Torrent, Ignores Cover, Psychic |
+| Incinerator | 12" | D6 | N/A | 6 | -1 | 1 | Torrent, Ignores Cover |
 | Psilencer | 24" | 6 | 3+ | 5 | 0 | 1 | Sustained Hits 1, Psychic |
 | Psilencer (Paladin) | 24" | 6 | **2+** | 5 | 0 | 1 | Sustained Hits 1, Psychic |
 | Psycannon | 24" | 3 | 3+ | 8 | -1 | 2 | Sustained Hits 1, Psychic |
 | Psycannon (Paladin) | 24" | 3 | **2+** | 8 | -1 | 2 | Sustained Hits 1, Psychic |
-| Gatling Psilencer | 24" | 12 | 3+ | 6 | 0 | 1 | Sustained Hits 2, Psychic |
-| Heavy Psycannon | 24" | 6 | 3+ | 10 | -2 | 3 | Sustained Hits 1, Psychic |
-| Heavy Incinerator | 12" | 2D6 | N/A | 6 | -1 | 1 | Torrent, Ignores Cover, Psychic |
-| Purifying Flame | 12" | 1 | 3+ | 4 | -2 | 1 | Torrent, Ignores Cover, Psychic |
+| Gatling Psilencer | 24" | 12 | 3+ | 6 | 0 | 1 | Sustained Hits 1, Psychic |
+| Heavy Psycannon | 24" | 6 | 3+ | 10 | -2 | 3 | Ignores Cover, Psychic |
+| Heavy Incinerator | 12" | 2D6 | N/A | 6 | -1 | 1 | Torrent, Ignores Cover |
+| Purifying Flame | 18" | 1 | 3+ | 4 | -2 | 1 | Anti-Infantry 2+, Ignores Cover, Psychic |
 
-*Incinerator/Psilencer/Psycannon: Paladin Squads have BS 2+ instead of 3+. This matters for DPP calculations.*
-*Purifying Flame has Torrent (auto-hit) so BS is irrelevant.*
+*Incinerator/Heavy Incinerator: Torrent (auto-hit), so BS is irrelevant. Ignores Cover is redundant since Psychic already ignores Cover.*
+*Purifying Flame has Anti-Infantry 2+ and requires a hit roll (BS3+). It is Psychic, so it ignores Cover.*
 
 ### Melee Weapons
 
@@ -108,9 +108,9 @@ All GK weapons have the [PSYCHIC] keyword except Storm Bolters.
 | Nemesis Force Weapon (Terminator/Paladin) | 4 | 3+ | 6 | -2 | 2 | Psychic |
 | Nemesis Force Weapon (power armour) | 3 | 3+ | 6 | -2 | 2 | Psychic |
 | Close Combat Weapon | 3 | 3+ | 4 | 0 | 1 | — |
-| Nemesis Daemon Hammer | 3 | 4+ | 9 | -3 | 3 | Psychic, Heavy |
-| Black Blade of Antwyr (Draigo) | 5 | 2+ | 6 | -2 | 2 | Psychic, Sustained Hits 1 |
-| The Titansword (Stern) | 6 | 2+ | 8 | -4 | 3 | Psychic, Anti-Daemon 2+ |
+| Nemesis Daemon Hammer | 3 | 4+ | 9 | -3 | 3 | Psychic |
+| Black Blade of Antwyr (Crowe) | 5 | 2+ | 6 | -2 | 2 | Devastating Wounds, Precision |
+| The Titansword (Draigo — LEGEND) | 6 | 2+ | 8 | -4 | 3 | Psychic, Anti-Daemon 2+ |
 | Malleus Argyrum (Voldus) | 5 | 2+ | 10 | -2 | 3 | Psychic |
 
 **Key difference:** Terminator-armoured units (Terminator Squad, Paladin Squad) have A=4 on Nemesis Force Weapon.
