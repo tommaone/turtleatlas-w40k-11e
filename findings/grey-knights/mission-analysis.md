@@ -256,3 +256,41 @@ The engine ranks this detachment as baseline — no DPP, SURV, or MOB modifier.
 - **Argent Assault, Hallowed Conclave, and Augurium Task Force are inert in the engine** — they give abilities the engine cannot model
 - **GK have a hole at Take and Hold and Reconnaissance** — both dispositions have only one detachment, and both are weak
 - **Purge the Foe is the only competitive mission for GK** — Warpbane or Brotherhood Strike + a 1DP add-on
+
+---
+
+## Conclusion
+
+### The GK detachment picture is simpler than CK
+
+CK has 8 detachments with real DPP modifiers across all 5 dispositions. GK has 9 detachments but **only 3 give meaningful DPP boosts** (Warpbane, Brotherhood Strike, Banishers). The rest are inert in the engine.
+
+### Purge the Foe is the only competitive mission
+
+GK are built to kill things in melee. Their PSYCHIC keyword ignores Cover, their units hit hard, and their detachment rules amplify damage. Take and Hold, Priority Assets, Disruption, and Reconnaissance all lack meaningful DPP modifiers.
+
+### The combo to build around
+
+**Brotherhood Strike (2DP) + Argent Assault (1DP) = 3DP, Purge the Foe**
+
+- Brotherhood Strike: re-roll 1s to hit/wound after Deep Strike (+16.8% DPP)
+- Argent Assault: Dauntless Champions for Paladins (+1 to wound when S < T)
+- Two rules, one disposition, maximum flexibility
+
+This is the best general-purpose GK list. Warpbane Task Force is stronger (+33.3%) but locks you out of a second detachment.
+
+### What the engine cannot see
+
+- **Hallowed Conclave's Fallback+shoot/charge** — valuable for Terminators stuck in combat, but inert
+- **Argent Assault's +1 to wound** — conditional (S < T), useless vs T4 targets
+- **Augurium Task Force's redeployment** — mobility play, not damage
+- **Sanctic Spearhead's +6" M** — good for Dreadknight lists, but not DPP
+
+These abilities have real game value but the engine cannot score them. A player who frequently draws Take and Hold or Reconnaissance missions may find these detachments more useful than the numbers suggest.
+
+### Key corrections from previous analysis
+
+- **Warpbane Task Force does NOT "win all missions"** — it only plays Purge the Foe
+- **Argent Assault is weak on its own** — take it as a 1DP add-on, not a primary detachment
+- **GK have fewer competitive detachments than CK** — 3 with DPP vs CK's 5+
+- **The codex has a hole at Take and Hold and Reconnaissance** — only one detachment each, both inert
