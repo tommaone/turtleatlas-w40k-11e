@@ -89,10 +89,10 @@ All GK weapons have the [PSYCHIC] keyword except Storm Bolters.
 | Storm Bolter | 24" | 2 | 3+ | 4 | 0 | 1 | Rapid Fire 2 |
 | Storm Bolter (Paladin) | 24" | 2 | **2+** | 4 | 0 | 1 | Rapid Fire 2 |
 | Incinerator | 12" | D6 | N/A | 6 | -1 | 1 | Torrent, Ignores Cover |
-| Psilencer | 24" | 6 | 3+ | 5 | 0 | 1 | Sustained Hits 1, Psychic |
-| Psilencer (Paladin) | 24" | 6 | **2+** | 5 | 0 | 1 | Sustained Hits 1, Psychic |
-| Psycannon | 24" | 3 | 3+ | 8 | -1 | 2 | Sustained Hits 1, Psychic |
-| Psycannon (Paladin) | 24" | 3 | **2+** | 8 | -1 | 2 | Sustained Hits 1, Psychic |
+| Psilencer | 24" | 6 | 3+ | 5 | 0 | 1 | Precision, Sustained Hits 1, Psychic |
+| Psilencer (Paladin) | 24" | 6 | **2+** | 5 | 0 | 1 | Precision, Sustained Hits 1, Psychic |
+| Psycannon | 24" | 3 | 3+ | 8 | -1 | 2 | Psychic |
+| Psycannon (Paladin) | 24" | 3 | **2+** | 8 | -1 | 2 | Psychic |
 | Gatling Psilencer | 24" | 12 | 3+ | 6 | 0 | 1 | Sustained Hits 1, Psychic |
 | Heavy Psycannon | 24" | 6 | 3+ | 10 | -2 | 3 | Ignores Cover, Psychic |
 | Heavy Incinerator | 12" | 2D6 | N/A | 6 | -1 | 1 | Torrent, Ignores Cover |
@@ -108,7 +108,8 @@ All GK weapons have the [PSYCHIC] keyword except Storm Bolters.
 | Nemesis Force Weapon (Terminator/Paladin) | 4 | 3+ | 6 | -2 | 2 | Psychic |
 | Nemesis Force Weapon (power armour) | 3 | 3+ | 6 | -2 | 2 | Psychic |
 | Close Combat Weapon | 3 | 3+ | 4 | 0 | 1 | — |
-| Nemesis Daemon Hammer | 3 | 4+ | 9 | -3 | 3 | Psychic |
+| Nemesis Daemon Hammer | 3 | **3+** | 9 | -3 | 3 | Psychic |
+| Nemesis Daemon Greathammer | 5 | **3+** | 14 | -3 | D6+1 | Psychic |
 | Black Blade of Antwyr (Crowe) | 5 | 2+ | 6 | -2 | 2 | Devastating Wounds, Precision |
 | The Titansword (Draigo — LEGEND) | 6 | 2+ | 8 | -4 | 3 | Psychic, Anti-Daemon 2+ |
 | Malleus Argyrum (Voldus) | 5 | 2+ | 10 | -2 | 3 | Psychic |
