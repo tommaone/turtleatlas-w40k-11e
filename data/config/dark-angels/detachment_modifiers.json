@@ -1,0 +1,163 @@
+{
+  "_note": "Dark Angels detachment modifiers — 11e MFM",
+  "_source": "mfm/data/dark-angels.yaml",
+  "_inherits": "space-marines",
+  "detachments": {
+    "COMPANY OF HUNTERS": {
+      "dp_cost": 2,
+      "objective": "DISRUPTION",
+      "_source": "Dark Angels specific — Ravenwing-focused",
+      "choices": [
+        {
+          "name": "Mounted Advance",
+          "affects": "mob",
+          "_source": "Company of Hunters detachment rule",
+          "description": "Mounted units get +2\" move and advance"
+        },
+        {
+          "name": "Hunter's Instincts",
+          "affects": "surv",
+          "_source": "Company of Hunters enhancement",
+          "description": "Mounted units get Stealth"
+        }
+      ]
+    },
+    "DARK AGE ARSENAL": {
+      "dp_cost": 1,
+      "objective": "PRIORITY ASSETS",
+      "_source": "Dark Angels specific — weapon-focused",
+      "choices": [
+        {
+          "name": "Entreaty of Perpetual Ardour",
+          "affects": "dpp",
+          "_source": "Dark Age Arsenal enhancement",
+          "description": "Ranged attacks get +1 S"
+        },
+        {
+          "name": "Petition of Stability",
+          "affects": "surv",
+          "_source": "Dark Age Arsenal enhancement",
+          "description": "6+ FNP against mortal wounds"
+        }
+      ]
+    },
+    "DARKFLIGHT PURSUIT": {
+      "dp_cost": 1,
+      "objective": "RECONNAISSANCE",
+      "_source": "Dark Angels specific — flyer-focused",
+      "choices": [
+        {
+          "name": "Nightforged Battery",
+          "affects": "dpp",
+          "_source": "Darkflight Pursuit enhancement",
+          "description": "Flyer reroll 1s to hit"
+        },
+        {
+          "name": "Thundercowl Turbines",
+          "affects": "mob",
+          "_source": "Darkflight Pursuit enhancement",
+          "description": "Flyers get +6\" move"
+        }
+      ]
+    },
+    "INNER CIRCLE TASK FORCE": {
+      "dp_cost": 2,
+      "objective": "PRIORITY ASSETS",
+      "_source": "Dark Angels specific — Deathwing-focused",
+      "choices": [
+        {
+          "name": "Deathwing Assault",
+          "affects": "dpp",
+          "_source": "Inner Circle Task Force enhancement",
+          "reroll_hits": "all",
+          "description": "Deathwing units re-roll Hit rolls after Deep Strike"
+        },
+        {
+          "name": "Champion of the Deathwing",
+          "affects": "dpp",
+          "_source": "Inner Circle Task Force enhancement",
+          "hit_modifier": 1,
+          "description": "Deathwing character gets +1 to hit"
+        }
+      ]
+    },
+    "INTERROGATION CONCLAVE": {
+      "dp_cost": 1,
+      "objective": "PURGE THE FOE",
+      "_source": "Dark Angels specific — chaplain/psychic focused",
+      "choices": [
+        {
+          "name": "Psychic Interrogation",
+          "affects": "dpp",
+          "_source": "Interrogation Conclave detachment rule",
+          "description": "Psychic attacks get +1 AP"
+        },
+        {
+          "name": "Chaplain's Blessing",
+          "affects": "surv",
+          "_source": "Interrogation Conclave enhancement",
+          "description": "Chaplain units get 5+ FNP"
+        }
+      ]
+    },
+    "LION'S BLADE TASK FORCE": {
+      "dp_cost": 2,
+      "objective": "PURGE THE FOE",
+      "_source": "Dark Angels specific — Lion El'Jonson focused",
+      "choices": [
+        {
+          "name": "Primarch's Presence",
+          "affects": "dpp",
+          "_source": "Lion's Blade Task Force rule",
+          "reroll_hits": "ones",
+          "description": "Friendly DA units within 6\" of Lion El'Jonson re-roll 1s to hit"
+        },
+        {
+          "name": "Dark Angels Honour",
+          "affects": "surv",
+          "_source": "Lion's Blade Task Force enhancement",
+          "description": "Deathwing units get +1 save"
+        }
+      ]
+    },
+    "UNFORGIVEN TASK FORCE": {
+      "dp_cost": 2,
+      "objective": "TAKE AND HOLD",
+      "_source": "Dark Angels specific — objective-focused",
+      "choices": [
+        {
+          "name": "Unforgiven Fury",
+          "affects": "dpp",
+          "_source": "Unforgiven Task Force rule",
+          "description": "When below starting strength, +1 to wound"
+        },
+        {
+          "name": "Deathwing Obstinacy",
+          "affects": "surv",
+          "_source": "Unforgiven Task Force enhancement",
+          "description": "Deathwing units count as 2 models for objective control"
+        }
+      ]
+    },
+    "WRATH OF THE ROCK": {
+      "dp_cost": 3,
+      "objective": "PRIORITY ASSETS",
+      "_source": "Dark Angels specific — Deathwing heavy",
+      "choices": [
+        {
+          "name": "Deathwing Wrath",
+          "affects": "dpp",
+          "_source": "Wrath of the Rock rule",
+          "reroll_hits": "all",
+          "description": "Deathwing units re-roll Hit rolls"
+        },
+        {
+          "name": "Rock's Endurance",
+          "affects": "surv",
+          "_source": "Wrath of the Rock enhancement",
+          "description": "Deathwing units get 5+ FNP"
+        }
+      ]
+    }
+  }
+}
