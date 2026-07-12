@@ -17,9 +17,9 @@ Engine data from `ranking.py`. 11e rules. All-comers target profiles.
 
 ### Survivability (all Power Armour identical)
 
-| Unit | W | T | SV | INV | EffW AP0 | EffW AP2 | EffW AP4 |
+| Unit | W | T | SV | FNP | EffW AP0 | EffW AP2 | EffW AP4 |
 |------|---|---|----|-----|---------|---------|---------|
-| All GK Power Armour | 2 | 4 | 3+ | 5+ | 7.5 | 5.0 | 2.5 |
+| All GK Power Armour | 2 | 4 | 3+ | 6+ | 7.5 | 5.0 | 2.5 |
 
 ### Mobility
 
@@ -73,7 +73,7 @@ Cheapest unit in the codex. Worst DPP across most targets. Ignores Cover is usef
 
 ## 🟠 CONSTRAINTS
 
-- No unit has an invuln save (5+ is from the Psilencer psychic shield, not an invuln)
+- No native invuln save — GK rely on FNP 6+ (the Aegis) and Aegis Eternal stratagem (4+ invuln in Hallowed Ground)
 - Power Armour is fragile vs AP2+ — 7.5→5.0→2.5 effective wounds
 - All units have Deep Strike — can't hold objectives from turn 1
 - Purifying Flame is a psychic attack — can't shoot while Battle-shocked
