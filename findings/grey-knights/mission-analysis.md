@@ -235,7 +235,7 @@ The engine ranks this detachment as baseline — no DPP, SURV, or MOB modifier.
 
 1. **Augurium Task Force is the worst GK detachment.** Take it only if you must play Reconnaissance.
 
-2. **Reconnaissance is a bad mission for GK.** 60% MOB weighting, and GK's key advantages (Psychic ignores Cover, re-rolls) are DPP-focused, not mobility-focused.
+2. **Reconnaissance is a bad mission for GK.** 60% MOB weighting, and GK's key advantages (Psychic weapons ignore Cover, re-rolls) are DPP-focused, not mobility-focused.
 
 ---
 
@@ -267,7 +267,7 @@ CK has 8 detachments with real DPP modifiers across all 5 dispositions. GK has 9
 
 ### Purge the Foe is the only competitive mission
 
-GK are built to kill things in melee. Their PSYCHIC keyword ignores Cover, their units hit hard, and their detachment rules amplify damage. Take and Hold, Priority Assets, Disruption, and Reconnaissance all lack meaningful DPP modifiers.
+GK are built to kill things in melee. Their Psychic weapons ignore Cover, their units hit hard, and their detachment rules amplify damage. Take and Hold, Priority Assets, Disruption, and Reconnaissance all lack meaningful DPP modifiers.
 
 ### The combo to build around
 
