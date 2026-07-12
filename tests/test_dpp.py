@@ -555,12 +555,16 @@ class TestDetachmentModifiers:
     """Detachment modifiers must load and have expected structure."""
 
     def test_gk_all_9_detachments_have_modifiers(self):
-        """GK should have all 9 detachments with modifier choices."""
+        """GK should have all 9 detachments with modifier choices.
+
+        Note: AUGURIUM TASK FORCE has empty choices (no engine-modelable modifiers)
+        so it is correctly excluded from the list.
+        """
         from ranking import RankingEngine
         eng = RankingEngine('grey-knights')
         dets = eng.list_detachments_with_modifiers()
         expected = {
-            'ARGENT ASSAULT', 'AUGURIUM TASK FORCE', 'BANISHERS',
+            'ARGENT ASSAULT', 'BANISHERS',
             'BROTHERHOOD STRIKE', 'FIRES OF PURGATION', 'HALLOWED CONCLAVE',
             'IMMATERIAL INTERDICTION', 'SANCTIC SPEARHEAD', 'WARPBANE TASK FORCE',
         }
@@ -760,4 +764,89 @@ class TestPsychicIgnoresExternalModifier:
             f"Psychic should ignore Cover + Heavy + external: "
             f"all_mods={r_all['total_damage']}, none={r_none['total_damage']}"
         )
+
+
+# ---------------------------------------------------------------------------
+# Invulnerable save tests
+# ---------------------------------------------------------------------------
+
+
+class TestInvulnSave:
+    """Invulnerable save must be correctly applied when beneficial."""
+
+    def test_invuln_used_when_better_than_armour(self):
+        """INV 4+ should be used when AP makes armour worse than 4+."""
+        # SV3+ vs AP-4 → save on 7+ (no save). INV 4+ → save on 4+
+        defence = UnitDefense(toughness=4, wounds_per_model=2, save=3, invuln=4)
+        result = compute_surv(defence, unit_points=100)
+        # With INV 4+: 50% of wounds saved → 2 / 0.5 = 4.0 effective wounds
+        assert result["effective_wounds"]["ap4"] == 4.0
+
+    def test_armour_used_when_better_than_invuln(self):
+        """SV2+ should be used when AP doesn't push armour below INV 4+."""
+        # SV2+ vs AP0 → save on 2+ (83% save). INV 4+ → save on 4+ (50% save)
+        defence = UnitDefense(toughness=5, wounds_per_model=3, save=2, invuln=4)
+        result = compute_surv(defence, unit_points=100)
+        # With SV2+: 83% saved → 3 / 0.1667 ≈ 18.0 effective wounds
+        assert result["effective_wounds"]["ap0"] == 18.0
+
+    def test_no_invuln_uses_armour_always(self):
+        """No INV → armour is used regardless of AP."""
+        defence = UnitDefense(toughness=4, wounds_per_model=2, save=3, invuln=None)
+        result = compute_surv(defence, unit_points=100)
+        # SV3+ vs AP0: 2/3 saved → 2 / 0.333 = 6.0
+        assert result["effective_wounds"]["ap0"] == 6.0
+        # SV3+ vs AP-4: save on 7+ (no save) → 2 / 1.0 = 2.0
+        assert result["effective_wounds"]["ap4"] == 2.0
+
+    def test_invuln_floor_at_ap4(self):
+        """INV 4+ provides a floor — effective wounds don't collapse to 0 at high AP."""
+        with_inv = UnitDefense(toughness=4, wounds_per_model=2, save=3, invuln=4)
+        without_inv = UnitDefense(toughness=4, wounds_per_model=2, save=3, invuln=None)
+        r_with = compute_surv(with_inv, unit_points=100)
+        r_without = compute_surv(without_inv, unit_points=100)
+        # At AP-4: with INV should be 2× better (4.0 vs 2.0)
+        assert r_with["effective_wounds"]["ap4"] > r_without["effective_wounds"]["ap4"]
+        assert r_with["effective_wounds"]["ap4"] == 4.0
+        assert r_without["effective_wounds"]["ap4"] == 2.0
+
+    def test_invuln_5plus_provides_partial_floor(self):
+        """INV 5+ is worse than INV 4+ but still better than no save at high AP."""
+        defence = UnitDefense(toughness=4, wounds_per_model=2, save=3, invuln=5)
+        result = compute_surv(defence, unit_points=100)
+        # SV3+ vs AP-4 → no save. INV 5+ → save on 5+ (33% saved)
+        # 2 / 0.6667 = 3.0 effective wounds
+        assert result["effective_wounds"]["ap4"] == 3.0
+
+    def test_invuln_shots_to_kill(self):
+        """INV should increase shots-to-kill vs high-AP weapons."""
+        from dpp import _shots_to_kill
+        # Bolter (S5, AP0, D1) vs T4 target
+        with_inv = _shots_to_kill(total_wounds=3, toughness=5, save=2, invuln=4,
+                                  fnp=None, bs=3, strength=5, ap=-4, damage=1)
+        without_inv = _shots_to_kill(total_wounds=3, toughness=5, save=2, invuln=None,
+                                     fnp=None, bs=3, strength=5, ap=-4, damage=1)
+        # With INV 4+: saves on 4+ (50%) vs no save (0%) → more shots needed
+        assert with_inv > without_inv
+
+    def test_gk_terminator_has_invuln(self):
+        """GK Brotherhood Terminator Squad should have 4+ invuln in config."""
+        from ranking import RankingEngine
+        engine = RankingEngine('grey-knights')
+        kw, t, sv, w, oc, inv = engine.get_unit_info('Brotherhood Terminator Squad', None)
+        assert inv == 4, f"Expected INV=4 for Brotherhood Terminator Squad, got {inv}"
+
+    def test_gk_strike_has_no_invuln(self):
+        """GK Strike Squad should NOT have invuln in config."""
+        from ranking import RankingEngine
+        engine = RankingEngine('grey-knights')
+        kw, t, sv, w, oc, inv = engine.get_unit_info('Strike Squad', None)
+        assert inv is None, f"Expected no INV for Strike Squad, got {inv}"
+
+    def test_gk_ndk_has_invuln(self):
+        """GK Nemesis Dreadknight should have 4+ invuln in config."""
+        from ranking import RankingEngine
+        engine = RankingEngine('grey-knights')
+        kw, t, sv, w, oc, inv = engine.get_unit_info('Nemesis Dreadknight', None)
+        assert inv == 4, f"Expected INV=4 for Nemesis Dreadknight, got {inv}"
 

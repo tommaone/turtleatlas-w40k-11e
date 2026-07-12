@@ -42,15 +42,24 @@ Note: Take and Hold and Reconnaissance have only ONE valid detachment.
 | Interceptor Squad | 125 | 0.1740 | 0.0870 | 0.0699 | 0.0505 | 0.0352 | 0.0510 | 0.0326 | 0.0779 |
 | Purgation Squad | 110 | 0.1412 | 0.0747 | 0.0614 | 0.0531 | 0.0310 | 0.0410 | 0.0370 | 0.0682 |
 
+### Survivability (effective wounds at AP0, AP-2, AP-4)
+
+| Unit | T | SV | Invuln | W | EffW AP0 | EffW AP2 | EffW AP4 |
+|------|---|----|--------|---|---------|---------|---------|
+| Power Armour (Strike/Interceptor/Purifier/Purgation) | 4 | 3+ | None | 2 | 6.0 | 3.0 | 2.0 |
+| Brotherhood Terminator Squad | 5 | 2+ | **4+** | 3 | 18.0 | 6.0 | 6.0 |
+| Paladin Squad | 5 | 2+ | **4+** | 3 | 18.0 | 6.0 | 6.0 |
+| Nemesis Dreadknight | 7 | 2+ | **4+** | 12 | 72.0 | 24.0 | 24.0 |
+
 ### 🟡 USE CASES
 
-**Nemesis Dreadknight** — best DPP across all targets. Fast (M8"), durable (T8, 13W), shoots and melee. The datasheet that carries GK.
+**Nemesis Dreadknight** — best DPP across all targets. Fast (M8"), durable (T7, 12W, 4+ invuln), shoots and melee. The datasheet that carries GK.
 
-**Paladin Squad** — best GEQ DPP (0.1822). Expensive (215pts) but T5, 2+, 3W makes them durable. Melee-heavy build.
+**Paladin Squad** — best GEQ DPP (0.1822). Expensive (215pts) but T5, 2+, 4+ invuln, 3W makes them durable. Melee-heavy build.
 
-**Strike Squad** — cheapest battleline (120pts). Excellent GEQ/MEQ DPP for the price. Objective holders.
+**Strike Squad** — cheapest battleline (120pts). Excellent GEQ/MEQ DPP for the price. **No invuln** — fragile vs AP-2+.
 
-**Purifier Squad** — unique: Purifying Flame gives them Anti-Infantry 2+ psychic attacks. Good MEQ efficiency at 130pts.
+**Purifier Squad** — unique: Purifying Flame gives them Anti-Infantry 2+ psychic attacks. Good MEQ efficiency at 130pts. **No invuln**.
 
 ---
 

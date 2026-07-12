@@ -15,11 +15,15 @@ Engine data from `ranking.py`. 11e rules. All-comers target profiles.
 | Purifier Squad | 130 | 0.1777 | 0.0905 | 0.0706 | **0.0571** | 0.0358 | 0.0505 | **0.0368** | 0.0810 |
 | Purgation Squad | 110 | 0.1412 | 0.0747 | 0.0614 | 0.0531 | 0.0310 | 0.0410 | 0.0370 | 0.0682 |
 
-### Survivability (all Power Armour identical)
+### Survivability — Power Armour vs Terminator Armour
 
-| Unit | W | T | SV | EffW AP0 | EffW AP2 | EffW AP4 |
-|------|---|---|----|---------|---------|---------|
-| All GK Power Armour | 2 | 4 | 3+ | 7.5 | 5.0 | 2.5 |
+| Unit | T | SV | Invuln | W | EffW AP0 | EffW AP2 | EffW AP4 | Pts/EffW |
+|------|---|----|--------|---|---------|---------|---------|----------|
+| Power Armour (Strike/Interceptor/Purifier/Purgation) | 4 | 3+ | **None** | 2 | 6.0 | 3.0 | 2.0 | 18-22 |
+| Brotherhood Terminator Squad | 5 | 2+ | **4+** | 3 | 18.0 | 6.0 | 6.0 | 9.7 |
+| Paladin Squad | 5 | 2+ | **4+** | 3 | 18.0 | 6.0 | 6.0 | 11.9 |
+
+> Terminator units have **3× effective wounds** at AP0 thanks to 2+ save + 4+ invuln. Power Armour's 3+ save is negated by AP-2+, giving no protection against dedicated anti-infantry fire.
 
 ### Mobility
 
@@ -73,9 +77,9 @@ Cheapest unit in the codex. Worst DPP across most targets. Ignores Cover is usef
 
 ## 🟠 CONSTRAINTS
 
-- No native invuln save on Power Armour — rely on Aegis Eternal stratagem (4+ invuln in Hallowed Ground)
-- Grey Knights Terminator Squad has native 4+ invuln (not Brotherhood Terminators or Paladins — BSData data gap?)
-- Power Armour is fragile vs AP2+ — 7.5→5.0→2.5 effective wounds
+- **No native invuln save on Power Armour** — Strike/Interceptor/Purifier/Purgation rely on 3+ SV only
+- **Terminator units have 4+ invuln** — Brotherhood Terminators, Paladins, NDK, all Characters
+- Power Armour is fragile vs AP2+ — 6.0→3.0→2.0 effective wounds
 - All units have Deep Strike — can't hold objectives from turn 1
 - Purifying Flame is a psychic attack — can't shoot while Battle-shocked
 - Interceptor Squad's extra 2" M is marginal — doesn't change melee math
