@@ -401,3 +401,36 @@ don't benefit from some WALKER-specific rules in the engine. If the
 The engine sums ranged + melee DPP. In practice, melee-only units
 (Karnivore, Rampager) need to reach combat first. The raw DPP value
 is theoretical — real output depends on delivery.
+
+---
+
+## Disposition Ranking (best to worst)
+
+| Tier | Disposition | Why |
+|------|-------------|-----|
+| 🟢 **S** | **Purge the Foe** | CK kills things. Every unit contributes. Natural fit. |
+| 🟢 **S** | **Take and Hold** | With Iconoclast cheap bodies hold objectives. Without: tough Knights still work. |
+| 🟡 **A** | **Priority Assets** | Protect key Knights. OK but CK wants to push, not castle. |
+| 🟠 **B** | **Disruption** | Screening/control. Low model count struggles here. |
+| 🔴 **C** | **Reconnaissance** | Action-heavy. Worst for CK — big bases, few units, can't do actions effectively. |
+
+**Key constraint:** Actions are bad in 11th edition, per user. Purge and Take and Hold are the only viable competitive picks.
+
+---
+
+## Top Competitive Combinations (3DP at 2000pts)
+
+### 🟢 S-Tier — Tournament level
+
+1. **Infernal Lance** (3DP, Purge). Best single detachment. Self-contained. Run Purge.
+2. **Houndpack Lance + Iconoclast Fiefdom** (2+1, TaH). Best rules package. Marked Prey + cheap bodies. 12-18 War Dogs + Cultists. Pick TaH.
+
+### 🟡 A-Tier — Very good
+
+3. **Traitoris Lance + Iconoclast Fiefdom** (2+1, Purge/TaH). Two S-tier dispositions. Pick Purge vs gunlines, TaH vs horde. Weak rules but flexible.
+4. **Traitoris Lance + Bastions of Tyranny** (2+1, Purge). Purge + Tyrant buff. Weak rules but efficient DP spend.
+5. **Lords of Dread + Iconoclast Fiefdom** (2+1, TaH). Lords is mediocre but Iconoclast carries. +2 OC helps hold.
+
+### Key Rule
+
+**Iconoclast Fiefdom is in every S/A tier combo.** It fixes CK's only real weakness — cheap objective bodies. Any list without it has a harder path to win.

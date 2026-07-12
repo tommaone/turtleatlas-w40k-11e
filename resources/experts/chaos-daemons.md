@@ -434,3 +434,65 @@ First. Opting into Seductive Gambit loses that for re-rolls. Choose per charge.
 ### Soul Grinder Scuttling Walker
 Can move over friendly Monster/Vehicle models and terrain ≤4" height freely.
 This is a mobility advantage not reflected in base MOB scoring.
+
+---
+
+## Disposition Ranking
+
+| Tier | Disposition | Why |
+|------|-------------|-----|
+| 🟢 **S** | **Purge the Foe** | Daemons kill things. Especially Khorne/Slaanesh. |
+| 🟢 **S** | **Take and Hold** | Nurgle Plague Legion excels here. Battleline bodies hold objectives. |
+| 🟡 **A** | **Priority Assets** | Protect Greater Daemons. Scintillating (Tzeentch) fits. |
+| 🟠 **B** | **Disruption** | Daemonic Incursion (3DP) is strong but expensive. |
+| 🔴 **C** | **Reconnaissance** | Daemons want to push, not do actions. |
+
+---
+
+## Best 3DP Combinations by God
+
+### 🟢 S-Tier
+
+**Nurgle: Plague Legion + Warptide** (2+1, TaH)
+- Melancholic Miasma controls the board. Warptide gives Plaguebearers advance+charge.
+- TaH disposition. Nurgle's natural playstyle.
+- 2CP strat Foetid Resurgence returns D3 Battleline models.
+
+### 🟡 A-Tier
+
+**Khorne: Blood Legion + Warptide** (2+1, Purge)
+- Murdercall for reactive positioning. Warptide gives Bloodletters advance+charge.
+- Purge disposition. Khorne wants to kill everything.
+
+**Tzeentch: Scintillating Legion + Warptide** (2+1, Priority)
+- Flux tokens for massive re-roll flexibility. Warptide gives Horrors advance+charge.
+- Priority Assets to protect Lords of Change.
+
+**Mixed: Shadow Legion** (2DP, Purge) + **Cavalcade of Chaos** (1DP, Purge)
+- Be'lakor + CSM allies + mounted daemons. Purge disposition.
+- Most flexible list-building. Can take any god's units plus CSM.
+
+**Slaanesh: Legion of Excess + Cavalcade of Chaos** (2+1, Priority)
+- Seductive Gambit re-rolls + Mounted fallback for Seekers/Chariots.
+- Priority Assets. Speed-focused.
+
+### 🟠 B-Tier
+
+**Undivided: Daemonic Incursion** (3DP, Disrupt)
+- Universal Deep Strike buff. Any god works. But 3DP with no secondary is expensive.
+- Disruption disposition is not ideal.
+
+### C-Tier
+
+**Anything with Lords of the Warp** as your only 1DP — its rule (+1 Ld +1 OC on characters) is the weakest in the book.
+
+---
+
+## Key Strategic Notes
+
+- **Warptide (1DP) is the best value pick** — it gives advance+charge to ALL BATTLELINE units. Every god has battleline. It fits every army.
+- **Shadow Legion requires BE'LAKOR as Warlord** and restricts other Daemon Princes/EPIC HEROES. The CSM ally allowance is up to 1000pts at Strike Force.
+- **Daemons have baseline 4+ invuln** (or 5+ for some units) — this is baked into their datasheets, not detachment rules. Don't confuse the two.
+- **Nurgle Plague Legion's Melancholic Miasma is NOT a defensive buff** — it's a board control + battleshock tool. Don't model it as Stealth.
+- **Flux tokens (Scintillating) can be used by your opponent** — there's risk/reward in hoarding them vs spending them.
+- **Blood Legion has TWO detachment rules** — Murdercall (reactive surge) AND Blood Tainted (objective control). Most players forget Blood Tainted.

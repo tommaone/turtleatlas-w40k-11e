@@ -407,3 +407,83 @@ could take 1× Incinerator + 1× Psycannon. The restriction is per-model, not pe
 The weapon profiles above are from BSData 10e data. The 11e Faction Pack v1.0 PDF may
 update these (e.g. Psycannon AP, Purifying Flame attacks). If the faction pack PDF is
 re-parsed with better extraction, update these values.
+
+---
+
+## Disposition Resolution (Multiple Detachments)
+
+When you combine multiple detachments (e.g., 2DP + 1DP), you **choose which detachment's disposition applies to your army** before the game. You are NOT locked into the highest-DP detachment's disposition.
+
+**Examples:**
+- Brotherhood Strike (2DP, Purge) + Fires of Purgation (1DP, Disrupt) → choose **Purge** or **Disrupt**
+- Sanctic Spearhead (2DP, Priority) + Argent Assault (1DP, Purge) → choose **Priority** or **Purge**
+- Two 1DPs → choose either
+
+---
+
+## Disposition Ranking
+
+| Tier | Disposition | Why |
+|------|-------------|-----|
+| 🟢 **S** | **Purge the Foe** | GK kill things in melee. Natural fit. Every unit contributes. |
+| 🟢 **S** | **Take and Hold** | Terminators are tough. Gate of Infinity lets them grab objectives. Good mix of fight + control. |
+| 🟡 **A** | **Priority Assets** | Protect key units (Dreadknights, Paladins, Crowe). OK but GK prefer to push. |
+| 🟠 **B** | **Disruption** | Screening/denial. GK have tools but prefer aggressive play. |
+| 🔴 **C** | **Reconnaissance** | Action-heavy. GK want to fight, not squat doing actions. |
+
+---
+
+## Top Competitive Combinations (3DP at 2000pts)
+
+### 🟢 S-Tier
+
+1. **Warpbane Task Force** (3DP, Purge) — Best single detachment. Full re-rolls on Purifiers + Castellan Crowe. Self-contained.
+
+### 🟡 A-Tier
+
+2. **Brotherhood Strike + Argent Assault** (2+1, Purge) — Deep Strike re-rolls + Paladin +1 to wound. Two good rules, Purge disposition. Best general-purpose combo.
+3. **Brotherhood Strike + Fires of Purgation** (2+1, Purge) — Deep Strike re-rolls on everything, plus Purgation Squad (115pts) as cheap anti-MEQ shooting platform. Their psychic weapons ignore cover naturally (PSYCHIC keyword), stack with Fury of Titan re-rolls. Battleshock debuff is a bonus. Good into MEQ-heavy metas.
+4. **Hallowed Conclave + Argent Assault** (2+1, TaH) — Terminator fallback+shoot/charge + Paladin wound buff. TaH disposition.
+5. **Brotherhood Strike + Immaterial Interdiction** (2+1, Purge) — Deep Strike re-rolls + Interceptor surge. Purge.
+
+### 🟠 B-Tier
+
+6. **Sanctic Spearhead + Argent Assault** (2+1, Priority or Purge) — Vehicle advance + Paladins. Niche.
+7. **Augurium Task Force + Argent Assault** (2+1, Recon or Purge) — Redeployment + Paladins. Recon hurts.
+
+### Key Rules
+
+**Argent Assault (1DP) is the best value pick for melee-focused lists.** +1 to wound on Paladins for 1DP is excellent.
+
+**Fires of Purgation (1DP) is the best value pick for shooting-focused lists** when combined with Brotherhood Strike (2DP). Purgation Squad (115pts) as a Deep Strike shooting platform with IGNORE COVER and re-roll 1s is legit anti-MEQ tech.
+
+---
+
+## Deployment & Reserves Rules (11e)
+
+- **No Reserves arrive Turn 1.** This includes Teleport Assault, Deep Strike, and Strategic Reserves. First arrival is Turn 2.
+- **Reserves cap (Strike Force):** max 1000pts OR half your total units (whichever is more restrictive) can start in Reserves. You CANNOT put the entire army into Deep Strike.
+- Units deployed on the board in Turn 1 must survive. GK have T4, 3+ save — use cover, don't expose.
+- Teleport Assault (the GK army rule) lets eligible units start in Reserves. They count towards the reserves cap like any other reserve unit.
+
+---
+
+## How To Play Grey Knights (Turn-by-Turn)
+
+### Deployment & Turn 1
+- Deploy about half your army on the board. Priority: objective holders (Terminators, Strike Squads) in cover.
+- Put the other half into Teleport Assault reserves (arrive Turn 2+).
+- Use cover and LOS blocking — GK have no built-in durability buffs at range.
+- Gate of Infinity on a Terminator brick if they get shot at. Redeploy elsewhere.
+
+### Turn 2–3 (Strike Window)
+- Your Deep Strike units arrive. This is where GK come alive.
+- Purifiers + Crowe land in cover (ideally center) via Hallowed Ground.
+- Terminators Deep Strike onto objectives.
+- Brotherhood Strike: if using it, arriving unit re-rolls Hit+Wound of 1 that turn.
+- Teleport Assault lets you shoot AND charge after arriving from DS.
+
+### Turn 4–5 (Cleanup)
+- Gate of Infinity to reposition or snatch late objectives.
+- Terminators hold. Paladins push and kill.
+- Use Hallowed Ground coverage for re-rolls.
