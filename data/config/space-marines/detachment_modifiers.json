@@ -1,0 +1,250 @@
+{
+  "_note": "Space Marine detachment modifiers — 11e",
+  "_source": "Warhammer Community faction focus articles, Goonhammer reviews",
+  "detachments": {
+    "GLADIUS TASK FORCE": {
+      "dp_cost": 3,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/1xsn0gsw/space-marines-faction-focus-gladius-task-force/",
+      "_engine_note": "Combat Doctrines: Devastator (shoot after Advance), Tactical (shoot+charge after Fall Back), Assault (charge after Advance). Each used once per battle. Cannot be modelled as always-on modifier — rotational doctrine system.",
+      "choices": []
+    },
+    "BLADE OF ULTRAMAR": {
+      "dp_cost": 3,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/2xsn0gsw/space-marines-faction-focus-blade-of-ultramar/",
+      "_engine_note": "Enhanced Combat Doctrines — same as Gladius but with Calgar can reuse a Doctrine. Requires specific character. Cannot be modelled as universal modifier.",
+      "choices": []
+    },
+    "CERAMITE SENTINELS": {
+      "dp_cost": 3,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/3xsn0gsw/space-marines-faction-focus-ceramite-sentinels/",
+      "_engine_note": "Competitive detachment — specific rule details needed from faction pack PDF.",
+      "choices": []
+    },
+    "STORMLANCE TASK FORCE": {
+      "dp_cost": 3,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/4xsn0gsw/space-marines-faction-focus-stormlance-task-force/",
+      "_engine_note": "Lightning Assault: all units can Advance and charge, Fall Back and charge. Always-on army-wide mobility buff.",
+      "choices": [
+        {
+          "name": "Lightning Assault",
+          "index": 0,
+          "affects": "mob",
+          "advance_and_charge": true,
+          "fallback_and_charge": true,
+          "unit_filter": ["ADEPTUS ASTARTES"],
+          "description": "All Adeptus Astartes units can Advance and charge, and Fall Back and charge.",
+          "_source": "https://www.warhammer-community.com/en-gb/articles/4xsn0gsw/space-marines-faction-focus-stormlance-task-force/"
+        }
+      ]
+    },
+    "ARMOURED SPEARTIP": {
+      "dp_cost": 3,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/5xsn0gsw/space-marines-faction-focus-armoured-speartip/",
+      "_engine_note": "Rapid Deployment: units disembarking from Transport that Normal/Advanced can make D6\" move. Positional mechanic — cannot modelled as universal DPP/SURV modifier.",
+      "choices": []
+    },
+    "IRONSTORM SPEARHEAD": {
+      "dp_cost": 2,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/6xsn0gsw/space-marines-faction-focus-ironstorm-spearhead/",
+      "_engine_note": "Armoured Wrath: re-roll one Hit OR Wound OR Damage roll per unit per phase (ranged and melee). Conditional re-roll — modelled as reroll_1s for approximation.",
+      "choices": [
+        {
+          "name": "Armoured Wrath",
+          "index": 0,
+          "affects": "dpp",
+          "reroll_hits": "1s",
+          "reroll_wounds": "1s",
+          "unit_filter": ["ADEPTUS ASTARTES"],
+          "description": "All Adeptus Astartes units re-roll Hit rolls of 1 and Wound rolls of 1 (one each per phase).",
+          "_source": "https://www.warhammer-community.com/en-gb/articles/6xsn0gsw/space-marines-faction-focus-ironstorm-spearhead/"
+        }
+      ]
+    },
+    "FIRESTORM ASSAULT FORCE": {
+      "dp_cost": 2,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/7xsn0gsw/space-marines-faction-focus-firestorm-assault-force/",
+      "_engine_note": "Close-Range Eradication: all ranged weapons gain ASSAULT, +1 Strength within 12\". ASSAULT is mobility; +1S within 12\" is conditional.",
+      "choices": [
+        {
+          "name": "Close-Range Eradication",
+          "index": 0,
+          "affects": "dpp",
+          "plus1_strength_close": true,
+          "unit_filter": ["ADEPTUS ASTARTES"],
+          "description": "All ranged weapons gain ASSAULT. Ranged weapons gain +1 Strength when targeting units within 12\".",
+          "_source": "https://www.warhammer-community.com/en-gb/articles/7xsn0gsw/space-marines-faction-focus-firestorm-assault-force/",
+          "_engine_note": "+1S within 12\" modelled as flat +1S for DPP approximation (underestimates at range, overestimates in melee)."
+        }
+      ]
+    },
+    "VANGUARD SPEARHEAD": {
+      "dp_cost": 2,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/8xsn0gsw/space-marines-faction-focus-vanguard-spearhead/",
+      "_engine_note": "Shadow Masters: ranged attacks target your unit get -1 Hit and Benefit of Cover if attacker 12\"+. Defensive buff — affects SURV.",
+      "choices": [
+        {
+          "name": "Shadow Masters",
+          "index": 0,
+          "affects": "surv",
+          "stealth": true,
+          "unit_filter": ["ADEPTUS ASTARTES"],
+          "description": "All Adeptus Astartes units have Stealth (-1 to hit from ranged attacks beyond 12\").",
+          "_source": "https://www.warhammer-community.com/en-gb/articles/8xsn0gsw/space-marines-faction-focus-vanguard-spearhead/"
+        }
+      ]
+    },
+    "1ST COMPANY TASK FORCE": {
+      "dp_cost": 2,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/9xsn0gsw/space-marines-faction-focus-1st-company-task-force/",
+      "_engine_note": "Extremis-Level Threat: once per battle, army can re-roll Wound rolls vs Oath of Moment target. One-use ability — cannot modelled as always-on.",
+      "choices": []
+    },
+    "ANVIL SIEGE FORCE": {
+      "dp_cost": 2,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/10sn0gsw/space-marines-faction-focus-anvil-siege-force/",
+      "_engine_note": "Shield of the Imperium: all ranged weapons gain HEAVY. Weapons with HEAVY already get +1 to Wound when stationary. HEAVY bonus is conditional on being stationary.",
+      "choices": [
+        {
+          "name": "Shield of the Imperium",
+          "index": 0,
+          "affects": "dpp",
+          "heavy_always": true,
+          "unit_filter": ["ADEPTUS ASTARTES"],
+          "description": "All ranged weapons gain HEAVY. Weapons that already have HEAVY get +1 to Wound when the unit Remained Stationary.",
+          "_source": "https://www.warhammer-community.com/en-gb/articles/10sn0gsw/space-marines-faction-focus-anvil-siege-force/",
+          "_engine_note": "Modelled as Heavy bonus always active (overestimates — requires being stationary)."
+        }
+      ]
+    },
+    "HAMMER OF AVERNII": {
+      "dp_cost": 2,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/11sn0gsw/space-marines-faction-focus-hammer-of-avernii/",
+      "_engine_note": "Enhanced Oath of Moment: army re-roll hits vs Oath target, +1 to wound vs Oath target. Strong always-on buff against designated target.",
+      "choices": [
+        {
+          "name": "Enhanced Oath of Moment",
+          "index": 0,
+          "affects": "dpp",
+          "reroll_hits": "all",
+          "plus1_to_wound": true,
+          "unit_filter": ["ADEPTUS ASTARTES"],
+          "condition": "vs Oath of Moment target",
+          "description": "All Adeptus Astartes units re-roll Hit rolls and get +1 to Wound vs the Oath of Moment target.",
+          "_source": "https://www.warhammer-community.com/en-gb/articles/11sn0gsw/space-marines-faction-focus-hammer-of-avernii/",
+          "_engine_note": "Modelled as full reroll + +1 wound (overestimates — only vs Oath target)."
+        }
+      ]
+    },
+    "HEADHUNTER TASK FORCE": {
+      "dp_cost": 2,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/12sn0gsw/space-marines-faction-focus-headhunter-task-force/",
+      "_engine_note": "Target Sighted: Vehicles gain Tank Ace (auto-Advance 6\", re-roll Damage if didn't Advance). Vehicle-specific buff.",
+      "choices": [
+        {
+          "name": "Target Sighted",
+          "index": 0,
+          "affects": "dpp",
+          "reroll_damage": true,
+          "unit_filter": ["VEHICLE"],
+          "description": "Adeptus Astartes Vehicles re-roll Damage rolls (if they didn't Advance this turn).",
+          "_source": "https://www.warhammer-community.com/en-gb/articles/12sn0gsw/space-marines-faction-focus-headhunter-task-force/",
+          "_engine_note": "Modelled as reroll damage for Vehicles (overestimates — requires not Advancing)."
+        }
+      ]
+    },
+    "ORBITAL ASSAULT FORCE": {
+      "dp_cost": 2,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/13sn0gsw/space-marines-faction-focus-orbital-assault-force/",
+      "_engine_note": "Rapid-Drop Deployment: non-Titanic units gain Deep Strike. Units set up this turn re-roll Wound rolls of 1. Conditional on arriving from reserves.",
+      "choices": [
+        {
+          "name": "Rapid-Drop",
+          "index": 0,
+          "affects": "dpp",
+          "reroll_wounds": "1s",
+          "unit_filter": ["ADEPTUS ASTARTES"],
+          "condition": "turn unit arrives from reserves",
+          "description": "Units re-roll Wound rolls of 1 on the turn they arrive from reserves.",
+          "_source": "https://www.warhammer-community.com/en-gb/articles/13sn0gsw/space-marines-faction-focus-orbital-assault-force/",
+          "_engine_note": "Modelled as always-on reroll wounds 1s (overestimates — only on arrival turn)."
+        }
+      ]
+    },
+    "SHADOWMARK TALON": {
+      "dp_cost": 2,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/14sn0gsw/space-marines-faction-focus-shadowmark-talon/",
+      "_engine_note": "Masters of Shadow: ranged attacks targeting your unit get -1 Hit and Benefit of Cover if attacker 12\"+. Same as Vanguard Spearhead.",
+      "choices": [
+        {
+          "name": "Masters of Shadow",
+          "index": 0,
+          "affects": "surv",
+          "stealth": true,
+          "unit_filter": ["ADEPTUS ASTARTES"],
+          "description": "All Adeptus Astartes units have Stealth (-1 to hit from ranged attacks beyond 12\").",
+          "_source": "https://www.warhammer-community.com/en-gb/articles/14sn0gsw/space-marines-faction-focus-shadowmark-talon/"
+        }
+      ]
+    },
+    "LIBRARIUS CONCLAVE": {
+      "dp_cost": 1,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/15sn0gsw/space-marines-faction-focus-librarius-conclave/",
+      "_engine_note": "Psychic Disciplines: pick one at battle round start for PSYKER units — Biomancy (+2\" M), Divination (re-roll 1s hit+wound), Pyromancy (+1 AP within 12\"), Telekinesis (ranged -1 S vs this unit), Telepathy (ignore BS modifiers). Rotational choice — modelled as best option.",
+      "choices": [
+        {
+          "name": "Divination",
+          "index": 0,
+          "affects": "dpp",
+          "reroll_hits": "1s",
+          "reroll_wounds": "1s",
+          "unit_filter": ["PSYKER"],
+          "description": "PSYKER units re-roll Hit rolls of 1 and Wound rolls of 1 (Divination discipline).",
+          "_source": "https://www.warhammer-community.com/en-gb/articles/15sn0gsw/space-marines-faction-focus-librarius-conclave/",
+          "_engine_note": "Modelled as best offensive option (Divination). Other disciplines provide utility/mobility."
+        }
+      ]
+    },
+    "SUBVERSION ASSETS": {
+      "dp_cost": 1,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/16sn0gsw/space-marines-faction-focus-subversion-assets/",
+      "_engine_note": "Nowhere to Hide: PHOBOS and SCOUT SQUAD units get detection abilities. Niche utility — no DPP/SURV modifier.",
+      "choices": []
+    },
+    "FULGURIS TASK FORCE": {
+      "dp_cost": 1,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/17sn0gsw/space-marines-faction-focus-fulguris-task-force/",
+      "_engine_note": "Skystrike: LAND SPEEDER/STORM SPEEDER units gain SPEEDER keyword and turn 1 ingress. Speeder-specific buff — limited unit pool.",
+      "choices": []
+    },
+    "RECLAMATION FORCE": {
+      "dp_cost": 2,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/18sn0gsw/space-marines-faction-focus-reclamation-force/",
+      "_engine_note": "Ultramarines-themed detachment — specific rule details needed from faction pack PDF.",
+      "choices": []
+    },
+    "EMPEROR'S SHIELD": {
+      "dp_cost": 2,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/19sn0gsw/space-marines-faction-focus-emperors-shield/",
+      "_engine_note": "Imperial Fists-themed detachment — specific rule details needed from faction pack PDF.",
+      "choices": []
+    },
+    "FORGEFATHER'S SEEKERS": {
+      "dp_cost": 2,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/20sn0gsw/space-marines-faction-focus-forgefathers-seekers/",
+      "_engine_note": "Salamanders-themed detachment — melta/flamer focus. Specific rule details needed from faction pack PDF.",
+      "choices": []
+    },
+    "SPEARPOINT TASK FORCE": {
+      "dp_cost": 2,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/21sn0gsw/space-marines-faction-focus-spearpoint-task-force/",
+      "_engine_note": "White Scars-themed detachment — fast/melee focus. Specific rule details needed from faction pack PDF.",
+      "choices": []
+    },
+    "BASTION TASK FORCE": {
+      "dp_cost": 2,
+      "_source": "https://www.warhammer-community.com/en-gb/articles/22sn0gsw/space-marines-faction-focus-bastion-task-force/",
+      "_engine_note": "Specific rule details needed from faction pack PDF.",
+      "choices": []
+    }
+  }
+}

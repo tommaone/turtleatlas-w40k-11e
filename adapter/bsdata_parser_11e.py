@@ -108,10 +108,28 @@ class BSDataParser11e:
         return sorted(factions)
 
     def slug_to_faction(self, slug: str) -> str | None:
+        """Map MFM slug to BSData faction name.
+
+        Prefers exact matches and avoids 'Chaos' factions when slug doesn't contain 'chaos'.
+        """
+        slug_words = slug.replace("-", " ").lower()
+        candidates = []
         for faction in self.list_factions():
-            if slug.replace("-", " ").lower() in faction.lower() or \
-               slug.lower().replace("-", " ") in faction.lower():
-                return faction
+            faction_lower = faction.lower()
+            if slug_words in faction_lower:
+                # Score: prefer non-Chaos matches for non-chaos slugs
+                is_chaos = "chaos" in faction_lower
+                slug_has_chaos = "chaos" in slug_words
+                if is_chaos and not slug_has_chaos:
+                    score = 2  # deprioritize
+                elif not is_chaos and slug_has_chaos:
+                    score = 2
+                else:
+                    score = 0  # normal match
+                candidates.append((score, faction))
+        if candidates:
+            candidates.sort(key=lambda x: x[0])
+            return candidates[0][1]
         return None
 
     # -- Loading catalogues and linked roots -----------------------------------

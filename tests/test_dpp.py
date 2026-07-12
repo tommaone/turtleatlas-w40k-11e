@@ -594,10 +594,23 @@ class TestDetachmentModifiers:
         }
         assert set(dets) == expected, f"Daemon detachments mismatch: missing={expected - set(dets)}, extra={set(dets) - expected}"
 
+    def test_sm_10_detachments_have_modifiers(self):
+        """SM should have 10 detachments with modifier choices (out of 22 total)."""
+        from ranking import RankingEngine
+        eng = RankingEngine('space-marines')
+        dets = eng.list_detachments_with_modifiers()
+        expected = {
+            'STORMLANCE TASK FORCE', 'IRONSTORM SPEARHEAD', 'FIRESTORM ASSAULT FORCE',
+            'VANGUARD SPEARHEAD', 'ANVIL SIEGE FORCE', 'HAMMER OF AVERNII',
+            'HEADHUNTER TASK FORCE', 'ORBITAL ASSAULT FORCE', 'SHADOWMARK TALON',
+            'LIBRARIUS CONCLAVE',
+        }
+        assert set(dets) == expected, f"SM detachments mismatch: missing={expected - set(dets)}, extra={set(dets) - expected}"
+
     def test_each_detachment_has_at_least_one_choice(self):
         """Every detachment must have at least one modifier choice."""
         from ranking import RankingEngine
-        for faction in ['grey-knights', 'chaos-knights', 'chaos-daemons']:
+        for faction in ['grey-knights', 'chaos-knights', 'chaos-daemons', 'space-marines']:
             eng = RankingEngine(faction)
             for det in eng.list_detachments_with_modifiers():
                 mods = eng.get_detachment_modifiers(det)
