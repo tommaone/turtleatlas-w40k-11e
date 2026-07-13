@@ -18,7 +18,7 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 import { randomUUID } from "node:crypto";
 import express from "express";
-import { readFileSync, existsSync, writeFileSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -27,27 +27,16 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const BASE_DIR = join(__dirname, "..");
 const DATA_DIR = join(BASE_DIR, "data");
+const MERGED_DIR = join(DATA_DIR, "merged");
+const CONFIG_DIR = join(DATA_DIR, "config");
 
 class TurtleAtlasW40kServer {
   constructor() {
-    // Load data at startup (best-effort)
-    this.coreRules = this.#loadJson("core-rules-11e.json");
+    // Core rules never generated (needs pymupdf + GW PDFs) — always null
+    this.coreRules = null;
 
-    // Per-faction data
-    this.factions = {
-      "grey-knights": {
-        factionPack: this.#loadJson("grey-knights-faction-pack.json"),
-        mergedUnits: this.#loadJson("merged/grey-knights.json"),
-      },
-      "chaos-knights": {
-        factionPack: this.#loadJson("chaos-knights-faction-pack.json"),
-        mergedUnits: this.#loadJson("merged/chaos-knights.json"),
-      },
-      "chaos-daemons": {
-        factionPack: this.#loadJson("chaos-daemons-faction-pack.json"),
-        mergedUnits: this.#loadJson("merged/chaos-daemons.json"),
-      },
-    };
+    // Auto-discover factions from data/merged/*.json + data/config/*/
+    this.factions = this.#discoverFactions();
     this.defaultFaction = "grey-knights";
 
     this.server = new Server(
@@ -65,15 +54,62 @@ class TurtleAtlasW40kServer {
   // Helpers
   // -------------------------------------------------------------------------
 
-  #loadJson(filename) {
+  #loadJson(path) {
     try {
-      const path = join(DATA_DIR, filename);
       if (!existsSync(path)) return null;
       return JSON.parse(readFileSync(path, "utf8"));
     } catch (err) {
-      console.error(`Failed to load ${filename}: ${err.message}`);
+      console.error(`Failed to load ${path}: ${err.message}`);
       return null;
     }
+  }
+
+  /**
+   * Auto-discover factions from data/merged/*.json and data/config/
+   * Each faction gets: mergedUnits (from merged) + config (from config)
+   */
+  #discoverFactions() {
+    const factions = {};
+
+    // 1. Scan merged dir for unit data
+    try {
+      const mergedFiles = readdirSync(MERGED_DIR).filter(f => f.endsWith(".json"));
+      for (const file of mergedFiles) {
+        const key = file.replace(".json", "");
+        const data = this.#loadJson(join(MERGED_DIR, file));
+        if (!data) continue;
+        factions[key] = { mergedUnits: data, config: null, detachmentModifiers: null };
+      }
+    } catch (err) {
+      console.error(`Failed to scan merged dir: ${err.message}`);
+    }
+
+    // 2. Load config files (detachment_modifiers.json, supported.json) into matching factions
+    try {
+      const configDirs = readdirSync(CONFIG_DIR, { withFileTypes: true })
+        .filter(d => d.isDirectory() && !d.name.startsWith("_"))
+        .map(d => d.name);
+
+      for (const dir of configDirs) {
+        const detPath = join(CONFIG_DIR, dir, "detachment_modifiers.json");
+        const supPath = join(CONFIG_DIR, dir, "supported.json");
+
+        if (!factions[dir]) factions[dir] = { mergedUnits: null, config: null, detachmentModifiers: null };
+
+        factions[dir].detachmentModifiers = this.#loadJson(detPath);
+        factions[dir].config = this.#loadJson(supPath);
+      }
+    } catch (err) {
+      console.error(`Failed to scan config dir: ${err.message}`);
+    }
+
+    const loaded = Object.keys(factions).map(k => {
+      const f = factions[k];
+      return `${k}(units=${f.mergedUnits ? f.mergedUnits.units?.length || 0 : 0}, det=${f.detachmentModifiers ? Object.keys(f.detachmentModifiers.detachments || {}).length : 0})`;
+    }).join(", ");
+    console.error(`Discovered factions: ${loaded}`);
+
+    return factions;
   }
 
   /**
@@ -279,7 +315,7 @@ print(json.dumps(output))
         {
           name: "get_core_rules",
           description:
-            "Get 11e core rules overview: abilities, phases, stratagems, cover.",
+            "Get 11e core rules overview: cover, phases, common weapon abilities. Engine-modeled basics only — full rules require PDF parsing.",
           inputSchema: {
             type: "object",
             properties: {
@@ -294,7 +330,7 @@ print(json.dumps(output))
         {
           name: "get_ability",
           description:
-            "Look up a core ability by name (case-insensitive). E.g. SUSTAINED HITS, LETHAL HITS, COVER, PLUNGING FIRE.",
+            "Look up a weapon ability by name (engine-modeled only). E.g. SUSTAINED HITS, LETHAL HITS, COVER, PSYCHIC, TWIN-LINKED.",
           inputSchema: {
             type: "object",
             properties: {
@@ -306,7 +342,7 @@ print(json.dumps(output))
         {
           name: "get_detachment",
           description:
-            "Get detachment rules, enhancements, and stratagems for a named detachment.",
+            "Get detachment engine-modeled modifiers (DPP/SURV buffs) for a named detachment. Reads from config files.",
           inputSchema: {
             type: "object",
             properties: {
@@ -418,7 +454,7 @@ print(json.dumps(output))
         {
           name: "get_stratagem",
           description:
-            "Look up a core or detachment stratagem by name.",
+            "Look up a core 11e stratagem by name (Command Reroll, Battle Shock, Inspired Leadership). Full stratagem text requires PDF parsing.",
           inputSchema: {
             type: "object",
             properties: {
@@ -561,57 +597,47 @@ print(json.dumps(output))
 
   // -------- Core rules ----------------------------------------------------
 
-  #handleGetCoreRules(args) {
-    const lines = [];
-    const section = (args?.section || "all").toLowerCase();
+  #handleGetCoreRules(_args) {
+    // Core rules data requires PDF parsing (pymupdf) + GW PDFs — not available.
+    // Return hardcoded 11e basics that are well-known.
+    const section = (_args?.section || "all").toLowerCase();
+    const lines = ["# 11th Edition Core Rules\n"];
 
-    if (!this.coreRules) {
-      return this.#text("Core rules data not loaded. Run parser first.");
-    }
-
-    if (section === "abilities" || section === "all") {
-      lines.push(`# Core Abilities (${this.coreRules.abilities.length} total)`);
-      for (const a of this.coreRules.abilities) {
-        lines.push(`\n## ${a.name} [${a.ref}]`);
-        if (a.form) lines.push(`Form: ${a.form}`);
-        lines.push(a.description);
-      }
-    }
-
-    if (section === "stratagems" || section === "all") {
-      lines.push(
-        `\n# Core Stratagems (${this.coreRules.stratagems.length} total)`,
-      );
-      for (const s of this.coreRules.stratagems) {
-        lines.push(`\n## ${s.name} [${s.ref}]`);
-        if (s.cp_cost) lines.push(`CP: ${s.cp_cost}`);
-      }
+    if (section === "cover" || section === "all") {
+      lines.push(`## Cover (11e)\n`);
+      lines.push(`- Cover worsens attacker's BS by 1 (does NOT modify saves)`);
+      lines.push(`- Benefit of Cover: -1 to Hit roll`);
+      lines.push(`- Plunging Fire (vertical): -1 to Hit roll (attacker) or +1 to Save (defender)`);
+      lines.push(`- Ignores Cover: weapons with this ability ignore the -1 BS penalty`);
+      lines.push(`- Heavy weapons ignore penalty from moving, but NOT from cover`);
     }
 
     if (section === "phases" || section === "all") {
-      lines.push(`\n# Phases`);
-      for (const [key, val] of Object.entries(this.coreRules.phases || {})) {
-        lines.push(`\n## ${key.replace(/_/g, " ").toUpperCase()} (${val.ref})`);
-        for (const step of val.steps || []) {
-          lines.push(`- [${step.ref}] ${step.name}`);
-        }
-      }
+      lines.push(`\n## Game Phases\n`);
+      lines.push(`1. Command Phase — score objectives, battle-shock tests`);
+      lines.push(`2. Movement Phase — Normal Move, Advance, Fall Back`);
+      lines.push(`3. Shooting Phase — ranged attacks`);
+      lines.push(`4. Charge Phase — declare and make charge moves`);
+      lines.push(`5. Fight Phase — melee attacks (Fight first, then Fight last)`);
+      lines.push(`6. Morale Phase — Battle-shock tests for below Starting Strength`);
     }
 
-    if (section === "cover" || section === "all") {
-      const cr = this.coreRules.cover_rules || {};
-      lines.push(`\n# Cover Rules (11th Edition)`);
-      lines.push(
-        `\n## How Cover Works\nIn 11e, Cover does NOT modify saves. Instead, it worsens the attacker's BS by 1.`,
-      );
-      if (cr.benefit_of_cover)
-        lines.push(`\n**Benefit of Cover:** ${cr.benefit_of_cover}`);
-      if (cr.cover_modifier)
-        lines.push(`\n**Modifier:** ${cr.cover_modifier}`);
-      if (cr.plunging_fire)
-        lines.push(`\n**Plunging Fire:** ${cr.plunging_fire}`);
-      if (cr.ignores_cover)
-        lines.push(`\n**Ignores Cover:** ${cr.ignores_cover}`);
+    if (section === "abilities" || section === "all") {
+      lines.push(`\n## Common Weapon Abilities (engine-modeled)\n`);
+      lines.push(`- **Sustained Hits X**: Critical hits (unmodified 6) deal X additional hits`);
+      lines.push(`- **Lethal Hits**: Critical hits auto-wound (no wound roll)`);
+      lines.push(`- **Devastating Wounds**: Critical wounds deal mortal wounds instead of normal damage`);
+      lines.push(`- **Twin-Linked**: Re-roll wound rolls`);
+      lines.push(`- **Ignores Cover**: Attack ignores cover BS penalty`);
+      lines.push(`- **Torrent**: Auto-hit (no BS roll)`);
+      lines.push(`- **Melta X**: Double damage within half range`);
+      lines.push(`- **Lance**: +1 to wound when charging/charged/heroic intervention`);
+      lines.push(`- **Anti-X Y+**: Auto-critical wound vs X keyword on Y+`);
+    }
+
+    if (section === "stratagems" || section === "all") {
+      lines.push(`\n## Core Stratagems\n`);
+      lines.push(`Stratagem text requires GW faction pack PDFs to parse. Use get_detachment for faction-specific stratagem names.`);
     }
 
     return this.#text(lines.join("\n"));
@@ -620,24 +646,40 @@ print(json.dumps(output))
   // -------- Ability lookup ------------------------------------------------
 
   #handleGetAbility(args) {
-    if (!this.coreRules) {
-      return this.#text("Rules not loaded.");
-    }
     const query = (args?.name || "").toUpperCase().trim();
-    const idx = this.coreRules.abilities_index || {};
-    const match =
-      idx[query] ||
-      Object.values(idx).find(
-        (a) => a.name.includes(query) || query.includes(a.name),
+
+    // Engine-modeled abilities with known effects
+    const KNOWN_ABILITIES = {
+      "SUSTAINED HITS": { name: "Sustained Hits", desc: "Critical hits (unmodified 6) score additional hits equal to the ability value (e.g. Sustained Hits 1 = 1 extra hit). Does NOT trigger on hit roll 1." },
+      "LETHAL HITS": { name: "Lethal Hits", desc: "Critical hits (unmodified 6) auto-wound the target — no wound roll needed. Does NOT trigger on hit roll 1." },
+      "DEVASTATING WOUNDS": { name: "Devastating Wounds", desc: "Critical wounds (unmodified 6 on wound roll) inflict mortal wounds equal to weapon damage instead of normal damage. Mortals bypass saves." },
+      "TWIN-LINKED": { name: "Twin-Linked", desc: "Re-roll the wound roll." },
+      "IGNORES COVER": { name: "Ignores Cover", desc: "The target does not benefit from Cover (BS penalty ignored)." },
+      "TORRENT": { name: "Torrent", desc: "This weapon does not make hit rolls — it automatically hits." },
+      "LANCE": { name: "Lance", desc: "+1 to wound roll when the bearer declared a charge, was charged, or performed a Heroic Intervention." },
+      "MELTA X": { name: "Melta", desc: "If target is within half range, this weapon's Damage characteristic is doubled." },
+      "HEAVY": { name: "Heavy", desc: "If the bearer moved, subtract 1 from hit rolls (does NOT apply to cover penalty)." },
+      "ASSAULT": { name: "Assault", desc: "The bearer can shoot even after Advancing. -1 to hit after Advancing (unless weapon has Ignores Cover)." },
+      "RAPID FIRE X": { name: "Rapid Fire X", desc: "If target is within half range, this weapon makes X additional attacks." },
+      "PSYCHIC": { name: "Psychic", desc: "Weapon keyword. Attacks made with Psychic weapons ignore all hit roll modifiers (BS/WS modifiers do not apply). Psychic tests are a separate mechanic." },
+      "ANTI-INFANTRY X+": { name: "Anti-Infantry X+", desc: "Attacks against INFANTRY keyword models are critical wounds on X+ (auto-wound)." },
+      "ANTI-VEHICLE X+": { name: "Anti-Vehicle X+", desc: "Attacks against VEHICLE keyword models are critical wounds on X+ (auto-wound)." },
+      "SUSTAINED HITS 1": { name: "Sustained Hits 1", desc: "Critical hits (unmodified 6) score 1 additional hit." },
+      "SUSTAINED HITS 2": { name: "Sustained Hits 2", desc: "Critical hits (unmodified 6) score 2 additional hits." },
+      "SUSTAINED HITS 3": { name: "Sustained Hits 3", desc: "Critical hits (unmodified 6) score 3 additional hits." },
+    };
+
+    const match = KNOWN_ABILITIES[query] ||
+      Object.values(KNOWN_ABILITIES).find(a =>
+        a.name.toUpperCase().includes(query) || query.includes(a.name.toUpperCase())
       );
+
     if (!match) {
-      const allNames = this.coreRules.abilities.map((a) => a.name).join(", ");
-      return this.#text(`Ability not found. Available: ${allNames}`);
+      const allNames = Object.values(KNOWN_ABILITIES).map(a => a.name).join(", ");
+      return this.#text(`Ability "${query}" not found in engine-modeled abilities.\n\nKnown abilities: ${allNames}\n\nNote: Full core rules text requires PDF parsing (not yet implemented). Only engine-modeled abilities are available.`);
     }
-    let out = `# ${match.name} [${match.ref}]\n\n`;
-    if (match.form) out += `Form: ${match.form}\n\n`;
-    out += match.description;
-    return this.#text(out);
+
+    return this.#text(`# ${match.name}\n\n${match.desc}\n\n---\n*Engine-modeled: this ability has a defined mechanical effect in DPP/SURV/MOB computation.*`);
   }
 
   // -------- Detachment lookup ---------------------------------------------
@@ -645,35 +687,55 @@ print(json.dumps(output))
   #handleGetDetachment(args) {
     const fd = this.#getFactionData(args?.faction);
     if (fd.error) return this.#text(fd.error);
-    if (!fd.factionPack) {
-      return this.#text("Faction Pack data not loaded.");
+    if (!fd.detachmentModifiers) {
+      return this.#text(`No detachment config data for "${args?.faction || this.defaultFaction}".`);
     }
     const query = (args?.name || "").toUpperCase().trim();
-    const det = fd.factionPack.detachments.find(
-      (d) =>
-        d.name.toUpperCase().includes(query) ||
-        query.includes(d.name.toUpperCase()),
+    const detachments = fd.detachmentModifiers.detachments || {};
+
+    // Find matching detachment
+    const detKey = Object.keys(detachments).find(k =>
+      k.toUpperCase().includes(query) || query.includes(k.toUpperCase())
     );
-    if (!det) {
-      const names = fd.factionPack.detachments.map((d) => d.name).join(", ");
+    if (!detKey) {
+      const names = Object.keys(detachments).join(", ");
       return this.#text(`Detachment not found. Available: ${names}`);
     }
-    let out = `# ${det.name} (DP: ${det.dp_cost})\n\n`;
-    out += `## Rules\n`;
-    for (const r of det.rules) {
-      out += `\n### ${r.name}\n${r.description}\n`;
+
+    const det = detachments[detKey];
+    let out = `# ${detKey}\n\n`;
+    out += `**DP Cost:** ${det.dp_cost || "?"}\n`;
+    if (det._source) out += `**Source:** ${det._source}\n`;
+    if (det._engine_note) out += `\n> ${det._engine_note}\n`;
+
+    out += `\n## Engine-Modeled Modifiers\n`;
+    const choices = det.choices || [];
+    if (choices.length === 0) {
+      out += `No engine-modeled modifiers (rules too complex for DPP computation).\n`;
+    } else {
+      for (const c of choices) {
+        out += `\n### ${c.name}\n`;
+        if (c.description) out += `${c.description}\n`;
+        if (c.condition) out += `Condition: ${c.condition}\n`;
+        out += `Affects: ${c.affects || "?"}\n`;
+        // Show numeric modifiers
+        const mods = [];
+        if (c.reroll_hits) mods.push(`Re-roll hits: ${c.reroll_hits}`);
+        if (c.reroll_wounds) mods.push(`Re-roll wounds: ${c.reroll_wounds}`);
+        if (c.hit_modifier) mods.push(`Hit modifier: ${c.hit_modifier > 0 ? "+" : ""}${c.hit_modifier}`);
+        if (c.plus1_to_wound) mods.push("+1 to wound");
+        if (c.sustained_hits_extra) mods.push(`Extra Sustained Hits: +${c.sustained_hits_extra}`);
+        if (c.lethal_hits) mods.push("Lethal Hits");
+        if (c.movement_bonus) mods.push(`Movement: +${c.movement_bonus}"`);
+        if (c.invulnerable_save) mods.push(`Invulnerable: ${c.invulnerable_save}+`);
+        if (c.feel_no_pain) mods.push(`FNP: ${c.feel_no_pain}+`);
+        if (mods.length > 0) out += `Modifiers: ${mods.join(", ")}\n`;
+        if (c.unit_filter) out += `Applies to: ${c.unit_filter.join(", ")}\n`;
+        if (c._engine_note) out += `> ${c._engine_note}\n`;
+        out += `\n`;
+      }
     }
-    out += `\n## Enhancements\n`;
-    for (const e of det.enhancements) {
-      out += `\n### ${e.name}${e.cp_cost ? ` (${e.cp_cost}CP)` : ""}\n${e.description}\n`;
-    }
-    out += `\n## Stratagems\n`;
-    for (const s of det.stratagems) {
-      out += `\n### ${s.name} (${s.cp_cost || "?"}CP)\n`;
-      if (s.when) out += `WHEN: ${s.when}\n`;
-      if (s.target) out += `TARGET: ${s.target}\n`;
-      if (s.effect) out += `EFFECT: ${s.effect}\n`;
-    }
+
     return this.#text(out);
   }
 
@@ -797,10 +859,11 @@ print(json.dumps(output))
   #handleListFactions() {
     const lines = ["# Available Factions\n"];
     for (const [key, data] of Object.entries(this.factions)) {
-      const unitsLoaded = data.mergedUnits ? "yes" : "no";
-      const fpLoaded = data.factionPack ? "yes" : "no";
+      const unitCount = data.mergedUnits?.units?.length || 0;
+      const detCount = data.detachmentModifiers ? Object.keys(data.detachmentModifiers.detachments || {}).length : 0;
+      const configStatus = data.config ? "yes" : "no";
       lines.push(
-        `- **${key}**: units=${unitsLoaded}, factionPack=${fpLoaded}`,
+        `- **${key}**: ${unitCount} units, ${detCount} detachments (config=${configStatus})`,
       );
     }
     return this.#text(lines.join("\n"));
@@ -931,56 +994,31 @@ print(json.dumps(output))
 
   #handleGetStratagem(args) {
     const query = (args?.name || "").toUpperCase().trim();
-    const detName = (args?.detachment || "").toUpperCase().trim();
-    const fd = this.#getFactionData(args?.faction);
-    if (fd.error) return this.#text(fd.error);
+
+    // Core stratagems — hardcoded 11e basics
+    const CORE_STRATAGEMS = [
+      { name: "BATTLE SHOCK STRATAGEM", cp: 1, desc: "Used when a unit below Starting Strength fails Battle-shock test. Unit passes instead." },
+      { name: "COMMAND REROLL", cp: 1, desc: "Re-roll a single Hit roll, Wound roll, Damage roll, Saving throw, Advance roll, Charge roll, or Hazardous test." },
+      { name: "INSPIRED LEADERSHIP", cp: 1, desc: "Used in your Command phase. One VEHICLE or MONSTER unit within 6\" of a Leader is Battleshock immune until your next Command phase." },
+    ];
+
     const results = [];
 
-    // Core stratagems
-    if (this.coreRules?.stratagems) {
-      for (const s of this.coreRules.stratagems) {
-        if (
-          s.name.toUpperCase().includes(query) ||
-          query.includes(s.name.toUpperCase())
-        ) {
-          results.push({ source: "Core", ...s });
-        }
-      }
-    }
-
-    // Detachment stratagems
-    if (fd.factionPack?.detachments) {
-      for (const d of fd.factionPack.detachments) {
-        if (
-          detName &&
-          !d.name.toUpperCase().includes(detName) &&
-          !detName.includes(d.name.toUpperCase())
-        )
-          continue;
-        for (const s of d.stratagems) {
-          if (
-            s.name.toUpperCase().includes(query) ||
-            query.includes(s.name.toUpperCase())
-          ) {
-            results.push({ source: d.name, ...s });
-          }
-        }
+    for (const s of CORE_STRATAGEMS) {
+      if (s.name.toUpperCase().includes(query) || query.includes(s.name.toUpperCase())) {
+        results.push({ source: "Core (11e)", ...s });
       }
     }
 
     if (results.length === 0) {
-      return this.#text(`Stratagem not found matching "${query}".`);
+      return this.#text(`Stratagem "${query}" not found.\n\nCore stratagems available: Command Reroll, Battle Shock Stratagem, Inspired Leadership.\n\nNote: Full stratagem text requires GW faction pack PDFs (not yet parsed). For faction-specific stratagems, see the detachment modifiers via get_detachment.`);
     }
 
     let out = "";
     for (const s of results) {
       out += `## ${s.name} [${s.source}]\n`;
-      if (s.cp_cost) out += `CP: ${s.cp_cost}\n`;
-      if (s.ref) out += `Ref: ${s.ref}\n`;
-      if (s.when) out += `WHEN: ${s.when}\n`;
-      if (s.target) out += `TARGET: ${s.target}\n`;
-      if (s.effect) out += `EFFECT: ${s.effect}\n`;
-      out += "\n";
+      out += `CP: ${s.cp}\n`;
+      out += `${s.desc}\n\n`;
     }
     return this.#text(out);
   }
