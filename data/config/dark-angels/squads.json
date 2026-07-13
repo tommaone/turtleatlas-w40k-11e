@@ -1,1 +1,267 @@
-../space-marines/squads.json
+{
+  "_note": "Space Marine infantry squads \u2014 core units for DPP engine",
+  "_source": "BSData + MFM 11e",
+  "Intercessor Squad": {
+    "n": 5,
+    "pts": 80,
+    "ranged": "Bolt rifle",
+    "ranged_a": 2.0,
+    "melee": "Close combat weapon",
+    "special_max": 1,
+    "specials": [
+      "Astartes grenade launcher"
+    ],
+    "sp_loses_r": false,
+    "sp_loses_m": false,
+    "apoth_loses_r": false,
+    "innate": [],
+    "info": {
+      "M": "6\"",
+      "T": 4,
+      "SV": 3,
+      "W": 2,
+      "OC": 1
+    }
+  },
+  "Assault Intercessor Squad": {
+    "n": 5,
+    "pts": 75,
+    "ranged": "Heavy Bolt Pistol",
+    "ranged_a": 1.0,
+    "melee": "Astartes Chainsword",
+    "special_max": 1,
+    "specials": [],
+    "sp_loses_r": false,
+    "sp_loses_m": false,
+    "apoth_loses_r": false,
+    "innate": [],
+    "info": {
+      "M": "6\"",
+      "T": 4,
+      "SV": 3,
+      "W": 2,
+      "OC": 1
+    }
+  },
+  "Terminator Squad": {
+    "n": 5,
+    "pts": 160,
+    "ranged": "Storm bolter",
+    "ranged_a": 2.0,
+    "melee": "Power fist",
+    "special_max": 1,
+    "specials": [
+      "Assault cannon",
+      "Heavy flamer"
+    ],
+    "sp_loses_r": false,
+    "sp_loses_m": false,
+    "apoth_loses_r": false,
+    "innate": [],
+    "info": {
+      "M": "5\"",
+      "T": 5,
+      "SV": 2,
+      "W": 3,
+      "OC": 1,
+      "INV": 5
+    }
+  },
+  "Sternguard Veteran Squad": {
+    "n": 5,
+    "pts": 100,
+    "ranged": "Sternguard Bolt Rifle",
+    "ranged_a": 2.0,
+    "melee": "Close combat weapon",
+    "special_max": 1,
+    "specials": [
+      "Combi-weapon"
+    ],
+    "sp_loses_r": false,
+    "sp_loses_m": false,
+    "apoth_loses_r": false,
+    "innate": [],
+    "info": {
+      "M": "6\"",
+      "T": 4,
+      "SV": 3,
+      "W": 2,
+      "OC": 1
+    }
+  },
+  "Bladeguard Veteran Squad": {
+    "n": 3,
+    "pts": 80,
+    "ranged": "Heavy Bolt Pistol",
+    "ranged_a": 1.0,
+    "melee": "Master-crafted power weapon",
+    "special_max": 0,
+    "specials": [],
+    "sp_loses_r": false,
+    "sp_loses_m": false,
+    "apoth_loses_r": false,
+    "innate": [],
+    "info": {
+      "M": "6\"",
+      "T": 4,
+      "SV": 3,
+      "W": 2,
+      "OC": 1,
+      "INV": 4
+    }
+  },
+  "Devastator Squad": {
+    "n": 5,
+    "pts": 120,
+    "ranged": "Boltgun",
+    "ranged_a": 2.0,
+    "melee": "Close combat weapon",
+    "special_max": 2,
+    "specials": [
+      "Heavy bolter",
+      "Lascannon",
+      "Missile launcher",
+      "Multi-melta"
+    ],
+    "sp_loses_r": false,
+    "sp_loses_m": false,
+    "apoth_loses_r": false,
+    "innate": [],
+    "info": {
+      "M": "6\"",
+      "T": 4,
+      "SV": 3,
+      "W": 2,
+      "OC": 1
+    }
+  },
+  "Hellblaster Squad": {
+    "n": 5,
+    "pts": 110,
+    "ranged": "Plasma Incinerator - Standard",
+    "ranged_a": 2.0,
+    "melee": "Close combat weapon",
+    "special_max": 0,
+    "specials": [],
+    "sp_loses_r": false,
+    "sp_loses_m": false,
+    "apoth_loses_r": false,
+    "innate": [],
+    "info": {
+      "M": "6\"",
+      "T": 4,
+      "SV": 3,
+      "W": 2,
+      "OC": 1
+    }
+  },
+  "Terminator Assault Squad": {
+    "n": 5,
+    "pts": 155,
+    "ranged": "Storm bolter",
+    "ranged_a": 2.0,
+    "melee": "Thunder hammer",
+    "special_max": 0,
+    "specials": [],
+    "sp_loses_r": false,
+    "sp_loses_m": false,
+    "apoth_loses_r": false,
+    "innate": [],
+    "info": {
+      "M": "5\"",
+      "T": 5,
+      "SV": 2,
+      "W": 3,
+      "OC": 1,
+      "INV": 5
+    }
+  },
+  "Deathwing Terminator Squad": {
+    "ranged": "Storm bolter",
+    "ranged_a": 2.0,
+    "melee": "Power fist",
+    "info": {
+      "M": "5\"",
+      "T": 5,
+      "SV": 2,
+      "W": 3,
+      "OC": 1,
+      "invuln": 5,
+      "notes": "Deathwing: ignore BS/WS modifiers + Oath +1 to hit"
+    },
+    "pts": 165,
+    "n": 5,
+    "special_max": 2,
+    "specials": [
+      "Thunder hammer",
+      "Chainfist"
+    ],
+    "sp_loses_r": true,
+    "sp_loses_m": false,
+    "apoth_loses_r": true,
+    "innate": []
+  },
+  "Deathwing Knights": {
+    "ranged": "",
+    "ranged_a": 0,
+    "melee": "Power weapon",
+    "info": {
+      "M": "5\"",
+      "T": 5,
+      "SV": 2,
+      "W": 3,
+      "OC": 1,
+      "invuln": 4,
+      "notes": "Inner Circle: 4+ invuln. Deathwing: ignore BS/WS modifiers"
+    },
+    "pts": 240,
+    "n": 5,
+    "special_max": 0,
+    "specials": [],
+    "sp_loses_r": false,
+    "sp_loses_m": false,
+    "apoth_loses_r": false,
+    "innate": []
+  },
+  "Inner Circle Companions": {
+    "ranged": "Heavy Bolt Pistol",
+    "ranged_a": 1.0,
+    "melee": "Calibanite Greatsword - Strike",
+    "info": {
+      "M": "6\"",
+      "T": 4,
+      "SV": 3,
+      "W": 3,
+      "OC": 1
+    },
+    "pts": 80,
+    "n": 3,
+    "special_max": 0,
+    "specials": [],
+    "sp_loses_r": false,
+    "sp_loses_m": false,
+    "apoth_loses_r": false,
+    "innate": []
+  },
+  "Ravenwing Black Knights": {
+    "ranged": "Plasma talon - Standard",
+    "ranged_a": 2.0,
+    "melee": "Black Knight combat weapon",
+    "info": {
+      "M": "12\"",
+      "T": 5,
+      "SV": 3,
+      "W": 2,
+      "OC": 2,
+      "FLY": true
+    },
+    "pts": 75,
+    "n": 3,
+    "special_max": 0,
+    "specials": [],
+    "sp_loses_r": false,
+    "sp_loses_m": false,
+    "apoth_loses_r": false,
+    "innate": []
+  }
+}
