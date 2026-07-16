@@ -377,7 +377,7 @@ For each build, document:
 ### Data Collection Checklist (for Raphael)
 
 For each detachment × choice:
-1. Run `python3 run_dpp.py --faction chaos-knights --detachment "<name>" --choice <N> --meta competitive`
+1. Run `python3 scripts/run_dpp.py --faction chaos-knights --detachment "<name>" --choice <N> --meta competitive`
 2. Capture: DPP, SURV (effective wounds), MOB score, mission score
 3. Run with all three mission profiles
 4. Produce a comparison table: base vs each detachment choice
@@ -434,16 +434,16 @@ For each detachment × choice:
 
 ```bash
 # Run all detachments for CK
-python3 run_dpp.py --faction chaos-knights --meta competitive
+python3 scripts/run_dpp.py --faction chaos-knights --meta competitive
 
 # Run specific detachment
-python3 run_dpp.py --faction chaos-knights --detachment "HELHUNT LANCE" --choice 0 --meta competitive
+python3 scripts/run_dpp.py --faction chaos-knights --detachment "HELHUNT LANCE" --choice 0 --meta competitive
 
 # Run with mission weighting
-python3 run_dpp.py --faction chaos-knights --mission "Purge the Foe" --meta competitive
+python3 scripts/run_dpp.py --faction chaos-knights --mission "Purge the Foe" --meta competitive
 
 # Run for specific target
-python3 run_dpp.py --faction chaos-knights --target MEQ --detachment "INFERNAL LANCE" --choice 1
+python3 scripts/run_dpp.py --faction chaos-knights --target MEQ --detachment "INFERNAL LANCE" --choice 1
 ```
 
 ## Appendix B: Inert Fields Quick Reference

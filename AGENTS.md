@@ -41,9 +41,6 @@ Each subfolder has its own `AGENTS.md` with detailed instructions. Agents workin
 ## Quick Start
 
 ```bash
-# Run DPP for a faction
-python3 run_dpp.py grey-knights
-
 # Start MCP server
 node mcp-server/index.js --port 3456
 ```

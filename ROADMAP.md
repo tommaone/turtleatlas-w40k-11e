@@ -32,7 +32,7 @@ Multi-faction, data-driven, test-verified.
 - [x] `data/config/<faction>/` JSON structure (squads, characters, vehicles, notes, supported)
 - [x] Config inheritance via `_extends: "_base"` — shared target/mission/meta profiles
 - [x] 3 factions: Grey Knights, Chaos Knights, Chaos Daemons
-- [x] Generic CLI: `run_dpp.py --faction <faction> --meta competitive`
+- [x] Generic CLI (archived — scripts removed, use MCP server instead)
 
 ### Test Suite
 - [x] 54 tests (DPP invariants, pricing 1:1 MFM, weapon_slots)
