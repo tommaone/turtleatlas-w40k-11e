@@ -850,6 +850,7 @@ class RankingEngine:
                 invuln=final_invuln,
                 fnp=final_fnp if is_infantry else final_fnp,
                 models=n_models,
+                damage_reduction=info.get("damage_reduction", 0) if info else 0,
             )
             surv = compute_surv(defense, pts)
 

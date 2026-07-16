@@ -527,6 +527,7 @@ class UnitDefense:
     fnp: Optional[int] = None     # 5 = 5+++
     models: int = 1
     feel_no_pain: Optional[int] = None  # alias for fnp
+    damage_reduction: int = 0  # flat damage reduction (e.g. DWK -1)
 
 
 def _wound_prob(strength: int, toughness: int) -> float:
@@ -545,14 +546,21 @@ def _wound_prob(strength: int, toughness: int) -> float:
 def _shots_to_kill(
     total_wounds: int, toughness: int, save: int, invuln: Optional[int],
     fnp: Optional[int], bs: int, strength: int, ap: int, damage: float,
+    damage_reduction: int = 0,
 ) -> float:
     """
     Expected number of shots (from a given weapon) to kill the unit.
 
-    Factors in: ballistic skill, wound table, save/AP, invuln, FNP.
+    Factors in: ballistic skill, wound table, save/AP, invuln, FNP, damage reduction.
+
+    damage_reduction: flat reduction to incoming damage (e.g. Deathwing Knights -1).
+                      D1 weapons still deal D1 (can't go below 1).
     """
     p_hit = (7 - bs) / 6.0
     p_wound = _wound_prob(strength, toughness)
+
+    # Apply damage reduction (minimum 1)
+    actual_damage = max(1, damage - damage_reduction)
 
     # Save
     modified_save = save - ap
@@ -573,7 +581,7 @@ def _shots_to_kill(
     else:
         p_fnp_through = 1.0
 
-    expected_dmg = p_hit * p_wound * p_unsaved * damage * p_fnp_through
+    expected_dmg = p_hit * p_wound * p_unsaved * actual_damage * p_fnp_through
     if expected_dmg <= 0:
         return float('inf')
     return round(total_wounds / expected_dmg, 1)
@@ -590,12 +598,29 @@ BENCHMARK_ATTACKERS = [
 
 
 def _primary_surv_metric(toughness: int) -> str:
-    """Single universal benchmark — heavy anti-tank (S14 AP-4 D6+1).
+    """Toughness-bracketed survivability metric.
 
-    Used as primary metric for ALL toughnesses. This gives a consistent
-    cross-unit comparison: "how well does this unit eat the biggest guns?"
+    Returns the most relevant benchmark weapon for the unit's toughness
+    based on what actually kills them in a balanced meta:
+
+      T3-4  → plasma (S7 AP-3 D2) — bolters chip, plasma kills marines
+      T5-6  → plasma (S7 AP-3 D2) — terminators eat plasma/autocannons
+      T7-8  → melta (S9 AP-4 D6) — vehicles eat melta/lascannon
+      T9-10 → lascannon (S9 AP-3 D3) — heavy vehicles eat lascannons
+      T12+  → heavy (S14 AP-4 D6+1) — super-heavies eat dedicated AT
+
+    This gives a realistic "how well does this unit survive its typical threat?"
     """
-    return "heavy"
+    if toughness <= 4:
+        return "plasma"
+    elif toughness <= 6:
+        return "plasma"
+    elif toughness <= 8:
+        return "melta"
+    elif toughness <= 10:
+        return "lascannon"
+    else:
+        return "heavy"
 
 
 def compute_surv(
@@ -665,7 +690,7 @@ def compute_surv(
     pts_per_shot = {}
     for name, bs, st, ap, dmg in BENCHMARK_ATTACKERS:
         sk = _shots_to_kill(total_w, defense.toughness, defense.save, defense.invuln,
-                            fnp, bs, st, ap, dmg)
+                            fnp, bs, st, ap, dmg, damage_reduction=defense.damage_reduction)
         shots_vs[f"shots_{name}"] = sk
         pts_per_shot[f"pts_per_shot_{name}"] = round(unit_points / sk, 2) if sk != float('inf') else None
 
