@@ -2,6 +2,7 @@
 <html lang="en"><head><meta charset="UTF-8"><title>Grey Knights — Findings</title>
 <style>
 
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0e14; color: #c5cdd9; padding: 20px; }
 a { color: #4fc3f7; text-decoration: none; }
@@ -62,6 +63,13 @@ tr.top3 { background: #0d2137; }
 .table-scroll { max-height: 80vh; overflow-y: auto; }
 
 
+
+.search-bar { margin-bottom: 15px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.search-bar input { background: #0d2137; border: 1px solid #263238; border-radius: 6px; padding: 8px 14px; color: #eceff1; font-size: 13px; width: 300px; outline: none; }
+.search-bar input:focus { border-color: #4fc3f7; }
+.search-bar input::placeholder { color: #546e7a; }
+.search-bar .count { color: #78909c; font-size: 12px; }
+
 </style></head><body>
 <div class="back"><a href="../index.html">&larr; All Factions</a></div>
 <h1>Grey Knights</h1>
@@ -87,33 +95,52 @@ function bar(pct, cls) {
   return '<div class="bar-bg"><div class="bar-fill ' + cls + '" style="width:' + pct + '%"></div><div class="bar-label">' + pct + '%</div></div>';
 }
 
+function renderRow(u, i) {
+  return '<tr class="' + (i < 3 ? 'top3' : '') + '" data-name="' + u.name.toLowerCase() + '">' +
+    '<td class="' + rankClass(i+1) + '">' + (i+1) + '</td>' +
+    '<td class="unit-name">' + u.name + '</td><td class="pts">' + u.pts + '</td>' +
+    '<td class="score ' + scoreClass(u.score) + '">' + u.score + '</td>' +
+    '<td>' + u.dpp + '</td><td class="bar-cell">' + bar(u.dpp_pct, 'dpp') + '</td>' +
+    '<td>' + u.surv + '%</td><td class="bar-cell">' + bar(u.surv, 'surv') + '</td>' +
+    '<td>' + u.obj + '%</td><td class="bar-cell">' + bar(u.obj, 'obj') + '</td>' +
+    '<td>' + u.mob + '%</td><td class="bar-cell">' + bar(u.mob, 'mob') + '</td>' +
+    '<td>' + (u.ds ? '<span class="tag tag-ds">DS</span>' : '') + (u.fly ? '<span class="tag tag-fly">FLY</span>' : '') +
+    (u.inv ? '<span class="tag tag-inv">INV ' + u.inv + '</span>' : '') + '</td>' +
+    '<td style="font-size:10px;color:#78909c">T' + u.t + ' W' + u.w + ' OC' + u.oc + '</td></tr>';
+}
+
+function filterMission(missionId) {
+  const input = document.getElementById('search-' + missionId);
+  const q = input.value.toLowerCase();
+  const table = document.getElementById('table-' + missionId);
+  const rows = table.querySelectorAll('tr[data-name]');
+  let shown = 0;
+  rows.forEach(function(r) {
+    const match = !q || r.getAttribute('data-name').indexOf(q) !== -1;
+    r.style.display = match ? '' : 'none';
+    if (match) shown++;
+  });
+  document.getElementById('count-' + missionId).textContent = shown + ' / ' + rows.length + ' units';
+}
+
 function renderMissions() {
   const c = document.getElementById('missions');
   let html = '';
   for (const [mission, units] of Object.entries(DATA)) {
     const w = WEIGHTS[mission];
+    const mid = mission.replace(/[^a-z]/gi, '');
     html += '<div class="mission-card">' +
       '<div class="mission-header"><div class="mission-name">' + mission + ' <span style="font-size:13px;color:#78909c">(' + units.length + ' units)</span></div>' +
       '<div class="mission-weights">' +
         '<span class="weight w-dpp">DPP ' + w.dps + '%</span><span class="weight w-surv">SURV ' + w.surv + '%</span>' +
         '<span class="weight w-obj">OBJ ' + w.obj + '%</span><span class="weight w-mob">MOB ' + w.mob + '%</span></div></div>' +
-      '<div class="table-scroll"><table><tr><th>#</th><th>Unit</th><th>Pts</th><th>Score</th>' +
+      '<div class="search-bar"><input id="search-' + mid + '" type="text" placeholder="Search units..." oninput="filterMission(\'' + mid + '\')">' +
+      '<span class="count" id="count-' + mid + '">' + units.length + ' / ' + units.length + ' units</span></div>' +
+      '<div class="table-scroll"><table id="table-' + mid + '"><tr><th>#</th><th>Unit</th><th>Pts</th><th>Score</th>' +
       '<th>DPP</th><th class="bar-cell"></th><th>SURV</th><th class="bar-cell"></th>' +
       '<th>OBJ</th><th class="bar-cell"></th><th>MOB</th><th class="bar-cell"></th>' +
       '<th>Tags</th><th>Profile</th></tr>';
-    units.forEach(function(u, i) {
-      html += '<tr class="' + (i < 3 ? 'top3' : '') + '">' +
-        '<td class="' + rankClass(i+1) + '">' + (i+1) + '</td>' +
-        '<td class="unit-name">' + u.name + '</td><td class="pts">' + u.pts + '</td>' +
-        '<td class="score ' + scoreClass(u.score) + '">' + u.score + '</td>' +
-        '<td>' + u.dpp + '</td><td class="bar-cell">' + bar(u.dpp_pct, 'dpp') + '</td>' +
-        '<td>' + u.surv + '%</td><td class="bar-cell">' + bar(u.surv, 'surv') + '</td>' +
-        '<td>' + u.obj + '%</td><td class="bar-cell">' + bar(u.obj, 'obj') + '</td>' +
-        '<td>' + u.mob + '%</td><td class="bar-cell">' + bar(u.mob, 'mob') + '</td>' +
-        '<td>' + (u.ds ? '<span class="tag tag-ds">DS</span>' : '') + (u.fly ? '<span class="tag tag-fly">FLY</span>' : '') +
-        (u.inv ? '<span class="tag tag-inv">INV ' + u.inv + '</span>' : '') + '</td>' +
-        '<td style="font-size:10px;color:#78909c">T' + u.t + ' W' + u.w + ' OC' + u.oc + '</td></tr>';
-    });
+    units.forEach(function(u, i) { html += renderRow(u, i); });
     html += '</table></div></div>';
   }
   c.innerHTML = html;
