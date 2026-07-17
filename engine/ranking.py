@@ -145,18 +145,27 @@ def _load_catalog(merged_path: str, faction: str | None = None) -> WeaponCatalog
 
 
 def _ld_dmg(ranged, melee, innate, target, modifier: Optional[WeaponModifier] = None,
-            melta_active: bool = False, heavy_stationary: bool = False, hit_mode: HitMode = HitMode.NORMAL):
+            melta_active: bool = False, heavy_stationary: bool = False,
+            hit_mode: HitMode = HitMode.NORMAL, n_models: int = 1):
     """Total damage across all weapon lists against a target.
 
     11e melee rule [24.11]: [Extra Attacks] weapons are ALWAYS used in
     addition to one other melee weapon. So for melee:
       - All [EA] weapons are summed
-      - The best non-[EA] weapon is chosen
+      - The best non-[EA] weapon is chosen per model
       - If all weapons are [EA], sum all
+
+    Multi-model handling (n_models):
+      - n_models=1 (character): multiple melee weapons = loadout choices → pick best (max)
+      - n_models>1 (squad): resolve_loadout returns one weapon per model →
+        best per model = max within each model's options, then SUM across models.
+        The weapon list already has n_models entries (one per model), each already
+        the best pick for that model's loadout. Sum them all.
     """
     d = 0
     for wp in ranged:
-        d += _wp_dmg(wp, target, modifier, melta_active=melta_active, heavy_stationary=heavy_stationary, hit_mode=hit_mode)
+        d += _wp_dmg(wp, target, modifier, melta_active=melta_active,
+                     heavy_stationary=heavy_stationary, hit_mode=hit_mode)
 
     ea_melee = []
     other_melee = []
@@ -168,17 +177,44 @@ def _ld_dmg(ranged, melee, innate, target, modifier: Optional[WeaponModifier] = 
 
     if ea_melee:
         for wp in ea_melee:
-            d += _wp_dmg(wp, target, modifier, melta_active=melta_active, heavy_stationary=heavy_stationary, hit_mode=hit_mode)
+            d += _wp_dmg(wp, target, modifier, melta_active=melta_active,
+                         heavy_stationary=heavy_stationary, hit_mode=hit_mode)
         if other_melee:
-            d += max(_wp_dmg(wp, target, modifier, melta_active=melta_active, heavy_stationary=heavy_stationary, hit_mode=hit_mode)
-                     for wp in other_melee)
+            d += _best_melee(other_melee, target, modifier, melta_active,
+                             heavy_stationary, hit_mode, n_models)
     elif other_melee:
-        d += max(_wp_dmg(wp, target, modifier, melta_active=melta_active, heavy_stationary=heavy_stationary, hit_mode=hit_mode)
-                 for wp in other_melee)
+        d += _best_melee(other_melee, target, modifier, melta_active,
+                         heavy_stationary, hit_mode, n_models)
 
     for wp in innate:
-        d += _wp_dmg(wp, target, modifier, melta_active=melta_active, heavy_stationary=heavy_stationary, hit_mode=hit_mode)
+        d += _wp_dmg(wp, target, modifier, melta_active=melta_active,
+                     heavy_stationary=heavy_stationary, hit_mode=hit_mode)
     return d
+
+
+def _best_melee(weapons, target, modifier, melta_active, heavy_stationary, hit_mode,
+                n_models: int = 1):
+    """Best melee damage considering model count.
+
+    n_models=1 (character): multiple weapons = loadout choices → pick best (max).
+    n_models>1 (squad): weapon list already has one entry per model (resolved by
+    _best_squad_variant). Each entry is already the best for that model. Sum all.
+    """
+    if n_models <= 1:
+        # Character / single model: pick best weapon
+        return max(
+            (_wp_dmg(wp, target, modifier, melta_active=melta_active,
+                     heavy_stationary=heavy_stationary, hit_mode=hit_mode)
+             for wp in weapons),
+            default=0
+        )
+
+    # Squad: one weapon per model → sum all
+    return sum(
+        _wp_dmg(wp, target, modifier, melta_active=melta_active,
+                heavy_stationary=heavy_stationary, hit_mode=hit_mode)
+        for wp in weapons
+    )
 
 
 def _wp_dmg(wp, target, modifier: Optional[WeaponModifier] = None,
@@ -815,24 +851,24 @@ class RankingEngine:
             # MOB modifier: only applies if at least one has `affects == "mob"`
             unit_mob_mod = merged_mob if (merged_mob and any(dm.affects == "mob" for dm in applicable_dms)) else None
 
+            n_models = 1
+            if name in self.config.squads:
+                n_models = self.config.squads[name]["n"]
+
             # DPP (with optional detachment modifier)
             dmg_ranged = _ld_dmg(ranged_profiles, [], [], actual_target, unit_weapon_mod,
                                  melta_active=melta_active, heavy_stationary=heavy_stationary,
-                                 hit_mode=unit_hit_mode) if ranged_profiles else 0
+                                 hit_mode=unit_hit_mode, n_models=n_models) if ranged_profiles else 0
             dmg_melee = _ld_dmg([], melee_profiles, [], actual_target, unit_weapon_mod,
                                 melta_active=melta_active, heavy_stationary=heavy_stationary,
-                                hit_mode=HitMode.NORMAL) if melee_profiles else 0
+                                hit_mode=HitMode.NORMAL, n_models=n_models) if melee_profiles else 0
             dmg_innate = _ld_dmg([], [], innate_profiles, actual_target, unit_weapon_mod,
                                  melta_active=melta_active, heavy_stationary=heavy_stationary,
-                                 hit_mode=HitMode.NORMAL) if innate_profiles else 0
+                                 hit_mode=HitMode.NORMAL, n_models=n_models) if innate_profiles else 0
             total_dmg = dmg_ranged + (dmg_melee * melee_penalty) + dmg_innate
             dpp_val = total_dmg / pts if pts > 0 else 0
             is_infantry = "INFANTRY" in kw_list
             fnp_val = 6 if is_infantry else None
-
-            n_models = 1
-            if name in self.config.squads:
-                n_models = self.config.squads[name]["n"]
 
             # SURV (with optional detachment modifier)
             # Note: unit_surv_mod is already gated on original DM having affects=="surv" above
