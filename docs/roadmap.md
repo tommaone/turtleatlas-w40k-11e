@@ -3,7 +3,9 @@
 ## Done ✅
 
 ### Engine Core
-- DPP engine with 3-vector ranking (DPP × SURV × MOB)
+- DPP engine with **quad-vector ranking** (DPP × SURV × OBJ × MOB)
+- **OBJ score** = OC × survival_turns — objective holding potential
+- **MOB score** = DS + Fly + movement — pure mobility (no OC)
 - Weapon loader with faction overlays (Psychic/Torrent keywords)
 - Invuln save support (armour vs invuln priority, AP floor)
 - BSData parser with sharedProfiles resolution (entryLinks)
@@ -14,7 +16,16 @@
 - **Multi-model melee damage** — squads sum all melee profiles, characters pick best
 - **DS tier upgrade** — slow+DS → fast, standard+DS → very_fast
 - **Fake FNP removal** — infantry no longer get fake FNP 6+
-- **Take and Hold weights** — DPP=0% SURV=60% MOB=40% (no melee penalty)
+- **OC0 fix** — OC0 units (flyers, Thunderhawk) penalized, can't dominate OBJ missions
+
+### Mission Profiles (Quad-Vector)
+| Mission | DPP | SURV | OBJ | MOB |
+|---------|-----|------|-----|-----|
+| Take and Hold | 0% | 25% | 55% | 20% |
+| Purge the Foe | 70% | 15% | 5% | 10% |
+| Reconnaissance | 10% | 10% | 20% | 60% |
+| Priority Assets | 40% | 20% | 30% | 10% |
+| Disruption | 25% | 15% | 25% | 35% |
 
 ### Factions
 - **Grey Knights** — full setup, 9 detachments, 5 dispositions ranked
@@ -32,21 +43,19 @@
 - 9 pre-existing GK/CK/Daemons validation failures (not our changes)
 
 ### Documentation
-- GK/CK/Daemons/SM expert files
-- GK + SM mission analysis findings
+- GK/CK/Daemons/SM/DA expert files
+- GK + SM + DA mission analysis findings
 - Guardrails (11e rules reference)
 - Non-DPP value framework
 
 ### Findings
-- DA Take & Hold tri-vector HTML (findings/dark-angels/)
+- **All 5 factions** — HTML findings with quad-vector scoring
+- Dark Angels competitive builds (3 × 2000pt lists)
+- Cross-faction comparison (old vs new findings)
 
 ---
 
 ## In Progress 🔄
-
-### Dark Angels
-- [x] **DA expert file** — squad limits, Deathwing/Ravenwing specifics
-- [x] **DA findings** — mission analysis, competitive builds
 
 ### Duplicate MFM entries
 - [x] **Quantity-based pricing** — engine supports 1st/3rd tier via `tier` parameter
@@ -79,7 +88,7 @@
 - [ ] **Genestealer Cults** — BSData available
 
 ### Findings & Analysis
-- [ ] Cross-faction comparison (GK vs SM vs DA)
+- [ ] Cross-faction comparison dashboard
 - [ ] Meta analysis — which factions dominate which dispositions
 - [ ] Points efficiency ranking across all factions
 
@@ -97,4 +106,4 @@
 
 ---
 
-*Last updated: 2026-07-17*
+*Last updated: 2026-07-18*

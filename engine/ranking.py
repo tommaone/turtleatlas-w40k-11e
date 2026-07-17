@@ -954,6 +954,11 @@ class RankingEngine:
                 for r in results
             ]
             mob_vals = [self.mob_score(r["mob"]) for r in results]
+            # OBJ: OC × survival_turns
+            obj_vals = []
+            for r in results:
+                st = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
+                obj_vals.append(self.obj_score(r["mob"], st))
             n = len(results)
 
             def _pct(val, series):
@@ -967,9 +972,11 @@ class RankingEngine:
                 r["_surv_turns"] = round(surv_turns, 1)
                 r["_surv_pct"] = _pct(surv_turns, surv_vals)
                 r["_mob_pct"] = _pct(self.mob_score(r["mob"]), mob_vals)
+                r["_obj_pct"] = _pct(self.obj_score(r["mob"], surv_turns), obj_vals)
                 r["_mission_score"] = (
                     w["dps"] * r["_dps_pct"] +
                     w["surv"] * r["_surv_pct"] +
+                    w.get("obj", 0) * r["_obj_pct"] +
                     w["mob"] * r["_mob_pct"]
                 )
             results.sort(key=lambda r: r["_mission_score"], reverse=True)
@@ -981,6 +988,10 @@ class RankingEngine:
                 for r in results
             ]
             mob_vals = [self.mob_score(r["mob"]) for r in results]
+            obj_vals = []
+            for r in results:
+                st = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
+                obj_vals.append(self.obj_score(r["mob"], st))
             n = len(results)
 
             def _pct(val, series):
@@ -994,6 +1005,7 @@ class RankingEngine:
                 r["_surv_turns"] = round(surv_turns, 1)
                 r["_surv_pct"] = _pct(surv_turns, surv_vals)
                 r["_mob_pct"] = _pct(self.mob_score(r["mob"]), mob_vals)
+                r["_obj_pct"] = _pct(self.obj_score(r["mob"], surv_turns), obj_vals)
             results.sort(key=lambda r: r["dpp"], reverse=True)
 
         return results
@@ -1020,18 +1032,36 @@ class RankingEngine:
     # ── Helpers ──────────────────────────────────────────────────────
 
     @staticmethod
+    def obj_score(mob, surv_turns):
+        """Objective holding score 0-100.
+
+        Formula: OC × survival_turns, normalized to 0-100.
+        - OC=0 → score=0 (Thunderhawk, flyers cannot hold objectives)
+        - OC=2, 3.2 turns → 6.4 "objective-turns"
+        - OC=4, 5.4 turns → 21.6 "objective-turns" (best)
+        """
+        oc = mob.get("objective_control", 0)
+        if oc == 0:
+            return 0
+        # Raw: OC × turns. Max realistic ~4 OC × 6 turns = 24
+        raw = oc * surv_turns
+        # Normalize: 0 → 0, 24+ → 100
+        return min(round(raw / 24 * 100), 100)
+
+    @staticmethod
     def mob_score(mob):
-        """Mobility score 0-100."""
+        """Pure mobility score 0-100.
+
+        Measures ability to GET places: Deep Strike, Fly, movement speed.
+        Does NOT include OC — that's in obj_score().
+        """
         has_goi = mob.get("gate_of_infinity", False)
         has_ds = mob.get("deep_strike", False)
         has_fly = mob.get("fly", False)
-        oc = mob.get("objective_control", 1)
         tier = mob.get("effective_tier", mob.get("mobility_tier", "slow"))
         no_t1 = mob.get("no_t1_reinforcements", True)
 
-        # Deep Strike bonus — critical for objective-holding missions
-        # DS lets you deploy anywhere turn 2, bypassing slow movement entirely
-        # no_t1_reinforcements reduces value slightly (can't DS turn 1)
+        # Deep Strike bonus — lets you deploy anywhere turn 2
         ds_bonus = 35 if (has_ds and no_t1) else (45 if has_ds else 0)
 
         if has_goi:
@@ -1041,8 +1071,7 @@ class RankingEngine:
                 "standard": 5, "slow": 3, "transporter": 5, "static": 0,
             }.get(tier, 0)
             fly_bonus = 5 if has_fly else 0
-            oc_bonus = min(oc * 3, 20)
-            return min(base + m_bonus + fly_bonus + ds_bonus + oc_bonus, 100)
+            return min(base + m_bonus + fly_bonus + ds_bonus, 100)
         else:
             tier_map = {"static": 10, "slow": 25, "standard": 45,
                         "fast": 55, "very_fast": 70, "cavalry": 80,
@@ -1051,8 +1080,7 @@ class RankingEngine:
             bonuses = ds_bonus
             if has_fly:
                 bonuses += 10
-            oc_bonus = min(oc * 3, 20)
-            return min(base + bonuses + oc_bonus, 100)
+            return min(base + bonuses, 100)
 
     @staticmethod
     def _loadout_desc(ranged, melee, innate):
