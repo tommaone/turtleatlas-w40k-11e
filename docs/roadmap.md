@@ -45,12 +45,12 @@
 ## In Progress 🔄
 
 ### Dark Angels
-- [ ] **DA expert file** — squad limits, Deathwing/Ravenwing specifics
-- [ ] **DA findings** — mission analysis, competitive builds
+- [x] **DA expert file** — squad limits, Deathwing/Ravenwing specifics
+- [x] **DA findings** — mission analysis, competitive builds
 
 ### Duplicate MFM entries
-- Many units have 2 MFM price entries (different loadouts), only first used
-- Need loadout-dependent pricing support
+- [x] **Quantity-based pricing** — engine supports 1st/3rd tier via `tier` parameter
+- [ ] Loadout-dependent pricing (not found in current data)
 
 ---
 
