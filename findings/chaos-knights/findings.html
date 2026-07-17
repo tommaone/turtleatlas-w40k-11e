@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chaos Knights — Findings</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0e14; color: #c5cdd9; padding: 20px; }
+a { color: #4fc3f7; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.back { margin-bottom: 16px; font-size: 13px; }
+h1 { color: #4fc3f7; font-size: 28px; margin-bottom: 4px; }
+h2 { color: #81c784; font-size: 20px; margin: 30px 0 15px; border-bottom: 1px solid #1a2030; padding-bottom: 8px; }
+.subtitle { color: #78909c; font-size: 14px; margin-bottom: 20px; }
+.tabs { display: flex; gap: 4px; margin-bottom: 20px; flex-wrap: wrap; }
+.tab { padding: 10px 20px; background: #151b24; border: 1px solid #263238; border-radius: 6px 6px 0 0; cursor: pointer; font-size: 13px; color: #90a4ae; transition: all 0.2s; }
+.tab:hover { background: #1a2030; color: #c5cdd9; }
+.tab.active { background: #0d2137; color: #4fc3f7; border-color: #4fc3f7; border-bottom-color: #0d2137; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.mission-card { background: #151b24; border-radius: 8px; padding: 20px; margin-bottom: 20px; border: 1px solid #1a2030; }
+.mission-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 8px; }
+.mission-name { font-size: 18px; font-weight: 700; color: #eceff1; }
+.mission-weights { display: flex; gap: 10px; }
+.weight { padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.w-dpp { background: #b71c1c; color: #ef9a9a; }
+.w-surv { background: #1b5e20; color: #81c784; }
+.w-mob { background: #0d47a1; color: #64b5f6; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: #1a2030; color: #90a4ae; padding: 10px 12px; text-align: left; font-weight: 600; white-space: nowrap; }
+td { padding: 9px 12px; border-bottom: 1px solid #1a2030; }
+tr:hover { background: #141c28; }
+tr.top3 { background: #0d2137; }
+.rank { font-weight: 700; color: #4fc3f7; width: 40px; }
+.rank-1 { color: #ffd700; }
+.rank-2 { color: #c0c0c0; }
+.rank-3 { color: #cd7f32; }
+.unit-name { font-weight: 600; color: #eceff1; }
+.pts { font-weight: 600; color: #ffa726; }
+.score { font-weight: 700; font-size: 14px; }
+.score-high { color: #66bb6a; }
+.score-mid { color: #ffa726; }
+.score-low { color: #ef5350; }
+.bar-cell { width: 100px; }
+.bar-bg { background: #1a2030; border-radius: 3px; height: 16px; position: relative; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 3px; position: absolute; top: 0; left: 0; }
+.bar-fill.surv { background: linear-gradient(90deg, #1b5e20, #4caf50); }
+.bar-fill.mob { background: linear-gradient(90deg, #0d47a1, #42a5f5); }
+.bar-label { position: absolute; right: 4px; top: 0; font-size: 10px; font-weight: 600; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.8); line-height: 16px; }
+.tag { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: 600; margin-left: 4px; }
+.tag-ds { background: #1a237e; color: #7986cb; }
+.tag-fly { background: #4a148c; color: #ba68c8; }
+.tag-inv { background: #e65100; color: #ffcc80; }
+.insight-card { background: #151b24; border-radius: 8px; padding: 16px; margin-bottom: 12px; border-left: 4px solid #4fc3f7; }
+.insight-title { font-weight: 700; color: #eceff1; margin-bottom: 6px; }
+.insight-text { font-size: 13px; color: #b0bec5; }
+</style>
+</head>
+<body>
+<div class="back"><a href="../index.html">&larr; All Factions</a></div>
+<h1>Chaos Knights</h1>
+<div class="subtitle">19 datasheets &middot; 5 missions &middot; Tri-vector scoring (DPP + SURV + MOB)</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('missions')">Mission Rankings</div>
+  <div class="tab" onclick="showTab('top10')">Top 10 Summary</div>
+  <div class="tab" onclick="showTab('insights')">Key Insights</div>
+</div>
+
+<div id="missions" class="tab-content active"></div>
+<div id="top10" class="tab-content"></div>
+<div id="insights" class="tab-content"></div>
+
+<script>
+const DATA = {"Take and Hold": [{"name": "Chaos Cerastus Knight Lancer", "pts": 395, "score": 73.2, "dpp": 0.0665, "surv": 100, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "4+"}, {"name": "Chaos Acastus Knight Asterius", "pts": 785, "score": 66.6, "dpp": 0.0274, "surv": 89, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 13, "w": 30, "inv": "5+"}, {"name": "Chaos Acastus Knight Porphyrion", "pts": 725, "score": 66.6, "dpp": 0.0671, "surv": 89, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 13, "w": 30, "inv": "5+"}, {"name": "Chaos Cerastus Knight Acheron", "pts": 370, "score": 53.4, "dpp": 0.059, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "5+"}, {"name": "Chaos Cerastus Knight Atrapos", "pts": 395, "score": 53.4, "dpp": 0.0689, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "5+"}, {"name": "Chaos Cerastus Knight Castigator", "pts": 370, "score": 53.4, "dpp": 0.0841, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "5+"}, {"name": "Knight Tyrant", "pts": 400, "score": 53.4, "dpp": 0.1358, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 12, "w": 28, "inv": "5+"}, {"name": "Chaos Questoris Knight Styrix", "pts": 365, "score": 33.0, "dpp": 0.0796, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Knight Abominant", "pts": 355, "score": 33.0, "dpp": 0.0759, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Knight Desecrator", "pts": 355, "score": 33.0, "dpp": 0.083, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Knight Despoiler", "pts": 370, "score": 33.0, "dpp": 0.0958, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Knight Rampager", "pts": 365, "score": 33.0, "dpp": 0.0944, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Knight Ruinator", "pts": 340, "score": 33.0, "dpp": 0.0716, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "War Dog Karnivore", "pts": 155, "score": 11.2, "dpp": 0.129, "surv": 0, "mob": 28, "ds": false, "fly": false, "oc": 6, "t": 9, "w": 14, "inv": null}, {"name": "War Dog Brigand", "pts": 140, "score": 0.0, "dpp": 0.0574, "surv": 0, "mob": 0, "ds": false, "fly": false, "oc": 6, "t": 9, "w": 14, "inv": null}], "Purge the Foe": [{"name": "Knight Tyrant", "pts": 400, "score": 86.7, "dpp": 0.1358, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 12, "w": 28, "inv": "5+"}, {"name": "War Dog Karnivore", "pts": 155, "score": 68.6, "dpp": 0.129, "surv": 0, "mob": 28, "ds": false, "fly": false, "oc": 6, "t": 9, "w": 14, "inv": null}, {"name": "Knight Despoiler", "pts": 370, "score": 68.0, "dpp": 0.0958, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Chaos Cerastus Knight Castigator", "pts": 370, "score": 63.6, "dpp": 0.0841, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "5+"}, {"name": "War Dog Stalker", "pts": 140, "score": 62.3, "dpp": 0.1069, "surv": 0, "mob": 0, "ds": false, "fly": false, "oc": 6, "t": 9, "w": 14, "inv": null}, {"name": "Knight Rampager", "pts": 365, "score": 60.3, "dpp": 0.0944, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "War Dog Moirax", "pts": 150, "score": 54.6, "dpp": 0.0955, "surv": 0, "mob": 0, "ds": false, "fly": false, "oc": 6, "t": 9, "w": 14, "inv": null}, {"name": "Knight Desecrator", "pts": 355, "score": 52.6, "dpp": 0.083, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Chaos Questoris Knight Styrix", "pts": 365, "score": 49.1, "dpp": 0.0796, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Knight Abominant", "pts": 355, "score": 44.9, "dpp": 0.0759, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Chaos Acastus Knight Porphyrion", "pts": 725, "score": 44.2, "dpp": 0.0671, "surv": 89, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 13, "w": 30, "inv": "5+"}, {"name": "Chaos Cerastus Knight Atrapos", "pts": 395, "score": 44.0, "dpp": 0.0689, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "5+"}, {"name": "Chaos Cerastus Knight Lancer", "pts": 395, "score": 42.9, "dpp": 0.0665, "surv": 100, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "4+"}, {"name": "Knight Ruinator", "pts": 340, "score": 40.7, "dpp": 0.0716, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Chaos Cerastus Knight Acheron", "pts": 370, "score": 28.6, "dpp": 0.059, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "5+"}], "Reconnaissance": [{"name": "Knight Tyrant", "pts": 400, "score": 51.5, "dpp": 0.1358, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 12, "w": 28, "inv": "5+"}, {"name": "Chaos Cerastus Knight Lancer", "pts": 395, "score": 49.0, "dpp": 0.0665, "surv": 100, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "4+"}, {"name": "Chaos Acastus Knight Porphyrion", "pts": 725, "score": 47.0, "dpp": 0.0671, "surv": 89, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 13, "w": 30, "inv": "5+"}, {"name": "Chaos Cerastus Knight Castigator", "pts": 370, "score": 46.6, "dpp": 0.0841, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "5+"}, {"name": "Chaos Cerastus Knight Atrapos", "pts": 395, "score": 42.4, "dpp": 0.0689, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "5+"}, {"name": "Chaos Acastus Knight Asterius", "pts": 785, "score": 42.0, "dpp": 0.0274, "surv": 89, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 13, "w": 30, "inv": "5+"}, {"name": "Knight Despoiler", "pts": 370, "score": 40.5, "dpp": 0.0958, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Chaos Cerastus Knight Acheron", "pts": 370, "score": 39.1, "dpp": 0.059, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "5+"}, {"name": "Knight Rampager", "pts": 365, "score": 38.8, "dpp": 0.0944, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Knight Desecrator", "pts": 355, "score": 37.2, "dpp": 0.083, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Chaos Questoris Knight Styrix", "pts": 365, "score": 36.5, "dpp": 0.0796, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Knight Abominant", "pts": 355, "score": 35.5, "dpp": 0.0759, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Knight Ruinator", "pts": 340, "score": 34.6, "dpp": 0.0716, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "War Dog Karnivore", "pts": 155, "score": 30.9, "dpp": 0.129, "surv": 0, "mob": 28, "ds": false, "fly": false, "oc": 6, "t": 9, "w": 14, "inv": null}, {"name": "War Dog Stalker", "pts": 140, "score": 13.3, "dpp": 0.1069, "surv": 0, "mob": 0, "ds": false, "fly": false, "oc": 6, "t": 9, "w": 14, "inv": null}], "Priority Assets": [{"name": "Knight Tyrant", "pts": 400, "score": 76.7, "dpp": 0.1358, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 12, "w": 28, "inv": "5+"}, {"name": "Chaos Cerastus Knight Castigator", "pts": 370, "score": 60.2, "dpp": 0.0841, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "5+"}, {"name": "Knight Despoiler", "pts": 370, "score": 58.0, "dpp": 0.0958, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "War Dog Karnivore", "pts": 155, "score": 52.6, "dpp": 0.129, "surv": 0, "mob": 28, "ds": false, "fly": false, "oc": 6, "t": 9, "w": 14, "inv": null}, {"name": "Knight Rampager", "pts": 365, "score": 52.5, "dpp": 0.0944, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Chaos Cerastus Knight Lancer", "pts": 395, "score": 50.6, "dpp": 0.0665, "surv": 100, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "4+"}, {"name": "Chaos Acastus Knight Porphyrion", "pts": 725, "score": 49.8, "dpp": 0.0671, "surv": 89, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 13, "w": 30, "inv": "5+"}, {"name": "Knight Desecrator", "pts": 355, "score": 47.0, "dpp": 0.083, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Chaos Cerastus Knight Atrapos", "pts": 395, "score": 46.2, "dpp": 0.0689, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "5+"}, {"name": "Chaos Questoris Knight Styrix", "pts": 365, "score": 44.5, "dpp": 0.0796, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "War Dog Stalker", "pts": 140, "score": 44.5, "dpp": 0.1069, "surv": 0, "mob": 0, "ds": false, "fly": false, "oc": 6, "t": 9, "w": 14, "inv": null}, {"name": "Knight Abominant", "pts": 355, "score": 41.5, "dpp": 0.0759, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "War Dog Moirax", "pts": 150, "score": 39.0, "dpp": 0.0955, "surv": 0, "mob": 0, "ds": false, "fly": false, "oc": 6, "t": 9, "w": 14, "inv": null}, {"name": "Knight Ruinator", "pts": 340, "score": 38.5, "dpp": 0.0716, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Chaos Cerastus Knight Acheron", "pts": 370, "score": 35.2, "dpp": 0.059, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "5+"}], "Disruption": [{"name": "Knight Tyrant", "pts": 400, "score": 68.4, "dpp": 0.1358, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 12, "w": 28, "inv": "5+"}, {"name": "Chaos Cerastus Knight Castigator", "pts": 370, "score": 56.8, "dpp": 0.0841, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "5+"}, {"name": "Chaos Cerastus Knight Lancer", "pts": 395, "score": 54.7, "dpp": 0.0665, "surv": 100, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "4+"}, {"name": "Chaos Acastus Knight Porphyrion", "pts": 725, "score": 52.6, "dpp": 0.0671, "surv": 89, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 13, "w": 30, "inv": "5+"}, {"name": "Knight Despoiler", "pts": 370, "score": 50.5, "dpp": 0.0958, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Chaos Cerastus Knight Atrapos", "pts": 395, "score": 47.0, "dpp": 0.0689, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "5+"}, {"name": "Knight Rampager", "pts": 365, "score": 46.6, "dpp": 0.0944, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Knight Desecrator", "pts": 355, "score": 42.8, "dpp": 0.083, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "War Dog Karnivore", "pts": 155, "score": 41.3, "dpp": 0.129, "surv": 0, "mob": 28, "ds": false, "fly": false, "oc": 6, "t": 9, "w": 14, "inv": null}, {"name": "Chaos Acastus Knight Asterius", "pts": 785, "score": 41.0, "dpp": 0.0274, "surv": 89, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 13, "w": 30, "inv": "5+"}, {"name": "Chaos Questoris Knight Styrix", "pts": 365, "score": 41.0, "dpp": 0.0796, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Chaos Cerastus Knight Acheron", "pts": 370, "score": 39.3, "dpp": 0.059, "surv": 67, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 28, "inv": "5+"}, {"name": "Knight Abominant", "pts": 355, "score": 38.9, "dpp": 0.0759, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "Knight Ruinator", "pts": 340, "score": 36.8, "dpp": 0.0716, "surv": 33, "mob": 33, "ds": true, "fly": false, "oc": 10, "t": 11, "w": 26, "inv": "5+"}, {"name": "War Dog Stalker", "pts": 140, "score": 31.1, "dpp": 0.1069, "surv": 0, "mob": 0, "ds": false, "fly": false, "oc": 6, "t": 9, "w": 14, "inv": null}]};
+const WEIGHTS = {"Take and Hold": {"dpp": 0, "surv": 60, "mob": 40}, "Purge the Foe": {"dpp": 70, "surv": 20, "mob": 10}, "Reconnaissance": {"dpp": 15, "surv": 25, "mob": 60}, "Priority Assets": {"dpp": 50, "surv": 30, "mob": 20}, "Disruption": {"dpp": 35, "surv": 35, "mob": 30}};
+
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function scoreClass(s) {
+  if (s >= 75) return 'score-high';
+  if (s >= 50) return 'score-mid';
+  return 'score-low';
+}
+
+function rankClass(r) {
+  if (r === 1) return 'rank rank-1';
+  if (r === 2) return 'rank rank-2';
+  if (r === 3) return 'rank rank-3';
+  return 'rank';
+}
+
+function renderMissions() {
+  const c = document.getElementById('missions');
+  let html = '';
+  for (const [mission, units] of Object.entries(DATA)) {
+    const w = WEIGHTS[mission];
+    html += `
+    <div class="mission-card">
+      <div class="mission-header">
+        <div class="mission-name">${mission}</div>
+        <div class="mission-weights">
+          <span class="weight w-dpp">DPP ${w.dpp}%</span>
+          <span class="weight w-surv">SURV ${w.surv}%</span>
+          <span class="weight w-mob">MOB ${w.mob}%</span>
+        </div>
+      </div>
+      <table>
+        <tr><th>#</th><th>Unit</th><th>Pts</th><th>Score</th><th>DPP</th><th>SURV</th><th class="bar-cell"></th><th>MOB</th><th class="bar-cell"></th><th>Tags</th><th>Profile</th></tr>
+        ${units.slice(0, 15).map((u, i) => `
+          <tr class="${i < 3 ? 'top3' : ''}">
+            <td class="${rankClass(i+1)}">${i+1}</td>
+            <td class="unit-name">${u.name}</td>
+            <td class="pts">${u.pts}</td>
+            <td class="score ${scoreClass(u.score)}">${u.score}</td>
+            <td>${u.dpp}</td>
+            <td>${u.surv}%</td>
+            <td class="bar-cell"><div class="bar-bg"><div class="bar-fill surv" style="width:${u.surv}%"></div><div class="bar-label">${u.surv}%</div></div></td>
+            <td>${u.mob}%</td>
+            <td class="bar-cell"><div class="bar-bg"><div class="bar-fill mob" style="width:${u.mob}%"></div><div class="bar-label">${u.mob}%</div></div></td>
+            <td>
+              ${u.ds ? '<span class="tag tag-ds">DS</span>' : ''}
+              ${u.fly ? '<span class="tag tag-fly">FLY</span>' : ''}
+              ${u.inv ? '<span class="tag tag-inv">INV ' + u.inv + '</span>' : ''}
+            </td>
+            <td style="font-size:11px;color:#78909c">T${u.t} W${u.w} OC${u.oc}</td>
+          </tr>
+        `).join('')}
+      </table>
+    </div>`;
+  }
+  c.innerHTML = html;
+}
+
+function renderTop10() {
+  const c = document.getElementById('top10');
+  const best = {};
+  for (const [mission, units] of Object.entries(DATA)) {
+    for (const u of units.slice(0, 15)) {
+      if (!best[u.name] || u.score > best[u.name].score) {
+        best[u.name] = { ...u, mission };
+      }
+    }
+  }
+  const sorted = Object.values(best).sort((a, b) => b.score - a.score).slice(0, 10);
+  let html = `<h2>Top 10 Units (Best Mission Score)</h2>
+    <table>
+      <tr><th>#</th><th>Unit</th><th>Pts</th><th>Score</th><th>Best Mission</th><th>DPP</th><th>Tags</th><th>Profile</th></tr>
+      ${sorted.map((u, i) => `
+        <tr class="${i < 3 ? 'top3' : ''}">
+          <td class="${rankClass(i+1)}">${i+1}</td>
+          <td class="unit-name">${u.name}</td>
+          <td class="pts">${u.pts}</td>
+          <td class="score ${scoreClass(u.score)}">${u.score}</td>
+          <td style="color:#90a4ae">${u.mission}</td>
+          <td>${u.dpp}</td>
+          <td>
+            ${u.ds ? '<span class="tag tag-ds">DS</span>' : ''}
+            ${u.fly ? '<span class="tag tag-fly">FLY</span>' : ''}
+            ${u.inv ? '<span class="tag tag-inv">INV ' + u.inv + '</span>' : ''}
+          </td>
+          <td style="font-size:11px;color:#78909c">T${u.t} W${u.w} OC${u.oc}</td>
+        </tr>
+      `).join('')}
+    </table>`;
+  c.innerHTML = html;
+}
+
+function renderInsights() {
+  const c = document.getElementById('insights');
+  const rows = [];
+  for (const [mission, units] of Object.entries(DATA)) {
+    if (units.length > 0) {
+      const u = units[0];
+      rows.push(`<div class="insight-card">
+        <div class="insight-title">#1 in ${mission}: ${u.name}</div>
+        <div class="insight-text">${u.score} score &middot; ${u.pts}pts &middot; ${u.dpp} DPP &middot; T${u.t} W${u.w}${u.inv ? ' INV'+u.inv : ''}${u.ds ? ' DS' : ''}${u.fly ? ' FLY' : ''}</div>
+      </div>`);
+    }
+  }
+  c.innerHTML = '<h2>Key Insights</h2>' + rows.join('');
+}
+
+renderMissions();
+renderTop10();
+renderInsights();
+</script>
+</body>
+</html>

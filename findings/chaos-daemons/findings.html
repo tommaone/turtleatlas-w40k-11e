@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chaos Daemons — Findings</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0e14; color: #c5cdd9; padding: 20px; }
+a { color: #4fc3f7; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.back { margin-bottom: 16px; font-size: 13px; }
+h1 { color: #4fc3f7; font-size: 28px; margin-bottom: 4px; }
+h2 { color: #81c784; font-size: 20px; margin: 30px 0 15px; border-bottom: 1px solid #1a2030; padding-bottom: 8px; }
+.subtitle { color: #78909c; font-size: 14px; margin-bottom: 20px; }
+.tabs { display: flex; gap: 4px; margin-bottom: 20px; flex-wrap: wrap; }
+.tab { padding: 10px 20px; background: #151b24; border: 1px solid #263238; border-radius: 6px 6px 0 0; cursor: pointer; font-size: 13px; color: #90a4ae; transition: all 0.2s; }
+.tab:hover { background: #1a2030; color: #c5cdd9; }
+.tab.active { background: #0d2137; color: #4fc3f7; border-color: #4fc3f7; border-bottom-color: #0d2137; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.mission-card { background: #151b24; border-radius: 8px; padding: 20px; margin-bottom: 20px; border: 1px solid #1a2030; }
+.mission-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 8px; }
+.mission-name { font-size: 18px; font-weight: 700; color: #eceff1; }
+.mission-weights { display: flex; gap: 10px; }
+.weight { padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.w-dpp { background: #b71c1c; color: #ef9a9a; }
+.w-surv { background: #1b5e20; color: #81c784; }
+.w-mob { background: #0d47a1; color: #64b5f6; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: #1a2030; color: #90a4ae; padding: 10px 12px; text-align: left; font-weight: 600; white-space: nowrap; }
+td { padding: 9px 12px; border-bottom: 1px solid #1a2030; }
+tr:hover { background: #141c28; }
+tr.top3 { background: #0d2137; }
+.rank { font-weight: 700; color: #4fc3f7; width: 40px; }
+.rank-1 { color: #ffd700; }
+.rank-2 { color: #c0c0c0; }
+.rank-3 { color: #cd7f32; }
+.unit-name { font-weight: 600; color: #eceff1; }
+.pts { font-weight: 600; color: #ffa726; }
+.score { font-weight: 700; font-size: 14px; }
+.score-high { color: #66bb6a; }
+.score-mid { color: #ffa726; }
+.score-low { color: #ef5350; }
+.bar-cell { width: 100px; }
+.bar-bg { background: #1a2030; border-radius: 3px; height: 16px; position: relative; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 3px; position: absolute; top: 0; left: 0; }
+.bar-fill.surv { background: linear-gradient(90deg, #1b5e20, #4caf50); }
+.bar-fill.mob { background: linear-gradient(90deg, #0d47a1, #42a5f5); }
+.bar-label { position: absolute; right: 4px; top: 0; font-size: 10px; font-weight: 600; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.8); line-height: 16px; }
+.tag { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: 600; margin-left: 4px; }
+.tag-ds { background: #1a237e; color: #7986cb; }
+.tag-fly { background: #4a148c; color: #ba68c8; }
+.tag-inv { background: #e65100; color: #ffcc80; }
+.insight-card { background: #151b24; border-radius: 8px; padding: 16px; margin-bottom: 12px; border-left: 4px solid #4fc3f7; }
+.insight-title { font-weight: 700; color: #eceff1; margin-bottom: 6px; }
+.insight-text { font-size: 13px; color: #b0bec5; }
+</style>
+</head>
+<body>
+<div class="back"><a href="../index.html">&larr; All Factions</a></div>
+<h1>Chaos Daemons</h1>
+<div class="subtitle">53 datasheets &middot; 5 missions &middot; Tri-vector scoring (DPP + SURV + MOB)</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('missions')">Mission Rankings</div>
+  <div class="tab" onclick="showTab('top10')">Top 10 Summary</div>
+  <div class="tab" onclick="showTab('insights')">Key Insights</div>
+</div>
+
+<div id="missions" class="tab-content active"></div>
+<div id="top10" class="tab-content"></div>
+<div id="insights" class="tab-content"></div>
+
+<script>
+const DATA = {"Take and Hold": [{"name": "Kairos Fateweaver", "pts": 295, "score": 73.6, "dpp": 0.0722, "surv": 98, "mob": 37, "ds": true, "fly": true, "oc": 5, "t": 10, "w": 20, "inv": "4+"}, {"name": "Shalaxi Helbane", "pts": 340, "score": 73.6, "dpp": 0.0979, "surv": 98, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 10, "w": 20, "inv": "4+"}, {"name": "Keeper Of Secrets", "pts": 255, "score": 71.2, "dpp": 0.0806, "surv": 94, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 10, "w": 18, "inv": "4+"}, {"name": "Lord Of Change", "pts": 300, "score": 71.2, "dpp": 0.0409, "surv": 94, "mob": 37, "ds": true, "fly": true, "oc": 5, "t": 10, "w": 18, "inv": "4+"}, {"name": "Daemon Prince Of Chaos", "pts": 165, "score": 67.6, "dpp": 0.0606, "surv": 88, "mob": 37, "ds": true, "fly": false, "oc": 3, "t": 10, "w": 10, "inv": "4+"}, {"name": "Tormentbringer", "pts": 135, "score": 67.0, "dpp": 0.0403, "surv": 87, "mob": 37, "ds": true, "fly": false, "oc": 3, "t": 6, "w": 12, "inv": "4+"}, {"name": "Rotigus", "pts": 280, "score": 65.8, "dpp": 0.0604, "surv": 85, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 12, "w": 22, "inv": "4+"}, {"name": "Horticulous Slimux", "pts": 120, "score": 62.0, "dpp": 0.05, "surv": 88, "mob": 23, "ds": true, "fly": false, "oc": 2, "t": 10, "w": 10, "inv": "4+"}, {"name": "Flamers", "pts": 65, "score": 61.0, "dpp": 0.0231, "surv": 77, "mob": 37, "ds": true, "fly": true, "oc": 1, "t": 4, "w": 9, "inv": "4+"}, {"name": "Screamers", "pts": 80, "score": 61.0, "dpp": 0.0668, "surv": 77, "mob": 37, "ds": true, "fly": true, "oc": 1, "t": 4, "w": 9, "inv": "4+"}, {"name": "Syll\u2019Esske", "pts": 120, "score": 61.0, "dpp": 0.0896, "surv": 77, "mob": 37, "ds": true, "fly": false, "oc": 2, "t": 6, "w": 9, "inv": "4+"}, {"name": "Plaguebearers", "pts": 115, "score": 60.0, "dpp": 0.0365, "surv": 92, "mob": 12, "ds": true, "fly": false, "oc": 2, "t": 5, "w": 20, "inv": "5+"}, {"name": "Be\u2019Lakor", "pts": 390, "score": 56.2, "dpp": 0.0442, "surv": 69, "mob": 37, "ds": true, "fly": true, "oc": 5, "t": 11, "w": 20, "inv": "4+"}, {"name": "Daemon Prince Of Chaos With Wings", "pts": 190, "score": 56.2, "dpp": 0.0526, "surv": 69, "mob": 37, "ds": true, "fly": true, "oc": 3, "t": 9, "w": 10, "inv": "4+"}, {"name": "Great Unclean One", "pts": 265, "score": 56.2, "dpp": 0.0792, "surv": 69, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 12, "w": 20, "inv": "4+"}], "Purge the Foe": [{"name": "Shalaxi Helbane", "pts": 340, "score": 87.7, "dpp": 0.0979, "surv": 98, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 10, "w": 20, "inv": "4+"}, {"name": "Skarbrand", "pts": 315, "score": 86.1, "dpp": 0.1151, "surv": 69, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 11, "w": 20, "inv": "4+"}, {"name": "Fiends", "pts": 90, "score": 84.9, "dpp": 0.111, "surv": 77, "mob": 23, "ds": true, "fly": false, "oc": 2, "t": 5, "w": 12, "inv": "5+"}, {"name": "Exalted Flamer", "pts": 65, "score": 81.3, "dpp": 0.1351, "surv": 38, "mob": 37, "ds": true, "fly": true, "oc": 1, "t": 4, "w": 6, "inv": "4+"}, {"name": "Syll\u2019Esske", "pts": 120, "score": 80.0, "dpp": 0.0896, "surv": 77, "mob": 37, "ds": true, "fly": false, "oc": 2, "t": 6, "w": 9, "inv": "4+"}, {"name": "Bloodletters", "pts": 110, "score": 79.9, "dpp": 0.1082, "surv": 52, "mob": 37, "ds": true, "fly": false, "oc": 2, "t": 4, "w": 10, "inv": "5+"}, {"name": "Keeper Of Secrets", "pts": 255, "score": 76.4, "dpp": 0.0806, "surv": 94, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 10, "w": 18, "inv": "4+"}, {"name": "Bloodthirster", "pts": 320, "score": 73.4, "dpp": 0.0872, "surv": 58, "mob": 37, "ds": true, "fly": true, "oc": 5, "t": 11, "w": 18, "inv": "4+"}, {"name": "Karanak", "pts": 70, "score": 71.7, "dpp": 0.0944, "surv": 27, "mob": 33, "ds": true, "fly": false, "oc": 3, "t": 4, "w": 5, "inv": "4+"}, {"name": "Kairos Fateweaver", "pts": 295, "score": 71.6, "dpp": 0.0722, "surv": 98, "mob": 37, "ds": true, "fly": true, "oc": 5, "t": 10, "w": 20, "inv": "4+"}, {"name": "Burning Chariot", "pts": 115, "score": 71.5, "dpp": 0.0933, "surv": 31, "mob": 37, "ds": true, "fly": true, "oc": 3, "t": 8, "w": 9, "inv": "4+"}, {"name": "Great Unclean One", "pts": 265, "score": 70.0, "dpp": 0.0792, "surv": 69, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 12, "w": 20, "inv": "4+"}, {"name": "Skulltaker", "pts": 85, "score": 68.6, "dpp": 0.0882, "surv": 27, "mob": 37, "ds": true, "fly": false, "oc": 1, "t": 4, "w": 5, "inv": "4+"}, {"name": "Soul Grinder", "pts": 180, "score": 68.2, "dpp": 0.0846, "surv": 46, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 11, "w": 14, "inv": "4+"}, {"name": "Daemon Prince Of Chaos", "pts": 165, "score": 64.7, "dpp": 0.0606, "surv": 88, "mob": 37, "ds": true, "fly": false, "oc": 3, "t": 10, "w": 10, "inv": "4+"}], "Reconnaissance": [{"name": "Shalaxi Helbane", "pts": 340, "score": 60.5, "dpp": 0.0979, "surv": 98, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 10, "w": 20, "inv": "4+"}, {"name": "Keeper Of Secrets", "pts": 255, "score": 57.2, "dpp": 0.0806, "surv": 94, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 10, "w": 18, "inv": "4+"}, {"name": "Kairos Fateweaver", "pts": 295, "score": 57.0, "dpp": 0.0722, "surv": 98, "mob": 37, "ds": true, "fly": true, "oc": 5, "t": 10, "w": 20, "inv": "4+"}, {"name": "Syll\u2019Esske", "pts": 120, "score": 54.5, "dpp": 0.0896, "surv": 77, "mob": 37, "ds": true, "fly": false, "oc": 2, "t": 6, "w": 9, "inv": "4+"}, {"name": "Skarbrand", "pts": 315, "score": 54.1, "dpp": 0.1151, "surv": 69, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 11, "w": 20, "inv": "4+"}, {"name": "Daemon Prince Of Chaos", "pts": 165, "score": 53.5, "dpp": 0.0606, "surv": 88, "mob": 37, "ds": true, "fly": false, "oc": 3, "t": 10, "w": 10, "inv": "4+"}, {"name": "Rotigus", "pts": 280, "score": 52.5, "dpp": 0.0604, "surv": 85, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 12, "w": 22, "inv": "4+"}, {"name": "Lord Of Change", "pts": 300, "score": 51.4, "dpp": 0.0409, "surv": 94, "mob": 37, "ds": true, "fly": true, "oc": 5, "t": 10, "w": 18, "inv": "4+"}, {"name": "Screamers", "pts": 80, "score": 50.9, "dpp": 0.0668, "surv": 77, "mob": 37, "ds": true, "fly": true, "oc": 1, "t": 4, "w": 9, "inv": "4+"}, {"name": "Great Unclean One", "pts": 265, "score": 50.7, "dpp": 0.0792, "surv": 69, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 12, "w": 20, "inv": "4+"}, {"name": "Bloodletters", "pts": 110, "score": 49.3, "dpp": 0.1082, "surv": 52, "mob": 37, "ds": true, "fly": false, "oc": 2, "t": 4, "w": 10, "inv": "5+"}, {"name": "Tormentbringer", "pts": 135, "score": 49.2, "dpp": 0.0403, "surv": 87, "mob": 37, "ds": true, "fly": false, "oc": 3, "t": 6, "w": 12, "inv": "4+"}, {"name": "Bloodthirster", "pts": 320, "score": 49.1, "dpp": 0.0872, "surv": 58, "mob": 37, "ds": true, "fly": true, "oc": 5, "t": 11, "w": 18, "inv": "4+"}, {"name": "Fiends", "pts": 90, "score": 47.4, "dpp": 0.111, "surv": 77, "mob": 23, "ds": true, "fly": false, "oc": 2, "t": 5, "w": 12, "inv": "5+"}, {"name": "Skull Cannon", "pts": 90, "score": 46.8, "dpp": 0.0713, "surv": 58, "mob": 37, "ds": true, "fly": false, "oc": 3, "t": 9, "w": 9, "inv": "4+"}], "Priority Assets": [{"name": "Shalaxi Helbane", "pts": 340, "score": 82.8, "dpp": 0.0979, "surv": 98, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 10, "w": 20, "inv": "4+"}, {"name": "Skarbrand", "pts": 315, "score": 77.1, "dpp": 0.1151, "surv": 69, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 11, "w": 20, "inv": "4+"}, {"name": "Fiends", "pts": 90, "score": 75.7, "dpp": 0.111, "surv": 77, "mob": 23, "ds": true, "fly": false, "oc": 2, "t": 5, "w": 12, "inv": "5+"}, {"name": "Keeper Of Secrets", "pts": 255, "score": 74.1, "dpp": 0.0806, "surv": 94, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 10, "w": 18, "inv": "4+"}, {"name": "Syll\u2019Esske", "pts": 120, "score": 74.0, "dpp": 0.0896, "surv": 77, "mob": 37, "ds": true, "fly": false, "oc": 2, "t": 6, "w": 9, "inv": "4+"}, {"name": "Kairos Fateweaver", "pts": 295, "score": 71.3, "dpp": 0.0722, "surv": 98, "mob": 37, "ds": true, "fly": true, "oc": 5, "t": 10, "w": 20, "inv": "4+"}, {"name": "Bloodletters", "pts": 110, "score": 70.0, "dpp": 0.1082, "surv": 52, "mob": 37, "ds": true, "fly": false, "oc": 2, "t": 4, "w": 10, "inv": "5+"}, {"name": "Exalted Flamer", "pts": 65, "score": 68.8, "dpp": 0.1351, "surv": 38, "mob": 37, "ds": true, "fly": true, "oc": 1, "t": 4, "w": 6, "inv": "4+"}, {"name": "Bloodthirster", "pts": 320, "score": 66.3, "dpp": 0.0872, "surv": 58, "mob": 37, "ds": true, "fly": true, "oc": 5, "t": 11, "w": 18, "inv": "4+"}, {"name": "Great Unclean One", "pts": 265, "score": 65.6, "dpp": 0.0792, "surv": 69, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 12, "w": 20, "inv": "4+"}, {"name": "Daemon Prince Of Chaos", "pts": 165, "score": 64.8, "dpp": 0.0606, "surv": 88, "mob": 37, "ds": true, "fly": false, "oc": 3, "t": 10, "w": 10, "inv": "4+"}, {"name": "Rotigus", "pts": 280, "score": 62.9, "dpp": 0.0604, "surv": 85, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 12, "w": 22, "inv": "4+"}, {"name": "Screamers", "pts": 80, "score": 62.0, "dpp": 0.0668, "surv": 77, "mob": 37, "ds": true, "fly": true, "oc": 1, "t": 4, "w": 9, "inv": "4+"}, {"name": "Burning Chariot", "pts": 115, "score": 60.7, "dpp": 0.0933, "surv": 31, "mob": 37, "ds": true, "fly": true, "oc": 3, "t": 8, "w": 9, "inv": "4+"}, {"name": "Soul Grinder", "pts": 180, "score": 60.7, "dpp": 0.0846, "surv": 46, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 11, "w": 14, "inv": "4+"}], "Disruption": [{"name": "Shalaxi Helbane", "pts": 340, "score": 77.6, "dpp": 0.0979, "surv": 98, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 10, "w": 20, "inv": "4+"}, {"name": "Keeper Of Secrets", "pts": 255, "score": 70.9, "dpp": 0.0806, "surv": 94, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 10, "w": 18, "inv": "4+"}, {"name": "Kairos Fateweaver", "pts": 295, "score": 69.5, "dpp": 0.0722, "surv": 98, "mob": 37, "ds": true, "fly": true, "oc": 5, "t": 10, "w": 20, "inv": "4+"}, {"name": "Skarbrand", "pts": 315, "score": 69.5, "dpp": 0.1151, "surv": 69, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 11, "w": 20, "inv": "4+"}, {"name": "Syll\u2019Esske", "pts": 120, "score": 68.5, "dpp": 0.0896, "surv": 77, "mob": 37, "ds": true, "fly": false, "oc": 2, "t": 6, "w": 9, "inv": "4+"}, {"name": "Fiends", "pts": 90, "score": 67.5, "dpp": 0.111, "surv": 77, "mob": 23, "ds": true, "fly": false, "oc": 2, "t": 5, "w": 12, "inv": "5+"}, {"name": "Daemon Prince Of Chaos", "pts": 165, "score": 63.6, "dpp": 0.0606, "surv": 88, "mob": 37, "ds": true, "fly": false, "oc": 3, "t": 10, "w": 10, "inv": "4+"}, {"name": "Bloodletters", "pts": 110, "score": 62.2, "dpp": 0.1082, "surv": 52, "mob": 37, "ds": true, "fly": false, "oc": 2, "t": 4, "w": 10, "inv": "5+"}, {"name": "Rotigus", "pts": 280, "score": 61.9, "dpp": 0.0604, "surv": 85, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 12, "w": 22, "inv": "4+"}, {"name": "Great Unclean One", "pts": 265, "score": 61.5, "dpp": 0.0792, "surv": 69, "mob": 37, "ds": true, "fly": false, "oc": 5, "t": 12, "w": 20, "inv": "4+"}, {"name": "Bloodthirster", "pts": 320, "score": 60.4, "dpp": 0.0872, "surv": 58, "mob": 37, "ds": true, "fly": true, "oc": 5, "t": 11, "w": 18, "inv": "4+"}, {"name": "Screamers", "pts": 80, "score": 60.1, "dpp": 0.0668, "surv": 77, "mob": 37, "ds": true, "fly": true, "oc": 1, "t": 4, "w": 9, "inv": "4+"}, {"name": "Exalted Flamer", "pts": 65, "score": 59.4, "dpp": 0.1351, "surv": 38, "mob": 37, "ds": true, "fly": true, "oc": 1, "t": 4, "w": 6, "inv": "4+"}, {"name": "Lord Of Change", "pts": 300, "score": 57.3, "dpp": 0.0409, "surv": 94, "mob": 37, "ds": true, "fly": true, "oc": 5, "t": 10, "w": 18, "inv": "4+"}, {"name": "Skull Cannon", "pts": 90, "score": 54.9, "dpp": 0.0713, "surv": 58, "mob": 37, "ds": true, "fly": false, "oc": 3, "t": 9, "w": 9, "inv": "4+"}]};
+const WEIGHTS = {"Take and Hold": {"dpp": 0, "surv": 60, "mob": 40}, "Purge the Foe": {"dpp": 70, "surv": 20, "mob": 10}, "Reconnaissance": {"dpp": 15, "surv": 25, "mob": 60}, "Priority Assets": {"dpp": 50, "surv": 30, "mob": 20}, "Disruption": {"dpp": 35, "surv": 35, "mob": 30}};
+
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function scoreClass(s) {
+  if (s >= 75) return 'score-high';
+  if (s >= 50) return 'score-mid';
+  return 'score-low';
+}
+
+function rankClass(r) {
+  if (r === 1) return 'rank rank-1';
+  if (r === 2) return 'rank rank-2';
+  if (r === 3) return 'rank rank-3';
+  return 'rank';
+}
+
+function renderMissions() {
+  const c = document.getElementById('missions');
+  let html = '';
+  for (const [mission, units] of Object.entries(DATA)) {
+    const w = WEIGHTS[mission];
+    html += `
+    <div class="mission-card">
+      <div class="mission-header">
+        <div class="mission-name">${mission}</div>
+        <div class="mission-weights">
+          <span class="weight w-dpp">DPP ${w.dpp}%</span>
+          <span class="weight w-surv">SURV ${w.surv}%</span>
+          <span class="weight w-mob">MOB ${w.mob}%</span>
+        </div>
+      </div>
+      <table>
+        <tr><th>#</th><th>Unit</th><th>Pts</th><th>Score</th><th>DPP</th><th>SURV</th><th class="bar-cell"></th><th>MOB</th><th class="bar-cell"></th><th>Tags</th><th>Profile</th></tr>
+        ${units.slice(0, 15).map((u, i) => `
+          <tr class="${i < 3 ? 'top3' : ''}">
+            <td class="${rankClass(i+1)}">${i+1}</td>
+            <td class="unit-name">${u.name}</td>
+            <td class="pts">${u.pts}</td>
+            <td class="score ${scoreClass(u.score)}">${u.score}</td>
+            <td>${u.dpp}</td>
+            <td>${u.surv}%</td>
+            <td class="bar-cell"><div class="bar-bg"><div class="bar-fill surv" style="width:${u.surv}%"></div><div class="bar-label">${u.surv}%</div></div></td>
+            <td>${u.mob}%</td>
+            <td class="bar-cell"><div class="bar-bg"><div class="bar-fill mob" style="width:${u.mob}%"></div><div class="bar-label">${u.mob}%</div></div></td>
+            <td>
+              ${u.ds ? '<span class="tag tag-ds">DS</span>' : ''}
+              ${u.fly ? '<span class="tag tag-fly">FLY</span>' : ''}
+              ${u.inv ? '<span class="tag tag-inv">INV ' + u.inv + '</span>' : ''}
+            </td>
+            <td style="font-size:11px;color:#78909c">T${u.t} W${u.w} OC${u.oc}</td>
+          </tr>
+        `).join('')}
+      </table>
+    </div>`;
+  }
+  c.innerHTML = html;
+}
+
+function renderTop10() {
+  const c = document.getElementById('top10');
+  const best = {};
+  for (const [mission, units] of Object.entries(DATA)) {
+    for (const u of units.slice(0, 15)) {
+      if (!best[u.name] || u.score > best[u.name].score) {
+        best[u.name] = { ...u, mission };
+      }
+    }
+  }
+  const sorted = Object.values(best).sort((a, b) => b.score - a.score).slice(0, 10);
+  let html = `<h2>Top 10 Units (Best Mission Score)</h2>
+    <table>
+      <tr><th>#</th><th>Unit</th><th>Pts</th><th>Score</th><th>Best Mission</th><th>DPP</th><th>Tags</th><th>Profile</th></tr>
+      ${sorted.map((u, i) => `
+        <tr class="${i < 3 ? 'top3' : ''}">
+          <td class="${rankClass(i+1)}">${i+1}</td>
+          <td class="unit-name">${u.name}</td>
+          <td class="pts">${u.pts}</td>
+          <td class="score ${scoreClass(u.score)}">${u.score}</td>
+          <td style="color:#90a4ae">${u.mission}</td>
+          <td>${u.dpp}</td>
+          <td>
+            ${u.ds ? '<span class="tag tag-ds">DS</span>' : ''}
+            ${u.fly ? '<span class="tag tag-fly">FLY</span>' : ''}
+            ${u.inv ? '<span class="tag tag-inv">INV ' + u.inv + '</span>' : ''}
+          </td>
+          <td style="font-size:11px;color:#78909c">T${u.t} W${u.w} OC${u.oc}</td>
+        </tr>
+      `).join('')}
+    </table>`;
+  c.innerHTML = html;
+}
+
+function renderInsights() {
+  const c = document.getElementById('insights');
+  const rows = [];
+  for (const [mission, units] of Object.entries(DATA)) {
+    if (units.length > 0) {
+      const u = units[0];
+      rows.push(`<div class="insight-card">
+        <div class="insight-title">#1 in ${mission}: ${u.name}</div>
+        <div class="insight-text">${u.score} score &middot; ${u.pts}pts &middot; ${u.dpp} DPP &middot; T${u.t} W${u.w}${u.inv ? ' INV'+u.inv : ''}${u.ds ? ' DS' : ''}${u.fly ? ' FLY' : ''}</div>
+      </div>`);
+    }
+  }
+  c.innerHTML = '<h2>Key Insights</h2>' + rows.join('');
+}
+
+renderMissions();
+renderTop10();
+renderInsights();
+</script>
+</body>
+</html>
