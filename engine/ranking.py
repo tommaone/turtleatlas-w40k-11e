@@ -868,7 +868,6 @@ class RankingEngine:
             total_dmg = dmg_ranged + (dmg_melee * melee_penalty) + dmg_innate
             dpp_val = total_dmg / pts if pts > 0 else 0
             is_infantry = "INFANTRY" in kw_list
-            fnp_val = 6 if is_infantry else None
 
             # SURV (with optional detachment modifier)
             # Note: unit_surv_mod is already gated on original DM having affects=="surv" above
@@ -877,14 +876,15 @@ class RankingEngine:
                 final_fnp = unit_surv_mod.feel_no_pain
             else:
                 final_invuln = inv_val
-                final_fnp = fnp_val
+                # FNP only if the unit/config explicitly has it — NOT a default for infantry
+                final_fnp = info.get("fnp", info.get("feel_no_pain", None)) if info else None
 
             defense = UnitDefense(
                 toughness=t_val,
                 wounds_per_model=w_val,
                 save=sv_val,
                 invuln=final_invuln,
-                fnp=final_fnp if is_infantry else final_fnp,
+                fnp=final_fnp,
                 models=n_models,
                 damage_reduction=info.get("damage_reduction", 0) if info else 0,
             )
@@ -915,7 +915,7 @@ class RankingEngine:
                 if "DEEP STRIKE" in rule.upper():
                     has_deep_strike = True
 
-            has_gate = is_infantry or "DREADNOUGHT" in kw_list or "WALKER" in kw_list
+            has_gate = False  # Gate of Infinity is GK-specific, not default for infantry
 
             mob = compute_mob(
                 movement=m_val,
@@ -1026,11 +1026,13 @@ class RankingEngine:
         has_ds = mob.get("deep_strike", False)
         has_fly = mob.get("fly", False)
         oc = mob.get("objective_control", 1)
-        tier = mob.get("mobility_tier", "slow")
+        tier = mob.get("effective_tier", mob.get("mobility_tier", "slow"))
         no_t1 = mob.get("no_t1_reinforcements", True)
 
-        # No T1 Reinforcements (11e core rule) reduces Deep Strike value
-        ds_bonus = 5 if (has_ds and no_t1) else (10 if has_ds else 0)
+        # Deep Strike bonus — critical for objective-holding missions
+        # DS lets you deploy anywhere turn 2, bypassing slow movement entirely
+        # no_t1_reinforcements reduces value slightly (can't DS turn 1)
+        ds_bonus = 35 if (has_ds and no_t1) else (45 if has_ds else 0)
 
         if has_goi:
             base = 75

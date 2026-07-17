@@ -11,11 +11,17 @@
   },
   "mission_profiles": {
     "Purge the Foe": { "dps": 0.70, "surv": 0.20, "mob": 0.10 },
-    "Take and Hold": { "dps": 0.20, "surv": 0.50, "mob": 0.30 },
+    "Take and Hold": { "dps": 0.00, "surv": 0.60, "mob": 0.40 },
     "Reconnaissance": { "dps": 0.15, "surv": 0.25, "mob": 0.60 },
     "Priority Assets": { "dps": 0.50, "surv": 0.30, "mob": 0.20 },
     "Disruption": { "dps": 0.35, "surv": 0.35, "mob": 0.30 },
     "Purge (general)": { "dps": 0.60, "surv": 0.25, "mob": 0.15 }
+  },
+  "unit_roles": {
+    "anvil": { "dps": 0.05, "surv": 0.85, "mob": 0.10, "description": "Durable unit meant to hold key objectives" },
+    "disposable": { "dps": 0.10, "surv": 0.30, "mob": 0.60, "description": "Cheap unit to spread across objectives" },
+    "mobile": { "dps": 0.20, "surv": 0.30, "mob": 0.50, "description": "Fast unit to grab distant objectives" },
+    "anchor": { "dps": 0.15, "surv": 0.70, "mob": 0.15, "description": "Expensive durable unit for key positions" }
   },
   "meta_profiles": {
     "all-comers": { "profiles": [["GEQ", 0.15], ["MEQ", 0.25], ["TEQ", 0.15], ["Light V", 0.20], ["Heavy V", 0.15], ["C'tan", 0.05], ["Knight", 0.05]], "melee_penalty": 1.0 }

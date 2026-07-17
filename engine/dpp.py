@@ -761,7 +761,8 @@ def compute_mob(
     is_character = "CHARACTER" in kw
     has_gate = gate_of_infinity or "GATE OF INFINITY" in ab
 
-    # Mobility tier: simple heuristic based on movement + Fly
+    # Mobility tier: heuristic based on movement + Fly
+    # Deep Strike effectively upgrades slow units — they deploy anywhere turn 2
     if movement >= 20:
         mob_tier = "skyborne"
     elif movement >= 14:
@@ -774,6 +775,24 @@ def compute_mob(
         mob_tier = "standard"
     else:
         mob_tier = "slow"
+
+    # Effective tier: DS upgrades slow/static significantly
+    # For objective-holding, DS is king — deploy anywhere beats slow movement
+    # no_t1_reinforcements limits value slightly (can't deploy T1)
+    effective_tier = mob_tier
+    if has_deep_strike:
+        if no_t1_reinforcements:
+            # Can't DS T1 — smaller tier upgrade
+            if mob_tier in ("slow", "static"):
+                effective_tier = "standard"
+            elif mob_tier == "standard":
+                effective_tier = "fast"
+        else:
+            # Full DS value — can deploy T1
+            if mob_tier in ("slow", "static"):
+                effective_tier = "fast"       # DS slow unit ≈ fast (can reach any objective)
+            elif mob_tier == "standard":
+                effective_tier = "very_fast"  # DS standard unit ≈ very fast
 
     return {
         "movement": f'{movement}"',
@@ -788,6 +807,7 @@ def compute_mob(
         "is_character": is_character,
         "transport_capacity": transport_capacity,
         "mobility_tier": mob_tier,
+        "effective_tier": effective_tier,
         "no_t1_reinforcements": no_t1_reinforcements,
     }
 

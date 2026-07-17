@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dark Angels — Take & Hold Tri-Vector</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0e14; color: #c5cdd9; padding: 20px; }
+h1 { color: #4fc3f7; font-size: 24px; margin-bottom: 4px; }
+.subtitle { color: #78909c; font-size: 13px; margin-bottom: 20px; }
+.weights { display: flex; gap: 20px; margin-bottom: 20px; }
+.weight-badge { padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; }
+.w-surv { background: #1b5e20; color: #81c784; }
+.w-mob { background: #0d47a1; color: #64b5f6; }
+.w-dpp { background: #b71c1c; color: #ef9a9a; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: #151b24; color: #90a4ae; padding: 8px 10px; text-align: left; position: sticky; top: 0; cursor: pointer; user-select: none; white-space: nowrap; }
+th:hover { color: #4fc3f7; }
+th.sorted-asc::after { content: ' ▲'; color: #4fc3f7; }
+th.sorted-desc::after { content: ' ▼'; color: #4fc3f7; }
+td { padding: 7px 10px; border-bottom: 1px solid #1a2030; white-space: nowrap; }
+tr:hover { background: #141c28; }
+tr.top5 { background: #0d2137; }
+tr.top5:hover { background: #132d47; }
+.bar-cell { width: 200px; }
+.bar-bg { background: #1a2030; border-radius: 3px; height: 18px; position: relative; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 3px; position: absolute; top: 0; left: 0; transition: width 0.3s; }
+.bar-fill.surv { background: linear-gradient(90deg, #1b5e20, #4caf50); }
+.bar-fill.mob { background: linear-gradient(90deg, #0d47a1, #42a5f5); }
+.bar-fill.dpp { background: linear-gradient(90deg, #b71c1c, #ef5350); }
+.bar-label { position: absolute; right: 6px; top: 1px; font-size: 11px; font-weight: 600; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
+.tag { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: 600; margin-left: 4px; }
+.tag-ds { background: #1a237e; color: #7986cb; }
+.tag-fly { background: #4a148c; color: #ba68c8; }
+.tag-dr { background: #b71c1c; color: #ef9a9a; }
+.tag-anvil { background: #e65100; color: #ffcc80; }
+.tag-disposable { background: #1b5e20; color: #a5d6a7; }
+.tag-mobile { background: #0d47a1; color: #90caf9; }
+.tier-badge { padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+.tier-slow { background: #37474f; color: #90a4ae; }
+.tier-standard { background: #263238; color: #b0bec5; }
+.tier-fast { background: #1b5e20; color: #81c784; }
+.tier-very_fast { background: #0d47a1; color: #64b5f6; }
+.tier-cavalry { background: #4a148c; color: #ce93d8; }
+.tier-skyborne { background: #e65100; color: #ffcc80; }
+.pts { font-weight: 600; }
+.score { font-weight: 700; font-size: 14px; }
+.score-high { color: #66bb6a; }
+.score-mid { color: #ffa726; }
+.score-low { color: #ef5350; }
+.legend { display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #78909c; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+.filter-bar { display: flex; gap: 10px; margin-bottom: 16px; align-items: center; }
+.filter-bar input { background: #151b24; border: 1px solid #263238; color: #c5cdd9; padding: 6px 12px; border-radius: 4px; font-size: 13px; width: 250px; }
+.filter-bar input:focus { outline: none; border-color: #4fc3f7; }
+.filter-bar select { background: #151b24; border: 1px solid #263238; color: #c5cdd9; padding: 6px 12px; border-radius: 4px; font-size: 13px; }
+tr.hidden { display: none; }
+.unit-name { font-weight: 600; color: #eceff1; }
+.role-label { font-size: 10px; color: #78909c; }
+</style>
+</head>
+<body>
+<h1>Dark Angels — Take & Hold</h1>
+<div class="subtitle">SURV 60% + MOB 40% · DPP 0% · No melee penalty · DS tier upgrade active</div>
+
+<div class="weights">
+  <span class="weight-badge w-surv">SURV 60%</span>
+  <span class="weight-badge w-mob">MOB 40%</span>
+  <span class="weight-badge w-dpp">DPP 0%</span>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#4caf50"></div> SURV %</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#42a5f5"></div> MOB %</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ef5350"></div> DPP %</div>
+  <div class="legend-item"><span class="tag tag-ds">DS</span> Deep Strike</div>
+  <div class="legend-item"><span class="tag tag-fly">FLY</span> Fly</div>
+  <div class="legend-item"><span class="tag tag-dr">-1D</span> Damage Reduction</div>
+</div>
+
+<div class="filter-bar">
+  <input type="text" id="search" placeholder="Search units..." oninput="filterTable()">
+  <select id="tierFilter" onchange="filterTable()">
+    <option value="">All Tiers</option>
+    <option value="slow">Slow</option>
+    <option value="standard">Standard</option>
+    <option value="fast">Fast</option>
+    <option value="very_fast">Very Fast</option>
+    <option value="cavalry">Cavalry</option>
+    <option value="skyborne">Skyborne</option>
+  </select>
+  <select id="tagFilter" onchange="filterTable()">
+    <option value="">All Tags</option>
+    <option value="ds">Deep Strike</option>
+    <option value="fly">Fly</option>
+    <option value="dr">Damage Reduction</option>
+    <option value="inv">Has Invuln</option>
+  </select>
+</div>
+
+<div class="table-wrap">
+<table id="mainTable">
+<thead>
+<tr>
+  <th data-col="rank">#</th>
+  <th data-col="name">Unit</th>
+  <th data-col="pts">Pts</th>
+  <th data-col="score">Score</th>
+  <th data-col="surv">SURV</th>
+  <th class="bar-cell" data-col="surv_bar"></th>
+  <th data-col="mob">MOB</th>
+  <th class="bar-cell" data-col="mob_bar"></th>
+  <th data-col="tier">Tier</th>
+  <th data-col="tags">Tags</th>
+  <th data-col="stats">Profile</th>
+  <th data-col="surv_turns">Turns</th>
+  <th data-col="oc">OC</th>
+  <th data-col="loadout">Loadout</th>
+</tr>
+</thead>
+<tbody id="tbody"></tbody>
+</table>
+</div>
+
+<script>
+const DATA = [{"name": "Lion El\u2019Jonson", "pts": 285, "dpp": 0.1045, "surv": 81, "mob": 85, "score": 82.6, "surv_turns": 3.6, "tier": "cavalry", "ds": true, "fly": false, "oc": 3, "t": 6, "w": 8, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Fealty - strike; Melee: 1\u00d7The Sword of Secrets"}, {"name": "Thunderhawk Gunship", "pts": 840, "dpp": 0.0061, "surv": 81, "mob": 85, "score": 82.6, "surv_turns": 3.6, "tier": "skyborne", "ds": false, "fly": true, "oc": 0, "t": 12, "w": 30, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Lascannon, 1\u00d7Twin heavy bolter; Melee: 1\u00d7Armoured hull"}, {"name": "Sammael", "pts": 105, "dpp": 0.115, "surv": 79, "mob": 85, "score": 81.4, "surv_turns": 3.2, "tier": "fast", "ds": true, "fly": true, "oc": 2, "t": 5, "w": 7, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Master-crafted plasma cannon, 1\u00d7Twin storm bolter; Melee: 1\u00d7The Raven Sword"}, {"name": "Ravenwing Talonmaster", "pts": 105, "dpp": 0.0259, "surv": 79, "mob": 85, "score": 81.4, "surv_turns": 3.2, "tier": "very_fast", "ds": true, "fly": true, "oc": 2, "t": 5, "w": 7, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Heavy Bolt Pistol, 1\u00d7Twin heavy bolter; Melee: 1\u00d7Close combat weapon"}, {"name": "Ravenwing Command Squad", "pts": 115, "dpp": 0.029, "surv": 95, "mob": 49, "score": 76.6, "surv_turns": 5.4, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 5, "w": 12, "inv": "4+", "fnp": null, "loadout": "Ranged: 3\u00d7Bolt Pistol; Melee: 3\u00d7Black Knight combat weapon"}, {"name": "Ballistus Dreadnought", "pts": 150, "dpp": 0.05, "surv": 95, "mob": 45, "score": 75.0, "surv_turns": 5.4, "tier": "cavalry", "ds": false, "fly": false, "oc": 4, "t": 10, "w": 12, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Ballistus Lascannon, 1\u00d7Ballistus Missile Launcher - Krak; Melee: 1\u00d7Armoured Feet"}, {"name": "Brutalis Dreadnought", "pts": 150, "dpp": 0.0691, "surv": 95, "mob": 45, "score": 75.0, "surv_turns": 5.4, "tier": "cavalry", "ds": false, "fly": false, "oc": 4, "t": 10, "w": 12, "inv": null, "fnp": null, "loadout": "Ranged: 2\u00d7Multi-melta; Melee: 1\u00d7Twin power fist"}, {"name": "Redemptor Dreadnought", "pts": 195, "dpp": 0.0559, "surv": 95, "mob": 45, "score": 75.0, "surv_turns": 5.4, "tier": "cavalry", "ds": false, "fly": false, "oc": 4, "t": 10, "w": 12, "inv": null, "fnp": null, "loadout": "Ranged: 2\u00d7Heavy Onslaught Gatling Cannon; Melee: 1\u00d7Redemptor Fist"}, {"name": "Company Heroes", "pts": 105, "dpp": 0.0339, "surv": 87, "mob": 49, "score": 71.8, "surv_turns": 4.3, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 16, "inv": null, "fnp": null, "loadout": "Ranged: 4\u00d7Bolt Rifle; Melee: 4\u00d7Close combat weapon"}, {"name": "Assault Intercessors With Jump Packs", "pts": 85, "dpp": 0.0509, "surv": 59, "mob": 85, "score": 69.4, "surv_turns": 2.7, "tier": "fast", "ds": true, "fly": true, "oc": 1, "t": 4, "w": 10, "inv": null, "fnp": null, "loadout": "Ranged: 4\u00d7Heavy Bolt Pistol, 1\u00d7Plasma pistol - standard; Melee: 5\u00d7Astartes Chainsword"}, {"name": "Vanguard Veteran Squad With Jump Packs", "pts": 100, "dpp": 0.05, "surv": 59, "mob": 85, "score": 69.4, "surv_turns": 2.7, "tier": "fast", "ds": true, "fly": true, "oc": 1, "t": 4, "w": 10, "inv": null, "fnp": null, "loadout": "Ranged: 5\u00d7Bolt pistol; Melee: 5\u00d7Vanguard Veteran Weapon"}, {"name": "Deathwing Command Squad", "pts": 110, "dpp": 0.1345, "surv": 100, "mob": 22, "score": 68.8, "surv_turns": 22.5, "tier": "standard", "ds": true, "fly": false, "oc": 1, "t": 5, "w": 25, "inv": "4+", "fnp": null, "loadout": "Melee: 5\u00d7Power weapon"}, {"name": "Incursor Squad", "pts": 85, "dpp": 0.0494, "surv": 59, "mob": 83, "score": 68.6, "surv_turns": 2.7, "tier": "fast", "ds": true, "fly": false, "oc": 2, "t": 4, "w": 10, "inv": null, "fnp": null, "loadout": "Ranged: 5\u00d7Occulus Bolt Carbine; Melee: 5\u00d7Paired Combat Blades"}, {"name": "Infiltrator Squad", "pts": 110, "dpp": 0.025, "surv": 59, "mob": 83, "score": 68.6, "surv_turns": 2.7, "tier": "fast", "ds": true, "fly": false, "oc": 2, "t": 4, "w": 10, "inv": null, "fnp": null, "loadout": "Ranged: 5\u00d7Marksman Bolt Carbine; Melee: 5\u00d7Close combat weapon"}, {"name": "Deathwing Knights", "pts": 240, "dpp": 0.0617, "surv": 99, "mob": 22, "score": 68.2, "surv_turns": 13.5, "tier": "standard", "ds": true, "fly": false, "oc": 1, "t": 5, "w": 15, "inv": "4+", "fnp": null, "loadout": "Melee: 5\u00d7Power weapon"}, {"name": "Storm Speeder Hailstrike", "pts": 105, "dpp": 0.0354, "surv": 55, "mob": 85, "score": 67.0, "surv_turns": 2.6, "tier": "very_fast", "ds": true, "fly": true, "oc": 3, "t": 9, "w": 11, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Fragstorm grenade launcher, 1\u00d7Onslaught gatling cannon, 1\u00d7Twin Ironhail Heavy Stubber; Melee: 1\u00d7Close combat weapon"}, {"name": "Storm Speeder Hammerstrike", "pts": 130, "dpp": 0.0775, "surv": 55, "mob": 85, "score": 67.0, "surv_turns": 2.6, "tier": "very_fast", "ds": true, "fly": true, "oc": 3, "t": 9, "w": 11, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Hammerstrike Missile Launcher, 1\u00d7Krakstorm Grenade Launcher, 1\u00d7Melta Destroyer; Melee: 1\u00d7Close combat weapon"}, {"name": "Storm Speeder Thunderstrike", "pts": 135, "dpp": 0.0707, "surv": 55, "mob": 85, "score": 67.0, "surv_turns": 2.6, "tier": "very_fast", "ds": true, "fly": true, "oc": 3, "t": 9, "w": 11, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Stormfury Missiles, 1\u00d7Thunderstrike Las-talon, 1\u00d7Twin Icarus Rocket Pod; Melee: 1\u00d7Close combat weapon"}, {"name": "Heavy Intercessor Squad", "pts": 100, "dpp": 0.0688, "surv": 86, "mob": 36, "score": 66.0, "surv_turns": 4.0, "tier": "standard", "ds": true, "fly": false, "oc": 2, "t": 6, "w": 15, "inv": null, "fnp": null, "loadout": "Ranged: 4\u00d7Heavy Bolt Rifle, 1\u00d7Heavy Bolter; Melee: 5\u00d7Close combat weapon"}, {"name": "Deathwing Terminator Squad", "pts": 165, "dpp": 0.1219, "surv": 92, "mob": 22, "score": 64.0, "surv_turns": 5.1, "tier": "standard", "ds": true, "fly": false, "oc": 1, "t": 5, "w": 15, "inv": "5+", "fnp": null, "loadout": "Ranged: 2\u00d7Storm Bolter, 2\u00d7Thunder Hammer; Melee: 5\u00d7Power Fist"}, {"name": "Terminator Assault Squad", "pts": 155, "dpp": 0.0929, "surv": 92, "mob": 22, "score": 64.0, "surv_turns": 5.1, "tier": "standard", "ds": true, "fly": false, "oc": 1, "t": 5, "w": 15, "inv": "5+", "fnp": null, "loadout": "Ranged: 5\u00d7Storm bolter; Melee: 5\u00d7Thunder Hammer"}, {"name": "Terminator Squad", "pts": 160, "dpp": 0.0915, "surv": 92, "mob": 22, "score": 64.0, "surv_turns": 5.1, "tier": "standard", "ds": true, "fly": false, "oc": 1, "t": 5, "w": 15, "inv": "5+", "fnp": null, "loadout": "Ranged: 4\u00d7Storm Bolter, 1\u00d7Twin assault cannon; Melee: 5\u00d7Power Fist"}, {"name": "Stormraven Gunship", "pts": 280, "dpp": 0.0141, "surv": 91, "mob": 21, "score": 63.0, "surv_turns": 5.0, "tier": "very_fast", "ds": false, "fly": true, "oc": 0, "t": 10, "w": 14, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Hurricane Bolter, 1\u00d7Stormstrike Missile Launcher; Melee: 1\u00d7Armoured Hull"}, {"name": "Stormhawk Interceptor", "pts": 155, "dpp": 0.0136, "surv": 45, "mob": 85, "score": 61.0, "surv_turns": 2.4, "tier": "skyborne", "ds": false, "fly": true, "oc": 0, "t": 9, "w": 10, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Twin assault cannon; Melee: 1\u00d7Armoured Hull"}, {"name": "Centurion Assault Squad", "pts": 150, "dpp": 0.0844, "surv": 76, "mob": 37, "score": 60.4, "surv_turns": 2.8, "tier": "standard", "ds": true, "fly": false, "oc": 3, "t": 7, "w": 18, "inv": null, "fnp": null, "loadout": "Ranged: 3\u00d7Heavy flamer; Melee: 3\u00d7Siege Drills"}, {"name": "Centurion Devastator Squad", "pts": 175, "dpp": 0.0886, "surv": 76, "mob": 37, "score": 60.4, "surv_turns": 2.8, "tier": "standard", "ds": true, "fly": false, "oc": 3, "t": 7, "w": 18, "inv": null, "fnp": null, "loadout": "Ranged: 3\u00d7Lascannon; Melee: 3\u00d7Centurion Fists"}, {"name": "Gladiator Lancer", "pts": 160, "dpp": 0.0583, "surv": 87, "mob": 9, "score": 55.8, "surv_turns": 4.3, "tier": "fast", "ds": false, "fly": false, "oc": 3, "t": 10, "w": 12, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Icarus Rocket Pod, 1\u00d7Ironhail Heavy Stubber, 1\u00d7Lancer Laser Destroyer; Melee: 1\u00d7Armoured Hull"}, {"name": "Gladiator Reaper", "pts": 160, "dpp": 0.0438, "surv": 87, "mob": 9, "score": 55.8, "surv_turns": 4.3, "tier": "fast", "ds": false, "fly": false, "oc": 3, "t": 10, "w": 12, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Icarus Rocket Pod, 1\u00d7Ironhail Heavy Stubber, 1\u00d7Tempest Bolter, 1\u00d7Twin Heavy Onslaught Gatling Cannon; Melee: 1\u00d7Armoured Hull"}, {"name": "Gladiator Valiant", "pts": 150, "dpp": 0.0724, "surv": 87, "mob": 9, "score": 55.8, "surv_turns": 4.3, "tier": "fast", "ds": false, "fly": false, "oc": 3, "t": 10, "w": 12, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Icarus Rocket Pod, 1\u00d7Ironhail Heavy Stubber, 1\u00d7Multi-melta, 1\u00d7Twin Las-talon; Melee: 1\u00d7Armoured Hull"}, {"name": "Captain With Jump Pack", "pts": 75, "dpp": 0.0565, "surv": 36, "mob": 85, "score": 55.6, "surv_turns": 2.2, "tier": "fast", "ds": true, "fly": true, "oc": 1, "t": 4, "w": 5, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Heavy Bolt Pistol; Melee: 1\u00d7Astartes Chainsword, 1\u00d7Thunder Hammer"}, {"name": "Assault Intercessor Squad", "pts": 75, "dpp": 0.056, "surv": 59, "mob": 49, "score": 55.0, "surv_turns": 2.7, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 10, "inv": null, "fnp": null, "loadout": "Ranged: 5\u00d7Heavy Bolt Pistol; Melee: 5\u00d7Astartes Chainsword"}, {"name": "Azrael", "pts": 140, "dpp": 0.0754, "surv": 59, "mob": 49, "score": 55.0, "surv_turns": 2.7, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 6, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Lion's Wrath; Melee: 1\u00d7The Sword of Secrets"}, {"name": "Bladeguard Veteran Squad", "pts": 80, "dpp": 0.0953, "surv": 59, "mob": 49, "score": 55.0, "surv_turns": 2.7, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 6, "inv": "4+", "fnp": null, "loadout": "Ranged: 3\u00d7Heavy Bolt Pistol; Melee: 3\u00d7Master-crafted power weapon"}, {"name": "Desolation Squad", "pts": 180, "dpp": 0.0169, "surv": 59, "mob": 49, "score": 55.0, "surv_turns": 2.7, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 10, "inv": null, "fnp": null, "loadout": "Ranged: 5\u00d7Castellan Launcher; Melee: 5\u00d7Close combat weapon"}, {"name": "Devastator Squad", "pts": 120, "dpp": 0.0795, "surv": 59, "mob": 49, "score": 55.0, "surv_turns": 2.7, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 10, "inv": null, "fnp": null, "loadout": "Ranged: 3\u00d7Boltgun, 2\u00d7Multi-melta; Melee: 5\u00d7Close combat weapon"}, {"name": "Hellblaster Squad", "pts": 110, "dpp": 0.0418, "surv": 59, "mob": 49, "score": 55.0, "surv_turns": 2.7, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 10, "inv": null, "fnp": null, "loadout": "Ranged: 5\u00d7Plasma Incinerator - Standard; Melee: 5\u00d7Close combat weapon"}, {"name": "Infernus Squad", "pts": 85, "dpp": 0.0882, "surv": 59, "mob": 49, "score": 55.0, "surv_turns": 2.7, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 10, "inv": null, "fnp": null, "loadout": "Ranged: 5\u00d7Pyreblaster; Melee: 5\u00d7Close combat weapon"}, {"name": "Intercessor Squad", "pts": 80, "dpp": 0.0413, "surv": 59, "mob": 49, "score": 55.0, "surv_turns": 2.7, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 10, "inv": null, "fnp": null, "loadout": "Ranged: 5\u00d7Bolt Rifle; Melee: 5\u00d7Close combat weapon"}, {"name": "Reiver Squad", "pts": 75, "dpp": 0.0947, "surv": 59, "mob": 49, "score": 55.0, "surv_turns": 2.7, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 10, "inv": null, "fnp": null, "loadout": "Ranged: 5\u00d7Special Issue Bolt Pistol; Melee: 5\u00d7Combat Knife"}, {"name": "Sternguard Veteran Squad", "pts": 100, "dpp": 0.0555, "surv": 59, "mob": 49, "score": 55.0, "surv_turns": 2.7, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 10, "inv": null, "fnp": null, "loadout": "Ranged: 5\u00d7Sternguard Bolt Rifle; Melee: 5\u00d7Close combat weapon"}, {"name": "Tactical Squad", "pts": 140, "dpp": 0.0394, "surv": 59, "mob": 49, "score": 55.0, "surv_turns": 2.7, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 10, "inv": null, "fnp": null, "loadout": "Ranged: 9\u00d7Boltgun, 1\u00d7Twin lightning claws; Melee: 10\u00d7Close combat weapon"}, {"name": "Astraeus", "pts": 525, "dpp": 0.0315, "surv": 78, "mob": 20, "score": 54.8, "surv_turns": 2.9, "tier": "fast", "ds": false, "fly": false, "oc": 8, "t": 12, "w": 24, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Ironhail Heavy Stubber, 1\u00d7Storm bolter, 1\u00d7Twin macro-accelerator cannon; Melee: 1\u00d7Armoured hull"}, {"name": "Predator Annihilator", "pts": 135, "dpp": 0.0387, "surv": 83, "mob": 9, "score": 53.4, "surv_turns": 4.0, "tier": "fast", "ds": false, "fly": false, "oc": 3, "t": 10, "w": 11, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Hunter-killer missile, 1\u00d7Predator Twin Lascannon, 1\u00d7Storm bolter; Melee: 1\u00d7Armoured Tracks"}, {"name": "Predator Destructor", "pts": 140, "dpp": 0.0557, "surv": 83, "mob": 9, "score": 53.4, "surv_turns": 4.0, "tier": "fast", "ds": false, "fly": false, "oc": 3, "t": 10, "w": 11, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Hunter-killer missile, 1\u00d7Predator Autocannon, 1\u00d7Storm bolter; Melee: 1\u00d7Armoured Tracks"}, {"name": "Whirlwind", "pts": 175, "dpp": 0.0478, "surv": 83, "mob": 9, "score": 53.4, "surv_turns": 4.0, "tier": "fast", "ds": false, "fly": false, "oc": 3, "t": 10, "w": 11, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Hunter-killer missile, 1\u00d7Storm bolter, 1\u00d7Whirlwind Vengeance Launcher; Melee: 1\u00d7Armoured Tracks"}, {"name": "Chaplain With Jump Pack", "pts": 75, "dpp": 0.0371, "surv": 25, "mob": 85, "score": 49.0, "surv_turns": 1.8, "tier": "fast", "ds": true, "fly": true, "oc": 1, "t": 4, "w": 4, "inv": "4+", "fnp": null, "loadout": "Melee: 1\u00d7Crozius arcanum"}, {"name": "Inner Circle Companions", "pts": 80, "dpp": 0.1065, "surv": 49, "mob": 49, "score": 49.0, "surv_turns": 2.4, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 9, "inv": null, "fnp": null, "loadout": "Ranged: 3\u00d7Heavy Bolt Pistol; Melee: 3\u00d7Calibanite Greatsword - Strike"}, {"name": "Outrider Squad", "pts": 70, "dpp": 0.0501, "surv": 49, "mob": 49, "score": 49.0, "surv_turns": 2.4, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 5, "w": 9, "inv": null, "fnp": null, "loadout": "Ranged: 3\u00d7Twin bolt rifle; Melee: 3\u00d7Astartes Chainsword"}, {"name": "Ravenwing Black Knights", "pts": 75, "dpp": 0.0756, "surv": 21, "mob": 85, "score": 46.6, "surv_turns": 1.6, "tier": "fast", "ds": true, "fly": true, "oc": 2, "t": 5, "w": 6, "inv": null, "fnp": null, "loadout": "Ranged: 3\u00d7Plasma talon - Standard; Melee: 3\u00d7Black Knight combat weapon"}, {"name": "Suppressor Squad", "pts": 75, "dpp": 0.0632, "surv": 21, "mob": 85, "score": 46.6, "surv_turns": 1.6, "tier": "fast", "ds": true, "fly": true, "oc": 0, "t": 4, "w": 6, "inv": null, "fnp": null, "loadout": "Ranged: 3\u00d7Accelerator Autocannon; Melee: 3\u00d7Close combat weapon"}, {"name": "Inceptor Squad", "pts": 120, "dpp": 0.0237, "surv": 49, "mob": 43, "score": 46.6, "surv_turns": 2.4, "tier": "standard", "ds": true, "fly": true, "oc": 0, "t": 6, "w": 9, "inv": null, "fnp": null, "loadout": "Ranged: 3\u00d7Boltstorm gauntlet; Melee: 3\u00d7Close combat weapon"}, {"name": "Belial", "pts": 75, "dpp": 0.074, "surv": 59, "mob": 22, "score": 44.2, "surv_turns": 2.7, "tier": "standard", "ds": true, "fly": false, "oc": 1, "t": 5, "w": 6, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Master-crafted storm bolter; Melee: 1\u00d7The Sword of Silence"}, {"name": "Captain In Gravis Armour", "pts": 80, "dpp": 0.0865, "surv": 59, "mob": 22, "score": 44.2, "surv_turns": 2.7, "tier": "standard", "ds": true, "fly": false, "oc": 1, "t": 6, "w": 6, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Boltstorm gauntlet, 1\u00d7Master-crafted Heavy Bolt Rifle; Melee: 1\u00d7Master-crafted power weapon, 1\u00d7Power fist"}, {"name": "Captain In Terminator Armour", "pts": 85, "dpp": 0.0313, "surv": 59, "mob": 22, "score": 44.2, "surv_turns": 2.7, "tier": "standard", "ds": true, "fly": false, "oc": 1, "t": 5, "w": 6, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Storm bolter; Melee: 1\u00d7Power Fist"}, {"name": "Captain", "pts": 80, "dpp": 0.0659, "surv": 36, "mob": 49, "score": 41.2, "surv_turns": 2.2, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 5, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Master-crafted bolter; Melee: 1\u00d7Master-crafted power weapon"}, {"name": "Captain In Phobos Armour", "pts": 70, "dpp": 0.0279, "surv": 36, "mob": 49, "score": 41.2, "surv_turns": 2.2, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 5, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Bolt pistol, 1\u00d7Instigator Bolt Carbine; Melee: 1\u00d7Combat Knife"}, {"name": "Chaplain On Bike", "pts": 70, "dpp": 0.0531, "surv": 36, "mob": 49, "score": 41.2, "surv_turns": 2.2, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 5, "w": 5, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Absolvor bolt pistol, 1\u00d7Twin bolt rifle; Melee: 1\u00d7Crozius arcanum"}, {"name": "Lazarus", "pts": 70, "dpp": 0.0814, "surv": 36, "mob": 49, "score": 41.2, "surv_turns": 2.2, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 5, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Bolt pistol; Melee: 1\u00d7Enmity\u2019s Edge"}, {"name": "Stormtalon Gunship", "pts": 165, "dpp": 0.0128, "surv": 10, "mob": 85, "score": 40.0, "surv_turns": 1.3, "tier": "skyborne", "ds": false, "fly": true, "oc": 0, "t": 8, "w": 10, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Twin assault cannon; Melee: 1\u00d7Armoured Hull"}, {"name": "Land Speeder", "pts": 95, "dpp": 0.0985, "surv": 9, "mob": 85, "score": 39.4, "surv_turns": 1.2, "tier": "very_fast", "ds": true, "fly": true, "oc": 3, "t": 8, "w": 9, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Heavy Flamer, 1\u00d7Multi-melta, 1\u00d7Onslaught gatling cannon, 1\u00d7Stormfury Missile Launcher; Melee: 1\u00d7Close combat weapon"}, {"name": "Aggressor Squad", "pts": 90, "dpp": 0.107, "surv": 49, "mob": 22, "score": 38.2, "surv_turns": 2.4, "tier": "standard", "ds": true, "fly": false, "oc": 1, "t": 6, "w": 9, "inv": null, "fnp": null, "loadout": "Ranged: 3\u00d7Boltstorm gauntlet; Melee: 3\u00d7Twin power fist"}, {"name": "Eradicator Squad", "pts": 90, "dpp": 0.0866, "surv": 49, "mob": 22, "score": 38.2, "surv_turns": 2.4, "tier": "standard", "ds": true, "fly": false, "oc": 1, "t": 6, "w": 9, "inv": null, "fnp": null, "loadout": "Ranged: 2\u00d7Melta rifle, 1\u00d7Multi-melta; Melee: 3\u00d7Close combat weapon"}, {"name": "Eradicator Squad With Heavy Bolters", "pts": 70, "dpp": 0.0857, "surv": 49, "mob": 22, "score": 38.2, "surv_turns": 2.4, "tier": "standard", "ds": true, "fly": false, "oc": 1, "t": 6, "w": 9, "inv": null, "fnp": null, "loadout": "Ranged: 3\u00d7Heavy Bolter; Melee: 3\u00d7Close combat weapon"}, {"name": "Impulsor", "pts": 80, "dpp": 0.0125, "surv": 55, "mob": 5, "score": 35.0, "surv_turns": 2.6, "tier": "fast", "ds": false, "fly": false, "oc": 2, "t": 9, "w": 11, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Ironhail Heavy Stubber; Melee: 1\u00d7Armoured Hull"}, {"name": "Asmodai", "pts": 70, "dpp": 0.0553, "surv": 25, "mob": 49, "score": 34.6, "surv_turns": 1.8, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 4, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Heavy Bolt Pistol; Melee: 1\u00d7Crozius Arcanum and Power Weapon - strike"}, {"name": "Bladeguard Ancient", "pts": 40, "dpp": 0.0215, "surv": 25, "mob": 49, "score": 34.6, "surv_turns": 1.8, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 4, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Heavy Bolt Pistol; Melee: 1\u00d7Close combat weapon"}, {"name": "Chaplain", "pts": 60, "dpp": 0.0482, "surv": 25, "mob": 49, "score": 34.6, "surv_turns": 1.8, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 4, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Bolt pistol; Melee: 1\u00d7Crozius arcanum"}, {"name": "Ezekiel", "pts": 75, "dpp": 0.0451, "surv": 25, "mob": 49, "score": 34.6, "surv_turns": 1.8, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 4, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7The Deliverer; Melee: 1\u00d7Traitor's Bane"}, {"name": "Judiciar", "pts": 55, "dpp": 0.0838, "surv": 25, "mob": 49, "score": 34.6, "surv_turns": 1.8, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 4, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Absolvor bolt pistol; Melee: 1\u00d7Executioner Relic Blade"}, {"name": "Librarian", "pts": 60, "dpp": 0.0297, "surv": 25, "mob": 49, "score": 34.6, "surv_turns": 1.8, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 4, "inv": "4+", "fnp": null, "loadout": "Melee: 1\u00d7Force weapon"}, {"name": "Eliminator Squad", "pts": 75, "dpp": 0.0176, "surv": 21, "mob": 49, "score": 32.2, "surv_turns": 1.6, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 6, "inv": null, "fnp": null, "loadout": "Ranged: 3\u00d7Bolt pistol; Melee: 3\u00d7Close combat weapon"}, {"name": "Ancient In Terminator Armour", "pts": 65, "dpp": 0.0694, "surv": 36, "mob": 22, "score": 30.4, "surv_turns": 2.2, "tier": "standard", "ds": true, "fly": false, "oc": 1, "t": 5, "w": 5, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Storm bolter; Melee: 1\u00d7Thunder Hammer, 1\u00d7Twin lightning claws"}, {"name": "Chaplain In Terminator Armour", "pts": 75, "dpp": 0.0429, "surv": 36, "mob": 22, "score": 30.4, "surv_turns": 2.2, "tier": "standard", "ds": true, "fly": false, "oc": 1, "t": 5, "w": 5, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Storm bolter; Melee: 1\u00d7Crozius arcanum"}, {"name": "Librarian In Terminator Armour", "pts": 75, "dpp": 0.0237, "surv": 36, "mob": 22, "score": 30.4, "surv_turns": 2.2, "tier": "standard", "ds": true, "fly": false, "oc": 1, "t": 5, "w": 5, "inv": "4+", "fnp": null, "loadout": "Melee: 1\u00d7Force weapon"}, {"name": "Deathwing Strikemaster", "pts": 80, "dpp": 0.0221, "surv": 36, "mob": 22, "score": 30.4, "surv_turns": 2.2, "tier": "standard", "ds": true, "fly": false, "oc": 1, "t": 5, "w": 5, "inv": "4+", "fnp": null, "loadout": "Ranged: 1\u00d7Storm bolter; Melee: 1\u00d7Twin lightning claws"}, {"name": "Razorback", "pts": 95, "dpp": 0.0295, "surv": 45, "mob": 5, "score": 29.0, "surv_turns": 2.4, "tier": "fast", "ds": false, "fly": false, "oc": 2, "t": 9, "w": 10, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Hunter-killer missile, 1\u00d7Storm bolter; Melee: 1\u00d7Armoured Tracks"}, {"name": "Rhino", "pts": 75, "dpp": 0.0373, "surv": 45, "mob": 5, "score": 29.0, "surv_turns": 2.4, "tier": "fast", "ds": false, "fly": false, "oc": 2, "t": 9, "w": 10, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Hunter-killer missile, 1\u00d7Storm bolter; Melee: 1\u00d7Armoured tracks"}, {"name": "Invictor Tactical Warsuit", "pts": 125, "dpp": 0.0698, "surv": 18, "mob": 45, "score": 28.8, "surv_turns": 1.5, "tier": "cavalry", "ds": false, "fly": false, "oc": 4, "t": 8, "w": 12, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Fragstorm grenade launcher, 1\u00d7Heavy Bolter, 1\u00d7Twin Ironhail Heavy Stubber; Melee: 1\u00d7Invictor Fist"}, {"name": "Techmarine", "pts": 55, "dpp": 0.1013, "surv": 14, "mob": 49, "score": 28.0, "surv_turns": 1.3, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 4, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Forge Bolter, 1\u00d7Grav-pistol; Melee: 1\u00d7Omnissian power axe, 1\u00d7Servo-arm"}, {"name": "Dreadnought", "pts": 135, "dpp": 0.0741, "surv": 45, "mob": 2, "score": 27.8, "surv_turns": 2.4, "tier": "standard", "ds": false, "fly": false, "oc": 3, "t": 9, "w": 8, "inv": null, "fnp": null, "loadout": "Ranged: 2\u00d7Multi-melta; Melee: 1\u00d7Power Fist"}, {"name": "Land Raider", "pts": 220, "dpp": 0.0597, "surv": 32, "mob": 15, "score": 25.2, "surv_turns": 1.9, "tier": "fast", "ds": false, "fly": false, "oc": 5, "t": 12, "w": 16, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Godhammer Lascannon, 1\u00d7Hunter-killer missile, 1\u00d7Multi-melta, 1\u00d7Twin heavy bolter; Melee: 1\u00d7Armoured Tracks"}, {"name": "Land Raider Crusader", "pts": 220, "dpp": 0.0499, "surv": 32, "mob": 15, "score": 25.2, "surv_turns": 1.9, "tier": "fast", "ds": false, "fly": false, "oc": 5, "t": 12, "w": 16, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Hunter-killer missile, 1\u00d7Hurricane Bolter, 1\u00d7Multi-melta, 1\u00d7Storm bolter, 1\u00d7Twin assault cannon; Melee: 1\u00d7Armoured Tracks"}, {"name": "Land Raider Redeemer", "pts": 250, "dpp": 0.059, "surv": 32, "mob": 15, "score": 25.2, "surv_turns": 1.9, "tier": "fast", "ds": false, "fly": false, "oc": 5, "t": 12, "w": 16, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Flamestorm Cannon, 1\u00d7Hunter-killer missile, 1\u00d7Multi-melta, 1\u00d7Storm bolter, 1\u00d7Twin assault cannon; Melee: 1\u00d7Armoured Tracks"}, {"name": "Scout Squad", "pts": 65, "dpp": 0.0588, "surv": 8, "mob": 49, "score": 24.4, "surv_turns": 1.1, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 5, "inv": null, "fnp": null, "loadout": "Ranged: 4\u00d7Boltgun, 1\u00d7Scout Sniper Rifle; Melee: 5\u00d7Combat Knife"}, {"name": "Apothecary Biologis", "pts": 70, "dpp": 0.0126, "surv": 15, "mob": 37, "score": 23.8, "surv_turns": 1.4, "tier": "standard", "ds": true, "fly": false, "oc": 3, "t": 6, "w": 5, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Absolvor bolt pistol; Melee: 1\u00d7Close combat weapon"}, {"name": "Invader Atv", "pts": 60, "dpp": 0.0177, "surv": 35, "mob": 5, "score": 23.0, "surv_turns": 2.2, "tier": "fast", "ds": false, "fly": false, "oc": 2, "t": 5, "w": 8, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Twin bolt rifle; Melee: 1\u00d7Close combat weapon"}, {"name": "Vindicator", "pts": 185, "dpp": 0.0808, "surv": 13, "mob": 37, "score": 22.6, "surv_turns": 1.3, "tier": "cavalry", "ds": false, "fly": false, "oc": 3, "t": 11, "w": 11, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Demolisher Cannon, 1\u00d7Hunter-killer missile, 1\u00d7Storm bolter; Melee: 1\u00d7Armoured Tracks"}, {"name": "Land Speeder Vengeance", "pts": 120, "dpp": 0.0433, "surv": 10, "mob": 37, "score": 20.8, "surv_turns": 1.3, "tier": "very_fast", "ds": false, "fly": true, "oc": 3, "t": 8, "w": 10, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Plasma storm battery - standard; Melee: 1\u00d7Close Combat Weapon"}, {"name": "Ravenwing Darkshroud", "pts": 80, "dpp": 0.0055, "surv": 10, "mob": 37, "score": 20.8, "surv_turns": 1.3, "tier": "very_fast", "ds": false, "fly": true, "oc": 3, "t": 8, "w": 10, "inv": null, "fnp": null, "loadout": "Melee: 1\u00d7Close Combat Weapon"}, {"name": "Ancient", "pts": 40, "dpp": 0.0027, "surv": 1, "mob": 49, "score": 20.2, "surv_turns": 1.1, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 4, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Bolt pistol"}, {"name": "Apothecary", "pts": 40, "dpp": 0.0387, "surv": 1, "mob": 49, "score": 20.2, "surv_turns": 1.1, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 4, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Absolvor bolt pistol, 1\u00d7Reductor Pistol; Melee: 1\u00d7Close combat weapon"}, {"name": "Librarian In Phobos Armour", "pts": 70, "dpp": 0.027, "surv": 1, "mob": 49, "score": 20.2, "surv_turns": 1.1, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 4, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Bolt pistol; Melee: 1\u00d7Force weapon"}, {"name": "Lieutenant", "pts": 45, "dpp": 0.0947, "surv": 1, "mob": 49, "score": 20.2, "surv_turns": 1.1, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 4, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Neo-volkite Pistol; Melee: 1\u00d7Master-crafted power weapon"}, {"name": "Lieutenant In Phobos Armour", "pts": 45, "dpp": 0.0433, "surv": 1, "mob": 49, "score": 20.2, "surv_turns": 1.1, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 4, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Bolt pistol, 1\u00d7Master-crafted Scoped Bolt Carbine; Melee: 1\u00d7Paired Combat Blades"}, {"name": "Lieutenant In Reiver Armour", "pts": 45, "dpp": 0.0371, "surv": 1, "mob": 49, "score": 20.2, "surv_turns": 1.1, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 4, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Master-crafted Special Issue Bolt Pistol; Melee: 1\u00d7Combat Knife"}, {"name": "Lieutenant With Combi-Weapon", "pts": 85, "dpp": 0.0206, "surv": 1, "mob": 49, "score": 20.2, "surv_turns": 1.1, "tier": "fast", "ds": true, "fly": false, "oc": 1, "t": 4, "w": 4, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Combi-weapon; Melee: 1\u00d7Paired Combat Blades"}, {"name": "Repulsor", "pts": 170, "dpp": 0.0286, "surv": 19, "mob": 15, "score": 17.4, "surv_turns": 1.6, "tier": "fast", "ds": false, "fly": false, "oc": 5, "t": 12, "w": 16, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Hunter-slayer missile, 1\u00d7Repulsor Defensive Array; Melee: 1\u00d7Armoured Hull"}, {"name": "Repulsor Executioner", "pts": 230, "dpp": 0.0418, "surv": 19, "mob": 15, "score": 17.4, "surv_turns": 1.6, "tier": "fast", "ds": false, "fly": false, "oc": 5, "t": 12, "w": 16, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Heavy Onslaught Gatling Cannon, 1\u00d7Icarus Rocket Pod, 1\u00d7Ironhail Heavy Stubber, 1\u00d7Repulsor Executioner Defensive Array, 1\u00d7Twin Icarus ironhail heavy stubber, 1\u00d7Twin heavy bolter; Melee: 1\u00d7Armoured Hull"}, {"name": "Drop Pod", "pts": 70, "dpp": 0.0, "surv": 0, "mob": 43, "score": 17.2, "surv_turns": 1.0, "tier": "fast", "ds": true, "fly": false, "oc": 0, "t": 7, "w": 8, "inv": null, "fnp": null, "loadout": ""}, {"name": "Hammerfall Bunker", "pts": 175, "dpp": 0.053, "surv": 25, "mob": 1, "score": 15.4, "surv_turns": 1.7, "tier": "standard", "ds": false, "fly": false, "oc": 0, "t": 12, "w": 14, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Hammerfall Heavy Bolter Array, 1\u00d7Hammerfall Heavy Flamer Array, 1\u00d7Hammerfall Missile Launcher - Superfrag, 1\u00d7Hammerfall Missile Launcher - Superkrak"}, {"name": "Firestrike Servo-Turrets", "pts": 75, "dpp": 0.0648, "surv": 21, "mob": 0, "score": 12.6, "surv_turns": 1.6, "tier": "slow", "ds": false, "fly": false, "oc": 3, "t": 6, "w": 6, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Twin Las-talon"}, {"name": "Nephilim Jetfighter", "pts": 195, "dpp": 0.0264, "surv": 16, "mob": 3, "score": 10.8, "surv_turns": 1.4, "tier": "standard", "ds": false, "fly": true, "oc": 0, "t": 8, "w": 11, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Blacksword missiles, 1\u00d7Twin heavy bolter; Melee: 1\u00d7Armoured hull"}, {"name": "Ravenwing Dark Talon", "pts": 200, "dpp": 0.045, "surv": 16, "mob": 3, "score": 10.8, "surv_turns": 1.4, "tier": "standard", "ds": false, "fly": true, "oc": 0, "t": 8, "w": 11, "inv": null, "fnp": null, "loadout": "Ranged: 1\u00d7Hurricane bolter, 1\u00d7Rift cannon; Melee: 1\u00d7Armoured Hull"}];
+
+function role(u) {
+  if (u.pts <= 100 && u.ds) return 'disposable';
+  if (u.pts <= 100 && !u.ds) return 'cheap';
+  if (u.pts >= 200 && u.surv >= 75) return 'anvil';
+  if (u.fly && u.ds) return 'mobile';
+  return '';
+}
+
+function tierClass(t) {
+  return 'tier-' + t;
+}
+
+function scoreClass(s) {
+  if (s >= 70) return 'score-high';
+  if (s >= 45) return 'score-mid';
+  return 'score-low';
+}
+
+function renderTable(data) {
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = '';
+  data.forEach((u, i) => {
+    const r = i + 1;
+    const role_ = role(u);
+    const isTop5 = r <= 5;
+    
+    let tags = '';
+    if (u.ds) tags += '<span class="tag tag-ds">DS</span> ';
+    if (u.fly) tags += '<span class="tag tag-fly">FLY</span> ';
+    if (u.fnp) tags += '<span class="tag tag-dr">FNP ' + u.fnp + '</span> ';
+    if (u.inv) tags += '<span class="tag tag-anvil">INV ' + u.inv + '</span> ';
+    
+    let roleTag = '';
+    if (role_ === 'anvil') roleTag = '<span class="tag tag-anvil">ANVIL</span>';
+    else if (role_ === 'disposable') roleTag = '<span class="tag tag-disposable">DISPOSABLE</span>';
+    else if (role_ === 'mobile') roleTag = '<span class="tag tag-mobile">MOBILE</span>';
+    
+    const tr = document.createElement('tr');
+    if (isTop5) tr.className = 'top5';
+    tr.dataset.tier = u.tier;
+    tr.dataset.ds = u.ds;
+    tr.dataset.fly = u.fly;
+    tr.dataset.dr = (u.fnp !== null) ? 'true' : 'false';
+    tr.dataset.inv = (u.inv !== '') ? 'true' : 'false';
+    tr.dataset.name = u.name.toLowerCase();
+    
+    tr.innerHTML = `
+      <td>${r}</td>
+      <td><span class="unit-name">${u.name}</span> ${roleTag}</td>
+      <td class="pts">${u.pts}</td>
+      <td class="score ${scoreClass(u.score)}">${u.score.toFixed(1)}</td>
+      <td>${u.surv}%</td>
+      <td class="bar-cell"><div class="bar-bg"><div class="bar-fill surv" style="width:${u.surv}%"></div><div class="bar-label">${u.surv}%</div></div></td>
+      <td>${u.mob}%</td>
+      <td class="bar-cell"><div class="bar-bg"><div class="bar-fill mob" style="width:${u.mob}%"></div><div class="bar-label">${u.mob}%</div></div></td>
+      <td><span class="tier-badge ${tierClass(u.tier)}">${u.tier}</span></td>
+      <td>${tags}</td>
+      <td>T${u.t} W${u.w} ${u.inv || ''} ${u.fnp ? 'FNP' + u.fnp : ''}</td>
+      <td>${u.surv_turns}</td>
+      <td>${u.oc}</td>
+      <td style="font-size:11px;color:#78909c;max-width:300px;overflow:hidden;text-overflow:ellipsis">${u.loadout}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function filterTable() {
+  const search = document.getElementById('search').value.toLowerCase();
+  const tier = document.getElementById('tierFilter').value;
+  const tag = document.getElementById('tagFilter').value;
+  
+  document.querySelectorAll('#tbody tr').forEach(tr => {
+    let show = true;
+    if (search && !tr.dataset.name.includes(search)) show = false;
+    if (tier && tr.dataset.tier !== tier) show = false;
+    if (tag === 'ds' && tr.dataset.ds !== 'true') show = false;
+    if (tag === 'fly' && tr.dataset.fly !== 'true') show = false;
+    if (tag === 'dr' && tr.dataset.dr !== 'true') show = false;
+    if (tag === 'inv' && tr.dataset.inv !== 'true') show = false;
+    
+    tr.classList.toggle('hidden', !show);
+  });
+}
+
+// Sort
+let sortCol = 'score';
+let sortDir = -1;
+
+document.querySelectorAll('th[data-col]').forEach(th => {
+  th.addEventListener('click', () => {
+    const col = th.dataset.col;
+    if (sortCol === col) sortDir *= -1;
+    else { sortCol = col; sortDir = -1; }
+    
+    document.querySelectorAll('th').forEach(t => t.classList.remove('sorted-asc', 'sorted-desc'));
+    th.classList.add(sortDir === 1 ? 'sorted-asc' : 'sorted-desc');
+    
+    const sorted = [...DATA].sort((a, b) => {
+      let va = a[col], vb = b[col];
+      if (typeof va === 'string') return sortDir * va.localeCompare(vb);
+      return sortDir * ((va || 0) - (vb || 0));
+    });
+    renderTable(sorted);
+  });
+});
+
+renderTable(DATA);
+</script>
+</body>
+</html>
