@@ -1055,36 +1055,42 @@ class RankingEngine:
     def mob_score(mob):
         """Pure mobility score 0-100.
 
-        Measures ability to GET places: Deep Strike, Fly, movement speed.
-        Does NOT include OC — that's in obj_score().
+        Linear scale based on actual movement + bonuses for DS/Fly.
+        No hardcoded tiers — M5" terminators score less than M6" power armor.
         """
         has_goi = mob.get("gate_of_infinity", False)
         has_ds = mob.get("deep_strike", False)
         has_fly = mob.get("fly", False)
-        tier = mob.get("effective_tier", mob.get("mobility_tier", "slow"))
+        has_fortification = "FORTIFICATION" in mob.get("keywords", [])
         no_t1 = mob.get("no_t1_reinforcements", True)
 
-        # Deep Strike bonus — one-time ingress, not ongoing mobility
-        # Small positioning bonus (can reach any objective once)
-        ds_bonus = 10 if (has_ds and no_t1) else (15 if has_ds else 0)
+        # Parse movement from string like '6"'
+        m_str = mob.get("movement", "6\"")
+        try:
+            movement = int(m_str.replace('"', '').replace("'", ""))
+        except (ValueError, AttributeError):
+            movement = 6
 
+        # Fortification = can't move
+        if has_fortification:
+            return 0
+
+        # Linear scale: M0"=0, M6"=30, M12"=60, M20"=90
+        movement_score = min(movement * 4.5, 90)
+
+        # Deep Strike: one-time ingress positioning (not ongoing mobility)
+        if has_ds:
+            movement_score += 10 if no_t1 else 15
+
+        # Fly: persistent mobility advantage
+        if has_fly:
+            movement_score += 10
+
+        # Gate of Infinity: unlimited redeploy
         if has_goi:
-            base = 75
-            m_bonus = {
-                "skyborne": 0, "very_fast": 12, "fast": 10, "cavalry": 8,
-                "standard": 5, "slow": 3, "transporter": 5, "static": 0,
-            }.get(tier, 0)
-            fly_bonus = 5 if has_fly else 0
-            return min(base + m_bonus + fly_bonus + ds_bonus, 100)
-        else:
-            tier_map = {"static": 10, "slow": 25, "standard": 45,
-                        "fast": 55, "very_fast": 70, "cavalry": 80,
-                        "flyer": 95, "skyborne": 95, "transporter": 70}
-            base = tier_map.get(tier, 30)
-            bonuses = ds_bonus
-            if has_fly:
-                bonuses += 10
-            return min(base + bonuses, 100)
+            movement_score = max(movement_score, 85)
+
+        return min(int(movement_score), 100)
 
     @staticmethod
     def _loadout_desc(ranged, melee, innate):
