@@ -589,21 +589,38 @@ def _shots_to_kill(
 
 # Benchmark attacker profiles: (name, bs, strength, ap, avg_damage)
 BENCHMARK_ATTACKERS = [
-    ("bolter",     3,  4,  0, 1.0),   # BS3+ S4  AP0  D1  — volume fire
-    ("plasma",     3,  7, -3, 2.0),   # BS3+ S7  AP-3 D2  — anti-MEQ
-    ("lascannon",  3,  9, -3, 3.5),   # BS3+ S9  AP-3 D6  — anti-heavy
-    ("melta",      3,  9, -4, 3.5),   # BS3+ S9  AP-4 D6 (~3.5 avg) — anti-vehicle
-    ("heavy",      3, 14, -4, 4.5),   # BS3+ S14 AP-4 D6+1 (~4.5 avg) — dedicated anti-tank
+    ("bolter",       3,  4,  0, 1.0),   # BS3+ S4  AP0  D1  — volume fire
+    ("storm_bolter", 3,  4,  0, 1.0),   # BS3+ S4  AP0  D1  — rapid fire volume
+    ("plasma",       3,  7, -3, 2.0),   # BS3+ S7  AP-3 D2  — anti-MEQ
+    ("heavy_plasma", 3,  7, -3, 3.0),   # BS3+ S7  AP-3 D3  — heavy plasma, anti-terminator
+    ("lascannon",    3,  9, -3, 3.5),   # BS3+ S9  AP-3 D6  — anti-heavy
+    ("melta",        3,  9, -4, 3.5),   # BS3+ S9  AP-4 D6  — anti-vehicle
+    ("heavy",        3, 14, -4, 4.5),   # BS3+ S14 AP-4 D6+1 — dedicated anti-tank
 ]
 
 
 def _primary_surv_metric(toughness: int) -> str:
-    """Standard survivability metric — lascannon for ALL units.
+    """Toughness-bracketed survivability metric.
 
-    Uses lascannon (S9 AP-3 D6) as universal benchmark for fair comparison
-    across all toughness brackets. Everyone faces lascannons in 11e.
+      T3    → storm_bolter (S4 AP0 D1) — chaff gets volume-fired
+      T4    → plasma (S7 AP-3 D2) — standard plasma kills MEQ
+      T5-6  → heavy_plasma (S7 AP-3 D3) — terminators eat heavy plasma/autocannons
+      T7-8  → melta (S9 AP-4 D6) — vehicles eat melta/lascannon
+      T9-10 → lascannon (S9 AP-3 D6) — heavy vehicles eat lascannons
+      T12+  → heavy (S14 AP-4 D6+1) — super-heavies eat dedicated AT
     """
-    return "lascannon"
+    if toughness <= 3:
+        return "storm_bolter"
+    elif toughness <= 4:
+        return "plasma"
+    elif toughness <= 6:
+        return "heavy_plasma"
+    elif toughness <= 8:
+        return "melta"
+    elif toughness <= 10:
+        return "lascannon"
+    else:
+        return "heavy"
 
 
 def compute_surv(
