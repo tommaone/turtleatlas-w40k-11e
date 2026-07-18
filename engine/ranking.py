@@ -657,9 +657,10 @@ class RankingEngine:
             kw.extend(self.config.faction_keywords)
             if "DREADNOUGHT" in name.upper():
                 kw.append("DREADNOUGHT")
+            if info.get("deep_strike"):
+                kw.append("DEEP STRIKE")
             if info.get("invuln") or info.get("INV"):
                 kw.append("WALKER")
-                kw.append("DEEP STRIKE")
             return kw, info["T"], info["SV"], info["W"], info["OC"], info.get("invuln") or info.get("INV")
 
         # Weapon-option vehicle info (NDK / GMNDK)
@@ -1002,13 +1003,23 @@ class RankingEngine:
                 base_oc = r["mob"].get("objective_control", 0)
                 boost = r.get("oc_boost", 0)
                 total_oc = (base_oc + boost) * r["surv"].get("models", 1)
-                r["_obj_pct"] = _pct(self.obj_score(total_oc, surv_turns), obj_vals)
+                if total_oc == 0:
+                    r["_obj_pct"] = 0.0
+                else:
+                    r["_obj_pct"] = _pct(self.obj_score(total_oc, surv_turns), obj_vals)
                 r["_mission_score"] = (
                     w["dps"] * r["_dps_pct"] +
                     w["surv"] * r["_surv_pct"] +
                     w.get("obj", 0) * r["_obj_pct"] +
                     w["mob"] * r["_mob_pct"]
                 )
+                # Cost penalty for action-heavy missions: cheap units = more actions
+                if mission in ("Reconnaissance", "Disruption"):
+                    cost_eff = min(100.0, 10000.0 / r["points"])  # 100pts→100, 200→50, 400→25
+                    r["_cost_eff"] = round(cost_eff, 1)
+                    r["_mission_score"] = r["_mission_score"] * cost_eff / 100.0
+                else:
+                    r["_cost_eff"] = None
             results.sort(key=lambda r: r["_mission_score"], reverse=True)
         else:
             dps_vals = [r["dpp"] for r in results]
@@ -1042,7 +1053,10 @@ class RankingEngine:
                 base_oc = r["mob"].get("objective_control", 0)
                 boost = r.get("oc_boost", 0)
                 total_oc = (base_oc + boost) * r["surv"].get("models", 1)
-                r["_obj_pct"] = _pct(self.obj_score(total_oc, surv_turns), obj_vals)
+                if total_oc == 0:
+                    r["_obj_pct"] = 0.0
+                else:
+                    r["_obj_pct"] = _pct(self.obj_score(total_oc, surv_turns), obj_vals)
             results.sort(key=lambda r: r["dpp"], reverse=True)
 
         return results
