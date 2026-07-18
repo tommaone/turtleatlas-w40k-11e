@@ -761,9 +761,34 @@ def compute_mob(
     is_character = "CHARACTER" in kw
     has_gate = gate_of_infinity or "GATE OF INFINITY" in ab
 
-    # Mobility tier: heuristic based on movement + Fly
-    # Deep Strike effectively upgrades slow units — they deploy anywhere turn 2
-    if movement >= 20:
+    # Mobility tier: heuristic based on movement + Fly + TRANSPORT keyword
+    # AIRCRAFT vehicles (Thunderhawk, Stormraven) get flyer/skyborne tier
+    # FLY + TRANSPORT (Stormraven) get movement-based tier (flying transport)
+    # TRANSPORT ground vehicles (Land Raider, Rhino) get transporter tier
+    # FLY infantry (jump packs) get movement-based tier + fly bonus
+    has_transport = "TRANSPORT" in kw
+    has_aircraft = "AIRCRAFT" in kw
+    if has_aircraft:
+        # Fixed-wing aircraft get movement-based tier
+        if movement >= 20:
+            mob_tier = "skyborne"
+        elif movement >= 14:
+            mob_tier = "very_fast"
+        else:
+            mob_tier = "flyer"
+    elif has_fly and has_transport:
+        # Flying transport (Stormraven) — movement-based tier
+        if movement >= 20:
+            mob_tier = "skyborne"
+        elif movement >= 14:
+            mob_tier = "very_fast"
+        elif movement >= 10:
+            mob_tier = "fast"
+        else:
+            mob_tier = "standard"
+    elif has_transport and is_vehicle:
+        mob_tier = "transporter"
+    elif movement >= 20:
         mob_tier = "skyborne"
     elif movement >= 14:
         mob_tier = "very_fast"

@@ -953,7 +953,6 @@ class RankingEngine:
                 r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
                 for r in results
             ]
-            mob_vals = [self.mob_score(r["mob"]) for r in results]
             # OBJ: OC × survival_turns
             obj_vals = []
             for r in results:
@@ -964,14 +963,17 @@ class RankingEngine:
             def _pct(val, series):
                 if n <= 1:
                     return 100
-                return round(sum(1 for x in series if x < val) / (n - 1) * 100)
+                below = sum(1 for x in series if x < val)
+                same = sum(1 for x in series if x == val)
+                return round((below + 0.5 * (same - 1)) / (n - 1) * 100)
 
             for r in results:
                 r["_dps_pct"] = _pct(r["dpp"], dps_vals)
                 surv_turns = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
                 r["_surv_turns"] = round(surv_turns, 1)
                 r["_surv_pct"] = _pct(surv_turns, surv_vals)
-                r["_mob_pct"] = _pct(self.mob_score(r["mob"]), mob_vals)
+                # MOB: absolute score (0-100), NOT percentile — same baseline across all factions
+                r["_mob_pct"] = self.mob_score(r["mob"])
                 r["_obj_pct"] = _pct(self.obj_score(r["mob"], surv_turns), obj_vals)
                 r["_mission_score"] = (
                     w["dps"] * r["_dps_pct"] +
@@ -987,7 +989,6 @@ class RankingEngine:
                 r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
                 for r in results
             ]
-            mob_vals = [self.mob_score(r["mob"]) for r in results]
             obj_vals = []
             for r in results:
                 st = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
@@ -997,14 +998,16 @@ class RankingEngine:
             def _pct(val, series):
                 if n <= 1:
                     return 100
-                return round(sum(1 for x in series if x < val) / (n - 1) * 100)
+                below = sum(1 for x in series if x < val)
+                same = sum(1 for x in series if x == val)
+                return round((below + 0.5 * (same - 1)) / (n - 1) * 100)
 
             for r in results:
                 r["_dps_pct"] = _pct(r["dpp"], dps_vals)
                 surv_turns = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
                 r["_surv_turns"] = round(surv_turns, 1)
                 r["_surv_pct"] = _pct(surv_turns, surv_vals)
-                r["_mob_pct"] = _pct(self.mob_score(r["mob"]), mob_vals)
+                r["_mob_pct"] = self.mob_score(r["mob"])
                 r["_obj_pct"] = _pct(self.obj_score(r["mob"], surv_turns), obj_vals)
             results.sort(key=lambda r: r["dpp"], reverse=True)
 
