@@ -123,6 +123,14 @@ class FactionConfig:
         actual = self.dispositions.get(det_name.lower().replace(" ", "-"))
         return actual == disposition_id
 
+    def is_legends(self, name: str) -> bool:
+        """Check if a unit is marked as Legends (unavailable in regular play)."""
+        for d in (self.squads, self.characters, self.vehicles, self.weapon_options):
+            entry = d.get(name)
+            if entry and isinstance(entry, dict) and entry.get("legends"):
+                return True
+        return False
+
     def _resolve_meta(self, meta_spec):
         """Convert meta profile name or list to (name, TargetProfile, weight) list."""
         if isinstance(meta_spec, str):
@@ -803,6 +811,10 @@ class RankingEngine:
             if name not in self.config.known_units:
                 continue
 
+            # Skip Legends units (unavailable in regular play)
+            if self.config.is_legends(name):
+                continue
+
             kws_upper = [k.upper() for k in profile.get("keywords", [])]
 
             # Skip units without faction keyword (unless no profile data — still rank if config has it)
@@ -933,6 +945,9 @@ class RankingEngine:
 
             notes = self.config.notes.get(name, "")
 
+            # OC boost from banner/Astartes Banner wargear (+1 OC per model to attached unit)
+            oc_boost_val = info.get("oc_boost", 0) if info else 0
+
             result_entry = {
                 "name": name,
                 "points": pts,
@@ -944,6 +959,7 @@ class RankingEngine:
                 "notes": notes,
                 "conditional_fnp": cond_fnp,
                 "conditional_fnp_type": cond_fnp_type,
+                "oc_boost": oc_boost_val,
             }
             if meta_name:
                 result_entry["_meta_name"] = meta_name
@@ -959,11 +975,13 @@ class RankingEngine:
                 r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
                 for r in results
             ]
-            # OBJ: total_OC × survival_turns
+            # OBJ: (OC + banner_boost) × models × survival_turns
             obj_vals = []
             for r in results:
                 st = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
-                total_oc = r["mob"].get("objective_control", 0) * r["surv"].get("models", 1)
+                base_oc = r["mob"].get("objective_control", 0)
+                boost = r.get("oc_boost", 0)
+                total_oc = (base_oc + boost) * r["surv"].get("models", 1)
                 obj_vals.append(self.obj_score(total_oc, st))
             n = len(results)
 
@@ -981,7 +999,9 @@ class RankingEngine:
                 r["_surv_pct"] = _pct(surv_turns, surv_vals)
                 # MOB: absolute score (0-100), NOT percentile — same baseline across all factions
                 r["_mob_pct"] = self.mob_score(r["mob"])
-                total_oc = r["mob"].get("objective_control", 0) * r["surv"].get("models", 1)
+                base_oc = r["mob"].get("objective_control", 0)
+                boost = r.get("oc_boost", 0)
+                total_oc = (base_oc + boost) * r["surv"].get("models", 1)
                 r["_obj_pct"] = _pct(self.obj_score(total_oc, surv_turns), obj_vals)
                 r["_mission_score"] = (
                     w["dps"] * r["_dps_pct"] +
@@ -1000,7 +1020,9 @@ class RankingEngine:
             obj_vals = []
             for r in results:
                 st = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
-                total_oc = r["mob"].get("objective_control", 0) * r["surv"].get("models", 1)
+                base_oc = r["mob"].get("objective_control", 0)
+                boost = r.get("oc_boost", 0)
+                total_oc = (base_oc + boost) * r["surv"].get("models", 1)
                 obj_vals.append(self.obj_score(total_oc, st))
             n = len(results)
 
@@ -1017,7 +1039,9 @@ class RankingEngine:
                 r["_surv_turns"] = round(surv_turns, 1)
                 r["_surv_pct"] = _pct(surv_turns, surv_vals)
                 r["_mob_pct"] = self.mob_score(r["mob"])
-                total_oc = r["mob"].get("objective_control", 0) * r["surv"].get("models", 1)
+                base_oc = r["mob"].get("objective_control", 0)
+                boost = r.get("oc_boost", 0)
+                total_oc = (base_oc + boost) * r["surv"].get("models", 1)
                 r["_obj_pct"] = _pct(self.obj_score(total_oc, surv_turns), obj_vals)
             results.sort(key=lambda r: r["dpp"], reverse=True)
 
