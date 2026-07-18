@@ -953,11 +953,12 @@ class RankingEngine:
                 r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
                 for r in results
             ]
-            # OBJ: OC × survival_turns
+            # OBJ: total_OC × survival_turns
             obj_vals = []
             for r in results:
                 st = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
-                obj_vals.append(self.obj_score(r["mob"], st))
+                total_oc = r["mob"].get("objective_control", 0) * r["surv"].get("models", 1)
+                obj_vals.append(self.obj_score(total_oc, st))
             n = len(results)
 
             def _pct(val, series):
@@ -974,7 +975,8 @@ class RankingEngine:
                 r["_surv_pct"] = _pct(surv_turns, surv_vals)
                 # MOB: absolute score (0-100), NOT percentile — same baseline across all factions
                 r["_mob_pct"] = self.mob_score(r["mob"])
-                r["_obj_pct"] = _pct(self.obj_score(r["mob"], surv_turns), obj_vals)
+                total_oc = r["mob"].get("objective_control", 0) * r["surv"].get("models", 1)
+                r["_obj_pct"] = _pct(self.obj_score(total_oc, surv_turns), obj_vals)
                 r["_mission_score"] = (
                     w["dps"] * r["_dps_pct"] +
                     w["surv"] * r["_surv_pct"] +
@@ -992,7 +994,8 @@ class RankingEngine:
             obj_vals = []
             for r in results:
                 st = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
-                obj_vals.append(self.obj_score(r["mob"], st))
+                total_oc = r["mob"].get("objective_control", 0) * r["surv"].get("models", 1)
+                obj_vals.append(self.obj_score(total_oc, st))
             n = len(results)
 
             def _pct(val, series):
@@ -1008,7 +1011,8 @@ class RankingEngine:
                 r["_surv_turns"] = round(surv_turns, 1)
                 r["_surv_pct"] = _pct(surv_turns, surv_vals)
                 r["_mob_pct"] = self.mob_score(r["mob"])
-                r["_obj_pct"] = _pct(self.obj_score(r["mob"], surv_turns), obj_vals)
+                total_oc = r["mob"].get("objective_control", 0) * r["surv"].get("models", 1)
+                r["_obj_pct"] = _pct(self.obj_score(total_oc, surv_turns), obj_vals)
             results.sort(key=lambda r: r["dpp"], reverse=True)
 
         return results
@@ -1035,21 +1039,19 @@ class RankingEngine:
     # ── Helpers ──────────────────────────────────────────────────────
 
     @staticmethod
-    def obj_score(mob, surv_turns):
+    def obj_score(total_oc, surv_turns):
         """Objective holding score 0-100.
 
-        Formula: OC × survival_turns, normalized to 0-100.
-        - OC=0 → score=0 (Thunderhawk, flyers cannot hold objectives)
-        - OC=2, 3.2 turns → 6.4 "objective-turns"
-        - OC=4, 5.4 turns → 21.6 "objective-turns" (best)
+        Formula: total_OC × survival_turns, normalized to 0-100.
+        total_OC = OC_per_model × models (e.g. 5 DWK × OC1 = 5 total).
+        - total_OC=0 → score=0 (Thunderhawk, flyers cannot hold objectives)
         """
-        oc = mob.get("objective_control", 0)
-        if oc == 0:
+        if total_oc == 0:
             return 0
-        # Raw: OC × turns. Max realistic ~4 OC × 6 turns = 24
-        raw = oc * surv_turns
-        # Normalize: 0 → 0, 24+ → 100
-        return min(round(raw / 24 * 100), 100)
+        # Raw: total_OC × turns. Max realistic ~8 OC × 6 turns = 48
+        raw = total_oc * surv_turns
+        # Normalize: 0 → 0, 48+ → 100
+        return min(round(raw / 48 * 100), 100)
 
     @staticmethod
     def mob_score(mob):
