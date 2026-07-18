@@ -1064,8 +1064,9 @@ class RankingEngine:
         tier = mob.get("effective_tier", mob.get("mobility_tier", "slow"))
         no_t1 = mob.get("no_t1_reinforcements", True)
 
-        # Deep Strike bonus — lets you deploy anywhere turn 2
-        ds_bonus = 35 if (has_ds and no_t1) else (45 if has_ds else 0)
+        # Deep Strike bonus — one-time ingress, not ongoing mobility
+        # Small positioning bonus (can reach any objective once)
+        ds_bonus = 10 if (has_ds and no_t1) else (15 if has_ds else 0)
 
         if has_goi:
             base = 75

@@ -762,13 +762,17 @@ def compute_mob(
     has_gate = gate_of_infinity or "GATE OF INFINITY" in ab
 
     # Mobility tier: heuristic based on movement + Fly + TRANSPORT keyword
-    # AIRCRAFT vehicles (Thunderhawk, Stormraven) get flyer/skyborne tier
-    # FLY + TRANSPORT (Stormraven) get movement-based tier (flying transport)
+    # FORTIFICATION (Hammerfall Bunker) = static, can't move
+    # AIRCRAFT vehicles (Thunderhawk) get flyer/skyborne tier
+    # FLY + TRANSPORT (Stormraven) get movement-based tier
     # TRANSPORT ground vehicles (Land Raider, Rhino) get transporter tier
     # FLY infantry (jump packs) get movement-based tier + fly bonus
     has_transport = "TRANSPORT" in kw
     has_aircraft = "AIRCRAFT" in kw
-    if has_aircraft:
+    has_fortification = "FORTIFICATION" in kw
+    if has_fortification:
+        mob_tier = "static"
+    elif has_aircraft:
         # Fixed-wing aircraft get movement-based tier
         if movement >= 20:
             mob_tier = "skyborne"
