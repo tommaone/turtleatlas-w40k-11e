@@ -879,6 +879,10 @@ class RankingEngine:
                 # FNP only if the unit/config explicitly has it — NOT a default for infantry
                 final_fnp = info.get("fnp", info.get("feel_no_pain", None)) if info else None
 
+            # Conditional FNP (e.g. vs Psychic) — informational only, NOT in SURV scoring
+            cond_fnp = info.get("conditional_fnp", None) if info else None
+            cond_fnp_type = info.get("conditional_fnp_type", None) if info else None
+
             defense = UnitDefense(
                 toughness=t_val,
                 wounds_per_model=w_val,
@@ -938,6 +942,8 @@ class RankingEngine:
                 "mob": mob,
                 "loadout_desc": self._loadout_desc(ranged_profiles, melee_profiles, innate_profiles),
                 "notes": notes,
+                "conditional_fnp": cond_fnp,
+                "conditional_fnp_type": cond_fnp_type,
             }
             if meta_name:
                 result_entry["_meta_name"] = meta_name
