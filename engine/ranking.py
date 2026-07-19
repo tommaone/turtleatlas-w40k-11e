@@ -43,6 +43,8 @@ class FactionConfig:
 
         def _load(name):
             p = self._dir / f"{name}.json"
+            if not p.exists():
+                return {}
             data = json.loads(p.read_text())
             # Support _extends inheritance — faction overrides base keys
             extends = data.pop("_extends", None)
@@ -66,16 +68,16 @@ class FactionConfig:
         self.weapon_options: dict = _load("weapon_options")
         self.notes: dict = _load("notes")
 
-        # Build lookup sets
+        # Build lookup sets (skip metadata keys starting with _)
         self.known_units: set[str] = set()
-        self.known_units.update(self.squads.keys())
-        self.known_units.update(self.characters.keys())
-        self.known_units.update(self.vehicles.keys())
-        self.known_units.update(self.weapon_options.keys())
+        for src in (self.squads, self.characters, self.vehicles, self.weapon_options):
+            self.known_units.update(k for k in src.keys() if not k.startswith("_"))
 
         # Extra units handled by resolve_loadout but not in config dicts
         self._extra_known: set[str] = set()
         for name in self.weapon_options:
+            if name.startswith("_"):
+                continue
             if name not in self.squads and name not in self.vehicles and name not in self.characters:
                 self._extra_known.add(name)
         self.known_units.update(self._extra_known)
@@ -419,6 +421,21 @@ class RankingEngine:
     def _best_vehicle_variant(self, ranged_names, melee_names, unit_name, target):
         """Try all ranged+melee combos for a weapon-option vehicle."""
         import itertools
+
+        # Handle empty ranged or melee lists
+        if not ranged_names or not melee_names:
+            # Fallback: use whatever we have
+            ranged = [self.W(n, unit_name=unit_name) for n in ranged_names]
+            melee = [self.W(n, unit_name=unit_name) for n in melee_names]
+            if ranged or melee:
+                d = _ld_dmg(ranged, melee, [], target)
+                return {
+                    "ranged": ranged,
+                    "melee": melee,
+                    "innate": [],
+                    "_desc": f"Ranged: {ranged_names}; Melee: {melee_names}",
+                }
+            return None
         best, best_d = None, -1
         for (rf1_name,), (rf2_name,) in itertools.combinations_with_replacement(
             [(n,) for n in ranged_names], 2
@@ -641,46 +658,59 @@ class RankingEngine:
         # Squad info
         if name in self.config.squads:
             info = self.config.squads[name]["info"]
-            kw = ["INFANTRY", "DEEP STRIKE"]
-            kw.extend(self.config.faction_keywords)
-            if info.get("FLY"):
-                kw.append("FLY")
-            if "Terminator" in name:
-                kw.append("TERMINATOR")
-            return kw, info["T"], info["SV"], info["W"], info["OC"], info.get("invuln") or info.get("INV")
+            if not info.get("T"):
+                pass  # fall through to profile-based fallback
+            else:
+                kw = ["INFANTRY", "DEEP STRIKE"]
+                kw.extend(self.config.faction_keywords)
+                if info.get("FLY"):
+                    kw.append("FLY")
+                if "Terminator" in name:
+                    kw.append("TERMINATOR")
+                return kw, info["T"], info["SV"], info["W"], info.get("OC", 0), info.get("invuln") or info.get("INV")
 
         # Vehicle info
         if name in self.config.vehicles:
             vh = self.config.vehicles[name]
             info = vh.get("info", {})
-            kw = ["VEHICLE"]
-            kw.extend(self.config.faction_keywords)
-            if "DREADNOUGHT" in name.upper():
-                kw.append("DREADNOUGHT")
-            if info.get("deep_strike"):
-                kw.append("DEEP STRIKE")
-            if info.get("invuln") or info.get("INV"):
-                kw.append("WALKER")
-            return kw, info["T"], info["SV"], info["W"], info["OC"], info.get("invuln") or info.get("INV")
+            if not info.get("T"):
+                # Empty info — fall through to profile-based fallback below
+                pass
+            else:
+                kw = ["VEHICLE"]
+                kw.extend(self.config.faction_keywords)
+                if "DREADNOUGHT" in name.upper():
+                    kw.append("DREADNOUGHT")
+                if info.get("deep_strike"):
+                    kw.append("DEEP STRIKE")
+                if info.get("invuln") or info.get("INV"):
+                    kw.append("WALKER")
+                return kw, info["T"], info["SV"], info["W"], info.get("OC", 0), info.get("invuln") or info.get("INV")
 
         # Weapon-option vehicle info (NDK / GMNDK)
         if name in self.config.weapon_options:
             wo = self.config.weapon_options[name]
             info = wo.get("info", {})
-            kw = ["VEHICLE", "WALKER", "DEEP STRIKE"]
-            kw.extend(self.config.faction_keywords)
-            return kw, info["T"], info["SV"], info["W"], info["OC"], info.get("invuln") or info.get("INV")
+            if not info.get("T"):
+                pass  # fall through to profile-based fallback
+            else:
+                kw = ["VEHICLE", "WALKER", "DEEP STRIKE"]
+                kw.extend(self.config.faction_keywords)
+                return kw, info["T"], info["SV"], info["W"], info.get("OC", 0), info.get("invuln") or info.get("INV")
 
         # Character info
         if name in self.config.characters:
             ch = self.config.characters[name]
             info = ch.get("info", {})
-            t_val = info.get("T", 4)
-            kw = ["INFANTRY", "CHARACTER", "DEEP STRIKE"]
-            kw.extend(self.config.faction_keywords)
-            if t_val >= 5:
-                kw.append("TERMINATOR")
-            return kw, info["T"], info["SV"], info["W"], info["OC"], info.get("invuln") or info.get("INV")
+            if not info.get("T"):
+                pass  # fall through to profile-based fallback
+            else:
+                t_val = info.get("T", 4)
+                kw = ["INFANTRY", "CHARACTER", "DEEP STRIKE"]
+                kw.extend(self.config.faction_keywords)
+                if t_val >= 5:
+                    kw.append("TERMINATOR")
+                return kw, info["T"], info["SV"], info["W"], info.get("OC", 0), info.get("invuln") or info.get("INV")
 
         # Fallback: from profile data
         stats = profile_data.get("stats", {})
@@ -819,7 +849,12 @@ class RankingEngine:
             kws_upper = [k.upper() for k in profile.get("keywords", [])]
 
             # Skip units without faction keyword (unless no profile data — still rank if config has it)
-            if profile and not any(fk in kws_upper for fk in self.config.faction_keywords):
+            # Normalize apostrophes for comparison (BSData uses curly \u2019, config may differ)
+            def _norm_kw(s):
+                return s.upper().replace("\u2019", "'").replace("\u2018", "'")
+            fk_upper = [_norm_kw(fk) for fk in self.config.faction_keywords]
+            kws_normed = [_norm_kw(k) for k in profile.get("keywords", [])]
+            if profile and not any(fk in kws_normed for fk in fk_upper):
                 continue
 
             # Unit info (needed before modifier check for keyword-based filters)

@@ -107,25 +107,47 @@ class BSDataParser11e:
                 factions.append(name)
         return sorted(factions)
 
+    # Manual overrides for slugs that don't fuzzy-match any BSData name
+    _SLUG_OVERRIDES: dict[str, str] = {
+        "imperial-agents": "Imperium - Agents of the Imperium",
+        "chaos-titan-legions": "Chaos - Titanicus Traitoris",
+        "titan-legions": "Imperium - Adeptus Titanicus",
+    }
+
     def slug_to_faction(self, slug: str) -> str | None:
         """Map MFM slug to BSData faction name.
 
         Prefers exact matches and avoids 'Chaos' factions when slug doesn't contain 'chaos'.
+        Handles apostrophes (T'au → tau), word order, and prefix stripping.
         """
-        slug_words = slug.replace("-", " ").lower()
+        # Manual overrides first
+        if slug in self._SLUG_OVERRIDES:
+            target = self._SLUG_OVERRIDES[slug]
+            for faction in self.list_factions():
+                if faction.lower() == target.lower():
+                    return faction
+            return None  # override exists but BSData name not found
+
+        def _norm(s: str) -> str:
+            """Strip punctuation and lowercase for fuzzy matching."""
+            return s.replace("'", "").replace("\u2019", "").replace("-", " ").lower()
+
+        slug_words = _norm(slug)
+        slug_set = set(slug_words.split())
         candidates = []
         for faction in self.list_factions():
-            faction_lower = faction.lower()
-            if slug_words in faction_lower:
-                # Score: prefer non-Chaos matches for non-chaos slugs
-                is_chaos = "chaos" in faction_lower
+            faction_norm = _norm(faction)
+            # Check 1: slug is a substring of faction name (original behaviour)
+            # Check 2: all slug words appear in faction name (handles word order)
+            if slug_words in faction_norm or slug_set.issubset(set(faction_norm.split())):
+                is_chaos = "chaos" in faction_norm
                 slug_has_chaos = "chaos" in slug_words
                 if is_chaos and not slug_has_chaos:
-                    score = 2  # deprioritize
+                    score = 2
                 elif not is_chaos and slug_has_chaos:
                     score = 2
                 else:
-                    score = 0  # normal match
+                    score = 0
                 candidates.append((score, faction))
         if candidates:
             candidates.sort(key=lambda x: x[0])
@@ -145,17 +167,22 @@ class BSDataParser11e:
                 return cat
         return None
 
-    def _load_catalogue_roots(self, cat: dict) -> list[dict]:
+    def _load_catalogue_roots(self, cat: dict, include_linked: bool = False) -> list[dict]:
         """
-        Load linked catalogues marked importRootEntries=true.
+        Load linked catalogues.
 
-        Returns list of catalogue dicts (including self as first entry).
+        Always includes importRootEntries=true catalogues.
+        If include_linked=True, also loads all linked catalogues (needed for
+        entryLinks resolution in factions like Drukhari that store units in
+        a shared Library rather than sharedSelectionEntries).
         """
         roots: list[dict] = [cat]
         for link in cat.get("catalogueLinks", []):
             import_root = link.get("importRootEntries", False)
             name = link.get("name", "")
-            if not import_root or not name:
+            if not name:
+                continue
+            if not import_root and not include_linked:
                 continue
             linked = self._load_catalogue_by_name(name)
             if linked is not None:
@@ -208,8 +235,13 @@ class BSDataParser11e:
         for p in item.get("profiles", []):
             ptype = p.get("typeName", "")
             if "Weapon" in ptype:
+                # Strip leading unicode arrows (➤, ►, ▸) from BSData weapon names
+                pname = p.get("name", "")
+                for prefix in ("\u27A4", "\u25BA", "\u25B8"):
+                    if pname.startswith(prefix):
+                        pname = pname[len(prefix):].lstrip()
                 results.append({
-                    "name": p.get("name", ""),
+                    "name": pname,
                     "typeName": ptype,
                     "stats": self._get_chars_dict(p),
                 })
@@ -238,8 +270,15 @@ class BSDataParser11e:
 
     # -- Unit extraction -------------------------------------------------------
 
-    def _collect_entries(self, roots: list[dict]) -> list[dict]:
-        """Collect all unique sharedSelectionEntries across all roots."""
+    def _collect_entries(self, roots: list[dict],
+                         entry_index: dict[str, dict] | None = None) -> list[dict]:
+        """Collect all unique unit/model entries across all roots.
+
+        Collects from:
+        1. sharedSelectionEntries on root catalogues
+        2. entryLinks on root catalogues (for factions like Drukhari that
+           reference units via a shared Library instead of inline entries)
+        """
         seen: set[str] = set()
         entries: list[dict] = []
         for root in roots:
@@ -248,13 +287,25 @@ class BSDataParser11e:
                 if eid and eid not in seen:
                     seen.add(eid)
                     entries.append(entry)
+
+            # Resolve entryLinks that reference unit/model selection entries
+            if entry_index:
+                for el in root.get("entryLinks", []):
+                    tid = el.get("targetId", "")
+                    if not tid or tid in seen:
+                        continue
+                    target = entry_index.get(tid)
+                    if target is None:
+                        continue
+                    seen.add(tid)
+                    entries.append(target)
         return entries
 
     def extract_units(self, cat: dict, faction_name: str,
                       include_legends: bool = False,
                       entry_index: dict[str, dict] | None = None) -> list[dict]:
         if entry_index is None:
-            roots = self._load_catalogue_roots(cat)
+            roots = self._load_catalogue_roots(cat, include_linked=True)
             entry_index = self._build_entry_index(roots)
         else:
             roots = self._load_catalogue_roots(cat)
@@ -262,7 +313,7 @@ class BSDataParser11e:
         units: list[dict] = []
         _profile_cache: dict[str, list[dict]] = {}
 
-        entries = self._collect_entries(roots)
+        entries = self._collect_entries(roots, entry_index=entry_index)
         for entry in entries:
             entry_type = entry.get("type", "")
             if entry_type not in ("model", "unit"):
@@ -436,7 +487,7 @@ class BSDataParser11e:
             cat = self._get_catalogue(data)
             name = cat.get("name", "")
             if name and name.lower() == faction_name.lower():
-                roots = self._load_catalogue_roots(cat)
+                roots = self._load_catalogue_roots(cat, include_linked=True)
                 entry_index = self._build_entry_index(roots)
                 units = self.extract_units(cat, name, include_legends, entry_index)
                 all_units = self.extract_units(cat, name, include_legends=True, entry_index=entry_index)

@@ -1,0 +1,4408 @@
+{
+  "faction": "Drukhari",
+  "slug": "drukhari",
+  "version": "1.0",
+  "firstSeen": "2026-06-23",
+  "detachments": [
+    {
+      "name": "Covenite Coterie",
+      "dp": 2,
+      "objective": "PURGE THE FOE",
+      "unique": "Covens",
+      "enhancements": [
+        {
+          "name": "Master Artisan",
+          "points": 20
+        },
+        {
+          "name": "Master Nemesine",
+          "points": 5
+        },
+        {
+          "name": "Master Regenesist",
+          "points": 25
+        },
+        {
+          "name": "Master Repugnomancer",
+          "points": 15
+        }
+      ]
+    },
+    {
+      "name": "Exhibition Of Slaughter",
+      "dp": 1,
+      "objective": "DISRUPTION",
+      "unique": "Wych Cult",
+      "enhancements": [
+        {
+          "name": "Hyperstimm Trafficker",
+          "points": 20
+        },
+        {
+          "name": "Periapt of Torments",
+          "points": 20
+        }
+      ]
+    },
+    {
+      "name": "Kabalite Agonysts",
+      "dp": 1,
+      "objective": "PURGE THE FOE",
+      "unique": "Kabal",
+      "enhancements": [
+        {
+          "name": "Contempt for Rivals",
+          "points": 20
+        },
+        {
+          "name": "Towering Arrogance",
+          "points": 15
+        }
+      ]
+    },
+    {
+      "name": "Kabalite Cartel",
+      "dp": 2,
+      "objective": "DISRUPTION",
+      "unique": "Kabal",
+      "enhancements": [
+        {
+          "name": "Informant Network",
+          "points": 30
+        },
+        {
+          "name": "Leechbite Plate",
+          "points": 5
+        },
+        {
+          "name": "Towering Arrogance",
+          "points": 20
+        },
+        {
+          "name": "Webway Awl",
+          "points": 25
+        }
+      ]
+    },
+    {
+      "name": "Realspace Raiders",
+      "dp": 2,
+      "objective": "PRIORITY ASSETS",
+      "enhancements": [
+        {
+          "name": "Crucible of Malediction",
+          "points": 15
+        },
+        {
+          "name": "Dark Vitality",
+          "points": 20
+        },
+        {
+          "name": "Eye of Spite",
+          "points": 15
+        },
+        {
+          "name": "Labyrinthine Cunning",
+          "points": 25
+        }
+      ]
+    },
+    {
+      "name": "Reaper’S Wager",
+      "dp": 3,
+      "objective": "PURGE THE FOE",
+      "enhancements": [
+        {
+          "name": "Archraider",
+          "points": 15
+        },
+        {
+          "name": "Conductor of Torment",
+          "points": 20
+        },
+        {
+          "name": "Reaper’s Cowl",
+          "points": 25
+        },
+        {
+          "name": "Webway Walker",
+          "points": 15
+        }
+      ]
+    },
+    {
+      "name": "Skysplinter Assault",
+      "dp": 2,
+      "objective": "RECONNAISSANCE",
+      "enhancements": [
+        {
+          "name": "Nightmare Shroud",
+          "points": 20
+        },
+        {
+          "name": "Phantasmal Smoke",
+          "points": 15
+        },
+        {
+          "name": "Sadistic Fulcrum",
+          "points": 15
+        },
+        {
+          "name": "Spiteful Raider",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "name": "Spectacle Of Spite",
+      "dp": 2,
+      "objective": "PURGE THE FOE",
+      "unique": "Wych Cult",
+      "enhancements": [
+        {
+          "name": "Chronoshard",
+          "points": 15
+        },
+        {
+          "name": "Morghenna’s Curse",
+          "points": 20
+        },
+        {
+          "name": "Periapt of Torments",
+          "points": 25
+        },
+        {
+          "name": "Pharmacophex",
+          "points": 15
+        }
+      ]
+    },
+    {
+      "name": "Tools Of Torment",
+      "dp": 1,
+      "objective": "TAKE AND HOLD",
+      "unique": "Covens",
+      "enhancements": [
+        {
+          "name": "Elixir of the Corpse Courts (Upgrade)",
+          "points": 15
+        },
+        {
+          "name": "Gnarlskin Experimentor",
+          "points": 20
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "name": "Archon",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Archon",
+        "points": 80,
+        "stats": {
+          "M": "7\"",
+          "T": "3",
+          "Sv": "4+",
+          "W": "4",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "2+*"
+        },
+        "keywords": [
+          "Character",
+          "Infantry",
+          "Kabal",
+          "Aeldari",
+          "Archon",
+          "Faction: Drukhari",
+          "Leader"
+        ],
+        "abilities": [
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n- **COURT OF THE ARCHON**\n- **HAND OF THE ARCHON**\n- **INCUBI**\n- **KABALITE WARRIORS**"
+          },
+          {
+            "name": "Overlord",
+            "description": "Once per battle, at the start of any phase, you can select one friendly ^^**Drukhari**^^ unit that is Battle-shocked and within 12\" of this model. That unit is no longer Battle-shocked."
+          },
+          {
+            "name": "Devious Mastermind",
+            "description": "Once per battle round, one model from your army with this ability can use it when its unit is targeted with a stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP."
+          },
+          {
+            "name": "Hatred Eternal (Pain)",
+            "description": "In your Shooting or the Fight phase, when you select this model's unit to shoot or fight, you can spend 1 Pain token to Empower that unit. While that unit is Empowered, each time a model in that unit makes an attack, you can re-roll the Hit roll."
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Leader",
+          "Power from Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 80
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Court Of The Archon",
+        "Hand Of The Archon",
+        "Incubi",
+        "Kabalite Warriors"
+      ],
+      "wargear_options": null
+    },
+    {
+      "name": "Archtormentor [Crucible]",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Archtormentor [Crucible]",
+        "points": 60,
+        "stats": {
+          "M": "8",
+          "T": "3",
+          "Sv": "6+",
+          "W": "4",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": ""
+        },
+        "keywords": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Wych Cult",
+          "Aeldari",
+          "Faction: Drukhari",
+          "Archtormentor"
+        ],
+        "abilities": [
+          {
+            "name": "Hatred Eternal (Pain)",
+            "description": "In your Shooting phase or the Fight phase, when you select this model’s unit to shoot or fight, you can spend 1 Pain token to Empower that unit. While that unit is Empowered, each time a model in that unit makes an attack, you can re-roll the Hit roll."
+          },
+          {
+            "name": "Cruel Example",
+            "description": "Each time this model makes an attack that targets a CHARACTER unit, you can add 1 to the Wound roll. Each time this model’s unit destroys a CHARACTER model, you gain 1CP."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n■ Wyches"
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Leader",
+          "Power from Pain",
+          "Crucible"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Corsair Skyreavers",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Corsair Skyreavers",
+        "points": 80,
+        "stats": {},
+        "keywords": [
+          "Infantry",
+          "Aeldari",
+          "Anhrathe",
+          "Jump Pack",
+          "Fly",
+          "Grenades",
+          "Corsair Skyreavers",
+          "Faction: Asuryani"
+        ],
+        "abilities": [
+          {
+            "name": "Raid and Run",
+            "description": "At the end of the Fight phase, if this unit was eligible to fight this phase, and is not within Engagement Range of one or more enemy units, it can make a Normal move of up to D3+3\". Otherwise, if this unit was eligible to fight this phase, this unit can make a Fall Back move of up to D3+3\"."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Skyreaver Felarch",
+            "profiles": [
+              {
+                "name": "Corsair Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Skyreaver w/ pistol and blade",
+            "profiles": [
+              {
+                "name": "Shuriken Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              },
+              {
+                "name": "Corsair Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Battle Focus",
+          "Scouts",
+          "Deep Strike"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Corsair Voidreavers",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Corsair Voidreavers",
+        "points": 65,
+        "stats": {},
+        "keywords": [
+          "Infantry",
+          "Battleline",
+          "Grenades",
+          "Anhrathe",
+          "Corsair Voidreavers",
+          "Faction: Asuryani",
+          "Aeldari",
+          "Ynnari",
+          "Corsairs and Travelling Players"
+        ],
+        "abilities": [
+          {
+            "name": "Reavers of the Void",
+            "description": "Each time a model in this unit makes an attack, re-roll a Hit roll of 1. If the target of that attack is an enemy unit within range of an objective marker, you can re-roll the Hit roll instead."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Voidreaver with Heavy weapon",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Voidreaver with Shuriken rifle",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Shuriken rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Voidreaver with sword and pistol",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Shuriken Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              },
+              {
+                "name": "Power sword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Voidreaver Felarch",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Power sword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Scouts",
+          "Battle Focus"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Corsair Voidscarred",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Corsair Voidscarred",
+        "points": 80,
+        "stats": {},
+        "keywords": [
+          "Infantry",
+          "Anhrathe",
+          "Corsair Voidscarred",
+          "Faction: Asuryani",
+          "Grenades",
+          "Aeldari",
+          "Ynnari",
+          "Corsairs and Travelling Players"
+        ],
+        "abilities": [
+          {
+            "name": "Piratical Raiders",
+            "description": "At the start of the battle, select one unit from your opponent’s army. Each time a model in this unit makes an attack that targets that unit, that attack has the [LETHAL HITS] and [PRECISION] abilities."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Shade Runner",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Shuriken Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              },
+              {
+                "name": "Paired Hekatarii blades",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Twin-Linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Soul Weaver",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Shuriken Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              },
+              {
+                "name": "Power sword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Way Seeker",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Shuriken Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              },
+              {
+                "name": "Executioner",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "D3",
+                  "Keywords": "Anti-Infantry 2+, Psychic"
+                }
+              },
+              {
+                "name": "Witch staff",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "2+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "D3",
+                  "Keywords": "Anti-Infantry 2+, Psychic"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Voidscarred Felarch",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Power sword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Scouts",
+          "Battle Focus"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Cronos",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Cronos",
+        "points": 55,
+        "stats": {},
+        "keywords": [
+          "Cronos",
+          "Aeldari",
+          "Haemonculus Covens",
+          "Faction: Drukhari",
+          "Monster",
+          "Fly"
+        ],
+        "abilities": [
+          {
+            "name": "Pain Engine (Aura)",
+            "description": "Each time you spend 1 Pain token to Empower a friendly unit within 9\" of this unit, roll one D6, adding 1 to the result if one or more models in this unit are not equipped with a spirit vortex: on a 5+, you gain 1 Pain token.\n\n\n**Designer's Note:** Pain tokens you spend for reasons other than Empowering a unit do not trigger this ability."
+          },
+          {
+            "name": "Pain Parasite (Pain)",
+            "description": "In your Shooting phase or the Fight phase, when you select this unit to shoot or fight, you can spend 1 Pain token to Empower this unit. While Empowered, each time this unit shoots or fights, after it has resolved its attacks, if one or more enemy models were destroyed as a result of those attacks, one model in this unit regains up to 3 lost wounds (if all models in this unit have their starting number of wounds and this unit is below its Starting Strength, 1 model is returned to this unit with 3 wounds remaining)."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Cronos",
+            "profiles": [
+              {
+                "name": "Spirit Vortex",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Blast, Ignores Cover"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Feel No Pain",
+          "Power from Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 55
+            },
+            {
+              "models": 2,
+              "points": 100
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Death Jester",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Death Jester",
+        "points": 80,
+        "stats": {
+          "M": "8\"",
+          "T": "3",
+          "Sv": "6+",
+          "W": "4",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Character",
+          "Infantry",
+          "Death Jester",
+          "Harlequin Allies",
+          "Aeldari",
+          "Faction: Harlequins",
+          "Corsairs and Travelling Players"
+        ],
+        "abilities": [
+          {
+            "name": "Death is Not Enough",
+            "description": "In your Shooting phase, after this model has shot, select one enemy unit (excluding Monsters and Vehicles) hit by one or more of those attacks. That enemy unit must take a Battle-shock test. If one or more of those attacks destroyed a model in that enemy unit, subtract 1 from that test."
+          },
+          {
+            "name": "Cruel Amusement",
+            "description": "In your Shooting phase, each time this model is selected to shoot, select one of the abilities below. Until the end of the phase, this model’s Shrieker Cannon has that ability:\n■ [IGNORES COVER]\n■ [PRECISION]\n■ [SUSTAINED HITS 3]"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Jester's Blade",
+            "profiles": [
+              {
+                "name": "Jester's Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shrieker Cannon",
+            "profiles": [
+              {
+                "name": "Shrieker Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "2+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Lone Operative",
+          "Battle Focus",
+          "Disparate Paths",
+          "Flip Belt",
+          "Travelling Players"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Drazhar",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Drazhar",
+        "points": 85,
+        "stats": {
+          "M": "7\"",
+          "T": "3",
+          "Sv": "2+",
+          "W": "5",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Epic Hero",
+          "Drazhar",
+          "Aeldari",
+          "Faction: Drukhari",
+          "Infantry",
+          "Character",
+          "Blades for Hire",
+          "Leader"
+        ],
+        "abilities": [
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following unit:\n■ Incubi"
+          },
+          {
+            "name": "Master of Blades (Pain)",
+            "description": "In the Fight phase, when you select this model's unit to fight, you can spend 1 Pain token to Empower that unit. While that unit is Empowered, each time a model in that unit makes a melee attack, add 1 to the Wound roll."
+          },
+          {
+            "name": "Onslaught",
+            "description": "While this model is leading a unit, each time a model in that unit makes a Pile-In or Consolidation move, it can move up to 6\" instead of up to 3\"."
+          },
+          {
+            "name": "Silent Executioner",
+            "description": "Each time this model make an attack that targets a unit that is below its Starting Strength, you can re-roll the Hit roll. If that target is Below Half-Strength, you can re-roll the Wound roll as well."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "The Executioner's demiklaives",
+            "profiles": [
+              {
+                "name": "The Executioner's demiklaives - Dual Blades",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "2+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Devastating Wounds"
+                }
+              },
+              {
+                "name": "The Executioner's demiklaives - Single Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "2+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Power from Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 85
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Incubi"
+      ],
+      "wargear_options": null
+    },
+    {
+      "name": "Flesh Crafter [Crucible]",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Flesh Crafter [Crucible]",
+        "points": 60,
+        "stats": {
+          "M": "7\"",
+          "T": "4",
+          "Sv": "5+",
+          "W": "5",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": ""
+        },
+        "keywords": [
+          "Character",
+          "Infantry",
+          "Crucible",
+          "Aeldari",
+          "Faction: Drukhari",
+          "Haemonculus Covens",
+          "Flesh Crafter"
+        ],
+        "abilities": [
+          {
+            "name": "Fleshcraft (Pain)",
+            "description": "In your Command phase, you can spend 1 Pain token to Empower this model’s unit. Each time you do, you can return up to D3+1 destroyed Bodyguard models to that unit."
+          },
+          {
+            "name": "Pain Adept",
+            "description": "In your Command phase, if one or more models from your army with this ability are on the battlefield, roll one D6: on a 4+, you gain 1 Pain token."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n■ Wracks"
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Leader",
+          "Power from Pain",
+          "Crucible",
+          "Feel No Pain"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Haemonculus",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Haemonculus",
+        "points": 50,
+        "stats": {
+          "M": "7\"",
+          "T": "4",
+          "Sv": "5+",
+          "W": "5",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": "6+"
+        },
+        "keywords": [
+          "Haemonculus",
+          "Haemonculus Covens",
+          "Aeldari",
+          "Faction: Drukhari",
+          "Character",
+          "Infantry",
+          "Leader"
+        ],
+        "abilities": [
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following unit:\n■ Wracks"
+          },
+          {
+            "name": "Fear Incarnate (Aura)",
+            "description": "While an enemy unit is within 6\" of this model, worsen the Leadership characteristic of models in that unit by 1. In addition, in the Battle-shock step of your opponent's Command phase, if such an enemy unit is below its Starting Strength, it must take a Battle-shock test."
+          },
+          {
+            "name": "Pain Adept",
+            "description": "In your Command phase, if one or more models from your army with this ability are on the battlefield, roll one D6: on a 4+, you gain 1 Pain token."
+          },
+          {
+            "name": "Fleshcraft (Pain)",
+            "description": "In your Command phase, you can spend 1 Pain token to Empower this model's unit. Each time you do, you can return up to D3+1 destroyed Bodyguard models to that unit."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Haemonculus tools and scissorhands",
+            "profiles": [
+              {
+                "name": "Haemonculus tools and scissorhands",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "2+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "D3",
+                  "Keywords": "Anti-Infantry 2+, Precision"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Stinger pistol",
+            "profiles": [
+              {
+                "name": "Stinger Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "2+",
+                  "S": "2",
+                  "AP": "-1",
+                  "D": "D3",
+                  "Keywords": "Anti-infantry 2+, Pistol, Precision"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Feel No Pain",
+          "Power from Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 50
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Wracks"
+      ],
+      "wargear_options": null
+    },
+    {
+      "name": "Hand Of The Archon",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Hand of the Archon",
+        "points": 115,
+        "stats": {},
+        "keywords": [
+          "Infantry",
+          "Kabal",
+          "Aeldari",
+          "Grenades",
+          "Hand of the Archon",
+          "Faction: Drukhari"
+        ],
+        "abilities": [
+          {
+            "name": "Assassins' Poisons (Pain)",
+            "description": "In your Shooting phase or the Fight phase, when you select this unit to shoot or fight, you can spend 1 Pain token to Empower this unit. While Empowered, weapons equipped by models in this unit (excluding blast pistols, blasters and dark lances) have the ^^**[Lethal Hits]**^^ and ^^**[Precision]**^^ abilities."
+          },
+          {
+            "name": "Archon's Will",
+            "description": "At the start of the first battle round, select one objective marker on the battlefield. Until the end of the battle, while this unit is within range of that objective marker, unless this unit is Battle-shocked, models in this unit have a 5+ invulnerable save and an Objective Control characteristic of 3."
+          },
+          {
+            "name": "Archon's Retinue",
+            "description": "If this unit has a Leader unit attached to it during the Declare Battle Formations step, that Leader unit gains the Scouts 7\" ability."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Kabalite Agent with stinger pistol",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Stinger pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 2+, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Kabalite Agent",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Splinter Rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Kabalite Agent with special weapon",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Kabalite Agent with heavy weapon",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Kabalite Agent with shardcarbine",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Shardcarbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Kabalite Agent with pain sculptors",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Pain sculptors",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+, Twin-Linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Kabalite Agent with razorflail",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Razorflail",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Kabalite Agent with stimm-needler",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Splinter Rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Power from Pain",
+          "Scouts"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 10,
+              "points": 115
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Hellions",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Hellions",
+        "points": 90,
+        "stats": {},
+        "keywords": [
+          "Hellions",
+          "Aeldari",
+          "Wych Cult",
+          "Faction: Drukhari",
+          "Mounted",
+          "Fly"
+        ],
+        "abilities": [
+          {
+            "name": "Battlefield Butchery (Pain)",
+            "description": "In the Fight phase, when you select this unit to fight, you can spend 1 Pain token to Empower this unit. While Empowered, add 1 to the Attacks and Strength characteristics of this unit's melee weapons."
+          },
+          {
+            "name": "Skyboard Evasion",
+            "description": "In your opponent's Movement phase, if an enemy unit ends a move within 8” of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to D6”."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Hellion",
+            "profiles": [
+              {
+                "name": "Hellglaive",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Lance, Sustained Hits 1"
+                }
+              },
+              {
+                "name": "Splinter Pods",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Twin Linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heliarch",
+            "profiles": [
+              {
+                "name": "Splinter Pods",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Twin Linked"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Power from Pain",
+          "Deep Strike"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 5,
+              "points": 90
+            },
+            {
+              "models": 10,
+              "points": 180
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 5,
+              "points": 100
+            },
+            {
+              "models": 10,
+              "points": 190
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Incubi",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Incubi",
+        "points": 90,
+        "stats": {},
+        "keywords": [
+          "Incubi",
+          "Aeldari",
+          "Faction: Drukhari",
+          "Infantry",
+          "Blades for Hire"
+        ],
+        "abilities": [
+          {
+            "name": "Tormentors",
+            "description": "At the start of the Fight phase, each enemy unit within Engagement Range of one or more units with this ability must take a Battle-shock test. Each time a model in this unit makes a melee attack that targets a Battle-shocked unit, add 1 to the Hit roll."
+          },
+          {
+            "name": "Decapitating Strikes (Pain)",
+            "description": "In the Fight phase, when you select this unit to fight, you can spend 1 Pain token to Empower this unit. While Empowered, each time a model in this unit makes a melee attack that targets an ^^**Infantry**^^ unit, that attack has the ^^**[Devastating Wounds]**^^ ability."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Incubi",
+            "profiles": [
+              {
+                "name": "Klaive",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Power from Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 5,
+              "points": 90
+            },
+            {
+              "models": 10,
+              "points": 180
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 5,
+              "points": 100
+            },
+            {
+              "models": 10,
+              "points": 190
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Kabalite Warriors",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Kabalite Warriors",
+        "points": 110,
+        "stats": {},
+        "keywords": [
+          "Kabalite Warriors",
+          "Aeldari",
+          "Kabal",
+          "Faction: Drukhari",
+          "Battleline",
+          "Infantry"
+        ],
+        "abilities": [
+          {
+            "name": "Cruel Enforcers",
+            "description": "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under you control, until your opponent's Level of Control over that objective marker is greater than yours at the end of a phase."
+          },
+          {
+            "name": "Sadistic Raiders (Pain)",
+            "description": "In your Shooting phase or the Fight phase, when you select this unit to shoot or fight, you can spend 1 Pain token to Empower this unit. While Empowered, each time a model in this unit makes an attack, re-roll a Wound roll of 1. If the target is within range of an objective marker, you can re-roll the Wound roll instead."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Kabalite Warrior with Shredder",
+            "profiles": [
+              {
+                "name": "Shredder",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Torrent"
+                }
+              },
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Kabalite Warrior",
+            "profiles": [
+              {
+                "name": "Splinter Rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              },
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Kabalite Warrior with Blaster",
+            "profiles": [
+              {
+                "name": "Blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Assault"
+                }
+              },
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Kabalite Warrior with Splinter Cannon",
+            "profiles": [
+              {
+                "name": "Splinter Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-Infantry 3+, Heavy, Sustained Hits 1"
+                }
+              },
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Kabalite Warrior with Dark Lance",
+            "profiles": [
+              {
+                "name": "Dark Lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+2",
+                  "Keywords": "Heavy"
+                }
+              },
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Power from Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 10,
+              "points": 110
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Kharseth",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Kharseth",
+        "points": 85,
+        "stats": {
+          "M": "7\"",
+          "T": "3",
+          "Sv": "6+",
+          "W": "4",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Infantry",
+          "Aeldari",
+          "Faction: Asuryani",
+          "Character",
+          "Epic Hero",
+          "Psyker",
+          "Anhrathe",
+          "Kharseth",
+          "Leader"
+        ],
+        "abilities": [
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n- **CORSAIR REAVER BAND**\n- **CORSAIR VOIDREAVERS**\n- **CORSAIR VOIDSCARRED**"
+          },
+          {
+            "name": "Aethersense (Psychic)",
+            "description": "Enemy units that are set up on the battlefield from Reserves cannot be set up within 12\" of this model."
+          },
+          {
+            "name": "Fury of the Void (Psychic)",
+            "description": "In your Shooting phase, after this model’s unit has shot, select one enemy unit hit by one or more attacks made with this model’s Dread of the Deep Void. Until the end of the turn, that unit is riven. Each time an ^^**Aeldari**^^ model from your army makes an attack that targets a riven unit, add 1 to the Strength characteristic of that attack."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Dread of the Deep Void",
+            "profiles": [
+              {
+                "name": "Dread of the Deep Void",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "D6+2",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 2+, Blast, Hazardous, Ignores Cover, Psychic"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Waystave",
+            "profiles": [
+              {
+                "name": "Waystave",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "2+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "3",
+                  "Keywords": "Anti-Infantry 2+, Psychic"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Scouts",
+          "Battle Focus",
+          "Leader"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Lady Malys",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Lady Malys",
+        "points": 100,
+        "stats": {
+          "M": "7\"",
+          "T": "3",
+          "Sv": "4+",
+          "W": "5",
+          "LD": "6+",
+          "OC": "2",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Infantry",
+          "Kabal",
+          "Character",
+          "Aeldari",
+          "Archon",
+          "Epic Hero",
+          "Faction: Drukhari",
+          "Lady Malys",
+          "Leader"
+        ],
+        "abilities": [
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n■ Hand of the Archon\n■ Incubi\n■ Kabalite Warriors"
+          },
+          {
+            "name": "Archon of the Poisoned Tongue (Pain)",
+            "description": "In your Shooting phase or the Fight phase, when you select this model's unit to shoot or fight, you can spend 1 Pain token to Empower that unit. If you do, select one of the following abilities: **^^[Sustained Hits 1]; [Lethal Hits]^^**. Until the end of the phase, while that unit is Empowered, weapons equipped by models in that unit have that selected ability."
+          },
+          {
+            "name": "Precognisant",
+            "description": "If you army includes this model, after both players have deployed their armies, select up to three ^^**Drukhari**^^ units from your army and redeploy them. When doing so, you can set those units up in Strategic Reserves if you wish, regardless of how many units are already in Strategic Reserves."
+          },
+          {
+            "name": "Mind Like a Steel Trap",
+            "description": "Once per turn, when your opponent targets a unit from their army within 12” of this model with a **stratagem**, you can use this ability. If you do increase the CP cost of that use of that **stratagem** by 1CP."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Melee Weapons",
+            "profiles": [
+              {
+                "name": "Lady's Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "2+",
+                  "S": "5",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "Devastating Wounds, Hazardous"
+                }
+              },
+              {
+                "name": "Razor fan",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "2+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Extra Attacks"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Power from Pain",
+          "Feel No Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 100
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Hand Of The Archon",
+        "Incubi",
+        "Kabalite Warriors"
+      ],
+      "wargear_options": null
+    },
+    {
+      "name": "Lelith Hesperax",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Lelith Hesperax",
+        "points": 80,
+        "stats": {
+          "M": "8\"",
+          "T": "3",
+          "Sv": "6+",
+          "W": "4",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Lelith Hesperax",
+          "Aeldari",
+          "Wych Cult",
+          "Succubus",
+          "Faction: Drukhari",
+          "Epic Hero",
+          "Character",
+          "Infantry",
+          "Leader"
+        ],
+        "abilities": [
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following unit:\n■ Wyches"
+          },
+          {
+            "name": "Brides of Death (Pain)",
+            "description": "In the Fight phase, when you select this model's unit to fight, you can spend 1 Pain token to Empower that unit. While that unit is Empowered, each time a model in that unit makes a melee attack, improve the Strength and Armour Penetration characteristics of that attack by 1."
+          },
+          {
+            "name": "Thrilling Spectacle",
+            "description": "Once per battle, at the start of the Fight phase, this model can use this ability. If it does, until the end of the phase, this model has a 3+ invulnerable save and change the Attacks characteristic of melee weapons equipped by this model to 12."
+          },
+          {
+            "name": "Blur of Blades",
+            "description": "While this model is leading a unit, models in that unit have the Fights First ability."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Lelith's blades",
+            "profiles": [
+              {
+                "name": "Lelith's blades",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "2+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 2+, Precision, Sustained Hits 2"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Fights First",
+          "Leader",
+          "Power from Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 80
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Wyches"
+      ],
+      "wargear_options": null
+    },
+    {
+      "name": "Mandrakes",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Mandrakes",
+        "points": 80,
+        "stats": {},
+        "keywords": [
+          "Mandrakes",
+          "Aeldari",
+          "Faction: Drukhari",
+          "Infantry",
+          "Blades for Hire"
+        ],
+        "abilities": [
+          {
+            "name": "Fade Away (Pain)",
+            "description": "At the end of your opponent’s Fight phase, if this unit is not within Engagement Range of one or more enemy units, you can spend 1 Pain token to Empower this unit. Each time you do, remove this unit from the battlefield and place it into Strategic Reserves."
+          },
+          {
+            "name": "Shade Weavers",
+            "description": "This unit cannot be targeted by ranged attacks unless the attacking model is within 18\"."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Mandrake",
+            "profiles": [
+              {
+                "name": "Baleblast",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Devastating Wounds, Ignores Cover"
+                }
+              },
+              {
+                "name": "Glimmersteel Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Nightfiend",
+            "profiles": [
+              {
+                "name": "Baleblast",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Devastating Wounds, Ignores Cover"
+                }
+              },
+              {
+                "name": "Glimmersteel Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Infiltrators",
+          "Stealth",
+          "Power from Pain",
+          "Deep Strike"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 5,
+              "points": 80
+            },
+            {
+              "models": 10,
+              "points": 160
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 5,
+              "points": 90
+            },
+            {
+              "models": 10,
+              "points": 170
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Prince Yriel",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Prince Yriel",
+        "points": 95,
+        "stats": {
+          "M": "7\"",
+          "T": "3",
+          "Sv": "3+",
+          "W": "5",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Prince Yriel",
+          "Infantry",
+          "Character",
+          "Epic Hero",
+          "Faction: Asuryani",
+          "Aeldari",
+          "Anhrathe",
+          "Leader"
+        ],
+        "abilities": [
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n- **CORSAIR REAVER BAND**\n- **CORSAIR VOIDREAVERS**\n- **CORSAIR VOIDSCARRED**"
+          },
+          {
+            "name": "Piratical Hero",
+            "description": "While this model is leading a unit, each time a model in that unit makes an attack, that attack has the ^^**[Sustained Hits 1]**^^ ability and add 1 to the Hit roll."
+          },
+          {
+            "name": "Prince of Corsairs",
+            "description": "After both players have deployed their armies, if this model is on the battlefield (or any ^^**Transport**^^ it is embarked within is on the battlefield), select up to three ^^**Aeldari**^^ units from your army and redeploy them. When doing so, you can set those units up in Strategic Reserves, regardless of how many units are already in Strategic Reserves."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "The Eye of Wrath",
+            "profiles": [
+              {
+                "name": "The Eye of Wrath",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "3",
+                  "BS": "2+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "The Spear of Twilight",
+            "profiles": [
+              {
+                "name": "The Spear of Twilight",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "2+",
+                  "S": "7",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "Lance"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shuriken Pistol",
+            "profiles": [
+              {
+                "name": "Shuriken Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "2+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Battle Focus",
+          "Scouts"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Raider",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Raider",
+        "points": 85,
+        "stats": {
+          "M": "14\"",
+          "T": "8",
+          "Sv": "4+",
+          "W": "10",
+          "LD": "7+",
+          "OC": "2",
+          "InSv": "6+"
+        },
+        "keywords": [
+          "Raider",
+          "Aeldari",
+          "Faction: Drukhari",
+          "Dedicated Transport",
+          "Fly",
+          "Vehicle",
+          "Transport",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Aethersails",
+            "description": "While one or more ^^**Drukhari**^^ units are embarked within this model, you can re-roll Advance and Charge rolls made for this model."
+          },
+          {
+            "name": "Splinter Racks (Pain)",
+            "description": "In your Shooting phase, when you select this model to shoot, you can spend 1 Pain token to Empower this model. While Empowered, if one or more units are embarked within this model, each time this model makes an attack with a ranged weapon that has the ^^**Anti**^^ ability, you can re-roll the Hit roll."
+          },
+          {
+            "name": "Vanguard of the Dark City",
+            "description": "At the start of your Command phase, select one of the abilities in the Vanguard of the Dark City section (see left) for this model. Until the start of your next Command phase, this model has that ability."
+          },
+          {
+            "name": "Masters of the Shadowed Sky",
+            "description": "At the end of your Command phase, if this model is within range of an objective marker you control, and if one or more ^^**Kabalite Warriors**^^ units are embarked within it, that objective marker remains under your control until your opponent's Level of Control over that objective marker is greater than yours at the end of a phase."
+          },
+          {
+            "name": "Speed of the Kill",
+            "description": "Each time a ^^**Wyches**^^ unit disembarks from this model (excluding Emergency Disembarkations), models in that ^^**Wyches**^^ unit must be setup wholly within 6\" of this model."
+          },
+          {
+            "name": "Visions of Butchery",
+            "description": "While one or more ^^**Wracks**^^ units are embarked within this model, for each ^^**Wracks**^^ model embarked within this model, add 1 to the Attacks characteristic of this model's Bladevanes and chainsnares."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Bladevanes and chainsnares",
+            "profiles": [
+              {
+                "name": "Bladevanes and chainsnares",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "D3+3",
+                  "WS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Firing Deck",
+          "Deep Strike",
+          "Power from Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 85
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Ravager",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Ravager",
+        "points": 100,
+        "stats": {
+          "M": "14\"",
+          "T": "9",
+          "Sv": "4+",
+          "W": "11",
+          "LD": "7+",
+          "OC": "3",
+          "InSv": "6+"
+        },
+        "keywords": [
+          "Ravager",
+          "Aeldari",
+          "Kabal",
+          "Faction: Drukhari",
+          "Fly",
+          "Vehicle",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Damaged: 1-4 Wounds Remaining",
+            "description": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+          },
+          {
+            "name": "Eradicate the Foe",
+            "description": "Each time this model makes an attack that targets an enemy unit that is at its Starting Strength, you can re-roll the Hit roll."
+          },
+          {
+            "name": "Agonising Suppression (Pain)",
+            "description": "In your Shooting phase, when you select this model to shoot, you can spend 1 Pain token to Empower this model. While Empowered, after this model has shot, select one enemy unit hit by one or more of those attacks. Until the start of your next turn, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes an attack, subtract 1 from the Hit roll."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Bladevanes",
+            "profiles": [
+              {
+                "name": "Bladevanes",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deep Strike",
+          "Deadly Demise",
+          "Power from Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 100
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 110
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": [
+        {
+          "item": "Dark lance",
+          "points": 5
+        }
+      ]
+    },
+    {
+      "name": "Razorwing Jetfighter",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Razorwing Jetfighter",
+        "points": 170,
+        "stats": {
+          "M": "-",
+          "T": "8",
+          "Sv": "4+",
+          "W": "10",
+          "LD": "7+",
+          "OC": "-",
+          "InSv": "6+"
+        },
+        "keywords": [
+          "Razorwing Jetfighter",
+          "Aeldari",
+          "Faction: Drukhari",
+          "Aircraft",
+          "Vehicle",
+          "Fly",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Ground-attack Craft",
+            "description": "Each time a model in this unit makes a ranged attack that targets an enemy unit (excluding units that can ^^**Fly**^^), add 1 to the Hit roll."
+          },
+          {
+            "name": "Nowhere to Run (Pain)",
+            "description": "In your Shooting phase, when you select this unit to shoot, you can spend 1 Pain token to Empower this unit. While Empowered, after this unit has shot, select one enemy unit (excluding ^^**Monsters**^^ and ^^**Vehicles**^^) hit by one or more of those attacks; until the start of your next turn, that enemy unit is pinned. While a unit is pinned, subtract 2 from that unit's Move characteristic and subtract 2 from Charge rolls made for that unit."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Bladed wings",
+            "profiles": [
+              {
+                "name": "Bladed Wings",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Razorwing missiles",
+            "profiles": [
+              {
+                "name": "Razorwing Missiles - Monoscythe Missiles",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Razorwing Missiles - Neurotoxin Missiles",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6+3",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 2+, Blast"
+                }
+              },
+              {
+                "name": "Razorwing Missiles - Shatterfield Missiles",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Stealth",
+          "Power from Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 170
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Reavers",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Reavers",
+        "points": 75,
+        "stats": {},
+        "keywords": [
+          "Reavers",
+          "Wych Cult",
+          "Aeldari",
+          "Faction: Drukhari",
+          "Fly",
+          "Mounted"
+        ],
+        "abilities": [
+          {
+            "name": "Eviscerating Fly-by",
+            "description": "Each time this unit ends a Normal or Advance move, you can select one enemy unit (excluding ^^**Monster **^^and ^^**Vehicle**^^ units) that it moved over during that move, then roll one D6 for each model in this unit: for each 4+, that enemy unit suffers 1 mortal wound."
+          },
+          {
+            "name": "Matchless Swiftness (Pain)",
+            "description": "In your Movement phase, when you select this unit to Advance, you can spend 1 Pain token to Empower this unit. While Empowered, each time this unit Advances, do not make an Advance roll. Instead, until the end of the phase, add 8\" to the Move characteristic of models in this unit."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Reaver",
+            "profiles": [
+              {
+                "name": "Splinter Rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              },
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
+                }
+              },
+              {
+                "name": "Bladevanes",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lance"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver with Blaster",
+            "profiles": [
+              {
+                "name": "Blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Assault"
+                }
+              },
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
+                }
+              },
+              {
+                "name": "Bladevanes",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lance"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver with Heat Lance",
+            "profiles": [
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
+                }
+              },
+              {
+                "name": "Heat Lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Assault, Melta 3"
+                }
+              },
+              {
+                "name": "Bladevanes",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lance"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Arena Champion",
+            "profiles": [
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
+                }
+              },
+              {
+                "name": "Bladevanes",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lance"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Power from Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 3,
+              "points": 75
+            },
+            {
+              "models": 6,
+              "points": 150
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 3,
+              "points": 85
+            },
+            {
+              "models": 6,
+              "points": 160
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Scourges With Heavy Weapons",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Scourges with Heavy Weapons",
+        "points": 110,
+        "stats": {},
+        "keywords": [
+          "Scourges",
+          "Aeldari",
+          "Faction: Drukhari",
+          "Fly",
+          "Grenades",
+          "Infantry",
+          "Jump Pack",
+          "Blades for Hire",
+          "Scourges with Heavy Weapons"
+        ],
+        "abilities": [
+          {
+            "name": "Airborne Evasion",
+            "description": "In your Shooting phase, after this unit has shot, if it is not within Engagement Range of any enemy units, it can make a Normal move of up to 6\". If it does, until the end of the turn, this unit is not eligible to declare a charge."
+          },
+          {
+            "name": "Winged Strike (Pain)",
+            "description": "In your Shooting phase, when you select this unit to shoot, you can spend 1 Pain token to Empower this unit. While Empowered, each time a model in this unit makes a range attack, you can re-roll the Hit roll."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Scourge with Heavy Weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Solarite",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deep Strike",
+          "Power from Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 5,
+              "points": 110
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 5,
+              "points": 120
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": [
+        {
+          "item": "Haywire blaster",
+          "points": 5
+        },
+        {
+          "item": "Dark lance",
+          "points": 5
+        }
+      ]
+    },
+    {
+      "name": "Scourges With Shardcarbines",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Scourges with Shardcarbines",
+        "points": 75,
+        "stats": {},
+        "keywords": [
+          "Scourges",
+          "Aeldari",
+          "Faction: Drukhari",
+          "Fly",
+          "Grenades",
+          "Infantry",
+          "Jump Pack",
+          "Blades for Hire",
+          "Scourges with Shardcarbines"
+        ],
+        "abilities": [
+          {
+            "name": "Murderous Crossfire",
+            "description": "After this unit has shot, select one enemy unit hit by one or more of those attacks. Until the end of the phase, each time a friendly ^^**Drukhari**^^ unit makes a ranged attack that targets that enemy unit, improve the Armour Penetration characteristic of that attack by 1. The same enemy unit can only be affected by this ability once per turn."
+          },
+          {
+            "name": "Swooping Descent (Pain)",
+            "description": "In your Movement phase, you can spend 1 Pain token to Empower this unit. While Empowered, each time a model in this unit is set up on the battlefield using the Deep Strike ability, it can be set up anywhere on the battlefield that is more than 6\" horizontally away from all enemy units. When doing so, if this unit is set up within 9\" of one or more enemy units, until the end of the turn, it is not eligible to declare a charge."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Scourge with Special Weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Scourge",
+            "profiles": [
+              {
+                "name": "Shardcarbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Solarite",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deep Strike",
+          "Power from Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 5,
+              "points": 75
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 5,
+              "points": 85
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Shadowseer",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Shadowseer",
+        "points": 60,
+        "stats": {
+          "M": "8\"",
+          "T": "3",
+          "Sv": "6+",
+          "W": "4",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Shadowseer",
+          "Character",
+          "Infantry",
+          "Grenades",
+          "Psyker",
+          "Harlequin Allies",
+          "Faction: Harlequins",
+          "Aeldari",
+          "Corsairs and Travelling Players",
+          "Leader"
+        ],
+        "abilities": [
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following unit:\n■ Troupe"
+          },
+          {
+            "name": "Fog of Dreams (Psychic)",
+            "description": "While this model is leading a unit, that unit can only be selected as the target of a ranged attack if the attacking model is within 18\"."
+          },
+          {
+            "name": "Treacherous Illusion (Psychic)",
+            "description": "Melee weapons equipped by enemy models have the [Hazardous] ability while targeting this model's unit."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Miststave",
+            "profiles": [
+              {
+                "name": "Miststave",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "D3",
+                  "Keywords": "Psychic"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Stealth",
+          "Leader",
+          "Battle Focus",
+          "Travelling Players",
+          "Flip Belt",
+          "Disparate Paths"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Skyweavers",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Skyweavers",
+        "points": 105,
+        "stats": {},
+        "keywords": [
+          "Skyweavers",
+          "Fly",
+          "Mounted",
+          "Smoke",
+          "Harlequin Allies",
+          "Aeldari",
+          "Faction: Harlequins",
+          "Corsairs and Travelling Players"
+        ],
+        "abilities": [],
+        "weapons": [
+          {
+            "name": "Skyweaver",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Battle Focus",
+          "Disparate Paths"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Solitaire",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Solitaire",
+        "points": 115,
+        "stats": {
+          "M": "12\"",
+          "T": "3",
+          "Sv": "6+",
+          "W": "4",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Solitaire",
+          "Character",
+          "Epic Hero",
+          "Infantry",
+          "Harlequin Allies",
+          "Faction: Harlequins",
+          "Aeldari",
+          "Corsairs and Travelling Players"
+        ],
+        "abilities": [
+          {
+            "name": "Blitz",
+            "description": "Once per battle, in your Movement phase, before this model makes a Normal move it can use this ability. If it does, until the end of\nthe turn, add 2D6\" to this model’s Move characteristic and add 3 to the\nAttacks characteristic of this model’s Solitaire weapons."
+          },
+          {
+            "name": "Blur of Movement",
+            "description": "This model is eligible to declare a charge in a turn in which it Advanced."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Solitaire Weapons",
+            "profiles": [
+              {
+                "name": "Solitaire Weapons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "9",
+                  "WS": "2+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Precision"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Fights First",
+          "Lone Operative",
+          "Battle Focus",
+          "Flip Belt",
+          "Stealth",
+          "Disparate Paths"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Starfangs",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Starfangs",
+        "points": null,
+        "stats": {},
+        "keywords": [
+          "Vehicle",
+          "Aeldari",
+          "Fly",
+          "Faction: Asuryani",
+          "Ynnari",
+          "Starfangs",
+          "Anhrathe",
+          "Grenades",
+          "Smoke"
+        ],
+        "abilities": [
+          {
+            "name": "Hallucinogen Grenades",
+            "description": "At the start of your opponent’s Shooting phase, this unit can use this ability. If it does, select one ^^**Aeldari**^^ Infantry unit from your army visible to and within 36\" of this unit: until the end of the phase, that unit has the Stealth ability."
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Battle Focus"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Starweaver",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Starweaver",
+        "points": 80,
+        "stats": {
+          "M": "14\"",
+          "T": "6",
+          "Sv": "4+",
+          "W": "6",
+          "LD": "6+",
+          "OC": "2",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Star Weaver",
+          "Dedicated Transport",
+          "Fly",
+          "Smoke",
+          "Vehicle",
+          "Transport",
+          "Aeldari",
+          "Faction: Harlequins",
+          "Harlequin Allies",
+          "Corsairs and Travelling Players"
+        ],
+        "abilities": [
+          {
+            "name": "Rapid Embarkation",
+            "description": "At the end of the Fight phase, if there are no models currently embarked within this **^^Transport^^**, you can select one friendly **^^Harlequins Infantry^^** unit that has 6 or fewer models that is wholly within 6\" of this **^^Transport^^**. Unless that unit is within Engagement Range of one or more enemy units, it can embark within this **^^Transport^^**. That unit can embark within this **TRANSPORT** in a turn it disembarked from this **TRANSPORT**."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Close Combat Weapon",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shuriken Cannon",
+            "profiles": [
+              {
+                "name": "Shuriken Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Lethal Hits"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Firing Deck",
+          "Battle Focus",
+          "Disparate Paths"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Succubus",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Succubus",
+        "points": 50,
+        "stats": {
+          "M": "8\"",
+          "T": "3",
+          "Sv": "6+",
+          "W": "4",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Succubus",
+          "Wych Cult",
+          "Aeldari",
+          "Faction: Drukhari",
+          "Character",
+          "Infantry",
+          "Leader"
+        ],
+        "abilities": [
+          {
+            "name": "Lithe Agility (Pain)",
+            "description": "In your Movement phase when you select this model's unit to Advance, or in your Charge phase before you make a Charge roll for this model's unit, you can spend 1 Pain token to Empower that unit. While that unit is Empowered, you can re-roll Advance and Charge rolls made for that unit."
+          },
+          {
+            "name": "Storm of Blades",
+            "description": "While this model is leading a unit, melee weapons equipped by models in that unit have the ^^**[Sustained Hits 1]**^^ ability."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following unit:\n■ Wyches"
+          },
+          {
+            "name": "Bloody Spectacle",
+            "description": "Each time this model makes a melee attack that targets a ^^**Character**^^ unit, you can re-roll the Hit roll and you can re-roll the Wound roll. Each time this model's unit destroys a ^^**Character**^^ model, you gain 1CP."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Archite glaive and agoniser",
+            "profiles": [
+              {
+                "name": "Archite glaive and agoniser",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "7",
+                  "WS": "2+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Precision"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Power from Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 50
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Wyches"
+      ],
+      "wargear_options": null
+    },
+    {
+      "name": "Talos",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Talos",
+        "points": 75,
+        "stats": {},
+        "keywords": [
+          "Talos",
+          "Aeldari",
+          "Haemonculus Covens",
+          "Faction: Drukhari",
+          "Monster",
+          "Fly"
+        ],
+        "abilities": [
+          {
+            "name": "Torture Device",
+            "description": "Each time this unit destroys an enemy unit, you gain 1 additional Pain token."
+          },
+          {
+            "name": "Devoted to Pain",
+            "description": "If a model in this unit is equipped with 2 macro-scalpels, those weapons have the ^^**[Twin-Linked]**^^ ability."
+          },
+          {
+            "name": "Mindless Killing Machines (Pain)",
+            "description": "At the start of the Fight phase, you can spend 1 Pain token to Empower this unit. While Empowered, each time a model in this unit is destroyed by a melee attack, if that model has not fought this phase, roll one D6. On a 2+, do not remove it from play; that destroyed model can fight after the attacking unit has finished making its attacks, and it is then removed from play."
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Deadly Demise",
+          "Feel No Pain",
+          "Power from Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 75
+            },
+            {
+              "models": 2,
+              "points": 150
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 85
+            },
+            {
+              "models": 2,
+              "points": 160
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": [
+        {
+          "item": "Twin haywire blaster",
+          "points": 5
+        }
+      ]
+    },
+    {
+      "name": "Troupe",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Troupe",
+        "points": 85,
+        "stats": {},
+        "keywords": [
+          "Troupe",
+          "Infantry",
+          "Grenades",
+          "Harlequin Allies",
+          "Aeldari",
+          "Faction: Harlequins",
+          "Corsairs and Travelling Players"
+        ],
+        "abilities": [
+          {
+            "name": "Dance of Death",
+            "description": "At the start of the Fight phase, select one of the following abilities for this unit to gain until the end of the phase:\n■ Hero's Prowess: Each time a model in this unit makes an attack, re-roll a Hit roll of 1.\n■ Villain's Doom: Each time a model in this unit makes an attack, add 1 to the Wound roll.\n■ Trickster's Grace: Each time an attack targets this unit, subtract 1 from the Hit roll."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Player with Harlequin's Blade",
+            "profiles": [
+              {
+                "name": "Shuriken Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Player with Harlequin's Special Weapon",
+            "profiles": [
+              {
+                "name": "Shuriken Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              },
+              {
+                "name": "Harlequin's Special Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Player with Fusion Pistol",
+            "profiles": [
+              {
+                "name": "Fusion Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Assault, Melta 2, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Player with Neuro Disruptor",
+            "profiles": [
+              {
+                "name": "Neuro Disruptor",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-infantry 2+, Assault, Pistol"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Battle Focus",
+          "Flip Belt"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Troupe Master",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Troupe Master",
+        "points": 75,
+        "stats": {
+          "M": "8\"",
+          "T": "3",
+          "Sv": "6+",
+          "W": "4",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Troupe Master",
+          "Infantry",
+          "Character",
+          "Grenades",
+          "Harlequin Allies",
+          "Faction: Harlequins",
+          "Aeldari",
+          "Corsairs and Travelling Players",
+          "Leader"
+        ],
+        "abilities": [
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following unit:\n■ Troupe"
+          },
+          {
+            "name": "Choreographer of War",
+            "description": "While this model is leading a unit, each time a model in that unit makes a Pile In or Consolidate move, it can move up to 6\" instead of 3\". In addition, it does not need to end that move closer to the closest enemy model, provided it ends as close as possible to the closest enemy unit."
+          },
+          {
+            "name": "Cegorach’s Favour:",
+            "description": "Each time this model makes a melee attack you can re-roll a Hit roll of 1 and add 1 to the Wound roll."
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Battle Focus",
+          "Leader",
+          "Disparate Paths",
+          "Flip Belt",
+          "Travelling Players"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Venom",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Venom",
+        "points": 70,
+        "stats": {
+          "M": "14\"",
+          "T": "6",
+          "Sv": "4+",
+          "W": "6",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": "6+"
+        },
+        "keywords": [
+          "Venom",
+          "Aeldari",
+          "Faction: Drukhari",
+          "Fly",
+          "Dedicated Transport",
+          "Transport",
+          "Vehicle",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Aerialists",
+            "description": "At the end of the Fight phase, if there are no models currently embarked within this **TRANSPORT**, you can select one friendly **DRUKHARI INFANTRY** unit that has 6 or fewer models that is wholly within 6\" of this **TRANSPORT** (you cannot select a unit that can **FLY**). Unless that unit is within Engagement Range of one or more enemy units, it can embark within this **TRANSPORT**. That unit can embark within this **TRANSPORT** in a turn it disembarked from this **TRANSPORT**."
+          },
+          {
+            "name": "Rapid Deployment (Pain)",
+            "description": "In your Movement phase, when you select this model to Advance, you can spend 1 Pain token to Empower this model. While Empowered, units can disembark from this model after it has Advanced. Units that do so count as having made a Normal move that phase, and cannot declare a charge in the same turn, but can otherwise act normally in the remainder of the turn."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Bladevanes",
+            "profiles": [
+              {
+                "name": "Bladevanes",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Cannon",
+            "profiles": [
+              {
+                "name": "Splinter Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-Infantry 3+, Sustained hits 1"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Firing Deck",
+          "Stealth",
+          "Deep Strike",
+          "Power from Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 70
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Voidraven Bomber",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Voidraven Bomber",
+        "points": 245,
+        "stats": {
+          "M": "20+\"",
+          "T": "9",
+          "Sv": "4+",
+          "W": "12",
+          "LD": "7+",
+          "OC": "0",
+          "InSv": "6+"
+        },
+        "keywords": [
+          "Voidraven",
+          "Aeldari",
+          "Faction: Drukhari",
+          "Aircraft",
+          "Vehicle",
+          "Fly",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Damaged: 1-4 Wounds Remaining",
+            "description": "While this model has 1-4 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+          },
+          {
+            "name": "Void Mine",
+            "description": "At the end of your opponent’s Fight phase, select one **visible** enemy model (excluding **Lone Operative** units) within 24\" of this unit, and roll one D6 for each enemy unit within D6\" of that model:\n- For each 4+, that enemy unit suffers D6 **mortal wounds**."
+          },
+          {
+            "name": "Nowhere to Hide (Pain)",
+            "description": "In your Shooting phase, when you select this unit to shoot, you can spend 1 Pain token to Empower this unit. While Empowered, after this unit has shot, select one enemy unit hit by one or more of those attacks. Until the end of the phase, that enemy unit cannot have the Benefit of Cover."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Bladed wings",
+            "profiles": [
+              {
+                "name": "Bladed Wings",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Voidraven Missiles",
+            "profiles": [
+              {
+                "name": "Voidraven Missiles -  Implosion Missiles",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Voidraven Missiles - Shatterfield Missiles",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Stealth",
+          "Power from Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 245
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Voidweaver",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Voidweaver",
+        "points": 115,
+        "stats": {
+          "M": "14\"",
+          "T": "6",
+          "Sv": "4+",
+          "W": "6",
+          "LD": "6+",
+          "OC": "2",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Voidweaver",
+          "Fly",
+          "Vehicle",
+          "Harlequin Allies",
+          "Faction: Harlequins",
+          "Aeldari",
+          "Corsairs and Travelling Players"
+        ],
+        "abilities": [
+          {
+            "name": "Polychromatic Camoflage",
+            "description": "This unit can only be selected as the target of a ranged attack if the attacking model is within 18\"."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Close Combat Weapon",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shuriken Cannon",
+            "profiles": [
+              {
+                "name": "Shuriken Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Lethal Hits"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Battle Focus",
+          "Disparate Paths",
+          "Stealth"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Wracks",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Wracks",
+        "points": 60,
+        "stats": {},
+        "keywords": [
+          "Wracks",
+          "Haemonculus Covens",
+          "Aeldari",
+          "Faction: Drukhari",
+          "Battleline",
+          "Infantry"
+        ],
+        "abilities": [
+          {
+            "name": "Torturer’s Craft",
+            "description": "In your Shooting phase and the Fight phase, after this unit has shot or fought, select one enemy unit (excluding ^^**Vehicles**^^) hit by one or more of those attacks. That units must take a Battle-shock test."
+          },
+          {
+            "name": "Experimental Enhancements (Pain)",
+            "description": "In the Fight phase, when you select this unit to fight, you can spend 1 Pain token to Empower this unit. Each time you do, select one of the following to apply to this unit until the end of the phase:\n\n■ Melee weapons equipped by non-^^**Character**^^ models in this unit have an Attacks characteristic of 3.\n■ Melee weapons equipped by non-^^**Character**^^ models in this unit have an Attacks characteristic of 4 and the ^^**[Hazardous]**^^ ability."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Wrack with Hexrifle",
+            "profiles": [
+              {
+                "name": "Torturer's tool",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+"
+                }
+              },
+              {
+                "name": "Hexrifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Heavy, Precision"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Wrack with Liquifier Gun",
+            "profiles": [
+              {
+                "name": "Torturer's tool",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+"
+                }
+              },
+              {
+                "name": "Liquifier Gun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Wrack with Ossefactor",
+            "profiles": [
+              {
+                "name": "Torturer's tool",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+"
+                }
+              },
+              {
+                "name": "Ossefactor",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Anti-Infantry 4+, Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Wrack with Stinger Pistol",
+            "profiles": [
+              {
+                "name": "Torturer's tool",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+"
+                }
+              },
+              {
+                "name": "Stinger Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-infantry 2+, Pistol"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Power from Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 5,
+              "points": 60
+            },
+            {
+              "models": 8,
+              "points": 100
+            },
+            {
+              "models": 10,
+              "points": 120
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Wyches",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Wyches",
+        "points": 90,
+        "stats": {},
+        "keywords": [
+          "Wyches",
+          "Wych Cult",
+          "Aeldari",
+          "Faction: Drukhari",
+          "Battleline",
+          "Infantry",
+          "Grenades"
+        ],
+        "abilities": [
+          {
+            "name": "No Escape",
+            "description": "Each time an enemy unit (excluding ^^**Monsters**^^ and ^^**Vehicles**^^) within Engagement Range of one or more units from your army with this ability Falls Back, all models in that enemy unit must take Desperate Escape test. When doing so, if that enemy unit is Battle-shocked, subtract 1 from each of those tests."
+          },
+          {
+            "name": "Acrobatic Gladiators (Pain)",
+            "description": "At the start of your Charge phase, you can spend 1 Pain token to Empower this unit. While Empowered, this unit is eligible to declare a charge in a turn in which it Advanced or Fell Back."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Wych",
+            "profiles": [
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
+                }
+              },
+              {
+                "name": "Hekatarii Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Wych w/ Gladiatorial weapons",
+            "profiles": [
+              {
+                "name": "Gladiatorial weapons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Power from Pain",
+          "Invulnerable Save (4+*)"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 10,
+              "points": 90
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    }
+  ],
+  "_meta": {
+    "bsdata_faction": "Xenos - Drukhari",
+    "bsdata_revision": 1,
+    "bsdata_units": 39,
+    "mfm_units": 23,
+    "merged_units": 39
+  }
+}

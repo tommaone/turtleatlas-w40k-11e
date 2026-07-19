@@ -1,0 +1,3124 @@
+{
+  "faction": "Leagues of Votann",
+  "slug": "leagues-of-votann",
+  "version": "1.0",
+  "firstSeen": "2026-06-23",
+  "detachments": [
+    {
+      "name": "Armoured Trailblazers",
+      "dp": 1,
+      "objective": "DISRUPTION",
+      "enhancements": [
+        {
+          "name": "Optimised Attack Lines (Upgrade)",
+          "points": 15
+        },
+        {
+          "name": "Saturation Rounds (Upgrade)",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "name": "Brandfast Oathband",
+      "dp": 2,
+      "objective": "TAKE AND HOLD",
+      "enhancements": [
+        {
+          "name": "Precursive Judgement",
+          "points": 15
+        },
+        {
+          "name": "Signature Restoration",
+          "points": 5
+        },
+        {
+          "name": "Tactical Alchemy",
+          "points": 10
+        },
+        {
+          "name": "Trivärg Cyber Implant",
+          "points": 40
+        }
+      ]
+    },
+    {
+      "name": "Dêlve Assault Shift",
+      "dp": 2,
+      "objective": "PURGE THE FOE",
+      "enhancements": [
+        {
+          "name": "Dêlvewerke Navigator",
+          "points": 25
+        },
+        {
+          "name": "Multiwave System Jammer",
+          "points": 10
+        },
+        {
+          "name": "Piledriver",
+          "points": 15
+        },
+        {
+          "name": "Quake Supervisor",
+          "points": 20
+        }
+      ]
+    },
+    {
+      "name": "Farseekers",
+      "dp": 1,
+      "objective": "RECONNAISSANCE",
+      "enhancements": [
+        {
+          "name": "Pan-spectral Lockons (Upgrade)",
+          "points": 10
+        },
+        {
+          "name": "Shroudwërke Talismans (Upgrade)",
+          "points": 15
+        }
+      ]
+    },
+    {
+      "name": "Hearthband",
+      "dp": 3,
+      "objective": "PRIORITY ASSETS",
+      "unique": "Hearthband",
+      "enhancements": [
+        {
+          "name": "Bastion Shield",
+          "points": 25
+        },
+        {
+          "name": "High Kâhl",
+          "points": 30
+        },
+        {
+          "name": "Ironskein",
+          "points": 10
+        },
+        {
+          "name": "Quake Multigenerator",
+          "points": 15
+        }
+      ]
+    },
+    {
+      "name": "Hearthfyre Arsenal",
+      "dp": 2,
+      "objective": "PRIORITY ASSETS",
+      "enhancements": [
+        {
+          "name": "Calculated Tenacity",
+          "points": 15
+        },
+        {
+          "name": "Fârstrydr Node",
+          "points": 20
+        },
+        {
+          "name": "Graviton Vault",
+          "points": 5
+        },
+        {
+          "name": "Mantle of Elders",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "name": "Hearthguard Covenant",
+      "dp": 1,
+      "objective": "PRIORITY ASSETS",
+      "unique": "Hearthband",
+      "enhancements": [
+        {
+          "name": "High Kâhl",
+          "points": 30
+        },
+        {
+          "name": "Ironskein",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "name": "Mercenary Oathband",
+      "dp": 2,
+      "objective": "TAKE AND HOLD",
+      "enhancements": [
+        {
+          "name": "Asset Manipulator",
+          "points": 25
+        },
+        {
+          "name": "Etacarn SB9 Targeting Implant",
+          "points": 15
+        },
+        {
+          "name": "Mercenary Prospector",
+          "points": 20
+        },
+        {
+          "name": "Metaphysical Brokerage",
+          "points": 20
+        }
+      ]
+    },
+    {
+      "name": "Needgaârd Oathband",
+      "dp": 2,
+      "objective": "PURGE THE FOE",
+      "enhancements": [
+        {
+          "name": "Ancestral Crest",
+          "points": 15
+        },
+        {
+          "name": "Dead Reckoning",
+          "points": 10
+        },
+        {
+          "name": "Iron Ambassador",
+          "points": 5
+        },
+        {
+          "name": "Oathbound Speculator",
+          "points": 30
+        }
+      ]
+    },
+    {
+      "name": "Persecution Prospect",
+      "dp": 2,
+      "objective": "DISRUPTION",
+      "enhancements": [
+        {
+          "name": "Eye for Weakness",
+          "points": 25
+        },
+        {
+          "name": "Nomad Strategist",
+          "points": 20
+        },
+        {
+          "name": "Surgical Saboteur",
+          "points": 10
+        },
+        {
+          "name": "Writ of Acquisition",
+          "points": 10
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "name": "Arkanyst Evaluator",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Arkanyst Evaluator",
+        "points": 70,
+        "stats": {
+          "M": "5\"",
+          "T": "5",
+          "Sv": "3+",
+          "W": "4",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": ""
+        },
+        "keywords": [
+          "Character",
+          "Infantry",
+          "Faction: Leagues of Votann",
+          "Arkanyst Evaluator"
+        ],
+        "abilities": [
+          {
+            "name": "Science Guild Support",
+            "description": "While this model is within 3\" of one or more other friendly ^^**Leagues of Votann Infantry**^^ units (excluding units with the Lone Operative ability), this model has the Lone Operative ability."
+          },
+          {
+            "name": "Resource Transmutation",
+            "description": "Once per turn, in your Shooting phase, one model with this ability can choose to use it when it is selected to shoot. If it does, you must spend 1YP and, until the end of the phase, ranged weapons equipped by that model have the [^^**Sustained Hits 1**^^] ability and, after that model has shot this phase, if one or more enemy units were destroyed by those attacks, you can gain up to 2YP."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Transmatter inverter",
+            "profiles": [
+              {
+                "name": "Transmatter inverter - half charge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "3",
+                  "BS": "2+",
+                  "S": "8",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
+                }
+              },
+              {
+                "name": "Transmatter inverter - full charge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "2+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Hazardous, Rapid Fire 2"
+                }
+              },
+              {
+                "name": "Transmatter inverter - overcharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "2+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "Hazardous, Overcharge, Rapid Fire 3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Prioritised Efficiency",
+          "Deadly Demise",
+          "Guerrilla Adepts"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 70
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Berehk Stornbröw",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Berehk Stornbröw",
+        "points": 95,
+        "stats": {
+          "M": "6\"",
+          "T": "6",
+          "Sv": "5+",
+          "W": "5",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": "5+"
+        },
+        "keywords": [
+          "Epic Hero",
+          "Infantry",
+          "Character",
+          "Cthonian",
+          "Berehk Stornbröw",
+          "Faction: Leagues of Votann"
+        ],
+        "abilities": [
+          {
+            "name": "Break the Foe",
+            "description": "Melee weapons equipped by models in this unit have the [^^Sustained Hits 1^^] ability."
+          },
+          {
+            "name": "Relentless Avalanche",
+            "description": "You can target this model's unit with the Heroic Intervention Stratagem for 0CP, and can do so even if you have already targeted a different unit with that Stratagem this phase."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units: ^^**Cthonian Beserks**^^"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Kromlôk's Revenge",
+            "profiles": [
+              {
+                "name": "Kromlôk's Revenge - graviton strikes",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "4",
+                  "Keywords": "Anti-Monster 3+, Anti-Vehicle 3+, Sustained Hits 1"
+                }
+              },
+              {
+                "name": "Kromlôk's Revenge - plasma sweeps",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "2+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Warforge gauntlets",
+            "profiles": [
+              {
+                "name": "Warforge gauntlets",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "2+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Extra Attacks, Sustained Hits 1"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Prioritised Efficiency",
+          "Leader",
+          "Feel No Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 95
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Cthonian Beserks"
+      ],
+      "wargear_options": null
+    },
+    {
+      "name": "Breaching Robot",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Breaching Robot",
+        "points": 35,
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "4+",
+          "W": "3",
+          "LD": "6+",
+          "OC": "0",
+          "InSv": ""
+        },
+        "keywords": [
+          "Vehicle",
+          "Faction: Unaligned Forces",
+          "Breaching Robot",
+          "Allies: Unaligned Forces"
+        ],
+        "abilities": [
+          {
+            "name": "Limited Loadout",
+            "description": "This model cannot attempt to operate Hatchways and cannot perform Tactical Manoeuvres."
+          },
+          {
+            "name": "Assault Robot",
+            "description": "In the Deploy Armies step, when setting up a unit from your army within an Entry Zone, you can set this model up alongside that unit as if it was part of it, using the same Entry Zone."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Cutting blade and cutting gear",
+            "profiles": [
+              {
+                "name": "Cutting blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": []
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Brôkhyr Iron-Master",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Brôkhyr Iron-master",
+        "points": 75,
+        "stats": {},
+        "keywords": [
+          "Faction: Leagues of Votann",
+          "Infantry",
+          "Character",
+          "Brôkhyr"
+        ],
+        "abilities": [
+          {
+            "name": "Multi-spectral visor",
+            "description": "Each time a model in this unit makes a ranged attack, re-roll a Wound roll of 1."
+          },
+          {
+            "name": "Brôkhyr Guild Support",
+            "description": "While this unit is within 3\" of one or more friendly ^^**Leagues of Votann Vehicle**^^ or ^^**Ironkin Steeljacks**^^ units, if this unit is not an attached unit, it has the Lone Operative ability."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following unit:\n- HEARTHKYN WARRIORS\n- BRÔKHYR THUNDERKYN"
+          },
+          {
+            "name": "Unit Composition",
+            "description": "If this unit’s Brôkhyr Iron‑master model is ever destroyed, all of this unit’s remaining E‑COG models are also destroyed. While embarking within a ^^**Transport^^** and while embarked within a ^^**Transport^^**, each E‑COG model takes up the space of 0 models."
+          },
+          {
+            "name": "Forgewrought Expertise",
+            "description": "At the end of your Movement phase, this model can repair one friendly ^^**Leagues of Votann Vehicle, Exoframe^^** or ^^**Ironkin Steeljacks^^** unit within 3\" of it. One model in that unit regains up to D3 lost wounds, or up to 3 lost wounds if this unit contains an Ironkin Assistant model. Each unit can only be repaired once per turn."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "E-COG",
+            "profiles": [
+              {
+                "name": "Autoch-pattern bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "E-COG",
+            "profiles": [
+              {
+                "name": "Plasma torch",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "6",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "E-COG",
+            "profiles": [
+              {
+                "name": "Manipulator arms",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ironkyn Assistant",
+            "profiles": [
+              {
+                "name": "Las-beam cutter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-3",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Prioritised Efficiency",
+          "Guerrilla Adepts"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 5,
+              "points": 75
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Brôkhyr Thunderkyn",
+        "Hearthkyn Warriors"
+      ],
+      "wargear_options": null
+    },
+    {
+      "name": "Brôkhyr Thunderkyn",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Brôkhyr Thunderkyn",
+        "points": 80,
+        "stats": {
+          "M": "5\"",
+          "T": "6",
+          "Sv": "3+",
+          "W": "2",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: Leagues of Votann",
+          "Infantry",
+          "Exoframe",
+          "Thunderkyn",
+          "Brôkhyr"
+        ],
+        "abilities": [
+          {
+            "name": "Breaching Fire",
+            "description": "In your Shooting phase, after this unit has shot, select one enemy unit hit by one or more of those attacks. Until the start of your next Shooting phase, that enemy unit cannot have the Benefit of Cover."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Brôkhyr Thunderkyn",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Prioritised Efficiency",
+          "Guerrilla Adepts"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 3,
+              "points": 80
+            },
+            {
+              "models": 6,
+              "points": 160
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 3,
+              "points": 90
+            },
+            {
+              "models": 6,
+              "points": 170
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Buri Aegnirssen",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Buri Aegnirssen",
+        "points": 95,
+        "stats": {
+          "M": "5\"",
+          "T": "6",
+          "Sv": "3+",
+          "W": "5",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Epic Hero",
+          "Infantry",
+          "Character",
+          "Buri Aegnirssen",
+          "Faction: Leagues of Votann"
+        ],
+        "abilities": [
+          {
+            "name": "Grudge-fuelled Fortitude",
+            "description": "The first time this model is destroyed, at the end of the phase, roll one D6: on a 2+, set this model back up on the battlefield as close as possible to where it was destroyed and not within Engagement Range of one or more enemy units, with its full wounds remaining."
+          },
+          {
+            "name": "Unhinged Vengeance",
+            "description": "In your opponent’s Shooting phase, when an enemy unit has shot, if this model lost one or more wounds as a result of those attacks, this unit can make a **surge move** of up to D6+2\"."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Autoch-pattern bolt pistol",
+            "profiles": [
+              {
+                "name": "Autoch-pattern bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "2+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bane",
+            "profiles": [
+              {
+                "name": "Bane - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "2+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "Precision"
+                }
+              },
+              {
+                "name": "Bane - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "10",
+                  "WS": "2+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Lone Operative",
+          "Stealth",
+          "Prioritised Efficiency",
+          "Guerrilla Adepts"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 95
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Cthonian Beserks",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Cthonian Beserks",
+        "points": 100,
+        "stats": {},
+        "keywords": [
+          "Faction: Leagues of Votann",
+          "Infantry",
+          "Cthonian",
+          "Beserks"
+        ],
+        "abilities": [
+          {
+            "name": "Cyberstimms",
+            "description": "Each time a model in this unit is destroyed by a melee attack, if that model has not fought this phase, roll one D6, adding one to the result if units from your army have Fortify Takeover: on a 4+, do not remove it from play. The destroyed model can fight after the attacking unit has finished making its attacks, and is then removed from play."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Beserk w/ twin concussion gauntlets",
+            "profiles": [
+              {
+                "name": "Twin concussion gauntlets",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "4+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Beserk w/ mole grenade launcher",
+            "profiles": [
+              {
+                "name": "Mole grenade launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Blast, Indirect Fire"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Prioritised Efficiency",
+          "Feel No Pain",
+          "Guerrilla Adepts",
+          "Deep Strike"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 5,
+              "points": 100
+            },
+            {
+              "models": 10,
+              "points": 200
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Cthonian Earthshakers",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Cthonian Earthshakers",
+        "points": 110,
+        "stats": {},
+        "keywords": [
+          "Infantry",
+          "Artillery",
+          "Cthonian",
+          "Earthshakers",
+          "Faction: Leagues of Votann"
+        ],
+        "abilities": [],
+        "weapons": [
+          {
+            "name": "Cthonian Earthshaker",
+            "profiles": [
+              {
+                "name": "Plasma picks",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Autoch-pattern bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Prioritised Efficiency",
+          "Guerrilla Adepts"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 2,
+              "points": 110
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Einhyr Champion",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Einhyr Champion",
+        "points": 65,
+        "stats": {
+          "M": "5\"",
+          "T": "5",
+          "Sv": "2+",
+          "W": "5",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: Leagues of Votann",
+          "Infantry",
+          "Character",
+          "Exoarmour",
+          "Einhyr Champion"
+        ],
+        "abilities": [
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following unit:\n- EINHYR HEARTHGUARD"
+          },
+          {
+            "name": "Exemplar of the Einhyr",
+            "description": "While this model is leading a unit, add 1 to Advance and Charge rolls made for that unit."
+          },
+          {
+            "name": "Mass Driver Accelerators",
+            "description": "Each time this model ends a Charge move, you can select one enemy unit within Engagement Range of this model and roll one D6: on a 2-5, that enemy unit suffers D3 mortal wounds; on a 6, that enemy unit suffers D3+3 mortal wounds."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Autoch-pattern combi-bolter",
+            "profiles": [
+              {
+                "name": "Autoch-pattern combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "4",
+                  "BS": "2+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Prioritised Efficiency",
+          "Leader",
+          "Guerrilla Adepts"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 65
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Einhyr Hearthguard"
+      ],
+      "wargear_options": null
+    },
+    {
+      "name": "Einhyr Hearthguard",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Einhyr Hearthguard",
+        "points": 130,
+        "stats": {},
+        "keywords": [
+          "Faction: Leagues of Votann",
+          "Infantry",
+          "Exoarmour",
+          "Einhyr Hearthguard"
+        ],
+        "abilities": [
+          {
+            "name": "Decisive Destruction",
+            "description": "Each time a model in this unit makes a ranged attack that targets the closest eligible target, re-roll a Hit roll of 1."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Einhyr Hearthguard",
+            "profiles": [
+              {
+                "name": "Exo-armour grenade launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hesyr",
+            "profiles": [
+              {
+                "name": "Exo-armour grenade launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Prioritised Efficiency",
+          "Guerrilla Adepts"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 5,
+              "points": 130
+            },
+            {
+              "models": 10,
+              "points": 270
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 5,
+              "points": 140
+            },
+            {
+              "models": 10,
+              "points": 280
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Grimnyr",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Grimnyr",
+        "points": 65,
+        "stats": {},
+        "keywords": [
+          "Faction: Leagues of Votann",
+          "Infantry",
+          "Character"
+        ],
+        "abilities": [
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following unit:\n- HEARTHKYN WARRIORS"
+          },
+          {
+            "name": "Fortify (Psychic)",
+            "description": "While this model is leading a unit, models in that unit have the Feel No Pain 5+ ability."
+          },
+          {
+            "name": "Grimnyr's Regard",
+            "description": "Once per battle, at the start of any phase, you can select one friendly ^^**Leagues of Votann**^^ unit that is Battle-shocked and within 12\" of this unit's ^^**Grimnyr**^^ model. That unit is no longer Battle-shocked."
+          },
+          {
+            "name": "Unit Composition",
+            "description": "If this unit’s Grimnyr model is ever destroyed, all of this unit’s remaining CORV models are also destroyed. While embarking within a ^^**Transport^^** and while embarked within a ^^**Transport^^**, each CORV model takes up the space of 0 models.’"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "CORV",
+            "profiles": [
+              {
+                "name": "Autoch-pattern bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Prioritised Efficiency",
+          "Leader",
+          "Guerrilla Adepts"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 3,
+              "points": 65
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Hearthkyn Warriors"
+      ],
+      "wargear_options": null
+    },
+    {
+      "name": "Hearthkyn Warriors",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Hearthkyn Warriors",
+        "points": 100,
+        "stats": {
+          "M": "5\"",
+          "T": "5",
+          "Sv": "4+",
+          "W": "1",
+          "LD": "7+",
+          "OC": "2",
+          "InSv": "5+"
+        },
+        "keywords": [
+          "Faction: Leagues of Votann",
+          "Infantry",
+          "Battleline",
+          "Grenades",
+          "Hearthkyn Warriors"
+        ],
+        "abilities": [
+          {
+            "name": "Luck Has, Need Keeps, Toil Earns",
+            "description": "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control, until your opponent's Level of Control over that is greater than yours at the end of a phase."
+          },
+          {
+            "name": "Pan-spectral Scanning",
+            "description": "Each time a model in this unit makes a ranged attack, re-roll a Hit roll of 1."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Hearthkyn Warrior w/ bolter",
+            "profiles": [
+              {
+                "name": "Autoch-pattern bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Autoch-pattern bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hearthkyn Warrior w/ ion blaster",
+            "profiles": [
+              {
+                "name": "Autoch-pattern bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Ion blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hearthkyn Warrior w/ plasma knife",
+            "profiles": [
+              {
+                "name": "Plasma knife",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Autoch-pattern bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Theyn",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Theyn's melee weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Autoch-pattern bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Prioritised Efficiency",
+          "Guerrilla Adepts",
+          "Feel No Pain"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 10,
+              "points": 100
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Hekaton Land Fortress",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Hekaton Land Fortress",
+        "points": 250,
+        "stats": {
+          "M": "10\"",
+          "T": "12",
+          "Sv": "2+",
+          "W": "16",
+          "LD": "7+",
+          "OC": "5",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: Leagues of Votann",
+          "Vehicle",
+          "Transport",
+          "Hekaton Land Fortress",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "MultiCOG Targeting",
+            "description": "Each time this model makes a ranged attack, you can ignore any or all modifiers to the following: that attack's Ballistic Skill characteristic, the Hit roll."
+          },
+          {
+            "name": "Damaged: 1-5 wounds remaining",
+            "description": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Armoured wheels",
+            "profiles": [
+              {
+                "name": "Armoured wheels",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "4+",
+                  "S": "8",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "MATR autocannon",
+            "profiles": [
+              {
+                "name": "MATR autocannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "6",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Assault, Sustained Hits 1"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Prioritised Efficiency",
+          "Deadly Demise",
+          "Guerrilla Adepts",
+          "Firebase Control (Aura)"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,1]",
+          "label": "Your 1st Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 250
+            }
+          ]
+        },
+        {
+          "range": "[2,)",
+          "label": "Your 2nd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 265
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Hernkyn Pioneers",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Hernkyn Pioneers",
+        "points": 80,
+        "stats": {
+          "M": "12\"",
+          "T": "6",
+          "Sv": "4+",
+          "W": "3",
+          "LD": "7+",
+          "OC": "2",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: Leagues of Votann",
+          "Mounted",
+          "Grenades",
+          "Fly",
+          "Pioneers",
+          "Hernkyn"
+        ],
+        "abilities": [
+          {
+            "name": "Outflanking Mag-Riders",
+            "description": "At the end of your opponent’s turn, if this unit is wholly within 9\" of one or more battlefield edges and not within Engagement Range of one or more enemy units, you can remove it from the battlefield and place it into Strategic Reserves."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Hernkyn Pioneer",
+            "profiles": [
+              {
+                "name": "Bolt revolver",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Bolt shotgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault"
+                }
+              },
+              {
+                "name": "Magna-coil autocannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Plasma knife",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hernkyn Pioneer w/ comms array",
+            "profiles": [
+              {
+                "name": "Bolt revolver",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Bolt shotgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault"
+                }
+              },
+              {
+                "name": "Magna-coil autocannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Plasma knife",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hernkyn Pioneer w/ pan-spectral scanner",
+            "profiles": [
+              {
+                "name": "Bolt revolver",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Bolt shotgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault"
+                }
+              },
+              {
+                "name": "Magna-coil autocannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Plasma knife",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hernkyn Pioneer w/ searchlight",
+            "profiles": [
+              {
+                "name": "Bolt revolver",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Bolt shotgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault"
+                }
+              },
+              {
+                "name": "Magna-coil autocannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Plasma knife",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Prioritised Efficiency",
+          "Scouts",
+          "Guerrilla Adepts"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 3,
+              "points": 80
+            },
+            {
+              "models": 6,
+              "points": 160
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 3,
+              "points": 90
+            },
+            {
+              "models": 6,
+              "points": 170
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Hernkyn Yaegirs",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Hernkyn Yaegirs",
+        "points": 90,
+        "stats": {
+          "M": "6\"",
+          "T": "5",
+          "Sv": "5+",
+          "W": "1",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: Leagues of Votann",
+          "Infantry",
+          "Grenades",
+          "Yaegirs",
+          "Hernkyn"
+        ],
+        "abilities": [
+          {
+            "name": "Pragmatic Hunters",
+            "description": "In your opponent's Movement phase, if an enemy unit ends a move within 8” of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to D6”.'"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Hernkyn Yaegir w/ bolt shotgun",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Bolt shotgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hernkyn Yaegir w/ APM launcher",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "APM launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "D6",
+                  "Keywords": "Anti-MONSTER 3+, Anti-VEHICLE 3+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hernkyn Yaegir w/ magna-coil rifle",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Magna-coil rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Ignores Cover, Precision"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hernkyn Yaegir w/ revolver and knife",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Bolt revolver",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Plasma knife",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Yaegir Theyn",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Prioritised Efficiency",
+          "Infiltrators",
+          "Guerrilla Adepts"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 10,
+              "points": 90
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Ironkin Steeljacks With Heavy Volkanite Disintegrators",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Ironkin Steeljacks with Heavy Volkanite Disintegrators",
+        "points": 80,
+        "stats": {
+          "M": "5\"",
+          "T": "6",
+          "Sv": "2+",
+          "W": "3",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: Leagues of Votann",
+          "Infantry",
+          "Ironkin Steeljacks",
+          "Ironkin Steeljacks with Heavy Volkanite Disintegrators"
+        ],
+        "abilities": [
+          {
+            "name": "Purge Response",
+            "description": "Each time you target this unit with the Fire Overwatch Stratagem, hits are scored on unmodified Hit rolls of 5+ while resolving that Stratagem. If units from your army have Fortify Takeover, hits are scored on unmodified Hit rolls of 4+ while resolving that Stratagem instead."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Ironkin Steeljack",
+            "profiles": [
+              {
+                "name": "Heavy volkanite disintegrator",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "6",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              },
+              {
+                "name": "Plasma knife",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Guerrilla Adepts",
+          "Prioritised Efficiency"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 3,
+              "points": 80
+            },
+            {
+              "models": 6,
+              "points": 160
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 3,
+              "points": 90
+            },
+            {
+              "models": 6,
+              "points": 170
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Ironkin Steeljacks With Melee Weapons",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Ironkin Steeljacks with Melee Weapons",
+        "points": 80,
+        "stats": {
+          "M": "5\"",
+          "T": "6",
+          "Sv": "2+",
+          "W": "3",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: Leagues of Votann",
+          "Infantry",
+          "Ironkin Steeljacks",
+          "Ironkin Steeljacks with Melee Weapons"
+        ],
+        "abilities": [
+          {
+            "name": "Merciless Eradication",
+            "description": "Each time an enemy unit (excluding ^^**Monsters^^** and ^^**Vehicles^^**) that is within Engagement Range of this unit Falls Back, all models in that enemy unit must take a Desperate Escape test. When doing so, if that enemy unit is Battle-shocked, subtract 1 from each of those tests."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Ironkin Steeljack w/ concussion gauntlet",
+            "profiles": [
+              {
+                "name": "Autoch-pattern bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Concussion gauntlet",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Lethal Hits"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ironkin Steeljack w/ plasma sword",
+            "profiles": [
+              {
+                "name": "Autoch-pattern bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Plasma sword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Steeljack Theyn",
+            "profiles": [
+              {
+                "name": "Autoch-pattern bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Guerrilla Adepts",
+          "Prioritised Efficiency"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 3,
+              "points": 80
+            },
+            {
+              "models": 6,
+              "points": 160
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 3,
+              "points": 90
+            },
+            {
+              "models": 6,
+              "points": 170
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Kapricus Carrier",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Kapricus Carrier",
+        "points": 75,
+        "stats": {
+          "M": "12\"",
+          "T": "7",
+          "Sv": "4+",
+          "W": "7",
+          "LD": "7+",
+          "OC": "2",
+          "InSv": ""
+        },
+        "keywords": [
+          "Dedicated Transport",
+          "Transport",
+          "Vehicle",
+          "Fly",
+          "Hernkyn",
+          "Kapricus",
+          "Carrier",
+          "Faction: Leagues of Votann"
+        ],
+        "abilities": [
+          {
+            "name": "Scanner Uplinks",
+            "description": "In your shooting phase, after this model has shot, select one enemy unit (excluding ^^**Monsters^^** and ^^**Vehicles^^**) hit by one or more of those attacks. Until the start of your next turn, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes an attack, subtract 1 from the Hit roll."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Magna-coil autocannon",
+            "profiles": [
+              {
+                "name": "Magna-coil autocannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Armoured hull",
+            "profiles": [
+              {
+                "name": "Armoured hull",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin magna-coil autocannon",
+            "profiles": [
+              {
+                "name": "Twin magna-coil autocannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Firing Deck",
+          "Scouts",
+          "Prioritised Efficiency",
+          "Guerrilla Adepts",
+          "Firebase Control (Aura)"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 75
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Kapricus Defenders",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Kapricus Defenders",
+        "points": null,
+        "stats": {},
+        "keywords": [
+          "Vehicle",
+          "Fly",
+          "Hernkyn",
+          "Kapricus",
+          "Defenders",
+          "Faction: Leagues of Votann"
+        ],
+        "abilities": [
+          {
+            "name": "Opportunistic Manoeuvre",
+            "description": "In your Shooting phase, after this unit has shot, it can make a Normal Move of up to D6\". If it does, until the end of the turn, this unit is not eligible to declare a charge."
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Prioritised Efficiency",
+          "Scouts",
+          "Deadly Demise",
+          "Guerrilla Adepts"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 65
+            },
+            {
+              "models": 2,
+              "points": 130
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Kinhost Commander [Crucible]",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Kinhost Commander [Crucible]",
+        "points": 65,
+        "stats": {
+          "M": "5\"",
+          "T": "5",
+          "Sv": "3+",
+          "W": "4",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Character",
+          "Infantry",
+          "Faction: Leagues of Votann",
+          "Kinhost Commander",
+          "Crucible"
+        ],
+        "abilities": [
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units: ^^**Einhyr Hearthguard, Hearthkyn Warriors**^^"
+          },
+          {
+            "name": "Seized Opportunity",
+            "description": "Once per phase, one model from your army with this ability can use it when its unit destroys an enemy unit. If it does, you gain 1YP."
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Leader",
+          "Prioritised Efficiency"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Kâhl",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Kâhl",
+        "points": 65,
+        "stats": {
+          "M": "5\"",
+          "T": "5",
+          "Sv": "3+",
+          "W": "4",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Faction: Leagues of Votann",
+          "Infantry",
+          "Character",
+          "Kâhl"
+        ],
+        "abilities": [
+          {
+            "name": "Kindred Hero",
+            "description": "While this model is leading a unit, weapons equipped by models in that unit have the [LETHAL HITS] ability."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n- EINHYR HEARTHGUARD\n- HEARTHKYN WARRIORS"
+          },
+          {
+            "name": "Seized Opportunity",
+            "description": "Once per phase, one model from your army with this ability can use it when its unit destroys an enemy unit. If it does, gain 1YP."
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Prioritised Efficiency",
+          "Leader",
+          "Guerrilla Adepts"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 65
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Einhyr Hearthguard",
+        "Hearthkyn Warriors"
+      ],
+      "wargear_options": null
+    },
+    {
+      "name": "Living Ancestor [Crucible]",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Living Ancestor [Crucible]",
+        "points": 70,
+        "stats": {
+          "M": "5\"",
+          "T": "5",
+          "Sv": "4+",
+          "W": "4",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Character",
+          "Infantry",
+          "Faction: Leagues of Votann",
+          "Crucible",
+          "Psyker",
+          "Living Ancestor"
+        ],
+        "abilities": [
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units: ^^**Hearthkyn Warriors**^^"
+          },
+          {
+            "name": "Grimnyr's Regard",
+            "description": "Once per battle, at the start of any phase, you can select one friendly ^^**Leagues of Votann**^^ unit that is Battle-shocked and within 12\" of this model. That unit is no longer Battle-shocked."
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Leader",
+          "Prioritised Efficiency"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Memnyr Strategist",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Memnyr Strategist",
+        "points": 45,
+        "stats": {
+          "M": "5\"",
+          "T": "5",
+          "Sv": "4+",
+          "W": "4",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": ""
+        },
+        "keywords": [
+          "Character",
+          "Infantry",
+          "Memnyr Strategist",
+          "Faction: Leagues of Votann"
+        ],
+        "abilities": [
+          {
+            "name": "Computational Mastermind",
+            "description": "At the end of your Command phase, before you determine if units from your army have Hostile Acquisition or Fortify Takeover, for each objective marker you control that has one or more models with this ability in range of it, you can spend 1YP or gain 1YP."
+          },
+          {
+            "name": "Predictive Guidance",
+            "description": "Once per battle round, when you target this unit with the **Fire Overwatch/Heroic Intervention** stratagem, you can use this ability. If you do, that use of that stratagem is ‑1 CP."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units: ^^**Ironkin Steeljacks with Heavy Volkanite Disintegrators^^**, ^^**Ironkin Steeljacks with Melee Weapons^^**"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Autoch-pattern bolt pistol",
+            "profiles": [
+              {
+                "name": "Autoch-pattern bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Prioritised Efficiency",
+          "Leader",
+          "Guerrilla Adepts"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 45
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Ironkin Steeljacks With Heavy Volkanite Disintegrators",
+        "Ironkin Steeljacks With Melee Weapons"
+      ],
+      "wargear_options": null
+    },
+    {
+      "name": "Sagitaur",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Sagitaur",
+        "points": 85,
+        "stats": {
+          "M": "12\"",
+          "T": "9",
+          "Sv": "3+",
+          "W": "9",
+          "LD": "7+",
+          "OC": "2",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: Leagues of Votann",
+          "Vehicle",
+          "Transport",
+          "Dedicated Transport",
+          "Sagitaur",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Blistering Advance",
+            "description": "Units can disembark from this ^^**Transport^^** after it has Advanced. Units that do so count as having made a Normal move that phase, and cannot declare a charge in the same turn, but can otherwise act normally in the remainder of the turn."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Armoured wheels",
+            "profiles": [
+              {
+                "name": "Armoured wheels",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin bolt cannon",
+            "profiles": [
+              {
+                "name": "Twin bolt cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 2, Twin-linked"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Prioritised Efficiency",
+          "Deadly Demise",
+          "Guerrilla Adepts",
+          "Firebase Control (Aura)",
+          "Scouts"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 85
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Searchlight",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Searchlight",
+        "points": 10,
+        "stats": {},
+        "keywords": [
+          "Allies: Unaligned Forces"
+        ],
+        "abilities": [
+          {
+            "name": "Enemy Spotted",
+            "description": "Each time a model from your army makes a ranged attack that targets an enemy unit that is within 9\" of and visible to any Searchlights from your army, re-roll a Hit of 1 and, if the model making that attack is a Sentry Gun, add 1 to the Hit roll as well."
+          },
+          {
+            "name": "Wall",
+            "description": "This model is a terrain feature and counts as a Wall."
+          },
+          {
+            "name": "Camera Network",
+            "description": "In the Create the Battlefield and Place Objective Markers step, set this terrain feature up in one of the Searchlight positions (marked D2 on the mission map) that does not already contain a Searchlight."
+          }
+        ],
+        "weapons": [],
+        "rules": []
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Sentry Gun",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Sentry Gun",
+        "points": 30,
+        "stats": {
+          "M": "-",
+          "T": "4",
+          "Sv": "4+",
+          "W": "3",
+          "LD": "6+",
+          "OC": "0",
+          "InSv": ""
+        },
+        "keywords": [
+          "Vehicle",
+          "Faction: Unaligned Forces",
+          "Sentry Gun",
+          "Allies: Unaligned Forces"
+        ],
+        "abilities": [
+          {
+            "name": "Defensive Emplacement",
+            "description": "In the Create the Battlefield and Place Objective Markers step, set this model up in one of the Sentry Gun positions (marked D1 on the mission map)."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Twin heavy bolter",
+            "profiles": [
+              {
+                "name": "Twin heavy bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Heavy, Sustained Hits 1, Twin-linked"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": []
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Steeljack Elder [Crucible]",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Steeljack Elder [Crucible]",
+        "points": 80,
+        "stats": {
+          "M": "5\"",
+          "T": "6",
+          "Sv": "2+",
+          "W": "5",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": ""
+        },
+        "keywords": [
+          "Character",
+          "Infantry",
+          "Faction: Leagues of Votann",
+          "Crucible",
+          "Ironkin Steeljacks",
+          "Steeljack Elder"
+        ],
+        "abilities": [
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units: ^^**Ironkin Steeljacks with Heavy Volkanite Disintegrators, Ironkin Steeljacks with Melee Weapons**^^"
+          },
+          {
+            "name": "Forgewrought Skill",
+            "description": "Each time this model makes an attack, you can re-roll the Hit roll."
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Leader",
+          "Prioritised Efficiency"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "ûthar The Destined",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Ûthar the Destined",
+        "points": 90,
+        "stats": {
+          "M": "5\"",
+          "T": "5",
+          "Sv": "3+",
+          "W": "5",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Faction: Leagues of Votann",
+          "Infantry",
+          "Character",
+          "Epic Hero",
+          "Ûthar the Destined"
+        ],
+        "abilities": [
+          {
+            "name": "Ancestral Fortune",
+            "description": "Once per turn, you can spend 1YP to change one Hit roll, one Wound roll or one saving throw made for this model to an unmodified 6."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n- Einhyr Hearthguard\n- Hearthkyn Warriors"
+          },
+          {
+            "name": "Grim Efficiency",
+            "description": "Once per battle round, when a friendly ^^**Leagues of Votann**^^ unit within 12\" of this model is targeted with a Stratagem, this model can use this ability. If it does, reduce the CP cost of that Stratagem by 1CP."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Volkanite disintegrator",
+            "profiles": [
+              {
+                "name": "Volkanite disintegrator",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "2+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Blade of the Ancestors",
+            "profiles": [
+              {
+                "name": "Blade of the Ancestors",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "2+",
+                  "S": "6",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Prioritised Efficiency",
+          "Guerrilla Adepts"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 90
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Einhyr Hearthguard",
+        "Hearthkyn Warriors"
+      ],
+      "wargear_options": null
+    }
+  ],
+  "_meta": {
+    "bsdata_faction": "Xenos - Leagues of Votann",
+    "bsdata_revision": 1,
+    "bsdata_units": 28,
+    "mfm_units": 22,
+    "merged_units": 28
+  }
+}

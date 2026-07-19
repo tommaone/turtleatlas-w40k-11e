@@ -1,0 +1,6592 @@
+{
+  "faction": "World Eaters",
+  "slug": "world-eaters",
+  "version": "1.0",
+  "firstSeen": "2026-06-23",
+  "detachments": [
+    {
+      "name": "Berzerker Warband",
+      "dp": 3,
+      "objective": "PURGE THE FOE",
+      "enhancements": [
+        {
+          "name": "Battle-lust",
+          "points": 20
+        },
+        {
+          "name": "Berzerker Glaive",
+          "points": 35
+        },
+        {
+          "name": "Favoured of Khorne",
+          "points": 20
+        },
+        {
+          "name": "Helm of Brazen Ire",
+          "points": 30
+        }
+      ]
+    },
+    {
+      "name": "Brazen Engines",
+      "dp": 1,
+      "objective": "PURGE THE FOE",
+      "unique": "Onslaught",
+      "enhancements": [
+        {
+          "name": "Murder-forged Entity (Upgrade)",
+          "points": 15
+        },
+        {
+          "name": "Talons of Butchery (Upgrade)",
+          "points": 20
+        }
+      ]
+    },
+    {
+      "name": "Butchers Of Khorne",
+      "dp": 1,
+      "objective": "DISRUPTION",
+      "enhancements": [
+        {
+          "name": "Gore-stained Veterans (Upgrade)",
+          "points": 25
+        },
+        {
+          "name": "Sanctified in Slaughter (Upgrade)",
+          "points": 15
+        }
+      ]
+    },
+    {
+      "name": "Cult Of Blood",
+      "dp": 2,
+      "objective": "PRIORITY ASSETS",
+      "enhancements": [
+        {
+          "name": "Brazen Form",
+          "points": 25
+        },
+        {
+          "name": "Butcher Lord",
+          "points": 10,
+          "leaderTo": [
+            "Jakhals",
+            "Goremongers"
+          ]
+        },
+        {
+          "name": "Chosen of the Blood God",
+          "points": 15
+        },
+        {
+          "name": "Strategic Slaughter",
+          "points": 20
+        }
+      ]
+    },
+    {
+      "name": "Goretrack Onslaught",
+      "dp": 2,
+      "objective": "TAKE AND HOLD",
+      "unique": "Onslaught",
+      "enhancements": [
+        {
+          "name": "Aggressive Deployment",
+          "points": 20
+        },
+        {
+          "name": "Infernal Infusion",
+          "points": 25
+        },
+        {
+          "name": "Murderous Onslaught",
+          "points": 5
+        },
+        {
+          "name": "Unleash Hell",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "name": "Khorne Daemonkin",
+      "dp": 2,
+      "objective": "RECONNAISSANCE",
+      "enhancements": [
+        {
+          "name": "Blade of Endless Bloodshed",
+          "points": 30
+        },
+        {
+          "name": "Blood-Forged Armour",
+          "points": 20
+        },
+        {
+          "name": "Disciple of Khorne",
+          "points": 15,
+          "leaderTo": [
+            "Flesh Hounds",
+            "Bloodcrushers"
+          ]
+        },
+        {
+          "name": "Icon of War",
+          "points": 25
+        }
+      ]
+    },
+    {
+      "name": "Possessed Slaughterband",
+      "dp": 2,
+      "objective": "PURGE THE FOE",
+      "enhancements": [
+        {
+          "name": "Frenzied Focus",
+          "points": 20
+        },
+        {
+          "name": "Killing Clarity",
+          "points": 15
+        },
+        {
+          "name": "Malicious Vigour",
+          "points": 30
+        },
+        {
+          "name": "Violent Demise",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "name": "Vessels Of Wrath",
+      "dp": 1,
+      "objective": "PRIORITY ASSETS",
+      "enhancements": [
+        {
+          "name": "Archslaughterer",
+          "points": 40
+        },
+        {
+          "name": "Gateways to Glory",
+          "points": 10
+        }
+      ]
+    }
+  ],
+  "units": [
+    {
+      "name": "Angron",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Angron",
+        "points": 350,
+        "stats": {
+          "M": "14\"",
+          "T": "11",
+          "Sv": "2+",
+          "W": "16",
+          "LD": "5+",
+          "OC": "6",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Monster",
+          "Fly",
+          "Character",
+          "Epic Hero",
+          "Chaos",
+          "Khorne",
+          "Daemon",
+          "Primarch",
+          "Angron"
+        ],
+        "abilities": [
+          {
+            "name": "Reborn in Blood",
+            "description": "At the start of the battle round, when you make a Blessings of Khorne roll, if this model is destroyed, you can use a triple 6 from that roll to use this ability instead of activating any Blessings of Khorne at the start of that battle round. If you do, this model is no longer destroyed and in the Reinforcements step of your next Movement phase, it is set up anywhere on the battlefield using its Deep Strike ability, with 8 wounds remaining."
+          },
+          {
+            "name": "Wrathful Presence",
+            "description": "At the start of the battle round, select one Wrathful Presence ability. Until the start of the next battle round, this model has that ability."
+          },
+          {
+            "name": "Damaged: 1-6 wounds remaining",
+            "description": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Samni’arius and Spinegrinder",
+            "profiles": [
+              {
+                "name": "Samni’arius and Spinegrinder - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "2+",
+                  "S": "14",
+                  "AP": "-3",
+                  "D": "D6+2",
+                  "Keywords": "Devastating Wounds"
+                }
+              },
+              {
+                "name": "Samni’arius and Spinegrinder - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "16",
+                  "WS": "2+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Deep Strike",
+          "Blessings of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 350
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Bloodcrushers",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Bloodcrushers",
+        "points": 95,
+        "stats": {
+          "M": "10\"",
+          "T": "7",
+          "Sv": "3+",
+          "W": "4",
+          "LD": "7+",
+          "OC": "2",
+          "InSv": "5+"
+        },
+        "keywords": [
+          "Mounted",
+          "Chaos",
+          "Daemon",
+          "Khorne",
+          "Faction: Blood Legions",
+          "Summoned",
+          "Bloodcrushers"
+        ],
+        "abilities": [
+          {
+            "name": "Brass Stampede",
+            "description": "Each time this unit ends a Charge move, select one enemy unit within Engagement Range of this unit and roll one D6 for each model in this unit: for each 4+, that enemy unit suffers D3 mortal wounds."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Bloodcrusher",
+            "profiles": [
+              {
+                "name": "Hellblade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Bladed horn",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Extra Attacks, Lance"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bloodhunter",
+            "profiles": [
+              {
+                "name": "Hellblade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Bladed horn",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Extra Attacks, Lance"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deep Strike"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 3,
+              "points": 95
+            },
+            {
+              "models": 6,
+              "points": 180
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 3,
+              "points": 105
+            },
+            {
+              "models": 6,
+              "points": 190
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Bloodcult Champion [Crucible]",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Bloodcult Champion [Crucible]",
+        "points": 60,
+        "stats": {
+          "M": "7\"",
+          "T": "4",
+          "Sv": "6+",
+          "W": "3",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "5+"
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Infantry",
+          "Character",
+          "Grenades",
+          "Khorne",
+          "Bloodcult Champion",
+          "Crucible"
+        ],
+        "abilities": [
+          {
+            "name": "Aura of Dark Glory",
+            "description": "Models in this unit have an invulnerable save characteristic of 5+."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following unit: ^^**Jakhals**^^"
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Blessings of Khorne",
+          "Leader"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Bloodletters",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Bloodletters",
+        "points": 90,
+        "stats": {
+          "M": "8\"",
+          "T": "4",
+          "Sv": "7+",
+          "W": "1",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": "5+"
+        },
+        "keywords": [
+          "Infantry",
+          "Battleline",
+          "Chaos",
+          "Daemon",
+          "Khorne",
+          "Summoned",
+          "Faction: Blood Legions"
+        ],
+        "abilities": [
+          {
+            "name": "Bane of Cowards",
+            "description": "Each time an enemy unit (excluding Monsters and Vehicles) within Engagement Range of one or more units from your army with this ability Falls Back, models in that enemy unit must take Desperate Escape tests. When doing so, if that enemy unit is also Battle-shocked, subtract 1 from each of those Desperate Escape tests."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Bloodletter",
+            "profiles": [
+              {
+                "name": "Hellblade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bloodreaper",
+            "profiles": [
+              {
+                "name": "Hellblade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deep Strike"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 10,
+              "points": 90
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Bloodthirster",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Bloodthirster",
+        "points": 320,
+        "stats": {
+          "M": "12\"",
+          "T": "11",
+          "Sv": "3+",
+          "W": "18",
+          "LD": "6+",
+          "OC": "5",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Monster",
+          "Character",
+          "Fly",
+          "Chaos",
+          "Daemon",
+          "Khorne",
+          "Faction: Blood Legions",
+          "Summoned",
+          "Bloodthirster"
+        ],
+        "abilities": [
+          {
+            "name": "Daemon Lord of Khorne (Aura)",
+            "description": "While a friendly ^^Blood Legions^^ unit is within 6\" of this model, each time a model in that unit makes a melee attack, add 1 to the Hit roll."
+          },
+          {
+            "name": "Relentless Carnage",
+            "description": "At the end of the Fight phase, you can select one enemy unit within Engagement Range of this model and roll eight D6: for each 4+, that enemy unit suffers 1 mortal wound."
+          },
+          {
+            "name": "Damaged: 1-6 wounds remaining",
+            "description": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Hellfire breath",
+            "profiles": [
+              {
+                "name": "Hellfire breath",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Deep Strike"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 320
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 335
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Breaching Robot",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Breaching Robot",
+        "points": 35,
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "4+",
+          "W": "3",
+          "LD": "6+",
+          "OC": "0",
+          "InSv": ""
+        },
+        "keywords": [
+          "Vehicle",
+          "Faction: Unaligned Forces",
+          "Breaching Robot",
+          "Allies: Unaligned Forces"
+        ],
+        "abilities": [
+          {
+            "name": "Limited Loadout",
+            "description": "This model cannot attempt to operate Hatchways and cannot perform Tactical Manoeuvres."
+          },
+          {
+            "name": "Assault Robot",
+            "description": "In the Deploy Armies step, when setting up a unit from your army within an Entry Zone, you can set this model up alongside that unit as if it was part of it, using the same Entry Zone."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Cutting blade and cutting gear",
+            "profiles": [
+              {
+                "name": "Cutting blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": []
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Butcherlord [Crucible]",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Butcherlord [Crucible]",
+        "points": 90,
+        "stats": {
+          "M": "8\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "5",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Infantry",
+          "Character",
+          "Grenades",
+          "Chaos",
+          "Khorne",
+          "Butcherlord",
+          "Crucible"
+        ],
+        "abilities": [
+          {
+            "name": "Endless Hatred",
+            "description": "You can re-roll Charge rolls made for this model's unit."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following unit: ^^**Khorne Berzerkers**^^"
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Blessings of Khorne",
+          "Leader"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Chaos Acastus Knight Asterius",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Chaos Acastus Knight Asterius",
+        "points": 785,
+        "stats": {
+          "M": "8\"",
+          "T": "13",
+          "Sv": "2+",
+          "W": "30",
+          "LD": "6+",
+          "OC": "10",
+          "InSv": "5+*"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Titanic",
+          "Towering",
+          "Chaos",
+          "Acastus",
+          "Knight Asterius",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Sunderer of Fortresses",
+            "description": "Each time this model makes an attack that targets a ^^**Vehicle^^**, improve the Strength and Damage characteristics of that attack by 1 (if that attack targets a ^^**Fortification^^**, improve the Strength and Damage characteristics of that attack by 2 instead)."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Asterius volkite culverin",
+            "profiles": [
+              {
+                "name": "Asterius volkite culverin",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "2",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Karacnos mortar battery",
+            "profiles": [
+              {
+                "name": "Karacnos mortar battery",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6+3",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-INFANTRY 2+, Blast, Ignores Cover, Indirect Fire"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin conversion beam cannon",
+            "profiles": [
+              {
+                "name": "Twin conversion beam cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "16",
+                  "AP": "-2",
+                  "D": "6",
+                  "Keywords": "Conversion, Twin-linked, Sustained Hits D3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Titanic feet",
+            "profiles": [
+              {
+                "name": "Titanic feet",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "4+",
+                  "S": "10",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Harbingers of Dread",
+          "Super-Heavy Walker",
+          "Damaged: 1-10 wounds remaining",
+          "*Invulnerable Save"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Chaos Acastus Knight Porphyrion",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Chaos Acastus Knight Porphyrion",
+        "points": 725,
+        "stats": {
+          "M": "8\"",
+          "T": "13",
+          "Sv": "2+",
+          "W": "30",
+          "LD": "6+",
+          "OC": "10",
+          "InSv": "5+*"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Titanic",
+          "Towering",
+          "Chaos",
+          "Acastus",
+          "Knight Porphyrion",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Bastion of Firepower",
+            "description": "Each time this model Remains Stationary, until the end of the turn, ranged weapons equipped by this model have the [LETHAL HITS] ability."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Twin magna lascannon",
+            "profiles": [
+              {
+                "name": "Twin magna lascannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "18",
+                  "AP": "-4",
+                  "D": "D6+6",
+                  "Keywords": "Blast, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Titanic feet",
+            "profiles": [
+              {
+                "name": "Titanic feet",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "4+",
+                  "S": "10",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Damaged: 1-10 wounds remaining",
+          "Deadly Demise",
+          "Harbingers of Dread",
+          "Super-Heavy Walker",
+          "*Invulnerable Save"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Chaos Cerastus Knight Acheron",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Chaos Cerastus Knight Acheron",
+        "points": 370,
+        "stats": {
+          "M": "12\"",
+          "T": "11",
+          "Sv": "3+",
+          "W": "28",
+          "LD": "6+",
+          "OC": "10",
+          "InSv": "5+*"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Character",
+          "Titanic",
+          "Towering",
+          "Cerastus",
+          "Knight Acheron",
+          "Knight Character"
+        ],
+        "abilities": [
+          {
+            "name": "Searing Flames",
+            "description": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks made with an Acheron flame cannon. Until the end of the phase, that enemy unit cannot have the Benefit of Cover."
+          },
+          {
+            "name": "Unrestrained Terror (Aura)",
+            "description": "While a friendly ^^**War Dog^^** model is within 6\" of this model, it is affected by this ability. At the start of the Fight phase, each enemy unit within Engagement Range of one or more ^^**War Dog^^** units affected by this ability must take a Battle-shock test."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Acheron flame cannon",
+            "profiles": [
+              {
+                "name": "Acheron flame cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2D6",
+                  "BS": "N/A",
+                  "S": "8",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaper chainfist",
+            "profiles": [
+              {
+                "name": "Reaper chainfist - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "6",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Reaper chainfist - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "12",
+                  "WS": "3+",
+                  "S": "9",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin heavy bolter",
+            "profiles": [
+              {
+                "name": "Twin heavy bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 1, Twin-linked"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Damaged: 1-10 wounds remaining",
+          "Harbingers of Dread",
+          "Super-Heavy Walker",
+          "*Invulnerable Save"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Chaos Cerastus Knight Atrapos",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Chaos Cerastus Knight Atrapos",
+        "points": 395,
+        "stats": {
+          "M": "12\"",
+          "T": "11",
+          "Sv": "3+",
+          "W": "28",
+          "LD": "6+",
+          "OC": "10",
+          "InSv": "5+"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Character",
+          "Titanic",
+          "Towering",
+          "Chaos",
+          "Cerastus",
+          "Knight Atrapos",
+          "Knight Character"
+        ],
+        "abilities": [
+          {
+            "name": "Macro-extinction Protocols",
+            "description": "Each time this model makes an attack that targets a ^^**Monster^^** or ^^**Vehicle^^** unit, add 1 to the Hit roll. If that target is ^^**Titanic^^** or ^^**Towering^^**, add 1 to the Wound roll as well."
+          },
+          {
+            "name": "Consumed with Hunger (Aura)",
+            "description": "While a friendly ^^**War Dog^^** model is within 6\" of this model, each time that ^^**War Dog^^** model makes an attack that targets a ^^**Titanic^^** or ^^**Towering^^** unit, you can re-roll the Hit roll."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Atrapos lascutter",
+            "profiles": [
+              {
+                "name": "Atrapos lascutter - low intensity",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "12",
+                  "WS": "3+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 1"
+                }
+              },
+              {
+                "name": "Atrapos lascutter - low intensity",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "2D6",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 1"
+                }
+              },
+              {
+                "name": "Atrapos lascutter - high intensity",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "14",
+                  "AP": "-3",
+                  "D": "4",
+                  "Keywords": "Sustained Hits 1"
+                }
+              },
+              {
+                "name": "Atrapos lascutter - high intensity",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "3+",
+                  "S": "14",
+                  "AP": "-3",
+                  "D": "4",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Graviton singularity cannon",
+            "profiles": [
+              {
+                "name": "Graviton singularity cannon - contained",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "16",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Graviton singularity cannon - singularity",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "16",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Blast, Devastating Wounds, Hazardous"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Damaged: 1-10 wounds remaining",
+          "Deadly Demise",
+          "Harbingers of Dread",
+          "Super-Heavy Walker"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Chaos Cerastus Knight Castigator",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Chaos Cerastus Knight Castigator",
+        "points": 370,
+        "stats": {
+          "M": "12\"",
+          "T": "11",
+          "Sv": "3+",
+          "W": "28",
+          "LD": "6+",
+          "OC": "10",
+          "InSv": "5+*"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Character",
+          "Titanic",
+          "Towering",
+          "Chaos",
+          "Cerastus",
+          "Knight Castigator",
+          "Knight Character"
+        ],
+        "abilities": [
+          {
+            "name": "Storm of Bolts",
+            "description": "In your Shooting phase, after this model has shot, select one unit (excluding ^^**Monsters^^** and ^^**Vehicles^^**) hit by one or more of those attacks. Until the start of your next turn, while this model is on the battlefield, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes an attack, subtract 1 from the Hit roll."
+          },
+          {
+            "name": "Offerings for the Dark Gods (Aura)",
+            "description": "While a friendly ^^**War Dog^^** model is within 6\" of this model, ranged weapons equipped by that ^^**War Dog^^** model have the [SUSTAINED HITS 1] ability."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Castigator bolt cannon",
+            "profiles": [
+              {
+                "name": "Castigator bolt cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "18",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Tempest warblade",
+            "profiles": [
+              {
+                "name": "Tempest warblade - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "6",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Tempest warblade - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "12",
+                  "WS": "3+",
+                  "S": "9",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Harbingers of Dread",
+          "Super-Heavy Walker",
+          "Damaged: 1-10 wounds remaining",
+          "*Invulnerable Save"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Chaos Cerastus Knight Lancer",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Chaos Cerastus Knight Lancer",
+        "points": 395,
+        "stats": {
+          "M": "14\"",
+          "T": "11",
+          "Sv": "3+",
+          "W": "28",
+          "LD": "6+",
+          "OC": "10",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Character",
+          "Titanic",
+          "Towering",
+          "Chaos",
+          "Cerastus",
+          "Knight Lancer",
+          "Knight Character"
+        ],
+        "abilities": [
+          {
+            "name": "Shock Charge",
+            "description": "You can target this model with the Tank Shock Stratagem for 0CP, and can do so even if you have already targeted a different unit with that Stratagem this phase."
+          },
+          {
+            "name": "Dark Fervour (Aura)",
+            "description": "While a friendly ^^**War Dog^^** model is within 6\" of this model, ranged weapons equipped by that ^^**War Dog^^** model have the [ASSAULT] ability."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Cerastus shock lance",
+            "profiles": [
+              {
+                "name": "Cerastus shock lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "2",
+                  "Keywords": "Assault, Sustained Hits 2"
+                }
+              },
+              {
+                "name": "Cerastus shock lance - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "2+",
+                  "S": "20",
+                  "AP": "-3",
+                  "D": "8",
+                  "Keywords": "Lance"
+                }
+              },
+              {
+                "name": "Cerastus shock lance - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "10",
+                  "WS": "2+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Damaged: 1-10 wounds remaining",
+          "Deadly Demise",
+          "Harbingers of Dread",
+          "Super-Heavy Walker"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Chaos Land Raider",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Chaos Land Raider",
+        "points": 220,
+        "stats": {
+          "M": "10\"",
+          "T": "12",
+          "Sv": "2+",
+          "W": "16",
+          "LD": "6+",
+          "OC": "5",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Vehicle",
+          "Transport",
+          "Smoke",
+          "Chaos",
+          "Khorne",
+          "Land Raider",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Assault Ramp",
+            "description": "Each time a unit disembarks from this model after it has made a Normal move, that unit is still eligible to declare a charge this turn."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Armoured tracks",
+            "profiles": [
+              {
+                "name": "Armoured tracks",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "9",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Soulshatter lascannon",
+            "profiles": [
+              {
+                "name": "Soulshatter lascannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Havoc launcher",
+            "profiles": [
+              {
+                "name": "Havoc launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin heavy bolter",
+            "profiles": [
+              {
+                "name": "Twin heavy bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Rapid Fire 2, Sustained Hits 1, Twin-linked"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Damaged: 1-5 wounds remaining",
+          "Blessings of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 220
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 240
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Chaos Predator Annihilator",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Chaos Predator Annihilator",
+        "points": 135,
+        "stats": {
+          "M": "10\"",
+          "T": "10",
+          "Sv": "3+",
+          "W": "11",
+          "LD": "6+",
+          "OC": "3",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Vehicle",
+          "Smoke",
+          "Chaos",
+          "Khorne",
+          "Predator Annihilator",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Blood-hungry Annihilator",
+            "description": "Each time this model makes a ranged attack that targets the closest eligible ^^**Monster^^** or ^^**Vehicle^^** target within 18\", you can re-roll the Wound roll and you can re-roll the Damage roll."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Predator twin lascannon",
+            "profiles": [
+              {
+                "name": "Predator twin lascannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "14",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "Rapid Fire 2, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Armoured tracks",
+            "profiles": [
+              {
+                "name": "Armoured tracks",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Havoc launcher",
+            "profiles": [
+              {
+                "name": "Havoc launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Damaged: 1-4 wounds remaining",
+          "Blessings of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 135
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 145
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Chaos Predator Destructor",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Chaos Predator Destructor",
+        "points": 135,
+        "stats": {
+          "M": "10\"",
+          "T": "10",
+          "Sv": "3+",
+          "W": "11",
+          "LD": "6+",
+          "OC": "3",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Vehicle",
+          "Smoke",
+          "Chaos",
+          "Khorne",
+          "Predator Destructor",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Punishing Suppression",
+            "description": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks (excluding ^^**Monsters^^** and ^^**Vehicles^^*). Until the start of your next turn, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes an attack, subtract 1 from the Hit roll."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Predator autocannon",
+            "profiles": [
+              {
+                "name": "Predator autocannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "4",
+                  "BS": "4+",
+                  "S": "9",
+                  "AP": "-1",
+                  "D": "3",
+                  "Keywords": "Rapid Fire 6"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Armoured tracks",
+            "profiles": [
+              {
+                "name": "Armoured tracks",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Havoc launcher",
+            "profiles": [
+              {
+                "name": "Havoc launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Damaged: 1-4 wounds remaining",
+          "Blessings of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 135
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 145
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Chaos Questoris Knight Magaera",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Chaos Questoris Knight Magaera",
+        "points": 375,
+        "stats": {
+          "M": "10\"",
+          "T": "11",
+          "Sv": "3+",
+          "W": "26",
+          "LD": "6+",
+          "OC": "10",
+          "InSv": "5+"
+        },
+        "keywords": [
+          "Vehicle",
+          "Walker",
+          "Character",
+          "Titanic",
+          "Towering",
+          "Chaos",
+          "Abhorrent",
+          "Knight Magaera",
+          "Knight Character",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Repair Auto-simulacra",
+            "description": "At the end of your Command phase, this model regains up to D3 lost wounds."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Lightning cannon",
+            "profiles": [
+              {
+                "name": "Lightning cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "12",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "0",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Phased plasma-fusil",
+            "profiles": [
+              {
+                "name": "Phased plasma-fusil",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Damaged: 1-9 wounds remaining",
+          "Deadly Demise",
+          "Harbingers of Dread",
+          "Super-Heavy Walker",
+          "Huntmaster (Aura)"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Chaos Questoris Knight Styrix",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Chaos Questoris Knight Styrix",
+        "points": 365,
+        "stats": {
+          "M": "10\"",
+          "T": "11",
+          "Sv": "3+",
+          "W": "26",
+          "LD": "6+",
+          "OC": "10",
+          "InSv": "5+"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Character",
+          "Titanic",
+          "Towering",
+          "Chaos",
+          "Abhorrent",
+          "Knight Styrix",
+          "Knight Character",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Grav-pinned",
+            "description": "In your Shooting phase, after this model has shot, if an enemy ^^**Infantry^^** unit was hit by one or more of those attacks made with a graviton crusher, until the end of your opponent’s next turn, that enemy unit is grav-pinned. While a unit is grav-pinned, subtract 2 from that unit’s Move characteristic and subtract 2 from Advance and Charge rolls made for that unit."
+          },
+          {
+            "name": "Preysight (Aura)",
+            "description": "While a friendly ^^**War Dog^^** model is within 6\" of this model, ranged weapons equipped by that ^^**War Dog^^** model have the [IGNORES COVER] ability."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Graviton crusher",
+            "profiles": [
+              {
+                "name": "Graviton crusher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-VEHICLE 2+, Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Volkite chierovile",
+            "profiles": [
+              {
+                "name": "Volkite chierovile",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "12",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "0",
+                  "D": "3",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Damaged: 1-9 wounds remaining",
+          "Deadly Demise",
+          "Harbingers of Dread",
+          "Super-Heavy Walker"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Chaos Rhino",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Chaos Rhino",
+        "points": 85,
+        "stats": {
+          "M": "12\"",
+          "T": "9",
+          "Sv": "3+",
+          "W": "10",
+          "LD": "6+",
+          "OC": "2",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Vehicle",
+          "Transport",
+          "Dedicated Transport",
+          "Smoke",
+          "Chaos",
+          "Khorne",
+          "Rhino",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Meet Any Challenge",
+            "description": "In your opponent's Movement phase, each time an enemy unit is set up or ends a Normal, Advance or Fall Back move within 8\" of this model, any units embarked within it can disembark."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Armoured tracks",
+            "profiles": [
+              {
+                "name": "Armoured tracks",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Combi-bolter",
+            "profiles": [
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 4"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Havoc launcher",
+            "profiles": [
+              {
+                "name": "Havoc launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Blessings of Khorne",
+          "Firing Deck"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 85
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Chaos Spawn",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Chaos Spawn",
+        "points": 95,
+        "stats": {
+          "M": "10\"",
+          "T": "5",
+          "Sv": "4+",
+          "W": "4",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Beast",
+          "Chaos",
+          "Khorne",
+          "Spawn"
+        ],
+        "abilities": [
+          {
+            "name": "To Slake Its Rage",
+            "description": "This unit is eligible to declare a charge in a turn in which it Advanced."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Chaos Spawn",
+            "profiles": [
+              {
+                "name": "Hideous Mutations",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "D6+4",
+                  "WS": "4+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Feel No Pain",
+          "Blessings of Khorne",
+          "Scouts"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 2,
+              "points": 95
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Chaos Terminators",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Chaos Terminators",
+        "points": 175,
+        "stats": {
+          "M": "7\"",
+          "T": "5",
+          "Sv": "2+",
+          "W": "3",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Infantry",
+          "Chaos",
+          "Khorne",
+          "Terminator",
+          "Terminator Squad"
+        ],
+        "abilities": [
+          {
+            "name": "Bloody Fury",
+            "description": "- This unit’s ranged attacks that target the closest eligible target can re-roll **hit rolls**.\n- When this unit **declares a charge**, you can use this part of this ability. \nIf you do: \n-- This unit can re-roll that **charge roll**.\n-- This unit must end that **charge move engaged** with the closest **charge target**."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Combi-bolter, accursed weapon",
+            "profiles": [
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 4"
+                }
+              },
+              {
+                "name": "Accursed weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Combi-bolter, chainfist",
+            "profiles": [
+              {
+                "name": "Chainfist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Anti-VEHICLE 3+"
+                }
+              },
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 4"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Combi-bolter, power fist",
+            "profiles": [
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 4"
+                }
+              },
+              {
+                "name": "Power fist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Combi-weapon, accursed weapon",
+            "profiles": [
+              {
+                "name": "Combi-weapon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1"
+                }
+              },
+              {
+                "name": "Accursed weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Combi-weapon, chainfist",
+            "profiles": [
+              {
+                "name": "Chainfist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Anti-VEHICLE 3+"
+                }
+              },
+              {
+                "name": "Combi-weapon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Combi-weapon, power fist",
+            "profiles": [
+              {
+                "name": "Combi-weapon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1"
+                }
+              },
+              {
+                "name": "Power fist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Paired accursed weapons",
+            "profiles": [
+              {
+                "name": "Paired accursed weapons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deep Strike",
+          "Blessings of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 5,
+              "points": 175
+            },
+            {
+              "models": 10,
+              "points": 350
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 5,
+              "points": 185
+            },
+            {
+              "models": 10,
+              "points": 360
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Daemon Prince Of Khorne",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Daemon Prince of Khorne",
+        "points": 200,
+        "stats": {
+          "M": "10\"",
+          "T": "10",
+          "Sv": "2+",
+          "W": "10",
+          "LD": "6+",
+          "OC": "3",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Monster",
+          "Character",
+          "Chaos",
+          "Khorne",
+          "Daemon",
+          "Daemon Prince"
+        ],
+        "abilities": [
+          {
+            "name": "Lord of Murder",
+            "description": "While this model is within 3\" of one or more friendly ^^**World Eaters Infantry**^^ units, this model has the Lone Operative ability."
+          },
+          {
+            "name": "Devastating Assault",
+            "description": "Each time this model makes a Charge move, until the end of the turn, its hellforged weapons have the [DEVASTATING WOUNDS] ability."
+          },
+          {
+            "name": "Direct the Slaughter",
+            "description": "Once per battle round, one model from your army with this ability can use it when a friendly ^^**World Eaters^^** unit within 12\" of this model is targeted with a Stratagem. If it does, reduce the CP cost of that Stratagem by 1CP."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Hellforged weapons",
+            "profiles": [
+              {
+                "name": "Hellforged weapons - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Hellforged weapons - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "16",
+                  "WS": "2+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Infernal cannon",
+            "profiles": [
+              {
+                "name": "Infernal cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Rapid Fire 1"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Blessings of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 200
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Daemon Prince Of Khorne With Wings",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Daemon Prince of Khorne with wings",
+        "points": 170,
+        "stats": {
+          "M": "14\"",
+          "T": "9",
+          "Sv": "2+",
+          "W": "10",
+          "LD": "6+",
+          "OC": "3",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Monster",
+          "Character",
+          "Chaos",
+          "Khorne",
+          "Daemon",
+          "Daemon Prince",
+          "Fly"
+        ],
+        "abilities": [
+          {
+            "name": "Bloodied Terror",
+            "description": "At the start of the Fight phase, each enemy unit within Engagement Range of this model must take a Battle-shock test, subtracting 1 if that enemy unit is Below Half-strength."
+          },
+          {
+            "name": "Swooping Predator",
+            "description": "Each time this model ends a Normal or Advance move, you can select one enemy unit that it moved over during that move and roll 6 D6: for each 4+, that enemy unit suffers 1 mortal wound."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Hellforged weapons",
+            "profiles": [
+              {
+                "name": "Hellforged weapons - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Hellforged weapons - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "16",
+                  "WS": "2+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Infernal cannon",
+            "profiles": [
+              {
+                "name": "Infernal cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Rapid Fire 1"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Deep Strike",
+          "Blessings of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 170
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Daemonic Charioteer [Crucible]",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Daemonic Charioteer [Crucible]",
+        "points": 120,
+        "stats": {
+          "M": "6\"",
+          "T": "7",
+          "Sv": "6+",
+          "W": "8",
+          "LD": "7+",
+          "OC": "3",
+          "InSv": ""
+        },
+        "keywords": [
+          "Character",
+          "Chaos",
+          "Daemon",
+          "Crucible",
+          "Mounted",
+          "Daemonic Charioteer",
+          "Faction: Legiones Daemonica",
+          "Shadow Legion",
+          "Non-Monster Character"
+        ],
+        "abilities": [
+          {
+            "name": "Malefic Impact",
+            "description": "Melee weapons equipped by models in this unit have the [^^Lance^^] ability."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following unit: ^^**Mounted Daemon**^^ units which share one of the following keywords with this model ^^**Khorne, Nurgle, Slaanesh, Tzeentch**^^"
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Deep Strike",
+          "Leader",
+          "The Shadow of Chaos",
+          "Warp Rifts"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Daemonic Herald [Crucible]",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Daemonic Herald [Crucible]",
+        "points": 60,
+        "stats": {
+          "M": "6\"",
+          "T": "3",
+          "Sv": "7+",
+          "W": "3",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": ""
+        },
+        "keywords": [
+          "Character",
+          "Infantry",
+          "Chaos",
+          "Daemon",
+          "Summoned",
+          "Daemonic Herald",
+          "Crucible",
+          "Faction: Legiones Daemonica",
+          "Shadow Legion",
+          "Non-Monster Character"
+        ],
+        "abilities": [
+          {
+            "name": "Daemonic Locus",
+            "description": "While this model is leading a unit, in your Command phase, you can return 1 destroyed Bodyguard model, or D3 destroyed models with the ^^**Battleline**^^ keyword, to that unit."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following unit: ^^**Infantry Daemon**^^ units (excluding ^^**Possessed**^^ units) which share one of the following keywords with this model ^^**Khorne, Nurgle, Slaanesh, Tzeentch**^^"
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Deep Strike",
+          "Leader",
+          "The Shadow of Chaos",
+          "Warp Rifts"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Defiler",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Defiler",
+        "points": 270,
+        "stats": {
+          "M": "14\"",
+          "T": "11",
+          "Sv": "3+",
+          "W": "18",
+          "LD": "6+",
+          "OC": "5",
+          "InSv": "5+"
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Vehicle",
+          "Walker",
+          "Chaos",
+          "Khorne",
+          "Daemon",
+          "Defiler"
+        ],
+        "abilities": [
+          {
+            "name": "Scuttling Walker",
+            "description": "Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding ^^**Titanic**^^ models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
+          },
+          {
+            "name": "Unleash Wrath",
+            "description": "At the end of your opponent's Movement phase, you can select one enemy unit that was set up on the battlefield within 12\" of this model; this model can then either:\n- Shoot at that unit, but only if it is an eligible target.\n- Declare a charge against that unit (note that even if this charge is successful, this model does not receive any Charge bonus this turn)."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Shearing claws",
+            "profiles": [
+              {
+                "name": "Shearing claws - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "3+",
+                  "S": "16",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Shearing claws - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "12",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Damaged: 1-6 wounds remaining",
+          "Blessings of Khorne",
+          "Terror of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,1]",
+          "label": "Your 1st Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 270
+            }
+          ]
+        },
+        {
+          "range": "[2,)",
+          "label": "Your 2nd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 300
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": [
+        {
+          "item": "Hades lascannon",
+          "points": 10
+        },
+        {
+          "item": "Heavy reaper autocannon",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "name": "Eight-blessed Lord [Crucible]",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Eight-blessed Lord [Crucible]",
+        "points": 90,
+        "stats": {
+          "M": "10\"",
+          "T": "6",
+          "Sv": "3+",
+          "W": "7",
+          "LD": "6+",
+          "OC": "2",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Character",
+          "Chaos",
+          "Khorne",
+          "Mounted",
+          "Eight-blessed Lord",
+          "Crucible"
+        ],
+        "abilities": [
+          {
+            "name": "Bloodthirst",
+            "description": "Add 2 to Charge rolls made for this unit."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following unit: ^^**Khorne Berzerkers**^^"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Bladed horn",
+            "profiles": [
+              {
+                "name": "Bladed horn",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Extra Attacks, Lance"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Blessings of Khorne",
+          "Leader"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Eightbound",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Eightbound",
+        "points": 135,
+        "stats": {
+          "M": "10\"",
+          "T": "6",
+          "Sv": "3+",
+          "W": "3",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "5+"
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Infantry",
+          "Chaos",
+          "Khorne",
+          "Daemon",
+          "Eightbound",
+          "Possessed"
+        ],
+        "abilities": [
+          {
+            "name": "Beacons of Rage (Aura)",
+            "description": "While a friendly ^^**World Eaters^^** unit is within 6\" of this unit, each time a model in that unit makes a melee attack that targets a unit (excluding ^^**Monsters^^** and ^^**Vehicles^^**), add 1 to the Hit roll. If that attack targets a unit that is Below Half-strength, add 1 to the Wound roll as well."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Eightbound",
+            "profiles": [
+              {
+                "name": "Chainblades",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Eightbound Champion",
+            "profiles": [
+              {
+                "name": "Chainblades",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Scouts",
+          "Blessings of Khorne",
+          "Brazen Fury"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 3,
+              "points": 135
+            },
+            {
+              "models": 6,
+              "points": 270
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 3,
+              "points": 145
+            },
+            {
+              "models": 6,
+              "points": 280
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Exalted Eightbound",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Exalted Eightbound",
+        "points": 140,
+        "stats": {
+          "M": "10\"",
+          "T": "6",
+          "Sv": "3+",
+          "W": "3",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "5+"
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Infantry",
+          "Chaos",
+          "Khorne",
+          "Daemon",
+          "Exalted Eightbound",
+          "Possessed"
+        ],
+        "abilities": [
+          {
+            "name": "Rend and Tear",
+            "description": "Each time a model in this unit makes a melee attack that targets a ^^**Monster^^** or ^^**Vehicle^^** unit, until the end of the phase, improve the Damage characteristic of that attack by 1."
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Deep Strike",
+          "Blessings of Khorne",
+          "Brazen Fury"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 3,
+              "points": 140
+            },
+            {
+              "models": 6,
+              "points": 280
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 3,
+              "points": 150
+            },
+            {
+              "models": 6,
+              "points": 290
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Flesh Hounds",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Flesh Hounds",
+        "points": 75,
+        "stats": {
+          "M": "12\"",
+          "T": "4",
+          "Sv": "7+",
+          "W": "2",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": "5+"
+        },
+        "keywords": [
+          "Beast",
+          "Chaos",
+          "Daemon",
+          "Khorne",
+          "Faction: Blood Legions",
+          "Summoned",
+          "Flesh Hounds"
+        ],
+        "abilities": [
+          {
+            "name": "Hunters from the Warp",
+            "description": "At the end of your opponent’s turn, if this unit is not within Engagement Range of one or more enemy units, you can remove it from the battlefield and place it into Strategic Reserves."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Flesh Hound",
+            "profiles": [
+              {
+                "name": "Gore-drenched fangs",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Gore Hound",
+            "profiles": [
+              {
+                "name": "Gore-drenched fangs",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Burning roar",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deep Strike"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 5,
+              "points": 75
+            },
+            {
+              "models": 10,
+              "points": 150
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Forgefiend",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Forgefiend",
+        "points": 160,
+        "stats": {
+          "M": "10\"",
+          "T": "10",
+          "Sv": "3+",
+          "W": "12",
+          "LD": "6+",
+          "OC": "3",
+          "InSv": "5+"
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Vehicle",
+          "Walker",
+          "Chaos",
+          "Khorne",
+          "Daemon",
+          "Forgefiend"
+        ],
+        "abilities": [
+          {
+            "name": "Furious Onslaught",
+            "description": "Each time this model makes a ranged attack that targets the closest eligible target within 18\", you can re-roll the Hit roll."
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Deadly Demise",
+          "Damaged: 1-4 wounds remaining",
+          "Blessings of Khorne",
+          "Terror of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 160
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 175
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Goremongers",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Goremongers",
+        "points": 75,
+        "stats": {
+          "M": "9\"",
+          "T": "4",
+          "Sv": "6+",
+          "W": "1",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Infantry",
+          "Grenades",
+          "Chaos",
+          "Khorne",
+          "Goremongers"
+        ],
+        "abilities": [
+          {
+            "name": "Loping Speed",
+            "description": "In your opponent's Movement phase, if an enemy unit ends a move within 8\" of this unit, if this unit is not within Engagement Range of one or more enemy units, this unit can make a Normal move of up to D6\"."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Goremonger w/ blood harpoon",
+            "profiles": [
+              {
+                "name": "Autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Blood harpoon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Assault, Sustained Hits D3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Goremonger w/ 2 pistols",
+            "profiles": [
+              {
+                "name": "Autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Goremonger w/ chainblade",
+            "profiles": [
+              {
+                "name": "Autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Chainblade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Lance"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Blood Herald",
+            "profiles": [
+              {
+                "name": "Autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Chainblade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Lance"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Infiltrators",
+          "Blessings of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 8,
+              "points": 75
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Helbrute",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Helbrute",
+        "points": 120,
+        "stats": {
+          "M": "9\"",
+          "T": "9",
+          "Sv": "2+",
+          "W": "8",
+          "LD": "6+",
+          "OC": "3",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Vehicle",
+          "Walker",
+          "Chaos",
+          "Khorne",
+          "Helbrute"
+        ],
+        "abilities": [
+          {
+            "name": "Frenzy",
+            "description": "(Once per turn, per unit) In the Fight phase, when an enemy unit targets this unit, after that unit has resolved its attacks, you can use this ability. If you do, this unit is **eligible to fight** (even if it has already fought this phase) and must be **selected to fight** next."
+          },
+          {
+            "name": "Devoted to Destruction",
+            "description": "If this model is equipped with 2 melee weapons in addition to its close combat weapon, add 2 to the Attacks characteristic of those two weapons."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Blessings of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 120
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Heldrake",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Heldrake",
+        "points": 175,
+        "stats": {
+          "M": "12\"",
+          "T": "9",
+          "Sv": "3+",
+          "W": "12",
+          "LD": "6+",
+          "OC": "-",
+          "InSv": "5+"
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Vehicle",
+          "Fly",
+          "Chaos",
+          "Khorne",
+          "Daemon",
+          "Heldrake"
+        ],
+        "abilities": [
+          {
+            "name": "Airborne Predator",
+            "description": "Each time this model makes an attack that targets a unit that can ^^**Fly^^**, add 1 to the Hit roll."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Heldrake claws",
+            "profiles": [
+              {
+                "name": "Heldrake claws",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "3+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-FLY 2+, Devastating Wounds"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Hover",
+          "Damaged: 1-4 wounds remaining",
+          "Blessings of Khorne",
+          "Terror of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 175
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Immortal Champion [Crucible]",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Immortal Champion [Crucible]",
+        "points": 180,
+        "stats": {
+          "M": "8\"",
+          "T": "10",
+          "Sv": "2+",
+          "W": "10",
+          "LD": "6+",
+          "OC": "3",
+          "InSv": ""
+        },
+        "keywords": [
+          "Character",
+          "Chaos",
+          "Daemon",
+          "Crucible",
+          "Faction: Legiones Daemonica",
+          "Monster",
+          "Immortal Champion",
+          "Shadow Legion"
+        ],
+        "abilities": [
+          {
+            "name": "Infernal Attendants",
+            "description": "While this model is within 3\" of one or more friendly ^^**Daemon Infantry**^^ units, this model has the Lone Operative ability."
+          },
+          {
+            "name": "Font of Unreality",
+            "description": "Each time an attack is allocated to a friendly ^^**Daemon**^^ unit within 3\" of this model, subtract 1 from the Hit roll."
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Deep Strike",
+          "The Shadow of Chaos",
+          "Warp Rifts",
+          "Deadly Demise"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Jakhal",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Jakhal",
+        "points": 0,
+        "stats": {},
+        "keywords": [],
+        "abilities": [],
+        "weapons": [
+          {
+            "name": "Autopistol",
+            "profiles": [
+              {
+                "name": "Autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Chainblades",
+            "profiles": [
+              {
+                "name": "Chainblades",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": []
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Jakhals",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Jakhals",
+        "points": 65,
+        "stats": {
+          "M": "7\"",
+          "T": "4",
+          "Sv": "6+",
+          "W": "1",
+          "LD": "7+",
+          "OC": "1",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Infantry",
+          "Chaos",
+          "Khorne",
+          "Jakhals",
+          "Grenades"
+        ],
+        "abilities": [
+          {
+            "name": "Objective Ravaged",
+            "description": "At the end of your Command phase, if this unit is within range of an objective marker you control, that objective marker remains under your control until your opponent's Level of Control over that objective marker is greater than yours at the end of a phase."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "8 chainblades",
+            "profiles": [
+              {
+                "name": "Autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Chainblades",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "2 mauler chainblades, 15 chainblades",
+            "profiles": [
+              {
+                "name": "Autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Chainblades",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Mauler chainblade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "5+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "17 chainblades",
+            "profiles": [
+              {
+                "name": "Autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Chainblades",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "1 mauler chainblade, 7 chainblades",
+            "profiles": [
+              {
+                "name": "Autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Chainblades",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Mauler chainblade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "5+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "1 mauler chainblade, 16 chainblades",
+            "profiles": [
+              {
+                "name": "Autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Chainblades",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Mauler chainblade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "5+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dishonoured w/ skullsmasher and mangler",
+            "profiles": [
+              {
+                "name": "Skullsmasher and mangler",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dishonoured w/ paired manglers",
+            "profiles": [
+              {
+                "name": "Paired manglers",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Jakhal Pack Leader",
+            "profiles": [
+              {
+                "name": "Autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Chainblades",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Blessings of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 10,
+              "points": 65
+            },
+            {
+              "models": 20,
+              "points": 130
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Khorne Berzerkers",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Khorne Berzerkers",
+        "points": 180,
+        "stats": {},
+        "keywords": [
+          "Faction: World Eaters",
+          "Infantry",
+          "Battleline",
+          "Grenades",
+          "Chaos",
+          "Khorne",
+          "Berzerkers"
+        ],
+        "abilities": [
+          {
+            "name": "Blood Surge",
+            "description": "In your opponent’s Shooting phase, when an enemy unit has shot, if a model in this unit was destroyed as a result of those attacks, this unit can make a surge move of up to D6+2\"."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Khorne Berzerker",
+            "profiles": [
+              {
+                "name": "Chainblade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Khorne Berzerker Champion",
+            "profiles": [
+              {
+                "name": "Chainblade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Blessings of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 10,
+              "points": 180
+            },
+            {
+              "models": 20,
+              "points": 345
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Khorne Lord Of Skulls",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Khorne Lord of Skulls",
+        "points": 505,
+        "stats": {
+          "M": "12\"",
+          "T": "13",
+          "Sv": "3+",
+          "W": "24",
+          "LD": "6+",
+          "OC": "8",
+          "InSv": "5+"
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Vehicle",
+          "Titanic",
+          "Towering",
+          "Chaos",
+          "Khorne",
+          "Daemon",
+          "Lord of Skulls",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Idol of Blessed Blood",
+            "description": "At the start of the battle round, if this unit is on the battlefield, when you make a Blessings of Khorne roll, roll one additional D6."
+          },
+          {
+            "name": "Damaged: 1-8 wounds remaining",
+            "description": "While this model has 1-8 wounds remaining, subtract 4 from this model’s Objective Control characteristic and each time this model makes an attack, subtract 1 from the Hit roll."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Great cleaver of Khorne",
+            "profiles": [
+              {
+                "name": "Great cleaver of Khorne - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "3+",
+                  "S": "16",
+                  "AP": "-4",
+                  "D": "8",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Great cleaver of Khorne - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "18",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Blessings of Khorne",
+          "Super-Heavy Walker",
+          "Terror of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,1]",
+          "label": "Your 1st Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 505
+            }
+          ]
+        },
+        {
+          "range": "[2,)",
+          "label": "Your 2nd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 535
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Khârn The Betrayer",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Khârn the Betrayer",
+        "points": 115,
+        "stats": {
+          "M": "8\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "5",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Infantry",
+          "Character",
+          "Epic Hero",
+          "Grenades",
+          "Chaos",
+          "Khorne",
+          "Khârn the Betrayer"
+        ],
+        "abilities": [
+          {
+            "name": "Legendary Killer",
+            "description": "While this model is leading a unit, each time a model in that unit makes a melee attack, re-roll a Hit roll of 1 and re-roll a Wound roll of 1."
+          },
+          {
+            "name": "The Betrayer",
+            "description": "At the end of your Charge phase, if this model is leading a unit and that unit is not within Engagement Range of one or more enemy units, you must take a Leadership test for this model. If that test is failed, one Bodyguard model of your choice in that unit is destroyed."
+          },
+          {
+            "name": "Berserker Frenzy",
+            "description": "The first time this model is destroyed, at the end of the phase, roll one D6: on a 2+, set this model back up on the battlefield as close as possible to where it was destroyed and not within Engagement Range of any enemy units, with 3 wounds remaining."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following unit: ^^**Khorne Berzerkers^^**"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Plasma pistol",
+            "profiles": [
+              {
+                "name": "Plasma pistol - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Plasma pistol - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Gorechild",
+            "profiles": [
+              {
+                "name": "Gorechild",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "2+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Blessings of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 115
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Khorne Berzerkers"
+      ],
+      "wargear_options": null
+    },
+    {
+      "name": "Knight Abominant",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Knight Abominant",
+        "points": 355,
+        "stats": {
+          "M": "10\"",
+          "T": "11",
+          "Sv": "3+",
+          "W": "26",
+          "LD": "6+",
+          "OC": "10",
+          "InSv": "5+*"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Titanic",
+          "Towering",
+          "Abhorrent",
+          "Character",
+          "Chaos",
+          "Knight Abominant",
+          "Psyker",
+          "Knight Character"
+        ],
+        "abilities": [
+          {
+            "name": "Vortex Terrors (Psychic)",
+            "description": "At the start of your Shooting phase, select one enemy unit within 24\" of and visible to this model. That enemy unit must take a Battle-shock test."
+          },
+          {
+            "name": "Warp Storms (Psychic)",
+            "description": "At the end of your Movement phase, roll one D6 for each enemy unit within 9\" of one or more models with this ability: on a 3+, that enemy unit suffers D3 mortal wounds."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Balemace",
+            "profiles": [
+              {
+                "name": "Balemace",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Extra Attacks"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Electroscourge",
+            "profiles": [
+              {
+                "name": "Electroscourge",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "9",
+                  "WS": "3+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Volkite combustor",
+            "profiles": [
+              {
+                "name": "Volkite combustor",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "12",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "0",
+                  "D": "3",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Diabolus heavy stubber",
+            "profiles": [
+              {
+                "name": "Diabolus heavy stubber",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 3"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Super-Heavy Walker",
+          "*Invulnerable Save",
+          "Deadly Demise",
+          "Harbingers of Dread",
+          "Damaged: 1-9 wounds remaining"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Knight Desecrator",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Knight Desecrator",
+        "points": 355,
+        "stats": {
+          "M": "10\"",
+          "T": "11",
+          "Sv": "3+",
+          "W": "26",
+          "LD": "6+",
+          "OC": "10",
+          "InSv": "5+*"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Titanic",
+          "Towering",
+          "Abhorrent",
+          "Character",
+          "Chaos",
+          "Knight Desecrator",
+          "Knight Character"
+        ],
+        "abilities": [
+          {
+            "name": "Taskmaster (Aura)",
+            "description": "While a friendly ^^**War Dog^^** model is within 9\" of this model, each time that ^^**War Dog^^** model makes a ranged attack, re-roll a Hit roll of 1."
+          },
+          {
+            "name": "Obsessive Ruthlessness",
+            "description": "Each time this model makes a ranged attack that targets a ^^**Monster^^** or ^^**Vehicle^^** unit, that attack has the [DEVASTATING WOUNDS] ability."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Desecrator laser destructor",
+            "profiles": [
+              {
+                "name": "Desecrator laser destructor",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "3",
+                  "BS": "2+",
+                  "S": "18",
+                  "AP": "-4",
+                  "D": "D6+3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Diabolus heavy stubber",
+            "profiles": [
+              {
+                "name": "Diabolus heavy stubber",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "2+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 3"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Super-Heavy Walker",
+          "Deadly Demise",
+          "Harbingers of Dread",
+          "Damaged: 1-9 wounds remaining",
+          "*Invulnerable Save"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Knight Despoiler",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Knight Despoiler",
+        "points": 380,
+        "stats": {
+          "M": "10\"",
+          "T": "11",
+          "Sv": "3+",
+          "W": "26",
+          "LD": "6+",
+          "OC": "10",
+          "InSv": "5+*"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Titanic",
+          "Towering",
+          "Abhorrent",
+          "Character",
+          "Chaos",
+          "Knight Despoiler",
+          "Knight Character"
+        ],
+        "abilities": [
+          {
+            "name": "Dread Dominion (Aura)",
+            "description": "While a friendly ^^**War Dog^^** model is within 9\" of this model, improve that ^^**War Dog^^** model's Leadership  and Objective Control characteristics by 1."
+          },
+          {
+            "name": "Seething Hatred",
+            "description": "Each time this model is selected to shoot or fight, you can re-roll one Hit roll or you can re-roll one Wound roll when resolving those attacks."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Titanic feet",
+            "profiles": [
+              {
+                "name": "Titanic feet",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "4+",
+                  "S": "8",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Super-Heavy Walker",
+          "Deadly Demise",
+          "Harbingers of Dread",
+          "Damaged: 1-9 wounds remaining",
+          "*Invulnerable Save"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Knight Rampager",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Knight Rampager",
+        "points": 365,
+        "stats": {
+          "M": "12\"",
+          "T": "11",
+          "Sv": "3+",
+          "W": "26",
+          "LD": "6+",
+          "OC": "10",
+          "InSv": "5+*"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Titanic",
+          "Towering",
+          "Abhorrent",
+          "Character",
+          "Chaos",
+          "Knight Rampager",
+          "Knight Character"
+        ],
+        "abilities": [
+          {
+            "name": "Frenzied Rampage (Aura)",
+            "description": "While a friendly ^^**War Dog^^** model is within 9\" of this model, each time that ^^**War Dog^^** model makes a melee attack, re-roll a Hit roll of 1."
+          },
+          {
+            "name": "Bloodlust",
+            "description": "Each time this model makes a Charge move, until the end of the turn, its melee weapons have the [Devastating Wounds] ability."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Reaper chainsword",
+            "profiles": [
+              {
+                "name": "Reaper chainsword - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "2+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "6",
+                  "Keywords": "Sustained Hits 1"
+                }
+              },
+              {
+                "name": "Reaper chainsword - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "18",
+                  "WS": "2+",
+                  "S": "9",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Warpstrike claw",
+            "profiles": [
+              {
+                "name": "Warpstrike claw - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "2+",
+                  "S": "20",
+                  "AP": "-3",
+                  "D": "8",
+                  "Keywords": "Sustained Hits 1"
+                }
+              },
+              {
+                "name": "Warpstrike claw - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "12",
+                  "WS": "2+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Diabolus heavy stubber",
+            "profiles": [
+              {
+                "name": "Diabolus heavy stubber",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 3"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Super-Heavy Walker",
+          "Deadly Demise",
+          "Sustained Hits",
+          "Harbingers of Dread",
+          "Damaged: 1-9 wounds remaining",
+          "*Invulnerable Save"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Knight Ruinator",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Knight Ruinator",
+        "points": 340,
+        "stats": {
+          "M": "10\"",
+          "T": "11",
+          "Sv": "3+",
+          "W": "26",
+          "LD": "6+",
+          "OC": "10",
+          "InSv": "5+*"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Titanic",
+          "Towering",
+          "Abhorrent",
+          "Character",
+          "Chaos",
+          "Knight Ruinator",
+          "Knight Character"
+        ],
+        "abilities": [
+          {
+            "name": "Methodical Destruction",
+            "description": "At the start of the first battle round, select one unit from your opponent's army to be this model's victim. Each time this model makes an attack that targets its victim, you can re-roll the Wound roll. Each time this model's victim is destroyed, select one new enemy unit to be this model's victim."
+          },
+          {
+            "name": "Close-range Killers (Aura)",
+            "description": "While a friendly ^^**War Dog^^** model is within 9\" of this model, each time that ^^**War Dog^^** model makes an attack that targets the closest enemy unit, improve the Armour Penetration characteristic of that attack by 1."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Darkflame lance",
+            "profiles": [
+              {
+                "name": "Darkflame lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2D6",
+                  "BS": "N/A",
+                  "S": "8",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Fellbore",
+            "profiles": [
+              {
+                "name": "Fellbore - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "14",
+                  "AP": "-3",
+                  "D": "6",
+                  "Keywords": "Anti-Monster 2+, Anti-Vehicle 2+"
+                }
+              },
+              {
+                "name": "Fellbore - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "10",
+                  "WS": "3+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Terrorpulse missiles",
+            "profiles": [
+              {
+                "name": "Terrorpulse missiles",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "2D6",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Super-Heavy Walker",
+          "Deadly Demise",
+          "Harbingers of Dread",
+          "Damaged: 1-9 wounds remaining",
+          "*Invulnerable Save"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Knight Tyrant",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Knight Tyrant",
+        "points": 400,
+        "stats": {
+          "M": "8\"",
+          "T": "12",
+          "Sv": "3+",
+          "W": "28",
+          "LD": "6+",
+          "OC": "10",
+          "InSv": "5+*"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Titanic",
+          "Towering",
+          "Character",
+          "Chaos",
+          "Knight Tyrant",
+          "Knight Character"
+        ],
+        "abilities": [
+          {
+            "name": "Infernal Aegis (Aura)",
+            "description": "While a friendly ^^**War Dog^^** model is within 6\" of this model, that ^^**War Dog^^** model has the Benefit of Cover."
+          },
+          {
+            "name": "Bastion of Corruption",
+            "description": "Enemy units that are set up on the battlefield as Reinforcements cannot be set up within 12\" of this model."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Titanic feet",
+            "profiles": [
+              {
+                "name": "Titanic feet",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "4+",
+                  "S": "8",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin daemonbreath meltagun",
+            "profiles": [
+              {
+                "name": "Twin daemonbreath meltagun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 2, Twin-linked"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Super-Heavy Walker",
+          "Deadly Demise",
+          "Harbingers of Dread",
+          "Damaged: 1-10 wounds remaining",
+          "*Invulnerable Save"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Lord Invocatus",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Lord Invocatus",
+        "points": 110,
+        "stats": {
+          "M": "10\"",
+          "T": "6",
+          "Sv": "3+",
+          "W": "8",
+          "LD": "6+",
+          "OC": "2",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Mounted",
+          "Character",
+          "Epic Hero",
+          "Chaos",
+          "Khorne",
+          "Lord Invocatus"
+        ],
+        "abilities": [
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units: ^^**Eightbound^^**, ^^**Exalted Eightbound^^**, ^^**Khorne Berzerkers^^**"
+          },
+          {
+            "name": "Fire Riders",
+            "description": "While this model is leading a unit, models in that unit have the Deep Strike ability and each time a model in that unit makes a Normal, Advance, Fall Back or Charge move, it can move horizontally through models and terrain features. When making a Normal, Advance or Fall Back move, models in that unit can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them and any Desperate Escape test is automatically passed."
+          },
+          {
+            "name": "Bloody Stampede",
+            "description": "Each time this model's unit ends a Charge move, select one enemy unit within Engagement Range of this model, then roll one D6: on a 2-3, that enemy unit suffers 1 mortal wound; on a 4-5, that enemy unit suffers D3 mortal wounds; on a 6, that enemy unit suffers D3+3 mortal wounds."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "2+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Coward's Bane",
+            "profiles": [
+              {
+                "name": "Coward's Bane",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "7",
+                  "WS": "2+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bladed horn",
+            "profiles": [
+              {
+                "name": "Bladed horn",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Extra Attacks, Lance"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Scouts",
+          "Blessings of Khorne",
+          "Deep Strike"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 110
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Eightbound",
+        "Exalted Eightbound",
+        "Khorne Berzerkers"
+      ],
+      "wargear_options": null
+    },
+    {
+      "name": "Lord On Juggernaut",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Lord on Juggernaut",
+        "points": 105,
+        "stats": {
+          "M": "10\"",
+          "T": "6",
+          "Sv": "3+",
+          "W": "7",
+          "LD": "6+",
+          "OC": "2",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Mounted",
+          "Character",
+          "Chaos",
+          "Khorne",
+          "Lord on Juggernaut"
+        ],
+        "abilities": [
+          {
+            "name": "Aggressive Advance",
+            "description": "While this model is leading a unit, models in that unit have a Move characteristic of 10\" and each time a model in that unit makes a Normal, Advance, Fall Back or Charge move, it can move horizontally though terrain features."
+          },
+          {
+            "name": "Crush All Who Stand Before Us",
+            "description": "Each time this model's unit is selected to fight, you can use this ability. When determining which models in this unit are eligible to fight, any models in it that are within 3\" of one or more enemy models are eligible to fight. When resolving those attacks, such models can target one of those enemy units that is within 3\" of them and within Engagement Range of their unit."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units: ^^**Eightbound^^**, ^^**Exalted Eightbound^^**, ^^**Khorne Berzerkers^^**"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Bladed horn",
+            "profiles": [
+              {
+                "name": "Bladed horn",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Extra Attacks, Lance"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Exalted chainblade",
+            "profiles": [
+              {
+                "name": "Exalted chainblade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "7",
+                  "WS": "2+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Plasma pistol",
+            "profiles": [
+              {
+                "name": "Plasma pistol - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Plasma pistol - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Pistol"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Blessings of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 105
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Eightbound",
+        "Exalted Eightbound",
+        "Khorne Berzerkers"
+      ],
+      "wargear_options": null
+    },
+    {
+      "name": "Master Of Executions",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Master of Executions",
+        "points": 60,
+        "stats": {
+          "M": "8\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "4",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Infantry",
+          "Character",
+          "Chaos",
+          "Khorne",
+          "Master of Executions"
+        ],
+        "abilities": [
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following unit: ^^**Khorne Berzerkers^^**"
+          },
+          {
+            "name": "A Worthy Skull",
+            "description": "Each time this model makes a melee attack that targets a ^^**Character^^** unit, you can re-roll the Hit roll and you can re-roll the Wound roll. Each time this model's unit destroys a ^^**Character^^** model, you gain 1CP."
+          },
+          {
+            "name": "Forwards, For Blood!",
+            "description": "While this model is leading a unit, you can re-roll Advance rolls made for that unit and each time that unit makes a Blood Surge move, you can re-roll the D6 used to determine how far models in that unit move."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Axe of dismemberment",
+            "profiles": [
+              {
+                "name": "Axe of dismemberment",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "2+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Devastating Wounds, Precision"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Blessings of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 60
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Khorne Berzerkers"
+      ],
+      "wargear_options": null
+    },
+    {
+      "name": "Maulerfiend",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Maulerfiend",
+        "points": 145,
+        "stats": {
+          "M": "12\"",
+          "T": "10",
+          "Sv": "3+",
+          "W": "12",
+          "LD": "6+",
+          "OC": "3",
+          "InSv": "5+"
+        },
+        "keywords": [
+          "Faction: World Eaters",
+          "Vehicle",
+          "Walker",
+          "Chaos",
+          "Khorne",
+          "Daemon",
+          "Maulerfiend"
+        ],
+        "abilities": [
+          {
+            "name": "The Scent of Blood",
+            "description": "In the Charge phase, when this unit **declares a charge**: \n- If an enemy unit **below starting strength** is within 9\" of this unit, this unit has +1 to **charge rolls**. \n- Or: If an enemy unit **below half strength** is within 9\" of this unit, this unit has +2 to **charge rolls**."
+          },
+          {
+            "name": "Savage Exaltation",
+            "description": "Each time this model makes a melee attack that targets an enemy unit that is below its Starting Strength, add 1 to the Hit roll and, if that attack targets an enemy unit that is Below Half-Strength, add 1 to the Wound roll as well."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Maulerfiend fists",
+            "profiles": [
+              {
+                "name": "Maulerfiend fists",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "3+",
+                  "S": "14",
+                  "AP": "-2",
+                  "D": "D6+1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Damaged: 1-4 wounds remaining",
+          "Blessings of Khorne",
+          "Terror of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 145
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 155
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Reaver Titan",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Reaver Titan",
+        "points": 2200,
+        "stats": {
+          "M": "12\"",
+          "T": "14",
+          "Sv": "2+",
+          "W": "60",
+          "LD": "6+",
+          "OC": "20",
+          "InSv": "5+ (Ranged)"
+        },
+        "keywords": [
+          "Vehicle",
+          "Walker",
+          "Titanic",
+          "Towering",
+          "Reaver Titan",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Damaged: 1-20 wounds remaining",
+            "description": "While this model has 1-20 wounds remaining, subtract 10 from this model’s Objective Control characteristic and each time this model makes an attack, subtract 1 from the Hit roll."
+          },
+          {
+            "name": "God-machine",
+            "description": "This model is eligible to shoot and declare a charge in a turn in which it Fell Back."
+          },
+          {
+            "name": "Striding Colossus",
+            "description": "Each time you target this model with a Stratagem, you must spend three times that Stratagem’s stated CP cost to do so."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Reaver feet",
+            "profiles": [
+              {
+                "name": "Reaver feet",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "4+",
+                  "S": "12",
+                  "AP": "-2",
+                  "D": "4",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver apocalypse launcher",
+            "profiles": [
+              {
+                "name": "Reaver apocalypse launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "200\"",
+                  "A": "3D6",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Blast, Indirect Fire"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Super-Heavy Walker"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Searchlight",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Searchlight",
+        "points": 10,
+        "stats": {},
+        "keywords": [
+          "Allies: Unaligned Forces"
+        ],
+        "abilities": [
+          {
+            "name": "Enemy Spotted",
+            "description": "Each time a model from your army makes a ranged attack that targets an enemy unit that is within 9\" of and visible to any Searchlights from your army, re-roll a Hit of 1 and, if the model making that attack is a Sentry Gun, add 1 to the Hit roll as well."
+          },
+          {
+            "name": "Wall",
+            "description": "This model is a terrain feature and counts as a Wall."
+          },
+          {
+            "name": "Camera Network",
+            "description": "In the Create the Battlefield and Place Objective Markers step, set this terrain feature up in one of the Searchlight positions (marked D2 on the mission map) that does not already contain a Searchlight."
+          }
+        ],
+        "weapons": [],
+        "rules": []
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Sentry Gun",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Sentry Gun",
+        "points": 30,
+        "stats": {
+          "M": "-",
+          "T": "4",
+          "Sv": "4+",
+          "W": "3",
+          "LD": "6+",
+          "OC": "0",
+          "InSv": ""
+        },
+        "keywords": [
+          "Vehicle",
+          "Faction: Unaligned Forces",
+          "Sentry Gun",
+          "Allies: Unaligned Forces"
+        ],
+        "abilities": [
+          {
+            "name": "Defensive Emplacement",
+            "description": "In the Create the Battlefield and Place Objective Markers step, set this model up in one of the Sentry Gun positions (marked D1 on the mission map)."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Twin heavy bolter",
+            "profiles": [
+              {
+                "name": "Twin heavy bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Heavy, Sustained Hits 1, Twin-linked"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": []
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Skarbrand",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Skarbrand",
+        "points": 315,
+        "stats": {
+          "M": "10\"",
+          "T": "11",
+          "Sv": "3+",
+          "W": "20",
+          "LD": "6+",
+          "OC": "5",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Monster",
+          "Character",
+          "Epic Hero",
+          "Chaos",
+          "Daemon",
+          "Khorne",
+          "Faction: Blood Legions",
+          "Skarbrand"
+        ],
+        "abilities": [
+          {
+            "name": "Rage Embodied (Aura)",
+            "description": "While a friendly ^^Blood Legions^^ unit is within 6\" of this model, add 1 to the Attacks characteristic of melee weapons equipped by models in that unit."
+          },
+          {
+            "name": "Murderlust",
+            "description": "This unit is eligible to declare a charge in a turn in which it Advanced."
+          },
+          {
+            "name": "Damaged: 1-7 wounds remaining",
+            "description": "While this model has 1-7 wounds remaining, add 2 to the Attacks characteristic of this model’s Slaughter and Carnage."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Bellow of endless fury",
+            "profiles": [
+              {
+                "name": "Bellow of endless fury",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2D6",
+                  "BS": "N/A",
+                  "S": "8",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Slaughter and Carnage",
+            "profiles": [
+              {
+                "name": "Slaughter and Carnage - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "2+",
+                  "S": "16",
+                  "AP": "-4",
+                  "D": "6",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Slaughter and Carnage - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "16",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Deep Strike"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 315
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Slaughterbound",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "profile": {
+        "name": "Slaughterbound",
+        "points": 100,
+        "stats": {
+          "M": "10\"",
+          "T": "6",
+          "Sv": "3+",
+          "W": "6",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "5+"
+        },
+        "keywords": [
+          "Character",
+          "Infantry",
+          "Chaos",
+          "Khorne",
+          "Daemon",
+          "Possessed",
+          "Slaughterbound",
+          "Faction: World Eaters"
+        ],
+        "abilities": [
+          {
+            "name": "Rage Eternal",
+            "description": "While this model is leading a unit, in your Command phase, you can return one destroyed Bodyguard model to that unit."
+          },
+          {
+            "name": "Possessed Lord",
+            "description": "Once per battle, at the start of the Fight phase, this model can use this ability. If it does, until the end of the phase, add 3 to the Attacks characteristic of melee weapons equipped by this model and those weapons have the [Devastating Wounds] ability."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units: ^^**Eightbound^^**, ^^**Exalted Eightbound^^**"
+          },
+          {
+            "name": "Lord of the Eightbound",
+            "description": "If this model is attached to a ^^**World Eaters Possessed^^** unit during the Declare Battle Formations step, this model has the Deep Strike and Scouts 6\" abilities."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Lacerator and daemonic claw",
+            "profiles": [
+              {
+                "name": "Lacerator and daemonic claw",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "2+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Deadly Demise",
+          "Blessings of Khorne"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 100
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Eightbound",
+        "Exalted Eightbound"
+      ],
+      "wargear_options": null
+    },
+    {
+      "name": "War Dog Brigand",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "War Dog Brigand",
+        "points": 140,
+        "stats": {
+          "M": "12\"",
+          "T": "9",
+          "Sv": "3+",
+          "W": "14",
+          "LD": "7+",
+          "OC": "6",
+          "InSv": "5+*"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Chaos",
+          "War Dog",
+          "Brigand"
+        ],
+        "abilities": [
+          {
+            "name": "Brigand",
+            "description": "Ranged weapons equipped by this model have the [Ignores Cover] ability while targeting enemy units in range of one or more objective markers."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Armoured feet",
+            "profiles": [
+              {
+                "name": "Armoured feet",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Avenger chaincannon",
+            "profiles": [
+              {
+                "name": "Avenger chaincannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "12",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Daemonbreath spear",
+            "profiles": [
+              {
+                "name": "Daemonbreath spear",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 4"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Damaged: 1-5 wounds remaining",
+          "Harbingers of Dread",
+          "*Invulnerable Save"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "War Dog Executioner",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "War Dog Executioner",
+        "points": 130,
+        "stats": {
+          "M": "12\"",
+          "T": "9",
+          "Sv": "3+",
+          "W": "14",
+          "LD": "7+",
+          "OC": "6",
+          "InSv": "5+*"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Chaos",
+          "War Dog",
+          "Executioner"
+        ],
+        "abilities": [
+          {
+            "name": "Executioner",
+            "description": "Each time this model makes an attack that targets a unit Below Half-strength, add 1 to the Hit roll. Each time an enemy unit is destroyed as the result of this model's attacks, before removing the last model in that unit from the battlefield, each other unit from your opponent's army that is within 3\" of it must take a Battle-shock test."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "War Dog autocannon",
+            "profiles": [
+              {
+                "name": "War Dog autocannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "4",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-1",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Armoured feet",
+            "profiles": [
+              {
+                "name": "Armoured feet",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Damaged: 1-5 wounds remaining",
+          "Harbingers of Dread",
+          "*Invulnerable Save"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "War Dog Huntsman",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "War Dog Huntsman",
+        "points": 140,
+        "stats": {
+          "M": "12\"",
+          "T": "9",
+          "Sv": "3+",
+          "W": "14",
+          "LD": "7+",
+          "OC": "6",
+          "InSv": "5+*"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Chaos",
+          "War Dog",
+          "Huntsman"
+        ],
+        "abilities": [
+          {
+            "name": "Huntsman",
+            "description": "Each time this model makes an attack that targets a ^^**Monster^^** or ^^**Vehicle^^** unit, you can re-roll the Wound roll."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Daemonbreath spear",
+            "profiles": [
+              {
+                "name": "Daemonbreath spear",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 4"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaper chaintalon",
+            "profiles": [
+              {
+                "name": "Reaper chaintalon - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "10",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Reaper chaintalon - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Damaged: 1-5 wounds remaining",
+          "Harbingers of Dread",
+          "*Invulnerable Save"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "War Dog Karnivore",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "War Dog Karnivore",
+        "points": 155,
+        "stats": {
+          "M": "14\"",
+          "T": "9",
+          "Sv": "3+",
+          "W": "14",
+          "LD": "7+",
+          "OC": "6",
+          "InSv": "5+*"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Chaos",
+          "War Dog",
+          "Karnivore"
+        ],
+        "abilities": [
+          {
+            "name": "Karnivore",
+            "description": "You can re-roll Advance and Charge rolls made for this model."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Reaper chaintalon",
+            "profiles": [
+              {
+                "name": "Reaper chaintalon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "12",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Slaughterclaw",
+            "profiles": [
+              {
+                "name": "Slaughterclaw",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+2",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Damaged: 1-5 wounds remaining",
+          "Harbingers of Dread",
+          "*Invulnerable Save"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "War Dog Moirax",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "War Dog Moirax",
+        "points": 150,
+        "stats": {
+          "M": "12\"",
+          "T": "9",
+          "Sv": "3+",
+          "W": "14",
+          "LD": "7+",
+          "OC": "6",
+          "InSv": "5+*"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Chaos",
+          "War Dog",
+          "Moirax"
+        ],
+        "abilities": [
+          {
+            "name": "Protection Protocols",
+            "description": "You can target this unit with the Heroic Intervention Stratagem for 0CP, and can do so even if you have already targeted a different unit with that Stratagem this phase."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Armoured feet",
+            "profiles": [
+              {
+                "name": "Armoured feet",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Damaged: 1-5 wounds remaining",
+          "Deadly Demise",
+          "Harbingers of Dread",
+          "*Invulnerable Save"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "War Dog Stalker",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "War Dog Stalker",
+        "points": 140,
+        "stats": {
+          "M": "12\"",
+          "T": "9",
+          "Sv": "3+",
+          "W": "14",
+          "LD": "7+",
+          "OC": "6",
+          "InSv": "5+*"
+        },
+        "keywords": [
+          "Faction: Chaos Knights",
+          "Vehicle",
+          "Walker",
+          "Chaos",
+          "War Dog",
+          "Stalker"
+        ],
+        "abilities": [
+          {
+            "name": "Stalker",
+            "description": "Each time this model makes an attack that targets an enemy unit, if there are no other units from your opponent’s army within 6\" of that target, add 1 to the Wound roll."
+          }
+        ],
+        "weapons": [],
+        "rules": [
+          "Deadly Demise",
+          "Damaged: 1-5 wounds remaining",
+          "Harbingers of Dread",
+          "Scouts",
+          "*Invulnerable Save"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Warbringer Nemesis Titan",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Warbringer Nemesis Titan",
+        "points": 2600,
+        "stats": {
+          "M": "12\"",
+          "T": "14",
+          "Sv": "2+",
+          "W": "80",
+          "LD": "6+",
+          "OC": "20",
+          "InSv": "5+ (Ranged)"
+        },
+        "keywords": [
+          "Vehicle",
+          "Walker",
+          "Titanic",
+          "Towering",
+          "Warbringer Nemesis Titan",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Damaged: 1-26 wounds remaining",
+            "description": "While this model has 1-26 wounds remaining, subtract 10 from this model’s Objective Control characteristic and each time this model makes an attack, subtract 1 from the Hit roll."
+          },
+          {
+            "name": "Titanic Fire Support",
+            "description": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. Until the end of the phase, each time a friendly IMPERIUM model makes an attack that targets that enemy unit, on a Critical Wound, improve the Armour Penetration characteristic of that attack by 1."
+          },
+          {
+            "name": "Titanic Fire Support",
+            "description": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. Until the end of the phase, each time a friendly CHAOS model makes an attack that targets that enemy unit, on a Critical Wound, improve the Armour Penetration characteristic of that attack by 1."
+          },
+          {
+            "name": "Striding Colossus",
+            "description": "Each time you target this model with a Stratagem, you must spend three times that Stratagem’s stated CP cost to do so."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Anvillus defence battery",
+            "profiles": [
+              {
+                "name": "Anvillus defence battery",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "8",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-FLY 4+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "profiles": [
+              {
+                "name": "Ardex-defensor mauler",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Nemesis feet",
+            "profiles": [
+              {
+                "name": "Nemesis feet",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "4+",
+                  "S": "12",
+                  "AP": "-2",
+                  "D": "4",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Super-Heavy Walker"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Warhound Titan",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Warhound Titan",
+        "points": 1100,
+        "stats": {
+          "M": "14\"",
+          "T": "13",
+          "Sv": "2+",
+          "W": "40",
+          "LD": "6+",
+          "OC": "16",
+          "InSv": "5+ (Ranged)"
+        },
+        "keywords": [
+          "Vehicle",
+          "Walker",
+          "Titanic",
+          "Towering",
+          "Warhound Titan",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Flank Speed",
+            "description": "Each time this model Advances, do not make an Advance roll for it. Instead, until the end of the phase, add 8\" to the Move characteristic of this model."
+          },
+          {
+            "name": "Damaged: 1-13 wounds remaining",
+            "description": "While this model has 1-13 wounds remaining, subtract 8 from this model’s Objective Control characteristic and each time this model makes an attack, subtract 1 from the Hit roll."
+          },
+          {
+            "name": "Striding Colossus",
+            "description": "Each time you target this model with a Stratagem, you must spend twice that Stratagem’s stated CP cost to do so."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Warhound feet",
+            "profiles": [
+              {
+                "name": "Warhound feet",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "4+",
+                  "S": "10",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Super-Heavy Walker"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Warlord Titan",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "profile": {
+        "name": "Warlord Titan",
+        "points": 3500,
+        "stats": {
+          "M": "10\"",
+          "T": "16",
+          "Sv": "2+",
+          "W": "100",
+          "LD": "6+",
+          "OC": "30",
+          "InSv": "5+ (Ranged)"
+        },
+        "keywords": [
+          "Vehicle",
+          "Walker",
+          "Titanic",
+          "Towering",
+          "Warlord Titan",
+          "Frame"
+        ],
+        "abilities": [
+          {
+            "name": "Damaged: 1-33 wounds remaining",
+            "description": "While this model has 1-33 wounds remaining, subtract 15 from this model’s Objective Control characteristic and each time this model makes an attack, subtract 1 from the Hit roll."
+          },
+          {
+            "name": "Wrath of the Omnissiah",
+            "description": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. That unit must take a Battle-shock test."
+          },
+          {
+            "name": "Striding Colossus",
+            "description": "Each time you target this model with a Stratagem, you must spend four times that Stratagem’s stated CP cost to do so."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "profiles": [
+              {
+                "name": "Ardex-defensor lascannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "profiles": [
+              {
+                "name": "Ardex-defensor mauler",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Warlord feet",
+            "profiles": [
+              {
+                "name": "Warlord feet",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "4+",
+                  "S": "12",
+                  "AP": "-2",
+                  "D": "4",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Super-Heavy Walker"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    }
+  ],
+  "_meta": {
+    "bsdata_faction": "Chaos - World Eaters",
+    "bsdata_revision": 4,
+    "bsdata_units": 64,
+    "mfm_units": 30,
+    "merged_units": 64
+  }
+}
