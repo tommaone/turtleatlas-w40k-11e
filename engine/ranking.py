@@ -661,8 +661,10 @@ class RankingEngine:
             if not info.get("T"):
                 pass  # fall through to profile-based fallback
             else:
-                kw = ["INFANTRY", "DEEP STRIKE"]
+                kw = ["INFANTRY"]
                 kw.extend(self.config.faction_keywords)
+                if info.get("deep_strike"):
+                    kw.append("DEEP STRIKE")
                 if info.get("FLY"):
                     kw.append("FLY")
                 if "Terminator" in name:
@@ -694,7 +696,9 @@ class RankingEngine:
             if not info.get("T"):
                 pass  # fall through to profile-based fallback
             else:
-                kw = ["VEHICLE", "WALKER", "DEEP STRIKE"]
+                kw = ["VEHICLE", "WALKER"]
+                if info.get("deep_strike"):
+                    kw.append("DEEP STRIKE")
                 kw.extend(self.config.faction_keywords)
                 return kw, info["T"], info["SV"], info["W"], info.get("OC", 0), info.get("invuln") or info.get("INV")
 
@@ -706,7 +710,9 @@ class RankingEngine:
                 pass  # fall through to profile-based fallback
             else:
                 t_val = info.get("T", 4)
-                kw = ["INFANTRY", "CHARACTER", "DEEP STRIKE"]
+                kw = ["INFANTRY", "CHARACTER"]
+                if info.get("deep_strike"):
+                    kw.append("DEEP STRIKE")
                 kw.extend(self.config.faction_keywords)
                 if t_val >= 5:
                     kw.append("TERMINATOR")
