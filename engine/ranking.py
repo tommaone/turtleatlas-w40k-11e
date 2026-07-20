@@ -1050,7 +1050,10 @@ class RankingEngine:
                 )
                 # Cost penalty for action-heavy missions: cheap units = more actions
                 if mission in ("Reconnaissance", "Disruption"):
-                    cost_eff = min(100.0, 10000.0 / r["points"])  # 100pts→100, 200→50, 400→25
+                    if r["points"] > 0:
+                        cost_eff = min(100.0, 10000.0 / r["points"])  # 100pts→100, 200→50, 400→25
+                    else:
+                        cost_eff = 0.0  # 0pts unit — likely broken config
                     r["_cost_eff"] = round(cost_eff, 1)
                     r["_mission_score"] = r["_mission_score"] * cost_eff / 100.0
                 else:

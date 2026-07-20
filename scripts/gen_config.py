@@ -382,7 +382,10 @@ def gen_vehicle_config(name, unit, pricing_data):
 
 
 def gen_weapon_options(name, unit, pricing_data):
-    """Generate weapon_options entry if unit has multiple ranged weapons."""
+    """Generate weapon_options entry if unit has multiple ranged weapons.
+
+    Includes pts so resolve_loadout() doesn't fall back to 0.
+    """
     profile = unit.get("profile") or {}
     info = extract_info(profile)
     deep_strike = unit.get("deep_strike", False)
@@ -395,11 +398,17 @@ def gen_weapon_options(name, unit, pricing_data):
     if len(ranged_names) <= 1 and len(melee_names) <= 1:
         return None
 
+    # Extract points from pricing — critical for resolve_loadout()
+    pricing = unit.get("pricing") or {}
+    pts = get_points(pricing, 1)
+
     entry = {
         "ranged": ranged_names,
         "melee": melee_names,
         "info": info,
     }
+    if pts is not None:
+        entry["pts"] = pts
     return entry
 
 

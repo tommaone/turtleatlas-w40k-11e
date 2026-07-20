@@ -5,11 +5,34 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from engine.ranking import RankingEngine
 
 FACTIONS = {
-    'dark-angels': 'Dark Angels',
-    'grey-knights': 'Grey Knights',
-    'space-marines': 'Space Marines',
-    'chaos-knights': 'Chaos Knights',
+    'adepta-sororitas': 'Adepta Sororitas',
+    'adeptus-custodes': 'Adeptus Custodes',
+    'adeptus-mechanicus': 'Adeptus Mechanicus',
+    'aeldari': 'Aeldari',
+    'astra-militarum': 'Astra Militarum',
+    'black-templars': 'Black Templars',
+    'blood-angels': 'Blood Angels',
     'chaos-daemons': 'Chaos Daemons',
+    'chaos-knights': 'Chaos Knights',
+    'chaos-space-marines': 'Chaos Space Marines',
+    'dark-angels': 'Dark Angels',
+    'death-guard': 'Death Guard',
+    'deathwatch': 'Deathwatch',
+    'drukhari': 'Drukhari',
+    'emperors-children': "Emperor's Children",
+    'genestealer-cults': 'Genestealer Cults',
+    'grey-knights': 'Grey Knights',
+    'imperial-agents': 'Imperial Agents',
+    'imperial-knights': 'Imperial Knights',
+    'leagues-of-votann': 'Leagues of Votann',
+    'necrons': 'Necrons',
+    'orks': 'Orks',
+    'space-marines': 'Space Marines',
+    'space-wolves': 'Space Wolves',
+    'tau-empire': "T'au Empire",
+    'thousand-sons': 'Thousand Sons',
+    'tyranids': 'Tyranids',
+    'world-eaters': 'World Eaters',
 }
 MISSIONS = ['Take and Hold', 'Purge the Foe', 'Reconnaissance', 'Priority Assets', 'Disruption']
 WEIGHTS = {
