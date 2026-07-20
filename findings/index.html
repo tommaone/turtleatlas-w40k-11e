@@ -16,48 +16,54 @@ h1 { color: #4fc3f7; font-size: 32px; margin-bottom: 8px; }
 .card-count { font-size: 13px; color: #90a4ae; }
 .card-arrow { float: right; color: #4fc3f7; font-size: 20px; margin-top: -20px; }
 </style>
+<script>
+const FACTIONS = [
+  ["adepta-sororitas", "Adepta Sororitas"],
+  ["adeptus-custodes", "Adeptus Custodes"],
+  ["adeptus-mechanicus", "Adeptus Mechanicus"],
+  ["aeldari", "Aeldari"],
+  ["astra-militarum", "Astra Militarum"],
+  ["black-templars", "Black Templars"],
+  ["blood-angels", "Blood Angels"],
+  ["chaos-daemons", "Chaos Daemons"],
+  ["chaos-knights", "Chaos Knights"],
+  ["chaos-space-marines", "Chaos Space Marines"],
+  ["dark-angels", "Dark Angels"],
+  ["death-guard", "Death Guard"],
+  ["deathwatch", "Deathwatch"],
+  ["drukhari", "Drukhari"],
+  ["emperors-children", "Emperor's Children"],
+  ["genestealer-cults", "Genestealer Cults"],
+  ["grey-knights", "Grey Knights"],
+  ["imperial-agents", "Imperial Agents"],
+  ["imperial-knights", "Imperial Knights"],
+  ["leagues-of-votann", "Leagues of Votann"],
+  ["necrons", "Necrons"],
+  ["orks", "Orks"],
+  ["space-marines", "Space Marines"],
+  ["space-wolves", "Space Wolves"],
+  ["tau-empire", "T'au Empire"],
+  ["thousand-sons", "Thousand Sons"],
+  ["tyranids", "Tyranids"],
+  ["world-eaters", "World Eaters"],
+];
+</script>
 </head>
 <body>
 <h1>Warhammer 40k — Faction Findings</h1>
-<div class="sub">Quad-vector scoring engine &middot; DPP + SURV + OBJ + MOB &middot; 5 mission profiles</div>
+<div class="sub">Quad-vector scoring engine &middot; DPP + SURV + OBJ + MOB &middot; 5 mission profiles &middot; 28 factions</div>
 
-<div class="grid">
-  <div class="card">
-    <a href="dark-angels/findings.html">
-      <div class="card-name">Dark Angels</div>
-      <div class="card-count">105 datasheets</div>
-      <div class="card-arrow">&rarr;</div>
-    </a>
-  </div>
-  <div class="card">
-    <a href="grey-knights/findings.html">
-      <div class="card-name">Grey Knights</div>
-      <div class="card-count">27 datasheets</div>
-      <div class="card-arrow">&rarr;</div>
-    </a>
-  </div>
-  <div class="card">
-    <a href="chaos-knights/findings.html">
-      <div class="card-name">Chaos Knights</div>
-      <div class="card-count">19 datasheets</div>
-      <div class="card-arrow">&rarr;</div>
-    </a>
-  </div>
-  <div class="card">
-    <a href="chaos-daemons/findings.html">
-      <div class="card-name">Chaos Daemons</div>
-      <div class="card-count">53 datasheets</div>
-      <div class="card-arrow">&rarr;</div>
-    </a>
-  </div>
-  <div class="card">
-    <a href="space-marines/findings.html">
-      <div class="card-name">Space Marines</div>
-      <div class="card-count">100 datasheets</div>
-      <div class="card-arrow">&rarr;</div>
-    </a>
-  </div>
-</div>
+<div class="grid" id="grid"></div>
+
+<script>
+const grid = document.getElementById('grid');
+FACTIONS.forEach(([slug, name]) => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `<a href="${slug}/findings.html"><div class="card-name">${name}</div><div class="card-arrow">&rarr;</div></a>`;
+  grid.appendChild(card);
+});
+</script>
 
 </body>
 </html>

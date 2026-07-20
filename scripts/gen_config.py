@@ -254,6 +254,50 @@ def gen_supported_json(faction_slug, data):
     }
 
 
+# Mapping from MFM objective names to engine vector affects
+_OBJECTIVE_AFFECTS = {
+    "TAKE AND HOLD": "obj",
+    "PURGE THE FOE": "dpp",
+    "RECONNAISSANCE": "mob",
+    "PRIORITY ASSETS": "dpp",
+    "DISRUPTION": "mob",
+}
+
+
+def gen_detachment_modifiers(faction_slug, data):
+    """Generate detachment_modifiers.json from MFM detachments.
+
+    Each detachment gets a basic choice reflecting its disposition objective.
+    This gives the engine enough to apply detachment-aware scoring.
+    """
+    faction_name = data.get("faction_name", faction_slug.replace("-", " ").title())
+    detachments = {}
+    for det in data.get("detachments", []):
+        det_name = det.get("name", "")
+        obj = det.get("objective", "")
+        if not det_name:
+            continue
+        affects = _OBJECTIVE_AFFECTS.get(obj.upper(), "dpp") if obj else "dpp"
+        det_entry = {
+            "objective": obj,
+            "_source": "MFM (auto-generated)",
+            "choices": [
+                {
+                    "name": f"{det_name} disposition",
+                    "affects": affects,
+                    "_source": "MFM disposition objective",
+                    "description": f"Detachment favours {obj.lower()} play",
+                }
+            ],
+        }
+        detachments[det_name] = det_entry
+    return {
+        "_note": f"{faction_name} detachment modifiers — auto-generated from MFM",
+        "_source": "BSData 11e + MFM (auto-generated)",
+        "detachments": detachments,
+    }
+
+
 def extract_weapons(profile):
     """Extract weapon names grouped by type (ranged vs melee)."""
     if not profile:
@@ -533,6 +577,13 @@ def generate_faction_config(faction_slug, dry_run=False, skip_existing=False):
     notes_path = faction_dir / "notes.json"
     if not notes_path.exists():
         notes_path.write_text("{}\n")
+
+    # detachment_modifiers.json — basic modifiers from MFM detachment objectives
+    dm_path = faction_dir / "detachment_modifiers.json"
+    if not dm_path.exists():
+        dm = gen_detachment_modifiers(faction_slug, data)
+        dm_path.write_text(
+            json.dumps(dm, indent=2, ensure_ascii=False) + "\n")
 
     # supported.json (dispositions, keywords, etc.)
     supported_path = faction_dir / "supported.json"
