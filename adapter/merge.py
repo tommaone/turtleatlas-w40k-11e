@@ -81,10 +81,19 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
         bs_u = bsdata_unit_map.get(n)
         mfm_u = mfm_unit_map.get(n)
 
+        # Extract deep_strike from BSData rules
+        ds = False
+        if bs_u:
+            for rule in (bs_u.get("rules") or []):
+                if "DEEP STRIKE" in rule.upper():
+                    ds = True
+                    break
+
         merged_units.append({
             "name": mfm_orig_names.get(n) or bsdata_orig_names.get(n) or n,
             "in_bsdata": bs_u is not None,
             "in_mfm": mfm_u is not None,
+            "deep_strike": ds,
             "profile": bs_u,
             "pricing": mfm_u.get("pricing") if mfm_u else None,
             "role": mfm_u.get("role") if mfm_u else None,
