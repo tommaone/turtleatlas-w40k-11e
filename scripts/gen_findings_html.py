@@ -100,12 +100,12 @@ MISSION_FACTORS = {
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'findings')
 
 
-def build_data(fid):
+def build_data(fid, max_points=2000):
     """Compute rankings and return DATA dict for JS embedding."""
     e = RankingEngine(fid)
     data = {}
     for m in MISSIONS:
-        r = e.compute_ranking(mission=m)
+        r = e.compute_ranking(mission=m, max_points=max_points)
         w = WEIGHTS[m]
         units = []
         for u in r:
@@ -216,7 +216,7 @@ tr:hover{{background:#141c28}}tr.top3{{background:#0d2137}}
 .factor-list{{margin:0;padding-left:18px;font-size:12px;color:#78909c;line-height:1.8}}
 .factor-list li{{margin-bottom:2px}}
 .raw{{font-weight:600;font-size:11px;color:#b0bec5}}</style></head><body>
-<div class="back"><a href="../index.html">&larr; All Factions</a></div>
+<div class="back"><a href="../index.html" id="back-link">&larr; All Factions</a></div>
 <h1>{fname}</h1>
 <div class="subtitle">{n_units} datasheets · {len(MISSIONS)} missions · Quad-vector (DPP + SURV + OBJ + MOB)</div>
 <div class="tabs"><div class="tab active" onclick="showTab('missions')">Mission Rankings</div><div class="tab" onclick="showTab('top10')">Top 20 Summary</div><div class="tab" onclick="showTab('insights')">Key Insights</div></div>
@@ -227,6 +227,12 @@ tr:hover{{background:#141c28}}tr.top3{{background:#0d2137}}
 const DATA={data_json};
 const WEIGHTS={weights_json};
 const FACTORS={factors_json};
+(function(){{
+  if(window.location.href.includes('htmlpreview.github.io')){{
+    var bl=document.getElementById('back-link');
+    if(bl)bl.href='https://htmlpreview.github.io/?https://raw.githubusercontent.com/tommaone/turtleatlas-w40k-11e/main/findings/index.html';
+  }}
+}})();
 
 function showTab(id){{document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');event.target.classList.add('active')}}
 function scoreClass(s){{return s>=75?'score-high':s>=50?'score-mid':'score-low'}}
@@ -243,10 +249,24 @@ renderMissions();renderTop10();renderInsights();
 
 
 if __name__ == '__main__':
-    for fid, fname in FACTIONS.items():
+    import argparse
+    parser = argparse.ArgumentParser(description='Generate faction findings HTML')
+    parser.add_argument('--all', action='store_true', help='Generate for all factions')
+    parser.add_argument('--faction', type=str, help='Generate for a specific faction slug')
+    parser.add_argument('--max-points', type=int, default=2000,
+                        help='Max unit points to include in rankings (default: 2000, 0=no limit)')
+    args = parser.parse_args()
+
+    max_pts = args.max_points if args.max_points > 0 else None
+
+    factions_to_gen = FACTIONS
+    if args.faction:
+        factions_to_gen = {args.faction: FACTIONS[args.faction]}
+
+    for fid, fname in factions_to_gen.items():
         e = RankingEngine(fid)
         n_units = len(set(list(e.config.squads.keys()) + list(e.config.characters.keys()) + list(e.config.vehicles.keys())))
-        data = build_data(fid)
+        data = build_data(fid, max_points=max_pts)
         html = gen_html(fname, data, n_units)
         out_dir = os.path.join(OUT, fid)
         os.makedirs(out_dir, exist_ok=True)

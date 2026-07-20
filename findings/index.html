@@ -56,11 +56,17 @@ const FACTIONS = [
 <div class="grid" id="grid"></div>
 
 <script>
+const BASE_RAW = 'https://raw.githubusercontent.com/tommaone/turtleatlas-w40k-11e/main/findings/';
+const BASE_PREVIEW = 'https://htmlpreview.github.io/?' + BASE_RAW;
+const isPreview = window.location.href.includes('htmlpreview.github.io');
+const base = isPreview ? BASE_PREVIEW : '';
+
 const grid = document.getElementById('grid');
 FACTIONS.forEach(([slug, name]) => {
   const card = document.createElement('div');
   card.className = 'card';
-  card.innerHTML = `<a href="${slug}/findings.html"><div class="card-name">${name}</div><div class="card-arrow">&rarr;</div></a>`;
+  const href = base + slug + '/findings.html';
+  card.innerHTML = `<a href="${href}"><div class="card-name">${name}</div><div class="card-arrow">&rarr;</div></a>`;
   grid.appendChild(card);
 });
 </script>

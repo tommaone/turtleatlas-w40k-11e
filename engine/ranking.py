@@ -750,7 +750,8 @@ class RankingEngine:
                          disposition: Optional[str] = None,
                          melta_active: bool = False,
                          heavy_stationary: bool = False,
-                         plunging: bool = True):
+                         plunging: bool = True,
+                         max_points: Optional[int] = 2000):
         """Compute unit ranking for a given target, optionally weighted by mission or tier.
 
         Args:
@@ -879,6 +880,10 @@ class RankingEngine:
             if resolved is None:
                 continue
             pts, ranged_profiles, melee_profiles, innate_profiles, info = resolved
+
+            # Skip units exceeding max game size (e.g. 2100pt Titan in 2000pt game)
+            if max_points and pts > max_points:
+                continue
 
             # Auto-apply Plunging Fire (+1 BS) for TOWERING units [11e core rules]
             # TOWERING units are always considered elevated vs ground targets.
