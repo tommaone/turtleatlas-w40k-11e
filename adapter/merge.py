@@ -45,7 +45,8 @@ def load_mfm_faction(slug: str) -> dict | None:
 # -- Merge ------------------------------------------------------------------
 
 def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
-                  with_legends: bool = False) -> dict:
+                  with_legends: bool = False,
+                  global_index: dict | None = None) -> dict:
     """Merge MFM points onto BSData profiles for one faction."""
     faction_name = bsdata_parser.slug_to_faction(slug)
     bsdata = bsdata_parser.query_faction(faction_name, include_legends=with_legends) if faction_name else None
@@ -76,6 +77,16 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
     # Union of names
     all_names = sorted(set(bsdata_unit_map.keys()) | set(mfm_unit_map.keys()))
 
+    # -- Cross-faction fallback: find stats for MFM-only units in parent catalogues --
+    def _find_cross_faction_profile(unit_name: str) -> dict | None:
+        """Look up a unit's stats in other BSData catalogues."""
+        if not global_index:
+            return None
+        u = global_index.get(norm(unit_name))
+        if u and u.get('stats'):
+            return u
+        return None
+
     merged_units = []
     for n in all_names:
         bs_u = bsdata_unit_map.get(n)
@@ -89,12 +100,27 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
                     ds = True
                     break
 
+        # Cross-faction fallback: if no BSData profile, look in other catalogues
+        profile = bs_u
+        in_bsdata = bs_u is not None
+        if not profile and mfm_u:
+            cross = _find_cross_faction_profile(mfm_u.get("name", n))
+            if cross:
+                profile = cross
+                # Still mark as not-in-native-bsdata, but use the profile
+                in_bsdata = False
+                if not ds:
+                    for rule in (cross.get("rules") or []):
+                        if "DEEP STRIKE" in rule.upper():
+                            ds = True
+                            break
+
         merged_units.append({
             "name": mfm_orig_names.get(n) or bsdata_orig_names.get(n) or n,
-            "in_bsdata": bs_u is not None,
+            "in_bsdata": in_bsdata,
             "in_mfm": mfm_u is not None,
             "deep_strike": ds,
-            "profile": bs_u,
+            "profile": profile,
             "pricing": mfm_u.get("pricing") if mfm_u else None,
             "role": mfm_u.get("role") if mfm_u else None,
             "attachTo": mfm_u.get("attachTo") if mfm_u else None,
@@ -138,6 +164,20 @@ def main():
     bsdata = BSDataParser11e()
     print(f"BSData 11e factions found: {len(bsdata.list_factions())}", file=sys.stderr)
 
+    # Build global unit index for cross-faction lookup
+    print("Building global BSData unit index...", file=sys.stderr, end=" ")
+    global_index: dict[str, dict] = {}
+    for faction in bsdata.list_factions():
+        faction_data = bsdata.query_faction(faction, include_legends=False)
+        if not faction_data:
+            continue
+        for u in faction_data['units']:
+            n = u['name'].lower().strip().replace('\u2019', "'")
+            existing = global_index.get(n)
+            if not existing or (not existing.get('stats') and u.get('stats')):
+                global_index[n] = u
+    print(f"{len(global_index)} units indexed", file=sys.stderr)
+
     slugs = []
     if args.faction:
         slugs = [args.faction]
@@ -156,7 +196,8 @@ def main():
         if not mfm:
             continue
 
-        merged = merge_faction(slug, mfm, bsdata, with_legends=args.with_legends)
+        merged = merge_faction(slug, mfm, bsdata, with_legends=args.with_legends,
+                              global_index=global_index)
         meta = merged["_meta"]
         print(f"  BSData: {meta['bsdata_faction'] or 'NOT FOUND'} "
               f"({meta['bsdata_units']} units)", file=sys.stderr)

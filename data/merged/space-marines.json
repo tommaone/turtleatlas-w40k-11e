@@ -706,7 +706,86 @@
       "in_bsdata": false,
       "in_mfm": true,
       "deep_strike": false,
-      "profile": null,
+      "profile": {
+        "name": "Adrax Agatone",
+        "points": 80,
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "2+",
+          "W": "5",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Epic Hero",
+          "Character",
+          "Infantry",
+          "Captain",
+          "Adrax Agatone",
+          "Faction: Adeptus Astartes",
+          "Faction: Salamanders",
+          "Imperium",
+          "Tacticus"
+        ],
+        "abilities": [
+          {
+            "name": "Unto the Anvil",
+            "description": "While this model is leading a unit, each time a model in that unit makes a melee attack, you can re-roll the Wound roll."
+          },
+          {
+            "name": "Lord of the Pyroclasts",
+            "description": "While an enemy unit is within Engagement Range of this model, halve the Objective Control characteristic of models in that enemy unit"
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n\n■ ASSAULT INTERCESSOR SQUAD\n■ BLADEGUARD VETERAN SQUAD\n■ COMPANY HEROES\n■ INFERNUS SQUAD\n■ INTERCESSOR SQUAD\n■ STERNGUARD VETERAN SQUAD\n■ TACTICAL SQUAD"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Drakkis",
+            "profiles": [
+              {
+                "name": "Drakkis",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6+3",
+                  "BS": "N/A",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Pistol, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Malleus Noctum",
+            "profiles": [
+              {
+                "name": "Malleus Noctum",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "2+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Oath of Moment",
+          "Leader"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",
@@ -738,8 +817,73 @@
       "name": "Aethon Shaan",
       "in_bsdata": false,
       "in_mfm": true,
-      "deep_strike": false,
-      "profile": null,
+      "deep_strike": true,
+      "profile": {
+        "name": "Aethon Shaan",
+        "points": 100,
+        "stats": {
+          "M": "14\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "5",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Character",
+          "Epic Hero",
+          "Infantry",
+          "Fly",
+          "Jump Pack",
+          "Imperium",
+          "Faction: Adeptus Astartes",
+          "Faction: Raven Guard",
+          "Tacticus",
+          "Chapter Master",
+          "Aethon Shaan"
+        ],
+        "abilities": [
+          {
+            "name": "Chapter Master of the Raven Guard",
+            "description": "At the start of the Declare Battle Formations step, if your army includes Aethon Shaan and Kayvaan\nShrike, until the end of the battle, your Kayvaan Shrike unit loses its Lone Operative ability and it\nreplaces its Chapter Master keyword with Captain."
+          },
+          {
+            "name": "Master of Shadows",
+            "description": "In your Command phase, you can select one unit from your opponent’s army. Until the start of your next Command phase, each time an Adeptus Astartes unit from your army declares a charge while it is within 12\" of that enemy unit, you can re-roll the Charge roll, but it must declare that enemy unit as a target of that charge (if possible)."
+          },
+          {
+            "name": "Blackwing Mantle",
+            "description": "You can target this model’s unit with the Rapid Ingress and Heroic Intervention Stratagems for 0CP,\neven if you have already used that Stratagem on a different unit this phase."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Claws of Severax",
+            "profiles": [
+              {
+                "name": "Claws of Severax",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "7",
+                  "WS": "2+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 2, Twin-linked"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deep Strike",
+          "Oath of Moment",
+          "Stealth",
+          "Lone Operative"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",
@@ -764,7 +908,15 @@
       "profile": {
         "name": "Aggressor Squad",
         "points": 90,
-        "stats": {},
+        "stats": {
+          "M": "5\"",
+          "T": "6",
+          "Sv": "3+",
+          "W": "3",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Imperium",
@@ -1905,7 +2057,15 @@
       "profile": {
         "name": "Assault Intercessor Squad",
         "points": 75,
-        "stats": {},
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "2",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Battleline",
@@ -1987,7 +2147,15 @@
       "profile": {
         "name": "Assault Intercessors with Jump Packs",
         "points": 85,
-        "stats": {},
+        "stats": {
+          "M": "12\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Grenades",
@@ -2503,7 +2671,15 @@
       "profile": {
         "name": "Bladeguard Veteran Squad",
         "points": 80,
-        "stats": {},
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "3",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Grenades",
@@ -2697,8 +2873,84 @@
       "name": "Caanok Var",
       "in_bsdata": false,
       "in_mfm": true,
-      "deep_strike": false,
-      "profile": null,
+      "deep_strike": true,
+      "profile": {
+        "name": "Caanok Var",
+        "points": 90,
+        "stats": {
+          "M": "5\"",
+          "T": "5",
+          "Sv": "2+",
+          "W": "6",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Infantry",
+          "Character",
+          "Epic Hero",
+          "Imperium",
+          "Terminator",
+          "Captain",
+          "Faction: Iron Hands",
+          "Faction: Adeptus Astartes",
+          "Caanok Var"
+        ],
+        "abilities": [
+          {
+            "name": "Cold and Calculating",
+            "description": "Each time a model in this model’s unit makes an attack that targets a Monster or Vehicle unit, that\nattack has the [LETHAL HITS] ability. Each time a model in this model’s unit makes an attack that targets any other unit, that attack has the [SUSTAINED HITS 1] ability."
+          },
+          {
+            "name": "Cerebrex Logic Engine",
+            "description": "■ At the start of the Declare Battle Formations step, you can select one Adeptus Astartes Infantry unit from your army. Until the end of the battle, that unit gains the Scouts 6\" ability.\n\n\n■ After both players have deployed their armies, you can select one Adeptus Astartes unit from your army and redeploy it. When doing so, you can set that unit up in Strategic Reserves if you wish, regardless of how many units are already in Strategic Reserves."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units: \n\n\n■ TERMINATOR ASSAULT SQUAD\n■ TERMINATOR SQUAD"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Axiom",
+            "profiles": [
+              {
+                "name": "Axiom - Strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": ""
+                }
+              },
+              {
+                "name": "Axiom - Sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "10",
+                  "WS": "2+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": ""
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Feel No Pain",
+          "Deep Strike",
+          "Leader",
+          "Oath of Moment"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",
@@ -2815,7 +3067,15 @@
       "profile": {
         "name": "Canis Rex",
         "points": 415,
-        "stats": {},
+        "stats": {
+          "M": "10\"",
+          "T": "11",
+          "Sv": "3+",
+          "W": "26",
+          "LD": "6+",
+          "OC": "10",
+          "InSv": "5+*"
+        },
         "keywords": [
           "Epic Hero",
           "Character",
@@ -3398,7 +3658,88 @@
       "in_bsdata": false,
       "in_mfm": true,
       "deep_strike": false,
-      "profile": null,
+      "profile": {
+        "name": "Captain Titus",
+        "points": 90,
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "6",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Titus",
+          "Infantry",
+          "Character",
+          "Epic Hero",
+          "Imperium",
+          "Tacticus",
+          "Grenades",
+          "Captain",
+          "Faction: Adeptus Astartes",
+          "Faction: Ultramarines"
+        ],
+        "abilities": [
+          {
+            "name": "Press the Attack",
+            "description": "Weapons equipped by models in this model’s unit have the [SUSTAINED HITS 1] ability"
+          },
+          {
+            "name": "Honour of Ultramar",
+            "description": "If this model is destroyed by a melee attack, if it has not fought this phase, roll one D6: on a 2+,\ndo not remove it from play. This model can fight after the attacking unit has finished making its attacks. If one or more enemy models are destroyed as a result of those attacks, this model regains D3 lost wounds and is not destroyed; otherwise, it is removed from play."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units: \n\n\n■ ASSAULT INTERCESSOR SQUAD\n■ BLADEGUARD VETERAN SQUAD\n■ COMPANY HEROES\n■ HELLBLASTER SQUAD\n■ INFERNUS SQUAD\n■ INTERCESSOR SQUAD\n■ STERNGUARD VETERAN SQUAD\n■ VICTRIX HONOUR GUARD\n■ WARDENS OF ULTRAMAR"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Master-crafted Chainsword",
+            "profiles": [
+              {
+                "name": "Master-crafted Chainsword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "2+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-infantry 2+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Master-crafted Bolter",
+            "profiles": [
+              {
+                "name": "Master-crafted Bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "2+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Assault, Heavy"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Oath of Moment",
+          "Feel No Pain"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",
@@ -3552,7 +3893,113 @@
       "in_bsdata": false,
       "in_mfm": true,
       "deep_strike": false,
-      "profile": null,
+      "profile": {
+        "name": "Cato Sicarius",
+        "points": 95,
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "2+",
+          "W": "5",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Character",
+          "Epic Hero",
+          "Infantry",
+          "Captain",
+          "Imperium",
+          "Tacticus",
+          "Sicarius",
+          "Cato",
+          "Faction: Adeptus Astartes",
+          "Faction: Ultramarines"
+        ],
+        "abilities": [
+          {
+            "name": "Knight Champion of Macragge",
+            "description": "Once per turn, when an enemy unit ends a Normal, Advance or Fall Back move within 9\" of this model’s unit, if this unit is not within Engagement Range of one or more enemy units, it can make a Normal move of up to 6\"."
+          },
+          {
+            "name": "Honour or Death",
+            "description": "You can target this unit with the Heroic Intervention Stratagem for 0CP, even if you have already used\nthat Stratagem on a different unit this phase."
+          },
+          {
+            "name": "Support",
+            "description": "This model can be attached to the following units: \n\n\n■ VICTRIX HONOUR GUARD\n\n\nYou can attach this model to the above unit even if a Marneus Calgar unit has already been attached\nto it. If you do, and that Bodyguard unit is destroyed, the Leader units attached to it become separate\nunits, with their original Starting Strengths"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Artisan Plasma Pistol",
+            "profiles": [
+              {
+                "name": "Artisan Plasma Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "2+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Talassarian Tempest Blade",
+            "profiles": [
+              {
+                "name": "Talassarian Tempest Blade - Strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "6",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "Devastating Wounds"
+                }
+              },
+              {
+                "name": "Talassarian Tempest Blade - Coup de Grace",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "2+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Precision"
+                }
+              },
+              {
+                "name": "Talassarian Tempest Blade - Sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "9",
+                  "WS": "2+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Support",
+          "Oath of Moment"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",
@@ -3579,7 +4026,15 @@
       "profile": {
         "name": "Centurion Assault Squad",
         "points": 150,
-        "stats": {},
+        "stats": {
+          "M": "4\"",
+          "T": "7",
+          "Sv": "2+",
+          "W": "4",
+          "LD": "6+",
+          "OC": "2",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Imperium",
@@ -3646,7 +4101,15 @@
       "profile": {
         "name": "Centurion Devastator Squad",
         "points": 175,
-        "stats": {},
+        "stats": {
+          "M": "4\"",
+          "T": "7",
+          "Sv": "2+",
+          "W": "4",
+          "LD": "6+",
+          "OC": "2",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Imperium",
@@ -4605,7 +5068,98 @@
       "in_bsdata": false,
       "in_mfm": true,
       "deep_strike": false,
-      "profile": null,
+      "profile": {
+        "name": "Chief Librarian Tigurius",
+        "points": 95,
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "4",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Character",
+          "Epic Hero",
+          "Infantry",
+          "Imperium",
+          "Psyker",
+          "Chief Librarian Tigurius",
+          "Faction: Adeptus Astartes",
+          "Faction: Ultramarines"
+        ],
+        "abilities": [
+          {
+            "name": "Hood of Hellfire",
+            "description": "While this model is leading a unit, models in that unit have the Feel No Pain 4+ ability against Psychic Attacks and mortal wounds."
+          },
+          {
+            "name": "Master of Prescience (Psychic)",
+            "description": "While this model is leading a unit, each time an attack targets that unit, subtract 1 from the Hit roll. In addition, once per battle round, you can target that unit with one of the following Stratagems for 0CP: Counter-offensive; Fire Overwatch; Go to Ground;\nHeroic Intervention."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n\n■ ASSAULT INTERCESSOR SQUAD\n■ BLADEGUARD VETERAN SQUAD\n■ DESOLATION SQUAD\n■ DEVASTATOR SQUAD\n■ INTERCESSOR SQUAD\n■ STERNGUARD VETERAN SQUAD\n■ TACTICAL SQUAD"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Storm of the Emperor’s Wrath",
+            "profiles": [
+              {
+                "name": "Storm of the Emperor’s Wrath - Witchfire",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "2+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Blast, Psychic"
+                }
+              },
+              {
+                "name": "Storm of the Emperor’s Wrath - Focused Witchfire",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2D6",
+                  "BS": "2+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Blast, Hazardous, Psychic"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Rod of Tigurius",
+            "profiles": [
+              {
+                "name": "Rod of Tigurius",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "D3",
+                  "Keywords": "Psychic"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Oath of Moment"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",
@@ -4640,7 +5194,15 @@
       "profile": {
         "name": "Company Heroes",
         "points": 105,
-        "stats": {},
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "4",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Grenades",
@@ -5075,8 +5637,74 @@
       "name": "Darnath Lysander",
       "in_bsdata": false,
       "in_mfm": true,
-      "deep_strike": false,
-      "profile": null,
+      "deep_strike": true,
+      "profile": {
+        "name": "Darnath Lysander",
+        "points": 100,
+        "stats": {
+          "M": "5\"",
+          "T": "5",
+          "Sv": "2+",
+          "W": "7",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Epic Hero",
+          "Character",
+          "Infantry",
+          "Captain",
+          "Imperium",
+          "Terminator",
+          "Faction: Adeptus Astartes",
+          "Faction: Imperial Fists",
+          "Darnath Lysander"
+        ],
+        "abilities": [
+          {
+            "name": "Icon of Obstinacy",
+            "description": "Each time an attack targets this model's unit, if the Strength characteristic of that attack is greater than or equal to the Toughness characteristic of that unit, subtract 1 from the Wound roll."
+          },
+          {
+            "name": "Rampart",
+            "description": "Once per battle, at the start of any phase, this model can use this ability. If it does, until the end of the phase, this model has a 2+ invulnerable save."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n\n■ TERMINATOR ASSAULT SQUAD\n■ TERMINATOR SQUAD"
+          },
+          {
+            "name": "Inspiring Commander",
+            "description": "‘If you include this model in your army, until the end of the battle, non-Character models in Terminator Assault Squad and Terminator Squad units from your army have an Objective Control characteristic of 2 while they are not Battle-shocked."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Fist of Dorn",
+            "profiles": [
+              {
+                "name": "Fist of Dorn",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "2+",
+                  "S": "10",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Deep Strike",
+          "Oath of Moment"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",
@@ -5158,7 +5786,15 @@
       "profile": {
         "name": "Deathwatch Kill Team",
         "points": 100,
-        "stats": {},
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "2",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Battleline",
@@ -5734,7 +6370,15 @@
       "profile": {
         "name": "Desolation Squad",
         "points": 180,
-        "stats": {},
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Grenades",
@@ -5878,7 +6522,15 @@
       "profile": {
         "name": "Devastator Squad",
         "points": 120,
-        "stats": {},
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Grenades",
@@ -6126,7 +6778,15 @@
       "profile": {
         "name": "Eliminator Squad",
         "points": 75,
-        "stats": {},
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Imperium",
@@ -6287,7 +6947,15 @@
       "profile": {
         "name": "Eradicator Squad",
         "points": 90,
-        "stats": {},
+        "stats": {
+          "M": "5\"",
+          "T": "6",
+          "Sv": "3+",
+          "W": "3",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Grenades",
@@ -7014,7 +7682,15 @@
       "profile": {
         "name": "Firestrike Servo-Turrets",
         "points": null,
-        "stats": {},
+        "stats": {
+          "M": "3\"",
+          "T": "6",
+          "Sv": "2+",
+          "W": "6",
+          "LD": "6+",
+          "OC": "2",
+          "InSv": ""
+        },
         "keywords": [
           "Artillery",
           "Vehicle",
@@ -7937,7 +8613,15 @@
       "profile": {
         "name": "Heavy Intercessor Squad",
         "points": 100,
-        "stats": {},
+        "stats": {
+          "M": "5\"",
+          "T": "6",
+          "Sv": "3+",
+          "W": "3",
+          "LD": "6+",
+          "OC": "2",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Battleline",
@@ -8120,7 +8804,15 @@
       "profile": {
         "name": "Hellblaster Squad",
         "points": 110,
-        "stats": {},
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Grenades",
@@ -8245,7 +8937,15 @@
       "profile": {
         "name": "Imperial Navy Breachers",
         "points": 90,
-        "stats": {},
+        "stats": {
+          "M": "6\"",
+          "T": "3",
+          "Sv": "4+",
+          "W": "1",
+          "LD": "7+",
+          "OC": "2",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Grenades",
@@ -8674,7 +9374,15 @@
       "profile": {
         "name": "Inceptor Squad",
         "points": 120,
-        "stats": {},
+        "stats": {
+          "M": "10\"",
+          "T": "6",
+          "Sv": "3+",
+          "W": "3",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Fly",
@@ -8776,7 +9484,15 @@
       "profile": {
         "name": "Incursor Squad",
         "points": 85,
-        "stats": {},
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Grenades",
@@ -8930,7 +9646,15 @@
       "profile": {
         "name": "Infernus Squad",
         "points": 85,
-        "stats": {},
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Grenades",
@@ -9068,7 +9792,15 @@
       "profile": {
         "name": "Infiltrator Squad",
         "points": 110,
-        "stats": {},
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Grenades",
@@ -10145,7 +10877,15 @@
       "profile": {
         "name": "Intercessor Squad",
         "points": 80,
-        "stats": {},
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "2",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Battleline",
@@ -10565,7 +11305,111 @@
       "in_bsdata": false,
       "in_mfm": true,
       "deep_strike": false,
-      "profile": null,
+      "profile": {
+        "name": "Iron Father Feirros",
+        "points": 85,
+        "stats": {
+          "M": "5\"",
+          "T": "6",
+          "Sv": "2+",
+          "W": "6",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
+        "keywords": [
+          "Character",
+          "Epic Hero",
+          "Infantry",
+          "Imperium",
+          "Gravis",
+          "Faction: Adeptus Astartes",
+          "Faction: Iron Hands",
+          "Iron Father Ferrios"
+        ],
+        "abilities": [
+          {
+            "name": "Rites of Tempering",
+            "description": "While this model is leading a unit, models in that unit have the Feel No Pain 5+ ability"
+          },
+          {
+            "name": "Iron Father",
+            "description": "While this model is within 3\" of one or more friendly Adeptus Astartes Vehicle units, it has the Lone Operative ability."
+          },
+          {
+            "name": "Master of the Forge",
+            "description": "In your Command phase, select one friendly Adeptus Astartes Vehicle model within 3\" of this model. That model regains up to 3 lost wounds and, until the start of your next Command phase, each time that Vehicle model makes an attack, add 1 to the Hit roll. You cannot select a unit for this ability that has already been selected for the Blessing of the Omnissiah ability this phase, and vice versa."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n\n■ AGGRESSOR SQUAD\n■ ERADICATOR SQUAD\n■ HEAVY INTERCESSOR SQUAD"
+          },
+          {
+            "name": "Inspiring Commander",
+            "description": "If you include this model in your army, until the end of the battle, non-Character models in Heavy\nIntercessor Squad units from your army have an Objective Control characteristic of 3 while they are\nnot Battle-shocked."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Gorgon's Wrath",
+            "profiles": [
+              {
+                "name": "Gorgon's Wrath",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "2+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Harrowhand",
+            "profiles": [
+              {
+                "name": "Harrowhand",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Medusan Manipuli",
+            "profiles": [
+              {
+                "name": "Medusan Manipuli",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Extra Attacks"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Oath of Moment"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",
@@ -10708,8 +11552,96 @@
       "name": "Kayvaan Shrike",
       "in_bsdata": false,
       "in_mfm": true,
-      "deep_strike": false,
-      "profile": null,
+      "deep_strike": true,
+      "profile": {
+        "name": "Kayvaan Shrike",
+        "points": 100,
+        "stats": {
+          "M": "12\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "5",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Epic Hero",
+          "Character",
+          "Infantry",
+          "Imperium",
+          "Fly",
+          "Jump Pack",
+          "Faction: Adeptus Astartes",
+          "Faction: Raven Guard",
+          "Chapter Master",
+          "Kayvaan Shrike",
+          "Phobos"
+        ],
+        "abilities": [
+          {
+            "name": "Trifold Path of Shadow",
+            "description": "While this model is leading a unit, models  in this unit cannot be targeted by ranged attacks unless the attacking model is within 12\"."
+          },
+          {
+            "name": "Echo of the Ravenspire",
+            "description": "At the end of your opponent’s turn, if this model’s unit is not within Engagement Range of any enemy models, you can remove it from the battlefield and place it into Strategic Reserves."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n\n■ ASSAULT INTERCESSORS WITH JUMP PACKS\n■ VANGUARD VETERAN SQUAD WITH JUMP PACKS"
+          },
+          {
+            "name": "Inspiring Commander",
+            "description": "If you include this model in your army, until the end of the battle, non-Character models in Assault\nIntercessors with Jump Packs units from your army have an Objective Control characteristic of 2 while they are not Battle-shocked."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Blackout",
+            "profiles": [
+              {
+                "name": "Blackout",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "2+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Pistol, Precision"
+                }
+              }
+            ]
+          },
+          {
+            "name": "The Raven's Talons",
+            "profiles": [
+              {
+                "name": "The Raven's Talons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "7",
+                  "WS": "2+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Precision, Twin-linked"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Oath of Moment",
+          "Lone Operative",
+          "Deep Strike",
+          "Stealth"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",
@@ -11850,7 +12782,72 @@
       "in_bsdata": false,
       "in_mfm": true,
       "deep_strike": false,
-      "profile": null,
+      "profile": {
+        "name": "Kor'sarro Khan",
+        "points": 55,
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "5",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Epic Hero",
+          "Character",
+          "Infantry",
+          "Captain",
+          "Imperium",
+          "Faction: Adeptus Astartes",
+          "Faction: White Scars",
+          "Kor'sarro Khan",
+          "Tacticus"
+        ],
+        "abilities": [
+          {
+            "name": "For the Khan!",
+            "description": "While this model is leading a unit, ranged weapons equipped by models in that unit have the [ASSAULT] ability and melee weapons equipped by models in that unit have the [LANCE] ability."
+          },
+          {
+            "name": "Trophy Taker",
+            "description": "Each time this model destroys an enemy Character model, you gain 1CP"
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n\n■ ASSAULT INTERCESSOR SQUAD\n■ BLADEGUARD VETERAN SQUAD\n■ COMPANY HEROES\n■ INTERCESSOR SQUAD\n■ STERNGUARD VETERAN SQUAD\n■ TACTICAL SQUAD"
+          },
+          {
+            "name": "Inspiring Commander",
+            "description": "If you include this model in your army, until the end of the battle, non-Character models in Outrider Squad units from your army have an Objective Control characteristic of 3 while they are not Battle-shocked."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Moonfang",
+            "profiles": [
+              {
+                "name": "Moonfang",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "2+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Devastating Wounds, Precision"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Oath of Moment",
+          "Leader"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",
@@ -13453,8 +14450,83 @@
       "name": "Marneus Calgar In Armour Of Antilochus",
       "in_bsdata": false,
       "in_mfm": true,
-      "deep_strike": false,
-      "profile": null,
+      "deep_strike": true,
+      "profile": {
+        "name": "Marneus Calgar in Armour of Antilochus",
+        "points": 140,
+        "stats": {
+          "M": "6\"",
+          "T": "6",
+          "Sv": "2+",
+          "W": "6",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Epic Hero",
+          "Character",
+          "Infantry",
+          "Imperium",
+          "Terminator",
+          "Chapter Master",
+          "Marneus Calgar",
+          "Faction: Adeptus Astartes",
+          "Faction: Ultramarines"
+        ],
+        "abilities": [
+          {
+            "name": "Inspiring Leader",
+            "description": "This unit is eligible to shoot and declare a charge in a turn in which it Advanced or Fell Back."
+          },
+          {
+            "name": "Master Tactician",
+            "description": "At the start of your Command phase, if this unit’s Marneus Calgar model is your ^^**Warlord**^^ and is on the battlefield, you gain 1CP."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n\n\n■ AGGRESSOR SQUAD\n■ ASSAULT INTERCESSOR SQUAD\n■ BLADEGUARD VETERAN SQUAD\n■ COMPANY HEROES\n■ ERADICATOR SQUAD\n■ HEAVY INTERCESSOR SQUAD\n■ INFERNUS SQUAD\n■ INTERCESSOR SQUAD\n■ STERNGUARD VETERAN SQUAD\n■ TACTICAL SQUAD\n■ TERMINATOR ASSAULT SQUAD\n■ TERMINATOR SQUAD\n■ VICTRIX HONOUR GUARD"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Gauntlets of Ultramar",
+            "profiles": [
+              {
+                "name": "Gauntlets of Ultramar",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "4",
+                  "BS": "2+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Pistol, Twin-linked"
+                }
+              },
+              {
+                "name": "Gauntlets of Ultramar",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deep Strike",
+          "Oath of Moment",
+          "Leader"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",
@@ -13746,7 +14818,15 @@
       "profile": {
         "name": "Outrider Squad",
         "points": 70,
-        "stats": {},
+        "stats": {
+          "M": "12\"",
+          "T": "5",
+          "Sv": "3+",
+          "W": "4",
+          "LD": "6+",
+          "OC": "2",
+          "InSv": ""
+        },
         "keywords": [
           "Mounted",
           "Grenades",
@@ -13886,7 +14966,91 @@
       "in_bsdata": false,
       "in_mfm": true,
       "deep_strike": false,
-      "profile": null,
+      "profile": {
+        "name": "Pedro Kantor",
+        "points": 80,
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "2+",
+          "W": "5",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Epic Hero",
+          "Character",
+          "Infantry",
+          "Grenades",
+          "Imperium",
+          "Chapter Master",
+          "Faction: Adeptus Astartes",
+          "Faction: Imperial Fists",
+          "Pedro Kantor"
+        ],
+        "abilities": [
+          {
+            "name": "Oath of Rynn",
+            "description": "Once per battle, at the start of either player’s Command phase, this model can use this ability. When it does, until the end of the turn, add 1 to the Attacks characteristic of weapons equipped by models in this model’s unit."
+          },
+          {
+            "name": "To the Last",
+            "description": "While this model is leading a unit, each time a model in that unit makes an attack, add 1 to the Hit roll if that unit is below its Starting Strength, and add 1 to the Wound roll as well if that unit is Below Half-strength."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n\n■ BLADEGUARD VETERAN SQUAD\n■ COMPANY HEROES\n■ STERNGUARD VETERAN SQUAD\n■ TACTICAL SQUAD"
+          },
+          {
+            "name": "Inspiring Commander",
+            "description": "If you include this model in your army, until the end of the battle, non-Character models in Sternguard\nVeteran Squad units from your army have an Objective Control characteristic of 2 while they are not Battle-shocked."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Dorn's Arrow",
+            "profiles": [
+              {
+                "name": "Dorn's Arrow",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "2+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Rapid Fire 2, Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Fist of Retribution",
+            "profiles": [
+              {
+                "name": "Fist of Retribution",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Feel No Pain",
+          "Oath of Moment",
+          "Leader"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",
@@ -14667,7 +15831,15 @@
       "profile": {
         "name": "Reiver Squad",
         "points": 75,
-        "stats": {},
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Grenades",
@@ -15171,7 +16343,101 @@
       "in_bsdata": false,
       "in_mfm": true,
       "deep_strike": false,
-      "profile": null,
+      "profile": {
+        "name": "Roboute Guilliman",
+        "points": 340,
+        "stats": {
+          "M": "8\"",
+          "T": "9",
+          "Sv": "2+",
+          "W": "10",
+          "LD": "5+",
+          "OC": "4",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Epic Hero",
+          "Character",
+          "Imperium",
+          "Primarch",
+          "Roboute Guilliman",
+          "Faction: Adeptus Astartes",
+          "Faction: Ultramarines",
+          "Monster"
+        ],
+        "abilities": [
+          {
+            "name": "Author of the Codex",
+            "description": "At the Start of your Command phase, select two Author of the Codex abilities (see left). Until the start of your next Command phase, this model has those abilities.’\n\nPrimarch of the XIII (Aura): While a friendly Adeptus Astartes unit is within 6\" of this model, add 1 to the Objective Control characteristic of models in that unit and you can re-roll Battle-shock and Leadership tests taken for that unit.\n\nMaster of Battle: After you have selected an enemy unit using the Oath of Moment ability, select a second enemy unit. Until the start of your next Command phase, if your Oath of Moment target is destroyed, that second enemy unit becomes your Oath of Moment target until you select a new one.\n\nSupreme Strategist: Once per battle round, you can target one friendly ADEPTUS ASTARTES unit within 12\" of this model with a Stratagem. If it does, reduce the CP cost of that use of that Stratagem by 1CP."
+          },
+          {
+            "name": "Ultramarines Bodyguard",
+            "description": "While this model is within 3\" of one or more friendly Adeptus Astartes Infantry units, this model has the Lone Operative ability"
+          },
+          {
+            "name": "Armour of Fate",
+            "description": "The first time this model is destroyed, roll one D6 at the end of the phase: on a 3+, set this model back up on the battlefield as close as possible to where it was destroyed and not within Engagement Range of any enemy models, with 6 wounds remaining."
+          },
+          {
+            "name": "Supreme Commander",
+            "description": "If this model is in your army, it must be your Warlord."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Hand of Dominion",
+            "profiles": [
+              {
+                "name": "Hand of Dominion",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "2+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Rapid Fire 2"
+                }
+              },
+              {
+                "name": "Hand of Dominion",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "7",
+                  "WS": "2+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "4",
+                  "Keywords": "Lethal Hits"
+                }
+              }
+            ]
+          },
+          {
+            "name": "The Emperor's Sword",
+            "profiles": [
+              {
+                "name": "The Emperor's Sword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "14",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Oath of Moment"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",
@@ -15196,7 +16462,15 @@
       "profile": {
         "name": "Rogue Trader Entourage",
         "points": 75,
-        "stats": {},
+        "stats": {
+          "M": "6\"",
+          "T": "3",
+          "Sv": "4+",
+          "W": "4",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
         "keywords": [
           "Faction: Agents of the Imperium",
           "Infantry",
@@ -15606,7 +16880,15 @@
       "profile": {
         "name": "Scout Squad",
         "points": 65,
-        "stats": {},
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "4+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Grenades",
@@ -16239,7 +17521,15 @@
       "profile": {
         "name": "Sternguard Veteran Squad",
         "points": 100,
-        "stats": {},
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Grenades",
@@ -17278,7 +18568,104 @@
       "in_bsdata": false,
       "in_mfm": true,
       "deep_strike": false,
-      "profile": null,
+      "profile": {
+        "name": "Suboden Khan",
+        "points": 100,
+        "stats": {
+          "M": "12\"",
+          "T": "5",
+          "Sv": "3+",
+          "W": "8",
+          "LD": "6+",
+          "OC": "2",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Mounted",
+          "Character",
+          "Epic Hero",
+          "Imperium",
+          "Grenades",
+          "Captain",
+          "Faction: Adeptus Astartes",
+          "Faction: White Scars",
+          "Suboden Khan"
+        ],
+        "abilities": [
+          {
+            "name": "Spear of Chogoris",
+            "description": "This model’s unit is eligible to shoot and declare a charge in a turn in which it Advanced or Fell Back. If that unit is already eligible to shoot and declare a charge in a turn in which it Advanced, add 1 to Advance and Charge rolls made for that unit instead."
+          },
+          {
+            "name": "Skilled Riders",
+            "description": "Each time a model in this model’s unit makes a Normal, Advance, Fall Back or Charge move, it can move horizontally through terrain features."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units: \n\n\nOUTRIDER SQUAD"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Onslaught Gatling Cannon",
+            "profiles": [
+              {
+                "name": "Onslaught Gatling Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "8",
+                  "BS": "2+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Stormtooth",
+            "profiles": [
+              {
+                "name": "Stormtooth",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "2+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Lance, Anti-monster 4+, Anti-vehicle 4+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power Sword",
+            "profiles": [
+              {
+                "name": "Power Sword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "2+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Oath of Moment",
+          "Leader"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",
@@ -17307,7 +18694,15 @@
       "profile": {
         "name": "Suppressor Squad",
         "points": 75,
-        "stats": {},
+        "stats": {
+          "M": "12\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Grenades",
@@ -17431,7 +18826,15 @@
       "profile": {
         "name": "Tactical Squad",
         "points": 140,
-        "stats": {},
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "2",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Battleline",
@@ -17767,7 +19170,15 @@
       "profile": {
         "name": "Terminator Assault Squad",
         "points": 155,
-        "stats": {},
+        "stats": {
+          "M": "5\"",
+          "T": "5",
+          "Sv": "2+",
+          "W": "4",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
         "keywords": [
           "Infantry",
           "Imperium",
@@ -17862,7 +19273,15 @@
       "profile": {
         "name": "Terminator Squad",
         "points": 160,
-        "stats": {},
+        "stats": {
+          "M": "5\"",
+          "T": "5",
+          "Sv": "2+",
+          "W": "3",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
         "keywords": [
           "Infantry",
           "Imperium",
@@ -18108,7 +19527,86 @@
       "in_bsdata": false,
       "in_mfm": true,
       "deep_strike": false,
-      "profile": null,
+      "profile": {
+        "name": "Tor Garadon",
+        "points": 80,
+        "stats": {
+          "M": "5\"",
+          "T": "6",
+          "Sv": "3+",
+          "W": "6",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Epic Hero",
+          "Character",
+          "Infantry",
+          "Captain",
+          "Gravis",
+          "Tor Garadon",
+          "Faction: Adeptus Astartes",
+          "Imperium",
+          "Faction: Imperial Fists"
+        ],
+        "abilities": [
+          {
+            "name": "Signum Array",
+            "description": "While this model is leading a unit, ranged weapons equipped by models in that unit have the [IGNORES COVER] ability."
+          },
+          {
+            "name": "Siege Captain",
+            "description": "Each time this model makes an attack that targets a Monster, Vehicle, or Fortification unit, improve the Strength, Armour Penetration and Damage characteristics of that attack by 2."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n\n■ AGGRESSOR SQUAD\n■ ERADICATOR SQUAD\n■ HEAVY INTERCESSOR SQUAD"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Artificer Grav Gun",
+            "profiles": [
+              {
+                "name": "Artificer Grav Gun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "2+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-vehicle 2+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hand of Defiance",
+            "profiles": [
+              {
+                "name": "Hand of Defiance",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "2+",
+                  "S": "12",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Oath of Moment"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",
@@ -18134,7 +19632,86 @@
       "in_bsdata": false,
       "in_mfm": true,
       "deep_strike": false,
-      "profile": null,
+      "profile": {
+        "name": "Uriel Ventris",
+        "points": 95,
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "5",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Uriel Ventris",
+          "Character",
+          "Epic Hero",
+          "Infantry",
+          "Captain",
+          "Imperium",
+          "Faction: Adeptus Astartes",
+          "Faction: Ultramarines",
+          "Tacticus"
+        ],
+        "abilities": [
+          {
+            "name": "Unorthodox Strategist [Aura]",
+            "description": "Each time your opponent targets a unit from their army with a  stratagem, if that unit is within 12\" of this model, increase the cost of that use of that Stratagem by 1CP (this is not cumulative with any other rules that would increase the CP cost of that Stratagem)."
+          },
+          {
+            "name": "Master of the Fleet",
+            "description": "During the Declare Battle Formations step, if your army includes this model, select one Phobos, Gravis, or Tacticus Adeptus Astartes Infantry unit from your army.  That unit gains the Deep Strike ability."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n\n■ ASSAULT INTERCESSOR SQUAD\n■ BLADEGUARD VETERAN SQUAD\n■ COMPANY HEROES\n■ INTERCESSOR SQUAD\n■ STERNGUARD VETERAN SQUAD\n■ TACTICAL SQUAD"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Invictus",
+            "profiles": [
+              {
+                "name": "Invictus",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "2+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Sword of Idaeus",
+            "profiles": [
+              {
+                "name": "Sword of Idaeus",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "2+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Oath of Moment"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",
@@ -18320,7 +19897,15 @@
       "profile": {
         "name": "Vanguard Veteran Squad with Jump Packs",
         "points": 100,
-        "stats": {},
+        "stats": {
+          "M": "12\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "2",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
         "keywords": [
           "Infantry",
           "Grenades",
@@ -19087,7 +20672,92 @@
       "in_bsdata": false,
       "in_mfm": true,
       "deep_strike": false,
-      "profile": null,
+      "profile": {
+        "name": "Vulkan He'stan",
+        "points": 85,
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "2+",
+          "W": "5",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Epic Hero",
+          "Character",
+          "Infantry",
+          "Captain",
+          "Imperium",
+          "Grenades",
+          "Vulkan He'stan",
+          "Faction: Adeptus Astartes",
+          "Faction: Salamanders",
+          "Tacticus"
+        ],
+        "abilities": [
+          {
+            "name": "Forgefather",
+            "description": "In your Shooting phase, select one enemy unit within 24\" of and visible to this model. Until the end of the phase, each time a friendly Adeptus Astartes model makes a ranged attack with a Torrent or Melta weapon that targets that enemy unit, you can re-roll the Wound roll"
+          },
+          {
+            "name": "Seeker of the Unfound",
+            "description": "The first time this model is set up on the battlefield, select one objective marker on the battlefield. While this model is within range of that objective marker, it has an Objective Control characteristic of 10, a Leadership characteristic of 5+ and the Feel No Pain 4+ ability."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following units:\n\n■ ASSAULT INTERCESSOR SQUAD\n■ COMPANY HEROES\n■ INFERNUS SQUAD\n■ TACTICAL SQUAD"
+          },
+          {
+            "name": "Inspiring Commander",
+            "description": "If you include this model in your army, until the end of the battle, non-Character models in Infernus Squad units from your army have an Objective Control characteristic of 2 while they are not Battle-shocked."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Gauntlet of the Forge",
+            "profiles": [
+              {
+                "name": "Gauntlet of the Forge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6+3",
+                  "BS": "N/A",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Pistol, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Spear of Vulkan",
+            "profiles": [
+              {
+                "name": "Spear of Vulkan",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "2+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Leader",
+          "Oath of Moment",
+          "Feel No Pain"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",
@@ -19226,7 +20896,190 @@
       "in_bsdata": false,
       "in_mfm": true,
       "deep_strike": false,
-      "profile": null,
+      "profile": {
+        "name": "Wardens of Ultramar",
+        "points": 110,
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "3+",
+          "W": "4",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": ""
+        },
+        "keywords": [
+          "Infantry",
+          "Epic Hero",
+          "Grenades",
+          "Imperium",
+          "Tacticus",
+          "Faction: Adeptus Astartes",
+          "Faction: Ultramarines",
+          "Wardens of Ultramar"
+        ],
+        "abilities": [
+          {
+            "name": "Second Company Banner",
+            "description": "While this unit contains Ancient Gadriel, add 1 to the Objective Control characteristic of models in this unit. While this unit contains Ancient Gadriel and Captain Titus, improve the Leadership characteristic of models in this unit by 1 as well."
+          },
+          {
+            "name": "Strategium Command",
+            "description": "After both players have deployed their armies, if this unit is on the battlefield (or any Transport it\nis embarked within is on the battlefield), select up to three Adeptus Astartes units from your army and redeploy them. When doing so, you can set those units up in Strategic Reserves, regardless of how many units are already in Strategic Reserves."
+          },
+          {
+            "name": "Heroes of Ultramar",
+            "description": "At the start of the Declare Battle Formations step, this unit can join one of the following units. This\nunit then counts as part of that unit for the rest of the battle, and that unit’s Starting Strength is\nincreased accordingly.\n\n\n■ ASSAULT INTERCESSOR SQUAD\n■ BLADEGUARD VETERAN SQUAD\n■ INTERCESSOR SQUAD\n■ STERNGUARD VETERAN SQUAD\n\n\nThis unit cannot join an Attached unit, and only Captain Titus can join a unit this unit has joined."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Ancient Gadriel",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Gaius Silva",
+            "profiles": [
+              {
+                "name": "Archeotech Laspistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Power Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Aemelia Minervas",
+            "profiles": [
+              {
+                "name": "Archeotech Laspistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Power Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dainal Kornelius",
+            "profiles": [
+              {
+                "name": "Astropathic Blast",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Blast, Psychic"
+                }
+              },
+              {
+                "name": "Force Stave",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "2+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Psychic"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Lucia Vestha",
+            "profiles": [
+              {
+                "name": "Archeotech Laspistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Support"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",

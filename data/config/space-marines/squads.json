@@ -1,25 +1,22 @@
 {
-  "_note": "Space Marine infantry squads — core units for DPP engine",
-  "_source": "BSData + MFM 11e",
-  "Intercessor Squad": {
-    "n": 5,
-    "pts": 80,
-    "ranged": "Bolt rifle",
-    "ranged_a": 2.0,
-    "melee": "Close combat weapon",
-    "special_max": 1,
-    "specials": [
-      "Astartes grenade launcher"
-    ],
+  "_note": "space-marines squads — generated from BSData + MFM",
+  "_source": "BSData 11e + MFM (auto-generated)",
+  "Aggressor Squad": {
+    "n": 3,
+    "pts": 90,
+    "ranged": null,
+    "melee": "Twin power fist",
+    "special_max": 0,
+    "specials": [],
     "sp_loses_r": false,
     "sp_loses_m": false,
     "apoth_loses_r": false,
     "innate": [],
     "info": {
-      "M": "6\"",
-      "T": 4,
+      "M": "5\"",
+      "T": 6,
       "SV": 3,
-      "W": 2,
+      "W": 3,
       "OC": 1
     }
   },
@@ -27,9 +24,8 @@
     "n": 5,
     "pts": 75,
     "ranged": "Heavy Bolt Pistol",
-    "ranged_a": 1.0,
     "melee": "Astartes Chainsword",
-    "special_max": 1,
+    "special_max": 0,
     "specials": [],
     "sp_loses_r": false,
     "sp_loses_m": false,
@@ -40,61 +36,36 @@
       "T": 4,
       "SV": 3,
       "W": 2,
-      "OC": 1
+      "OC": 2
     }
   },
-  "Terminator Squad": {
+  "Assault Intercessors With Jump Packs": {
     "n": 5,
-    "pts": 160,
-    "ranged": "Storm bolter",
-    "ranged_a": 2.0,
-    "melee": "Power fist",
-    "special_max": 1,
+    "pts": 85,
+    "ranged": "Heavy Bolt Pistol",
+    "melee": "Astartes Chainsword",
+    "special_max": 2,
     "specials": [
-      "Assault cannon",
-      "Heavy flamer"
+      "Plasma pistol - supercharge",
+      "Plasma pistol - standard"
     ],
     "sp_loses_r": false,
     "sp_loses_m": false,
     "apoth_loses_r": false,
     "innate": [],
     "info": {
-      "M": "5\"",
-      "T": 5,
-      "SV": 2,
-      "W": 3,
-      "OC": 2,
-      "INV": 4,
-      "deep_strike": true
-    }
-  },
-  "Sternguard Veteran Squad": {
-    "n": 5,
-    "pts": 100,
-    "ranged": "Sternguard Bolt Rifle",
-    "ranged_a": 2.0,
-    "melee": "Close combat weapon",
-    "special_max": 1,
-    "specials": [
-      "Combi-weapon"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
-    "info": {
-      "M": "6\"",
+      "M": "12\"",
       "T": 4,
       "SV": 3,
       "W": 2,
-      "OC": 1
+      "OC": 1,
+      "deep_strike": true
     }
   },
   "Bladeguard Veteran Squad": {
     "n": 3,
     "pts": 80,
     "ranged": "Heavy Bolt Pistol",
-    "ranged_a": 1.0,
     "melee": "Master-crafted power weapon",
     "special_max": 0,
     "specials": [],
@@ -106,124 +77,14 @@
       "M": "6\"",
       "T": 4,
       "SV": 3,
-      "W": 2,
-      "OC": 1,
-      "INV": 4
-    }
-  },
-  "Devastator Squad": {
-    "n": 5,
-    "pts": 120,
-    "ranged": "Boltgun",
-    "ranged_a": 2.0,
-    "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Heavy bolter",
-      "Lascannon",
-      "Missile launcher",
-      "Multi-melta"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 1
-    }
-  },
-  "Hellblaster Squad": {
-    "n": 5,
-    "pts": 110,
-    "ranged": "Plasma Incinerator - Standard",
-    "ranged_a": 2.0,
-    "melee": "Close combat weapon",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 1
-    }
-  },
-  "Terminator Assault Squad": {
-    "n": 5,
-    "pts": 155,
-    "ranged": "Storm bolter",
-    "ranged_a": 2.0,
-    "melee": "Thunder hammer",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
-    "info": {
-      "M": "5\"",
-      "T": 5,
-      "SV": 2,
       "W": 3,
-      "OC": 1,
-      "INV": 4,
-      "deep_strike": true
-    }
-  },
-  "Aggressor Squad": {
-    "n": 3,
-    "pts": 90,
-    "ranged": "Close combat weapon",
-    "ranged_a": 1.0,
-    "melee": "Twin power fist",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
       "OC": 1
-    }
-  },
-  "Assault Intercessors With Jump Packs": {
-    "n": 5,
-    "pts": 85,
-    "ranged": "Heavy Bolt Pistol",
-    "ranged_a": 1.0,
-    "melee": "Astartes Chainsword",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 1,
-      "deep_strike": true
     }
   },
   "Centurion Assault Squad": {
     "n": 3,
     "pts": 150,
-    "ranged": "Close combat weapon",
-    "ranged_a": 1.0,
+    "ranged": null,
     "melee": "Siege Drills",
     "special_max": 0,
     "specials": [],
@@ -232,18 +93,17 @@
     "apoth_loses_r": false,
     "innate": [],
     "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 1
+      "M": "4\"",
+      "T": 7,
+      "SV": 2,
+      "W": 4,
+      "OC": 2
     }
   },
   "Centurion Devastator Squad": {
     "n": 3,
     "pts": 175,
-    "ranged": "Close combat weapon",
-    "ranged_a": 1.0,
+    "ranged": null,
     "melee": "Centurion Fists",
     "special_max": 0,
     "specials": [],
@@ -252,24 +112,23 @@
     "apoth_loses_r": false,
     "innate": [],
     "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 1
+      "M": "4\"",
+      "T": 7,
+      "SV": 2,
+      "W": 4,
+      "OC": 2
     }
   },
   "Company Heroes": {
     "n": 4,
     "pts": 105,
-    "ranged": "Master-crafted Heavy Bolter",
-    "ranged_a": 3.0,
+    "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
     "special_max": 2,
     "specials": [
-      "Bolt pistol",
       "Bolt Rifle",
-      "Master-crafted Bolt Rifle"
+      "Master-crafted Bolt Rifle",
+      "Master-crafted Heavy Bolter"
     ],
     "sp_loses_r": false,
     "sp_loses_m": false,
@@ -279,7 +138,7 @@
       "M": "6\"",
       "T": 4,
       "SV": 3,
-      "W": 2,
+      "W": 4,
       "OC": 1
     }
   },
@@ -287,7 +146,6 @@
     "n": 5,
     "pts": 180,
     "ranged": "Bolt pistol",
-    "ranged_a": 1.0,
     "melee": "Close combat weapon",
     "special_max": 1,
     "specials": [
@@ -305,11 +163,31 @@
       "OC": 1
     }
   },
+  "Devastator Squad": {
+    "n": 5,
+    "pts": 120,
+    "ranged": "Boltgun",
+    "melee": "Close combat weapon",
+    "special_max": 1,
+    "specials": [
+      "Bolt pistol"
+    ],
+    "sp_loses_r": false,
+    "sp_loses_m": false,
+    "apoth_loses_r": false,
+    "innate": [],
+    "info": {
+      "M": "6\"",
+      "T": 4,
+      "SV": 3,
+      "W": 2,
+      "OC": 1
+    }
+  },
   "Eliminator Squad": {
     "n": 3,
     "pts": 75,
     "ranged": "Bolt pistol",
-    "ranged_a": 1.0,
     "melee": "Close combat weapon",
     "special_max": 0,
     "specials": [],
@@ -328,13 +206,12 @@
   "Eradicator Squad": {
     "n": 3,
     "pts": 90,
-    "ranged": "Multi-melta",
-    "ranged_a": 2.0,
+    "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
     "special_max": 2,
     "specials": [
-      "Bolt pistol",
-      "Melta rifle"
+      "Melta rifle",
+      "Multi-melta"
     ],
     "sp_loses_r": false,
     "sp_loses_m": false,
@@ -351,12 +228,11 @@
   "Eradicator Squad With Heavy Bolters": {
     "n": 3,
     "pts": 70,
-    "ranged": "Heavy Bolter",
-    "ranged_a": 3.0,
+    "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
     "special_max": 1,
     "specials": [
-      "Bolt pistol"
+      "Heavy Bolter"
     ],
     "sp_loses_r": false,
     "sp_loses_m": false,
@@ -373,13 +249,34 @@
   "Heavy Intercessor Squad": {
     "n": 5,
     "pts": 100,
-    "ranged": "Heavy Bolter",
-    "ranged_a": 3.0,
+    "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
     "special_max": 2,
     "specials": [
-      "Bolt pistol",
-      "Heavy Bolt Rifle"
+      "Heavy Bolt Rifle",
+      "Heavy Bolter"
+    ],
+    "sp_loses_r": false,
+    "sp_loses_m": false,
+    "apoth_loses_r": false,
+    "innate": [],
+    "info": {
+      "M": "5\"",
+      "T": 6,
+      "SV": 3,
+      "W": 3,
+      "OC": 2
+    }
+  },
+  "Hellblaster Squad": {
+    "n": 5,
+    "pts": 110,
+    "ranged": "Bolt pistol",
+    "melee": "Close combat weapon",
+    "special_max": 2,
+    "specials": [
+      "Plasma Incinerator - Standard",
+      "Plasma Incinerator - Supercharge"
     ],
     "sp_loses_r": false,
     "sp_loses_m": false,
@@ -396,8 +293,7 @@
   "Inceptor Squad": {
     "n": 3,
     "pts": 120,
-    "ranged": "Close combat weapon",
-    "ranged_a": 1.0,
+    "ranged": null,
     "melee": "Close combat weapon",
     "special_max": 0,
     "specials": [],
@@ -406,10 +302,10 @@
     "apoth_loses_r": false,
     "innate": [],
     "info": {
-      "M": "6\"",
-      "T": 4,
+      "M": "10\"",
+      "T": 6,
       "SV": 3,
-      "W": 2,
+      "W": 3,
       "OC": 1,
       "deep_strike": true
     }
@@ -417,12 +313,11 @@
   "Incursor Squad": {
     "n": 5,
     "pts": 85,
-    "ranged": "Occulus Bolt Carbine",
-    "ranged_a": 2.0,
+    "ranged": "Bolt pistol",
     "melee": "Paired Combat Blades",
     "special_max": 1,
     "specials": [
-      "Bolt pistol"
+      "Occulus Bolt Carbine"
     ],
     "sp_loses_r": false,
     "sp_loses_m": false,
@@ -440,7 +335,6 @@
     "n": 5,
     "pts": 85,
     "ranged": "Pyreblaster",
-    "ranged_a": 1.0,
     "melee": "Close combat weapon",
     "special_max": 1,
     "specials": [
@@ -461,12 +355,11 @@
   "Infiltrator Squad": {
     "n": 5,
     "pts": 110,
-    "ranged": "Marksman Bolt Carbine",
-    "ranged_a": 2.0,
+    "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
     "special_max": 1,
     "specials": [
-      "Bolt pistol"
+      "Marksman Bolt Carbine"
     ],
     "sp_loses_r": false,
     "sp_loses_m": false,
@@ -480,15 +373,37 @@
       "OC": 1
     }
   },
+  "Intercessor Squad": {
+    "n": 5,
+    "pts": 80,
+    "ranged": "Bolt pistol",
+    "melee": "Close combat weapon",
+    "special_max": 2,
+    "specials": [
+      "Bolt Rifle",
+      "Astartes grenade launcher - krak",
+      "Astartes grenade launcher - frag"
+    ],
+    "sp_loses_r": false,
+    "sp_loses_m": false,
+    "apoth_loses_r": false,
+    "innate": [],
+    "info": {
+      "M": "6\"",
+      "T": 4,
+      "SV": 3,
+      "W": 2,
+      "OC": 2
+    }
+  },
   "Invader Atv": {
     "n": 1,
     "pts": 60,
-    "ranged": "Twin bolt rifle",
-    "ranged_a": 2.0,
+    "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
     "special_max": 1,
     "specials": [
-      "Bolt pistol"
+      "Twin bolt rifle"
     ],
     "sp_loses_r": false,
     "sp_loses_m": false,
@@ -505,28 +420,28 @@
   "Outrider Squad": {
     "n": 3,
     "pts": 70,
-    "ranged": "Twin bolt rifle",
-    "ranged_a": 2.0,
+    "ranged": "Heavy Bolt Pistol",
     "melee": "Astartes Chainsword",
-    "special_max": 0,
-    "specials": [],
+    "special_max": 1,
+    "specials": [
+      "Twin bolt rifle"
+    ],
     "sp_loses_r": false,
     "sp_loses_m": false,
     "apoth_loses_r": false,
     "innate": [],
     "info": {
-      "M": "6\"",
-      "T": 4,
+      "M": "12\"",
+      "T": 5,
       "SV": 3,
-      "W": 2,
-      "OC": 1
+      "W": 4,
+      "OC": 2
     }
   },
   "Reiver Squad": {
     "n": 5,
     "pts": 75,
     "ranged": "Special Issue Bolt Pistol",
-    "ranged_a": 1.0,
     "melee": "Close combat weapon",
     "special_max": 0,
     "specials": [],
@@ -546,13 +461,34 @@
     "n": 5,
     "pts": 65,
     "ranged": "Boltgun",
-    "ranged_a": 2.0,
     "melee": "Close combat weapon",
     "special_max": 2,
     "specials": [
       "Bolt pistol",
       "Astartes Shotgun",
       "Scout Sniper Rifle"
+    ],
+    "sp_loses_r": false,
+    "sp_loses_m": false,
+    "apoth_loses_r": false,
+    "innate": [],
+    "info": {
+      "M": "6\"",
+      "T": 4,
+      "SV": 4,
+      "W": 2,
+      "OC": 1
+    }
+  },
+  "Sternguard Veteran Squad": {
+    "n": 5,
+    "pts": 100,
+    "ranged": "Sternguard Bolt Pistol",
+    "melee": "Close combat weapon",
+    "special_max": 2,
+    "specials": [
+      "Sternguard Bolt Rifle",
+      "Combi-weapon"
     ],
     "sp_loses_r": false,
     "sp_loses_m": false,
@@ -569,19 +505,18 @@
   "Suppressor Squad": {
     "n": 3,
     "pts": 75,
-    "ranged": "Accelerator Autocannon",
-    "ranged_a": 3.0,
+    "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
     "special_max": 1,
     "specials": [
-      "Bolt pistol"
+      "Accelerator Autocannon"
     ],
     "sp_loses_r": false,
     "sp_loses_m": false,
     "apoth_loses_r": false,
     "innate": [],
     "info": {
-      "M": "6\"",
+      "M": "12\"",
       "T": 4,
       "SV": 3,
       "W": 2,
@@ -592,12 +527,11 @@
   "Tactical Squad": {
     "n": 10,
     "pts": 140,
-    "ranged": "Boltgun",
-    "ranged_a": 2.0,
+    "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
     "special_max": 1,
     "specials": [
-      "Bolt pistol"
+      "Boltgun"
     ],
     "sp_loses_r": false,
     "sp_loses_m": false,
@@ -608,16 +542,80 @@
       "T": 4,
       "SV": 3,
       "W": 2,
-      "OC": 1
+      "OC": 2
+    }
+  },
+  "Terminator Assault Squad": {
+    "n": 5,
+    "pts": 155,
+    "ranged": null,
+    "melee": "Thunder Hammer",
+    "special_max": 0,
+    "specials": [],
+    "sp_loses_r": false,
+    "sp_loses_m": false,
+    "apoth_loses_r": false,
+    "innate": [],
+    "info": {
+      "M": "5\"",
+      "T": 5,
+      "SV": 2,
+      "W": 4,
+      "OC": 1,
+      "INV": 4,
+      "deep_strike": true
+    }
+  },
+  "Terminator Squad": {
+    "n": 5,
+    "pts": 160,
+    "ranged": "Storm bolter",
+    "melee": "Power fist",
+    "special_max": 0,
+    "specials": [],
+    "sp_loses_r": false,
+    "sp_loses_m": false,
+    "apoth_loses_r": false,
+    "innate": [],
+    "info": {
+      "M": "5\"",
+      "T": 5,
+      "SV": 2,
+      "W": 3,
+      "OC": 1,
+      "INV": 4,
+      "deep_strike": true
     }
   },
   "Vanguard Veteran Squad (Armageddon)": {
     "n": 5,
-    "pts": 100,
+    "pts": 0,
     "ranged": "Heavy Bolt Pistol",
-    "ranged_a": 1.0,
     "melee": "Master-crafted Power Weapon",
     "special_max": 2,
+    "specials": [
+      "Plasma pistol - standard",
+      "Plasma pistol - supercharge"
+    ],
+    "sp_loses_r": false,
+    "sp_loses_m": false,
+    "apoth_loses_r": false,
+    "innate": [],
+    "info": {
+      "M": "12\"",
+      "T": 4,
+      "SV": 3,
+      "W": "w",
+      "OC": 1,
+      "deep_strike": true
+    }
+  },
+  "Vanguard Veteran Squad With Jump Packs": {
+    "n": 5,
+    "pts": 100,
+    "ranged": null,
+    "melee": "Vanguard Veteran Weapon",
+    "special_max": 0,
     "specials": [],
     "sp_loses_r": false,
     "sp_loses_m": false,
@@ -632,14 +630,15 @@
       "deep_strike": true
     }
   },
-  "Vanguard Veteran Squad With Jump Packs": {
-    "n": 5,
-    "pts": 100,
-    "ranged": "Close combat weapon",
-    "ranged_a": 1.0,
-    "melee": "Vanguard Veteran Weapon",
-    "special_max": 0,
-    "specials": [],
+  "Wardens Of Ultramar": {
+    "n": 6,
+    "pts": 110,
+    "ranged": "Archeotech Laspistol",
+    "melee": "Close combat weapon",
+    "special_max": 1,
+    "specials": [
+      "Astropathic Blast"
+    ],
     "sp_loses_r": false,
     "sp_loses_m": false,
     "apoth_loses_r": false,
@@ -648,9 +647,8 @@
       "M": "6\"",
       "T": 4,
       "SV": 3,
-      "W": 2,
-      "OC": 1,
-      "deep_strike": true
+      "W": 4,
+      "OC": 1
     }
   }
 }

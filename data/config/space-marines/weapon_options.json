@@ -1,12 +1,33 @@
 {
-  "_note": "Space Marine units with weapon options — DPP engine",
-  "_source": "BSData + MFM 11e",
-  "Redemptor Dreadnought": {
+  "_note": "space-marines weapon options — generated from BSData + MFM",
+  "_source": "BSData 11e + MFM (auto-generated)",
+  "Astraeus": {
     "ranged": [
-      "Heavy Onslaught Gatling Cannon"
+      "Twin macro-accelerator cannon",
+      "Ironhail Heavy Stubber",
+      "Storm bolter"
     ],
     "melee": [
-      "Redemptor Fist"
+      "Armoured hull"
+    ],
+    "info": {
+      "M": "10\"",
+      "T": 12,
+      "SV": 2,
+      "W": 24,
+      "OC": 8,
+      "INV": 5
+    },
+    "pts": 525
+  },
+  "Ballistus Dreadnought": {
+    "ranged": [
+      "Ballistus Lascannon",
+      "Ballistus Missile Launcher - Frag",
+      "Ballistus Missile Launcher - Krak"
+    ],
+    "melee": [
+      "Armoured Feet"
     ],
     "info": {
       "M": "8\"",
@@ -14,40 +35,396 @@
       "SV": 2,
       "W": 12,
       "OC": 4
-    }
+    },
+    "pts": 150
   },
-  "Dreadnought": {
+  "Gladiator Lancer": {
     "ranged": [
-      "Multi-melta",
-      "Twin lascannon",
-      "Heavy bolter"
+      "Lancer Laser Destroyer",
+      "Icarus Rocket Pod",
+      "Ironhail Heavy Stubber"
     ],
     "melee": [
-      "Power fist"
+      "Armoured Hull"
     ],
     "info": {
-      "M": "6\"",
-      "T": 9,
-      "SV": 2,
-      "W": 8,
+      "M": "10\"",
+      "T": 10,
+      "SV": 3,
+      "W": 12,
       "OC": 3
-    }
+    },
+    "pts": 160
   },
-  "Brutalis Dreadnought": {
+  "Gladiator Reaper": {
     "ranged": [
-      "Twin Icarus ironhail heavy stubber",
+      "Tempest Bolter",
+      "Twin Heavy Onslaught Gatling Cannon",
+      "Icarus Rocket Pod",
+      "Ironhail Heavy Stubber"
+    ],
+    "melee": [
+      "Armoured Hull"
+    ],
+    "info": {
+      "M": "10\"",
+      "T": 10,
+      "SV": 3,
+      "W": 12,
+      "OC": 3
+    },
+    "pts": 160
+  },
+  "Gladiator Valiant": {
+    "ranged": [
+      "Twin Las-talon",
+      "Icarus Rocket Pod",
+      "Ironhail Heavy Stubber",
       "Multi-melta"
     ],
     "melee": [
-      "Twin power fist",
-      "Twin lightning claws"
+      "Armoured Hull"
+    ],
+    "info": {
+      "M": "10\"",
+      "T": 10,
+      "SV": 3,
+      "W": 12,
+      "OC": 3
+    },
+    "pts": 150
+  },
+  "Invictor Tactical Warsuit": {
+    "ranged": [
+      "Fragstorm grenade launcher",
+      "Heavy Bolter",
+      "Twin Ironhail Heavy Stubber"
+    ],
+    "melee": [
+      "Invictor Fist"
     ],
     "info": {
       "M": "8\"",
-      "T": 10,
-      "SV": 2,
+      "T": 8,
+      "SV": 3,
       "W": 12,
       "OC": 4
-    }
+    },
+    "pts": 125
+  },
+  "Land Raider": {
+    "ranged": [
+      "Godhammer Lascannon",
+      "Hunter-killer missile",
+      "Multi-melta",
+      "Storm bolter",
+      "Twin heavy bolter"
+    ],
+    "melee": [
+      "Armoured Tracks"
+    ],
+    "info": {
+      "M": "10\"",
+      "T": 12,
+      "SV": 2,
+      "W": 16,
+      "OC": 5
+    },
+    "pts": 220
+  },
+  "Land Raider Crusader": {
+    "ranged": [
+      "Hunter-killer missile",
+      "Hurricane Bolter",
+      "Multi-melta",
+      "Storm bolter",
+      "Twin assault cannon"
+    ],
+    "melee": [
+      "Armoured Tracks"
+    ],
+    "info": {
+      "M": "12\"",
+      "T": 12,
+      "SV": 2,
+      "W": 16,
+      "OC": 5
+    },
+    "pts": 220
+  },
+  "Land Raider Redeemer": {
+    "ranged": [
+      "Flamestorm Cannon",
+      "Hunter-killer missile",
+      "Multi-melta",
+      "Storm bolter",
+      "Twin assault cannon"
+    ],
+    "melee": [
+      "Armoured Tracks"
+    ],
+    "info": {
+      "M": "12\"",
+      "T": 12,
+      "SV": 2,
+      "W": 16,
+      "OC": 5
+    },
+    "pts": 250
+  },
+  "Land Speeder": {
+    "ranged": [
+      "Multi-melta",
+      "Heavy Flamer",
+      "Onslaught gatling cannon",
+      "Stormfury Missile Launcher"
+    ],
+    "melee": [
+      "Close combat weapon"
+    ],
+    "info": {
+      "M": "14\"",
+      "T": 8,
+      "SV": 3,
+      "W": 9,
+      "OC": 3,
+      "deep_strike": true
+    },
+    "pts": 95
+  },
+  "Predator Annihilator": {
+    "ranged": [
+      "Predator Twin Lascannon",
+      "Hunter-killer missile",
+      "Storm bolter"
+    ],
+    "melee": [
+      "Armoured Tracks"
+    ],
+    "info": {
+      "M": "10",
+      "T": 10,
+      "SV": 3,
+      "W": 11,
+      "OC": 3
+    },
+    "pts": 135
+  },
+  "Predator Destructor": {
+    "ranged": [
+      "Predator Autocannon",
+      "Hunter-killer missile",
+      "Storm bolter"
+    ],
+    "melee": [
+      "Armoured Tracks"
+    ],
+    "info": {
+      "M": "10",
+      "T": 10,
+      "SV": 3,
+      "W": 11,
+      "OC": 3
+    },
+    "pts": 140
+  },
+  "Razorback": {
+    "ranged": [
+      "Hunter-killer missile",
+      "Storm bolter"
+    ],
+    "melee": [
+      "Armoured Tracks"
+    ],
+    "info": {
+      "M": "12\"",
+      "T": 9,
+      "SV": 3,
+      "W": 10,
+      "OC": 2
+    },
+    "pts": 95
+  },
+  "Repulsor": {
+    "ranged": [
+      "Hunter-slayer missile",
+      "Repulsor Defensive Array"
+    ],
+    "melee": [
+      "Armoured Hull"
+    ],
+    "info": {
+      "M": "10\"",
+      "T": 12,
+      "SV": 3,
+      "W": 16,
+      "OC": 5
+    },
+    "pts": 170
+  },
+  "Repulsor Executioner": {
+    "ranged": [
+      "Repulsor Executioner Defensive Array",
+      "Heavy Onslaught Gatling Cannon",
+      "Icarus Rocket Pod",
+      "Ironhail Heavy Stubber",
+      "Twin heavy bolter",
+      "Twin Icarus ironhail heavy stubber"
+    ],
+    "melee": [
+      "Armoured Hull"
+    ],
+    "info": {
+      "M": "10\"",
+      "T": 12,
+      "SV": 3,
+      "W": 16,
+      "OC": 5
+    },
+    "pts": 240
+  },
+  "Rhino": {
+    "ranged": [
+      "Hunter-killer missile",
+      "Storm bolter"
+    ],
+    "melee": [
+      "Armoured Tracks"
+    ],
+    "info": {
+      "M": "12\"",
+      "T": 9,
+      "SV": 3,
+      "W": 10,
+      "OC": 2
+    },
+    "pts": 75
+  },
+  "Storm Speeder Hailstrike": {
+    "ranged": [
+      "Fragstorm grenade launcher",
+      "Onslaught gatling cannon",
+      "Twin Ironhail Heavy Stubber"
+    ],
+    "melee": [
+      "Close combat weapon"
+    ],
+    "info": {
+      "M": "14\"",
+      "T": 9,
+      "SV": 3,
+      "W": 11,
+      "OC": 3,
+      "deep_strike": true
+    },
+    "pts": 105
+  },
+  "Storm Speeder Hammerstrike": {
+    "ranged": [
+      "Hammerstrike Missile Launcher",
+      "Krakstorm Grenade Launcher",
+      "Melta Destroyer"
+    ],
+    "melee": [
+      "Close combat weapon"
+    ],
+    "info": {
+      "M": "14\"",
+      "T": 9,
+      "SV": 3,
+      "W": 11,
+      "OC": 3,
+      "deep_strike": true
+    },
+    "pts": 130
+  },
+  "Storm Speeder Thunderstrike": {
+    "ranged": [
+      "Stormfury Missiles",
+      "Thunderstrike Las-talon",
+      "Twin Icarus Rocket Pod"
+    ],
+    "melee": [
+      "Close combat weapon"
+    ],
+    "info": {
+      "M": "14\"",
+      "T": 9,
+      "SV": 3,
+      "W": 11,
+      "OC": 3,
+      "deep_strike": true
+    },
+    "pts": 135
+  },
+  "Stormraven Gunship": {
+    "ranged": [
+      "Hurricane Bolter",
+      "Stormstrike Missile Launcher"
+    ],
+    "melee": [
+      "Armoured Hull"
+    ],
+    "info": {
+      "M": "14\"",
+      "T": 10,
+      "SV": 3,
+      "W": 14,
+      "OC": 0
+    },
+    "pts": 280
+  },
+  "Thunderhawk Gunship": {
+    "ranged": [
+      "Lascannon",
+      "Twin heavy bolter"
+    ],
+    "melee": [
+      "Armoured hull"
+    ],
+    "info": {
+      "M": "20+\"",
+      "T": 12,
+      "SV": 2,
+      "W": 30,
+      "OC": 0
+    },
+    "pts": 840
+  },
+  "Vindicator": {
+    "ranged": [
+      "Demolisher Cannon",
+      "Hunter-killer missile",
+      "Storm bolter"
+    ],
+    "melee": [
+      "Armoured Tracks"
+    ],
+    "info": {
+      "M": "9\"",
+      "T": 11,
+      "SV": 2,
+      "W": 11,
+      "OC": 3
+    },
+    "pts": 185
+  },
+  "Whirlwind": {
+    "ranged": [
+      "Whirlwind Vengeance Launcher",
+      "Hunter-killer missile",
+      "Storm bolter"
+    ],
+    "melee": [
+      "Armoured Tracks"
+    ],
+    "info": {
+      "M": "10\"",
+      "T": 10,
+      "SV": 3,
+      "W": 11,
+      "OC": 3
+    },
+    "pts": 175
   }
 }

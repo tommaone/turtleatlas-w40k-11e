@@ -1,8 +1,13 @@
 {
+  "_note": "grey-knights characters — generated from BSData + MFM",
+  "_source": "BSData 11e + MFM (auto-generated)",
   "Brother-Captain": {
     "pts": 95,
     "ranged": [
-      "Storm bolter"
+      "Storm bolter",
+      "Incinerator",
+      "Psycannon",
+      "Psilencer"
     ],
     "melee": [
       "Nemesis force weapon"
@@ -30,7 +35,7 @@
     "info": {
       "M": "6\"",
       "T": 4,
-      "SV": 3,
+      "SV": 2,
       "W": 4,
       "OC": 1,
       "INV": 4,
@@ -59,25 +64,14 @@
   "Brotherhood Librarian": {
     "pts": 90,
     "ranged": [
-      "Storm bolter"
+      "Storm bolter",
+      "Vortex of Doom",
+      "Combi-weapon"
     ],
     "melee": [
       "Nemesis force weapon"
     ],
     "innate": [],
-    "weapon_options": {
-      "ranged": [
-        [
-          "Storm bolter"
-        ],
-        [
-          "Combi-weapon"
-        ],
-        [
-          "Vortex of Doom"
-        ]
-      ]
-    },
     "info": {
       "M": "5\"",
       "T": 5,
@@ -85,22 +79,25 @@
       "W": 5,
       "OC": 1,
       "INV": 4,
+      "FNP": 4,
       "deep_strike": true
     }
   },
   "Brotherhood Techmarine": {
     "pts": 70,
     "ranged": [
-      "Storm bolter"
+      "Grav-pistol",
+      "Forge bolter"
     ],
     "melee": [
+      "Servo-arm",
       "Omnissian power axe"
     ],
     "innate": [],
     "info": {
       "M": "6\"",
       "T": 4,
-      "SV": 3,
+      "SV": 2,
       "W": 4,
       "OC": 1,
       "deep_strike": true
@@ -109,18 +106,17 @@
   "Castellan Crowe": {
     "pts": 100,
     "ranged": [
-      "Storm bolter"
+      "Storm bolter",
+      "Purifying Flame"
     ],
     "melee": [
       "Black Blade of Antwyr"
     ],
-    "innate": [
-      "Purifying Flame"
-    ],
+    "innate": [],
     "info": {
       "M": "6\"",
       "T": 4,
-      "SV": 3,
+      "SV": 2,
       "W": 5,
       "OC": 1,
       "INV": 4,
@@ -130,7 +126,10 @@
   "Grand Master": {
     "pts": 95,
     "ranged": [
-      "Storm bolter"
+      "Storm bolter",
+      "Incinerator",
+      "Psycannon",
+      "Psilencer"
     ],
     "melee": [
       "Nemesis force weapon"
@@ -146,10 +145,39 @@
       "deep_strike": true
     }
   },
+  "Grand Master In Nemesis Dreadknight": {
+    "pts": 200,
+    "ranged": [
+      "Sublimator",
+      "Gatling psilencer",
+      "Heavy incinerator",
+      "Heavy psycannon",
+      "Fragstorm grenade launcher"
+    ],
+    "melee": [
+      "Nemesis mace",
+      "Nemesis flail",
+      "Dreadfists",
+      "Nemesis daemon greathammer",
+      "Nemesis greatsword - strike",
+      "Nemesis greatsword - sweep"
+    ],
+    "innate": [],
+    "info": {
+      "M": "8\"",
+      "T": 8,
+      "SV": 2,
+      "W": 13,
+      "OC": 4,
+      "INV": 4,
+      "deep_strike": true
+    }
+  },
   "Grand Master Voldus": {
     "pts": 140,
     "ranged": [
-      "Storm bolter"
+      "Storm bolter",
+      "Searing Purity"
     ],
     "melee": [
       "Malleus Argyrum"
@@ -162,6 +190,29 @@
       "W": 7,
       "OC": 1,
       "INV": 4,
+      "deep_strike": true
+    }
+  },
+  "Venerable Dreadnought": {
+    "pts": 130,
+    "ranged": [
+      "Assault cannon",
+      "Heavy plasma cannon - standard",
+      "Heavy plasma cannon - supercharge",
+      "Twin lascannon",
+      "Storm bolter",
+      "Heavy flamer"
+    ],
+    "melee": [
+      "Dreadnought combat weapon"
+    ],
+    "innate": [],
+    "info": {
+      "M": "8\"",
+      "T": 9,
+      "SV": 2,
+      "W": 8,
+      "OC": 3,
       "deep_strike": true
     }
   }

@@ -655,6 +655,11 @@ class RankingEngine:
 
     def get_unit_info(self, name, profile_data):
         """Return (keywords, toughness, save, wounds, oc, invuln) from config + profile."""
+        def _safe_int(val, default=0):
+            s = str(val).replace('"', '').replace('+', '').replace('*', '').strip()
+            digits = ''.join(c for c in s if c.isdigit() or c == '-')
+            return int(digits) if digits else default
+
         # Squad info
         if name in self.config.squads:
             info = self.config.squads[name]["info"]
@@ -669,7 +674,7 @@ class RankingEngine:
                     kw.append("FLY")
                 if "Terminator" in name:
                     kw.append("TERMINATOR")
-                return kw, info["T"], info["SV"], info["W"], info.get("OC", 0), info.get("invuln") or info.get("INV")
+                return kw, info["T"], info["SV"], _safe_int(info["W"], 2), info.get("OC", 0), info.get("invuln") or info.get("INV")
 
         # Vehicle info
         if name in self.config.vehicles:
@@ -687,7 +692,7 @@ class RankingEngine:
                     kw.append("DEEP STRIKE")
                 if info.get("invuln") or info.get("INV"):
                     kw.append("WALKER")
-                return kw, info["T"], info["SV"], info["W"], info.get("OC", 0), info.get("invuln") or info.get("INV")
+                return kw, info["T"], info["SV"], _safe_int(info["W"], 2), info.get("OC", 0), info.get("invuln") or info.get("INV")
 
         # Weapon-option vehicle info (NDK / GMNDK)
         if name in self.config.weapon_options:
@@ -700,7 +705,7 @@ class RankingEngine:
                 if info.get("deep_strike"):
                     kw.append("DEEP STRIKE")
                 kw.extend(self.config.faction_keywords)
-                return kw, info["T"], info["SV"], info["W"], info.get("OC", 0), info.get("invuln") or info.get("INV")
+                return kw, info["T"], info["SV"], _safe_int(info["W"], 2), info.get("OC", 0), info.get("invuln") or info.get("INV")
 
         # Character info
         if name in self.config.characters:
@@ -716,15 +721,20 @@ class RankingEngine:
                 kw.extend(self.config.faction_keywords)
                 if t_val >= 5:
                     kw.append("TERMINATOR")
-                return kw, info["T"], info["SV"], info["W"], info.get("OC", 0), info.get("invuln") or info.get("INV")
+                return kw, info["T"], info["SV"], _safe_int(info["W"], 2), info.get("OC", 0), info.get("invuln") or info.get("INV")
 
         # Fallback: from profile data
         stats = profile_data.get("stats", {})
         if stats.get("T"):
-            t_val = int(str(stats.get("T", "4")).replace('"', ""))
-            sv_val = int(str(stats.get("SV", "3+")).replace("+", "").replace('"', ""))
-            w_val = int(str(stats.get("W", "2")).replace('"', ""))
-            oc_val = int(str(stats.get("OC", "1")).replace('"', ""))
+            def _safe_int(val, default=0):
+                """Extract leading integer from a stat value. Returns default if unparseable."""
+                s = str(val).replace('"', '').replace('+', '').replace('*', '').strip()
+                digits = ''.join(c for c in s if c.isdigit() or c == '-')
+                return int(digits) if digits else default
+            t_val = _safe_int(stats.get("T", "4"), 4)
+            sv_val = _safe_int(stats.get("Sv", stats.get("SV", "3+")), 3)
+            w_val = _safe_int(stats.get("W", "2"), 2)
+            oc_val = _safe_int(stats.get("OC", "1"), 1)
             raw_kw = [k.upper() for k in profile_data.get("keywords", [])]
             kw = []
             for k in ("INFANTRY", "VEHICLE", "WALKER", "CHARACTER", "FLY"):

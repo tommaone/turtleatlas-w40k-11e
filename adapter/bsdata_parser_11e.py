@@ -336,11 +336,97 @@ class BSDataParser11e:
                     break
 
             # -- Unit profile (stats) --
+            # BSData stores stats in different places depending on the faction:
+            # 1. On model entries inside selectionEntryGroups (most infantry squads)
+            # 2. On model entries inside selectionEntries (some factions like Aeldari)
+            # 3. Directly on the entry as a "Unit" profile (vehicles, characters)
+            # 4. In sharedProfiles, referenced via infoLinks → targetId
+            # 5. Name-matching fallback to sharedProfiles
             stats: dict[str, str] = {}
-            for p in entry.get("profiles", []):
-                if p.get("typeName", "") == "Unit":
-                    stats = self._get_chars_dict(p)
+
+            def _find_stats_in_entries(entries_list: list[dict]) -> dict[str, str]:
+                """Walk a list of selection entries looking for model entries with Unit profiles."""
+                for sel in entries_list:
+                    if sel.get("type") != "model":
+                        continue
+                    for p in sel.get("profiles", []):
+                        if p.get("typeName", "") == "Unit":
+                            return self._get_chars_dict(p)
+                return {}
+
+            # 1. selectionEntryGroups → selectionEntries (type=model)
+            for seg in entry.get("selectionEntryGroups", []):
+                stats = _find_stats_in_entries(seg.get("selectionEntries", []))
+                if stats:
                     break
+
+            # 2. selectionEntries directly (type=model)
+            if not stats:
+                stats = _find_stats_in_entries(entry.get("selectionEntries", []))
+
+            # 3. Direct "Unit" profile on the entry itself
+            if not stats:
+                for p in entry.get("profiles", []):
+                    if p.get("typeName", "") == "Unit":
+                        stats = self._get_chars_dict(p)
+                        break
+
+            # 4. Resolve from sharedProfiles via infoLinks
+            if not stats:
+                for seg in entry.get("selectionEntryGroups", []):
+                    for sel in seg.get("selectionEntries", []):
+                        for il in sel.get("infoLinks", []):
+                            if il.get("type") == "profile":
+                                tid = il.get("targetId", "")
+                                if tid:
+                                    target = self._resolve_entry(tid, entry_index)
+                                    if target is not None and target.get("typeName") == "Unit":
+                                        stats = self._get_chars_dict(target)
+                                        break
+                        if stats:
+                            break
+                    if stats:
+                        break
+
+            # 5. Name-matching fallback: match unit name to sharedProfile name
+            if not stats and entry_index:
+                unit_name_lower = name.lower().strip()
+                best_match = None
+                best_score = 0
+                for eid, eobj in entry_index.items():
+                    if eobj.get("typeName") != "Unit":
+                        continue
+                    pname = eobj.get("name", "").lower().strip()
+                    # Exact match
+                    if pname == unit_name_lower:
+                        best_match = eobj
+                        best_score = 100
+                        break
+                    # Singular match (strip trailing 's')
+                    if pname == unit_name_lower.rstrip("s"):
+                        best_match = eobj
+                        best_score = 90
+                        continue
+                    # Profile name is contained in unit name
+                    if len(pname) > 3 and pname in unit_name_lower:
+                        score = len(pname)
+                        if score > best_score:
+                            best_match = eobj
+                            best_score = score
+                    # Leading words match (handles "Leman Russ Eradicator" → "Leman Russ Battle Tank")
+                    pname_words = pname.split()
+                    uname_words = unit_name_lower.split()
+                    shared = 0
+                    for pw, uw in zip(pname_words, uname_words):
+                        if pw == uw:
+                            shared += 1
+                        else:
+                            break
+                    if shared >= 2 and shared > best_score:
+                        best_match = eobj
+                        best_score = shared
+                if best_match and best_score >= 2:
+                    stats = self._get_chars_dict(best_match)
 
             # -- Keywords / category links --
             keywords: list[str] = []

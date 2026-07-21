@@ -223,6 +223,28 @@ class WeaponCatalog:
             # Try partial match
             candidates = [k for k in self.by_name if key in k]
             if not candidates:
+                # Fallback: generic melee weapon every model has
+                # In 40k, "Close combat weapon" = model's own stats (A=user, S=user)
+                # Since we don't have the model profile here, use a reasonable
+                # baseline. This only fires for weapon names that don't exist in
+                # the merged data (e.g. auto-generated config referencing a generic
+                # name the faction doesn't use).
+                _GENERIC_MELEE = {
+                    "close combat weapon",
+                    "close combat weapons",
+                    "melee weapon",
+                    "close combat weapons",
+                }
+                if key in _GENERIC_MELEE:
+                    return WeaponProfile(
+                        name="Close combat weapon",
+                        attacks=1,   # user — will be overridden by config if needed
+                        bs=0,        # user
+                        strength=4,  # user — S4 baseline
+                        ap=0,
+                        damage=1.0,
+                        abilities=[],
+                    )
                 suggestions = sorted(self.by_name.keys())[:10]
                 raise KeyError(
                     f"Weapon '{name}' not found. "

@@ -1,72 +1,58 @@
 {
-  "_note": "Space Marine vehicles — key platforms for DPP engine",
-  "_source": "BSData + MFM 11e",
-  "Dreadnought": {
-    "pts": 135,
+  "_note": "space-marines vehicles — generated from BSData + MFM",
+  "_source": "BSData 11e + MFM (auto-generated)",
+  "Astraeus": {
+    "pts": 525,
     "ranged": [
       {
-        "name": "multi-melta",
-        "unit_name": "Dreadnought"
+        "name": "Twin macro-accelerator cannon",
+        "unit_name": "Astraeus"
+      },
+      {
+        "name": "Ironhail Heavy Stubber",
+        "unit_name": "Astraeus"
+      },
+      {
+        "name": "Storm bolter",
+        "unit_name": "Astraeus"
       }
     ],
     "melee": [
       {
-        "name": "power fist",
-        "unit_name": "Dreadnought"
+        "name": "Armoured hull",
+        "unit_name": "Astraeus"
       }
     ],
     "innate": [],
     "info": {
-      "M": "6\"",
-      "T": 9,
+      "M": "10\"",
+      "T": 12,
       "SV": 2,
-      "W": 8,
-      "OC": 3
+      "W": 24,
+      "OC": 8,
+      "INV": 5
     }
   },
   "Ballistus Dreadnought": {
     "pts": 150,
     "ranged": [
       {
-        "name": "ballistus lascannon",
+        "name": "Ballistus Lascannon",
         "unit_name": "Ballistus Dreadnought"
       },
       {
-        "name": "ballistus missile launcher - krak",
+        "name": "Ballistus Missile Launcher - Frag",
+        "unit_name": "Ballistus Dreadnought"
+      },
+      {
+        "name": "Ballistus Missile Launcher - Krak",
         "unit_name": "Ballistus Dreadnought"
       }
     ],
     "melee": [
       {
-        "name": "armoured feet",
+        "name": "Armoured Feet",
         "unit_name": "Ballistus Dreadnought"
-      }
-    ],
-    "innate": [],
-    "info": {
-      "M": "8\"",
-      "T": 10,
-      "SV": 2,
-      "W": 12,
-      "OC": 4
-    }
-  },
-  "Redemptor Dreadnought": {
-    "pts": 195,
-    "ranged": [
-      {
-        "name": "heavy onslaught gatling cannon",
-        "unit_name": "Redemptor Dreadnought"
-      },
-      {
-        "name": "icarus rocket pod",
-        "unit_name": "Redemptor Dreadnought"
-      }
-    ],
-    "melee": [
-      {
-        "name": "redemptor fist",
-        "unit_name": "Redemptor Dreadnought"
       }
     ],
     "innate": [],
@@ -82,16 +68,11 @@
     "pts": 150,
     "ranged": [
       {
-        "name": "twin icarus ironhail heavy stubber",
+        "name": "Twin Icarus ironhail heavy stubber",
         "unit_name": "Brutalis Dreadnought"
       }
     ],
-    "melee": [
-      {
-        "name": "twin power fist",
-        "unit_name": "Brutalis Dreadnought"
-      }
-    ],
+    "melee": [],
     "innate": [],
     "info": {
       "M": "8\"",
@@ -101,752 +82,17 @@
       "OC": 4
     }
   },
-  "Impulsor": {
-    "pts": 80,
-    "ranged": [
-      {
-        "name": "ironhail heavy stubber",
-        "unit_name": "Impulsor"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured hull",
-        "unit_name": "Impulsor"
-      }
-    ],
-    "innate": [],
-    "info": {
-      "M": "12\"",
-      "T": 9,
-      "SV": 3,
-      "W": 11,
-      "OC": 2
-    }
-  },
-  "Rhino": {
-    "pts": 75,
-    "ranged": [
-      {
-        "name": "storm bolter",
-        "unit_name": "Rhino"
-      },
-      {
-        "name": "hunter-killer missile",
-        "unit_name": "Rhino"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured tracks",
-        "unit_name": "Rhino"
-      }
-    ],
-    "innate": [],
-    "info": {
-      "M": "12\"",
-      "T": 9,
-      "SV": 3,
-      "W": 10,
-      "OC": 2
-    }
-  },
-  "Land Raider": {
-    "pts": 220,
-    "ranged": [
-      {
-        "name": "godhammer lascannon",
-        "unit_name": "Land Raider"
-      },
-      {
-        "name": "multi-melta",
-        "unit_name": "Land Raider"
-      },
-      {
-        "name": "twin heavy bolter",
-        "unit_name": "Land Raider"
-      },
-      {
-        "name": "hunter-killer missile",
-        "unit_name": "Land Raider"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured tracks",
-        "unit_name": "Land Raider"
-      }
-    ],
-    "innate": [],
-    "info": {
-      "M": "10\"",
-      "T": 12,
-      "SV": 2,
-      "W": 16,
-      "OC": 5
-    }
-  },
-  "Gladiator Lancer": {
-    "pts": 160,
-    "info": {
-      "M": "10\"",
-      "T": 10,
-      "SV": 3,
-      "W": 12,
-      "OC": 3
-    },
-    "ranged": [
-      {
-        "name": "lancer laser destroyer",
-        "unit_name": "Gladiator Lancer"
-      },
-      {
-        "name": "icarus rocket pod",
-        "unit_name": "Gladiator Lancer"
-      },
-      {
-        "name": "ironhail heavy stubber",
-        "unit_name": "Gladiator Lancer"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured hull",
-        "unit_name": "Gladiator Lancer"
-      }
-    ],
-    "innate": []
-  },
-  "Gladiator Reaper": {
-    "pts": 160,
-    "info": {
-      "M": "10\"",
-      "T": 10,
-      "SV": 3,
-      "W": 12,
-      "OC": 3
-    },
-    "ranged": [
-      {
-        "name": "tempest bolter",
-        "unit_name": "Gladiator Reaper"
-      },
-      {
-        "name": "twin heavy onslaught gatling cannon",
-        "unit_name": "Gladiator Reaper"
-      },
-      {
-        "name": "icarus rocket pod",
-        "unit_name": "Gladiator Reaper"
-      },
-      {
-        "name": "ironhail heavy stubber",
-        "unit_name": "Gladiator Reaper"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured hull",
-        "unit_name": "Gladiator Reaper"
-      }
-    ],
-    "innate": []
-  },
-  "Gladiator Valiant": {
-    "pts": 150,
-    "info": {
-      "M": "10\"",
-      "T": 10,
-      "SV": 3,
-      "W": 12,
-      "OC": 3
-    },
-    "ranged": [
-      {
-        "name": "twin las-talon",
-        "unit_name": "Gladiator Valiant"
-      },
-      {
-        "name": "icarus rocket pod",
-        "unit_name": "Gladiator Valiant"
-      },
-      {
-        "name": "ironhail heavy stubber",
-        "unit_name": "Gladiator Valiant"
-      },
-      {
-        "name": "multi-melta",
-        "unit_name": "Gladiator Valiant"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured hull",
-        "unit_name": "Gladiator Valiant"
-      }
-    ],
-    "innate": []
-  },
-  "Invictor Tactical Warsuit": {
-    "pts": 125,
-    "info": {
-      "M": "8\"",
-      "T": 8,
-      "SV": 3,
-      "W": 12,
-      "OC": 4
-    },
-    "ranged": [
-      {
-        "name": "fragstorm grenade launcher",
-        "unit_name": "Invictor Tactical Warsuit"
-      },
-      {
-        "name": "heavy bolter",
-        "unit_name": "Invictor Tactical Warsuit"
-      },
-      {
-        "name": "twin ironhail heavy stubber",
-        "unit_name": "Invictor Tactical Warsuit"
-      }
-    ],
-    "melee": [
-      {
-        "name": "invictor fist",
-        "unit_name": "Invictor Tactical Warsuit"
-      }
-    ],
-    "innate": []
-  },
-  "Land Raider Crusader": {
-    "pts": 220,
-    "info": {
-      "M": "12\"",
-      "T": 12,
-      "SV": 2,
-      "W": 16,
-      "OC": 5
-    },
-    "ranged": [
-      {
-        "name": "hunter-killer missile",
-        "unit_name": "Land Raider Crusader"
-      },
-      {
-        "name": "hurricane bolter",
-        "unit_name": "Land Raider Crusader"
-      },
-      {
-        "name": "multi-melta",
-        "unit_name": "Land Raider Crusader"
-      },
-      {
-        "name": "storm bolter",
-        "unit_name": "Land Raider Crusader"
-      },
-      {
-        "name": "twin assault cannon",
-        "unit_name": "Land Raider Crusader"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured tracks",
-        "unit_name": "Land Raider Crusader"
-      }
-    ],
-    "innate": []
-  },
-  "Land Raider Redeemer": {
-    "pts": 250,
-    "info": {
-      "M": "12\"",
-      "T": 12,
-      "SV": 2,
-      "W": 16,
-      "OC": 5
-    },
-    "ranged": [
-      {
-        "name": "flamestorm cannon",
-        "unit_name": "Land Raider Redeemer"
-      },
-      {
-        "name": "hunter-killer missile",
-        "unit_name": "Land Raider Redeemer"
-      },
-      {
-        "name": "multi-melta",
-        "unit_name": "Land Raider Redeemer"
-      },
-      {
-        "name": "storm bolter",
-        "unit_name": "Land Raider Redeemer"
-      },
-      {
-        "name": "twin assault cannon",
-        "unit_name": "Land Raider Redeemer"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured tracks",
-        "unit_name": "Land Raider Redeemer"
-      }
-    ],
-    "innate": []
-  },
-  "Land Speeder": {
-    "pts": 95,
-    "info": {
-      "M": "14\"",
-      "T": 8,
-      "SV": 3,
-      "W": 9,
-      "OC": 3,
-      "deep_strike": true
-    },
-    "ranged": [
-      {
-        "name": "multi-melta",
-        "unit_name": "Land Speeder"
-      },
-      {
-        "name": "heavy flamer",
-        "unit_name": "Land Speeder"
-      },
-      {
-        "name": "onslaught gatling cannon",
-        "unit_name": "Land Speeder"
-      },
-      {
-        "name": "stormfury missile launcher",
-        "unit_name": "Land Speeder"
-      }
-    ],
-    "melee": [
-      {
-        "name": "close combat weapon",
-        "unit_name": "Land Speeder"
-      }
-    ],
-    "innate": []
-  },
-  "Predator Annihilator": {
+  "Dreadnought": {
     "pts": 135,
-    "info": {
-      "M": "10",
-      "T": 10,
-      "SV": 3,
-      "W": 11,
-      "OC": 3
-    },
-    "ranged": [
-      {
-        "name": "predator twin lascannon",
-        "unit_name": "Predator Annihilator"
-      },
-      {
-        "name": "hunter-killer missile",
-        "unit_name": "Predator Annihilator"
-      },
-      {
-        "name": "storm bolter",
-        "unit_name": "Predator Annihilator"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured tracks",
-        "unit_name": "Predator Annihilator"
-      }
-    ],
-    "innate": []
-  },
-  "Predator Destructor": {
-    "pts": 140,
-    "info": {
-      "M": "10",
-      "T": 10,
-      "SV": 3,
-      "W": 11,
-      "OC": 3
-    },
-    "ranged": [
-      {
-        "name": "predator autocannon",
-        "unit_name": "Predator Destructor"
-      },
-      {
-        "name": "hunter-killer missile",
-        "unit_name": "Predator Destructor"
-      },
-      {
-        "name": "storm bolter",
-        "unit_name": "Predator Destructor"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured tracks",
-        "unit_name": "Predator Destructor"
-      }
-    ],
-    "innate": []
-  },
-  "Razorback": {
-    "pts": 95,
-    "info": {
-      "M": "12\"",
-      "T": 9,
-      "SV": 3,
-      "W": 10,
-      "OC": 2
-    },
-    "ranged": [
-      {
-        "name": "hunter-killer missile",
-        "unit_name": "Razorback"
-      },
-      {
-        "name": "storm bolter",
-        "unit_name": "Razorback"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured tracks",
-        "unit_name": "Razorback"
-      }
-    ],
-    "innate": []
-  },
-  "Repulsor": {
-    "pts": 170,
-    "info": {
-      "M": "10\"",
-      "T": 12,
-      "SV": 3,
-      "W": 16,
-      "OC": 5
-    },
-    "ranged": [
-      {
-        "name": "hunter-slayer missile",
-        "unit_name": "Repulsor"
-      },
-      {
-        "name": "repulsor defensive array",
-        "unit_name": "Repulsor"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured hull",
-        "unit_name": "Repulsor"
-      }
-    ],
-    "innate": []
-  },
-  "Repulsor Executioner": {
-    "pts": 240,
-    "info": {
-      "M": "10\"",
-      "T": 12,
-      "SV": 3,
-      "W": 16,
-      "OC": 5
-    },
-    "ranged": [
-      {
-        "name": "repulsor executioner defensive array",
-        "unit_name": "Repulsor Executioner"
-      },
-      {
-        "name": "heavy onslaught gatling cannon",
-        "unit_name": "Repulsor Executioner"
-      },
-      {
-        "name": "icarus rocket pod",
-        "unit_name": "Repulsor Executioner"
-      },
-      {
-        "name": "ironhail heavy stubber",
-        "unit_name": "Repulsor Executioner"
-      },
-      {
-        "name": "twin heavy bolter",
-        "unit_name": "Repulsor Executioner"
-      },
-      {
-        "name": "twin icarus ironhail heavy stubber",
-        "unit_name": "Repulsor Executioner"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured hull",
-        "unit_name": "Repulsor Executioner"
-      }
-    ],
-    "innate": []
-  },
-  "Storm Speeder Hailstrike": {
-    "pts": 105,
-    "info": {
-      "M": "14\"",
-      "T": 9,
-      "SV": 3,
-      "W": 11,
-      "OC": 3,
-      "deep_strike": true
-    },
-    "ranged": [
-      {
-        "name": "fragstorm grenade launcher",
-        "unit_name": "Storm Speeder Hailstrike"
-      },
-      {
-        "name": "onslaught gatling cannon",
-        "unit_name": "Storm Speeder Hailstrike"
-      },
-      {
-        "name": "twin ironhail heavy stubber",
-        "unit_name": "Storm Speeder Hailstrike"
-      }
-    ],
-    "melee": [
-      {
-        "name": "close combat weapon",
-        "unit_name": "Storm Speeder Hailstrike"
-      }
-    ],
-    "innate": []
-  },
-  "Storm Speeder Hammerstrike": {
-    "pts": 130,
-    "info": {
-      "M": "14\"",
-      "T": 9,
-      "SV": 3,
-      "W": 11,
-      "OC": 3,
-      "deep_strike": true
-    },
-    "ranged": [
-      {
-        "name": "hammerstrike missile launcher",
-        "unit_name": "Storm Speeder Hammerstrike"
-      },
-      {
-        "name": "krakstorm grenade launcher",
-        "unit_name": "Storm Speeder Hammerstrike"
-      },
-      {
-        "name": "melta destroyer",
-        "unit_name": "Storm Speeder Hammerstrike"
-      }
-    ],
-    "melee": [
-      {
-        "name": "close combat weapon",
-        "unit_name": "Storm Speeder Hammerstrike"
-      }
-    ],
-    "innate": []
-  },
-  "Storm Speeder Thunderstrike": {
-    "pts": 135,
-    "info": {
-      "M": "14\"",
-      "T": 9,
-      "SV": 3,
-      "W": 11,
-      "OC": 3,
-      "deep_strike": true
-    },
-    "ranged": [
-      {
-        "name": "stormfury missiles",
-        "unit_name": "Storm Speeder Thunderstrike"
-      },
-      {
-        "name": "thunderstrike las-talon",
-        "unit_name": "Storm Speeder Thunderstrike"
-      },
-      {
-        "name": "twin icarus rocket pod",
-        "unit_name": "Storm Speeder Thunderstrike"
-      }
-    ],
-    "melee": [
-      {
-        "name": "close combat weapon",
-        "unit_name": "Storm Speeder Thunderstrike"
-      }
-    ],
-    "innate": []
-  },
-  "Stormhawk Interceptor": {
-    "pts": 155,
-    "info": {
-      "M": "20\"+",
-      "T": 9,
-      "SV": 3,
-      "W": 10,
-      "OC": 0
-    },
-    "ranged": [
-      {
-        "name": "twin assault cannon",
-        "unit_name": "Stormhawk Interceptor"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured hull",
-        "unit_name": "Stormhawk Interceptor"
-      }
-    ],
-    "innate": []
-  },
-  "Stormraven Gunship": {
-    "pts": 280,
-    "info": {
-      "M": "14\"",
-      "T": 10,
-      "SV": 3,
-      "W": 14,
-      "OC": 0
-    },
-    "ranged": [
-      {
-        "name": "hurricane bolter",
-        "unit_name": "Stormraven Gunship"
-      },
-      {
-        "name": "stormstrike missile launcher",
-        "unit_name": "Stormraven Gunship"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured hull",
-        "unit_name": "Stormraven Gunship"
-      }
-    ],
-    "innate": []
-  },
-  "Stormtalon Gunship": {
-    "pts": 165,
-    "info": {
-      "M": "20\"+",
-      "T": 8,
-      "SV": 3,
-      "W": 10,
-      "OC": 0
-    },
-    "ranged": [
-      {
-        "name": "twin assault cannon",
-        "unit_name": "Stormtalon Gunship"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured hull",
-        "unit_name": "Stormtalon Gunship"
-      }
-    ],
-    "innate": []
-  },
-  "Vindicator": {
-    "pts": 185,
-    "info": {
-      "M": "9\"",
-      "T": 11,
-      "SV": 2,
-      "W": 11,
-      "OC": 3
-    },
-    "ranged": [
-      {
-        "name": "demolisher cannon",
-        "unit_name": "Vindicator"
-      },
-      {
-        "name": "hunter-killer missile",
-        "unit_name": "Vindicator"
-      },
-      {
-        "name": "storm bolter",
-        "unit_name": "Vindicator"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured tracks",
-        "unit_name": "Vindicator"
-      }
-    ],
-    "innate": []
-  },
-  "Whirlwind": {
-    "pts": 175,
-    "info": {
-      "M": "10\"",
-      "T": 10,
-      "SV": 3,
-      "W": 11,
-      "OC": 3
-    },
-    "ranged": [
-      {
-        "name": "whirlwind vengeance launcher",
-        "unit_name": "Whirlwind"
-      },
-      {
-        "name": "hunter-killer missile",
-        "unit_name": "Whirlwind"
-      },
-      {
-        "name": "storm bolter",
-        "unit_name": "Whirlwind"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured tracks",
-        "unit_name": "Whirlwind"
-      }
-    ],
-    "innate": []
-  },
-  "Thunderhawk Gunship": {
-    "pts": 840,
-    "ranged": [
-      {
-        "name": "lascannon",
-        "unit_name": "Thunderhawk Gunship"
-      },
-      {
-        "name": "twin heavy bolter",
-        "unit_name": "Thunderhawk Gunship"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured hull",
-        "unit_name": "Thunderhawk Gunship"
-      }
-    ],
+    "ranged": [],
+    "melee": [],
     "innate": [],
     "info": {
-      "M": "20+\"",
-      "T": 12,
+      "M": "6\"",
+      "T": 9,
       "SV": 2,
-      "W": 30,
-      "OC": 0
+      "W": 8,
+      "OC": 3
     }
   },
   "Drop Pod": {
@@ -863,56 +109,202 @@
       "deep_strike": true
     }
   },
-  "Hammerfall Bunker": {
-    "pts": 175,
-    "ranged": [
-      {
-        "name": "hammerfall heavy bolter array",
-        "unit_name": "Hammerfall Bunker"
-      },
-      {
-        "name": "hammerfall heavy flamer array",
-        "unit_name": "Hammerfall Bunker"
-      },
-      {
-        "name": "hammerfall missile launcher - superfrag",
-        "unit_name": "Hammerfall Bunker"
-      },
-      {
-        "name": "hammerfall missile launcher - superkrak",
-        "unit_name": "Hammerfall Bunker"
-      }
-    ],
+  "Firestrike Servo-Turrets": {
+    "pts": 75,
+    "ranged": [],
     "melee": [],
     "innate": [],
     "info": {
-      "M": "-",
-      "T": 12,
+      "M": "3\"",
+      "T": 6,
       "SV": 2,
-      "W": 14,
-      "OC": 0
+      "W": 6,
+      "OC": 2
     }
   },
-  "Astraeus": {
-    "pts": 575,
+  "Gladiator Lancer": {
+    "pts": 160,
     "ranged": [
       {
-        "name": "twin macro-accelerator cannon",
-        "unit_name": "Astraeus"
+        "name": "Lancer Laser Destroyer",
+        "unit_name": "Gladiator Lancer"
       },
       {
-        "name": "ironhail heavy stubber",
-        "unit_name": "Astraeus"
+        "name": "Icarus Rocket Pod",
+        "unit_name": "Gladiator Lancer"
       },
       {
-        "name": "storm bolter",
-        "unit_name": "Astraeus"
+        "name": "Ironhail Heavy Stubber",
+        "unit_name": "Gladiator Lancer"
       }
     ],
     "melee": [
       {
-        "name": "armoured hull",
-        "unit_name": "Astraeus"
+        "name": "Armoured Hull",
+        "unit_name": "Gladiator Lancer"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "10\"",
+      "T": 10,
+      "SV": 3,
+      "W": 12,
+      "OC": 3
+    }
+  },
+  "Gladiator Reaper": {
+    "pts": 160,
+    "ranged": [
+      {
+        "name": "Tempest Bolter",
+        "unit_name": "Gladiator Reaper"
+      },
+      {
+        "name": "Twin Heavy Onslaught Gatling Cannon",
+        "unit_name": "Gladiator Reaper"
+      },
+      {
+        "name": "Icarus Rocket Pod",
+        "unit_name": "Gladiator Reaper"
+      },
+      {
+        "name": "Ironhail Heavy Stubber",
+        "unit_name": "Gladiator Reaper"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Armoured Hull",
+        "unit_name": "Gladiator Reaper"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "10\"",
+      "T": 10,
+      "SV": 3,
+      "W": 12,
+      "OC": 3
+    }
+  },
+  "Gladiator Valiant": {
+    "pts": 150,
+    "ranged": [
+      {
+        "name": "Twin Las-talon",
+        "unit_name": "Gladiator Valiant"
+      },
+      {
+        "name": "Icarus Rocket Pod",
+        "unit_name": "Gladiator Valiant"
+      },
+      {
+        "name": "Ironhail Heavy Stubber",
+        "unit_name": "Gladiator Valiant"
+      },
+      {
+        "name": "Multi-melta",
+        "unit_name": "Gladiator Valiant"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Armoured Hull",
+        "unit_name": "Gladiator Valiant"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "10\"",
+      "T": 10,
+      "SV": 3,
+      "W": 12,
+      "OC": 3
+    }
+  },
+  "Impulsor": {
+    "pts": 80,
+    "ranged": [
+      {
+        "name": "Ironhail Heavy Stubber",
+        "unit_name": "Impulsor"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Armoured Hull",
+        "unit_name": "Impulsor"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "12\"",
+      "T": 9,
+      "SV": 3,
+      "W": 11,
+      "OC": 2
+    }
+  },
+  "Invictor Tactical Warsuit": {
+    "pts": 125,
+    "ranged": [
+      {
+        "name": "Fragstorm grenade launcher",
+        "unit_name": "Invictor Tactical Warsuit"
+      },
+      {
+        "name": "Heavy Bolter",
+        "unit_name": "Invictor Tactical Warsuit"
+      },
+      {
+        "name": "Twin Ironhail Heavy Stubber",
+        "unit_name": "Invictor Tactical Warsuit"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Invictor Fist",
+        "unit_name": "Invictor Tactical Warsuit"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "8\"",
+      "T": 8,
+      "SV": 3,
+      "W": 12,
+      "OC": 4
+    }
+  },
+  "Land Raider": {
+    "pts": 220,
+    "ranged": [
+      {
+        "name": "Godhammer Lascannon",
+        "unit_name": "Land Raider"
+      },
+      {
+        "name": "Hunter-killer missile",
+        "unit_name": "Land Raider"
+      },
+      {
+        "name": "Multi-melta",
+        "unit_name": "Land Raider"
+      },
+      {
+        "name": "Storm bolter",
+        "unit_name": "Land Raider"
+      },
+      {
+        "name": "Twin heavy bolter",
+        "unit_name": "Land Raider"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Armoured Tracks",
+        "unit_name": "Land Raider"
       }
     ],
     "innate": [],
@@ -920,173 +312,589 @@
       "M": "10\"",
       "T": 12,
       "SV": 2,
-      "W": 24,
-      "OC": 8
+      "W": 16,
+      "OC": 5
     }
   },
-  "Nephilim Jetfighter": {
-    "pts": 195,
+  "Land Raider Crusader": {
+    "pts": 220,
     "ranged": [
       {
-        "name": "blacksword missiles",
-        "unit_name": "Nephilim Jetfighter"
+        "name": "Hunter-killer missile",
+        "unit_name": "Land Raider Crusader"
       },
       {
-        "name": "twin heavy bolter",
-        "unit_name": "Nephilim Jetfighter"
-      }
-    ],
-    "melee": [
-      {
-        "name": "armoured hull",
-        "unit_name": "Nephilim Jetfighter"
-      }
-    ],
-    "innate": [],
-    "info": {
-      "M": "-",
-      "T": 8,
-      "SV": 3,
-      "W": 11,
-      "OC": 0
-    }
-  },
-  "Ravenwing Dark Talon": {
-    "pts": 200,
-    "ranged": [
-      {
-        "name": "hurricane bolter",
-        "unit_name": "Ravenwing Dark Talon"
+        "name": "Hurricane Bolter",
+        "unit_name": "Land Raider Crusader"
       },
       {
-        "name": "rift cannon",
-        "unit_name": "Ravenwing Dark Talon"
+        "name": "Multi-melta",
+        "unit_name": "Land Raider Crusader"
+      },
+      {
+        "name": "Storm bolter",
+        "unit_name": "Land Raider Crusader"
+      },
+      {
+        "name": "Twin assault cannon",
+        "unit_name": "Land Raider Crusader"
       }
     ],
     "melee": [
       {
-        "name": "armoured hull",
-        "unit_name": "Ravenwing Dark Talon"
-      }
-    ],
-    "innate": [],
-    "info": {
-      "M": "-",
-      "T": 8,
-      "SV": 3,
-      "W": 11,
-      "OC": 0
-    }
-  },
-  "Ravenwing Darkshroud": {
-    "pts": 80,
-    "ranged": [],
-    "melee": [
-      {
-        "name": "close combat weapon",
-        "unit_name": "Ravenwing Darkshroud"
-      }
-    ],
-    "innate": [],
-    "info": {
-      "M": "14\"",
-      "T": 8,
-      "SV": 3,
-      "W": 10,
-      "OC": 3
-    }
-  },
-  "Land Speeder Vengeance": {
-    "pts": 120,
-    "ranged": [
-      {
-        "name": "plasma storm battery - standard",
-        "unit_name": "Land Speeder Vengeance"
-      }
-    ],
-    "melee": [
-      {
-        "name": "close combat weapon",
-        "unit_name": "Land Speeder Vengeance"
-      }
-    ],
-    "innate": [],
-    "info": {
-      "M": "14\"",
-      "T": 8,
-      "SV": 3,
-      "W": 10,
-      "OC": 3
-    }
-  },
-  "Firestrike Servo-Turrets": {
-    "pts": 75,
-    "models": 1,
-    "ranged": [
-      {
-        "name": "twin las-talon",
-        "unit_name": "Firestrike Servo-Turrets"
-      }
-    ],
-    "melee": [],
-    "innate": [],
-    "info": {
-      "M": "5\"",
-      "T": 6,
-      "SV": 3,
-      "W": 6,
-      "OC": 3
-    }
-  },
-  "Invader Atv": {
-    "pts": 60,
-    "ranged": [
-      {
-        "name": "twin bolt rifle",
-        "unit_name": "Invader Atv"
-      }
-    ],
-    "melee": [
-      {
-        "name": "close combat weapon",
-        "unit_name": "Invader Atv"
+        "name": "Armoured Tracks",
+        "unit_name": "Land Raider Crusader"
       }
     ],
     "innate": [],
     "info": {
       "M": "12\"",
-      "T": 5,
-      "SV": 3,
-      "W": 8,
-      "OC": 2
+      "T": 12,
+      "SV": 2,
+      "W": 16,
+      "OC": 5
     }
   },
-  "Ravenwing Talonmaster": {
-    "pts": 105,
+  "Land Raider Redeemer": {
+    "pts": 250,
     "ranged": [
       {
-        "name": "heavy bolt pistol",
-        "unit_name": "Ravenwing Talonmaster"
+        "name": "Flamestorm Cannon",
+        "unit_name": "Land Raider Redeemer"
       },
       {
-        "name": "twin heavy bolter",
-        "unit_name": "Ravenwing Talonmaster"
+        "name": "Hunter-killer missile",
+        "unit_name": "Land Raider Redeemer"
+      },
+      {
+        "name": "Multi-melta",
+        "unit_name": "Land Raider Redeemer"
+      },
+      {
+        "name": "Storm bolter",
+        "unit_name": "Land Raider Redeemer"
+      },
+      {
+        "name": "Twin assault cannon",
+        "unit_name": "Land Raider Redeemer"
       }
     ],
     "melee": [
       {
-        "name": "close combat weapon",
-        "unit_name": "Ravenwing Talonmaster"
+        "name": "Armoured Tracks",
+        "unit_name": "Land Raider Redeemer"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "12\"",
+      "T": 12,
+      "SV": 2,
+      "W": 16,
+      "OC": 5
+    }
+  },
+  "Land Speeder": {
+    "pts": 95,
+    "ranged": [
+      {
+        "name": "Multi-melta",
+        "unit_name": "Land Speeder"
+      },
+      {
+        "name": "Heavy Flamer",
+        "unit_name": "Land Speeder"
+      },
+      {
+        "name": "Onslaught gatling cannon",
+        "unit_name": "Land Speeder"
+      },
+      {
+        "name": "Stormfury Missile Launcher",
+        "unit_name": "Land Speeder"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Close combat weapon",
+        "unit_name": "Land Speeder"
       }
     ],
     "innate": [],
     "info": {
       "M": "14\"",
-      "T": 5,
+      "T": 8,
       "SV": 3,
-      "W": 7,
-      "OC": 2,
-      "INV": 4
+      "W": 9,
+      "OC": 3,
+      "deep_strike": true
+    }
+  },
+  "Predator Annihilator": {
+    "pts": 135,
+    "ranged": [
+      {
+        "name": "Predator Twin Lascannon",
+        "unit_name": "Predator Annihilator"
+      },
+      {
+        "name": "Hunter-killer missile",
+        "unit_name": "Predator Annihilator"
+      },
+      {
+        "name": "Storm bolter",
+        "unit_name": "Predator Annihilator"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Armoured Tracks",
+        "unit_name": "Predator Annihilator"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "10",
+      "T": 10,
+      "SV": 3,
+      "W": 11,
+      "OC": 3
+    }
+  },
+  "Predator Destructor": {
+    "pts": 140,
+    "ranged": [
+      {
+        "name": "Predator Autocannon",
+        "unit_name": "Predator Destructor"
+      },
+      {
+        "name": "Hunter-killer missile",
+        "unit_name": "Predator Destructor"
+      },
+      {
+        "name": "Storm bolter",
+        "unit_name": "Predator Destructor"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Armoured Tracks",
+        "unit_name": "Predator Destructor"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "10",
+      "T": 10,
+      "SV": 3,
+      "W": 11,
+      "OC": 3
+    }
+  },
+  "Razorback": {
+    "pts": 95,
+    "ranged": [
+      {
+        "name": "Hunter-killer missile",
+        "unit_name": "Razorback"
+      },
+      {
+        "name": "Storm bolter",
+        "unit_name": "Razorback"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Armoured Tracks",
+        "unit_name": "Razorback"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "12\"",
+      "T": 9,
+      "SV": 3,
+      "W": 10,
+      "OC": 2
+    }
+  },
+  "Redemptor Dreadnought": {
+    "pts": 195,
+    "ranged": [
+      {
+        "name": "Icarus Rocket Pod",
+        "unit_name": "Redemptor Dreadnought"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Redemptor Fist",
+        "unit_name": "Redemptor Dreadnought"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "8\"",
+      "T": 10,
+      "SV": 2,
+      "W": 12,
+      "OC": 4
+    }
+  },
+  "Repulsor": {
+    "pts": 170,
+    "ranged": [
+      {
+        "name": "Hunter-slayer missile",
+        "unit_name": "Repulsor"
+      },
+      {
+        "name": "Repulsor Defensive Array",
+        "unit_name": "Repulsor"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Armoured Hull",
+        "unit_name": "Repulsor"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "10\"",
+      "T": 12,
+      "SV": 3,
+      "W": 16,
+      "OC": 5
+    }
+  },
+  "Repulsor Executioner": {
+    "pts": 240,
+    "ranged": [
+      {
+        "name": "Repulsor Executioner Defensive Array",
+        "unit_name": "Repulsor Executioner"
+      },
+      {
+        "name": "Heavy Onslaught Gatling Cannon",
+        "unit_name": "Repulsor Executioner"
+      },
+      {
+        "name": "Icarus Rocket Pod",
+        "unit_name": "Repulsor Executioner"
+      },
+      {
+        "name": "Ironhail Heavy Stubber",
+        "unit_name": "Repulsor Executioner"
+      },
+      {
+        "name": "Twin heavy bolter",
+        "unit_name": "Repulsor Executioner"
+      },
+      {
+        "name": "Twin Icarus ironhail heavy stubber",
+        "unit_name": "Repulsor Executioner"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Armoured Hull",
+        "unit_name": "Repulsor Executioner"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "10\"",
+      "T": 12,
+      "SV": 3,
+      "W": 16,
+      "OC": 5
+    }
+  },
+  "Rhino": {
+    "pts": 75,
+    "ranged": [
+      {
+        "name": "Hunter-killer missile",
+        "unit_name": "Rhino"
+      },
+      {
+        "name": "Storm bolter",
+        "unit_name": "Rhino"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Armoured Tracks",
+        "unit_name": "Rhino"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "12\"",
+      "T": 9,
+      "SV": 3,
+      "W": 10,
+      "OC": 2
+    }
+  },
+  "Storm Speeder Hailstrike": {
+    "pts": 105,
+    "ranged": [
+      {
+        "name": "Fragstorm grenade launcher",
+        "unit_name": "Storm Speeder Hailstrike"
+      },
+      {
+        "name": "Onslaught gatling cannon",
+        "unit_name": "Storm Speeder Hailstrike"
+      },
+      {
+        "name": "Twin Ironhail Heavy Stubber",
+        "unit_name": "Storm Speeder Hailstrike"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Close combat weapon",
+        "unit_name": "Storm Speeder Hailstrike"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "14\"",
+      "T": 9,
+      "SV": 3,
+      "W": 11,
+      "OC": 3,
+      "deep_strike": true
+    }
+  },
+  "Storm Speeder Hammerstrike": {
+    "pts": 130,
+    "ranged": [
+      {
+        "name": "Hammerstrike Missile Launcher",
+        "unit_name": "Storm Speeder Hammerstrike"
+      },
+      {
+        "name": "Krakstorm Grenade Launcher",
+        "unit_name": "Storm Speeder Hammerstrike"
+      },
+      {
+        "name": "Melta Destroyer",
+        "unit_name": "Storm Speeder Hammerstrike"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Close combat weapon",
+        "unit_name": "Storm Speeder Hammerstrike"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "14\"",
+      "T": 9,
+      "SV": 3,
+      "W": 11,
+      "OC": 3,
+      "deep_strike": true
+    }
+  },
+  "Storm Speeder Thunderstrike": {
+    "pts": 135,
+    "ranged": [
+      {
+        "name": "Stormfury Missiles",
+        "unit_name": "Storm Speeder Thunderstrike"
+      },
+      {
+        "name": "Thunderstrike Las-talon",
+        "unit_name": "Storm Speeder Thunderstrike"
+      },
+      {
+        "name": "Twin Icarus Rocket Pod",
+        "unit_name": "Storm Speeder Thunderstrike"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Close combat weapon",
+        "unit_name": "Storm Speeder Thunderstrike"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "14\"",
+      "T": 9,
+      "SV": 3,
+      "W": 11,
+      "OC": 3,
+      "deep_strike": true
+    }
+  },
+  "Stormhawk Interceptor": {
+    "pts": 155,
+    "ranged": [
+      {
+        "name": "Twin assault cannon",
+        "unit_name": "Stormhawk Interceptor"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Armoured Hull",
+        "unit_name": "Stormhawk Interceptor"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "20\"+",
+      "T": 9,
+      "SV": 3,
+      "W": 10,
+      "OC": 0
+    }
+  },
+  "Stormraven Gunship": {
+    "pts": 280,
+    "ranged": [
+      {
+        "name": "Hurricane Bolter",
+        "unit_name": "Stormraven Gunship"
+      },
+      {
+        "name": "Stormstrike Missile Launcher",
+        "unit_name": "Stormraven Gunship"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Armoured Hull",
+        "unit_name": "Stormraven Gunship"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "14\"",
+      "T": 10,
+      "SV": 3,
+      "W": 14,
+      "OC": 0
+    }
+  },
+  "Stormtalon Gunship": {
+    "pts": 165,
+    "ranged": [
+      {
+        "name": "Twin assault cannon",
+        "unit_name": "Stormtalon Gunship"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Armoured Hull",
+        "unit_name": "Stormtalon Gunship"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "20\"+",
+      "T": 8,
+      "SV": 3,
+      "W": 10,
+      "OC": 0
+    }
+  },
+  "Thunderhawk Gunship": {
+    "pts": 840,
+    "ranged": [
+      {
+        "name": "Lascannon",
+        "unit_name": "Thunderhawk Gunship"
+      },
+      {
+        "name": "Twin heavy bolter",
+        "unit_name": "Thunderhawk Gunship"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Armoured hull",
+        "unit_name": "Thunderhawk Gunship"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "20+\"",
+      "T": 12,
+      "SV": 2,
+      "W": 30,
+      "OC": 0
+    }
+  },
+  "Vindicator": {
+    "pts": 185,
+    "ranged": [
+      {
+        "name": "Demolisher Cannon",
+        "unit_name": "Vindicator"
+      },
+      {
+        "name": "Hunter-killer missile",
+        "unit_name": "Vindicator"
+      },
+      {
+        "name": "Storm bolter",
+        "unit_name": "Vindicator"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Armoured Tracks",
+        "unit_name": "Vindicator"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "9\"",
+      "T": 11,
+      "SV": 2,
+      "W": 11,
+      "OC": 3
+    }
+  },
+  "Whirlwind": {
+    "pts": 175,
+    "ranged": [
+      {
+        "name": "Whirlwind Vengeance Launcher",
+        "unit_name": "Whirlwind"
+      },
+      {
+        "name": "Hunter-killer missile",
+        "unit_name": "Whirlwind"
+      },
+      {
+        "name": "Storm bolter",
+        "unit_name": "Whirlwind"
+      }
+    ],
+    "melee": [
+      {
+        "name": "Armoured Tracks",
+        "unit_name": "Whirlwind"
+      }
+    ],
+    "innate": [],
+    "info": {
+      "M": "10\"",
+      "T": 10,
+      "SV": 3,
+      "W": 11,
+      "OC": 3
     }
   }
 }
