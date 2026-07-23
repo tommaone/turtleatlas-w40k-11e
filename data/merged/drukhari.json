@@ -239,7 +239,98 @@
             "description": "In your Shooting or the Fight phase, when you select this model's unit to shoot or fight, you can spend 1 Pain token to Empower that unit. While that unit is Empowered, each time a model in that unit makes an attack, you can re-roll the Hit roll."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Splinter pistol",
+            "profiles": [
+              {
+                "name": "Splinter pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "2+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Blast pistol",
+            "profiles": [
+              {
+                "name": "Blast pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "2+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "D3",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Huskblade",
+            "profiles": [
+              {
+                "name": "Huskblade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Agoniser",
+            "profiles": [
+              {
+                "name": "Agoniser",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "2+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Master-crafted power weapon",
+            "profiles": [
+              {
+                "name": "Master-crafted power weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "2+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Leader",
           "Power from Pain"
@@ -371,6 +462,78 @@
             ]
           },
           {
+            "name": "Corsair Blade",
+            "profiles": [
+              {
+                "name": "Corsair Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Neuro disruptor",
+            "profiles": [
+              {
+                "name": "Neuro disruptor",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 2+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shuriken pistol",
+            "profiles": [
+              {
+                "name": "Shuriken pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Blast Pistol",
+            "profiles": [
+              {
+                "name": "Blast Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "D3",
+                  "Keywords": "Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
             "name": "Skyreaver w/ pistol and blade",
             "profiles": [
               {
@@ -397,6 +560,220 @@
                   "AP": "-2",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Corsair Blade",
+            "profiles": [
+              {
+                "name": "Corsair Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Skyreaver w/ blaster",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Corsair blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Corsair blaster",
+            "profiles": [
+              {
+                "name": "Corsair blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Skyreaver w/ flamer",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Flamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Flamer",
+            "profiles": [
+              {
+                "name": "Flamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Skyreaver w/ fusion gun",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Fusion gun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Assault, Melta 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Fusion gun",
+            "profiles": [
+              {
+                "name": "Fusion gun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Assault, Melta 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Skyreaver w/ shredder",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Shredder",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shredder",
+            "profiles": [
+              {
+                "name": "Shredder",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Torrent"
                 }
               }
             ]
@@ -467,6 +844,42 @@
             ]
           },
           {
+            "name": "Shuriken cannon",
+            "profiles": [
+              {
+                "name": "Shuriken cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Lethal Hits"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Wraithcannon",
+            "profiles": [
+              {
+                "name": "Wraithcannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
             "name": "Voidreaver with Shuriken rifle",
             "profiles": [
               {
@@ -482,6 +895,24 @@
                   "Keywords": "-"
                 }
               },
+              {
+                "name": "Shuriken rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shuriken rifle",
+            "profiles": [
               {
                 "name": "Shuriken rifle",
                 "typeName": "Ranged Weapons",
@@ -542,6 +973,130 @@
             ]
           },
           {
+            "name": "Voidreaver with Blaster",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Shuriken Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              },
+              {
+                "name": "Blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Blaster",
+            "profiles": [
+              {
+                "name": "Blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Voidreaver with Shredder",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Shuriken Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              },
+              {
+                "name": "Corsair shredder",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shredder",
+            "profiles": [
+              {
+                "name": "Corsair shredder",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Torrent"
+                }
+              }
+            ]
+          },
+          {
             "name": "Voidreaver Felarch",
             "profiles": [
               {
@@ -568,6 +1123,78 @@
                   "AP": "-2",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power sword",
+            "profiles": [
+              {
+                "name": "Power sword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Neuro disruptor",
+            "profiles": [
+              {
+                "name": "Neuro disruptor",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 2+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shuriken rifle",
+            "profiles": [
+              {
+                "name": "Shuriken rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shuriken pistol",
+            "profiles": [
+              {
+                "name": "Shuriken pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
                 }
               }
             ]
@@ -662,6 +1289,24 @@
             ]
           },
           {
+            "name": "Paired Hekatarii blades",
+            "profiles": [
+              {
+                "name": "Paired Hekatarii blades",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Twin-Linked"
+                }
+              }
+            ]
+          },
+          {
             "name": "Soul Weaver",
             "profiles": [
               {
@@ -690,6 +1335,24 @@
                   "Keywords": "Assault, Pistol"
                 }
               },
+              {
+                "name": "Power sword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power sword",
+            "profiles": [
               {
                 "name": "Power sword",
                 "typeName": "Melee Weapons",
@@ -763,6 +1426,434 @@
             ]
           },
           {
+            "name": "Executioner",
+            "profiles": [
+              {
+                "name": "Executioner",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "D3",
+                  "Keywords": "Anti-Infantry 2+, Psychic"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Witch staff",
+            "profiles": [
+              {
+                "name": "Witch staff",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "2+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "D3",
+                  "Keywords": "Anti-Infantry 2+, Psychic"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Voidscarred w/ pistol and sword",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Shuriken Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              },
+              {
+                "name": "Power sword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power sword",
+            "profiles": [
+              {
+                "name": "Power sword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Voidscarred w/ rifle",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Shuriken rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shuriken rifle",
+            "profiles": [
+              {
+                "name": "Shuriken rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Voidscarred with Faolchú",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Shuriken Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              },
+              {
+                "name": "Power sword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power sword",
+            "profiles": [
+              {
+                "name": "Power sword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Voidscarred with fusion pistol",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Shuriken Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              },
+              {
+                "name": "Fusion pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Assault, Melta 2, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Fusion pistol",
+            "profiles": [
+              {
+                "name": "Fusion pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Assault, Melta 2, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Voidscarred with heavy weapon",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shuriken cannon",
+            "profiles": [
+              {
+                "name": "Shuriken cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Lethal Hits"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Wraithcannon",
+            "profiles": [
+              {
+                "name": "Wraithcannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Voidscarred with ranger long rifle",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Long rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Heavy, Precision"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Long rifle",
+            "profiles": [
+              {
+                "name": "Long rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Heavy, Precision"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Voidscarred with special weapon",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Corsair shredder",
+            "profiles": [
+              {
+                "name": "Corsair shredder",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Corsair blaster",
+            "profiles": [
+              {
+                "name": "Corsair blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
             "name": "Voidscarred Felarch",
             "profiles": [
               {
@@ -789,6 +1880,78 @@
                   "AP": "-2",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power sword",
+            "profiles": [
+              {
+                "name": "Power sword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Neuro disruptor",
+            "profiles": [
+              {
+                "name": "Neuro disruptor",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 2+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shuriken pistol",
+            "profiles": [
+              {
+                "name": "Shuriken pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shuriken rifle",
+            "profiles": [
+              {
+                "name": "Shuriken rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Rapid Fire 1"
                 }
               }
             ]
@@ -840,6 +2003,42 @@
           }
         ],
         "weapons": [
+          {
+            "name": "Spirit Syphon",
+            "profiles": [
+              {
+                "name": "Spirit Syphon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Spirit-leech Tentacles",
+            "profiles": [
+              {
+                "name": "Spirit-leech Tentacles",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 2+"
+                }
+              }
+            ]
+          },
           {
             "name": "Cronos",
             "profiles": [
@@ -1273,6 +2472,96 @@
         ],
         "weapons": [
           {
+            "name": "Blast Pistol",
+            "profiles": [
+              {
+                "name": "Blast Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "D3",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Pistol",
+            "profiles": [
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Rifle",
+            "profiles": [
+              {
+                "name": "Splinter Rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close Combat Weapon",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power Weapon",
+            "profiles": [
+              {
+                "name": "Power Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+"
+                }
+              }
+            ]
+          },
+          {
             "name": "Kabalite Agent with stinger pistol",
             "profiles": [
               {
@@ -1288,6 +2577,24 @@
                   "Keywords": "-"
                 }
               },
+              {
+                "name": "Stinger pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 2+, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Stinger pistol",
+            "profiles": [
               {
                 "name": "Stinger pistol",
                 "typeName": "Ranged Weapons",
@@ -1335,6 +2642,24 @@
             ]
           },
           {
+            "name": "Splinter rifle",
+            "profiles": [
+              {
+                "name": "Splinter Rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              }
+            ]
+          },
+          {
             "name": "Kabalite Agent with special weapon",
             "profiles": [
               {
@@ -1353,6 +2678,42 @@
             ]
           },
           {
+            "name": "Blaster",
+            "profiles": [
+              {
+                "name": "Blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shredder",
+            "profiles": [
+              {
+                "name": "Shredder",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Torrent"
+                }
+              }
+            ]
+          },
+          {
             "name": "Kabalite Agent with heavy weapon",
             "profiles": [
               {
@@ -1366,6 +2727,42 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dark lance",
+            "profiles": [
+              {
+                "name": "Dark Lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+2",
+                  "Keywords": "Heavy"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter cannon",
+            "profiles": [
+              {
+                "name": "Splinter Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-Infantry 3+, Heavy, Sustained Hits 1"
                 }
               }
             ]
@@ -1402,6 +2799,24 @@
             ]
           },
           {
+            "name": "Shardcarbine",
+            "profiles": [
+              {
+                "name": "Shardcarbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              }
+            ]
+          },
+          {
             "name": "Kabalite Agent with pain sculptors",
             "profiles": [
               {
@@ -1417,6 +2832,24 @@
                   "Keywords": "-"
                 }
               },
+              {
+                "name": "Pain sculptors",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+, Twin-Linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Pain sculptors",
+            "profiles": [
               {
                 "name": "Pain sculptors",
                 "typeName": "Melee Weapons",
@@ -1477,6 +2910,42 @@
             ]
           },
           {
+            "name": "Razorflail",
+            "profiles": [
+              {
+                "name": "Razorflail",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Pistol",
+            "profiles": [
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
             "name": "Kabalite Agent with stimm-needler",
             "profiles": [
               {
@@ -1492,6 +2961,24 @@
                   "Keywords": "-"
                 }
               },
+              {
+                "name": "Splinter Rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter rifle",
+            "profiles": [
               {
                 "name": "Splinter Rifle",
                 "typeName": "Ranged Weapons",
@@ -1597,6 +3084,42 @@
             ]
           },
           {
+            "name": "Hellglaive",
+            "profiles": [
+              {
+                "name": "Hellglaive",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Lance, Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Pods",
+            "profiles": [
+              {
+                "name": "Splinter Pods",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Twin Linked"
+                }
+              }
+            ]
+          },
+          {
             "name": "Heliarch",
             "profiles": [
               {
@@ -1610,6 +3133,238 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "Anti-Infantry 3+, Assault, Twin Linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Pods",
+            "profiles": [
+              {
+                "name": "Splinter Pods",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Twin Linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hellglaive",
+            "profiles": [
+              {
+                "name": "Hellglaive",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Lance, Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter pistol and 1 Power weapon",
+            "profiles": [
+              {
+                "name": "Power weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Lance, Sustained Hits 1"
+                }
+              },
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-infantry 3+, Assault, Pistol"
+                }
+              },
+              {
+                "name": "Hellglaive",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Lance, Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power Weapon",
+            "profiles": [
+              {
+                "name": "Power weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Lance, Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Pistol",
+            "profiles": [
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-infantry 3+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hellglaive",
+            "profiles": [
+              {
+                "name": "Hellglaive",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Lance, Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter pistol and 1 Stunclaw",
+            "profiles": [
+              {
+                "name": "Stunclaw",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds, Lance, Precision"
+                }
+              },
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-infantry 3+, Assault, Pistol"
+                }
+              },
+              {
+                "name": "Hellglaive",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Lance, Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Stunclaw",
+            "profiles": [
+              {
+                "name": "Stunclaw",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds, Lance, Precision"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Pistol",
+            "profiles": [
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-infantry 3+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hellglaive",
+            "profiles": [
+              {
+                "name": "Hellglaive",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Lance, Sustained Hits 1"
                 }
               }
             ]
@@ -1691,6 +3446,73 @@
         "weapons": [
           {
             "name": "Incubi",
+            "profiles": [
+              {
+                "name": "Klaive",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Klaive",
+            "profiles": [
+              {
+                "name": "Klaive",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Demiklaives",
+            "profiles": [
+              {
+                "name": "Demiklaives - Dual Blades",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Demiklaives - Single Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Klaive",
             "profiles": [
               {
                 "name": "Klaive",
@@ -1814,6 +3636,42 @@
             ]
           },
           {
+            "name": "Shredder",
+            "profiles": [
+              {
+                "name": "Shredder",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close Combat Weapon",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
             "name": "Kabalite Warrior",
             "profiles": [
               {
@@ -1829,6 +3687,42 @@
                   "Keywords": "Anti-Infantry 3+, Assault"
                 }
               },
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter rifle",
+            "profiles": [
+              {
+                "name": "Splinter Rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close Combat Weapon",
+            "profiles": [
               {
                 "name": "Close Combat Weapon",
                 "typeName": "Melee Weapons",
@@ -1876,6 +3770,42 @@
             ]
           },
           {
+            "name": "Blaster",
+            "profiles": [
+              {
+                "name": "Blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close Combat Weapon",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
             "name": "Kabalite Warrior with Splinter Cannon",
             "profiles": [
               {
@@ -1891,6 +3821,42 @@
                   "Keywords": "Anti-Infantry 3+, Heavy, Sustained Hits 1"
                 }
               },
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter cannon",
+            "profiles": [
+              {
+                "name": "Splinter Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-Infantry 3+, Heavy, Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close Combat Weapon",
+            "profiles": [
               {
                 "name": "Close Combat Weapon",
                 "typeName": "Melee Weapons",
@@ -1933,6 +3899,132 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dark lance",
+            "profiles": [
+              {
+                "name": "Dark Lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+2",
+                  "Keywords": "Heavy"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close Combat Weapon",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Blast Pistol",
+            "profiles": [
+              {
+                "name": "Blast Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "D3",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Pistol",
+            "profiles": [
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Rifle",
+            "profiles": [
+              {
+                "name": "Splinter Rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close Combat Weapon",
+            "profiles": [
+              {
+                "name": "Close Combat Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power Weapon",
+            "profiles": [
+              {
+                "name": "Power Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+"
                 }
               }
             ]
@@ -2311,6 +4403,42 @@
             ]
           },
           {
+            "name": "Baleblast",
+            "profiles": [
+              {
+                "name": "Baleblast",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Devastating Wounds, Ignores Cover"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Glimmersteel Blade",
+            "profiles": [
+              {
+                "name": "Glimmersteel Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
             "name": "Nightfiend",
             "profiles": [
               {
@@ -2326,6 +4454,42 @@
                   "Keywords": "Assault, Devastating Wounds, Ignores Cover"
                 }
               },
+              {
+                "name": "Glimmersteel Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Baleblast",
+            "profiles": [
+              {
+                "name": "Baleblast",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Devastating Wounds, Ignores Cover"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Glimmersteel Blade",
+            "profiles": [
               {
                 "name": "Glimmersteel Blade",
                 "typeName": "Melee Weapons",
@@ -2562,6 +4726,42 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Disintegrator Cannon",
+            "profiles": [
+              {
+                "name": "Disintegrator Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dark Lance",
+            "profiles": [
+              {
+                "name": "Dark Lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+2",
+                  "Keywords": "-"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -2641,6 +4841,42 @@
                   "S": "6",
                   "AP": "-1",
                   "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Disintegrator Cannon",
+            "profiles": [
+              {
+                "name": "Disintegrator Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dark Lance",
+            "profiles": [
+              {
+                "name": "Dark Lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+2",
                   "Keywords": "-"
                 }
               }
@@ -2782,6 +5018,114 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Two dark lances",
+            "profiles": [
+              {
+                "name": "Dark Lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dark Lance",
+            "profiles": [
+              {
+                "name": "Dark Lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Two disintegrator cannons",
+            "profiles": [
+              {
+                "name": "Disintegrator Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Disintegrator Cannon",
+            "profiles": [
+              {
+                "name": "Disintegrator Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Cannon",
+            "profiles": [
+              {
+                "name": "Splinter Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-Infantry 3+, Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin Splinter Rifle",
+            "profiles": [
+              {
+                "name": "Twin Splinter Rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Rapid Fire 2, Twin Linked"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -2887,6 +5231,60 @@
             ]
           },
           {
+            "name": "Splinter Rifle",
+            "profiles": [
+              {
+                "name": "Splinter Rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Pistol",
+            "profiles": [
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bladevanes",
+            "profiles": [
+              {
+                "name": "Bladevanes",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lance"
+                }
+              }
+            ]
+          },
+          {
             "name": "Reaver with Blaster",
             "profiles": [
               {
@@ -2915,6 +5313,60 @@
                   "Keywords": "Anti-Infantry 3+, Assault, Pistol"
                 }
               },
+              {
+                "name": "Bladevanes",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lance"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Blaster",
+            "profiles": [
+              {
+                "name": "Blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Pistol",
+            "profiles": [
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bladevanes",
+            "profiles": [
               {
                 "name": "Bladevanes",
                 "typeName": "Melee Weapons",
@@ -2975,6 +5427,60 @@
             ]
           },
           {
+            "name": "Splinter Pistol",
+            "profiles": [
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heat Lance",
+            "profiles": [
+              {
+                "name": "Heat Lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Assault, Melta 3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bladevanes",
+            "profiles": [
+              {
+                "name": "Bladevanes",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lance"
+                }
+              }
+            ]
+          },
+          {
             "name": "Arena Champion",
             "profiles": [
               {
@@ -3001,6 +5507,96 @@
                   "AP": "-1",
                   "D": "1",
                   "Keywords": "Lance"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Pistol",
+            "profiles": [
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bladevanes",
+            "profiles": [
+              {
+                "name": "Bladevanes",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lance"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Rifle",
+            "profiles": [
+              {
+                "name": "Splinter Rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Blaster",
+            "profiles": [
+              {
+                "name": "Blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heat Lance",
+            "profiles": [
+              {
+                "name": "Heat Lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Assault, Melta 3"
                 }
               }
             ]
@@ -3102,6 +5698,132 @@
             ]
           },
           {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Blaster",
+            "profiles": [
+              {
+                "name": "Blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heat Lance",
+            "profiles": [
+              {
+                "name": "Heat Lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Assault, Heavy, Melta 3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Cannon",
+            "profiles": [
+              {
+                "name": "Splinter Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-Infantry 3+, Heavy, Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shredder",
+            "profiles": [
+              {
+                "name": "Shredder",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dark Lance",
+            "profiles": [
+              {
+                "name": "Dark Lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+2",
+                  "Keywords": "Heavy"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Haywire Blaster",
+            "profiles": [
+              {
+                "name": "Haywire Blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "3",
+                  "Keywords": "Anti-Vehicle 4+, Devastating Wounds, Heavy"
+                }
+              }
+            ]
+          },
+          {
             "name": "Solarite",
             "profiles": [
               {
@@ -3115,6 +5837,176 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shardcarbine",
+            "profiles": [
+              {
+                "name": "Shardcarbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Blast pistol and 1 Power weapon",
+            "profiles": [
+              {
+                "name": "Blast Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "D3",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Power Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Blast Pistol",
+            "profiles": [
+              {
+                "name": "Blast Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "D3",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power Weapon",
+            "profiles": [
+              {
+                "name": "Power Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter pistol and 1 Power weapon",
+            "profiles": [
+              {
+                "name": "Power Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+"
+                }
+              },
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power Weapon",
+            "profiles": [
+              {
+                "name": "Power Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Pistol",
+            "profiles": [
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
                 }
               }
             ]
@@ -3218,6 +6110,78 @@
             ]
           },
           {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Blaster",
+            "profiles": [
+              {
+                "name": "Blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shredder",
+            "profiles": [
+              {
+                "name": "Shredder",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shardcarbine",
+            "profiles": [
+              {
+                "name": "Shardcarbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              }
+            ]
+          },
+          {
             "name": "Scourge",
             "profiles": [
               {
@@ -3249,6 +6213,42 @@
             ]
           },
           {
+            "name": "Shardcarbine",
+            "profiles": [
+              {
+                "name": "Shardcarbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
             "name": "Solarite",
             "profiles": [
               {
@@ -3262,6 +6262,176 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shardcarbine",
+            "profiles": [
+              {
+                "name": "Shardcarbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Blast pistol and 1 Power weapon",
+            "profiles": [
+              {
+                "name": "Blast Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "D3",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Power Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Blast Pistol",
+            "profiles": [
+              {
+                "name": "Blast Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "D3",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power Weapon",
+            "profiles": [
+              {
+                "name": "Power Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter pistol and 1 Power weapon",
+            "profiles": [
+              {
+                "name": "Power Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+"
+                }
+              },
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power Weapon",
+            "profiles": [
+              {
+                "name": "Power Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Pistol",
+            "profiles": [
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
                 }
               }
             ]
@@ -3359,6 +6529,42 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Shuriken Pistol",
+            "profiles": [
+              {
+                "name": "Shuriken Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "2+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Neuro Disruptor",
+            "profiles": [
+              {
+                "name": "Neuro Disruptor",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "2+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-infantry 2+, Assault, Pistol"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -3404,6 +6610,78 @@
         ],
         "abilities": [],
         "weapons": [
+          {
+            "name": "Skyweaver Haywire Cannon",
+            "profiles": [
+              {
+                "name": "Skyweaver Haywire Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "3",
+                  "Keywords": "Anti-Vehicle 4+, Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shuriken Cannon",
+            "profiles": [
+              {
+                "name": "Shuriken Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Lethal Hits"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Star Bolas",
+            "profiles": [
+              {
+                "name": "Star Bolas",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Zephyrglaive",
+            "profiles": [
+              {
+                "name": "Zephyrglaive",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
           {
             "name": "Skyweaver",
             "profiles": [
@@ -3538,7 +6816,62 @@
             "description": "At the start of your opponent’s Shooting phase, this unit can use this ability. If it does, select one ^^**Aeldari**^^ Infantry unit from your army visible to and within 36\" of this unit: until the end of the phase, that unit has the Stealth ability."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Wraithbone hull",
+            "profiles": [
+              {
+                "name": "Wraithbone Hull",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Disintegrator Cannon",
+            "profiles": [
+              {
+                "name": "Disintegrator Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Starfang Grenade Launcher",
+            "profiles": [
+              {
+                "name": "Starfang Grenade Launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Assault, Blast"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Battle Focus"
         ]
@@ -3758,7 +7091,188 @@
             "description": "At the start of the Fight phase, you can spend 1 Pain token to Empower this unit. While Empowered, each time a model in this unit is destroyed by a melee attack, if that model has not fought this phase, roll one D6. On a 2+, do not remove it from play; that destroyed model can fight after the attacking unit has finished making its attacks, and it is then removed from play."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Macro-Scalpel",
+            "profiles": [
+              {
+                "name": "Macro-Scalpel",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Talos Ichor Injector",
+            "profiles": [
+              {
+                "name": "Talos Ichor Injector",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "D6",
+                  "Keywords": "Extra Attacks"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin Liquifier Gun",
+            "profiles": [
+              {
+                "name": "Twin Liquifier Gun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Torrent, Twin-Linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Chain-flails",
+            "profiles": [
+              {
+                "name": "Chain-flails",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Talos Gauntlet",
+            "profiles": [
+              {
+                "name": "Talos Gauntlet",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "4+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Macro-Scalpel",
+            "profiles": [
+              {
+                "name": "Macro-Scalpel",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin Splinter Cannon",
+            "profiles": [
+              {
+                "name": "Twin Splinter Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-Infantry 3+, Sustained hits 1, Twin-Linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin Haywire Blasters",
+            "profiles": [
+              {
+                "name": "Twin Haywire Blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "3",
+                  "Keywords": "Anti-Vehicle 4+, Devastating Wounds, Twin-Linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin Heat Lance",
+            "profiles": [
+              {
+                "name": "Twin heat lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Assault, Melta 3, Twin-Linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Stinger Pod",
+            "profiles": [
+              {
+                "name": "Stinger Pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2D6",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Deadly Demise",
           "Feel No Pain",
@@ -3856,6 +7370,24 @@
             ]
           },
           {
+            "name": "Shuriken Pistol",
+            "profiles": [
+              {
+                "name": "Shuriken Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
             "name": "Player with Harlequin's Special Weapon",
             "profiles": [
               {
@@ -3871,6 +7403,42 @@
                   "Keywords": "Assault, Pistol"
                 }
               },
+              {
+                "name": "Harlequin's Special Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shuriken Pistol",
+            "profiles": [
+              {
+                "name": "Shuriken Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Harlequin's Special Weapon",
+            "profiles": [
               {
                 "name": "Harlequin's Special Weapon",
                 "typeName": "Melee Weapons",
@@ -3905,7 +7473,133 @@
             ]
           },
           {
+            "name": "Harlequin's Special Weapon",
+            "profiles": [
+              {
+                "name": "Harlequin's Special Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
             "name": "Player with Neuro Disruptor",
+            "profiles": [
+              {
+                "name": "Neuro Disruptor",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-infantry 2+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Harlequin's Special Weapon",
+            "profiles": [
+              {
+                "name": "Harlequin's Special Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Harlequin's Special Weapon",
+            "profiles": [
+              {
+                "name": "Harlequin's Special Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power sword",
+            "profiles": [
+              {
+                "name": "Power sword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shuriken Pistol",
+            "profiles": [
+              {
+                "name": "Shuriken Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Fusion Pistol",
+            "profiles": [
+              {
+                "name": "Fusion Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Assault, Melta 2, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Neuro Disruptor",
             "profiles": [
               {
                 "name": "Neuro Disruptor",
@@ -3975,7 +7669,98 @@
             "description": "Each time this model makes a melee attack you can re-roll a Hit roll of 1 and add 1 to the Wound roll."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Harlequin's Special Weapon",
+            "profiles": [
+              {
+                "name": "Harlequin's Special Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "2+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Troupe Master's Blade",
+            "profiles": [
+              {
+                "name": "Troupe Master's Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "2+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shuriken Pistol",
+            "profiles": [
+              {
+                "name": "Shuriken Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "2+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Fusion Pistol",
+            "profiles": [
+              {
+                "name": "Fusion Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "2+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Assault, Melta 2, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Neuro Disruptor",
+            "profiles": [
+              {
+                "name": "Neuro Disruptor",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "2+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-infantry 2+, Assault, Pistol"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Battle Focus",
           "Leader",
@@ -4059,6 +7844,42 @@
                   "AP": "-1",
                   "D": "2",
                   "Keywords": "Anti-Infantry 3+, Sustained hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Cannon",
+            "profiles": [
+              {
+                "name": "Splinter Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-Infantry 3+, Sustained hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin Splinter Rifle",
+            "profiles": [
+              {
+                "name": "Twin Splinter Rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Rapid Fire 2, Twin Linked"
                 }
               }
             ]
@@ -4177,6 +7998,80 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Void Lance",
+            "profiles": [
+              {
+                "name": "Void Lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "D6+2",
+                  "Keywords": "-"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Void Lance",
+            "profiles": [
+              {
+                "name": "Void Lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "D6+2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dark Scythe",
+            "profiles": [
+              {
+                "name": "Dark Scythe",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Dark Scythe",
+            "profiles": [
+              {
+                "name": "Dark Scythe",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -4266,6 +8161,55 @@
                   "AP": "-1",
                   "D": "2",
                   "Keywords": "Lethal Hits"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Prismatic Cannon",
+            "profiles": [
+              {
+                "name": "Prismatic Cannon - dispersed pulse",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2D6",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Prismatic Cannon - focused lances",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "4",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Voidweaver Haywire Cannon",
+            "profiles": [
+              {
+                "name": "Voidweaver Haywire Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "3",
+                  "Keywords": "Anti-vehicle 4+, Devastating Wounds"
                 }
               }
             ]
@@ -4442,6 +8386,132 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Torturer's tool",
+            "profiles": [
+              {
+                "name": "Torturer's tool",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hexrifle",
+            "profiles": [
+              {
+                "name": "Hexrifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Heavy, Precision"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Liquifier gun",
+            "profiles": [
+              {
+                "name": "Liquifier Gun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ossefactor",
+            "profiles": [
+              {
+                "name": "Ossefactor",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Anti-Infantry 4+, Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Stinger pistol",
+            "profiles": [
+              {
+                "name": "Stinger Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-infantry 2+, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power weapon",
+            "profiles": [
+              {
+                "name": "Power weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Torturer's tool",
+            "profiles": [
+              {
+                "name": "Torturer's tool",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -4541,6 +8611,42 @@
             ]
           },
           {
+            "name": "Splinter Pistol",
+            "profiles": [
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hekatarii Blade",
+            "profiles": [
+              {
+                "name": "Hekatarii Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
             "name": "Wych w/ Gladiatorial weapons",
             "profiles": [
               {
@@ -4554,6 +8660,96 @@
                   "AP": "-2",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Gladiatorial weapons",
+            "profiles": [
+              {
+                "name": "Gladiatorial weapons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Splinter Pistol",
+            "profiles": [
+              {
+                "name": "Splinter Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Blast Pistol",
+            "profiles": [
+              {
+                "name": "Blast Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D3",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hekatarii Blade",
+            "profiles": [
+              {
+                "name": "Hekatarii Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power weapon",
+            "profiles": [
+              {
+                "name": "Power weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+"
                 }
               }
             ]

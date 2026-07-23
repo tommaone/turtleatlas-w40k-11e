@@ -36,7 +36,7 @@ FACTIONS = {
 }
 MISSIONS = ['Take and Hold', 'Purge the Foe', 'Reconnaissance', 'Priority Assets', 'Disruption']
 WEIGHTS = {
-    'Take and Hold': {'dps': 0, 'surv': 25, 'obj': 55, 'mob': 20},
+    'Take and Hold': {'dps': 20, 'surv': 30, 'obj': 35, 'mob': 15},
     'Purge the Foe': {'dps': 60, 'surv': 15, 'obj': 5, 'mob': 20},
     'Reconnaissance': {'dps': 10, 'surv': 10, 'obj': 20, 'mob': 60},
     'Priority Assets': {'dps': 40, 'surv': 20, 'obj': 30, 'mob': 10},
@@ -46,10 +46,10 @@ MISSION_FACTORS = {
     'Take and Hold': {
         'playstyle': 'Hold 2-3 objectives for as many turns as possible.',
         'factors': [
-            'OC is king — high OC units lock down objectives (OBJ 55%)',
-            'Survivability = turns on objective = more VP (SURV 25%)',
-            'Movement less critical — static defence wins',
-            'Cost efficiency neutral — quality beats quantity',
+            'High OC units lock down objectives (OBJ 35%)',
+            'Survivability = turns on objective = more VP (SURV 30%)',
+            'DPP matters — you still need to clear the point (DPP 20%)',
+            'Movement helps reposition between objectives (MOB 15%)',
             'OC0 units cannot score (penalised)',
         ],
     },

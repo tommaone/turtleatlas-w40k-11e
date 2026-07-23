@@ -174,6 +174,7 @@ Ravenwing units have FLY keyword:
 3. **Forgetting Deep Strike** — DS is your key advantage
 4. **Not using Azrael's aura** — 4+ invuln is huge
 5. **Melee-only DWK without support** — they need screening
+6. **DO NOT include chapter-specific characters from other chapters** — Guilliman, Tigurius, Cato Sicarius, Marneus Calgar, Vulkan He'Stan, etc. are NOT playable as DA. Only generic SM characters (Captains, Lieutenants, Chaplains, Librarians, Techmarines) can be used across chapters. See `data/config/AGENTS.md` for full cross-faction restrictions.
 
 ---
 

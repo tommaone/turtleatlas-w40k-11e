@@ -334,6 +334,42 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Gauss cannon",
+            "profiles": [
+              {
+                "name": "Gauss cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Lethal Hits"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Tesla cannon",
+            "profiles": [
+              {
+                "name": "Tesla cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "4",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Sustained Hits 2"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -394,6 +430,24 @@
         "weapons": [
           {
             "name": "Cutting blade and cutting gear",
+            "profiles": [
+              {
+                "name": "Cutting blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Cutting blade",
             "profiles": [
               {
                 "name": "Cutting blade",
@@ -936,6 +990,25 @@
                   "Keywords": "-"
                 }
               }
+            ],
+            "count": 5
+          },
+          {
+            "name": "Atomiser beam",
+            "profiles": [
+              {
+                "name": "Atomiser beam",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
             ]
           },
           {
@@ -967,6 +1040,25 @@
                   "Keywords": "Assault, Sustained Hits 1"
                 }
               }
+            ],
+            "count": 5
+          },
+          {
+            "name": "Tesla caster",
+            "profiles": [
+              {
+                "name": "Tesla caster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Sustained Hits 1"
+                }
+              }
             ]
           },
           {
@@ -985,7 +1077,8 @@
                   "Keywords": "-"
                 }
               }
-            ]
+            ],
+            "count": 5
           },
           {
             "name": "Canoptek Macrocyte w/ gauss scalpel",
@@ -1003,6 +1096,25 @@
                   "Keywords": "-"
                 }
               },
+              {
+                "name": "Gauss scalpel",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lethal Hits"
+                }
+              }
+            ],
+            "count": 5
+          },
+          {
+            "name": "Gauss scalpel",
+            "profiles": [
               {
                 "name": "Gauss scalpel",
                 "typeName": "Ranged Weapons",
@@ -1183,6 +1295,24 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Feeder mandibles",
+            "profiles": [
+              {
+                "name": "Feeder mandibles",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "5+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Lethal Hits"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -1240,7 +1370,62 @@
             "description": "In your Command phase, select one friendly CANOPTEK SCARAB SWARM unit within 6\" of this unit. One destroyed model is returned to that CANOPTEK SCARAB SWARM unit for each SPYDER model in this unit."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Automaton claws",
+            "profiles": [
+              {
+                "name": "Automaton claws",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "4+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Two particle beamers",
+            "profiles": [
+              {
+                "name": "Particle beamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast, Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Particle beamer",
+            "profiles": [
+              {
+                "name": "Particle beamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast, Devastating Wounds"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Detachment Rules",
           "Reanimation Protocols",
@@ -1330,6 +1515,43 @@
                   "Keywords": "-"
                 }
               }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Twin gauss reaper",
+            "profiles": [
+              {
+                "name": "Twin gauss reaper",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lethal Hits, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Claws",
+            "profiles": [
+              {
+                "name": "Claws",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
             ]
           },
           {
@@ -1345,6 +1567,61 @@
                   "S": "6",
                   "AP": "-1",
                   "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Claws",
+            "profiles": [
+              {
+                "name": "Claws",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin gauss reaper",
+            "profiles": [
+              {
+                "name": "Twin gauss reaper",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lethal Hits, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dimensional isolator",
+            "profiles": [
+              {
+                "name": "Dimensional isolator",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "2",
                   "Keywords": "-"
                 }
               }
@@ -1638,7 +1915,93 @@
             "description": "Each time an attack targets this model, if the Strength characteristic of that attack is greater than this model’s Toughness characteristic, subtract 1 from the Wound roll."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Gauss cannon",
+            "profiles": [
+              {
+                "name": "Gauss cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Lethal Hits"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Tesla cannon",
+            "profiles": [
+              {
+                "name": "Tesla cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "4",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Sustained Hits 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Staff of light",
+            "profiles": [
+              {
+                "name": "Staff of light",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "2+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Staff of light",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Overlord's blade",
+            "profiles": [
+              {
+                "name": "Overlord's blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Detachment Rules",
           "Reanimation Protocols",
@@ -1774,7 +2137,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Convergence of Dominion",
-        "points": null,
+        "points": 60,
         "stats": {
           "M": "-",
           "T": "9",
@@ -1990,6 +2353,42 @@
                   "Keywords": "Heavy, Precision"
                 }
               },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Synaptic disintegrator",
+            "profiles": [
+              {
+                "name": "Synaptic disintegrator",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Heavy, Precision"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
               {
                 "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
@@ -2357,6 +2756,24 @@
         "weapons": [
           {
             "name": "Flayed One",
+            "profiles": [
+              {
+                "name": "Flayer claws",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Sustained Hits 1, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Flayer claws",
             "profiles": [
               {
                 "name": "Flayer claws",
@@ -2900,6 +3317,60 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Gauss blaster",
+            "profiles": [
+              {
+                "name": "Gauss blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lethal Hits"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Tesla carbine",
+            "profiles": [
+              {
+                "name": "Tesla carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Sustained Hits 2"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -3104,6 +3575,42 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Gauss cannon",
+            "profiles": [
+              {
+                "name": "Gauss cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Lethal Hits"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -3168,7 +3675,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Lokhust Heavy Destroyers",
-        "points": null,
+        "points": 50,
         "stats": {
           "M": "8\"",
           "T": "6",
@@ -3224,6 +3731,24 @@
             ]
           },
           {
+            "name": "Enmitic exterminator",
+            "profiles": [
+              {
+                "name": "Enmitic exterminator",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Heavy, Rapid Fire 6, Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
             "name": "Destroyer w/ gauss destructor",
             "profiles": [
               {
@@ -3239,6 +3764,24 @@
                   "Keywords": "-"
                 }
               },
+              {
+                "name": "Gauss destructor",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "6",
+                  "Keywords": "Heavy, Lethal Hits"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Gauss destructor",
+            "profiles": [
               {
                 "name": "Gauss destructor",
                 "typeName": "Ranged Weapons",
@@ -3341,7 +3884,57 @@
             "description": "Each time this model makes an attack that targets an enemy unit that is Below Half-strength, you can re-roll the Hit roll and you can re-roll the Wound roll."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Lord's blade",
+            "profiles": [
+              {
+                "name": "Lord's blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Staff of light",
+            "profiles": [
+              {
+                "name": "Staff of light",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "2+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Staff of light",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Detachment Rules",
           "Leader",
@@ -3395,7 +3988,62 @@
             "description": "While a NOBLE model is leading this unit, each time an attack targets this unit, if the Strength characteristic of that attack is greater than the Toughness characteristic of this unit, subtract 1 from the Wound roll."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Warscythe",
+            "profiles": [
+              {
+                "name": "Warscythe",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hyperphase sword and dispersion shield",
+            "profiles": [
+              {
+                "name": "Hyperphase sword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hyperphase sword",
+            "profiles": [
+              {
+                "name": "Hyperphase sword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Detachment Rules",
           "Reanimation Protocols"
@@ -3490,6 +4138,78 @@
                   "AP": "-2",
                   "D": "3",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Four death rays",
+            "profiles": [
+              {
+                "name": "Death ray",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Sustained Hits D3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Death ray",
+            "profiles": [
+              {
+                "name": "Death ray",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Sustained Hits D3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Four gauss flux arcs",
+            "profiles": [
+              {
+                "name": "Gauss flux arc",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lethal Hits, Rapid Fire 3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Gauss flux arc",
+            "profiles": [
+              {
+                "name": "Gauss flux arc",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lethal Hits, Rapid Fire 3"
                 }
               }
             ]
@@ -3590,6 +4310,24 @@
             ]
           },
           {
+            "name": "Gauss flayer",
+            "profiles": [
+              {
+                "name": "Gauss flayer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Lethal Hits, Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
             "name": "Warrior w/ gauss reaper",
             "profiles": [
               {
@@ -3605,6 +4343,24 @@
                   "Keywords": "-"
                 }
               },
+              {
+                "name": "Gauss reaper",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lethal Hits"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Gauss reaper",
+            "profiles": [
               {
                 "name": "Gauss reaper",
                 "typeName": "Ranged Weapons",
@@ -4004,7 +4760,44 @@
             "description": "At the end of your opponent’s turn, if this unit is not within Engagement Range of one or more enemy units, you can remove this unit from the battlefield. In the Reinforcements step of your next Movement phase, set it up anywhere on the battlefield that is more than 8\" horizontally away from all enemy models."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Ophydian Destroyer",
+            "profiles": [
+              {
+                "name": "Ophydian hyperphase weapons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ophydian hyperphase weapons",
+            "profiles": [
+              {
+                "name": "Ophydian hyperphase weapons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Detachment Rules",
           "Reanimation Protocols",
@@ -4160,7 +4953,88 @@
             "description": "Each time an attack is allocated to this model, subtract 1 from that attack’s Damage characteristic."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Overlord's blade and tachyon arrow",
+            "profiles": [
+              {
+                "name": "Overlord's blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Devastating Wounds"
+                }
+              },
+              {
+                "name": "Tachyon arrow",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "1",
+                  "BS": "2+",
+                  "S": "16",
+                  "AP": "-5",
+                  "D": "D6+2",
+                  "Keywords": "One Shot"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Voidscythe",
+            "profiles": [
+              {
+                "name": "Voidscythe",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Staff of light",
+            "profiles": [
+              {
+                "name": "Staff of light",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "2+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Staff of light",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Detachment Rules",
           "Reanimation Protocols",
@@ -4713,6 +5587,109 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Two singularity generators",
+            "profiles": [
+              {
+                "name": "Singularity generator",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "2D6",
+                  "BS": "3+",
+                  "S": "10",
+                  "AP": "-3",
+                  "D": "4",
+                  "Keywords": "Blast, Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Singularity generator",
+            "profiles": [
+              {
+                "name": "Singularity generator",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "2D6",
+                  "BS": "3+",
+                  "S": "10",
+                  "AP": "-3",
+                  "D": "4",
+                  "Keywords": "Blast, Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Two synaptic obliterators and two transdimensional projectors",
+            "profiles": [
+              {
+                "name": "Synaptic obliterator",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "8",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 2"
+                }
+              },
+              {
+                "name": "Transdimensional projector",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "24",
+                  "AP": "-4",
+                  "D": "D6+4",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Synaptic obliterator",
+            "profiles": [
+              {
+                "name": "Synaptic obliterator",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "8",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Transdimensional projector",
+            "profiles": [
+              {
+                "name": "Transdimensional projector",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "24",
+                  "AP": "-4",
+                  "D": "D6+4",
+                  "Keywords": "-"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -4776,7 +5753,44 @@
             "description": "Each time a model in this unit makes a melee attack, re-roll a Hit roll of 1. If this unit made a Charge move this turn, you can re-roll the Hit roll instead."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Skorpekh Destroyer",
+            "profiles": [
+              {
+                "name": "Skorpekh hyperphase weapons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Skorpekh hyperphase weapons",
+            "profiles": [
+              {
+                "name": "Skorpekh hyperphase weapons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Detachment Rules",
           "Reanimation Protocols"
@@ -5330,6 +6344,78 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin gauss blaster",
+            "profiles": [
+              {
+                "name": "Twin gauss blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lethal Hits, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Particle beamer",
+            "profiles": [
+              {
+                "name": "Particle beamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast, Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin tesla carbine",
+            "profiles": [
+              {
+                "name": "Twin tesla carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Sustained Hits 2, Twin-linked"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -5376,11 +6462,11 @@
     {
       "name": "Tomb Citadel Walls",
       "in_bsdata": true,
-      "in_mfm": false,
+      "in_mfm": true,
       "deep_strike": false,
       "profile": {
         "name": "Tomb Citadel Walls",
-        "points": 180,
+        "points": 50,
         "stats": {
           "M": "-",
           "T": "13",
@@ -5457,7 +6543,18 @@
           "Detachment Rules"
         ]
       },
-      "pricing": null,
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 2,
+              "points": 50
+            }
+          ]
+        }
+      ],
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -5685,7 +6782,70 @@
             "description": "You can re-roll Charge rolls made for this unit, and this unit is eligible to declare a charge in a turn in which it Fell Back."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Rod of covenant",
+            "profiles": [
+              {
+                "name": "Rod of covenant",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Rod of covenant",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Particle caster and voidblade",
+            "profiles": [
+              {
+                "name": "Particle caster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds, Pistol"
+                }
+              },
+              {
+                "name": "Voidblade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Detachment Rules",
           "Reanimation Protocols",
@@ -5757,6 +6917,73 @@
                   "AP": "-1",
                   "D": "3",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heat ray",
+            "profiles": [
+              {
+                "name": "Heat ray - dispersed",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2D6",
+                  "BS": "N/A",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              },
+              {
+                "name": "Heat ray - focused",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 4"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Particle shredder",
+            "profiles": [
+              {
+                "name": "Particle shredder",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6+6",
+                  "BS": "2+",
+                  "S": "7",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast, Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy gauss cannon array",
+            "profiles": [
+              {
+                "name": "Heavy gauss cannon array",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Lethal Hits"
                 }
               }
             ]
@@ -5844,7 +7071,7 @@
   ],
   "_meta": {
     "bsdata_faction": "Xenos - Necrons",
-    "bsdata_revision": 5,
+    "bsdata_revision": 8,
     "bsdata_units": 59,
     "mfm_units": 52,
     "merged_units": 59

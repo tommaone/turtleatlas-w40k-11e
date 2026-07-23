@@ -2,37 +2,167 @@
   "_extends": "_base",
   "key": "space-marines",
   "name": "Space Marines",
-  "army_rules": ["Oath of Moment"],
-  "keywords": ["FACTION: ADEPTUS ASTARTES"],
+  "army_rules": [
+    "Oath of Moment"
+  ],
+  "keywords": [
+    "FACTION: ADEPTUS ASTARTES",
+    "Faction: Ultramarines",
+    "Faction: Salamanders",
+    "Faction: Raven Guard",
+    "Faction: Imperial Fists",
+    "Faction: Iron Hands",
+    "Faction: White Scars"
+  ],
   "dispositions": {
     "gladius-task-force": "priority-assets",
     "blade-of-ultramar": "priority-assets",
     "ceramite-sentinels": "take-and-hold",
     "stormlance-task-force": "disruption",
     "armoured-speartip": "priority-assets",
-    "ironstorm-spearhead": "purge-the-foe",
-    "firestorm-assault-force": "purge-the-foe",
+    "ironstorm-spearhead": "take-and-hold",
+    "firestorm-assault-force": "priority-assets",
     "vanguard-spearhead": "disruption",
-    "1st-company-task-force": "priority-assets",
+    "1st-company-task-force": "purge-the-foe",
     "anvil-siege-force": "take-and-hold",
-    "hammer-of-avernii": "priority-assets",
+    "hammer-of-avernii": "purge-the-foe",
     "headhunter-task-force": "priority-assets",
     "orbital-assault-force": "take-and-hold",
     "shadowmark-talon": "disruption",
     "librarius-conclave": "disruption",
     "subversion-assets": "disruption",
-    "fulguris-task-force": "disruption",
+    "fulguris-task-force": "reconnaissance",
     "reclamation-force": "take-and-hold",
-    "emperors-shield": "priority-assets",
-    "forgefathers-seekers": "purge-the-foe",
+    "emperors-shield": "purge-the-foe",
+    "forgefathers-seekers": "priority-assets",
     "spearpoint-task-force": "disruption",
     "bastion-task-force": "take-and-hold"
   },
   "meta_profiles": {
-    "competitive": { "profiles": [["MEQ", 0.35], ["TEQ", 0.15], ["Light V", 0.25], ["Heavy V", 0.15], ["Knight", 0.10]], "melee_penalty": 0.8 },
-    "infantry": { "profiles": [["GEQ", 0.15], ["MEQ", 0.45], ["TEQ", 0.25], ["Light V", 0.10], ["Heavy V", 0.05]], "melee_penalty": 0.8 },
-    "vehicle": { "profiles": [["Light V", 0.25], ["Heavy V", 0.35], ["C'tan", 0.15], ["Knight", 0.25]], "melee_penalty": 0.8 },
-    "elite": { "profiles": [["TEQ", 0.30], ["Heavy V", 0.30], ["C'tan", 0.20], ["Knight", 0.20]], "melee_penalty": 0.8 },
-    "all-comers": { "profiles": [["GEQ", 0.15], ["MEQ", 0.25], ["TEQ", 0.15], ["Light V", 0.20], ["Heavy V", 0.15], ["C'tan", 0.05], ["Knight", 0.05]], "melee_penalty": 1.0 }
+    "competitive": {
+      "profiles": [
+        [
+          "MEQ",
+          0.35
+        ],
+        [
+          "TEQ",
+          0.15
+        ],
+        [
+          "Light V",
+          0.25
+        ],
+        [
+          "Heavy V",
+          0.15
+        ],
+        [
+          "Knight",
+          0.1
+        ]
+      ],
+      "melee_penalty": 0.8
+    },
+    "infantry": {
+      "profiles": [
+        [
+          "GEQ",
+          0.15
+        ],
+        [
+          "MEQ",
+          0.45
+        ],
+        [
+          "TEQ",
+          0.25
+        ],
+        [
+          "Light V",
+          0.1
+        ],
+        [
+          "Heavy V",
+          0.05
+        ]
+      ],
+      "melee_penalty": 0.8
+    },
+    "vehicle": {
+      "profiles": [
+        [
+          "Light V",
+          0.25
+        ],
+        [
+          "Heavy V",
+          0.35
+        ],
+        [
+          "C'tan",
+          0.15
+        ],
+        [
+          "Knight",
+          0.25
+        ]
+      ],
+      "melee_penalty": 0.8
+    },
+    "elite": {
+      "profiles": [
+        [
+          "TEQ",
+          0.3
+        ],
+        [
+          "Heavy V",
+          0.3
+        ],
+        [
+          "C'tan",
+          0.2
+        ],
+        [
+          "Knight",
+          0.2
+        ]
+      ],
+      "melee_penalty": 0.8
+    },
+    "all-comers": {
+      "profiles": [
+        [
+          "GEQ",
+          0.15
+        ],
+        [
+          "MEQ",
+          0.25
+        ],
+        [
+          "TEQ",
+          0.15
+        ],
+        [
+          "Light V",
+          0.2
+        ],
+        [
+          "Heavy V",
+          0.15
+        ],
+        [
+          "C'tan",
+          0.05
+        ],
+        [
+          "Knight",
+          0.05
+        ]
+      ],
+      "melee_penalty": 1.0
+    }
   }
 }

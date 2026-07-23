@@ -563,6 +563,24 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Cutting blade",
+            "profiles": [
+              {
+                "name": "Cutting blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
           }
         ],
         "rules": []
@@ -575,11 +593,11 @@
     {
       "name": "Chaos Acastus Knight Asterius",
       "in_bsdata": true,
-      "in_mfm": false,
+      "in_mfm": true,
       "deep_strike": false,
       "profile": {
         "name": "Chaos Acastus Knight Asterius",
-        "points": 785,
+        "points": 130,
         "stats": {
           "M": "8\"",
           "T": "13",
@@ -688,7 +706,28 @@
           "*Invulnerable Save"
         ]
       },
-      "pricing": null,
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 130
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 140
+            }
+          ]
+        }
+      ],
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -763,6 +802,78 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Acastus ironstorm missile pod",
+            "profiles": [
+              {
+                "name": "Acastus ironstorm missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6+6",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast, Heavy, Indirect Fire"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Helios defence missiles",
+            "profiles": [
+              {
+                "name": "Helios defence missiles",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "D6",
+                  "Keywords": "Anti-FLY 2+, Heavy"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Acastus autocannon",
+            "profiles": [
+              {
+                "name": "Acastus autocannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-1",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Lascannon",
+            "profiles": [
+              {
+                "name": "Lascannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "-"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -781,11 +892,11 @@
     {
       "name": "Chaos Cerastus Knight Acheron",
       "in_bsdata": true,
-      "in_mfm": false,
+      "in_mfm": true,
       "deep_strike": false,
       "profile": {
         "name": "Chaos Cerastus Knight Acheron",
-        "points": 370,
+        "points": 130,
         "stats": {
           "M": "12\"",
           "T": "11",
@@ -893,7 +1004,28 @@
           "*Invulnerable Save"
         ]
       },
-      "pricing": null,
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 130
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 140
+            }
+          ]
+        }
+      ],
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -1344,6 +1476,42 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Inferno combi-bolter",
+            "profiles": [
+              {
+                "name": "Inferno combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Inferno combi-weapon",
+            "profiles": [
+              {
+                "name": "Inferno combi-weapon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -1427,7 +1595,8 @@
                   "Keywords": "Twin-linked"
                 }
               }
-            ]
+            ],
+            "count": 2
           },
           {
             "name": "Armoured tracks",
@@ -1464,6 +1633,80 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Inferno combi-bolter",
+            "profiles": [
+              {
+                "name": "Inferno combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Inferno combi-weapon",
+            "profiles": [
+              {
+                "name": "Inferno combi-weapon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Inferno heavy bolter",
+            "profiles": [
+              {
+                "name": "Inferno heavy bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Lascannon",
+            "profiles": [
+              {
+                "name": "Lascannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "-"
+                }
+              }
+            ],
+            "count": 2
           }
         ],
         "rules": [
@@ -1584,6 +1827,80 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Inferno combi-bolter",
+            "profiles": [
+              {
+                "name": "Inferno combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Inferno combi-weapon",
+            "profiles": [
+              {
+                "name": "Inferno combi-weapon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Inferno heavy bolter",
+            "profiles": [
+              {
+                "name": "Inferno heavy bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Lascannon",
+            "profiles": [
+              {
+                "name": "Lascannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "-"
+                }
+              }
+            ],
+            "count": 2
           }
         ],
         "rules": [
@@ -1689,6 +2006,130 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Hekaton siege claw and twin rad cleanser",
+            "profiles": [
+              {
+                "name": "Twin rad cleanser",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-INFANTRY 2+, Ignores Cover, Torrent, Twin-linked"
+                }
+              },
+              {
+                "name": "Hekaton siege claw - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "20",
+                  "AP": "-3",
+                  "D": "8",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Hekaton siege claw - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "3+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin rad cleanser",
+            "profiles": [
+              {
+                "name": "Twin rad cleanser",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-INFANTRY 2+, Ignores Cover, Torrent, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hekaton siege claw",
+            "profiles": [
+              {
+                "name": "Hekaton siege claw - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "20",
+                  "AP": "-3",
+                  "D": "8",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Hekaton siege claw - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "3+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaper chainsword",
+            "profiles": [
+              {
+                "name": "Reaper chainsword - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "6",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Reaper chainsword - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "12",
+                  "WS": "3+",
+                  "S": "9",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -1777,6 +2218,130 @@
                   "AP": "0",
                   "D": "3",
                   "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hekaton siege claw and twin rad cleanser",
+            "profiles": [
+              {
+                "name": "Twin rad cleanser",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-INFANTRY 2+, Ignores Cover, Torrent, Twin-linked"
+                }
+              },
+              {
+                "name": "Hekaton siege claw - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "20",
+                  "AP": "-3",
+                  "D": "8",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Hekaton siege claw - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "3+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin rad cleanser",
+            "profiles": [
+              {
+                "name": "Twin rad cleanser",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-INFANTRY 2+, Ignores Cover, Torrent, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hekaton siege claw",
+            "profiles": [
+              {
+                "name": "Hekaton siege claw - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "20",
+                  "AP": "-3",
+                  "D": "8",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Hekaton siege claw - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "3+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaper chainsword",
+            "profiles": [
+              {
+                "name": "Reaper chainsword - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "6",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Reaper chainsword - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "12",
+                  "WS": "3+",
+                  "S": "9",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "-"
                 }
               }
             ]
@@ -1882,6 +2447,42 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Inferno combi-bolter",
+            "profiles": [
+              {
+                "name": "Inferno combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Inferno combi-weapon",
+            "profiles": [
+              {
+                "name": "Inferno combi-weapon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -1981,7 +2582,7 @@
     {
       "name": "Chaos Spawn (Flesh Change)",
       "in_bsdata": true,
-      "in_mfm": false,
+      "in_mfm": true,
       "deep_strike": false,
       "profile": {
         "name": "Chaos Spawn (Flesh Change)",
@@ -2035,7 +2636,18 @@
           "Lone Operative"
         ]
       },
-      "pricing": null,
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 2,
+              "points": 65
+            }
+          ]
+        }
+      ],
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -2123,6 +2735,42 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Inferno combi-bolter",
+            "profiles": [
+              {
+                "name": "Inferno combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Inferno combi-weapon",
+            "profiles": [
+              {
+                "name": "Inferno combi-weapon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1"
                 }
               }
             ]
@@ -2599,6 +3247,271 @@
                   "AP": "-2",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy missile launcher",
+            "profiles": [
+              {
+                "name": "Heavy missile launcher - frag",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "2D6",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Heavy missile launcher - krak",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "D6+1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Electroscourge",
+            "profiles": [
+              {
+                "name": "Electroscourge",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "12",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Extra Attacks, Sustained Hits 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hades lascannon",
+            "profiles": [
+              {
+                "name": "Hades lascannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy reaper autocannon",
+            "profiles": [
+              {
+                "name": "Heavy reaper autocannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "4",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Devastating Wounds, Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hades battle cannon",
+            "profiles": [
+              {
+                "name": "Hades battle cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6+3",
+                  "BS": "3+",
+                  "S": "10",
+                  "AP": "-1",
+                  "D": "3",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ectoplasma destructor",
+            "profiles": [
+              {
+                "name": "Ectoplasma destructor",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy baleflamer",
+            "profiles": [
+              {
+                "name": "Heavy baleflamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6+3",
+                  "BS": "N/A",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Electroscourge",
+            "profiles": [
+              {
+                "name": "Electroscourge",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "12",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Extra Attacks, Sustained Hits 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hades lascannon",
+            "profiles": [
+              {
+                "name": "Hades lascannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy reaper autocannon",
+            "profiles": [
+              {
+                "name": "Heavy reaper autocannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "4",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Devastating Wounds, Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Two excruciator cannons",
+            "profiles": [
+              {
+                "name": "Excruciator cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Excruciator cannon",
+            "profiles": [
+              {
+                "name": "Excruciator cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Two pyraflux magma cutters",
+            "profiles": [
+              {
+                "name": "Pyraflux magma cutter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "10",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Pyraflux magma cutter",
+            "profiles": [
+              {
+                "name": "Pyraflux magma cutter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "10",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 2"
                 }
               }
             ]
@@ -3081,7 +3994,114 @@
             "description": "In your Shooting phase, after this model has shot, select one enemy unit that was hit by one or more of those attacks. Until the start of your next turn, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes an attack, subtract 1 from the hit roll."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Ectoplasma cannon",
+            "profiles": [
+              {
+                "name": "Ectoplasma cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "10",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "Blast"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Hades autocannon",
+            "profiles": [
+              {
+                "name": "Hades autocannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Ectoplasma cannon and claws",
+            "profiles": [
+              {
+                "name": "Ectoplasma cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "10",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Forgefiend claws",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Forgefiend claws",
+            "profiles": [
+              {
+                "name": "Forgefiend claws",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Forgefiend jaws",
+            "profiles": [
+              {
+                "name": "Forgefiend jaws",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "7",
+                  "AP": "0",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Deadly Demise",
           "Damaged: 1-4 wounds remaining",
@@ -3167,6 +4187,235 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Helbrute fist with combi-bolter",
+            "profiles": [
+              {
+                "name": "Inferno combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Helbrute fist with heavy flamer",
+            "profiles": [
+              {
+                "name": "Heavy flamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Missile launcher",
+            "profiles": [
+              {
+                "name": "Missile launcher - frag",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Missile launcher - krak",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "D6",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Helbrute hammer",
+            "profiles": [
+              {
+                "name": "Helbrute hammer",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "4+",
+                  "S": "14",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power scourge",
+            "profiles": [
+              {
+                "name": "Power scourge",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "3+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Multi-melta",
+            "profiles": [
+              {
+                "name": "Multi-melta",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin autocannon",
+            "profiles": [
+              {
+                "name": "Twin autocannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-1",
+                  "D": "3",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Helbrute fist with heavy flamer",
+            "profiles": [
+              {
+                "name": "Heavy flamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Helbrute fist with combi-bolter",
+            "profiles": [
+              {
+                "name": "Inferno combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Helbrute plasma cannon",
+            "profiles": [
+              {
+                "name": "Helbrute plasma cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "Blast, Hazardous"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin inferno heavy bolter",
+            "profiles": [
+              {
+                "name": "Twin inferno heavy bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 1, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin lascannon",
+            "profiles": [
+              {
+                "name": "Twin lascannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -3236,6 +4485,42 @@
                   "AP": "-1",
                   "D": "2",
                   "Keywords": "Anti-FLY 2+, Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Baleflamer",
+            "profiles": [
+              {
+                "name": "Baleflamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6+3",
+                  "BS": "N/A",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hades autocannon",
+            "profiles": [
+              {
+                "name": "Hades autocannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
                 }
               }
             ]
@@ -3766,6 +5051,68 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Reaper chainsword",
+            "profiles": [
+              {
+                "name": "Reaper chainsword - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "6",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Reaper chainsword - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "12",
+                  "WS": "3+",
+                  "S": "9",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Warpstrike claw",
+            "profiles": [
+              {
+                "name": "Warpstrike claw - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "20",
+                  "AP": "-3",
+                  "D": "8",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Warpstrike claw - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "3+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -3835,6 +5182,318 @@
                   "AP": "-1",
                   "D": "2",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Havoc missile pod",
+            "profiles": [
+              {
+                "name": "Havoc missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6+1",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast, Indirect Fire"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ruinspear rocket pod",
+            "profiles": [
+              {
+                "name": "Ruinspear rocket pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "D6",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hellstorm autocannons",
+            "profiles": [
+              {
+                "name": "Hellstorm autocannons",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-FLY 2, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Gatling cannon and flamer",
+            "profiles": [
+              {
+                "name": "Despoiler gatling cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "18",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Heavy darkflamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Torrent, Ignores Cover"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Battle cannon and heavy stubber",
+            "profiles": [
+              {
+                "name": "Despoiler battle cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "D6+3",
+                  "BS": "3+",
+                  "S": "10",
+                  "AP": "-1",
+                  "D": "3",
+                  "Keywords": "Blast, Rapid Fire D6+3"
+                }
+              },
+              {
+                "name": "Diabolus heavy stubber",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaper chainsword",
+            "profiles": [
+              {
+                "name": "Reaper chainsword - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "6",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Reaper chainsword - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "12",
+                  "WS": "3+",
+                  "S": "9",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Daemonbreath thermal cannon",
+            "profiles": [
+              {
+                "name": "Daemonbreath thermal cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2D3",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Blast, Melta 6"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Gatling cannon and flamer",
+            "profiles": [
+              {
+                "name": "Despoiler gatling cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "18",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Heavy darkflamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Torrent, Ignores Cover"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Battle cannon and heavy stubber",
+            "profiles": [
+              {
+                "name": "Despoiler battle cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "D6+3",
+                  "BS": "3+",
+                  "S": "10",
+                  "AP": "-1",
+                  "D": "3",
+                  "Keywords": "Blast, Rapid Fire D6+3"
+                }
+              },
+              {
+                "name": "Diabolus heavy stubber",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Warpstrike claw",
+            "profiles": [
+              {
+                "name": "Warpstrike claw - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "20",
+                  "AP": "-3",
+                  "D": "8",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Warpstrike claw - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "3+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Daemonbreath thermal cannon",
+            "profiles": [
+              {
+                "name": "Daemonbreath thermal cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2D3",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Blast, Melta 6"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Diabolus heavy stubber",
+            "profiles": [
+              {
+                "name": "Diabolus heavy stubber",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Daemonbreath meltagun",
+            "profiles": [
+              {
+                "name": "Daemonbreath meltagun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 2"
                 }
               }
             ]
@@ -4180,6 +5839,228 @@
                   "AP": "-4",
                   "D": "D6",
                   "Keywords": "Melta 2, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Gheiststrike missile launchers and 1 twin desecrator cannon",
+            "profiles": [
+              {
+                "name": "Gheiststrike missile launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-6",
+                  "D": "D6+1",
+                  "Keywords": "Anti-TITANIC 4+, Devastating Wounds"
+                }
+              },
+              {
+                "name": "Twin desecrator cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "twin desecrator cannons and 1 gheiststrike missile launcher",
+            "profiles": [
+              {
+                "name": "Gheiststrike missile launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-6",
+                  "D": "D6+1",
+                  "Keywords": "Anti-TITANIC 4+, Devastating Wounds"
+                }
+              },
+              {
+                "name": "Twin desecrator cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Brimstone volcano lance and ectoplasma decimator",
+            "profiles": [
+              {
+                "name": "Brimstone volcano lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "60\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "20",
+                  "AP": "-5",
+                  "D": "D6+8",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Ectoplasma decimator - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D6+3",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Ectoplasma decimator - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D6+3",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-4",
+                  "D": "3",
+                  "Keywords": "Blast, Hazardous"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Brimstone volcano lance",
+            "profiles": [
+              {
+                "name": "Brimstone volcano lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "60\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "20",
+                  "AP": "-5",
+                  "D": "D6+8",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ectoplasma decimator",
+            "profiles": [
+              {
+                "name": "Ectoplasma decimator - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D6+3",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Ectoplasma decimator - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D6+3",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-4",
+                  "D": "3",
+                  "Keywords": "Blast, Hazardous"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Darkflame cannon and warpshock harpoon",
+            "profiles": [
+              {
+                "name": "Darkflame cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3D6",
+                  "BS": "N/A",
+                  "S": "8",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              },
+              {
+                "name": "Warpshock harpoon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "24",
+                  "AP": "-6",
+                  "D": "12",
+                  "Keywords": "Blast, Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Darkflame cannon",
+            "profiles": [
+              {
+                "name": "Darkflame cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3D6",
+                  "BS": "N/A",
+                  "S": "8",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Warpshock harpoon",
+            "profiles": [
+              {
+                "name": "Warpshock harpoon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "24",
+                  "AP": "-6",
+                  "D": "12",
+                  "Keywords": "Blast, Devastating Wounds"
                 }
               }
             ]
@@ -4594,6 +6475,62 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Magma cutter",
+            "profiles": [
+              {
+                "name": "Magma cutter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 2"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Magma cutter",
+            "profiles": [
+              {
+                "name": "Magma cutter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 2"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Lasher tendrils",
+            "profiles": [
+              {
+                "name": "Lasher tendrils",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "3+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Extra Attacks"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -4944,6 +6881,109 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Reaver gatling blaster",
+            "profiles": [
+              {
+                "name": "Reaver gatling blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "12",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver laser blaster",
+            "profiles": [
+              {
+                "name": "Reaver laser blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "8",
+                  "BS": "3+",
+                  "S": "20",
+                  "AP": "-3",
+                  "D": "D6+2",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver melta cannon",
+            "profiles": [
+              {
+                "name": "Reaver melta cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6+2",
+                  "BS": "3+",
+                  "S": "13",
+                  "AP": "-4",
+                  "D": "6",
+                  "Keywords": "Blast, Melta 4"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver volcano cannon",
+            "profiles": [
+              {
+                "name": "Reaver volcano cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "120\"",
+                  "A": "D3+1",
+                  "BS": "3+",
+                  "S": "24",
+                  "AP": "-5",
+                  "D": "14",
+                  "Keywords": "Blast, Heavy"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver power fist",
+            "profiles": [
+              {
+                "name": "Reaver power fist - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "4+",
+                  "S": "20",
+                  "AP": "-4",
+                  "D": "14",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Reaver power fist - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "12",
+                  "WS": "4+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "6",
+                  "Keywords": "-"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -5021,6 +7061,42 @@
             ]
           },
           {
+            "name": "Inferno boltgun",
+            "profiles": [
+              {
+                "name": "Inferno boltgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
             "name": "Rubric Marine w/ warpflamer",
             "profiles": [
               {
@@ -5052,6 +7128,42 @@
             ]
           },
           {
+            "name": "Warpflamer",
+            "profiles": [
+              {
+                "name": "Warpflamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
             "name": "Rubric Marine w/ soulreaper cannon",
             "profiles": [
               {
@@ -5067,6 +7179,42 @@
                   "Keywords": "-"
                 }
               },
+              {
+                "name": "Soulreaper cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Soulreaper cannon",
+            "profiles": [
               {
                 "name": "Soulreaper cannon",
                 "typeName": "Ranged Weapons",
@@ -5167,7 +7315,7 @@
           "W": "4",
           "LD": "6+",
           "OC": "1",
-          "InSv": ""
+          "InSv": "4+"
         },
         "keywords": [
           "Faction: Thousand Sons",
@@ -5212,6 +7360,158 @@
                   "AP": "-2",
                   "D": "2",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Inferno combi-bolter",
+            "profiles": [
+              {
+                "name": "Inferno combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Prosperine khopesh",
+            "profiles": [
+              {
+                "name": "Prosperine khopesh",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Scarab Occult Terminator w/ heavy warpflamer",
+            "profiles": [
+              {
+                "name": "Heavy warpflamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              },
+              {
+                "name": "Prosperine khopesh",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Prosperine khopesh",
+            "profiles": [
+              {
+                "name": "Prosperine khopesh",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Scarab Occult Terminator w/ soulreaper cannon",
+            "profiles": [
+              {
+                "name": "Prosperine khopesh",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Soulreaper cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Prosperine khopesh",
+            "profiles": [
+              {
+                "name": "Prosperine khopesh",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Soulreaper cannon",
+            "profiles": [
+              {
+                "name": "Soulreaper cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
                 }
               }
             ]
@@ -5448,7 +7748,170 @@
             "description": "Once per turn, when you target this unit with the Fire Overwatch/ Heroic Intervention stratagem, that use is ‑1 CP."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Pyreflux meltagun",
+            "profiles": [
+              {
+                "name": "Pyreflux meltagun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "10",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": ""
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy warpflamer",
+            "profiles": [
+              {
+                "name": "Heavy warpflamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hellfyre missile rack",
+            "profiles": [
+              {
+                "name": "Hellfyre missile rack",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": ""
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power claw",
+            "profiles": [
+              {
+                "name": "Power claw",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Warpflame projector",
+            "profiles": [
+              {
+                "name": "Warpflame projector",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D3",
+                  "BS": "N/A",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": ""
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy warpflamer",
+            "profiles": [
+              {
+                "name": "Heavy warpflamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hellfyre missile rack",
+            "profiles": [
+              {
+                "name": "Hellfyre missile rack",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": ""
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Infiltrators",
           "Stealth",
@@ -5738,6 +8201,42 @@
                   "AP": "-1",
                   "D": "D3",
                   "Keywords": "Psychic"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Inferno combi-bolter",
+            "profiles": [
+              {
+                "name": "Inferno combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Inferno combi-weapon",
+            "profiles": [
+              {
+                "name": "Inferno combi-weapon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1"
                 }
               }
             ]
@@ -6176,6 +8675,24 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Chainsword",
+            "profiles": [
+              {
+                "name": "Chainsword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -6288,6 +8805,42 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Diabolus heavy stubber",
+            "profiles": [
+              {
+                "name": "Diabolus heavy stubber",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Havoc multi-launcher",
+            "profiles": [
+              {
+                "name": "Havoc multi-launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast, Indirect Fire"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -6366,6 +8919,42 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Diabolus heavy stubber",
+            "profiles": [
+              {
+                "name": "Diabolus heavy stubber",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Daemonbreath meltagun",
+            "profiles": [
+              {
+                "name": "Daemonbreath meltagun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 2"
                 }
               }
             ]
@@ -6463,6 +9052,42 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Diabolus heavy stubber",
+            "profiles": [
+              {
+                "name": "Diabolus heavy stubber",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Daemonbreath meltagun",
+            "profiles": [
+              {
+                "name": "Daemonbreath meltagun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 2"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -6544,6 +9169,42 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Diabolus heavy stubber",
+            "profiles": [
+              {
+                "name": "Diabolus heavy stubber",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Havoc multi-launcher",
+            "profiles": [
+              {
+                "name": "Havoc multi-launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast, Indirect Fire"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -6607,6 +9268,145 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Volkite veuglaire",
+            "profiles": [
+              {
+                "name": "Volkite veuglaire",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "4",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "0",
+                  "D": "2",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Conversion beam cannon",
+            "profiles": [
+              {
+                "name": "Conversion beam cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Conversion, Sustained Hits D3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Graviton pulsar",
+            "profiles": [
+              {
+                "name": "Graviton pulsar",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-VEHICLE 2+, Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Lightning lock",
+            "profiles": [
+              {
+                "name": "Lightning lock",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Sustained Hits 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Siege claw and rad cleanser",
+            "profiles": [
+              {
+                "name": "Rad cleanser",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-INFANTRY 2+, Ignores Cover, Torrent"
+                }
+              },
+              {
+                "name": "Siege claw",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Rad cleanser",
+            "profiles": [
+              {
+                "name": "Rad cleanser",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-INFANTRY 2+, Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Siege claw",
+            "profiles": [
+              {
+                "name": "Siege claw",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+2",
+                  "Keywords": "-"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -6652,7 +9452,129 @@
             "description": "Each time this model makes an attack that targets an enemy unit, if there are no other units from your opponent’s army within 6\" of that target, add 1 to the Wound roll."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Diabolus heavy stubber",
+            "profiles": [
+              {
+                "name": "Diabolus heavy stubber",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Havoc multi-launcher",
+            "profiles": [
+              {
+                "name": "Havoc multi-launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast, Indirect Fire"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Avenger chaincannon",
+            "profiles": [
+              {
+                "name": "Avenger chaincannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "12",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Daemonbreath spear",
+            "profiles": [
+              {
+                "name": "Daemonbreath spear",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 4"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Slaughterclaw",
+            "profiles": [
+              {
+                "name": "Slaughterclaw",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaper chaintalon",
+            "profiles": [
+              {
+                "name": "Reaper chaintalon - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "10",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Reaper chaintalon - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Deadly Demise",
           "Damaged: 1-5 wounds remaining",
@@ -6763,6 +9685,114 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Nemesis quake cannon",
+            "profiles": [
+              {
+                "name": "Nemesis quake cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "480\"",
+                  "A": "D6+6",
+                  "BS": "3+",
+                  "S": "16",
+                  "AP": "-4",
+                  "D": "4",
+                  "Keywords": "Blast, Indirect Fire"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Nemesis volcano cannon",
+            "profiles": [
+              {
+                "name": "Nemesis volcano cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "120\"",
+                  "A": "D3+3",
+                  "BS": "3+",
+                  "S": "24",
+                  "AP": "-5",
+                  "D": "14",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver gatling blaster",
+            "profiles": [
+              {
+                "name": "Reaver gatling blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "12",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver laser blaster",
+            "profiles": [
+              {
+                "name": "Reaver laser blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "8",
+                  "BS": "3+",
+                  "S": "20",
+                  "AP": "-3",
+                  "D": "D6+2",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver melta cannon",
+            "profiles": [
+              {
+                "name": "Reaver melta cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6+2",
+                  "BS": "3+",
+                  "S": "13",
+                  "AP": "-4",
+                  "D": "6",
+                  "Keywords": "Blast, Melta 4"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver volcano cannon",
+            "profiles": [
+              {
+                "name": "Reaver volcano cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "120\"",
+                  "A": "D3+1",
+                  "BS": "3+",
+                  "S": "24",
+                  "AP": "-5",
+                  "D": "14",
+                  "Keywords": "Blast, Heavy"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -6829,6 +9859,91 @@
                   "AP": "-1",
                   "D": "2",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Warhound vulcan mega-bolter",
+            "profiles": [
+              {
+                "name": "Warhound vulcan mega-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "20",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Warhound inferno gun",
+            "profiles": [
+              {
+                "name": "Warhound inferno gun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3D6",
+                  "BS": "N/A",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Warhound plasma blastgun",
+            "profiles": [
+              {
+                "name": "Warhound plasma blastgun - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "2D6+3",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-3",
+                  "D": "4",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Warhound plasma blastgun - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "2D6+3",
+                  "BS": "3+",
+                  "S": "10",
+                  "AP": "-3",
+                  "D": "5",
+                  "Keywords": "Blast, Hazardous"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Warhound turbo-laser destructor",
+            "profiles": [
+              {
+                "name": "Warhound turbo-laser destructor",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "D3+3",
+                  "BS": "3+",
+                  "S": "20",
+                  "AP": "-3",
+                  "D": "2D6",
+                  "Keywords": "Blast"
                 }
               }
             ]
@@ -6937,6 +10052,207 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Arioch power claw",
+            "profiles": [
+              {
+                "name": "Arioch power claw",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "20",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 1"
+                }
+              },
+              {
+                "name": "Arioch power claw - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "4+",
+                  "S": "20",
+                  "AP": "-4",
+                  "D": "24",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Arioch power claw - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "12",
+                  "WS": "4+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "8",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Belicosa volcano cannon",
+            "profiles": [
+              {
+                "name": "Belicosa volcano cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "120\"",
+                  "A": "D3+3",
+                  "BS": "3+",
+                  "S": "32",
+                  "AP": "-5",
+                  "D": "18",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Macro gatling blaster",
+            "profiles": [
+              {
+                "name": "Macro gatling blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "100\"",
+                  "A": "30",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Mori quake cannon",
+            "profiles": [
+              {
+                "name": "Mori quake cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "280\"",
+                  "A": "3D6",
+                  "BS": "3+",
+                  "S": "16",
+                  "AP": "-4",
+                  "D": "6",
+                  "Keywords": "Blast, Ignores Cover"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Sunfury plasma annihilator",
+            "profiles": [
+              {
+                "name": "Sunfury plasma annihilator - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "2D6+6",
+                  "BS": "3+",
+                  "S": "10",
+                  "AP": "-3",
+                  "D": "5",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Sunfury plasma annihilator - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "2D6+6",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "8",
+                  "Keywords": "Blast, Hazardous"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Two apocalypse launchers",
+            "profiles": [
+              {
+                "name": "Apocalypse launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "200\"",
+                  "A": "20",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Blast, Indirect Fire"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Apocalypse launcher",
+            "profiles": [
+              {
+                "name": "Apocalypse launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "200\"",
+                  "A": "20",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Blast, Indirect Fire"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Two laser blasters",
+            "profiles": [
+              {
+                "name": "Laser blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "16",
+                  "AP": "-4",
+                  "D": "D6+3",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Laser blaster",
+            "profiles": [
+              {
+                "name": "Laser blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "16",
+                  "AP": "-4",
+                  "D": "D6+3",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -6952,7 +10268,7 @@
   ],
   "_meta": {
     "bsdata_faction": "Chaos - Thousand Sons",
-    "bsdata_revision": 5,
+    "bsdata_revision": 6,
     "bsdata_units": 68,
     "mfm_units": 34,
     "merged_units": 68

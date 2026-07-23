@@ -2,23 +2,28 @@
   "_extends": "_base",
   "key": "dark-angels",
   "name": "Dark Angels",
-  "army_rules": ["Oath of Moment"],
-  "keywords": ["FACTION: DARK ANGELS", "FACTION: ADEPTUS ASTARTES"],
+  "army_rules": [
+    "Oath of Moment"
+  ],
+  "keywords": [
+    "FACTION: DARK ANGELS",
+    "FACTION: ADEPTUS ASTARTES"
+  ],
   "dispositions": {
     "gladius-task-force": "priority-assets",
     "stormlance-task-force": "disruption",
     "ceramite-sentinels": "take-and-hold",
     "armoured-speartip": "take-and-hold",
-    "ironstorm-spearhead": "purge-the-foe",
-    "firestorm-assault-force": "purge-the-foe",
+    "ironstorm-spearhead": "take-and-hold",
+    "firestorm-assault-force": "priority-assets",
     "vanguard-spearhead": "reconnaissance",
-    "1st-company-task-force": "priority-assets",
+    "1st-company-task-force": "purge-the-foe",
     "anvil-siege-force": "take-and-hold",
     "headhunter-task-force": "priority-assets",
     "orbital-assault-force": "take-and-hold",
     "librarius-conclave": "reconnaissance",
     "subversion-assets": "reconnaissance",
-    "fulguris-task-force": "disruption",
+    "fulguris-task-force": "reconnaissance",
     "bastion-task-force": "take-and-hold",
     "company-of-hunters": "disruption",
     "dark-age-arsenal": "priority-assets",
@@ -30,10 +35,130 @@
     "wrath-of-the-rock": "priority-assets"
   },
   "meta_profiles": {
-    "competitive": { "profiles": [["MEQ", 0.35], ["TEQ", 0.15], ["Light V", 0.25], ["Heavy V", 0.15], ["Knight", 0.10]], "melee_penalty": 0.8 },
-    "infantry": { "profiles": [["GEQ", 0.15], ["MEQ", 0.45], ["TEQ", 0.25], ["Light V", 0.10], ["Heavy V", 0.05]], "melee_penalty": 0.8 },
-    "vehicle": { "profiles": [["Light V", 0.25], ["Heavy V", 0.35], ["C'tan", 0.15], ["Knight", 0.25]], "melee_penalty": 0.8 },
-    "elite": { "profiles": [["TEQ", 0.30], ["Heavy V", 0.30], ["C'tan", 0.20], ["Knight", 0.20]], "melee_penalty": 0.8 },
-    "all-comers": { "profiles": [["GEQ", 0.15], ["MEQ", 0.25], ["TEQ", 0.15], ["Light V", 0.20], ["Heavy V", 0.15], ["C'tan", 0.05], ["Knight", 0.05]], "melee_penalty": 1.0 }
+    "competitive": {
+      "profiles": [
+        [
+          "MEQ",
+          0.35
+        ],
+        [
+          "TEQ",
+          0.15
+        ],
+        [
+          "Light V",
+          0.25
+        ],
+        [
+          "Heavy V",
+          0.15
+        ],
+        [
+          "Knight",
+          0.1
+        ]
+      ],
+      "melee_penalty": 0.8
+    },
+    "infantry": {
+      "profiles": [
+        [
+          "GEQ",
+          0.15
+        ],
+        [
+          "MEQ",
+          0.45
+        ],
+        [
+          "TEQ",
+          0.25
+        ],
+        [
+          "Light V",
+          0.1
+        ],
+        [
+          "Heavy V",
+          0.05
+        ]
+      ],
+      "melee_penalty": 0.8
+    },
+    "vehicle": {
+      "profiles": [
+        [
+          "Light V",
+          0.25
+        ],
+        [
+          "Heavy V",
+          0.35
+        ],
+        [
+          "C'tan",
+          0.15
+        ],
+        [
+          "Knight",
+          0.25
+        ]
+      ],
+      "melee_penalty": 0.8
+    },
+    "elite": {
+      "profiles": [
+        [
+          "TEQ",
+          0.3
+        ],
+        [
+          "Heavy V",
+          0.3
+        ],
+        [
+          "C'tan",
+          0.2
+        ],
+        [
+          "Knight",
+          0.2
+        ]
+      ],
+      "melee_penalty": 0.8
+    },
+    "all-comers": {
+      "profiles": [
+        [
+          "GEQ",
+          0.15
+        ],
+        [
+          "MEQ",
+          0.25
+        ],
+        [
+          "TEQ",
+          0.15
+        ],
+        [
+          "Light V",
+          0.2
+        ],
+        [
+          "Heavy V",
+          0.15
+        ],
+        [
+          "C'tan",
+          0.05
+        ],
+        [
+          "Knight",
+          0.05
+        ]
+      ],
+      "melee_penalty": 1.0
+    }
   }
 }

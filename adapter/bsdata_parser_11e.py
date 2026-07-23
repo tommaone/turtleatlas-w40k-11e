@@ -28,6 +28,7 @@ from typing import Any
 SKIP_PREFIXES = ["Library -"]
 SKIP_FACTIONS = {"Unaligned Forces"}
 CRUCIBLE_RE = re.compile(r'\[Crucible\]', re.IGNORECASE)
+MULTIPLICITY_RE = re.compile(r'^(\d+)\s+(.+)$')
 
 
 class BSDataParser11e:
@@ -206,6 +207,27 @@ class BSDataParser11e:
 
     # -- Entry resolution ------------------------------------------------------
 
+    def _build_parent_groups(self, obj, _parent_group: dict | None = None):
+        """Recursively build index of entry_id → parent selectionEntryGroups.
+
+        Used by level 4 weapon extraction to find weapons stored as siblings
+        in the parent group rather than in the model entry itself.
+        """
+        if isinstance(obj, dict):
+            if obj.get("type") == "selectionEntryGroup":
+                _parent_group = obj
+            # If this references a model (via selectionEntry or entryLink), record the parent
+            if _parent_group:
+                target_id = obj.get("targetId", "")
+                entry_type = obj.get("type", "")
+                if target_id and entry_type in ("selectionEntry", "entryLink"):
+                    self._parent_groups.setdefault(target_id, []).append(_parent_group)
+            for v in obj.values():
+                self._build_parent_groups(v, _parent_group)
+        elif isinstance(obj, list):
+            for item in obj:
+                self._build_parent_groups(item, _parent_group)
+
     def _resolve_entry(self, target_id: str, entry_index: dict[str, dict]) -> dict | None:
         """Resolve a targetId to a sharedSelectionEntry."""
         return entry_index.get(target_id)
@@ -312,6 +334,12 @@ class BSDataParser11e:
 
         units: list[dict] = []
         _profile_cache: dict[str, list[dict]] = {}
+
+        # Build parent_groups index: entry_id → list of parent selectionEntryGroups
+        # Used by level 4 weapon extraction to find weapons stored as siblings
+        self._parent_groups: dict[str, list[dict]] = {}
+        for root in (roots if entry_index else self._load_catalogue_roots(cat, include_linked=True)):
+            self._build_parent_groups(root)
 
         entries = self._collect_entries(roots, entry_index=entry_index)
         for entry in entries:
@@ -469,6 +497,31 @@ class BSDataParser11e:
             # -- Weapons --
             weapons: list[dict] = []
 
+            def _make_weapon(entry_name: str, profiles: list[dict]) -> dict:
+                """Build a weapon dict, extracting multiplicity from BSData names.
+
+                BSData encodes weapon counts in selection entry names like
+                "2 Lascannons", "2 Hurricane Bolters", etc. The count is the
+                leading number; the rest is the base weapon name.
+
+                Only apply count when the entry has a single weapon profile
+                (not mixed ranged+melee squad entries like "5 Plasma pistols").
+                """
+                count = 1
+                name = entry_name
+                m = MULTIPLICITY_RE.match(entry_name)
+                if m and len(profiles) == 1:
+                    count = int(m.group(1))
+                    name = profiles[0].get("name", m.group(2))
+                elif m and len(profiles) > 1:
+                    # Multi-profile entries (e.g. "5 Plasma pistols" = squad option)
+                    # Don't apply count — these are loadout choices, not weapon multiplicities
+                    name = m.group(2)
+                w = {"name": name, "profiles": profiles}
+                if count > 1:
+                    w["count"] = count
+                return w
+
             # 1. Direct entryLinks on the unit
             for el in entry.get("entryLinks", []):
                 if el.get("hidden") == "true":
@@ -485,10 +538,7 @@ class BSDataParser11e:
                                     continue
                                 wprofs = self._resolve_profiles(sel, entry_index, _cache=_profile_cache)
                                 if wprofs:
-                                    weapons.append({
-                                        "name": sel.get("name", ""),
-                                        "profiles": wprofs,
-                                    })
+                                    weapons.append(_make_weapon(sel.get("name", ""), wprofs))
                 elif el_type == "selectionEntry":
                     tid = el.get("targetId", "")
                     if tid:
@@ -496,39 +546,55 @@ class BSDataParser11e:
                         if target is not None:
                             wprofs = self._resolve_profiles(target, entry_index, _cache=_profile_cache)
                             if wprofs:
-                                weapons.append({
-                                    "name": target.get("name", ""),
-                                    "profiles": wprofs,
-                                })
+                                weapons.append(_make_weapon(target.get("name", ""), wprofs))
 
             # 2. SelectionEntryGroups → options with weapons
-            for sg in entry.get("selectionEntryGroups", []):
-                for sel in sg.get("selectionEntries", []):
+            #    Recurse into nested groups (some weapons are 3+ levels deep,
+            #    e.g. Bloodthirster: Wargear → Replace great axe → Axe and flail → profiles)
+            def _extract_weapons_from_group(group: dict):
+                for sel in group.get("selectionEntries", []):
                     if sel.get("hidden") == "true":
                         continue
                     wprofs = self._resolve_profiles(sel, entry_index, _cache=_profile_cache)
                     if wprofs:
-                        weapons.append({
-                            "name": sel.get("name", ""),
-                            "profiles": wprofs,
-                        })
+                        weapons.append(_make_weapon(sel.get("name", ""), wprofs))
+                    # Also recurse into nested selectionEntries
+                    for sel2 in sel.get("selectionEntries", []):
+                        wprofs2 = self._resolve_profiles(sel2, entry_index, _cache=_profile_cache)
+                        if wprofs2:
+                            weapons.append(_make_weapon(sel2.get("name", ""), wprofs2))
+                    # Recurse into model's own selectionEntryGroups (e.g. Wargear groups
+                    # with entryLinks to weapons, as in Deffkoptas, Carnifexes, etc.)
+                    for model_sg in sel.get("selectionEntryGroups", []):
+                        _extract_weapons_from_group(model_sg)
 
-                # entryLinks inside groups too
-                for el in sg.get("entryLinks", []):
+                for el in group.get("entryLinks", []):
                     if el.get("hidden") == "true":
                         continue
                     tid = el.get("targetId", "")
                     if not tid:
                         continue
-                    # Could be selectionEntry or selectionEntryGroup
                     target = self._resolve_entry(tid, entry_index)
                     if target is not None:
                         wprofs = self._resolve_profiles(target, entry_index, _cache=_profile_cache)
                         if wprofs:
-                            weapons.append({
-                                "name": target.get("name", ""),
-                                "profiles": wprofs,
-                            })
+                            weapons.append(_make_weapon(target.get("name", ""), wprofs))
+
+                # Recurse into nested selectionEntryGroups
+                for sub_group in group.get("selectionEntryGroups", []):
+                    _extract_weapons_from_group(sub_group)
+
+            for sg in entry.get("selectionEntryGroups", []):
+                _extract_weapons_from_group(sg)
+
+            # 2b. Recurse into model selectionEntries → their selectionEntryGroups
+            #     Some units (e.g. Carnifexes, Wraithguard) have weapons defined
+            #     inside model entries, not at the unit level.
+            if not weapons:
+                for sel in entry.get("selectionEntries", []):
+                    if sel.get("type") == "model":
+                        for sg in sel.get("selectionEntryGroups", []):
+                            _extract_weapons_from_group(sg)
 
             # 3. Direct selectionEntries (units with inline weapons)
             for sel in entry.get("selectionEntries", []):
@@ -536,10 +602,25 @@ class BSDataParser11e:
                     continue
                 wprofs = self._resolve_profiles(sel, entry_index, _cache=_profile_cache)
                 if wprofs:
-                    weapons.append({
-                        "name": sel.get("name", ""),
-                        "profiles": wprofs,
-                    })
+                    weapons.append(_make_weapon(sel.get("name", ""), wprofs))
+
+            # 4. Parent selectionEntryGroups — weapons stored as siblings
+            #    Some models (e.g. Bloodthirster) have weapons defined as
+            #    sibling entries in the parent group, not in the model itself.
+            #    Find parent groups that reference this model and extract weapons.
+            if not weapons:
+                entry_id = entry.get("id", "")
+                if entry_id:
+                    for group in self._parent_groups.get(entry_id, []):
+                        for sel in group.get("selections", []):
+                            if sel.get("hidden") == "true":
+                                continue
+                            # Skip entries that reference other models
+                            if sel.get("type") == "selectionEntry" and sel.get("targetId"):
+                                continue
+                            wprofs = self._resolve_profiles(sel, entry_index, _cache=_profile_cache)
+                            if wprofs:
+                                weapons.append(_make_weapon(sel.get("name", ""), wprofs))
 
             # -- Rules / infoLinks --
             rules: list[str] = []
@@ -564,6 +645,63 @@ class BSDataParser11e:
 
         return units
 
+    def build_multiplicity_index(self, cat: dict,
+                                  entry_index: dict[str, dict] | None = None
+                                  ) -> dict[str, list[dict]]:
+        """Scan raw BSData for weapon multiplicity entries (e.g. "2 Lascannons").
+
+        Returns dict mapping unit name → list of {count, weapon_name, target_id}.
+        These are wargear OPTION entries (sponsons, etc.) that the normal
+        weapon extraction misses because they live in parent selectionEntryGroups.
+        """
+        if entry_index is None:
+            roots = self._load_catalogue_roots(cat, include_linked=True)
+            entry_index = self._build_entry_index(roots)
+
+        result: dict[str, list[dict]] = {}
+
+        def _scan(obj, unit_name: str = ""):
+            if isinstance(obj, dict):
+                name = obj.get("name", "")
+                # Track unit/model entries
+                new_unit = unit_name
+                if obj.get("type") in ("model", "unit") and name:
+                    new_unit = name
+
+                # Check for multiplicity pattern
+                m = MULTIPLICITY_RE.match(name)
+                if m and int(m.group(1)) <= 10:
+                    count = int(m.group(1))
+                    weapon_name = m.group(2)
+                    # Find target weapon profile via entryLinks
+                    target_ids = []
+                    for el in obj.get("entryLinks", []):
+                        tid = el.get("targetId", "")
+                        if tid:
+                            target_ids.append(tid)
+                    # Also check selections for weapon references
+                    for sel in obj.get("selections", []):
+                        for el in sel.get("entryLinks", []):
+                            tid = el.get("targetId", "")
+                            if tid:
+                                target_ids.append(tid)
+
+                    if new_unit and count > 1:
+                        result.setdefault(new_unit, []).append({
+                            "count": count,
+                            "weapon_name": weapon_name,
+                            "target_ids": target_ids,
+                        })
+
+                for v in obj.values():
+                    _scan(v, new_unit)
+            elif isinstance(obj, list):
+                for item in obj:
+                    _scan(item, unit_name)
+
+        _scan(cat)
+        return result
+
     def query_faction(self, faction_name: str, include_legends: bool = False) -> dict | None:
         """Return full data for a faction, including linked catalogues."""
         for path in self._find_json_files():
@@ -576,6 +714,23 @@ class BSDataParser11e:
                 roots = self._load_catalogue_roots(cat, include_linked=True)
                 entry_index = self._build_entry_index(roots)
                 units = self.extract_units(cat, name, include_legends, entry_index)
+                # Deduplicate: truly identical entries (same name + same stats)
+                # Different datasheets (e.g. "Gretchin" vs "Gretchin (Armageddon)") are NOT dupes
+                seen = {}
+                deduped = []
+                for u in units:
+                    stats_str = str(sorted((u.get("stats") or {}).items()))
+                    key = f"{u['name'].lower().strip()}|{stats_str}"
+                    if key in seen:
+                        prev = seen[key]
+                        if len(u.get("weapons", [])) > len(prev.get("weapons", [])):
+                            deduped.remove(prev)
+                            deduped.append(u)
+                            seen[key] = u
+                    else:
+                        deduped.append(u)
+                        seen[key] = u
+                units = deduped
                 all_units = self.extract_units(cat, name, include_legends=True, entry_index=entry_index)
                 legends_count = len(all_units) - len(units)
                 return {

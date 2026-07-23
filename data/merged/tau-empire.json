@@ -237,6 +237,75 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Burst cannon",
+            "profiles": [
+              {
+                "name": "Burst cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "4",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "cyclic ion blasters",
+            "profiles": [
+              {
+                "name": "Cyclic ion blaster - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Cyclic ion blaster - overcharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Hazardous"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Seeker missile",
+            "profiles": [
+              {
+                "name": "Seeker missile",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "14",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "One Shot"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -275,11 +344,11 @@
     {
       "name": "Battlesuit Veteran [Crucible]",
       "in_bsdata": true,
-      "in_mfm": false,
+      "in_mfm": true,
       "deep_strike": false,
       "profile": {
         "name": "Battlesuit Veteran [Crucible]",
-        "points": 60,
+        "points": 95,
         "stats": {
           "M": "8\"",
           "T": "4",
@@ -317,7 +386,18 @@
           "Stealth"
         ]
       },
-      "pricing": null,
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 95
+            }
+          ]
+        }
+      ],
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -360,6 +440,78 @@
           }
         ],
         "weapons": [
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "5+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Pulse pistol",
+            "profiles": [
+              {
+                "name": "Pulse pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Pulse blaster",
+            "profiles": [
+              {
+                "name": "Pulse blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "10\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Support turret",
+            "profiles": [
+              {
+                "name": "Support turret",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Indirect Fire, Twin-linked"
+                }
+              }
+            ]
+          },
           {
             "name": "Breacher Fire Warriors",
             "profiles": [
@@ -476,6 +628,24 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Cutting blade",
+            "profiles": [
+              {
+                "name": "Cutting blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
           }
         ],
         "rules": []
@@ -531,6 +701,204 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy rail rifle",
+            "profiles": [
+              {
+                "name": "Heavy rail rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "60\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "12",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Heavy, Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "High-yield missile pods",
+            "profiles": [
+              {
+                "name": "High-yield missile pods",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "6",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Seeker missile",
+            "profiles": [
+              {
+                "name": "Seeker missile",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "14",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "One Shot"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin plasma rifle",
+            "profiles": [
+              {
+                "name": "Twin plasma rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin smart missile system",
+            "profiles": [
+              {
+                "name": "Twin smart missile system",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "4",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Indirect Fire, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Crushing bulk",
+            "profiles": [
+              {
+                "name": "Crushing bulk",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "5+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy rail rifle",
+            "profiles": [
+              {
+                "name": "Heavy rail rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "60\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "12",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Heavy, Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "High-yield missile pods",
+            "profiles": [
+              {
+                "name": "High-yield missile pods",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "6",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Seeker missile",
+            "profiles": [
+              {
+                "name": "Seeker missile",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "14",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "One Shot"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin plasma rifle",
+            "profiles": [
+              {
+                "name": "Twin plasma rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin smart missile system",
+            "profiles": [
+              {
+                "name": "Twin smart missile system",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "4",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Indirect Fire, Twin-linked"
                 }
               }
             ]
@@ -867,6 +1235,163 @@
                 }
               }
             ]
+          },
+          {
+            "name": "High-output burst cannon",
+            "profiles": [
+              {
+                "name": "High-output burst cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "8",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Missile pod",
+            "profiles": [
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Burst cannon",
+            "profiles": [
+              {
+                "name": "Burst cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "4",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Airbursting fragmentation projector",
+            "profiles": [
+              {
+                "name": "Airbursting fragmentation projector",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast, Indirect Fire"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Cyclic ion blaster",
+            "profiles": [
+              {
+                "name": "Cyclic ion blaster - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Cyclic ion blaster - overcharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Hazardous"
+                }
+              }
+            ]
+          },
+          {
+            "name": "T'au flamer",
+            "profiles": [
+              {
+                "name": "T'au flamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Fusion blaster",
+            "profiles": [
+              {
+                "name": "Fusion blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Plasma rifle",
+            "profiles": [
+              {
+                "name": "Plasma rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -949,6 +1474,145 @@
                   "S": "5",
                   "AP": "0",
                   "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Missile pod",
+            "profiles": [
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Burst cannon",
+            "profiles": [
+              {
+                "name": "Burst cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "4",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Airbursting fragmentation projector",
+            "profiles": [
+              {
+                "name": "Airbursting fragmentation projector",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast, Indirect Fire"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Cyclic ion blaster",
+            "profiles": [
+              {
+                "name": "Cyclic ion blaster - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Cyclic ion blaster - overcharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Hazardous"
+                }
+              }
+            ]
+          },
+          {
+            "name": "T'au flamer",
+            "profiles": [
+              {
+                "name": "T'au flamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Fusion blaster",
+            "profiles": [
+              {
+                "name": "Fusion blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Plasma rifle",
+            "profiles": [
+              {
+                "name": "Plasma rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "3",
                   "Keywords": "-"
                 }
               }
@@ -1183,7 +1847,62 @@
             "description": "Each time a model in this unit makes a ranged attack, you can ignore any or all modifiers to the Hit roll."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Battlesuit fists",
+            "profiles": [
+              {
+                "name": "Battlesuit fists",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Missile pod",
+            "profiles": [
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Plasma rifle",
+            "profiles": [
+              {
+                "name": "Plasma rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Deep Strike",
           "For The Greater Good"
@@ -1257,7 +1976,62 @@
             "description": "The unit is eligible to shoot in a turn in which it Fell Back."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Battlesuit fists",
+            "profiles": [
+              {
+                "name": "Battlesuit fists",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Burst cannon",
+            "profiles": [
+              {
+                "name": "Burst cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "4",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "T'au flamer",
+            "profiles": [
+              {
+                "name": "T'au flamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Deep Strike",
           "For The Greater Good"
@@ -1327,7 +2101,44 @@
             "description": "Each time a model in this unit makes a ranged attack that targets a **MONSTER** or **VEHICLE** unit, you can re-roll the Wound roll and you can re-roll the Damage roll."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Fusion blaster",
+            "profiles": [
+              {
+                "name": "Fusion blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "9",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Battlesuit fists",
+            "profiles": [
+              {
+                "name": "Battlesuit fists",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Deep Strike",
           "For The Greater Good"
@@ -1529,6 +2340,62 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin pulse carbine",
+            "profiles": [
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Twin-linked, Assault"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Smart missile system",
+            "profiles": [
+              {
+                "name": "Smart missile system",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Indirect Fire"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Seeker missile",
+            "profiles": [
+              {
+                "name": "Seeker missile",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "14",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "One Shot"
                 }
               }
             ]
@@ -1800,6 +2667,109 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Twin burst cannon",
+            "profiles": [
+              {
+                "name": "Twin burst cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "4",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin T'au flamer",
+            "profiles": [
+              {
+                "name": "Twin T'au flamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin fusion blaster",
+            "profiles": [
+              {
+                "name": "Twin fusion blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "9",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 2, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Fusion collider",
+            "profiles": [
+              {
+                "name": "Fusion collider",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "12",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Cyclic ion raker",
+            "profiles": [
+              {
+                "name": "Cyclic ion raker - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "6",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Cyclic ion raker - overcharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "6",
+                  "BS": "4+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Hazardous"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -1892,6 +2862,149 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Railgun",
+            "profiles": [
+              {
+                "name": "Railgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "20",
+                  "AP": "-5",
+                  "D": "D6+6",
+                  "Keywords": "Heavy, Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ion cannon",
+            "profiles": [
+              {
+                "name": "Ion cannon - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "60\"",
+                  "A": "D6+3",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Ion cannon - overcharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "60\"",
+                  "A": "D6+3",
+                  "BS": "4+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Blast, Hazardous"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Seeker missile",
+            "profiles": [
+              {
+                "name": "Seeker missile",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "14",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "One Shot"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Accelerator burst cannon",
+            "profiles": [
+              {
+                "name": "Accelerator burst cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "4",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Twin pulse carbine",
+            "profiles": [
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Twin pulse carbine",
+            "profiles": [
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Smart missile system",
+            "profiles": [
+              {
+                "name": "Smart missile system",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Indirect Fire"
+                }
+              }
+            ],
+            "count": 2
           }
         ],
         "rules": [
@@ -2070,6 +3183,78 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Kroot pistol",
+            "profiles": [
+              {
+                "name": "Kroot pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Kroot carbine",
+            "profiles": [
+              {
+                "name": "Kroot carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Kroot rifle",
+            "profiles": [
+              {
+                "name": "Kroot rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -2213,6 +3398,138 @@
             ]
           },
           {
+            "name": "Kroot Farstalker w/ Dvorgite skinner",
+            "profiles": [
+              {
+                "name": "Dvorgite skinner",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              },
+              {
+                "name": "Kroot pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Kroot Farstalker w/ Londaxi tribalest",
+            "profiles": [
+              {
+                "name": "Londaxi tribalest",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-Vehicle 4+, Devastating Wounds, Heavy"
+                }
+              },
+              {
+                "name": "Kroot pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Kroot Farstalker",
+            "profiles": [
+              {
+                "name": "Farstalker firearm",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
+                }
+              },
+              {
+                "name": "Kroot pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
             "name": "Kroot Kill-broker",
             "profiles": [
               {
@@ -2239,6 +3556,60 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ritual blade",
+            "profiles": [
+              {
+                "name": "Ritual blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Farstalker firearm",
+            "profiles": [
+              {
+                "name": "Farstalker firearm",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "T'au tech rifle",
+            "profiles": [
+              {
+                "name": "T'au tech rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
                 }
               }
             ]
@@ -2452,6 +3823,24 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Ripping fangs",
+            "profiles": [
+              {
+                "name": "Ripping fangs",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -2547,6 +3936,73 @@
                   "AP": "-1",
                   "D": "1",
                   "Keywords": "Extra Attacks"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Blast javelin and hunting javelin",
+            "profiles": [
+              {
+                "name": "Blast javelin",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "4+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Assault, Blast"
+                }
+              },
+              {
+                "name": "Hunting javelin",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lance"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hunting javelin",
+            "profiles": [
+              {
+                "name": "Hunting javelin",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lance"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Kroot long gun",
+            "profiles": [
+              {
+                "name": "Kroot long gun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Heavy, Precision"
                 }
               }
             ]
@@ -2749,6 +4205,42 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bladestave and prey-hook",
+            "profiles": [
+              {
+                "name": "Bladestave and prey-hook",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Lethal Hits"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dart-bow and tri-blade",
+            "profiles": [
+              {
+                "name": "Dart-bow and tri-blade",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "D3+1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "2",
+                  "Keywords": "Anti-Infantry 3+, Assault, Heavy"
                 }
               }
             ]
@@ -2973,6 +4465,42 @@
             ]
           },
           {
+            "name": "Krootox fists",
+            "profiles": [
+              {
+                "name": "Krootox fists",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Extra Attacks"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Repeater cannon",
+            "profiles": [
+              {
+                "name": "Repeater cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          },
+          {
             "name": "Krootox Rider w/ tanglecannon",
             "profiles": [
               {
@@ -3001,6 +4529,42 @@
                   "Keywords": "Extra Attacks"
                 }
               },
+              {
+                "name": "Tanglecannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D6+1",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast, Heavy"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Krootox fists",
+            "profiles": [
+              {
+                "name": "Krootox fists",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Extra Attacks"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Tanglecannon",
+            "profiles": [
               {
                 "name": "Tanglecannon",
                 "typeName": "Ranged Weapons",
@@ -3311,6 +4875,24 @@
             ]
           },
           {
+            "name": "Pulse carbine",
+            "profiles": [
+              {
+                "name": "Pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
             "name": "Pathfinders w/ pulse carbine and grenade launcher",
             "profiles": [
               {
@@ -3379,6 +4961,295 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Pulse carbine",
+            "profiles": [
+              {
+                "name": "Pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Pathfinders w/ ion rifle",
+            "profiles": [
+              {
+                "name": "Pulse pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "5+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Ion rifle - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "3",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Heavy"
+                }
+              },
+              {
+                "name": "Ion rifle - overcharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "3",
+                  "BS": "5+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Hazardous, Heavy"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ion rifle",
+            "profiles": [
+              {
+                "name": "Ion rifle - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "3",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Heavy"
+                }
+              },
+              {
+                "name": "Ion rifle - overcharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "3",
+                  "BS": "5+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Hazardous, Heavy"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Pathfinders w/ rail rifle",
+            "profiles": [
+              {
+                "name": "Pulse pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "5+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Rail rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "1",
+                  "BS": "5+",
+                  "S": "10",
+                  "AP": "-4",
+                  "D": "3",
+                  "Keywords": "Devastating Wounds, Heavy"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Rail rifle",
+            "profiles": [
+              {
+                "name": "Rail rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "1",
+                  "BS": "5+",
+                  "S": "10",
+                  "AP": "-4",
+                  "D": "3",
+                  "Keywords": "Devastating Wounds, Heavy"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Pulse carbine",
+            "profiles": [
+              {
+                "name": "Pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "5+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Pulse pistol",
+            "profiles": [
+              {
+                "name": "Pulse pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Semi-automatic grenade launcher",
+            "profiles": [
+              {
+                "name": "Semi-automatic grenade launcher - EMP",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Vehicle 4+, Devastating Wounds"
+                }
+              },
+              {
+                "name": "Semi-automatic grenade launcher - fusion",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Recon drone",
+            "profiles": [
+              {
+                "name": "Drone burst cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "4",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Drone burst cannon",
+            "profiles": [
+              {
+                "name": "Drone burst cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "4",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -3440,7 +5311,98 @@
             "description": "At the end of your Movement phase, select one enemy unit within 12\" of this unit; that enemy unit must take a Battle-shock test."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Armoured hull",
+            "profiles": [
+              {
+                "name": "Armoured hull",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "5+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin pulse carbine",
+            "profiles": [
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Twin-linked, Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Piranha burst cannon",
+            "profiles": [
+              {
+                "name": "Piranha burst cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "4",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Piranha fusion blaster",
+            "profiles": [
+              {
+                "name": "Piranha fusion blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "9",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 4"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Seeker missile",
+            "profiles": [
+              {
+                "name": "Seeker missile",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "14",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "One Shot"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Deadly Demise",
           "Scouts",
@@ -3588,6 +5550,42 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Missile pod",
+            "profiles": [
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Accelerator burst cannon",
+            "profiles": [
+              {
+                "name": "Accelerator burst cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "4",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -3659,6 +5657,127 @@
                   "AP": "0",
                   "D": "2",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy burst cannon",
+            "profiles": [
+              {
+                "name": "Heavy burst cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "12",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ion accelerator",
+            "profiles": [
+              {
+                "name": "Ion accelerator - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "6",
+                  "BS": "4+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Ion accelerator - overcharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "6",
+                  "BS": "4+",
+                  "S": "10",
+                  "AP": "-3",
+                  "D": "4",
+                  "Keywords": "Hazardous"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Missile Drone",
+            "profiles": [
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin smart missile system",
+            "profiles": [
+              {
+                "name": "Twin smart missile system",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Indirect Fire, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin fusion blaster",
+            "profiles": [
+              {
+                "name": "Twin fusion blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "9",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 2, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin plasma rifle",
+            "profiles": [
+              {
+                "name": "Twin plasma rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "Twin-linked"
                 }
               }
             ]
@@ -3909,6 +6028,63 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Accelerator burst cannon",
+            "profiles": [
+              {
+                "name": "Accelerator burst cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "4",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Twin pulse carbine",
+            "profiles": [
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Twin-linked, Assault"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Smart missile system",
+            "profiles": [
+              {
+                "name": "Smart missile system",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Indirect Fire"
+                }
+              }
+            ],
+            "count": 2
           }
         ],
         "rules": [
@@ -3997,7 +6173,8 @@
                   "Keywords": "-"
                 }
               }
-            ]
+            ],
+            "count": 4
           },
           {
             "name": "Stealth Shas'ui w/ fusion blaster",
@@ -4015,6 +6192,79 @@
                   "Keywords": "-"
                 }
               },
+              {
+                "name": "Fusion blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "9",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 2"
+                }
+              }
+            ],
+            "count": 4
+          },
+          {
+            "name": "Battlesuit fists",
+            "profiles": [
+              {
+                "name": "Battlesuit fists",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "5+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Pulse pistol",
+            "profiles": [
+              {
+                "name": "Pulse pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Burst cannon",
+            "profiles": [
+              {
+                "name": "Burst cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "4",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Fusion blaster",
+            "profiles": [
               {
                 "name": "Fusion blaster",
                 "typeName": "Ranged Weapons",
@@ -4180,6 +6430,109 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Pulse driver cannon",
+            "profiles": [
+              {
+                "name": "Pulse Driver Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "D6+3",
+                  "BS": "4+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "Blast, Heavy"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Pulse blast cannon",
+            "profiles": [
+              {
+                "name": "Pulse blast cannon - focused",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "24",
+                  "AP": "-6",
+                  "D": "12",
+                  "Keywords": "Heavy"
+                }
+              },
+              {
+                "name": "Pulse blast cannon - dispersed",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "6",
+                  "BS": "4+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "4",
+                  "Keywords": "Heavy"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin airbursting fragmentation projector",
+            "profiles": [
+              {
+                "name": "Twin airbursting fragmentation projector",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "D6",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast, Heavy, Indirect Fire, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin burst cannon",
+            "profiles": [
+              {
+                "name": "Twin burst cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "4",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Heavy, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin T'au flamer",
+            "profiles": [
+              {
+                "name": "Twin T'au flamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent, Twin-linked"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -4296,6 +6649,24 @@
             ]
           },
           {
+            "name": "Pulse carbine",
+            "profiles": [
+              {
+                "name": "Pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
             "name": "Fire Warrior w/ pulse rifle",
             "profiles": [
               {
@@ -4335,6 +6706,78 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "5+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Pulse pistol",
+            "profiles": [
+              {
+                "name": "Pulse pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Pulse rifle",
+            "profiles": [
+              {
+                "name": "Pulse rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Support turret",
+            "profiles": [
+              {
+                "name": "Support turret",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Indirect Fire, Twin-linked"
                 }
               }
             ]
@@ -4459,6 +6902,42 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Twin missile pod",
+            "profiles": [
+              {
+                "name": "Twin missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Missile pod",
+            "profiles": [
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -4571,6 +7050,198 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "Indirect Fire"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Tri-axis ion cannon",
+            "profiles": [
+              {
+                "name": "Tri-axis ion cannon - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D6+3",
+                  "BS": "4+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Tri-axis ion cannon - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D6+3",
+                  "BS": "4+",
+                  "S": "9",
+                  "AP": "-3",
+                  "D": "3",
+                  "Keywords": "Blast, Hazardous"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Fusion eradicator",
+            "profiles": [
+              {
+                "name": "Fusion eradicator",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "5",
+                  "BS": "4+",
+                  "S": "10",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Melta 3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Pulse ordnance driver",
+            "profiles": [
+              {
+                "name": "Pulse ordnance driver",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "60\"",
+                  "A": "8",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "3",
+                  "Keywords": "Anti-Infantry 2+"
+                }
+              }
+            ],
+            "count": 3
+          },
+          {
+            "name": "Pulse ordnance driver",
+            "profiles": [
+              {
+                "name": "Pulse ordnance driver",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "60\"",
+                  "A": "8",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "3",
+                  "Keywords": "Anti-Infantry 2+"
+                }
+              }
+            ],
+            "count": 3
+          },
+          {
+            "name": "Nexus missile launcher",
+            "profiles": [
+              {
+                "name": "Nexus missile launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "8",
+                  "BS": "4+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Nexus missile launcher",
+            "profiles": [
+              {
+                "name": "Nexus missile launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "8",
+                  "BS": "4+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Heavy rail cannon array and fragmentation cluster shell launcher",
+            "profiles": [
+              {
+                "name": "Heavy rail cannon array",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "120\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "26",
+                  "AP": "-5",
+                  "D": "16",
+                  "Keywords": "Devastating Wounds, Heavy"
+                }
+              },
+              {
+                "name": "Fragmentation cluster shell launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2D6+6",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy rail cannon array",
+            "profiles": [
+              {
+                "name": "Heavy rail cannon array",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "120\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "26",
+                  "AP": "-5",
+                  "D": "16",
+                  "Keywords": "Devastating Wounds, Heavy"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Fragmentation cluster shell launcher",
+            "profiles": [
+              {
+                "name": "Fragmentation cluster shell launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2D6+6",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Blast"
                 }
               }
             ]
@@ -5127,6 +7798,234 @@
                 }
               }
             ]
+          },
+          {
+            "name": "cyclic ion blasters",
+            "profiles": [
+              {
+                "name": "Cyclic ion blaster - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Cyclic ion blaster - overcharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Hazardous"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Burst cannon",
+            "profiles": [
+              {
+                "name": "Burst cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "4",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Ion cannons",
+            "profiles": [
+              {
+                "name": "Ion cannon - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "60\"",
+                  "A": "D6+3",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Ion cannon - overcharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "60\"",
+                  "A": "D6+3",
+                  "BS": "4+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Blast, Hazardous"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Ion cannon",
+            "profiles": [
+              {
+                "name": "Ion cannon - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "60\"",
+                  "A": "D6+3",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Ion cannon - overcharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "60\"",
+                  "A": "D6+3",
+                  "BS": "4+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Blast, Hazardous"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Swiftstrike burst cannon",
+            "profiles": [
+              {
+                "name": "Swiftstrike burst cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "16",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Swiftstrike burst cannon",
+            "profiles": [
+              {
+                "name": "Swiftstrike burst cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "16",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Swiftstrike railgun",
+            "profiles": [
+              {
+                "name": "Swiftstrike railgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "20",
+                  "AP": "-5",
+                  "D": "D6+6",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Seeker missile",
+            "profiles": [
+              {
+                "name": "Seeker missile",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "14",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "One Shot"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Skyspear missile rack",
+            "profiles": [
+              {
+                "name": "Skyspear missile rack",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "D6+1",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-Fly 3+, Blast"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Skyspear missile rack",
+            "profiles": [
+              {
+                "name": "Skyspear missile rack",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "D6+1",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-Fly 3+, Blast"
+                }
+              }
+            ],
+            "count": 2
           }
         ],
         "rules": [
@@ -5192,6 +8091,42 @@
           }
         ],
         "weapons": [
+          {
+            "name": "Stingwing claws",
+            "profiles": [
+              {
+                "name": "Stingwing claws",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Neutron blaster",
+            "profiles": [
+              {
+                "name": "Neutron blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
           {
             "name": "Vespid Stingwings w/ Neutron Blaster",
             "profiles": [
@@ -5286,6 +8221,24 @@
             ]
           },
           {
+            "name": "Neutron grenade launcher",
+            "profiles": [
+              {
+                "name": "Neutron grenade launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-Infantry 3+, Blast"
+                }
+              }
+            ]
+          },
+          {
             "name": "Vespid Stingwings w/ Neutron Rail Rifle",
             "profiles": [
               {
@@ -5301,6 +8254,24 @@
                   "Keywords": "-"
                 }
               },
+              {
+                "name": "Neutron rail rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "10",
+                  "AP": "-4",
+                  "D": "3",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Neutron rail rifle",
+            "profiles": [
               {
                 "name": "Neutron rail rifle",
                 "typeName": "Ranged Weapons",

@@ -115,6 +115,7 @@ class WeaponCatalog:
             if prof is None or not isinstance(prof, dict):
                 continue
             for w in prof.get("weapons", []):
+                w_count = w.get("count", 1)
                 for p in w.get("profiles", []):
                     raw_name = p.get("name", "").replace("\u27a4 ", "").strip()
                     key = raw_name.lower()
@@ -126,6 +127,7 @@ class WeaponCatalog:
                         "profile_name": raw_name,
                         "type_name": p.get("typeName", ""),
                         "stats": stats,
+                        "count": w_count,
                     }
 
                     self.by_unit.setdefault(uname, []).append(entry)
@@ -216,7 +218,7 @@ class WeaponCatalog:
         Raises:
             KeyError: If weapon not found (with fuzzy suggestions).
         """
-        key = name.lower()
+        key = name.strip().lower()
 
         # Find candidate entries
         if key not in self.by_name:
@@ -336,6 +338,7 @@ class WeaponCatalog:
             ap=parsed_ap,
             damage=parsed_d,
             abilities=final_kw,
+            count=entry.get("count", 1),
         )
 
 

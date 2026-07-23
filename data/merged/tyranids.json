@@ -241,7 +241,44 @@
             "description": "In your Shooting phase, after this unit has shot, select one enemy INFANTRY unit hit by one or more of those attacks. Until the end of your opponent’s next turn, that enemy unit is disrupted. While a unit is disrupted, subtract 2 from its Move characteristic, and subtract 2 from Advance and Charge rolls made for it."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Barblauncher",
+            "profiles": [
+              {
+                "name": "Barblauncher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "D6",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast, Heavy"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Chitinous claws and teeth",
+            "profiles": [
+              {
+                "name": "Chitinous claws and teeth",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Synapse"
         ]
@@ -295,7 +332,44 @@
             "description": "Once per turn, in your Shooting Phase, when selected to shoot, one unit with this ability can use it instead of making any attacks with its ranged weapons. If it does, you can add one new **SPORE MINES** unit to your army and set it up anywhere on the battlefield that is wholly within 48\" of this unit and more than 8\" horizontally away from all enemy units. That **SPORE MINES** unit contains 1 model for each model in this unit."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Spore mine launcher",
+            "profiles": [
+              {
+                "name": "Spore mine launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D3",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Blast, Devastating Wounds, Heavy, Indirect Fire"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Chitin-barbed limbs",
+            "profiles": [
+              {
+                "name": "Chitin-barbed limbs",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Deadly Demise",
           "Synapse"
@@ -361,6 +435,24 @@
         "weapons": [
           {
             "name": "Cutting blade and cutting gear",
+            "profiles": [
+              {
+                "name": "Cutting blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Cutting blade",
             "profiles": [
               {
                 "name": "Cutting blade",
@@ -479,7 +571,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Carnifexes",
-        "points": null,
+        "points": 90,
         "stats": {
           "M": "8\"",
           "T": "9",
@@ -501,7 +593,242 @@
             "description": "In your opponent’s Shooting phase, when an enemy unit has shot, if a model in this unit lost a wound as a result of those attacks, this unit can make a **surge move** of up to D6+2\"."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Chitinous claws and teeth",
+            "profiles": [
+              {
+                "name": "Chitinous claws and teeth",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "4+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bio-plasma",
+            "profiles": [
+              {
+                "name": "Bio-plasma",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D3",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Assault, Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Spine banks",
+            "profiles": [
+              {
+                "name": "Spine banks",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "5",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Carnifex scything talons",
+            "profiles": [
+              {
+                "name": "Carnifex scything talons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "4+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Deathspitters with slimer maggots",
+            "profiles": [
+              {
+                "name": "Deathspitters with slimer maggots",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "6",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Devourers with brainleech worms",
+            "profiles": [
+              {
+                "name": "Devourers with brainleech worms",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "12",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Carnifex crushing claws",
+            "profiles": [
+              {
+                "name": "Carnifex crushing claws",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "4+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy venom cannon",
+            "profiles": [
+              {
+                "name": "Heavy venom cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D3",
+                  "BS": "4+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Stranglethorn cannon",
+            "profiles": [
+              {
+                "name": "Stranglethorn cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D6+1",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Carnifex extra scything talons",
+            "profiles": [
+              {
+                "name": "Carnifex extra scything talons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Extra Attacks"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Deathspitters with slimer maggots",
+            "profiles": [
+              {
+                "name": "Deathspitters with slimer maggots",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "6",
+                  "BS": "4+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Devourers with brainleech worms",
+            "profiles": [
+              {
+                "name": "Devourers with brainleech worms",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "12",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Carnifex crushing claws",
+            "profiles": [
+              {
+                "name": "Carnifex crushing claws",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "4+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Deadly Demise",
           "Synapse"
@@ -741,7 +1068,44 @@
             "description": "In your Shooting phase, after this unit has shot, if it is not within Engagement Range of any enemy units, it can make a Normal move of up to 6\". If it does, until the end of the turn, this unit is not eligible to declare a charge."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Blinding venom",
+            "profiles": [
+              {
+                "name": "Blinding venom",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Fleshborer",
+            "profiles": [
+              {
+                "name": "Fleshborer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Synapse",
           "Deep Strike"
@@ -797,7 +1161,26 @@
             "description": "Each time a model in this unit makes an attack, re-roll a Hit roll of 1. If the target is within range of one or more objective markers, re-roll a Wound roll 1 as well."
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Genestealers claws and talons",
+            "profiles": [
+              {
+                "name": "Genestealers claws and talons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Scouts",
           "Synapse"
@@ -902,6 +1285,42 @@
                   "AP": "-1",
                   "D": "2",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin stranglethorn cannon",
+            "profiles": [
+              {
+                "name": "Twin stranglethorn cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D6+1",
+                  "BS": "2+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Blast, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin heavy venom cannon",
+            "profiles": [
+              {
+                "name": "Twin heavy venom cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Blast, Twin-linked"
                 }
               }
             ]
@@ -1508,6 +1927,24 @@
             ]
           },
           {
+            "name": "Shockcannon",
+            "profiles": [
+              {
+                "name": "Shockcannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "3",
+                  "Keywords": "Anti-Vehicle 2+"
+                }
+              }
+            ]
+          },
+          {
             "name": "Hive Guard w/ impaler cannon",
             "profiles": [
               {
@@ -1523,6 +1960,24 @@
                   "Keywords": "-"
                 }
               },
+              {
+                "name": "Impaler cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "4",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Heavy, Indirect Fire"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Impaler cannon",
+            "profiles": [
               {
                 "name": "Impaler cannon",
                 "typeName": "Ranged Weapons",
@@ -1614,7 +2069,134 @@
             "description": "This model can be attached to the following unit:\n- **^^Tyrant Guard^^**"
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Monstrous bonesword and lash whip",
+            "profiles": [
+              {
+                "name": "Monstrous bonesword and lash whip",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "2+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy venom cannon",
+            "profiles": [
+              {
+                "name": "Heavy venom cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D3",
+                  "BS": "2+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Stranglethorn cannon",
+            "profiles": [
+              {
+                "name": "Stranglethorn cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D6+1",
+                  "BS": "2+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Monstrous scything talons",
+            "profiles": [
+              {
+                "name": "Monstrous scything talons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Extra Attacks"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Monstrous scything talons",
+            "profiles": [
+              {
+                "name": "Monstrous scything talons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Extra Attacks"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Stranglethorn cannon",
+            "profiles": [
+              {
+                "name": "Stranglethorn cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D6+1",
+                  "BS": "2+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy venom cannon",
+            "profiles": [
+              {
+                "name": "Heavy venom cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D3",
+                  "BS": "2+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Deadly Demise",
           "Shadow in the Warp",
@@ -1675,6 +2257,24 @@
         "weapons": [
           {
             "name": "Hormagaunts",
+            "profiles": [
+              {
+                "name": "Hormagaunt talons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hormagaunt talons",
             "profiles": [
               {
                 "name": "Hormagaunt talons",
@@ -1792,6 +2392,24 @@
                   "Keywords": "Anti-Monster 5+, Anti-Vehicle 5+, Twin-linked"
                 }
               },
+              {
+                "name": "Venom bolt",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6+3",
+                  "BS": "N/A",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Assault, Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Venom bolt",
+            "profiles": [
               {
                 "name": "Venom bolt",
                 "typeName": "Ranged Weapons",
@@ -2174,7 +2792,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Mucolid Spores",
-        "points": null,
+        "points": 30,
         "stats": {
           "M": "4\"",
           "T": "4",
@@ -2223,11 +2841,11 @@
     {
       "name": "Mucolid Spores (Sporocyst)",
       "in_bsdata": true,
-      "in_mfm": false,
+      "in_mfm": true,
       "deep_strike": true,
       "profile": {
         "name": "Mucolid Spores (Sporocyst)",
-        "points": null,
+        "points": 30,
         "stats": {
           "M": "4\"",
           "T": "4",
@@ -2254,7 +2872,22 @@
           "Synapse"
         ]
       },
-      "pricing": null,
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 30
+            },
+            {
+              "models": 2,
+              "points": 60
+            }
+          ]
+        }
+      ],
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -3064,11 +3697,11 @@
     {
       "name": "Prime Organism [Crucible]",
       "in_bsdata": true,
-      "in_mfm": false,
+      "in_mfm": true,
       "deep_strike": false,
       "profile": {
         "name": "Prime Organism [Crucible]",
-        "points": 135,
+        "points": 75,
         "stats": {
           "M": "8\"",
           "T": "9",
@@ -3104,7 +3737,18 @@
           "Leader"
         ]
       },
-      "pricing": null,
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 75
+            }
+          ]
+        }
+      ],
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -3265,6 +3909,24 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Flamespurt",
+            "profiles": [
+              {
+                "name": "Flamespurt",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6+1",
+                  "BS": "N/A",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent, Twin-linked"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -3363,6 +4025,24 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Ravener claws and talons",
+            "profiles": [
+              {
+                "name": "Ravener claws and talons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -3423,6 +4103,24 @@
         "abilities": [],
         "weapons": [
           {
+            "name": "Spinemaw",
+            "profiles": [
+              {
+                "name": "Spinemaw",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "4",
+                  "BS": "5+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
             "name": "Ripper Swarm",
             "profiles": [
               {
@@ -3474,11 +4172,11 @@
     {
       "name": "Ripper Swarms (Parasite of Mortrex)",
       "in_bsdata": true,
-      "in_mfm": false,
+      "in_mfm": true,
       "deep_strike": true,
       "profile": {
         "name": "Ripper Swarms (Parasite of Mortrex)",
-        "points": null,
+        "points": 30,
         "stats": {
           "M": "6\"",
           "T": "2",
@@ -3498,6 +4196,24 @@
         ],
         "abilities": [],
         "weapons": [
+          {
+            "name": "Spinemaw",
+            "profiles": [
+              {
+                "name": "Spinemaw",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "4",
+                  "BS": "5+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
           {
             "name": "Ripper Swarm",
             "profiles": [
@@ -3523,7 +4239,26 @@
           "Chitinous Horrors (Aura)"
         ]
       },
-      "pricing": null,
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 30
+            },
+            {
+              "models": 2,
+              "points": 40
+            },
+            {
+              "models": 3,
+              "points": 50
+            }
+          ]
+        }
+      ],
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -3772,11 +4507,11 @@
     {
       "name": "Spore Mines (Biovore)",
       "in_bsdata": true,
-      "in_mfm": false,
+      "in_mfm": true,
       "deep_strike": true,
       "profile": {
         "name": "Spore Mines (Biovore)",
-        "points": null,
+        "points": 55,
         "stats": {
           "M": "4\"",
           "T": "1",
@@ -3803,7 +4538,22 @@
           "Synapse"
         ]
       },
-      "pricing": null,
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 3,
+              "points": 55
+            },
+            {
+              "models": 6,
+              "points": 110
+            }
+          ]
+        }
+      ],
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -3951,6 +4701,60 @@
             ]
           },
           {
+            "name": "Fleshborer",
+            "profiles": [
+              {
+                "name": "Fleshborer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Termagant spinefist",
+            "profiles": [
+              {
+                "name": "Termagant spinefist",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Termagant devourer",
+            "profiles": [
+              {
+                "name": "Termagant devourer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
             "name": "Termagant w/ Shardlauncher",
             "profiles": [
               {
@@ -3966,6 +4770,24 @@
                   "Keywords": "-"
                 }
               },
+              {
+                "name": "Shardlauncher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D3",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast, Heavy"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shardlauncher",
+            "profiles": [
               {
                 "name": "Shardlauncher",
                 "typeName": "Ranged Weapons",
@@ -4013,6 +4835,24 @@
             ]
           },
           {
+            "name": "Spike rifle",
+            "profiles": [
+              {
+                "name": "Spike rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Heavy"
+                }
+              }
+            ]
+          },
+          {
             "name": "Termagant w/ Strangleweb",
             "profiles": [
               {
@@ -4028,6 +4868,24 @@
                   "Keywords": "-"
                 }
               },
+              {
+                "name": "Strangleweb",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Devastating Wounds, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Strangleweb",
+            "profiles": [
               {
                 "name": "Strangleweb",
                 "typeName": "Ranged Weapons",
@@ -4118,6 +4976,55 @@
                   "S": "5",
                   "AP": "0",
                   "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Massive scything talons",
+            "profiles": [
+              {
+                "name": "Massive scything talons - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "D6",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Massive scything talons - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "3+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Massive crushing claws",
+            "profiles": [
+              {
+                "name": "Massive crushing claws",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "4+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+1",
                   "Keywords": "-"
                 }
               }
@@ -4804,6 +5711,96 @@
             ]
           },
           {
+            "name": "Deathspitter",
+            "profiles": [
+              {
+                "name": "Deathspitter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Spinefists",
+            "profiles": [
+              {
+                "name": "Spinefists",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Venom cannon",
+            "profiles": [
+              {
+                "name": "Venom cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D3",
+                  "BS": "4+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Barbed strangler",
+            "profiles": [
+              {
+                "name": "Barbed strangler",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D6+1",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Devourer",
+            "profiles": [
+              {
+                "name": "Devourer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "5",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
             "name": "Tyranid Warrior",
             "profiles": [
               {
@@ -4817,6 +5814,96 @@
                   "AP": "-1",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Deathspitter",
+            "profiles": [
+              {
+                "name": "Deathspitter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Spinefists",
+            "profiles": [
+              {
+                "name": "Spinefists",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Pistol, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Venom cannon",
+            "profiles": [
+              {
+                "name": "Venom cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D3",
+                  "BS": "4+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Devourer",
+            "profiles": [
+              {
+                "name": "Devourer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "5",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Barbed strangler",
+            "profiles": [
+              {
+                "name": "Barbed strangler",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D6+1",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Blast"
                 }
               }
             ]
@@ -5005,6 +6092,60 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Rupture cannon",
+            "profiles": [
+              {
+                "name": "Rupture cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "18",
+                  "AP": "-4",
+                  "D": "D6+6",
+                  "Keywords": "Heavy"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Fleshborer hive",
+            "profiles": [
+              {
+                "name": "Fleshborer hive",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "20",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Heavy, Sustained Hits 1, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Acid spray",
+            "profiles": [
+              {
+                "name": "Acid spray",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "D6+6",
+                  "BS": "N/A",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Torrent"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -5077,7 +6218,62 @@
             "description": "While a CHARACTER model is leading this unit, that Character has the Feel No Pain 5+ ability"
           }
         ],
-        "weapons": [],
+        "weapons": [
+          {
+            "name": "Scything talons and rending claws",
+            "profiles": [
+              {
+                "name": "Scything talons and rending claws",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bone cleaver, lash whip and rending claws",
+            "profiles": [
+              {
+                "name": "Bone cleaver, lash whip and rending claws",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Crushing claws and rending claws",
+            "profiles": [
+              {
+                "name": "Crushing claws and rending claws",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ]
+          }
+        ],
         "rules": [
           "Synapse"
         ]
@@ -5135,6 +6331,24 @@
         "weapons": [
           {
             "name": "Venomthrope",
+            "profiles": [
+              {
+                "name": "Toxic lashes",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 2+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Toxic lashes",
             "profiles": [
               {
                 "name": "Toxic lashes",
@@ -5210,6 +6424,24 @@
         "weapons": [
           {
             "name": "Von Ryan's Leaper",
+            "profiles": [
+              {
+                "name": "Leaper's talons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Leaper's talons",
             "profiles": [
               {
                 "name": "Leaper's talons",
@@ -5304,6 +6536,78 @@
                   "AP": "-2",
                   "D": "2",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Monstrous scything talons",
+            "profiles": [
+              {
+                "name": "Monstrous scything talons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Extra Attacks"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Stranglethorn cannon",
+            "profiles": [
+              {
+                "name": "Stranglethorn cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D6+1",
+                  "BS": "2+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy venom cannon",
+            "profiles": [
+              {
+                "name": "Heavy venom cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D3",
+                  "BS": "2+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Monstrous bonesword and lash whip",
+            "profiles": [
+              {
+                "name": "Monstrous bonesword and lash whip",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "2+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Twin-linked"
                 }
               }
             ]

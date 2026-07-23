@@ -150,8 +150,26 @@ class FactionConfig:
 # ---------------------------------------------------------------------------
 
 def _load_catalog(merged_path: str, faction: str | None = None) -> WeaponCatalog:
-    """Load WeaponCatalog from a merged JSON path."""
-    return WeaponCatalog(merged_path, faction=faction)
+    """Load WeaponCatalog from a merged JSON path.
+
+    For SM subfactions, also load SM's merged data as fallback so weapons
+    referenced from the base SM catalog can be found.
+    """
+    cat = WeaponCatalog(merged_path, faction=faction)
+    # SM subfactions inherit from Space Marines — load SM weapons as fallback
+    SM_SUBFACTIONS = {
+        'dark-angels', 'blood-angels', 'black-templars', 'space-wolves',
+        'deathwatch', 'imperial-fists', 'iron-hands', 'raven-guard',
+        'salamanders', 'ultramarines', 'white-scars',
+    }
+    if faction and faction in SM_SUBFACTIONS:
+        sm_path = str(Path(merged_path).parent / "space-marines.json")
+        if Path(sm_path).exists():
+            sm_cat = WeaponCatalog(sm_path, faction='space-marines')
+            for key, entries in sm_cat.by_name.items():
+                if key not in cat.by_name:
+                    cat.by_name[key] = entries
+    return cat
 
 
 def _ld_dmg(ranged, melee, innate, target, modifier: Optional[WeaponModifier] = None,
@@ -258,6 +276,20 @@ class RankingEngine:
         self.merged_path = str(repo_root / "data" / "merged" / f"{faction_key}.json")
         self.catalog = _load_catalog(self.merged_path, faction=faction_key)
         self.data = json.loads(Path(self.merged_path).read_text())
+
+        # Extra merged sources — for subfactions that share units with parent factions
+        # e.g. dark-angels config includes generic SM chars from space-marines.json
+        extras = self.config.supported.get("merged_extras", [])
+        if extras:
+            seen_names = {u["name"] for u in self.data["units"]}
+            for extra_key in extras:
+                extra_path = repo_root / "data" / "merged" / f"{extra_key}.json"
+                if extra_path.exists():
+                    extra_data = json.loads(extra_path.read_text())
+                    for u in extra_data["units"]:
+                        if u["name"] not in seen_names:
+                            self.data["units"].append(u)
+                            seen_names.add(u["name"])
 
         # Detachment modifiers — loaded lazily on first access
         self._detachment_modifiers: dict[str, list[DetachmentModifier]] | None = None
@@ -863,15 +895,17 @@ class RankingEngine:
             if self.config.is_legends(name):
                 continue
 
-            kws_upper = [k.upper() for k in profile.get("keywords", [])]
-
-            # Skip units without faction keyword (unless no profile data — still rank if config has it)
-            # Normalize apostrophes for comparison (BSData uses curly \u2019, config may differ)
+            # Faction keyword filter — only rank units whose Faction keyword
+            # matches this faction's keywords. Prevents ranking cross-faction
+            # BSData imports (e.g. Guilliman in DA, GK Termies in AM).
+            # Units with NO Faction keyword are allowed (generic units like Drop Pod).
             def _norm_kw(s):
                 return s.upper().replace("\u2019", "'").replace("\u2018", "'")
             fk_upper = [_norm_kw(fk) for fk in self.config.faction_keywords]
-            kws_normed = [_norm_kw(k) for k in profile.get("keywords", [])]
-            if profile and not any(fk in kws_normed for fk in fk_upper):
+            # Only check Faction: prefixed keywords, not all keywords
+            unit_fks = [_norm_kw(k) for k in profile.get("keywords", [])
+                        if _norm_kw(k).startswith("FACTION:")]
+            if profile and unit_fks and not any(fk in unit_fks for fk in fk_upper):
                 continue
 
             # Unit info (needed before modifier check for keyword-based filters)
@@ -1026,12 +1060,12 @@ class RankingEngine:
         if mission and mission in self.config.mission_profiles:
             w = self.config.mission_profiles[mission]
             dps_vals = [r["dpp"] for r in results]
-            # Surv turns: expected turns to die vs 5 heavy AT shots/turn (same as display)
+            # Surv turns: toughness-bracketed benchmark (fair per unit type)
             SURV_SHOTS_PER_TURN = 5
-            surv_vals = [
-                r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
-                for r in results
-            ]
+            surv_vals = []
+            for r in results:
+                raw_turns = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
+                surv_vals.append(raw_turns)
             # OBJ: (OC + banner_boost) × models × survival_turns
             obj_vals = []
             for r in results:
@@ -1051,9 +1085,14 @@ class RankingEngine:
 
             for r in results:
                 r["_dps_pct"] = _pct(r["dpp"], dps_vals)
-                surv_turns = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
-                r["_surv_turns"] = round(surv_turns, 1)
-                r["_surv_pct"] = _pct(surv_turns, surv_vals)
+                raw_turns = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
+                r["_surv_turns"] = round(raw_turns, 1)
+                r["_surv_pct"] = _pct(raw_turns, surv_vals)
+                # Cost penalty: expensive units are less durable in practice
+                # Applied only to SURV contribution, not the entire score
+                pts = r["points"] if r["points"] > 0 else 1
+                cost_eff = min(100.0, 20000.0 / pts)
+                r["_cost_eff"] = round(cost_eff, 1)
                 # MOB: absolute score (0-100), NOT percentile — same baseline across all factions
                 r["_mob_pct"] = self.mob_score(r["mob"])
                 base_oc = r["mob"].get("objective_control", 0)
@@ -1062,23 +1101,24 @@ class RankingEngine:
                 if total_oc == 0:
                     r["_obj_pct"] = 0.0
                 else:
-                    r["_obj_pct"] = _pct(self.obj_score(total_oc, surv_turns), obj_vals)
+                    r["_obj_pct"] = _pct(self.obj_score(total_oc, raw_turns), obj_vals)
+                # Mission score: cost penalty applied to SURV contribution only
+                surv_contrib = w["surv"] * r["_surv_pct"] * cost_eff / 100.0
                 r["_mission_score"] = (
                     w["dps"] * r["_dps_pct"] +
-                    w["surv"] * r["_surv_pct"] +
+                    surv_contrib +
                     w.get("obj", 0) * r["_obj_pct"] +
                     w["mob"] * r["_mob_pct"]
                 )
-                # Cost penalty for action-heavy missions: cheap units = more actions
-                if mission in ("Reconnaissance", "Disruption"):
-                    if r["points"] > 0:
-                        cost_eff = min(100.0, 10000.0 / r["points"])  # 100pts→100, 200→50, 400→25
-                    else:
-                        cost_eff = 0.0  # 0pts unit — likely broken config
-                    r["_cost_eff"] = round(cost_eff, 1)
-                    r["_mission_score"] = r["_mission_score"] * cost_eff / 100.0
-                else:
-                    r["_cost_eff"] = None
+                # Action-capability penalty: OC0 units can't perform actions
+                # Harsher in action-heavy missions
+                if total_oc == 0:
+                    ACTION_PENALTIES = {
+                        'Reconnaissance': 0.5,   # Actions are THE scoring mechanism
+                        'Disruption': 0.8,        # Actions matter but not everything
+                    }
+                    penalty = ACTION_PENALTIES.get(mission, 1.0)
+                    r["_mission_score"] *= penalty
             results.sort(key=lambda r: r["_mission_score"], reverse=True)
         else:
             dps_vals = [r["dpp"] for r in results]

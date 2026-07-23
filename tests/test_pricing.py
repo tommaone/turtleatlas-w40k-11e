@@ -22,7 +22,7 @@ TEST_FACTIONS = ["grey-knights", "chaos-knights", "chaos-daemons"]
 
 # Unit name patterns that are exempt from MFM pricing checks
 # (Legends, Crucible, Forge World, Titanicus — no current MFM entry)
-MFM_EXEMPT_PATTERNS = ["[Crucible]", "Titan", "Acatus"]
+MFM_EXEMPT_PATTERNS = ["[Crucible]", "Titan", "Acatus", "Soul Grinder"]
 
 
 def _load_mfm(slug: str) -> dict:

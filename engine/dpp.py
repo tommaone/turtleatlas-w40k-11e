@@ -73,6 +73,7 @@ class WeaponProfile:
     ap: int
     damage: float            # average damage
     abilities: list[str] = field(default_factory=list)  # e.g. ["SUSTAINED HITS 1", "LETHAL HITS"]
+    count: int = 1           # number of this weapon (e.g. 2× twin lascannon)
 
 
 @dataclass
@@ -596,6 +597,7 @@ BENCHMARK_ATTACKERS = [
     ("lascannon",    3,  9, -3, 3.5),   # BS3+ S9  AP-3 D6  — anti-heavy
     ("melta",        3,  9, -4, 3.5),   # BS3+ S9  AP-4 D6  — anti-vehicle
     ("heavy",        3, 14, -4, 4.5),   # BS3+ S14 AP-4 D6+1 — dedicated anti-tank
+    ("universal",    3,  6, -2, 2.0),   # BS3+ S6  AP-2 D2  — mid-tier universal reference
 ]
 
 
@@ -1017,6 +1019,9 @@ def compute_weapon_dpp(weapon: WeaponProfile,
         damage=effective_damage,
         ignore_cover=ignore_cover,
     )
+
+    # Weapon multiplicity: "2× Lascannon" means 2× the damage
+    total_damage *= weapon.count
 
     dpp = total_damage / unit_points if unit_points > 0 else 0
 

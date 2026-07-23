@@ -1,15 +1,15 @@
 {
-  "_note": "grey-knights vehicles — generated from BSData + MFM",
+  "_note": "grey-knights vehicles \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Grey Knights Thunderhawk Gunship": {
     "pts": 805,
     "ranged": [
       {
-        "name": "Twin heavy bolter",
+        "name": "Lascannon",
         "unit_name": "Grey Knights Thunderhawk Gunship"
       },
       {
-        "name": "Lascannon",
+        "name": "Twin heavy bolter",
         "unit_name": "Grey Knights Thunderhawk Gunship"
       },
       {
@@ -33,7 +33,7 @@
     ],
     "innate": [],
     "info": {
-      "M": "20+\"",
+      "M": "20\"",
       "T": 12,
       "SV": 2,
       "W": 30,
@@ -43,6 +43,10 @@
   "Land Raider": {
     "pts": 220,
     "ranged": [
+      {
+        "name": "Godhammer lascannon",
+        "unit_name": "Land Raider"
+      },
       {
         "name": "Storm bolter",
         "unit_name": "Land Raider"
@@ -57,10 +61,6 @@
       },
       {
         "name": "Twin heavy bolter",
-        "unit_name": "Land Raider"
-      },
-      {
-        "name": "Godhammer lascannon",
         "unit_name": "Land Raider"
       }
     ],
@@ -77,7 +77,8 @@
       "SV": 2,
       "W": 16,
       "OC": 5
-    }
+    },
+    "pts_3rd": 240
   },
   "Land Raider Crusader": {
     "pts": 220,
@@ -116,11 +117,16 @@
       "SV": 2,
       "W": 16,
       "OC": 5
-    }
+    },
+    "pts_3rd": 240
   },
   "Land Raider Redeemer": {
     "pts": 250,
     "ranged": [
+      {
+        "name": "Flamestorm cannon",
+        "unit_name": "Land Raider Redeemer"
+      },
       {
         "name": "Storm bolter",
         "unit_name": "Land Raider Redeemer"
@@ -135,10 +141,6 @@
       },
       {
         "name": "Twin assault cannon",
-        "unit_name": "Land Raider Redeemer"
-      },
-      {
-        "name": "Flamestorm cannon",
         "unit_name": "Land Raider Redeemer"
       }
     ],
@@ -155,7 +157,8 @@
       "SV": 2,
       "W": 16,
       "OC": 5
-    }
+    },
+    "pts_3rd": 270
   },
   "Nemesis Dreadknight": {
     "pts": 195,
@@ -200,25 +203,26 @@
       "OC": 4,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "pts_3rd": 210
   },
   "Razorback": {
     "pts": 85,
     "ranged": [
-      {
-        "name": "Twin lascannon",
-        "unit_name": "Razorback"
-      },
-      {
-        "name": "Twin heavy bolter",
-        "unit_name": "Razorback"
-      },
       {
         "name": "Storm bolter",
         "unit_name": "Razorback"
       },
       {
         "name": "Hunter-killer missile",
+        "unit_name": "Razorback"
+      },
+      {
+        "name": "Twin lascannon",
+        "unit_name": "Razorback"
+      },
+      {
+        "name": "Twin heavy bolter",
         "unit_name": "Razorback"
       }
     ],
@@ -269,6 +273,10 @@
     "pts": 160,
     "ranged": [
       {
+        "name": "Twin assault cannon",
+        "unit_name": "Stormhawk Interceptor"
+      },
+      {
         "name": "Twin heavy bolter",
         "unit_name": "Stormhawk Interceptor"
       },
@@ -282,10 +290,6 @@
       },
       {
         "name": "Skyhammer missile launcher",
-        "unit_name": "Stormhawk Interceptor"
-      },
-      {
-        "name": "Twin assault cannon",
         "unit_name": "Stormhawk Interceptor"
       },
       {
@@ -305,11 +309,10 @@
     ],
     "innate": [],
     "info": {
-      "M": "20+\"",
+      "M": "-",
       "T": 9,
       "SV": 3,
-      "W": 10,
-      "OC": 0
+      "W": 10
     }
   },
   "Stormraven Gunship": {
@@ -317,26 +320,6 @@
     "ranged": [
       {
         "name": "Hurricane bolter",
-        "unit_name": "Stormraven Gunship"
-      },
-      {
-        "name": "Twin assault cannon",
-        "unit_name": "Stormraven Gunship"
-      },
-      {
-        "name": "Twin lascannon",
-        "unit_name": "Stormraven Gunship"
-      },
-      {
-        "name": "Twin heavy bolter",
-        "unit_name": "Stormraven Gunship"
-      },
-      {
-        "name": "Typhoon missile launcher - frag",
-        "unit_name": "Stormraven Gunship"
-      },
-      {
-        "name": "Typhoon missile launcher - krak",
         "unit_name": "Stormraven Gunship"
       },
       {
@@ -352,7 +335,27 @@
         "unit_name": "Stormraven Gunship"
       },
       {
+        "name": "Twin assault cannon",
+        "unit_name": "Stormraven Gunship"
+      },
+      {
+        "name": "Twin lascannon",
+        "unit_name": "Stormraven Gunship"
+      },
+      {
         "name": "Twin multi-melta",
+        "unit_name": "Stormraven Gunship"
+      },
+      {
+        "name": "Twin heavy bolter",
+        "unit_name": "Stormraven Gunship"
+      },
+      {
+        "name": "Typhoon missile launcher - frag",
+        "unit_name": "Stormraven Gunship"
+      },
+      {
+        "name": "Typhoon missile launcher - krak",
         "unit_name": "Stormraven Gunship"
       }
     ],
@@ -364,7 +367,7 @@
     ],
     "innate": [],
     "info": {
-      "M": "20+\"",
+      "M": "14\"",
       "T": 10,
       "SV": 3,
       "W": 14,
@@ -374,6 +377,10 @@
   "Stormtalon Gunship": {
     "pts": 170,
     "ranged": [
+      {
+        "name": "Twin assault cannon",
+        "unit_name": "Stormtalon Gunship"
+      },
       {
         "name": "Twin lascannon",
         "unit_name": "Stormtalon Gunship"
@@ -393,10 +400,6 @@
       {
         "name": "Skyhammer missile launcher",
         "unit_name": "Stormtalon Gunship"
-      },
-      {
-        "name": "Twin assault cannon",
-        "unit_name": "Stormtalon Gunship"
       }
     ],
     "melee": [
@@ -407,11 +410,10 @@
     ],
     "innate": [],
     "info": {
-      "M": "20+\"",
+      "M": "-",
       "T": 9,
       "SV": 3,
-      "W": 10,
-      "OC": 0
+      "W": 10
     }
   }
 }
