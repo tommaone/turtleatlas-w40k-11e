@@ -2,14 +2,6 @@
   "_note": "imperial-knights weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Acastus Knight Asterius": {
-    "ranged": [
-      "Twin conversion beam cannon",
-      "Asterius volkite culverin",
-      "Karacnos mortar battery"
-    ],
-    "melee": [
-      "Titanic feet"
-    ],
     "info": {
       "M": "8\"",
       "T": 13,
@@ -18,19 +10,24 @@
       "OC": 10,
       "INV": 5
     },
-    "pts": 785
+    "pts": 785,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Twin conversion beam cannon",
+          "Asterius volkite culverin",
+          "Karacnos mortar battery"
+        ],
+        "fixed_melee": [
+          "Titanic feet"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Acastus Knight Porphyrion": {
-    "ranged": [
-      "Twin magna lascannon",
-      "Acastus autocannon",
-      "Lascannon",
-      "Acastus ironstorm missile pod",
-      "Helios defence missiles"
-    ],
-    "melee": [
-      "Titanic feet"
-    ],
     "info": {
       "M": "8\"",
       "T": 13,
@@ -39,20 +36,56 @@
       "OC": 10,
       "INV": 5
     },
-    "pts": 725
+    "pts": 725,
+    "builds": [
+      {
+        "name": "2x Acastus autocannon",
+        "fixed_ranged": [
+          "Twin magna lascannon",
+          "Acastus autocannon",
+          "Acastus autocannon",
+          "Acastus ironstorm missile pod",
+          "Helios defence missiles"
+        ],
+        "fixed_melee": [
+          "Titanic feet"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Acastus autocannon + Lascannon",
+        "fixed_ranged": [
+          "Twin magna lascannon",
+          "Acastus autocannon",
+          "Lascannon",
+          "Acastus ironstorm missile pod",
+          "Helios defence missiles"
+        ],
+        "fixed_melee": [
+          "Titanic feet"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "2x Lascannon",
+        "fixed_ranged": [
+          "Twin magna lascannon",
+          "Lascannon",
+          "Lascannon",
+          "Acastus ironstorm missile pod",
+          "Helios defence missiles"
+        ],
+        "fixed_melee": [
+          "Titanic feet"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Armiger Moirax": {
-    "ranged": [
-      "Volkite veuglaire",
-      "Graviton pulsar",
-      "Lightning lock",
-      "Conversion beam cannon",
-      "Rad cleanser"
-    ],
-    "melee": [
-      "Armoured feet",
-      "Siege claw"
-    ],
     "info": {
       "M": "12\"",
       "T": 9,
@@ -61,16 +94,20 @@
       "OC": 6,
       "INV": 5
     },
-    "pts": 150
+    "pts": 150,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [],
+        "fixed_melee": [
+          "Armoured feet"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Armiger Warglaive": {
-    "ranged": [
-      "Thermal spear"
-    ],
-    "melee": [
-      "Reaper chain-cleaver - strike",
-      "Reaper chain-cleaver - sweep"
-    ],
     "info": {
       "M": "12\"",
       "T": 9,
@@ -79,6 +116,19 @@
       "OC": 6,
       "INV": 5
     },
-    "pts": 140
+    "pts": 140,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Thermal spear"
+        ],
+        "fixed_melee": [
+          "Reaper chain-cleaver"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   }
 }

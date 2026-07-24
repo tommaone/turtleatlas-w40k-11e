@@ -1,17 +1,7 @@
 {
-  "_note": "grey-knights weapon options \u2014 generated from BSData + MFM",
+  "_note": "grey-knights weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Grey Knights Thunderhawk Gunship": {
-    "ranged": [
-      "Twin heavy bolter",
-      "Lascannon",
-      "Thunderhawk heavy cannon",
-      "Turbo-laser destructor",
-      "Hellstrike missile battery"
-    ],
-    "melee": [
-      "Armored Hull"
-    ],
     "info": {
       "M": "20+\"",
       "T": 12,
@@ -19,19 +9,29 @@
       "W": 30,
       "OC": 0
     },
-    "pts": 805
+    "pts": 805,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Twin heavy bolter",
+          "Lascannon"
+        ],
+        "fixed_melee": [
+          "Armoured Hull"
+        ],
+        "ranged_choices": [
+          [
+            "Thunderhawk heavy cannon",
+            "Turbo-laser destructor"
+          ]
+        ],
+        "melee_choices": [],
+        "max_ranged": 1
+      }
+    ]
   },
   "Land Raider": {
-    "ranged": [
-      "Storm bolter",
-      "Hunter-killer missile",
-      "Multi-melta",
-      "Twin heavy bolter",
-      "Godhammer lascannon"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "10\"",
       "T": 12,
@@ -40,19 +40,26 @@
       "OC": 5
     },
     "pts": 220,
-    "pts_3rd": 240
+    "pts_3rd": 240,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Storm bolter",
+          "Hunter-killer missile",
+          "Multi-melta",
+          "Twin heavy bolter",
+          "Godhammer lascannon"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Land Raider Crusader": {
-    "ranged": [
-      "Storm bolter",
-      "Hunter-killer missile",
-      "Multi-melta",
-      "Twin assault cannon",
-      "Hurricane bolter"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "12\"",
       "T": 12,
@@ -61,19 +68,26 @@
       "OC": 5
     },
     "pts": 220,
-    "pts_3rd": 240
+    "pts_3rd": 240,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Storm bolter",
+          "Hunter-killer missile",
+          "Multi-melta",
+          "Twin assault cannon",
+          "Hurricane bolter"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Land Raider Redeemer": {
-    "ranged": [
-      "Storm bolter",
-      "Hunter-killer missile",
-      "Multi-melta",
-      "Twin assault cannon",
-      "Flamestorm cannon"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "12\"",
       "T": 12,
@@ -82,20 +96,26 @@
       "OC": 5
     },
     "pts": 250,
-    "pts_3rd": 270
+    "pts_3rd": 270,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Storm bolter",
+          "Hunter-killer missile",
+          "Multi-melta",
+          "Twin assault cannon",
+          "Flamestorm cannon"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Nemesis Dreadknight": {
-    "ranged": [
-      "Gatling psilencer",
-      "Heavy psycannon",
-      "Heavy incinerator"
-    ],
-    "melee": [
-      "Nemesis greatsword - strike",
-      "Nemesis greatsword - sweep",
-      "Nemesis daemon greathammer",
-      "Dreadfists"
-    ],
     "info": {
       "M": "8\"",
       "T": 8,
@@ -106,18 +126,32 @@
       "deep_strike": true
     },
     "pts": 195,
-    "pts_3rd": 210
+    "pts_3rd": 210,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [],
+        "fixed_melee": [],
+        "ranged_choices": [
+          [
+            "Gatling psilencer",
+            "Heavy psycannon",
+            "Heavy incinerator"
+          ]
+        ],
+        "melee_choices": [
+          [
+            "Nemesis greatsword",
+            "Nemesis daemon greathammer",
+            "Dreadfists"
+          ]
+        ],
+        "max_ranged": 2,
+        "max_melee": 1
+      }
+    ]
   },
   "Razorback": {
-    "ranged": [
-      "Twin lascannon",
-      "Twin heavy bolter",
-      "Storm bolter",
-      "Hunter-killer missile"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "12\"",
       "T": 9,
@@ -125,16 +159,29 @@
       "W": 10,
       "OC": 2
     },
-    "pts": 85
+    "pts": 85,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Storm bolter",
+          "Hunter-killer missile"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [
+          [
+            "Twin lascannon",
+            "Twin heavy bolter"
+          ]
+        ],
+        "melee_choices": [],
+        "max_ranged": 1
+      }
+    ]
   },
   "Rhino": {
-    "ranged": [
-      "Storm bolter",
-      "Hunter-killer missile"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "12\"",
       "T": 9,
@@ -143,21 +190,23 @@
       "OC": 2,
       "FNP": 6
     },
-    "pts": 80
+    "pts": 80,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Storm bolter",
+          "Hunter-killer missile"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Stormhawk Interceptor": {
-    "ranged": [
-      "Twin heavy bolter",
-      "Typhoon missile launcher - frag",
-      "Typhoon missile launcher - krak",
-      "Skyhammer missile launcher",
-      "Twin assault cannon",
-      "Las-talon",
-      "Icarus stormcannon"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "20+\"",
       "T": 9,
@@ -165,24 +214,29 @@
       "W": 10,
       "OC": 0
     },
-    "pts": 160
+    "pts": 160,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Twin assault cannon"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [],
+        "melee_choices": [
+          [
+            "Twin heavy bolter",
+            "Typhoon missile launcher",
+            "Skyhammer missile launcher"
+          ]
+        ],
+        "max_melee": 1
+      }
+    ]
   },
   "Stormraven Gunship": {
-    "ranged": [
-      "Hurricane bolter",
-      "Twin assault cannon",
-      "Twin lascannon",
-      "Twin heavy bolter",
-      "Typhoon missile launcher - frag",
-      "Typhoon missile launcher - krak",
-      "Stormstrike missile launcher",
-      "Twin heavy plasma cannon - standard",
-      "Twin heavy plasma cannon - supercharge",
-      "Twin multi-melta"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "20+\"",
       "T": 10,
@@ -190,20 +244,20 @@
       "W": 14,
       "OC": 0
     },
-    "pts": 280
+    "pts": 280,
+    "builds": [
+      {
+        "name": "2 Hurricane bolters",
+        "fixed_ranged": [
+          "Hurricane bolter"
+        ],
+        "fixed_melee": [],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Stormtalon Gunship": {
-    "ranged": [
-      "Twin lascannon",
-      "Twin heavy bolter",
-      "Typhoon missile launcher - frag",
-      "Typhoon missile launcher - krak",
-      "Skyhammer missile launcher",
-      "Twin assault cannon"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "20+\"",
       "T": 9,
@@ -211,6 +265,56 @@
       "W": 10,
       "OC": 0
     },
-    "pts": 170
+    "pts": 170,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Twin assault cannon"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [],
+        "melee_choices": [
+          [
+            "Twin lascannon",
+            "Twin heavy bolter",
+            "Typhoon missile launcher",
+            "Skyhammer missile launcher"
+          ]
+        ],
+        "max_melee": 1
+      }
+    ]
+  },
+  "Grand Master In Nemesis Dreadknight": {
+    "ranged": [
+      "Fragstorm grenade launcher",
+      "Sublimator",
+      "Gatling psilencer",
+      "Heavy incinerator",
+      "Heavy psycannon"
+    ],
+    "melee": [
+      "Nemesis mace",
+      "Nemesis flail",
+      "Dreadfists",
+      "Nemesis daemon greathammer",
+      "Nemesis greatsword - strike",
+      "Nemesis greatsword - sweep"
+    ],
+    "innate": [],
+    "info": {
+      "M": "8\"",
+      "T": 8,
+      "SV": 2,
+      "W": 13,
+      "OC": 4,
+      "INV": 4,
+      "deep_strike": true
+    },
+    "pts": 200,
+    "pts_3rd": 215
   }
 }

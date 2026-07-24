@@ -1,14 +1,7 @@
 {
-  "_note": "chaos-daemons weapon options \u2014 generated from BSData + MFM",
+  "_note": "chaos-daemons weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Khorne Soul Grinder": {
-    "ranged": [
-      "Harvester cannon",
-      "Torrent of burning blood"
-    ],
-    "melee": [
-      "Iron claw"
-    ],
     "info": {
       "M": "8\"",
       "T": 11,
@@ -18,16 +11,23 @@
       "INV": 4,
       "deep_strike": true
     },
-    "pts": 195
+    "pts": 195,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Harvester cannon",
+          "Torrent of burning blood"
+        ],
+        "fixed_melee": [
+          "Iron claw"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Nurgle Soul Grinder": {
-    "ranged": [
-      "Harvester cannon",
-      "Phlegm bombardment"
-    ],
-    "melee": [
-      "Iron claw"
-    ],
     "info": {
       "M": "8\"",
       "T": 11,
@@ -37,16 +37,23 @@
       "INV": 4,
       "deep_strike": true
     },
-    "pts": 195
+    "pts": 195,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Harvester cannon",
+          "Phlegm bombardment"
+        ],
+        "fixed_melee": [
+          "Iron claw"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Slaanesh Soul Grinder": {
-    "ranged": [
-      "Harvester cannon",
-      "Scream of despair"
-    ],
-    "melee": [
-      "Iron claw"
-    ],
     "info": {
       "M": "8\"",
       "T": 11,
@@ -56,16 +63,23 @@
       "INV": 4,
       "deep_strike": true
     },
-    "pts": 195
+    "pts": 195,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Harvester cannon",
+          "Scream of despair"
+        ],
+        "fixed_melee": [
+          "Iron claw"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Tzeentch Soul Grinder": {
-    "ranged": [
-      "Harvester cannon",
-      "Warp gaze"
-    ],
-    "melee": [
-      "Iron claw"
-    ],
     "info": {
       "M": "8\"",
       "T": 11,
@@ -75,6 +89,20 @@
       "INV": 4,
       "deep_strike": true
     },
-    "pts": 195
+    "pts": 195,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Harvester cannon",
+          "Warp gaze"
+        ],
+        "fixed_melee": [
+          "Iron claw"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   }
 }

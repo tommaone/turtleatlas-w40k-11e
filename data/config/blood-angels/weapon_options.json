@@ -82,14 +82,6 @@
     "pts": 150
   },
   "Death Company Dreadnought": {
-    "ranged": [
-      "Blood Fist Bolt Rifles"
-    ],
-    "melee": [
-      "Blood Fists",
-      "Blood Talons - Strike",
-      "Blood Talons - Sweep"
-    ],
     "info": {
       "M": "8\"",
       "T": 10,
@@ -97,7 +89,22 @@
       "W": 12,
       "OC": 4
     },
-    "pts": 150
+    "pts": 150,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [],
+        "fixed_melee": [],
+        "ranged_choices": [],
+        "melee_choices": [
+          [
+            "Blood Talons"
+          ]
+        ],
+        "max_ranged": 1,
+        "max_melee": 1
+      }
+    ]
   },
   "Dreadnought": {
     "ranged": [

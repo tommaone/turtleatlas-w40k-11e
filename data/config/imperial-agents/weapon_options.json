@@ -2,16 +2,6 @@
   "_note": "imperial-agents weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Corvus Blackstar": {
-    "ranged": [
-      "Hurricane bolter",
-      "Twin assault cannon",
-      "Twin lascannon",
-      "Blackstar rocket launcher",
-      "Stormstrike missile launcher"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "14\"",
       "T": 10,
@@ -19,16 +9,22 @@
       "W": 14,
       "OC": 0
     },
-    "pts": 180
+    "pts": 180,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Hurricane bolter"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Imperial Rhino": {
-    "ranged": [
-      "Storm bolter",
-      "Hunter-killer missile"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "12\"",
       "T": 9,
@@ -36,21 +32,23 @@
       "W": 10,
       "OC": 2
     },
-    "pts": 75
+    "pts": 75,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Hunter-killer missile",
+          "Storm bolter"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Inquisitorial Chimera": {
-    "ranged": [
-      "Lasgun array",
-      "Hunter-killer missile",
-      "Heavy bolter",
-      "Heavy flamer",
-      "Storm bolter",
-      "Heavy stubber",
-      "Multi-laser"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "10\"",
       "T": 9,
@@ -58,7 +56,31 @@
       "W": 11,
       "OC": 2
     },
-    "pts": 70
+    "pts": 70,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Hunter-killer missile",
+          "Lasgun array"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [
+          [
+            "Heavy bolter",
+            "Heavy flamer"
+          ],
+          [
+            "Heavy bolter",
+            "Heavy flamer",
+            "Multi-laser"
+          ]
+        ],
+        "melee_choices": []
+      }
+    ]
   },
   "Sisters Of Battle Immolator": {
     "ranged": [

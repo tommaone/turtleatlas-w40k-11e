@@ -107,11 +107,6 @@
     "pts": 75
   },
   "Gladiator Reaper": {
-    "ranged": [
-      "Tempest Bolter",
-      "Twin Heavy Onslaught Gatling Cannon"
-    ],
-    "melee": [],
     "info": {
       "M": "10\"",
       "T": 10,
@@ -119,7 +114,19 @@
       "W": 12,
       "OC": 3
     },
-    "pts": 160
+    "pts": 160,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Tempest Bolter",
+          "Twin Heavy Onslaught Gatling Cannon"
+        ],
+        "fixed_melee": [],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Invictor Tactical Warsuit": {
     "ranged": [
@@ -283,11 +290,6 @@
     "pts": 195
   },
   "Repulsor Executioner": {
-    "ranged": [
-      "Repulsor Executioner Defensive Array",
-      "Heavy Laser Destroyer"
-    ],
-    "melee": [],
     "info": {
       "M": "10\"",
       "T": 12,
@@ -295,7 +297,18 @@
       "W": 16,
       "OC": 5
     },
-    "pts": 245
+    "pts": 245,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Repulsor Executioner Defensive Array"
+        ],
+        "fixed_melee": [],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Rhino": {
     "ranged": [

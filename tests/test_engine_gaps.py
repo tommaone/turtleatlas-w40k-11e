@@ -262,8 +262,18 @@ class TestSoulGrinderMerge:
         expected_ranged = [
             "Torrent of burning blood", "Harvester cannon",
         ]
-        for wname in expected_ranged:
-            assert wname in wo.get("ranged", []), f"Missing ranged option: {wname}"
+        # Support both flat list format and builds format
+        if "builds" in wo:
+            all_ranged = []
+            for build in wo["builds"]:
+                all_ranged.extend(build.get("fixed_ranged", []))
+                for cl in build.get("ranged_choices", []):
+                    all_ranged.extend(cl)
+            for wname in expected_ranged:
+                assert wname in all_ranged, f"Missing ranged option: {wname}"
+        else:
+            for wname in expected_ranged:
+                assert wname in wo.get("ranged", []), f"Missing ranged option: {wname}"
 
     def test_soul_grinder_loadout_differs_per_target(self):
         """Soul Grinder should pick different best weapons vs different targets."""
@@ -295,7 +305,16 @@ class TestSoulGrinderMerge:
             name = f"{god} Soul Grinder"
             wo = engine.config.weapon_options.get(name)
             assert wo is not None, f"Missing {name} in weapon_options"
-            assert "ranged" in wo and len(wo["ranged"]) >= 1, f"{name} must have ranged"
+            # Support both flat list format and builds format
+            if "builds" in wo:
+                all_ranged = []
+                for build in wo["builds"]:
+                    all_ranged.extend(build.get("fixed_ranged", []))
+                    for cl in build.get("ranged_choices", []):
+                        all_ranged.extend(cl)
+                assert len(all_ranged) >= 1, f"{name} must have ranged"
+            else:
+                assert "ranged" in wo and len(wo["ranged"]) >= 1, f"{name} must have ranged"
 
 
 # ═══════════════════════════════════════════════════════════════════════

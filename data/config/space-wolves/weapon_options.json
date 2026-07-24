@@ -458,15 +458,6 @@
     "pts": 840
   },
   "Venerable Dreadnought": {
-    "ranged": [
-      "Storm Bolter",
-      "Helfrost cannon - dispersed",
-      "Helfrost cannon - focused"
-    ],
-    "melee": [
-      "Fenrisian great axe - strike",
-      "Fenrisian great axe - sweep"
-    ],
     "info": {
       "M": "8\"",
       "T": 9,
@@ -474,7 +465,19 @@
       "W": 8,
       "OC": 3
     },
-    "pts": 125
+    "pts": 125,
+    "builds": [
+      {
+        "name": "Fenrisian great axe and blizzard shield",
+        "fixed_ranged": [],
+        "fixed_melee": [
+          "Fenrisian great axe"
+        ],
+        "ranged_choices": [],
+        "melee_choices": [],
+        "max_ranged": 1
+      }
+    ]
   },
   "Vindicator": {
     "ranged": [
@@ -513,14 +516,6 @@
     "pts": 175
   },
   "Wulfen Dreadnought": {
-    "ranged": [
-      "Storm Bolter"
-    ],
-    "melee": [
-      "Great wolf claw",
-      "Fenrisian great axe - strike",
-      "Fenrisian great axe - sweep"
-    ],
     "info": {
       "M": "9\"",
       "T": 9,
@@ -528,6 +523,18 @@
       "W": 8,
       "OC": 0
     },
-    "pts": 135
+    "pts": 135,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [],
+        "fixed_melee": [
+          "Fenrisian great axe",
+          "Great wolf claw"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   }
 }

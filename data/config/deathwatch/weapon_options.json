@@ -65,16 +65,6 @@
     "pts": 150
   },
   "Corvus Blackstar": {
-    "ranged": [
-      "Hurricane bolter",
-      "Twin assault cannon",
-      "Twin lascannon",
-      "Blackstar rocket launcher",
-      "Stormstrike missile launcher"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "14\"",
       "T": 10,
@@ -82,7 +72,20 @@
       "W": 14,
       "OC": 0
     },
-    "pts": 180
+    "pts": 180,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Hurricane bolter"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Dreadnought": {
     "ranged": [

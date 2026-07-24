@@ -1,5 +1,5 @@
 {
-  "_note": "chaos-knights characters \u2014 generated from BSData + MFM",
+  "_note": "chaos-knights characters — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Chaos Cerastus Knight Acheron": {
     "pts": 370,
@@ -165,31 +165,88 @@
   },
   "Knight Despoiler": {
     "pts": 380,
-    "ranged": [
-      "Havoc missile pod",
-      "Ruinspear rocket pod",
-      "Hellstorm autocannons",
-      "Despoiler gatling cannon",
-      "Heavy darkflamer",
-      "Despoiler battle cannon",
-      "Diabolus heavy stubber",
-      "Daemonbreath thermal cannon",
-      "Daemonbreath meltagun"
-    ],
-    "melee": [
-      "Reaper chainsword - strike",
-      "Reaper chainsword - sweep",
-      "Warpstrike claw - strike",
-      "Warpstrike claw - sweep",
-      "Titanic feet"
-    ],
-    "innate": [],
     "info": {
       "M": "10\"",
       "T": 11,
       "SV": 3,
       "W": 26,
       "OC": 10
+    },
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "melee_dual",
+          "ranged": [],
+          "melee": ["Titanic feet"],
+          "ranged_choices": [
+            ["Havoc missile pod", "Ruinspear rocket pod", "Hellstorm autocannons", "Diabolus heavy stubber", "Daemonbreath meltagun"]
+          ],
+          "melee_choices": [
+            ["Reaper chainsword", "Warpstrike claw"]
+          ],
+          "max_ranged": 1,
+          "max_melee": 2
+        },
+        {
+          "name": "gatling_one_arm",
+          "ranged": ["Despoiler gatling cannon", "Heavy darkflamer"],
+          "melee": ["Titanic feet"],
+          "ranged_choices": [
+            ["Havoc missile pod", "Ruinspear rocket pod", "Hellstorm autocannons", "Diabolus heavy stubber", "Daemonbreath meltagun"]
+          ],
+          "melee_choices": [
+            ["Reaper chainsword", "Warpstrike claw"]
+          ],
+          "max_ranged": 1,
+          "max_melee": 1
+        },
+        {
+          "name": "battle_cannon_one_arm",
+          "ranged": ["Despoiler battle cannon", "Diabolus heavy stubber"],
+          "melee": ["Titanic feet"],
+          "ranged_choices": [
+            ["Havoc missile pod", "Ruinspear rocket pod", "Hellstorm autocannons", "Diabolus heavy stubber", "Daemonbreath meltagun"]
+          ],
+          "melee_choices": [
+            ["Reaper chainsword", "Warpstrike claw"]
+          ],
+          "max_ranged": 1,
+          "max_melee": 1
+        },
+        {
+          "name": "gatling_dual",
+          "ranged": ["Despoiler gatling cannon", "Heavy darkflamer", "Despoiler gatling cannon", "Heavy darkflamer"],
+          "melee": ["Titanic feet"],
+          "ranged_choices": [
+            ["Havoc missile pod", "Ruinspear rocket pod", "Hellstorm autocannons", "Diabolus heavy stubber", "Daemonbreath meltagun"]
+          ],
+          "melee_choices": [],
+          "max_ranged": 1,
+          "max_melee": 0
+        },
+        {
+          "name": "battle_cannon_dual",
+          "ranged": ["Despoiler battle cannon", "Diabolus heavy stubber", "Despoiler battle cannon", "Diabolus heavy stubber"],
+          "melee": ["Titanic feet"],
+          "ranged_choices": [
+            ["Havoc missile pod", "Ruinspear rocket pod", "Hellstorm autocannons", "Diabolus heavy stubber", "Daemonbreath meltagun"]
+          ],
+          "melee_choices": [],
+          "max_ranged": 1,
+          "max_melee": 0
+        },
+        {
+          "name": "gatling_plus_battle",
+          "ranged": ["Despoiler gatling cannon", "Heavy darkflamer", "Despoiler battle cannon", "Diabolus heavy stubber"],
+          "melee": ["Titanic feet"],
+          "ranged_choices": [
+            ["Havoc missile pod", "Ruinspear rocket pod", "Hellstorm autocannons", "Diabolus heavy stubber", "Daemonbreath meltagun"]
+          ],
+          "melee_choices": [],
+          "max_ranged": 1,
+          "max_melee": 0
+        }
+      ]
     }
   },
   "Knight Rampager": {

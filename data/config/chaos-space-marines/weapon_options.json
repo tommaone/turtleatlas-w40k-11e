@@ -2,15 +2,6 @@
   "_note": "chaos-space-marines weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Chaos Land Raider": {
-    "ranged": [
-      "Soulshatter lascannon",
-      "Havoc launcher",
-      "Twin heavy bolter",
-      "Combi-weapon"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "10\"",
       "T": 12,
@@ -18,19 +9,24 @@
       "W": 16,
       "OC": 5
     },
-    "pts": 220
+    "pts": 220,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Havoc launcher",
+          "Twin heavy bolter",
+          "Soulshatter lascannon"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Chaos Predator Annihilator": {
-    "ranged": [
-      "Predator twin lascannon",
-      "Havoc launcher",
-      "Combi-weapon",
-      "Heavy bolter",
-      "Lascannon"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "10\"",
       "T": 10,
@@ -38,19 +34,23 @@
       "W": 11,
       "OC": 3
     },
-    "pts": 135
+    "pts": 135,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Havoc launcher",
+          "Predator twin lascannon"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Chaos Predator Destructor": {
-    "ranged": [
-      "Predator autocannon",
-      "Havoc launcher",
-      "Combi-weapon",
-      "Heavy bolter",
-      "Lascannon"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "10\"",
       "T": 10,
@@ -58,16 +58,23 @@
       "W": 11,
       "OC": 3
     },
-    "pts": 140
+    "pts": 140,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Havoc launcher",
+          "Predator autocannon"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Chaos Rhino": {
-    "ranged": [
-      "Havoc launcher",
-      "Combi-weapon"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "12\"",
       "T": 9,
@@ -75,17 +82,22 @@
       "W": 10,
       "OC": 2
     },
-    "pts": 75
+    "pts": 75,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Havoc launcher"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Chaos Vindicator": {
-    "ranged": [
-      "Demolisher cannon",
-      "Havoc launcher",
-      "Combi-weapon"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "9\"",
       "T": 11,
@@ -93,25 +105,23 @@
       "W": 11,
       "OC": 3
     },
-    "pts": 185
+    "pts": 185,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Havoc launcher",
+          "Demolisher cannon"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Defiler": {
-    "ranged": [
-      "Heavy missile launcher - frag",
-      "Heavy missile launcher - krak",
-      "Hades lascannon",
-      "Heavy reaper autocannon",
-      "Hades battle cannon",
-      "Ectoplasma destructor",
-      "Heavy baleflamer",
-      "Excruciator cannon",
-      "Magma cutter"
-    ],
-    "melee": [
-      "Shearing claws - strike",
-      "Shearing claws - sweep",
-      "Electroscourge"
-    ],
     "info": {
       "M": "12\"",
       "T": 11,
@@ -120,7 +130,37 @@
       "OC": 5,
       "INV": 5
     },
-    "pts": 300
+    "pts": 300,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [],
+        "fixed_melee": [
+          "Shearing claws"
+        ],
+        "ranged_choices": [
+          [
+            "Electroscourge",
+            "Hades lascannon",
+            "Heavy reaper autocannon",
+            "Heavy missile launcher"
+          ],
+          [
+            "Hades battle cannon",
+            "Ectoplasma destructor"
+          ],
+          [
+            "Electroscourge",
+            "Hades lascannon",
+            "Heavy reaper autocannon",
+            "Heavy baleflamer"
+          ],
+          []
+        ],
+        "melee_choices": [],
+        "max_ranged": 1
+      }
+    ]
   },
   "Forgefiend": {
     "ranged": [
@@ -142,22 +182,6 @@
     "pts": 160
   },
   "Helbrute": {
-    "ranged": [
-      "Heavy flamer",
-      "Missile launcher - frag",
-      "Missile launcher - krak",
-      "Multi-melta",
-      "Twin autocannon",
-      "Helbrute plasma cannon",
-      "Twin heavy bolter",
-      "Twin lascannon"
-    ],
-    "melee": [
-      "Close combat weapon",
-      "Helbrute fist",
-      "Helbrute hammer",
-      "Power scourge"
-    ],
     "info": {
       "M": "6\"",
       "T": 9,
@@ -165,16 +189,34 @@
       "W": 8,
       "OC": 3
     },
-    "pts": 130
+    "pts": 130,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [],
+        "fixed_melee": [
+          "Close combat weapon"
+        ],
+        "ranged_choices": [
+          [
+            "Missile launcher",
+            "Helbrute hammer",
+            "Power scourge"
+          ],
+          [
+            "Twin heavy bolter",
+            "Twin lascannon",
+            "Multi-melta",
+            "Twin autocannon",
+            "Helbrute plasma cannon"
+          ]
+        ],
+        "melee_choices": [],
+        "max_ranged": 1
+      }
+    ]
   },
   "Heldrake": {
-    "ranged": [
-      "Baleflamer",
-      "Hades autocannon"
-    ],
-    "melee": [
-      "Heldrake claws"
-    ],
     "info": {
       "M": "12+",
       "T": 9,
@@ -182,7 +224,23 @@
       "W": 12,
       "INV": 5
     },
-    "pts": 175
+    "pts": 175,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [],
+        "fixed_melee": [
+          "Heldrake claws"
+        ],
+        "ranged_choices": [
+          [
+            "Hades autocannon",
+            "Baleflamer"
+          ]
+        ],
+        "melee_choices": []
+      }
+    ]
   },
   "Khorne Lord Of Skulls": {
     "ranged": [
@@ -207,13 +265,6 @@
     "pts": 450
   },
   "Maulerfiend": {
-    "ranged": [
-      "Magma cutter"
-    ],
-    "melee": [
-      "Maulerfiend fists",
-      "Lasher tendrils"
-    ],
     "info": {
       "M": "10\"",
       "T": 10,
@@ -222,6 +273,17 @@
       "OC": 3,
       "INV": 5
     },
-    "pts": 130
+    "pts": 130,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [],
+        "fixed_melee": [
+          "Maulerfiend fists"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   }
 }

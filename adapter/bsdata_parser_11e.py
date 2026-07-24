@@ -702,6 +702,281 @@ class BSDataParser11e:
         _scan(cat)
         return result
 
+    # -- Wargear constraint extraction ----------------------------------------
+
+    @staticmethod
+    def _weapon_category(entry: dict) -> str:
+        """Classify a weapon entry as 'ranged', 'melee', or 'ability' based on profiles."""
+        for p in entry.get("profiles", []):
+            ptype = p.get("typeName", "")
+            if "Ranged" in ptype:
+                return "ranged"
+            if "Melee" in ptype:
+                return "melee"
+        return "ability"
+
+    @staticmethod
+    def _is_melee_choice_group(group: dict) -> bool:
+        """Heuristic: does this nested group contain melee weapons?
+
+        Checks the group name for melee keywords, or examines the entry targets.
+        """
+        gname = (group.get("name") or "").lower()
+        melee_keywords = {"melee", "close combat", "choppa", "axe", "sword",
+                          "fist", "claw", "hammer", "blade", "power"}
+        if any(kw in gname for kw in melee_keywords):
+            return True
+        # Fallback: check if default entry has Melee Weapons profile
+        default_id = group.get("defaultSelectionEntryId", "")
+        for el in group.get("entryLinks", []):
+            if el.get("id") == default_id or el.get("name", "").lower() in gname:
+                # Can't resolve profiles here, rely on name heuristic
+                break
+        return False
+
+    @staticmethod
+    def _is_ranged_choice_group(group: dict) -> bool:
+        """Heuristic: does this nested group contain ranged weapons?"""
+        gname = (group.get("name") or "").lower()
+        ranged_keywords = {"pistol", "gun", "bolter", "rifle", "cannon",
+                           "launcher", "flamer", "melta", "plasma",
+                           "storm bolter", "psycannon", "psilencer",
+                           "incinerator", "combi", "ranged"}
+        if any(kw in gname for kw in ranged_keywords):
+            return True
+        return False
+
+    def _classify_build_items(self, entry_links: list[dict], selection_entries: list[dict],
+                               nested_groups: list[dict], entry_index: dict[str, dict],
+                               parent_group_name: str = "") -> dict:
+        """Classify items in a build into ranged/melee fixed and choice lists.
+
+        Returns: {fixed_ranged, fixed_melee, ranged_choices, melee_choices,
+                  max_ranged, max_melee}
+        max_ranged/max_melee indicate how many weapons can be picked from
+        the combined choice lists (from BSData group max constraints).
+        """
+        fixed_ranged: list[str] = []
+        fixed_melee: list[str] = []
+        ranged_choices: list[list[str]] = []
+        melee_choices: list[list[str]] = []
+        max_ranged: int | None = None
+        max_melee: int | None = None
+
+        # Direct entryLinks on this build → fixed weapons
+        for el in entry_links:
+            if el.get("hidden") == "true":
+                continue
+            el_type = el.get("type", "")
+            if el_type == "selectionEntry":
+                tid = el.get("targetId", "")
+                name = el.get("name", "")
+                if tid:
+                    target = entry_index.get(tid)
+                    if target is not None:
+                        cat = self._weapon_category(target)
+                        if cat == "ranged":
+                            fixed_ranged.append(name)
+                        elif cat == "melee":
+                            fixed_melee.append(name)
+                        # "ability" entries (e.g. Relic Shield) → skip
+                elif name:
+                    # No targetId, use name heuristic
+                    fixed_ranged.append(name)
+
+        # selectionEntries on this build → inline weapons (e.g. Twin slugga)
+        for se in selection_entries:
+            if se.get("hidden") == "true":
+                continue
+            cat = self._weapon_category(se)
+            if cat == "ranged":
+                fixed_ranged.append(se.get("name", ""))
+            elif cat == "melee":
+                fixed_melee.append(se.get("name", ""))
+
+        # Nested selectionEntryGroups → choice groups
+        for group in nested_groups:
+            choices = []
+            # entryLinks within the group are the options
+            for el in group.get("entryLinks", []):
+                if el.get("hidden") == "true":
+                    continue
+                ename = el.get("name", "")
+                if ename:
+                    choices.append(ename)
+            # selectionEntries within the group are also options
+            for se in group.get("selectionEntries", []):
+                if se.get("hidden") == "true":
+                    continue
+                ename = se.get("name", "")
+                if ename:
+                    choices.append(ename)
+
+            if not choices:
+                continue
+
+            # Extract max constraint from this group
+            group_max = None
+            for c in group.get("constraints", []):
+                if c.get("field") == "selections" and c.get("type") == "max":
+                    group_max = c.get("value")
+
+            # Classify the group as ranged or melee
+            gname = (group.get("name") or "").lower()
+            if self._is_melee_choice_group(group):
+                melee_choices.append(choices)
+                if group_max is not None:
+                    if max_melee is None:
+                        max_melee = group_max
+                    else:
+                        max_melee = max(max_melee, group_max)
+            elif self._is_ranged_choice_group(group):
+                ranged_choices.append(choices)
+                if group_max is not None:
+                    if max_ranged is None:
+                        max_ranged = group_max
+                    else:
+                        max_ranged = max(max_ranged, group_max)
+            else:
+                # Ambiguous — classify by first choice's profile if available
+                first_name = choices[0] if choices else ""
+                first_el = None
+                for el in group.get("entryLinks", []):
+                    if el.get("name") == first_name:
+                        first_el = el
+                        break
+                if first_el:
+                    tid = first_el.get("targetId", "")
+                    target = entry_index.get(tid) if tid else None
+                    if target:
+                        cat = self._weapon_category(target)
+                    else:
+                        cat = "ability"
+                else:
+                    cat = "ability"
+                if cat == "ranged":
+                    ranged_choices.append(choices)
+                elif cat == "melee":
+                    melee_choices.append(choices)
+                # "ability" groups → skip (e.g. optional wargear that's not a weapon)
+
+        return {
+            "fixed_ranged": fixed_ranged,
+            "fixed_melee": fixed_melee,
+            "ranged_choices": ranged_choices,
+            "melee_choices": melee_choices,
+            "max_ranged": max_ranged,
+            "max_melee": max_melee,
+        }
+
+    def extract_wargear_constraints(self, faction_name: str) -> dict[str, dict]:
+        """Extract wargear build constraints for all characters in a faction.
+
+        Returns: {
+            "Captain": {
+                "builds": [
+                    {
+                        "name": "Bolt Pistol, MC Bolter, Melee Weapon",
+                        "fixed_ranged": ["Bolt pistol", "Master-crafted bolter"],
+                        "fixed_melee": [],
+                        "ranged_choices": [],
+                        "melee_choices": [["Chainsword", "Power fist", "Master-crafted power weapon"]]
+                    },
+                    ...
+                ]
+            },
+            ...
+        }
+        """
+        cat = None
+        for path in self._find_json_files():
+            data = self._load_json(path)
+            if data is None:
+                continue
+            c = self._get_catalogue(data)
+            if c.get("name", "").lower() == faction_name.lower():
+                cat = c
+                break
+        if cat is None:
+            return {}
+
+        roots = self._load_catalogue_roots(cat, include_linked=True)
+        entry_index = self._build_entry_index(roots)
+
+        result: dict[str, dict] = {}
+        # Iterate ALL root catalogues (not just the main one) —
+        # models may live in Library catalogues (e.g. CK War Dogs).
+        for root in roots:
+            for entry in root.get("sharedSelectionEntries", []):
+                etype = entry.get("type", "")
+                if etype not in ("unit", "model"):
+                    continue
+                name = entry.get("name", "")
+                hidden = entry.get("hidden", "false")
+                if hidden == "true" or not name:
+                    continue
+
+                # Find the "Wargear" selectionEntryGroup
+                wargear_group = None
+                for seg in entry.get("selectionEntryGroups", []):
+                    seg_name = (seg.get("name") or "").lower()
+                    if "wargear" in seg_name:
+                        wargear_group = seg
+                        break
+                if wargear_group is None:
+                    continue
+
+                builds: list[dict] = []
+
+                # Determine if selectionEntries are build packages (Pattern 1)
+                # or inline weapons (Pattern 3). Build packages contain weapon
+                # entryLinks and/or nested choice groups, but NO direct profiles.
+                # Inline weapons have direct profiles (weapon stats) on the entry.
+                has_build_packages = False
+                for se in wargear_group.get("selectionEntries", []):
+                    if se.get("hidden") == "true":
+                        continue
+                    # Build packages: have weapon entryLinks or nested choice groups
+                    # Inline weapons: have direct profiles (weapon stats)
+                    if not se.get("profiles"):
+                        if se.get("entryLinks") or se.get("selectionEntryGroups"):
+                            has_build_packages = True
+                            break
+
+                if has_build_packages:
+                    # Pattern 1: Build packages — each selectionEntry is a named build
+                    for se in wargear_group["selectionEntries"]:
+                        if se.get("hidden") == "true":
+                            continue
+                        build_name = se.get("name", "")
+                        classified = self._classify_build_items(
+                            se.get("entryLinks", []),
+                            se.get("selectionEntries", []),
+                            se.get("selectionEntryGroups", []),
+                            entry_index,
+                            parent_group_name=build_name,
+                        )
+                        builds.append({"name": build_name, **classified})
+                else:
+                    # Pattern 2+3: Flat or Hybrid — all items on the Wargear group
+                    # are part of a single default build
+                    classified = self._classify_build_items(
+                        wargear_group.get("entryLinks", []),
+                        wargear_group.get("selectionEntries", []),
+                        wargear_group.get("selectionEntryGroups", []),
+                        entry_index,
+                        parent_group_name="default",
+                    )
+                    has_weapons = (classified["fixed_ranged"] or classified["fixed_melee"]
+                                   or classified["ranged_choices"] or classified["melee_choices"])
+                    if has_weapons:
+                        builds.append({"name": "default", **classified})
+
+                if builds:
+                    result[name] = {"builds": builds}
+
+        return result
+
     def query_faction(self, faction_name: str, include_legends: bool = False) -> dict | None:
         """Return full data for a faction, including linked catalogues."""
         for path in self._find_json_files():

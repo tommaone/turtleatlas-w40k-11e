@@ -2,16 +2,6 @@
   "_note": "adepta-sororitas weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Castigator": {
-    "ranged": [
-      "Heavy bolter",
-      "Castigator autocannons",
-      "Castigator battle cannon",
-      "Storm bolter",
-      "Hunter-killer missile"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "10\"",
       "T": 10,
@@ -20,18 +10,32 @@
       "OC": 3,
       "INV": 6
     },
-    "pts": 165
+    "pts": 165,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Heavy bolter"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [
+          [
+            "Castigator autocannons",
+            "Castigator battle cannon"
+          ],
+          [
+            "Storm bolter",
+            "Hunter-Killer Missile"
+          ]
+        ],
+        "melee_choices": [],
+        "max_ranged": 1
+      }
+    ]
   },
   "Exorcist": {
-    "ranged": [
-      "Heavy Bolter",
-      "Hunter-killer missile",
-      "Exorcist Missile Launcher",
-      "Exorcist Conflagration Rockets"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "10\"",
       "T": 10,
@@ -40,19 +44,23 @@
       "OC": 3,
       "INV": 6
     },
-    "pts": 180
+    "pts": 180,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Hunter-Killer Missile",
+          "Heavy Bolter"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Immolator": {
-    "ranged": [
-      "Heavy Bolter",
-      "Hunter-killer missile",
-      "Immolation Flamers",
-      "Twin Heavy Bolter",
-      "Twin Multi-melta"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "12\"",
       "T": 10,
@@ -61,7 +69,21 @@
       "OC": 2,
       "INV": 6
     },
-    "pts": 110
+    "pts": 110,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Hunter-Killer Missile",
+          "Heavy Bolter"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Mortifiers": {
     "ranged": [
@@ -127,13 +149,6 @@
     "pts": 70
   },
   "Sororitas Rhino": {
-    "ranged": [
-      "Hunter-killer missile",
-      "Storm bolter"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "12\"",
       "T": 9,
@@ -142,6 +157,20 @@
       "OC": 2,
       "INV": 6
     },
-    "pts": 75
+    "pts": 75,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Hunter-Killer Missile",
+          "Storm bolter"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   }
 }

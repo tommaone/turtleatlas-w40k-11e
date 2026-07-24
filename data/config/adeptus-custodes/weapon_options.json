@@ -2,13 +2,6 @@
   "_note": "adeptus-custodes weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Anathema Psykana Rhino": {
-    "ranged": [
-      "Storm Bolter",
-      "Hunter-killer missile"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "12\"",
       "T": 9,
@@ -16,16 +9,23 @@
       "W": 10,
       "OC": 2
     },
-    "pts": 75
+    "pts": 75,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Hunter-killer missile",
+          "Storm Bolter"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Ares Gunship": {
-    "ranged": [
-      "Arachnus heavy blaze cannon",
-      "Arachnus magna-blaze cannon"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "20+\"",
       "T": 12,
@@ -34,7 +34,21 @@
       "OC": 0,
       "INV": 5
     },
-    "pts": 580
+    "pts": 580,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Arachnus heavy blaze cannon",
+          "Arachnus magna-blaze cannon"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Caladius Grav-Tank": {
     "ranged": [
@@ -56,15 +70,6 @@
     "pts": 210
   },
   "Contemptor-Achillus Dreadnought": {
-    "ranged": [
-      "Achillus dreadspear",
-      "Infernus incinerator",
-      "Lastrum storm bolter",
-      "Twin adrathic destructor"
-    ],
-    "melee": [
-      "Achillus dreadspear"
-    ],
     "info": {
       "M": "6\"",
       "T": 9,
@@ -73,7 +78,18 @@
       "OC": 3,
       "INV": 5
     },
-    "pts": 155
+    "pts": 155,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Achillus dreadspear"
+        ],
+        "fixed_melee": [],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Coronus Grav-Carrier": {
     "ranged": [
@@ -94,14 +110,6 @@
     "pts": 180
   },
   "Orion Assault Dropship": {
-    "ranged": [
-      "Arachnus heavy blaze cannon",
-      "Spiculus heavy bolt launcher",
-      "Twin lastrum bolt cannon"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "20+\"",
       "T": 12,
@@ -110,19 +118,24 @@
       "OC": 0,
       "INV": 5
     },
-    "pts": 690
+    "pts": 690,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Arachnus heavy blaze cannon",
+          "Spiculus heavy bolt launcher",
+          "Twin lastrum bolt cannon"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Telemon Heavy Dreadnought": {
-    "ranged": [
-      "Spiculus bolt launcher",
-      "Arachnus storm cannon",
-      "Iliastus accelerator culverin",
-      "Twin plasma projector"
-    ],
-    "melee": [
-      "Armoured feet",
-      "Telemon Caestus"
-    ],
     "info": {
       "M": "8\"",
       "T": 10,
@@ -131,17 +144,22 @@
       "OC": 4,
       "INV": 4
     },
-    "pts": 225
+    "pts": 225,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Spiculus bolt launcher"
+        ],
+        "fixed_melee": [
+          "Armoured feet"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Venerable Contemptor Dreadnought": {
-    "ranged": [
-      "Combi-bolter",
-      "Multi-melta",
-      "Kheres-pattern assault cannon"
-    ],
-    "melee": [
-      "Contemptor combat weapon"
-    ],
     "info": {
       "M": "6\"",
       "T": 9,
@@ -150,18 +168,22 @@
       "OC": 3,
       "INV": 5
     },
-    "pts": 170
+    "pts": 170,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Combi-bolter"
+        ],
+        "fixed_melee": [
+          "Contemptor combat weapon"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Venerable Land Raider": {
-    "ranged": [
-      "Godhammer lascannon",
-      "Storm bolter",
-      "Twin heavy bolter",
-      "Hunter-killer missile"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "10\"",
       "T": 12,
@@ -169,6 +191,22 @@
       "W": 16,
       "OC": 5
     },
-    "pts": 220
+    "pts": 220,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Hunter-killer missile",
+          "Godhammer lascannon",
+          "Storm bolter",
+          "Twin heavy bolter"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   }
 }
