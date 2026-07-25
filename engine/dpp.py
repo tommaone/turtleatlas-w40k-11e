@@ -547,21 +547,24 @@ def _wound_prob(strength: int, toughness: int) -> float:
 def _shots_to_kill(
     total_wounds: int, toughness: int, save: int, invuln: Optional[int],
     fnp: Optional[int], bs: int, strength: int, ap: int, damage: float,
-    damage_reduction: int = 0,
+    damage_reduction: int = 0, wounds_per_model: int = 1,
 ) -> float:
     """
     Expected number of shots (from a given weapon) to kill the unit.
 
-    Factors in: ballistic skill, wound table, save/AP, invuln, FNP, damage reduction.
+    Factors in: ballistic skill, wound table, save/AP, invuln, FNP, damage reduction,
+    and overkill waste (D2 on 1W models wastes 1 damage).
 
     damage_reduction: flat reduction to incoming damage (e.g. Deathwing Knights -1).
                       D1 weapons still deal D1 (can't go below 1).
+    wounds_per_model: W characteristic per model — caps effective damage per wound
+                      (overkill waste: D2 on 1W model = 1 effective damage).
     """
     p_hit = (7 - bs) / 6.0
     p_wound = _wound_prob(strength, toughness)
 
-    # Apply damage reduction (minimum 1)
-    actual_damage = max(1, damage - damage_reduction)
+    # Apply damage reduction (minimum 1), then cap at wounds_per_model (overkill waste)
+    actual_damage = min(max(1, damage - damage_reduction), wounds_per_model)
 
     # Save
     modified_save = save - ap
@@ -692,7 +695,8 @@ def compute_surv(
     pts_per_shot = {}
     for name, bs, st, ap, dmg in BENCHMARK_ATTACKERS:
         sk = _shots_to_kill(total_w, defense.toughness, defense.save, defense.invuln,
-                            fnp, bs, st, ap, dmg, damage_reduction=defense.damage_reduction)
+                            fnp, bs, st, ap, dmg, damage_reduction=defense.damage_reduction,
+                            wounds_per_model=defense.wounds_per_model)
         shots_vs[f"shots_{name}"] = sk
         pts_per_shot[f"pts_per_shot_{name}"] = round(unit_points / sk, 2) if sk != float('inf') else None
 
