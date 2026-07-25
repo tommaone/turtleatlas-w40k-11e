@@ -8,6 +8,7 @@
 - `data/merged/*.json` — Community-maintained BSData game data (points, profiles, keywords). Game mechanics data only, no verbatim rule text.
 - `data/config/*/` — Our own derived configuration files. Machine-readable modifiers only.
 - Engine code — Original work. No GW IP.
+- **Wahapedia** — Cross-check / golden data set for validation. NOT a source for the app (BSData is primary). Use to verify profiles, keywords, abilities when BSData seems wrong.
 
 **NEVER commit GW copyrighted material:**
 - ⛔ No PDFs of rulebooks, faction packs, or indexes

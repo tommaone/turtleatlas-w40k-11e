@@ -830,8 +830,8 @@ class TestCostPenaltySingleApplication:
 
     @staticmethod
     def _cost_eff(pts):
-        """Replicate the cost_eff formula from ranking.py."""
-        return min(100.0, 20000.0 / pts)
+        """Replicate the cost_eff formula from ranking.py (quadratic)."""
+        return max(0.0, 100.0 * (1.0 - pts / 2000.0) ** 2)
 
     def test_cost_penalty_only_applied_to_surv(self):
         """Cost penalty applied to SURV contribution in mission_score, not to _surv_pct."""
@@ -877,12 +877,13 @@ class TestCostPenaltySingleApplication:
             )
 
     def test_cost_eff_range(self):
-        """cost_eff = min(100, 20000/pts) produces expected values for key price points."""
+        """cost_eff = 100 × (1 - pts/2000)² produces expected values for key price points."""
         cases = [
-            (100, 100.0),
-            (200, 100.0),   # 20000/200 = 100 → capped at 100
-            (400, 50.0),    # 20000/400 = 50
-            (2000, 10.0),   # 20000/2000 = 10
+            (100, 90.25),    # (1 - 100/2000)² × 100 = 0.9025² × 100
+            (200, 81.0),     # (1 - 200/2000)² × 100 = 0.81² × 100
+            (500, 56.25),    # (1 - 500/2000)² × 100 = 0.75² × 100
+            (1000, 25.0),    # (1 - 1000/2000)² × 100 = 0.5² × 100
+            (2000, 0.0),     # (1 - 2000/2000)² × 100 = 0
         ]
         for pts, expected in cases:
             result = self._cost_eff(pts)

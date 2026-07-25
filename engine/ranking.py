@@ -1333,13 +1333,17 @@ class RankingEngine:
             for r in results:
                 raw_turns = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
                 surv_vals.append(raw_turns)
-            # OBJ: (OC + banner_boost) × models × survival_turns
+            # OBJ: (OC + banner_boost) × models × min(wpm, 3) × survival_turns
+            # wounds_per_model: W1 models lose OC 1:1 with wounds, W2 lose 1:2, etc.
+            # Capped at 3 — prevents high-W vehicles (W10+) from dominating OBJ.
             obj_vals = []
             for r in results:
                 st = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
                 base_oc = r["mob"].get("objective_control", 0)
                 boost = r.get("oc_boost", 0)
-                total_oc = (base_oc + boost) * r["surv"].get("models", 1)
+                models = r["surv"].get("models", 1)
+                wpm = min(r["surv"].get("wounds_per_model", 1), 3)
+                total_oc = (base_oc + boost) * models * wpm
                 obj_vals.append(self.obj_score(total_oc, st))
             n = len(results)
 
@@ -1355,16 +1359,19 @@ class RankingEngine:
                 raw_turns = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
                 r["_surv_turns"] = round(raw_turns, 1)
                 r["_surv_pct"] = _pct(raw_turns, surv_vals)
-                # Cost penalty: expensive units are less durable in practice
-                # Applied only to SURV contribution, not the entire score
+                # Cost penalty: quadratic — losing a 500pt unit (25% of army) hurts
+                # disproportionately more than losing a 100pt unit (5%).
+                # Applied only to SURV contribution, not the entire score.
                 pts = r["points"] if r["points"] > 0 else 1
-                cost_eff = min(100.0, 20000.0 / pts)
+                cost_eff = max(0.0, 100.0 * (1.0 - pts / 2000.0) ** 2)
                 r["_cost_eff"] = round(cost_eff, 1)
                 # MOB: absolute score (0-100), NOT percentile — same baseline across all factions
                 r["_mob_pct"] = self.mob_score(r["mob"])
                 base_oc = r["mob"].get("objective_control", 0)
                 boost = r.get("oc_boost", 0)
-                total_oc = (base_oc + boost) * r["surv"].get("models", 1)
+                models = r["surv"].get("models", 1)
+                wpm = r["surv"].get("wounds_per_model", 1)
+                total_oc = (base_oc + boost) * models * wpm
                 if total_oc == 0:
                     r["_obj_pct"] = 0.0
                 else:
@@ -1399,7 +1406,9 @@ class RankingEngine:
                 st = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
                 base_oc = r["mob"].get("objective_control", 0)
                 boost = r.get("oc_boost", 0)
-                total_oc = (base_oc + boost) * r["surv"].get("models", 1)
+                models = r["surv"].get("models", 1)
+                wpm = min(r["surv"].get("wounds_per_model", 1), 3)
+                total_oc = (base_oc + boost) * models * wpm
                 obj_vals.append(self.obj_score(total_oc, st))
             n = len(results)
 
@@ -1452,16 +1461,18 @@ class RankingEngine:
     def obj_score(total_oc, surv_turns):
         """Objective holding score 0-100.
 
-        Formula: total_OC × survival_turns, normalized to 0-100.
-        total_OC = OC_per_model × models (e.g. 5 DWK × OC1 = 5 total).
-        - total_OC=0 → score=0 (Thunderhawk, flyers cannot hold objectives)
+        Formula: effective_OC × survival_turns, normalized to 0-100.
+        effective_OC = OC_per_model × models × wounds_per_model.
+        Wounds_per_model accounts for OC decay: W1 models lose OC 1:1 with wounds,
+        W3 models absorb 3 wounds per model before losing OC.
+        - effective_OC=0 → score=0 (Thunderhawk, flyers cannot hold objectives)
         """
         if total_oc == 0:
             return 0
-        # Raw: total_OC × turns. Max realistic ~8 OC × 6 turns = 48
+        # Raw: effective_OC × turns. Max realistic ~8 OC × 3W × 6 turns = 144
         raw = total_oc * surv_turns
-        # Normalize: 0 → 0, 48+ → 100
-        return min(round(raw / 48 * 100), 100)
+        # Normalize: 0 → 0, 144+ → 100
+        return min(round(raw / 144 * 100), 100)
 
     @staticmethod
     def mob_score(mob):
