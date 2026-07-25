@@ -15,17 +15,23 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Splinter pistol",
-            "Blast pistol"
+          "ranged": [],
+          "melee": [],
+          "ranged_choices": [
+            [
+              "Splinter Pistol",
+              "Blast Pistol"
+            ]
           ],
-          "melee": [
-            "Huskblade",
-            "Agoniser",
-            "Master-crafted power weapon"
+          "melee_choices": [
+            [
+              "Huskblade",
+              "Agoniser",
+              "Master-crafted power weapon"
+            ]
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "max_ranged": 1,
+          "max_melee": 1
         }
       ]
     }

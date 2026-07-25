@@ -177,21 +177,23 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt pistol",
-            "Master-crafted bolter",
-            "Heavy Bolt Pistol",
-            "Neo-volkite Pistol",
-            "Plasma pistol - supercharge",
-            "Plasma pistol - standard"
+          "ranged": [],
+          "melee": [],
+          "ranged_choices": [
+            [
+              "Inferno Pistol",
+              "Heavy Bolt Pistol"
+            ]
           ],
-          "melee": [
-            "Close combat weapon",
-            "Power fist",
-            "Master-crafted power weapon"
+          "melee_choices": [
+            [
+              "Power Fist",
+              "Relic Weapon",
+              "Master-crafted Chainsword"
+            ]
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "max_ranged": 1,
+          "max_melee": 1
         }
       ]
     }
@@ -297,20 +299,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Heavy Bolt Pistol",
-            "Hand flamer",
-            "Plasma pistol - supercharge",
-            "Plasma pistol - standard"
+          "ranged": [],
+          "melee": [],
+          "ranged_choices": [
+            [
+              "Hand flamer",
+              "Plasma pistol - supercharge",
+              "Plasma pistol - standard",
+              "Heavy Bolt Pistol"
+            ]
           ],
-          "melee": [
-            "Astartes Chainsword",
-            "Power fist",
-            "Relic Weapon",
-            "Thunder Hammer"
+          "melee_choices": [
+            [
+              "Power Fist",
+              "Relic Weapon",
+              "Astartes Chainsword"
+            ]
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "max_ranged": 1,
+          "max_melee": 1
         }
       ]
     }

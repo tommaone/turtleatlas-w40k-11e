@@ -1,5 +1,5 @@
 {
-  "_note": "astra-militarum characters — generated from BSData + MFM",
+  "_note": "astra-militarum characters \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Cadian Castellan": {
     "pts": 55,
@@ -15,21 +15,29 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt pistol",
-            "Laspistol",
-            "Plasma pistol - standard",
-            "Plasma pistol - supercharge",
-            "Boltgun"
+          "ranged": [],
+          "melee": [],
+          "ranged_choices": [
+            [
+              "Bolt pistol",
+              "Laspistol",
+              "Plasma pistol - standard",
+              "Plasma pistol - supercharge"
+            ],
+            [
+              "Boltgun"
+            ]
           ],
-          "melee": [
-            "Close combat weapon",
-            "Power fist",
-            "Power weapon",
-            "Chainsword"
+          "melee_choices": [
+            [
+              "Power weapon",
+              "Chainsword",
+              "Close combat weapon",
+              "Power fist"
+            ]
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "max_ranged": 1,
+          "max_melee": 1
         }
       ]
     }
@@ -127,17 +135,23 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt pistol",
-            "Plasma pistol - standard",
-            "Plasma pistol - supercharge"
+          "ranged": [],
+          "melee": [],
+          "ranged_choices": [
+            [
+              "Bolt pistol",
+              "Plasma pistol - standard",
+              "Plasma pistol - supercharge"
+            ]
           ],
-          "melee": [
-            "Power weapon",
-            "Chainsword"
+          "melee_choices": [
+            [
+              "Power weapon",
+              "Chainsword"
+            ]
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "max_ranged": 1,
+          "max_melee": 1
         }
       ]
     }
@@ -156,17 +170,23 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Prefectus heavy stubber",
-            "Chiron gatling cannon"
+          "ranged": [],
+          "melee": [],
+          "ranged_choices": [
+            [
+              "Bolt pistol",
+              "Plasma pistol - standard",
+              "Plasma pistol - supercharge"
+            ]
           ],
-          "melee": [
-            "Enforcer crew",
-            "Armoured hull",
-            "Power sword and Manus Mortis"
+          "melee_choices": [
+            [
+              "Power weapon",
+              "Chainsword"
+            ]
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "max_ranged": 1,
+          "max_melee": 1
         }
       ]
     }
@@ -211,17 +231,23 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Laspistol",
-            "Bale Eye",
-            "Storm bolter"
+          "ranged": [],
+          "melee": [],
+          "ranged_choices": [
+            [
+              "Bolt pistol",
+              "Plasma pistol - standard",
+              "Plasma pistol - supercharge"
+            ]
           ],
-          "melee": [
-            "Power sword",
-            "Power klaw"
+          "melee_choices": [
+            [
+              "Power weapon",
+              "Chainsword"
+            ]
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "max_ranged": 1,
+          "max_melee": 1
         }
       ]
     }
@@ -280,29 +306,34 @@
         {
           "name": "default",
           "ranged": [
-            "Hunter-killer missile",
-            "Leman Russ battle cannon",
-            "Demolisher battle cannon",
-            "Vanquisher battle cannon",
-            "Eradicator nova cannon",
-            "Executioner plasma cannon - standard",
-            "Executioner plasma cannon - supercharge",
-            "Punisher gatling cannon",
-            "Exterminator autocannon",
-            "Heavy bolter",
-            "Lascannon",
-            "Heavy flamer",
-            "Multi-melta",
-            "Plasma cannon - standard",
-            "Plasma cannon - supercharge",
-            "Storm bolter",
-            "Heavy stubber"
+            "Hunter-killer missile"
           ],
           "melee": [
             "Armoured tracks"
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "ranged_choices": [
+            [
+              "Leman Russ battle cannon",
+              "Demolisher battle cannon",
+              "Vanquisher battle cannon",
+              "Eradicator nova cannon",
+              "Executioner plasma cannon - standard",
+              "Executioner plasma cannon - supercharge",
+              "Punisher gatling cannon",
+              "Exterminator autocannon"
+            ],
+            [
+              "Heavy bolter",
+              "Lascannon",
+              "Heavy flamer"
+            ],
+            [
+              "Storm bolter",
+              "Heavy stubber"
+            ]
+          ],
+          "melee_choices": [],
+          "max_ranged": 1
         }
       ]
     }
@@ -465,18 +496,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Ripper gun",
-            "Grenadier gauntlet"
-          ],
+          "ranged": [],
           "melee": [
-            "Close combat weapon",
-            "Huge knife",
-            "Bullgryn maul",
-            "Ripper gun"
+            "Close combat weapon"
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "ranged_choices": [
+            [
+              "Ripper gun"
+            ]
+          ],
+          "melee_choices": [
+            [
+              "Bullgryn maul",
+              "Grenadier gauntlet"
+            ],
+            [
+              "Huge knife"
+            ]
+          ],
+          "max_ranged": 1
         }
       ]
     }
@@ -523,21 +561,24 @@
         {
           "name": "default",
           "ranged": [
-            "Heavy stubber",
-            "Castigator gatling cannon",
-            "Pulveriser cannon",
-            "Meltagun",
-            "Multi-melta",
-            "Heavy bolter",
-            "Coaxial autocannon",
-            "Oppressor cannon",
-            "Twin battle cannon"
+            "Heavy stubber"
           ],
           "melee": [
             "Armoured tracks"
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "ranged_choices": [
+            [
+              "Castigator gatling cannon",
+              "Pulveriser cannon"
+            ],
+            [
+              "Twin battle cannon",
+              "Coaxial autocannon",
+              "Oppressor cannon"
+            ]
+          ],
+          "melee_choices": [],
+          "max_ranged": 1
         }
       ]
     }
