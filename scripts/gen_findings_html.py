@@ -101,14 +101,23 @@ OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
 
 
 def build_data(fid, max_points=2000):
-    """Compute rankings and return DATA dict for JS embedding."""
+    """Compute rankings and return (DATA dict, n_units) for JS embedding.
+
+    n_units is derived from the actual ranked output — the count of unique
+    unit names across all missions.  This is the source of truth for the
+    displayed unit count; config counts may differ because the engine
+    filters out units (max_points, Legends, resolve_loadout → None,
+    faction-keyword mismatch, missing merged data).
+    """
     e = RankingEngine(fid)
     data = {}
+    all_unit_names = set()
     for m in MISSIONS:
         r = e.compute_ranking(mission=m, max_points=max_points)
         w = WEIGHTS[m]
         units = []
         for u in r:
+            all_unit_names.add(u['name'])
             # OBJ raw value
             base_oc = u['mob'].get('objective_control', 0)
             boost = u.get('oc_boost', 0)
@@ -150,7 +159,7 @@ def build_data(fid, max_points=2000):
                 'cost_eff': u.get('_cost_eff'),
             })
         data[m] = units
-    return data
+    return data, len(all_unit_names)
 
 
 def gen_html(fname, data, n_units):
@@ -264,9 +273,7 @@ if __name__ == '__main__':
         factions_to_gen = {args.faction: FACTIONS[args.faction]}
 
     for fid, fname in factions_to_gen.items():
-        e = RankingEngine(fid)
-        n_units = len(set(list(e.config.squads.keys()) + list(e.config.characters.keys()) + list(e.config.vehicles.keys())))
-        data = build_data(fid, max_points=max_pts)
+        data, n_units = build_data(fid, max_points=max_pts)
         html = gen_html(fname, data, n_units)
         out_dir = os.path.join(OUT, fid)
         os.makedirs(out_dir, exist_ok=True)
