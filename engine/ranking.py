@@ -1273,6 +1273,10 @@ class RankingEngine:
             if plunging and "TOWERING" in profile_kw:
                 unit_hit_mode = HitMode.PLUNGING_FIRE
 
+            # Apply save bonus from wargear (Brute Shield, Relic Shield, etc.)
+            if info and info.get("save_bonus"):
+                sv_val = max(2, sv_val - info["save_bonus"])
+
             # Per-unit multi-detachment modifier merge
             # Collect applicable modifiers from all selected detachments
             applicable_dms = [dm for dm, _ in detachment_pairs if _modifier_applies(dm, name, kw_list)]
@@ -1410,9 +1414,11 @@ class RankingEngine:
             # OBJ: (OC + banner_boost) × models × min(wpm, 3) × survival_turns
             # wounds_per_model: W1 models lose OC 1:1 with wounds, W2 lose 1:2, etc.
             # Capped at 3 — prevents high-W vehicles (W10+) from dominating OBJ.
+            # Visibility-adjusted: bigger units can't hide → fewer effective turns on objective
             obj_vals = []
             for r in results:
-                st = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
+                vis = self._surv_visibility_multiplier(r["mob"])
+                st = r["surv"]["primary_shots"] * vis / SURV_SHOTS_PER_TURN
                 base_oc = r["mob"].get("objective_control", 0)
                 boost = r.get("oc_boost", 0)
                 models = r["surv"].get("models", 1)
@@ -1433,11 +1439,15 @@ class RankingEngine:
                 raw_turns = r["surv"]["primary_shots"] / SURV_SHOTS_PER_TURN
                 r["_surv_turns"] = round(raw_turns, 1)
                 r["_surv_pct"] = _pct(raw_turns, surv_vals)
-                # Cost penalty: quadratic — losing a 500pt unit (25% of army) hurts
-                # disproportionately more than losing a 100pt unit (5%).
+                # Cost penalty: linear from 50pts (0%) to 2000pts (100%)
+                # Below 50pts: no penalty (cheap units are efficient)
+                # At 450pts: ~80% (Baneblade gets moderate penalty)
                 # Applied only to SURV contribution, not the entire score.
                 pts = r["points"] if r["points"] > 0 else 1
-                cost_eff = max(0.0, 100.0 * (1.0 - pts / 2000.0) ** 2)
+                if pts <= 50:
+                    cost_eff = 100.0
+                else:
+                    cost_eff = max(0.0, 100.0 * (1.0 - (pts - 50) / 1950.0))
                 r["_cost_eff"] = round(cost_eff, 1)
                 # MOB: absolute score (0-100), NOT percentile — same baseline across all factions
                 r["_mob_pct"] = self.mob_score(r["mob"])
@@ -1449,13 +1459,18 @@ class RankingEngine:
                 if total_oc == 0:
                     r["_obj_pct"] = 0.0
                 else:
-                    r["_obj_pct"] = _pct(self.obj_score(total_oc, raw_turns), obj_vals)
-                # Mission score: cost penalty applied to SURV contribution only
-                surv_contrib = w["surv"] * r["_surv_pct"] * cost_eff / 100.0
+                    vis = self._surv_visibility_multiplier(r["mob"])
+                    vis_turns = raw_turns * vis
+                    r["_obj_pct"] = _pct(self.obj_score(total_oc, vis_turns), obj_vals)
+                # Mission score: cost penalty + visibility multiplier applied to SURV and OBJ
+                # Visibility: bigger units can't hide → focused down before holding objectives
+                vis_mult = self._surv_visibility_multiplier(r["mob"])
+                surv_contrib = w["surv"] * r["_surv_pct"] * cost_eff * vis_mult / 100.0
+                obj_contrib = w.get("obj", 0) * r["_obj_pct"] * vis_mult
                 r["_mission_score"] = (
                     w["dps"] * r["_dps_pct"] +
                     surv_contrib +
-                    w.get("obj", 0) * r["_obj_pct"] +
+                    obj_contrib +
                     w["mob"] * r["_mob_pct"]
                 )
                 # Action-capability penalty: OC0 units can't perform actions
@@ -1530,6 +1545,38 @@ class RankingEngine:
         return results
 
     # ── Helpers ──────────────────────────────────────────────────────
+
+    @staticmethod
+    def _surv_visibility_multiplier(mob):
+        """SURV visibility multiplier based on model size.
+
+        Larger models can't hide behind terrain → more attackers target them
+        per turn → they die faster in practice. Multiplier applied to
+        primary_shots BEFORE percentile calculation.
+
+        Range: 0.80 (super-heavy) to 1.00 (infantry).
+        """
+        keywords_upper = [k.upper() for k in mob.get("keywords", [])]
+        has_titanic = "TITANIC" in keywords_upper
+        has_frame = mob.get("has_frame", False)
+        is_infantry = "INFANTRY" in keywords_upper
+        is_character = mob.get("is_character", False)
+        is_vehicle = "VEHICLE" in keywords_upper
+        is_monster = "MONSTER" in keywords_upper
+        is_mounted = "MOUNTED" in keywords_upper
+        is_jump = "JUMP PACK" in keywords_upper
+
+        if has_titanic and has_frame:
+            return 0.80   # Super-heavy: Baneblade, Stompa — visible from everywhere
+        if has_titanic:
+            return 0.85   # Titanic: Knight, Wraithknight — big, hard to hide
+        if is_vehicle or is_monster:
+            return 0.90   # Vehicle/Monster: visible but can use some terrain
+        if is_mounted or is_jump:
+            return 0.95   # Cavalry/Jump: slightly bigger, slightly more visible
+        if is_character and not is_infantry:
+            return 0.95   # Non-infantry character: single model, easy to hide
+        return 1.00       # Infantry/small unit: can spread behind terrain
 
     @staticmethod
     def obj_score(total_oc, surv_turns):

@@ -1,5 +1,5 @@
 {
-  "_note": "Daemon detachment modifiers — game mechanics only. Engine loads this for DPP/SURV/MOB computation. Modeled as always-on unless noted.",
+  "_note": "Daemon detachment modifiers \u2014 game mechanics only. Engine loads this for DPP/SURV/MOB computation. Modeled as always-on unless noted.",
   "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-daemons",
   "detachments": {
     "DAEMONIC INCURSION": {
@@ -11,7 +11,9 @@
           "name": "Warp Rifts",
           "affects": "mob",
           "movement_bonus": 3,
-          "unit_filter": ["LEGIONES DAEMONICA"],
+          "unit_filter": [
+            "Daemon"
+          ],
           "condition": "Deep Strike >6\" instead of >8\" when wholly within Shadow of Chaos or near matching-god Greater Daemon",
           "description": "Improved Deep Strike placement range (Flexibility: >6\" instead of >8\")",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/daemonic-incursion",
@@ -22,7 +24,7 @@
           "affects": "mob",
           "movement_bonus": 2,
           "condition": "1CP stratagem: >6\" Deep Strike anywhere (no Shadow of Chaos condition), still 6\" charge per GH",
-          "description": "Mobile Deep Strike positioning via stratagem — >6\" anywhere",
+          "description": "Mobile Deep Strike positioning via stratagem \u2014 >6\" anywhere",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/daemonic-incursion",
           "_engine_note": "Verified from 40k.app. 1CP stratagem to Deep Strike >6\" anywhere (no Shadow of Chaos condition needed per 11e version). GH notes the >6\" charge distance may be errata'd."
         }
@@ -38,8 +40,10 @@
           "affects": "mob",
           "advance_and_shoot": true,
           "advance_and_charge": true,
-          "unit_filter": ["KHORNE"],
-          "condition": "Khorne: Murderer's Cowl — eligible to shoot and charge in a turn it Advanced",
+          "unit_filter": [
+            "KHORNE"
+          ],
+          "condition": "Khorne: Murderer's Cowl \u2014 eligible to shoot and charge in a turn it Advanced",
           "description": "SHADOW LEGION KHORNE units can shoot and charge after Advancing",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/shadow-legion",
           "_engine_note": "PREVIOUSLY FABRICATED as lethal_hits: true. Real 11e rule (Murderer's Cowl): eligible to shoot AND charge after Advancing. This is a MOB effect, not DPP. Corrected per 40k.app."
@@ -48,8 +52,10 @@
           "name": "First Prince of Chaos - Tzeentch",
           "affects": "surv",
           "stealth": true,
-          "unit_filter": ["TZEENTCH"],
-          "condition": "Tzeentch: Penumbral Puppetry — Stealth, -1 to hit in melee",
+          "unit_filter": [
+            "TZEENTCH"
+          ],
+          "condition": "Tzeentch: Penumbral Puppetry \u2014 Stealth, -1 to hit in melee",
           "description": "SHADOW LEGION TZEENTCH units have Stealth (-1 to hit from ranged) and -1 to hit in melee",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/shadow-legion",
           "_engine_note": "Verified from 40k.app. Penumbral Puppetry grants Stealth AND -1 to hit in melee. Confirmed against GH article which noted the change prevents double-stacking with cover."
@@ -57,27 +63,35 @@
         {
           "name": "First Prince of Chaos - Nurgle",
           "affects": "surv",
-          "unit_filter": ["NURGLE"],
-          "condition": "Nurgle: Gloam Rot — S > T = -1 to wound the unit",
+          "unit_filter": [
+            "NURGLE"
+          ],
+          "condition": "Nurgle: Gloam Rot \u2014 S > T = -1 to wound the unit",
           "description": "SHADOW LEGION NURGLE units have -1 to wound when attacker's S > target's T. Cannot be modelled as simple numeric SURV modifier.",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/shadow-legion",
-          "_engine_note": "Verified from 40k.app. -1 to wound when S > T. Engine doesn't model defensive -1 to wound. No numeric modifier applied. PREVIOUSLY had incorrect cover_save modifier — stripped."
+          "_engine_note": "Verified from 40k.app. -1 to wound when S > T. Engine doesn't model defensive -1 to wound. No numeric modifier applied. PREVIOUSLY had incorrect cover_save modifier \u2014 stripped.",
+          "_inert": true
         },
         {
           "name": "First Prince of Chaos - Slaanesh",
           "affects": "surv",
-          "unit_filter": ["SLAANESH"],
-          "condition": "Slaanesh: Shadow's Caress — immune to all Snap Shooting",
+          "unit_filter": [
+            "SLAANESH"
+          ],
+          "condition": "Slaanesh: Shadow's Caress \u2014 immune to all Snap Shooting",
           "description": "SHADOW LEGION SLAANESH units immune to all Snap Shooting. No DPP/SURV/MOB modifier applicable.",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/shadow-legion",
-          "_engine_note": "Verified from 40k.app. Shadow's Caress: enemy units cannot target with snap shooting attacks (not just Overwatch). Removed previously fabricated sustained_hits_extra."
+          "_engine_note": "Verified from 40k.app. Shadow's Caress: enemy units cannot target with snap shooting attacks (not just Overwatch). Removed previously fabricated sustained_hits_extra.",
+          "_inert": true
         },
         {
           "name": "Dark Pacts (Undivided)",
           "affects": "dpp",
           "lethal_hits": true,
-          "unit_filter": ["UNDIVIDED"],
-          "condition": "Undivided: Dark Pacts — choose Lethal Hits OR Sustained Hits 1 per activation",
+          "unit_filter": [
+            "UNDIVIDED"
+          ],
+          "condition": "Undivided: Dark Pacts \u2014 choose Lethal Hits OR Sustained Hits 1 per activation",
           "description": "SHADOW LEGION UNDIVIDED units have Dark Pacts (choose Lethal or Sustained per activation). Modelled as Lethal Hits for DPP.",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/shadow-legion",
           "_engine_note": "Verified from 40k.app. Dark Pacts: auto-pass Leadership test for BE'LAKOR. Choose Lethal or Sustained 1 per activation. Modelled as always-on Lethal for DPP estimation (underestimates vs hordes, overestimates vs elites). CSM units gain Deep Strike."
@@ -93,19 +107,22 @@
           "affects": "mob",
           "fallback_and_shoot": true,
           "fallback_and_charge": true,
-          "unit_filter": ["Mounted"],
+          "unit_filter": [
+            "Mounted"
+          ],
           "condition": "MOUNTED units: Fall Back can still shoot/charge",
           "description": "Mounted units: can Fall Back and shoot/charge",
           "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-daemons",
-          "_engine_note": "Confirmed by GH article: 'Your MOUNTED units can fall back and shoot and charge.' REMOVED previous fabricated advance_and_charge — article does not grant advance+charge. Skull Cannons (MOUNTED) benefit from the Fall Back and shoot."
+          "_engine_note": "Confirmed by GH article: 'Your MOUNTED units can fall back and shoot and charge.' REMOVED previous fabricated advance_and_charge \u2014 article does not grant advance+charge. Skull Cannons (MOUNTED) benefit from the Fall Back and shoot."
         },
         {
           "name": "Warp-Riders",
           "affects": "mob",
           "condition": "1CP stratagem: MOUNTED unit gains MOBILE keyword (move through ruins/terrain)",
-          "description": "1CP stratagem: MOUNTED unit gains MOBILE keyword — can move through ruins and terrain features",
+          "description": "1CP stratagem: MOUNTED unit gains MOBILE keyword \u2014 can move through ruins and terrain features",
           "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-daemons",
-          "_engine_note": "Confirmed by GH article: 'That unit has MOBILE.' MOBILE allows moving through terrain, not +3\" movement. Previous movement_bonus: 3 was incorrect. No numeric modifier applied — MOBILE is a terrain interaction keyword, not a speed stat change."
+          "_engine_note": "Confirmed by GH article: 'That unit has MOBILE.' MOBILE allows moving through terrain, not +3\" movement. Previous movement_bonus: 3 was incorrect. No numeric modifier applied \u2014 MOBILE is a terrain interaction keyword, not a speed stat change.",
+          "_inert": true
         }
       ]
     },
@@ -116,20 +133,26 @@
         {
           "name": "Loci of Power",
           "affects": "surv",
-          "unit_filter": ["Character"],
+          "unit_filter": [
+            "Character"
+          ],
           "condition": "non-MONSTER CHARACTER: +1 Ld, +1 OC",
           "description": "Character units gain +1 Leadership and +1 Objective Control. No DPP/SURV/MOB numeric modifier applicable.",
           "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-daemons",
-          "_engine_note": "Confirmed by GH article: 'Your non-MONSTER CHARACTER models get +1Ld and +1OC.' PREVIOUSLY FABRICATED as Stealth — real rule is +1 Ld +1 OC, which the engine cannot model as a numeric modifier."
+          "_engine_note": "Confirmed by GH article: 'Your non-MONSTER CHARACTER models get +1Ld and +1OC.' PREVIOUSLY FABRICATED as Stealth \u2014 real rule is +1 Ld +1 OC, which the engine cannot model as a numeric modifier.",
+          "_inert": true
         },
         {
           "name": "Swollen with Power",
           "affects": "surv",
-          "unit_filter": ["Character"],
+          "unit_filter": [
+            "Character"
+          ],
           "condition": "upgrade enhancement: +2 Wounds for non-MONSTER CHARACTER",
           "description": "Characters gain +2 Wounds from upgrade enhancement",
           "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-daemons",
-          "_engine_note": "Confirmed by GH article: 'Upgrade: This model gets +2 Wounds.' PREVIOUSLY FABRICATED as invulnerable_save: 4 — real rule is +2 wounds. Engine doesn't model max wounds changes as a SURV modifier."
+          "_engine_note": "Confirmed by GH article: 'Upgrade: This model gets +2 Wounds.' PREVIOUSLY FABRICATED as invulnerable_save: 4 \u2014 real rule is +2 wounds. Engine doesn't model max wounds changes as a SURV modifier.",
+          "_inert": true
         }
       ]
     },
@@ -141,20 +164,25 @@
           "name": "Shudderblink",
           "affects": "mob",
           "advance_and_charge": true,
-          "unit_filter": ["Battleline"],
+          "unit_filter": [
+            "Battleline"
+          ],
           "condition": "BATTLELINE: Assault on ranged weapons when advancing, and can Advance and charge",
           "description": "Battleline units can Advance and charge. Ranged weapons gain Assault when advancing (not always-on).",
           "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-daemons",
-          "_engine_note": "Confirmed by GH article: 'Your BATTLELINE units get ASSAULT on their ranged weapons when they advance, and can advance and charge.' Removed always-on `assault: true` — the Assault keyword is conditional on advancing."
+          "_engine_note": "Confirmed by GH article: 'Your BATTLELINE units get ASSAULT on their ranged weapons when they advance, and can advance and charge.' Removed always-on `assault: true` \u2014 the Assault keyword is conditional on advancing."
         },
         {
           "name": "Daemonic Infestation",
           "affects": "surv",
-          "unit_filter": ["Battleline"],
+          "unit_filter": [
+            "Battleline"
+          ],
           "condition": "1CP stratagem: heal 3 wounds in Command phase (not FNP)",
           "description": "1CP stratagem: heal 3 wounds for a BATTLELINE unit (not Pink Horrors). CP-dependent healing, not FNP.",
           "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-daemons",
-          "_engine_note": "Confirmed by GH article: '1CP, used in your Command phase. Pick a BATTLELINE unit other than PINK HORRORS; that unit heals 3 wounds.' PREVIOUSLY FABRICATED as feel_no_pain: 5 — real rule is heal 3 wounds, a different mechanic. No always-on modifier applied."
+          "_engine_note": "Confirmed by GH article: '1CP, used in your Command phase. Pick a BATTLELINE unit other than PINK HORRORS; that unit heals 3 wounds.' PREVIOUSLY FABRICATED as feel_no_pain: 5 \u2014 real rule is heal 3 wounds, a different mechanic. No always-on modifier applied.",
+          "_inert": true
         }
       ]
     },
@@ -167,8 +195,10 @@
           "name": "Murdercall",
           "affects": "mob",
           "movement_bonus": 3,
-          "unit_filter": ["KHORNE"],
-          "condition": "enemy ends move within 8\" → D6\" surge move",
+          "unit_filter": [
+            "KHORNE"
+          ],
+          "condition": "enemy ends move within 8\" \u2192 D6\" surge move",
           "description": "LEGIONES DAEMONICA KHORNE units make D6\" reactive surge move when enemy ends within 8\"",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/blood-legion",
           "_engine_note": "Verified from 40k.app. Surge move D6\" (avg 3.5\", rounded to 3). Trigger: enemy ends Normal/Advance/Fall Back within 8\". Reactive positioning, not a speed stat change."
@@ -176,11 +206,14 @@
         {
           "name": "Blood Tainted",
           "affects": "surv",
-          "unit_filter": ["KHORNE"],
+          "unit_filter": [
+            "KHORNE"
+          ],
           "condition": "objective marker stays under control after Khorne unit kills enemy on it",
           "description": "Objective remains under your control after Khorne unit destroys enemy within range, until opponent has greater control. No DPP/SURV/MOB modifier.",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/blood-legion",
-          "_engine_note": "Verified from 40k.app. Board control rule — objective marker stays under your control until opponent overtakes it. No numeric modifier applicable."
+          "_engine_note": "Verified from 40k.app. Board control rule \u2014 objective marker stays under your control until opponent overtakes it. No numeric modifier applicable.",
+          "_inert": true
         },
         {
           "name": "Gore-Hungry Onslaught",
@@ -188,7 +221,8 @@
           "condition": "1CP stratagem: move through terrain features for KHORNE unit",
           "description": "1CP stratagem: KHORNE unit can move through terrain features (not Sustained Hits). No always-on modifier.",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/blood-legion",
-          "_engine_note": "PREVIOUSLY FABRICATED as sustained_hits_extra: 1. In 11e, this is a 1CP stratagem allowing movement through terrain features (Strategic Ploy). No always-on DPP modifier. Stripped per AGENTS.md."
+          "_engine_note": "PREVIOUSLY FABRICATED as sustained_hits_extra: 1. In 11e, this is a 1CP stratagem allowing movement through terrain features (Strategic Ploy). No always-on DPP modifier. Stripped per AGENTS.md.",
+          "_inert": true
         },
         {
           "name": "Wrath Undeniable",
@@ -196,7 +230,8 @@
           "condition": "1CP stratagem: fight on death for KHORNE unit",
           "description": "1CP stratagem: KHORNE unit fights on death. Cannot be modelled as FNP.",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/blood-legion",
-          "_engine_note": "Verified from 40k.app. 1CP fight-on-death stratagem. Not always-on. PREVIOUSLY MODELLED as FNP5+ — stripped."
+          "_engine_note": "Verified from 40k.app. 1CP fight-on-death stratagem. Not always-on. PREVIOUSLY MODELLED as FNP5+ \u2014 stripped.",
+          "_inert": true
         }
       ]
     },
@@ -209,11 +244,13 @@
           "name": "Fates in Flux",
           "affects": "dpp",
           "reroll_hits": "all",
-          "unit_filter": ["TZEENTCH"],
+          "unit_filter": [
+            "TZEENTCH"
+          ],
           "condition": "Spend Flux token to re-roll any Advance/Hit/Wound/Damage/save/Hazardous roll for TZEENTCH unit",
           "description": "TZEENTCH units can spend Flux tokens to re-roll any roll (modelled as re-roll hits for DPP estimation)",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/scintillating-legion",
-          "_engine_note": "Verified from 40k.app. 3 Flux tokens starting. Can re-roll ANY roll (not just hits). Modelled as reroll_hits: all which underestimates utility (tokens also re-roll wounds, saves, damage, etc.). Conditional on resource management — modelled as always-on for DPP estimation."
+          "_engine_note": "Verified from 40k.app. 3 Flux tokens starting. Can re-roll ANY roll (not just hits). Modelled as reroll_hits: all which underestimates utility (tokens also re-roll wounds, saves, damage, etc.). Conditional on resource management \u2014 modelled as always-on for DPP estimation."
         },
         {
           "name": "Pyrogenesis",
@@ -221,7 +258,8 @@
           "condition": "1CP stratagem: +2S or spend Flux token for +3S +1AP for TZEENTCH unit",
           "description": "1CP stratagem: TZEENTCH unit gets +2S, or +3S +1AP with Flux token. No always-on modifier.",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/scintillating-legion",
-          "_engine_note": "Verified from 40k.app. 1CP stratagem, not always-on. PREVIOUSLY HAD extra_ap: -1. Stripped per AGENTS.md."
+          "_engine_note": "Verified from 40k.app. 1CP stratagem, not always-on. PREVIOUSLY HAD extra_ap: -1. Stripped per AGENTS.md.",
+          "_inert": true
         },
         {
           "name": "Flickering Reality",
@@ -229,7 +267,8 @@
           "condition": "1CP stratagem: roll D6, opponent's hit roll of that result ends attack sequence",
           "description": "1CP stratagem: TZEENTCH unit gets 'no hit on X' defensive effect. No always-on modifier.",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/scintillating-legion",
-          "_engine_note": "Verified from 40k.app. 1CP stratagem where you roll a D6 (can re-roll with Flux token); unmodified hit rolls of that result end attack sequence. PREVIOUSLY HAD invulnerable_save: 3. Stripped per AGENTS.md."
+          "_engine_note": "Verified from 40k.app. 1CP stratagem where you roll a D6 (can re-roll with Flux token); unmodified hit rolls of that result end attack sequence. PREVIOUSLY HAD invulnerable_save: 3. Stripped per AGENTS.md.",
+          "_inert": true
         }
       ]
     },
@@ -241,11 +280,14 @@
         {
           "name": "Melancholic Miasma",
           "affects": "surv",
-          "unit_filter": ["NURGLE"],
+          "unit_filter": [
+            "NURGLE"
+          ],
           "condition": "NURGLE units: enemies within 9\" are in Shadow of Chaos; enemy in Shadow must battleshock each Command phase",
           "description": "NURGLE units extend Shadow of Chaos 9\" and force enemy battleshock tests. No DPP/SURV/MOB modifier.",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/plague-legion",
-          "_engine_note": "Verified from 40k.app. Two effects: (1) enemy within 9\" of NURGLE is in Shadow of Chaos; (2) each Command phase, select one enemy in Shadow — that unit takes battleshock test. PREVIOUSLY HAD stealth: true. Stripped — this is a board control rule, not defensive buff."
+          "_engine_note": "Verified from 40k.app. Two effects: (1) enemy within 9\" of NURGLE is in Shadow of Chaos; (2) each Command phase, select one enemy in Shadow \u2014 that unit takes battleshock test. PREVIOUSLY HAD stealth: true. Stripped \u2014 this is a board control rule, not defensive buff.",
+          "_inert": true
         },
         {
           "name": "Seeping Virulence",
@@ -253,7 +295,8 @@
           "condition": "1CP stratagem (Fight phase): critical hits on 5+ for NURGLE unit in melee",
           "description": "1CP stratagem: NURGLE unit gets critical hits on 5+ in melee. No always-on modifier.",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/plague-legion",
-          "_engine_note": "Verified from 40k.app. 1CP Fight phase stratagem giving critical hits on 5+ (for both Sustained and Lethal if applicable). PREVIOUSLY HAD sustained_hits_extra: 1 — stripped as CP-dependent."
+          "_engine_note": "Verified from 40k.app. 1CP Fight phase stratagem giving critical hits on 5+ (for both Sustained and Lethal if applicable). PREVIOUSLY HAD sustained_hits_extra: 1 \u2014 stripped as CP-dependent.",
+          "_inert": true
         },
         {
           "name": "Rot and Renewal",
@@ -261,20 +304,23 @@
           "condition": "1CP stratagem: return 1 model, D3 for BATTLELINE, or heal D3+1 for MONSTER",
           "description": "1CP stratagem: NURGLE healing/model return. No always-on modifier.",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/plague-legion",
-          "_engine_note": "Verified from 40k.app. 1CP Command phase stratagem: return 1 destroyed model (D3 for BATTLELINE), or heal D3+1 wounds for MONSTER. PREVIOUSLY HAD feel_no_pain: 5 — stripped as CP-dependent."
+          "_engine_note": "Verified from 40k.app. 1CP Command phase stratagem: return 1 destroyed model (D3 for BATTLELINE), or heal D3+1 wounds for MONSTER. PREVIOUSLY HAD feel_no_pain: 5 \u2014 stripped as CP-dependent.",
+          "_inert": true
         }
       ]
     },
     "LEGION OF EXCESS": {
       "dp_cost": 2,
       "_source": "https://www.40k.app/factions/chaos-daemons/detachments/legion-of-excess",
-      "_engine_note": "Verified 11e from 40k.app. Priority Assets disposition. Beguiling Aura: charge after Fall Back for SLAANESH. Seductive Gambit: after charge, trade Fights First for re-roll all hits and re-roll wounds of 1. False Majesty is an enhancement aura (+1 to wound). Config was correct from 10e — no 11e changes to these rules.",
+      "_engine_note": "Verified 11e from 40k.app. Priority Assets disposition. Beguiling Aura: charge after Fall Back for SLAANESH. Seductive Gambit: after charge, trade Fights First for re-roll all hits and re-roll wounds of 1. False Majesty is an enhancement aura (+1 to wound). Config was correct from 10e \u2014 no 11e changes to these rules.",
       "choices": [
         {
           "name": "Beguiling Aura",
           "affects": "mob",
           "fallback_and_charge": true,
-          "unit_filter": ["SLAANESH"],
+          "unit_filter": [
+            "SLAANESH"
+          ],
           "condition": "SLAANESH units eligible to charge after Falling Back",
           "description": "LEGIONES DAEMONICA SLAANESH units can charge after Falling Back",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/legion-of-excess",
@@ -285,7 +331,9 @@
           "affects": "dpp",
           "reroll_hits": "all",
           "reroll_wounds": "1s",
-          "unit_filter": ["SLAANESH"],
+          "unit_filter": [
+            "SLAANESH"
+          ],
           "condition": "after Charge move, trade Fights First for re-roll all hits and re-roll wounds of 1 until end of turn",
           "description": "SLAANESH units: after charge, trade Fights First for re-roll all hits and wounds of 1",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/legion-of-excess",
@@ -297,7 +345,8 @@
           "condition": "30pt enhancement (Aura): +1 to wound in melee for friendly SLAANESH non-MONSTER units within 6\"",
           "description": "30pt enhancement aura: +1 to wound for SLAANESH units within 6\". No always-on detachment modifier.",
           "_source": "https://www.40k.app/factions/chaos-daemons/detachments/legion-of-excess",
-          "_engine_note": "Verified from 40k.app. This is a 30pt enhancement (Aura) giving +1 to wound in melee for friendly LEGIONES DAEMONICA SLAANESH units within 6\". Enhancement, not detachment rule — costs points. Previously modelled as plus1_to_wound which overestimates reach (it's aura-limited)."
+          "_engine_note": "Verified from 40k.app. This is a 30pt enhancement (Aura) giving +1 to wound in melee for friendly LEGIONES DAEMONICA SLAANESH units within 6\". Enhancement, not detachment rule \u2014 costs points. Previously modelled as plus1_to_wound which overestimates reach (it's aura-limited).",
+          "_inert": true
         }
       ]
     }

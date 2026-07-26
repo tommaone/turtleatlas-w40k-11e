@@ -1060,8 +1060,10 @@ class TestCostPenaltySingleApplication:
 
     @staticmethod
     def _cost_eff(pts):
-        """Replicate the cost_eff formula from ranking.py (quadratic)."""
-        return max(0.0, 100.0 * (1.0 - pts / 2000.0) ** 2)
+        """Replicate the cost_eff formula from ranking.py (linear from 50-2000pts)."""
+        if pts <= 50:
+            return 100.0
+        return max(0.0, 100.0 * (1.0 - (pts - 50) / 1950.0))
 
     def test_cost_penalty_only_applied_to_surv(self):
         """Cost penalty applied to SURV contribution in mission_score, not to _surv_pct."""
@@ -1090,15 +1092,17 @@ class TestCostPenaltySingleApplication:
         )
 
         # _surv_pct uses RAW turns (no cost_eff) — expensive unit may have higher _surv_pct
-        # The cost penalty is applied to the SURV contribution in mission_score
+        # The cost penalty + visibility multiplier are applied to SURV and OBJ contributions
         w = engine.config.mission_profiles["_test_mission"]
         for r in results:
             ce = self._cost_eff(r["points"])
-            surv_contrib = w["surv"] * r["_surv_pct"] * ce / 100.0
+            vis = engine._surv_visibility_multiplier(r["mob"])
+            surv_contrib = w["surv"] * r["_surv_pct"] * ce * vis / 100.0
+            obj_contrib = w.get("obj", 0) * r["_obj_pct"] * vis
             expected_score = (
                 w["dps"] * r["_dps_pct"]
                 + surv_contrib
-                + w.get("obj", 0) * r["_obj_pct"]
+                + obj_contrib
                 + w["mob"] * r["_mob_pct"]
             )
             assert abs(r["_mission_score"] - expected_score) < 0.01, (
@@ -1107,17 +1111,19 @@ class TestCostPenaltySingleApplication:
             )
 
     def test_cost_eff_range(self):
-        """cost_eff = 100 × (1 - pts/2000)² produces expected values for key price points."""
+        """cost_eff = linear from 50pts (100%) to 2000pts (0%) produces expected values."""
         cases = [
-            (100, 90.25),    # (1 - 100/2000)² × 100 = 0.9025² × 100
-            (200, 81.0),     # (1 - 200/2000)² × 100 = 0.81² × 100
-            (500, 56.25),    # (1 - 500/2000)² × 100 = 0.75² × 100
-            (1000, 25.0),    # (1 - 1000/2000)² × 100 = 0.5² × 100
-            (2000, 0.0),     # (1 - 2000/2000)² × 100 = 0
+            (50, 100.0),     # Below threshold: no penalty
+            (100, 97.4),     # (1 - (100-50)/1950) × 100 ≈ 97.4
+            (200, 92.3),     # (1 - (200-50)/1950) × 100 ≈ 92.3
+            (450, 79.5),     # (1 - (450-50)/1950) × 100 ≈ 79.5
+            (500, 76.9),     # (1 - (500-50)/1950) × 100 ≈ 76.9
+            (1000, 51.3),    # (1 - (1000-50)/1950) × 100 ≈ 51.3
+            (2000, 0.0),     # (1 - (2000-50)/1950) × 100 = 0.0
         ]
         for pts, expected in cases:
             result = self._cost_eff(pts)
-            assert result == expected, (
+            assert abs(result - expected) < 0.1, (
                 f"pts={pts}: expected cost_eff={expected}, got {result}"
             )
 

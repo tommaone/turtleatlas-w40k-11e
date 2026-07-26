@@ -1,5 +1,5 @@
 {
-  "_note": "CK detachment modifiers — game mechanics only. Engine loads this for DPP/SURV/MOB computation. All data verified from 40k.app (official 11e database) or Goonhammer faction pack review.",
+  "_note": "CK detachment modifiers \u2014 game mechanics only. Engine loads this for DPP/SURV/MOB computation. All data verified from 40k.app (official 11e database) or Goonhammer faction pack review.",
   "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-knights + https://www.40k.app/factions/chaos-knights/detachments",
   "detachments": {
     "BASTIONS OF TYRANNY": {
@@ -11,7 +11,9 @@
           "affects": "dpp",
           "hit_modifier": -1,
           "description": "+1 to hit rolls vs battle-shocked units (modelled as always-on)",
-          "unit_filter": ["Knight Tyrant"],
+          "unit_filter": [
+            "Knight Tyrant"
+          ],
           "condition": "only vs battle-shocked units",
           "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-knights",
           "_engine_note": "Conditional on target being battle-shocked. Modelled as always-on for DPP estimation. GH article notes this is hard to trigger reliably."
@@ -21,32 +23,38 @@
     "HUNTING WARPACK": {
       "dp_cost": 1,
       "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-knights",
-      "_engine_note": "Detachment rule (Scenting Fear): Once/BR, pick unit visible within 12\" of a War Dog, +6\" detection range. No direct DPP/SURV/MOB modifier. Recon disposition — bad for CK.",
+      "_engine_note": "Detachment rule (Scenting Fear): Once/BR, pick unit visible within 12\" of a War Dog, +6\" detection range. No direct DPP/SURV/MOB modifier. Recon disposition \u2014 bad for CK.",
       "choices": [
         {
           "name": "Snarling Rivalry",
           "affects": "dpp",
-          "unit_filter": ["War Dog"],
-          "condition": "upgrade enhancement for Executioners — Ignores Cover",
+          "unit_filter": [
+            "War Dog"
+          ],
+          "condition": "upgrade enhancement for Executioners \u2014 Ignores Cover",
           "description": "Executioners gain Ignores Cover from upgrade enhancement. Targeting qualifier, not a stat modifier.",
           "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-knights",
-          "_engine_note": "Ignores Cover cannot be expressed as a numeric modifier. Listed for reference only. GH rates as excellent for Executioners."
+          "_engine_note": "Ignores Cover cannot be expressed as a numeric modifier. Listed for reference only. GH rates as excellent for Executioners.",
+          "_inert": true
         },
         {
           "name": "Insensate Bloodthirst",
           "affects": "surv",
-          "unit_filter": ["War Dog"],
-          "condition": "1CP stratagem — 5+ Feel No Pain in Fight phase",
+          "unit_filter": [
+            "War Dog"
+          ],
+          "condition": "1CP stratagem \u2014 5+ Feel No Pain in Fight phase",
           "description": "1CP strat giving War Dogs 5+ FNP in the Fight phase. Not always-on.",
           "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-knights",
-          "_engine_note": "1CP stratagem, not always-on. GH rates as amazing for Karnivores."
+          "_engine_note": "1CP stratagem, not always-on. GH rates as amazing for Karnivores.",
+          "_inert": true
         }
       ]
     },
     "ICONOCLAST FIEFDOM": {
       "dp_cost": 1,
       "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-knights",
-      "_engine_note": "Detachment rule (Wretched Thralls): include DAMNED units up to 500pts, reroll LD for DAMNED. List-building flexibility — no DPP/SURV/MOB modifier. Take and Hold disposition.",
+      "_engine_note": "Detachment rule (Wretched Thralls): include DAMNED units up to 500pts, reroll LD for DAMNED. List-building flexibility \u2014 no DPP/SURV/MOB modifier. Take and Hold disposition.",
       "choices": [
         {
           "name": "Wretched Thralls",
@@ -54,22 +62,24 @@
           "condition": "allows up to 500pts of DAMNED units in army",
           "description": "Include DAMNED units (Cultists, Accursed Cultists, Traitor Guard, Dark Communes) up to 500pts. Enables objective play and actions via cheap bodies.",
           "_source": "https://www.goonhammer.com/40k-11th-edition-faction-pack-review-chaos-knights",
-          "_engine_note": "List-building rule, not a DPP/SURV/MOB modifier. Iconoclast is the most impactful 1DP detachment for CK because it fixes the faction's biggest weakness (low model count, can't do actions/objectives)."
+          "_engine_note": "List-building rule, not a DPP/SURV/MOB modifier. Iconoclast is the most impactful 1DP detachment for CK because it fixes the faction's biggest weakness (low model count, can't do actions/objectives).",
+          "_inert": true
         }
       ]
     },
     "HELHUNT LANCE": {
       "dp_cost": 2,
       "_source": "https://www.40k.app/factions/chaos-knights/detachments/helhunt-lance",
-      "_engine_note": "Detachment rule (Masters of the Pack): TITANIC Knight with aura affecting War Dogs gets self-aura when 2+ War Dogs in range. Situational — only benefits Desecrator (reroll 1s), Ruinator (+1AP). Contemptuous Volleys strat gives fallback+shoot/charge for 1CP. GH article (10e) rated as faction's worst.",
+      "_engine_note": "Detachment rule (Masters of the Pack): TITANIC Knight with aura affecting War Dogs gets self-aura when 2+ War Dogs in range. Situational \u2014 only benefits Desecrator (reroll 1s), Ruinator (+1AP). Contemptuous Volleys strat gives fallback+shoot/charge for 1CP. GH article (10e) rated as faction's worst.",
       "choices": [
         {
           "name": "Masters of the Pack",
           "affects": "dpp",
           "condition": "TITANIC Knight gains own auras when 2+ War Dogs within 6\"",
-          "description": "Aura self-affection — depends on specific auras carried by the Knight. Cannot be modelled as a universal DPP modifier.",
+          "description": "Aura self-affection \u2014 depends on specific auras carried by the Knight. Cannot be modelled as a universal DPP modifier.",
           "_source": "https://www.40k.app/factions/chaos-knights/detachments/helhunt-lance",
-          "_engine_note": "No engine-applied modifier. Only impactful for Desecrator (reroll 1s to hit) or Ruinator (+1AP). Abominant, Lancer, Tyrant get minimal benefit."
+          "_engine_note": "No engine-applied modifier. Only impactful for Desecrator (reroll 1s to hit) or Ruinator (+1AP). Abominant, Lancer, Tyrant get minimal benefit.",
+          "_inert": true
         },
         {
           "name": "Contemptuous Volleys",
@@ -77,24 +87,27 @@
           "condition": "1CP stratagem: after Fall Back, can shoot and charge",
           "description": "1CP strat: unit can shoot and declare a charge in a turn it Fell Back.",
           "_source": "https://www.40k.app/factions/chaos-knights/detachments/helhunt-lance",
-          "_engine_note": "1CP stratagem, not always-on. Listed for reference."
+          "_engine_note": "1CP stratagem, not always-on. Listed for reference.",
+          "_inert": true
         }
       ]
     },
     "HOUNDPACK LANCE": {
       "dp_cost": 2,
       "_source": "https://www.40k.app/factions/chaos-knights/detachments/houndpack-lance",
-      "_engine_note": "Detachment rule (Marked Prey): start of Command phase, pick one enemy unit → all War Dogs get Sustained Hits 1 vs it until next Command phase. Must include 3+ War Dog units. War Dogs are BATTLELINE. Pick 3 War Dogs as CHARACTERS for Enhancements. Recon disposition.",
+      "_engine_note": "Detachment rule (Marked Prey): start of Command phase, pick one enemy unit \u2192 all War Dogs get Sustained Hits 1 vs it until next Command phase. Must include 3+ War Dog units. War Dogs are BATTLELINE. Pick 3 War Dogs as CHARACTERS for Enhancements. Recon disposition.",
       "choices": [
         {
           "name": "Marked Prey",
           "affects": "dpp",
           "sustained_hits_extra": 1,
-          "unit_filter": ["War Dog"],
+          "unit_filter": [
+            "War Dog"
+          ],
           "condition": "select one enemy unit per Command phase; all War Dogs gain Sustained Hits 1 vs it until next Command phase",
           "description": "War Dogs gain Sustained Hits 1 against a single marked prey each turn. Modelled as always-on for DPP estimation.",
           "_source": "https://www.40k.app/factions/chaos-knights/detachments/houndpack-lance",
-          "_engine_note": "Single-target per turn — modelled as always-on for DPP estimation. In practice, you can re-target each turn. Excellent War Dog detachment with strong stratagem support (reactive 6\" move, fight on death, crit on 5+)."
+          "_engine_note": "Single-target per turn \u2014 modelled as always-on for DPP estimation. In practice, you can re-target each turn. Excellent War Dog detachment with strong stratagem support (reactive 6\" move, fight on death, crit on 5+)."
         }
       ]
     },
@@ -106,18 +119,21 @@
         {
           "name": "Tyrannical Court",
           "affects": "mob",
-          "unit_filter": ["CHAOS KNIGHTS CHARACTER"],
+          "unit_filter": [
+            "Knight Character"
+          ],
           "condition": "+2 OC for CHARACTER models; 0CP sticky objective once/round",
           "description": "+2 Objective Control for CHARACTER models and free sticky objective strat once per round.",
           "_source": "https://www.40k.app/factions/chaos-knights/detachments/lords-of-dread",
-          "_engine_note": "OC bonus and free strat use. No direct DPP/SURV modifier. +2 OC helps with objective control but engine doesn't model OC directly."
+          "_engine_note": "OC bonus and free strat use. No direct DPP/SURV modifier. +2 OC helps with objective control but engine doesn't model OC directly.",
+          "_inert": true
         }
       ]
     },
     "TRAITORIS LANCE": {
       "dp_cost": 2,
       "_source": "https://www.40k.app/factions/chaos-knights/detachments/traitoris-lance",
-      "_engine_note": "Detachment rule (Paragons of Terror): At start of first battle round, after selecting Dread abilities, select one additional Dread ability to be active. Effectively have 2 Dread abilities active instead of 1. Dread abilities include: Despair (-1 Ld), Doom (+1 to wound vs battle-shocked), Darkness (Stealth), Dismay (extra battleshock tests), Delirium (mortals on failed shock), Dominion (+3\" aura). NOT Sustained Hits or Lethal Hits — PREVIOUSLY FABRICATED. Purge the Foe disposition.",
+      "_engine_note": "Detachment rule (Paragons of Terror): At start of first battle round, after selecting Dread abilities, select one additional Dread ability to be active. Effectively have 2 Dread abilities active instead of 1. Dread abilities include: Despair (-1 Ld), Doom (+1 to wound vs battle-shocked), Darkness (Stealth), Dismay (extra battleshock tests), Delirium (mortals on failed shock), Dominion (+3\" aura). NOT Sustained Hits or Lethal Hits \u2014 PREVIOUSLY FABRICATED. Purge the Foe disposition.",
       "choices": [
         {
           "name": "Paragons of Terror",
@@ -125,7 +141,8 @@
           "condition": "one additional Dread ability active for the army; Doom gives +1 to wound vs battle-shocked, but requires opponent to be battle-shocked",
           "description": "Extra Dread ability at start of game. Meta pick: Doom (+1 to wound vs battle-shocked) + Darkness (Stealth) or Dismay (battleshock tests). Conditional damage buff dependent on battle-shock.",
           "_source": "https://www.40k.app/factions/chaos-knights/detachments/traitoris-lance",
-          "_engine_note": "No universal DPP modifier. The damage buff (Doom: +1 to wound vs battle-shocked) is conditional on opponent failing battleshock. GH notes 'the ruleset there leaves a lot to be desired.' Purge disposition is the main draw."
+          "_engine_note": "No universal DPP modifier. The damage buff (Doom: +1 to wound vs battle-shocked) is conditional on opponent failing battleshock. GH notes 'the ruleset there leaves a lot to be desired.' Purge disposition is the main draw.",
+          "_inert": true
         }
       ]
     },

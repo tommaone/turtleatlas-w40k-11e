@@ -145,11 +145,13 @@ class TestTier1Structural:
             # SURV
             "invulnerable_save", "feel_no_pain", "stealth", "cover_save",
             # MOB
-            "movement_bonus", "advance_and_charge", "fallback_and_shoot",
-            "fallback_and_charge",
+            "movement_bonus", "advance_and_charge", "advance_and_shoot",
+            "fallback_and_shoot", "fallback_and_charge",
+            # Metadata (engine-injected, not user-editable)
+            "_source", "_engine_note", "_inert",
         }
         # These are top-level keys in the detachment entry, not in choices
-        top_level = {"dp_cost"}
+        top_level = {"dp_cost", "_source", "_engine_note"}
 
         data = _load_detachment_json(faction)
         dets = data.get("detachments", {})
@@ -227,7 +229,11 @@ class TestTier1Structural:
                 errors.extend(self._validate_modifier_field(faction, det_name, -1, "dp_cost", dp_cost, all_units))
 
             choices = det_data.get("choices", [])
-            assert len(choices) >= 1, f"{faction}/{det_name}: no choices"
+            if not choices:
+                # Allow empty choices if _engine_note explains why (no numeric modifier applicable)
+                if not det_data.get("_engine_note"):
+                    errors.append(f"{faction}/{det_name}: no choices and no _engine_note explaining why")
+                continue
             for i, c in enumerate(choices):
                 for field, value in c.items():
                     if field == "unit_filter":
@@ -344,7 +350,7 @@ class TestTier2EngineIntegration:
                          and not callable(getattr(choice, k))
                          and getattr(choice, k)
                          and k not in ("name", "affects", "unit_filter", "condition", "description")}
-        only_inert = choice_fields and choice_fields.issubset(self.INERT_FIELDS | {"description"})
+        only_inert = not choice_fields or choice_fields.issubset(self.INERT_FIELDS | {"description"})
 
         deltas = []
         for name in base_map:
