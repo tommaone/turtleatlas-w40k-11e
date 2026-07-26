@@ -33,8 +33,8 @@ TANKY_UNITS = {
 
 WEIGHTS = {"dps": 0.15, "surv": 0.35, "obj": 0.40, "mob": 0.10}
 
-# Minimum rank percentile for Take and Hold (top 25% of faction)
-MIN_RANK_PERCENTILE = 0.25
+# Tanky units must be in top 10 of their faction
+MAX_RANK = 10
 
 # Minimum total score for Take and Hold
 MIN_TOTAL_SCORE = 60.0
@@ -66,17 +66,15 @@ def _get_unit(results, name):
 class TestTankyArchetypeRanking:
     """Tanky units must rank in top 25% of their faction on Take and Hold."""
 
-    def test_in_top_25_percent(self, faction, unit_name):
+    def test_in_top_10(self, faction, unit_name):
         eng = RankingEngine(faction)
         results = eng.compute_ranking(mission="Take and Hold")
         unit = _get_unit(results, unit_name)
         assert unit is not None, f"{unit_name} not found in {faction}"
         rank = results.index(unit) + 1
         n = len(results)
-        percentile = rank / n
-        assert percentile <= MIN_RANK_PERCENTILE, (
-            f"{unit_name} ranks #{rank}/{n} ({percentile:.0%}) — "
-            f"expected top {MIN_RANK_PERCENTILE:.0%}"
+        assert rank <= MAX_RANK, (
+            f"{unit_name} ranks #{rank}/{n} — expected top {MAX_RANK}"
         )
 
     def test_above_minimum_score(self, faction, unit_name):
