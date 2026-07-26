@@ -1321,7 +1321,7 @@ class RankingEngine:
             else:
                 final_invuln = inv_val
                 # FNP only if the unit/config explicitly has it — NOT a default for infantry
-                final_fnp = info.get("fnp", info.get("feel_no_pain", None)) if info else None
+                final_fnp = info.get("fnp", info.get("FNP", info.get("feel_no_pain", None))) if info else None
 
             # Conditional FNP (e.g. vs Psychic) — informational only, NOT in SURV scoring
             cond_fnp = info.get("conditional_fnp", None) if info else None
