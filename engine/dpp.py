@@ -607,7 +607,7 @@ BENCHMARK_ATTACKERS = [
 def _primary_surv_metric(toughness: int) -> str:
     """Toughness-bracketed survivability metric.
 
-      T3    → storm_bolter (S4 AP0 D1) — chaff gets volume-fired
+      T3    → plasma (S7 AP-3 D2) — T3 dies to plasma/autocannon in meta
       T4    → plasma (S7 AP-3 D2) — standard plasma kills MEQ
       T5-6  → heavy_plasma (S7 AP-3 D3) — terminators eat heavy plasma/autocannons
       T7-8  → melta (S9 AP-4 D6) — vehicles eat melta/lascannon
@@ -615,7 +615,7 @@ def _primary_surv_metric(toughness: int) -> str:
       T12+  → heavy (S14 AP-4 D6+1) — super-heavies eat dedicated AT
     """
     if toughness <= 3:
-        return "storm_bolter"
+        return "plasma"
     elif toughness <= 4:
         return "plasma"
     elif toughness <= 6:
