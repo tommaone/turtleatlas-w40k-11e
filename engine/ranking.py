@@ -256,6 +256,76 @@ def _wp_dmg(wp, target, modifier: Optional[WeaponModifier] = None,
                               melta_active=melta_active, heavy_stationary=heavy_stationary)["total_damage"]
 
 
+# ---------------------------------------------------------------------------
+# Terrain ability detection
+# ---------------------------------------------------------------------------
+
+# Patterns that indicate a unit can traverse terrain despite being a Vehicle/Monster/Titanic.
+# Scanned against ability descriptions (case-insensitive).
+_TERRAIN_ABILITY_PATTERNS = [
+    "titanic stride",
+    "titanic agil",
+    "titanic advance",
+    "scuttling walker",
+    "clankin' forward",
+    "clankin\u2019 forward",
+    "stompin' forward",
+    "stompin\u2019 forward",
+    "gargantuan",      # Gargantuan Squiggoth — moves over terrain 4"
+    "heavy walker",    # Stormsurge
+    "stalking forward",  # Hierophant
+    "serpentine",      # Fulgrim
+    "skilled riders",  # Suboden Khan
+    "fire riders",     # Lord Invocatus
+    "aggressive advance",  # Lord on Juggernaut
+    "shokk-boosta",    # Big Mek
+    "move through terrain",
+    "move over terrain",
+    "move through models",
+    "move over models",
+    "move over sections of terrain",
+]
+
+# Rules-level terrain traversal — "Super-Heavy Walker" lives in rules[], not abilities[]
+_TERRAIN_RULE_PATTERNS = [
+    "super-heavy walker",
+]
+
+
+def _has_terrain_ability(profile: dict) -> bool:
+    """Detect if a unit has a special ability that allows terrain traversal.
+
+    Scans BOTH the unit's abilities list AND rules list for known terrain
+    interaction patterns. "Super-Heavy Walker" lives in rules[], while
+    "Clankin' Forward" etc. live in abilities[].
+    """
+    profile = profile or {}
+    # Check abilities (named abilities with descriptions)
+    for ability in profile.get("abilities") or []:
+        desc = (ability.get("description") or "").lower()
+        name = (ability.get("name") or "").lower()
+        for pattern in _TERRAIN_ABILITY_PATTERNS:
+            if pattern in desc or pattern in name:
+                return True
+    # Check rules (e.g. "Super-Heavy Walker" is a rule, not an ability)
+    for rule in profile.get("rules") or []:
+        rule_lower = str(rule).lower()
+        for pattern in _TERRAIN_RULE_PATTERNS:
+            if pattern in rule_lower:
+                return True
+    return False
+
+
+def _has_frame_keyword(profile: dict) -> bool:
+    """Detect if unit has Frame keyword — hull measurement, no base.
+
+    Frame units (Baneblade, Lord of Skulls) measure to hull, not base.
+    They can't fit through terrain gaps and must go diagonally (2x movement cost).
+    """
+    keywords = (profile or {}).get("keywords") or []
+    return "Frame" in keywords
+
+
 class RankingEngine:
     """Ranking engine for a specific faction."""
 
@@ -1291,6 +1361,9 @@ class RankingEngine:
 
             has_gate = False  # Gate of Infinity is GK-specific, not default for infantry
 
+            # Detect terrain traversal abilities (Titanic Strides, Scuttling Walker, etc.)
+            has_terrain = _has_terrain_ability(profile)
+
             mob = compute_mob(
                 movement=m_val,
                 fly=has_fly,
@@ -1299,6 +1372,7 @@ class RankingEngine:
                 keywords=kw_list,
                 gate_of_infinity=has_gate,
                 no_t1_reinforcements=self.no_t1_reinforcements,
+                has_terrain_ability=has_terrain,
             )
 
             notes = self.config.notes.get(name, "")
@@ -1478,14 +1552,38 @@ class RankingEngine:
     def mob_score(mob):
         """Pure mobility score 0-100.
 
-        Linear scale based on actual movement + bonuses for DS/Fly.
-        No hardcoded tiers — M5" terminators score less than M6" power armor.
+        Terrain Navigation Factor (TNF) model:
+        - Infantry/Beast/Swarm move through walls (1" cost) → TNF 1.0
+        - Vehicles/Monsters must go AROUND terrain → TNF 0.5
+        - Titanic without terrain ability → TNF 0.35 (barely navigates)
+        - Titanic with terrain ability (Titanic Strides etc.) → TNF 0.65
+        - Fly ignores all terrain → TNF 1.0
+        - Terrain abilities (Scuttling Walker, Clankin' Forward, etc.) improve TNF
+
+        Footprint penalty reflects model size relative to terrain gaps:
+        - Infantry/Beast/Swarm → no penalty (small bases)
+        - Mounted/Jump Pack → -2 (medium bases)
+        - Vehicle Walker / Monster (non-Titanic) → -4 (medium-large)
+        - Vehicle non-Walker (tracked) → -6 (large footprint)
+        - Titanic → -10 (huge, barely fits on table)
         """
+        keywords_upper = [k.upper() for k in mob.get("keywords", [])]
         has_goi = mob.get("gate_of_infinity", False)
         has_ds = mob.get("deep_strike", False)
         has_fly = mob.get("fly", False)
-        has_fortification = "FORTIFICATION" in mob.get("keywords", [])
+        has_fortification = "FORTIFICATION" in keywords_upper
+        has_titanic = "TITANIC" in keywords_upper
+        has_terrain = mob.get("has_terrain_ability", False)
         no_t1 = mob.get("no_t1_reinforcements", True)
+
+        is_infantry = "INFANTRY" in keywords_upper
+        is_vehicle = "VEHICLE" in keywords_upper
+        is_walker = "WALKER" in keywords_upper
+        is_monster = "MONSTER" in keywords_upper
+        is_beast = "BEAST" in keywords_upper
+        is_swarm = "SWARM" in keywords_upper
+        is_mounted = "MOUNTED" in keywords_upper
+        is_jump = "JUMP PACK" in keywords_upper
 
         # Parse movement from string like '6"'
         m_str = mob.get("movement", "6\"")
@@ -1498,14 +1596,80 @@ class RankingEngine:
         if has_fortification:
             return 0
 
-        # Linear scale: M0"=0, M6"=30, M12"=60, M20"=90
-        movement_score = min(movement * 4.5, 90)
+        # --- Frame detection ---
+        # Frame = hull measurement (no base). Baneblade, Lord of Skulls, etc.
+        # These units must fit their ENTIRE hull through terrain gaps.
+        has_frame = mob.get("has_frame", False)
 
+        # --- Terrain Navigation Factor (TNF) ---
+        # Reflects how well the unit navigates terrain in practice.
+        #
+        # Key hierarchy (11e terrain rules):
+        # - FLY/HOVER/INFANTRY/BEAST/SWARM: ignore terrain (TNF 1.0)
+        # - TITANIC + terrain ability + no Frame: can go over 4" terrain, has base (0.70)
+        # - TITANIC + terrain ability + Frame: can go over 4" terrain, hull measurement (0.55)
+        # - TITANIC + no terrain + Frame: must go around, hull, diagonal = 2x (0.25)
+        # - TITANIC + no terrain + no Frame: must go around, has base (0.40)
+        # - VEHICLE/MONSTER + terrain ability: can go over terrain (0.75)
+        # - VEHICLE/MONSTER no terrain: must go around (0.55)
+        if has_fly:
+            tnf = 1.0
+        elif is_infantry or is_beast or is_swarm:
+            tnf = 1.0
+        elif is_mounted or is_jump:
+            tnf = 1.0
+        elif has_titanic:
+            if has_terrain and not has_frame:
+                tnf = 0.70  # Knights on base: can go over 4" terrain
+            elif has_terrain and has_frame:
+                tnf = 0.55  # Stompa/Warlord: terrain ability but hull measurement
+            elif not has_terrain and has_frame:
+                tnf = 0.25  # Baneblade: must go around, diagonal = 2x movement
+            else:
+                tnf = 0.40  # TITANIC no ability, has base: rare case
+        elif is_vehicle or is_monster:
+            if has_terrain:
+                tnf = 0.75  # Can go over terrain (Clankin' Forward, etc.)
+            else:
+                tnf = 0.55  # Must go around terrain
+        else:
+            tnf = 0.85  # Default for unclassified units (Psyker, Character, etc.)
+
+        # --- Footprint penalty ---
+        # Larger models are harder to position and navigate through gaps.
+        # Frame = hull measurement = extra penalty (can't fit through gaps easily)
+        if has_titanic and has_frame:
+            footprint_penalty = -12  # Hull + huge = diagonal movement kills you
+        elif has_titanic:
+            footprint_penalty = -6   # Large base but has terrain ability
+        elif is_infantry or is_beast or is_swarm:
+            footprint_penalty = 0
+        elif is_mounted or is_jump:
+            footprint_penalty = -2
+        elif is_vehicle and not is_walker:
+            footprint_penalty = -6  # Tracked vehicles: wide, can't fit gaps
+        elif is_walker or is_monster:
+            footprint_penalty = -4  # Walkers/monsters: medium-large
+        else:
+            footprint_penalty = -2  # Default: medium
+
+        # --- Base movement score ---
+        base_movement = min(movement * 4.5, 90)
+        movement_score = base_movement * tnf + footprint_penalty
+
+        # --- Minimum floor ---
+        # Even the worst unit (Baneblade, Lord of Skulls) still moves ~half its M.
+        # Score 0 = half movement, not zero movement. Floor = 15% of base_movement.
+        if movement > 0:
+            min_score = base_movement * 0.15
+            movement_score = max(movement_score, min_score)
+
+        # --- Bonuses ---
         # Deep Strike: one-time ingress positioning (not ongoing mobility)
         if has_ds:
             movement_score += 10 if no_t1 else 15
 
-        # Fly: persistent mobility advantage
+        # Fly: persistent mobility advantage (on top of TNF=1.0)
         if has_fly:
             movement_score += 10
 
@@ -1513,7 +1677,7 @@ class RankingEngine:
         if has_goi:
             movement_score = max(movement_score, 85)
 
-        return min(int(movement_score), 100)
+        return min(max(int(movement_score), 0), 100)
 
     @staticmethod
     def _loadout_desc(ranged, melee, innate):

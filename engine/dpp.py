@@ -735,6 +735,7 @@ def compute_mob(
     abilities: Optional[list[str]] = None,
     gate_of_infinity: bool = False,
     no_t1_reinforcements: bool = True,
+    has_terrain_ability: bool = False,
 ) -> dict:
     """
     Compute a mobility/utility profile for a unit.
@@ -751,6 +752,8 @@ def compute_mob(
         abilities: list of relevant mobility abilities
         gate_of_infinity: has Gate of Infinity army rule (GK redeploy per turn)
         no_t1_reinforcements: 11e rule — no reserves on T1 (reduces DS value)
+        has_terrain_ability: unit has a special ability to traverse terrain
+            (e.g. Titanic Strides, Scuttling Walker, Clankin' Forward)
 
     Returns:
         dict with mobility profile
@@ -829,6 +832,8 @@ def compute_mob(
             elif mob_tier == "standard":
                 effective_tier = "very_fast"  # DS standard unit ≈ very fast
 
+    has_frame = "FRAME" in kw  # Hull measurement (Baneblade, Lord of Skulls, etc.)
+
     return {
         "movement": f'{movement}"',
         "fly": has_fly,
@@ -844,6 +849,8 @@ def compute_mob(
         "mobility_tier": mob_tier,
         "effective_tier": effective_tier,
         "no_t1_reinforcements": no_t1_reinforcements,
+        "has_terrain_ability": has_terrain_ability,
+        "has_frame": has_frame,
     }
 
 

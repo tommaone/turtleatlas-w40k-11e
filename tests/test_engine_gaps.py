@@ -812,8 +812,238 @@ class TestEdgeCases:
 
 
 # ═══════════════════════════════════════════════════════════════════════
-# Bonus: _pct integration — verify it's used correctly in ranking
+# 11. Terrain Navigation Factor (TNF) mob_score model
 # ═══════════════════════════════════════════════════════════════════════
+
+
+class TestMobScoreTerrainNavigation:
+    """Terrain Navigation Factor model for mob_score.
+
+    Tests the TNF + footprint model that replaces the old linear scale.
+    Key invariants:
+    - Infantry/Beast/Swarm get TNF 1.0 (go through walls)
+    - Vehicles/Monsters without terrain ability get penalized (must go around)
+    - Titanic without terrain ability gets heavily penalized
+    - Fly always gets TNF 1.0
+    - Terrain abilities improve TNF for Vehicle/Monster/Titanic
+    - Baneblade (Vehicle + Titanic, no terrain ability) scores ~10-15
+    """
+
+    def test_infantry_m6_gets_tnf_1(self):
+        """Infantry M6" gets full terrain navigation — goes through walls."""
+        from ranking import RankingEngine
+        mob = compute_mob(movement=6, fly=False, deep_strike=False, oc=1,
+                          keywords=["Infantry"])
+        score = RankingEngine.mob_score(mob)
+        # 6 × 4.5 × 1.0 = 27, no footprint penalty
+        assert score == 27
+
+    def test_infantry_m6_with_ds(self):
+        """Infantry M6" + Deep Strike gets bonus."""
+        from ranking import RankingEngine
+        mob = compute_mob(movement=6, fly=True, deep_strike=True, oc=1,
+                          keywords=["Infantry"])
+        score = RankingEngine.mob_score(mob)
+        # 6 × 4.5 × 1.0 = 27, +15 (DS T1) + 10 (Fly) = 52
+        assert score >= 40  # generous range
+
+    def test_baneblade_scores_low(self):
+        """Baneblade (Vehicle + Titanic, no terrain ability) should score 10-15."""
+        from ranking import RankingEngine
+        mob = compute_mob(movement=12, fly=False, deep_strike=False, oc=3,
+                          keywords=["Vehicle", "Titanic", "Frame"])
+        score = RankingEngine.mob_score(mob)
+        # 12 × 4.5 × 0.35 = 18.9, -10 (Titanic footprint) = 8.9 → 8
+        assert 5 <= score <= 20, f"Baneblade score {score} not in 5-20 range"
+
+    def test_baneblade_vs_infantry(self):
+        """Baneblade must score LESS than M6" infantry (can't navigate terrain)."""
+        from ranking import RankingEngine
+        baneblade = compute_mob(movement=12, fly=False, deep_strike=False, oc=3,
+                                keywords=["Vehicle", "Titanic", "Frame"])
+        infantry = compute_mob(movement=6, fly=False, deep_strike=False, oc=1,
+                               keywords=["Infantry"])
+        assert RankingEngine.mob_score(baneblade) < RankingEngine.mob_score(infantry)
+
+    def test_vehicle_without_terrain_penalty(self):
+        """Vehicle (non-Titanic) without terrain ability gets TNF 0.5."""
+        from ranking import RankingEngine
+        mob = compute_mob(movement=10, fly=False, deep_strike=False, oc=1,
+                          keywords=["Vehicle"])
+        score = RankingEngine.mob_score(mob)
+        # 10 × 4.5 × 0.5 = 22.5, -6 (tracked footprint) = 16.5 → 16
+        assert 10 <= score <= 25
+
+    def test_vehicle_with_terrain_ability_better(self):
+        """Vehicle with terrain ability (Scuttling Walker) scores better."""
+        from ranking import RankingEngine
+        no_ability = compute_mob(movement=12, fly=False, deep_strike=False, oc=1,
+                                 keywords=["Vehicle", "Walker"])
+        with_ability = compute_mob(movement=12, fly=False, deep_strike=False, oc=1,
+                                   keywords=["Vehicle", "Walker"],
+                                   has_terrain_ability=True)
+        assert RankingEngine.mob_score(with_ability) > RankingEngine.mob_score(no_ability)
+
+    def test_titanic_without_terrain_heavily_penalized(self):
+        """Titanic without terrain ability gets TNF 0.35 — heavily penalized."""
+        from ranking import RankingEngine
+        mob = compute_mob(movement=10, fly=False, deep_strike=False, oc=1,
+                          keywords=["Vehicle", "Titanic", "Walker"])
+        score = RankingEngine.mob_score(mob)
+        # 10 × 4.5 × 0.35 = 15.75, -10 = 5.75 → 5
+        assert 0 <= score <= 15
+
+    def test_titanic_with_terrain_ability_better(self):
+        """Titanic with terrain ability (Titanic Strides) scores significantly better."""
+        from ranking import RankingEngine
+        no_ability = compute_mob(movement=12, fly=False, deep_strike=False, oc=1,
+                                 keywords=["Vehicle", "Titanic", "Walker"])
+        with_ability = compute_mob(movement=12, fly=False, deep_strike=False, oc=1,
+                                   keywords=["Vehicle", "Titanic", "Walker"],
+                                   has_terrain_ability=True)
+        assert RankingEngine.mob_score(with_ability) > RankingEngine.mob_score(no_ability)
+
+    def test_wraithknight_better_than_baneblade(self):
+        """Wraithknight (Titanic + terrain ability) must outscore Baneblade."""
+        from ranking import RankingEngine
+        wraithknight = compute_mob(movement=12, fly=False, deep_strike=False, oc=1,
+                                   keywords=["Monster", "Titanic", "Towering", "Walker"],
+                                   has_terrain_ability=True)
+        baneblade = compute_mob(movement=12, fly=False, deep_strike=False, oc=3,
+                                keywords=["Vehicle", "Titanic", "Frame"])
+        assert RankingEngine.mob_score(wraithknight) > RankingEngine.mob_score(baneblade)
+
+    def test_fly_ignores_terrain(self):
+        """Fly keyword gives TNF 1.0 regardless of other keywords."""
+        from ranking import RankingEngine
+        # Vehicle + Titanic + Fly (e.g. Thunderhawk)
+        mob = compute_mob(movement=20, fly=True, deep_strike=False, oc=1,
+                          keywords=["Vehicle", "Titanic", "Fly"])
+        score = RankingEngine.mob_score(mob)
+        # 20 × 4.5 × 1.0 = 90, -10 (Titanic footprint) + 10 (Fly bonus) = 90
+        assert score >= 60  # should be high despite Titanic
+
+    def test_beast_gets_tnf_1(self):
+        """Beast keyword gets TNF 1.0 — fast and small."""
+        from ranking import RankingEngine
+        mob = compute_mob(movement=12, fly=False, deep_strike=False, oc=1,
+                          keywords=["Beast"])
+        score = RankingEngine.mob_score(mob)
+        # 12 × 4.5 × 1.0 = 54, no footprint penalty
+        assert score == 54
+
+    def test_swarm_gets_tnf_1(self):
+        """Swarm keyword gets TNF 1.0 — can go through walls."""
+        from ranking import RankingEngine
+        mob = compute_mob(movement=6, fly=False, deep_strike=False, oc=1,
+                          keywords=["Swarm"])
+        score = RankingEngine.mob_score(mob)
+        # 6 × 4.5 × 1.0 = 27, no footprint penalty
+        assert score == 27
+
+    def test_daemon_prince_base_score(self):
+        """Daemon Prince M8" (Monster, no Fly) gets moderate score."""
+        from ranking import RankingEngine
+        mob = compute_mob(movement=8, fly=False, deep_strike=False, oc=1,
+                          keywords=["Monster", "Character"])
+        score = RankingEngine.mob_score(mob)
+        # 8 × 4.5 × 0.5 = 18, -4 (Monster footprint) = 14
+        assert 10 <= score <= 25
+
+    def test_daemon_prince_with_wings_score(self):
+        """Daemon Prince with Wings M12" (Monster + Fly) gets high score."""
+        from ranking import RankingEngine
+        mob = compute_mob(movement=12, fly=True, deep_strike=False, oc=1,
+                          keywords=["Monster", "Character", "Fly"])
+        score = RankingEngine.mob_score(mob)
+        # 12 × 4.5 × 1.0 = 54, -4 (Monster footprint) + 10 (Fly) = 60
+        assert score >= 50
+
+    def test_jump_pack_m12(self):
+        """Jump Pack M12" gets TNF 1.0 + medium footprint penalty."""
+        from ranking import RankingEngine
+        mob = compute_mob(movement=12, fly=False, deep_strike=False, oc=1,
+                          keywords=["Infantry", "Jump Pack"])
+        score = RankingEngine.mob_score(mob)
+        # 12 × 4.5 × 1.0 = 54, -2 (Jump Pack footprint) = 52
+        assert score >= 45
+
+    def test_stompa_with_terrain_ability(self):
+        """Stompa M10" (Vehicle + Titanic + Walker + terrain ability) scores moderate."""
+        from ranking import RankingEngine
+        mob = compute_mob(movement=10, fly=False, deep_strike=False, oc=1,
+                          keywords=["Vehicle", "Titanic", "Towering", "Walker"],
+                          has_terrain_ability=True)
+        score = RankingEngine.mob_score(mob)
+        # 10 × 4.5 × 0.65 = 29.25, -10 (Titanic) = 19.25 → 19
+        assert 12 <= score <= 30
+
+    def test_stompa_without_terrain_ability_worse(self):
+        """Stompa without terrain ability scores worse than with."""
+        from ranking import RankingEngine
+        with_ability = compute_mob(movement=10, fly=False, deep_strike=False, oc=1,
+                                   keywords=["Vehicle", "Titanic", "Towering", "Walker"],
+                                   has_terrain_ability=True)
+        without_ability = compute_mob(movement=10, fly=False, deep_strike=False, oc=1,
+                                      keywords=["Vehicle", "Titanic", "Towering", "Walker"])
+        assert RankingEngine.mob_score(with_ability) > RankingEngine.mob_score(without_ability)
+
+    def test_goi_sets_floor(self):
+        """Gate of Infinity sets minimum score of 85."""
+        from ranking import RankingEngine
+        mob = compute_mob(movement=6, fly=False, deep_strike=False, oc=1,
+                          keywords=["Infantry"], gate_of_infinity=True)
+        score = RankingEngine.mob_score(mob)
+        assert score >= 85
+
+    def test_fortification_still_zero(self):
+        """FORTIFICATION keyword must give mobility score 0 (regression)."""
+        from ranking import RankingEngine
+        mob = compute_mob(movement=0, fly=False, deep_strike=False, oc=0,
+                          keywords=["FORTIFICATION"], gate_of_infinity=False)
+        score = RankingEngine.mob_score(mob)
+        assert score == 0
+
+    def test_backward_compat_no_terrain_ability_field(self):
+        """Old mob dicts without has_terrain_ability still work (defaults to False)."""
+        from ranking import RankingEngine
+        # Simulate old-style mob dict (no has_terrain_ability key)
+        old_mob = {
+            "movement": '6"',
+            "fly": False,
+            "deep_strike": False,
+            "gate_of_infinity": False,
+            "objective_control": 1,
+            "keywords": ["Infantry"],
+            "is_infantry": True,
+            "is_vehicle": False,
+            "is_terminator": False,
+            "is_character": False,
+            "transport_capacity": None,
+            "mobility_tier": "standard",
+            "effective_tier": "standard",
+            "no_t1_reinforcements": True,
+        }
+        score = RankingEngine.mob_score(old_mob)
+        # Should work without KeyError and produce same result as new style
+        assert score == 27
+
+    def test_mob_score_never_negative(self):
+        """mob_score must never return negative values."""
+        from ranking import RankingEngine
+        # Edge case: immobile Vehicle (M0")
+        mob = compute_mob(movement=0, fly=False, deep_strike=False, oc=0,
+                          keywords=["Vehicle", "Titanic"])
+        score = RankingEngine.mob_score(mob)
+        assert score >= 0
+
+    def test_mob_score_never_exceeds_100(self):
+        """mob_score must never exceed 100."""
+        from ranking import RankingEngine
+        mob = compute_mob(movement=20, fly=True, deep_strike=True, oc=1,
+                          keywords=["Infantry", "Fly"], gate_of_infinity=True)
+        score = RankingEngine.mob_score(mob)
+        assert score <= 100
 
 
 # ═══════════════════════════════════════════════════════════════════════
