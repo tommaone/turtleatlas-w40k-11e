@@ -1,0 +1,534 @@
+{
+  "meta": {
+    "generated": "2026-07-29T12:25:32.399706",
+    "model": "llama3.1:8b",
+    "expert_used": true
+  },
+  "summary": {
+    "slug": "grey-knights",
+    "faction_name": "grey-knights",
+    "total_units": 26,
+    "units_checked": 26,
+    "errors": 15,
+    "total_discrepancies": 41,
+    "pass_rate": 42.3
+  },
+  "results": [
+    {
+      "unit": "Brother-Captain",
+      "pass": true,
+      "discrepancies": []
+    },
+    {
+      "unit": "Brotherhood Champion",
+      "pass": true,
+      "discrepancies": []
+    },
+    {
+      "unit": "Brotherhood Chaplain",
+      "pass": false,
+      "discrepancies": [
+        {
+          "category": "stat",
+          "field": "LD",
+          "our_value": "5+",
+          "expected": "6+",
+          "severity": "CRITICAL",
+          "evidence": "Chaplains have better LD, should be 6+"
+        },
+        {
+          "category": "keyword",
+          "field": "Faction",
+          "our_value": "Adeptus Astartes",
+          "expected": "Grey Knights",
+          "severity": "MAJOR",
+          "evidence": "All GK units must have Faction: Grey Knights"
+        }
+      ]
+    },
+    {
+      "unit": "Brotherhood Librarian",
+      "pass": false,
+      "discrepancies": [
+        {
+          "category": "keyword",
+          "field": "Faction",
+          "our_value": "Grey Knights",
+          "expected": "Adeptus Astartes, Grey Knights",
+          "severity": "MAJOR",
+          "evidence": ""
+        },
+        {
+          "category": "stat",
+          "field": "T",
+          "our_value": "5",
+          "expected": "5",
+          "severity": "MINOR",
+          "evidence": "Terminator armour should have T5, but this is correct"
+        },
+        {
+          "category": "weapon",
+          "field": "Vortex of Doom",
+          "our_value": {
+            "Range": "18\"",
+            "A": "D6+3",
+            "BS": "3+",
+            "S": "8",
+            "AP": "-2",
+            "D": "2",
+            "Keywords": "Blast, Psychic"
+          },
+          "expected": {
+            "Range": "18\"",
+            "A": "D6",
+            "BS": "2+/3+",
+            "S": "6",
+            "AP": "-1",
+            "D": "2",
+            "Keywords": "Psychic"
+          },
+          "severity": "CRITICAL",
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "unit": "Brotherhood Techmarine",
+      "pass": false,
+      "discrepancies": [
+        {
+          "category": "stat",
+          "field": "T",
+          "our_value": "4",
+          "expected": "5",
+          "severity": "CRITICAL",
+          "evidence": "Brotherhood Techmarine is a Terminator, should have T5 per stat baseline"
+        },
+        {
+          "category": "keyword",
+          "field": "InSv",
+          "our_value": "",
+          "expected": "4+",
+          "severity": "CRITICAL",
+          "evidence": "Brotherhood Techmarine has no invulnerable save, but should have 4+"
+        },
+        {
+          "category": "keyword",
+          "field": "Faction",
+          "our_value": "Faction: Grey Knights",
+          "expected": "Faction: Adeptus Astartes",
+          "severity": "MAJOR",
+          "evidence": "Brotherhood Techmarine has Faction: Grey Knights, but should have Faction: Adeptus Astartes"
+        },
+        {
+          "category": "weapon",
+          "field": "Omnissian power axe",
+          "our_value": {
+            "AP": "-2"
+          },
+          "expected": {
+            "AP": "-1"
+          },
+          "severity": "MAJOR",
+          "evidence": "Omnissian power axe has AP-2, but should have AP-1"
+        }
+      ]
+    },
+    {
+      "unit": "Brotherhood Terminator Squad",
+      "pass": false,
+      "discrepancies": [
+        {
+          "category": "stat",
+          "field": "W",
+          "our_value": "3",
+          "expected": "2",
+          "severity": "CRITICAL",
+          "evidence": "Terminators should have W2 per stat baseline"
+        },
+        {
+          "category": "keyword",
+          "field": "Grenades",
+          "our_value": true,
+          "expected": false,
+          "severity": "MAJOR",
+          "evidence": "Grey Knights units do not have Grenades keyword"
+        }
+      ]
+    },
+    {
+      "unit": "Castellan Crowe",
+      "pass": true,
+      "discrepancies": []
+    },
+    {
+      "unit": "Grand Master",
+      "pass": false,
+      "discrepancies": [
+        {
+          "category": "keyword",
+          "field": "Faction",
+          "our_value": "Adeptus Astartes, Grey Knights",
+          "expected": "Faction: Adeptus Astartes",
+          "severity": "MAJOR",
+          "evidence": "All GK units must have this keyword."
+        },
+        {
+          "category": "stat",
+          "field": "W",
+          "our_value": "7",
+          "expected": "6",
+          "severity": "CRITICAL",
+          "evidence": "Grand Master is Power Armour character, should have W6 per stat baseline"
+        }
+      ]
+    },
+    {
+      "unit": "Grand Master In Nemesis Dreadknight",
+      "pass": false,
+      "discrepancies": [
+        {
+          "category": "keyword",
+          "field": "Walker",
+          "our_value": "Walker",
+          "expected": "",
+          "severity": "MAJOR",
+          "evidence": "Grand Master In Nemesis Dreadknight should not have Walker keyword"
+        },
+        {
+          "category": "stat",
+          "field": "T",
+          "our_value": "8",
+          "expected": "8",
+          "severity": "CRITICAL",
+          "evidence": "Grand Master In Nemesis Dreadknight has T8, but should have T10 as a Monster/Vehicle"
+        },
+        {
+          "category": "weapon",
+          "field": "Fragstorm grenade launcher",
+          "our_value": {
+            "Range": "18\"",
+            "A": "D6",
+            "BS": "3+",
+            "S": "4",
+            "AP": "0",
+            "D": "1",
+            "Keywords": "Blast"
+          },
+          "expected": {
+            "Range": "24\"",
+            "A": "2",
+            "BS": "3+",
+            "S": "6",
+            "AP": "0",
+            "D": "1",
+            "Keywords": "Psychic, Sustained Hits 1"
+          },
+          "severity": "CRITICAL",
+          "evidence": "Fragstorm grenade launcher has wrong stats and keywords"
+        }
+      ]
+    },
+    {
+      "unit": "Grand Master Voldus",
+      "pass": true,
+      "discrepancies": []
+    },
+    {
+      "unit": "Grey Knights Thunderhawk Gunship",
+      "pass": true,
+      "discrepancies": []
+    },
+    {
+      "unit": "Interceptor Squad",
+      "pass": false,
+      "discrepancies": [
+        {
+          "category": "keyword",
+          "field": "Faction",
+          "our_value": "Grey Knights, Adeptus Astartes",
+          "expected": "Adeptus Astartes",
+          "severity": "MAJOR",
+          "evidence": "All GK units must have Faction: Adeptus Astartes"
+        },
+        {
+          "category": "stat",
+          "field": "M",
+          "our_value": "12\"",
+          "expected": "12\"",
+          "severity": "INFO",
+          "evidence": ""
+        },
+        {
+          "category": "weapon",
+          "field": "Nemesis force weapon",
+          "our_value": {
+            "WS": "3+"
+          },
+          "expected": {
+            "WS": "2+/3+"
+          },
+          "severity": "MINOR",
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "unit": "Land Raider",
+      "pass": false,
+      "discrepancies": [
+        {
+          "category": "stat",
+          "field": "M",
+          "our_value": "10\"",
+          "expected": "12\"",
+          "severity": "MAJOR",
+          "evidence": "Standard Land Raider is 12\""
+        },
+        {
+          "category": "weapon",
+          "name": "Godhammer lascannon",
+          "field": "Range",
+          "our_value": "48\"",
+          "expected": "36\"",
+          "severity": "MAJOR",
+          "evidence": "Land Raiders have twin Godhammers, not single"
+        },
+        {
+          "category": "keyword",
+          "name": "Frame",
+          "severity": "MAJOR",
+          "evidence": "Not a valid keyword for Land Raider"
+        }
+      ]
+    },
+    {
+      "unit": "Land Raider Crusader",
+      "pass": false,
+      "discrepancies": [
+        {
+          "category": "keyword",
+          "field": "",
+          "our_value": "Grenades",
+          "expected": "",
+          "severity": "MAJOR",
+          "evidence": "Grey Knights units should not have Grenades keyword"
+        },
+        {
+          "category": "stat",
+          "field": "M",
+          "our_value": "12\"",
+          "expected": "12'",
+          "severity": "MINOR",
+          "evidence": "Land Raider Crusader speed is 12\", not 12'"
+        }
+      ]
+    },
+    {
+      "unit": "Land Raider Redeemer",
+      "pass": false,
+      "discrepancies": [
+        {
+          "category": "keyword",
+          "field": "Faction",
+          "our_value": "Grey Knights",
+          "expected": "Adeptus Astartes, Grey Knights",
+          "severity": "MAJOR",
+          "evidence": ""
+        },
+        {
+          "category": "stat",
+          "field": "M",
+          "our_value": "12\"",
+          "expected": "12\"",
+          "severity": "INFO",
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "unit": "Nemesis Dreadknight",
+      "pass": true,
+      "discrepancies": []
+    },
+    {
+      "unit": "Paladin Squad",
+      "pass": false,
+      "discrepancies": [
+        {
+          "category": "stat",
+          "field": "OC",
+          "our_value": "1",
+          "expected": "2",
+          "severity": "MAJOR",
+          "evidence": "Paladins are elite terminators, should have OC2 per stat baseline"
+        },
+        {
+          "category": "weapon",
+          "name": "Nemesis force weapon",
+          "field": "WS",
+          "our_value": "2+",
+          "expected": "3+",
+          "severity": "MAJOR",
+          "evidence": "Paladins are elite terminators, should have WS3+ per stat baseline"
+        },
+        {
+          "category": "weapon",
+          "name": "Nemesis force weapon",
+          "field": "BS",
+          "our_value": "2+",
+          "expected": "3+",
+          "severity": "MAJOR",
+          "evidence": "Paladins are elite terminators, should have BS3+ per stat baseline"
+        },
+        {
+          "category": "weapon",
+          "name": "Nemesis force weapon",
+          "field": "Keywords",
+          "our_value": "Psychic",
+          "expected": "Precision",
+          "severity": "MAJOR",
+          "evidence": "Brotherhood Champion Nemesis force weapon has Precision keyword"
+        },
+        {
+          "category": "rules",
+          "name": "Gate of Infinity",
+          "field": "missing",
+          "our_value": null,
+          "expected": "required for all Grey Knight units",
+          "severity": "CRITICAL",
+          "evidence": "Missing Gate of Infinity rule"
+        }
+      ]
+    },
+    {
+      "unit": "Purgation Squad",
+      "pass": true,
+      "discrepancies": []
+    },
+    {
+      "unit": "Purifier Squad",
+      "pass": false,
+      "discrepancies": [
+        {
+          "category": "keyword",
+          "field": "Faction",
+          "our_value": "Grey Knights, Adeptus Astartes",
+          "expected": "Adeptus Astartes",
+          "severity": "MAJOR",
+          "evidence": "All GK units must have Faction: Adeptus Astartes"
+        },
+        {
+          "category": "stat",
+          "field": "InSv",
+          "our_value": "",
+          "expected": "4+",
+          "severity": "CRITICAL",
+          "evidence": "Terminator armour = 4+ invuln."
+        }
+      ]
+    },
+    {
+      "unit": "Razorback",
+      "pass": true,
+      "discrepancies": []
+    },
+    {
+      "unit": "Rhino",
+      "pass": true,
+      "discrepancies": []
+    },
+    {
+      "unit": "Stormhawk Interceptor",
+      "pass": true,
+      "discrepancies": []
+    },
+    {
+      "unit": "Stormraven Gunship",
+      "pass": false,
+      "discrepancies": [
+        {
+          "category": "error",
+          "field": "llm_response_parse",
+          "our_value": "could not parse LLM response as JSON",
+          "expected": "valid JSON",
+          "severity": "CRITICAL",
+          "evidence": "Raw response: {\n  \"unit\": \"Stormraven Gunship\",\n  \"pass\": false,\n  \"discrepancies\": [\n    {\n      \"category\": \"stat\",\n      \"field\": \"T\",\n      \"our_value\": \"10\",\n      \"expected\": \"8+ or higher (due to being a vehicle)\",\n      \"severity\": \"MAJOR\",\n      \"evidence\": \"Stormraven is a vehicle, should have T8+\"\n    },\n    {\n      \"category\": \"stat\",\n      \"field\": \"W\",\n      \"our_value\": \"14\",\n      \"expected\": \"10 or less (due to being a vehicle)\",\n      \"severity\": \"MAJOR\",\n      \"evidence\": \"Stormraven is a vehicle, should have W10 or less\"\n    },\n    {\n      \"category\": \"weapon\",\n      \"field\": \"Hurricane bolter\",\n      \"our_value\": {\"S\": 4},\n      \"expected\": {\"S\": 6},\n      \"severity\": \"MAJOR\",\n      \"evidence\": \"Hurricane Bolter should have S6\"\n    },\n    {\n      \"category\": \"weapon\",\n      \"field\":"
+        }
+      ]
+    },
+    {
+      "unit": "Stormtalon Gunship",
+      "pass": true,
+      "discrepancies": []
+    },
+    {
+      "unit": "Strike Squad",
+      "pass": false,
+      "discrepancies": [
+        {
+          "category": "stat",
+          "field": "T",
+          "our_value": "4",
+          "expected": "5",
+          "severity": "CRITICAL",
+          "evidence": "Terminator armour should have T5, but Strike Squad has T4"
+        },
+        {
+          "category": "keyword",
+          "field": "Faction",
+          "our_value": "Grey Knights",
+          "expected": "Adeptus Astartes",
+          "severity": "MAJOR",
+          "evidence": "Strike Squad should have Faction: Adeptus Astartes, not Grey Knights"
+        },
+        {
+          "category": "weapon",
+          "field": "Name",
+          "our_value": "Close combat weapon",
+          "expected": "Nemesis force weapon",
+          "severity": "MAJOR",
+          "evidence": "Strike Squad should have Nemesis force weapon, not Close combat weapon"
+        },
+        {
+          "category": "rules",
+          "field": "Rule",
+          "our_value": "Scouts",
+          "expected": "None",
+          "severity": "MINOR",
+          "evidence": "Only Strike Squad has Scouts rule among GK infantry squads"
+        }
+      ]
+    },
+    {
+      "unit": "Venerable Dreadnought",
+      "pass": false,
+      "discrepancies": [
+        {
+          "category": "keyword",
+          "field": "Faction",
+          "our_value": "Grey Knights",
+          "expected": "Adeptus Astartes, Grey Knights",
+          "severity": "MAJOR",
+          "evidence": ""
+        },
+        {
+          "category": "stat",
+          "field": "T",
+          "our_value": "9",
+          "expected": "8+ or 9 for some units",
+          "severity": "CRITICAL",
+          "evidence": "Venerable Dreadnought is a vehicle, should have T8+"
+        },
+        {
+          "category": "stat",
+          "field": "InSv",
+          "our_value": "",
+          "expected": "4+",
+          "severity": "MAJOR",
+          "evidence": "Terminator armour = 4+ invuln"
+        }
+      ]
+    }
+  ]
+}

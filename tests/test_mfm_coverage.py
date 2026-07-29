@@ -3,10 +3,11 @@
 Every unit listed in MFM must:
   1. Exist in the merged JSON for that faction
   2. Have non-empty stats (M, T, Sv, W, LD, OC)
-  3. Have at least one weapon
+  3. Have at least one weapon (unless on the known allowlist)
 
 These tests catch BSData parser gaps and merge regressions.
 """
+
 import json
 import os
 import pytest
@@ -24,6 +25,29 @@ def _norm(name: str) -> str:
     n = n.replace("armour", "armor")
     n = n.replace("defence", "defense")
     return n
+
+
+# ── Known weaponless units (legitimate — no weapons in 40k 11e) ─────
+
+# Units that legitimately have no weapons in 40k 11th edition.
+# Keyed by MFM faction slug, values are sets of NORMALIZED unit names.
+# When adding a new entry: verify the unit truly has no weapons in 40k 11e rules.
+# If a unit here gains weapons via a rules update, remove it from this list.
+KNOWN_NO_WEAPONS: dict[str, set[str]] = {
+    "space-marines": {"drop pod"},
+    "space-wolves": {"drop pod"},
+    "black-templars": {"drop pod"},
+    "blood-angels": {"drop pod"},
+    "dark-angels": {"drop pod"},
+    "deathwatch": {"drop pod"},
+    "astra-militarum": {"aegis defense line", "cyclops demolition vehicle"},
+    "tau-empire": {"tidewall shieldline"},
+    "chaos-daemons": {"feculent gnarlmaw", "skull altar"},
+    "tyranids": {"spore mines", "mucolid spores"},
+}
+
+
+# ── Data loading ────────────────────────────────────────────────────
 
 
 def _load_mfm_factions():
@@ -53,6 +77,7 @@ def _load_merged(slug):
 
 # ── Test 1: Every MFM unit exists in merged ──────────────────────────
 
+
 @pytest.mark.parametrize("name,slug,mfm_units", FACTIONS,
                          ids=[f[0] for f in FACTIONS])
 def test_all_mfm_units_in_merged(name, slug, mfm_units):
@@ -74,6 +99,7 @@ def test_all_mfm_units_in_merged(name, slug, mfm_units):
 
 
 # ── Test 2: Every MFM unit has stats ─────────────────────────────────
+
 
 @pytest.mark.parametrize("name,slug,mfm_units", FACTIONS,
                          ids=[f[0] for f in FACTIONS])
@@ -102,6 +128,7 @@ def test_all_mfm_units_have_stats(name, slug, mfm_units):
 
 # ── Test 3: Merged unit count >= MFM unit count ──────────────────────
 
+
 @pytest.mark.parametrize("name,slug,mfm_units", FACTIONS,
                          ids=[f[0] for f in FACTIONS])
 def test_merged_count_gte_mfm(name, slug, mfm_units):
@@ -119,36 +146,160 @@ def test_merged_count_gte_mfm(name, slug, mfm_units):
 
 
 # ── Test 4: Every MFM unit has at least one weapon ───────────────────
+#    (allowlist for legitimately weaponless units)
+
 
 @pytest.mark.parametrize("name,slug,mfm_units", FACTIONS,
                          ids=[f[0] for f in FACTIONS])
 def test_all_mfm_units_have_weapons(name, slug, mfm_units):
-    """Every MFM unit must have at least one weapon profile."""
+    """Every MFM unit must have at least one weapon profile,
+    unless it's in the KNOWN_NO_WEAPONS allowlist."""
     merged = _load_merged(slug)
     if merged is None:
         pytest.skip(f"No merged file for {slug}")
 
+    known = KNOWN_NO_WEAPONS.get(slug, set())
     merged_map = {_norm(u["name"]): u for u in merged["units"]}
-    no_weapons = []
+    unexpected = []   # no weapons but NOT in allowlist → regression
+    stale = []        # IN allowlist but now HAS weapons → allowlist needs cleanup
+
     for mfm_name in mfm_units:
         mu = merged_map.get(_norm(mfm_name))
         if mu is None:
             continue
         profile = mu.get("profile") or {}
         weapons = profile.get("weapons") or []
-        if not weapons:
-            no_weapons.append(mfm_name)
+        mfm_norm = _norm(mfm_name)
 
-    assert not no_weapons, (
-        f"{name}: {len(no_weapons)} MFM units have no weapons:\n"
-        + "\n".join(f"  - {w}" for w in no_weapons[:20])
+        if not weapons:
+            if mfm_norm not in known:
+                unexpected.append(mfm_name)
+        else:
+            if mfm_norm in known:
+                stale.append(mfm_name)
+
+    msg = ""
+    if unexpected:
+        msg += (
+            f"{name}: {len(unexpected)} MFM units unexpectedly have no weapons.\n"
+            f"  If they are legitimately weaponless, add them to KNOWN_NO_WEAPONS['{slug}'].\n"
+            + "\n".join(f"  - {u}" for u in unexpected[:20])
+        )
+    if stale:
+        msg += "\n" if msg else ""
+        msg += (
+            f"{name}: {len(stale)} units are in KNOWN_NO_WEAPONS['{slug}'] but now have weapons.\n"
+            f"  Remove them from the allowlist.\n"
+            + "\n".join(f"  - {s}" for s in stale[:10])
+        )
+
+    assert not msg, msg
+
+
+# ── Test 5: Strict 100% coverage guarantee ──────────────────────────
+
+
+# Snapshot of expected global counts.
+# Update these if MFM data changes (new faction / units added).
+# If a mismatch occurs, inspect the diff to see if it's a regression or a valid data update,
+# then update the snapshot accordingly.
+EXPECTED_COVERAGE = {
+    "total_mfm": 1462,
+    "total_missing": 0,
+    "total_empty_stats": 0,
+}
+
+# Number of legitimately weaponless units expected per faction slug.
+# Update when MFM adds/removes weaponless units.
+EXPECTED_NO_WEAPONS: dict[str, int] = {
+    "space-marines": 1,
+    "space-wolves": 1,
+    "black-templars": 1,
+    "blood-angels": 1,
+    "dark-angels": 1,
+    "deathwatch": 1,
+    "astra-militarum": 2,
+    "tau-empire": 1,
+    "chaos-daemons": 2,
+    "tyranids": 2,
+}
+
+
+def test_coverage_is_100_percent():
+    """Strict gate: coverage *must* be 100% with no unexplained gaps.
+
+    If this test fails:
+    1. Check if MFM data was updated (new units / factions).
+    2. Check if a parser regression introduced a gap.
+    3. Update EXPECTED_COVERAGE and/or KNOWN_NO_WEAPONS if the change is legitimate.
+    """
+    total_mfm = 0
+    total_missing = 0
+    total_empty_stats = 0
+    total_no_weapons = 0
+    no_wpn_counts: dict[str, int] = {}
+
+    for name, slug, mfm_units in FACTIONS:
+        merged = _load_merged(slug)
+        if merged is None:
+            total_mfm += len(mfm_units)
+            total_missing += len(mfm_units)
+            continue
+
+        merged_map = {_norm(u["name"]): u for u in merged["units"]}
+        nw = 0
+        for mfm_name in mfm_units:
+            total_mfm += 1
+            mu = merged_map.get(_norm(mfm_name))
+            if mu is None:
+                total_missing += 1
+                continue
+            profile = mu.get("profile") or {}
+            stats = profile.get("stats") or {}
+            weapons = profile.get("weapons") or []
+            if not stats:
+                total_empty_stats += 1
+            if not weapons:
+                nw += 1
+
+        no_wpn_counts[slug] = nw
+        total_no_weapons += nw
+
+    assert total_mfm == EXPECTED_COVERAGE["total_mfm"], (
+        f"Total MFM units changed: {total_mfm} vs expected {EXPECTED_COVERAGE['total_mfm']}. "
+        "MFM data may have been updated — update EXPECTED_COVERAGE in the test if intentional."
+    )
+    assert total_missing == EXPECTED_COVERAGE["total_missing"], (
+        f"Missing units: {total_missing} vs expected {EXPECTED_COVERAGE['total_missing']}. "
+        "A parser regression or data change caused gaps."
+    )
+    assert total_empty_stats == EXPECTED_COVERAGE["total_empty_stats"], (
+        f"Units with empty stats: {total_empty_stats} vs expected {EXPECTED_COVERAGE['total_empty_stats']}. "
+        "Parser regression — check stats resolution."
     )
 
+    # Check no-weapon counts per faction against snapshot
+    for slug, expected in EXPECTED_NO_WEAPONS.items():
+        actual = no_wpn_counts.get(slug, 0)
+        assert actual == expected, (
+            f"{slug}: expected {expected} no-weapon units, got {actual}. "
+            "Update EXPECTED_NO_WEAPONS and/or KNOWN_NO_WEAPONS if legitimate."
+        )
 
-# ── Test 5: Summary stats (print only, never fails) ──────────────────
+    # Any faction not in EXPECTED_NO_WEAPONS must have 0 no-weapons
+    for slug, actual in no_wpn_counts.items():
+        if slug not in EXPECTED_NO_WEAPONS:
+            assert actual == 0, (
+                f"{slug}: unexpected no-weapon units ({actual}). "
+                "Add them to KNOWN_NO_WEAPONS and EXPECTED_NO_WEAPONS if legitimate."
+            )
+
+
+# ── Test 6: Summary stats (print only, informational) ───────────────
+
 
 def test_mfm_coverage_summary(capsys):
-    """Print coverage summary across all factions."""
+    """Print coverage summary across all factions (informational)."""
     total_mfm = 0
     total_merged = 0
     total_empty_stats = 0

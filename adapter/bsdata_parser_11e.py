@@ -158,15 +158,47 @@ class BSDataParser11e:
     # -- Loading catalogues and linked roots -----------------------------------
 
     def _load_catalogue_by_name(self, name: str) -> dict | None:
-        """Find and load a catalogue JSON file by its name field."""
+        """Find and load a catalogue JSON file by its name field.
+        
+        First tries exact match, then falls back to word-level matching
+        for BSData 11e catalogueLink name inconsistencies (e.g. 
+        "Imperium - Space Marines" → "Imperium - Adeptus Astartes - Space Marines").
+        """
+        name_lower = name.lower()
+        name_words = set(name_lower.replace("-", " ").split())
+        # Exact match
         for path in self._find_json_files():
             data = self._load_json(path)
             if data is None:
                 continue
             cat = self._get_catalogue(data)
-            if cat.get("name", "").lower() == name.lower():
+            if cat.get("name", "").lower() == name_lower:
                 return cat
-        return None
+        # Fuzzy match: all words from the link name must appear in the catalogue name
+        # (in any order). This handles "Imperium - Space Marines" matching
+        # "Imperium - Adeptus Astartes - Space Marines".
+        best_match = None
+        best_overlap = 0
+        for path in self._find_json_files():
+            data = self._load_json(path)
+            if data is None:
+                continue
+            cat = self._get_catalogue(data)
+            cat_name_lower = cat.get("name", "").lower()
+            cat_words = set(cat_name_lower.replace("-", " ").split())
+            overlap = len(name_words & cat_words)
+            # All link words must be present, prefer more specific (shorter) matches
+            if overlap >= len(name_words) and overlap > best_overlap:
+                best_overlap = overlap
+                best_match = cat
+            # Also exact if link name is strictly a prefix/suffix/contained
+            # after stripping non-alphanumeric chars
+            name_clean = re.sub(r'[^a-z0-9\s]', '', name_lower)
+            cat_clean = re.sub(r'[^a-z0-9\s]', '', cat_name_lower)
+            if name_clean in cat_clean and overlap >= len(name_words):
+                best_overlap = len(name_words) + 100  # prefer contained matches
+                best_match = cat
+        return best_match
 
     def _load_catalogue_roots(self, cat: dict, include_linked: bool = False) -> list[dict]:
         """
@@ -426,6 +458,18 @@ class BSDataParser11e:
                 for p in entry.get("profiles", []):
                     if p.get("typeName", "") == "Unit":
                         stats = self._get_chars_dict(p)
+                        break
+
+            # 3b. Unit profile on selectionEntryGroups* directly
+            #     (BSData pattern: Wulfen, Victrix Honour Guard store Unit profile
+            #      on the selectionEntryGroup itself, not on child model entries)
+            if not stats:
+                for seg in entry.get("selectionEntryGroups", []):
+                    for p in seg.get("profiles", []):
+                        if p.get("typeName", "") == "Unit":
+                            stats = self._get_chars_dict(p)
+                            break
+                    if stats:
                         break
 
             # 4. Resolve from sharedProfiles via infoLinks

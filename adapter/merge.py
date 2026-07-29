@@ -335,6 +335,57 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
                     mu["profile"]["points"] = pricing_pts
 
     # -- Step 4: Validate — flag any units still at 0 points --
+    # -- Inject faction keyword for imported/shared entries --
+    # Some BSData entries (Drop Pod, shared transports, etc.) are imported from
+    # shared libraries and don't carry a Faction: keyword. We inject one from
+    # the merge context — but skip units that already have one, or that have
+    # Allies: keywords (allied detachments like Titans).
+    SLUG_TO_FACTION = {
+        "adepta-sororitas": "Faction: Adepta Sororitas",
+        "adeptus-custodes": "Faction: Adeptus Custodes",
+        "adeptus-mechanicus": "Faction: Adeptus Mechanicus",
+        "aeldari": "Faction: Asuryani",
+        "astra-militarum": "Faction: Astra Militarum",
+        "black-templars": "Faction: Black Templars",
+        "blood-angels": "Faction: Blood Angels",
+        "chaos-daemons": "Faction: Legiones Daemonica",
+        "chaos-knights": "Faction: Chaos Knights",
+        "chaos-space-marines": "Faction: Heretic Astartes",
+        "dark-angels": "Faction: Dark Angels",
+        "death-guard": "Faction: Death Guard",
+        "deathwatch": "Faction: Deathwatch",
+        "drukhari": "Faction: Drukhari",
+        "emperors-children": "Faction: Emperor's Children",
+        "genestealer-cults": "Faction: Genestealer Cults",
+        "grey-knights": "Faction: Grey Knights",
+        "imperial-agents": "Faction: Agents of the Imperium",
+        "imperial-knights": "Faction: Imperial Knights",
+        "leagues-of-votann": "Faction: Leagues of Votann",
+        "necrons": "Faction: Necrons",
+        "orks": "Faction: Orks",
+        "space-marines": "Faction: Adeptus Astartes",
+        "space-wolves": "Faction: Space Wolves",
+        "tau-empire": "Faction: T'au Empire",
+        "thousand-sons": "Faction: Thousand Sons",
+        "tyranids": "Faction: Tyranids",
+        "world-eaters": "Faction: World Eaters",
+        # Titan Legions use Allies: not Faction:
+        "titan-legions": None,
+        "chaos-titan-legions": None,
+    }
+    faction_to_inject = SLUG_TO_FACTION.get(slug)
+    if faction_to_inject:
+        for mu in merged_units:
+            profile = mu.get("profile")
+            if not profile:
+                continue
+            kws = profile.get("keywords", [])
+            # Skip if already has Faction: or Allies: keyword
+            has_faction_kw = any(k.startswith("Faction:") for k in kws)
+            has_allies_kw = any(k.startswith("Allies:") for k in kws)
+            if not has_faction_kw and not has_allies_kw:
+                kws.append(faction_to_inject)
+
     zero_units = []
     for mu in merged_units:
         pts = None
