@@ -6707,7 +6707,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Myphitic Blight-hauler",
-        "points": null,
+        "points": 100,
         "stats": {
           "M": "10\"",
           "T": "9",
@@ -6831,10 +6831,128 @@
     },
     {
       "name": "Myphitic Blight-Haulers",
-      "in_bsdata": false,
+      "in_bsdata": true,
       "in_mfm": true,
       "deep_strike": false,
-      "profile": null,
+      "profile": {
+        "name": "Myphitic Blight-hauler",
+        "points": 100,
+        "stats": {
+          "M": "10\"",
+          "T": "9",
+          "Sv": "3+",
+          "W": "10",
+          "LD": "6+",
+          "OC": "3",
+          "InSv": "5+"
+        },
+        "keywords": [
+          "Faction: Death Guard",
+          "Vehicle",
+          "Chaos",
+          "Nurgle",
+          "Daemon",
+          "Smoke",
+          "Myphitic Blight-hauler"
+        ],
+        "abilities": [
+          {
+            "name": "Tank Hunters",
+            "description": "In your Shooting phase, each time a model in this unit makes a attack that targets a ^^**Monster^^** or ^^**Vehicle^^** unit, add 1 to the Hit roll and add 1 to the Wound roll."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Bile spurt",
+            "profiles": [
+              {
+                "name": "Bile spurt",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Lethal Hits"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Gnashing maw",
+            "profiles": [
+              {
+                "name": "Gnashing maw",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Lethal Hits"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Missile launcher",
+            "profiles": [
+              {
+                "name": "Missile launcher - frag",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Missile launcher - krak",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "D6",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Multi-melta",
+            "profiles": [
+              {
+                "name": "Multi-melta",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Lethal Hits, Melta 2"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Nurgle's Gift (Aura)"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",

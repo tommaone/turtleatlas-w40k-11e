@@ -239,6 +239,57 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
             fuzzy_fixed += 1
             print(f"  [FUZZY] {mu['name']} ← '{matched_key}' ({mfm_u['pricing'][0]['costs'][0]['points']}pts)", file=sys.stderr)
 
+    # -- Step 2b: Second fuzzy pass — MFM-only entries with no profile may be
+    #    singular/plural variants of BSData entries (e.g. "Vyper" vs "Vypers").
+    #    Try to borrow the profile from a BSData entry whose name differs only by
+    #    trailing 's' or by singular/plural suffix.
+    for mu in merged_units:
+        if mu.get("in_mfm") and not mu.get("profile"):
+            mfm_norm = norm(mu["name"])
+            # Try adding trailing 's'
+            alt_norm = mfm_norm + "s"
+            if alt_norm in bsdata_unit_map:
+                mu["profile"] = bsdata_unit_map[alt_norm]
+                mu["in_bsdata"] = True
+                print(f"  [PLURAL] {mu['name']} ← '{alt_norm}' (profile from BSData)", file=sys.stderr)
+                continue
+            # Try removing trailing 's'
+            if mfm_norm.endswith("s"):
+                alt_norm = mfm_norm.rstrip("s")
+                if alt_norm in bsdata_unit_map:
+                    mu["profile"] = bsdata_unit_map[alt_norm]
+                    mu["in_bsdata"] = True
+                    print(f"  [SINGULAR] {mu['name']} ← '{alt_norm}' (profile from BSData)", file=sys.stderr)
+                    continue
+            # Try substring match: MFM name is a substring of a BSData entry
+            # (handles "Soul Grinder" → "Khorne Soul Grinder")
+            if not mu.get("profile"):
+                for bs_norm, bs_u in bsdata_unit_map.items():
+                    if not bs_u.get("stats"):
+                        continue
+                    if mfm_norm in bs_norm or bs_norm in mfm_norm:
+                        mu["profile"] = bs_u
+                        mu["in_bsdata"] = True
+                        print(f"  [SUBSTR] {mu['name']} ← '{bs_norm}' (profile from BSData)", file=sys.stderr)
+                        break
+            # Also try shared name components:
+            if not mu.get("profile"):
+                mfm_words = set(mfm_norm.split())
+                best_bs = None
+                best_overlap = 0
+                for bs_norm, bs_u in bsdata_unit_map.items():
+                    if not bs_u.get("stats"):
+                        continue
+                    bs_words = set(bs_norm.split())
+                    overlap = len(mfm_words & bs_words)
+                    if overlap > best_overlap:
+                        best_overlap = overlap
+                        best_bs = (bs_norm, bs_u)
+                if best_bs and best_overlap >= max(1, len(mfm_words) - 1):
+                    mu["profile"] = best_bs[1]
+                    mu["in_bsdata"] = True
+                    print(f"  [WORDS] {mu['name']} ← '{best_bs[0]}' (profile from BSData, {best_overlap} shared words)", file=sys.stderr)
+
     if unmatched_mfm:
         print(f"  [WARN] {len(unmatched_mfm)} MFM units unmatched:", file=sys.stderr)
         for k, v in list(unmatched_mfm.items())[:5]:

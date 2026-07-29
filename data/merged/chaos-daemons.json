@@ -12581,10 +12581,100 @@
     },
     {
       "name": "Soul Grinder",
-      "in_bsdata": false,
+      "in_bsdata": true,
       "in_mfm": true,
       "deep_strike": false,
-      "profile": null,
+      "profile": {
+        "name": "Khorne Soul Grinder",
+        "points": 180,
+        "stats": {
+          "M": "8\"",
+          "T": "11",
+          "Sv": "3+",
+          "W": "14",
+          "LD": "7+",
+          "OC": "5",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Faction: Legiones Daemonica",
+          "Vehicle",
+          "Walker",
+          "Chaos",
+          "Daemon",
+          "Khorne",
+          "Soul Grinder",
+          "Khorne non-Battleline",
+          "Shadow Legion"
+        ],
+        "abilities": [],
+        "weapons": [
+          {
+            "name": "Torrent of burning blood",
+            "profiles": [
+              {
+                "name": "Torrent of burning blood",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2D6",
+                  "BS": "N/A",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Harvester cannon",
+            "profiles": [
+              {
+                "name": "Harvester cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "10",
+                  "AP": "-1",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Iron claw",
+            "profiles": [
+              {
+                "name": "Iron claw",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "16",
+                  "AP": "-3",
+                  "D": "D6+2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "The Shadow of Chaos",
+          "Warp Rifts",
+          "Deep Strike",
+          "Scuttling Walker",
+          "Soul Grinder",
+          "Damaged: 1-5 wounds remaining",
+          "Murderer's Cowl"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,2]",

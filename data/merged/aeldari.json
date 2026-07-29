@@ -14831,10 +14831,162 @@
     },
     {
       "name": "Vyper",
-      "in_bsdata": false,
+      "in_bsdata": true,
       "in_mfm": true,
       "deep_strike": false,
-      "profile": null,
+      "profile": {
+        "name": "Vypers",
+        "points": 75,
+        "stats": {
+          "M": "14\"",
+          "T": "6",
+          "Sv": "3+",
+          "W": "6",
+          "LD": "7+",
+          "OC": "2",
+          "InSv": ""
+        },
+        "keywords": [
+          "Vehicle",
+          "Aeldari",
+          "Fly",
+          "Vypers",
+          "Faction: Asuryani",
+          "Ynnari"
+        ],
+        "abilities": [
+          {
+            "name": "Harassment Fire",
+            "description": "In your Shooting phase, after this unit has shot, select one enemy unit hit by one or more of those attacks. Until the start of your next turn, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes an attack, subtract 1 from the Hit roll."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Wraithbone hull",
+            "profiles": [
+              {
+                "name": "Wraithbone Hull",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bright Lance",
+            "profiles": [
+              {
+                "name": "Bright Lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Scatter Laser",
+            "profiles": [
+              {
+                "name": "Scatter Laser",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Sustained Hits 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Starcannon",
+            "profiles": [
+              {
+                "name": "Starcannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "2",
+                  "BS": "2+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Shuriken Cannon",
+            "profiles": [
+              {
+                "name": "Shuriken Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Lethal Hits"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Missile Launcher",
+            "profiles": [
+              {
+                "name": "Missile Launcher - Starshot",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "10",
+                  "AP": "-2",
+                  "D": "D6",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Missile Launcher - Sunburst",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Battle Focus"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",

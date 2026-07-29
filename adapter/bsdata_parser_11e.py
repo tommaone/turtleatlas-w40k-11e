@@ -445,9 +445,45 @@ class BSDataParser11e:
                     if stats:
                         break
 
-            # 5. Name-matching fallback: match unit name to sharedProfile name
+            # 5. Follow upgrade entryLinks to find stats in 11e BSData.
+            #    11e pattern: unit → selectionEntryGroup → upgrade entry → entryLink
+            #    → model entry → infoLink → Unit profile (in sharedProfiles).
+            if not stats:
+                for seg in entry.get("selectionEntryGroups", []):
+                    for sel in seg.get("selectionEntries", []):
+                        if sel.get("type") != "upgrade":
+                            continue
+                        for el in sel.get("entryLinks", []):
+                            if el.get("type") != "selectionEntry":
+                                continue
+                            target = self._resolve_entry(el.get("targetId", ""), entry_index) if entry_index else None
+                            if not target:
+                                continue
+                            # Check direct profiles on the model entry
+                            for p in target.get("profiles", []):
+                                if p.get("typeName", "") == "Unit":
+                                    stats = self._get_chars_dict(p)
+                                    break
+                            if stats:
+                                break
+                            # Follow infoLinks from the model entry
+                            for il in target.get("infoLinks", []):
+                                if il.get("type") == "profile":
+                                    profile_target = self._resolve_entry(il.get("targetId", ""), entry_index) if entry_index else None
+                                    if profile_target and profile_target.get("typeName") == "Unit":
+                                        stats = self._get_chars_dict(profile_target)
+                                        break
+                            if stats:
+                                break
+                        if stats:
+                            break
+                    if stats:
+                        break
+
+            # 6. Name-matching fallback: match unit name to sharedProfile name
             if not stats and entry_index:
                 unit_name_lower = name.lower().strip()
+                unit_words = set(unit_name_lower.split())
                 best_match = None
                 best_score = 0
                 for eid, eobj in entry_index.items():
@@ -470,11 +506,38 @@ class BSDataParser11e:
                         if score > best_score:
                             best_match = eobj
                             best_score = score
+                    # Profile name words are a subset of unit name words
+                    # (handles "Shock Trooper" ⊂ "Cadian Shock Troops")
+                    pname_words_set = set(pname.split())
+                    if len(pname_words_set) >= 2:
+                        overlap = len(pname_words_set & unit_words)
+                        if overlap >= 2:
+                            score = 80 + overlap
+                            if score > best_score:
+                                best_match = eobj
+                                best_score = score
+                    # Best single-word overlap: longest shared word wins
+                    # (handles "Sister Repentia" ~ "Repentia Squad")
+                    if not best_match or best_score < 60:
+                        shared_words = pname_words_set & unit_words
+                        generic = {"squad", "unit", "team", "group", "warband", "pack", "brood", "cult"}
+                        meaningful = [w for w in shared_words if len(w) >= 4 and w not in generic]
+                        if meaningful:
+                            score = 50 + max(len(w) for w in meaningful)
+                            if score > best_score:
+                                best_match = eobj
+                                best_score = score
+                    # Profile name (minus trailing 's') matches unit name (handles "Vypers" ~ "Vyper")
+                    if pname.rstrip("s") == unit_name_lower or unit_name_lower.rstrip("s") == pname:
+                        score = 70
+                        if score > best_score:
+                            best_match = eobj
+                            best_score = score
                     # Leading words match (handles "Leman Russ Eradicator" → "Leman Russ Battle Tank")
-                    pname_words = pname.split()
-                    uname_words = unit_name_lower.split()
+                    pname_words_list = pname.split()
+                    uname_words_list = unit_name_lower.split()
                     shared = 0
-                    for pw, uw in zip(pname_words, uname_words):
+                    for pw, uw in zip(pname_words_list, uname_words_list):
                         if pw == uw:
                             shared += 1
                         else:
