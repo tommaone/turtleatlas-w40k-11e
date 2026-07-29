@@ -75,7 +75,8 @@ class TestAllCharactersHaveBuildsFormat:
     def test_every_build_has_required_keys(self, faction):
         chars = _load_characters(faction)
         required = {"ranged", "melee"}
-        optional = {"ranged_choices", "melee_choices", "max_ranged", "max_melee", "name"}
+        optional = {"ranged_choices", "melee_choices", "max_ranged", "max_melee", "name",
+                     "fixed", "slots"}
         for name, cfg in chars.items():
             if name.startswith("_"):
                 continue
@@ -110,12 +111,22 @@ class TestAllCharactersHaveBuildsFormat:
             if not _has_builds(cfg):
                 continue
             for i, build in enumerate(cfg["weapon_options"]["builds"]):
+                # Count weapons from old format (ranged/melee/choices)
                 total = (
                     len(build.get("ranged", []))
                     + len(build.get("melee", []))
                     + sum(len(cl) for cl in build.get("ranged_choices", []))
                     + sum(len(cl) for cl in build.get("melee_choices", []))
                 )
+                # Count weapons from new format (fixed + slots)
+                total += len(build.get("fixed", []))
+                for slot in build.get("slots", []):
+                    for c in slot.get("choices", []):
+                        # Skip Crusade/upgrade entries that aren't real weapons
+                        cn = c.get("name", "").lower()
+                        if "weapon modification" in cn or "crusade relic" in cn:
+                            continue
+                        total += 1
                 # Allow zero weapons if merged data also has zero (BSData gap)
                 merged_count = merged_weapons.get(name, -1)
                 if total == 0 and merged_count == 0:

@@ -228,6 +228,16 @@ class BSDataParser11e:
             for item in obj:
                 self._build_parent_groups(item, _parent_group)
 
+    _UNICODE_ARROWS = ("\u27A4", "\u25BA", "\u25B8", "\u279C")
+
+    @staticmethod
+    def _strip_arrow(name: str) -> str:
+        """Strip leading unicode arrows from BSData entry/profile names."""
+        for prefix in BSDataParser11e._UNICODE_ARROWS:
+            if name.startswith(prefix):
+                return name[len(prefix):].lstrip()
+        return name
+
     def _resolve_entry(self, target_id: str, entry_index: dict[str, dict]) -> dict | None:
         """Resolve a targetId to a sharedSelectionEntry."""
         return entry_index.get(target_id)
@@ -257,11 +267,7 @@ class BSDataParser11e:
         for p in item.get("profiles", []):
             ptype = p.get("typeName", "")
             if "Weapon" in ptype:
-                # Strip leading unicode arrows (➤, ►, ▸) from BSData weapon names
-                pname = p.get("name", "")
-                for prefix in ("\u27A4", "\u25BA", "\u25B8"):
-                    if pname.startswith(prefix):
-                        pname = pname[len(prefix):].lstrip()
+                pname = self._strip_arrow(p.get("name", ""))
                 results.append({
                     "name": pname,
                     "typeName": ptype,
@@ -278,6 +284,29 @@ class BSDataParser11e:
             target = self._resolve_entry(tid, entry_index)
             if target is not None:
                 results.extend(self._resolve_profiles(target, entry_index, depth + 1))
+
+        # Follow infoLinks that reference weapon profiles (type=profile)
+        # BSData stores shared weapon profiles via infoLinks → targetId → profile entry
+        # e.g. Boltgun upgrade → infoLink → Boltgun profile with characteristics
+        for il in item.get("infoLinks", []):
+            if il.get("hidden") == "true":
+                continue
+            if il.get("type") != "profile":
+                continue
+            tid = il.get("targetId", "")
+            if not tid:
+                continue
+            target = self._resolve_entry(tid, entry_index)
+            if target is not None and target.get("type") is None:
+                # It's a profile entry — extract characteristics directly
+                tname = target.get("name", "")
+                ttype = target.get("typeName", "")
+                if "Weapon" in ttype or "weapon" in ttype.lower():
+                    results.append({
+                        "name": tname,
+                        "typeName": ttype,
+                        "stats": self._get_chars_dict(target),
+                    })
 
         # Recurse into selectionEntries (sub-options)
         for sel in item.get("selectionEntries", []):
@@ -715,6 +744,56 @@ class BSDataParser11e:
                 return "melee"
         return "ability"
 
+    def _get_choice_type(self, choice_name: str,
+                         group: dict,
+                         entry_index: dict[str, dict]) -> str:
+        """Determine weapon type ('ranged'/'melee') for a choice in a group.
+        
+        Checks entryLinks (by targetId lookup) then selectionEntries (by direct profile).
+        Falls back to group-level classification (old heuristic) if not found.
+        """
+        # Check entryLinks first — compare both raw and arrow-stripped names
+        for el in group.get("entryLinks", []):
+            el_name = self._strip_arrow(el.get("name", ""))
+            if el_name != choice_name or el.get("hidden") == "true":
+                continue
+            tid = el.get("targetId", "")
+            if tid:
+                target = entry_index.get(tid)
+                if target:
+                    cat = self._weapon_category(target)
+                    if cat != "ability":
+                        return cat
+            # entryLink itself might have profiles
+            cat = self._weapon_category(el)
+            if cat != "ability":
+                return cat
+            break
+        
+        # Check selectionEntries — compare both raw and arrow-stripped names
+        for se in group.get("selectionEntries", []):
+            se_name = self._strip_arrow(se.get("name", ""))
+            if se_name != choice_name or se.get("hidden") == "true":
+                continue
+            cat = self._weapon_category(se)
+            if cat != "ability":
+                return cat
+            break
+        
+        # Fallback: use group name heuristic
+        gname = (group.get("name") or "").lower()
+        melee_kw = {"melee", "close combat", "choppa", "axe", "sword",
+                    "fist", "claw", "hammer", "blade", "power"}
+        ranged_kw = {"pistol", "gun", "bolter", "rifle", "cannon",
+                     "launcher", "flamer", "melta", "plasma",
+                     "storm bolter", "combi", "ranged"}
+        if any(kw in gname for kw in melee_kw):
+            return "melee"
+        if any(kw in gname for kw in ranged_kw):
+            return "ranged"
+        
+        return "ability"  # skip — not resolvable to a weapon profile
+
     @staticmethod
     def _is_melee_choice_group(group: dict) -> bool:
         """Heuristic: does this nested group contain melee weapons?
@@ -746,6 +825,20 @@ class BSDataParser11e:
             return True
         return False
 
+    @staticmethod
+    def _get_selection_count(entry: dict) -> int:
+        """Get the number of times a selection should be counted.
+        
+        BSData encodes weapon count in constraints (min selections):
+        min=2, max=2 means the weapon is selected 2 times (e.g. 2× cannons).
+        """
+        for c in entry.get("constraints", []):
+            if c.get("field") == "selections" and c.get("type") == "min":
+                val = c.get("value", 1)
+                if val > 1:
+                    return val
+        return 1
+
     def _classify_build_items(self, entry_links: list[dict], selection_entries: list[dict],
                                nested_groups: list[dict], entry_index: dict[str, dict],
                                parent_group_name: str = "") -> dict:
@@ -770,7 +863,7 @@ class BSDataParser11e:
             el_type = el.get("type", "")
             if el_type == "selectionEntry":
                 tid = el.get("targetId", "")
-                name = el.get("name", "")
+                name = self._strip_arrow(el.get("name", ""))
                 if tid:
                     target = entry_index.get(tid)
                     if target is not None:
@@ -789,10 +882,12 @@ class BSDataParser11e:
             if se.get("hidden") == "true":
                 continue
             cat = self._weapon_category(se)
+            count = self._get_selection_count(se)
+            name = self._strip_arrow(se.get("name", ""))
             if cat == "ranged":
-                fixed_ranged.append(se.get("name", ""))
+                fixed_ranged.extend([name] * count)
             elif cat == "melee":
-                fixed_melee.append(se.get("name", ""))
+                fixed_melee.extend([name] * count)
 
         # Nested selectionEntryGroups → choice groups
         for group in nested_groups:
@@ -801,14 +896,14 @@ class BSDataParser11e:
             for el in group.get("entryLinks", []):
                 if el.get("hidden") == "true":
                     continue
-                ename = el.get("name", "")
+                ename = self._strip_arrow(el.get("name", ""))
                 if ename:
                     choices.append(ename)
             # selectionEntries within the group are also options
             for se in group.get("selectionEntries", []):
                 if se.get("hidden") == "true":
                     continue
-                ename = se.get("name", "")
+                ename = self._strip_arrow(se.get("name", ""))
                 if ename:
                     choices.append(ename)
 
@@ -822,21 +917,15 @@ class BSDataParser11e:
                     group_max = c.get("value")
 
             # Classify the group as ranged or melee
+            # NOTE: Each group = one independent SLOT. max_ranged/max_melee
+            # are NOT set from group constraints — groups use product semantics
+            # (pick 1 from each group). Global max is only relevant for
+            # cross-slot constraints, which are handled separately.
             gname = (group.get("name") or "").lower()
             if self._is_melee_choice_group(group):
                 melee_choices.append(choices)
-                if group_max is not None:
-                    if max_melee is None:
-                        max_melee = group_max
-                    else:
-                        max_melee = max(max_melee, group_max)
             elif self._is_ranged_choice_group(group):
                 ranged_choices.append(choices)
-                if group_max is not None:
-                    if max_ranged is None:
-                        max_ranged = group_max
-                    else:
-                        max_ranged = max(max_ranged, group_max)
             else:
                 # Ambiguous — classify by first choice's profile if available
                 first_name = choices[0] if choices else ""
@@ -860,6 +949,33 @@ class BSDataParser11e:
                     melee_choices.append(choices)
                 # "ability" groups → skip (e.g. optional wargear that's not a weapon)
 
+        # Build new format: untyped slots + typed choices
+        slots: list[dict] = []
+        for group in nested_groups:
+            gname = group.get("name", "")
+            choices_typed: list[dict] = []
+            for el in group.get("entryLinks", []):
+                if el.get("hidden") == "true" or not el.get("name"):
+                    continue
+                ename = self._strip_arrow(el["name"])
+                wtype = self._get_choice_type(ename, group, entry_index)
+                if wtype != "ability":
+                    choices_typed.append({"name": ename, "type": wtype})
+            for se in group.get("selectionEntries", []):
+                if se.get("hidden") == "true" or not se.get("name"):
+                    continue
+                ename = self._strip_arrow(se["name"])
+                wtype = self._get_choice_type(ename, group, entry_index)
+                if wtype != "ability":
+                    choices_typed.append({"name": ename, "type": wtype})
+            if choices_typed:
+                slots.append({"name": gname, "choices": choices_typed})
+        
+        # Build typed fixed list from old fixed_ranged/fixed_melee
+        fixed = []
+        fixed.extend({"name": n, "type": "ranged"} for n in fixed_ranged)
+        fixed.extend({"name": n, "type": "melee"} for n in fixed_melee)
+        
         return {
             "fixed_ranged": fixed_ranged,
             "fixed_melee": fixed_melee,
@@ -867,7 +983,10 @@ class BSDataParser11e:
             "melee_choices": melee_choices,
             "max_ranged": max_ranged,
             "max_melee": max_melee,
-        }
+            # New format
+            "fixed": fixed,
+            "slots": slots,
+                }
 
     def extract_wargear_constraints(self, faction_name: str) -> dict[str, dict]:
         """Extract wargear build constraints for all characters in a faction.
@@ -930,18 +1049,16 @@ class BSDataParser11e:
 
                 # Determine if selectionEntries are build packages (Pattern 1)
                 # or inline weapons (Pattern 3). Build packages contain weapon
-                # entryLinks and/or nested choice groups, but NO direct profiles.
-                # Inline weapons have direct profiles (weapon stats) on the entry.
+                # entryLinks and/or nested choice groups — they may also have direct
+                # profiles (built-in weapon + optional upgrades).
                 has_build_packages = False
                 for se in wargear_group.get("selectionEntries", []):
                     if se.get("hidden") == "true":
                         continue
-                    # Build packages: have weapon entryLinks or nested choice groups
-                    # Inline weapons: have direct profiles (weapon stats)
-                    if not se.get("profiles"):
-                        if se.get("entryLinks") or se.get("selectionEntryGroups"):
-                            has_build_packages = True
-                            break
+                    # Build packages: have entryLinks or nested choice groups
+                    if se.get("entryLinks") or se.get("selectionEntryGroups"):
+                        has_build_packages = True
+                        break
 
                 if has_build_packages:
                     # Pattern 1: Build packages — each selectionEntry is a named build
@@ -949,13 +1066,32 @@ class BSDataParser11e:
                         if se.get("hidden") == "true":
                             continue
                         build_name = se.get("name", "")
+                        # Also extract weapons from direct profiles on the selection entry
+                        # itself — some entries have their built-in weapon as a profile
+                        # AND separate entryLinks/selectionEntryGroups for add-ons.
+                        extra_inline: list[dict] = []
+                        for p in se.get("profiles", []):
+                            pname = p.get("typeName", "")
+                            if pname in ("Ranged Weapons", "Melee Weapons"):
+                                extra_inline.append({
+                                    "name": self._strip_arrow(p.get("name", "")),
+                                    "profiles": [p],
+                                })
+                        all_selection_entries = list(se.get("selectionEntries", []))
+                        all_selection_entries.extend(extra_inline)
                         classified = self._classify_build_items(
                             se.get("entryLinks", []),
-                            se.get("selectionEntries", []),
+                            all_selection_entries,
                             se.get("selectionEntryGroups", []),
                             entry_index,
                             parent_group_name=build_name,
                         )
+                        has_weapons = (classified["fixed_ranged"] or classified["fixed_melee"]
+                                       or classified["ranged_choices"] or classified["melee_choices"]
+                                       or classified["fixed"] or classified["slots"])
+                        if not has_weapons:
+                            # Pure abilities/upgrades (e.g. Shadow Field) — not a real weapon build
+                            continue
                         builds.append({"name": build_name, **classified})
                 else:
                     # Pattern 2+3: Flat or Hybrid — all items on the Wargear group

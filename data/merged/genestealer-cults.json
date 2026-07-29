@@ -1,8 +1,8 @@
 {
   "faction": "Genestealer Cults",
   "slug": "genestealer-cults",
-  "version": "1.0",
-  "firstSeen": "2026-06-23",
+  "version": "1.1",
+  "firstSeen": "2026-07-22",
   "detachments": [
     {
       "name": "Biosanctic Broodsurge",
@@ -77,7 +77,7 @@
     {
       "name": "Heroes Of The Uprising",
       "dp": 1,
-      "objective": "PURGE THE FOE",
+      "objective": "DISRUPTION",
       "enhancements": [
         {
           "name": "Contraband Munitions",
@@ -178,7 +178,7 @@
     {
       "name": "Xenocult Masses",
       "dp": 1,
-      "objective": "DISRUPTION",
+      "objective": "RECONNAISSANCE",
       "unique": "Hosts",
       "enhancements": [
         {
@@ -200,7 +200,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Aberrants",
-        "points": 150,
+        "points": 140,
         "stats": {
           "M": "6\"",
           "T": "6",
@@ -277,11 +277,11 @@
           "costs": [
             {
               "models": 5,
-              "points": 150
+              "points": 140
             },
             {
               "models": 10,
-              "points": 300
+              "points": 280
             }
           ]
         },
@@ -291,11 +291,11 @@
           "costs": [
             {
               "models": 5,
-              "points": 160
+              "points": 150
             },
             {
               "models": 10,
-              "points": 310
+              "points": 290
             }
           ]
         }
@@ -961,7 +961,7 @@
             },
             {
               "models": 10,
-              "points": 150
+              "points": 140
             }
           ]
         }
@@ -1515,7 +1515,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Atalan Jackals",
-        "points": 90,
+        "points": 85,
         "stats": {
           "M": "12\"",
           "T": "4",
@@ -1792,10 +1792,14 @@
           "costs": [
             {
               "models": 5,
-              "points": 90
+              "points": 85
             },
             {
               "models": 10,
+              "points": 150
+            },
+            {
+              "models": 9,
               "points": 160
             }
           ]
@@ -1806,10 +1810,14 @@
           "costs": [
             {
               "models": 5,
-              "points": 100
+              "points": 95
             },
             {
               "models": 10,
+              "points": 160
+            },
+            {
+              "models": 9,
               "points": 170
             }
           ]
@@ -2154,7 +2162,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Baneblade",
-        "points": 450,
+        "points": 415,
         "stats": {
           "M": "12\"",
           "T": "13",
@@ -2324,7 +2332,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Banehammer",
-        "points": 420,
+        "points": 385,
         "stats": {
           "M": "12\"",
           "T": "13",
@@ -2446,7 +2454,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Banesword",
-        "points": 450,
+        "points": 415,
         "stats": {
           "M": "12\"",
           "T": "13",
@@ -3161,7 +3169,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Cadian Command Squad",
-        "points": 65,
+        "points": 60,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -5989,7 +5997,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Centaur RSV",
-        "points": 75,
+        "points": 65,
         "stats": {
           "M": "12\"",
           "T": "7",
@@ -6005,7 +6013,7 @@
           "Smoke",
           "Squadron",
           "Vehicle",
-          "Centaur RSv",
+          "Centaur RSV",
           "Dedicated Transport",
           "Transport"
         ],
@@ -6070,7 +6078,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Chimera",
-        "points": 85,
+        "points": 75,
         "stats": {
           "M": "10\"",
           "T": "9",
@@ -7711,7 +7719,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Doomhammer",
-        "points": 415,
+        "points": 380,
         "stats": {
           "M": "12\"",
           "T": "13",
@@ -8400,7 +8408,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Goliath Truck",
-        "points": 85,
+        "points": 75,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -8506,8 +8514,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 75
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -8527,7 +8545,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Hellhammer",
-        "points": 420,
+        "points": 385,
         "stats": {
           "M": "12\"",
           "T": "13",
@@ -9269,7 +9287,7 @@
             },
             {
               "models": 10,
-              "points": 150
+              "points": 140
             }
           ]
         },
@@ -9283,7 +9301,7 @@
             },
             {
               "models": 10,
-              "points": 160
+              "points": 150
             }
           ]
         }
@@ -9616,7 +9634,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Kasrkin",
-        "points": 115,
+        "points": 105,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -10533,7 +10551,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Krieg Command Squad",
-        "points": 65,
+        "points": 60,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -11340,7 +11358,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Leman Russ Commander",
-        "points": 235,
+        "points": 215,
         "stats": {
           "M": "10\"",
           "T": "11",
@@ -11364,7 +11382,7 @@
         "abilities": [
           {
             "name": "Death Befitting An Officer",
-            "description": "When this model is destroyed, roll one D6: on a 2+, do not remove it from play – it can, after the attacking model’s unit has finished making its attacks, shoot as if it were your Shooting phase and as if it had its full wounds remaining. This model is then removed from play."
+            "description": "In your opponent’s Shooting phase, when this unit is **destroyed**, before this unit’s **deadly demise** roll, roll one D6: \n- On a 2+, do not remove this unit from the battlefield. After the attacking unit has shot, this unit can shoot using **normal shooting**, but while doing so this unit can only target that enemy unit. When this unit has shot, or at the end of the phase (whichever comes first), resolve this unit’s **deadly demise** roll, then this unit is removed from the battlefield."
           },
           {
             "name": "Vox-net",
@@ -11744,7 +11762,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Leman Russ Demolisher",
-        "points": 190,
+        "points": 180,
         "stats": {
           "M": "10\"",
           "T": "11",
@@ -13181,7 +13199,7 @@
             },
             {
               "models": 20,
-              "points": 145
+              "points": 135
             }
           ]
         }
@@ -13886,7 +13904,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Purestrain Genestealers",
-        "points": 80,
+        "points": 75,
         "stats": {
           "M": "8\"",
           "T": "4",
@@ -13941,7 +13959,7 @@
           "costs": [
             {
               "models": 5,
-              "points": 80
+              "points": 75
             },
             {
               "models": 10,
@@ -13955,7 +13973,7 @@
           "costs": [
             {
               "models": 5,
-              "points": 90
+              "points": 85
             },
             {
               "models": 10,
@@ -14165,12 +14183,22 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 1,
               "points": 70
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 80
             }
           ]
         }
@@ -15238,7 +15266,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Shadowsword",
-        "points": 410,
+        "points": 375,
         "stats": {
           "M": "12\"",
           "T": "13",
@@ -15355,7 +15383,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Stormlord",
-        "points": 430,
+        "points": 395,
         "stats": {
           "M": "12\"",
           "T": "13",
@@ -15491,7 +15519,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Stormsword",
-        "points": 465,
+        "points": 430,
         "stats": {
           "M": "12\"",
           "T": "13",
@@ -15707,7 +15735,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Taurox",
-        "points": 75,
+        "points": 65,
         "stats": {
           "M": "12\"",
           "T": "8",
@@ -15805,7 +15833,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Taurox Prime",
-        "points": 85,
+        "points": 75,
         "stats": {
           "M": "12\"",
           "T": "8",
@@ -16006,13 +16034,10 @@
           "Epic Hero",
           "Monster",
           "The Red Terror",
-          "Burrowers"
+          "Burrowers",
+          "Mobile"
         ],
         "abilities": [
-          {
-            "name": "Serpentine Fiend",
-            "description": "This model can move through terrain features, but cannot end a move within a wall, a floor, etc. This model can be set up or end a move on any floor level of **^^Ruins^^**, but if that level is not the ground floor, it can only do so if its base does not overhang the floor at that level."
-          },
           {
             "name": "Swallow Whole",
             "description": "Each time an attack with this model’s gaping maw targets an **^^Infantry^^**, **^^Mounted^^** or **^^Beasts^^** unit, each successful unmodified Wound roll is a Critical Wound. Each time an **^^Infantry^^**, **^^Mounted^^** or **^^Beasts^^** model is destroyed as a result of an attack made by this model’s gaping maw, this model regains up to D3+2 lost wounds."
@@ -16156,7 +16181,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Tyrannocyte",
-        "points": 90,
+        "points": 80,
         "stats": {
           "M": "8\"",
           "T": "9",
@@ -16179,7 +16204,7 @@
         "abilities": [
           {
             "name": "Aerial Seeding",
-            "description": "This model must start the battle in Reserves, but neither it nor any units embarked within it are counted towards any limits placed on the maximum number of Reserves units you can start the battle with. This model can be set up in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules. Any units embarked within this model must immediately disembark after it has been set up on the battlefield, and they must be set up more than 9\" away from all enemy models. After this model has been set up on the battlefield, no units can embark within it."
+            "description": "This model must start the battle in Reserves, but neither it nor any units embarked within it are counted towards any limits placed on the maximum number of Reserves units you can start the battle with. This model can be set up in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules. Any units embarked within this model must immediately disembark after it has been set up on the battlefield, and they must be set up more than 8\" away from all enemy models. After this model has been set up on the battlefield, no units can embark within it."
           }
         ],
         "weapons": [
@@ -16224,6 +16249,163 @@
           "Deadly Demise",
           "Deep Strike",
           "Synapse"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Valkyrie",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "deep_strike": false,
+      "profile": {
+        "name": "Valkyrie",
+        "points": 170,
+        "stats": {
+          "M": "14\"",
+          "T": "10",
+          "Sv": "2+",
+          "W": "14",
+          "LD": "7+",
+          "OC": "-",
+          "InSv": ""
+        },
+        "keywords": [
+          "Valkyrie",
+          "Faction: Astra Militarum",
+          "Transport",
+          "Vehicle",
+          "Fly",
+          "Imperium"
+        ],
+        "abilities": [
+          {
+            "name": "Airborne Insertion",
+            "description": "At the end of your opponent’s Movement phase, one or more units embarked within this **^^Transport^^** can disembark from it."
+          },
+          {
+            "name": "Damaged: 1-5 Wounds Remaining",
+            "description": "While this model has 1-5 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Armoured hull",
+            "profiles": [
+              {
+                "name": "Armoured hull",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy bolter",
+            "profiles": [
+              {
+                "name": "Heavy bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Multiple rocket pod",
+            "profiles": [
+              {
+                "name": "Multiple rocket pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D6",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              }
+            ],
+            "count": 2
+          },
+          {
+            "name": "Hellstrike missiles",
+            "profiles": [
+              {
+                "name": "Hellstrike missiles",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "10",
+                  "AP": "-3",
+                  "D": "D6",
+                  "Keywords": "Anti-fly 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Multi-laser",
+            "profiles": [
+              {
+                "name": "Multi-laser",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "4",
+                  "BS": "4+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Lascannon",
+            "profiles": [
+              {
+                "name": "Lascannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Hover",
+          "Deadly Demise"
         ]
       },
       "pricing": null,
@@ -16287,7 +16469,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Von Ryan's Leapers",
-        "points": 60,
+        "points": 55,
         "stats": {
           "M": "10\"",
           "T": "5",
@@ -16658,8 +16840,8 @@
   "_meta": {
     "bsdata_faction": "Xenos - Genestealer Cults",
     "bsdata_revision": 2,
-    "bsdata_units": 102,
+    "bsdata_units": 103,
     "mfm_units": 24,
-    "merged_units": 102
+    "merged_units": 103
   }
 }

@@ -133,7 +133,7 @@ class WeaponCatalog:
                     self.by_unit.setdefault(uname, []).append(entry)
                     self._variant_groups.setdefault(key, {})
 
-                    # Build signature WITHOUT BS/WS
+                    # Build signature WITHOUT BS/WS — defines `sig` before use
                     sig = (
                         stats.get("A", "1"),
                         stats.get("S", "4"),
@@ -141,6 +141,13 @@ class WeaponCatalog:
                         stats.get("D", "1"),
                         stats.get("Keywords", "-"),
                     )
+                    # Also index by weapon entry name (not just profile name)
+                    # so "Two magma cutters" resolves even though profile is "Magma cutter"
+                    entry_key = w.get("name", "").replace("\u27a4 ", "").strip().lower()
+                    if entry_key != key:
+                        self._variant_groups.setdefault(entry_key, {})
+                        self._variant_groups[entry_key].setdefault(sig, []).append(entry)
+
                     self._variant_groups[key].setdefault(sig, []).append(entry)
 
         # Build by_name and default BS/WS per weapon
@@ -263,6 +270,16 @@ class WeaponCatalog:
             if unit_entries:
                 entries = unit_entries
             # If no match, fall through to first entry
+
+        # When no unit_name, prefer the PLAIN profile (no special abilities).
+        # Multiple weapon variants exist in BSData (e.g. Boltgun with Lethal Hits
+        # from a shared catalogue vs plain Boltgun). Configs reference the weapon
+        # by name — they mean the standard version, not a faction-specific variant.
+        if not unit_name and len(entries) > 1:
+            plain = [e for e in entries
+                     if e["stats"].get("Keywords", "-").strip() in ("-", "")]
+            if plain:
+                entries = plain
 
         entry = entries[0]  # Take first matching entry
         stats = entry["stats"]

@@ -1,8 +1,8 @@
 {
   "faction": "Tyranids",
   "slug": "tyranids",
-  "version": "1.0",
-  "firstSeen": "2026-06-17",
+  "version": "1.1",
+  "firstSeen": "2026-07-22",
   "detachments": [
     {
       "name": "Ambush Predators",
@@ -121,7 +121,7 @@
           "points": 10
         },
         {
-          "name": "Psychostatic Disruption",
+          "name": "Psychostatic Disruption (Aura)",
           "points": 30
         },
         {
@@ -159,7 +159,7 @@
           "points": 15
         },
         {
-          "name": "Naturalised Camouflage",
+          "name": "Naturalised camouflage",
           "points": 30
         },
         {
@@ -183,7 +183,7 @@
         },
         {
           "name": "Hunting Grounds",
-          "points": 20
+          "points": 30
         },
         {
           "name": "Neuronode",
@@ -2587,7 +2587,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Maleceptor",
-        "points": 180,
+        "points": 190,
         "stats": {
           "M": "8\"",
           "T": "11",
@@ -2676,7 +2676,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 180
+              "points": 190
             }
           ]
         },
@@ -2686,7 +2686,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 190
+              "points": 200
             }
           ]
         }
@@ -2841,11 +2841,11 @@
     {
       "name": "Mucolid Spores (Sporocyst)",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": true,
       "profile": {
         "name": "Mucolid Spores (Sporocyst)",
-        "points": 30,
+        "points": null,
         "stats": {
           "M": "4\"",
           "T": "4",
@@ -2872,22 +2872,7 @@
           "Synapse"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 30
-            },
-            {
-              "models": 2,
-              "points": 60
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -3085,7 +3070,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Neurotyrant",
-        "points": 115,
+        "points": 130,
         "stats": {
           "M": "6\"",
           "T": "8",
@@ -3175,7 +3160,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 115
+              "points": 130
             }
           ]
         }
@@ -3697,11 +3682,11 @@
     {
       "name": "Prime Organism [Crucible]",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Prime Organism [Crucible]",
-        "points": 75,
+        "points": 135,
         "stats": {
           "M": "8\"",
           "T": "9",
@@ -3737,18 +3722,7 @@
           "Leader"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 75
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -4172,11 +4146,11 @@
     {
       "name": "Ripper Swarms (Parasite of Mortrex)",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": true,
       "profile": {
         "name": "Ripper Swarms (Parasite of Mortrex)",
-        "points": 30,
+        "points": null,
         "stats": {
           "M": "6\"",
           "T": "2",
@@ -4239,26 +4213,7 @@
           "Chitinous Horrors (Aura)"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 30
-            },
-            {
-              "models": 2,
-              "points": 40
-            },
-            {
-              "models": 3,
-              "points": 50
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -4507,11 +4462,11 @@
     {
       "name": "Spore Mines (Biovore)",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": true,
       "profile": {
         "name": "Spore Mines (Biovore)",
-        "points": 55,
+        "points": null,
         "stats": {
           "M": "4\"",
           "T": "1",
@@ -4538,22 +4493,7 @@
           "Synapse"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 3,
-              "points": 55
-            },
-            {
-              "models": 6,
-              "points": 110
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -5079,13 +5019,10 @@
           "Epic Hero",
           "Monster",
           "The Red Terror",
-          "Burrowers"
+          "Burrowers",
+          "Mobile"
         ],
         "abilities": [
-          {
-            "name": "Serpentine Fiend",
-            "description": "This model can move through terrain features, but cannot end a move within a wall, a floor, etc. This model can be set up or end a move on any floor level of **^^Ruins^^**, but if that level is not the ground floor, it can only do so if its base does not overhang the floor at that level."
-          },
           {
             "name": "Swallow Whole",
             "description": "Each time an attack with this model’s gaping maw targets an **^^Infantry^^**, **^^Mounted^^** or **^^Beasts^^** unit, each successful unmodified Wound roll is a Critical Wound. Each time an **^^Infantry^^**, **^^Mounted^^** or **^^Beasts^^** model is destroyed as a result of an attack made by this model’s gaping maw, this model regains up to D3+2 lost wounds."
@@ -5272,7 +5209,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Toxicrene",
-        "points": 135,
+        "points": 120,
         "stats": {
           "M": "8\"",
           "T": "11",
@@ -5344,7 +5281,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 135
+              "points": 120
             }
           ]
         }
@@ -5594,8 +5531,8 @@
         ],
         "abilities": [
           {
-            "name": "Adaptive Instincts",
-            "description": "At the start of the Fight phase, select one of the following:\n- Aggression Imperative: Until the end of the phase, each time a model in this unit makes a melee attack, re-roll a Hit roll of 1.\n- Bioregeneration: Until the end of the phase, each time a saving throw if made for a model in this unit, re-roll a saving throw of 1."
+            "name": "Adaptive Instincts (Once per turn, per unit)",
+            "description": "In the Fight phase, when this unit is **selected to fight** or when an enemy unit targets this unit, you can select one of the following:\n▪ This unit’s melee attacks have +1 **S**.\n▪ <ins>Or</ins>: This unit has +1 **T**."
           }
         ],
         "weapons": [
@@ -5941,7 +5878,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Tyrannocyte",
-        "points": 90,
+        "points": 80,
         "stats": {
           "M": "8\"",
           "T": "9",
@@ -5964,7 +5901,7 @@
         "abilities": [
           {
             "name": "Aerial Seeding",
-            "description": "This model must start the battle in Reserves, but neither it nor any units embarked within it are counted towards any limits placed on the maximum number of Reserves units you can start the battle with. This model can be set up in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules. Any units embarked within this model must immediately disembark after it has been set up on the battlefield, and they must be set up more than 9\" away from all enemy models. After this model has been set up on the battlefield, no units can embark within it."
+            "description": "This model must start the battle in Reserves, but neither it nor any units embarked within it are counted towards any limits placed on the maximum number of Reserves units you can start the battle with. This model can be set up in the Reinforcements step of your first, second or third Movement phase, regardless of any mission rules. Any units embarked within this model must immediately disembark after it has been set up on the battlefield, and they must be set up more than 8\" away from all enemy models. After this model has been set up on the battlefield, no units can embark within it."
           }
         ],
         "weapons": [
@@ -6013,8 +5950,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 80
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -6325,7 +6272,7 @@
         "abilities": [
           {
             "name": "Foul Spores (Aura)",
-            "description": "While a friendly TYRANIDS unit is within 6\" of this unit, each time a ranged attack targets that unit, models in that unit have the Benefit of Cover against that attack. In addition, while a friendly TYRANIDS unit (excluding MONSTERS) is within 6\" of this unit, models in that unit have the Stealth ability"
+            "description": "Friendly **TYRANIDS** units within 6' of this unit have **Stealth**."
           }
         ],
         "weapons": [
@@ -6398,7 +6345,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Von Ryan's Leapers",
-        "points": 60,
+        "points": 55,
         "stats": {
           "M": "10\"",
           "T": "5",
@@ -6473,11 +6420,11 @@
           "costs": [
             {
               "models": 3,
-              "points": 60
+              "points": 55
             },
             {
               "models": 6,
-              "points": 120
+              "points": 105
             }
           ]
         }
@@ -6733,7 +6680,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Zoanthropes",
-        "points": 100,
+        "points": 90,
         "stats": {
           "M": "5\"",
           "T": "5",
@@ -6864,7 +6811,7 @@
           "costs": [
             {
               "models": 3,
-              "points": 100
+              "points": 90
             },
             {
               "models": 6,

@@ -1,8 +1,8 @@
 {
   "faction": "Adepta Sororitas",
   "slug": "adepta-sororitas",
-  "version": "1.0",
-  "firstSeen": "2026-06-23",
+  "version": "1.1",
+  "firstSeen": "2026-07-22",
   "detachments": [
     {
       "name": "Army Of Faith",
@@ -29,8 +29,8 @@
     },
     {
       "name": "Bringers Of Flame",
-      "dp": 3,
-      "objective": "PURGE THE FOE",
+      "dp": 2,
+      "objective": "PRIORITY ASSETS",
       "enhancements": [
         {
           "name": "Fire and Fury",
@@ -115,22 +115,22 @@
     {
       "name": "Penitent Host",
       "dp": 2,
-      "objective": "TAKE AND HOLD",
+      "objective": "PURGE THE FOE",
       "enhancements": [
         {
           "name": "Catechism of Divine Penitence",
-          "points": 20,
+          "points": 15,
           "leaderTo": [
             "Repentia Squad"
           ]
         },
         {
           "name": "Psalm of Righteous Judgement",
-          "points": 30
+          "points": 20
         },
         {
           "name": "Refrain of Enduring Faith",
-          "points": 25
+          "points": 15
         },
         {
           "name": "Verse of Holy Piety",
@@ -157,7 +157,7 @@
     {
       "name": "Sanctified Orators",
       "dp": 1,
-      "objective": "PURGE THE FOE",
+      "objective": "DISRUPTION",
       "enhancements": [
         {
           "name": "Hagiomnifex (Upgrade)",
@@ -556,7 +556,7 @@
         "stats": {
           "M": "6\"",
           "T": "3",
-          "Sv": "",
+          "Sv": "2+",
           "W": "4",
           "LD": "6+",
           "OC": "1",
@@ -589,12 +589,38 @@
                   "D": "2",
                   "Keywords": "-"
                 }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
               }
             ]
           },
           {
             "name": "Agathae Dolan",
             "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
               {
                 "name": "Scribe's staff",
                 "typeName": "Melee Weapons",
@@ -1492,23 +1518,18 @@
             "name": "Battle Sister",
             "profiles": [
               {
-                "name": "Boltgun",
+                "name": "Bolt pistol",
                 "typeName": "Ranged Weapons",
                 "stats": {
-                  "Range": "24\"",
+                  "Range": "12\"",
                   "A": "1",
                   "BS": "3+",
                   "S": "4",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "Rapid Fire 1"
+                  "Keywords": "Pistol"
                 }
-              }
-            ]
-          },
-          {
-            "name": "Battle Sister w/ Simulacrum Imperialis",
-            "profiles": [
+              },
               {
                 "name": "Boltgun",
                 "typeName": "Ranged Weapons",
@@ -1520,6 +1541,156 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "Rapid Fire 1"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Battle Sister w/ Simulacrum Imperialis",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Boltgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Battle Sister w/ Special or Heavy Weapon",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Battle Sister w/ Special Weapon",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Sister Superior",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
                 }
               }
             ]
@@ -1579,7 +1750,7 @@
           },
           {
             "name": "Acrobatic Escape",
-            "description": "At the end of the Fight phase, if this model is within Engagement Range of one or more enemy units, it can make a Fall Back move of up to D6\". In addition, at the end of your opponent's turn, if this model is not within 3\" of one or more enemy units, you can remove it from the battlefield and then, in the Reinforcements step of your next Movement phase, set it up anywhere on the battlefield that is more than 8\" horizontally away from all enemy models. If the battle ends and this model is not on the battlefield, it is destroyed."
+            "description": "- At the end of the Fight phase, if this unit is engaged, this unit can make a fall-back move of up to D6\". \n- At the end of your opponent’s turn, if this unit is more than 3\" from all enemy units, you can use this ability. If you do: \n- Place this unit in strategic reserves. \n- This unit must make an ingress move in your next Movement phase (including in your first turn)."
           }
         ],
         "weapons": [
@@ -2615,6 +2786,24 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -2660,6 +2849,24 @@
                   "AP": "-1",
                   "D": "2",
                   "Keywords": "Lethal Hits"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
                 }
               }
             ]
@@ -2720,6 +2927,19 @@
                   "D": "1",
                   "Keywords": "Sustained Hits 1"
                 }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
               }
             ]
           },
@@ -2738,6 +2958,19 @@
                   "D": "2",
                   "Keywords": "Lethal Hits"
                 }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
               }
             ]
           }
@@ -2748,8 +2981,8 @@
       },
       "pricing": [
         {
-          "range": "[1,1]",
-          "label": "Your 1st Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 5,
@@ -2762,16 +2995,16 @@
           ]
         },
         {
-          "range": "[2,)",
-          "label": "Your 2nd + Unit Costs",
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
           "costs": [
             {
               "models": 5,
-              "points": 90
+              "points": 85
             },
             {
               "models": 10,
-              "points": 165
+              "points": 160
             }
           ]
         }
@@ -3595,6 +3828,19 @@
           {
             "name": "Ephrael Stern",
             "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
               {
                 "name": "Sanctity",
                 "typeName": "Melee Weapons",
@@ -4591,6 +4837,24 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -4680,6 +4944,24 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -4717,7 +4999,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Dominion Squad",
-        "points": 100,
+        "points": 90,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -4749,23 +5031,18 @@
             "name": "Dominion",
             "profiles": [
               {
-                "name": "Boltgun",
+                "name": "Bolt pistol",
                 "typeName": "Ranged Weapons",
                 "stats": {
-                  "Range": "24\"",
+                  "Range": "12\"",
                   "A": "1",
                   "BS": "3+",
                   "S": "4",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "Rapid Fire 1"
+                  "Keywords": "Pistol"
                 }
-              }
-            ]
-          },
-          {
-            "name": "Dominion w/ Simulacrum Imperialis",
-            "profiles": [
+              },
               {
                 "name": "Boltgun",
                 "typeName": "Ranged Weapons",
@@ -4777,6 +5054,94 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "Rapid Fire 1"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dominion w/ Simulacrum Imperialis",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Boltgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dominion w/ Special Weapon",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
                 }
               }
             ]
@@ -4834,6 +5199,37 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Dominion Superior",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -4849,7 +5245,7 @@
           "costs": [
             {
               "models": 10,
-              "points": 100
+              "points": 90
             }
           ]
         },
@@ -4859,7 +5255,7 @@
           "costs": [
             {
               "models": 10,
-              "points": 110
+              "points": 100
             }
           ]
         }
@@ -4927,7 +5323,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Eversor Assassin",
-        "points": 110,
+        "points": 100,
         "stats": {
           "M": "9\"",
           "T": "4",
@@ -5011,11 +5407,11 @@
     {
       "name": "Exaction Squad",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Exaction Squad",
-        "points": 100,
+        "points": 90,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -5589,28 +5985,7 @@
           "Assigned Agents"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,2]",
-          "label": "Your 1st To 2nd Units Cost",
-          "costs": [
-            {
-              "models": 10,
-              "points": 100
-            }
-          ]
-        },
-        {
-          "range": "[3,)",
-          "label": "Your 3rd + Unit Costs",
-          "costs": [
-            {
-              "models": 10,
-              "points": 110
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -5784,7 +6159,7 @@
         "stats": {
           "M": "12\"",
           "T": "3",
-          "Sv": "2",
+          "Sv": "2+",
           "W": "2",
           "LD": "7+",
           "OC": "1",
@@ -6052,7 +6427,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Grey Knights Terminator Squad",
-        "points": 190,
+        "points": 175,
         "stats": {
           "M": "5\"",
           "T": "5",
@@ -6254,7 +6629,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Hospitaller",
-        "points": 75,
+        "points": 65,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -6304,6 +6679,24 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -6318,7 +6711,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 75
+              "points": 65
             }
           ]
         },
@@ -6328,7 +6721,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 85
+              "points": 75
             }
           ]
         }
@@ -6352,11 +6745,11 @@
       "deep_strike": false,
       "profile": {
         "name": "Imagifier",
-        "points": 65,
+        "points": 55,
         "stats": {
           "M": "6\"",
           "T": "3",
-          "Sv": "",
+          "Sv": "3+",
           "W": "3",
           "LD": "6+",
           "OC": "1",
@@ -6405,6 +6798,24 @@
             ]
           },
           {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
             "name": "Boltgun",
             "profiles": [
               {
@@ -6435,7 +6846,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 65
+              "points": 55
             }
           ]
         }
@@ -6458,7 +6869,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Immolator",
-        "points": 110,
+        "points": 100,
         "stats": {
           "M": "12\"",
           "T": "10",
@@ -6610,7 +7021,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 110
+              "points": 100
             }
           ]
         },
@@ -6620,7 +7031,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 120
+              "points": 115
             }
           ]
         }
@@ -6906,6 +7317,37 @@
                   "D": "1",
                   "Keywords": "-"
                 }
+              },
+              {
+                "name": "Navis shotgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Navis shotgun",
+            "profiles": [
+              {
+                "name": "Navis shotgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault"
+                }
               }
             ]
           },
@@ -7036,11 +7478,11 @@
     {
       "name": "Imperial Rhino",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Imperial Rhino",
-        "points": 75,
+        "points": 65,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -7128,18 +7570,7 @@
           "Firing Deck"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 75
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -8180,7 +8611,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Inquisitorial Chimera",
-        "points": 70,
+        "points": 60,
         "stats": {
           "M": "10\"",
           "T": "9",
@@ -8454,7 +8885,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Intranzia Fraye",
-        "points": 150,
+        "points": 135,
         "stats": {
           "M": "8\"",
           "T": "7",
@@ -8590,7 +9021,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 150
+              "points": 135
             }
           ]
         }
@@ -8606,7 +9037,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Junith Eruita",
-        "points": 115,
+        "points": 105,
         "stats": {
           "M": "8\"",
           "T": "5",
@@ -8629,7 +9060,7 @@
         "abilities": [
           {
             "name": "The Pulpit of Saint Holline’s Basilica",
-            "description": "While this model is leading a unit, each time an attack targets that unit, subtract 1 from the Hit roll."
+            "description": "- This unit has Stealth.\n- Melee attacks that target this unit have ‑1 to hit rolls."
           },
           {
             "name": "Fiery Conviction",
@@ -8676,7 +9107,8 @@
         ],
         "rules": [
           "Acts of Faith",
-          "Deadly Demise"
+          "Deadly Demise",
+          "Stealth"
         ]
       },
       "pricing": [
@@ -8686,7 +9118,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 115
+              "points": 105
             }
           ]
         }
@@ -8787,7 +9219,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Knight Castellan",
-        "points": 400,
+        "points": 425,
         "stats": {
           "M": "8\"",
           "T": "12",
@@ -10656,7 +11088,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Morvenn Vahl",
-        "points": 185,
+        "points": 200,
         "stats": {
           "M": "8\"",
           "T": "7",
@@ -10780,7 +11212,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 185
+              "points": 200
             }
           ]
         }
@@ -10931,6 +11363,24 @@
                   "AP": "-2",
                   "D": "2",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
                 }
               }
             ]
@@ -11154,6 +11604,24 @@
             ]
           },
           {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
             "name": "Paragon Storm Bolters",
             "profiles": [
               {
@@ -11275,6 +11743,24 @@
                   "AP": "-1",
                   "D": "1",
                   "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Paragon Warsuit",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
                 }
               }
             ]
@@ -12060,7 +12546,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Repentia Squad",
-        "points": 75,
+        "points": 70,
         "stats": {},
         "keywords": [
           "Infantry",
@@ -12099,6 +12585,19 @@
             "name": "Repentia Superior",
             "profiles": [
               {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
                 "name": "Neural Whips",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -12126,11 +12625,11 @@
           "costs": [
             {
               "models": 5,
-              "points": 75
+              "points": 70
             },
             {
               "models": 10,
-              "points": 160
+              "points": 140
             }
           ]
         }
@@ -12174,6 +12673,37 @@
           }
         ],
         "weapons": [
+          {
+            "name": "Retributor",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
           {
             "name": "Ministorum heavy flamer",
             "profiles": [
@@ -12224,6 +12754,37 @@
                   "AP": "-1",
                   "D": "2",
                   "Keywords": "Heavy, Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Retributor Superior",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
                 }
               }
             ]
@@ -13039,7 +13600,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Seraphim Squad",
-        "points": 85,
+        "points": 75,
         "stats": {
           "M": "12\"",
           "T": "3",
@@ -13080,8 +13641,40 @@
                   "D": "1",
                   "Keywords": "-"
                 }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
               }
             ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ],
+            "count": 2
           },
           {
             "name": "Seraphim with Special Weapons",
@@ -13187,11 +13780,11 @@
           "costs": [
             {
               "models": 5,
-              "points": 85
+              "points": 75
             },
             {
               "models": 10,
-              "points": 160
+              "points": 150
             }
           ]
         },
@@ -13201,11 +13794,11 @@
           "costs": [
             {
               "models": 5,
-              "points": 95
+              "points": 85
             },
             {
               "models": 10,
-              "points": 170
+              "points": 160
             }
           ]
         }
@@ -13217,11 +13810,11 @@
     {
       "name": "Sister Novitiate (Autogun)",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Sister Novitiate (Autogun)",
-        "points": 100,
+        "points": null,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -13234,6 +13827,42 @@
         "keywords": [],
         "abilities": [],
         "weapons": [
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Autopistol",
+            "profiles": [
+              {
+                "name": "Novitiate autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
           {
             "name": "Novitiate autogun",
             "profiles": [
@@ -13257,18 +13886,7 @@
           "Sister Novitiate"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 10,
-              "points": 100
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -13293,6 +13911,24 @@
         "keywords": [],
         "abilities": [],
         "weapons": [
+          {
+            "name": "Autopistol",
+            "profiles": [
+              {
+                "name": "Novitiate autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
           {
             "name": "Novitiate melee weapon",
             "profiles": [
@@ -13328,7 +13964,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Sisters Novitiate Squad",
-        "points": 100,
+        "points": 90,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -13353,6 +13989,86 @@
         ],
         "weapons": [
           {
+            "name": "Novitiate with Sacred Banner",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Novitiate autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Novitiate with Simulacrum Imperialis",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Novitiate autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Autopistol",
+            "profiles": [
+              {
+                "name": "Novitiate autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
             "name": "Novitiate with Ministorum Flamer",
             "profiles": [
               {
@@ -13367,12 +14083,64 @@
                   "D": "1",
                   "Keywords": "Ignores Cover, Torrent"
                 }
+              },
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Novitiate autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
               }
             ]
           },
           {
             "name": "Sister Novitiate (Autogun)",
             "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Novitiate autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
               {
                 "name": "Novitiate autogun",
                 "typeName": "Ranged Weapons",
@@ -13391,6 +14159,19 @@
           {
             "name": "Sister Novitiate (Melee Weapon)",
             "profiles": [
+              {
+                "name": "Novitiate autopistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
               {
                 "name": "Novitiate melee weapon",
                 "typeName": "Melee Weapons",
@@ -13419,7 +14200,7 @@
           "costs": [
             {
               "models": 10,
-              "points": 100
+              "points": 90
             }
           ]
         }
@@ -13431,11 +14212,11 @@
     {
       "name": "Sisters of Battle Immolator",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Sisters of Battle Immolator",
-        "points": 245,
+        "points": 90,
         "stats": {
           "M": "12\"",
           "T": "10",
@@ -13580,18 +14361,7 @@
           "Deadly Demise"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 245
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -13599,7 +14369,7 @@
     {
       "name": "Sisters of Battle Squad",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Sisters of Battle Squad",
@@ -13979,18 +14749,7 @@
         ],
         "rules": []
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 10,
-              "points": 100
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -14002,7 +14761,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Sororitas Rhino",
-        "points": 75,
+        "points": 65,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -14096,8 +14855,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 65
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -14113,11 +14882,11 @@
     {
       "name": "Subductor Squad",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Subductor Squad",
-        "points": 75,
+        "points": 85,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -14228,22 +14997,7 @@
           "Assigned Agents"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 5,
-              "points": 75
-            },
-            {
-              "models": 10,
-              "points": 160
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -14377,11 +15131,11 @@
     {
       "name": "Vigilant Squad",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Vigilant Squad",
-        "points": 105,
+        "points": 85,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -14793,28 +15547,7 @@
           "Assigned Agents"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,2]",
-          "label": "Your 1st To 2nd Units Cost",
-          "costs": [
-            {
-              "models": 5,
-              "points": 105
-            }
-          ]
-        },
-        {
-          "range": "[3,)",
-          "label": "Your 3rd + Unit Costs",
-          "costs": [
-            {
-              "models": 5,
-              "points": 115
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -15980,7 +16713,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Zephyrim Squad",
-        "points": 80,
+        "points": 75,
         "stats": {
           "M": "12\"",
           "T": "3",
@@ -16006,6 +16739,24 @@
           }
         ],
         "weapons": [
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
           {
             "name": "Plasma pistol",
             "profiles": [
@@ -16059,6 +16810,19 @@
             "name": "Zephyrim",
             "profiles": [
               {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
                 "name": "Power weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -16082,12 +16846,26 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 5,
-              "points": 80
+              "points": 75
+            },
+            {
+              "models": 10,
+              "points": 150
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 5,
+              "points": 85
             },
             {
               "models": 10,
@@ -16103,7 +16881,7 @@
   ],
   "_meta": {
     "bsdata_faction": "Imperium - Adepta Sororitas",
-    "bsdata_revision": 6,
+    "bsdata_revision": 9,
     "bsdata_units": 103,
     "mfm_units": 33,
     "merged_units": 103

@@ -18,6 +18,14 @@ MFM_DIR = ROOT / "mfm" / "data"
 MERGED_DIR = ROOT / "data" / "merged"
 
 
+def _norm(name: str) -> str:
+    """Normalize name for cross-source comparison (handles UK/US spelling, case)."""
+    n = name.lower().strip().replace("\u2019", "'")
+    n = n.replace("armour", "armor")
+    n = n.replace("defence", "defense")
+    return n
+
+
 def _load_mfm_factions():
     """Return list of (faction_name, slug, mfm_units) for all MFM files."""
     result = []
@@ -28,7 +36,7 @@ def _load_mfm_factions():
         name = data.get("name", mfm_file.stem)
         slug = data.get("slug", mfm_file.stem)
         units = [u["name"] for u in data.get("units", [])
-                 if "[Legends]" not in u.get("name", "")]
+                 if not u.get("legends", False)]
         result.append((name, slug, units))
     return result
 
@@ -53,8 +61,11 @@ def test_all_mfm_units_in_merged(name, slug, mfm_units):
     if merged is None:
         pytest.skip(f"No merged file for {slug}")
 
-    merged_names = {u["name"] for u in merged["units"]}
-    missing = sorted(set(mfm_units) - merged_names)
+    merged_map = {_norm(u["name"]): u["name"] for u in merged["units"]}
+    missing = []
+    for mfm_name in mfm_units:
+        if _norm(mfm_name) not in merged_map:
+            missing.append(mfm_name)
 
     assert not missing, (
         f"{name}: {len(missing)} MFM units missing from merged:\n"
@@ -72,10 +83,10 @@ def test_all_mfm_units_have_stats(name, slug, mfm_units):
     if merged is None:
         pytest.skip(f"No merged file for {slug}")
 
-    merged_map = {u["name"]: u for u in merged["units"]}
+    merged_map = {_norm(u["name"]): u for u in merged["units"]}
     empty = []
     for mfm_name in mfm_units:
-        mu = merged_map.get(mfm_name)
+        mu = merged_map.get(_norm(mfm_name))
         if mu is None:
             continue  # covered by test_all_mfm_units_in_merged
         profile = mu.get("profile") or {}
@@ -117,10 +128,10 @@ def test_all_mfm_units_have_weapons(name, slug, mfm_units):
     if merged is None:
         pytest.skip(f"No merged file for {slug}")
 
-    merged_map = {u["name"]: u for u in merged["units"]}
+    merged_map = {_norm(u["name"]): u for u in merged["units"]}
     no_weapons = []
     for mfm_name in mfm_units:
-        mu = merged_map.get(mfm_name)
+        mu = merged_map.get(_norm(mfm_name))
         if mu is None:
             continue
         profile = mu.get("profile") or {}
@@ -153,14 +164,14 @@ def test_mfm_coverage_summary(capsys):
             total_missing += len(mfm_units)
             continue
 
-        merged_map = {u["name"]: u for u in merged["units"]}
+        merged_map = {_norm(u["name"]): u for u in merged["units"]}
         empty_stats = 0
         missing = 0
         no_weapons = 0
 
         for mfm_name in mfm_units:
             total_mfm += 1
-            mu = merged_map.get(mfm_name)
+            mu = merged_map.get(_norm(mfm_name))
             if mu is None:
                 missing += 1
                 total_missing += 1

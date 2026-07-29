@@ -1,8 +1,8 @@
 {
   "faction": "Black Templars",
   "slug": "black-templars",
-  "version": "1.0",
-  "firstSeen": "2026-06-23",
+  "version": "1.1",
+  "firstSeen": "2026-07-22",
   "detachments": [
     {
       "name": "Anvil Siege Force",
@@ -122,7 +122,7 @@
     {
       "name": "Firestorm Assault Force",
       "dp": 2,
-      "objective": "PURGE THE FOE",
+      "objective": "PRIORITY ASSETS",
       "enhancements": [
         {
           "name": "Adamantine Mantle",
@@ -145,7 +145,7 @@
     {
       "name": "Fulguris Task Force",
       "dp": 1,
-      "objective": "DISRUPTION",
+      "objective": "RECONNAISSANCE",
       "enhancements": [
         {
           "name": "Bellicose Weapon Spirits (Upgrade)",
@@ -168,7 +168,7 @@
         },
         {
           "name": "Artificer Armour",
-          "points": 10
+          "points": 20
         },
         {
           "name": "Fire Discipline",
@@ -183,7 +183,7 @@
     {
       "name": "Godhammer Assault Force",
       "dp": 2,
-      "objective": "DISRUPTION",
+      "objective": "PURGE THE FOE",
       "enhancements": [
         {
           "name": "Augury Servo-Host",
@@ -229,7 +229,7 @@
     {
       "name": "Ironstorm Spearhead",
       "dp": 2,
-      "objective": "PURGE THE FOE",
+      "objective": "TAKE AND HOLD",
       "enhancements": [
         {
           "name": "Adept of the Omnissiah",
@@ -245,7 +245,7 @@
         },
         {
           "name": "The Flesh Is Weak",
-          "points": 10
+          "points": 20
         }
       ]
     },
@@ -313,7 +313,7 @@
     {
       "name": "Subversion Assets",
       "dp": 1,
-      "objective": "RECONNAISSANCE",
+      "objective": "DISRUPTION",
       "enhancements": [
         {
           "name": "Death in the Dark (Upgrade)",
@@ -328,7 +328,7 @@
     {
       "name": "The Living Miracle",
       "dp": 1,
-      "objective": "PURGE THE FOE",
+      "objective": "DISRUPTION",
       "enhancements": [
         {
           "name": "Guiding Omens",
@@ -356,6 +356,21 @@
         {
           "name": "The Blade Driven Deep",
           "points": 25
+        }
+      ]
+    },
+    {
+      "name": "Vengeful Hosts",
+      "dp": 1,
+      "objective": "TAKE AND HOLD",
+      "enhancements": [
+        {
+          "name": "Avenging Angel",
+          "points": 20
+        },
+        {
+          "name": "Orksbane",
+          "points": 20
         }
       ]
     },
@@ -406,7 +421,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Aggressor Squad",
-        "points": 90,
+        "points": 80,
         "stats": {
           "M": "5\"",
           "T": "6",
@@ -613,11 +628,11 @@
           "costs": [
             {
               "models": 3,
-              "points": 90
+              "points": 80
             },
             {
               "models": 6,
-              "points": 180
+              "points": 165
             }
           ]
         },
@@ -627,11 +642,11 @@
           "costs": [
             {
               "models": 3,
-              "points": 100
+              "points": 90
             },
             {
               "models": 6,
-              "points": 190
+              "points": 175
             }
           ]
         }
@@ -787,8 +802,191 @@
       "name": "Ancient In Terminator Armour",
       "in_bsdata": false,
       "in_mfm": true,
-      "deep_strike": false,
-      "profile": null,
+      "deep_strike": true,
+      "profile": {
+        "name": "Ancient in Terminator Armor",
+        "points": 65,
+        "stats": {
+          "M": "5\"",
+          "T": "5",
+          "Sv": "2+",
+          "W": "5",
+          "LD": "6+",
+          "OC": "1",
+          "InSv": "4+"
+        },
+        "keywords": [
+          "Character",
+          "Infantry",
+          "Imperium",
+          "Terminator",
+          "Ancient",
+          "Faction: Adeptus Astartes"
+        ],
+        "abilities": [
+          {
+            "name": "Keep the Banner High",
+            "description": "While this model is leading a unit, each time a model in that unit makes an attack, add 1 to the Hit roll if that unit is below its Starting Strength, and add 1 to the Wound roll as well if that unit is Below Half-strength"
+          },
+          {
+            "name": "Support",
+            "description": "This model can be attached to the following units:\n\n■ DEATHWATCH TERMINATOR SQUAD\n■ DEATHWING KNIGHTS\n■ DEATHWING TERMINATOR SQUAD\n■ TERMINATOR ASSAULT SQUAD\n■ TERMINATOR SQUAD\n\nYou can attach this model to one of the above units even if one Captain, Chapter Master or Lieutenant model has already been attached to it. If you do, and that Bodyguard unit is destroyed, the Leader units attached to it become separate units, with their original Starting Strengths."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Storm Bolter and Melee Weapon",
+            "profiles": [
+              {
+                "name": "Storm bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power weapon",
+            "profiles": [
+              {
+                "name": "Power weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "2+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Power fist",
+            "profiles": [
+              {
+                "name": "Power fist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Thunder Hammer",
+            "profiles": [
+              {
+                "name": "Thunder Hammer",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Chainfist",
+            "profiles": [
+              {
+                "name": "Chainfist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Anti Vehicle 3+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "2+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Thunder Hammer & Terminator Storm Shield",
+            "profiles": [
+              {
+                "name": "Thunder Hammer",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin lightning claws",
+            "profiles": [
+              {
+                "name": "Twin lightning claws",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "2+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Twin-linked"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Support",
+          "Astartes Banner",
+          "Deep Strike",
+          "Oath of Moment",
+          "Templar Vows"
+        ]
+      },
       "pricing": [
         {
           "range": "[1,)",
@@ -2085,7 +2283,7 @@
         "abilities": [
           {
             "name": "Bladeguard",
-            "description": "At the start of the Fight phase, you can select one of the following abilities to apply to models in this unit until the end of the phase:\n\n■ Swords of the Imperium: Each time a model in this unit makes a melee attack, re-roll a Hit roll of 1.\n■ Shields of the Imperium: Each time an invulnerable saving throw is made for a model in this unit, re-roll a saving throw of 1."
+            "description": "(Once per turn, per unit): In the Fight phase, when this unit is selected to fight or when an enemy unit targets this unit, you can select one of the following:\n\n\n▪ This unit’s melee attacks have +1 to hit rolls.\n▪ Or: Attacks that target this unit have ‑1 to hit rolls."
           }
         ],
         "weapons": [
@@ -2478,7 +2676,7 @@
           "W": "5",
           "LD": "6+",
           "OC": "1",
-          "InSv": ""
+          "InSv": "4+"
         },
         "keywords": [
           "Character",
@@ -2492,7 +2690,7 @@
         "abilities": [
           {
             "name": "Leader",
-            "description": "This model can be attached to the following units:\n\n■ ASSAULT INTERCESSOR SQUAD\n■ BLADEGUARD VETERAN SQUAD\n■ COMPANY HEROES, CRUSADER SQUAD\n■ DEATHWATCH VETERANS\n■ DECIMUS KILL TEAM\n■ FORTIS KILL TEAM\n■ HELLBLASTER SQUAD\n■ INFERNUS SQUAD\n■ INNER CIRCLE COMPANIONS\n■ INTERCESSOR SQUAD\n■ STERNGUARD VETERAN SQUAD\n■ SWORD BRETHREN SQUAD\n■ TACTICAL SQUAD\n■ VICTRIX HONOUR GUARD\n\n* This model cannot be attached to a Bladeguard Veteran Squad unless it is equipped with a relic shield, and cannot be attached to a Hellblaster Squad unless it is equipped with a plasma pistol."
+            "description": "This model can be attached to the following units:\n\n■ ASSAULT INTERCESSOR SQUAD\n■ BLADEGUARD VETERAN SQUAD\n■ COMPANY HEROES, CRUSADER SQUAD\n■ DEATHWATCH VETERANS\n■ DECIMUS KILL TEAM\n■ FORTIS KILL TEAM\n■ HELLBLASTER SQUAD\n■ INFERNUS SQUAD\n■ INNER CIRCLE COMPANIONS\n■ INTERCESSOR SQUAD\n■ STERNGUARD VETERAN SQUAD\n■ SWORD BRETHREN SQUAD\n■ TACTICAL SQUAD\n■ VICTRIX HONOUR GUARD\n"
           }
         ],
         "weapons": [
@@ -2718,7 +2916,6 @@
         ],
         "rules": [
           "Finest Hour",
-          "Invulnerable Save",
           "Leader",
           "Rites of Battle",
           "Oath of Moment",
@@ -4076,7 +4273,12 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": [
+        {
+          "item": "Twin lascannon",
+          "points": 5
+        }
+      ]
     },
     {
       "name": "Chaplain",
@@ -4195,7 +4397,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Chaplain Grimaldus",
-        "points": 110,
+        "points": 100,
         "stats": {
           "M": "6\"",
           "T": "4",
@@ -4210,7 +4412,8 @@
           "Imperium",
           "Tacticus",
           "Faction: Adeptus Astartes",
-          "Faction: Black Templars"
+          "Faction: Black Templars",
+          "Chaplain"
         ],
         "abilities": [
           {
@@ -4302,7 +4505,7 @@
           "costs": [
             {
               "models": 4,
-              "points": 110
+              "points": 100
             }
           ]
         }
@@ -4766,6 +4969,24 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Absolvor bolt pistol",
+            "profiles": [
+              {
+                "name": "Absolvor bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -4830,10 +5051,6 @@
           {
             "name": "Command Squad",
             "description": "While a Character model is leading this unit, each time an attack targets this unit, subtract 1 from the Wound roll."
-          },
-          {
-            "name": "Company Heroes",
-            "description": "You must attach one Captain or Chapter Master model to this unit. If this is not possible, this unit does not take part in the battle and counts as having been destroyed."
           }
         ],
         "weapons": [
@@ -5101,7 +5318,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Crusade Ancient",
-        "points": 45,
+        "points": 40,
         "stats": {
           "M": "6\"",
           "T": "4",
@@ -5168,7 +5385,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 45
+              "points": 40
             }
           ]
         }
@@ -6362,7 +6579,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Drop Pod",
-        "points": 70,
+        "points": 60,
         "stats": {
           "M": "-",
           "T": "7",
@@ -6377,7 +6594,8 @@
           "Imperium",
           "Drop Pod",
           "Transport",
-          "Dedicated Transport"
+          "Dedicated Transport",
+          "Frame"
         ],
         "abilities": [
           {
@@ -6407,8 +6625,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 60
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -6622,7 +6850,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Emperor's Champion",
-        "points": 100,
+        "points": 90,
         "stats": {
           "M": "8\"",
           "T": "4",
@@ -6705,7 +6933,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 100
+              "points": 90
             }
           ]
         }
@@ -6723,7 +6951,7 @@
     {
       "name": "Emperor's Champion (Anointed)",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Emperor's Champion (Anointed)",
@@ -6804,18 +7032,7 @@
           "Lone Operative"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 100
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -7031,7 +7248,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Eradicator Squad with Heavy Bolters",
-        "points": 70,
+        "points": 80,
         "stats": {
           "M": "5\"",
           "T": "6",
@@ -7185,18 +7402,8 @@
       },
       "pricing": [
         {
-          "range": "[1,2]",
-          "label": "Your 1st To 2nd Units Cost",
-          "costs": [
-            {
-              "models": 3,
-              "points": 70
-            }
-          ]
-        },
-        {
-          "range": "[3,)",
-          "label": "Your 3rd + Unit Costs",
+          "range": "[1,)",
+          "label": "Your Unit Costs",
           "costs": [
             {
               "models": 3,
@@ -7216,7 +7423,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Execrator",
-        "points": 60,
+        "points": 50,
         "stats": {
           "M": "6\"",
           "T": "4",
@@ -7302,7 +7509,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 60
+              "points": 50
             }
           ]
         }
@@ -7715,7 +7922,8 @@
           "Fortification",
           "Imperium",
           "Hammerfall Bunker",
-          "Faction: Adeptus Astartes"
+          "Faction: Adeptus Astartes",
+          "Frame"
         ],
         "abilities": [
           {
@@ -8266,7 +8474,7 @@
       "deep_strike": false,
       "profile": {
         "name": "High Marshal Helbrecht",
-        "points": 120,
+        "points": 110,
         "stats": {
           "M": "6\"",
           "T": "4",
@@ -8364,7 +8572,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 120
+              "points": 110
             }
           ]
         }
@@ -8385,7 +8593,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Impulsor",
-        "points": 85,
+        "points": 75,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -8442,8 +8650,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 75
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -8463,7 +8681,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Inceptor Squad",
-        "points": 120,
+        "points": 125,
         "stats": {
           "M": "10\"",
           "T": "6",
@@ -8637,11 +8855,7 @@
           "costs": [
             {
               "models": 3,
-              "points": 120
-            },
-            {
-              "models": 6,
-              "points": 240
+              "points": 125
             }
           ]
         },
@@ -8651,11 +8865,7 @@
           "costs": [
             {
               "models": 3,
-              "points": 135
-            },
-            {
-              "models": 6,
-              "points": 255
+              "points": 140
             }
           ]
         }
@@ -9035,7 +9245,7 @@
             },
             {
               "models": 10,
-              "points": 170
+              "points": 180
             }
           ]
         }
@@ -9275,8 +9485,8 @@
             "description": "If you control an objective marker at the end of your Command phase and this unit is within range of that objective marker, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn."
           },
           {
-            "name": "Target Elimination",
-            "description": "Each time this unit is selected to shoot, it can use this ability. If it does, until the end of the phase, add 2 to the Attacks characteristic of bolt rifles equipped by models in this unit and you can only select one enemy unit as the target of all of this unit's attacks"
+            "name": "Hail of Bolts",
+            "description": "In your Shooting phase, when this unit is selected to shoot, select up to one visible enemy unit. While making those attacks, this unit’s Bolt Rifle attacks that targeted that enemy unit have +2 A"
           }
         ],
         "weapons": [
@@ -9697,7 +9907,8 @@
           "Grenades",
           "Imperium",
           "Invader ATV",
-          "Faction: Adeptus Astartes"
+          "Faction: Adeptus Astartes",
+          "Frame"
         ],
         "abilities": [
           {
@@ -10542,7 +10753,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Land Speeder",
-        "points": 95,
+        "points": 105,
         "stats": {
           "M": "14\"",
           "T": "8",
@@ -10665,18 +10876,8 @@
       },
       "pricing": [
         {
-          "range": "[1,2]",
-          "label": "Your 1st To 2nd Units Cost",
-          "costs": [
-            {
-              "models": 1,
-              "points": 95
-            }
-          ]
-        },
-        {
-          "range": "[3,)",
-          "label": "Your 3rd + Unit Costs",
+          "range": "[1,)",
+          "label": "Your Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -11218,7 +11419,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Lieutenant with Combi-weapon",
-        "points": 85,
+        "points": 95,
         "stats": {
           "M": "6\"",
           "T": "4",
@@ -11306,7 +11507,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 85
+              "points": 95
             }
           ]
         }
@@ -11433,8 +11634,8 @@
       },
       "pricing": [
         {
-          "range": "[1,1]",
-          "label": "Your 1st Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 1,
@@ -11443,8 +11644,8 @@
           ]
         },
         {
-          "range": "[2,)",
-          "label": "Your 2nd + Unit Costs",
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -11971,7 +12172,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Razorback",
-        "points": 95,
+        "points": 85,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -12101,8 +12302,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 85
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -12606,7 +12817,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Repulsor Executioner",
-        "points": 245,
+        "points": 255,
         "stats": {
           "M": "10\"",
           "T": "12",
@@ -12687,7 +12898,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 245
+              "points": 255
             }
           ]
         },
@@ -12697,14 +12908,19 @@
           "costs": [
             {
               "models": 1,
-              "points": 265
+              "points": 275
             }
           ]
         }
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": [
+        {
+          "item": "Heavy laser destroyer",
+          "points": 10
+        }
+      ]
     },
     {
       "name": "Rhino",
@@ -12713,7 +12929,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Rhino",
-        "points": 75,
+        "points": 65,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -12808,8 +13024,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 65
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -13442,7 +13668,8 @@
           "Fly",
           "Imperium",
           "Faction: Adeptus Astartes",
-          "Storm Speeder Hailstrike"
+          "Storm Speeder Hailstrike",
+          "Frame"
         ],
         "abilities": [
           {
@@ -13564,7 +13791,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Storm Speeder Hammerstrike",
-        "points": 130,
+        "points": 140,
         "stats": {
           "M": "14\"",
           "T": "9",
@@ -13579,7 +13806,8 @@
           "Fly",
           "Vehicle",
           "Storm Speeder Hammerstrike",
-          "Faction: Adeptus Astartes"
+          "Faction: Adeptus Astartes",
+          "Frame"
         ],
         "abilities": [
           {
@@ -13675,7 +13903,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 130
+              "points": 140
             }
           ]
         },
@@ -13685,7 +13913,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 140
+              "points": 150
             }
           ]
         }
@@ -13716,7 +13944,8 @@
           "Fly",
           "Imperium",
           "Storm Speeder Thunderstrike",
-          "Faction: Adeptus Astartes"
+          "Faction: Adeptus Astartes",
+          "Frame"
         ],
         "abilities": [
           {
@@ -14469,7 +14698,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Suppressor Squad",
-        "points": 75,
+        "points": 85,
         "stats": {
           "M": "12\"",
           "T": "4",
@@ -14603,7 +14832,7 @@
           "costs": [
             {
               "models": 3,
-              "points": 75
+              "points": 85
             }
           ]
         }
@@ -16015,7 +16244,6 @@
           "Vehicle",
           "Titanic",
           "Fly",
-          "Aircraft",
           "Transport",
           "Imperium",
           "Thunderhawk Gunship"
@@ -16170,7 +16398,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Vanguard Veteran Squad with Jump Packs",
-        "points": 100,
+        "points": 105,
         "stats": {
           "M": "12\"",
           "T": "4",
@@ -16216,6 +16444,248 @@
             ]
           },
           {
+            "name": "Plasma pistol",
+            "profiles": [
+              {
+                "name": "Plasma pistol - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Pistol"
+                }
+              },
+              {
+                "name": "Plasma pistol - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Inferno Pistol",
+            "profiles": [
+              {
+                "name": "Inferno Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D3",
+                  "Keywords": "Melta 2, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hand flamer",
+            "profiles": [
+              {
+                "name": "Hand flamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Pistol, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Close-Quarters"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Grav-pistol",
+            "profiles": [
+              {
+                "name": "Grav-pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-vehicle 2+, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Close-Quarters"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Plasma pistol",
+            "profiles": [
+              {
+                "name": "Plasma pistol - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Pistol"
+                }
+              },
+              {
+                "name": "Plasma pistol - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Inferno Pistol",
+            "profiles": [
+              {
+                "name": "Inferno Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D3",
+                  "Keywords": "Melta 2, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Hand flamer",
+            "profiles": [
+              {
+                "name": "Hand flamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Pistol, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Grav-pistol",
+            "profiles": [
+              {
+                "name": "Grav-pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-vehicle 2+, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy Bolt Pistol",
+            "profiles": [
+              {
+                "name": "Heavy Bolt Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Master-crafted Power Weapon",
+            "profiles": [
+              {
+                "name": "Master-crafted Power Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": ""
+                }
+              }
+            ]
+          },
+          {
             "name": "Vanguard Veteran Weapon",
             "profiles": [
               {
@@ -16234,8 +16704,52 @@
             ]
           },
           {
-            "name": "Plasma pistol",
+            "name": "Vanguard Veteran w/Master-crafted Power Weapon",
             "profiles": [
+              {
+                "name": "Master-crafted Power Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": ""
+                }
+              },
+              {
+                "name": "Heavy Bolt Pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Vanguard Veteran w/Plasma Pistol & Master-crafter Power Weapon",
+            "profiles": [
+              {
+                "name": "Master-crafted Power Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": ""
+                }
+              },
               {
                 "name": "Plasma pistol - supercharge",
                 "typeName": "Ranged Weapons",
@@ -16260,181 +16774,6 @@
                   "AP": "-2",
                   "D": "1",
                   "Keywords": "Pistol"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Inferno Pistol",
-            "profiles": [
-              {
-                "name": "Inferno Pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "6\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "8",
-                  "AP": "-4",
-                  "D": "D3",
-                  "Keywords": "Melta 2, Pistol"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Hand flamer",
-            "profiles": [
-              {
-                "name": "Hand flamer",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "D6",
-                  "BS": "N/A",
-                  "S": "3",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Ignores Cover, Pistol, Torrent"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Bolt pistol",
-            "profiles": [
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Close-Quarters"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Grav-pistol",
-            "profiles": [
-              {
-                "name": "Grav-pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Anti-vehicle 2+, Pistol"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Bolt pistol",
-            "profiles": [
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Close-Quarters"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Plasma pistol",
-            "profiles": [
-              {
-                "name": "Plasma pistol - supercharge",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "8",
-                  "AP": "-3",
-                  "D": "2",
-                  "Keywords": "Hazardous, Pistol"
-                }
-              },
-              {
-                "name": "Plasma pistol - standard",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "7",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Pistol"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Inferno Pistol",
-            "profiles": [
-              {
-                "name": "Inferno Pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "6\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "8",
-                  "AP": "-4",
-                  "D": "D3",
-                  "Keywords": "Melta 2, Pistol"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Hand flamer",
-            "profiles": [
-              {
-                "name": "Hand flamer",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "D6",
-                  "BS": "N/A",
-                  "S": "3",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Ignores Cover, Pistol, Torrent"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Grav-pistol",
-            "profiles": [
-              {
-                "name": "Grav-pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Anti-vehicle 2+, Pistol"
                 }
               }
             ]
@@ -16453,11 +16792,11 @@
           "costs": [
             {
               "models": 5,
-              "points": 100
+              "points": 105
             },
             {
               "models": 10,
-              "points": 200
+              "points": 210
             }
           ]
         },
@@ -16467,11 +16806,11 @@
           "costs": [
             {
               "models": 5,
-              "points": 110
+              "points": 115
             },
             {
               "models": 10,
-              "points": 210
+              "points": 220
             }
           ]
         }

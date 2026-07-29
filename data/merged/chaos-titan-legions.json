@@ -1,8 +1,8 @@
 {
   "faction": "Chaos Titan Legions",
   "slug": "chaos-titan-legions",
-  "version": "1.0",
-  "firstSeen": "2026-06-17",
+  "version": "1.1",
+  "firstSeen": "2026-07-22",
   "detachments": [],
   "units": [
     {
@@ -131,7 +131,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Beasts of Nurgle",
-        "points": 0,
+        "points": 75,
         "stats": {
           "M": "6\"",
           "T": "9",
@@ -553,6 +553,32 @@
             "name": "Axe and flail",
             "profiles": [
               {
+                "name": "➤ Axe of Khorne - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "2+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "D3+1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "➤ Axe of Khorne - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "16",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
                 "name": "Bloodflail",
                 "typeName": "Ranged Weapons",
                 "stats": {
@@ -563,6 +589,37 @@
                   "AP": "-3",
                   "D": "D6+1",
                   "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Axe of Khorne",
+            "profiles": [
+              {
+                "name": "➤ Axe of Khorne - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "2+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "D3+1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "➤ Axe of Khorne - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "16",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
                 }
               }
             ]
@@ -589,6 +646,32 @@
             "name": "Axe and lash",
             "profiles": [
               {
+                "name": "➤ Axe of Khorne - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "2+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "D3+1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "➤ Axe of Khorne - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "16",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
                 "name": "Lash of Khorne",
                 "typeName": "Ranged Weapons",
                 "stats": {
@@ -598,6 +681,37 @@
                   "S": "8",
                   "AP": "-1",
                   "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Axe of Khorne",
+            "profiles": [
+              {
+                "name": "➤ Axe of Khorne - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "2+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "D3+1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "➤ Axe of Khorne - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "16",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "1",
                   "Keywords": "-"
                 }
               }
@@ -953,11 +1067,11 @@
     {
       "name": "Chaos Acastus Knight Asterius",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Chaos Acastus Knight Asterius",
-        "points": 2600,
+        "points": 785,
         "stats": {
           "M": "8\"",
           "T": "13",
@@ -1066,18 +1180,7 @@
           "*Invulnerable Save"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 2600
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -2311,11 +2414,11 @@
     {
       "name": "Daemon Prince of Chaos",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": true,
       "profile": {
         "name": "Daemon Prince of Chaos",
-        "points": 2200,
+        "points": 165,
         "stats": {
           "M": "8\"",
           "T": "10",
@@ -2405,18 +2508,7 @@
           "Deadly Demise"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 2200
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -3375,7 +3467,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Fluxmaster",
-        "points": 80,
+        "points": 70,
         "stats": {
           "M": "12\"",
           "T": "4",
@@ -3406,7 +3498,7 @@
           },
           {
             "name": "Fluxmaster",
-            "description": "While this model is leading a unit, each time an attack is made against that unit, subtract 1 form the Hit roll."
+            "description": "- This unit has Stealth. \n- Melee attacks that target this unit have ‑1 to hit rolls."
           },
           {
             "name": "Altered Reality (Psychic)",
@@ -4002,7 +4094,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Kairos Fateweaver",
-        "points": 295,
+        "points": 305,
         "stats": {
           "M": "12\"",
           "T": "10",
@@ -4032,7 +4124,7 @@
           },
           {
             "name": "One Head Looks Back (Aura)",
-            "description": "Each time your opponent targets a unit from their army with a Stratagem, if that unit is within 12\" of this model, increase the cost of that use of that Stratagem by 1CP (this is not cumulative with any other rules that would increase the CP cost of that Stratagem)."
+            "description": "Once per turn, when your opponent targets a unit from their army within 12\" of this model with a stratagem, you can use this ability. If you do, increase the CP cost of that use of that stratagem by 1CP."
           }
         ],
         "weapons": [
@@ -4544,7 +4636,7 @@
                   "S": "12",
                   "AP": "0",
                   "D": "3",
-                  "Keywords": "Devastating Wounds"
+                  "Keywords": "Devastating Wounds, Ignores Cover"
                 }
               }
             ]
@@ -4617,7 +4709,7 @@
           },
           {
             "name": "Obsessive Ruthlessness",
-            "description": "Each time this model makes a ranged attack that targets a ^^**Monster^^** or ^^**Vehicle^^** unit, that attack has the [DEVASTATING WOUNDS] ability."
+            "description": "This unit’s ranged attacks that target a MONSTER/VEHICLE unit can ignore modifiers to this unit’s: \n- BS. \n- Hit rolls and wound rolls."
           }
         ],
         "weapons": [
@@ -4634,7 +4726,7 @@
                   "S": "18",
                   "AP": "-4",
                   "D": "D6+3",
-                  "Keywords": "-"
+                  "Keywords": "Devastating Wounds: Monster/Vehicle"
                 }
               }
             ]
@@ -5300,7 +5392,7 @@
                 "typeName": "Ranged Weapons",
                 "stats": {
                   "Range": "18\"",
-                  "A": "2D6",
+                  "A": "D6+6",
                   "BS": "N/A",
                   "S": "8",
                   "AP": "-1",
@@ -5349,7 +5441,7 @@
                 "typeName": "Ranged Weapons",
                 "stats": {
                   "Range": "36\"",
-                  "A": "2D6",
+                  "A": "D6+6",
                   "BS": "3+",
                   "S": "8",
                   "AP": "-2",
@@ -5691,7 +5783,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Lord of Change",
-        "points": 300,
+        "points": 320,
         "stats": {
           "M": "12\"",
           "T": "10",
@@ -6786,8 +6878,7 @@
           "Tzeentch",
           "Screamers",
           "Tzeentch non-Battleline",
-          "Shadow Legion",
-          "Frame"
+          "Shadow Legion"
         ],
         "abilities": [
           {
@@ -6946,7 +7037,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Shalaxi Helbane",
-        "points": 340,
+        "points": 315,
         "stats": {
           "M": "14\"",
           "T": "10",
@@ -8734,7 +8825,7 @@
       "deep_strike": false,
       "profile": {
         "name": "War Dog Huntsman",
-        "points": 140,
+        "points": 135,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -9183,7 +9274,7 @@
       "deep_strike": false,
       "profile": {
         "name": "War Dog Stalker",
-        "points": 140,
+        "points": 135,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -9346,11 +9437,11 @@
     {
       "name": "Warbringer Nemesis Titan",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Warbringer Nemesis Titan",
-        "points": 1100,
+        "points": 2600,
         "stats": {
           "M": "12\"",
           "T": "14",
@@ -9555,18 +9646,7 @@
           "Super-Heavy Walker"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 1100
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null

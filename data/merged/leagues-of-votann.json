@@ -1,8 +1,8 @@
 {
   "faction": "Leagues of Votann",
   "slug": "leagues-of-votann",
-  "version": "1.0",
-  "firstSeen": "2026-06-23",
+  "version": "1.1",
+  "firstSeen": "2026-07-22",
   "detachments": [
     {
       "name": "Armoured Trailblazers",
@@ -15,7 +15,7 @@
         },
         {
           "name": "Saturation Rounds (Upgrade)",
-          "points": 10
+          "points": 15
         }
       ]
     },
@@ -340,7 +340,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Berehk Stornbröw",
-        "points": 95,
+        "points": 85,
         "stats": {
           "M": "6\"",
           "T": "6",
@@ -436,7 +436,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 95
+              "points": 85
             }
           ]
         }
@@ -532,7 +532,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Brôkhyr Iron-master",
-        "points": 75,
+        "points": 70,
         "stats": {
           "M": "5\"",
           "T": "5",
@@ -791,7 +791,7 @@
           "costs": [
             {
               "models": 5,
-              "points": 75
+              "points": 70
             }
           ]
         }
@@ -953,7 +953,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Buri Aegnirssen",
-        "points": 95,
+        "points": 85,
         "stats": {
           "M": "5\"",
           "T": "6",
@@ -1045,7 +1045,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 95
+              "points": 85
             }
           ]
         }
@@ -1084,6 +1084,42 @@
           }
         ],
         "weapons": [
+          {
+            "name": "Concussion maul",
+            "profiles": [
+              {
+                "name": "Concussion maul",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Anti-MONSTER 3+, Anti-VEHICLE 3+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy plasma axe",
+            "profiles": [
+              {
+                "name": "Heavy plasma axe",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
           {
             "name": "Beserk w/ twin concussion gauntlets",
             "profiles": [
@@ -1152,6 +1188,42 @@
                   "AP": "-1",
                   "D": "1",
                   "Keywords": "Blast, Indirect Fire"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Concussion maul",
+            "profiles": [
+              {
+                "name": "Concussion maul",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Anti-MONSTER 3+, Anti-VEHICLE 3+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy plasma axe",
+            "profiles": [
+              {
+                "name": "Heavy plasma axe",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
                 }
               }
             ]
@@ -2294,6 +2366,32 @@
                   "D": "1",
                   "Keywords": "-"
                 }
+              },
+              {
+                "name": "➤ L7 missile launcher - blast",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "D6",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "➤ L7 missile launcher - focused",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "D6",
+                  "Keywords": ""
+                }
               }
             ]
           },
@@ -2329,6 +2427,37 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "L7 missile launcher",
+            "profiles": [
+              {
+                "name": "➤ L7 missile launcher - blast",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "D6",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "➤ L7 missile launcher - focused",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "D6",
+                  "Keywords": ""
                 }
               }
             ]
@@ -3891,7 +4020,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Kapricus Carrier",
-        "points": 75,
+        "points": 70,
         "stats": {
           "M": "12\"",
           "T": "7",
@@ -3984,12 +4113,22 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
           "costs": [
             {
               "models": 1,
-              "points": 75
+              "points": 70
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 80
             }
           ]
         }
@@ -4558,6 +4697,32 @@
                   "D": "3",
                   "Keywords": ""
                 }
+              },
+              {
+                "name": "➤ L7 missile launcher - blast",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "D6",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "➤ L7 missile launcher - focused",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "D6",
+                  "Keywords": ""
+                }
               }
             ]
           },
@@ -4574,6 +4739,37 @@
                   "S": "10",
                   "AP": "-3",
                   "D": "3",
+                  "Keywords": ""
+                }
+              }
+            ]
+          },
+          {
+            "name": "L7 missile launcher",
+            "profiles": [
+              {
+                "name": "➤ L7 missile launcher - blast",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "D6",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "➤ L7 missile launcher - focused",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "D6",
                   "Keywords": ""
                 }
               }
@@ -4608,12 +4804,22 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
           "costs": [
             {
               "models": 1,
               "points": 85
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 95
             }
           ]
         }
@@ -4862,7 +5068,7 @@
   ],
   "_meta": {
     "bsdata_faction": "Xenos - Leagues of Votann",
-    "bsdata_revision": 1,
+    "bsdata_revision": 2,
     "bsdata_units": 28,
     "mfm_units": 22,
     "merged_units": 28

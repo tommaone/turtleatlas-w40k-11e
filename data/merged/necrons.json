@@ -1,8 +1,8 @@
 {
   "faction": "Necrons",
   "slug": "necrons",
-  "version": "1.0",
-  "firstSeen": "2026-06-23",
+  "version": "1.1",
+  "firstSeen": "2026-07-22",
   "detachments": [
     {
       "name": "Annihilation Legion",
@@ -117,7 +117,7 @@
         {
           "name": "Murdermind",
           "points": 15,
-          "leaderTo": [
+          "supportTo": [
             "Skorpekh Destroyers",
             "Lokhust Destroyers",
             "Ophydian Destroyers",
@@ -192,7 +192,7 @@
     {
       "name": "Pantheon Of Woe",
       "dp": 2,
-      "objective": "PURGE THE FOE",
+      "objective": "DISRUPTION",
       "enhancements": [
         {
           "name": "Animus Damper",
@@ -1160,7 +1160,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Canoptek Reanimator",
-        "points": 70,
+        "points": 75,
         "stats": {
           "M": "8\"",
           "T": "6",
@@ -1180,7 +1180,7 @@
         "abilities": [
           {
             "name": "Nanoscarab Reanimation Beam (Aura)",
-            "description": "While a friendly NECRONS unit is within 3\" of this model, each time that unit’s Reanimation Protocols activate, that unit reanimates an additional D3 wounds."
+            "description": "While a friendly NECRONS unit is within 3\" of this model, each time that unit’s Reanimation Protocols activate, that unit heals an additional D3 wounds."
           }
         ],
         "weapons": [
@@ -1234,7 +1234,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 70
+              "points": 75
             }
           ]
         }
@@ -1903,7 +1903,8 @@
           "Character",
           "Fly",
           "Catacomb Command Barge",
-          "Frame"
+          "Frame",
+          "Noble"
         ],
         "abilities": [
           {
@@ -2031,7 +2032,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Chronomancer",
-        "points": 80,
+        "points": 70,
         "stats": {
           "M": "5\"",
           "T": "4",
@@ -2051,11 +2052,11 @@
         "abilities": [
           {
             "name": "Support",
-            "description": "This model can be attached to the following units:\n■ IMMORTALS\n■ NECRON WARRIORS\nYou can attach this model to one of the above units even if one ROYAL WARDEN or NOBLE model has already been attached to it. If you do, and that Bodyguard unit is destroyed, the Leader units attached to it become separate units, with their original Starting Strengths."
+            "description": "This model can be attached to the following units:\n■ IMMORTALS\n■ NECRON WARRIORS\n"
           },
           {
             "name": "Timesplinter Mantle",
-            "description": "While this model is leading a unit, each time an attack targets that unit, subtract 1 from the Hit roll."
+            "description": "- This unit has Stealth. \n- Melee attacks that target this unit have -1 to hit rolls."
           },
           {
             "name": "Chronometron",
@@ -2098,7 +2099,8 @@
         "rules": [
           "Detachment Rules",
           "Reanimation Protocols",
-          "Support"
+          "Support",
+          "Stealth"
         ]
       },
       "pricing": [
@@ -2108,7 +2110,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 80
+              "points": 70
             }
           ]
         },
@@ -2118,7 +2120,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 90
+              "points": 80
             }
           ]
         }
@@ -2564,7 +2566,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Doomsday Ark",
-        "points": 200,
+        "points": 210,
         "stats": {
           "M": "10\"",
           "T": "9",
@@ -2659,7 +2661,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 200
+              "points": 210
             }
           ]
         },
@@ -2669,7 +2671,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 220
+              "points": 230
             }
           ]
         }
@@ -2853,7 +2855,7 @@
           },
           {
             "name": "Support",
-            "description": "This model can be attached to the following units: ^^**Canoptek Macrocytes, Immortals, Necron Warriors^^**. \n\n*You can attach this model to one of the above units even if one ^^**Royal Warden^^** or ^^**Noble^^** model has already been attached to it. If you do, and that Bodyguard unit is destroyed, the Leader units attached to it become separate units, with their original Starting Strengths.*"
+            "description": "This model can be attached to the following units: ^^**Canoptek Macrocytes, Immortals, Necron Warriors^^**. \n"
           }
         ],
         "weapons": [
@@ -3637,7 +3639,7 @@
             },
             {
               "models": 6,
-              "points": 160
+              "points": 170
             }
           ]
         },
@@ -3659,7 +3661,7 @@
             },
             {
               "models": 6,
-              "points": 170
+              "points": 180
             }
           ]
         }
@@ -3818,7 +3820,7 @@
             },
             {
               "models": 3,
-              "points": 150
+              "points": 160
             }
           ]
         },
@@ -3836,7 +3838,7 @@
             },
             {
               "models": 3,
-              "points": 160
+              "points": 170
             }
           ]
         }
@@ -4410,7 +4412,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Nekrosor Ammentar",
-        "points": 175,
+        "points": 185,
         "stats": {
           "M": "10\"",
           "T": "8",
@@ -4513,7 +4515,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 175
+              "points": 185
             }
           ]
         }
@@ -4603,7 +4605,6 @@
           "Detachment Rules",
           "Reanimation Protocols",
           "Deadly Demise",
-          "Deep Strike",
           "Hover",
           "Deep Strike"
         ]
@@ -4757,7 +4758,7 @@
         "abilities": [
           {
             "name": "Tunnelling Horrors",
-            "description": "At the end of your opponent’s turn, if this unit is not within Engagement Range of one or more enemy units, you can remove this unit from the battlefield. In the Reinforcements step of your next Movement phase, set it up anywhere on the battlefield that is more than 8\" horizontally away from all enemy models."
+            "description": "At the end of your opponent’s turn, if this unit is unengaged, you can use this ability. If you do: \n- Place this unit in strategic reserves. \n- This unit must make an ingress move in your next Movement phase (including in your first turn).’"
           }
         ],
         "weapons": [
@@ -4875,7 +4876,7 @@
           },
           {
             "name": "Support",
-            "description": "This model can be attached to the following units:\n■ IMMORTALS\n■ NECRON WARRIORS\nYou can attach this model to one of the above units even if one ROYAL WARDEN or NOBLE model has already been attached to it. If you do, and that Bodyguard unit is destroyed, the Leader units attached to it become separate units, with their original Starting Strengths."
+            "description": "This model can be attached to the following units:\n■ IMMORTALS\n■ NECRON WARRIORS\n"
           }
         ],
         "weapons": [
@@ -5165,7 +5166,7 @@
         "abilities": [
           {
             "name": "Support",
-            "description": "This model can be attached to the following units:\n■ IMMORTALS\n■ NECRON WARRIORS\nYou can attach this model to one of the above units even if one ROYAL WARDEN or NOBLE model has already been attached to it. If you do, and that Bodyguard unit is destroyed, the Leader units attached to it become separate units, with their original Starting Strengths."
+            "description": "This model can be attached to the following units:\n■ IMMORTALS\n■ NECRON WARRIORS\n"
           },
           {
             "name": "Harbinger of Destruction",
@@ -5261,7 +5262,7 @@
         "abilities": [
           {
             "name": "Support",
-            "description": "This model can be attached to the following units:\n■ IMMORTALS\n■ NECRON WARRIORS\nYou can attach this model to one of the above units even if one ROYAL WARDEN or NOBLE model has already been attached to it. If you do, and that Bodyguard unit is destroyed, the Leader units attached to it become separate units, with their original Starting Strengths."
+            "description": "This model can be attached to the following units:\n■ IMMORTALS\n■ NECRON WARRIORS"
           },
           {
             "name": "Nightmare Shroud (Aura)",
@@ -5932,12 +5933,22 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 1,
               "points": 90
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 100
             }
           ]
         }
@@ -5976,7 +5987,7 @@
         "abilities": [
           {
             "name": "Support",
-            "description": "This model can be attached to the following units:\n■ CANOPTEK WRAITHS\n■ IMMORTALS\n■ NECRON WARRIORS\nYou can attach this model to one of the above units even if one ROYAL WARDEN or NOBLE model has already been attached to it. If you do, and that Bodyguard unit is destroyed, the Leader units attached to it become separate units, with their original Starting Strengths."
+            "description": "This model can be attached to the following units:\n■ CANOPTEK WRAITHS\n■ IMMORTALS\n■ NECRON WARRIORS"
           },
           {
             "name": "Rites of Reanimation",
@@ -6063,7 +6074,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Tesseract Vault",
-        "points": 445,
+        "points": 465,
         "stats": {
           "M": "8\"",
           "T": "12",
@@ -6143,7 +6154,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 445
+              "points": 465
             }
           ]
         },
@@ -6153,7 +6164,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 465
+              "points": 485
             }
           ]
         }
@@ -6169,7 +6180,7 @@
       "deep_strike": false,
       "profile": {
         "name": "The Silent King",
-        "points": 400,
+        "points": 420,
         "stats": {
           "M": "8\"",
           "T": "10",
@@ -6288,7 +6299,7 @@
           "costs": [
             {
               "models": 3,
-              "points": 400
+              "points": 420
             }
           ]
         }
@@ -6462,11 +6473,11 @@
     {
       "name": "Tomb Citadel Walls",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Tomb Citadel Walls",
-        "points": 50,
+        "points": 180,
         "stats": {
           "M": "-",
           "T": "13",
@@ -6543,18 +6554,7 @@
           "Detachment Rules"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 2,
-              "points": 50
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -6586,7 +6586,7 @@
         "abilities": [
           {
             "name": "Transdimensional Displacement",
-            "description": "Each time this model is selected to Advance, you can remove it from the battlefield and set it up again anywhere on the battlefield that is more than 8\" horizontally away from all enemy models."
+            "description": "In your Movement phase, when this unit is selected to make an advance move, you can use this ability. If you do: \n- That advance move has no maximum distance. \n- This unit can move through all types of model (including enemy models and MONSTER/VEHICLE models). \n- After moving, this unit must be more than 8\" horizontally from all enemy units."
           },
           {
             "name": "C'tan Shard",
@@ -7071,7 +7071,7 @@
   ],
   "_meta": {
     "bsdata_faction": "Xenos - Necrons",
-    "bsdata_revision": 8,
+    "bsdata_revision": 9,
     "bsdata_units": 59,
     "mfm_units": 52,
     "merged_units": 59

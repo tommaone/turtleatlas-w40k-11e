@@ -27,6 +27,38 @@
               "Psycannon",
               "Psilencer"
             ]
+          ],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Nemesis force weapon",
+              "type": "melee"
+            }
+          ],
+          "slots": [
+            {
+              "name": "Storm Bolter",
+              "choices": [
+                {
+                  "name": "Storm bolter",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Incinerator",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Psycannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Psilencer",
+                  "type": "ranged"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -46,13 +78,22 @@
     "weapon_options": {
       "builds": [
         {
-          "name": "default",
-          "ranged": [
-            "Storm bolter"
-          ],
+          "name": "Nemesis force weapon",
+          "ranged": [],
           "melee": [
             "Nemesis force weapon"
-          ]
+          ],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Nemesis force weapon",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -77,7 +118,22 @@
           ],
           "melee": [
             "Crozius arcanum"
-          ]
+          ],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Storm bolter",
+              "type": "ranged"
+            },
+            {
+              "name": "Crozius arcanum",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -97,19 +153,22 @@
     "weapon_options": {
       "builds": [
         {
-          "name": "default",
-          "ranged": [
-            "Vortex of Doom"
-          ],
+          "name": "Nemesis force weapon",
+          "ranged": [],
           "melee": [
             "Nemesis force weapon"
           ],
-          "ranged_choices": [
-            [
-              "Storm bolter",
-              "Combi-weapon"
-            ]
-          ]
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Nemesis force weapon",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -135,7 +194,30 @@
           "melee": [
             "Servo-arm",
             "Omnissian power axe"
-          ]
+          ],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Grav-pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Forge bolter",
+              "type": "ranged"
+            },
+            {
+              "name": "Servo-arm",
+              "type": "melee"
+            },
+            {
+              "name": "Omnissian power axe",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -194,6 +276,38 @@
               "Psycannon",
               "Psilencer"
             ]
+          ],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Nemesis force weapon",
+              "type": "melee"
+            }
+          ],
+          "slots": [
+            {
+              "name": "Storm Bolter",
+              "choices": [
+                {
+                  "name": "Storm bolter",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Incinerator",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Psycannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Psilencer",
+                  "type": "ranged"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -237,7 +351,6 @@
       "OC": 3,
       "deep_strike": true
     },
-    "pts_3rd": 140,
     "weapon_options": {
       "builds": [
         {
@@ -247,14 +360,1121 @@
           "ranged_choices": [
             [
               "Assault cannon",
-              "Heavy plasma cannon - standard",
+              "Heavy plasma cannon",
               "Twin lascannon"
             ],
             [
-              "Storm bolter",
-              "Heavy flamer"
+              "Storm bolter and Dreadnought combat weapon",
+              "Heavy flamer and Dreadnought combat weapon"
             ]
+          ],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Assault Cannon",
+              "choices": [
+                {
+                  "name": "Assault cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Heavy plasma cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Twin lascannon",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Storm Bolter and Dreadnought Combat Weapon",
+              "choices": [
+                {
+                  "name": "Storm bolter and Dreadnought combat weapon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Heavy flamer and Dreadnought combat weapon",
+                  "type": "ranged"
+                }
+              ]
+            }
           ]
+        }
+      ]
+    },
+    "pts_3rd": 140
+  },
+  "Grand Master in Nemesis Dreadknight": {
+    "pts": 200,
+    "info": {
+      "M": "8\"",
+      "T": 8,
+      "SV": 2,
+      "W": 13,
+      "OC": 4,
+      "INV": 4,
+      "deep_strike": true
+    },
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "default",
+          "ranged": [
+            "Fragstorm grenade launcher"
+          ],
+          "melee": [],
+          "ranged_choices": [
+            [
+              "Sublimator",
+              "Gatling psilencer",
+              "Heavy incinerator",
+              "Heavy psycannon"
+            ]
+          ],
+          "melee_choices": [
+            [
+              "Nemesis mace",
+              "Nemesis flail",
+              "Dreadfist",
+              "Nemesis daemon greathammer",
+              "Nemesis greatsword"
+            ]
+          ],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Fragstorm grenade launcher",
+              "type": "ranged"
+            }
+          ],
+          "slots": [
+            {
+              "name": "Dreadfists",
+              "choices": [
+                {
+                  "name": "Nemesis mace",
+                  "type": "melee"
+                },
+                {
+                  "name": "Nemesis flail",
+                  "type": "melee"
+                },
+                {
+                  "name": "Dreadfist",
+                  "type": "melee"
+                },
+                {
+                  "name": "Nemesis daemon greathammer",
+                  "type": "melee"
+                },
+                {
+                  "name": "Nemesis greatsword",
+                  "type": "melee"
+                }
+              ]
+            },
+            {
+              "name": "Ranged Weapons",
+              "choices": [
+                {
+                  "name": "Sublimator",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Gatling psilencer",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Heavy incinerator",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Heavy psycannon",
+                  "type": "ranged"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "pts_3rd": 215
+  },
+  "Knight Paladin": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "Questoris heavy stubber",
+          "ranged": [
+            "Questoris heavy stubber"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Questoris heavy stubber",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    }
+  },
+  "Knight Errant": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "default",
+          "ranged": [
+            "Thermal cannon"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Thermal cannon",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    }
+  },
+  "Knight Gallant": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "Reaper chainsword",
+          "ranged": [],
+          "melee": [
+            "Reaper chainsword",
+            "Reaper chainsword"
+          ],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Reaper chainsword",
+              "type": "melee"
+            },
+            {
+              "name": "Reaper chainsword",
+              "type": "melee"
+            }
+          ],
+          "slots": []
+        },
+        {
+          "name": "Thunderstrike gauntlet",
+          "ranged": [],
+          "melee": [
+            "Thunderstrike gauntlet",
+            "Thunderstrike gauntlet"
+          ],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Thunderstrike gauntlet",
+              "type": "melee"
+            },
+            {
+              "name": "Thunderstrike gauntlet",
+              "type": "melee"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    }
+  },
+  "Knight Warden": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "default",
+          "ranged": [
+            "Avenger gatling cannon",
+            "Heavy flamer"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Avenger gatling cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Heavy flamer",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    }
+  },
+  "Knight Crusader": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "default",
+          "ranged": [
+            "Avenger gatling cannon",
+            "Heavy flamer"
+          ],
+          "melee": [
+            "Titanic feet"
+          ],
+          "ranged_choices": [
+            [
+              "Thermal cannon",
+              "Rapid-fire battlecannon and Questoris heavy stubber"
+            ]
+          ],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Avenger gatling cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Heavy flamer",
+              "type": "ranged"
+            },
+            {
+              "name": "Titanic feet",
+              "type": "melee"
+            }
+          ],
+          "slots": [
+            {
+              "name": "Thermal Cannon",
+              "choices": [
+                {
+                  "name": "Thermal cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Rapid-fire battlecannon and Questoris heavy stubber",
+                  "type": "ranged"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "Knight Preceptor": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "Las-impulsor",
+          "ranged": [
+            "Las-impulsor - high intensity",
+            "Las-impulsor - low intensity"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Las-impulsor - high intensity",
+              "type": "ranged"
+            },
+            {
+              "name": "Las-impulsor - low intensity",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    }
+  },
+  "Knight Castellan": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "Plasma decimator",
+          "ranged": [
+            "Plasma decimator",
+            "Plasma decimator"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Plasma decimator",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma decimator",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        },
+        {
+          "name": "Volcano lance",
+          "ranged": [
+            "Volcano lance"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Volcano lance",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    }
+  },
+  "Knight Valiant": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "Conflagration cannon",
+          "ranged": [
+            "Conflagration cannon"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Conflagration cannon",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        },
+        {
+          "name": "Thundercoil harpoon",
+          "ranged": [
+            "Thundercoil harpoon"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Thundercoil harpoon",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    }
+  },
+  "Cerastus Knight Lancer": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "Cerastus shock lance",
+          "ranged": [
+            "Cerastus shock lance"
+          ],
+          "melee": [
+            "Cerastus shock lance",
+            "Cerastus shock lance"
+          ],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Cerastus shock lance",
+              "type": "ranged"
+            },
+            {
+              "name": "Cerastus shock lance",
+              "type": "melee"
+            },
+            {
+              "name": "Cerastus shock lance",
+              "type": "melee"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    }
+  },
+  "Cerastus Knight Castigator": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "Castigator bolt cannon",
+          "ranged": [
+            "Castigator bolt cannon"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Castigator bolt cannon",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        },
+        {
+          "name": "Tempest warblade",
+          "ranged": [],
+          "melee": [
+            "Tempest warblade",
+            "Tempest warblade"
+          ],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Tempest warblade",
+              "type": "melee"
+            },
+            {
+              "name": "Tempest warblade",
+              "type": "melee"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    }
+  },
+  "Cerastus Knight Acheron": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "Twin heavy bolter",
+          "ranged": [
+            "Twin heavy bolter"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Twin heavy bolter",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        },
+        {
+          "name": "Acheron flame cannon",
+          "ranged": [
+            "Acheron flame cannon"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Acheron flame cannon",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        },
+        {
+          "name": "Reaper chainfist",
+          "ranged": [],
+          "melee": [
+            "Reaper chainfist",
+            "Reaper chainfist"
+          ],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Reaper chainfist",
+              "type": "melee"
+            },
+            {
+              "name": "Reaper chainfist",
+              "type": "melee"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    }
+  },
+  "Cerastus Knight Atrapos": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "Atrapos lascutter",
+          "ranged": [
+            "Atrapos lascutter - high intensity (ranged)",
+            "Atrapos lascutter - low intensity (ranged)"
+          ],
+          "melee": [
+            "Atrapos lascutter - high intensity (melee)",
+            "Atrapos lascutter - low intensity (melee)"
+          ],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Atrapos lascutter - high intensity (ranged)",
+              "type": "ranged"
+            },
+            {
+              "name": "Atrapos lascutter - low intensity (ranged)",
+              "type": "ranged"
+            },
+            {
+              "name": "Atrapos lascutter - high intensity (melee)",
+              "type": "melee"
+            },
+            {
+              "name": "Atrapos lascutter - low intensity (melee)",
+              "type": "melee"
+            }
+          ],
+          "slots": []
+        },
+        {
+          "name": "Graviton singularity cannon",
+          "ranged": [
+            "Graviton singularity cannon - singularity",
+            "Graviton singularity cannon - contained"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Graviton singularity cannon - singularity",
+              "type": "ranged"
+            },
+            {
+              "name": "Graviton singularity cannon - contained",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    }
+  },
+  "Questoris Knight Magaera": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "Phased plasma-fusil",
+          "ranged": [
+            "Phased plasma-fusil"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Phased plasma-fusil",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        },
+        {
+          "name": "Lightning cannon",
+          "ranged": [
+            "Lightning cannon"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Lightning cannon",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    }
+  },
+  "Questoris Knight Styrix": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "Graviton crusher",
+          "ranged": [
+            "Graviton crusher"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Graviton crusher",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        },
+        {
+          "name": "Volkite chierovile",
+          "ranged": [
+            "Volkite chierovile"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Volkite chierovile",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    }
+  },
+  "Knight Defender": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "Twin incendine combustor",
+          "ranged": [
+            "Twin incendine combustor"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Twin incendine combustor",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        },
+        {
+          "name": "Conversion beam obliterator",
+          "ranged": [
+            "Conversion beam obliterator"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Conversion beam obliterator",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        },
+        {
+          "name": "Plasma executor",
+          "ranged": [
+            "Plasma executor",
+            "Plasma executor"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Plasma executor",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma executor",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        },
+        {
+          "name": "Phosphor blaster",
+          "ranged": [
+            "Phosphor blaster"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Phosphor blaster",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    }
+  },
+  "Knight Destrier": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "Questoris heavy stubber",
+          "ranged": [
+            "Questoris heavy stubber"
+          ],
+          "melee": [],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Questoris heavy stubber",
+              "type": "ranged"
+            }
+          ],
+          "slots": []
+        },
+        {
+          "name": "Titanic feet",
+          "ranged": [],
+          "melee": [
+            "Titanic feet"
+          ],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Titanic feet",
+              "type": "melee"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    }
+  },
+  "Inquisitor": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "default",
+          "ranged": [],
+          "melee": [],
+          "ranged_choices": [
+            [
+              "Bolt pistol",
+              "Combi-weapon"
+            ]
+          ],
+          "melee_choices": [
+            [
+              "Inquisitorial melee weapon",
+              "Force weapon"
+            ]
+          ],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Melee weapon",
+              "choices": [
+                {
+                  "name": "Inquisitorial melee weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Force weapon",
+                  "type": "melee"
+                }
+              ]
+            },
+            {
+              "name": "Ranged weapon",
+              "choices": [
+                {
+                  "name": "Bolt pistol",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Combi-weapon",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Wargear",
+              "choices": [
+                {
+                  "name": "Psychic gift",
+                  "type": "ranged"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "Navigator": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "Force-orb cane",
+          "ranged": [],
+          "melee": [
+            "Force-orb cane"
+          ],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Force-orb cane",
+              "type": "melee"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    }
+  },
+  "Ministorum Priest": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "Holy Pistol and Power Weapon",
+          "ranged": [
+            "Holy Pistol"
+          ],
+          "melee": [
+            "Power weapon"
+          ],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Holy Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Power weapon",
+              "type": "melee"
+            }
+          ],
+          "slots": []
+        },
+        {
+          "name": "Zealot's vindictor",
+          "ranged": [
+            "Zealot's vindictor"
+          ],
+          "melee": [
+            "Zealot's vindictor"
+          ],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Zealot's vindictor",
+              "type": "ranged"
+            },
+            {
+              "name": "Zealot's vindictor",
+              "type": "melee"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    }
+  },
+  "Watch Master": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "Vigil spear",
+          "ranged": [
+            "Vigil spear"
+          ],
+          "melee": [
+            "Vigil spear"
+          ],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Vigil spear",
+              "type": "ranged"
+            },
+            {
+              "name": "Vigil spear",
+              "type": "melee"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    }
+  },
+  "Inquisitor Kroyle": {
+    "pts": 0,
+    "info": {},
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "default",
+          "ranged": [
+            "Jindarii tox-cycler",
+            "Stubcarbine"
+          ],
+          "melee": [
+            "Butcher blade",
+            "Garralisk's claws and teeth"
+          ],
+          "ranged_choices": [],
+          "melee_choices": [],
+          "max_ranged": null,
+          "max_melee": null,
+          "fixed": [
+            {
+              "name": "Jindarii tox-cycler",
+              "type": "ranged"
+            },
+            {
+              "name": "Stubcarbine",
+              "type": "ranged"
+            },
+            {
+              "name": "Butcher blade",
+              "type": "melee"
+            },
+            {
+              "name": "Garralisk's claws and teeth",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }

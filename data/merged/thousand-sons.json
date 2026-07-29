@@ -1,8 +1,8 @@
 {
   "faction": "Thousand Sons",
   "slug": "thousand-sons",
-  "version": "1.0",
-  "firstSeen": "2026-06-23",
+  "version": "1.1",
+  "firstSeen": "2026-07-22",
   "detachments": [
     {
       "name": "Changehost Of Deceit",
@@ -52,7 +52,7 @@
     },
     {
       "name": "Hexwarp Thrallband",
-      "dp": 2,
+      "dp": 3,
       "objective": "TAKE AND HOLD",
       "enhancements": [
         {
@@ -76,7 +76,7 @@
     {
       "name": "Ritual Of Regeneration",
       "dp": 1,
-      "objective": "PURGE THE FOE",
+      "objective": "TAKE AND HOLD",
       "enhancements": [
         {
           "name": "Curse of Life",
@@ -114,7 +114,7 @@
     {
       "name": "Sekhetar Cohort",
       "dp": 1,
-      "objective": "PRIORITY ASSETS",
+      "objective": "DISRUPTION",
       "enhancements": [
         {
           "name": "Occulus Infernum",
@@ -145,7 +145,7 @@
     {
       "name": "Warpforged Cabal",
       "dp": 2,
-      "objective": "DISRUPTION",
+      "objective": "PRIORITY ASSETS",
       "enhancements": [
         {
           "name": "Biomechanical Mutation",
@@ -593,11 +593,11 @@
     {
       "name": "Chaos Acastus Knight Asterius",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Chaos Acastus Knight Asterius",
-        "points": 130,
+        "points": 785,
         "stats": {
           "M": "8\"",
           "T": "13",
@@ -706,28 +706,7 @@
           "*Invulnerable Save"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,2]",
-          "label": "Your 1st To 2nd Units Cost",
-          "costs": [
-            {
-              "models": 1,
-              "points": 130
-            }
-          ]
-        },
-        {
-          "range": "[3,)",
-          "label": "Your 3rd + Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 140
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -892,11 +871,11 @@
     {
       "name": "Chaos Cerastus Knight Acheron",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Chaos Cerastus Knight Acheron",
-        "points": 130,
+        "points": 370,
         "stats": {
           "M": "12\"",
           "T": "11",
@@ -1004,28 +983,7 @@
           "*Invulnerable Save"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,2]",
-          "label": "Your 1st To 2nd Units Cost",
-          "costs": [
-            {
-              "models": 1,
-              "points": 130
-            }
-          ]
-        },
-        {
-          "range": "[3,)",
-          "label": "Your 3rd + Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 140
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -1553,7 +1511,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Chaos Predator Annihilator",
-        "points": 130,
+        "points": 140,
         "stats": {
           "M": "10\"",
           "T": "10",
@@ -1722,7 +1680,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 130
+              "points": 140
             }
           ]
         },
@@ -1732,7 +1690,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 140
+              "points": 150
             }
           ]
         }
@@ -1748,7 +1706,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Chaos Predator Destructor",
-        "points": 130,
+        "points": 140,
         "stats": {
           "M": "10\"",
           "T": "10",
@@ -1916,7 +1874,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 130
+              "points": 140
             }
           ]
         },
@@ -1926,7 +1884,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 140
+              "points": 150
             }
           ]
         }
@@ -2366,7 +2324,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Chaos Rhino",
-        "points": 90,
+        "points": 80,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -2493,8 +2451,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 80
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -2582,7 +2550,7 @@
     {
       "name": "Chaos Spawn (Flesh Change)",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Chaos Spawn (Flesh Change)",
@@ -2636,18 +2604,7 @@
           "Lone Operative"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 2,
-              "points": 65
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -3190,7 +3147,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Defiler",
-        "points": 290,
+        "points": 300,
         "stats": {
           "M": "12\"",
           "T": "11",
@@ -3215,8 +3172,8 @@
             "description": "Each time this unit makes a Normal, Advance or Fall Back move, it can move through models (excluding ^^**Titanic**^^ models) and terrain features. When doing so, it can move within Engagement Range of enemy models, but cannot end that move within Engagement Range of them, and any Desperate Escape test is automatically passed."
           },
           {
-            "name": "Destroyer of Futures",
-            "description": "Each time you target this unit with the Fire Overwatch Stratagem, hits are scored on unmodified Hit rolls of 5+ when resolving that Stratagem. For each of those attacks that targets an enemy unit within 9\" of one or more ^^**Thousand Sons Psyker**^^ units from your army, a hit is scored on an unmodified Hit roll of 4+ instead."
+            "name": "Destroyer of Futures (Once per phase, per unit)",
+            "description": "You can target this unit with the Counteroffensive stratagem, regardless of any other uses of that stratagem this phase. If you do: \n- That use is ‑1 CP. \n- That use does not prevent any uses of that stratagem on other units this phase.'"
           }
         ],
         "weapons": [
@@ -3519,8 +3476,7 @@
         ],
         "rules": [
           "Deadly Demise",
-          "Damaged: 1-6 wounds remaining",
-          "Feel No Pain"
+          "Damaged: 1-6 wounds remaining"
         ]
       },
       "pricing": [
@@ -3530,7 +3486,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 290
+              "points": 300
             }
           ]
         },
@@ -3540,7 +3496,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 320
+              "points": 340
             }
           ]
         }
@@ -3550,11 +3506,11 @@
       "wargear_options": [
         {
           "item": "Hades lascannon",
-          "points": 10
+          "points": 15
         },
         {
           "item": "Heavy reaper autocannon",
-          "points": 10
+          "points": 15
         }
       ]
     },
@@ -4132,7 +4088,12 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": [
+        {
+          "item": "Ectoplasma cannon",
+          "points": 5
+        }
+      ]
     },
     {
       "name": "Helbrute",
@@ -4203,6 +4164,37 @@
                   "D": "1",
                   "Keywords": "Rapid Fire 2"
                 }
+              },
+              {
+                "name": "Helbrute fist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "12",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Helbrute fist",
+            "profiles": [
+              {
+                "name": "Helbrute fist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "12",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
               }
             ]
           },
@@ -4220,6 +4212,37 @@
                   "AP": "-2",
                   "D": "1",
                   "Keywords": "Ignores Cover, Torrent"
+                }
+              },
+              {
+                "name": "Helbrute fist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "12",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Helbrute fist",
+            "profiles": [
+              {
+                "name": "Helbrute fist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "12",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
                 }
               }
             ]
@@ -4342,6 +4365,37 @@
                   "D": "1",
                   "Keywords": "Ignores Cover, Torrent"
                 }
+              },
+              {
+                "name": "Helbrute fist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "12",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Helbrute fist",
+            "profiles": [
+              {
+                "name": "Helbrute fist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "12",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
               }
             ]
           },
@@ -4359,6 +4413,37 @@
                   "AP": "-2",
                   "D": "1",
                   "Keywords": "Rapid Fire 2"
+                }
+              },
+              {
+                "name": "Helbrute fist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "12",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Helbrute fist",
+            "profiles": [
+              {
+                "name": "Helbrute fist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "12",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "-"
                 }
               }
             ]
@@ -4739,7 +4824,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Kairos Fateweaver",
-        "points": 295,
+        "points": 305,
         "stats": {
           "M": "12\"",
           "T": "10",
@@ -4769,7 +4854,7 @@
           },
           {
             "name": "One Head Looks Back (Aura)",
-            "description": "Each time your opponent targets a unit from their army with a Stratagem, if that unit is within 12\" of this model, increase the cost of that use of that Stratagem by 1CP."
+            "description": "Once per turn, when your opponent targets a unit from their army within 12\" of this model with a stratagem, you can use this ability. If you do, increase the CP cost of that use of that stratagem by 1CP"
           },
           {
             "name": "Damaged: 1-7 wounds remaining",
@@ -4798,7 +4883,7 @@
                 "typeName": "Ranged Weapons",
                 "stats": {
                   "Range": "24\"",
-                  "A": "D6+6",
+                  "A": "D3+6",
                   "BS": "2+",
                   "S": "9",
                   "AP": "-2",
@@ -4840,7 +4925,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 295
+              "points": 305
             }
           ]
         }
@@ -4939,7 +5024,7 @@
                   "S": "12",
                   "AP": "0",
                   "D": "3",
-                  "Keywords": "Devastating Wounds"
+                  "Keywords": "Devastating Wounds, Ignores Cover"
                 }
               }
             ]
@@ -5012,7 +5097,7 @@
           },
           {
             "name": "Obsessive Ruthlessness",
-            "description": "Each time this model makes a ranged attack that targets a ^^**Monster^^** or ^^**Vehicle^^** unit, that attack has the [DEVASTATING WOUNDS] ability."
+            "description": "This unit’s ranged attacks that target a MONSTER/VEHICLE unit can ignore modifiers to this unit’s: \n- BS. \n- Hit rolls and wound rolls."
           }
         ],
         "weapons": [
@@ -5029,7 +5114,7 @@
                   "S": "18",
                   "AP": "-4",
                   "D": "D6+3",
-                  "Keywords": "-"
+                  "Keywords": "Devastating Wounds: Monster/Vehicle"
                 }
               }
             ]
@@ -5695,7 +5780,7 @@
                 "typeName": "Ranged Weapons",
                 "stats": {
                   "Range": "18\"",
-                  "A": "2D6",
+                  "A": "D6+6",
                   "BS": "N/A",
                   "S": "8",
                   "AP": "-1",
@@ -5744,7 +5829,7 @@
                 "typeName": "Ranged Weapons",
                 "stats": {
                   "Range": "36\"",
-                  "A": "2D6",
+                  "A": "D6+6",
                   "BS": "3+",
                   "S": "8",
                   "AP": "-2",
@@ -6086,7 +6171,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Lord of Change",
-        "points": 300,
+        "points": 320,
         "stats": {
           "M": "12\"",
           "T": "10",
@@ -6222,7 +6307,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 300
+              "points": 320
             }
           ]
         },
@@ -6232,7 +6317,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 315
+              "points": 340
             }
           ]
         }
@@ -7582,7 +7667,7 @@
             },
             {
               "models": 10,
-              "points": 370
+              "points": 385
             }
           ]
         },
@@ -7596,7 +7681,7 @@
             },
             {
               "models": 10,
-              "points": 385
+              "points": 400
             }
           ]
         }
@@ -7724,7 +7809,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Sekhetar Robots",
-        "points": 80,
+        "points": 85,
         "stats": {
           "M": "8\"",
           "T": "6",
@@ -7921,16 +8006,30 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 2,
-              "points": 80
+              "points": 85
             },
             {
               "models": 4,
-              "points": 160
+              "points": 175
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 2,
+              "points": 100
+            },
+            {
+              "models": 4,
+              "points": 190
             }
           ]
         }
@@ -8115,12 +8214,22 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 1,
               "points": 85
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 95
             }
           ]
         }
@@ -8285,7 +8394,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Tzaangor Enlightened",
-        "points": 45,
+        "points": 50,
         "stats": {
           "M": "10\"",
           "T": "4",
@@ -8372,7 +8481,7 @@
           "costs": [
             {
               "models": 3,
-              "points": 45
+              "points": 50
             },
             {
               "models": 6,
@@ -8513,7 +8622,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Tzaangor Shaman",
-        "points": 60,
+        "points": 65,
         "stats": {
           "M": "10\"",
           "T": "4",
@@ -8600,7 +8709,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 60
+              "points": 65
             }
           ]
         }
@@ -8645,6 +8754,42 @@
           }
         ],
         "weapons": [
+          {
+            "name": "Tzaangor w/ Tzaangor blades",
+            "profiles": [
+              {
+                "name": "Tzaangor blades",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Tzaangor blades",
+            "profiles": [
+              {
+                "name": "Tzaangor blades",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
           {
             "name": "Tzaangor w/ pistol and chainsword",
             "profiles": [
@@ -8979,7 +9124,7 @@
       "deep_strike": false,
       "profile": {
         "name": "War Dog Huntsman",
-        "points": 140,
+        "points": 135,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -9428,7 +9573,7 @@
       "deep_strike": false,
       "profile": {
         "name": "War Dog Stalker",
-        "points": 140,
+        "points": 135,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -10268,7 +10413,7 @@
   ],
   "_meta": {
     "bsdata_faction": "Chaos - Thousand Sons",
-    "bsdata_revision": 6,
+    "bsdata_revision": 8,
     "bsdata_units": 68,
     "mfm_units": 34,
     "merged_units": 68

@@ -42,6 +42,16 @@ def load_mfm_faction(slug: str) -> dict | None:
         return yaml.safe_load(f)
 
 
+# -- Name normalisation (module-level for global_index consistency) ----------
+
+def norm_name(name: str) -> str:
+    """Normalize a unit name for cross-source matching."""
+    n = name.lower().strip().replace('\u2019', "'")
+    n = n.replace("armour", "armor")
+    n = n.replace("defence", "defense")
+    return n
+
+
 # -- Merge ------------------------------------------------------------------
 
 def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
@@ -51,9 +61,7 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
     faction_name = bsdata_parser.slug_to_faction(slug)
     bsdata = bsdata_parser.query_faction(faction_name, include_legends=with_legends) if faction_name else None
 
-    def norm(name: str) -> str:
-        # Normalize Unicode apostrophes to ASCII for matching
-        return name.lower().strip().replace('\u2019', "'")
+    norm = norm_name  # local alias for backward compat
 
     def _fuzzy_match_mfm(bs_name: str, mfm_map: dict) -> str | None:
         """Try fuzzy matching for unit names that didn't match literally.
@@ -76,9 +84,11 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
         bs_words = set(n.split())
         for mk in mfm_map:
             mfm_words = set(mk.split())
-            if bs_words & mfm_words and len(bs_words & mfm_words) >= 1:
-                # At least one shared word, and lengths are close
-                if abs(len(mk) - len(n)) <= 4:
+            overlap = bs_words & mfm_words
+            if len(overlap) >= 2:
+                # At least 2 shared words, and majority of shorter name overlaps
+                shorter_len = min(len(bs_words), len(mfm_words))
+                if len(overlap) * 2 >= shorter_len:
                     return mk
         return None
 
@@ -202,8 +212,10 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
                      if not (u.get("legends") and not with_legends)}
     # Remove already-matched names
     for mu in merged_units:
-        if mu.get("in_mfm") and mu["name"] in unmatched_mfm:
-            del unmatched_mfm[norm(mu["name"])]
+        if mu.get("in_mfm"):
+            normed = norm(mu["name"])
+            if normed in unmatched_mfm:
+                del unmatched_mfm[normed]
 
     fuzzy_fixed = 0
     for mu in merged_units:
@@ -331,7 +343,7 @@ def main():
         if not faction_data:
             continue
         for u in faction_data['units']:
-            n = u['name'].lower().strip().replace('\u2019', "'")
+            n = norm_name(u['name'])
             existing = global_index.get(n)
             if not existing or (not existing.get('stats') and u.get('stats')):
                 global_index[n] = u

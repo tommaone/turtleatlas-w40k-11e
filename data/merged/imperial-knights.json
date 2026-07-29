@@ -1,13 +1,13 @@
 {
   "faction": "Imperial Knights",
   "slug": "imperial-knights",
-  "version": "1.0",
-  "firstSeen": "2026-06-23",
+  "version": "1.1",
+  "firstSeen": "2026-07-22",
   "detachments": [
     {
       "name": "Dominus Foebreakers",
       "dp": 1,
-      "objective": "PURGE THE FOE",
+      "objective": "PRIORITY ASSETS",
       "enhancements": [
         {
           "name": "Archeotech Autoloaders",
@@ -22,7 +22,7 @@
     {
       "name": "Freeblade Company",
       "dp": 3,
-      "objective": "PURGE THE FOE",
+      "objective": "PRIORITY ASSETS",
       "enhancements": [
         {
           "name": "Bringer of Justice",
@@ -45,7 +45,7 @@
     {
       "name": "Gate Warden Lance",
       "dp": 2,
-      "objective": "PRIORITY ASSETS",
+      "objective": "TAKE AND HOLD",
       "enhancements": [
         {
           "name": "Acquisitor-at-Arms",
@@ -1407,7 +1407,7 @@
           },
           {
             "name": "Acrobatic Escape",
-            "description": "At the end of the Fight phase, if this model is within Engagement Range of one or more enemy units, it can make a Fall Back move of up to D6\". In addition, at the end of your opponent's turn, if this model is not within 3\" of one or more enemy units, you can remove it from the battlefield and then, in the Reinforcements step of your next Movement phase, set it up anywhere on the battlefield that is more than 8\" horizontally away from all enemy models. If the battle ends and this model is not on the battlefield, it is destroyed."
+            "description": "- At the end of the Fight phase, if this unit is engaged, this unit can make a fall-back move of up to D6\". \n- At the end of your opponent’s turn, if this unit is more than 3\" from all enemy units, you can use this ability. If you do: \n- Place this unit in strategic reserves. \n- This unit must make an ingress move in your next Movement phase (including in your first turn)."
           }
         ],
         "weapons": [
@@ -3401,7 +3401,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Eversor Assassin",
-        "points": 110,
+        "points": 100,
         "stats": {
           "M": "9\"",
           "T": "4",
@@ -4283,7 +4283,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Grey Knights Terminator Squad",
-        "points": 190,
+        "points": 175,
         "stats": {
           "M": "5\"",
           "T": "5",
@@ -4750,6 +4750,37 @@
                   "D": "1",
                   "Keywords": "-"
                 }
+              },
+              {
+                "name": "Navis shotgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Navis shotgun",
+            "profiles": [
+              {
+                "name": "Navis shotgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault"
+                }
               }
             ]
           },
@@ -4884,7 +4915,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Imperial Rhino",
-        "points": 75,
+        "points": 65,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -6013,7 +6044,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Inquisitorial Chimera",
-        "points": 70,
+        "points": 60,
         "stats": {
           "M": "10\"",
           "T": "9",
@@ -6316,7 +6347,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Knight Castellan",
-        "points": 400,
+        "points": 425,
         "stats": {
           "M": "8\"",
           "T": "12",
@@ -6446,7 +6477,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 400
+              "points": 425
             }
           ]
         },
@@ -6456,7 +6487,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 420
+              "points": 450
             }
           ]
         }
@@ -9170,7 +9201,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Sisters of Battle Immolator",
-        "points": 100,
+        "points": 90,
         "stats": {
           "M": "12\"",
           "T": "10",
@@ -9787,7 +9818,8 @@
         ],
         "rules": [
           "Support",
-          "Doctrina Imperatives"
+          "Doctrina Imperatives",
+          "Stealth"
         ]
       },
       "pricing": null,
@@ -10182,7 +10214,8 @@
         ],
         "rules": [
           "Scouts",
-          "Doctrina Imperatives"
+          "Doctrina Imperatives",
+          "Stealth"
         ]
       },
       "pricing": null,
@@ -10197,7 +10230,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Skitarii Vanguard",
-        "points": 90,
+        "points": 85,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -10575,7 +10608,8 @@
           }
         ],
         "rules": [
-          "Doctrina Imperatives"
+          "Doctrina Imperatives",
+          "Stealth"
         ]
       },
       "pricing": null,

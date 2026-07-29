@@ -1,8 +1,8 @@
 {
   "faction": "T’au Empire",
   "slug": "tau-empire",
-  "version": "1.0",
-  "firstSeen": "2026-06-23",
+  "version": "1.1",
+  "firstSeen": "2026-07-22",
   "detachments": [
     {
       "name": "Advanced Acquisition Cadre",
@@ -58,7 +58,7 @@
     {
       "name": "Kauyon",
       "dp": 2,
-      "objective": "PRIORITY ASSETS",
+      "objective": "RECONNAISSANCE",
       "enhancements": [
         {
           "name": "Exemplar of the Kauyon",
@@ -105,7 +105,7 @@
     {
       "name": "Mont’Ka",
       "dp": 3,
-      "objective": "PURGE THE FOE",
+      "objective": "PRIORITY ASSETS",
       "enhancements": [
         {
           "name": "Coordinated Exploitation",
@@ -127,7 +127,7 @@
     },
     {
       "name": "Retaliation Cadre",
-      "dp": 2,
+      "dp": 3,
       "objective": "PURGE THE FOE",
       "unique": "Battlesuit",
       "enhancements": [
@@ -174,8 +174,7 @@
           "Fly",
           "Faction: T'au Empire",
           "AX-1-0 Tiger Shark",
-          "Non-Kroot",
-          "Frame"
+          "Non-Kroot"
         ],
         "abilities": [
           {
@@ -344,11 +343,11 @@
     {
       "name": "Battlesuit Veteran [Crucible]",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Battlesuit Veteran [Crucible]",
-        "points": 95,
+        "points": 60,
         "stats": {
           "M": "8\"",
           "T": "4",
@@ -386,18 +385,7 @@
           "Stealth"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 95
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -924,7 +912,7 @@
             },
             {
               "models": 3,
-              "points": 240
+              "points": 255
             }
           ]
         },
@@ -942,7 +930,7 @@
             },
             {
               "models": 3,
-              "points": 260
+              "points": 275
             }
           ]
         }
@@ -1065,7 +1053,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Commander Farsight",
-        "points": 80,
+        "points": 70,
         "stats": {
           "M": "10\"",
           "T": "5",
@@ -1165,7 +1153,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 80
+              "points": 70
             }
           ]
         }
@@ -2281,7 +2269,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Devilfish",
-        "points": 85,
+        "points": 75,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -2408,8 +2396,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 75
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -2799,7 +2797,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 160
+              "points": 165
             }
           ]
         }
@@ -2809,7 +2807,7 @@
       "wargear_options": [
         {
           "item": "Cyclic Ion Raker",
-          "points": 10
+          "points": 15
         }
       ]
     },
@@ -2820,7 +2818,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Hammerhead Gunship",
-        "points": 140,
+        "points": 150,
         "stats": {
           "M": "10\"",
           "T": "10",
@@ -3021,7 +3019,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 140
+              "points": 150
             }
           ]
         },
@@ -3031,7 +3029,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 150
+              "points": 160
             }
           ]
         }
@@ -4805,7 +4803,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Pathfinder Team",
-        "points": 80,
+        "points": 85,
         "stats": {
           "M": "7\"",
           "T": "3",
@@ -5261,12 +5259,22 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 10,
-              "points": 80
+              "points": 85
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 10,
+              "points": 100
             }
           ]
         }
@@ -5474,8 +5482,7 @@
           "Fly",
           "Razorshark Strike Fighter",
           "Faction: T'au Empire",
-          "Non-Kroot",
-          "Frame"
+          "Non-Kroot"
         ],
         "abilities": [
           {
@@ -5617,7 +5624,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Riptide Battlesuit",
-        "points": 180,
+        "points": 190,
         "stats": {
           "M": "10\"",
           "T": "9",
@@ -5799,7 +5806,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 180
+              "points": 190
             }
           ]
         },
@@ -5809,7 +5816,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 210
+              "points": 220
             }
           ]
         }
@@ -5819,7 +5826,7 @@
       "wargear_options": [
         {
           "item": "Ion accelerator",
-          "points": 20
+          "points": 25
         }
       ]
     },
@@ -6321,7 +6328,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Stormsurge",
-        "points": 360,
+        "points": 375,
         "stats": {
           "M": "8\"",
           "T": "11",
@@ -6547,7 +6554,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 360
+              "points": 375
             }
           ]
         },
@@ -6557,7 +6564,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 385
+              "points": 400
             }
           ]
         }
@@ -6826,8 +6833,7 @@
           "Fly",
           "Sun Shark Bomber",
           "Faction: T'au Empire",
-          "Non-Kroot",
-          "Frame"
+          "Non-Kroot"
         ],
         "abilities": [
           {
@@ -7286,7 +7292,7 @@
       "deep_strike": true,
       "profile": {
         "name": "The Twin Lance",
-        "points": 205,
+        "points": 220,
         "stats": {
           "M": "10\"",
           "T": "6",
@@ -7517,7 +7523,7 @@
           "costs": [
             {
               "models": 2,
-              "points": 205
+              "points": 220
             }
           ]
         }
@@ -7737,7 +7743,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Tiger Shark",
-        "points": 325,
+        "points": 375,
         "stats": {
           "M": "-",
           "T": "11",
@@ -7753,8 +7759,7 @@
           "Fly",
           "Tiger Shark",
           "Faction: T'au Empire",
-          "Non-Kroot",
-          "Frame"
+          "Non-Kroot"
         ],
         "abilities": [
           {
@@ -8041,7 +8046,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 325
+              "points": 375
             }
           ]
         },
@@ -8051,7 +8056,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 375
+              "points": 425
             }
           ]
         }

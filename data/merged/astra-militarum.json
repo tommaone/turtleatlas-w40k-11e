@@ -1,8 +1,8 @@
 {
   "faction": "Astra Militarum",
   "slug": "astra-militarum",
-  "version": "1.0",
-  "firstSeen": "2026-06-23",
+  "version": "1.1",
+  "firstSeen": "2026-07-22",
   "detachments": [
     {
       "name": "Abhuman Auxiliaries",
@@ -14,8 +14,8 @@
           "name": "Exemplar of Duty (Upgrade)",
           "points": 10,
           "leaderTo": [
-            "Bullgryn Squad",
-            "Ogryn Squad"
+            "Ogryn Squad",
+            "Bullgryn Squad"
           ]
         },
         {
@@ -64,7 +64,7 @@
     },
     {
       "name": "Combined Arms",
-      "dp": 3,
+      "dp": 2,
       "objective": "TAKE AND HOLD",
       "enhancements": [
         {
@@ -111,8 +111,8 @@
           "name": "Abhuman Detail",
           "points": 20,
           "leaderTo": [
-            "Bullgryn Squad",
-            "Ogryn Squad"
+            "Ogryn Squad",
+            "Bullgryn Squad"
           ]
         },
         {
@@ -155,7 +155,7 @@
     {
       "name": "Mechanised Assault",
       "dp": 2,
-      "objective": "PURGE THE FOE",
+      "objective": "RECONNAISSANCE",
       "enhancements": [
         {
           "name": "Bold Leadership",
@@ -691,11 +691,11 @@
     {
       "name": "Aquila Kill Team",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Aquila Kill Team",
-        "points": 95,
+        "points": 100,
         "stats": {},
         "keywords": [
           "Infantry",
@@ -1049,18 +1049,7 @@
         ],
         "rules": []
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 95
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -2340,7 +2329,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Baneblade",
-        "points": 450,
+        "points": 415,
         "stats": {
           "M": "12\"",
           "T": "13",
@@ -2505,7 +2494,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 450
+              "points": 415
             }
           ]
         },
@@ -2515,7 +2504,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 470
+              "points": 450
             }
           ]
         }
@@ -2531,7 +2520,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Banehammer",
-        "points": 420,
+        "points": 385,
         "stats": {
           "M": "12\"",
           "T": "13",
@@ -2648,7 +2637,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 420
+              "points": 385
             }
           ]
         },
@@ -2658,7 +2647,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 440
+              "points": 420
             }
           ]
         }
@@ -2674,7 +2663,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Banesword",
-        "points": 450,
+        "points": 415,
         "stats": {
           "M": "12\"",
           "T": "13",
@@ -2785,7 +2774,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 450
+              "points": 415
             }
           ]
         },
@@ -2795,7 +2784,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 470
+              "points": 450
             }
           ]
         }
@@ -3306,7 +3295,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Cadian Command Squad",
-        "points": 65,
+        "points": 60,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -3934,7 +3923,7 @@
           "costs": [
             {
               "models": 5,
-              "points": 65
+              "points": 60
             }
           ]
         }
@@ -4915,7 +4904,7 @@
           },
           {
             "name": "Acrobatic Escape",
-            "description": "At the end of the Fight phase, if this model is within Engagement Range of one or more enemy units, it can make a Fall Back move of up to D6\". In addition, at the end of your opponent's turn, if this model is not within 3\" of one or more enemy units, you can remove it from the battlefield and then, in the Reinforcements step of your next Movement phase, set it up anywhere on the battlefield that is more than 8\" horizontally away from all enemy models. If the battle ends and this model is not on the battlefield, it is destroyed."
+            "description": "- At the end of the Fight phase, if this unit is engaged, this unit can make a fall-back move of up to D6\". \n- At the end of your opponent’s turn, if this unit is more than 3\" from all enemy units, you can use this ability. If you do: \n- Place this unit in strategic reserves. \n- This unit must make an ingress move in your next Movement phase (including in your first turn)."
           }
         ],
         "weapons": [
@@ -6445,7 +6434,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Centaur RSV",
-        "points": 75,
+        "points": 65,
         "stats": {
           "M": "12\"",
           "T": "7",
@@ -6461,7 +6450,7 @@
           "Smoke",
           "Squadron",
           "Vehicle",
-          "Centaur RSv",
+          "Centaur RSV",
           "Dedicated Transport",
           "Transport"
         ],
@@ -6516,8 +6505,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 65
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -6979,7 +6978,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Chimera",
-        "points": 85,
+        "points": 75,
         "stats": {
           "M": "10\"",
           "T": "9",
@@ -7195,8 +7194,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 75
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -7637,7 +7646,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Commissar Yarrick",
-        "points": 130,
+        "points": 120,
         "stats": {
           "M": "6\"",
           "T": "4",
@@ -7775,7 +7784,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 130
+              "points": 120
             }
           ]
         }
@@ -10228,7 +10237,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Doomhammer",
-        "points": 415,
+        "points": 380,
         "stats": {
           "M": "12\"",
           "T": "13",
@@ -10341,7 +10350,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 415
+              "points": 380
             }
           ]
         },
@@ -10351,7 +10360,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 435
+              "points": 410
             }
           ]
         }
@@ -10414,7 +10423,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Eversor Assassin",
-        "points": 110,
+        "points": 100,
         "stats": {
           "M": "9\"",
           "T": "4",
@@ -10498,7 +10507,7 @@
     {
       "name": "Exaction Squad",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Exaction Squad",
@@ -11076,36 +11085,7 @@
           "Assigned Agents"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,1]",
-          "label": "Your 1st Unit Costs",
-          "costs": [
-            {
-              "models": 3,
-              "points": 90
-            },
-            {
-              "models": 6,
-              "points": 200
-            }
-          ]
-        },
-        {
-          "range": "[2,)",
-          "label": "Your 2nd + Unit Costs",
-          "costs": [
-            {
-              "models": 3,
-              "points": 105
-            },
-            {
-              "models": 6,
-              "points": 215
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -11471,7 +11451,7 @@
         "abilities": [
           {
             "name": "Covert Stealth Team",
-            "description": "At the end of your opponent’s turn, if this unit is not within Engagement Range of one or more enemy units, you can remove this unit from the battlefield. In your next Movement phase, set it up anywhere on the battlefield that is more than 8\" horizontally away from all enemy models."
+            "description": "At the end of your opponent’s turn, if this unit is **unengaged**, you can use this ability. If you do:\n- Place this unit in **strategic reserves**.\n- This unit has **Deep Strike** until the start of your next Shooting phase.\n- This unit must make an **ingress move** in your next Movement phase (including in your first turn)."
           },
           {
             "name": "Tanith Camo-cloaks",
@@ -11901,11 +11881,11 @@
     {
       "name": "Grey Knights Terminator Squad",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": true,
       "profile": {
         "name": "Grey Knights Terminator Squad",
-        "points": 65,
+        "points": 175,
         "stats": {
           "M": "5\"",
           "T": "5",
@@ -12095,18 +12075,7 @@
           "Assigned Agents"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 3,
-              "points": 65
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -12118,7 +12087,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Hellhammer",
-        "points": 420,
+        "points": 385,
         "stats": {
           "M": "12\"",
           "T": "13",
@@ -12283,7 +12252,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 420
+              "points": 385
             }
           ]
         },
@@ -12293,7 +12262,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 440
+              "points": 415
             }
           ]
         }
@@ -13057,6 +13026,37 @@
                   "D": "1",
                   "Keywords": "-"
                 }
+              },
+              {
+                "name": "Navis shotgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Navis shotgun",
+            "profiles": [
+              {
+                "name": "Navis shotgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault"
+                }
               }
             ]
           },
@@ -13191,7 +13191,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Imperial Rhino",
-        "points": 75,
+        "points": 65,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -14320,7 +14320,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Inquisitorial Chimera",
-        "points": 70,
+        "points": 60,
         "stats": {
           "M": "10\"",
           "T": "9",
@@ -14546,7 +14546,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Kasrkin",
-        "points": 115,
+        "points": 105,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -15027,7 +15027,7 @@
           "costs": [
             {
               "models": 10,
-              "points": 115
+              "points": 105
             }
           ]
         },
@@ -15037,7 +15037,7 @@
           "costs": [
             {
               "models": 10,
-              "points": 125
+              "points": 120
             }
           ]
         }
@@ -15126,11 +15126,11 @@
     {
       "name": "Knight Castellan",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Knight Castellan",
-        "points": 55,
+        "points": 425,
         "stats": {
           "M": "8\"",
           "T": "12",
@@ -15253,18 +15253,7 @@
           "Ion Aegis (Aura)"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 55
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -16809,7 +16798,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Krieg Command Squad",
-        "points": 65,
+        "points": 60,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -17287,7 +17276,7 @@
           "costs": [
             {
               "models": 6,
-              "points": 65
+              "points": 60
             }
           ]
         }
@@ -17668,7 +17657,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Leman Russ Commander",
-        "points": 235,
+        "points": 215,
         "stats": {
           "M": "10\"",
           "T": "11",
@@ -17692,7 +17681,7 @@
         "abilities": [
           {
             "name": "Death Befitting An Officer",
-            "description": "When this model is destroyed, roll one D6: on a 2+, do not remove it from play – it can, after the attacking model’s unit has finished making its attacks, shoot as if it were your Shooting phase and as if it had its full wounds remaining. This model is then removed from play."
+            "description": "In your opponent’s Shooting phase, when this unit is **destroyed**, before this unit’s **deadly demise** roll, roll one D6: \n- On a 2+, do not remove this unit from the battlefield. After the attacking unit has shot, this unit can shoot using **normal shooting**, but while doing so this unit can only target that enemy unit. When this unit has shot, or at the end of the phase (whichever comes first), resolve this unit’s **deadly demise** roll, then this unit is removed from the battlefield."
           },
           {
             "name": "Vox-net",
@@ -18067,7 +18056,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 235
+              "points": 215
             }
           ]
         },
@@ -18077,14 +18066,19 @@
           "costs": [
             {
               "models": 1,
-              "points": 250
+              "points": 230
             }
           ]
         }
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": [
+        {
+          "item": "Demolisher battle cannon",
+          "points": 15
+        }
+      ]
     },
     {
       "name": "Leman Russ Demolisher",
@@ -18093,7 +18087,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Leman Russ Demolisher",
-        "points": 190,
+        "points": 180,
         "stats": {
           "M": "10\"",
           "T": "11",
@@ -18169,7 +18163,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 190
+              "points": 180
             }
           ]
         },
@@ -18179,7 +18173,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 200
+              "points": 190
             }
           ]
         }
@@ -18742,6 +18736,10 @@
           {
             "name": "Leader",
             "description": "This model can be attached to the following unit:\n- **^^Death Riders^^**"
+          },
+          {
+            "name": "Leading the Charge",
+            "description": "Each time this model's unit makes a Charge move, until the end of the turn, melee weapons equipped by models in that unit have the **[DEVASTATING WOUNDS]** ability."
           }
         ],
         "weapons": [
@@ -18803,7 +18801,8 @@
         "rules": [
           "Voice Of Command",
           "Feel No Pain",
-          "Leader"
+          "Leader",
+          "Devastating Wounds"
         ]
       },
       "pricing": [
@@ -19478,8 +19477,8 @@
       },
       "pricing": [
         {
-          "range": "[1,1]",
-          "label": "Your 1st Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 5,
@@ -19488,8 +19487,8 @@
           ]
         },
         {
-          "range": "[2,)",
-          "label": "Your 2nd + Unit Costs",
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
           "costs": [
             {
               "models": 5,
@@ -22107,7 +22106,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Shadowsword",
-        "points": 410,
+        "points": 375,
         "stats": {
           "M": "12\"",
           "T": "13",
@@ -22219,7 +22218,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 410
+              "points": 375
             }
           ]
         },
@@ -22229,7 +22228,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 430
+              "points": 405
             }
           ]
         }
@@ -22245,7 +22244,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Sisters of Battle Immolator",
-        "points": 100,
+        "points": 90,
         "stats": {
           "M": "12\"",
           "T": "10",
@@ -22398,11 +22397,11 @@
     {
       "name": "Sisters of Battle Squad",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Sisters of Battle Squad",
-        "points": 65,
+        "points": 100,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -22778,18 +22777,7 @@
         ],
         "rules": []
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 5,
-              "points": 65
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -22898,7 +22886,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Stormlord",
-        "points": 430,
+        "points": 395,
         "stats": {
           "M": "12\"",
           "T": "13",
@@ -23029,7 +23017,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 430
+              "points": 395
             }
           ]
         },
@@ -23039,7 +23027,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 450
+              "points": 430
             }
           ]
         }
@@ -23055,7 +23043,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Stormsword",
-        "points": 465,
+        "points": 430,
         "stats": {
           "M": "12\"",
           "T": "13",
@@ -23266,7 +23254,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 465
+              "points": 430
             }
           ]
         },
@@ -23276,7 +23264,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 485
+              "points": 465
             }
           ]
         }
@@ -23288,11 +23276,11 @@
     {
       "name": "Subductor Squad",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Subductor Squad",
-        "points": 80,
+        "points": 85,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -23403,18 +23391,7 @@
           "Assigned Agents"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 10,
-              "points": 80
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -23426,7 +23403,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Taurox",
-        "points": 75,
+        "points": 65,
         "stats": {
           "M": "12\"",
           "T": "8",
@@ -23514,8 +23491,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 65
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -23535,7 +23522,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Taurox Prime",
-        "points": 85,
+        "points": 75,
         "stats": {
           "M": "12\"",
           "T": "8",
@@ -23708,8 +23695,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 75
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -23855,7 +23852,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Tempestus Aquilons",
-        "points": 100,
+        "points": 95,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -24301,7 +24298,7 @@
           "costs": [
             {
               "models": 10,
-              "points": 100
+              "points": 95
             }
           ]
         }
@@ -24724,7 +24721,7 @@
             },
             {
               "models": 10,
-              "points": 155
+              "points": 150
             }
           ]
         },
@@ -24738,7 +24735,7 @@
             },
             {
               "models": 10,
-              "points": 165
+              "points": 160
             }
           ]
         }
@@ -24859,12 +24856,12 @@
         "name": "Valkyrie",
         "points": 170,
         "stats": {
-          "M": "20+\"",
+          "M": "14\"",
           "T": "10",
           "Sv": "2+",
           "W": "14",
           "LD": "7+",
-          "OC": "0",
+          "OC": "-",
           "InSv": ""
         },
         "keywords": [
@@ -24873,9 +24870,7 @@
           "Transport",
           "Vehicle",
           "Fly",
-          "Aircraft",
-          "Imperium",
-          "Frame"
+          "Imperium"
         ],
         "abilities": [
           {
@@ -25033,11 +25028,11 @@
     {
       "name": "Vigilant Squad",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Vigilant Squad",
-        "points": 60,
+        "points": 85,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -25449,22 +25444,7 @@
           "Assigned Agents"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 3,
-              "points": 60
-            },
-            {
-              "models": 6,
-              "points": 120
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null

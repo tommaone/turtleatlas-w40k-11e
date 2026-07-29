@@ -1,8 +1,8 @@
 {
   "faction": "Aeldari",
   "slug": "aeldari",
-  "version": "1.0",
-  "firstSeen": "2026-06-23",
+  "version": "1.1",
+  "firstSeen": "2026-07-22",
   "detachments": [
     {
       "name": "Armoured Warhost",
@@ -91,7 +91,7 @@
     {
       "name": "Eldritch Raiders",
       "dp": 2,
-      "objective": "DISRUPTION",
+      "objective": "PURGE THE FOE",
       "enhancements": [
         {
           "name": "Adrenal Infusions",
@@ -278,7 +278,7 @@
     {
       "name": "Warhost",
       "dp": 3,
-      "objective": "PURGE THE FOE",
+      "objective": "RECONNAISSANCE",
       "enhancements": [
         {
           "name": "Gift of Foresight",
@@ -484,7 +484,7 @@
           "W": "4",
           "LD": "7+",
           "OC": "1",
-          "InSv": ""
+          "InSv": "4+"
         },
         "keywords": [
           "Character",
@@ -632,7 +632,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Autarch",
-        "points": 85,
+        "points": 75,
         "stats": {
           "M": "7\"",
           "T": "3",
@@ -841,7 +841,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 85
+              "points": 75
             }
           ]
         }
@@ -865,7 +865,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Autarch Wayleaper",
-        "points": 80,
+        "points": 70,
         "stats": {
           "M": "14\"",
           "T": "3",
@@ -1073,7 +1073,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 80
+              "points": 70
             }
           ]
         }
@@ -1092,7 +1092,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Avatar of Khaine",
-        "points": 265,
+        "points": 250,
         "stats": {
           "M": "10\"",
           "T": "11",
@@ -1183,7 +1183,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 265
+              "points": 250
             }
           ]
         }
@@ -1306,7 +1306,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Corsair Skyreavers",
-        "points": 80,
+        "points": 75,
         "stats": {
           "M": "12\"",
           "T": "3",
@@ -1677,30 +1677,16 @@
       },
       "pricing": [
         {
-          "range": "[1,2]",
-          "label": "Your 1st To 2nd Units Cost",
+          "range": "[1,)",
+          "label": "Your Unit Costs",
           "costs": [
             {
               "models": 5,
-              "points": 80
+              "points": 75
             },
             {
               "models": 10,
-              "points": 150
-            }
-          ]
-        },
-        {
-          "range": "[3,)",
-          "label": "Your 3rd + Unit Costs",
-          "costs": [
-            {
-              "models": 5,
-              "points": 90
-            },
-            {
-              "models": 10,
-              "points": 160
+              "points": 140
             }
           ]
         }
@@ -2151,7 +2137,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Corsair Voidscarred",
-        "points": 80,
+        "points": 70,
         "stats": {
           "M": "7\"",
           "T": "3",
@@ -2903,11 +2889,11 @@
           "costs": [
             {
               "models": 5,
-              "points": 80
+              "points": 70
             },
             {
               "models": 10,
-              "points": 160
+              "points": 140
             }
           ]
         }
@@ -2988,8 +2974,7 @@
           "Faction: Asuryani",
           "Aeldari",
           "Aspect Warrior",
-          "Ynnari",
-          "Frame"
+          "Ynnari"
         ],
         "abilities": [
           {
@@ -3256,7 +3241,8 @@
           "Infantry",
           "Aeldari",
           "D-Cannon Platform",
-          "Ynnari"
+          "Ynnari",
+          "Frame"
         ],
         "abilities": [
           {
@@ -3642,7 +3628,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Death Jester",
-        "points": 80,
+        "points": 70,
         "stats": {
           "M": "8\"",
           "T": "3",
@@ -3724,7 +3710,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 80
+              "points": 70
             }
           ]
         }
@@ -4173,7 +4159,7 @@
           },
           {
             "name": "Leader",
-            "description": "This model can be attached to the following units:\n■ Guardian Defenders\n■ Storm Guardians\n■ Warlock Conclave"
+            "description": "This model can be attached to the following units:\n- **GUARDIAN DEFENDERS**\n- **STORM GUARDIANS**\n- **WARLOCK CONCLAVE**\n\nIf this model is not already attached to a unit, you can attach this model to a unit, even if one **WARLOCKS** unit has already been attached to it."
           }
         ],
         "weapons": [
@@ -4281,7 +4267,8 @@
           "Vehicle",
           "Faction: Asuryani",
           "Aeldari",
-          "Ynnari"
+          "Ynnari",
+          "Frame"
         ],
         "abilities": [
           {
@@ -4396,7 +4383,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Farseer",
-        "points": 70,
+        "points": 65,
         "stats": {
           "M": "7\"",
           "T": "3",
@@ -4529,7 +4516,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 70
+              "points": 65
             }
           ]
         }
@@ -4549,7 +4536,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Farseer Skyrunner",
-        "points": 70,
+        "points": 60,
         "stats": {
           "M": "14\"",
           "T": "4",
@@ -4702,7 +4689,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 70
+              "points": 60
             }
           ]
         }
@@ -5033,7 +5020,8 @@
           "Vehicle",
           "Faction: Asuryani",
           "Aeldari",
-          "Ynnari"
+          "Ynnari",
+          "Frame"
         ],
         "abilities": [
           {
@@ -5168,7 +5156,7 @@
           "W": "5",
           "LD": "7+",
           "OC": "1",
-          "InSv": ""
+          "InSv": "6+"
         },
         "keywords": [
           "Character",
@@ -5572,11 +5560,11 @@
     {
       "name": "Hand of the Archon",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Hand of the Archon",
-        "points": 265,
+        "points": 115,
         "stats": {
           "M": "7\"",
           "T": "3",
@@ -6138,18 +6126,7 @@
           "Scouts"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 265
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -6544,8 +6521,7 @@
           "Wraith Construct",
           "Faction: Asuryani",
           "Aeldari",
-          "Ynnari",
-          "Frame"
+          "Ynnari"
         ],
         "abilities": [
           {
@@ -8371,7 +8347,8 @@
           "Vehicle",
           "Night Spinner",
           "Faction: Asuryani",
-          "Aeldari"
+          "Aeldari",
+          "Frame"
         ],
         "abilities": [
           {
@@ -8503,7 +8480,7 @@
           "W": "55",
           "LD": "6+",
           "OC": "20",
-          "InSv": ""
+          "InSv": "4+*"
         },
         "keywords": [
           "Phantom Titan",
@@ -8513,7 +8490,8 @@
           "Walker",
           "Monster",
           "Aeldari",
-          "Wraith Construct"
+          "Wraith Construct",
+          "Frame"
         ],
         "abilities": [
           {
@@ -8527,10 +8505,6 @@
           {
             "name": "Towering Wraith Construct",
             "description": "Each time you target this model with a Stratagem, you must spend three times that Stratagem’s stated CP cost to do so."
-          },
-          {
-            "name": "Invulnerable Save",
-            "description": "Models in this unit have a 4+ invulnerable save against ranged attacks."
           },
           {
             "name": "Flawless Poise",
@@ -8975,7 +8949,8 @@
         ],
         "rules": [
           "Deadly Demise",
-          "Battle Focus"
+          "Battle Focus",
+          "Invulnerable Save (4+*)"
         ]
       },
       "pricing": [
@@ -9124,7 +9099,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Raider",
-        "points": 85,
+        "points": 75,
         "stats": {
           "M": "14\"",
           "T": "8",
@@ -9348,7 +9323,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Ravager",
-        "points": 100,
+        "points": 110,
         "stats": {
           "M": "14\"",
           "T": "9",
@@ -9471,8 +9446,7 @@
           "Faction: Drukhari",
           "Aircraft",
           "Vehicle",
-          "Fly",
-          "Frame"
+          "Fly"
         ],
         "abilities": [
           {
@@ -10143,7 +10117,7 @@
           "W": "30",
           "LD": "6+",
           "OC": "16",
-          "InSv": ""
+          "InSv": "4+*"
         },
         "keywords": [
           "Revenant Titan",
@@ -10154,20 +10128,17 @@
           "Monster",
           "Fly",
           "Wraith Construct",
-          "Aeldari"
+          "Aeldari",
+          "Frame"
         ],
         "abilities": [
-          {
-            "name": "Invulnerable Save",
-            "description": "Models in this unit have a 4+ invulnerable save against ranged attacks."
-          },
           {
             "name": "Damaged: 1-10 Wounds Remaining",
             "description": "While this model has 1-10 wounds remaining, subtract 8 from this model’s Objective Control characteristic and each time this model makes an attack, subtract 1 from the Hit roll."
           },
           {
             "name": "Titanic Advance",
-            "description": "Each time this model makes a Normal, Advance or Fall Back move, it can move over models (excluding ^^Titanic^^ models) and terrain features that are 4\" or less in height as if they were not there."
+            "description": "Each time this model makes a Normal, Advance or Fall Back move, it can move over models (excluding **^^Titanic^^** models) and terrain features that are 4\" or less in height as if they were not there."
           },
           {
             "name": "Towering Wraith Construct",
@@ -10290,7 +10261,8 @@
         ],
         "rules": [
           "Deadly Demise",
-          "Battle Focus"
+          "Battle Focus",
+          "Invulnerable Save (4+*)"
         ]
       },
       "pricing": [
@@ -10312,11 +10284,11 @@
     {
       "name": "Scourges with Heavy Weapons",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": true,
       "profile": {
         "name": "Scourges with Heavy Weapons",
-        "points": 405,
+        "points": 110,
         "stats": {
           "M": "14\"",
           "T": "3",
@@ -10686,28 +10658,7 @@
           "Power from Pain"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,1]",
-          "label": "Your 1st Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 405
-            }
-          ]
-        },
-        {
-          "range": "[2,)",
-          "label": "Your 2nd + Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 425
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -10747,7 +10698,7 @@
           },
           {
             "name": "Swooping Descent (Pain)",
-            "description": "In your Movement phase, you can spend 1 Pain token to Empower this unit. While Empowered, each time a model in this unit is set up on the battlefield using the Deep Strike ability, it can be set up anywhere on the battlefield that is more than 6\" horizontally away from all enemy units. When doing so, if this unit is set up within 9\" of one or more enemy units, until the end of the turn, it is not eligible to declare a charge."
+            "description": "In your Movement phase, you can spend 1 Pain token to Empower this unit. While Empowered, each time a model in this unit is set up on the battlefield using the Deep Strike ability, it can be set up anywhere on the battlefield that is more than 6\" horizontally away from all enemy units. When doing so, if this unit is set up within 8\" of one or more enemy units, until the end of the turn, it is not eligible to declare a charge."
           }
         ],
         "weapons": [
@@ -11130,7 +11081,8 @@
           "Aeldari",
           "Infantry",
           "Shadow Weaver Platform",
-          "Ynnari"
+          "Ynnari",
+          "Frame"
         ],
         "abilities": [
           {
@@ -11222,7 +11174,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Shadowseer",
-        "points": 60,
+        "points": 50,
         "stats": {
           "M": "8\"",
           "T": "3",
@@ -11330,7 +11282,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 60
+              "points": 50
             }
           ]
         }
@@ -11348,7 +11300,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Shining Spears",
-        "points": 105,
+        "points": 100,
         "stats": {
           "M": "14\"",
           "T": "4",
@@ -11595,11 +11547,11 @@
           "costs": [
             {
               "models": 3,
-              "points": 105
+              "points": 100
             },
             {
               "models": 6,
-              "points": 210
+              "points": 200
             }
           ]
         }
@@ -11615,7 +11567,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Shroud Runners",
-        "points": 95,
+        "points": 90,
         "stats": {
           "M": "14\"",
           "T": "4",
@@ -11712,7 +11664,7 @@
           "costs": [
             {
               "models": 3,
-              "points": 95
+              "points": 90
             },
             {
               "models": 6,
@@ -11728,11 +11680,11 @@
     {
       "name": "Skyrunner [Crucible]",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Skyrunner [Crucible]",
-        "points": 70,
+        "points": 80,
         "stats": {
           "M": "14\"",
           "T": "4",
@@ -11764,18 +11716,7 @@
           "Battle Focus"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 70
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -11787,7 +11728,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Skyweavers",
-        "points": 105,
+        "points": 95,
         "stats": {
           "M": "14\"",
           "T": "4",
@@ -11807,7 +11748,12 @@
           "Faction: Harlequins",
           "Corsairs and Travelling Players"
         ],
-        "abilities": [],
+        "abilities": [
+          {
+            "name": "Acrobatic Grace",
+            "description": "- This unit has **Stealth**.\n- Melee attacks that target this unit have ‑1 to **hit rolls**."
+          }
+        ],
         "weapons": [
           {
             "name": "Skyweaver Haywire Cannon",
@@ -11902,7 +11848,8 @@
         ],
         "rules": [
           "Battle Focus",
-          "Disparate Paths"
+          "Disparate Paths",
+          "Stealth"
         ]
       },
       "pricing": [
@@ -11912,11 +11859,11 @@
           "costs": [
             {
               "models": 2,
-              "points": 105
+              "points": 95
             },
             {
               "models": 4,
-              "points": 210
+              "points": 190
             }
           ]
         }
@@ -12227,7 +12174,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Starweaver",
-        "points": 80,
+        "points": 70,
         "stats": {
           "M": "14\"",
           "T": "6",
@@ -12247,7 +12194,8 @@
           "Aeldari",
           "Faction: Harlequins",
           "Harlequin Allies",
-          "Corsairs and Travelling Players"
+          "Corsairs and Travelling Players",
+          "Frame"
         ],
         "abilities": [
           {
@@ -12302,8 +12250,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 70
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -12982,7 +12940,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Swooping Hawks",
-        "points": 100,
+        "points": 95,
         "stats": {
           "M": "14\"",
           "T": "3",
@@ -13247,7 +13205,7 @@
           "costs": [
             {
               "models": 5,
-              "points": 100
+              "points": 95
             },
             {
               "models": 10,
@@ -13261,7 +13219,7 @@
           "costs": [
             {
               "models": 5,
-              "points": 115
+              "points": 110
             },
             {
               "models": 10,
@@ -13658,7 +13616,7 @@
         "abilities": [
           {
             "name": "Inevitable Death",
-            "description": "Once in each of your opponent's turns, if this model is on the battlefield when another friendly Aeldari unit is destroyed, just after removing the last model in that unit, you can remove this model from the battlefield and set it up as close as possible to where that destroyed model was destroyed and not within Engagement Range of one or more enemy units."
+            "description": "Once in each of your opponent's turns, if this model is on the battlefield when another friendly Aeldari unit is destroyed, just after removing the last model in that unit, you can remove this model from the battlefield and set it up as close as possible to where that destroyed model was destroyed and not within Engagement Range of one or more enemy units. Doing so does not prevent this model from being eligible to move."
           },
           {
             "name": "Ethereal Form",
@@ -13791,6 +13749,19 @@
                   "D": "1",
                   "Keywords": "Assault, Pistol"
                 }
+              },
+              {
+                "name": "Harlequin's Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
               }
             ]
           },
@@ -13808,6 +13779,24 @@
                   "AP": "-1",
                   "D": "1",
                   "Keywords": "Assault, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Harlequin's Blade",
+            "profiles": [
+              {
+                "name": "Harlequin's Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
                 }
               }
             ]
@@ -13898,6 +13887,24 @@
             ]
           },
           {
+            "name": "Harlequin's Blade",
+            "profiles": [
+              {
+                "name": "Harlequin's Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
             "name": "Harlequin's Special Weapon",
             "profiles": [
               {
@@ -13934,6 +13941,24 @@
             ]
           },
           {
+            "name": "Harlequin's Blade",
+            "profiles": [
+              {
+                "name": "Harlequin's Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
             "name": "Harlequin's Special Weapon",
             "profiles": [
               {
@@ -13944,6 +13969,24 @@
                   "A": "4",
                   "WS": "3+",
                   "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Harlequin's Blade",
+            "profiles": [
+              {
+                "name": "Harlequin's Blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "3+",
+                  "S": "3",
                   "AP": "-1",
                   "D": "1",
                   "Keywords": "Devastating Wounds"
@@ -14242,7 +14285,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Venom",
-        "points": 70,
+        "points": 65,
         "stats": {
           "M": "14\"",
           "T": "6",
@@ -14382,7 +14425,8 @@
           "Infantry",
           "Aeldari",
           "Vibro Cannon Platform",
-          "Ynnari"
+          "Ynnari",
+          "Frame"
         ],
         "abilities": [
           {
@@ -14490,8 +14534,7 @@
           "Faction: Drukhari",
           "Aircraft",
           "Vehicle",
-          "Fly",
-          "Frame"
+          "Fly"
         ],
         "abilities": [
           {
@@ -14667,7 +14710,8 @@
           "Harlequin Allies",
           "Faction: Harlequins",
           "Aeldari",
-          "Corsairs and Travelling Players"
+          "Corsairs and Travelling Players",
+          "Frame"
         ],
         "abilities": [
           {
@@ -14814,7 +14858,7 @@
     {
       "name": "Vypers",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Vypers",
@@ -14969,22 +15013,7 @@
           "Battle Focus"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 75
-            },
-            {
-              "models": 2,
-              "points": 140
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -15051,7 +15080,7 @@
             },
             {
               "models": 2,
-              "points": 170
+              "points": 160
             }
           ]
         }
@@ -15441,7 +15470,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Warlock Skyrunners",
-        "points": 45,
+        "points": 55,
         "stats": {
           "M": "14\"",
           "T": "4",
@@ -15738,7 +15767,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 45
+              "points": 55
             },
             {
               "models": 2,
@@ -15760,7 +15789,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Warp Spiders",
-        "points": 115,
+        "points": 105,
         "stats": {
           "M": "12\"",
           "T": "3",
@@ -16037,7 +16066,7 @@
           "costs": [
             {
               "models": 5,
-              "points": 115
+              "points": 105
             },
             {
               "models": 10,
@@ -16051,11 +16080,11 @@
           "costs": [
             {
               "models": 5,
-              "points": 130
+              "points": 125
             },
             {
               "models": 10,
-              "points": 215
+              "points": 220
             }
           ]
         }
@@ -16071,7 +16100,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Wave Serpent",
-        "points": 125,
+        "points": 115,
         "stats": {
           "M": "14\"",
           "T": "9",
@@ -16089,7 +16118,8 @@
           "Transport",
           "Faction: Asuryani",
           "Aeldari",
-          "Ynnari"
+          "Ynnari",
+          "Frame"
         ],
         "abilities": [
           {
@@ -16267,8 +16297,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 115
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -16476,7 +16516,7 @@
             },
             {
               "models": 6,
-              "points": 160
+              "points": 170
             }
           ]
         }
@@ -16521,6 +16561,42 @@
           }
         ],
         "weapons": [
+          {
+            "name": "Wrack",
+            "profiles": [
+              {
+                "name": "Twin Torturer's Tools",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+, Twin-Linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin torturer's tools",
+            "profiles": [
+              {
+                "name": "Twin Torturer's Tools",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+, Twin-Linked"
+                }
+              }
+            ]
+          },
           {
             "name": "Wrack with Hexrifle",
             "profiles": [
@@ -16641,6 +16717,24 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "Anti-infantry 2+, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Twin torturer's tools",
+            "profiles": [
+              {
+                "name": "Twin Torturer's Tools",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+, Twin-Linked"
                 }
               }
             ]
@@ -16988,7 +17082,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Wraithknight",
-        "points": 415,
+        "points": 385,
         "stats": {
           "M": "12\"",
           "T": "12",
@@ -17163,7 +17257,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 415
+              "points": 385
             }
           ]
         },
@@ -17173,7 +17267,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 435
+              "points": 405
             }
           ]
         }
@@ -17194,7 +17288,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Wraithknight with Ghostglaive",
-        "points": 405,
+        "points": 380,
         "stats": {
           "M": "12\"",
           "T": "12",
@@ -17342,7 +17436,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 405
+              "points": 380
             }
           ]
         },
@@ -17352,7 +17446,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 425
+              "points": 400
             }
           ]
         }
@@ -18499,7 +18593,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Ynnari Raider",
-        "points": 80,
+        "points": 70,
         "stats": {
           "M": "14\"",
           "T": "8",
@@ -18516,7 +18610,8 @@
           "Fly",
           "Vehicle",
           "Transport",
-          "Faction: Ynnari"
+          "Faction: Ynnari",
+          "Frame"
         ],
         "abilities": [
           {
@@ -18590,8 +18685,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 70
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -19232,7 +19337,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Ynnari Venom",
-        "points": 70,
+        "points": 65,
         "stats": {
           "M": "14\"",
           "T": "6",
@@ -19249,7 +19354,8 @@
           "Dedicated Transport",
           "Transport",
           "Vehicle",
-          "Faction: Ynnari"
+          "Faction: Ynnari",
+          "Frame"
         ],
         "abilities": [
           {
@@ -19342,12 +19448,22 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
           "costs": [
             {
               "models": 1,
-              "points": 70
+              "points": 65
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 75
             }
           ]
         }

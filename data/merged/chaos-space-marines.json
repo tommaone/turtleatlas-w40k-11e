@@ -1,8 +1,8 @@
 {
   "faction": "Chaos Space Marines",
   "slug": "chaos-space-marines",
-  "version": "1.0",
-  "firstSeen": "2026-06-23",
+  "version": "1.1",
+  "firstSeen": "2026-07-22",
   "detachments": [
     {
       "name": "Cabal Of Chaos",
@@ -198,7 +198,7 @@
     {
       "name": "Murdertalon Raiders",
       "dp": 1,
-      "objective": "PURGE THE FOE",
+      "objective": "RECONNAISSANCE",
       "unique": "Nightmare",
       "enhancements": [
         {
@@ -313,7 +313,7 @@
     {
       "name": "Soulforged Warpack",
       "dp": 2,
-      "objective": "PURGE THE FOE",
+      "objective": "TAKE AND HOLD",
       "enhancements": [
         {
           "name": "Forge’s Blessing",
@@ -329,7 +329,7 @@
         },
         {
           "name": "Tempting Addendum",
-          "points": 25
+          "points": 40
         }
       ]
     },
@@ -388,7 +388,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Abaddon the Despoiler",
-        "points": 285,
+        "points": 295,
         "stats": {
           "M": "5\"",
           "T": "5",
@@ -486,7 +486,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 285
+              "points": 295
             }
           ]
         }
@@ -574,8 +574,8 @@
       },
       "pricing": [
         {
-          "range": "[1,1]",
-          "label": "Your 1st Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 8,
@@ -588,8 +588,8 @@
           ]
         },
         {
-          "range": "[2,)",
-          "label": "Your 2nd + Unit Costs",
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
           "costs": [
             {
               "models": 8,
@@ -728,11 +728,11 @@
     {
       "name": "Beasts of Nurgle",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": true,
       "profile": {
         "name": "Beasts of Nurgle",
-        "points": 70,
+        "points": 75,
         "stats": {
           "M": "6\"",
           "T": "9",
@@ -787,18 +787,7 @@
           "Scouts"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 70
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -1165,6 +1154,32 @@
             "name": "Axe and flail",
             "profiles": [
               {
+                "name": "➤ Axe of Khorne - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "2+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "D3+1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "➤ Axe of Khorne - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "16",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
                 "name": "Bloodflail",
                 "typeName": "Ranged Weapons",
                 "stats": {
@@ -1175,6 +1190,37 @@
                   "AP": "-3",
                   "D": "D6+1",
                   "Keywords": "Devastating Wounds"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Axe of Khorne",
+            "profiles": [
+              {
+                "name": "➤ Axe of Khorne - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "2+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "D3+1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "➤ Axe of Khorne - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "16",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
                 }
               }
             ]
@@ -1201,6 +1247,32 @@
             "name": "Axe and lash",
             "profiles": [
               {
+                "name": "➤ Axe of Khorne - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "2+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "D3+1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "➤ Axe of Khorne - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "16",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
                 "name": "Lash of Khorne",
                 "typeName": "Ranged Weapons",
                 "stats": {
@@ -1210,6 +1282,37 @@
                   "S": "8",
                   "AP": "-1",
                   "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Axe of Khorne",
+            "profiles": [
+              {
+                "name": "➤ Axe of Khorne - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "2+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "D3+1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "➤ Axe of Khorne - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "16",
+                  "WS": "2+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "1",
                   "Keywords": "-"
                 }
               }
@@ -1565,11 +1668,11 @@
     {
       "name": "Chaos Acastus Knight Asterius",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Chaos Acastus Knight Asterius",
-        "points": 85,
+        "points": 785,
         "stats": {
           "M": "8\"",
           "T": "13",
@@ -1678,18 +1781,7 @@
           "*Invulnerable Save"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 85
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -1886,6 +1978,32 @@
             "name": "Biker w/ combi-bolter and bolt pistol",
             "profiles": [
               {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
                 "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -1903,6 +2021,32 @@
           {
             "name": "Biker w/ combi-bolter and chainsword",
             "profiles": [
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              },
+              {
+                "name": "Astartes chainsword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
               {
                 "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
@@ -1932,6 +2076,19 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "-"
+                }
+              },
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
                 }
               },
               {
@@ -1968,6 +2125,42 @@
             ]
           },
           {
+            "name": "Astartes chainsword",
+            "profiles": [
+              {
+                "name": "Astartes chainsword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
             "name": "Biker w/ meltagun",
             "profiles": [
               {
@@ -1981,6 +2174,19 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "-"
+                }
+              },
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
                 }
               },
               {
@@ -1999,6 +2205,42 @@
             ]
           },
           {
+            "name": "Astartes chainsword",
+            "profiles": [
+              {
+                "name": "Astartes chainsword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
             "name": "Biker w/ plasma gun",
             "profiles": [
               {
@@ -2012,6 +2254,112 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "-"
+                }
+              },
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              },
+              {
+                "name": "➤ Plasma gun - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
+                }
+              },
+              {
+                "name": "➤ Plasma gun - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Plasma gun",
+            "profiles": [
+              {
+                "name": "➤ Plasma gun - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
+                }
+              },
+              {
+                "name": "➤ Plasma gun - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Astartes chainsword",
+            "profiles": [
+              {
+                "name": "Astartes chainsword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
                 }
               }
             ]
@@ -2046,6 +2394,42 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Astartes chainsword",
+            "profiles": [
+              {
+                "name": "Astartes chainsword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -2075,11 +2459,11 @@
     {
       "name": "Chaos Cerastus Knight Acheron",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Chaos Cerastus Knight Acheron",
-        "points": 90,
+        "points": 370,
         "stats": {
           "M": "12\"",
           "T": "11",
@@ -2187,18 +2571,7 @@
           "*Invulnerable Save"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 90
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -2206,11 +2579,11 @@
     {
       "name": "Chaos Cerastus Knight Atrapos",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Chaos Cerastus Knight Atrapos",
-        "points": 135,
+        "points": 395,
         "stats": {
           "M": "12\"",
           "T": "11",
@@ -2339,28 +2712,7 @@
           "Super-Heavy Walker"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,2]",
-          "label": "Your 1st To 2nd Units Cost",
-          "costs": [
-            {
-              "models": 1,
-              "points": 135
-            }
-          ]
-        },
-        {
-          "range": "[3,)",
-          "label": "Your 3rd + Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 145
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -2471,11 +2823,11 @@
     {
       "name": "Chaos Cerastus Knight Lancer",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Chaos Cerastus Knight Lancer",
-        "points": 140,
+        "points": 395,
         "stats": {
           "M": "14\"",
           "T": "11",
@@ -2560,28 +2912,7 @@
           "Super-Heavy Walker"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,2]",
-          "label": "Your 1st To 2nd Units Cost",
-          "costs": [
-            {
-              "models": 1,
-              "points": 140
-            }
-          ]
-        },
-        {
-          "range": "[3,)",
-          "label": "Your 3rd + Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 150
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -2687,6 +3018,24 @@
                   "AP": "-1",
                   "D": "2",
                   "Keywords": "Sustained Hits 1, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Combi-bolter",
+            "profiles": [
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
                 }
               }
             ]
@@ -3087,7 +3436,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Chaos Lord with Jump Pack",
-        "points": 90,
+        "points": 80,
         "stats": {
           "M": "12\"",
           "T": "4",
@@ -3236,7 +3585,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 90
+              "points": 80
             }
           ]
         }
@@ -3254,7 +3603,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Chaos Predator Annihilator",
-        "points": 135,
+        "points": 145,
         "stats": {
           "M": "10\"",
           "T": "10",
@@ -3335,6 +3684,24 @@
             ]
           },
           {
+            "name": "Combi-bolter",
+            "profiles": [
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          },
+          {
             "name": "Combi-weapon",
             "profiles": [
               {
@@ -3404,7 +3771,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 135
+              "points": 145
             }
           ]
         },
@@ -3414,7 +3781,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 145
+              "points": 155
             }
           ]
         }
@@ -3430,7 +3797,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Chaos Predator Destructor",
-        "points": 140,
+        "points": 150,
         "stats": {
           "M": "10\"",
           "T": "10",
@@ -3510,6 +3877,24 @@
             ]
           },
           {
+            "name": "Combi-bolter",
+            "profiles": [
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          },
+          {
             "name": "Combi-weapon",
             "profiles": [
               {
@@ -3579,7 +3964,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 140
+              "points": 150
             }
           ]
         },
@@ -3589,7 +3974,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 150
+              "points": 160
             }
           ]
         }
@@ -4029,7 +4414,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Chaos Rhino",
-        "points": 75,
+        "points": 65,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -4075,6 +4460,24 @@
             ]
           },
           {
+            "name": "Combi-bolter",
+            "profiles": [
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          },
+          {
             "name": "Havoc launcher",
             "profiles": [
               {
@@ -4088,6 +4491,24 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Combi-bolter",
+            "profiles": [
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
                 }
               }
             ]
@@ -4119,8 +4540,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 65
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -4210,7 +4641,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Chaos Terminator Squad",
-        "points": 180,
+        "points": 175,
         "stats": {
           "M": "5\"",
           "T": "5",
@@ -4235,8 +4666,52 @@
         ],
         "weapons": [
           {
+            "name": "Accursed weapon and combi-bolter",
+            "profiles": [
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              },
+              {
+                "name": "Accursed weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
             "name": "Accursed weapon and combi-weapon",
             "profiles": [
+              {
+                "name": "Accursed weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
               {
                 "name": "Combi-weapon",
                 "typeName": "Ranged Weapons",
@@ -4284,6 +4759,37 @@
             ]
           },
           {
+            "name": "Chainfist and combi-bolter",
+            "profiles": [
+              {
+                "name": "Chainfist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Anti-VEHICLE 3+"
+                }
+              },
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          },
+          {
             "name": "Heavy flamer",
             "profiles": [
               {
@@ -4320,6 +4826,42 @@
             ]
           },
           {
+            "name": "Accursed weapon",
+            "profiles": [
+              {
+                "name": "Accursed weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Chainfist",
+            "profiles": [
+              {
+                "name": "Chainfist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Anti-VEHICLE 3+"
+                }
+              }
+            ]
+          },
+          {
             "name": "Power fist",
             "profiles": [
               {
@@ -4341,6 +4883,19 @@
             "name": "Power fist and combi-bolter",
             "profiles": [
               {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              },
+              {
                 "name": "Power fist",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -4358,6 +4913,19 @@
           {
             "name": "Chainfist and combi-weapon",
             "profiles": [
+              {
+                "name": "Chainfist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Anti-VEHICLE 3+"
+                }
+              },
               {
                 "name": "Combi-weapon",
                 "typeName": "Ranged Weapons",
@@ -4392,6 +4960,42 @@
             ]
           },
           {
+            "name": "Accursed weapon",
+            "profiles": [
+              {
+                "name": "Accursed weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Chainfist",
+            "profiles": [
+              {
+                "name": "Chainfist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Anti-VEHICLE 3+"
+                }
+              }
+            ]
+          },
+          {
             "name": "Power fist",
             "profiles": [
               {
@@ -4405,6 +5009,24 @@
                   "AP": "-2",
                   "D": "2",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Combi-bolter",
+            "profiles": [
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
                 }
               }
             ]
@@ -4458,11 +5080,11 @@
           "costs": [
             {
               "models": 5,
-              "points": 180
+              "points": 175
             },
             {
               "models": 10,
-              "points": 360
+              "points": 350
             }
           ]
         }
@@ -4558,6 +5180,24 @@
             ]
           },
           {
+            "name": "Combi-bolter",
+            "profiles": [
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          },
+          {
             "name": "Combi-weapon",
             "profiles": [
               {
@@ -4615,7 +5255,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Chosen",
-        "points": 125,
+        "points": 135,
         "stats": {
           "M": "6\"",
           "T": "4",
@@ -4640,8 +5280,135 @@
         ],
         "weapons": [
           {
+            "name": "Chosen w/ boltgun",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Boltgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Accursed weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Chosen w/ boltgun and plasma pistol",
+            "profiles": [
+              {
+                "name": "➤ Plasma pistol - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "➤ Plasma pistol - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Pistol"
+                }
+              },
+              {
+                "name": "Accursed weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Boltgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
             "name": "Chosen w/ combi-weapon and bolt pistol",
             "profiles": [
+              {
+                "name": "Accursed weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
               {
                 "name": "Combi-weapon",
                 "typeName": "Ranged Weapons",
@@ -4661,6 +5428,32 @@
             "name": "Chosen w/ paired accursed weapons and plasma pistol",
             "profiles": [
               {
+                "name": "➤ Plasma pistol - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "➤ Plasma pistol - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Pistol"
+                }
+              },
+              {
                 "name": "Paired accursed weapons",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -4678,6 +5471,32 @@
           {
             "name": "Chosen w/ power fist and bolt pistol",
             "profiles": [
+              {
+                "name": "Boltgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
               {
                 "name": "Power fist",
                 "typeName": "Melee Weapons",
@@ -4697,6 +5516,45 @@
             "name": "Chosen w/ combi-weapon and plasma pistol",
             "profiles": [
               {
+                "name": "Accursed weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "➤ Plasma pistol - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "➤ Plasma pistol - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Pistol"
+                }
+              },
+              {
                 "name": "Combi-weapon",
                 "typeName": "Ranged Weapons",
                 "stats": {
@@ -4714,6 +5572,19 @@
           {
             "name": "Chosen w/ paired accursed weapons and bolt pistol",
             "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
               {
                 "name": "Paired accursed weapons",
                 "typeName": "Melee Weapons",
@@ -4733,6 +5604,45 @@
             "name": "Chosen w/ power fist and plasma pistol",
             "profiles": [
               {
+                "name": "Boltgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "➤ Plasma pistol - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "➤ Plasma pistol - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Pistol"
+                }
+              },
+              {
                 "name": "Power fist",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -4742,6 +5652,73 @@
                   "S": "8",
                   "AP": "-2",
                   "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Plasma pistol",
+            "profiles": [
+              {
+                "name": "➤ Plasma pistol - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "➤ Plasma pistol - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Boltgun",
+            "profiles": [
+              {
+                "name": "Boltgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
                   "Keywords": "-"
                 }
               }
@@ -4761,6 +5738,24 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "Anti-INFANTRY 4+, Devastating Wounds, Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Accursed weapon",
+            "profiles": [
+              {
+                "name": "Accursed weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
                 }
               }
             ]
@@ -4808,22 +5803,8 @@
       },
       "pricing": [
         {
-          "range": "[1,1]",
-          "label": "Your 1st Unit Costs",
-          "costs": [
-            {
-              "models": 5,
-              "points": 125
-            },
-            {
-              "models": 10,
-              "points": 250
-            }
-          ]
-        },
-        {
-          "range": "[2,)",
-          "label": "Your 2nd + Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 5,
@@ -4831,7 +5812,21 @@
             },
             {
               "models": 10,
-              "points": 260
+              "points": 270
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 5,
+              "points": 145
+            },
+            {
+              "models": 10,
+              "points": 280
             }
           ]
         }
@@ -5120,6 +6115,24 @@
             ]
           },
           {
+            "name": "Cultist Champion",
+            "profiles": [
+              {
+                "name": "Brutal assault weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
             "name": "Cultist w/ autopistol and brutal assault weapon",
             "profiles": [
               {
@@ -5133,6 +6146,19 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Brutal assault weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
                 }
               }
             ]
@@ -5286,11 +6312,11 @@
     {
       "name": "Daemon Prince of Chaos",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": true,
       "profile": {
         "name": "Daemon Prince of Chaos",
-        "points": 180,
+        "points": 165,
         "stats": {
           "M": "8\"",
           "T": "10",
@@ -5380,22 +6406,7 @@
           "Deadly Demise"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 5,
-              "points": 180
-            },
-            {
-              "models": 10,
-              "points": 360
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -5403,11 +6414,11 @@
     {
       "name": "Daemon Prince of Chaos with wings",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": true,
       "profile": {
         "name": "Daemon Prince of Chaos with wings",
-        "points": 165,
+        "points": 190,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -5494,18 +6505,7 @@
           "Deadly Demise"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 165
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -5756,6 +6756,24 @@
                   "AP": "-1",
                   "D": "2",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
                 }
               }
             ]
@@ -6090,8 +7108,8 @@
       },
       "pricing": [
         {
-          "range": "[1,1]",
-          "label": "Your 1st Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 5,
@@ -6100,8 +7118,8 @@
           ]
         },
         {
-          "range": "[2,)",
-          "label": "Your 2nd + Unit Costs",
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
           "costs": [
             {
               "models": 5,
@@ -6151,7 +7169,7 @@
           },
           {
             "name": "Daemonforge",
-            "description": "Each time this unit makes a Dark Pact, until the end of the phase, each time this model makes an attack, re-roll a Wound roll of 1. In addition, once per battle, when this unit makes a Dark Pact, before making the resulting Leadership test, you can declare it will overcharge its daemonforge. If it does: \n- If the resulting Leadership test is failed, this model suffers 3 mortal wounds instead of D3 mortal wounds.\n- Until the end of the phase, each time this model makes an attack, you can re-roll the Wound roll."
+            "description": "Each time this unit makes a Dark Pact, until the end of the phase, each time this model makes an attack, re-roll a Wound roll of 1."
           }
         ],
         "weapons": [
@@ -6475,7 +7493,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 330
+              "points": 340
             }
           ]
         }
@@ -6485,11 +7503,11 @@
       "wargear_options": [
         {
           "item": "Heavy reaper autocannon",
-          "points": 10
+          "points": 15
         },
         {
           "item": "Hades lascannon",
-          "points": 10
+          "points": 15
         }
       ]
     },
@@ -7635,7 +8653,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Fluxmaster",
-        "points": 80,
+        "points": 70,
         "stats": {
           "M": "12\"",
           "T": "4",
@@ -7666,7 +8684,7 @@
           },
           {
             "name": "Fluxmaster",
-            "description": "While this model is leading a unit, each time an attack is made against that unit, subtract 1 form the Hit roll."
+            "description": "- This unit has Stealth. \n- Melee attacks that target this unit have ‑1 to hit rolls."
           },
           {
             "name": "Altered Reality (Psychic)",
@@ -8601,6 +9619,19 @@
                   "D": "3",
                   "Keywords": "-"
                 }
+              },
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
               }
             ]
           },
@@ -8783,6 +9814,19 @@
                   "AP": "-2",
                   "D": "3",
                   "Keywords": "-"
+                }
+              },
+              {
+                "name": "Combi-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
                 }
               }
             ]
@@ -9399,7 +10443,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Huron Blackheart",
-        "points": 120,
+        "points": 130,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -9484,7 +10528,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 120
+              "points": 130
             }
           ]
         }
@@ -9665,7 +10709,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Kairos Fateweaver",
-        "points": 295,
+        "points": 305,
         "stats": {
           "M": "12\"",
           "T": "10",
@@ -9695,7 +10739,7 @@
           },
           {
             "name": "One Head Looks Back (Aura)",
-            "description": "Each time your opponent targets a unit from their army with a Stratagem, if that unit is within 12\" of this model, increase the cost of that use of that Stratagem by 1CP (this is not cumulative with any other rules that would increase the CP cost of that Stratagem)."
+            "description": "Once per turn, when your opponent targets a unit from their army within 12\" of this model with a stratagem, you can use this ability. If you do, increase the CP cost of that use of that stratagem by 1CP."
           }
         ],
         "weapons": [
@@ -9859,11 +10903,11 @@
     {
       "name": "Keeper of Secrets",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": true,
       "profile": {
         "name": "Keeper of Secrets",
-        "points": 450,
+        "points": 255,
         "stats": {
           "M": "14\"",
           "T": "10",
@@ -10011,28 +11055,7 @@
           "Shadow's Caress"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,1]",
-          "label": "Your 1st Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 450
-            }
-          ]
-        },
-        {
-          "range": "[2,)",
-          "label": "Your 2nd + Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 475
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -10044,7 +11067,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Khorne Berzerkers",
-        "points": 180,
+        "points": 170,
         "stats": {
           "M": "8\"",
           "T": "4",
@@ -10085,6 +11108,19 @@
                   "D": "1",
                   "Keywords": "-"
                 }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
               }
             ],
             "count": 9
@@ -10092,6 +11128,32 @@
           {
             "name": "Berzerker w/ chainblade and plasma pistol",
             "profiles": [
+              {
+                "name": "➤ Plasma pistol - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "➤ Plasma pistol - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Pistol"
+                }
+              },
               {
                 "name": "Chainblade",
                 "typeName": "Melee Weapons",
@@ -10111,6 +11173,32 @@
             "name": "Berzerker w/ eviscerator and plasma pistol",
             "profiles": [
               {
+                "name": "➤ Plasma pistol - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "➤ Plasma pistol - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Pistol"
+                }
+              },
+              {
                 "name": "Khornate eviscerator",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -10128,6 +11216,19 @@
           {
             "name": "Berzerker w/ eviscerator and bolt pistol",
             "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
               {
                 "name": "Khornate eviscerator",
                 "typeName": "Melee Weapons",
@@ -10534,7 +11635,7 @@
                   "S": "12",
                   "AP": "0",
                   "D": "3",
-                  "Keywords": "Devastating Wounds"
+                  "Keywords": "Devastating Wounds, Ignores Cover"
                 }
               }
             ]
@@ -10607,7 +11708,7 @@
           },
           {
             "name": "Obsessive Ruthlessness",
-            "description": "Each time this model makes a ranged attack that targets a ^^**Monster^^** or ^^**Vehicle^^** unit, that attack has the [DEVASTATING WOUNDS] ability."
+            "description": "This unit’s ranged attacks that target a MONSTER/VEHICLE unit can ignore modifiers to this unit’s: \n- BS. \n- Hit rolls and wound rolls."
           }
         ],
         "weapons": [
@@ -10624,7 +11725,7 @@
                   "S": "18",
                   "AP": "-4",
                   "D": "D6+3",
-                  "Keywords": "-"
+                  "Keywords": "Devastating Wounds: Monster/Vehicle"
                 }
               }
             ]
@@ -11290,7 +12391,7 @@
                 "typeName": "Ranged Weapons",
                 "stats": {
                   "Range": "18\"",
-                  "A": "2D6",
+                  "A": "D6+6",
                   "BS": "N/A",
                   "S": "8",
                   "AP": "-1",
@@ -11339,7 +12440,7 @@
                 "typeName": "Ranged Weapons",
                 "stats": {
                   "Range": "36\"",
-                  "A": "2D6",
+                  "A": "D6+6",
                   "BS": "3+",
                   "S": "8",
                   "AP": "-2",
@@ -11851,6 +12952,32 @@
             "name": "Legionary w/ boltgun",
             "profiles": [
               {
+                "name": "Boltgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
                 "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -11868,6 +12995,32 @@
           {
             "name": "Legionary w/ chainsword",
             "profiles": [
+              {
+                "name": "Astartes chainsword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
               {
                 "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
@@ -11887,6 +13040,19 @@
             "name": "Legionary w/ heavy melee weapon",
             "profiles": [
               {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
                 "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -11898,12 +13064,56 @@
                   "D": "1",
                   "Keywords": "-"
                 }
+              },
+              {
+                "name": "Heavy melee weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heavy melee weapon",
+            "profiles": [
+              {
+                "name": "Heavy melee weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
               }
             ]
           },
           {
             "name": "Legionary w/ balefire tome",
             "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
               {
                 "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
@@ -11953,6 +13163,19 @@
           {
             "name": "Legionary w/ other weapon",
             "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
               {
                 "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
@@ -12072,6 +13295,37 @@
             ]
           },
           {
+            "name": "Plasma gun",
+            "profiles": [
+              {
+                "name": "➤ Plasma gun - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
+                }
+              },
+              {
+                "name": "➤ Plasma gun - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
             "name": "Reaper chaincannon",
             "profiles": [
               {
@@ -12085,6 +13339,50 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "Heavy"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Plasma pistol and Astartes chainsword",
+            "profiles": [
+              {
+                "name": "Astartes chainsword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "➤ Plasma pistol - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "➤ Plasma pistol - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Pistol"
                 }
               }
             ]
@@ -12318,11 +13616,11 @@
     {
       "name": "Lord of Change",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": true,
       "profile": {
         "name": "Lord of Change",
-        "points": 90,
+        "points": 320,
         "stats": {
           "M": "12\"",
           "T": "10",
@@ -12453,18 +13751,7 @@
           "Stealth"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 90
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -12523,6 +13810,24 @@
                   "AP": "-2",
                   "D": "2",
                   "Keywords": "Devastating Wounds, Precision"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
                 }
               }
             ]
@@ -12642,6 +13947,24 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -12678,7 +14001,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Masters of the Maelstrom",
-        "points": 135,
+        "points": 145,
         "stats": {
           "M": "6\"",
           "T": "4",
@@ -12879,7 +14202,7 @@
           "costs": [
             {
               "models": 5,
-              "points": 135
+              "points": 145
             }
           ]
         }
@@ -13028,7 +14351,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Mutilators",
-        "points": 180,
+        "points": 165,
         "stats": {
           "M": "5\"",
           "T": "7",
@@ -13109,7 +14432,7 @@
           "costs": [
             {
               "models": 3,
-              "points": 180
+              "points": 165
             }
           ]
         },
@@ -13119,7 +14442,7 @@
           "costs": [
             {
               "models": 3,
-              "points": 190
+              "points": 175
             }
           ]
         }
@@ -13135,7 +14458,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Nemesis Claw",
-        "points": 110,
+        "points": 100,
         "stats": {
           "M": "6\"",
           "T": "4",
@@ -13168,6 +14491,32 @@
             "name": "Legionary w/ boltgun",
             "profiles": [
               {
+                "name": "Boltgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
                 "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -13186,6 +14535,32 @@
             "name": "Legionary w/ chainsword",
             "profiles": [
               {
+                "name": "Astartes chainsword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
                 "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -13203,6 +14578,19 @@
           {
             "name": "Legionary w/ heavy weapon",
             "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
               {
                 "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
@@ -13271,6 +14659,19 @@
             "name": "Legionary w/ special weapon",
             "profiles": [
               {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
                 "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -13304,6 +14705,37 @@
             ]
           },
           {
+            "name": "Plasma gun",
+            "profiles": [
+              {
+                "name": "➤ Plasma gun - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
+                }
+              },
+              {
+                "name": "➤ Plasma gun - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
             "name": "Meltagun",
             "profiles": [
               {
@@ -13325,6 +14757,32 @@
             "name": "Legionary w/ accursed weapon",
             "profiles": [
               {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Accursed weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
                 "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -13342,6 +14800,19 @@
           {
             "name": "Legionary w/ Nostraman chainglaive",
             "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
               {
                 "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
@@ -13392,6 +14863,19 @@
             "name": "Legionary w/ paired accursed weapons",
             "profiles": [
               {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
                 "name": "Paired accursed weapons",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -13423,6 +14907,32 @@
             "name": "Legionary w/ voice eater",
             "profiles": [
               {
+                "name": "Astartes chainsword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
                 "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -13450,11 +14960,11 @@
           "costs": [
             {
               "models": 5,
-              "points": 110
+              "points": 100
             },
             {
               "models": 10,
-              "points": 190
+              "points": 180
             }
           ]
         }
@@ -14549,6 +16059,63 @@
                   "D": "1",
                   "Keywords": "Lethal Hits"
                 }
+              },
+              {
+                "name": "➤ Plasma gun - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
+                }
+              },
+              {
+                "name": "➤ Plasma gun - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Plasma gun",
+            "profiles": [
+              {
+                "name": "➤ Plasma gun - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
+                }
+              },
+              {
+                "name": "➤ Plasma gun - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Rapid Fire 1"
+                }
               }
             ]
           }
@@ -14848,6 +16415,81 @@
         ],
         "weapons": [
           {
+            "name": "Raptor",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Astartes chainsword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Raptor w/ plasma pistol",
+            "profiles": [
+              {
+                "name": "Astartes chainsword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "4",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "➤ Plasma pistol - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "➤ Plasma pistol - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Pistol"
+                }
+              }
+            ]
+          },
+          {
             "name": "Raptor w/ heavy melee weapon",
             "profiles": [
               {
@@ -14862,12 +16504,38 @@
                   "D": "2",
                   "Keywords": "-"
                 }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
               }
             ]
           },
           {
             "name": "Raptor w/ mutations",
             "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
               {
                 "name": "Mutations",
                 "typeName": "Melee Weapons",
@@ -14918,6 +16586,19 @@
                 }
               },
               {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
                 "name": "Meltagun",
                 "typeName": "Ranged Weapons",
                 "stats": {
@@ -14947,6 +16628,76 @@
                   "D": "1",
                   "Keywords": "-"
                 }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "➤ Plasma gun - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
+                }
+              },
+              {
+                "name": "➤ Plasma gun - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Plasma gun",
+            "profiles": [
+              {
+                "name": "➤ Plasma gun - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
+                }
+              },
+              {
+                "name": "➤ Plasma gun - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Hazardous, Rapid Fire 1"
+                }
               }
             ]
           },
@@ -14964,6 +16715,50 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "-"
+                }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Flamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Flamer",
+            "profiles": [
+              {
+                "name": "Flamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
                 }
               }
             ]
@@ -15237,6 +17032,32 @@
             "name": "Red Corsairs Raider",
             "profiles": [
               {
+                "name": "Boltgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
                 "name": "Reaver's blade",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -15268,6 +17089,19 @@
                 }
               },
               {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
                 "name": "Reaver's blade",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -15285,6 +17119,32 @@
           {
             "name": "Red Corsairs Raider w/ power fist",
             "profiles": [
+              {
+                "name": "Boltgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
               {
                 "name": "Power fist",
                 "typeName": "Melee Weapons",
@@ -15317,6 +17177,19 @@
                 }
               },
               {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
                 "name": "Power fist",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -15334,6 +17207,19 @@
           {
             "name": "Red Corsairs Raider Champion",
             "profiles": [
+              {
+                "name": "Boltgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
               {
                 "name": "Reaver's blade",
                 "typeName": "Melee Weapons",
@@ -15396,7 +17282,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Red Corsairs Reave-captain",
-        "points": 70,
+        "points": 60,
         "stats": {
           "M": "6\"",
           "T": "4",
@@ -15527,7 +17413,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 70
+              "points": 60
             }
           ]
         }
@@ -15544,11 +17430,11 @@
     {
       "name": "Rendmaster on Blood Throne",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": true,
       "profile": {
         "name": "Rendmaster on Blood Throne",
-        "points": 160,
+        "points": 150,
         "stats": {
           "M": "8\"",
           "T": "9",
@@ -15625,18 +17511,7 @@
           "Murderer's Cowl"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 160
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -16014,8 +17889,7 @@
           "Tzeentch",
           "Screamers",
           "Tzeentch non-Battleline",
-          "Shadow Legion",
-          "Frame"
+          "Shadow Legion"
         ],
         "abilities": [
           {
@@ -16174,7 +18048,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Shalaxi Helbane",
-        "points": 340,
+        "points": 315,
         "stats": {
           "M": "14\"",
           "T": "10",
@@ -16955,6 +18829,24 @@
         ],
         "weapons": [
           {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
             "name": "Infernal Gaze",
             "profiles": [
               {
@@ -17683,11 +19575,11 @@
     {
       "name": "The Masque of Slaanesh",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": true,
       "profile": {
         "name": "The Masque of Slaanesh",
-        "points": 285,
+        "points": 95,
         "stats": {
           "M": "9\"",
           "T": "3",
@@ -17749,18 +19641,7 @@
           "Seductive Gambit"
         ]
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 285
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -17942,6 +19823,24 @@
                   "AP": "-2",
                   "D": "2",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Bolt pistol",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
                 }
               }
             ]
@@ -18575,7 +20474,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Vashtorr the Arkifane",
-        "points": 205,
+        "points": 220,
         "stats": {
           "M": "12\"",
           "T": "10",
@@ -18674,7 +20573,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 205
+              "points": 220
             }
           ]
         }
@@ -18690,7 +20589,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Venomcrawler",
-        "points": 110,
+        "points": 120,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -18764,7 +20663,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 110
+              "points": 120
             }
           ]
         },
@@ -18774,7 +20673,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 120
+              "points": 130
             }
           ]
         }
@@ -19042,7 +20941,7 @@
       "deep_strike": false,
       "profile": {
         "name": "War Dog Huntsman",
-        "points": 140,
+        "points": 135,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -19491,7 +21390,7 @@
       "deep_strike": false,
       "profile": {
         "name": "War Dog Stalker",
-        "points": 140,
+        "points": 135,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -20597,7 +22496,7 @@
   ],
   "_meta": {
     "bsdata_faction": "Chaos - Chaos Space Marines",
-    "bsdata_revision": 3,
+    "bsdata_revision": 5,
     "bsdata_units": 144,
     "mfm_units": 54,
     "merged_units": 144

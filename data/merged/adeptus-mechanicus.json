@@ -1,8 +1,8 @@
 {
   "faction": "Adeptus Mechanicus",
   "slug": "adeptus-mechanicus",
-  "version": "1.0",
-  "firstSeen": "2026-06-23",
+  "version": "1.1",
+  "firstSeen": "2026-07-22",
   "detachments": [
     {
       "name": "Cohort Acquisitus",
@@ -115,7 +115,7 @@
     {
       "name": "Haloscreed Battle Clade",
       "dp": 3,
-      "objective": "PURGE THE FOE",
+      "objective": "PRIORITY ASSETS",
       "enhancements": [
         {
           "name": "Cognitive Reinforcement",
@@ -1671,7 +1671,8 @@
           "Tech-Priest",
           "Faction: Adeptus Mechanicus",
           "Imperium",
-          "Cult Mechanicus"
+          "Cult Mechanicus",
+          "Mobile"
         ],
         "abilities": [
           {
@@ -1820,7 +1821,7 @@
           },
           {
             "name": "Acrobatic Escape",
-            "description": "At the end of the Fight phase, if this model is within Engagement Range of one or more enemy units, it can make a Fall Back move of up to D6\". In addition, at the end of your opponent's turn, if this model is not within 3\" of one or more enemy units, you can remove it from the battlefield and then, in the Reinforcements step of your next Movement phase, set it up anywhere on the battlefield that is more than 8\" horizontally away from all enemy models. If the battle ends and this model is not on the battlefield, it is destroyed."
+            "description": "- At the end of the Fight phase, if this unit is engaged, this unit can make a fall-back move of up to D6\". \n- At the end of your opponent’s turn, if this unit is more than 3\" from all enemy units, you can use this ability. If you do: \n- Place this unit in strategic reserves. \n- This unit must make an ingress move in your next Movement phase (including in your first turn)."
           }
         ],
         "weapons": [
@@ -2954,6 +2955,10 @@
           {
             "name": "Battle Protocols",
             "description": "At the start of the battle, if this model is leading a ^^**Kastelan Robots^^** unit, that unit enters Aegis Protocols (see below). In your Command phase, if this model is leading a ^^**Kastelan Robots^^** unit, you can select one protocol from those listed below for that unit to enter. Once a unit enters a protocol, it remains in that protocol until it enters a different one\n- Protector Protocol: Add 2 to the Attacks characteristic of ranged weapons equipped by ^^**Kastelan Robot^^** models in that unit.\n- Conqueror Protocol: Add 2 to the Attacks characteristic of melee weapons equipped by ^^**Kastelan Robot^^** models in that unit.\n- Aegis Protocol: Add 1 to the Toughness characteristic of ^^**Kastelan Robot^^** models in that unit."
+          },
+          {
+            "name": "Data-severed",
+            "description": "If there are no KASTELAN ROBOT models in this unit: \n- This unit loses VEHICLE. \n- This unit has INFANTRY."
           }
         ],
         "weapons": [
@@ -3955,7 +3960,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Eversor Assassin",
-        "points": 110,
+        "points": 100,
         "stats": {
           "M": "9\"",
           "T": "4",
@@ -4913,7 +4918,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Grey Knights Terminator Squad",
-        "points": 190,
+        "points": 175,
         "stats": {
           "M": "5\"",
           "T": "5",
@@ -5115,7 +5120,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Hastarii Exterminators",
-        "points": 115,
+        "points": 105,
         "stats": {
           "M": "5\"",
           "T": "4",
@@ -5273,7 +5278,7 @@
           "costs": [
             {
               "models": 5,
-              "points": 115
+              "points": 105
             }
           ]
         },
@@ -5283,7 +5288,7 @@
           "costs": [
             {
               "models": 5,
-              "points": 130
+              "points": 120
             }
           ]
         }
@@ -5453,11 +5458,11 @@
     {
       "name": "Imperial Navy Breachers",
       "in_bsdata": true,
-      "in_mfm": true,
+      "in_mfm": false,
       "deep_strike": false,
       "profile": {
         "name": "Imperial Navy Breachers",
-        "points": 150,
+        "points": 90,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -5722,6 +5727,37 @@
                   "D": "1",
                   "Keywords": "-"
                 }
+              },
+              {
+                "name": "Navis shotgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Navis shotgun",
+            "profiles": [
+              {
+                "name": "Navis shotgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault"
+                }
               }
             ]
           },
@@ -5844,22 +5880,7 @@
         ],
         "rules": []
       },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 3,
-              "points": 150
-            },
-            {
-              "models": 6,
-              "points": 320
-            }
-          ]
-        }
-      ],
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -5871,7 +5892,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Imperial Rhino",
-        "points": 75,
+        "points": 65,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -7000,7 +7021,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Inquisitorial Chimera",
-        "points": 70,
+        "points": 60,
         "stats": {
           "M": "10\"",
           "T": "9",
@@ -7382,7 +7403,8 @@
         ],
         "rules": [
           "Deadly Demise",
-          "Doctrina Imperatives"
+          "Doctrina Imperatives",
+          "Stealth"
         ]
       },
       "pricing": [
@@ -7400,7 +7422,7 @@
             },
             {
               "models": 3,
-              "points": 240
+              "points": 250
             }
           ]
         },
@@ -7418,7 +7440,7 @@
             },
             {
               "models": 3,
-              "points": 255
+              "points": 265
             }
           ]
         }
@@ -7464,7 +7486,7 @@
           },
           {
             "name": "Repulsor Grid",
-            "description": "Each time a ranged attack is allocated to a ^^**Kastelan Robot^^** model in this unit, on an unmodified saving throw of 6, the attacking unit suffers 1 mortal wound after it has finished making its attacks."
+            "description": "When an enemy unit targets this unit with ranged attacks, until that enemy unit has shot, when this unit makes a save roll: \n- On an unmodified 6, that enemy unit suffers 1 mortal wound after that enemy unit has shot."
           }
         ],
         "weapons": [
@@ -7868,7 +7890,7 @@
             },
             {
               "models": 6,
-              "points": 320
+              "points": 310
             }
           ]
         }
@@ -8127,7 +8149,7 @@
             },
             {
               "models": 6,
-              "points": 210
+              "points": 200
             }
           ]
         }
@@ -8220,7 +8242,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Knight Castellan",
-        "points": 400,
+        "points": 425,
         "stats": {
           "M": "8\"",
           "T": "12",
@@ -11643,7 +11665,8 @@
         ],
         "rules": [
           "Scouts",
-          "Doctrina Imperatives"
+          "Doctrina Imperatives",
+          "Stealth"
         ]
       },
       "pricing": [
@@ -11657,7 +11680,7 @@
             },
             {
               "models": 6,
-              "points": 120
+              "points": 110
             }
           ]
         }
@@ -11948,7 +11971,8 @@
           }
         ],
         "rules": [
-          "Doctrina Imperatives"
+          "Doctrina Imperatives",
+          "Stealth"
         ]
       },
       "pricing": [
@@ -11962,7 +11986,7 @@
             },
             {
               "models": 6,
-              "points": 110
+              "points": 100
             }
           ]
         }
@@ -12832,7 +12856,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Sisters of Battle Immolator",
-        "points": 100,
+        "points": 90,
         "stats": {
           "M": "12\"",
           "T": "10",
@@ -13449,7 +13473,8 @@
         ],
         "rules": [
           "Support",
-          "Doctrina Imperatives"
+          "Doctrina Imperatives",
+          "Stealth"
         ]
       },
       "pricing": [
@@ -13869,7 +13894,8 @@
         ],
         "rules": [
           "Scouts",
-          "Doctrina Imperatives"
+          "Doctrina Imperatives",
+          "Stealth"
         ]
       },
       "pricing": [
@@ -13895,7 +13921,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Skitarii Vanguard",
-        "points": 90,
+        "points": 85,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -14273,7 +14299,8 @@
           }
         ],
         "rules": [
-          "Doctrina Imperatives"
+          "Doctrina Imperatives",
+          "Stealth"
         ]
       },
       "pricing": [
@@ -14283,7 +14310,7 @@
           "costs": [
             {
               "models": 10,
-              "points": 90
+              "points": 85
             }
           ]
         }
@@ -14457,7 +14484,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Skorpius Dunerider",
-        "points": 85,
+        "points": 75,
         "stats": {
           "M": "12\"",
           "T": "9",
@@ -14534,8 +14561,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 75
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -15612,7 +15649,8 @@
           "Faction: Adeptus Mechanicus",
           "Imperium",
           "Cult Mechanicus",
-          "Thulia Ghuld"
+          "Thulia Ghuld",
+          "Mobile"
         ],
         "abilities": [
           {
@@ -15634,10 +15672,6 @@
           {
             "name": "Rod of the War Forge",
             "description": "In your Command phase, select one of the abilities in the Icon of War section. Until the start of your next Command phase, this model has that ability."
-          },
-          {
-            "name": "Cybernetic Augmentation",
-            "description": "This model can move through terrain features, but cannot end a move within a wall, a floor, etc. This model can be set up or end a move on any floor level of **^^Ruins^^**, but if that level is not the ground floor, it can only do so if its base does not overhang the floor at that level."
           }
         ],
         "weapons": [
@@ -17307,7 +17341,7 @@
   ],
   "_meta": {
     "bsdata_faction": "Imperium - Adeptus Mechanicus",
-    "bsdata_revision": 5,
+    "bsdata_revision": 7,
     "bsdata_units": 101,
     "mfm_units": 34,
     "merged_units": 101

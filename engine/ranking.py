@@ -473,11 +473,41 @@ class RankingEngine:
                 melee.append(self.W(cfg["melee"], unit_name=unit_name))
         return {"ranged": ranged, "melee": melee, "innate": innate}
 
+    def _eval_squad_build(self, build, unit_name):
+        """Evaluate one explicit build for a squad.
+
+        Each build has a 'models' array: [{count, ranged, melee}, ...]
+        Returns {"ranged": [...], "melee": [...], "innate": [], "_build": build_dict}
+        with one weapon entry per model (count models × each weapon).
+        """
+        ranged, melee, innate = [], [], []
+        for model in build["models"]:
+            count = model.get("count", 1)
+            r_name = model.get("ranged")
+            m_name = model.get("melee")
+            r_kw = {}
+            if "ranged_a" in model:
+                r_kw["a"] = model["ranged_a"]
+            for _ in range(count):
+                if r_name:
+                    ranged.append(self.W(r_name, unit_name=unit_name, **r_kw))
+                if m_name:
+                    melee.append(self.W(m_name, unit_name=unit_name))
+        return {"ranged": ranged, "melee": melee, "innate": innate, "_build": build}
+
     def _best_squad_variant(self, name, target):
         """Find optimal special weapon loadout for a squad vs a target."""
         cfg = self.config.squads.get(name)
         if not cfg:
             return None
+
+        unit_name = cfg.get("unit") or name
+
+        # ── Builds path (explicit model lists) ──────────────────────
+        if "builds" in cfg:
+            return self._best_squad_build(cfg, unit_name, target)
+
+        # ── Legacy path (special_max + specials iteration) ──────────
         import itertools
         opts = cfg["specials"]
         best, best_d = None, -1
@@ -518,6 +548,82 @@ class RankingEngine:
                 parts.append("Innate: " + ", ".join(f"{c}×{n}" for n, c in sorted(i_counts.items())))
             parts.append(f"[optimised for {tag}]")
             best["_desc"] = "; ".join(parts)
+        return best
+
+    def _best_squad_build(self, cfg, unit_name, target):
+        """Pick best build from explicit builds array.
+
+        Each build defines a full squad loadout as model entries.
+        DPP = total squad damage / n (per-model contribution).
+        Returns the best build's loadout dict.
+        """
+        n = cfg["n"]
+        builds = cfg["builds"]
+        best, best_dpp = None, -1
+        for build in builds:
+            ld = self._eval_squad_build(build, unit_name)
+            total_d = _ld_dmg(ld["ranged"], ld["melee"], ld["innate"], target)
+            dpp = total_d / n if n > 0 else 0
+            if dpp > best_dpp:
+                best_dpp = dpp
+                best = ld
+
+        if best:
+            # Build description with per-model breakdown
+            r_counts = {}
+            for wp in best["ranged"]:
+                r_counts[wp.name] = r_counts.get(wp.name, 0) + 1
+            m_counts = {}
+            for wp in best["melee"]:
+                m_counts[wp.name] = m_counts.get(wp.name, 0) + 1
+
+            target_tag = None
+            for tname, tp in self.config.target_profiles.items():
+                if target == tp:
+                    target_tag = tname
+                    break
+            tag = target_tag or (
+                "meta" if isinstance(target, list) else "custom"
+            )
+
+            # Human-readable model list from the winning build
+            build_info = best.get("_build", {})
+            model_parts = []
+            for m in build_info.get("models", []):
+                count = m.get("count", 1)
+                r = m.get("ranged", "-")
+                me = m.get("melee", "-")
+                model_parts.append(f"{count}×{r}+{me}")
+            parts = ["Models: " + ", ".join(model_parts)]
+            parts.append(f"[optimised for {tag}, DPP/model={best_dpp:.4f}]")
+            best["_desc"] = "; ".join(parts)
+
+            # Weapon details for turtledeck — full stats per weapon
+            weapon_details = []
+            for wp in best["ranged"]:
+                weapon_details.append({
+                    "slot": "ranged",
+                    "name": wp.name,
+                    "attacks": wp.attacks,
+                    "skill": wp.bs,
+                    "strength": wp.strength,
+                    "ap": wp.ap,
+                    "damage": wp.damage,
+                    "abilities": wp.abilities,
+                })
+            for wp in best["melee"]:
+                weapon_details.append({
+                    "slot": "melee",
+                    "name": wp.name,
+                    "attacks": wp.attacks,
+                    "skill": wp.bs,
+                    "strength": wp.strength,
+                    "ap": wp.ap,
+                    "damage": wp.damage,
+                    "abilities": wp.abilities,
+                })
+            best["_weapon_details"] = weapon_details
+            best["_dpp_per_model"] = best_dpp
         return best
 
     def _best_vehicle_variant(self, ranged_names, melee_names, unit_name, target):
@@ -654,6 +760,16 @@ class RankingEngine:
                 best_build = None
                 best_d = -1
                 for build in wo["builds"]:
+                    # New format: untyped slots with typed choices
+                    sb = self._resolve_slots_build(build, name, target)
+                    if sb is not None:
+                        b_ranged, b_melee = sb
+                        d = _ld_dmg(b_ranged, b_melee, [], target)
+                        if d > best_d:
+                            best_d = d
+                            best_build = (b_ranged, b_melee)
+                        continue
+                    
                     b_ranged = [self.W(rn, unit_name=name)
                                 for rn in build.get("fixed_ranged", [])]
                     b_melee = [self.W(mn, unit_name=name)
@@ -783,6 +899,16 @@ class RankingEngine:
                 best_build = None
                 best_d = -1
                 for build in ch["weapon_options"]["builds"]:
+                    # New format: untyped slots with typed choices
+                    sb = self._resolve_slots_build(build, name, target)
+                    if sb is not None:
+                        b_ranged, b_melee = sb
+                        d = _ld_dmg(b_ranged, b_melee, [], target)
+                        if d > best_d:
+                            best_d = d
+                            best_build = (b_ranged, b_melee)
+                        continue
+                    
                     b_ranged = [self.W(rn, unit_name=name)
                                 for rn in build.get("ranged", [])]
                     b_melee = [self.W(mn, unit_name=name)
@@ -1019,6 +1145,71 @@ class RankingEngine:
                 best_pts = slot_pts
 
         return (best_pts, best_ranged, best_melee, fixed_innate, vh.get("info"))
+
+    def _resolve_slots_build(self, build: dict, name: str, target) -> tuple | None:
+        """Resolve a build using 'slots' format.
+        
+        New format: untyped slots (each slot is independent), typed choices
+        (each weapon has its own 'ranged'/'melee' type). No cross-slot
+        constraints — you pick 1 from each slot, period.
+        
+        Returns (ranged_list, melee_list) or None if build lacks slots format.
+        """
+        slots = build.get("slots")
+        if not slots:
+            return None
+        
+        import itertools
+        
+        # Fixed weapons sorted by type (skip unresolvable)
+        fixed_items = build.get("fixed", [])
+        b_ranged = []
+        b_melee = []
+        for f in fixed_items:
+            try:
+                w = self.W(f["name"], unit_name=name)
+            except KeyError:
+                continue
+            if f.get("type") == "melee":
+                b_melee.append(w)
+            else:
+                b_ranged.append(w)
+        
+        slot_choice_lists = [s["choices"] for s in slots]
+        
+        if not slot_choice_lists:
+            return (b_ranged, b_melee)
+        
+        best_d = -1
+        best_ranged = None
+        best_melee = None
+        
+        for combo in itertools.product(*slot_choice_lists):
+            combo_ranged = list(b_ranged)
+            combo_melee = list(b_melee)
+            skip_combo = False
+            for choice in combo:
+                try:
+                    profile = self.W(choice["name"], unit_name=name)
+                except KeyError:
+                    skip_combo = True
+                    break
+                if choice.get("type") == "melee":
+                    combo_melee.append(profile)
+                else:
+                    combo_ranged.append(profile)
+            if skip_combo:
+                continue
+            
+            d = _ld_dmg(combo_ranged, combo_melee, [], target)
+            if d > best_d:
+                best_d = d
+                best_ranged = combo_ranged
+                best_melee = combo_melee
+        
+        if best_ranged is not None:
+            return (best_ranged, best_melee)
+        return (b_ranged, b_melee)
 
     # ── Unit info ────────────────────────────────────────────────────
 
@@ -1311,6 +1502,14 @@ class RankingEngine:
                                  hit_mode=HitMode.NORMAL, n_models=n_models) if innate_profiles else 0
             total_dmg = dmg_ranged + (dmg_melee * melee_penalty) + dmg_innate
             dpp_val = total_dmg / pts if pts > 0 else 0
+
+            # Ignore Cover aura — units that grant Ignore Cover to allies
+            # Boost reflects value to army beyond own damage (covers common in competitive)
+            # Hammerstrike-type: strip cover from enemies after shooting
+            # Aura-type: grant ignore cover to nearby units (Tor Garadon, Styrix, etc.)
+            if info and info.get("ignore_cover_aura"):
+                dpp_val *= 1.15  # +15% for granting army-wide cover ignore
+
             is_infantry = "INFANTRY" in kw_list
 
             # SURV (with optional detachment modifier)
@@ -1391,6 +1590,9 @@ class RankingEngine:
                 "total_damage": round(total_dmg, 2),
                 "surv": surv,
                 "mob": mob,
+                "ranged": ranged_profiles,
+                "melee": melee_profiles,
+                "innate": innate_profiles,
                 "loadout_desc": self._loadout_desc(ranged_profiles, melee_profiles, innate_profiles),
                 "notes": notes,
                 "conditional_fnp": cond_fnp,
