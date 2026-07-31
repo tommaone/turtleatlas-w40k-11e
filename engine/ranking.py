@@ -1315,36 +1315,27 @@ class RankingEngine:
                     kw.append("TERMINATOR")
                 return kw, info["T"], info["SV"], _safe_int(info["W"], 2), info.get("OC", 0), info.get("invuln") or info.get("INV")
 
-        # Vehicle info
-        if name in self.config.vehicles:
-            vh = self.config.vehicles[name]
-            info = vh.get("info", {})
-            if not info.get("T"):
-                # Empty info — fall through to profile-based fallback below
-                pass
-            else:
-                kw = ["VEHICLE"]
-                kw.extend(self.config.faction_keywords)
-                if "DREADNOUGHT" in name.upper():
-                    kw.append("DREADNOUGHT")
-                if info.get("deep_strike"):
-                    kw.append("DEEP STRIKE")
-                if info.get("invuln") or info.get("INV"):
-                    kw.append("WALKER")
-                return kw, info["T"], info["SV"], _safe_int(info["W"], 2), info.get("OC", 0), info.get("invuln") or info.get("INV")
-
-        # Weapon-option vehicle info (NDK / GMNDK)
-        if name in self.config.weapon_options:
-            wo = self.config.weapon_options[name]
-            info = wo.get("info", {})
-            if not info.get("T"):
-                pass  # fall through to profile-based fallback
-            else:
-                kw = ["VEHICLE", "WALKER"]
-                if info.get("deep_strike"):
-                    kw.append("DEEP STRIKE")
-                kw.extend(self.config.faction_keywords)
-                return kw, info["T"], info["SV"], _safe_int(info["W"], 2), info.get("OC", 0), info.get("invuln") or info.get("INV")
+        # Vehicle info — weapon_options.json is authoritative (matches
+        # resolve_loadout precedence); vehicles.json is only a fallback for
+        # units WITHOUT weapon-option builds. Both share the same keyword
+        # logic so a shadowed stale vehicles.json entry can never override
+        # the curated weapon_options data.
+        veh_info = None
+        for src in (self.config.weapon_options, self.config.vehicles):
+            if name in src:
+                veh_info = src[name].get("info", {})
+                if veh_info.get("T"):
+                    break
+        if veh_info and veh_info.get("T"):
+            kw = ["VEHICLE"]
+            kw.extend(self.config.faction_keywords)
+            if "DREADNOUGHT" in name.upper():
+                kw.append("DREADNOUGHT")
+            if veh_info.get("deep_strike"):
+                kw.append("DEEP STRIKE")
+            if veh_info.get("invuln") or veh_info.get("INV"):
+                kw.append("WALKER")
+            return kw, veh_info["T"], veh_info["SV"], _safe_int(veh_info["W"], 2), veh_info.get("OC", 0), veh_info.get("invuln") or veh_info.get("INV")
 
         # Character info
         if name in self.config.characters:

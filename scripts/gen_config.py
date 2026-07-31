@@ -525,11 +525,15 @@ def generate_faction_config(faction_slug, dry_run=False, skip_existing=False):
         if cls["is_character"]:
             characters[name] = gen_character_config(name, unit, data)
         elif cls["is_vehicle"]:
-            vehicles[name] = gen_vehicle_config(name, unit, data)
-            # Also check for weapon options
+            # weapon_options.json is authoritative for multi-weapon vehicles;
+            # vehicles.json is ONLY a fallback for units without weapon options.
+            # Never dual-write the same unit to both — the shadowed copy goes
+            # stale and the engine ends up with two conflicting sources of truth.
             wo = gen_weapon_options(name, unit, data)
             if wo:
                 weapon_options[name] = wo
+            else:
+                vehicles[name] = gen_vehicle_config(name, unit, data)
         else:
             squads[name] = gen_squad_config(name, unit, data)
 

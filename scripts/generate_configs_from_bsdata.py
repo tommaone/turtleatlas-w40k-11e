@@ -551,20 +551,25 @@ def generate_configs_for_faction(slug: str, bsdata_parser: BSDataParser11e,
             characters[target_key] = config
         elif unit_type == "vehicle":
             config = generate_vehicle_config(unit_name, bsdata_c, merged_weapons, existing)
-            # Vehicles go into vehicles.json (flat fallback) AND weapon_options.json (builds)
-            target_key = unit_name
-            for k in vehicles:
-                if k.lower() == unit_name.lower():
-                    target_key = k
-                    break
-            vehicles[target_key] = config
-            # weapon_options.json: same builds format
-            for k in weapon_options:
-                if k.lower() == unit_name.lower():
-                    weapon_options[k] = config
-                    break
+            # weapon_options.json is the authoritative vehicle source (builds
+            # format). vehicles.json is ONLY a flat fallback for units that
+            # have no builds — never dual-write the same unit to both, or the
+            # shadowed copy goes stale (pts drift, old builds) and the engine
+            # has two conflicting sources of truth.
+            if config.get("builds"):
+                for k in weapon_options:
+                    if k.lower() == unit_name.lower():
+                        weapon_options[k] = config
+                        break
+                else:
+                    weapon_options[unit_name] = config
             else:
-                weapon_options[unit_name] = config
+                target_key = unit_name
+                for k in vehicles:
+                    if k.lower() == unit_name.lower():
+                        target_key = k
+                        break
+                vehicles[target_key] = config
         else:
             config = generate_squad_config(unit_name, bsdata_c, merged_weapons, existing)
             target_key = unit_name
