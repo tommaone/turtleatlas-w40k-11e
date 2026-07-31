@@ -1,347 +1,482 @@
 {
-  "_note": "chaos-daemons squads \u2014 generated from BSData + MFM",
-  "_source": "BSData 11e + MFM (auto-generated)",
+  "_note": "chaos-daemons squads - builds format with modes",
+  "_source": "BSData 11e + MFM",
   "Beasts Of Nurgle": {
     "n": 1,
-    "pts": 70,
+    "pts": 75,
+    "innate": [],
     "ranged": null,
     "melee": "Putrid appendages",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 9,
       "SV": 6,
       "W": 7,
       "OC": 3,
+      "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 1,
+            "melee": "Putrid appendages"
+          }
+        ]
+      }
+    ]
   },
   "Bloodcrushers": {
     "n": 3,
     "pts": 95,
+    "innate": [],
     "ranged": null,
     "melee": "Hellblade",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
     "info": {
       "M": "10\"",
       "T": 7,
       "SV": 3,
       "W": 4,
       "OC": 2,
+      "INV": 5,
       "deep_strike": true
     },
-    "pts_3rd": 105
+    "pts_3rd": 115,
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Hellblade"
+          }
+        ]
+      }
+    ]
   },
   "Bloodletters": {
     "n": 10,
     "pts": 110,
+    "innate": [],
     "ranged": null,
     "melee": "Hellblade",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
     "info": {
       "M": "8\"",
       "T": 4,
       "SV": 7,
       "W": 1,
       "OC": 2,
+      "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "melee": "Hellblade"
+          }
+        ]
+      }
+    ]
   },
   "Blue Horrors": {
     "n": 10,
     "pts": 125,
+    "innate": [],
     "ranged": "Coruscating Blue flames",
     "melee": "Blue claws",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 3,
       "SV": 7,
       "W": 1,
       "OC": 1,
+      "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Coruscating Blue flames",
+            "melee": "Blue claws"
+          }
+        ]
+      }
+    ]
   },
   "Burning Chariot": {
     "n": 1,
     "pts": 115,
+    "innate": [],
     "ranged": "Fires of Tzeentch - blue fire",
     "melee": "Flamer mouths",
-    "special_max": 1,
-    "specials": [
-      "Fires of Tzeentch - pink fire"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
     "info": {
       "M": "12\"",
       "T": 8,
       "SV": 7,
       "W": 9,
       "OC": 3,
+      "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Blue fire",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Fires of Tzeentch - blue fire",
+            "melee": "Flamer mouths"
+          }
+        ]
+      },
+      {
+        "name": "Pink fire",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Fires of Tzeentch - pink fire",
+            "melee": "Flamer mouths"
+          }
+        ]
+      }
+    ]
   },
   "Daemonettes": {
     "n": 10,
     "pts": 90,
+    "innate": [],
     "ranged": null,
     "melee": "Slashing claws",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
     "info": {
       "M": "9\"",
       "T": 3,
       "SV": 7,
       "W": 1,
       "OC": 2,
+      "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "melee": "Slashing claws"
+          }
+        ]
+      }
+    ]
   },
   "Fiends": {
     "n": 3,
     "pts": 90,
+    "innate": [],
     "ranged": null,
     "melee": "Barbed tail and dissecting claws",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
     "info": {
       "M": "12\"",
       "T": 5,
       "SV": 7,
       "W": 4,
       "OC": 2,
+      "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Barbed tail and dissecting claws"
+          }
+        ]
+      }
+    ]
   },
   "Flamers": {
     "n": 3,
     "pts": 65,
+    "innate": [],
     "ranged": "Flickering Flames",
     "melee": "Flamer mouths",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
     "info": {
       "M": "9\"",
       "T": 4,
       "SV": 7,
       "W": 3,
       "OC": 1,
+      "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Flickering Flames",
+            "melee": "Flamer mouths"
+          }
+        ]
+      }
+    ]
   },
   "Flesh Hounds": {
     "n": 5,
     "pts": 75,
+    "innate": [],
     "ranged": "Burning roar",
     "melee": "Gore-drenched fangs",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
     "info": {
       "M": "12\"",
       "T": 4,
       "SV": 7,
       "W": 2,
       "OC": 1,
+      "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Burning roar",
+            "melee": "Gore-drenched fangs"
+          }
+        ]
+      }
+    ]
   },
   "Hellflayers": {
     "n": 1,
     "pts": 80,
+    "innate": [],
     "ranged": "Lashes of torment",
     "melee": "Lashes of torment",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
     "info": {
       "M": "14\"",
       "T": 6,
       "SV": 5,
       "W": 7,
       "OC": 3,
+      "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Lashes of torment",
+            "melee": "Lashes of torment"
+          }
+        ]
+      }
+    ]
   },
   "Nurglings": {
     "n": 3,
     "pts": 45,
+    "innate": [],
     "ranged": null,
     "melee": "Diseased claws and teeth",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
     "info": {
       "M": "5\"",
       "T": 3,
       "SV": 7,
       "W": 4,
       "OC": 0,
+      "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Diseased claws and teeth"
+          }
+        ]
+      }
+    ]
   },
   "Pink Horrors": {
     "n": 10,
     "pts": 150,
+    "innate": [],
     "ranged": "Coruscating Pink flames",
     "melee": "Pink claws",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 3,
       "SV": 7,
       "W": 1,
       "OC": 1,
+      "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Coruscating Pink flames",
+            "melee": "Pink claws"
+          }
+        ]
+      }
+    ]
   },
   "Plague Drones": {
     "n": 3,
     "pts": 110,
+    "innate": [],
     "ranged": "Death's heads",
     "melee": "Foul mouthparts",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
     "info": {
       "M": "10\"",
       "T": 8,
       "SV": 6,
       "W": 5,
       "OC": 2,
+      "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Death's heads",
+            "melee": "Foul mouthparts"
+          }
+        ]
+      }
+    ]
   },
   "Plaguebearers": {
     "n": 10,
     "pts": 115,
+    "innate": [],
     "ranged": null,
     "melee": "Plaguesword",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
     "info": {
       "M": "5\"",
       "T": 5,
       "SV": 7,
       "W": 2,
       "OC": 2,
+      "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "melee": "Plaguesword"
+          }
+        ]
+      }
+    ]
   },
   "Screamers": {
     "n": 3,
     "pts": 80,
+    "innate": [],
     "ranged": null,
     "melee": "Lamprey bite",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
     "info": {
       "M": "14\"",
       "T": 4,
       "SV": 6,
       "W": 3,
       "OC": 1,
+      "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Lamprey bite"
+          }
+        ]
+      }
+    ]
   },
   "Seekers": {
     "n": 5,
     "pts": 80,
+    "innate": [],
     "ranged": null,
     "melee": "Lashing tongues",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
     "info": {
       "M": "14\"",
       "T": 4,
       "SV": 7,
       "W": 2,
       "OC": 1,
+      "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Lashing tongues"
+          }
+        ]
+      }
+    ]
   },
   "Skull Cannon": {
     "n": 1,
     "pts": 90,
+    "innate": [],
     "ranged": "Skull cannon",
     "melee": "Attendant's hellblades",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
-    "innate": [],
     "info": {
       "M": "8\"",
       "T": 9,
       "SV": 4,
       "W": 9,
       "OC": 3,
+      "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Skull cannon",
+            "melee": "Attendant's hellblades"
+          }
+        ]
+      }
+    ]
   }
 }
