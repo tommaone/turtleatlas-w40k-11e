@@ -6,15 +6,6 @@
     "pts": 140,
     "ranged": "Storm bolter",
     "melee": "Nemesis force weapon",
-    "special_max": 1,
-    "specials": [
-      "Incinerator",
-      "Psycannon",
-      "Psilencer"
-    ],
-    "sp_loses_r": true,
-    "sp_loses_m": false,
-    "apoth_loses_r": true,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -24,22 +15,26 @@
       "OC": 2,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "_note": "11e per-5 rule: at min squad (n=4) no special weapons available; special weapons (Incinerator/Psilencer/Psycannon) require 5+ models (Terminator 1 per 5, Paladin up to 2 per 5)",
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 4,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      }
+    ]
   },
   "Interceptor Squad": {
     "n": 5,
     "pts": 125,
     "ranged": "Storm bolter",
     "melee": "Nemesis force weapon",
-    "special_max": 1,
-    "specials": [
-      "Incinerator",
-      "Psilencer",
-      "Psycannon"
-    ],
-    "sp_loses_r": true,
-    "sp_loses_m": true,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -49,22 +44,70 @@
       "OC": 1,
       "deep_strike": true
     },
-    "pts_3rd": 135
+    "pts_3rd": 135,
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      },
+      {
+        "name": "Incinerator",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Incinerator",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      },
+      {
+        "name": "Psycannon",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Psycannon",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      },
+      {
+        "name": "Psilencer",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Psilencer",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      }
+    ]
   },
   "Paladin Squad": {
     "n": 4,
     "pts": 170,
     "ranged": "Storm bolter",
     "melee": "Nemesis force weapon",
-    "special_max": 1,
-    "specials": [
-      "Incinerator",
-      "Psycannon",
-      "Psilencer"
-    ],
-    "sp_loses_r": true,
-    "sp_loses_m": false,
-    "apoth_loses_r": true,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -75,22 +118,26 @@
       "INV": 4,
       "deep_strike": true
     },
-    "pts_3rd": 185
+    "pts_3rd": 185,
+    "_note": "11e per-5 rule: at min squad (n=4) no special weapons available; special weapons (Incinerator/Psilencer/Psycannon) require 5+ models (Terminator 1 per 5, Paladin up to 2 per 5)",
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 4,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      }
+    ]
   },
   "Purgation Squad": {
     "n": 5,
     "pts": 110,
     "ranged": "Storm bolter",
     "melee": "Nemesis force weapon",
-    "special_max": 4,
-    "specials": [
-      "Incinerator",
-      "Psilencer",
-      "Psycannon"
-    ],
-    "sp_loses_r": true,
-    "sp_loses_m": true,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -100,23 +147,93 @@
       "OC": 1,
       "deep_strike": true
     },
-    "pts_3rd": 120
+    "pts_3rd": 120,
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      },
+      {
+        "name": "4x Psycannon",
+        "models": [
+          {
+            "count": 4,
+            "ranged": "Psycannon",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      },
+      {
+        "name": "4x Incinerator",
+        "models": [
+          {
+            "count": 4,
+            "ranged": "Incinerator",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      },
+      {
+        "name": "4x Psilencer",
+        "models": [
+          {
+            "count": 4,
+            "ranged": "Psilencer",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      },
+      {
+        "name": "Mixed",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Psycannon",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 2,
+            "ranged": "Incinerator",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      }
+    ]
   },
   "Purifier Squad": {
     "n": 5,
     "pts": 130,
     "ranged": "Storm bolter",
     "melee": "Nemesis force weapon",
-    "special_max": 2,
-    "specials": [
-      "Incinerator",
-      "Psilencer",
-      "Psycannon"
+    "innate": [
+      "Purifying Flame"
     ],
-    "sp_loses_r": true,
-    "sp_loses_m": true,
-    "apoth_loses_r": false,
-    "innate": ["Purifying Flame"],
     "info": {
       "M": "6\"",
       "T": 4,
@@ -125,22 +242,90 @@
       "OC": 1,
       "deep_strike": true
     },
-    "pts_3rd": 140
+    "pts_3rd": 140,
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Psycannon",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Psycannon",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Incinerator",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Incinerator",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Psilencer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Psilencer",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      },
+      {
+        "name": "Mixed",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Psycannon",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Incinerator",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      }
+    ]
   },
   "Strike Squad": {
     "n": 5,
-    "pts": 120,
+    "pts": 115,
     "ranged": "Storm bolter",
     "melee": "Nemesis force weapon",
-    "special_max": 1,
-    "specials": [
-      "Incinerator",
-      "Psycannon",
-      "Psilencer"
-    ],
-    "sp_loses_r": true,
-    "sp_loses_m": true,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -149,6 +334,63 @@
       "W": 2,
       "OC": 2,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      },
+      {
+        "name": "Incinerator",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Incinerator",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      },
+      {
+        "name": "Psycannon",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Psycannon",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      },
+      {
+        "name": "Psilencer",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Psilencer",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Storm bolter",
+            "melee": "Nemesis force weapon"
+          }
+        ]
+      }
+    ]
   }
 }

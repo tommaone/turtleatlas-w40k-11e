@@ -47,12 +47,12 @@ _init()
 def compute_ranking(target=MEQ, mission=None, meta_name=None, tier="1st",
                     detachment=None, detachment_choice=None,
                     melta_active=False, heavy_stationary=False,
-                    plunging=True):
+                    plunging=True, mode=None):
     """Compute unit ranking delegating to generic engine."""
     return _engine().compute_ranking(target=target, mission=mission, meta_name=meta_name, tier=tier,
                                       detachment=detachment, detachment_choice=detachment_choice,
                                       melta_active=melta_active, heavy_stationary=heavy_stationary,
-                                      plunging=plunging)
+                                      plunging=plunging, mode=mode)
 
 
 def print_ranking(results, target_name="MEQ", mission_name=None, meta_name=None, tier="1st"):
@@ -66,14 +66,14 @@ def mob_score(mob):
     return RankingEngine.mob_score(mob)
 
 
-def resolve_loadout(name, target=MEQ, pricing=None):
+def resolve_loadout(name, target=MEQ, pricing=None, mode=None):
     """Resolve loadout delegating to generic engine."""
-    return _engine().resolve_loadout(name, target=target, pricing=pricing)
+    return _engine().resolve_loadout(name, target=target, pricing=pricing, mode=mode)
 
 
-def best_squad_variant(name, target=MEQ):
+def best_squad_variant(name, target=MEQ, mode=None):
     """Best squad variant delegating to generic engine."""
-    return _engine()._best_squad_variant(name, target)
+    return _engine()._best_squad_variant(name, target, mode=mode)
 
 
 def best_vehicle_variant(ranged_names, melee_names, unit_name, target=MEQ):

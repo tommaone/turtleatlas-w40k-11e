@@ -496,7 +496,7 @@ class RankingEngine:
                     melee.append(self.W(m_name, unit_name=unit_name))
         return {"ranged": ranged, "melee": melee, "innate": innate, "_build": build}
 
-    def _best_squad_variant(self, name, target):
+    def _best_squad_variant(self, name, target, mode=None):
         """Find optimal special weapon loadout for a squad vs a target."""
         cfg = self.config.squads.get(name)
         if not cfg:
@@ -506,7 +506,7 @@ class RankingEngine:
 
         # ── Builds path (explicit model lists) ──────────────────────
         if "builds" in cfg:
-            return self._best_squad_build(cfg, unit_name, target)
+            return self._best_squad_build(cfg, unit_name, target, mode=mode)
 
         # ── Legacy path (special_max + specials iteration) ──────────
         import itertools
@@ -519,7 +519,7 @@ class RankingEngine:
                 ld = self._eval_squad_variant(cfg, list(indices))
                 if ld is None:
                     continue
-                d = _ld_dmg(ld["ranged"], ld["melee"], ld["innate"], target)
+                d = _ld_dmg(ld["ranged"], ld["melee"], ld["innate"], target, n_models=cfg["n"])
                 if d > best_d:
                     best_d = d
                     best = ld
@@ -554,7 +554,7 @@ class RankingEngine:
             best["_desc"] = "; ".join(parts)
         return best
 
-    def _best_squad_build(self, cfg, unit_name, target):
+    def _best_squad_build(self, cfg, unit_name, target, mode=None):
         """Pick best build from explicit builds array.
 
         Each build defines a full squad loadout as model entries.
@@ -562,12 +562,16 @@ class RankingEngine:
         Returns the best build's loadout dict.
         """
         n = cfg["n"]
-        builds = cfg["builds"]
+        builds = [b for b in cfg["builds"] if not mode or b.get("name") == mode]
         n_combos = len(builds)
+        if mode and not builds:
+            raise ValueError(
+                f"Unknown mode '{mode}' for {unit_name}. Available modes: {[b.get('name') for b in cfg['builds']]}"
+            )
         best, best_dpp = None, -1
         for build in builds:
             ld = self._eval_squad_build(build, unit_name)
-            total_d = _ld_dmg(ld["ranged"], ld["melee"], ld["innate"], target)
+            total_d = _ld_dmg(ld["ranged"], ld["melee"], ld["innate"], target, n_models=n)
             dpp = total_d / n if n > 0 else 0
             if dpp > best_dpp:
                 best_dpp = dpp
@@ -738,7 +742,7 @@ class RankingEngine:
 
         return pts
 
-    def resolve_loadout(self, name, target, pricing=None, tier="1st"):
+    def resolve_loadout(self, name, target, pricing=None, tier="1st", mode=None):
         """Resolve a unit's weapons for a given target.
 
         Args:
@@ -746,6 +750,7 @@ class RankingEngine:
             target: TargetProfile (or weighted list).
             pricing: Pricing data from merged JSON.
             tier: '1st' (default) or '3rd' (progressive pricing).
+            mode: Restrict to a single named build/mode (None = best of all builds).
 
         Returns (points, ranged, melee, innate, info_dict) or None.
         """
@@ -756,8 +761,19 @@ class RankingEngine:
                 sdetail["pts"], sdetail.get("pts_3rd"),
                 pricing, sdetail["n"], tier,
             )
-            ld = self._best_squad_variant(name, target)
+            # Mode filter only applies when the squad actually has that build;
+            # otherwise it's a no-op (full build list) for cross-unit filters.
+            squad_mode = (
+                mode
+                if mode and "builds" in sdetail
+                and any(b.get("name") == mode for b in sdetail["builds"])
+                else None
+            )
+            ld = self._best_squad_variant(name, target, mode=squad_mode)
             squad_info = dict(sdetail.get("info", {}))
+            if "builds" in sdetail:
+                squad_info["_modes"] = [b.get("name") for b in sdetail["builds"]]
+                squad_info["_multimodal"] = len(squad_info["_modes"]) > 1
             if ld and "_n_combos" in ld:
                 squad_info["_n_combos"] = ld["_n_combos"]
             return (pts, ld["ranged"], ld["melee"], ld["innate"], squad_info)
@@ -779,6 +795,12 @@ class RankingEngine:
                 best_d = -1
                 n_combos = 0
                 for build in wo["builds"]:
+                    # Mode filter: skip non-matching builds only when the unit
+                    # actually HAS the requested mode (no-op otherwise).
+                    if mode and mode != build.get("name") and any(
+                        b.get("name") == mode for b in wo["builds"]
+                    ):
+                        continue
                     # New format: untyped slots with typed choices
                     sb = self._resolve_slots_build(build, name, target)
                     if sb is not None:
@@ -896,6 +918,8 @@ class RankingEngine:
 
                 if best_build:
                     info["_n_combos"] = n_combos
+                    info["_modes"] = [b.get("name") for b in wo["builds"]]
+                    info["_multimodal"] = len(wo["builds"]) > 1
                     return (pts, best_build[0], best_build[1], [], info)
 
             # Fallback: flat ranged/melee lists (legacy format)
@@ -922,6 +946,12 @@ class RankingEngine:
                 best_d = -1
                 n_combos = 0
                 for build in ch["weapon_options"]["builds"]:
+                    # Mode filter: skip non-matching builds only when the unit
+                    # actually HAS the requested mode (no-op otherwise).
+                    if mode and mode != build.get("name") and any(
+                        b.get("name") == mode for b in ch["weapon_options"]["builds"]
+                    ):
+                        continue
                     # New format: untyped slots with typed choices
                     sb = self._resolve_slots_build(build, name, target)
                     if sb is not None:
@@ -1038,6 +1068,8 @@ class RankingEngine:
                 if best_build:
                     ch_info = dict(ch.get("info", {}))
                     ch_info["_n_combos"] = n_combos
+                    ch_info["_modes"] = [b.get("name") for b in ch["weapon_options"]["builds"]]
+                    ch_info["_multimodal"] = len(ch["weapon_options"]["builds"]) > 1
                     return (pts, best_build[0], best_build[1], [], ch_info)
 
             # Per-slot weapon_options (existing fallback for non-build configs)
@@ -1195,7 +1227,7 @@ class RankingEngine:
         a repeated weapon name are skipped and not counted in n_combos.
         """
         slots = build.get("slots")
-        if not slots:
+        if slots is None:
             return None
         
         import itertools
@@ -1219,7 +1251,7 @@ class RankingEngine:
         slot_choice_lists = [s["choices"] for s in slots]
         
         if not slot_choice_lists:
-            return (b_ranged, b_melee)
+            return (b_ranged, b_melee, 0)
         
         best_d = -1
         best_ranged = None
@@ -1368,6 +1400,7 @@ class RankingEngine:
                          melta_active: bool = False,
                          heavy_stationary: bool = False,
                          plunging: bool = True,
+                         mode: Optional[str] = None,
                          max_points: Optional[int] = 2000):
         """Compute unit ranking for a given target, optionally weighted by mission or tier.
 
@@ -1384,6 +1417,7 @@ class RankingEngine:
             melta_active: assume ≤ half range for Melta bonus.
             heavy_stationary: assume the unit remained stationary for Heavy bonus.
             plunging: auto-apply Plunging Fire (+1 BS) for TOWERING units (default True).
+            mode: Restrict to a single named build/mode (None = best of all builds).
 
         Returns:
             list of result dicts sorted by mission score (or DPP).
@@ -1495,7 +1529,7 @@ class RankingEngine:
             pricing = unit.get("pricing", [])
             stats = profile.get("stats", {})
 
-            resolved = self.resolve_loadout(name, actual_target, pricing, tier=tier)
+            resolved = self.resolve_loadout(name, actual_target, pricing, tier=tier, mode=mode)
             if resolved is None:
                 continue
             pts, ranged_profiles, melee_profiles, innate_profiles, info = resolved
@@ -1646,6 +1680,8 @@ class RankingEngine:
                 "innate": innate_profiles,
                 "loadout_desc": ld,
                 "n_combos": n_combos,
+                "modes": info.get("_modes") if info else None,
+                "multimodal": bool(info.get("_multimodal")) if info else False,
                 "notes": notes,
                 "conditional_fnp": cond_fnp,
                 "conditional_fnp_type": cond_fnp_type,
