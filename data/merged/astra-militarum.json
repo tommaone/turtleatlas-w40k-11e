@@ -2904,6 +2904,84 @@
       "wargear_options": null
     },
     {
+      "name": "Breaching Robot",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "deep_strike": false,
+      "profile": {
+        "name": "Breaching Robot",
+        "points": 35,
+        "stats": {
+          "M": "6\"",
+          "T": "4",
+          "Sv": "4+",
+          "W": "3",
+          "LD": "6+",
+          "OC": "0",
+          "InSv": ""
+        },
+        "keywords": [
+          "Vehicle",
+          "Faction: Unaligned Forces",
+          "Breaching Robot",
+          "Allies: Unaligned Forces"
+        ],
+        "abilities": [
+          {
+            "name": "Limited Loadout",
+            "description": "This model cannot attempt to operate Hatchways and cannot perform Tactical Manoeuvres."
+          },
+          {
+            "name": "Assault Robot",
+            "description": "In the Deploy Armies step, when setting up a unit from your army within an Entry Zone, you can set this model up alongside that unit as if it was part of it, using the same Entry Zone."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Cutting blade and cutting gear",
+            "profiles": [
+              {
+                "name": "Cutting blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Cutting blade",
+            "profiles": [
+              {
+                "name": "Cutting blade",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "4+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": []
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
       "name": "Bullgryn Squad",
       "in_bsdata": true,
       "in_mfm": true,
@@ -8120,7 +8198,9 @@
         "name": "Cyber-mastiff",
         "points": null,
         "stats": {},
-        "keywords": [],
+        "keywords": [
+          "Faction: Astra Militarum"
+        ],
         "abilities": [],
         "weapons": [
           {
@@ -9963,7 +10043,8 @@
           "InSv": ""
         },
         "keywords": [
-          "Tacticus"
+          "Tacticus",
+          "Faction: Astra Militarum"
         ],
         "abilities": [],
         "weapons": [
@@ -10065,7 +10146,8 @@
           "InSv": ""
         },
         "keywords": [
-          "Tacticus"
+          "Tacticus",
+          "Faction: Astra Militarum"
         ],
         "abilities": [],
         "weapons": [
@@ -10149,7 +10231,8 @@
           "InSv": ""
         },
         "keywords": [
-          "Tacticus"
+          "Tacticus",
+          "Faction: Astra Militarum"
         ],
         "abilities": [],
         "weapons": [
@@ -11704,7 +11787,8 @@
           "InSv": ""
         },
         "keywords": [
-          "Gravis"
+          "Gravis",
+          "Faction: Astra Militarum"
         ],
         "abilities": [],
         "weapons": [
@@ -14556,6 +14640,74 @@
       "wargear_options": null
     },
     {
+      "name": "Jungle Fighter",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "deep_strike": false,
+      "profile": {
+        "name": "Jungle Fighter",
+        "points": null,
+        "stats": {
+          "M": "6\"",
+          "T": "3",
+          "Sv": "5+",
+          "W": "1",
+          "LD": "7+",
+          "OC": "2",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: Astra Militarum"
+        ],
+        "abilities": [],
+        "weapons": [
+          {
+            "name": "Lasgun",
+            "profiles": [
+              {
+                "name": "Lasgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Catachan Jungle Fighter"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
       "name": "Kasrkin",
       "in_bsdata": true,
       "in_mfm": true,
@@ -15079,7 +15231,9 @@
           "OC": "2",
           "InSv": ""
         },
-        "keywords": [],
+        "keywords": [
+          "Faction: Astra Militarum"
+        ],
         "abilities": [],
         "weapons": [
           {
@@ -16819,8 +16973,8 @@
           "M": "6\"",
           "T": "3",
           "Sv": "5+",
-          "W": "3",
-          "LD": "6+",
+          "W": "1",
+          "LD": "7+",
           "OC": "1",
           "InSv": ""
         },
@@ -17314,10 +17468,10 @@
         "name": "Krieg Heavy Weapons Squad",
         "points": 60,
         "stats": {
-          "M": "6\"",
+          "M": "4\"",
           "T": "3",
-          "Sv": "5+",
-          "W": "1",
+          "Sv": "4+",
+          "W": "2",
           "LD": "7+",
           "OC": "1",
           "InSv": ""
@@ -19132,7 +19286,7 @@
           "M": "6\"",
           "T": "3",
           "Sv": "4+",
-          "W": "3",
+          "W": "1",
           "LD": "7+",
           "OC": "1",
           "InSv": ""
@@ -20781,6 +20935,197 @@
       "wargear_options": null
     },
     {
+      "name": "Reaver Titan",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "deep_strike": false,
+      "profile": {
+        "name": "Reaver Titan",
+        "points": 2200,
+        "stats": {
+          "M": "12\"",
+          "T": "14",
+          "Sv": "2+",
+          "W": "60",
+          "LD": "6+",
+          "OC": "20",
+          "InSv": "5+ (Ranged)"
+        },
+        "keywords": [
+          "Vehicle",
+          "Walker",
+          "Titanic",
+          "Towering",
+          "Reaver Titan",
+          "Frame",
+          "Faction: Astra Militarum"
+        ],
+        "abilities": [
+          {
+            "name": "Damaged: 1-20 wounds remaining",
+            "description": "While this model has 1-20 wounds remaining, subtract 10 from this model’s Objective Control characteristic and each time this model makes an attack, subtract 1 from the Hit roll."
+          },
+          {
+            "name": "God-machine",
+            "description": "This model is eligible to shoot and declare a charge in a turn in which it Fell Back."
+          },
+          {
+            "name": "Striding Colossus",
+            "description": "Each time you target this model with a Stratagem, you must spend three times that Stratagem’s stated CP cost to do so."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Reaver feet",
+            "profiles": [
+              {
+                "name": "Reaver feet",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "4+",
+                  "S": "12",
+                  "AP": "-2",
+                  "D": "4",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver apocalypse launcher",
+            "profiles": [
+              {
+                "name": "Reaver apocalypse launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "200\"",
+                  "A": "3D6",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Blast, Indirect Fire"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver gatling blaster",
+            "profiles": [
+              {
+                "name": "Reaver gatling blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "12",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver laser blaster",
+            "profiles": [
+              {
+                "name": "Reaver laser blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "8",
+                  "BS": "3+",
+                  "S": "20",
+                  "AP": "-3",
+                  "D": "D6+2",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver melta cannon",
+            "profiles": [
+              {
+                "name": "Reaver melta cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6+2",
+                  "BS": "3+",
+                  "S": "13",
+                  "AP": "-4",
+                  "D": "6",
+                  "Keywords": "Blast, Melta 4"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver volcano cannon",
+            "profiles": [
+              {
+                "name": "Reaver volcano cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "120\"",
+                  "A": "D3+1",
+                  "BS": "3+",
+                  "S": "24",
+                  "AP": "-5",
+                  "D": "14",
+                  "Keywords": "Blast, Heavy"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver power fist",
+            "profiles": [
+              {
+                "name": "Reaver power fist - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "4+",
+                  "S": "20",
+                  "AP": "-4",
+                  "D": "14",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Reaver power fist - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "12",
+                  "WS": "4+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "6",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Super-Heavy Walker"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
       "name": "Rogal Dorn Battle Tank",
       "in_bsdata": true,
       "in_mfm": true,
@@ -22064,6 +22409,40 @@
       "wargear_options": null
     },
     {
+      "name": "Searchlight",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "deep_strike": false,
+      "profile": {
+        "name": "Searchlight",
+        "points": 10,
+        "stats": {},
+        "keywords": [
+          "Allies: Unaligned Forces"
+        ],
+        "abilities": [
+          {
+            "name": "Enemy Spotted",
+            "description": "Each time a model from your army makes a ranged attack that targets an enemy unit that is within 9\" of and visible to any Searchlights from your army, re-roll a Hit of 1 and, if the model making that attack is a Sentry Gun, add 1 to the Hit roll as well."
+          },
+          {
+            "name": "Wall",
+            "description": "This model is a terrain feature and counts as a Wall."
+          },
+          {
+            "name": "Camera Network",
+            "description": "In the Create the Battlefield and Place Objective Markers step, set this terrain feature up in one of the Searchlight positions (marked D2 on the mission map) that does not already contain a Searchlight."
+          }
+        ],
+        "weapons": [],
+        "rules": []
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
       "name": "Sentinel Commander [Crucible]",
       "in_bsdata": true,
       "in_mfm": false,
@@ -22109,6 +22488,62 @@
           "Scouts",
           "Leader"
         ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Sentry Gun",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "deep_strike": false,
+      "profile": {
+        "name": "Sentry Gun",
+        "points": 30,
+        "stats": {
+          "M": "-",
+          "T": "4",
+          "Sv": "4+",
+          "W": "3",
+          "LD": "6+",
+          "OC": "0",
+          "InSv": ""
+        },
+        "keywords": [
+          "Vehicle",
+          "Faction: Unaligned Forces",
+          "Sentry Gun",
+          "Allies: Unaligned Forces"
+        ],
+        "abilities": [
+          {
+            "name": "Defensive Emplacement",
+            "description": "In the Create the Battlefield and Place Objective Markers step, set this model up in one of the Sentry Gun positions (marked D1 on the mission map)."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Twin heavy bolter",
+            "profiles": [
+              {
+                "name": "Twin heavy bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "3",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Heavy, Sustained Hits 1, Twin-linked"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": []
       },
       "pricing": null,
       "role": null,
@@ -22249,6 +22684,285 @@
           ]
         }
       ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Shock Trooper",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "deep_strike": false,
+      "profile": {
+        "name": "Shock Trooper",
+        "points": null,
+        "stats": {
+          "M": "6\"",
+          "T": "3",
+          "Sv": "5+",
+          "W": "1",
+          "LD": "7+",
+          "OC": "2",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: Astra Militarum"
+        ],
+        "abilities": [],
+        "weapons": [
+          {
+            "name": "Lasgun",
+            "profiles": [
+              {
+                "name": "Lasgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Shock Trooper"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Shock Trooper Sergeant",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "deep_strike": false,
+      "profile": {
+        "name": "Shock Trooper Sergeant",
+        "points": null,
+        "stats": {
+          "M": "6\"",
+          "T": "3",
+          "Sv": "5+",
+          "W": "1",
+          "LD": "7+",
+          "OC": "2",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: Astra Militarum"
+        ],
+        "abilities": [],
+        "weapons": [
+          {
+            "name": "Bolt pistol and chainsword",
+            "profiles": [
+              {
+                "name": "Bolt pistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Chainsword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Laspistol and chainsword",
+            "profiles": [
+              {
+                "name": "Laspistol",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Pistol"
+                }
+              },
+              {
+                "name": "Chainsword",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Sergeant's autogun and close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Sergeant's autogun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Sergeant's autogun",
+            "profiles": [
+              {
+                "name": "Sergeant's autogun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Shock Trooper"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Shock Trooper w/ Vox Caster",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "deep_strike": false,
+      "profile": {
+        "name": "Shock Trooper w/ Vox Caster",
+        "points": null,
+        "stats": {
+          "M": "6\"",
+          "T": "3",
+          "Sv": "5+",
+          "W": "1",
+          "LD": "7+",
+          "OC": "2",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: Astra Militarum"
+        ],
+        "abilities": [],
+        "weapons": [
+          {
+            "name": "Lasgun",
+            "profiles": [
+              {
+                "name": "Lasgun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "1",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Close combat weapon",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Shock Trooper"
+        ]
+      },
+      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -25769,6 +26483,686 @@
       "wargear_options": null
     },
     {
+      "name": "Warbringer Nemesis Titan",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "deep_strike": false,
+      "profile": {
+        "name": "Warbringer Nemesis Titan",
+        "points": 2600,
+        "stats": {
+          "M": "12\"",
+          "T": "14",
+          "Sv": "2+",
+          "W": "80",
+          "LD": "6+",
+          "OC": "20",
+          "InSv": "5+ (Ranged)"
+        },
+        "keywords": [
+          "Vehicle",
+          "Walker",
+          "Titanic",
+          "Towering",
+          "Warbringer Nemesis Titan",
+          "Frame",
+          "Faction: Astra Militarum"
+        ],
+        "abilities": [
+          {
+            "name": "Damaged: 1-26 wounds remaining",
+            "description": "While this model has 1-26 wounds remaining, subtract 10 from this model’s Objective Control characteristic and each time this model makes an attack, subtract 1 from the Hit roll."
+          },
+          {
+            "name": "Titanic Fire Support",
+            "description": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. Until the end of the phase, each time a friendly IMPERIUM model makes an attack that targets that enemy unit, on a Critical Wound, improve the Armour Penetration characteristic of that attack by 1."
+          },
+          {
+            "name": "Titanic Fire Support",
+            "description": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. Until the end of the phase, each time a friendly CHAOS model makes an attack that targets that enemy unit, on a Critical Wound, improve the Armour Penetration characteristic of that attack by 1."
+          },
+          {
+            "name": "Striding Colossus",
+            "description": "Each time you target this model with a Stratagem, you must spend three times that Stratagem’s stated CP cost to do so."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Anvillus defence battery",
+            "profiles": [
+              {
+                "name": "Anvillus defence battery",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "8",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Anti-FLY 4+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "profiles": [
+              {
+                "name": "Ardex-defensor mauler",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Nemesis feet",
+            "profiles": [
+              {
+                "name": "Nemesis feet",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "4+",
+                  "S": "12",
+                  "AP": "-2",
+                  "D": "4",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Nemesis quake cannon",
+            "profiles": [
+              {
+                "name": "Nemesis quake cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "480\"",
+                  "A": "D6+6",
+                  "BS": "3+",
+                  "S": "16",
+                  "AP": "-4",
+                  "D": "4",
+                  "Keywords": "Blast, Indirect Fire"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Nemesis volcano cannon",
+            "profiles": [
+              {
+                "name": "Nemesis volcano cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "120\"",
+                  "A": "D3+3",
+                  "BS": "3+",
+                  "S": "24",
+                  "AP": "-5",
+                  "D": "14",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver gatling blaster",
+            "profiles": [
+              {
+                "name": "Reaver gatling blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "12",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver laser blaster",
+            "profiles": [
+              {
+                "name": "Reaver laser blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "8",
+                  "BS": "3+",
+                  "S": "20",
+                  "AP": "-3",
+                  "D": "D6+2",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver melta cannon",
+            "profiles": [
+              {
+                "name": "Reaver melta cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "D6+2",
+                  "BS": "3+",
+                  "S": "13",
+                  "AP": "-4",
+                  "D": "6",
+                  "Keywords": "Blast, Melta 4"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Reaver volcano cannon",
+            "profiles": [
+              {
+                "name": "Reaver volcano cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "120\"",
+                  "A": "D3+1",
+                  "BS": "3+",
+                  "S": "24",
+                  "AP": "-5",
+                  "D": "14",
+                  "Keywords": "Blast, Heavy"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Super-Heavy Walker"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Warhound Titan",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "deep_strike": false,
+      "profile": {
+        "name": "Warhound Titan",
+        "points": 1100,
+        "stats": {
+          "M": "14\"",
+          "T": "13",
+          "Sv": "2+",
+          "W": "40",
+          "LD": "6+",
+          "OC": "16",
+          "InSv": "5+ (Ranged)"
+        },
+        "keywords": [
+          "Vehicle",
+          "Walker",
+          "Titanic",
+          "Towering",
+          "Warhound Titan",
+          "Frame",
+          "Faction: Astra Militarum"
+        ],
+        "abilities": [
+          {
+            "name": "Flank Speed",
+            "description": "Each time this model Advances, do not make an Advance roll for it. Instead, until the end of the phase, add 8\" to the Move characteristic of this model."
+          },
+          {
+            "name": "Damaged: 1-13 wounds remaining",
+            "description": "While this model has 1-13 wounds remaining, subtract 8 from this model’s Objective Control characteristic and each time this model makes an attack, subtract 1 from the Hit roll."
+          },
+          {
+            "name": "Striding Colossus",
+            "description": "Each time you target this model with a Stratagem, you must spend twice that Stratagem’s stated CP cost to do so."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Warhound feet",
+            "profiles": [
+              {
+                "name": "Warhound feet",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "8",
+                  "WS": "4+",
+                  "S": "10",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Warhound vulcan mega-bolter",
+            "profiles": [
+              {
+                "name": "Warhound vulcan mega-bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "20",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Warhound inferno gun",
+            "profiles": [
+              {
+                "name": "Warhound inferno gun",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3D6",
+                  "BS": "N/A",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Warhound plasma blastgun",
+            "profiles": [
+              {
+                "name": "Warhound plasma blastgun - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "2D6+3",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-3",
+                  "D": "4",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Warhound plasma blastgun - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "2D6+3",
+                  "BS": "3+",
+                  "S": "10",
+                  "AP": "-3",
+                  "D": "5",
+                  "Keywords": "Blast, Hazardous"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Warhound turbo-laser destructor",
+            "profiles": [
+              {
+                "name": "Warhound turbo-laser destructor",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "D3+3",
+                  "BS": "3+",
+                  "S": "20",
+                  "AP": "-3",
+                  "D": "2D6",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Super-Heavy Walker"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Warlord Titan",
+      "in_bsdata": true,
+      "in_mfm": false,
+      "deep_strike": false,
+      "profile": {
+        "name": "Warlord Titan",
+        "points": 3500,
+        "stats": {
+          "M": "10\"",
+          "T": "16",
+          "Sv": "2+",
+          "W": "100",
+          "LD": "6+",
+          "OC": "30",
+          "InSv": "5+ (Ranged)"
+        },
+        "keywords": [
+          "Vehicle",
+          "Walker",
+          "Titanic",
+          "Towering",
+          "Warlord Titan",
+          "Frame",
+          "Faction: Astra Militarum"
+        ],
+        "abilities": [
+          {
+            "name": "Damaged: 1-33 wounds remaining",
+            "description": "While this model has 1-33 wounds remaining, subtract 15 from this model’s Objective Control characteristic and each time this model makes an attack, subtract 1 from the Hit roll."
+          },
+          {
+            "name": "Wrath of the Omnissiah",
+            "description": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. That unit must take a Battle-shock test."
+          },
+          {
+            "name": "Striding Colossus",
+            "description": "Each time you target this model with a Stratagem, you must spend four times that Stratagem’s stated CP cost to do so."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "profiles": [
+              {
+                "name": "Ardex-defensor lascannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "D6+1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "profiles": [
+              {
+                "name": "Ardex-defensor mauler",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Warlord feet",
+            "profiles": [
+              {
+                "name": "Warlord feet",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "4+",
+                  "S": "12",
+                  "AP": "-2",
+                  "D": "4",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Arioch power claw",
+            "profiles": [
+              {
+                "name": "Arioch power claw",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "48\"",
+                  "A": "20",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "Sustained Hits 1"
+                }
+              },
+              {
+                "name": "Arioch power claw - strike",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "6",
+                  "WS": "4+",
+                  "S": "20",
+                  "AP": "-4",
+                  "D": "24",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Arioch power claw - sweep",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "12",
+                  "WS": "4+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "8",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Belicosa volcano cannon",
+            "profiles": [
+              {
+                "name": "Belicosa volcano cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "120\"",
+                  "A": "D3+3",
+                  "BS": "3+",
+                  "S": "32",
+                  "AP": "-5",
+                  "D": "18",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Macro gatling blaster",
+            "profiles": [
+              {
+                "name": "Macro gatling blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "100\"",
+                  "A": "30",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Sustained Hits 1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Mori quake cannon",
+            "profiles": [
+              {
+                "name": "Mori quake cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "280\"",
+                  "A": "3D6",
+                  "BS": "3+",
+                  "S": "16",
+                  "AP": "-4",
+                  "D": "6",
+                  "Keywords": "Blast, Ignores Cover"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Sunfury plasma annihilator",
+            "profiles": [
+              {
+                "name": "Sunfury plasma annihilator - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "2D6+6",
+                  "BS": "3+",
+                  "S": "10",
+                  "AP": "-3",
+                  "D": "5",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Sunfury plasma annihilator - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "2D6+6",
+                  "BS": "3+",
+                  "S": "12",
+                  "AP": "-3",
+                  "D": "8",
+                  "Keywords": "Blast, Hazardous"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Two apocalypse launchers",
+            "profiles": [
+              {
+                "name": "Apocalypse launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "200\"",
+                  "A": "20",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Blast, Indirect Fire"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Apocalypse launcher",
+            "profiles": [
+              {
+                "name": "Apocalypse launcher",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "200\"",
+                  "A": "20",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Blast, Indirect Fire"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Two laser blasters",
+            "profiles": [
+              {
+                "name": "Laser blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "16",
+                  "AP": "-4",
+                  "D": "D6+3",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Laser blaster",
+            "profiles": [
+              {
+                "name": "Laser blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "72\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "16",
+                  "AP": "-4",
+                  "D": "D6+3",
+                  "Keywords": "Blast"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Deadly Demise",
+          "Super-Heavy Walker"
+        ]
+      },
+      "pricing": null,
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
       "name": "Watch Captain Artemis",
       "in_bsdata": true,
       "in_mfm": false,
@@ -26047,8 +27441,8 @@
   "_meta": {
     "bsdata_faction": "Imperium - Astra Militarum",
     "bsdata_revision": 1,
-    "bsdata_units": 134,
+    "bsdata_units": 145,
     "mfm_units": 72,
-    "merged_units": 134
+    "merged_units": 145
   }
 }

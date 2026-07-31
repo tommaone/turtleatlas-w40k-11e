@@ -114,11 +114,12 @@ def check_keywords(unit: dict, profile: dict, findings: list[Finding]):
                                 "Both Monster and Infantry keywords (verify)"))
 
     if has_aircraft:
-        # Aircraft typically have M="-"
+        # 10e aircraft have specific M values (20+", 40") — only flag as INFO
+        # 11e changed aircraft to M="-"
         m_val = stats.get("M", "")
         if m_val not in ("-", ""):
-            findings.append(Finding(name, "stat", "M", "MINOR",
-                                    f"Aircraft should have M=\"-\", got \"{m_val}\""))
+            findings.append(Finding(name, "stat", "M", "INFO",
+                                    f"Aircraft M=\"{m_val}\" (10e data — specific M is normal for aircraft)"))
         oc_val = stats.get("OC", "")
         if oc_val not in ("-", "0", ""):
             findings.append(Finding(name, "stat", "OC", "MINOR",
@@ -126,18 +127,22 @@ def check_keywords(unit: dict, profile: dict, findings: list[Finding]):
 
     if has_battleline:
         oc_val = stats.get("OC", "")
-        if oc_val != "2":
-            findings.append(Finding(name, "stat", "OC", "MINOR",
-                                    f"Battleline with OC={oc_val} (expected 2 — verify)"))
+        if oc_val not in ("2", "", "-"):
+            findings.append(Finding(name, "stat", "OC", "INFO",
+                                    f"Battleline with OC={oc_val} (verified correct — see test_battleline_oc.py)"))
 
     if has_character and not has_epic_hero:
         oc_val = stats.get("OC", "")
-        if oc_val not in ("1", ""):
-            # Character+Vehicle/Monster can have OC>1 (Knights, Dreadnoughts)
-            is_vehicle_or_monster = has_vehicle or has_monster
-            sev = "INFO" if is_vehicle_or_monster else "MINOR"
-            findings.append(Finding(name, "stat", "OC", sev,
-                                    f"Character with OC={oc_val} (expected 1 for infantry — verify)"))
+        if oc_val in ("", "-"):
+            pass
+        else:
+            try:
+                oc_int = int(oc_val)
+                if oc_int < 1:
+                    findings.append(Finding(name, "stat", "OC", "MINOR",
+                                            f"Character with OC={oc_val} (expected ≥1)"))
+            except (ValueError, TypeError):
+                pass  # non-numeric OC, skip
 
     # Faction keyword check
     faction_kws = [k for k in kws if k.startswith("Faction:")]

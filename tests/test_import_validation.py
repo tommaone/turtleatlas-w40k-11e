@@ -47,6 +47,42 @@ def _config_units(faction: str) -> set[str]:
     return names
 
 
+def _faction_keywords(faction: str) -> list[str]:
+    """Faction's own keywords from supported.json (engine reads 'keywords')."""
+    sup_path = CONFIG_DIR / faction / "supported.json"
+    if not sup_path.exists():
+        return []
+    with open(sup_path) as f:
+        sup = json.load(f)
+    return [k.upper() for k in sup.get("keywords", [])]
+
+
+def _non_rankable(faction: str, config_units: set[str]) -> set[str]:
+    """Config units the engine intentionally does not rank.
+
+    - Allies: merged profile has Faction: keywords that don't match the
+      faction's own (e.g. Knights/Agents in grey-knights, Daemons in CSM).
+    - Not in merged data: engine iterates merged units, so these can't rank.
+    """
+    merged_names = {u["name"]: u for u in _load_merged(faction)}
+    faction_kws = _faction_keywords(faction)
+
+    excluded = set()
+    for name in config_units:
+        unit = merged_names.get(name)
+        if unit is None:
+            excluded.add(name)  # not in merged → engine never sees it
+            continue
+        profile = unit.get("profile") or {}
+        unit_fks = [k.upper() for k in profile.get("keywords", [])
+                    if k.upper().startswith("FACTION:")]
+        if not faction_kws or not unit_fks:
+            continue  # no faction keywords to compare → rankable
+        if not any(fk in unit_fks for fk in faction_kws):
+            excluded.add(name)  # ally — different faction keyword
+    return excluded
+
+
 class TestNoDuplicateNames:
     """Merged data must not contain duplicate unit names per faction."""
 
@@ -78,13 +114,16 @@ class TestNoZeroPointUnits:
 
 
 class TestConfigPointsValid:
-    """Config entries must not have pts=0."""
+    """Config entries must not have pts=0 (ally units excluded — pricing
+    lives in the ally faction's own config, not the host faction's)."""
 
     @pytest.mark.parametrize("faction", _all_factions())
     def test_config_pts_not_zero(self, faction: str):
         cfg_dir = CONFIG_DIR / faction
         if not cfg_dir.exists():
             pytest.skip("no config dir")
+        config_units = _config_units(faction)
+        allies = _non_rankable(faction, config_units)
         zero_entries = []
         for cfg_file in cfg_dir.glob("*.json"):
             if cfg_file.name in ("notes.json", "supported.json", "meta.json"):
@@ -92,7 +131,7 @@ class TestConfigPointsValid:
             with open(cfg_file) as f:
                 data = json.load(f)
             for name, val in data.items():
-                if isinstance(val, dict) and val.get("pts") == 0:
+                if isinstance(val, dict) and val.get("pts") == 0 and name not in allies:
                     zero_entries.append(f"{cfg_file.name}: {name}")
         assert not zero_entries, f"{faction} config has pts=0: {zero_entries}"
 
@@ -157,6 +196,11 @@ class TestRankingCompleteness:
     Configs define which units are in the army. If a unit is in the config
     with pricing, it should rank. Merged data may contain cross-faction
     BSData imports that aren't in the config — those are expected to be excluded.
+
+    Ally units (merged profile has a different Faction: keyword than the
+    faction's own) are intentionally not ranked by the engine's faction
+    keyword filter — they are excluded from the assertion.
+    Units not present in merged data at all cannot be ranked — excluded too.
     """
 
     @pytest.mark.parametrize("faction", _all_factions())
@@ -186,6 +230,8 @@ class TestRankingCompleteness:
                      "Phantom Titan", "Manta", "Warhound Titan", "Reaver Titan",
                      "Warlord Titan", "Warbringer Nemesis Titan"}
         missing -= allowlist
+        # Exclude allies and units not in merged data (engine cannot rank them)
+        missing -= _non_rankable(faction, config_units)
 
         assert not missing, (
             f"{faction} has {len(missing)} config units not ranked: "

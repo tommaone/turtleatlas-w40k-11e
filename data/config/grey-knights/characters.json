@@ -424,35 +424,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Fragstorm grenade launcher"
-          ],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Sublimator",
-              "Gatling psilencer",
-              "Heavy incinerator",
-              "Heavy psycannon"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Nemesis mace",
-              "Nemesis flail",
-              "Dreadfist",
-              "Nemesis daemon greathammer",
-              "Nemesis greatsword"
-            ]
-          ],
-          "max_ranged": null,
-          "max_melee": null,
           "fixed": [
             {
               "name": "Fragstorm grenade launcher",
               "type": "ranged"
             }
           ],
+          "no_duplicates": true,
           "slots": [
             {
               "name": "Dreadfists",
@@ -476,6 +454,27 @@
                 {
                   "name": "Nemesis greatsword",
                   "type": "melee"
+                }
+              ]
+            },
+            {
+              "name": "Ranged Weapons",
+              "choices": [
+                {
+                  "name": "Sublimator",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Gatling psilencer",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Heavy incinerator",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Heavy psycannon",
+                  "type": "ranged"
                 }
               ]
             },

@@ -400,11 +400,38 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
         for name in zero_units:
             print(f"    {name} — needs manual price from Warhammer Community faction pack", file=sys.stderr)
 
+    # -- Data corrections ------------------------------------------------------
+    # Known BSData source errors that can't be fixed in the parser.
+    # Format: (faction_slug, unit_name, stat_key, correct_value)
+    DATA_CORRECTIONS: list[tuple[str, str, str, str]] = [
+        # Apothecary Biologis typically OC=1 (infantry character), BSData has 3
+        ("adepta-sororitas", "Apothecary Biologis", "OC", "1"),
+        ("black-templars", "Apothecary Biologis", "OC", "1"),
+        ("blood-angels", "Apothecary Biologis", "OC", "1"),
+        ("dark-angels", "Apothecary Biologis", "OC", "1"),
+        ("deathwatch", "Apothecary Biologis", "OC", "1"),
+        ("space-marines", "Apothecary Biologis", "OC", "1"),
+        ("space-wolves", "Apothecary Biologis", "OC", "1"),
+        # Grey Hunters: Battleline with OC=3 (should be 2)
+        ("space-wolves", "Grey Hunters", "OC", "2"),
+    ]
+    for corr_slug, corr_name, corr_key, corr_val in DATA_CORRECTIONS:
+        if corr_slug != slug:
+            continue
+        for mu in merged_units:
+            if mu.get("name") == corr_name:
+                profile = mu.get("profile")
+                if profile and profile.get("stats", {}).get(corr_key) is not None:
+                    old_val = profile["stats"][corr_key]
+                    profile["stats"][corr_key] = corr_val
+                    print(f"  [CORR] {corr_name}.{corr_key}: {old_val} → {corr_val}", file=sys.stderr)
+                    break
+
     return {
         "faction": mfm_data.get("name", slug),
         "slug": slug,
         "version": mfm_data.get("version"),
-        "firstSeen": mfm_data.get("firstSeen"),
+        "firstSeen": str(mfm_data.get("firstSeen")) if mfm_data.get("firstSeen") else None,
         "detachments": mfm_data.get("detachments", []),
         "units": merged_units,
         "_meta": {

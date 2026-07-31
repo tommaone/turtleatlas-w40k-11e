@@ -391,7 +391,7 @@ class BSDataParser11e:
             roots = self._load_catalogue_roots(cat, include_linked=True)
             entry_index = self._build_entry_index(roots)
         else:
-            roots = self._load_catalogue_roots(cat)
+            roots = self._load_catalogue_roots(cat, include_linked=True)
 
         units: list[dict] = []
         _profile_cache: dict[str, list[dict]] = {}
@@ -399,7 +399,7 @@ class BSDataParser11e:
         # Build parent_groups index: entry_id → list of parent selectionEntryGroups
         # Used by level 4 weapon extraction to find weapons stored as siblings
         self._parent_groups: dict[str, list[dict]] = {}
-        for root in (roots if entry_index else self._load_catalogue_roots(cat, include_linked=True)):
+        for root in roots:
             self._build_parent_groups(root)
 
         entries = self._collect_entries(roots, entry_index=entry_index)
@@ -433,25 +433,91 @@ class BSDataParser11e:
             # 5. Name-matching fallback to sharedProfiles
             stats: dict[str, str] = {}
 
-            def _find_stats_in_entries(entries_list: list[dict]) -> dict[str, str]:
-                """Walk a list of selection entries looking for model entries with Unit profiles."""
+            def _find_stats_in_entries(entries_list: list[dict],
+                                       unit_name: str = "",
+                                       _entry_has_info_links: bool = False) -> dict[str, str]:
+                """Walk a list of selection entries looking for model entries with Unit profiles.
+                
+                When `unit_name` is provided, prefers profiles whose name matches
+                the unit name over profiles on wargear/upgrade models
+                (e.g. "Serpent's Scale Platform" within "Storm Guardians").
+                
+                `_entry_has_info_links`: set to True if any model in the parent unit
+                uses infoLinks (11e pattern). When True, non-matching models are
+                rejected since the correct profile is likely a shared profile (step 4).
+                """
+                matches: list[dict[str, str]] = []
+                non_matches: list[dict[str, str]] = []
+                unit_lower = unit_name.lower().strip()
+                unit_words = set(unit_lower.split())
+                
                 for sel in entries_list:
                     if sel.get("type") != "model":
                         continue
                     for p in sel.get("profiles", []):
                         if p.get("typeName", "") == "Unit":
-                            return self._get_chars_dict(p)
-                return {}
+                            stats = self._get_chars_dict(p)
+                            if not unit_name:
+                                return stats
+                            pname = p.get("name", sel.get("name", "")).lower().strip()
+                            # Perfect match
+                            if pname == unit_lower:
+                                return stats
+                            # Singular/plural: strip trailing s/z, compare stems
+                            _stem = lambda s: s.rstrip("sz")
+                            if _stem(pname) == _stem(unit_lower):
+                                return stats  # "Boy" ↔ "Boyz"
+                            # Word overlap check (with possessive 's stripping)
+                            pname_words = set(pname.split())
+                            # Handle both straight ' and curly ’ apostrophes in possessives
+                            _strip_s = lambda w: w[:-2] if w.endswith(("'s", "\u2019s")) else w
+                            overlap = {_strip_s(w) for w in unit_words} & {_strip_s(w) for w in pname_words}
+                            if overlap:
+                                matches.append(stats)
+                            else:
+                                non_matches.append(stats)
+                
+                if matches:
+                    return matches[0]
+                # No name match found:
+                # - If the parent unit has infoLinks elsewhere → defer to step 4
+                #   (handles "Serpent's Platform" in "Storm Guardians")
+                # - If no infoLinks exist at all → use first non-matching model
+                #   (handles "Sword Brother" in "Crusader Squad")
+                if _entry_has_info_links:
+                    return {}
+                return non_matches[0] if non_matches else {}
+
+            # Does any model in this unit use profile-type infoLinks? If so, the 11e
+            # pattern is in use and step 4 (shared profile via infoLink) takes
+            # priority over direct profiles on non-matching model entries.
+            # infoLinks of type "rule" or "infoGroup" are ability references and
+            # don't indicate the shared-profile pattern (e.g. "Deadly Demise" on
+            # Szarekh in The Silent King).
+            _entry_any_info_links = any(
+                any(il.get("type") == "profile" for il in (sel.get("infoLinks") or []))
+                for seg in entry.get("selectionEntryGroups", [])
+                for sel in seg.get("selectionEntries", [])
+                if sel.get("type") == "model"
+            ) or any(
+                any(il.get("type") == "profile" for il in (sel.get("infoLinks") or []))
+                for sel in entry.get("selectionEntries", [])
+                if sel.get("type") == "model"
+            )
 
             # 1. selectionEntryGroups → selectionEntries (type=model)
             for seg in entry.get("selectionEntryGroups", []):
-                stats = _find_stats_in_entries(seg.get("selectionEntries", []))
+                stats = _find_stats_in_entries(seg.get("selectionEntries", []),
+                                               unit_name=name,
+                                               _entry_has_info_links=_entry_any_info_links)
                 if stats:
                     break
 
             # 2. selectionEntries directly (type=model)
             if not stats:
-                stats = _find_stats_in_entries(entry.get("selectionEntries", []))
+                stats = _find_stats_in_entries(entry.get("selectionEntries", []),
+                                               unit_name=name,
+                                               _entry_has_info_links=_entry_any_info_links)
 
             # 3. Direct "Unit" profile on the entry itself
             if not stats:
@@ -1232,7 +1298,7 @@ class BSDataParser11e:
                 roots = self._load_catalogue_roots(cat, include_linked=True)
                 entry_index = self._build_entry_index(roots)
                 units = self.extract_units(cat, name, include_legends, entry_index)
-                # Deduplicate: truly identical entries (same name + same stats)
+                # Deduplicate pass 1: truly identical entries (same name + same stats)
                 # Different datasheets (e.g. "Gretchin" vs "Gretchin (Armageddon)") are NOT dupes
                 seen = {}
                 deduped = []
@@ -1248,7 +1314,27 @@ class BSDataParser11e:
                     else:
                         deduped.append(u)
                         seen[key] = u
-                units = deduped
+                # Deduplicate pass 2: same name, prefer more complete entry
+                # (handles stale main-catalogue duplicates alongside updated library entries,
+                #  e.g. Bloodletters OC=1 from World Eaters + OC=2 from Daemons Library)
+                name_groups: dict[str, list[dict]] = {}
+                for u in deduped:
+                    n = u['name'].lower().strip()
+                    name_groups.setdefault(n, []).append(u)
+                units = []
+                for n, group in name_groups.items():
+                    if len(group) == 1:
+                        units.append(group[0])
+                    else:
+                        # Prefer entry with stats first, then most completeness
+                        def sort_key(u):
+                            has_stats = 1 if u.get('stats') else 0
+                            completeness = (len(u.get('abilities', [])) +
+                                            len(u.get('rules', [])) +
+                                            len(u.get('weapons', [])))
+                            return (has_stats, completeness)
+                        group.sort(key=sort_key, reverse=True)
+                        units.append(group[0])
                 all_units = self.extract_units(cat, name, include_legends=True, entry_index=entry_index)
                 legends_count = len(all_units) - len(units)
                 return {

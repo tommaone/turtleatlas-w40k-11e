@@ -181,26 +181,9 @@
     },
     "builds": [
       {
-        "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [],
-        "ranged_choices": [
-          [
-            "Gatling psilencer",
-            "Heavy psycannon",
-            "Heavy incinerator"
-          ]
-        ],
-        "melee_choices": [
-          [
-            "Nemesis greatsword",
-            "Nemesis daemon greathammer",
-            "Dreadfist"
-          ]
-        ],
-        "max_ranged": null,
-        "max_melee": null,
+        "name": "BSData Wargear",
         "fixed": [],
+        "no_duplicates": true,
         "slots": [
           {
             "name": "Dreadfists",
@@ -214,8 +197,25 @@
                 "type": "melee"
               },
               {
-                "name": "Dreadfist",
+                "name": "Dreadfists",
                 "type": "melee"
+              }
+            ]
+          },
+          {
+            "name": "Ranged Weapons",
+            "choices": [
+              {
+                "name": "Gatling psilencer",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy psycannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy incinerator",
+                "type": "ranged"
               }
             ]
           },
@@ -546,22 +546,7 @@
     ]
   },
   "Grand Master In Nemesis Dreadknight": {
-    "ranged": [
-      "Fragstorm grenade launcher",
-      "Sublimator",
-      "Gatling psilencer",
-      "Heavy incinerator",
-      "Heavy psycannon"
-    ],
-    "melee": [
-      "Nemesis mace",
-      "Nemesis flail",
-      "Dreadfists",
-      "Nemesis daemon greathammer",
-      "Nemesis greatsword - strike",
-      "Nemesis greatsword - sweep"
-    ],
-    "innate": [],
+    "pts": 200,
     "info": {
       "M": "8\"",
       "T": 8,
@@ -571,7 +556,87 @@
       "INV": 4,
       "deep_strike": true
     },
-    "pts": 200,
+    "builds": [
+      {
+        "name": "BSData Wargear",
+        "fixed": [
+          {
+            "name": "Fragstorm grenade launcher",
+            "type": "ranged"
+          }
+        ],
+        "no_duplicates": true,
+        "slots": [
+          {
+            "name": "Dreadfists",
+            "choices": [
+              {
+                "name": "Nemesis mace",
+                "type": "melee"
+              },
+              {
+                "name": "Nemesis flail",
+                "type": "melee"
+              },
+              {
+                "name": "Dreadfists",
+                "type": "melee"
+              },
+              {
+                "name": "Nemesis daemon greathammer",
+                "type": "melee"
+              },
+              {
+                "name": "Nemesis greatsword",
+                "type": "melee"
+              }
+            ]
+          },
+          {
+            "name": "Ranged Weapons",
+            "choices": [
+              {
+                "name": "Sublimator",
+                "type": "ranged"
+              },
+              {
+                "name": "Gatling psilencer",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy incinerator",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy psycannon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Ranged Weapons",
+            "choices": [
+              {
+                "name": "Sublimator",
+                "type": "ranged"
+              },
+              {
+                "name": "Gatling psilencer",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy incinerator",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy psycannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "pts_3rd": 215
   },
   "Armiger Warglaive": {

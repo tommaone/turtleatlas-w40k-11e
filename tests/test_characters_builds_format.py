@@ -76,18 +76,20 @@ class TestAllCharactersHaveBuildsFormat:
         chars = _load_characters(faction)
         required = {"ranged", "melee"}
         optional = {"ranged_choices", "melee_choices", "max_ranged", "max_melee", "name",
-                     "fixed", "slots"}
+                     "fixed", "slots", "no_duplicates"}
         for name, cfg in chars.items():
             if name.startswith("_"):
                 continue
             if not _has_builds(cfg):
                 continue
             for i, build in enumerate(cfg["weapon_options"]["builds"]):
-                missing = required - set(build.keys())
-                assert not missing, (
-                    f"{faction}/{name} build[{i}]: missing keys {missing}"
+                keys = set(build.keys())
+                has_old = required.issubset(keys)
+                has_new = {"fixed", "slots"}.issubset(keys)
+                assert has_old or has_new, (
+                    f"{faction}/{name} build[{i}]: missing {required} (old format) or {{'fixed','slots'}} (new format), got {keys}"
                 )
-                extra = set(build.keys()) - required - optional
+                extra = keys - required - optional
                 assert not extra, (
                     f"{faction}/{name} build[{i}]: unexpected keys {extra}"
                 )

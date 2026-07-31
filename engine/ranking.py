@@ -461,7 +461,8 @@ class RankingEngine:
                 if sp_loses_m:
                     melee.append(self.W("Close combat weapon", unit_name=unit_name))
                 else:
-                    melee.append(self.W(cfg["melee"], unit_name=unit_name))
+                    m_name = cfg.get("melee") or "Close combat weapon"
+                    melee.append(self.W(m_name, unit_name=unit_name))
             else:
                 is_apoth = apoth and i == n - 1
                 if not is_apoth:
@@ -470,7 +471,7 @@ class RankingEngine:
                         if "ranged_a" in cfg:
                             kw["a"] = cfg["ranged_a"]
                         ranged.append(self.W(cfg["ranged"], unit_name=unit_name, **kw))
-                melee.append(self.W(cfg["melee"], unit_name=unit_name))
+                melee.append(self.W(cfg.get("melee") or "Close combat weapon", unit_name=unit_name))
         return {"ranged": ranged, "melee": melee, "innate": innate}
 
     def _eval_squad_build(self, build, unit_name):
@@ -510,9 +511,11 @@ class RankingEngine:
         # ── Legacy path (special_max + specials iteration) ──────────
         import itertools
         opts = cfg["specials"]
+        n_combos = 0
         best, best_d = None, -1
         for n_sp in range(0, cfg["special_max"] + 1):
             for indices in itertools.product(range(len(opts)), repeat=n_sp):
+                n_combos += 1
                 ld = self._eval_squad_variant(cfg, list(indices))
                 if ld is None:
                     continue
@@ -522,6 +525,7 @@ class RankingEngine:
                     best = ld
 
         if best:
+            best["_n_combos"] = n_combos
             r_counts = {}
             for wp in best["ranged"]:
                 r_counts[wp.name] = r_counts.get(wp.name, 0) + 1
@@ -546,7 +550,7 @@ class RankingEngine:
                 parts.append("Melee: " + ", ".join(f"{c}×{n}" for n, c in sorted(m_counts.items())))
             if i_counts:
                 parts.append("Innate: " + ", ".join(f"{c}×{n}" for n, c in sorted(i_counts.items())))
-            parts.append(f"[optimised for {tag}]")
+            parts.append(f"[best of {n_combos} combos vs {tag}]")
             best["_desc"] = "; ".join(parts)
         return best
 
@@ -559,6 +563,7 @@ class RankingEngine:
         """
         n = cfg["n"]
         builds = cfg["builds"]
+        n_combos = len(builds)
         best, best_dpp = None, -1
         for build in builds:
             ld = self._eval_squad_build(build, unit_name)
@@ -569,6 +574,7 @@ class RankingEngine:
                 best = ld
 
         if best:
+            best["_n_combos"] = n_combos
             # Build description with per-model breakdown
             r_counts = {}
             for wp in best["ranged"]:
@@ -595,7 +601,7 @@ class RankingEngine:
                 me = m.get("melee", "-")
                 model_parts.append(f"{count}×{r}+{me}")
             parts = ["Models: " + ", ".join(model_parts)]
-            parts.append(f"[optimised for {tag}, DPP/model={best_dpp:.4f}]")
+            parts.append(f"[best of {n_combos} builds vs {tag}, DPP/model={best_dpp:.4f}]")
             best["_desc"] = "; ".join(parts)
 
             # Weapon details for turtledeck — full stats per weapon
@@ -642,7 +648,9 @@ class RankingEngine:
             # 0 or 1 ranged option: just equip what we have + best melee
             ranged = [self.W(n, unit_name=unit_name) for n in ranged_names]
             best, best_d = None, -1
+            n_combos = 0
             for mm_name in melee_names:
+                n_combos += 1
                 melee = [self.W(mm_name, unit_name=unit_name)]
                 d = _ld_dmg(ranged, melee, [], target)
                 if d > best_d:
@@ -651,13 +659,16 @@ class RankingEngine:
                         "ranged": ranged,
                         "melee": melee,
                         "innate": [],
+                        "_n_combos": n_combos,
                         "_desc": f"Ranged: {', '.join(ranged_names) or 'none'}; Melee: {mm_name} [optimised]",
                     }
             return best
         if not melee_names:
             # Ranged only, no melee
             best, best_d = None, -1
+            n_combos = 0
             for pair in itertools.combinations(ranged_names, 2):
+                n_combos += 1
                 ranged = [self.W(n, unit_name=unit_name) for n in pair]
                 d = _ld_dmg(ranged, [], [], target)
                 if d > best_d:
@@ -666,14 +677,17 @@ class RankingEngine:
                         "ranged": ranged,
                         "melee": [],
                         "innate": [],
+                        "_n_combos": n_combos,
                         "_desc": f"Ranged: {'+'.join(pair)} [optimised]",
                     }
             return best
 
         # Normal path: 2+ ranged options, 1+ melee options — no duplicates
         best, best_d = None, -1
+        n_combos = 0
         for (rf1_name, rf2_name) in itertools.combinations(ranged_names, 2):
             for mm_name in melee_names:
+                n_combos += 1
                 ranged = [
                     self.W(rf1_name, unit_name=unit_name),
                     self.W(rf2_name, unit_name=unit_name),
@@ -686,6 +700,7 @@ class RankingEngine:
                         "ranged": ranged,
                         "melee": melee,
                         "innate": [],
+                        "_n_combos": n_combos,
                         "_desc": f"Ranged: {rf1_name}+{rf2_name}; Melee: {mm_name} [optimised]",
                     }
         return best
@@ -742,7 +757,10 @@ class RankingEngine:
                 pricing, sdetail["n"], tier,
             )
             ld = self._best_squad_variant(name, target)
-            return (pts, ld["ranged"], ld["melee"], ld["innate"], sdetail["info"])
+            squad_info = dict(sdetail.get("info", {}))
+            if ld and "_n_combos" in ld:
+                squad_info["_n_combos"] = ld["_n_combos"]
+            return (pts, ld["ranged"], ld["melee"], ld["innate"], squad_info)
 
         # Vehicle with weapon options (NDK / GMNDK / all vehicles)
         if name in self.config.weapon_options:
@@ -759,11 +777,13 @@ class RankingEngine:
             if "builds" in wo:
                 best_build = None
                 best_d = -1
+                n_combos = 0
                 for build in wo["builds"]:
                     # New format: untyped slots with typed choices
                     sb = self._resolve_slots_build(build, name, target)
                     if sb is not None:
-                        b_ranged, b_melee = sb
+                        b_ranged, b_melee, sb_n = sb
+                        n_combos += sb_n
                         d = _ld_dmg(b_ranged, b_melee, [], target)
                         if d > best_d:
                             best_d = d
@@ -780,12 +800,11 @@ class RankingEngine:
                         import itertools
                         max_r = build.get("max_ranged")
                         if max_r and max_r < len(ranged_choice_lists):
-                            # max < number of choice lists: flatten all options,
-                            # pick max_r weapons (no dupes)
                             all_options = list({opt for cl in ranged_choice_lists for opt in cl})
                             best_combo_d = -1
                             best_combo_ranged = None
                             for combo in itertools.combinations(all_options, max_r):
+                                n_combos += 1
                                 combo_ranged = list(b_ranged)
                                 for choice_name in combo:
                                     combo_ranged.append(self.W(choice_name, unit_name=name))
@@ -795,11 +814,11 @@ class RankingEngine:
                                     best_combo_ranged = combo_ranged
                             b_ranged = best_combo_ranged
                         elif max_r and max_r >= len(ranged_choice_lists):
-                            # max >= number of lists: pick max_r total from all options
                             all_options = list({opt for cl in ranged_choice_lists for opt in cl})
                             best_combo_d = -1
                             best_combo_ranged = None
                             for combo in itertools.combinations(all_options, min(max_r, len(all_options))):
+                                n_combos += 1
                                 combo_ranged = list(b_ranged)
                                 for choice_name in combo:
                                     combo_ranged.append(self.W(choice_name, unit_name=name))
@@ -809,11 +828,11 @@ class RankingEngine:
                                     best_combo_ranged = combo_ranged
                             b_ranged = best_combo_ranged
                         else:
-                            # No max constraint: pick 1 from each choice list
                             choice_combos = itertools.product(*ranged_choice_lists)
                             best_combo_d = -1
                             best_combo_ranged = None
                             for combo in choice_combos:
+                                n_combos += 1
                                 combo_ranged = list(b_ranged)
                                 for choice_list in combo:
                                     combo_ranged.append(self.W(choice_list, unit_name=name))
@@ -828,12 +847,11 @@ class RankingEngine:
                         import itertools
                         max_m = build.get("max_melee")
                         if max_m and max_m < len(melee_choice_lists):
-                            # max < number of choice lists: flatten all options,
-                            # pick max_m weapons (no dupes)
                             all_options = list({opt for cl in melee_choice_lists for opt in cl})
                             best_combo_d = -1
                             best_combo_melee = None
                             for combo in itertools.combinations(all_options, max_m):
+                                n_combos += 1
                                 combo_melee = list(b_melee)
                                 for choice_name in combo:
                                     combo_melee.append(self.W(choice_name, unit_name=name))
@@ -843,11 +861,11 @@ class RankingEngine:
                                     best_combo_melee = combo_melee
                             b_melee = best_combo_melee
                         elif max_m and max_m >= len(melee_choice_lists):
-                            # max >= number of lists: pick max_m total from all options
                             all_options = list({opt for cl in melee_choice_lists for opt in cl})
                             best_combo_d = -1
                             best_combo_melee = None
                             for combo in itertools.combinations(all_options, min(max_m, len(all_options))):
+                                n_combos += 1
                                 combo_melee = list(b_melee)
                                 for choice_name in combo:
                                     combo_melee.append(self.W(choice_name, unit_name=name))
@@ -857,11 +875,11 @@ class RankingEngine:
                                     best_combo_melee = combo_melee
                             b_melee = best_combo_melee
                         else:
-                            # No max constraint: pick 1 from each choice list
                             choice_combos = itertools.product(*melee_choice_lists)
                             best_combo_d = -1
                             best_combo_melee = None
                             for combo in choice_combos:
+                                n_combos += 1
                                 combo_melee = list(b_melee)
                                 for choice_list in combo:
                                     combo_melee.append(self.W(choice_list, unit_name=name))
@@ -877,11 +895,15 @@ class RankingEngine:
                         best_build = (b_ranged, b_melee)
 
                 if best_build:
+                    info["_n_combos"] = n_combos
                     return (pts, best_build[0], best_build[1], [], info)
 
             # Fallback: flat ranged/melee lists (legacy format)
             bv = self._best_vehicle_variant(wo["ranged"], wo["melee"], name, target)
-            return (pts, bv["ranged"], bv["melee"], bv["innate"], info)
+            fallback_info = dict(info)
+            if bv and "_n_combos" in bv:
+                fallback_info["_n_combos"] = bv["_n_combos"]
+            return (pts, bv["ranged"], bv["melee"], bv["innate"], fallback_info)
 
         # Character: fixed loadout (with optional weapon choice)
         if name in self.config.characters:
@@ -898,11 +920,13 @@ class RankingEngine:
                 import itertools as _itertools_ch
                 best_build = None
                 best_d = -1
+                n_combos = 0
                 for build in ch["weapon_options"]["builds"]:
                     # New format: untyped slots with typed choices
                     sb = self._resolve_slots_build(build, name, target)
                     if sb is not None:
-                        b_ranged, b_melee = sb
+                        b_ranged, b_melee, sb_n = sb
+                        n_combos += sb_n
                         d = _ld_dmg(b_ranged, b_melee, [], target)
                         if d > best_d:
                             best_d = d
@@ -918,12 +942,11 @@ class RankingEngine:
                     if ranged_choice_lists:
                         max_r = build.get("max_ranged")
                         if max_r and max_r < len(ranged_choice_lists):
-                            # max < number of choice lists: flatten all options,
-                            # pick max_r weapons (no dupes)
                             all_options = list({opt for cl in ranged_choice_lists for opt in cl})
                             best_combo_d = -1
                             best_combo_ranged = None
                             for combo in _itertools_ch.combinations(all_options, max_r):
+                                n_combos += 1
                                 combo_ranged = list(b_ranged)
                                 for choice_name in combo:
                                     combo_ranged.append(self.W(choice_name, unit_name=name))
@@ -933,11 +956,11 @@ class RankingEngine:
                                     best_combo_ranged = combo_ranged
                             b_ranged = best_combo_ranged
                         elif max_r and max_r >= len(ranged_choice_lists):
-                            # max >= number of lists: pick max_r total from all options
                             all_options = list({opt for cl in ranged_choice_lists for opt in cl})
                             best_combo_d = -1
                             best_combo_ranged = None
                             for combo in _itertools_ch.combinations(all_options, min(max_r, len(all_options))):
+                                n_combos += 1
                                 combo_ranged = list(b_ranged)
                                 for choice_name in combo:
                                     combo_ranged.append(self.W(choice_name, unit_name=name))
@@ -947,11 +970,11 @@ class RankingEngine:
                                     best_combo_ranged = combo_ranged
                             b_ranged = best_combo_ranged
                         else:
-                            # No max constraint: pick 1 from each choice list
                             choice_combos = _itertools_ch.product(*ranged_choice_lists)
                             best_combo_d = -1
                             best_combo_ranged = None
                             for combo in choice_combos:
+                                n_combos += 1
                                 combo_ranged = list(b_ranged)
                                 for choice_list in combo:
                                     combo_ranged.append(self.W(choice_list, unit_name=name))
@@ -965,12 +988,11 @@ class RankingEngine:
                     if melee_choice_lists:
                         max_m = build.get("max_melee")
                         if max_m and max_m < len(melee_choice_lists):
-                            # max < number of choice lists: flatten all options,
-                            # pick max_m weapons (no dupes)
                             all_options = list({opt for cl in melee_choice_lists for opt in cl})
                             best_combo_d = -1
                             best_combo_melee = None
                             for combo in _itertools_ch.combinations(all_options, max_m):
+                                n_combos += 1
                                 combo_melee = list(b_melee)
                                 for choice_name in combo:
                                     combo_melee.append(self.W(choice_name, unit_name=name))
@@ -980,11 +1002,11 @@ class RankingEngine:
                                     best_combo_melee = combo_melee
                             b_melee = best_combo_melee
                         elif max_m and max_m >= len(melee_choice_lists):
-                            # max >= number of lists: pick max_m total from all options
                             all_options = list({opt for cl in melee_choice_lists for opt in cl})
                             best_combo_d = -1
                             best_combo_melee = None
                             for combo in _itertools_ch.combinations(all_options, min(max_m, len(all_options))):
+                                n_combos += 1
                                 combo_melee = list(b_melee)
                                 for choice_name in combo:
                                     combo_melee.append(self.W(choice_name, unit_name=name))
@@ -994,11 +1016,11 @@ class RankingEngine:
                                     best_combo_melee = combo_melee
                             b_melee = best_combo_melee
                         else:
-                            # No max constraint: pick 1 from each choice list
                             choice_combos = _itertools_ch.product(*melee_choice_lists)
                             best_combo_d = -1
                             best_combo_melee = None
                             for combo in choice_combos:
+                                n_combos += 1
                                 combo_melee = list(b_melee)
                                 for choice_list in combo:
                                     combo_melee.append(self.W(choice_list, unit_name=name))
@@ -1014,7 +1036,9 @@ class RankingEngine:
                         best_build = (b_ranged, b_melee)
 
                 if best_build:
-                    return (pts, best_build[0], best_build[1], [], ch.get("info"))
+                    ch_info = dict(ch.get("info", {}))
+                    ch_info["_n_combos"] = n_combos
+                    return (pts, best_build[0], best_build[1], [], ch_info)
 
             # Per-slot weapon_options (existing fallback for non-build configs)
             ranged = [self.W(rn, unit_name=name) for rn in ch["ranged"]]
@@ -1027,22 +1051,29 @@ class RankingEngine:
                          or "focused witchfire" in w.name.lower()]
             melee = [self.W(mn, unit_name=name) for mn in ch["melee"]]
             innate = [self.W(inn, unit_name=name) for inn in ch.get("innate", [])]
+            n_combos = 0
             # Weapon options: pick best variant vs target
             if "weapon_options" in ch:
                 opts = ch["weapon_options"]
                 if "ranged" in opts:
+                    n_combos = len(opts["ranged"])
                     best_rng = max(
                         ([self.W(rn, unit_name=name) for rn in opt] for opt in opts["ranged"]),
                         key=lambda ws: _ld_dmg(ws, melee, innate, target),
                     )
                     ranged = best_rng
                 if "melee" in opts:
+                    n_combos = n_combos or 1
+                    n_combos *= len(opts["melee"])
                     best_ml = max(
                         ([self.W(mn, unit_name=name) for mn in opt] for opt in opts["melee"]),
                         key=lambda ws: _ld_dmg(ranged, ws, innate, target),
                     )
                     melee = best_ml
-            return (pts, ranged, melee, innate, ch.get("info"))
+            ch_info = dict(ch.get("info", {}))
+            if n_combos > 1:
+                ch_info["_n_combos"] = n_combos
+            return (pts, ranged, melee, innate, ch_info)
 
         # Fixed vehicle loadout — or weapon_slots based
         if name in self.config.vehicles:
@@ -1084,6 +1115,7 @@ class RankingEngine:
 
         best_ranged, best_melee = list(fixed_ranged), list(fixed_melee)
         best_d, best_pts = -1, base_pts
+        n_combos = 0
 
         # Build lists of choices per slot
         slot_choices = []
@@ -1098,6 +1130,7 @@ class RankingEngine:
 
         # Iterate all slot combinations
         for combo in itertools.product(*slot_choices):
+            n_combos += 1
             slot_pts = base_pts
             slot_ranged = list(fixed_ranged)
             slot_melee = list(fixed_melee)
@@ -1144,7 +1177,9 @@ class RankingEngine:
                 best_melee = slot_melee
                 best_pts = slot_pts
 
-        return (best_pts, best_ranged, best_melee, fixed_innate, vh.get("info"))
+        slot_info = dict(vh.get("info", {}))
+        slot_info["_n_combos"] = n_combos
+        return (best_pts, best_ranged, best_melee, fixed_innate, slot_info)
 
     def _resolve_slots_build(self, build: dict, name: str, target) -> tuple | None:
         """Resolve a build using 'slots' format.
@@ -1154,12 +1189,18 @@ class RankingEngine:
         constraints — you pick 1 from each slot, period.
         
         Returns (ranged_list, melee_list) or None if build lacks slots format.
+
+        Supports build-level "no_duplicates": true — enforces "cannot take
+        duplicates" across slots (e.g. 2× Sublimator is invalid). Combos with
+        a repeated weapon name are skipped and not counted in n_combos.
         """
         slots = build.get("slots")
         if not slots:
             return None
         
         import itertools
+        
+        no_duplicates = build.get("no_duplicates", False)
         
         # Fixed weapons sorted by type (skip unresolvable)
         fixed_items = build.get("fixed", [])
@@ -1183,8 +1224,14 @@ class RankingEngine:
         best_d = -1
         best_ranged = None
         best_melee = None
+        n_combos = 0
         
         for combo in itertools.product(*slot_choice_lists):
+            if no_duplicates:
+                combo_names = [c["name"] for c in combo]
+                if len(set(combo_names)) != len(combo_names):
+                    continue  # duplicate weapon picked in 2+ slots — invalid
+            n_combos += 1
             combo_ranged = list(b_ranged)
             combo_melee = list(b_melee)
             skip_combo = False
@@ -1208,8 +1255,8 @@ class RankingEngine:
                 best_melee = combo_melee
         
         if best_ranged is not None:
-            return (best_ranged, best_melee)
-        return (b_ranged, b_melee)
+            return (best_ranged, best_melee, n_combos)
+        return (b_ranged, b_melee, n_combos)
 
     # ── Unit info ────────────────────────────────────────────────────
 
@@ -1583,6 +1630,10 @@ class RankingEngine:
             # OC boost from banner/Astartes Banner wargear (+1 OC per model to attached unit)
             oc_boost_val = info.get("oc_boost", 0) if info else 0
 
+            n_combos = info.get("_n_combos", 0) if info else 0
+            ld = self._loadout_desc(ranged_profiles, melee_profiles, innate_profiles)
+            if n_combos > 1:
+                ld += f" [best of {n_combos} combos]"
             result_entry = {
                 "name": name,
                 "points": pts,
@@ -1593,7 +1644,8 @@ class RankingEngine:
                 "ranged": ranged_profiles,
                 "melee": melee_profiles,
                 "innate": innate_profiles,
-                "loadout_desc": self._loadout_desc(ranged_profiles, melee_profiles, innate_profiles),
+                "loadout_desc": ld,
+                "n_combos": n_combos,
                 "notes": notes,
                 "conditional_fnp": cond_fnp,
                 "conditional_fnp_type": cond_fnp_type,
