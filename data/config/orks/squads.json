@@ -1,18 +1,11 @@
 {
-  "_note": "orks squads \u2014 generated from BSData + MFM",
+  "_note": "orks squads — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Beast Snagga Boyz": {
     "n": 10,
     "pts": 90,
     "ranged": "Thump gun",
     "melee": "Close combat weapon",
-    "special_max": 1,
-    "specials": [
-      "Slugga"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -20,23 +13,40 @@
       "SV": 5,
       "W": 1,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Thump gun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "Slugga",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Slugga",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 9,
+            "ranged": "Thump gun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Boyz": {
     "n": 10,
     "pts": 75,
     "ranged": "Slugga",
     "melee": "Choppa",
-    "special_max": 2,
-    "specials": [
-      "Shoota",
-      "Big shoota",
-      "Rokkit launcha",
-      "Kombi-weapon"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -44,23 +54,85 @@
       "SV": 5,
       "W": 1,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Slugga",
+            "melee": "Choppa"
+          }
+        ]
+      },
+      {
+        "name": "2x Shoota",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Shoota",
+            "melee": "Choppa"
+          },
+          {
+            "count": 8,
+            "ranged": "Slugga",
+            "melee": "Choppa"
+          }
+        ]
+      },
+      {
+        "name": "2x Big shoota",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Big shoota",
+            "melee": "Choppa"
+          },
+          {
+            "count": 8,
+            "ranged": "Slugga",
+            "melee": "Choppa"
+          }
+        ]
+      },
+      {
+        "name": "2x Rokkit launcha",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Rokkit launcha",
+            "melee": "Choppa"
+          },
+          {
+            "count": 8,
+            "ranged": "Slugga",
+            "melee": "Choppa"
+          }
+        ]
+      },
+      {
+        "name": "2x Kombi-weapon",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Kombi-weapon",
+            "melee": "Choppa"
+          },
+          {
+            "count": 8,
+            "ranged": "Slugga",
+            "melee": "Choppa"
+          }
+        ]
+      }
+    ]
   },
   "Boyz (Armageddon)": {
     "n": 5,
     "pts": 75,
     "ranged": "Shoota",
     "melee": "Choppa",
-    "special_max": 2,
-    "specials": [
-      "Slugga",
-      "Kombi-rokkit",
-      "Kombi-shoota",
-      "Kustom shoota"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -68,18 +140,85 @@
       "SV": 5,
       "W": 1,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Shoota",
+            "melee": "Choppa"
+          }
+        ]
+      },
+      {
+        "name": "2x Slugga",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Slugga",
+            "melee": "Choppa"
+          },
+          {
+            "count": 3,
+            "ranged": "Shoota",
+            "melee": "Choppa"
+          }
+        ]
+      },
+      {
+        "name": "2x Kombi-rokkit",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Kombi-rokkit",
+            "melee": "Choppa"
+          },
+          {
+            "count": 3,
+            "ranged": "Shoota",
+            "melee": "Choppa"
+          }
+        ]
+      },
+      {
+        "name": "2x Kombi-shoota",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Kombi-shoota",
+            "melee": "Choppa"
+          },
+          {
+            "count": 3,
+            "ranged": "Shoota",
+            "melee": "Choppa"
+          }
+        ]
+      },
+      {
+        "name": "2x Kustom shoota",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Kustom shoota",
+            "melee": "Choppa"
+          },
+          {
+            "count": 3,
+            "ranged": "Shoota",
+            "melee": "Choppa"
+          }
+        ]
+      }
+    ]
   },
   "Breaka Boyz": {
     "n": 6,
     "pts": 125,
     "ranged": "Rokkit pistol",
     "melee": "Smash hammer",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -87,18 +226,26 @@
       "SV": 4,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 6,
+            "ranged": "Rokkit pistol",
+            "melee": "Smash hammer"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 135
   },
   "Burna Boyz": {
     "n": 5,
     "pts": 60,
     "ranged": "Burna",
-    "melee": "Cuttin\u2019 flames",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
+    "melee": "Cuttin’ flames",
     "innate": [],
     "info": {
       "M": "6\"",
@@ -106,18 +253,25 @@
       "SV": 5,
       "W": 1,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Burna",
+            "melee": "Cuttin’ flames"
+          }
+        ]
+      }
+    ]
   },
   "Flash Gitz": {
     "n": 5,
     "pts": 75,
     "ranged": "Snazzgun",
     "melee": "Choppa",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -125,20 +279,26 @@
       "SV": 4,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Snazzgun",
+            "melee": "Choppa"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 85
   },
   "Gretchin": {
     "n": 11,
     "pts": 45,
     "ranged": "Slugga",
     "melee": "Grot-smacka",
-    "special_max": 1,
-    "specials": [
-      "Grot blasta"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -146,18 +306,40 @@
       "SV": 7,
       "W": 1,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 11,
+            "ranged": "Slugga",
+            "melee": "Grot-smacka"
+          }
+        ]
+      },
+      {
+        "name": "Grot blasta",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Grot blasta",
+            "melee": "Grot-smacka"
+          },
+          {
+            "count": 10,
+            "ranged": "Slugga",
+            "melee": "Grot-smacka"
+          }
+        ]
+      }
+    ]
   },
   "Gretchin (Armageddon)": {
     "n": 5,
     "pts": 45,
     "ranged": "Grot blasta",
     "melee": "Close combat weapon",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -165,22 +347,25 @@
       "SV": 7,
       "W": 1,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Grot blasta",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Kommandos": {
     "n": 10,
     "pts": 120,
     "ranged": "Slugga",
     "melee": "Choppa",
-    "special_max": 2,
-    "specials": [
-      "Kustom shoota",
-      "Burna",
-      "Rokkit launcha"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -188,18 +373,70 @@
       "SV": 5,
       "W": 1,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Slugga",
+            "melee": "Choppa"
+          }
+        ]
+      },
+      {
+        "name": "2x Kustom shoota",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Kustom shoota",
+            "melee": "Choppa"
+          },
+          {
+            "count": 8,
+            "ranged": "Slugga",
+            "melee": "Choppa"
+          }
+        ]
+      },
+      {
+        "name": "2x Burna",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Burna",
+            "melee": "Choppa"
+          },
+          {
+            "count": 8,
+            "ranged": "Slugga",
+            "melee": "Choppa"
+          }
+        ]
+      },
+      {
+        "name": "2x Rokkit launcha",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Rokkit launcha",
+            "melee": "Choppa"
+          },
+          {
+            "count": 8,
+            "ranged": "Slugga",
+            "melee": "Choppa"
+          }
+        ]
+      }
+    ]
   },
   "Lootas": {
     "n": 5,
     "pts": 50,
     "ranged": "Deffgun",
     "melee": "Close combat weapon",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -207,20 +444,26 @@
       "SV": 5,
       "W": 1,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Deffgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 60
   },
   "Meganobz": {
     "n": 2,
     "pts": 60,
     "ranged": "Kustom shoota",
     "melee": "Power klaw",
-    "special_max": 1,
-    "specials": [
-      "Kombi-weapon"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -229,20 +472,41 @@
       "W": 3,
       "OC": 1,
       "FNP": 5
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Kustom shoota",
+            "melee": "Power klaw"
+          }
+        ]
+      },
+      {
+        "name": "Kombi-weapon",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Kombi-weapon",
+            "melee": "Power klaw"
+          },
+          {
+            "count": 1,
+            "ranged": "Kustom shoota",
+            "melee": "Power klaw"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 80
   },
   "Nobz": {
     "n": 5,
     "pts": 105,
     "ranged": "Slugga",
     "melee": "Big choppa",
-    "special_max": 1,
-    "specials": [
-      "Kombi-weapon"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -250,18 +514,41 @@
       "SV": 4,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Slugga",
+            "melee": "Big choppa"
+          }
+        ]
+      },
+      {
+        "name": "Kombi-weapon",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Kombi-weapon",
+            "melee": "Big choppa"
+          },
+          {
+            "count": 4,
+            "ranged": "Slugga",
+            "melee": "Big choppa"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 115
   },
   "Stormboyz": {
     "n": 5,
     "pts": 65,
     "ranged": "Slugga",
     "melee": "Choppa",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -270,20 +557,25 @@
       "W": 1,
       "OC": 1,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Slugga",
+            "melee": "Choppa"
+          }
+        ]
+      }
+    ]
   },
   "Tankbustas": {
     "n": 6,
     "pts": 125,
     "ranged": "Rokkit pistol",
     "melee": "Choppa",
-    "special_max": 1,
-    "specials": [
-      "Rokkit launcha"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -291,20 +583,41 @@
       "SV": 4,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 6,
+            "ranged": "Rokkit pistol",
+            "melee": "Choppa"
+          }
+        ]
+      },
+      {
+        "name": "Rokkit launcha",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Rokkit launcha",
+            "melee": "Choppa"
+          },
+          {
+            "count": 5,
+            "ranged": "Rokkit pistol",
+            "melee": "Choppa"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 135
   },
   "Warbikers": {
     "n": 3,
     "pts": 60,
     "ranged": "Twin dakkagun",
     "melee": "Close combat weapon",
-    "special_max": 1,
-    "specials": [
-      "Slugga"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -313,20 +626,40 @@
       "W": 4,
       "OC": 2,
       "INV": 6
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Twin dakkagun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "Slugga",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Slugga",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 2,
+            "ranged": "Twin dakkagun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Wartrakk": {
     "n": 1,
     "pts": 60,
     "ranged": "Rokkit launcha",
     "melee": "Choppas",
-    "special_max": 1,
-    "specials": [
-      "Kustom shoota"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -335,6 +668,28 @@
       "W": 7,
       "OC": 3,
       "INV": 6
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Rokkit launcha",
+            "melee": "Choppas"
+          }
+        ]
+      },
+      {
+        "name": "Kustom shoota",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Kustom shoota",
+            "melee": "Choppas"
+          }
+        ]
+      }
+    ]
   }
 }
