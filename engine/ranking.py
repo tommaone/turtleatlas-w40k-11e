@@ -434,46 +434,6 @@ class RankingEngine:
 
     # ── Loadout resolution ────────────────────────────────────────────
 
-    def _eval_squad_variant(self, cfg, spec_indices):
-        """Evaluate one loadout variant for a squad config."""
-        n = cfg["n"]
-        n_sp = len(spec_indices)
-        if n_sp > cfg["special_max"]:
-            return None
-        unit_name = cfg.get("unit") or next(
-            (k for k, v in self.config.squads.items() if v is cfg),
-            cfg.get("unit", "")
-        )
-        opts = cfg["specials"]
-        sp_loses_r = cfg.get("sp_loses_r", True)
-        sp_loses_m = cfg.get("sp_loses_m", False)
-        apoth = cfg.get("apoth_loses_r", False)
-
-        ranged, melee, innate = [], [], []
-        si = 0
-        for i in range(n):
-            for iname in cfg.get("innate", []):
-                innate.append(self.W(iname, unit_name=unit_name))
-            if si < n_sp:
-                sname = opts[spec_indices[si]]
-                si += 1
-                ranged.append(self.W(sname, unit_name=unit_name))
-                if sp_loses_m:
-                    melee.append(self.W("Close combat weapon", unit_name=unit_name))
-                else:
-                    m_name = cfg.get("melee") or "Close combat weapon"
-                    melee.append(self.W(m_name, unit_name=unit_name))
-            else:
-                is_apoth = apoth and i == n - 1
-                if not is_apoth:
-                    if cfg.get("ranged"):
-                        kw = {}
-                        if "ranged_a" in cfg:
-                            kw["a"] = cfg["ranged_a"]
-                        ranged.append(self.W(cfg["ranged"], unit_name=unit_name, **kw))
-                melee.append(self.W(cfg.get("melee") or "Close combat weapon", unit_name=unit_name))
-        return {"ranged": ranged, "melee": melee, "innate": innate}
-
     def _eval_squad_build(self, build, unit_name):
         """Evaluate one explicit build for a squad.
 
@@ -497,62 +457,17 @@ class RankingEngine:
         return {"ranged": ranged, "melee": melee, "innate": innate, "_build": build}
 
     def _best_squad_variant(self, name, target, mode=None):
-        """Find optimal special weapon loadout for a squad vs a target."""
+        """Find optimal build for a squad vs a target.
+
+        All squads use the builds format (legacy specials/special_max path
+        removed — 467/467 squads converted fleet-wide). See
+        scripts/convert_squad_builds.py for the converter.
+        """
         cfg = self.config.squads.get(name)
         if not cfg:
             return None
-
         unit_name = cfg.get("unit") or name
-
-        # ── Builds path (explicit model lists) ──────────────────────
-        if "builds" in cfg:
-            return self._best_squad_build(cfg, unit_name, target, mode=mode)
-
-        # ── Legacy path (special_max + specials iteration) ──────────
-        import itertools
-        opts = cfg["specials"]
-        n_combos = 0
-        best, best_d = None, -1
-        for n_sp in range(0, cfg["special_max"] + 1):
-            for indices in itertools.product(range(len(opts)), repeat=n_sp):
-                n_combos += 1
-                ld = self._eval_squad_variant(cfg, list(indices))
-                if ld is None:
-                    continue
-                d = _ld_dmg(ld["ranged"], ld["melee"], ld["innate"], target, n_models=cfg["n"])
-                if d > best_d:
-                    best_d = d
-                    best = ld
-
-        if best:
-            best["_n_combos"] = n_combos
-            r_counts = {}
-            for wp in best["ranged"]:
-                r_counts[wp.name] = r_counts.get(wp.name, 0) + 1
-            m_counts = {}
-            for wp in best["melee"]:
-                m_counts[wp.name] = m_counts.get(wp.name, 0) + 1
-            i_counts = {}
-            for wp in best["innate"]:
-                i_counts[wp.name] = i_counts.get(wp.name, 0) + 1
-            target_tag = None
-            for tname, tp in self.config.target_profiles.items():
-                if target == tp:
-                    target_tag = tname
-                    break
-            tag = target_tag or (
-                "meta" if isinstance(target, list) else "custom"
-            )
-            parts = []
-            if r_counts:
-                parts.append("Ranged: " + ", ".join(f"{c}×{n}" for n, c in sorted(r_counts.items())))
-            if m_counts:
-                parts.append("Melee: " + ", ".join(f"{c}×{n}" for n, c in sorted(m_counts.items())))
-            if i_counts:
-                parts.append("Innate: " + ", ".join(f"{c}×{n}" for n, c in sorted(i_counts.items())))
-            parts.append(f"[best of {n_combos} combos vs {tag}]")
-            best["_desc"] = "; ".join(parts)
-        return best
+        return self._best_squad_build(cfg, unit_name, target, mode=mode)
 
     def _best_squad_build(self, cfg, unit_name, target, mode=None):
         """Pick best build from explicit builds array.
