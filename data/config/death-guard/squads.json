@@ -4,9 +4,6 @@
   "Beasts Of Nurgle": {
     "n": 1,
     "pts": 70,
-    "ranged": null,
-    "melee": "Putrid appendages",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 9,
@@ -16,6 +13,7 @@
       "INV": 5,
       "deep_strike": true
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -31,9 +29,6 @@
   "Blightlord Terminators": {
     "n": 3,
     "pts": 115,
-    "ranged": "Combi-bolter",
-    "melee": "Bubotic blade",
-    "innate": [],
     "info": {
       "M": "5\"",
       "T": 7,
@@ -43,6 +38,7 @@
       "INV": 4,
       "deep_strike": true
     },
+    "innate": [],
     "_note": "11e: at min squad (n=3) only the 3-model clause applies - 1 combi-bolter and bubotic blade replaced with plague spewer and close combat weapon; combi-weapon/blight launcher/reaper autocannon swaps require 5+ models",
     "builds": [
       {
@@ -75,9 +71,6 @@
   "Chaos Spawn": {
     "n": 2,
     "pts": 80,
-    "ranged": null,
-    "melee": "Hideous Mutations",
-    "innate": [],
     "info": {
       "M": "8\"",
       "T": 7,
@@ -85,6 +78,7 @@
       "W": 4,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -100,9 +94,6 @@
   "Deathshroud Terminators": {
     "n": 3,
     "pts": 160,
-    "ranged": "Plaguespurt gauntlet",
-    "melee": "Manreaper - strike",
-    "innate": [],
     "info": {
       "M": "5\"",
       "T": 7,
@@ -113,6 +104,7 @@
       "FNP": 4,
       "deep_strike": true
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -129,9 +121,6 @@
   "Nurglings": {
     "n": 3,
     "pts": 45,
-    "ranged": null,
-    "melee": "Diseased claws and teeth",
-    "innate": [],
     "info": {
       "M": "5\"",
       "T": 3,
@@ -141,6 +130,7 @@
       "INV": 5,
       "deep_strike": true
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -156,9 +146,6 @@
   "Plague Drones": {
     "n": 3,
     "pts": 110,
-    "ranged": "Death's heads",
-    "melee": "Foul mouthparts",
-    "innate": [],
     "info": {
       "M": "10\"",
       "T": 8,
@@ -168,6 +155,7 @@
       "INV": 5,
       "deep_strike": true
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -184,9 +172,6 @@
   "Plague Marines": {
     "n": 5,
     "pts": 90,
-    "ranged": "Boltgun",
-    "melee": "Plague knives",
-    "innate": [],
     "info": {
       "M": "5\"",
       "T": 6,
@@ -194,15 +179,17 @@
       "W": 2,
       "OC": 2
     },
-    "_note": "11e per-5 rule: 1 boltgun replaced with blight launcher, 1 with plague spewer, 1 with meltagun/plague belcher/plasma gun; bubotic weapons/heavy plague weapon melee swaps and icon of despair not modelled",
+    "innate": [
+      "Plague knives"
+    ],
+    "_note": "11e per-5 rule: 1 boltgun replaced with blight launcher, 1 with plague spewer, 1 with meltagun/plague belcher/plasma gun (standard/supercharge); bubotic weapons or heavy plague weapon melee swaps replace the boltgun (model keeps Plague knives via innate). Icon of despair (non-weapon) not modelled.",
     "builds": [
       {
         "name": "Melee",
         "models": [
           {
             "count": 5,
-            "ranged": "Boltgun",
-            "melee": "Plague knives"
+            "ranged": "Boltgun"
           }
         ]
       },
@@ -211,13 +198,11 @@
         "models": [
           {
             "count": 1,
-            "ranged": "Blight launcher",
-            "melee": "Plague knives"
+            "ranged": "Blight launcher"
           },
           {
             "count": 4,
-            "ranged": "Boltgun",
-            "melee": "Plague knives"
+            "ranged": "Boltgun"
           }
         ]
       },
@@ -226,13 +211,11 @@
         "models": [
           {
             "count": 1,
-            "ranged": "Plague spewer",
-            "melee": "Plague knives"
+            "ranged": "Plague spewer"
           },
           {
             "count": 4,
-            "ranged": "Boltgun",
-            "melee": "Plague knives"
+            "ranged": "Boltgun"
           }
         ]
       },
@@ -241,13 +224,11 @@
         "models": [
           {
             "count": 1,
-            "ranged": "Meltagun",
-            "melee": "Plague knives"
+            "ranged": "Meltagun"
           },
           {
             "count": 4,
-            "ranged": "Boltgun",
-            "melee": "Plague knives"
+            "ranged": "Boltgun"
           }
         ]
       },
@@ -256,13 +237,11 @@
         "models": [
           {
             "count": 1,
-            "ranged": "Plague belcher",
-            "melee": "Plague knives"
+            "ranged": "Plague belcher"
           },
           {
             "count": 4,
-            "ranged": "Boltgun",
-            "melee": "Plague knives"
+            "ranged": "Boltgun"
           }
         ]
       },
@@ -271,13 +250,11 @@
         "models": [
           {
             "count": 1,
-            "ranged": "Plasma gun - standard",
-            "melee": "Plague knives"
+            "ranged": "Plasma gun - standard"
           },
           {
             "count": 4,
-            "ranged": "Boltgun",
-            "melee": "Plague knives"
+            "ranged": "Boltgun"
           }
         ]
       },
@@ -286,13 +263,37 @@
         "models": [
           {
             "count": 1,
-            "ranged": "Plasma gun - supercharge",
-            "melee": "Plague knives"
+            "ranged": "Plasma gun - supercharge"
           },
           {
             "count": 4,
-            "ranged": "Boltgun",
-            "melee": "Plague knives"
+            "ranged": "Boltgun"
+          }
+        ]
+      },
+      {
+        "name": "Bubotic weapons",
+        "models": [
+          {
+            "count": 1,
+            "melee": "Bubotic weapons"
+          },
+          {
+            "count": 4,
+            "ranged": "Boltgun"
+          }
+        ]
+      },
+      {
+        "name": "Heavy plague weapon",
+        "models": [
+          {
+            "count": 1,
+            "melee": "Heavy plague weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Boltgun"
           }
         ]
       }
@@ -301,9 +302,6 @@
   "Plaguebearers": {
     "n": 10,
     "pts": 115,
-    "ranged": null,
-    "melee": "Plaguesword",
-    "innate": [],
     "info": {
       "M": "5\"",
       "T": 5,
@@ -313,6 +311,7 @@
       "INV": 5,
       "deep_strike": true
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -328,9 +327,6 @@
   "Poxwalkers": {
     "n": 10,
     "pts": 65,
-    "ranged": null,
-    "melee": "Improvised weapons",
-    "innate": [],
     "info": {
       "M": "5\"",
       "T": 4,
@@ -338,6 +334,7 @@
       "W": 1,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
