@@ -6,11 +6,6 @@
     "pts": 50,
     "ranged": null,
     "melee": "Arco-flails",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "7\"",
@@ -19,18 +14,24 @@
       "W": 2,
       "OC": 1,
       "INV": 6
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Arco-flails"
+          }
+        ]
+      }
+    ]
   },
   "Battle Sisters Squad": {
     "n": 10,
     "pts": 100,
     "ranged": "Boltgun",
     "melee": "Close combat weapon",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -39,20 +40,25 @@
       "W": 1,
       "OC": 2,
       "INV": 6
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Celestian Insidiants": {
     "n": 10,
     "pts": 120,
     "ranged": "Condemnor bolt pistol",
     "melee": "Null mace",
-    "special_max": 1,
-    "specials": [
-      "Ministorum hand flamer"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -61,18 +67,40 @@
       "W": 1,
       "OC": 1,
       "FNP": 4
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Condemnor bolt pistol",
+            "melee": "Null mace"
+          }
+        ]
+      },
+      {
+        "name": "Ministorum hand flamer",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Ministorum hand flamer",
+            "melee": "Null mace"
+          },
+          {
+            "count": 9,
+            "ranged": "Condemnor bolt pistol",
+            "melee": "Null mace"
+          }
+        ]
+      }
+    ]
   },
   "Celestian Sacresants": {
     "n": 5,
     "pts": 75,
     "ranged": null,
     "melee": "Anointed Halberd",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -81,22 +109,25 @@
       "W": 1,
       "OC": 1,
       "INV": 4
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Anointed Halberd"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 85
   },
   "Dominion Squad": {
     "n": 10,
-    "pts": 100,
+    "pts": 90,
     "ranged": "Boltgun",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Artificer-crafted storm bolter",
-      "Meltagun",
-      "Ministorum flamer"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -105,21 +136,71 @@
       "W": 1,
       "OC": 1,
       "INV": 6
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Artificer-crafted storm bolter",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Artificer-crafted storm bolter",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Meltagun",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Meltagun",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Ministorum flamer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Ministorum flamer",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 100
   },
   "Retributor Squad": {
     "n": 5,
     "pts": 105,
     "ranged": "Ministorum heavy flamer",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Multi-melta",
-      "Heavy bolter"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -128,20 +209,56 @@
       "W": 1,
       "OC": 1,
       "INV": 6
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Ministorum heavy flamer",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Multi-melta",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Multi-melta",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Ministorum heavy flamer",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Heavy bolter",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Heavy bolter",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Ministorum heavy flamer",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 115
   },
   "Saint Celestine": {
     "n": 3,
     "pts": 150,
     "ranged": "Bolt Pistol",
     "melee": "Power Weapon",
-    "special_max": 1,
-    "specials": [
-      "The Ardent Blade"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -152,24 +269,40 @@
       "INV": 4,
       "FNP": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Bolt Pistol",
+            "melee": "Power Weapon"
+          }
+        ]
+      },
+      {
+        "name": "The Ardent Blade",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "The Ardent Blade",
+            "melee": "Power Weapon"
+          },
+          {
+            "count": 2,
+            "ranged": "Bolt Pistol",
+            "melee": "Power Weapon"
+          }
+        ]
+      }
+    ]
   },
   "Sanctifiers": {
     "n": 9,
     "pts": 110,
     "ranged": "Plasma gun - standard",
     "melee": "Burning hands",
-    "special_max": 2,
-    "specials": [
-      "Plasma gun - supercharge",
-      "Meltagun",
-      "Holy fire",
-      "Ministorum flamer",
-      "Ministorum hand flamer"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -178,20 +311,100 @@
       "W": 1,
       "OC": 1,
       "INV": 5
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 9,
+            "ranged": "Plasma gun - standard",
+            "melee": "Burning hands"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma gun - supercharge",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma gun - supercharge",
+            "melee": "Burning hands"
+          },
+          {
+            "count": 7,
+            "ranged": "Plasma gun - standard",
+            "melee": "Burning hands"
+          }
+        ]
+      },
+      {
+        "name": "2x Meltagun",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Meltagun",
+            "melee": "Burning hands"
+          },
+          {
+            "count": 7,
+            "ranged": "Plasma gun - standard",
+            "melee": "Burning hands"
+          }
+        ]
+      },
+      {
+        "name": "2x Holy fire",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Holy fire",
+            "melee": "Burning hands"
+          },
+          {
+            "count": 7,
+            "ranged": "Plasma gun - standard",
+            "melee": "Burning hands"
+          }
+        ]
+      },
+      {
+        "name": "2x Ministorum flamer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Ministorum flamer",
+            "melee": "Burning hands"
+          },
+          {
+            "count": 7,
+            "ranged": "Plasma gun - standard",
+            "melee": "Burning hands"
+          }
+        ]
+      },
+      {
+        "name": "2x Ministorum hand flamer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Ministorum hand flamer",
+            "melee": "Burning hands"
+          },
+          {
+            "count": 7,
+            "ranged": "Plasma gun - standard",
+            "melee": "Burning hands"
+          }
+        ]
+      }
+    ]
   },
   "Seraphim Squad": {
     "n": 5,
-    "pts": 85,
+    "pts": 75,
     "ranged": "Ministorum hand flamer",
     "melee": "Close combat weapon",
-    "special_max": 1,
-    "specials": [
-      "Inferno Pistol"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -201,20 +414,41 @@
       "OC": 1,
       "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Ministorum hand flamer",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "Inferno Pistol",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Inferno Pistol",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Ministorum hand flamer",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 85
   },
   "Sisters Novitiate Squad": {
     "n": 10,
-    "pts": 100,
+    "pts": 90,
     "ranged": "Ministorum flamer",
     "melee": "Novitiate melee weapon",
-    "special_max": 1,
-    "specials": [
-      "Novitiate autogun"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -223,20 +457,40 @@
       "W": 1,
       "OC": 2,
       "INV": 6
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Ministorum flamer",
+            "melee": "Novitiate melee weapon"
+          }
+        ]
+      },
+      {
+        "name": "Novitiate autogun",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Novitiate autogun",
+            "melee": "Novitiate melee weapon"
+          },
+          {
+            "count": 9,
+            "ranged": "Ministorum flamer",
+            "melee": "Novitiate melee weapon"
+          }
+        ]
+      }
+    ]
   },
   "Zephyrim Squad": {
     "n": 5,
-    "pts": 80,
+    "pts": 75,
     "ranged": "Plasma pistol - supercharge",
     "melee": "Power weapon",
-    "special_max": 1,
-    "specials": [
-      "Plasma pistol - standard"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -246,6 +500,34 @@
       "OC": 1,
       "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Plasma pistol - supercharge",
+            "melee": "Power weapon"
+          }
+        ]
+      },
+      {
+        "name": "Plasma pistol - standard",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Plasma pistol - standard",
+            "melee": "Power weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Plasma pistol - supercharge",
+            "melee": "Power weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 85
   }
 }
