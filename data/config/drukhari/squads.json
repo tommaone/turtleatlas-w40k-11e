@@ -1,25 +1,11 @@
 {
-  "_note": "drukhari squads — generated from BSData + MFM",
+  "_note": "drukhari squads — builds format with modes (curated)",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Hand Of The Archon": {
     "n": 10,
     "pts": 115,
-    "ranged": "Blast Pistol",
+    "ranged": "Splinter Rifle",
     "melee": "Close Combat Weapon",
-    "special_max": 2,
-    "specials": [
-      "Splinter Pistol",
-      "Splinter Rifle",
-      "Stinger pistol",
-      "Blaster",
-      "Shredder",
-      "Dark Lance",
-      "Splinter Cannon",
-      "Shardcarbine"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "7\"",
@@ -28,20 +14,115 @@
       "W": 1,
       "OC": 1,
       "INV": 6
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Splinter Rifle",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "1x Blaster",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Blaster",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 9,
+            "ranged": "Splinter Rifle",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "1x Shredder",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Shredder",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 9,
+            "ranged": "Splinter Rifle",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "1x Dark Lance",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Dark Lance",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 9,
+            "ranged": "Splinter Rifle",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "1x Splinter Cannon",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Splinter Cannon",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 9,
+            "ranged": "Splinter Rifle",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "1x Shardcarbine",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Shardcarbine",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 9,
+            "ranged": "Splinter Rifle",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "1x Stinger Pistol",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Stinger Pistol",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 9,
+            "ranged": "Splinter Rifle",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      }
+    ]
   },
   "Hellions": {
     "n": 5,
     "pts": 90,
     "ranged": "Splinter Pods",
     "melee": "Hellglaive",
-    "special_max": 1,
-    "specials": [
-      "Splinter Pistol"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "14\"",
@@ -51,18 +132,55 @@
       "OC": 1,
       "INV": 6,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Splinter Pods",
+            "melee": "Hellglaive"
+          }
+        ]
+      },
+      {
+        "name": "1x Power Weapon",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Splinter Pistol",
+            "melee": "Power weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Splinter Pods",
+            "melee": "Hellglaive"
+          }
+        ]
+      },
+      {
+        "name": "1x Stunclaw",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Splinter Pistol",
+            "melee": "Stunclaw"
+          },
+          {
+            "count": 4,
+            "ranged": "Splinter Pods",
+            "melee": "Hellglaive"
+          }
+        ]
+      }
+    ]
   },
   "Incubi": {
     "n": 5,
     "pts": 90,
     "ranged": null,
     "melee": "Klaive",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "7\"",
@@ -71,25 +189,24 @@
       "W": 1,
       "OC": 1,
       "INV": 5
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Klaive"
+          }
+        ]
+      }
+    ]
   },
   "Kabalite Warriors": {
     "n": 10,
     "pts": 110,
-    "ranged": "Shredder",
+    "ranged": "Splinter Rifle",
     "melee": "Close Combat Weapon",
-    "special_max": 2,
-    "specials": [
-      "Splinter Rifle",
-      "Blaster",
-      "Splinter Cannon",
-      "Dark Lance",
-      "Blast Pistol",
-      "Splinter Pistol"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "7\"",
@@ -98,18 +215,85 @@
       "W": 1,
       "OC": 2,
       "INV": 6
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Splinter Rifle",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "1x Blaster",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Blaster",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 9,
+            "ranged": "Splinter Rifle",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "1x Dark Lance",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Dark Lance",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 9,
+            "ranged": "Splinter Rifle",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "1x Shredder",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Shredder",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 9,
+            "ranged": "Splinter Rifle",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "1x Splinter Cannon",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Splinter Cannon",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 9,
+            "ranged": "Splinter Rifle",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      }
+    ]
   },
   "Mandrakes": {
     "n": 5,
     "pts": 80,
     "ranged": "Baleblast",
     "melee": "Glimmersteel Blade",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "8\"",
@@ -119,22 +303,25 @@
       "OC": 1,
       "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Baleblast",
+            "melee": "Glimmersteel Blade"
+          }
+        ]
+      }
+    ]
   },
   "Reavers": {
     "n": 3,
     "pts": 75,
     "ranged": "Splinter Rifle",
     "melee": "Bladevanes",
-    "special_max": 2,
-    "specials": [
-      "Splinter Pistol",
-      "Blaster",
-      "Heat Lance"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "16\"",
@@ -143,27 +330,55 @@
       "W": 2,
       "OC": 2,
       "INV": 6
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Splinter Rifle",
+            "melee": "Bladevanes"
+          }
+        ]
+      },
+      {
+        "name": "1x Blaster",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Blaster",
+            "melee": "Bladevanes"
+          },
+          {
+            "count": 2,
+            "ranged": "Splinter Rifle",
+            "melee": "Bladevanes"
+          }
+        ]
+      },
+      {
+        "name": "1x Heat Lance",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Heat Lance",
+            "melee": "Bladevanes"
+          },
+          {
+            "count": 2,
+            "ranged": "Splinter Rifle",
+            "melee": "Bladevanes"
+          }
+        ]
+      }
+    ]
   },
   "Scourges With Heavy Weapons": {
     "n": 5,
     "pts": 110,
-    "ranged": "Blaster",
-    "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Heat Lance",
-      "Splinter Cannon",
-      "Shredder",
-      "Dark Lance",
-      "Haywire Blaster",
-      "Shardcarbine",
-      "Blast Pistol",
-      "Splinter Pistol"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
+    "ranged": "Splinter Cannon",
+    "melee": "Close Combat Weapon",
     "innate": [],
     "info": {
       "M": "14\"",
@@ -173,23 +388,105 @@
       "OC": 1,
       "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Shardcarbine",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Splinter Cannon",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "4x Blaster",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Shardcarbine",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Blaster",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "4x Dark Lance",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Shardcarbine",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Dark Lance",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "4x Haywire Blaster",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Shardcarbine",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Haywire Blaster",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "4x Heat Lance",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Shardcarbine",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Heat Lance",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "4x Shredder",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Shardcarbine",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Shredder",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      }
+    ]
   },
   "Scourges With Shardcarbines": {
     "n": 5,
     "pts": 75,
-    "ranged": "Blaster",
-    "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Shredder",
-      "Shardcarbine",
-      "Blast Pistol",
-      "Splinter Pistol"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
+    "ranged": "Shardcarbine",
+    "melee": "Close Combat Weapon",
     "innate": [],
     "info": {
       "M": "14\"",
@@ -199,22 +496,55 @@
       "OC": 1,
       "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Shardcarbine",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "1x Blaster",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Blaster",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Shardcarbine",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "1x Shredder",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Shredder",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Shardcarbine",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      }
+    ]
   },
   "Wracks": {
     "n": 5,
     "pts": 60,
-    "ranged": "Hexrifle",
-    "melee": "Torturer's tool",
-    "special_max": 2,
-    "specials": [
-      "Liquifier Gun",
-      "Ossefactor",
-      "Stinger Pistol"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
+    "ranged": null,
+    "melee": "Twin Torturer's Tools",
     "innate": [],
     "info": {
       "M": "7\"",
@@ -223,20 +553,80 @@
       "W": 2,
       "OC": 2,
       "INV": 6
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Twin Torturer's Tools"
+          }
+        ]
+      },
+      {
+        "name": "1x Hexrifle",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Hexrifle",
+            "melee": "Torturer's tool"
+          },
+          {
+            "count": 4,
+            "melee": "Twin Torturer's Tools"
+          }
+        ]
+      },
+      {
+        "name": "1x Liquifier Gun",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Liquifier Gun",
+            "melee": "Torturer's tool"
+          },
+          {
+            "count": 4,
+            "melee": "Twin Torturer's Tools"
+          }
+        ]
+      },
+      {
+        "name": "1x Ossefactor",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Ossefactor",
+            "melee": "Torturer's tool"
+          },
+          {
+            "count": 4,
+            "melee": "Twin Torturer's Tools"
+          }
+        ]
+      },
+      {
+        "name": "1x Stinger Pistol",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Stinger Pistol",
+            "melee": "Torturer's tool"
+          },
+          {
+            "count": 4,
+            "melee": "Twin Torturer's Tools"
+          }
+        ]
+      }
+    ]
   },
   "Wyches": {
     "n": 10,
     "pts": 90,
     "ranged": "Splinter Pistol",
     "melee": "Hekatarii Blade",
-    "special_max": 1,
-    "specials": [
-      "Blast Pistol"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "8\"",
@@ -245,6 +635,62 @@
       "W": 1,
       "OC": 2,
       "INV": 4
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Splinter Pistol",
+            "melee": "Hekatarii Blade"
+          }
+        ]
+      },
+      {
+        "name": "1x Blast Pistol",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Blast Pistol",
+            "melee": "Hekatarii Blade"
+          },
+          {
+            "count": 9,
+            "ranged": "Splinter Pistol",
+            "melee": "Hekatarii Blade"
+          }
+        ]
+      },
+      {
+        "name": "1x Power Weapon",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Splinter Pistol",
+            "melee": "Power weapon"
+          },
+          {
+            "count": 9,
+            "ranged": "Splinter Pistol",
+            "melee": "Hekatarii Blade"
+          }
+        ]
+      },
+      {
+        "name": "3x Gladiatorial Weapons",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Gladiatorial weapons"
+          },
+          {
+            "count": 7,
+            "ranged": "Splinter Pistol",
+            "melee": "Hekatarii Blade"
+          }
+        ]
+      }
+    ]
   }
 }
