@@ -1,16 +1,11 @@
 {
-  "_note": "tyranids squads \u2014 generated from BSData + MFM",
+  "_note": "tyranids squads — builds format with modes (curated)",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Barbgaunts": {
     "n": 5,
     "pts": 55,
     "ranged": "Barblauncher",
     "melee": "Chitinous claws and teeth",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -18,18 +13,25 @@
       "SV": 4,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Barblauncher",
+            "melee": "Chitinous claws and teeth"
+          }
+        ]
+      }
+    ]
   },
   "Biovores": {
     "n": 1,
     "pts": 60,
     "ranged": "Spore mine launcher",
     "melee": "Chitin-barbed limbs",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -37,18 +39,25 @@
       "SV": 3,
       "W": 5,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Spore mine launcher",
+            "melee": "Chitin-barbed limbs"
+          }
+        ]
+      }
+    ]
   },
   "Gargoyles": {
     "n": 10,
     "pts": 80,
     "ranged": "Fleshborer",
     "melee": "Blinding venom",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -57,18 +66,26 @@
       "W": 1,
       "OC": 2,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Fleshborer",
+            "melee": "Blinding venom"
+          }
+        ]
+      }
+    ]
   },
   "Genestealers": {
     "n": 5,
     "pts": 75,
+    "pts_3rd": 85,
     "ranged": null,
     "melee": "Genestealers claws and talons",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "8\"",
@@ -77,20 +94,25 @@
       "W": 2,
       "OC": 1,
       "INV": 5
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Genestealers claws and talons"
+          }
+        ]
+      }
+    ]
   },
   "Hive Guard": {
     "n": 3,
     "pts": 80,
+    "pts_3rd": 90,
     "ranged": "Shockcannon",
     "melee": "Chitinous claws and teeth",
-    "special_max": 1,
-    "specials": [
-      "Impaler cannon"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -98,18 +120,40 @@
       "SV": 3,
       "W": 4,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Shockcannon",
+            "melee": "Chitinous claws and teeth"
+          }
+        ]
+      },
+      {
+        "name": "Impaler cannon",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Impaler cannon",
+            "melee": "Chitinous claws and teeth"
+          },
+          {
+            "count": 2,
+            "ranged": "Shockcannon",
+            "melee": "Chitinous claws and teeth"
+          }
+        ]
+      }
+    ]
   },
   "Hormagaunts": {
     "n": 10,
     "pts": 70,
     "ranged": null,
     "melee": "Hormagaunt talons",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "10\"",
@@ -117,18 +161,24 @@
       "SV": 5,
       "W": 1,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "melee": "Hormagaunt talons"
+          }
+        ]
+      }
+    ]
   },
   "Lictor": {
     "n": 1,
     "pts": 60,
     "ranged": null,
     "melee": "Lictor claws and talons",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "8\"",
@@ -137,18 +187,24 @@
       "W": 6,
       "OC": 1,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 1,
+            "melee": "Lictor claws and talons"
+          }
+        ]
+      }
+    ]
   },
   "Mucolid Spores": {
     "n": 1,
     "pts": 30,
     "ranged": null,
     "melee": "Close combat weapon",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "4\"",
@@ -157,18 +213,24 @@
       "W": 3,
       "OC": 0,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 1,
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Mucolid Spores (Sporocyst)": {
     "n": 5,
     "pts": 30,
     "ranged": null,
     "melee": "Close combat weapon",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "4\"",
@@ -177,18 +239,24 @@
       "W": 3,
       "OC": 0,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Neurogaunts": {
     "n": 11,
     "pts": 45,
     "ranged": null,
     "melee": "Chitinous claws and teeth",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -196,18 +264,25 @@
       "SV": 6,
       "W": 1,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 11,
+            "melee": "Chitinous claws and teeth"
+          }
+        ]
+      }
+    ]
   },
   "Neurolictor": {
     "n": 1,
     "pts": 80,
+    "pts_3rd": 90,
     "ranged": null,
     "melee": "Piercing claws and talons",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "8\"",
@@ -217,18 +292,25 @@
       "OC": 1,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 1,
+            "melee": "Piercing claws and talons"
+          }
+        ]
+      }
+    ]
   },
   "Pyrovores": {
     "n": 1,
     "pts": 45,
+    "pts_3rd": 55,
     "ranged": "Flamespurt",
     "melee": "Chitin-barbed limbs",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -236,18 +318,26 @@
       "SV": 3,
       "W": 5,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Flamespurt",
+            "melee": "Chitin-barbed limbs"
+          }
+        ]
+      }
+    ]
   },
   "Raveners": {
     "n": 5,
     "pts": 125,
+    "pts_3rd": 135,
     "ranged": null,
     "melee": "Ravener claws and talons",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "10\"",
@@ -256,18 +346,24 @@
       "W": 3,
       "OC": 1,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Ravener claws and talons"
+          }
+        ]
+      }
+    ]
   },
   "Ripper Swarms": {
     "n": 1,
     "pts": 30,
     "ranged": "Spinemaw",
     "melee": "Chitinous claws and teeth",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -276,18 +372,25 @@
       "W": 4,
       "OC": 0,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Spinemaw",
+            "melee": "Chitinous claws and teeth"
+          }
+        ]
+      }
+    ]
   },
   "Ripper Swarms (Parasite of Mortrex)": {
     "n": 5,
     "pts": 30,
     "ranged": "Spinemaw",
     "melee": "Chitinous claws and teeth",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -296,18 +399,25 @@
       "W": 4,
       "OC": 0,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Spinemaw",
+            "melee": "Chitinous claws and teeth"
+          }
+        ]
+      }
+    ]
   },
   "Spore Mines": {
     "n": 3,
     "pts": 55,
     "ranged": null,
     "melee": "Close combat weapon",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "4\"",
@@ -316,18 +426,24 @@
       "W": 1,
       "OC": 0,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Spore Mines (Biovore)": {
     "n": 5,
     "pts": 55,
     "ranged": null,
     "melee": "Close combat weapon",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "4\"",
@@ -336,24 +452,24 @@
       "W": 1,
       "OC": 0,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Termagants": {
     "n": 10,
     "pts": 60,
     "ranged": "Fleshborer",
     "melee": "Chitinous claws and teeth",
-    "special_max": 2,
-    "specials": [
-      "Termagant spinefist",
-      "Termagant devourer",
-      "Shardlauncher",
-      "Spike rifle",
-      "Strangleweb"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -361,18 +477,100 @@
       "SV": 5,
       "W": 1,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Fleshborer",
+            "melee": "Chitinous claws and teeth"
+          }
+        ]
+      },
+      {
+        "name": "2x Termagant spinefist",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Termagant spinefist",
+            "melee": "Chitinous claws and teeth"
+          },
+          {
+            "count": 8,
+            "ranged": "Fleshborer",
+            "melee": "Chitinous claws and teeth"
+          }
+        ]
+      },
+      {
+        "name": "2x Termagant devourer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Termagant devourer",
+            "melee": "Chitinous claws and teeth"
+          },
+          {
+            "count": 8,
+            "ranged": "Fleshborer",
+            "melee": "Chitinous claws and teeth"
+          }
+        ]
+      },
+      {
+        "name": "2x Shardlauncher",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Shardlauncher",
+            "melee": "Chitinous claws and teeth"
+          },
+          {
+            "count": 8,
+            "ranged": "Fleshborer",
+            "melee": "Chitinous claws and teeth"
+          }
+        ]
+      },
+      {
+        "name": "2x Spike rifle",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Spike rifle",
+            "melee": "Chitinous claws and teeth"
+          },
+          {
+            "count": 8,
+            "ranged": "Fleshborer",
+            "melee": "Chitinous claws and teeth"
+          }
+        ]
+      },
+      {
+        "name": "2x Strangleweb",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Strangleweb",
+            "melee": "Chitinous claws and teeth"
+          },
+          {
+            "count": 8,
+            "ranged": "Fleshborer",
+            "melee": "Chitinous claws and teeth"
+          }
+        ]
+      }
+    ]
   },
   "Tyranid Warriors With Melee Bio-Weapons": {
     "n": 3,
     "pts": 75,
     "ranged": null,
     "melee": "Tyranid Warrior claws and talons",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -380,23 +578,24 @@
       "SV": 4,
       "W": 3,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Tyranid Warrior claws and talons"
+          }
+        ]
+      }
+    ]
   },
   "Tyranid Warriors With Ranged Bio-Weapons": {
     "n": 3,
     "pts": 60,
     "ranged": "Deathspitter",
     "melee": "Tyranid Warrior claws and talons",
-    "special_max": 2,
-    "specials": [
-      "Spinefists",
-      "Venom cannon",
-      "Barbed strangler",
-      "Devourer"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -404,18 +603,85 @@
       "SV": 4,
       "W": 3,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Deathspitter",
+            "melee": "Tyranid Warrior claws and talons"
+          }
+        ]
+      },
+      {
+        "name": "2x Spinefists",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Spinefists",
+            "melee": "Tyranid Warrior claws and talons"
+          },
+          {
+            "count": 1,
+            "ranged": "Deathspitter",
+            "melee": "Tyranid Warrior claws and talons"
+          }
+        ]
+      },
+      {
+        "name": "2x Venom cannon",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Venom cannon",
+            "melee": "Tyranid Warrior claws and talons"
+          },
+          {
+            "count": 1,
+            "ranged": "Deathspitter",
+            "melee": "Tyranid Warrior claws and talons"
+          }
+        ]
+      },
+      {
+        "name": "2x Barbed strangler",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Barbed strangler",
+            "melee": "Tyranid Warrior claws and talons"
+          },
+          {
+            "count": 1,
+            "ranged": "Deathspitter",
+            "melee": "Tyranid Warrior claws and talons"
+          }
+        ]
+      },
+      {
+        "name": "2x Devourer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Devourer",
+            "melee": "Tyranid Warrior claws and talons"
+          },
+          {
+            "count": 1,
+            "ranged": "Deathspitter",
+            "melee": "Tyranid Warrior claws and talons"
+          }
+        ]
+      }
+    ]
   },
   "Tyrant Guard": {
     "n": 3,
     "pts": 80,
     "ranged": null,
     "melee": "Scything talons and rending claws",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -424,18 +690,24 @@
       "W": 4,
       "OC": 1,
       "FNP": 5
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Scything talons and rending claws"
+          }
+        ]
+      }
+    ]
   },
   "Venomthropes": {
     "n": 3,
     "pts": 55,
     "ranged": null,
     "melee": "Toxic lashes",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -443,18 +715,24 @@
       "SV": 4,
       "W": 3,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Toxic lashes"
+          }
+        ]
+      }
+    ]
   },
-  "Von Ryan\u2019S Leapers": {
+  "Von Ryan’S Leapers": {
     "n": 3,
-    "pts": 60,
+    "pts": 55,
     "ranged": null,
     "melee": "Leaper's talons",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "10\"",
@@ -463,20 +741,24 @@
       "W": 3,
       "OC": 1,
       "INV": 6
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Leaper's talons"
+          }
+        ]
+      }
+    ]
   },
   "Zoanthropes": {
     "n": 3,
-    "pts": 100,
+    "pts": 90,
     "ranged": "Warp blast - witchfire",
     "melee": "Chitinous claws and teeth",
-    "special_max": 1,
-    "specials": [
-      "Warp blast - focused witchfire"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -485,6 +767,33 @@
       "W": 3,
       "OC": 1,
       "INV": 4
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Warp blast - witchfire",
+            "melee": "Chitinous claws and teeth"
+          }
+        ]
+      },
+      {
+        "name": "Warp blast - focused witchfire",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Warp blast - focused witchfire",
+            "melee": "Chitinous claws and teeth"
+          },
+          {
+            "count": 2,
+            "ranged": "Warp blast - witchfire",
+            "melee": "Chitinous claws and teeth"
+          }
+        ]
+      }
+    ]
   }
 }
