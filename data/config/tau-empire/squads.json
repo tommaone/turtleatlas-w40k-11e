@@ -6,14 +6,6 @@
     "pts": 90,
     "ranged": "Pulse pistol",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Pulse blaster",
-      "Support turret"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -21,22 +13,55 @@
       "SV": 4,
       "W": 1,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Pulse pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Pulse blaster",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Pulse blaster",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Pulse pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Support turret",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Support turret",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Pulse pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Kroot Carnivores": {
     "n": 10,
     "pts": 65,
     "ranged": "Kroot rifle",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Tanglebomb launcher",
-      "Kroot pistol",
-      "Kroot carbine"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "7\"",
@@ -44,23 +69,70 @@
       "SV": 6,
       "W": 1,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Kroot rifle",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Tanglebomb launcher",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Tanglebomb launcher",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Kroot rifle",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Kroot pistol",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Kroot pistol",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Kroot rifle",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Kroot carbine",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Kroot carbine",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Kroot rifle",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Kroot Farstalkers": {
     "n": 12,
     "pts": 75,
     "ranged": "Farstalker firearm",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Kroot pistol",
-      "Dvorgite skinner",
-      "Londaxi tribalest",
-      "T'au tech rifle"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "7\"",
@@ -68,18 +140,86 @@
       "SV": 6,
       "W": 1,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 12,
+            "ranged": "Farstalker firearm",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Kroot pistol",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Kroot pistol",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 10,
+            "ranged": "Farstalker firearm",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Dvorgite skinner",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Dvorgite skinner",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 10,
+            "ranged": "Farstalker firearm",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Londaxi tribalest",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Londaxi tribalest",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 10,
+            "ranged": "Farstalker firearm",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x T'au tech rifle",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "T'au tech rifle",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 10,
+            "ranged": "Farstalker firearm",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 85
   },
   "Kroot Hounds": {
     "n": 5,
     "pts": 45,
     "ranged": null,
     "melee": "Ripping fangs",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -87,18 +227,24 @@
       "SV": 6,
       "W": 1,
       "OC": 0
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Ripping fangs"
+          }
+        ]
+      }
+    ]
   },
   "Krootox Rampagers": {
     "n": 3,
     "pts": 85,
     "ranged": "Kroot pistol and hunting javelins",
     "melee": "Hunting blades",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "7\"",
@@ -106,20 +252,26 @@
       "SV": 5,
       "W": 5,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Kroot pistol and hunting javelins",
+            "melee": "Hunting blades"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 95
   },
   "Krootox Riders": {
     "n": 1,
     "pts": 45,
     "ranged": "Repeater cannon",
     "melee": "Close combat weapon",
-    "special_max": 1,
-    "specials": [
-      "Tanglecannon"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "7\"",
@@ -127,26 +279,35 @@
       "SV": 5,
       "W": 5,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Repeater cannon",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "Tanglecannon",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Tanglecannon",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Pathfinder Team": {
     "n": 10,
-    "pts": 80,
+    "pts": 85,
     "ranged": "Pulse pistol",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Pulse carbine",
-      "Semi-automatic grenade launcher - EMP",
-      "Semi-automatic grenade launcher - fusion",
-      "Ion rifle - standard",
-      "Ion rifle - overcharge",
-      "Rail rifle",
-      "Drone burst cannon"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "7\"",
@@ -154,21 +315,131 @@
       "SV": 4,
       "W": 1,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Pulse pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Pulse carbine",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Pulse carbine",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Pulse pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Semi-automatic grenade launcher - EMP",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Semi-automatic grenade launcher - EMP",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Pulse pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Semi-automatic grenade launcher - fusion",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Semi-automatic grenade launcher - fusion",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Pulse pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Ion rifle - standard",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Ion rifle - standard",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Pulse pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Ion rifle - overcharge",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Ion rifle - overcharge",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Pulse pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Rail rifle",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Rail rifle",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Pulse pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Drone burst cannon",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Drone burst cannon",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Pulse pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 100
   },
   "Stealth Battlesuits": {
     "n": 5,
     "pts": 100,
     "ranged": "Burst cannon",
     "melee": "Battlesuit fists",
-    "special_max": 2,
-    "specials": [
-      "Fusion blaster",
-      "Pulse pistol"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "8\"",
@@ -176,22 +447,56 @@
       "SV": 3,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Burst cannon",
+            "melee": "Battlesuit fists"
+          }
+        ]
+      },
+      {
+        "name": "2x Fusion blaster",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Fusion blaster",
+            "melee": "Battlesuit fists"
+          },
+          {
+            "count": 3,
+            "ranged": "Burst cannon",
+            "melee": "Battlesuit fists"
+          }
+        ]
+      },
+      {
+        "name": "2x Pulse pistol",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Pulse pistol",
+            "melee": "Battlesuit fists"
+          },
+          {
+            "count": 3,
+            "ranged": "Burst cannon",
+            "melee": "Battlesuit fists"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 110
   },
   "Strike Team": {
     "n": 10,
     "pts": 70,
     "ranged": "Pulse pistol",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Pulse carbine",
-      "Pulse rifle",
-      "Support turret"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -199,22 +504,70 @@
       "SV": 4,
       "W": 1,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Pulse pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Pulse carbine",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Pulse carbine",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Pulse pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Pulse rifle",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Pulse rifle",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Pulse pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Support turret",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Support turret",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Pulse pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Vespid Stingwings": {
     "n": 5,
     "pts": 70,
     "ranged": "Neutron blaster",
     "melee": "Stingwing claws",
-    "special_max": 2,
-    "specials": [
-      "T'au flamer",
-      "Neutron grenade launcher",
-      "Neutron rail rifle"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -223,6 +576,63 @@
       "W": 1,
       "OC": 1,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Neutron blaster",
+            "melee": "Stingwing claws"
+          }
+        ]
+      },
+      {
+        "name": "2x T'au flamer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "T'au flamer",
+            "melee": "Stingwing claws"
+          },
+          {
+            "count": 3,
+            "ranged": "Neutron blaster",
+            "melee": "Stingwing claws"
+          }
+        ]
+      },
+      {
+        "name": "2x Neutron grenade launcher",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Neutron grenade launcher",
+            "melee": "Stingwing claws"
+          },
+          {
+            "count": 3,
+            "ranged": "Neutron blaster",
+            "melee": "Stingwing claws"
+          }
+        ]
+      },
+      {
+        "name": "2x Neutron rail rifle",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Neutron rail rifle",
+            "melee": "Stingwing claws"
+          },
+          {
+            "count": 3,
+            "ranged": "Neutron blaster",
+            "melee": "Stingwing claws"
+          }
+        ]
+      }
+    ]
   }
 }
