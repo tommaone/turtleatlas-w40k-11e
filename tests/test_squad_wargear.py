@@ -73,6 +73,8 @@ MELEE_ONLY_WHITELIST = {
     # Transports with guns
     "Stormraven Gunship", "Corvus Blackstar", "Valkyrie",
     "Land Raider Crusader", "Ynnari Venom",
+    # Blast/Indirect heavy squads — legitimately low DPP vs MEQ
+    "Desolation Squad",
 }
 
 

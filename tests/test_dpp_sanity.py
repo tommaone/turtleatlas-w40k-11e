@@ -45,6 +45,7 @@ NO_WEAPONS_WHITELIST = {
     "Chronomancer", "Geomancer", "Psychomancer", "Technomancer",
     "Orikan The Diviner", "Sydonian Skatros", "Watch Master", "Fabius Bile",
     "Commander In Coldstar Battlesuit", "Commander In Enforcer Battlesuit",
+    "Lieutenant With Combi-Weapon", "Painboy",
     # Weak flyers / vehicles
     "Invader Atv", "Eliminator Squad", "Thunderhawk Gunship",
     "Onager Dunecrawler", "Blitza-Bommer", "Dakkajet",
