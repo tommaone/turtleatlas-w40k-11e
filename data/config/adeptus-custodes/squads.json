@@ -6,14 +6,6 @@
     "pts": 225,
     "ranged": "Lastrum bolt cannon",
     "melee": "Interceptor Lance",
-    "special_max": 2,
-    "specials": [
-      "Adrathic devastator",
-      "Twin las-pulsar"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -22,21 +14,55 @@
       "W": 4,
       "OC": 2,
       "INV": 4
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Lastrum bolt cannon",
+            "melee": "Interceptor Lance"
+          }
+        ]
+      },
+      {
+        "name": "2x Adrathic devastator",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Adrathic devastator",
+            "melee": "Interceptor Lance"
+          },
+          {
+            "count": 1,
+            "ranged": "Lastrum bolt cannon",
+            "melee": "Interceptor Lance"
+          }
+        ]
+      },
+      {
+        "name": "2x Twin las-pulsar",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Twin las-pulsar",
+            "melee": "Interceptor Lance"
+          },
+          {
+            "count": 1,
+            "ranged": "Lastrum bolt cannon",
+            "melee": "Interceptor Lance"
+          }
+        ]
+      }
+    ]
   },
   "Allarus Custodians": {
     "n": 2,
     "pts": 110,
     "ranged": "Balistus grenade launcher",
     "melee": "Guardian Spear",
-    "special_max": 2,
-    "specials": [
-      "Guardian Spear",
-      "Castellan axe"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -46,21 +72,45 @@
       "OC": 2,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Balistus grenade launcher",
+            "melee": "Guardian Spear"
+          }
+        ]
+      },
+      {
+        "name": "2x Guardian Spear",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Guardian Spear",
+            "melee": "Guardian Spear"
+          }
+        ]
+      },
+      {
+        "name": "2x Castellan axe",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Castellan axe",
+            "melee": "Guardian Spear"
+          }
+        ]
+      }
+    ]
   },
   "Aquilon Custodians": {
     "n": 3,
     "pts": 195,
     "ranged": "Lastrum storm bolter",
     "melee": "Solerite power gauntlet",
-    "special_max": 2,
-    "specials": [
-      "Twin adrathic destructor",
-      "Infernus firepike"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -70,20 +120,55 @@
       "OC": 2,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Lastrum storm bolter",
+            "melee": "Solerite power gauntlet"
+          }
+        ]
+      },
+      {
+        "name": "2x Twin adrathic destructor",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Twin adrathic destructor",
+            "melee": "Solerite power gauntlet"
+          },
+          {
+            "count": 1,
+            "ranged": "Lastrum storm bolter",
+            "melee": "Solerite power gauntlet"
+          }
+        ]
+      },
+      {
+        "name": "2x Infernus firepike",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Infernus firepike",
+            "melee": "Solerite power gauntlet"
+          },
+          {
+            "count": 1,
+            "ranged": "Lastrum storm bolter",
+            "melee": "Solerite power gauntlet"
+          }
+        ]
+      }
+    ]
   },
   "Custodian Guard": {
     "n": 4,
     "pts": 170,
     "ranged": "Guardian Spear",
     "melee": "Guardian Spear",
-    "special_max": 1,
-    "specials": [
-      "Sentinel Blade"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -93,20 +178,40 @@
       "OC": 2,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 4,
+            "ranged": "Guardian Spear",
+            "melee": "Guardian Spear"
+          }
+        ]
+      },
+      {
+        "name": "Sentinel Blade",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Sentinel Blade",
+            "melee": "Guardian Spear"
+          },
+          {
+            "count": 3,
+            "ranged": "Guardian Spear",
+            "melee": "Guardian Spear"
+          }
+        ]
+      }
+    ]
   },
   "Custodian Guard With Adrasite And Pyrithite Spears": {
     "n": 5,
     "pts": 250,
     "ranged": "Adrasite spear",
     "melee": "Adrasite spear",
-    "special_max": 1,
-    "specials": [
-      "Pyrithite spear"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -116,20 +221,40 @@
       "OC": 2,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Adrasite spear",
+            "melee": "Adrasite spear"
+          }
+        ]
+      },
+      {
+        "name": "Pyrithite spear",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Pyrithite spear",
+            "melee": "Adrasite spear"
+          },
+          {
+            "count": 4,
+            "ranged": "Adrasite spear",
+            "melee": "Adrasite spear"
+          }
+        ]
+      }
+    ]
   },
   "Custodian Wardens": {
     "n": 4,
-    "pts": 210,
+    "pts": 200,
     "ranged": "Guardian Spear",
     "melee": "Guardian Spear",
-    "special_max": 1,
-    "specials": [
-      "Castellan axe"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -140,18 +265,40 @@
       "INV": 4,
       "FNP": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 4,
+            "ranged": "Guardian Spear",
+            "melee": "Guardian Spear"
+          }
+        ]
+      },
+      {
+        "name": "Castellan axe",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Castellan axe",
+            "melee": "Guardian Spear"
+          },
+          {
+            "count": 3,
+            "ranged": "Guardian Spear",
+            "melee": "Guardian Spear"
+          }
+        ]
+      }
+    ]
   },
   "Prosecutors": {
     "n": 4,
     "pts": 45,
     "ranged": "Boltgun",
     "melee": "Close combat weapon",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -159,18 +306,25 @@
       "SV": 3,
       "W": 1,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 4,
+            "ranged": "Boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Sagittarum Custodians": {
     "n": 5,
     "pts": 225,
     "ranged": "Adrastus bolt caliver",
     "melee": "Misericordia",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -180,20 +334,25 @@
       "OC": 2,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Adrastus bolt caliver",
+            "melee": "Misericordia"
+          }
+        ]
+      }
+    ]
   },
   "Venatari Custodians": {
     "n": 3,
-    "pts": 160,
+    "pts": 150,
     "ranged": "Venatari lance",
     "melee": "Venatari lance",
-    "special_max": 1,
-    "specials": [
-      "Kinetic destroyer"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "10\"",
@@ -203,20 +362,41 @@
       "OC": 2,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Venatari lance",
+            "melee": "Venatari lance"
+          }
+        ]
+      },
+      {
+        "name": "Kinetic destroyer",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Kinetic destroyer",
+            "melee": "Venatari lance"
+          },
+          {
+            "count": 2,
+            "ranged": "Venatari lance",
+            "melee": "Venatari lance"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 160
   },
   "Vertus Praetors": {
     "n": 2,
     "pts": 145,
     "ranged": "Salvo launcher",
     "melee": "Interceptor lance",
-    "special_max": 1,
-    "specials": [
-      "Vertus hurricane bolter"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -225,18 +405,40 @@
       "W": 5,
       "OC": 2,
       "INV": 4
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Salvo launcher",
+            "melee": "Interceptor lance"
+          }
+        ]
+      },
+      {
+        "name": "Vertus hurricane bolter",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Vertus hurricane bolter",
+            "melee": "Interceptor lance"
+          },
+          {
+            "count": 1,
+            "ranged": "Salvo launcher",
+            "melee": "Interceptor lance"
+          }
+        ]
+      }
+    ]
   },
   "Vigilators": {
     "n": 4,
     "pts": 50,
     "ranged": null,
     "melee": "Executioner greatblade",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -244,18 +446,24 @@
       "SV": 3,
       "W": 1,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 4,
+            "melee": "Executioner greatblade"
+          }
+        ]
+      }
+    ]
   },
   "Witchseekers": {
     "n": 4,
     "pts": 50,
     "ranged": "Witchseeker flamer",
     "melee": "Close combat weapon",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -263,6 +471,18 @@
       "SV": 3,
       "W": 1,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 4,
+            "ranged": "Witchseeker flamer",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   }
 }
