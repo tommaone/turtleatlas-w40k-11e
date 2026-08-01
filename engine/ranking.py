@@ -571,6 +571,12 @@ class RankingEngine:
         best, best_dpp = None, -1
         for build in builds:
             ld = self._eval_squad_build(build, unit_name)
+            # Squad-level innate weapons (e.g. Purifying Flame on every
+            # Purifier model) apply once per model — mirror the legacy path.
+            if cfg.get("innate"):
+                for _ in range(n):
+                    for iname in cfg["innate"]:
+                        ld["innate"].append(self.W(iname, unit_name=unit_name))
             total_d = _ld_dmg(ld["ranged"], ld["melee"], ld["innate"], target, n_models=n)
             dpp = total_d / n if n > 0 else 0
             if dpp > best_dpp:

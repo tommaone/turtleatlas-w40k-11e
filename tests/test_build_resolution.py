@@ -213,3 +213,35 @@ class TestBuildResolutionAcrossFactions:
             except Exception as e:
                 failures.append(f"{name}: {e}")
         assert not failures, f"Failed vehicles in {faction}:\n" + "\n".join(failures)
+
+
+class TestSquadInnateInBuilds:
+    """Squad-level innate weapons must flow through the builds path.
+
+    Regression: _eval_squad_build used to return innate=[] — Purifiers lost
+    Purifying Flame on conversion to builds format (GK session gap).
+    """
+
+    def test_purifier_innate_per_model(self):
+        engine = RankingEngine("grey-knights")
+        target = _make_target()
+        result = engine.resolve_loadout("Purifier Squad", target)
+        assert result is not None
+        pts, ranged, melee, innate, info = result
+        n = engine.config.squads["Purifier Squad"]["n"]
+        pf = [w for w in innate if w.name == "Purifying Flame"]
+        assert len(pf) == n, (
+            f"Expected {n} Purifying Flame (one per model), got {len(pf)}"
+        )
+
+    def test_innate_raises_dpp(self):
+        """Squad with innate weapons must out-DPP the same build without them."""
+        engine = RankingEngine("grey-knights")
+        target = _make_target()
+        result = engine.resolve_loadout("Purifier Squad", target)
+        pts, ranged, melee, innate, info = result
+        with_inn = _ld_dmg(ranged, melee, innate, target,
+                           n_models=engine.config.squads["Purifier Squad"]["n"])
+        without = _ld_dmg(ranged, melee, [], target,
+                          n_models=engine.config.squads["Purifier Squad"]["n"])
+        assert with_inn > without
