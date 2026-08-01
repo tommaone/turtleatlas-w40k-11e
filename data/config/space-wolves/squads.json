@@ -3,17 +3,9 @@
   "_source": "BSData 11e + MFM (auto-generated)",
   "Aggressor Squad": {
     "n": 3,
-    "pts": 90,
+    "pts": 80,
     "ranged": "Fragstorm grenade launcher",
     "melee": "Twin power fist",
-    "special_max": 2,
-    "specials": [
-      "Auto Boltstorm Gauntlets",
-      "Flamestorm Gauntlets"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -21,22 +13,56 @@
       "SV": 3,
       "W": 3,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Fragstorm grenade launcher",
+            "melee": "Twin power fist"
+          }
+        ]
+      },
+      {
+        "name": "2x Auto Boltstorm Gauntlets",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Auto Boltstorm Gauntlets",
+            "melee": "Twin power fist"
+          },
+          {
+            "count": 1,
+            "ranged": "Fragstorm grenade launcher",
+            "melee": "Twin power fist"
+          }
+        ]
+      },
+      {
+        "name": "2x Flamestorm Gauntlets",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Flamestorm Gauntlets",
+            "melee": "Twin power fist"
+          },
+          {
+            "count": 1,
+            "ranged": "Fragstorm grenade launcher",
+            "melee": "Twin power fist"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 90
   },
   "Assault Intercessor Squad": {
     "n": 5,
     "pts": 75,
     "ranged": "Hand flamer",
     "melee": "Astartes Chainsword",
-    "special_max": 2,
-    "specials": [
-      "Plasma pistol - supercharge",
-      "Plasma pistol - standard",
-      "Heavy Bolt Pistol"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -44,22 +70,70 @@
       "SV": 3,
       "W": 2,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Hand flamer",
+            "melee": "Astartes Chainsword"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma pistol - supercharge",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma pistol - supercharge",
+            "melee": "Astartes Chainsword"
+          },
+          {
+            "count": 3,
+            "ranged": "Hand flamer",
+            "melee": "Astartes Chainsword"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma pistol - standard",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma pistol - standard",
+            "melee": "Astartes Chainsword"
+          },
+          {
+            "count": 3,
+            "ranged": "Hand flamer",
+            "melee": "Astartes Chainsword"
+          }
+        ]
+      },
+      {
+        "name": "2x Heavy Bolt Pistol",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Heavy Bolt Pistol",
+            "melee": "Astartes Chainsword"
+          },
+          {
+            "count": 3,
+            "ranged": "Hand flamer",
+            "melee": "Astartes Chainsword"
+          }
+        ]
+      }
+    ]
   },
   "Assault Intercessors With Jump Packs": {
     "n": 5,
     "pts": 85,
     "ranged": "Hand flamer",
     "melee": "Astartes Chainsword",
-    "special_max": 2,
-    "specials": [
-      "Plasma pistol - supercharge",
-      "Plasma pistol - standard",
-      "Heavy Bolt Pistol"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -68,22 +142,71 @@
       "W": 2,
       "OC": 1,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Hand flamer",
+            "melee": "Astartes Chainsword"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma pistol - supercharge",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma pistol - supercharge",
+            "melee": "Astartes Chainsword"
+          },
+          {
+            "count": 3,
+            "ranged": "Hand flamer",
+            "melee": "Astartes Chainsword"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma pistol - standard",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma pistol - standard",
+            "melee": "Astartes Chainsword"
+          },
+          {
+            "count": 3,
+            "ranged": "Hand flamer",
+            "melee": "Astartes Chainsword"
+          }
+        ]
+      },
+      {
+        "name": "2x Heavy Bolt Pistol",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Heavy Bolt Pistol",
+            "melee": "Astartes Chainsword"
+          },
+          {
+            "count": 3,
+            "ranged": "Hand flamer",
+            "melee": "Astartes Chainsword"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 95
   },
   "Bladeguard Veteran Squad": {
     "n": 3,
     "pts": 80,
     "ranged": "Heavy Bolt Pistol",
     "melee": "Master-crafted power weapon",
-    "special_max": 2,
-    "specials": [
-      "Neo-volkite Pistol",
-      "Plasma pistol - supercharge",
-      "Plasma pistol - standard"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -92,18 +215,71 @@
       "W": 3,
       "OC": 1,
       "INV": 4
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Heavy Bolt Pistol",
+            "melee": "Master-crafted power weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Neo-volkite Pistol",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Neo-volkite Pistol",
+            "melee": "Master-crafted power weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Heavy Bolt Pistol",
+            "melee": "Master-crafted power weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma pistol - supercharge",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma pistol - supercharge",
+            "melee": "Master-crafted power weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Heavy Bolt Pistol",
+            "melee": "Master-crafted power weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma pistol - standard",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma pistol - standard",
+            "melee": "Master-crafted power weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Heavy Bolt Pistol",
+            "melee": "Master-crafted power weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 90
   },
   "Blood Claws": {
     "n": 10,
     "pts": 135,
     "ranged": null,
     "melee": "Close combat weapon",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "7\"",
@@ -111,21 +287,24 @@
       "SV": 3,
       "W": 2,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Centurion Assault Squad": {
     "n": 3,
     "pts": 150,
     "ranged": "Centurion Bolters",
     "melee": "Siege Drills",
-    "special_max": 2,
-    "specials": [
-      "Twin flamer",
-      "Twin meltagun"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "4\"",
@@ -133,23 +312,55 @@
       "SV": 2,
       "W": 4,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Centurion Bolters",
+            "melee": "Siege Drills"
+          }
+        ]
+      },
+      {
+        "name": "2x Twin flamer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Twin flamer",
+            "melee": "Siege Drills"
+          },
+          {
+            "count": 1,
+            "ranged": "Centurion Bolters",
+            "melee": "Siege Drills"
+          }
+        ]
+      },
+      {
+        "name": "2x Twin meltagun",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Twin meltagun",
+            "melee": "Siege Drills"
+          },
+          {
+            "count": 1,
+            "ranged": "Centurion Bolters",
+            "melee": "Siege Drills"
+          }
+        ]
+      }
+    ]
   },
   "Centurion Devastator Squad": {
     "n": 3,
     "pts": 175,
     "ranged": "Centurion Bolters",
     "melee": "Centurion Fists",
-    "special_max": 2,
-    "specials": [
-      "Centurion missile launcher",
-      "Grav-cannon",
-      "Twin heavy bolter",
-      "Twin lascannon"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "4\"",
@@ -157,22 +368,85 @@
       "SV": 2,
       "W": 4,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Centurion Bolters",
+            "melee": "Centurion Fists"
+          }
+        ]
+      },
+      {
+        "name": "2x Centurion missile launcher",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Centurion missile launcher",
+            "melee": "Centurion Fists"
+          },
+          {
+            "count": 1,
+            "ranged": "Centurion Bolters",
+            "melee": "Centurion Fists"
+          }
+        ]
+      },
+      {
+        "name": "2x Grav-cannon",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Grav-cannon",
+            "melee": "Centurion Fists"
+          },
+          {
+            "count": 1,
+            "ranged": "Centurion Bolters",
+            "melee": "Centurion Fists"
+          }
+        ]
+      },
+      {
+        "name": "2x Twin heavy bolter",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Twin heavy bolter",
+            "melee": "Centurion Fists"
+          },
+          {
+            "count": 1,
+            "ranged": "Centurion Bolters",
+            "melee": "Centurion Fists"
+          }
+        ]
+      },
+      {
+        "name": "2x Twin lascannon",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Twin lascannon",
+            "melee": "Centurion Fists"
+          },
+          {
+            "count": 1,
+            "ranged": "Centurion Bolters",
+            "melee": "Centurion Fists"
+          }
+        ]
+      }
+    ]
   },
   "Company Heroes": {
     "n": 4,
     "pts": 105,
     "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Bolt Rifle",
-      "Master-crafted Bolt Rifle",
-      "Master-crafted Heavy Bolter"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -180,23 +454,70 @@
       "SV": 3,
       "W": 4,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 4,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Bolt Rifle",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Bolt Rifle",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 2,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Master-crafted Bolt Rifle",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Master-crafted Bolt Rifle",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 2,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Master-crafted Heavy Bolter",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Master-crafted Heavy Bolter",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 2,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Desolation Squad": {
     "n": 5,
     "pts": 180,
     "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Castellan Launcher",
-      "Superfrag Rocket Launcher",
-      "Superkrak Rocket Launcher",
-      "Vengor launcher"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -204,22 +525,85 @@
       "SV": 3,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Castellan Launcher",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Castellan Launcher",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Superfrag Rocket Launcher",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Superfrag Rocket Launcher",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Superkrak Rocket Launcher",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Superkrak Rocket Launcher",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Vengor launcher",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Vengor launcher",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Eliminator Squad": {
     "n": 3,
     "pts": 75,
     "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Instigator Bolt Carbine",
-      "Las fusil",
-      "Bolt Sniper Rifle"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -227,21 +611,70 @@
       "SV": 3,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Instigator Bolt Carbine",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Instigator Bolt Carbine",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Las fusil",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Las fusil",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Bolt Sniper Rifle",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Bolt Sniper Rifle",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Eradicator Squad": {
     "n": 3,
     "pts": 90,
     "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Melta rifle",
-      "Multi-melta"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -249,20 +682,56 @@
       "SV": 3,
       "W": 3,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Melta rifle",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Melta rifle",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Multi-melta",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Multi-melta",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 100
   },
   "Eradicator Squad With Heavy Bolters": {
     "n": 3,
-    "pts": 70,
+    "pts": 80,
     "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
-    "special_max": 1,
-    "specials": [
-      "Heavy Bolter"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -270,18 +739,40 @@
       "SV": 3,
       "W": 3,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "Heavy Bolter",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Heavy Bolter",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 2,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Fenrisian Wolves": {
     "n": 5,
     "pts": 45,
     "ranged": null,
     "melee": "Teeth and claws",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "10\"",
@@ -289,21 +780,25 @@
       "SV": 6,
       "W": 1,
       "OC": 0
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Teeth and claws"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 50
   },
   "Grey Hunters": {
     "n": 10,
     "pts": 165,
     "ranged": "Bolt Carbine",
     "melee": "Power fist",
-    "special_max": 2,
-    "specials": [
-      "Plasma pistol - supercharge",
-      "Plasma pistol - standard"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "7\"",
@@ -311,21 +806,55 @@
       "SV": 3,
       "W": 2,
       "OC": 3
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Bolt Carbine",
+            "melee": "Power fist"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma pistol - supercharge",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma pistol - supercharge",
+            "melee": "Power fist"
+          },
+          {
+            "count": 8,
+            "ranged": "Bolt Carbine",
+            "melee": "Power fist"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma pistol - standard",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma pistol - standard",
+            "melee": "Power fist"
+          },
+          {
+            "count": 8,
+            "ranged": "Bolt Carbine",
+            "melee": "Power fist"
+          }
+        ]
+      }
+    ]
   },
   "Heavy Intercessor Squad": {
     "n": 5,
     "pts": 100,
     "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Heavy Bolt Rifle",
-      "Heavy Bolter"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -333,23 +862,55 @@
       "SV": 3,
       "W": 3,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Heavy Bolt Rifle",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Heavy Bolt Rifle",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Heavy Bolter",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Heavy Bolter",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Hellblaster Squad": {
     "n": 5,
     "pts": 110,
     "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Plasma pistol - supercharge",
-      "Plasma pistol - standard",
-      "Plasma Incinerator - Standard",
-      "Plasma Incinerator - Supercharge"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -357,21 +918,85 @@
       "SV": 3,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma pistol - supercharge",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma pistol - supercharge",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma pistol - standard",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma pistol - standard",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma Incinerator - Standard",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma Incinerator - Standard",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma Incinerator - Supercharge",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma Incinerator - Supercharge",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Inceptor Squad": {
     "n": 3,
-    "pts": 120,
+    "pts": 125,
     "ranged": "Assault Bolters",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Plasma Exterminators - Standard",
-      "Plasma Exterminators - Supercharge"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "10\"",
@@ -380,20 +1005,56 @@
       "W": 3,
       "OC": 1,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Assault Bolters",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma Exterminators - Standard",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma Exterminators - Standard",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Assault Bolters",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma Exterminators - Supercharge",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma Exterminators - Supercharge",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Assault Bolters",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 140
   },
   "Incursor Squad": {
     "n": 5,
     "pts": 85,
     "ranged": "Bolt pistol",
     "melee": "Paired Combat Blades",
-    "special_max": 1,
-    "specials": [
-      "Occulus Bolt Carbine"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -401,20 +1062,41 @@
       "SV": 3,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Bolt pistol",
+            "melee": "Paired Combat Blades"
+          }
+        ]
+      },
+      {
+        "name": "Occulus Bolt Carbine",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Occulus Bolt Carbine",
+            "melee": "Paired Combat Blades"
+          },
+          {
+            "count": 4,
+            "ranged": "Bolt pistol",
+            "melee": "Paired Combat Blades"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 95
   },
   "Infernus Squad": {
     "n": 5,
     "pts": 85,
     "ranged": "Pyreblaster",
     "melee": "Close combat weapon",
-    "special_max": 1,
-    "specials": [
-      "Bolt pistol"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -422,20 +1104,40 @@
       "SV": 3,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Pyreblaster",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "Bolt pistol",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Pyreblaster",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Infiltrator Squad": {
     "n": 5,
     "pts": 110,
     "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
-    "special_max": 1,
-    "specials": [
-      "Marksman Bolt Carbine"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -443,25 +1145,41 @@
       "SV": 3,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "Marksman Bolt Carbine",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Marksman Bolt Carbine",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 120
   },
   "Intercessor Squad": {
     "n": 5,
     "pts": 80,
     "ranged": "Bolt pistol",
     "melee": "Power weapon",
-    "special_max": 2,
-    "specials": [
-      "Bolt Rifle",
-      "Astartes grenade launcher - krak",
-      "Astartes grenade launcher - frag",
-      "Hand flamer",
-      "Plasma pistol - supercharge",
-      "Plasma pistol - standard"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -469,22 +1187,115 @@
       "SV": 3,
       "W": 2,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Bolt pistol",
+            "melee": "Power weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Bolt Rifle",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Bolt Rifle",
+            "melee": "Power weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Power weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Astartes grenade launcher - krak",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Astartes grenade launcher - krak",
+            "melee": "Power weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Power weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Astartes grenade launcher - frag",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Astartes grenade launcher - frag",
+            "melee": "Power weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Power weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Hand flamer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Hand flamer",
+            "melee": "Power weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Power weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma pistol - supercharge",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma pistol - supercharge",
+            "melee": "Power weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Power weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma pistol - standard",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma pistol - standard",
+            "melee": "Power weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Power weapon"
+          }
+        ]
+      }
+    ]
   },
   "Invader Atv": {
     "n": 1,
     "pts": 60,
     "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Twin bolt rifle",
-      "Onslaught gatling cannon",
-      "Multi-melta"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -492,20 +1303,55 @@
       "SV": 3,
       "W": 8,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "Twin bolt rifle",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Twin bolt rifle",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "Onslaught gatling cannon",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Onslaught gatling cannon",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "Multi-melta",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Multi-melta",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Outrider Squad": {
     "n": 3,
     "pts": 70,
     "ranged": "Heavy Bolt Pistol",
     "melee": "Astartes Chainsword",
-    "special_max": 1,
-    "specials": [
-      "Twin bolt rifle"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -513,20 +1359,40 @@
       "SV": 3,
       "W": 4,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Heavy Bolt Pistol",
+            "melee": "Astartes Chainsword"
+          }
+        ]
+      },
+      {
+        "name": "Twin bolt rifle",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Twin bolt rifle",
+            "melee": "Astartes Chainsword"
+          },
+          {
+            "count": 2,
+            "ranged": "Heavy Bolt Pistol",
+            "melee": "Astartes Chainsword"
+          }
+        ]
+      }
+    ]
   },
   "Reiver Squad": {
     "n": 5,
     "pts": 75,
     "ranged": "Special Issue Bolt Pistol",
     "melee": "Combat Knife",
-    "special_max": 1,
-    "specials": [
-      "Bolt Carbine"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -534,25 +1400,40 @@
       "SV": 3,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Special Issue Bolt Pistol",
+            "melee": "Combat Knife"
+          }
+        ]
+      },
+      {
+        "name": "Bolt Carbine",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Bolt Carbine",
+            "melee": "Combat Knife"
+          },
+          {
+            "count": 4,
+            "ranged": "Special Issue Bolt Pistol",
+            "melee": "Combat Knife"
+          }
+        ]
+      }
+    ]
   },
   "Scout Squad": {
     "n": 5,
     "pts": 65,
     "ranged": "Boltgun",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Bolt pistol",
-      "Astartes Shotgun",
-      "Heavy Bolter",
-      "Missile Launcher - Frag",
-      "Missile Launcher - Krak",
-      "Scout Sniper Rifle"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -560,18 +1441,116 @@
       "SV": 4,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Bolt pistol",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Astartes Shotgun",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Astartes Shotgun",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Heavy Bolter",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Heavy Bolter",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Missile Launcher - Frag",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Missile Launcher - Frag",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Missile Launcher - Krak",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Missile Launcher - Krak",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Scout Sniper Rifle",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Scout Sniper Rifle",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 75
   },
   "Sternguard Veteran Squad": {
     "n": 5,
     "pts": 100,
     "ranged": null,
     "melee": "Astartes Chainsword",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -579,20 +1558,24 @@
       "SV": 3,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Astartes Chainsword"
+          }
+        ]
+      }
+    ]
   },
   "Suppressor Squad": {
     "n": 3,
-    "pts": 75,
+    "pts": 85,
     "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
-    "special_max": 1,
-    "specials": [
-      "Accelerator Autocannon"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -601,18 +1584,40 @@
       "W": 2,
       "OC": 1,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "Accelerator Autocannon",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Accelerator Autocannon",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 2,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Terminator Assault Squad": {
     "n": 5,
     "pts": 155,
     "ranged": null,
     "melee": "Thunder Hammer",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -622,18 +1627,24 @@
       "OC": 1,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Thunder Hammer"
+          }
+        ]
+      }
+    ]
   },
   "Terminator Squad": {
     "n": 5,
     "pts": 160,
     "ranged": null,
     "melee": "Power Fist",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -643,20 +1654,24 @@
       "OC": 1,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Power Fist"
+          }
+        ]
+      }
+    ]
   },
   "Thunderwolf Cavalry": {
     "n": 3,
     "pts": 100,
     "ranged": "Plasma pistol - supercharge",
     "melee": "Wolf Guard Weapon",
-    "special_max": 1,
-    "specials": [
-      "Plasma pistol - standard"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -664,24 +1679,41 @@
       "SV": 3,
       "W": 4,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Plasma pistol - supercharge",
+            "melee": "Wolf Guard Weapon"
+          }
+        ]
+      },
+      {
+        "name": "Plasma pistol - standard",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Plasma pistol - standard",
+            "melee": "Wolf Guard Weapon"
+          },
+          {
+            "count": 2,
+            "ranged": "Plasma pistol - supercharge",
+            "melee": "Wolf Guard Weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 110
   },
   "Vanguard Veteran Squad With Jump Packs": {
     "n": 5,
-    "pts": 100,
+    "pts": 105,
     "ranged": "Plasma pistol - supercharge",
     "melee": "Vanguard Veteran Weapon",
-    "special_max": 2,
-    "specials": [
-      "Plasma pistol - standard",
-      "Inferno Pistol",
-      "Hand flamer",
-      "Bolt pistol",
-      "Grav-pistol"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -690,20 +1722,101 @@
       "W": 2,
       "OC": 1,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Plasma pistol - supercharge",
+            "melee": "Vanguard Veteran Weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma pistol - standard",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma pistol - standard",
+            "melee": "Vanguard Veteran Weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Plasma pistol - supercharge",
+            "melee": "Vanguard Veteran Weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Inferno Pistol",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Inferno Pistol",
+            "melee": "Vanguard Veteran Weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Plasma pistol - supercharge",
+            "melee": "Vanguard Veteran Weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Hand flamer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Hand flamer",
+            "melee": "Vanguard Veteran Weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Plasma pistol - supercharge",
+            "melee": "Vanguard Veteran Weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Bolt pistol",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Bolt pistol",
+            "melee": "Vanguard Veteran Weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Plasma pistol - supercharge",
+            "melee": "Vanguard Veteran Weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Grav-pistol",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Grav-pistol",
+            "melee": "Vanguard Veteran Weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Plasma pistol - supercharge",
+            "melee": "Vanguard Veteran Weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 115
   },
   "Wolf Guard Terminators": {
     "n": 5,
     "pts": 150,
     "ranged": "Storm Bolter",
     "melee": "Master-crafted Power Weapon",
-    "special_max": 1,
-    "specials": [
-      "Assault Cannon"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -713,20 +1826,41 @@
       "OC": 1,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Storm Bolter",
+            "melee": "Master-crafted Power Weapon"
+          }
+        ]
+      },
+      {
+        "name": "Assault Cannon",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Assault Cannon",
+            "melee": "Master-crafted Power Weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Storm Bolter",
+            "melee": "Master-crafted Power Weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 165
   },
   "Wolf Scouts": {
     "n": 6,
-    "pts": 95,
+    "pts": 90,
     "ranged": "Thunderclap",
     "melee": "Combat Blade",
-    "special_max": 1,
-    "specials": [
-      "Instigator Bolt Carbine"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "7\"",
@@ -734,18 +1868,40 @@
       "SV": 3,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 6,
+            "ranged": "Thunderclap",
+            "melee": "Combat Blade"
+          }
+        ]
+      },
+      {
+        "name": "Instigator Bolt Carbine",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Instigator Bolt Carbine",
+            "melee": "Combat Blade"
+          },
+          {
+            "count": 5,
+            "ranged": "Thunderclap",
+            "melee": "Combat Blade"
+          }
+        ]
+      }
+    ]
   },
   "Wulfen With Storm Shields": {
     "n": 5,
     "pts": 100,
     "ranged": "Stormfrag auto-launcher",
     "melee": "Thunder Hammer",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "9\"",
@@ -754,6 +1910,19 @@
       "W": 2,
       "OC": 0,
       "INV": 4
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Stormfrag auto-launcher",
+            "melee": "Thunder Hammer"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 110
   }
 }
