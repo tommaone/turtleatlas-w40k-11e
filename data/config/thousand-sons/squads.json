@@ -1,16 +1,11 @@
 {
-  "_note": "thousand-sons squads \u2014 generated from BSData + MFM",
+  "_note": "thousand-sons squads — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Blue Horrors": {
     "n": 10,
     "pts": 90,
     "ranged": "Coruscating Blue flames",
     "melee": "Blue claws",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -20,18 +15,25 @@
       "OC": 0,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Coruscating Blue flames",
+            "melee": "Blue claws"
+          }
+        ]
+      }
+    ]
   },
   "Chaos Spawn": {
     "n": 2,
     "pts": 65,
     "ranged": null,
     "melee": "Hideous Mutations",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "8\"",
@@ -40,18 +42,24 @@
       "W": 4,
       "OC": 1,
       "INV": 5
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 2,
+            "melee": "Hideous Mutations"
+          }
+        ]
+      }
+    ]
   },
   "Chaos Spawn (Flesh Change)": {
     "n": 5,
     "pts": 65,
     "ranged": null,
     "melee": "Hideous Mutations",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "8\"",
@@ -60,18 +68,24 @@
       "W": 4,
       "OC": 1,
       "INV": 5
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Hideous Mutations"
+          }
+        ]
+      }
+    ]
   },
   "Flamers": {
     "n": 3,
     "pts": 65,
     "ranged": "Flickering flames",
     "melee": "Flamer mouths",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "9\"",
@@ -81,18 +95,25 @@
       "OC": 1,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Flickering flames",
+            "melee": "Flamer mouths"
+          }
+        ]
+      }
+    ]
   },
   "Pink Horrors": {
     "n": 10,
     "pts": 115,
     "ranged": "Coruscating pink flames",
     "melee": "Pink claws",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -102,22 +123,25 @@
       "OC": 1,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Coruscating pink flames",
+            "melee": "Pink claws"
+          }
+        ]
+      }
+    ]
   },
   "Rubric Marines": {
     "n": 5,
     "pts": 100,
     "ranged": "Inferno boltgun",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Warpflamer",
-      "Soulreaper cannon",
-      "Malefic Curse"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -126,23 +150,70 @@
       "W": 3,
       "OC": 2,
       "INV": 5
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Inferno boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Warpflamer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Warpflamer",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Inferno boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Soulreaper cannon",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Soulreaper cannon",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Inferno boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Malefic Curse",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Malefic Curse",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Inferno boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Scarab Occult Terminators": {
     "n": 5,
     "pts": 180,
     "ranged": "Inferno combi-bolter",
     "melee": "Prosperine khopesh",
-    "special_max": 2,
-    "specials": [
-      "Heavy warpflamer",
-      "Soulreaper cannon",
-      "Malefic Curse",
-      "Hellfyre missile rack"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -152,18 +223,86 @@
       "OC": 1,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Inferno combi-bolter",
+            "melee": "Prosperine khopesh"
+          }
+        ]
+      },
+      {
+        "name": "2x Heavy warpflamer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Heavy warpflamer",
+            "melee": "Prosperine khopesh"
+          },
+          {
+            "count": 3,
+            "ranged": "Inferno combi-bolter",
+            "melee": "Prosperine khopesh"
+          }
+        ]
+      },
+      {
+        "name": "2x Soulreaper cannon",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Soulreaper cannon",
+            "melee": "Prosperine khopesh"
+          },
+          {
+            "count": 3,
+            "ranged": "Inferno combi-bolter",
+            "melee": "Prosperine khopesh"
+          }
+        ]
+      },
+      {
+        "name": "2x Malefic Curse",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Malefic Curse",
+            "melee": "Prosperine khopesh"
+          },
+          {
+            "count": 3,
+            "ranged": "Inferno combi-bolter",
+            "melee": "Prosperine khopesh"
+          }
+        ]
+      },
+      {
+        "name": "2x Hellfyre missile rack",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Hellfyre missile rack",
+            "melee": "Prosperine khopesh"
+          },
+          {
+            "count": 3,
+            "ranged": "Inferno combi-bolter",
+            "melee": "Prosperine khopesh"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 195
   },
   "Screamers": {
     "n": 3,
     "pts": 80,
     "ranged": null,
     "melee": "Lamprey bite",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "14\"",
@@ -173,18 +312,24 @@
       "OC": 1,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Lamprey bite"
+          }
+        ]
+      }
+    ]
   },
   "Tzaangor Enlightened": {
     "n": 3,
-    "pts": 45,
+    "pts": 50,
     "ranged": "Autopistol",
     "melee": "Divining spear",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "10\"",
@@ -193,18 +338,25 @@
       "W": 2,
       "OC": 2,
       "INV": 5
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Autopistol",
+            "melee": "Divining spear"
+          }
+        ]
+      }
+    ]
   },
   "Tzaangor Enlightened With Fatecaster Greatbows": {
     "n": 3,
     "pts": 55,
     "ranged": "Fatecaster greatbow",
     "melee": "Close combat weapon",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "10\"",
@@ -213,18 +365,25 @@
       "W": 2,
       "OC": 2,
       "INV": 5
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Fatecaster greatbow",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Tzaangors": {
     "n": 10,
     "pts": 75,
     "ranged": "Autopistol",
     "melee": "Chainsword",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -233,6 +392,18 @@
       "W": 1,
       "OC": 1,
       "INV": 6
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Autopistol",
+            "melee": "Chainsword"
+          }
+        ]
+      }
+    ]
   }
 }
