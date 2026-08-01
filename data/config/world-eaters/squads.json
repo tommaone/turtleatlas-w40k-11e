@@ -6,11 +6,6 @@
     "pts": 95,
     "ranged": null,
     "melee": "Hellblade",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "10\"",
@@ -20,18 +15,25 @@
       "OC": 2,
       "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Hellblade"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 115
   },
   "Bloodletters": {
     "n": 10,
     "pts": 90,
     "ranged": null,
     "melee": "Hellblade",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "8\"",
@@ -41,18 +43,24 @@
       "OC": 1,
       "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "melee": "Hellblade"
+          }
+        ]
+      }
+    ]
   },
   "Chaos Spawn": {
     "n": 2,
     "pts": 95,
     "ranged": null,
     "melee": "Hideous Mutations",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "10\"",
@@ -60,22 +68,24 @@
       "SV": 4,
       "W": 4,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 2,
+            "melee": "Hideous Mutations"
+          }
+        ]
+      }
+    ]
   },
   "Chaos Terminators": {
     "n": 5,
-    "pts": 175,
+    "pts": 165,
     "ranged": "Combi-bolter",
     "melee": "Accursed weapon",
-    "special_max": 2,
-    "specials": [
-      "Combi-weapon",
-      "Reaper autocannon",
-      "Heavy flamer"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "7\"",
@@ -85,18 +95,71 @@
       "OC": 1,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Combi-bolter",
+            "melee": "Accursed weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Combi-weapon",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Combi-weapon",
+            "melee": "Accursed weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Combi-bolter",
+            "melee": "Accursed weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Reaper autocannon",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Reaper autocannon",
+            "melee": "Accursed weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Combi-bolter",
+            "melee": "Accursed weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Heavy flamer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Heavy flamer",
+            "melee": "Accursed weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Combi-bolter",
+            "melee": "Accursed weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 175
   },
   "Eightbound": {
     "n": 3,
-    "pts": 135,
+    "pts": 125,
     "ranged": null,
     "melee": "Chainblades",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "10\"",
@@ -105,18 +168,25 @@
       "W": 3,
       "OC": 1,
       "INV": 5
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Chainblades"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 140
   },
   "Exalted Eightbound": {
     "n": 3,
-    "pts": 140,
+    "pts": 130,
     "ranged": null,
     "melee": "Close combat weapon",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "10\"",
@@ -126,18 +196,25 @@
       "OC": 1,
       "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 145
   },
   "Flesh Hounds": {
     "n": 5,
     "pts": 75,
     "ranged": "Burning roar",
     "melee": "Gore-drenched fangs",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -147,20 +224,25 @@
       "OC": 1,
       "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Burning roar",
+            "melee": "Gore-drenched fangs"
+          }
+        ]
+      }
+    ]
   },
   "Goremongers": {
     "n": 8,
     "pts": 75,
     "ranged": "Autopistol",
     "melee": "Close combat weapon",
-    "special_max": 1,
-    "specials": [
-      "Blood harpoon"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "9\"",
@@ -168,18 +250,40 @@
       "SV": 6,
       "W": 1,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 8,
+            "ranged": "Autopistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "Blood harpoon",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Blood harpoon",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 7,
+            "ranged": "Autopistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Jakhals": {
     "n": 10,
     "pts": 65,
     "ranged": "Autopistol",
     "melee": "Chainblades",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "7\"",
@@ -187,18 +291,25 @@
       "SV": 6,
       "W": 1,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Autopistol",
+            "melee": "Chainblades"
+          }
+        ]
+      }
+    ]
   },
   "Khorne Berzerkers": {
     "n": 10,
-    "pts": 180,
+    "pts": 170,
     "ranged": "Bolt pistol",
     "melee": "Chainblade",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "8\"",
@@ -206,6 +317,18 @@
       "SV": 3,
       "W": 2,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Bolt pistol",
+            "melee": "Chainblade"
+          }
+        ]
+      }
+    ]
   }
 }
