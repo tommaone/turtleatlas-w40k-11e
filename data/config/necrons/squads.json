@@ -6,14 +6,6 @@
     "pts": 70,
     "ranged": "Atomiser beam",
     "melee": "Claws",
-    "special_max": 2,
-    "specials": [
-      "Tesla caster",
-      "Gauss scalpel"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "8\"",
@@ -21,18 +13,55 @@
       "SV": 4,
       "W": 1,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Atomiser beam",
+            "melee": "Claws"
+          }
+        ]
+      },
+      {
+        "name": "2x Tesla caster",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Tesla caster",
+            "melee": "Claws"
+          },
+          {
+            "count": 3,
+            "ranged": "Atomiser beam",
+            "melee": "Claws"
+          }
+        ]
+      },
+      {
+        "name": "2x Gauss scalpel",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Gauss scalpel",
+            "melee": "Claws"
+          },
+          {
+            "count": 3,
+            "ranged": "Atomiser beam",
+            "melee": "Claws"
+          }
+        ]
+      }
+    ]
   },
   "Canoptek Scarab Swarms": {
     "n": 3,
     "pts": 40,
     "ranged": null,
     "melee": "Feeder mandibles",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "10\"",
@@ -40,20 +69,24 @@
       "SV": 6,
       "W": 4,
       "OC": 0
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Feeder mandibles"
+          }
+        ]
+      }
+    ]
   },
   "Canoptek Tomb Crawlers": {
     "n": 2,
     "pts": 50,
     "ranged": "Twin gauss reaper",
     "melee": "Claws",
-    "special_max": 1,
-    "specials": [
-      "Dimensional isolator"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -61,20 +94,40 @@
       "SV": 3,
       "W": 3,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Twin gauss reaper",
+            "melee": "Claws"
+          }
+        ]
+      },
+      {
+        "name": "Dimensional isolator",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Dimensional isolator",
+            "melee": "Claws"
+          },
+          {
+            "count": 1,
+            "ranged": "Twin gauss reaper",
+            "melee": "Claws"
+          }
+        ]
+      }
+    ]
   },
   "Canoptek Wraiths": {
     "n": 3,
     "pts": 95,
     "ranged": "Transdimensional beamer",
     "melee": "Vicious claws",
-    "special_max": 1,
-    "specials": [
-      "Particle caster"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "10\"",
@@ -83,18 +136,40 @@
       "W": 4,
       "OC": 2,
       "INV": 4
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Transdimensional beamer",
+            "melee": "Vicious claws"
+          }
+        ]
+      },
+      {
+        "name": "Particle caster",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Particle caster",
+            "melee": "Vicious claws"
+          },
+          {
+            "count": 2,
+            "ranged": "Transdimensional beamer",
+            "melee": "Vicious claws"
+          }
+        ]
+      }
+    ]
   },
   "Cryptothralls": {
     "n": 2,
     "pts": 60,
     "ranged": "Scouring eye",
     "melee": "Scythed limbs",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -103,18 +178,25 @@
       "W": 3,
       "OC": 1,
       "FNP": 4
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Scouring eye",
+            "melee": "Scythed limbs"
+          }
+        ]
+      }
+    ]
   },
   "Deathmarks": {
     "n": 5,
     "pts": 60,
     "ranged": "Synaptic disintegrator",
     "melee": "Close combat weapon",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -123,18 +205,26 @@
       "W": 1,
       "OC": 1,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Synaptic disintegrator",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 70
   },
   "Flayed Ones": {
     "n": 5,
     "pts": 55,
     "ranged": null,
     "melee": "Flayer claws",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -142,20 +232,24 @@
       "SV": 4,
       "W": 1,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Flayer claws"
+          }
+        ]
+      }
+    ]
   },
   "Immortals": {
     "n": 5,
     "pts": 70,
     "ranged": "Gauss blaster",
     "melee": "Close combat weapon",
-    "special_max": 1,
-    "specials": [
-      "Tesla carbine"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -163,18 +257,40 @@
       "SV": 3,
       "W": 1,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Gauss blaster",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "Tesla carbine",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Tesla carbine",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Gauss blaster",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Lokhust Destroyers": {
     "n": 1,
     "pts": 40,
     "ranged": "Gauss cannon",
     "melee": "Close combat weapon",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "8\"",
@@ -182,20 +298,26 @@
       "SV": 3,
       "W": 3,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Gauss cannon",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 50
   },
   "Lokhust Heavy Destroyers": {
     "n": 1,
     "pts": 50,
     "ranged": "Enmitic exterminator",
     "melee": "Close combat weapon",
-    "special_max": 1,
-    "specials": [
-      "Gauss destructor"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "8\"",
@@ -203,18 +325,36 @@
       "SV": 3,
       "W": 4,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Enmitic exterminator",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "Gauss destructor",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Gauss destructor",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 60
   },
   "Lychguard": {
     "n": 5,
     "pts": 80,
     "ranged": null,
     "melee": "Warscythe",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -222,20 +362,24 @@
       "SV": 3,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Warscythe"
+          }
+        ]
+      }
+    ]
   },
   "Necron Warriors": {
     "n": 10,
     "pts": 80,
     "ranged": "Gauss flayer",
     "melee": "Close combat weapon",
-    "special_max": 1,
-    "specials": [
-      "Gauss reaper"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -243,18 +387,40 @@
       "SV": 4,
       "W": 1,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Gauss flayer",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "Gauss reaper",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Gauss reaper",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 9,
+            "ranged": "Gauss flayer",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Ophydian Destroyers": {
     "n": 3,
     "pts": 80,
     "ranged": null,
     "melee": "Ophydian hyperphase weapons",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "10\"",
@@ -263,18 +429,25 @@
       "W": 3,
       "OC": 2,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Ophydian hyperphase weapons"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 90
   },
   "Skorpekh Destroyers": {
     "n": 3,
     "pts": 85,
     "ranged": null,
     "melee": "Skorpekh hyperphase weapons",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "8\"",
@@ -282,21 +455,25 @@
       "SV": 3,
       "W": 3,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Skorpekh hyperphase weapons"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 95
   },
   "Tomb Blades": {
     "n": 3,
     "pts": 70,
     "ranged": "Twin gauss blaster",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Particle beamer",
-      "Twin tesla carbine"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -305,20 +482,56 @@
       "W": 2,
       "OC": 2,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Twin gauss blaster",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Particle beamer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Particle beamer",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Twin gauss blaster",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Twin tesla carbine",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Twin tesla carbine",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Twin gauss blaster",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 80
   },
   "Triarch Praetorians": {
     "n": 5,
     "pts": 80,
     "ranged": "Rod of covenant",
     "melee": "Rod of covenant",
-    "special_max": 1,
-    "specials": [
-      "Particle caster"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "10\"",
@@ -327,6 +540,33 @@
       "W": 2,
       "OC": 1,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Rod of covenant",
+            "melee": "Rod of covenant"
+          }
+        ]
+      },
+      {
+        "name": "Particle caster",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Particle caster",
+            "melee": "Rod of covenant"
+          },
+          {
+            "count": 4,
+            "ranged": "Rod of covenant",
+            "melee": "Rod of covenant"
+          }
+        ]
+      }
+    ]
   }
 }
