@@ -1161,6 +1161,172 @@ class BSDataParser11e:
             "slots": slots,
                 }
 
+    def _resolve_faction_catalogue(self, faction_name: str) -> dict | None:
+        """Find a BSData catalogue by exact name, then fuzzy (slug/display) match.
+
+        BSData catalogue names are prefixed (e.g. "Imperium - Grey Knights") while
+        callers commonly pass the short display/slug form ("Grey Knights",
+        "grey-knights"). Fall back to slug_to_faction's fuzzy resolver.
+        """
+        target = faction_name
+        for path in self._find_json_files():
+            data = self._load_json(path)
+            if data is None:
+                continue
+            c = self._get_catalogue(data)
+            if c.get("name", "").lower() == target.lower():
+                return c
+        resolved = self.slug_to_faction(target)
+        if resolved:
+            for path in self._find_json_files():
+                data = self._load_json(path)
+                if data is None:
+                    continue
+                c = self._get_catalogue(data)
+                if c.get("name", "").lower() == resolved.lower():
+                    return c
+        return None
+
+    @staticmethod
+    def _norm_name(s: str) -> str:
+        return re.sub(r'[^a-z0-9]', '', (s or "").lower())
+
+    def _load_merged_weapon_map(self, faction_name: str) -> dict[str, dict]:
+        """Build normalized-unit-name -> {name, fixed_ranged, fixed_melee}.
+
+        Reads the merged data file (`data/merged/<faction>.json`) which already
+        contains the fully-resolved weapon list per unit (profiles with
+        typeName "Ranged Weapons" / "Melee Weapons"). The merged list is treated
+        as the ground-truth FIXED weapon set for augmentation.
+        """
+        mdir = Path(__file__).resolve().parent.parent / "data" / "merged"
+        if not mdir.is_dir():
+            return {}
+        target = self._norm_name(faction_name)
+        merged_data: dict | None = None
+        # First pass: exact faction/slug match.
+        for path in sorted(mdir.glob("*.json")):
+            d = self._load_json(path)
+            if not d or "units" not in d:
+                continue
+            if (self._norm_name(d.get("faction", "")) == target
+                    or self._norm_name(d.get("slug", "")) == target):
+                merged_data = d
+                break
+        # Second pass: substring fallback (handles "Imperium - Grey Knights"
+        # -> grey-knights.json where display name is "Grey Knights").
+        if merged_data is None:
+            for path in sorted(mdir.glob("*.json")):
+                d = self._load_json(path)
+                if not d or "units" not in d:
+                    continue
+                fac = self._norm_name(d.get("faction", ""))
+                slug = self._norm_name(d.get("slug", ""))
+                if (target and (target in fac or target in slug
+                                or fac in target or slug in target)):
+                    merged_data = d
+                    break
+        if merged_data is None:
+            return {}
+        out: dict[str, dict] = {}
+        for u in merged_data.get("units", []):
+            weapons = (u.get("profile") or {}).get("weapons", [])
+            if not weapons:
+                continue
+            fr: list[str] = []
+            fm: list[str] = []
+            for w in weapons:
+                wname = w.get("name", "")
+                profs = w.get("profiles", [])
+                tname = profs[0].get("typeName", "") if profs else ""
+                if tname == "Melee Weapons":
+                    fm.append(wname)
+                else:
+                    # Default to ranged; covers unknown/missing typeName too.
+                    fr.append(wname)
+            if not (fr or fm):
+                continue
+            out[self._norm_name(u.get("name", ""))] = {
+                "name": u.get("name", ""),
+                "fixed_ranged": fr,
+                "fixed_melee": fm,
+            }
+        return out
+
+    def _augment_from_merged(self, result: dict[str, dict],
+                             merged_map: dict[str, dict]) -> dict[str, dict]:
+        """Augment BSData-extracted constraints with merged-data FIXED weapons.
+
+        BSData wargear groups miss many fixed weapons (they live on model profiles
+        or in entryLinks pointing at sharedSelectionEntries). The merged data has
+        the full resolved weapon list per unit, so it is the ground truth for the
+        FIXED weapons list:
+
+          * If BSData already captures every merged fixed weapon for a unit the
+            entry is left untouched (BSData may carry optional upgrades too).
+          * If weapons are missing, the unit's builds are collapsed to a single
+            "default" build carrying the merged FIXED weapons plus the union of
+            BSData's choice lists (ranged_choices/melee_choices/slots).
+          * Units present in merged but absent from BSData (no wargear group, e.g.
+            most Chaos Daemons) are added as default builds from merged weapons.
+        """
+        if not merged_map:
+            return result
+        # Augment existing units.
+        for uname, udata in list(result.items()):
+            key = self._norm_name(uname)
+            mw = merged_map.get(key)
+            if not mw:
+                continue
+            merged_names = {self._norm_name(x)
+                            for x in mw["fixed_ranged"] + mw["fixed_melee"]}
+            bs_names: set[str] = set()
+            for b in udata.get("builds", []):
+                bs_names |= {self._norm_name(x)
+                             for x in b.get("fixed_ranged", []) + b.get("fixed_melee", [])}
+            if not merged_names or merged_names.issubset(bs_names):
+                continue  # BSData already complete — preserve its structure.
+            ranged_choices: list = []
+            melee_choices: list = []
+            slots: list = []
+            for b in udata.get("builds", []):
+                ranged_choices.extend(b.get("ranged_choices", []) or [])
+                melee_choices.extend(b.get("melee_choices", []) or [])
+                slots.extend(b.get("slots", []) or [])
+            fixed_typed = ([{"name": n, "type": "ranged"} for n in mw["fixed_ranged"]]
+                           + [{"name": n, "type": "melee"} for n in mw["fixed_melee"]])
+            result[uname] = {"builds": [{
+                "name": "default",
+                "fixed_ranged": list(mw["fixed_ranged"]),
+                "fixed_melee": list(mw["fixed_melee"]),
+                "ranged_choices": ranged_choices,
+                "melee_choices": melee_choices,
+                "max_ranged": None,
+                "max_melee": None,
+                "fixed": fixed_typed,
+                "slots": slots,
+            }]}
+        # Add merged-only units (no BSData wargear group) as default builds.
+        existing = {self._norm_name(n) for n in result}
+        for key, mw in merged_map.items():
+            if key in existing or not (mw["fixed_ranged"] or mw["fixed_melee"]):
+                continue
+            fixed_typed = ([{"name": n, "type": "ranged"} for n in mw["fixed_ranged"]]
+                           + [{"name": n, "type": "melee"} for n in mw["fixed_melee"]])
+            result[mw["name"]] = {"builds": [{
+                "name": "default",
+                "fixed_ranged": list(mw["fixed_ranged"]),
+                "fixed_melee": list(mw["fixed_melee"]),
+                "ranged_choices": [],
+                "melee_choices": [],
+                "max_ranged": None,
+                "max_melee": None,
+                "fixed": fixed_typed,
+                "slots": [],
+            }]}
+            existing.add(key)
+        return result
+
     def extract_wargear_constraints(self, faction_name: str) -> dict[str, dict]:
         """Extract wargear build constraints for all characters in a faction.
 
@@ -1180,15 +1346,7 @@ class BSDataParser11e:
             ...
         }
         """
-        cat = None
-        for path in self._find_json_files():
-            data = self._load_json(path)
-            if data is None:
-                continue
-            c = self._get_catalogue(data)
-            if c.get("name", "").lower() == faction_name.lower():
-                cat = c
-                break
+        cat = self._resolve_faction_catalogue(faction_name)
         if cat is None:
             return {}
 
@@ -1283,6 +1441,11 @@ class BSDataParser11e:
 
                 if builds:
                     result[name] = {"builds": builds}
+
+        # Augment BSData constraints with the merged-data FIXED weapon lists.
+        # BSData wargear groups miss many fixed weapons (model profiles / shared
+        # entryLinks); merged data carries the fully-resolved weapon list.
+        self._augment_from_merged(result, self._load_merged_weapon_map(faction_name))
 
         return result
 
