@@ -124,11 +124,22 @@ python3 scripts/migrate_vehicle_builds.py --faction <slug>
 - `generate_vehicle_config()` produces builds at TOP LEVEL
   `{pts, info, builds: [...]}` — NOT nested under a `weapon_options` key.
 
-## Phase 3 — Curate squads (manual, no script)
+## Phase 3 — Curate squads
 
 The legacy squad format (`ranged`/`melee` + `specials`/`special_max`) does
-not survive regeneration. Convert each squad to named builds. **This is
-the step with no automation — do it by hand, one squad at a time.**
+not survive regeneration. Convert each squad to named builds.
+
+**Bulk path (preferred):** `scripts/convert_squad_builds.py <slug>` converts
+all legacy squads in a faction mechanically — no-option squads get a single
+`Melee` build, special squads get `Melee` + one mode per special
+(`Nx <special>`), with legacy `_eval_squad_variant` semantics preserved.
+It also verifies MFM pts and weapon resolution (exit 2 on unresolved names).
+`--all-legacy` runs every unconverted faction. After the bulk pass, hand-
+curate only what the script flags or what the datasheet demands beyond the
+legacy data (e.g. legal Mixed combos, apothecary slots, squads whose legacy
+config was missing datasheet specials entirely).
+
+**Manual path** (for squads the script can't express — datasheet facts below).
 
 ### 3a. Gather the datasheet facts
 
@@ -325,3 +336,8 @@ touches them, the playbook must be re-verified:
    "hull = ranged"
 5. **One formula, one source** — tests import engine functions; they
    never re-implement DPP math
+6. **`_eval_squad_build` drops `innate`** — the builds path returns
+   `innate: []`, so squads with squad-level innate weapons (e.g. GK
+   Purifier's Purifying Flame) lose them when converted to builds format.
+   Known gap from the GK conversion; fix the engine to carry
+   `cfg["innate"]` through before converting such squads
