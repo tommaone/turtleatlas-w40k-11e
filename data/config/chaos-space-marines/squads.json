@@ -1,16 +1,11 @@
 {
-  "_note": "chaos-space-marines squads \u2014 generated from BSData + MFM",
+  "_note": "chaos-space-marines squads — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Accursed Cultists": {
     "n": 8,
     "pts": 90,
     "ranged": null,
     "melee": "Hideous mutations",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -18,21 +13,25 @@
       "SV": 6,
       "W": 3,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 8,
+            "melee": "Hideous mutations"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 110
   },
   "Chaos Bikers": {
     "n": 3,
     "pts": 70,
     "ranged": "Flamer",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Meltagun",
-      "Combi-weapon"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -40,18 +39,55 @@
       "SV": 3,
       "W": 3,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "ranged": "Flamer",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Meltagun",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Meltagun",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Flamer",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Combi-weapon",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Combi-weapon",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Flamer",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Chaos Spawn": {
     "n": 2,
     "pts": 60,
     "ranged": null,
     "melee": "Hideous Mutations",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "8\"",
@@ -59,21 +95,24 @@
       "SV": 4,
       "W": 4,
       "OC": 0
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 2,
+            "melee": "Hideous Mutations"
+          }
+        ]
+      }
+    ]
   },
   "Chaos Terminator Squad": {
     "n": 5,
-    "pts": 180,
+    "pts": 175,
     "ranged": "Combi-weapon",
     "melee": "Power fist",
-    "special_max": 2,
-    "specials": [
-      "Heavy flamer",
-      "Reaper autocannon"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -83,18 +122,55 @@
       "OC": 1,
       "INV": 4,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Combi-weapon",
+            "melee": "Power fist"
+          }
+        ]
+      },
+      {
+        "name": "2x Heavy flamer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Heavy flamer",
+            "melee": "Power fist"
+          },
+          {
+            "count": 3,
+            "ranged": "Combi-weapon",
+            "melee": "Power fist"
+          }
+        ]
+      },
+      {
+        "name": "2x Reaper autocannon",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Reaper autocannon",
+            "melee": "Power fist"
+          },
+          {
+            "count": 3,
+            "ranged": "Combi-weapon",
+            "melee": "Power fist"
+          }
+        ]
+      }
+    ]
   },
   "Chosen": {
     "n": 5,
-    "pts": 125,
+    "pts": 135,
     "ranged": "Combi-weapon",
     "melee": "Paired accursed weapons",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -102,20 +178,26 @@
       "SV": 3,
       "W": 3,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Combi-weapon",
+            "melee": "Paired accursed weapons"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 145
   },
   "Cultist Mob": {
     "n": 10,
     "pts": 50,
     "ranged": "Bolt pistol",
     "melee": "Close combat weapon",
-    "special_max": 1,
-    "specials": [
-      "Autopistol"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -123,18 +205,40 @@
       "SV": 6,
       "W": 1,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "Autopistol",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Autopistol",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 9,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Fabius Bile": {
     "n": 2,
     "pts": 100,
     "ranged": "Xyclos needler",
     "melee": "The Chirurgeon",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -142,20 +246,25 @@
       "SV": 3,
       "W": 5,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Xyclos needler",
+            "melee": "The Chirurgeon"
+          }
+        ]
+      }
+    ]
   },
   "Fellgor Beastmen": {
     "n": 10,
     "pts": 60,
     "ranged": "Autopistol",
     "melee": "Close combat weapon",
-    "special_max": 1,
-    "specials": [
-      "Corrupted stave"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -163,24 +272,40 @@
       "SV": 5,
       "W": 1,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Autopistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "Corrupted stave",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Corrupted stave",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 9,
+            "ranged": "Autopistol",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Havocs": {
     "n": 5,
     "pts": 125,
     "ranged": "Havoc autocannon",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Havoc lascannon",
-      "Havoc missile launcher - frag",
-      "Havoc missile launcher - krak",
-      "Havoc reaper chaincannon",
-      "Havoc heavy bolter"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -188,18 +313,101 @@
       "SV": 3,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Havoc autocannon",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Havoc lascannon",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Havoc lascannon",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Havoc autocannon",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Havoc missile launcher - frag",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Havoc missile launcher - frag",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Havoc autocannon",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Havoc missile launcher - krak",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Havoc missile launcher - krak",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Havoc autocannon",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Havoc reaper chaincannon",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Havoc reaper chaincannon",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Havoc autocannon",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Havoc heavy bolter",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Havoc heavy bolter",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Havoc autocannon",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 135
   },
   "Khorne Berzerkers": {
     "n": 5,
     "pts": 180,
     "ranged": null,
     "melee": "Chainblade",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "8\"",
@@ -207,27 +415,24 @@
       "SV": 3,
       "W": 2,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Chainblade"
+          }
+        ]
+      }
+    ]
   },
   "Legionaries": {
     "n": 5,
     "pts": 90,
     "ranged": "Balefire tome",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Flamer",
-      "Havoc autocannon",
-      "Heavy bolter",
-      "Lascannon",
-      "Missile launcher - frag",
-      "Missile launcher - krak",
-      "Reaper chaincannon",
-      "Meltagun"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -235,23 +440,145 @@
       "SV": 3,
       "W": 2,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Balefire tome",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Flamer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Flamer",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Balefire tome",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Havoc autocannon",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Havoc autocannon",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Balefire tome",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Heavy bolter",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Heavy bolter",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Balefire tome",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Lascannon",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Lascannon",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Balefire tome",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Missile launcher - frag",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Missile launcher - frag",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Balefire tome",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Missile launcher - krak",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Missile launcher - krak",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Balefire tome",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Reaper chaincannon",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Reaper chaincannon",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Balefire tome",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Meltagun",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Meltagun",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Balefire tome",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Masters Of The Maelstrom": {
     "n": 5,
-    "pts": 135,
+    "pts": 145,
     "ranged": "Absolver bolt pistol",
     "melee": "Reductor array",
-    "special_max": 2,
-    "specials": [
-      "Mind Wrench",
-      "Bolt pistol",
-      "Laspistol",
-      "Londaxi maimer"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -259,18 +586,85 @@
       "SV": 3,
       "W": 4,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Absolver bolt pistol",
+            "melee": "Reductor array"
+          }
+        ]
+      },
+      {
+        "name": "2x Mind Wrench",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Mind Wrench",
+            "melee": "Reductor array"
+          },
+          {
+            "count": 3,
+            "ranged": "Absolver bolt pistol",
+            "melee": "Reductor array"
+          }
+        ]
+      },
+      {
+        "name": "2x Bolt pistol",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Bolt pistol",
+            "melee": "Reductor array"
+          },
+          {
+            "count": 3,
+            "ranged": "Absolver bolt pistol",
+            "melee": "Reductor array"
+          }
+        ]
+      },
+      {
+        "name": "2x Laspistol",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Laspistol",
+            "melee": "Reductor array"
+          },
+          {
+            "count": 3,
+            "ranged": "Absolver bolt pistol",
+            "melee": "Reductor array"
+          }
+        ]
+      },
+      {
+        "name": "2x Londaxi maimer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Londaxi maimer",
+            "melee": "Reductor array"
+          },
+          {
+            "count": 3,
+            "ranged": "Absolver bolt pistol",
+            "melee": "Reductor array"
+          }
+        ]
+      }
+    ]
   },
   "Mutilators": {
     "n": 3,
-    "pts": 180,
+    "pts": 165,
     "ranged": null,
     "melee": "Fleshmetal weapons - rending strikes",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -280,23 +674,25 @@
       "OC": 2,
       "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 3,
+            "melee": "Fleshmetal weapons - rending strikes"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 175
   },
   "Nemesis Claw": {
     "n": 5,
-    "pts": 110,
+    "pts": 100,
     "ranged": "Heavy bolter",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Missile launcher - frag",
-      "Missile launcher - krak",
-      "Flamer",
-      "Meltagun"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -304,21 +700,85 @@
       "SV": 3,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Heavy bolter",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Missile launcher - frag",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Missile launcher - frag",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Heavy bolter",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Missile launcher - krak",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Missile launcher - krak",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Heavy bolter",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Flamer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Flamer",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Heavy bolter",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Meltagun",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Meltagun",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Heavy bolter",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Noise Marines": {
     "n": 5,
     "pts": 145,
     "ranged": "Sonic blaster",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Blastmaster - varied frequency",
-      "Blastmaster - single frequency"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -326,21 +786,55 @@
       "SV": 3,
       "W": 2,
       "OC": 1
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Sonic blaster",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Blastmaster - varied frequency",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Blastmaster - varied frequency",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Sonic blaster",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Blastmaster - single frequency",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Blastmaster - single frequency",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Sonic blaster",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Obliterators": {
     "n": 2,
     "pts": 160,
     "ranged": "Fleshmetal guns - focused malice",
     "melee": "Crushing fists",
-    "special_max": 2,
-    "specials": [
-      "Fleshmetal guns - ruinous salvo",
-      "Fleshmetal guns - warp hail"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "4\"",
@@ -350,23 +844,46 @@
       "OC": 2,
       "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Fleshmetal guns - focused malice",
+            "melee": "Crushing fists"
+          }
+        ]
+      },
+      {
+        "name": "2x Fleshmetal guns - ruinous salvo",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Fleshmetal guns - ruinous salvo",
+            "melee": "Crushing fists"
+          }
+        ]
+      },
+      {
+        "name": "2x Fleshmetal guns - warp hail",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Fleshmetal guns - warp hail",
+            "melee": "Crushing fists"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 170
   },
   "Plague Marines": {
     "n": 5,
     "pts": 90,
     "ranged": "Blight launcher",
     "melee": "Plague knives",
-    "special_max": 2,
-    "specials": [
-      "Boltgun",
-      "Plague spewer",
-      "Meltagun",
-      "Plague belcher"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "5\"",
@@ -374,18 +891,85 @@
       "SV": 3,
       "W": 2,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Blight launcher",
+            "melee": "Plague knives"
+          }
+        ]
+      },
+      {
+        "name": "2x Boltgun",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Boltgun",
+            "melee": "Plague knives"
+          },
+          {
+            "count": 3,
+            "ranged": "Blight launcher",
+            "melee": "Plague knives"
+          }
+        ]
+      },
+      {
+        "name": "2x Plague spewer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plague spewer",
+            "melee": "Plague knives"
+          },
+          {
+            "count": 3,
+            "ranged": "Blight launcher",
+            "melee": "Plague knives"
+          }
+        ]
+      },
+      {
+        "name": "2x Meltagun",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Meltagun",
+            "melee": "Plague knives"
+          },
+          {
+            "count": 3,
+            "ranged": "Blight launcher",
+            "melee": "Plague knives"
+          }
+        ]
+      },
+      {
+        "name": "2x Plague belcher",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plague belcher",
+            "melee": "Plague knives"
+          },
+          {
+            "count": 3,
+            "ranged": "Blight launcher",
+            "melee": "Plague knives"
+          }
+        ]
+      }
+    ]
   },
   "Possessed": {
     "n": 5,
     "pts": 120,
     "ranged": null,
     "melee": "Hideous mutations",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "9\"",
@@ -394,18 +978,25 @@
       "W": 3,
       "OC": 1,
       "INV": 5
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Hideous mutations"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 130
   },
   "Raptors": {
     "n": 5,
     "pts": 110,
     "ranged": "Meltagun",
     "melee": "Heavy melee weapon",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -414,18 +1005,26 @@
       "W": 2,
       "OC": 1,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Meltagun",
+            "melee": "Heavy melee weapon"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 120
   },
   "Red Corsairs Raiders": {
     "n": 5,
     "pts": 110,
     "ranged": "Meltagun",
     "melee": "Reaver's blade",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -433,21 +1032,26 @@
       "SV": 3,
       "W": 3,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Meltagun",
+            "melee": "Reaver's blade"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 120
   },
   "Rubric Marines": {
     "n": 5,
     "pts": 100,
     "ranged": "Inferno boltgun",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Warpflamer",
-      "Soulreaper cannon"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -455,26 +1059,55 @@
       "SV": 3,
       "W": 3,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "ranged": "Inferno boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Warpflamer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Warpflamer",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Inferno boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Soulreaper cannon",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Soulreaper cannon",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Inferno boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Traitor Guardsmen Squad": {
     "n": 10,
     "pts": 70,
     "ranged": "Lasgun",
     "melee": "Close combat weapon",
-    "special_max": 2,
-    "specials": [
-      "Flamer",
-      "Plasma gun - standard",
-      "Plasma gun - supercharge",
-      "Meltagun",
-      "Cultist sniper rifle",
-      "Cultist grenade launcher - frag",
-      "Cultist grenade launcher - krak"
-    ],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "6\"",
@@ -482,18 +1115,130 @@
       "SV": 5,
       "W": 1,
       "OC": 2
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Lasgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Flamer",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Flamer",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Lasgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma gun - standard",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma gun - standard",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Lasgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Plasma gun - supercharge",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Plasma gun - supercharge",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Lasgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Meltagun",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Meltagun",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Lasgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Cultist sniper rifle",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Cultist sniper rifle",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Lasgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Cultist grenade launcher - frag",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Cultist grenade launcher - frag",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Lasgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "2x Cultist grenade launcher - krak",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Cultist grenade launcher - krak",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 8,
+            "ranged": "Lasgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   },
   "Warp Talons": {
     "n": 5,
     "pts": 125,
     "ranged": null,
     "melee": "Warp claws",
-    "special_max": 0,
-    "specials": [],
-    "sp_loses_r": false,
-    "sp_loses_m": false,
-    "apoth_loses_r": false,
     "innate": [],
     "info": {
       "M": "12\"",
@@ -503,6 +1248,18 @@
       "OC": 1,
       "INV": 5,
       "deep_strike": true
-    }
+    },
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Warp claws"
+          }
+        ]
+      }
+    ],
+    "pts_3rd": 135
   }
 }
