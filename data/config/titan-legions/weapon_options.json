@@ -1,96 +1,1968 @@
 {
-  "_note": "titan-legions weapon options — generated from BSData + MFM",
-  "_source": "BSData 11e + MFM (auto-generated)",
-  "Reaver Titan": {
-    "ranged": [
-      "Reaver apocalypse launcher",
-      "Reaver gatling blaster",
-      "Reaver laser blaster",
-      "Reaver melta cannon",
-      "Reaver volcano cannon"
-    ],
-    "melee": [
-      "Reaver feet",
-      "Reaver power fist - strike",
-      "Reaver power fist - sweep"
-    ],
-    "info": {
-      "M": "12\"",
-      "T": 14,
-      "SV": 2,
-      "W": 60,
-      "OC": 20
-    },
-    "pts": 2200
-  },
-  "Warbringer Nemesis Titan": {
-    "ranged": [
-      "Anvillus defence battery",
-      "Ardex-defensor mauler",
-      "Nemesis quake cannon",
-      "Nemesis volcano cannon",
-      "Reaver gatling blaster",
-      "Reaver laser blaster",
-      "Reaver melta cannon",
-      "Reaver volcano cannon"
-    ],
-    "melee": [
-      "Nemesis feet"
-    ],
-    "info": {
-      "M": "12\"",
-      "T": 14,
-      "SV": 2,
-      "W": 80,
-      "OC": 20
-    },
-    "pts": 2600
-  },
+  "_note": "titan-legions weapon options — builds format, curated from 11e datasheets + MFM",
+  "_source": "merged BSData 11e + MFM + Imperial Armour datasheets",
   "Warhound Titan": {
-    "ranged": [
-      "Warhound vulcan mega-bolter",
-      "Warhound inferno gun",
-      "Warhound plasma blastgun - standard",
-      "Warhound plasma blastgun - supercharge",
-      "Warhound turbo-laser destructor"
-    ],
-    "melee": [
-      "Warhound feet"
-    ],
+    "pts": 1100,
     "info": {
       "M": "14\"",
       "T": 13,
       "SV": 2,
       "W": 40,
-      "OC": 16
+      "OC": 16,
+      "INV": 5
     },
-    "pts": 1100
+    "builds": [
+      {
+        "name": "Plasma blastgun + Vulcan mega-bolter",
+        "fixed": [
+          {
+            "name": "Warhound plasma blastgun",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound vulcan mega-bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Plasma blastgun + Inferno gun",
+        "fixed": [
+          {
+            "name": "Warhound plasma blastgun",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound inferno gun",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Plasma blastgun + Turbo-laser destructor",
+        "fixed": [
+          {
+            "name": "Warhound plasma blastgun",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound turbo-laser destructor",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Turbo-laser destructor + Vulcan mega-bolter",
+        "fixed": [
+          {
+            "name": "Warhound turbo-laser destructor",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound vulcan mega-bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Turbo-laser destructor + Inferno gun",
+        "fixed": [
+          {
+            "name": "Warhound turbo-laser destructor",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound inferno gun",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Vulcan mega-bolter + Inferno gun",
+        "fixed": [
+          {
+            "name": "Warhound vulcan mega-bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound inferno gun",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Twin plasma blastguns",
+        "fixed": [
+          {
+            "name": "Warhound plasma blastgun",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound plasma blastgun",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Twin vulcan mega-bolters",
+        "fixed": [
+          {
+            "name": "Warhound vulcan mega-bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound vulcan mega-bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Twin inferno guns",
+        "fixed": [
+          {
+            "name": "Warhound inferno gun",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound inferno gun",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Twin turbo-laser destructors",
+        "fixed": [
+          {
+            "name": "Warhound turbo-laser destructor",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound turbo-laser destructor",
+            "type": "ranged"
+          },
+          {
+            "name": "Warhound feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      }
+    ]
+  },
+  "Reaver Titan": {
+    "pts": 2200,
+    "info": {
+      "M": "12\"",
+      "T": 14,
+      "SV": 2,
+      "W": 60,
+      "OC": 20,
+      "INV": 5
+    },
+    "builds": [
+      {
+        "name": "Gatling blaster + Laser blaster",
+        "fixed": [
+          {
+            "name": "Reaver apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver feet",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver gatling blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver laser blaster",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Gatling blaster + Melta cannon",
+        "fixed": [
+          {
+            "name": "Reaver apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver feet",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver gatling blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver melta cannon",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Gatling blaster + Volcano cannon",
+        "fixed": [
+          {
+            "name": "Reaver apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver feet",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver gatling blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver volcano cannon",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Laser blaster + Melta cannon",
+        "fixed": [
+          {
+            "name": "Reaver apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver feet",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver melta cannon",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Laser blaster + Volcano cannon",
+        "fixed": [
+          {
+            "name": "Reaver apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver feet",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver volcano cannon",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Melta cannon + Volcano cannon",
+        "fixed": [
+          {
+            "name": "Reaver apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver feet",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver melta cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver volcano cannon",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Twin gatling blasters",
+        "fixed": [
+          {
+            "name": "Reaver apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver feet",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver gatling blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver gatling blaster",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Twin laser blasters",
+        "fixed": [
+          {
+            "name": "Reaver apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver feet",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver laser blaster",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Twin melta cannons",
+        "fixed": [
+          {
+            "name": "Reaver apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver feet",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver melta cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver melta cannon",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Twin volcano cannons",
+        "fixed": [
+          {
+            "name": "Reaver apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver feet",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver volcano cannon",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Power fist + Gatling blaster",
+        "fixed": [
+          {
+            "name": "Reaver apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver feet",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver power fist - strike",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver power fist - sweep",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver gatling blaster",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Power fist + Laser blaster",
+        "fixed": [
+          {
+            "name": "Reaver apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver feet",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver power fist - strike",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver power fist - sweep",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver laser blaster",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Power fist + Melta cannon",
+        "fixed": [
+          {
+            "name": "Reaver apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver feet",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver power fist - strike",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver power fist - sweep",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver melta cannon",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Power fist + Volcano cannon",
+        "fixed": [
+          {
+            "name": "Reaver apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver feet",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver power fist - strike",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver power fist - sweep",
+            "type": "melee"
+          },
+          {
+            "name": "Reaver volcano cannon",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      }
+    ]
+  },
+  "Warbringer Nemesis Titan": {
+    "pts": 2600,
+    "info": {
+      "M": "12\"",
+      "T": 14,
+      "SV": 2,
+      "W": 80,
+      "OC": 20,
+      "INV": 5
+    },
+    "builds": [
+      {
+        "name": "Nemesis quake cannon + Gatling + Laser",
+        "fixed": [
+          {
+            "name": "Anvillus defence battery",
+            "type": "ranged"
+          },
+          {
+            "name": "Anvillus defence battery",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Nemesis quake cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver gatling blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Nemesis feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Nemesis quake cannon + Melta + Volcano",
+        "fixed": [
+          {
+            "name": "Anvillus defence battery",
+            "type": "ranged"
+          },
+          {
+            "name": "Anvillus defence battery",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Nemesis quake cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver melta cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Nemesis feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Nemesis quake cannon + Twin gatling blasters",
+        "fixed": [
+          {
+            "name": "Anvillus defence battery",
+            "type": "ranged"
+          },
+          {
+            "name": "Anvillus defence battery",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Nemesis quake cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver gatling blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver gatling blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Nemesis feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Nemesis quake cannon + Twin volcano cannons",
+        "fixed": [
+          {
+            "name": "Anvillus defence battery",
+            "type": "ranged"
+          },
+          {
+            "name": "Anvillus defence battery",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Nemesis quake cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Nemesis feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Nemesis volcano cannon + Gatling + Laser",
+        "fixed": [
+          {
+            "name": "Anvillus defence battery",
+            "type": "ranged"
+          },
+          {
+            "name": "Anvillus defence battery",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Nemesis volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver gatling blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Nemesis feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Nemesis volcano cannon + Melta + Volcano",
+        "fixed": [
+          {
+            "name": "Anvillus defence battery",
+            "type": "ranged"
+          },
+          {
+            "name": "Anvillus defence battery",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Nemesis volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver melta cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Nemesis feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Nemesis volcano cannon + Twin gatling blasters",
+        "fixed": [
+          {
+            "name": "Anvillus defence battery",
+            "type": "ranged"
+          },
+          {
+            "name": "Anvillus defence battery",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Nemesis volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver gatling blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver gatling blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Nemesis feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Nemesis volcano cannon + Twin volcano cannons",
+        "fixed": [
+          {
+            "name": "Anvillus defence battery",
+            "type": "ranged"
+          },
+          {
+            "name": "Anvillus defence battery",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Nemesis volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaver volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Nemesis feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      }
+    ]
   },
   "Warlord Titan": {
-    "ranged": [
-      "Ardex-defensor lascannon",
-      "Ardex-defensor mauler",
-      "Arioch power claw",
-      "Belicosa volcano cannon",
-      "Macro gatling blaster",
-      "Mori quake cannon",
-      "Sunfury plasma annihilator - standard",
-      "Sunfury plasma annihilator - supercharge",
-      "Apocalypse launcher",
-      "Laser blaster"
-    ],
-    "melee": [
-      "Warlord feet",
-      "Arioch power claw - strike",
-      "Arioch power claw - sweep"
-    ],
+    "pts": 3500,
     "info": {
       "M": "10\"",
       "T": 16,
       "SV": 2,
       "W": 100,
-      "OC": 30
+      "OC": 30,
+      "INV": 5
     },
-    "pts": 3500
+    "builds": [
+      {
+        "name": "Macro gatling blaster + Arioch power claw",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Macro gatling blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Arioch power claw",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          },
+          {
+            "name": "Arioch power claw - strike",
+            "type": "melee"
+          },
+          {
+            "name": "Arioch power claw - sweep",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Dual belicosa volcano cannons",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Belicosa volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Belicosa volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Dual macro gatling blasters",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Macro gatling blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Macro gatling blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Dual mori quake cannons",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Mori quake cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Mori quake cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Dual sunfury plasma annihilators",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Sunfury plasma annihilator",
+            "type": "ranged"
+          },
+          {
+            "name": "Sunfury plasma annihilator",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Dual arioch power claws",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Arioch power claw",
+            "type": "ranged"
+          },
+          {
+            "name": "Arioch power claw",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          },
+          {
+            "name": "Arioch power claw - strike",
+            "type": "melee"
+          },
+          {
+            "name": "Arioch power claw - sweep",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Belicosa volcano cannon + Sunfury plasma annihilator",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Belicosa volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Sunfury plasma annihilator",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Belicosa volcano cannon + Macro gatling blaster",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Belicosa volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Macro gatling blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Mori quake cannon + Belicosa volcano cannon",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Mori quake cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Belicosa volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Mori quake cannon + Sunfury plasma annihilator",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Mori quake cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Sunfury plasma annihilator",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Arioch power claw + Belicosa volcano cannon",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Arioch power claw",
+            "type": "ranged"
+          },
+          {
+            "name": "Belicosa volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          },
+          {
+            "name": "Arioch power claw - strike",
+            "type": "melee"
+          },
+          {
+            "name": "Arioch power claw - sweep",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Arioch power claw + Sunfury plasma annihilator",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Apocalypse launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Arioch power claw",
+            "type": "ranged"
+          },
+          {
+            "name": "Sunfury plasma annihilator",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          },
+          {
+            "name": "Arioch power claw - strike",
+            "type": "melee"
+          },
+          {
+            "name": "Arioch power claw - sweep",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Macro gatling blaster + Arioch power claw (laser blasters)",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Macro gatling blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Arioch power claw",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          },
+          {
+            "name": "Arioch power claw - strike",
+            "type": "melee"
+          },
+          {
+            "name": "Arioch power claw - sweep",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Dual belicosa volcano cannons (laser blasters)",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Belicosa volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Belicosa volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Dual macro gatling blasters (laser blasters)",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Macro gatling blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Macro gatling blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Dual mori quake cannons (laser blasters)",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Mori quake cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Mori quake cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Dual sunfury plasma annihilators (laser blasters)",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Sunfury plasma annihilator",
+            "type": "ranged"
+          },
+          {
+            "name": "Sunfury plasma annihilator",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Dual arioch power claws (laser blasters)",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Arioch power claw",
+            "type": "ranged"
+          },
+          {
+            "name": "Arioch power claw",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          },
+          {
+            "name": "Arioch power claw - strike",
+            "type": "melee"
+          },
+          {
+            "name": "Arioch power claw - sweep",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Belicosa volcano cannon + Sunfury plasma annihilator (laser blasters)",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Belicosa volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Sunfury plasma annihilator",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Belicosa volcano cannon + Macro gatling blaster (laser blasters)",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Belicosa volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Macro gatling blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Mori quake cannon + Belicosa volcano cannon (laser blasters)",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Mori quake cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Belicosa volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Mori quake cannon + Sunfury plasma annihilator (laser blasters)",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Mori quake cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Sunfury plasma annihilator",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Arioch power claw + Belicosa volcano cannon (laser blasters)",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Arioch power claw",
+            "type": "ranged"
+          },
+          {
+            "name": "Belicosa volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          },
+          {
+            "name": "Arioch power claw - strike",
+            "type": "melee"
+          },
+          {
+            "name": "Arioch power claw - sweep",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "Arioch power claw + Sunfury plasma annihilator (laser blasters)",
+        "fixed": [
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Ardex-defensor mauler",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Laser blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Arioch power claw",
+            "type": "ranged"
+          },
+          {
+            "name": "Sunfury plasma annihilator",
+            "type": "ranged"
+          },
+          {
+            "name": "Warlord feet",
+            "type": "melee"
+          },
+          {
+            "name": "Arioch power claw - strike",
+            "type": "melee"
+          },
+          {
+            "name": "Arioch power claw - sweep",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      }
+    ]
   }
 }
