@@ -1254,8 +1254,11 @@ class RankingEngine:
                 kw.append("DREADNOUGHT")
             if veh_info.get("deep_strike"):
                 kw.append("DEEP STRIKE")
-            if veh_info.get("invuln") or veh_info.get("INV"):
-                kw.append("WALKER")
+            # WALKER keyword is sourced from authoritative merged profile keywords
+            # (merged at line ~1436 via profile_kw merge). Do NOT infer WALKER from
+            # INV presence — that tags any shielded vehicle (Foetid Bloat-Drone,
+            # Plagueburst Crawler) as a walker. Real walkers (Helbrute, Defiler,
+            # Dreadnoughts) carry "Walker" in merged profile.keywords.
             return kw, veh_info["T"], veh_info["SV"], _safe_int(veh_info["W"], 2), veh_info.get("OC", 0), veh_info.get("invuln") or veh_info.get("INV")
 
         # Character info
