@@ -18,7 +18,7 @@ MFM_DIR = REPO_ROOT / "mfm" / "data"
 CONFIG_DIR = REPO_ROOT / "data" / "config"
 
 # Factions we support
-TEST_FACTIONS = ["grey-knights", "chaos-knights", "chaos-daemons"]
+TEST_FACTIONS = ["grey-knights", "chaos-knights", "chaos-daemons", "emperors-children"]
 
 # Unit name patterns that are exempt from MFM pricing checks
 # (Legends, Crucible, Forge World, Titanicus — no current MFM entry)
