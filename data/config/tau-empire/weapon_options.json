@@ -2,17 +2,6 @@
   "_note": "tau-empire weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Ax-1-0 Tiger Shark": {
-    "ranged": [
-      "Twin heavy rail cannon",
-      "Missile pod",
-      "Burst cannon",
-      "Cyclic ion blaster - standard",
-      "Cyclic ion blaster - overcharge",
-      "Seeker missile"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "-",
       "T": 11,
@@ -20,19 +9,30 @@
       "W": 18,
       "INV": 5
     },
-    "pts": 315
+    "pts": 315,
+    "builds": [
+      {
+        "name": "Twin Heavy Rail Cannon",
+        "fixed_ranged": [
+          "Twin heavy rail cannon",
+          "Missile pod",
+          "Burst cannon",
+          "Seeker missile"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [
+          [
+            "Cyclic ion blaster - standard",
+            "Cyclic ion blaster - overcharge"
+          ]
+        ],
+        "melee_choices": []
+      }
+    ]
   },
   "Broadside Battlesuits": {
-    "ranged": [
-      "Heavy rail rifle",
-      "High-yield missile pods",
-      "Seeker missile",
-      "Twin plasma rifle",
-      "Twin smart missile system"
-    ],
-    "melee": [
-      "Crushing bulk"
-    ],
     "info": {
       "M": "5\"",
       "T": 6,
@@ -41,16 +41,26 @@
       "OC": 2,
       "FNP": 4
     },
-    "pts": 75
+    "pts": 75,
+    "builds": [
+      {
+        "name": "Heavy Rail Rifle + Twin Smart Missile System",
+        "fixed_ranged": [
+          "Heavy rail rifle",
+          "High-yield missile pods",
+          "Seeker missile",
+          "Twin plasma rifle",
+          "Twin smart missile system"
+        ],
+        "fixed_melee": [
+          "Crushing bulk"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Crisis Fireknife Battlesuits": {
-    "ranged": [
-      "Missile pod",
-      "Plasma rifle"
-    ],
-    "melee": [
-      "Battlesuit fists"
-    ],
     "info": {
       "M": "10\"",
       "T": 5,
@@ -59,16 +69,23 @@
       "OC": 2,
       "deep_strike": true
     },
-    "pts": 100
+    "pts": 100,
+    "builds": [
+      {
+        "name": "Fireknife",
+        "fixed_ranged": [
+          "Missile pod",
+          "Plasma rifle"
+        ],
+        "fixed_melee": [
+          "Battlesuit fists"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Crisis Starscythe Battlesuits": {
-    "ranged": [
-      "Burst cannon",
-      "T'au flamer"
-    ],
-    "melee": [
-      "Battlesuit fists"
-    ],
     "info": {
       "M": "10\"",
       "T": 5,
@@ -77,18 +94,23 @@
       "OC": 2,
       "deep_strike": true
     },
-    "pts": 90
+    "pts": 90,
+    "builds": [
+      {
+        "name": "Starscythe",
+        "fixed_ranged": [
+          "Burst cannon",
+          "T'au flamer"
+        ],
+        "fixed_melee": [
+          "Battlesuit fists"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Devilfish": {
-    "ranged": [
-      "Accelerator burst cannon",
-      "Twin pulse carbine",
-      "Smart missile system",
-      "Seeker missile"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "12\"",
       "T": 9,
@@ -96,20 +118,25 @@
       "W": 13,
       "OC": 2
     },
-    "pts": 85
+    "pts": 85,
+    "builds": [
+      {
+        "name": "Accelerator Burst Cannon",
+        "fixed_ranged": [
+          "Accelerator burst cannon",
+          "Twin pulse carbine",
+          "Smart missile system",
+          "Seeker missile"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Ghostkeel Battlesuit": {
-    "ranged": [
-      "Twin burst cannon",
-      "Twin T'au flamer",
-      "Twin fusion blaster",
-      "Fusion collider",
-      "Cyclic ion raker - standard",
-      "Cyclic ion raker - overcharge"
-    ],
-    "melee": [
-      "Ghostkeel fists"
-    ],
     "info": {
       "M": "10\"",
       "T": 8,
@@ -117,21 +144,31 @@
       "W": 12,
       "OC": 3
     },
-    "pts": 150
+    "pts": 150,
+    "builds": [
+      {
+        "name": "Cyclic Ion Raker + Twin Cannons",
+        "fixed_ranged": [],
+        "fixed_melee": [
+          "Ghostkeel fists"
+        ],
+        "ranged_choices": [
+          [
+            "Cyclic ion raker - standard",
+            "Cyclic ion raker - overcharge",
+            "Fusion collider"
+          ],
+          [
+            "Twin burst cannon",
+            "Twin T'au flamer",
+            "Twin fusion blaster"
+          ]
+        ],
+        "melee_choices": []
+      }
+    ]
   },
   "Hammerhead Gunship": {
-    "ranged": [
-      "Railgun",
-      "Ion cannon - standard",
-      "Ion cannon - overcharge",
-      "Seeker missile",
-      "Accelerator burst cannon",
-      "Twin pulse carbine",
-      "Smart missile system"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "10\"",
       "T": 10,
@@ -139,20 +176,31 @@
       "W": 14,
       "OC": 3
     },
-    "pts": 140
+    "pts": 140,
+    "builds": [
+      {
+        "name": "Railgun + Ion Cannon",
+        "fixed_ranged": [
+          "Seeker missile",
+          "Accelerator burst cannon",
+          "Twin pulse carbine",
+          "Smart missile system"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [
+          [
+            "Railgun",
+            "Ion cannon - standard",
+            "Ion cannon - overcharge"
+          ]
+        ],
+        "melee_choices": []
+      }
+    ]
   },
   "Manta": {
-    "ranged": [
-      "Heavy rail cannon",
-      "Long-barrelled burst cannon array",
-      "Ion cannon - standard",
-      "Ion cannon - overcharge",
-      "Seeker missile",
-      "Missile pod"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "40\"",
       "T": 14,
@@ -160,18 +208,30 @@
       "W": 60,
       "INV": 5
     },
-    "pts": 2100
+    "pts": 2100,
+    "builds": [
+      {
+        "name": "Heavy Rail Cannon + Ion Cannon",
+        "fixed_ranged": [
+          "Heavy rail cannon",
+          "Long-barrelled burst cannon array",
+          "Seeker missile",
+          "Missile pod"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [
+          [
+            "Ion cannon - standard",
+            "Ion cannon - overcharge"
+          ]
+        ],
+        "melee_choices": []
+      }
+    ]
   },
   "Piranhas": {
-    "ranged": [
-      "Twin pulse carbine",
-      "Piranha burst cannon",
-      "Piranha fusion blaster",
-      "Seeker missile"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "14\"",
       "T": 7,
@@ -179,40 +239,54 @@
       "W": 7,
       "OC": 2
     },
-    "pts": 65
+    "pts": 65,
+    "builds": [
+      {
+        "name": "Twin Pulse Carbine + Seeker Missile",
+        "fixed_ranged": [
+          "Twin pulse carbine",
+          "Piranha burst cannon",
+          "Piranha fusion blaster",
+          "Seeker missile"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Razorshark Strike Fighter": {
-    "ranged": [
-      "Quad ion turret - standard",
-      "Quad ion turret - overcharge",
-      "Seeker missile",
-      "Missile pod",
-      "Accelerator burst cannon"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "-",
       "T": 10,
       "SV": 3,
       "W": 12
     },
-    "pts": 160
+    "pts": 160,
+    "builds": [
+      {
+        "name": "Quad Ion Turret",
+        "fixed_ranged": [
+          "Seeker missile",
+          "Missile pod",
+          "Accelerator burst cannon"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [
+          [
+            "Quad ion turret - standard",
+            "Quad ion turret - overcharge"
+          ]
+        ],
+        "melee_choices": []
+      }
+    ]
   },
   "Riptide Battlesuit": {
-    "ranged": [
-      "Heavy burst cannon",
-      "Ion accelerator - standard",
-      "Ion accelerator - overcharge",
-      "Missile pod",
-      "Twin smart missile system",
-      "Twin fusion blaster",
-      "Twin plasma rifle"
-    ],
-    "melee": [
-      "Riptide fists"
-    ],
     "info": {
       "M": "10\"",
       "T": 9,
@@ -221,18 +295,31 @@
       "OC": 4,
       "INV": 4
     },
-    "pts": 180
+    "pts": 180,
+    "builds": [
+      {
+        "name": "Heavy Burst Cannon + Ion Accelerator",
+        "fixed_ranged": [
+          "Missile pod",
+          "Twin smart missile system",
+          "Twin fusion blaster",
+          "Twin plasma rifle"
+        ],
+        "fixed_melee": [
+          "Riptide fists"
+        ],
+        "ranged_choices": [
+          [
+            "Heavy burst cannon",
+            "Ion accelerator - standard",
+            "Ion accelerator - overcharge"
+          ]
+        ],
+        "melee_choices": []
+      }
+    ]
   },
   "Sky Ray Gunship": {
-    "ranged": [
-      "Seeker missile rack",
-      "Accelerator burst cannon",
-      "Twin pulse carbine",
-      "Smart missile system"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "10\"",
       "T": 10,
@@ -240,23 +327,25 @@
       "W": 14,
       "OC": 3
     },
-    "pts": 140
+    "pts": 140,
+    "builds": [
+      {
+        "name": "Seeker Missile Rack",
+        "fixed_ranged": [
+          "Seeker missile rack",
+          "Accelerator burst cannon",
+          "Twin pulse carbine",
+          "Smart missile system"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Stormsurge": {
-    "ranged": [
-      "Cluster rocket system",
-      "Destroyer missiles",
-      "Twin smart missile system",
-      "Pulse Driver Cannon",
-      "Pulse blast cannon - focused",
-      "Pulse blast cannon - dispersed",
-      "Twin airbursting fragmentation projector",
-      "Twin burst cannon",
-      "Twin T'au flamer"
-    ],
-    "melee": [
-      "Thunderous footfalls"
-    ],
     "info": {
       "M": "8\"",
       "T": 11,
@@ -265,42 +354,62 @@
       "OC": 6,
       "INV": 4
     },
-    "pts": 360
+    "pts": 360,
+    "builds": [
+      {
+        "name": "Pulse Driver / Pulse Blast Cannon",
+        "fixed_ranged": [
+          "Cluster rocket system",
+          "Destroyer missiles",
+          "Twin smart missile system",
+          "Twin airbursting fragmentation projector",
+          "Twin burst cannon",
+          "Twin T'au flamer"
+        ],
+        "fixed_melee": [
+          "Thunderous footfalls"
+        ],
+        "ranged_choices": [
+          [
+            "Pulse Driver Cannon",
+            "Pulse blast cannon - focused",
+            "Pulse blast cannon - dispersed"
+          ]
+        ],
+        "melee_choices": []
+      }
+    ]
   },
   "Sun Shark Bomber": {
-    "ranged": [
-      "Twin ion rifle - standard",
-      "Twin ion rifle - overcharged",
-      "Seeker missile",
-      "Twin missile pod",
-      "Missile pod"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "-",
       "T": 9,
       "SV": 3,
       "W": 12
     },
-    "pts": 150
+    "pts": 150,
+    "builds": [
+      {
+        "name": "Twin Ion Rifle + Twin Missile Pod",
+        "fixed_ranged": [
+          "Seeker missile",
+          "Twin missile pod",
+          "Missile pod"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [
+          [
+            "Twin ion rifle - standard",
+            "Twin ion rifle - overcharged"
+          ]
+        ],
+        "melee_choices": []
+      }
+    ]
   },
   "Ta’Unar Supremacy Armour": {
-    "ranged": [
-      "Burst cannon",
-      "Smart missile system",
-      "Tri-axis ion cannon - standard",
-      "Tri-axis ion cannon - supercharge",
-      "Fusion eradicator",
-      "Pulse ordnance driver",
-      "Nexus missile launcher",
-      "Heavy rail cannon array",
-      "Fragmentation cluster shell launcher"
-    ],
-    "melee": [
-      "Crushing feet"
-    ],
     "info": {
       "M": "8\"",
       "T": 13,
@@ -309,24 +418,33 @@
       "OC": 10,
       "INV": 5
     },
-    "pts": 790
+    "pts": 790,
+    "builds": [
+      {
+        "name": "Tri-axis Ion Cannon + Pulse Ordnance",
+        "fixed_ranged": [
+          "Burst cannon",
+          "Smart missile system",
+          "Fusion eradicator",
+          "Pulse ordnance driver",
+          "Nexus missile launcher",
+          "Heavy rail cannon array",
+          "Fragmentation cluster shell launcher"
+        ],
+        "fixed_melee": [
+          "Crushing feet"
+        ],
+        "ranged_choices": [
+          [
+            "Tri-axis ion cannon - standard",
+            "Tri-axis ion cannon - supercharge"
+          ]
+        ],
+        "melee_choices": []
+      }
+    ]
   },
   "Tiger Shark": {
-    "ranged": [
-      "Missile pod",
-      "Cyclic ion blaster - standard",
-      "Cyclic ion blaster - overcharge",
-      "Burst cannon",
-      "Ion cannon - standard",
-      "Ion cannon - overcharge",
-      "Swiftstrike burst cannon",
-      "Swiftstrike railgun",
-      "Seeker missile",
-      "Skyspear missile rack"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "-",
       "T": 11,
@@ -334,6 +452,58 @@
       "W": 18,
       "INV": 5
     },
-    "pts": 325
+    "pts": 325,
+    "builds": [
+      {
+        "name": "Swiftstrike Railgun + Ion Cannons",
+        "fixed_ranged": [
+          "Missile pod",
+          "Burst cannon",
+          "Swiftstrike burst cannon",
+          "Swiftstrike railgun",
+          "Seeker missile",
+          "Skyspear missile rack"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [
+          [
+            "Cyclic ion blaster - standard",
+            "Cyclic ion blaster - overcharge"
+          ],
+          [
+            "Ion cannon - standard",
+            "Ion cannon - overcharge"
+          ]
+        ],
+        "melee_choices": []
+      }
+    ]
+  },
+  "Crisis Sunforge Battlesuits": {
+    "info": {
+      "M": "10\"",
+      "T": 5,
+      "SV": 3,
+      "W": 4,
+      "OC": 2,
+      "INV": 4,
+      "deep_strike": true
+    },
+    "pts": 125,
+    "builds": [
+      {
+        "name": "Sunforge",
+        "fixed_ranged": [
+          "Fusion blaster"
+        ],
+        "fixed_melee": [
+          "Battlesuit fists"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   }
 }
