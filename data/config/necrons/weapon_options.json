@@ -2,14 +2,7 @@
   "_note": "necrons weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Annihilation Barge": {
-    "ranged": [
-      "Twin tesla destructor",
-      "Gauss cannon",
-      "Tesla cannon"
-    ],
-    "melee": [
-      "Armoured bulk"
-    ],
+    "pts": 95,
     "info": {
       "M": "10\"",
       "T": 8,
@@ -18,16 +11,31 @@
       "OC": 3,
       "INV": 4
     },
-    "pts": 95
+    "builds": [
+      {
+        "name": "Tesla cannon",
+        "fixed_ranged": [
+          "Twin tesla destructor",
+          "Tesla cannon"
+        ],
+        "fixed_melee": [
+          "Armoured bulk"
+        ]
+      },
+      {
+        "name": "Gauss cannon",
+        "fixed_ranged": [
+          "Twin tesla destructor",
+          "Gauss cannon"
+        ],
+        "fixed_melee": [
+          "Armoured bulk"
+        ]
+      }
+    ]
   },
   "Canoptek Doomstalker": {
-    "ranged": [
-      "Doomsday blaster",
-      "Twin gauss flayer"
-    ],
-    "melee": [
-      "Doomstalker limbs"
-    ],
+    "pts": 140,
     "info": {
       "M": "8\"",
       "T": 8,
@@ -36,32 +44,43 @@
       "OC": 4,
       "INV": 4
     },
-    "pts": 140
+    "builds": [
+      {
+        "name": "Doomsday blaster",
+        "fixed_ranged": [
+          "Doomsday blaster",
+          "Twin gauss flayer"
+        ],
+        "fixed_melee": [
+          "Doomstalker limbs"
+        ]
+      }
+    ]
   },
   "Doom Scythe": {
-    "ranged": [
-      "Heavy death ray",
-      "Twin tesla destructor"
-    ],
-    "melee": [
-      "Armoured bulk"
-    ],
+    "pts": 200,
     "info": {
       "M": "-",
       "T": 9,
       "SV": 3,
       "W": 12
     },
-    "pts": 200
+    "builds": [
+      {
+        "name": "Heavy death ray",
+        "fixed_ranged": [
+          "Heavy death ray",
+          "Twin tesla destructor"
+        ],
+        "fixed_melee": [
+          "Armoured bulk"
+        ]
+      }
+    ]
   },
   "Doomsday Ark": {
-    "ranged": [
-      "Doomsday cannon",
-      "Gauss flayer array"
-    ],
-    "melee": [
-      "Armoured bulk"
-    ],
+    "pts": 210,
+    "pts_3rd": 230,
     "info": {
       "M": "10\"",
       "T": 9,
@@ -70,17 +89,22 @@
       "OC": 5,
       "INV": 4
     },
-    "pts": 200
+    "builds": [
+      {
+        "name": "Doomsday cannon",
+        "fixed_ranged": [
+          "Doomsday cannon",
+          "Gauss flayer array"
+        ],
+        "fixed_melee": [
+          "Armoured bulk"
+        ]
+      }
+    ]
   },
   "Monolith": {
-    "ranged": [
-      "Particle whip",
-      "Death ray",
-      "Gauss flux arc"
-    ],
-    "melee": [
-      "Portal of exile"
-    ],
+    "pts": 420,
+    "pts_3rd": 440,
     "info": {
       "M": "8\"",
       "T": 13,
@@ -89,18 +113,23 @@
       "OC": 8,
       "deep_strike": true
     },
-    "pts": 420
+    "builds": [
+      {
+        "name": "Particle whip",
+        "fixed_ranged": [
+          "Particle whip",
+          "Four death rays",
+          "Four gauss flux arcs"
+        ],
+        "fixed_melee": [
+          "Portal of exile"
+        ]
+      }
+    ]
   },
   "Seraptek Heavy Construct": {
-    "ranged": [
-      "Singularity generator",
-      "Synaptic obliterator",
-      "Transdimensional projector"
-    ],
-    "melee": [
-      "Titanic forelimbs - strike",
-      "Titanic forelimbs - sweep"
-    ],
+    "pts": 540,
+    "pts_3rd": 570,
     "info": {
       "M": "10\"",
       "T": 12,
@@ -109,18 +138,32 @@
       "OC": 10,
       "INV": 5
     },
-    "pts": 540
+    "builds": [
+      {
+        "name": "Singularity generators",
+        "fixed_ranged": [
+          "Two singularity generators"
+        ],
+        "fixed_melee": [
+          "Titanic forelimbs - strike",
+          "Titanic forelimbs - sweep"
+        ]
+      },
+      {
+        "name": "Synaptic obliterator & projector",
+        "fixed_ranged": [
+          "Synaptic obliterator",
+          "Transdimensional projector"
+        ],
+        "fixed_melee": [
+          "Titanic forelimbs - strike",
+          "Titanic forelimbs - sweep"
+        ]
+      }
+    ]
   },
   "The Silent King": {
-    "ranged": [
-      "Sceptre of Eternal Glory",
-      "Staff of Stars",
-      "Annihilator beam"
-    ],
-    "melee": [
-      "Weapons of the Final Triarch",
-      "Armoured bulk"
-    ],
+    "pts": 420,
     "info": {
       "M": "8\"",
       "T": 10,
@@ -129,18 +172,25 @@
       "OC": 6,
       "INV": 4
     },
-    "pts": 400
+    "builds": [
+      {
+        "name": "Szarekh & Menhirs",
+        "fixed_ranged": [
+          "Sceptre of Eternal Glory",
+          "Staff of Stars",
+          "Annihilator beam",
+          "Annihilator beam"
+        ],
+        "fixed_melee": [
+          "Weapons of the Final Triarch",
+          "Armoured bulk"
+        ]
+      }
+    ]
   },
   "Triarch Stalker": {
-    "ranged": [
-      "Heat ray - dispersed",
-      "Heat ray - focused",
-      "Particle shredder",
-      "Heavy gauss cannon array"
-    ],
-    "melee": [
-      "Stalker's forelimbs"
-    ],
+    "pts": 110,
+    "pts_3rd": 120,
     "info": {
       "M": "8\"",
       "T": 8,
@@ -149,6 +199,37 @@
       "OC": 4,
       "INV": 4
     },
-    "pts": 110
+    "builds": [
+      {
+        "name": "Heat ray",
+        "ranged_choices": [
+          [
+            "Heat ray - dispersed",
+            "Heat ray - focused"
+          ]
+        ],
+        "fixed_melee": [
+          "Stalker's forelimbs"
+        ]
+      },
+      {
+        "name": "Particle shredder",
+        "fixed_ranged": [
+          "Particle shredder"
+        ],
+        "fixed_melee": [
+          "Stalker's forelimbs"
+        ]
+      },
+      {
+        "name": "Heavy gauss cannon array",
+        "fixed_ranged": [
+          "Heavy gauss cannon array"
+        ],
+        "fixed_melee": [
+          "Stalker's forelimbs"
+        ]
+      }
+    ]
   }
 }
