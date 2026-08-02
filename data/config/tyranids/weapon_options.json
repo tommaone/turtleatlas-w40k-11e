@@ -1,21 +1,8 @@
 {
-  "_note": "tyranids weapon options — generated from BSData + MFM (pts verified)",
-  "_source": "BSData 11e + MFM (auto-generated)",
+  "_note": "tyranids weapon options — builds format (curated); flat entries and v-only vehicles converted to builds, verified vs merged + MFM",
+  "_source": "BSData 11e + MFM; builds curated (fixed weapons from merged)",
   "Carnifexes": {
-    "ranged": [
-      "Bio-plasma",
-      "Spine banks",
-      "Deathspitters with slimer maggots",
-      "Devourers with brainleech worms",
-      "Heavy venom cannon",
-      "Stranglethorn cannon"
-    ],
-    "melee": [
-      "Chitinous claws and teeth",
-      "Carnifex scything talons",
-      "Carnifex crushing claws",
-      "Carnifex extra scything talons"
-    ],
+    "pts": 90,
     "info": {
       "M": "8\"",
       "T": 9,
@@ -23,33 +10,68 @@
       "W": 8,
       "OC": 3
     },
-    "pts": 90
+    "builds": [
+      {
+        "name": "Mixed bio-weapons",
+        "fixed_ranged": [],
+        "fixed_melee": [],
+        "ranged_choices": [
+          [
+            "Bio-plasma",
+            "Spine banks",
+            "Deathspitters with slimer maggots",
+            "Devourers with brainleech worms",
+            "Heavy venom cannon",
+            "Stranglethorn cannon"
+          ]
+        ],
+        "melee_choices": [
+          [
+            "Chitinous claws and teeth",
+            "Carnifex scything talons",
+            "Carnifex crushing claws",
+            "Carnifex extra scything talons"
+          ]
+        ],
+        "max_ranged": 2,
+        "max_melee": 1
+      }
+    ]
   },
   "Harpy": {
-    "ranged": [
-      "Stinger salvoes",
-      "Twin stranglethorn cannon",
-      "Twin heavy venom cannon"
-    ],
-    "melee": [
-      "Scything wings"
-    ],
+    "pts": 185,
     "info": {
       "M": "-",
       "T": 9,
       "SV": 3,
       "W": 12
     },
-    "pts": 185
+    "builds": [
+      {
+        "name": "Twin stranglethorn cannon",
+        "fixed_ranged": [
+          "Stinger salvoes",
+          "Twin stranglethorn cannon"
+        ],
+        "fixed_melee": [
+          "Scything wings"
+        ]
+      },
+      {
+        "name": "Twin heavy venom cannon",
+        "fixed_ranged": [
+          "Stinger salvoes",
+          "Twin heavy venom cannon"
+        ],
+        "fixed_melee": [
+          "Scything wings"
+        ]
+      }
+    ]
   },
   "Haruspex": {
-    "ranged": [
-      "Grasping tongue"
-    ],
-    "melee": [
-      "Shovelling claws",
-      "Ravenous maw"
-    ],
+    "pts": 125,
+    "pts_3rd": 135,
     "info": {
       "M": "8\"",
       "T": 11,
@@ -57,18 +79,21 @@
       "W": 14,
       "OC": 4
     },
-    "pts": 125,
-    "pts_3rd": 135
+    "builds": [
+      {
+        "name": "Grasping tongue + claws",
+        "fixed_ranged": [
+          "Grasping tongue"
+        ],
+        "fixed_melee": [
+          "Shovelling claws",
+          "Ravenous maw"
+        ]
+      }
+    ]
   },
   "Hierophant": {
-    "ranged": [
-      "Bio-plasma torrent",
-      "Dire bio-cannon"
-    ],
-    "melee": [
-      "Lashwhip pods",
-      "Titanic scything talons"
-    ],
+    "pts": 810,
     "info": {
       "M": "12\"",
       "T": 14,
@@ -77,34 +102,46 @@
       "OC": 12,
       "INV": 5
     },
-    "pts": 810
+    "builds": [
+      {
+        "name": "Bio-titan",
+        "fixed_ranged": [
+          "Bio-plasma torrent",
+          "Dire bio-cannon"
+        ],
+        "fixed_melee": [
+          "Lashwhip pods",
+          "Titanic scything talons"
+        ]
+      }
+    ]
   },
   "Hive Crone": {
-    "ranged": [
-      "Drool cannon",
-      "Tentaclids",
-      "Stinger salvoes"
-    ],
-    "melee": [
-      "Thorax spur",
-      "Scything wings"
-    ],
+    "pts": 170,
     "info": {
       "M": "-",
       "T": 9,
       "SV": 3,
       "W": 12
     },
-    "pts": 170
+    "builds": [
+      {
+        "name": "Drool cannon + Tentaclids",
+        "fixed_ranged": [
+          "Drool cannon",
+          "Tentaclids",
+          "Stinger salvoes"
+        ],
+        "fixed_melee": [
+          "Thorax spur",
+          "Scything wings"
+        ]
+      }
+    ]
   },
   "Maleceptor": {
-    "ranged": [
-      "Psychic overload"
-    ],
-    "melee": [
-      "Massive scything talons - strike",
-      "Massive scything talons - sweep"
-    ],
+    "pts": 190,
+    "pts_3rd": 200,
     "info": {
       "M": "8\"",
       "T": 11,
@@ -113,15 +150,21 @@
       "OC": 4,
       "INV": 4
     },
-    "pts": 190,
-    "pts_3rd": 200
+    "builds": [
+      {
+        "name": "Psychic overload",
+        "fixed_ranged": [
+          "Psychic overload"
+        ],
+        "fixed_melee": [
+          "Massive scything talons - strike",
+          "Massive scything talons - sweep"
+        ]
+      }
+    ]
   },
   "Mawloc": {
-    "ranged": [],
-    "melee": [
-      "Distendible jaw",
-      "Mawloc scything talons"
-    ],
+    "pts": 135,
     "info": {
       "M": "10\"",
       "T": 10,
@@ -130,16 +173,19 @@
       "OC": 4,
       "deep_strike": true
     },
-    "pts": 135
+    "builds": [
+      {
+        "name": "Distendible jaw + talons",
+        "fixed_ranged": [],
+        "fixed_melee": [
+          "Distendible jaw",
+          "Mawloc scything talons"
+        ]
+      }
+    ]
   },
   "Norn Assimilator": {
-    "ranged": [
-      "Toxinjecter Harpoon"
-    ],
-    "melee": [
-      "Monstrous scything talons",
-      "Toxinjecter Harpoon"
-    ],
+    "pts": 250,
     "info": {
       "M": "10\"",
       "T": 11,
@@ -147,18 +193,21 @@
       "W": 16,
       "OC": 5
     },
-    "pts": 250
+    "builds": [
+      {
+        "name": "Toxinjecter harpoon",
+        "fixed_ranged": [
+          "Toxinjecter Harpoon"
+        ],
+        "fixed_melee": [
+          "Monstrous scything talons",
+          "Toxinjecter Harpoon"
+        ]
+      }
+    ]
   },
   "Norn Emissary": {
-    "ranged": [
-      "Psychic tendril - neuroparasite",
-      "Psychic tendril - neurolance",
-      "Psychic tendril - neuroblast"
-    ],
-    "melee": [
-      "Monstrous rending claws",
-      "Monstrous scything talons"
-    ],
+    "pts": 250,
     "info": {
       "M": "10\"",
       "T": 11,
@@ -167,18 +216,42 @@
       "OC": 5,
       "INV": 4
     },
-    "pts": 250
+    "builds": [
+      {
+        "name": "Neuroparasite",
+        "fixed_ranged": [
+          "Psychic tendril - neuroparasite"
+        ],
+        "fixed_melee": [
+          "Monstrous rending claws",
+          "Monstrous scything talons"
+        ]
+      },
+      {
+        "name": "Neurolance",
+        "fixed_ranged": [
+          "Psychic tendril - neurolance"
+        ],
+        "fixed_melee": [
+          "Monstrous rending claws",
+          "Monstrous scything talons"
+        ]
+      },
+      {
+        "name": "Neuroblast",
+        "fixed_ranged": [
+          "Psychic tendril - neuroblast"
+        ],
+        "fixed_melee": [
+          "Monstrous rending claws",
+          "Monstrous scything talons"
+        ]
+      }
+    ]
   },
   "Tyrannofex": {
-    "ranged": [
-      "Stinger salvoes",
-      "Rupture cannon",
-      "Fleshborer hive",
-      "Acid spray"
-    ],
-    "melee": [
-      "Powerful limbs"
-    ],
+    "pts": 180,
+    "pts_3rd": 190,
     "info": {
       "M": "9\"",
       "T": 12,
@@ -186,7 +259,209 @@
       "W": 16,
       "OC": 5
     },
-    "pts": 180,
-    "pts_3rd": 190
+    "builds": [
+      {
+        "name": "Fleshborer hive",
+        "fixed_ranged": [
+          "Stinger salvoes",
+          "Fleshborer hive"
+        ],
+        "fixed_melee": [
+          "Powerful limbs"
+        ]
+      },
+      {
+        "name": "Acid spray",
+        "fixed_ranged": [
+          "Stinger salvoes",
+          "Acid spray"
+        ],
+        "fixed_melee": [
+          "Powerful limbs"
+        ]
+      },
+      {
+        "name": "Rupture cannon",
+        "fixed_ranged": [
+          "Stinger salvoes",
+          "Rupture cannon"
+        ],
+        "fixed_melee": [
+          "Powerful limbs"
+        ]
+      }
+    ]
+  },
+  "Exocrine": {
+    "pts": 140,
+    "pts_3rd": 150,
+    "info": {
+      "M": "8\"",
+      "T": 10,
+      "SV": 3,
+      "W": 14,
+      "OC": 4
+    },
+    "builds": [
+      {
+        "name": "Bio-plasmic cannon",
+        "fixed_ranged": [
+          "Bio-plasmic cannon"
+        ],
+        "fixed_melee": [
+          "Powerful limbs"
+        ]
+      }
+    ]
+  },
+  "Harridan": {
+    "pts": 610,
+    "info": {
+      "M": "14\"",
+      "T": 10,
+      "SV": 3,
+      "W": 30,
+      "OC": 0
+    },
+    "builds": [
+      {
+        "name": "Dire bio-cannon",
+        "fixed_ranged": [
+          "Dire bio-cannon"
+        ],
+        "fixed_melee": [
+          "Gargantuan scything talons"
+        ]
+      }
+    ]
+  },
+  "Psychophage": {
+    "pts": 110,
+    "info": {
+      "M": "12\"",
+      "T": 9,
+      "SV": 3,
+      "W": 10,
+      "OC": 3
+    },
+    "builds": [
+      {
+        "name": "Psychoclastic torrent",
+        "fixed_ranged": [
+          "Psychoclastic torrent"
+        ],
+        "fixed_melee": [
+          "Talons and betentacled maw"
+        ]
+      }
+    ]
+  },
+  "Screamer-Killer": {
+    "pts": 125,
+    "pts_3rd": 135,
+    "info": {
+      "M": "8\"",
+      "T": 9,
+      "SV": 2,
+      "W": 10,
+      "OC": 3
+    },
+    "builds": [
+      {
+        "name": "Bio-plasmic scream",
+        "fixed_ranged": [
+          "Bio-plasmic scream"
+        ],
+        "fixed_melee": [
+          "Screamer-killer talons"
+        ]
+      }
+    ]
+  },
+  "Sporocyst": {
+    "pts": 145,
+    "info": {
+      "M": "-",
+      "T": 10,
+      "SV": 3,
+      "W": 10,
+      "OC": 0
+    },
+    "builds": [
+      {
+        "name": "Sporocyst bio-weapon",
+        "fixed_ranged": [
+          "Sporocyst bio-weapon"
+        ],
+        "fixed_melee": [
+          "Flensing whips"
+        ]
+      }
+    ]
+  },
+  "Toxicrene": {
+    "pts": 120,
+    "info": {
+      "M": "8\"",
+      "T": 11,
+      "SV": 3,
+      "W": 14,
+      "OC": 4
+    },
+    "builds": [
+      {
+        "name": "Massive toxic lashes",
+        "fixed_ranged": [
+          "Massive toxic lashes"
+        ],
+        "fixed_melee": [
+          "Massive toxic lashes"
+        ]
+      }
+    ]
+  },
+  "Trygon": {
+    "pts": 140,
+    "info": {
+      "M": "10\"",
+      "T": 10,
+      "SV": 3,
+      "W": 14,
+      "OC": 4,
+      "deep_strike": true
+    },
+    "builds": [
+      {
+        "name": "Bio-electric pulse",
+        "fixed_ranged": [
+          "Bio-electric pulse"
+        ],
+        "fixed_melee": [
+          "Trygon scything talons"
+        ]
+      }
+    ]
+  },
+  "Tyrannocyte": {
+    "pts": 80,
+    "info": {
+      "M": "8\"",
+      "T": 9,
+      "SV": 3,
+      "W": 10,
+      "OC": 2,
+      "deep_strike": true
+    },
+    "builds": [
+      {
+        "name": "Tyrannocyte Bio-weapons",
+        "fixed_ranged": [
+          "Tyrannocyte Bio-weapons"
+        ],
+        "fixed_melee": [
+          "Flensing Whips"
+        ]
+      }
+    ]
   }
 }
