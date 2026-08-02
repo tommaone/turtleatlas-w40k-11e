@@ -4,9 +4,6 @@
   "Beast Snagga Boyz": {
     "n": 10,
     "pts": 90,
-    "ranged": "Thump gun",
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 5,
@@ -14,6 +11,7 @@
       "W": 1,
       "OC": 2
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -45,9 +43,6 @@
   "Boyz": {
     "n": 10,
     "pts": 75,
-    "ranged": "Slugga",
-    "melee": "Choppa",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 5,
@@ -55,6 +50,7 @@
       "W": 1,
       "OC": 2
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -131,9 +127,6 @@
   "Boyz (Armageddon)": {
     "n": 5,
     "pts": 75,
-    "ranged": "Shoota",
-    "melee": "Choppa",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 5,
@@ -141,6 +134,7 @@
       "W": 1,
       "OC": 2
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -217,9 +211,7 @@
   "Breaka Boyz": {
     "n": 6,
     "pts": 125,
-    "ranged": "Rokkit pistol",
-    "melee": "Smash hammer",
-    "innate": [],
+    "pts_3rd": 135,
     "info": {
       "M": "6\"",
       "T": 5,
@@ -227,6 +219,7 @@
       "W": 2,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -237,16 +230,30 @@
             "melee": "Smash hammer"
           }
         ]
+      },
+      {
+        "name": "Tankhammer",
+        "models": [
+          {
+            "count": 6,
+            "melee": "Tankhammer"
+          }
+        ]
+      },
+      {
+        "name": "Knucklebustas",
+        "models": [
+          {
+            "count": 6,
+            "melee": "Knucklebustas"
+          }
+        ]
       }
-    ],
-    "pts_3rd": 135
+    ]
   },
   "Burna Boyz": {
     "n": 5,
     "pts": 60,
-    "ranged": "Burna",
-    "melee": "Cuttin’ flames",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 5,
@@ -254,6 +261,7 @@
       "W": 1,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -270,9 +278,7 @@
   "Flash Gitz": {
     "n": 5,
     "pts": 75,
-    "ranged": "Snazzgun",
-    "melee": "Choppa",
-    "innate": [],
+    "pts_3rd": 85,
     "info": {
       "M": "6\"",
       "T": 5,
@@ -280,6 +286,7 @@
       "W": 2,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -291,15 +298,11 @@
           }
         ]
       }
-    ],
-    "pts_3rd": 85
+    ]
   },
   "Gretchin": {
     "n": 11,
     "pts": 45,
-    "ranged": "Slugga",
-    "melee": "Grot-smacka",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 2,
@@ -307,6 +310,7 @@
       "W": 1,
       "OC": 2
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -338,9 +342,6 @@
   "Gretchin (Armageddon)": {
     "n": 5,
     "pts": 45,
-    "ranged": "Grot blasta",
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 2,
@@ -348,6 +349,7 @@
       "W": 1,
       "OC": 2
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -364,9 +366,6 @@
   "Kommandos": {
     "n": 10,
     "pts": 120,
-    "ranged": "Slugga",
-    "melee": "Choppa",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 5,
@@ -374,6 +373,7 @@
       "W": 1,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -429,15 +429,27 @@
             "melee": "Choppa"
           }
         ]
+      },
+      {
+        "name": "2x Breacha ram",
+        "models": [
+          {
+            "count": 2,
+            "melee": "Breacha ram"
+          },
+          {
+            "count": 8,
+            "ranged": "Slugga",
+            "melee": "Choppa"
+          }
+        ]
       }
     ]
   },
   "Lootas": {
     "n": 5,
     "pts": 50,
-    "ranged": "Deffgun",
-    "melee": "Close combat weapon",
-    "innate": [],
+    "pts_3rd": 60,
     "info": {
       "M": "6\"",
       "T": 5,
@@ -445,6 +457,7 @@
       "W": 1,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -456,15 +469,12 @@
           }
         ]
       }
-    ],
-    "pts_3rd": 60
+    ]
   },
   "Meganobz": {
     "n": 2,
     "pts": 60,
-    "ranged": "Kustom shoota",
-    "melee": "Power klaw",
-    "innate": [],
+    "pts_3rd": 80,
     "info": {
       "M": "5\"",
       "T": 6,
@@ -473,6 +483,7 @@
       "OC": 1,
       "FNP": 5
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -498,16 +509,32 @@
             "melee": "Power klaw"
           }
         ]
+      },
+      {
+        "name": "Killsaw",
+        "models": [
+          {
+            "count": 2,
+            "ranged": "Kustom shoota",
+            "melee": "Killsaw"
+          }
+        ]
+      },
+      {
+        "name": "Twin killsaw",
+        "models": [
+          {
+            "count": 2,
+            "melee": "Twin killsaw"
+          }
+        ]
       }
-    ],
-    "pts_3rd": 80
+    ]
   },
   "Nobz": {
     "n": 5,
     "pts": 105,
-    "ranged": "Slugga",
-    "melee": "Big choppa",
-    "innate": [],
+    "pts_3rd": 115,
     "info": {
       "M": "6\"",
       "T": 5,
@@ -515,6 +542,7 @@
       "W": 2,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -540,16 +568,27 @@
             "melee": "Big choppa"
           }
         ]
+      },
+      {
+        "name": "Power klaw",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Slugga",
+            "melee": "Power klaw"
+          },
+          {
+            "count": 4,
+            "ranged": "Slugga",
+            "melee": "Big choppa"
+          }
+        ]
       }
-    ],
-    "pts_3rd": 115
+    ]
   },
   "Stormboyz": {
     "n": 5,
     "pts": 65,
-    "ranged": "Slugga",
-    "melee": "Choppa",
-    "innate": [],
     "info": {
       "M": "12\"",
       "T": 5,
@@ -558,6 +597,7 @@
       "OC": 1,
       "deep_strike": true
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -568,15 +608,28 @@
             "melee": "Choppa"
           }
         ]
+      },
+      {
+        "name": "Power klaw Nob",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Slugga",
+            "melee": "Power klaw"
+          },
+          {
+            "count": 4,
+            "ranged": "Slugga",
+            "melee": "Choppa"
+          }
+        ]
       }
     ]
   },
   "Tankbustas": {
     "n": 6,
     "pts": 125,
-    "ranged": "Rokkit pistol",
-    "melee": "Choppa",
-    "innate": [],
+    "pts_3rd": 135,
     "info": {
       "M": "6\"",
       "T": 5,
@@ -584,6 +637,7 @@
       "W": 2,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -610,15 +664,11 @@
           }
         ]
       }
-    ],
-    "pts_3rd": 135
+    ]
   },
   "Warbikers": {
     "n": 3,
     "pts": 60,
-    "ranged": "Twin dakkagun",
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "12\"",
       "T": 6,
@@ -627,6 +677,7 @@
       "OC": 2,
       "INV": 6
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -658,9 +709,6 @@
   "Wartrakk": {
     "n": 1,
     "pts": 60,
-    "ranged": "Rokkit launcha",
-    "melee": "Choppas",
-    "innate": [],
     "info": {
       "M": "12\"",
       "T": 6,
@@ -669,6 +717,7 @@
       "OC": 3,
       "INV": 6
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",

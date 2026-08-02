@@ -2,38 +2,38 @@
   "_note": "orks weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Battlewagon": {
-    "ranged": [
-      "Lobba",
-      "Big shoota",
-      "Killkannon",
-      "Zzap gun",
-      "Kannon - shell",
-      "Kannon - frag"
-    ],
-    "melee": [
-      "Wreckin' ball",
-      "Grabbin' klaw",
-      "Deff rolla",
-      "Tracks and wheels"
-    ],
+    "pts": 145,
     "info": {
       "M": "10\"",
       "T": 10,
       "SV": 3,
       "W": 16,
-      "OC": 5,
-      "INV": 6
+      "OC": 5
     },
-    "pts": 145
+    "builds": [
+      {
+        "name": "Deff rolla + Killkannon",
+        "fixed_ranged": [
+          "Lobba",
+          "Big shoota",
+          "Killkannon",
+          "Zzap gun",
+          "Kannon - shell",
+          "Kannon - frag"
+        ],
+        "fixed_melee": [
+          "Wreckin' ball",
+          "Grabbin' klaw",
+          "Deff rolla",
+          "Tracks and wheels"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Big Mek Dakkarig": {
-    "ranged": [
-      "Blitzkannon",
-      "Rokkit launcha"
-    ],
-    "melee": [
-      "Stompy feet"
-    ],
+    "pts": 100,
     "info": {
       "M": "8\"",
       "T": 8,
@@ -42,16 +42,23 @@
       "OC": 3,
       "INV": 5
     },
-    "pts": 100
+    "builds": [
+      {
+        "name": "Blitzkannon Walker",
+        "fixed_ranged": [
+          "Blitzkannon",
+          "Rokkit launcha"
+        ],
+        "fixed_melee": [
+          "Stompy feet"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Blitza-Bommer": {
-    "ranged": [
-      "Big shoota",
-      "Twin supa-shoota"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
+    "pts": 105,
     "info": {
       "M": "-",
       "T": 9,
@@ -59,17 +66,23 @@
       "W": 12,
       "INV": 6
     },
-    "pts": 105
+    "builds": [
+      {
+        "name": "Bombing Run",
+        "fixed_ranged": [
+          "Big shoota",
+          "Twin supa-shoota"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Boomdakka Snazzwagon": {
-    "ranged": [
-      "Mek speshul",
-      "Big shoota",
-      "Grot blasta"
-    ],
-    "melee": [
-      "Spiked wheels"
-    ],
+    "pts": 70,
     "info": {
       "M": "12\"",
       "T": 7,
@@ -78,17 +91,24 @@
       "OC": 3,
       "INV": 6
     },
-    "pts": 70
+    "builds": [
+      {
+        "name": "Mek speshul Dakka",
+        "fixed_ranged": [
+          "Mek speshul",
+          "Big shoota",
+          "Grot blasta"
+        ],
+        "fixed_melee": [
+          "Spiked wheels"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Burna-Bommer": {
-    "ranged": [
-      "Twin big shoota",
-      "Twin supa-shoota",
-      "Skorcha missile rack"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
+    "pts": 115,
     "info": {
       "M": "-",
       "T": 9,
@@ -96,19 +116,24 @@
       "W": 12,
       "INV": 6
     },
-    "pts": 115
+    "builds": [
+      {
+        "name": "Burna Run",
+        "fixed_ranged": [
+          "Twin big shoota",
+          "Twin supa-shoota",
+          "Skorcha missile rack"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Deff Dread": {
-    "ranged": [
-      "Big shoota",
-      "Kustom mega-blasta",
-      "Rokkit launcha",
-      "Skorcha"
-    ],
-    "melee": [
-      "Stompy feet",
-      "Dread klaw"
-    ],
+    "pts": 110,
     "info": {
       "M": "8\"",
       "T": 9,
@@ -117,17 +142,26 @@
       "OC": 3,
       "INV": 6
     },
-    "pts": 110
+    "builds": [
+      {
+        "name": "Dread klaw + Dakka",
+        "fixed_ranged": [
+          "Big shoota",
+          "Kustom mega-blasta",
+          "Rokkit launcha",
+          "Skorcha"
+        ],
+        "fixed_melee": [
+          "Stompy feet",
+          "Dread klaw"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Deffkoptas": {
-    "ranged": [
-      "Kopta rokkits",
-      "Slugga",
-      "Kustom mega-blasta"
-    ],
-    "melee": [
-      "Spinnin’ blades"
-    ],
+    "pts": 75,
     "info": {
       "M": "12\"",
       "T": 6,
@@ -137,18 +171,24 @@
       "INV": 6,
       "deep_strike": true
     },
-    "pts": 75
+    "builds": [
+      {
+        "name": "Kopta rokkits",
+        "fixed_ranged": [
+          "Kopta rokkits",
+          "Slugga",
+          "Kustom mega-blasta"
+        ],
+        "fixed_melee": [
+          "Spinnin’ blades"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Gargantuan Squiggoth": {
-    "ranged": [
-      "Supa-kannon",
-      "Kannon - shell",
-      "Kannon - frag"
-    ],
-    "melee": [
-      "Huge tusks - strike",
-      "Huge tusks - sweep"
-    ],
+    "pts": 440,
     "info": {
       "M": "10\"",
       "T": 13,
@@ -156,19 +196,25 @@
       "W": 30,
       "OC": 12
     },
-    "pts": 440
+    "builds": [
+      {
+        "name": "Supa-kannon + Tusks",
+        "fixed_ranged": [
+          "Supa-kannon",
+          "Kannon - shell",
+          "Kannon - frag"
+        ],
+        "fixed_melee": [
+          "Huge tusks - strike",
+          "Huge tusks - sweep"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Gorkanaut": {
-    "ranged": [
-      "Deffstorm mega-shoota",
-      "Rokkit launcha",
-      "Skorcha",
-      "Twin big shoota"
-    ],
-    "melee": [
-      "Klaw of Gork - strike",
-      "Klaw of Gork - sweep"
-    ],
+    "pts": 255,
     "info": {
       "M": "8\"",
       "T": 12,
@@ -177,18 +223,26 @@
       "OC": 8,
       "INV": 6
     },
-    "pts": 255
+    "builds": [
+      {
+        "name": "Klaw of Gork",
+        "fixed_ranged": [
+          "Deffstorm mega-shoota",
+          "Rokkit launcha",
+          "Skorcha",
+          "Twin big shoota"
+        ],
+        "fixed_melee": [
+          "Klaw of Gork - strike",
+          "Klaw of Gork - sweep"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Hunta Rig": {
-    "ranged": [
-      "’Eavy lobba",
-      "Stikka kannon"
-    ],
-    "melee": [
-      "Butcha boyz",
-      "Savage horns and hooves",
-      "Saw blades"
-    ],
+    "pts": 125,
     "info": {
       "M": "10\"",
       "T": 10,
@@ -196,19 +250,25 @@
       "W": 16,
       "OC": 5
     },
-    "pts": 125
+    "builds": [
+      {
+        "name": "Stikka kannon + Butcha boyz",
+        "fixed_ranged": [
+          "’Eavy lobba",
+          "Stikka kannon"
+        ],
+        "fixed_melee": [
+          "Butcha boyz",
+          "Savage horns and hooves",
+          "Saw blades"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Kill Rig": {
-    "ranged": [
-      "Wurrtower",
-      "’Eavy lobba",
-      "Stikka kannon"
-    ],
-    "melee": [
-      "Butcha boyz",
-      "Savage horns and hooves",
-      "Saw blades"
-    ],
+    "pts": 145,
     "info": {
       "M": "10\"",
       "T": 10,
@@ -216,18 +276,26 @@
       "W": 16,
       "OC": 5
     },
-    "pts": 145
+    "builds": [
+      {
+        "name": "Wurrtower + Butcha boyz",
+        "fixed_ranged": [
+          "Wurrtower",
+          "’Eavy lobba",
+          "Stikka kannon"
+        ],
+        "fixed_melee": [
+          "Butcha boyz",
+          "Savage horns and hooves",
+          "Saw blades"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Killa Kans": {
-    "ranged": [
-      "Kan shoota",
-      "Grotzooka",
-      "Rokkit launcha",
-      "Skorcha"
-    ],
-    "melee": [
-      "Kan klaw"
-    ],
+    "pts": 120,
     "info": {
       "M": "6\"",
       "T": 6,
@@ -236,17 +304,25 @@
       "OC": 2,
       "INV": 6
     },
-    "pts": 120
+    "builds": [
+      {
+        "name": "Kan klaw + Rokkit",
+        "fixed_ranged": [
+          "Kan shoota",
+          "Grotzooka",
+          "Rokkit launcha",
+          "Skorcha"
+        ],
+        "fixed_melee": [
+          "Kan klaw"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Kustom Boosta-Blasta": {
-    "ranged": [
-      "Burna exhausts",
-      "Rivet kannon",
-      "Grot blasta"
-    ],
-    "melee": [
-      "Spiked wheels"
-    ],
+    "pts": 70,
     "info": {
       "M": "12\"",
       "T": 7,
@@ -255,17 +331,24 @@
       "OC": 3,
       "INV": 6
     },
-    "pts": 70
+    "builds": [
+      {
+        "name": "Rivet kannon + Burna exhausts",
+        "fixed_ranged": [
+          "Burna exhausts",
+          "Rivet kannon",
+          "Grot blasta"
+        ],
+        "fixed_melee": [
+          "Spiked wheels"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Megatrakk Scrapjet": {
-    "ranged": [
-      "Rokkit cannon",
-      "Wing missiles",
-      "Twin big shoota"
-    ],
-    "melee": [
-      "Nose drill"
-    ],
+    "pts": 75,
     "info": {
       "M": "12\"",
       "T": 7,
@@ -274,20 +357,24 @@
       "OC": 3,
       "INV": 6
     },
-    "pts": 75
+    "builds": [
+      {
+        "name": "Rokkit cannon + Nose drill",
+        "fixed_ranged": [
+          "Rokkit cannon",
+          "Wing missiles",
+          "Twin big shoota"
+        ],
+        "fixed_melee": [
+          "Nose drill"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Mek Gunz": {
-    "ranged": [
-      "Smasha gun",
-      "1-2 Bubblechukka - big bubble",
-      "3-4 Bubblechukka - wobbly bubble",
-      "5-6 Bubblechukka - dense bubble",
-      "Kustom mega-kannon",
-      "Traktor kannon"
-    ],
-    "melee": [
-      "Grot crew"
-    ],
+    "pts": 45,
     "info": {
       "M": "3\"",
       "T": 5,
@@ -296,19 +383,27 @@
       "OC": 2,
       "INV": 6
     },
-    "pts": 45
+    "builds": [
+      {
+        "name": "Smasha gun",
+        "fixed_ranged": [
+          "Smasha gun",
+          "1-2 Bubblechukka - big bubble",
+          "3-4 Bubblechukka - wobbly bubble",
+          "5-6 Bubblechukka - dense bubble",
+          "Kustom mega-kannon",
+          "Traktor kannon"
+        ],
+        "fixed_melee": [
+          "Grot crew"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Morkanaut": {
-    "ranged": [
-      "Kustom mega-zappa",
-      "Kustom mega-blasta",
-      "Rokkit launcha",
-      "Twin big shoota"
-    ],
-    "melee": [
-      "Klaw of Mork - strike",
-      "Klaw of Mork - sweep"
-    ],
+    "pts": 270,
     "info": {
       "M": "8\"",
       "T": 12,
@@ -317,16 +412,26 @@
       "OC": 8,
       "INV": 5
     },
-    "pts": 270
+    "builds": [
+      {
+        "name": "Klaw of Mork",
+        "fixed_ranged": [
+          "Kustom mega-zappa",
+          "Kustom mega-blasta",
+          "Rokkit launcha",
+          "Twin big shoota"
+        ],
+        "fixed_melee": [
+          "Klaw of Mork - strike",
+          "Klaw of Mork - sweep"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Rukkatrukk Squigbuggy": {
-    "ranged": [
-      "Sawn-off shotgun",
-      "Squig launchas"
-    ],
-    "melee": [
-      "Saw blades"
-    ],
+    "pts": 85,
     "info": {
       "M": "12\"",
       "T": 7,
@@ -335,16 +440,23 @@
       "OC": 3,
       "INV": 6
     },
-    "pts": 85
+    "builds": [
+      {
+        "name": "Squig launchas",
+        "fixed_ranged": [
+          "Sawn-off shotgun",
+          "Squig launchas"
+        ],
+        "fixed_melee": [
+          "Saw blades"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Shokkjump Dragsta": {
-    "ranged": [
-      "Kustom shokk rifle",
-      "Rokkit launcha"
-    ],
-    "melee": [
-      "Saw blades"
-    ],
+    "pts": 70,
     "info": {
       "M": "12\"",
       "T": 7,
@@ -353,21 +465,23 @@
       "OC": 3,
       "INV": 6
     },
-    "pts": 70
+    "builds": [
+      {
+        "name": "Kustom shokk rifle",
+        "fixed_ranged": [
+          "Kustom shokk rifle",
+          "Rokkit launcha"
+        ],
+        "fixed_melee": [
+          "Saw blades"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Stompa": {
-    "ranged": [
-      "Deffkannon",
-      "Supa-gatler",
-      "Supa-rokkits",
-      "Big shoota",
-      "Skorcha",
-      "Twin big shoota"
-    ],
-    "melee": [
-      "Mega-choppa - strike",
-      "Mega-choppa - sweep"
-    ],
+    "pts": 600,
     "info": {
       "M": "10\"",
       "T": 14,
@@ -376,16 +490,28 @@
       "OC": 12,
       "INV": 6
     },
-    "pts": 600
+    "builds": [
+      {
+        "name": "Mega-choppa + Deffkannon",
+        "fixed_ranged": [
+          "Deffkannon",
+          "Supa-gatler",
+          "Supa-rokkits",
+          "Big shoota",
+          "Skorcha",
+          "Twin big shoota"
+        ],
+        "fixed_melee": [
+          "Mega-choppa - strike",
+          "Mega-choppa - sweep"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Trukk": {
-    "ranged": [
-      "Big shoota"
-    ],
-    "melee": [
-      "Wreckin' ball",
-      "Spiked wheel"
-    ],
+    "pts": 65,
     "info": {
       "M": "12\"",
       "T": 8,
@@ -394,18 +520,23 @@
       "OC": 2,
       "INV": 6
     },
-    "pts": 65
+    "builds": [
+      {
+        "name": "Big shoota Transport",
+        "fixed_ranged": [
+          "Big shoota"
+        ],
+        "fixed_melee": [
+          "Wreckin' ball",
+          "Spiked wheel"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Wazbom Blastajet": {
-    "ranged": [
-      "Smasha gun",
-      "Twin wazbom mega-kannon",
-      "Twin tellyport mega-blasta",
-      "Twin supa-shoota"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
+    "pts": 165,
     "info": {
       "M": "-",
       "T": 9,
@@ -413,6 +544,44 @@
       "W": 12,
       "INV": 6
     },
-    "pts": 165
+    "builds": [
+      {
+        "name": "Wazbom mega-kannon",
+        "fixed_ranged": [
+          "Smasha gun",
+          "Twin wazbom mega-kannon",
+          "Twin tellyport mega-blasta",
+          "Twin supa-shoota"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
+  },
+  "Dakkajet": {
+    "pts": 125,
+    "info": {
+      "M": "-",
+      "T": 9,
+      "SV": 3,
+      "W": 12,
+      "INV": 6
+    },
+    "builds": [
+      {
+        "name": "Dakka",
+        "fixed_ranged": [
+          "Twin supa-shoota"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   }
 }
