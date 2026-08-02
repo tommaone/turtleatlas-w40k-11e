@@ -1,16 +1,8 @@
 {
-  "_note": "genestealer-cults weapon options — generated from BSData + MFM",
-  "_source": "BSData 11e + MFM (auto-generated)",
+  "_note": "genestealer-cults weapon options — curated builds (BSData + MFM)",
+  "_source": "BSData 11e + MFM (curated builds)",
   "Achilles Ridgerunners": {
-    "ranged": [
-      "Twin heavy stubber",
-      "Achilles missile launcher",
-      "Heavy mortar",
-      "Heavy mining laser"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
+    "pts": 95,
     "info": {
       "M": "12\"",
       "T": 7,
@@ -18,19 +10,56 @@
       "W": 8,
       "OC": 3
     },
-    "pts": 95
+    "builds": [
+      {
+        "name": "Heavy mining laser",
+        "fixed_ranged": [
+          "Twin heavy stubber"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [
+          [
+            "Heavy mining laser"
+          ]
+        ],
+        "melee_choices": []
+      },
+      {
+        "name": "Achilles missile launcher",
+        "fixed_ranged": [
+          "Twin heavy stubber"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [
+          [
+            "Achilles missile launcher"
+          ]
+        ],
+        "melee_choices": []
+      },
+      {
+        "name": "Heavy mortar",
+        "fixed_ranged": [
+          "Twin heavy stubber"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [
+          [
+            "Heavy mortar"
+          ]
+        ],
+        "melee_choices": []
+      }
+    ]
   },
   "Goliath Rockgrinder": {
-    "ranged": [
-      "Heavy stubber",
-      "Demolition charge cache",
-      "Clearance incinerator",
-      "Heavy seismic cannon",
-      "Heavy mining laser"
-    ],
-    "melee": [
-      "Drilldozer blade"
-    ],
+    "pts": 120,
     "info": {
       "M": "12\"",
       "T": 10,
@@ -38,17 +67,59 @@
       "W": 10,
       "OC": 3
     },
-    "pts": 120
+    "builds": [
+      {
+        "name": "Heavy mining laser",
+        "fixed_ranged": [
+          "Heavy stubber",
+          "Demolition charge cache"
+        ],
+        "fixed_melee": [
+          "Drilldozer blade"
+        ],
+        "ranged_choices": [
+          [
+            "Heavy mining laser"
+          ]
+        ],
+        "melee_choices": []
+      },
+      {
+        "name": "Clearance incinerator",
+        "fixed_ranged": [
+          "Heavy stubber",
+          "Demolition charge cache"
+        ],
+        "fixed_melee": [
+          "Drilldozer blade"
+        ],
+        "ranged_choices": [
+          [
+            "Clearance incinerator"
+          ]
+        ],
+        "melee_choices": []
+      },
+      {
+        "name": "Heavy seismic cannon",
+        "fixed_ranged": [
+          "Heavy stubber",
+          "Demolition charge cache"
+        ],
+        "fixed_melee": [
+          "Drilldozer blade"
+        ],
+        "ranged_choices": [
+          [
+            "Heavy seismic cannon"
+          ]
+        ],
+        "melee_choices": []
+      }
+    ]
   },
   "Goliath Truck": {
-    "ranged": [
-      "Twin autocannon",
-      "Demolition charge cache",
-      "Heavy stubber"
-    ],
-    "melee": [
-      "Goliath wheels"
-    ],
+    "pts": 75,
     "info": {
       "M": "12\"",
       "T": 9,
@@ -56,6 +127,20 @@
       "W": 10,
       "OC": 2
     },
-    "pts": 85
+    "builds": [
+      {
+        "name": "Standard",
+        "fixed_ranged": [
+          "Twin autocannon",
+          "Demolition charge cache",
+          "Heavy stubber"
+        ],
+        "fixed_melee": [
+          "Goliath wheels"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   }
 }
