@@ -1,15 +1,7 @@
 {
-  "_note": "aeldari weapon options — generated from BSData + MFM",
-  "_source": "BSData 11e + MFM (auto-generated)",
+  "_note": "aeldari weapon options — curated builds (flat ranged/melee lists converted to named modes); INV swept against data/merged/aeldari.json InSv",
+  "_source": "BSData 11e + MFM (auto-generated, curated)",
   "Crimson Hunter": {
-    "ranged": [
-      "Pulse Laser",
-      "Starcannon",
-      "Bright Lance"
-    ],
-    "melee": [
-      "Wraithbone Hull"
-    ],
     "info": {
       "M": "-",
       "T": 8,
@@ -17,17 +9,44 @@
       "W": 12,
       "INV": 5
     },
-    "pts": 160
+    "pts": 160,
+    "builds": [
+      {
+        "name": "Twin Starcannons",
+        "fixed_ranged": [
+          "Pulse Laser",
+          "Starcannon",
+          "Starcannon"
+        ],
+        "fixed_melee": [
+          "Wraithbone Hull"
+        ]
+      },
+      {
+        "name": "Twin Bright Lances",
+        "fixed_ranged": [
+          "Pulse Laser",
+          "Bright Lance",
+          "Bright Lance"
+        ],
+        "fixed_melee": [
+          "Wraithbone Hull"
+        ]
+      },
+      {
+        "name": "Mixed Wings",
+        "fixed_ranged": [
+          "Pulse Laser",
+          "Starcannon",
+          "Bright Lance"
+        ],
+        "fixed_melee": [
+          "Wraithbone Hull"
+        ]
+      }
+    ]
   },
   "Falcon": {
-    "ranged": [
-      "Pulse Laser",
-      "Twin Shuriken Catapult",
-      "Shuriken Cannon"
-    ],
-    "melee": [
-      "Wraithbone hull"
-    ],
     "info": {
       "M": "14\"",
       "T": 9,
@@ -36,18 +55,31 @@
       "OC": 3,
       "deep_strike": true
     },
-    "pts": 130
+    "pts": 130,
+    "builds": [
+      {
+        "name": "Pulse Laser + Twin Shuriken Catapult",
+        "fixed_ranged": [
+          "Pulse Laser",
+          "Twin Shuriken Catapult"
+        ],
+        "fixed_melee": [
+          "Wraithbone hull"
+        ]
+      },
+      {
+        "name": "Pulse Laser + Shuriken Cannon",
+        "fixed_ranged": [
+          "Pulse Laser",
+          "Shuriken Cannon"
+        ],
+        "fixed_melee": [
+          "Wraithbone hull"
+        ]
+      }
+    ]
   },
   "Fire Prism": {
-    "ranged": [
-      "Prism Cannon - dispersed pulse",
-      "Prism Cannon - focused lances",
-      "Twin Shuriken Catapult",
-      "Shuriken Cannon"
-    ],
-    "melee": [
-      "Wraithbone Hull"
-    ],
     "info": {
       "M": "14\"",
       "T": 9,
@@ -55,17 +87,51 @@
       "W": 12,
       "OC": 3
     },
-    "pts": 150
+    "pts": 150,
+    "builds": [
+      {
+        "name": "Dispersed Pulse + Twin Shuriken Catapult",
+        "fixed_ranged": [
+          "Prism Cannon - dispersed pulse",
+          "Twin Shuriken Catapult"
+        ],
+        "fixed_melee": [
+          "Wraithbone hull"
+        ]
+      },
+      {
+        "name": "Dispersed Pulse + Shuriken Cannon",
+        "fixed_ranged": [
+          "Prism Cannon - dispersed pulse",
+          "Shuriken Cannon"
+        ],
+        "fixed_melee": [
+          "Wraithbone hull"
+        ]
+      },
+      {
+        "name": "Focused Lances + Twin Shuriken Catapult",
+        "fixed_ranged": [
+          "Prism Cannon - focused lances",
+          "Twin Shuriken Catapult"
+        ],
+        "fixed_melee": [
+          "Wraithbone hull"
+        ]
+      },
+      {
+        "name": "Focused Lances + Shuriken Cannon",
+        "fixed_ranged": [
+          "Prism Cannon - focused lances",
+          "Shuriken Cannon"
+        ],
+        "fixed_melee": [
+          "Wraithbone hull"
+        ]
+      }
+    ]
   },
   "Night Spinner": {
-    "ranged": [
-      "Doomweaver",
-      "Twin Shuriken Catapult",
-      "Shuriken Cannon"
-    ],
-    "melee": [
-      "Wraithbone Hull"
-    ],
     "info": {
       "M": "14\"",
       "T": 9,
@@ -73,56 +139,148 @@
       "W": 12,
       "OC": 3
     },
-    "pts": 170
+    "pts": 170,
+    "builds": [
+      {
+        "name": "Doomweaver + Twin Shuriken Catapult",
+        "fixed_ranged": [
+          "Doomweaver",
+          "Twin Shuriken Catapult"
+        ],
+        "fixed_melee": [
+          "Wraithbone Hull"
+        ]
+      },
+      {
+        "name": "Doomweaver + Shuriken Cannon",
+        "fixed_ranged": [
+          "Doomweaver",
+          "Shuriken Cannon"
+        ],
+        "fixed_melee": [
+          "Wraithbone Hull"
+        ]
+      }
+    ]
   },
   "Phantom Titan": {
-    "ranged": [
-      "Voidstorm missile launcher",
-      "D-bombard",
-      "Phantom pulsar",
-      "Phantom starcannon",
-      "Pulse laser"
-    ],
-    "melee": [
-      "Phantom feet",
-      "Wraith glaive - strike",
-      "Wraith glaive - sweep"
-    ],
     "info": {
       "M": "14\"",
       "T": 14,
       "SV": 2,
       "W": 55,
-      "OC": 20
+      "OC": 20,
+      "INV": 4
     },
-    "pts": 2100
+    "pts": 2100,
+    "builds": [
+      {
+        "name": "Phantom Pulsar",
+        "fixed_ranged": [
+          "Phantom pulsar"
+        ],
+        "fixed_melee": [
+          "Phantom feet"
+        ]
+      },
+      {
+        "name": "Starcannon & Ghostglaive",
+        "fixed_ranged": [
+          "Phantom starcannon"
+        ],
+        "fixed_melee": [
+          "Phantom feet"
+        ],
+        "melee_choices": [
+          [
+            "Wraith glaive - strike",
+            "Wraith glaive - sweep"
+          ]
+        ],
+        "max_melee": 1
+      },
+      {
+        "name": "Pulse Laser & Ghostglaive",
+        "fixed_ranged": [
+          "Pulse laser"
+        ],
+        "fixed_melee": [
+          "Phantom feet"
+        ],
+        "melee_choices": [
+          [
+            "Wraith glaive - strike",
+            "Wraith glaive - sweep"
+          ]
+        ],
+        "max_melee": 1
+      },
+      {
+        "name": "Pulse Laser + Starcannon + Ghostglaive",
+        "fixed_ranged": [
+          "Pulse laser",
+          "Phantom starcannon"
+        ],
+        "fixed_melee": [
+          "Phantom feet"
+        ],
+        "melee_choices": [
+          [
+            "Wraith glaive - strike",
+            "Wraith glaive - sweep"
+          ]
+        ],
+        "max_melee": 1
+      }
+    ]
   },
   "Revenant Titan": {
-    "ranged": [
-      "Cloudburst missile launcher",
-      "Sonic Lance",
-      "Revenant Pulsar"
-    ],
-    "melee": [
-      "Revenant feet"
-    ],
     "info": {
       "M": "16\"",
       "T": 13,
       "SV": 2,
       "W": 30,
-      "OC": 16
+      "OC": 16,
+      "INV": 4
     },
-    "pts": 1100
+    "pts": 1100,
+    "builds": [
+      {
+        "name": "Twin Revenant Pulsars",
+        "fixed_ranged": [
+          "Revenant Pulsar",
+          "Revenant Pulsar",
+          "Cloudburst missile launcher"
+        ],
+        "fixed_melee": [
+          "Revenant feet"
+        ]
+      },
+      {
+        "name": "Revenant Pulsar + Sonic Lance",
+        "fixed_ranged": [
+          "Revenant Pulsar",
+          "Sonic Lance",
+          "Cloudburst missile launcher"
+        ],
+        "fixed_melee": [
+          "Revenant feet"
+        ]
+      },
+      {
+        "name": "Twin Sonic Lances",
+        "fixed_ranged": [
+          "Sonic Lance",
+          "Sonic Lance",
+          "Cloudburst missile launcher"
+        ],
+        "fixed_melee": [
+          "Revenant feet"
+        ]
+      }
+    ]
   },
   "Starfangs": {
-    "ranged": [
-      "Disintegrator Cannon",
-      "Starfang Grenade Launcher"
-    ],
-    "melee": [
-      "Wraithbone Hull"
-    ],
     "info": {
       "M": "14\"",
       "T": 6,
@@ -130,18 +288,21 @@
       "W": 6,
       "OC": 2
     },
-    "pts": 70
+    "pts": 70,
+    "builds": [
+      {
+        "name": "Disintegrator + Grenade Launcher",
+        "fixed_ranged": [
+          "Disintegrator Cannon",
+          "Starfang Grenade Launcher"
+        ],
+        "fixed_melee": [
+          "Wraithbone hull"
+        ]
+      }
+    ]
   },
   "Voidweaver": {
-    "ranged": [
-      "Shuriken Cannon",
-      "Prismatic Cannon - dispersed pulse",
-      "Prismatic Cannon - focused lances",
-      "Voidweaver Haywire Cannon"
-    ],
-    "melee": [
-      "Close Combat Weapon"
-    ],
     "info": {
       "M": "14\"",
       "T": 6,
@@ -150,20 +311,33 @@
       "OC": 2,
       "INV": 4
     },
-    "pts": 115
+    "pts": 115,
+    "builds": [
+      {
+        "name": "Dispersed + Shuriken Cannon + Haywire",
+        "fixed_ranged": [
+          "Prismatic Cannon - dispersed pulse",
+          "Shuriken Cannon",
+          "Voidweaver Haywire Cannon"
+        ],
+        "fixed_melee": [
+          "Close Combat Weapon"
+        ]
+      },
+      {
+        "name": "Focused + Shuriken Cannon + Haywire",
+        "fixed_ranged": [
+          "Prismatic Cannon - focused lances",
+          "Shuriken Cannon",
+          "Voidweaver Haywire Cannon"
+        ],
+        "fixed_melee": [
+          "Close Combat Weapon"
+        ]
+      }
+    ]
   },
   "Vypers": {
-    "ranged": [
-      "Bright Lance",
-      "Scatter Laser",
-      "Starcannon",
-      "Shuriken Cannon",
-      "Missile Launcher - Starshot",
-      "Missile Launcher - Sunburst"
-    ],
-    "melee": [
-      "Wraithbone Hull"
-    ],
     "info": {
       "M": "14\"",
       "T": 6,
@@ -171,22 +345,65 @@
       "W": 6,
       "OC": 2
     },
-    "pts": 75
+    "pts": 75,
+    "builds": [
+      {
+        "name": "Bright Lance",
+        "fixed_ranged": [
+          "Bright Lance"
+        ],
+        "fixed_melee": [
+          "Wraithbone Hull"
+        ]
+      },
+      {
+        "name": "Scatter Laser",
+        "fixed_ranged": [
+          "Scatter Laser"
+        ],
+        "fixed_melee": [
+          "Wraithbone Hull"
+        ]
+      },
+      {
+        "name": "Starcannon",
+        "fixed_ranged": [
+          "Starcannon"
+        ],
+        "fixed_melee": [
+          "Wraithbone Hull"
+        ]
+      },
+      {
+        "name": "Shuriken Cannon",
+        "fixed_ranged": [
+          "Shuriken Cannon"
+        ],
+        "fixed_melee": [
+          "Wraithbone Hull"
+        ]
+      },
+      {
+        "name": "Aeldari Missile Launcher - Starshot",
+        "fixed_ranged": [
+          "Missile Launcher - Starshot"
+        ],
+        "fixed_melee": [
+          "Wraithbone Hull"
+        ]
+      },
+      {
+        "name": "Aeldari Missile Launcher - Sunburst",
+        "fixed_ranged": [
+          "Missile Launcher - Sunburst"
+        ],
+        "fixed_melee": [
+          "Wraithbone Hull"
+        ]
+      }
+    ]
   },
   "Wave Serpent": {
-    "ranged": [
-      "Twin Shuriken Catapult",
-      "Shuriken Cannon",
-      "Twin Aeldari Missile Launcher - Starshot",
-      "Twin Aeldari Missile Launcher - Sunburst",
-      "Twin Bright Lance",
-      "Twin Scatter Laser",
-      "Twin Shuriken Cannon",
-      "Twin Starcannon"
-    ],
-    "melee": [
-      "Wraithbone Hull"
-    ],
     "info": {
       "M": "14\"",
       "T": 9,
@@ -195,19 +412,78 @@
       "OC": 2,
       "INV": 5
     },
-    "pts": 125
+    "pts": 115,
+    "builds": [
+      {
+        "name": "Twin Shuriken Catapult",
+        "fixed_ranged": [
+          "Twin Shuriken Catapult"
+        ],
+        "fixed_melee": [
+          "Wraithbone Hull"
+        ]
+      },
+      {
+        "name": "Shuriken Cannon",
+        "fixed_ranged": [
+          "Shuriken Cannon"
+        ],
+        "fixed_melee": [
+          "Wraithbone Hull"
+        ]
+      },
+      {
+        "name": "Twin Aeldari Missile Launcher",
+        "fixed_melee": [
+          "Wraithbone Hull"
+        ],
+        "ranged_choices": [
+          [
+            "Twin Aeldari Missile Launcher - Starshot",
+            "Twin Aeldari Missile Launcher - Sunburst"
+          ]
+        ],
+        "max_ranged": 1
+      },
+      {
+        "name": "Twin Bright Lance",
+        "fixed_ranged": [
+          "Twin Bright Lance"
+        ],
+        "fixed_melee": [
+          "Wraithbone Hull"
+        ]
+      },
+      {
+        "name": "Twin Scatter Laser",
+        "fixed_ranged": [
+          "Twin Scatter Laser"
+        ],
+        "fixed_melee": [
+          "Wraithbone Hull"
+        ]
+      },
+      {
+        "name": "Twin Shuriken Cannon",
+        "fixed_ranged": [
+          "Twin Shuriken Cannon"
+        ],
+        "fixed_melee": [
+          "Wraithbone Hull"
+        ]
+      },
+      {
+        "name": "Twin Starcannon",
+        "fixed_ranged": [
+          "Twin Starcannon"
+        ],
+        "fixed_melee": [
+          "Wraithbone Hull"
+        ]
+      }
+    ]
   },
   "Wraithknight": {
-    "ranged": [
-      "Heavy Wraithcannon",
-      "Suncannon",
-      "Scatter Laser",
-      "Shuriken Cannon",
-      "Starcannon"
-    ],
-    "melee": [
-      "Titanic Feet"
-    ],
     "info": {
       "M": "12\"",
       "T": 12,
@@ -215,19 +491,83 @@
       "W": 18,
       "OC": 10
     },
-    "pts": 415
+    "pts": 385,
+    "builds": [
+      {
+        "name": "Twin Heavy Wraithcannons + Twin Scatter Lasers",
+        "fixed_ranged": [
+          "Heavy Wraithcannon",
+          "Heavy Wraithcannon",
+          "Scatter Laser",
+          "Scatter Laser"
+        ],
+        "fixed_melee": [
+          "Titanic Feet"
+        ]
+      },
+      {
+        "name": "Twin Heavy Wraithcannons + Twin Shuriken Cannons",
+        "fixed_ranged": [
+          "Heavy Wraithcannon",
+          "Heavy Wraithcannon",
+          "Shuriken Cannon",
+          "Shuriken Cannon"
+        ],
+        "fixed_melee": [
+          "Titanic Feet"
+        ]
+      },
+      {
+        "name": "Twin Heavy Wraithcannons + Twin Starcannons",
+        "fixed_ranged": [
+          "Heavy Wraithcannon",
+          "Heavy Wraithcannon",
+          "Starcannon",
+          "Starcannon"
+        ],
+        "fixed_melee": [
+          "Titanic Feet"
+        ]
+      },
+      {
+        "name": "Twin Suncannons + Twin Scatter Lasers",
+        "fixed_ranged": [
+          "Suncannon",
+          "Suncannon",
+          "Scatter Laser",
+          "Scatter Laser"
+        ],
+        "fixed_melee": [
+          "Titanic Feet"
+        ]
+      },
+      {
+        "name": "Twin Suncannons + Twin Shuriken Cannons",
+        "fixed_ranged": [
+          "Suncannon",
+          "Suncannon",
+          "Shuriken Cannon",
+          "Shuriken Cannon"
+        ],
+        "fixed_melee": [
+          "Titanic Feet"
+        ]
+      },
+      {
+        "name": "Twin Suncannons + Twin Starcannons",
+        "fixed_ranged": [
+          "Suncannon",
+          "Suncannon",
+          "Starcannon",
+          "Starcannon"
+        ],
+        "fixed_melee": [
+          "Titanic Feet"
+        ]
+      }
+    ]
   },
   "Wraithknight With Ghostglaive": {
-    "ranged": [
-      "Heavy Wraithcannon",
-      "Scatter Laser",
-      "Shuriken Cannon",
-      "Starcannon"
-    ],
-    "melee": [
-      "Titanic Ghostglaive - Strike",
-      "Titanic Ghostglaive - Sweep"
-    ],
     "info": {
       "M": "12\"",
       "T": 12,
@@ -235,24 +575,53 @@
       "W": 18,
       "OC": 10
     },
-    "pts": 405
+    "pts": 380,
+    "builds": [
+      {
+        "name": "Ghostglaive + Twin Scatter Lasers",
+        "fixed_ranged": [
+          "Scatter Laser",
+          "Scatter Laser"
+        ],
+        "melee_choices": [
+          [
+            "Titanic Ghostglaive - Strike",
+            "Titanic Ghostglaive - Sweep"
+          ]
+        ],
+        "max_melee": 1
+      },
+      {
+        "name": "Ghostglaive + Twin Shuriken Cannons",
+        "fixed_ranged": [
+          "Shuriken Cannon",
+          "Shuriken Cannon"
+        ],
+        "melee_choices": [
+          [
+            "Titanic Ghostglaive - Strike",
+            "Titanic Ghostglaive - Sweep"
+          ]
+        ],
+        "max_melee": 1
+      },
+      {
+        "name": "Ghostglaive + Twin Starcannons",
+        "fixed_ranged": [
+          "Starcannon",
+          "Starcannon"
+        ],
+        "melee_choices": [
+          [
+            "Titanic Ghostglaive - Strike",
+            "Titanic Ghostglaive - Sweep"
+          ]
+        ],
+        "max_melee": 1
+      }
+    ]
   },
   "Wraithlord": {
-    "ranged": [
-      "Shuriken Catapult",
-      "Flamer",
-      "Aeldari Missile Launcher - Starshot",
-      "Aeldari Missile Launcher - Sunburst",
-      "Bright Lance",
-      "Scatter Laser",
-      "Shuriken Cannon",
-      "Starcannon"
-    ],
-    "melee": [
-      "Ghostglaive - Strike",
-      "Ghostglaive - Sweep",
-      "Wraithbone Fists"
-    ],
     "info": {
       "M": "8\"",
       "T": 10,
@@ -260,16 +629,81 @@
       "W": 10,
       "OC": 3
     },
-    "pts": 125
+    "pts": 125,
+    "builds": [
+      {
+        "name": "Twin Bright Lances",
+        "fixed_ranged": [
+          "Bright Lance",
+          "Bright Lance"
+        ]
+      },
+      {
+        "name": "Bright Lance + Starcannon",
+        "fixed_ranged": [
+          "Bright Lance",
+          "Starcannon"
+        ]
+      },
+      {
+        "name": "Twin Starcannons",
+        "fixed_ranged": [
+          "Starcannon",
+          "Starcannon"
+        ]
+      },
+      {
+        "name": "Twin Shuriken Cannons",
+        "fixed_ranged": [
+          "Shuriken Cannon",
+          "Shuriken Cannon"
+        ]
+      },
+      {
+        "name": "Scatter Laser + Shuriken Cannon",
+        "fixed_ranged": [
+          "Scatter Laser",
+          "Shuriken Cannon"
+        ]
+      },
+      {
+        "name": "Aeldari Missile Launcher + Bright Lance",
+        "fixed_ranged": [
+          "Aeldari Missile Launcher - Starshot",
+          "Bright Lance"
+        ]
+      },
+      {
+        "name": "Ghostglaive + Bright Lance",
+        "fixed_ranged": [
+          "Bright Lance"
+        ],
+        "melee_choices": [
+          [
+            "Ghostglaive - Strike",
+            "Ghostglaive - Sweep",
+            "Wraithbone Fists"
+          ]
+        ],
+        "max_melee": 1
+      },
+      {
+        "name": "Ghostglaive + Starcannon",
+        "fixed_ranged": [
+          "Starcannon"
+        ],
+        "melee_choices": [
+          [
+            "Ghostglaive - Strike",
+            "Ghostglaive - Sweep",
+            "Wraithbone Fists"
+          ]
+        ],
+        "max_melee": 1
+      }
+    ]
   },
   "Ynnari Raider": {
-    "ranged": [
-      "Disintegrator Cannon",
-      "Dark Lance"
-    ],
-    "melee": [
-      "Bladevanes"
-    ],
     "info": {
       "M": "14\"",
       "T": 8,
@@ -279,16 +713,29 @@
       "INV": 6,
       "deep_strike": true
     },
-    "pts": 80
+    "pts": 70,
+    "builds": [
+      {
+        "name": "Disintegrator Cannon",
+        "fixed_ranged": [
+          "Disintegrator Cannon"
+        ],
+        "fixed_melee": [
+          "Bladevanes"
+        ]
+      },
+      {
+        "name": "Dark Lance",
+        "fixed_ranged": [
+          "Dark Lance"
+        ],
+        "fixed_melee": [
+          "Bladevanes"
+        ]
+      }
+    ]
   },
   "Ynnari Venom": {
-    "ranged": [
-      "Splinter Cannon",
-      "Twin Splinter Rifle"
-    ],
-    "melee": [
-      "Bladevanes"
-    ],
     "info": {
       "M": "14\"",
       "T": 6,
@@ -298,6 +745,18 @@
       "INV": 6,
       "deep_strike": true
     },
-    "pts": 70
+    "pts": 65,
+    "builds": [
+      {
+        "name": "Splinter Cannon + Twin Splinter Rifle",
+        "fixed_ranged": [
+          "Splinter Cannon",
+          "Twin Splinter Rifle"
+        ],
+        "fixed_melee": [
+          "Bladevanes"
+        ]
+      }
+    ]
   }
 }

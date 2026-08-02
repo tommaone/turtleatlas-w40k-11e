@@ -1,11 +1,9 @@
 {
-  "_note": "aeldari squads — generated from BSData + MFM",
-  "_source": "BSData 11e + MFM (auto-generated)",
+  "_note": "aeldari squads — builds format; ranged/melee dead fields stripped; INV swept against data/merged/aeldari.json InSv",
+  "_source": "BSData 11e + MFM (auto-generated, curated)",
   "Corsair Skyreavers": {
     "n": 5,
     "pts": 75,
-    "ranged": "Neuro disruptor",
-    "melee": "Corsair Blade",
     "innate": [],
     "info": {
       "M": "12\"",
@@ -136,8 +134,6 @@
   "Corsair Voidreavers": {
     "n": 5,
     "pts": 65,
-    "ranged": "Shuriken cannon",
-    "melee": "Close Combat Weapon",
     "innate": [],
     "info": {
       "M": "7\"",
@@ -267,8 +263,6 @@
   "Corsair Voidscarred": {
     "n": 5,
     "pts": 70,
-    "ranged": "Shuriken Pistol",
-    "melee": "Close Combat Weapon",
     "innate": [],
     "info": {
       "M": "7\"",
@@ -443,8 +437,6 @@
   "D-Cannon Platform": {
     "n": 1,
     "pts": 110,
-    "ranged": "D-cannon",
-    "melee": "Close Combat Weapon",
     "innate": [],
     "info": {
       "M": "7\"",
@@ -479,8 +471,6 @@
   "Dark Reapers": {
     "n": 5,
     "pts": 100,
-    "ranged": "Reaper Launcher - Starshot",
-    "melee": "Close combat weapon",
     "innate": [],
     "info": {
       "M": "6\"",
@@ -581,8 +571,6 @@
   "Dire Avengers": {
     "n": 5,
     "pts": 75,
-    "ranged": "Avenger shuriken catapult",
-    "melee": "Close Combat Weapon",
     "innate": [],
     "info": {
       "M": "7\"",
@@ -623,8 +611,6 @@
   "Fire Dragons": {
     "n": 5,
     "pts": 120,
-    "ranged": "Dragon Fusion Gun",
-    "melee": "Close combat weapon",
     "innate": [],
     "info": {
       "M": "7\"",
@@ -634,6 +620,7 @@
       "OC": 1,
       "INV": 5
     },
+    "pts_3rd": 130,
     "builds": [
       {
         "name": "Melee",
@@ -705,14 +692,11 @@
           }
         ]
       }
-    ],
-    "pts_3rd": 130
+    ]
   },
   "Guardian Defenders": {
     "n": 11,
     "pts": 90,
-    "ranged": "Shuriken Catapult",
-    "melee": "Close Combat Weapon",
     "innate": [],
     "info": {
       "M": "7\"",
@@ -723,11 +707,91 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Shuriken Cannon Platform",
         "models": [
           {
-            "count": 11,
+            "count": 10,
             "ranged": "Shuriken Catapult",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Shuriken Cannon",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "Scatter Laser Platform",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Shuriken Catapult",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Scatter Laser",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "Bright Lance Platform",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Shuriken Catapult",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Bright Lance",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "Aeldari Missile Launcher - Starshot Platform",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Shuriken Catapult",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Aeldari Missile Launcher - Starshot",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "Aeldari Missile Launcher - Sunburst Platform",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Shuriken Catapult",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Aeldari Missile Launcher - Sunburst",
+            "melee": "Close Combat Weapon"
+          }
+        ]
+      },
+      {
+        "name": "Starcannon Platform",
+        "models": [
+          {
+            "count": 10,
+            "ranged": "Shuriken Catapult",
+            "melee": "Close Combat Weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Starcannon",
             "melee": "Close Combat Weapon"
           }
         ]
@@ -737,8 +801,6 @@
   "Howling Banshees": {
     "n": 5,
     "pts": 85,
-    "ranged": "Shuriken Pistol",
-    "melee": "Banshee Blade",
     "innate": [],
     "info": {
       "M": "8\"",
@@ -779,8 +841,6 @@
   "Rangers": {
     "n": 5,
     "pts": 60,
-    "ranged": "Shuriken Pistol",
-    "melee": "Close Combat Weapon",
     "innate": [],
     "info": {
       "M": "7\"",
@@ -821,8 +881,6 @@
   "Shadow Weaver Platform": {
     "n": 1,
     "pts": 60,
-    "ranged": "Shadow weaver",
-    "melee": "Close Combat Weapon",
     "innate": [],
     "info": {
       "M": "7\"",
@@ -857,8 +915,6 @@
   "Shining Spears": {
     "n": 3,
     "pts": 100,
-    "ranged": "Twin Shuriken Catapult",
-    "melee": "Laser Lance",
     "innate": [],
     "info": {
       "M": "14\"",
@@ -929,8 +985,6 @@
   "Shroud Runners": {
     "n": 3,
     "pts": 90,
-    "ranged": "Shuriken Pistol",
-    "melee": "Close Combat Weapon",
     "innate": [],
     "info": {
       "M": "14\"",
@@ -986,8 +1040,6 @@
   "Skyweavers": {
     "n": 2,
     "pts": 95,
-    "ranged": "Skyweaver Haywire Cannon",
-    "melee": "Zephyrglaive",
     "innate": [],
     "info": {
       "M": "14\"",
@@ -1033,8 +1085,6 @@
   "Storm Guardians": {
     "n": 11,
     "pts": 110,
-    "ranged": "Shuriken Pistol",
-    "melee": "Close Combat Weapon",
     "innate": [],
     "info": {
       "M": "7\"",
@@ -1089,8 +1139,6 @@
   "Striking Scorpions": {
     "n": 5,
     "pts": 75,
-    "ranged": "Shuriken pistol",
-    "melee": "Scorpion chainsword",
     "innate": [],
     "info": {
       "M": "7\"",
@@ -1131,8 +1179,6 @@
   "Swooping Hawks": {
     "n": 5,
     "pts": 95,
-    "ranged": "Lasblaster",
-    "melee": "Close Combat Weapon",
     "innate": [],
     "info": {
       "M": "14\"",
@@ -1143,6 +1189,7 @@
       "INV": 5,
       "deep_strike": true
     },
+    "pts_3rd": 110,
     "builds": [
       {
         "name": "Melee",
@@ -1214,14 +1261,11 @@
           }
         ]
       }
-    ],
-    "pts_3rd": 110
+    ]
   },
   "Troupe": {
     "n": 5,
     "pts": 85,
-    "ranged": "Shuriken Pistol",
-    "melee": "Harlequin's Special Weapon",
     "innate": [],
     "info": {
       "M": "8\"",
@@ -1277,8 +1321,6 @@
   "Vibro Cannon Platform": {
     "n": 1,
     "pts": 60,
-    "ranged": "Vibro Cannon",
-    "melee": "Close Combat Weapon",
     "innate": [],
     "info": {
       "M": "7\"",
@@ -1313,8 +1355,6 @@
   "Warlock Conclave": {
     "n": 2,
     "pts": 55,
-    "ranged": "Shuriken Pistol",
-    "melee": "Witchblade",
     "innate": [],
     "info": {
       "M": "7\"",
@@ -1360,8 +1400,6 @@
   "Warlock Skyrunners": {
     "n": 1,
     "pts": 55,
-    "ranged": "Shuriken Pistol",
-    "melee": "Witchblade",
     "innate": [],
     "info": {
       "M": "14\"",
@@ -1417,8 +1455,6 @@
   "Warp Spiders": {
     "n": 5,
     "pts": 105,
-    "ranged": "Death spinner",
-    "melee": "Close Combat Weapon",
     "innate": [],
     "info": {
       "M": "12\"",
@@ -1429,6 +1465,7 @@
       "INV": 5,
       "deep_strike": true
     },
+    "pts_3rd": 125,
     "builds": [
       {
         "name": "Melee",
@@ -1485,14 +1522,11 @@
           }
         ]
       }
-    ],
-    "pts_3rd": 125
+    ]
   },
   "Windriders": {
     "n": 3,
     "pts": 80,
-    "ranged": "Twin Shuriken Catapult",
-    "melee": "Close Combat Weapon",
     "innate": [],
     "info": {
       "M": "14\"",
@@ -1548,8 +1582,6 @@
   "Wraithblades": {
     "n": 5,
     "pts": 140,
-    "ranged": null,
-    "melee": "Ghostswords",
     "innate": [],
     "info": {
       "M": "6\"",
@@ -1560,11 +1592,20 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Ghostswords",
         "models": [
           {
             "count": 5,
             "melee": "Ghostswords"
+          }
+        ]
+      },
+      {
+        "name": "Ghostaxe & Forceshield",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Ghostaxe"
           }
         ]
       }
@@ -1573,8 +1614,6 @@
   "Wraithguard": {
     "n": 5,
     "pts": 145,
-    "ranged": "Wraithcannon",
-    "melee": "Close Combat Weapon",
     "innate": [],
     "info": {
       "M": "6\"",
@@ -1614,8 +1653,6 @@
   "Ynnari Incubi": {
     "n": 5,
     "pts": 80,
-    "ranged": null,
-    "melee": "Klaive",
     "innate": [],
     "info": {
       "M": "7\"",
@@ -1625,6 +1662,7 @@
       "OC": 1,
       "INV": 5
     },
+    "pts_3rd": 90,
     "builds": [
       {
         "name": "Melee",
@@ -1635,14 +1673,11 @@
           }
         ]
       }
-    ],
-    "pts_3rd": 90
+    ]
   },
   "Ynnari Kabalite Warriors": {
     "n": 10,
     "pts": 110,
-    "ranged": "Splinter rifle",
-    "melee": "Close Combat Weapon",
     "innate": [],
     "info": {
       "M": "8\"",
@@ -1743,8 +1778,6 @@
   "Ynnari Reavers": {
     "n": 3,
     "pts": 65,
-    "ranged": "Splinter Rifle",
-    "melee": "Bladevanes",
     "innate": [],
     "info": {
       "M": "16\"",
@@ -1815,8 +1848,6 @@
   "Ynnari Wyches": {
     "n": 10,
     "pts": 90,
-    "ranged": "Splinter Pistol",
-    "melee": "Hekatarii Blade",
     "innate": [],
     "info": {
       "M": "8\"",
