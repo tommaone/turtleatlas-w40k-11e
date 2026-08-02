@@ -1,14 +1,7 @@
 {
-  "_note": "drukhari weapon options — generated from BSData + MFM",
-  "_source": "BSData 11e + MFM (auto-generated)",
+  "_note": "drukhari weapon options — curated builds (flat ranged/melee lists converted to named modes); INV swept against data/merged/drukhari.json InSv",
+  "_source": "BSData 11e + MFM (auto-generated, curated)",
   "Cronos": {
-    "ranged": [
-      "Spirit Syphon",
-      "Spirit Vortex"
-    ],
-    "melee": [
-      "Spirit-leech Tentacles"
-    ],
     "info": {
       "M": "7\"",
       "T": 7,
@@ -17,16 +10,29 @@
       "OC": 2,
       "INV": 6
     },
-    "pts": 55
+    "pts": 55,
+    "builds": [
+      {
+        "name": "Spirit Syphon",
+        "fixed_ranged": [
+          "Spirit Syphon"
+        ],
+        "fixed_melee": [
+          "Spirit-leech Tentacles"
+        ]
+      },
+      {
+        "name": "Spirit Vortex",
+        "fixed_ranged": [
+          "Spirit Vortex"
+        ],
+        "fixed_melee": [
+          "Spirit-leech Tentacles"
+        ]
+      }
+    ]
   },
   "Raider": {
-    "ranged": [
-      "Disintegrator Cannon",
-      "Dark Lance"
-    ],
-    "melee": [
-      "Bladevanes and chainsnares"
-    ],
     "info": {
       "M": "14\"",
       "T": 8,
@@ -36,16 +42,29 @@
       "INV": 6,
       "deep_strike": true
     },
-    "pts": 75
+    "pts": 75,
+    "builds": [
+      {
+        "name": "Disintegrator Cannon",
+        "fixed_ranged": [
+          "Disintegrator Cannon"
+        ],
+        "fixed_melee": [
+          "Bladevanes and chainsnares"
+        ]
+      },
+      {
+        "name": "Dark Lance",
+        "fixed_ranged": [
+          "Dark Lance"
+        ],
+        "fixed_melee": [
+          "Bladevanes and chainsnares"
+        ]
+      }
+    ]
   },
   "Ravager": {
-    "ranged": [
-      "Disintegrator Cannon",
-      "Dark Lance"
-    ],
-    "melee": [
-      "Bladevanes"
-    ],
     "info": {
       "M": "14\"",
       "T": 9,
@@ -55,21 +74,55 @@
       "INV": 6,
       "deep_strike": true
     },
-    "pts": 110
+    "pts": 110,
+    "builds": [
+      {
+        "name": "3x Disintegrator Cannon",
+        "fixed_ranged": [
+          "Disintegrator Cannon",
+          "Disintegrator Cannon",
+          "Disintegrator Cannon"
+        ],
+        "fixed_melee": [
+          "Bladevanes"
+        ]
+      },
+      {
+        "name": "2x Disintegrator Cannon + Dark Lance",
+        "fixed_ranged": [
+          "Disintegrator Cannon",
+          "Disintegrator Cannon",
+          "Dark Lance"
+        ],
+        "fixed_melee": [
+          "Bladevanes"
+        ]
+      },
+      {
+        "name": "Disintegrator Cannon + 2x Dark Lance",
+        "fixed_ranged": [
+          "Disintegrator Cannon",
+          "Dark Lance",
+          "Dark Lance"
+        ],
+        "fixed_melee": [
+          "Bladevanes"
+        ]
+      },
+      {
+        "name": "3x Dark Lance",
+        "fixed_ranged": [
+          "Dark Lance",
+          "Dark Lance",
+          "Dark Lance"
+        ],
+        "fixed_melee": [
+          "Bladevanes"
+        ]
+      }
+    ]
   },
   "Razorwing Jetfighter": {
-    "ranged": [
-      "Razorwing Missiles - Monoscythe Missiles",
-      "Razorwing Missiles - Neurotoxin Missiles",
-      "Razorwing Missiles - Shatterfield Missiles",
-      "Dark Lance",
-      "Disintegrator Cannon",
-      "Splinter Cannon",
-      "Twin Splinter Rifle"
-    ],
-    "melee": [
-      "Bladed Wings"
-    ],
     "info": {
       "M": "-",
       "T": 8,
@@ -77,22 +130,87 @@
       "W": 10,
       "INV": 6
     },
-    "pts": 170
+    "pts": 170,
+    "builds": [
+      {
+        "name": "Twin Dark Lances + Splinter Cannon",
+        "fixed_ranged": [
+          "Dark Lance",
+          "Dark Lance",
+          "Splinter Cannon"
+        ],
+        "fixed_melee": [
+          "Bladed Wings"
+        ],
+        "ranged_choices": [
+          [
+            "Razorwing Missiles - Monoscythe Missiles",
+            "Razorwing Missiles - Neurotoxin Missiles",
+            "Razorwing Missiles - Shatterfield Missiles"
+          ]
+        ],
+        "max_ranged": 1
+      },
+      {
+        "name": "Twin Dark Lances + Twin Splinter Rifle",
+        "fixed_ranged": [
+          "Dark Lance",
+          "Dark Lance",
+          "Twin Splinter Rifle"
+        ],
+        "fixed_melee": [
+          "Bladed Wings"
+        ],
+        "ranged_choices": [
+          [
+            "Razorwing Missiles - Monoscythe Missiles",
+            "Razorwing Missiles - Neurotoxin Missiles",
+            "Razorwing Missiles - Shatterfield Missiles"
+          ]
+        ],
+        "max_ranged": 1
+      },
+      {
+        "name": "Twin Disintegrator Cannons + Splinter Cannon",
+        "fixed_ranged": [
+          "Disintegrator Cannon",
+          "Disintegrator Cannon",
+          "Splinter Cannon"
+        ],
+        "fixed_melee": [
+          "Bladed Wings"
+        ],
+        "ranged_choices": [
+          [
+            "Razorwing Missiles - Monoscythe Missiles",
+            "Razorwing Missiles - Neurotoxin Missiles",
+            "Razorwing Missiles - Shatterfield Missiles"
+          ]
+        ],
+        "max_ranged": 1
+      },
+      {
+        "name": "Twin Disintegrator Cannons + Twin Splinter Rifle",
+        "fixed_ranged": [
+          "Disintegrator Cannon",
+          "Disintegrator Cannon",
+          "Twin Splinter Rifle"
+        ],
+        "fixed_melee": [
+          "Bladed Wings"
+        ],
+        "ranged_choices": [
+          [
+            "Razorwing Missiles - Monoscythe Missiles",
+            "Razorwing Missiles - Neurotoxin Missiles",
+            "Razorwing Missiles - Shatterfield Missiles"
+          ]
+        ],
+        "max_ranged": 1
+      }
+    ]
   },
   "Talos": {
-    "ranged": [
-      "Twin Liquifier Gun",
-      "Twin Splinter Cannon",
-      "Twin Haywire Blaster",
-      "Twin heat lance",
-      "Stinger Pod"
-    ],
-    "melee": [
-      "Macro-Scalpel",
-      "Talos Ichor Injector",
-      "Chain-flails",
-      "Talos Gauntlet"
-    ],
     "info": {
       "M": "7\"",
       "T": 7,
@@ -101,16 +219,51 @@
       "OC": 2,
       "INV": 6
     },
-    "pts": 75
+    "pts": 75,
+    "builds": [
+      {
+        "name": "Macro-Scalpel + Chain-flails + Twin Splinter Cannon",
+        "fixed_ranged": [
+          "Twin Splinter Cannon"
+        ],
+        "fixed_melee": [
+          "Macro-Scalpel",
+          "Chain-flails"
+        ]
+      },
+      {
+        "name": "Macro-Scalpel + Talos Gauntlet + Twin Haywire Blasters",
+        "fixed_ranged": [
+          "Twin Haywire Blasters"
+        ],
+        "fixed_melee": [
+          "Macro-Scalpel",
+          "Talos Gauntlet"
+        ]
+      },
+      {
+        "name": "Talos Ichor Injector + Talos Gauntlet + Twin Heat Lance",
+        "fixed_ranged": [
+          "Twin Heat Lance"
+        ],
+        "fixed_melee": [
+          "Talos Ichor Injector",
+          "Talos Gauntlet"
+        ]
+      },
+      {
+        "name": "Twin Liquifier Gun + Chain-flails + Stinger Pod",
+        "fixed_ranged": [
+          "Twin Liquifier Gun",
+          "Stinger Pod"
+        ],
+        "fixed_melee": [
+          "Chain-flails"
+        ]
+      }
+    ]
   },
   "Venom": {
-    "ranged": [
-      "Splinter Cannon",
-      "Twin Splinter Rifle"
-    ],
-    "melee": [
-      "Bladevanes"
-    ],
     "info": {
       "M": "14\"",
       "T": 6,
@@ -120,18 +273,31 @@
       "INV": 6,
       "deep_strike": true
     },
-    "pts": 65
+    "pts": 65,
+    "builds": [
+      {
+        "name": "Twin Splinter Cannons",
+        "fixed_ranged": [
+          "Splinter Cannon",
+          "Splinter Cannon"
+        ],
+        "fixed_melee": [
+          "Bladevanes"
+        ]
+      },
+      {
+        "name": "Splinter Cannon + Twin Splinter Rifle",
+        "fixed_ranged": [
+          "Splinter Cannon",
+          "Twin Splinter Rifle"
+        ],
+        "fixed_melee": [
+          "Bladevanes"
+        ]
+      }
+    ]
   },
   "Voidraven Bomber": {
-    "ranged": [
-      "Voidraven Missiles -  Implosion Missiles",
-      "Voidraven Missiles - Shatterfield Missiles",
-      "Void Lance",
-      "Dark Scythe"
-    ],
-    "melee": [
-      "Bladed Wings"
-    ],
     "info": {
       "M": "20+\"",
       "T": 9,
@@ -140,6 +306,40 @@
       "OC": 0,
       "INV": 6
     },
-    "pts": 245
+    "pts": 245,
+    "builds": [
+      {
+        "name": "2x Void Lance",
+        "fixed_ranged": [
+          "Void Lance"
+        ],
+        "fixed_melee": [
+          "Bladed Wings"
+        ],
+        "ranged_choices": [
+          [
+            "Voidraven Missiles -  Implosion Missiles",
+            "Voidraven Missiles - Shatterfield Missiles"
+          ]
+        ],
+        "max_ranged": 1
+      },
+      {
+        "name": "2x Dark Scythe",
+        "fixed_ranged": [
+          "Dark Scythe"
+        ],
+        "fixed_melee": [
+          "Bladed Wings"
+        ],
+        "ranged_choices": [
+          [
+            "Voidraven Missiles -  Implosion Missiles",
+            "Voidraven Missiles - Shatterfield Missiles"
+          ]
+        ],
+        "max_ranged": 1
+      }
+    ]
   }
 }
