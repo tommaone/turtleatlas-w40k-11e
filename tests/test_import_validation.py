@@ -4,6 +4,11 @@ Run after every merge to catch:
 1. Duplicate unit names per faction
 2. Units with 0 points (missing pricing)
 3. Units in merged data without config entries
+4. Regression guards for the fleet refresh (Wave 1+2 hardened factions):
+   a. Squad format: no legacy top-level ranged/melee (builds is canonical)
+   b. Vehicle format: every weapon_options entry has builds (no flat fallback)
+   c. Weapon resolution: every weapon name in every build resolves via W()
+   (fleet-wide — catches typo'd names, stale merged weapons, broken builds)
 """
 
 import json
@@ -236,4 +241,157 @@ class TestRankingCompleteness:
         assert not missing, (
             f"{faction} has {len(missing)} config units not ranked: "
             f"{sorted(missing)}"
+        )
+
+
+# ── Fleet refresh regression guards (Wave 1+2) ──────────────────────
+# These guards lock in the canonical config state established during the
+# Wave 1+2 config-hardening passes. They assert that what was stripped /
+# converted does not silently regress.
+#
+# HARDENED_FACTIONS: factions that have completed the full hardening pass
+# (INV sweep, dead ranged/melee strip, flat weapon_options -> builds).
+# Extend this list as more factions are hardened. Guards below are
+# parametrised over it; guards that are green fleet-wide today ignore it.
+
+HARDENED_FACTIONS = [
+    "chaos-daemons", "emperors-children", "death-guard",
+    "orks", "tau-empire", "necrons",
+    "aeldari", "drukhari", "titan-legions",
+    "genestealer-cults", "tyranids",
+]
+
+
+class TestHardenedSquadFormat:
+    """Hardened factions: squads must NOT carry legacy top-level
+    ranged/melee. `builds` is canonical; the engine reads only builds
+    (plus n, pts, pts_3rd, info, innate). A re-add of legacy ranged/melee
+    is dead data and a regression of the Wave 1+2 strip.
+    """
+
+    @pytest.mark.parametrize("faction", HARDENED_FACTIONS)
+    def test_no_legacy_ranged_melee_on_squads(self, faction: str):
+        cfg_dir = CONFIG_DIR / faction
+        if not cfg_dir.exists():
+            pytest.skip(f"no config dir for {faction}")
+        sq_path = cfg_dir / "squads.json"
+        if not sq_path.exists():
+            pytest.skip(f"no squads.json for {faction}")
+        data = json.load(open(sq_path))
+        bad = []
+        for name, cfg in data.items():
+            if isinstance(cfg, dict) and not name.startswith("_"):
+                if "ranged" in cfg:
+                    bad.append(f"{name}: legacy 'ranged' (should be in builds[].models)")
+                if "melee" in cfg:
+                    bad.append(f"{name}: legacy 'melee' (should be in builds[].models)")
+        assert not bad, (
+            f"{faction}: {len(bad)} squads carry dead legacy ranged/melee "
+            f"(engine ignores them; builds is canonical):\n" + "\n".join(bad)
+        )
+
+
+class TestHardenedWeaponOptionsFormat:
+    """Hardened factions: every weapon_options entry must use the builds
+    format. Flat weapon_options (top-level ranged/melee lists) are the
+    legacy fallback path the Wave 2 pass converted. A flat re-add is a
+    regression. (Unhardened factions may still legitimately use flat —
+    covered by the _best_vehicle_variant fallback, not these guards.)
+    """
+
+    @pytest.mark.parametrize("faction", HARDENED_FACTIONS)
+    def test_weapon_options_have_builds(self, faction: str):
+        cfg_dir = CONFIG_DIR / faction
+        if not cfg_dir.exists():
+            pytest.skip(f"no config dir for {faction}")
+        wo_path = cfg_dir / "weapon_options.json"
+        if not wo_path.exists():
+            pytest.skip(f"no weapon_options.json for {faction}")
+        data = json.load(open(wo_path))
+        flat = [name for name, cfg in data.items()
+                if isinstance(cfg, dict) and not name.startswith("_")
+                and "builds" not in cfg]
+        assert not flat, (
+            f"{faction}: {len(flat)} weapon_options entries are flat (no builds): "
+            f"{flat}"
+        )
+
+
+class TestAllBuildsResolve:
+    """Fleet-wide: every weapon name in every build (across squads,
+    weapon_options and characters) must resolve via the engine's
+    weapon catalog W(). A failing name means the config references a
+    weapon that doesn't exist — typo, stale merged weapon, or a name
+    that doesn't match the faction's merged data.
+
+    This is the broadest regression guard: catches everything a build
+    can break without touching the engine's resolve path.
+    """
+
+    def test_every_build_weapon_resolves(self):
+        from engine.ranking import RankingEngine
+        failures = []
+        engines = {}
+        for faction in _all_factions():
+            cfg_dir = CONFIG_DIR / faction
+            if not cfg_dir.exists():
+                continue
+            try:
+                engines[faction] = RankingEngine(faction)
+            except Exception:
+                continue
+            eng = engines[faction]
+            for fn in ("squads.json", "weapon_options.json",
+                       "characters.json", "vehicles.json"):
+                p = cfg_dir / fn
+                if not p.exists():
+                    continue
+                data = json.load(open(p))
+                for unit, cfg in data.items():
+                    if not isinstance(cfg, dict) or unit.startswith("_"):
+                        continue
+                    builds = cfg.get("builds")
+                    if not builds:
+                        continue  # flat fallback, covered elsewhere
+                    if isinstance(builds, dict):
+                        builds = [builds]
+                    for b in builds:
+                        if not isinstance(b, dict):
+                            continue
+                        for wl_key in ("fixed_ranged", "fixed_melee"):
+                            for w in b.get(wl_key, []):
+                                try:
+                                    eng.W(w, unit_name=unit)
+                                except Exception as e:
+                                    failures.append(
+                                        f"{faction}/{unit} ({fn}) "
+                                        f"{wl_key}='{w}': {e}")
+                        for group in (b.get("ranged_choices", [])
+                                      + b.get("melee_choices", [])):
+                            for w in group:
+                                try:
+                                    eng.W(w, unit_name=unit)
+                                except Exception as e:
+                                    failures.append(
+                                        f"{faction}/{unit} ({fn}) "
+                                        f"choice='{w}': {e}")
+                        # Per-model weapons inside squad builds
+                        for m in b.get("models", []):
+                            if not isinstance(m, dict):
+                                continue
+                            for wl_key in ("ranged", "melee"):
+                                w = m.get(wl_key)
+                                if not w:
+                                    continue
+                                try:
+                                    eng.W(w, unit_name=unit)
+                                except Exception as e:
+                                    failures.append(
+                                        f"{faction}/{unit} ({fn}) "
+                                        f"models[{wl_key}]='{w}': {e}")
+        # Cut the failure list to a useful size in the assertion message
+        shown = failures[:50]
+        assert not failures, (
+            f"{len(failures)} build weapons failed to resolve via W() "
+            f"(showing first {len(shown)}):\n" + "\n".join(shown)
         )
