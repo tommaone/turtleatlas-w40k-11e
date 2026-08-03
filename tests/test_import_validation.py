@@ -273,6 +273,9 @@ HARDENED_FACTIONS = [
     "leagues-of-votann", "thousand-sons", "world-eaters",
     # Knight factions — no squads; WO builds + MFM pts verified
     "chaos-knights", "imperial-knights",
+    # Imperial Agents — squad strip + MFM pts verified (standard IA roster,
+    # not the "Every Model Has The Imperium Keyword" alternate roster)
+    "imperial-agents",
 ]
 
 
