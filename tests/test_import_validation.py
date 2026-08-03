@@ -264,6 +264,9 @@ HARDENED_FACTIONS = [
     # Space Marine chassis block (WO builds + squads stripped)
     "space-marines",
     "blood-angels", "black-templars", "deathwatch", "space-wolves",
+    # Grey Knights: reference conversion — squads stripped (builds canonical),
+    # WO builds + characters slot builds, MFM pts verified
+    "grey-knights",
 ]
 
 
