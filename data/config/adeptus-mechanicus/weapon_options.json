@@ -26,13 +26,6 @@
     ]
   },
   "Ironstrider Ballistarii": {
-    "ranged": [
-      "Twin cognis autocannon",
-      "Twin cognis lascannon"
-    ],
-    "melee": [
-      "Ironstrider feet"
-    ],
     "info": {
       "M": "10\"",
       "T": 7,
@@ -41,20 +34,33 @@
       "OC": 2,
       "INV": 5
     },
-    "pts": 80
+    "pts": 80,
+    "builds": [
+      {
+        "name": "Twin cognis autocannon",
+        "fixed_ranged": [
+          "Twin cognis autocannon"
+        ],
+        "fixed_melee": [
+          "Ironstrider feet"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Twin cognis lascannon",
+        "fixed_ranged": [
+          "Twin cognis lascannon"
+        ],
+        "fixed_melee": [
+          "Ironstrider feet"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Kastelan Robots": {
-    "ranged": [
-      "Twin Kastelan phosphor blaster",
-      "Kastelan phosphor blaster",
-      "Incendine combustor",
-      "Heavy phosphor blaster"
-    ],
-    "melee": [
-      "Close combat weapon",
-      "Twin Kastelan fist",
-      "Kastelan fist"
-    ],
     "info": {
       "M": "6\"",
       "T": 9,
@@ -64,7 +70,29 @@
       "INV": 5,
       "FNP": 4
     },
-    "pts": 160
+    "pts": 160,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [],
+        "fixed_melee": [],
+        "ranged_choices": [
+          [
+            "Twin Kastelan phosphor blaster",
+            "Kastelan phosphor blaster",
+            "Incendine combustor",
+            "Heavy phosphor blaster"
+          ]
+        ],
+        "melee_choices": [
+          [
+            "Close combat weapon",
+            "Twin Kastelan fist",
+            "Kastelan fist"
+          ]
+        ]
+      }
+    ]
   },
   "Onager Dunecrawler": {
     "info": {
@@ -115,13 +143,6 @@
     ]
   },
   "Sydonian Dragoons With Radium Jezzails": {
-    "ranged": [
-      "Phosphor serpenta",
-      "Radium jezzail"
-    ],
-    "melee": [
-      "Ironstrider feet"
-    ],
     "info": {
       "M": "10\"",
       "T": 7,
@@ -130,6 +151,20 @@
       "OC": 2,
       "INV": 5
     },
-    "pts": 55
+    "pts": 55,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Phosphor serpenta",
+          "Radium jezzail"
+        ],
+        "fixed_melee": [
+          "Ironstrider feet"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   }
 }
