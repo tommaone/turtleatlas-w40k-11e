@@ -86,16 +86,6 @@
     ]
   },
   "Mortifiers": {
-    "ranged": [
-      "Heavy Bolter",
-      "Mortifier flamer"
-    ],
-    "melee": [
-      "Twin Penitent Buzz-Blades",
-      "Twin Penitent Flails",
-      "Penitent Buzz-Blade",
-      "Penitent Flail"
-    ],
     "info": {
       "M": "8\"",
       "T": 6,
@@ -104,20 +94,32 @@
       "OC": 2,
       "INV": 6
     },
-    "pts": 70
+    "pts": 70,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [],
+        "fixed_melee": [],
+        "ranged_choices": [
+          [
+            "Heavy Bolter",
+            "Mortifier flamer"
+          ]
+        ],
+        "melee_choices": [
+          [
+            "Twin Penitent Buzz-Blades",
+            "Twin Penitent Flails",
+            "Penitent Buzz-Blade",
+            "Penitent Flail"
+          ]
+        ],
+        "max_ranged": null,
+        "max_melee": null
+      }
+    ]
   },
   "Paragon Warsuits": {
-    "ranged": [
-      "Paragon Storm Bolters",
-      "Paragon Grenade Launchers",
-      "Heavy Bolter",
-      "Multi-melta",
-      "Ministorum heavy flamer"
-    ],
-    "melee": [
-      "Paragon War Blade",
-      "Paragon War Mace"
-    ],
     "info": {
       "M": "8\"",
       "T": 7,
@@ -126,18 +128,37 @@
       "OC": 2,
       "INV": 4
     },
-    "pts": 180
+    "pts": 180,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Bolt pistol"
+        ],
+        "fixed_melee": [],
+        "ranged_choices": [
+          [
+            "Paragon Storm Bolters",
+            "Paragon Grenade Launchers"
+          ],
+          [
+            "Heavy Bolter",
+            "Multi-melta",
+            "Ministorum heavy flamer"
+          ]
+        ],
+        "melee_choices": [
+          [
+            "Paragon War Blade",
+            "Paragon War Mace"
+          ]
+        ],
+        "max_ranged": null,
+        "max_melee": null
+      }
+    ]
   },
   "Penitent Engines": {
-    "ranged": [
-      "Penitent Flamers"
-    ],
-    "melee": [
-      "Twin Penitent Buzz-Blades",
-      "Twin Penitent Flails",
-      "Penitent Buzz-Blade",
-      "Penitent Flail"
-    ],
     "info": {
       "M": "8\"",
       "T": 6,
@@ -146,7 +167,27 @@
       "OC": 2,
       "INV": 6
     },
-    "pts": 70
+    "pts": 70,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Penitent Flamers"
+        ],
+        "fixed_melee": [],
+        "ranged_choices": [],
+        "melee_choices": [
+          [
+            "Twin Penitent Buzz-Blades",
+            "Twin Penitent Flails",
+            "Penitent Buzz-Blade",
+            "Penitent Flail"
+          ]
+        ],
+        "max_ranged": null,
+        "max_melee": null
+      }
+    ]
   },
   "Sororitas Rhino": {
     "info": {
