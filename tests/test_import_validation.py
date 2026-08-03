@@ -297,8 +297,8 @@ class TestHardenedWeaponOptionsFormat:
     """Hardened factions: every weapon_options entry must use the builds
     format. Flat weapon_options (top-level ranged/melee lists) are the
     legacy fallback path the Wave 2 pass converted. A flat re-add is a
-    regression. (Unhardened factions may still legitimately use flat —
-    covered by the _best_vehicle_variant fallback, not these guards.)
+    regression. (The engine fallback itself was removed in the W3 pass —
+    flat entries now raise ValueError in resolve_loadout.)
     """
 
     @pytest.mark.parametrize("faction", HARDENED_FACTIONS)
@@ -316,6 +316,31 @@ class TestHardenedWeaponOptionsFormat:
         assert not flat, (
             f"{faction}: {len(flat)} weapon_options entries are flat (no builds): "
             f"{flat}"
+        )
+
+
+class TestNoFlatWeaponOptions:
+    """Fleet-wide: NO weapon_options entry may be flat. The W3 pass
+    converted the last 22 flat entries to builds and removed the engine
+    flat fallback (_best_vehicle_variant). A flat re-add is now a hard
+    ValueError at resolve_loadout, so this guard is the data-level lock.
+    """
+
+    def test_no_flat_weapon_options_fleet_wide(self):
+        flat = []
+        for faction in _all_factions():
+            p = CONFIG_DIR / faction / "weapon_options.json"
+            if not p.exists():
+                continue
+            data = json.load(open(p))
+            for name, cfg in data.items():
+                if (isinstance(cfg, dict) and not name.startswith("_")
+                        and "builds" not in cfg):
+                    flat.append(f"{faction}/{name}")
+        assert not flat, (
+            f"{len(flat)} flat weapon_options entries remain (engine "
+            f"fallback removed; resolve_loadout raises on these):\n"
+            + "\n".join(flat)
         )
 
 

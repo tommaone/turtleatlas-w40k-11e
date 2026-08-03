@@ -557,79 +557,6 @@ class RankingEngine:
             best["_dpp_per_model"] = best_dpp
         return best
 
-    def _best_vehicle_variant(self, ranged_names, melee_names, unit_name, target):
-        """Try all ranged+melee combos for a weapon-option vehicle.
-
-        Uses combinations (no replacement) — each weapon type can only be
-        picked once per unit.  When fewer than 2 ranged options exist the
-        engine equips the single option (or none) + best melee.
-        """
-        import itertools
-
-        # Handle empty lists — just equip whatever we have
-        if not ranged_names and not melee_names:
-            return None
-        if not ranged_names or len(ranged_names) == 1:
-            # 0 or 1 ranged option: just equip what we have + best melee
-            ranged = [self.W(n, unit_name=unit_name) for n in ranged_names]
-            best, best_d = None, -1
-            n_combos = 0
-            for mm_name in melee_names:
-                n_combos += 1
-                melee = [self.W(mm_name, unit_name=unit_name)]
-                d = _ld_dmg(ranged, melee, [], target)
-                if d > best_d:
-                    best_d = d
-                    best = {
-                        "ranged": ranged,
-                        "melee": melee,
-                        "innate": [],
-                        "_n_combos": n_combos,
-                        "_desc": f"Ranged: {', '.join(ranged_names) or 'none'}; Melee: {mm_name} [optimised]",
-                    }
-            return best
-        if not melee_names:
-            # Ranged only, no melee
-            best, best_d = None, -1
-            n_combos = 0
-            for pair in itertools.combinations(ranged_names, 2):
-                n_combos += 1
-                ranged = [self.W(n, unit_name=unit_name) for n in pair]
-                d = _ld_dmg(ranged, [], [], target)
-                if d > best_d:
-                    best_d = d
-                    best = {
-                        "ranged": ranged,
-                        "melee": [],
-                        "innate": [],
-                        "_n_combos": n_combos,
-                        "_desc": f"Ranged: {'+'.join(pair)} [optimised]",
-                    }
-            return best
-
-        # Normal path: 2+ ranged options, 1+ melee options — no duplicates
-        best, best_d = None, -1
-        n_combos = 0
-        for (rf1_name, rf2_name) in itertools.combinations(ranged_names, 2):
-            for mm_name in melee_names:
-                n_combos += 1
-                ranged = [
-                    self.W(rf1_name, unit_name=unit_name),
-                    self.W(rf2_name, unit_name=unit_name),
-                ]
-                melee = [self.W(mm_name, unit_name=unit_name)]
-                d = _ld_dmg(ranged, melee, [], target)
-                if d > best_d:
-                    best_d = d
-                    best = {
-                        "ranged": ranged,
-                        "melee": melee,
-                        "innate": [],
-                        "_n_combos": n_combos,
-                        "_desc": f"Ranged: {rf1_name}+{rf2_name}; Melee: {mm_name} [optimised]",
-                    }
-        return best
-
     def _resolve_pts(self, pts_base, pts_3rd, pricing, models, tier):
         """Resolve points for a unit given tier and pricing overrides.
 
@@ -843,12 +770,16 @@ class RankingEngine:
                     info["_multimodal"] = len(wo["builds"]) > 1
                     return (pts, best_build[0], best_build[1], [], info)
 
-            # Fallback: flat ranged/melee lists (legacy format)
-            bv = self._best_vehicle_variant(wo["ranged"], wo["melee"], name, target)
-            fallback_info = dict(info)
-            if bv and "_n_combos" in bv:
-                fallback_info["_n_combos"] = bv["_n_combos"]
-            return (pts, bv["ranged"], bv["melee"], bv["innate"], fallback_info)
+            # The flat ranged/melee fallback (legacy _best_vehicle_variant)
+            # was removed — every weapon_options entry fleet-wide now uses
+            # the builds format (locked by TestNoFlatWeaponOptions). A flat
+            # re-add is a config regression: fail loudly instead of silently
+            # resolving via the removed legacy path.
+            raise ValueError(
+                f"{name}: weapon_options entry has no 'builds'. Flat "
+                f"ranged/melee format was removed; convert to builds "
+                f"(see docs/changes/army-config-refresh-playbook.md)."
+            )
 
         # Character: fixed loadout (with optional weapon choice)
         if name in self.config.characters:

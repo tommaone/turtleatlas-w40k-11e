@@ -76,11 +76,6 @@ def best_squad_variant(name, target=MEQ, mode=None):
     return _engine()._best_squad_variant(name, target, mode=mode)
 
 
-def best_vehicle_variant(ranged_names, melee_names, unit_name, target=MEQ):
-    """Best vehicle variant delegating to generic engine."""
-    return _engine()._best_vehicle_variant(ranged_names, melee_names, unit_name, target)
-
-
 # ── CLI ────────────────────────────────────────────────────────────
 
 def main():
