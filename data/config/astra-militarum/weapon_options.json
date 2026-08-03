@@ -2,21 +2,6 @@
   "_note": "astra-militarum weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Armoured Sentinels": {
-    "ranged": [
-      "Hunter-killer missile",
-      "Multi-laser",
-      "Autocannon",
-      "Lascannon",
-      "Heavy flamer",
-      "Missile launcher - frag",
-      "Missile launcher - krak",
-      "Plasma cannon - standard",
-      "Plasma cannon - supercharge"
-    ],
-    "melee": [
-      "Close combat weapon",
-      "Sentinel chainsaw"
-    ],
     "info": {
       "M": "8\"",
       "T": 8,
@@ -24,7 +9,37 @@
       "W": 7,
       "OC": 2
     },
-    "pts": 65
+    "pts": 65,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [],
+        "fixed_melee": [],
+        "ranged_choices": [
+          [
+            "Multi-laser",
+            "Autocannon",
+            "Lascannon",
+            "Heavy flamer",
+            "Missile launcher - frag",
+            "Missile launcher - krak",
+            "Plasma cannon - standard",
+            "Plasma cannon - supercharge"
+          ],
+          [
+            "Hunter-killer missile"
+          ]
+        ],
+        "melee_choices": [
+          [
+            "Close combat weapon",
+            "Sentinel chainsaw"
+          ]
+        ],
+        "max_ranged": null,
+        "max_melee": null
+      }
+    ]
   },
   "Avenger Strike Fighter": {
     "info": {
@@ -244,17 +259,6 @@
     ]
   },
   "Hippogriff Afv": {
-    "ranged": [
-      "Heavy stubber",
-      "Meltagun",
-      "Vigilator cannon",
-      "Melta cannon",
-      "Chiron gatling cannon",
-      "Lascannon"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "12\"",
       "T": 8,
@@ -262,7 +266,31 @@
       "W": 7,
       "OC": 2
     },
-    "pts": 70
+    "pts": 70,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [
+          [
+            "Heavy stubber",
+            "Meltagun"
+          ],
+          [
+            "Vigilator cannon",
+            "Melta cannon",
+            "Chiron gatling cannon",
+            "Lascannon"
+          ]
+        ],
+        "melee_choices": [],
+        "max_ranged": null,
+        "max_melee": null
+      }
+    ]
   },
   "Leman Russ Executioner": {
     "info": {
@@ -320,21 +348,6 @@
     ]
   },
   "Scout Sentinels": {
-    "ranged": [
-      "Hunter-killer missile",
-      "Autocannon",
-      "Lascannon",
-      "Heavy flamer",
-      "Missile launcher - frag",
-      "Missile launcher - krak",
-      "Plasma cannon - standard",
-      "Plasma cannon - supercharge",
-      "Multi-laser"
-    ],
-    "melee": [
-      "Close combat weapon",
-      "Sentinel chainsaw"
-    ],
     "info": {
       "M": "10\"",
       "T": 7,
@@ -342,7 +355,37 @@
       "W": 7,
       "OC": 2
     },
-    "pts": 55
+    "pts": 55,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [],
+        "fixed_melee": [],
+        "ranged_choices": [
+          [
+            "Multi-laser",
+            "Autocannon",
+            "Lascannon",
+            "Heavy flamer",
+            "Missile launcher - frag",
+            "Missile launcher - krak",
+            "Plasma cannon - standard",
+            "Plasma cannon - supercharge"
+          ],
+          [
+            "Hunter-killer missile"
+          ]
+        ],
+        "melee_choices": [
+          [
+            "Close combat weapon",
+            "Sentinel chainsaw"
+          ]
+        ],
+        "max_ranged": null,
+        "max_melee": null
+      }
+    ]
   },
   "Shadowsword": {
     "info": {
