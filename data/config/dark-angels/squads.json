@@ -4,9 +4,7 @@
   "Aggressor Squad": {
     "n": 3,
     "pts": 80,
-    "ranged": null,
-    "melee": "Twin power fist",
-    "innate": [],
+    "pts_3rd": 90,
     "info": {
       "M": "5\"",
       "T": 6,
@@ -14,6 +12,7 @@
       "W": 3,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -24,15 +23,11 @@
           }
         ]
       }
-    ],
-    "pts_3rd": 90
+    ]
   },
   "Assault Intercessor Squad": {
     "n": 5,
     "pts": 75,
-    "ranged": "Heavy Bolt Pistol",
-    "melee": "Astartes Chainsword",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 4,
@@ -40,6 +35,7 @@
       "W": 2,
       "OC": 2
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -56,9 +52,7 @@
   "Assault Intercessors With Jump Packs": {
     "n": 5,
     "pts": 85,
-    "ranged": "Heavy Bolt Pistol",
-    "melee": "Astartes Chainsword",
-    "innate": [],
+    "pts_3rd": 95,
     "info": {
       "M": "12\"",
       "T": 4,
@@ -67,6 +61,7 @@
       "OC": 1,
       "deep_strike": true
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -108,22 +103,21 @@
           }
         ]
       }
-    ],
-    "pts_3rd": 95
+    ]
   },
   "Bladeguard Veteran Squad": {
     "n": 3,
     "pts": 80,
-    "ranged": "Heavy Bolt Pistol",
-    "melee": "Master-crafted power weapon",
-    "innate": [],
+    "pts_3rd": 90,
     "info": {
       "M": "6\"",
       "T": 4,
       "SV": 3,
       "W": 3,
-      "OC": 1
+      "OC": 1,
+      "INV": 4
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -135,15 +129,11 @@
           }
         ]
       }
-    ],
-    "pts_3rd": 90
+    ]
   },
   "Centurion Assault Squad": {
     "n": 3,
     "pts": 150,
-    "ranged": null,
-    "melee": "Siege Drills",
-    "innate": [],
     "info": {
       "M": "4\"",
       "T": 7,
@@ -151,6 +141,7 @@
       "W": 4,
       "OC": 2
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -166,9 +157,6 @@
   "Centurion Devastator Squad": {
     "n": 3,
     "pts": 175,
-    "ranged": "Centurion Bolters",
-    "melee": "Centurion Fists",
-    "innate": [],
     "info": {
       "M": "4\"",
       "T": 7,
@@ -176,6 +164,7 @@
       "W": 4,
       "OC": 2
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -192,9 +181,6 @@
   "Company Heroes": {
     "n": 4,
     "pts": 105,
-    "ranged": "Bolt pistol",
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 4,
@@ -202,6 +188,7 @@
       "W": 4,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -263,9 +250,7 @@
   "Deathwing Knights": {
     "n": 5,
     "pts": 240,
-    "ranged": null,
-    "melee": "Close combat weapon",
-    "innate": [],
+    "pts_3rd": 260,
     "info": {
       "M": "5\"",
       "T": 5,
@@ -276,25 +261,22 @@
       "deep_strike": true,
       "damage_reduction": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
         "models": [
           {
             "count": 5,
-            "melee": "Close combat weapon"
+            "melee": "Mace of absolution"
           }
         ]
       }
-    ],
-    "pts_3rd": 260
+    ]
   },
   "Deathwing Terminator Squad": {
     "n": 5,
     "pts": 165,
-    "ranged": "Storm Bolter",
-    "melee": "Power Weapon",
-    "innate": [],
     "info": {
       "M": "5\"",
       "T": 5,
@@ -304,6 +286,7 @@
       "INV": 4,
       "deep_strike": true
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -314,15 +297,57 @@
             "melee": "Power Weapon"
           }
         ]
+      },
+      {
+        "name": "Assault Cannon",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Assault cannon",
+            "melee": "Power Weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Storm Bolter",
+            "melee": "Power Weapon"
+          }
+        ]
+      },
+      {
+        "name": "Plasma cannon",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Plasma cannon - standard",
+            "melee": "Power Weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Storm Bolter",
+            "melee": "Power Weapon"
+          }
+        ]
+      },
+      {
+        "name": "Heavy Flamer",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Heavy Flamer",
+            "melee": "Power Weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Storm Bolter",
+            "melee": "Power Weapon"
+          }
+        ]
       }
     ]
   },
   "Desolation Squad": {
     "n": 5,
     "pts": 180,
-    "ranged": "Castellan Launcher",
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 4,
@@ -330,6 +355,7 @@
       "W": 2,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -361,9 +387,6 @@
   "Devastator Squad": {
     "n": 5,
     "pts": 120,
-    "ranged": "Boltgun",
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 4,
@@ -371,6 +394,7 @@
       "W": 2,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -477,9 +501,6 @@
   "Eliminator Squad": {
     "n": 3,
     "pts": 75,
-    "ranged": "Bolt Sniper Rifle",
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 4,
@@ -487,6 +508,7 @@
       "W": 2,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -503,9 +525,7 @@
   "Eradicator Squad": {
     "n": 3,
     "pts": 90,
-    "ranged": "Bolt pistol",
-    "melee": "Close combat weapon",
-    "innate": [],
+    "pts_3rd": 100,
     "info": {
       "M": "5\"",
       "T": 6,
@@ -513,6 +533,7 @@
       "W": 3,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -554,15 +575,11 @@
           }
         ]
       }
-    ],
-    "pts_3rd": 100
+    ]
   },
   "Eradicator Squad With Heavy Bolters": {
     "n": 3,
     "pts": 80,
-    "ranged": "Bolt pistol",
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "5\"",
       "T": 6,
@@ -570,6 +587,7 @@
       "W": 3,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -601,9 +619,6 @@
   "Heavy Intercessor Squad": {
     "n": 5,
     "pts": 100,
-    "ranged": "Bolt pistol",
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "5\"",
       "T": 6,
@@ -611,6 +626,7 @@
       "W": 3,
       "OC": 2
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -657,9 +673,6 @@
   "Hellblaster Squad": {
     "n": 5,
     "pts": 110,
-    "ranged": "Bolt pistol",
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 4,
@@ -667,6 +680,7 @@
       "W": 2,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -713,9 +727,7 @@
   "Inceptor Squad": {
     "n": 3,
     "pts": 125,
-    "ranged": "Assault Bolters",
-    "melee": "Close combat weapon",
-    "innate": [],
+    "pts_3rd": 140,
     "info": {
       "M": "10\"",
       "T": 6,
@@ -724,6 +736,7 @@
       "OC": 1,
       "deep_strike": true
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -735,15 +748,12 @@
           }
         ]
       }
-    ],
-    "pts_3rd": 140
+    ]
   },
   "Incursor Squad": {
     "n": 5,
     "pts": 85,
-    "ranged": "Bolt pistol",
-    "melee": "Paired Combat Blades",
-    "innate": [],
+    "pts_3rd": 95,
     "info": {
       "M": "6\"",
       "T": 4,
@@ -751,6 +761,7 @@
       "W": 2,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -777,15 +788,11 @@
           }
         ]
       }
-    ],
-    "pts_3rd": 95
+    ]
   },
   "Infernus Squad": {
     "n": 5,
     "pts": 85,
-    "ranged": "Pyreblaster",
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 4,
@@ -793,6 +800,7 @@
       "W": 2,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -824,9 +832,7 @@
   "Infiltrator Squad": {
     "n": 5,
     "pts": 110,
-    "ranged": "Bolt pistol",
-    "melee": "Close combat weapon",
-    "innate": [],
+    "pts_3rd": 120,
     "info": {
       "M": "6\"",
       "T": 4,
@@ -834,6 +840,7 @@
       "W": 2,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -860,15 +867,12 @@
           }
         ]
       }
-    ],
-    "pts_3rd": 120
+    ]
   },
   "Inner Circle Companions": {
     "n": 3,
     "pts": 80,
-    "ranged": "Heavy Bolt Pistol",
-    "melee": "Calibanite Greatsword - Strike",
-    "innate": [],
+    "pts_3rd": 90,
     "info": {
       "M": "6\"",
       "T": 4,
@@ -876,6 +880,7 @@
       "W": 3,
       "OC": 2
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -887,15 +892,11 @@
           }
         ]
       }
-    ],
-    "pts_3rd": 90
+    ]
   },
   "Intercessor Squad": {
     "n": 5,
     "pts": 80,
-    "ranged": "Bolt pistol",
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 4,
@@ -903,6 +904,7 @@
       "W": 2,
       "OC": 2
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -964,9 +966,6 @@
   "Invader Atv": {
     "n": 1,
     "pts": 60,
-    "ranged": "Bolt pistol",
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "12\"",
       "T": 5,
@@ -974,6 +973,7 @@
       "W": 8,
       "OC": 2
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -1000,9 +1000,6 @@
   "Outrider Squad": {
     "n": 3,
     "pts": 70,
-    "ranged": "Heavy Bolt Pistol",
-    "melee": "Astartes Chainsword",
-    "innate": [],
     "info": {
       "M": "12\"",
       "T": 5,
@@ -1010,6 +1007,7 @@
       "W": 4,
       "OC": 2
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -1041,9 +1039,6 @@
   "Ravenwing Black Knights": {
     "n": 3,
     "pts": 75,
-    "ranged": "Bolt Pistol",
-    "melee": "Black Knight combat weapon",
-    "innate": [],
     "info": {
       "M": "12\"",
       "T": 5,
@@ -1052,6 +1047,7 @@
       "OC": 2,
       "INV": 5
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -1098,9 +1094,6 @@
   "Reiver Squad": {
     "n": 5,
     "pts": 75,
-    "ranged": "Special Issue Bolt Pistol",
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 4,
@@ -1108,6 +1101,7 @@
       "W": 2,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -1124,9 +1118,7 @@
   "Scout Squad": {
     "n": 5,
     "pts": 65,
-    "ranged": "Boltgun",
-    "melee": "Close combat weapon",
-    "innate": [],
+    "pts_3rd": 75,
     "info": {
       "M": "6\"",
       "T": 4,
@@ -1134,6 +1126,7 @@
       "W": 2,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -1190,15 +1183,11 @@
           }
         ]
       }
-    ],
-    "pts_3rd": 75
+    ]
   },
   "Sternguard Veteran Squad": {
     "n": 5,
     "pts": 100,
-    "ranged": "Sternguard Bolt Pistol",
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 4,
@@ -1206,6 +1195,7 @@
       "W": 2,
       "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -1252,9 +1242,6 @@
   "Suppressor Squad": {
     "n": 3,
     "pts": 85,
-    "ranged": "Bolt pistol",
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "12\"",
       "T": 4,
@@ -1263,6 +1250,7 @@
       "OC": 1,
       "deep_strike": true
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -1294,9 +1282,6 @@
   "Tactical Squad": {
     "n": 10,
     "pts": 140,
-    "ranged": "Bolt pistol",
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "6\"",
       "T": 4,
@@ -1304,6 +1289,7 @@
       "W": 2,
       "OC": 2
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -1335,9 +1321,6 @@
   "Terminator Assault Squad": {
     "n": 5,
     "pts": 155,
-    "ranged": null,
-    "melee": "Thunder Hammer",
-    "innate": [],
     "info": {
       "M": "5\"",
       "T": 5,
@@ -1347,6 +1330,7 @@
       "INV": 4,
       "deep_strike": true
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -1356,15 +1340,21 @@
             "melee": "Thunder Hammer"
           }
         ]
+      },
+      {
+        "name": "Twin Lightning Claws",
+        "models": [
+          {
+            "count": 5,
+            "melee": "Twin Lightning Claws"
+          }
+        ]
       }
     ]
   },
   "Terminator Squad": {
     "n": 5,
     "pts": 160,
-    "ranged": "Storm bolter",
-    "melee": "Power fist",
-    "innate": [],
     "info": {
       "M": "5\"",
       "T": 5,
@@ -1374,6 +1364,7 @@
       "INV": 4,
       "deep_strike": true
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -1384,15 +1375,58 @@
             "melee": "Power fist"
           }
         ]
+      },
+      {
+        "name": "Assault Cannon",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Assault cannon",
+            "melee": "Power fist"
+          },
+          {
+            "count": 4,
+            "ranged": "Storm bolter",
+            "melee": "Power fist"
+          }
+        ]
+      },
+      {
+        "name": "Heavy Flamer",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Heavy Flamer",
+            "melee": "Power fist"
+          },
+          {
+            "count": 4,
+            "ranged": "Storm bolter",
+            "melee": "Power fist"
+          }
+        ]
+      },
+      {
+        "name": "Cyclone Missile Launcher",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Cyclone Missile Launcher",
+            "melee": "Power fist"
+          },
+          {
+            "count": 4,
+            "ranged": "Storm bolter",
+            "melee": "Power fist"
+          }
+        ]
       }
     ]
   },
   "Vanguard Veteran Squad With Jump Packs": {
     "n": 5,
     "pts": 105,
-    "ranged": null,
-    "melee": "Vanguard Veteran Weapon",
-    "innate": [],
+    "pts_3rd": 115,
     "info": {
       "M": "12\"",
       "T": 4,
@@ -1401,6 +1435,7 @@
       "OC": 1,
       "deep_strike": true
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -1411,23 +1446,19 @@
           }
         ]
       }
-    ],
-    "pts_3rd": 115
+    ]
   },
   "Deathwing Command Squad": {
     "n": 5,
     "pts": 200,
-    "ranged": null,
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "5\"",
       "T": 5,
       "SV": 2,
       "W": 5,
-      "OC": 1,
-      "INV": 4
+      "OC": 1
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
@@ -1443,17 +1474,14 @@
   "Ravenwing Talonmaster": {
     "n": 1,
     "pts": 105,
-    "ranged": null,
-    "melee": "Close combat weapon",
-    "innate": [],
     "info": {
       "M": "14\"",
       "T": 5,
       "SV": 3,
       "W": 7,
-      "OC": 2,
-      "INV": 4
+      "OC": 2
     },
+    "innate": [],
     "builds": [
       {
         "name": "Melee",
