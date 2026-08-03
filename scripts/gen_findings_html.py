@@ -31,6 +31,7 @@ FACTIONS = {
     'space-wolves': 'Space Wolves',
     'tau-empire': "T'au Empire",
     'thousand-sons': 'Thousand Sons',
+    'titan-legions': 'Titan Legions',
     'tyranids': 'Tyranids',
     'world-eaters': 'World Eaters',
 }
