@@ -51,14 +51,6 @@
     ]
   },
   "Caladius Grav-Tank": {
-    "ranged": [
-      "Twin lastrum bolt cannon",
-      "Twin iliastus accelerator cannon",
-      "Twin arachnus heavy blaze cannon"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "10\"",
       "T": 11,
@@ -67,7 +59,25 @@
       "OC": 4,
       "INV": 5
     },
-    "pts": 210
+    "pts": 210,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Twin lastrum bolt cannon"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [
+          [
+            "Twin iliastus accelerator cannon",
+            "Twin arachnus heavy blaze cannon"
+          ]
+        ],
+        "melee_choices": []
+      }
+    ]
   },
   "Contemptor-Achillus Dreadnought": {
     "info": {
@@ -92,13 +102,6 @@
     ]
   },
   "Coronus Grav-Carrier": {
-    "ranged": [
-      "Twin arachnus blaze cannon",
-      "Twin lastrum bolt cannon"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "12\"",
       "T": 12,
@@ -107,7 +110,21 @@
       "OC": 5,
       "INV": 5
     },
-    "pts": 180
+    "pts": 180,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Twin arachnus blaze cannon",
+          "Twin lastrum bolt cannon"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Orion Assault Dropship": {
     "info": {
