@@ -451,9 +451,9 @@ class RankingEngine:
                 r_kw["a"] = model["ranged_a"]
             for _ in range(count):
                 if r_name:
-                    ranged.append(self.W(r_name, unit_name=unit_name, **r_kw))
+                    ranged.append(self.W(r_name, unit_name=unit_name, count=1, **r_kw))
                 if m_name:
-                    melee.append(self.W(m_name, unit_name=unit_name))
+                    melee.append(self.W(m_name, unit_name=unit_name, count=1))
         return {"ranged": ranged, "melee": melee, "innate": innate, "_build": build}
 
     def _best_squad_variant(self, name, target, mode=None):
@@ -491,7 +491,7 @@ class RankingEngine:
             if cfg.get("innate"):
                 for _ in range(n):
                     for iname in cfg["innate"]:
-                        ld["innate"].append(self.W(iname, unit_name=unit_name))
+                        ld["innate"].append(self.W(iname, unit_name=unit_name, count=1))
             total_d = _ld_dmg(ld["ranged"], ld["melee"], ld["innate"], target, n_models=n)
             dpp = total_d / n if n > 0 else 0
             if dpp > best_dpp:

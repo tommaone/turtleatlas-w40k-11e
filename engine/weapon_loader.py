@@ -207,6 +207,7 @@ class WeaponCatalog:
         ws: int | None = None,
         a: float | None = None,
         abilities: list[str] | None = None,
+        count: int | None = None,
     ) -> WeaponProfile:
         """Load a weapon profile from the catalog.
 
@@ -218,6 +219,10 @@ class WeaponCatalog:
             ws: Override WS (e.g. Paladins WS2+).
             a: Override attacks (e.g. for NFW which varies per model).
             abilities: Override/extend abilities (merged with faction overlay).
+            count: Override the weapon count. Squad builds expand one profile
+                   per model, so they MUST pass count=1 — the catalog count is
+                   a datasheet-level "models with this weapon" group size and
+                   would double-count when profiles are already expanded.
 
         Returns:
             WeaponProfile namedtuple.
@@ -355,7 +360,7 @@ class WeaponCatalog:
             ap=parsed_ap,
             damage=parsed_d,
             abilities=final_kw,
-            count=entry.get("count", 1),
+            count=entry.get("count", 1) if count is None else count,
         )
 
 
