@@ -2,18 +2,6 @@
   "_note": "leagues-of-votann weapon options — MFM pts verified (Kapricus Carrier 75->70)",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Hekaton Land Fortress": {
-    "ranged": [
-      "MATR autocannon",
-      "SP heavy conversion beamer",
-      "Heavy magna-rail cannon",
-      "Cyclic ion cannon",
-      "Twin ion beamer",
-      "Twin bolt cannon",
-      "Hekaton warhead"
-    ],
-    "melee": [
-      "Armoured wheels"
-    ],
     "info": {
       "M": "10\"",
       "T": 12,
@@ -21,16 +9,146 @@
       "W": 16,
       "OC": 5
     },
-    "pts": 250
+    "pts": 250,
+    "builds": [
+      {
+        "name": "SP heavy conversion beamer + 2 Twin bolt cannons",
+        "fixed_ranged": [
+          "MATR autocannon",
+          "SP heavy conversion beamer",
+          "Twin bolt cannon",
+          "Twin bolt cannon",
+          "Hekaton warhead"
+        ],
+        "fixed_melee": [
+          "Armoured wheels"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "SP heavy conversion beamer + Twin bolt cannon + Twin ion beamer",
+        "fixed_ranged": [
+          "MATR autocannon",
+          "SP heavy conversion beamer",
+          "Twin bolt cannon",
+          "Twin ion beamer",
+          "Hekaton warhead"
+        ],
+        "fixed_melee": [
+          "Armoured wheels"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "SP heavy conversion beamer + 2 Twin ion beamers",
+        "fixed_ranged": [
+          "MATR autocannon",
+          "SP heavy conversion beamer",
+          "Twin ion beamer",
+          "Twin ion beamer",
+          "Hekaton warhead"
+        ],
+        "fixed_melee": [
+          "Armoured wheels"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Heavy magna-rail cannon + 2 Twin bolt cannons",
+        "fixed_ranged": [
+          "MATR autocannon",
+          "Heavy magna-rail cannon",
+          "Twin bolt cannon",
+          "Twin bolt cannon",
+          "Hekaton warhead"
+        ],
+        "fixed_melee": [
+          "Armoured wheels"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Heavy magna-rail cannon + Twin bolt cannon + Twin ion beamer",
+        "fixed_ranged": [
+          "MATR autocannon",
+          "Heavy magna-rail cannon",
+          "Twin bolt cannon",
+          "Twin ion beamer",
+          "Hekaton warhead"
+        ],
+        "fixed_melee": [
+          "Armoured wheels"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Heavy magna-rail cannon + 2 Twin ion beamers",
+        "fixed_ranged": [
+          "MATR autocannon",
+          "Heavy magna-rail cannon",
+          "Twin ion beamer",
+          "Twin ion beamer",
+          "Hekaton warhead"
+        ],
+        "fixed_melee": [
+          "Armoured wheels"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Cyclic ion cannon + 2 Twin bolt cannons",
+        "fixed_ranged": [
+          "MATR autocannon",
+          "Cyclic ion cannon",
+          "Twin bolt cannon",
+          "Twin bolt cannon",
+          "Hekaton warhead"
+        ],
+        "fixed_melee": [
+          "Armoured wheels"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Cyclic ion cannon + Twin bolt cannon + Twin ion beamer",
+        "fixed_ranged": [
+          "MATR autocannon",
+          "Cyclic ion cannon",
+          "Twin bolt cannon",
+          "Twin ion beamer",
+          "Hekaton warhead"
+        ],
+        "fixed_melee": [
+          "Armoured wheels"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Cyclic ion cannon + 2 Twin ion beamers",
+        "fixed_ranged": [
+          "MATR autocannon",
+          "Cyclic ion cannon",
+          "Twin ion beamer",
+          "Twin ion beamer",
+          "Hekaton warhead"
+        ],
+        "fixed_melee": [
+          "Armoured wheels"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Kapricus Carrier": {
-    "ranged": [
-      "Magna-coil autocannon",
-      "Twin magna-coil autocannon"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "12\"",
       "T": 7,
@@ -38,17 +156,25 @@
       "W": 7,
       "OC": 2
     },
-    "pts": 70
+    "pts": 70,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Magna-coil autocannon",
+          "Twin magna-coil autocannon"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [],
+        "melee_choices": [],
+        "max_ranged": null,
+        "max_melee": null
+      }
+    ]
   },
   "Kapricus Defenders": {
-    "ranged": [
-      "Twin magna-coil autocannon",
-      "Magna-rail cannon",
-      "HYLas rotary cannon"
-    ],
-    "melee": [
-      "Armoured hull"
-    ],
     "info": {
       "M": "12\"",
       "T": 7,
@@ -56,18 +182,29 @@
       "W": 7,
       "OC": 2
     },
-    "pts": 65
+    "pts": 65,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Twin magna-coil autocannon"
+        ],
+        "fixed_melee": [
+          "Armoured hull"
+        ],
+        "ranged_choices": [
+          [
+            "Magna-rail cannon",
+            "HYLas rotary cannon"
+          ]
+        ],
+        "melee_choices": [],
+        "max_ranged": null,
+        "max_melee": null
+      }
+    ]
   },
   "Sagitaur": {
-    "ranged": [
-      "Twin bolt cannon",
-      "HYLas beam cannon",
-      "Sagitaur missile launcher",
-      "MATR autocannon"
-    ],
-    "melee": [
-      "Armoured wheels"
-    ],
     "info": {
       "M": "12\"",
       "T": 9,
@@ -75,6 +212,27 @@
       "W": 9,
       "OC": 2
     },
-    "pts": 85
+    "pts": 85,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Twin bolt cannon"
+        ],
+        "fixed_melee": [
+          "Armoured wheels"
+        ],
+        "ranged_choices": [
+          [
+            "HYLas beam cannon",
+            "MATR autocannon",
+            "L7 missile launcher and Sagitaur missile launcher"
+          ]
+        ],
+        "melee_choices": [],
+        "max_ranged": null,
+        "max_melee": null
+      }
+    ]
   }
 }
