@@ -346,6 +346,19 @@ class BSDataParser11e:
                 continue
             results.extend(self._resolve_profiles(sel, entry_index, depth + 1, _cache))
 
+        # Recurse into selectionEntryGroups (sub-model wargear choice groups).
+        # BSData stores a model's weapon choices in two equivalent ways:
+        #   (a) direct selectionEntries (e.g. TS Aspiring Sorcerer: Force weapon
+        #       + Malefic Curse as direct children)
+        #   (b) inside a "Wargear" selectionEntryGroup, min/max 1 (e.g. CSM
+        #       Aspiring Sorcerer: same weapons as a choice group)
+        # Surfacing both as a merged weapon group named after the model matches
+        # the (a) behaviour and lets the catalog resolve the sergeant's weapons
+        # cross-faction. Non-weapon profiles are filtered by the "Weapon"
+        # typeName check above, so upgrade-only choice groups do not pollute.
+        for sg in item.get("selectionEntryGroups", []):
+            results.extend(self._resolve_profiles(sg, entry_index, depth + 1, _cache))
+
         # Cache result by item id
         if item_id:
             _cache[item_id] = results

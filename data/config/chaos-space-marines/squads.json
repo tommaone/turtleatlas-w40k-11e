@@ -1210,5 +1210,76 @@
         ]
       }
     ]
+  },
+  "Rubric Marines": {
+    "n": 5,
+    "pts": 100,
+    "innate": [],
+    "info": {
+      "M": "6\"",
+      "T": 4,
+      "SV": 3,
+      "W": 3,
+      "OC": 2,
+      "INV": 5
+    },
+    "_note": "Sergeant (Aspiring Sorcerer) modeled as a distinct model entry with Force weapon + Malefic Curse. Soulreaper cannon max 1 per squad (BSData constraint). Warpflamer max 9 (flexible).",
+    "builds": [
+      {
+        "name": "Melee",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Malefic Curse",
+            "melee": "Force weapon"
+          },
+          {
+            "count": 4,
+            "ranged": "Inferno boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "1x Warpflamer",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Malefic Curse",
+            "melee": "Force weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Warpflamer",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Inferno boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      },
+      {
+        "name": "1x Soulreaper cannon",
+        "models": [
+          {
+            "count": 1,
+            "ranged": "Malefic Curse",
+            "melee": "Force weapon"
+          },
+          {
+            "count": 1,
+            "ranged": "Soulreaper cannon",
+            "melee": "Close combat weapon"
+          },
+          {
+            "count": 3,
+            "ranged": "Inferno boltgun",
+            "melee": "Close combat weapon"
+          }
+        ]
+      }
+    ]
   }
 }

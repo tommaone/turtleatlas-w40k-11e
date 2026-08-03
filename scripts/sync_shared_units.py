@@ -38,14 +38,14 @@ REPO = Path(__file__).resolve().parent.parent
 SHARED_UNITS: dict[str, dict] = {
     "Noise Marines":     {"origin": "emperors-children",  "consumers": ["chaos-space-marines"]},
     "Plague Marines":    {"origin": "death-guard",        "consumers": ["chaos-space-marines"]},
+    "Rubric Marines":    {"origin": "thousand-sons",      "consumers": ["chaos-space-marines"]},
     "Khorne Berzerkers": {"origin": "world-eaters",       "consumers": ["chaos-space-marines"]},
-    # BLOCKED: Rubric Marines — TS config's "2x Malefic Curse" build mode references
-    # the Aspiring Sorcerer's psychic weapon, which exists in TS merged but NOT in
-    # CSM merged (CSM Rubric Marines lacks the Aspiring Sorcerer entry — upstream
-    # BSData parse gap). Syncing it makes CSM ranking crash on that build. Re-enable
-    # after CSM merged data is fixed to include the Aspiring Sorcerer.
-    # "Rubric Marines":    {"origin": "thousand-sons",      "consumers": ["chaos-space-marines"]},
 }
+# NOTE: Rubric Marines was previously blocked because CSM merged dropped the
+# Aspiring Sorcerer (its wargear sat in a "Wargear" choice selectionEntryGroup
+# the parser didn't recurse into). Fixed in adapter/bsdata_parser_11e.py —
+# _resolve_profiles now recurses into selectionEntryGroups too. All four
+# god-marines sync cleanly.
 
 
 def _load(fid: str) -> dict:
