@@ -259,6 +259,8 @@ HARDENED_FACTIONS = [
     "orks", "tau-empire", "necrons",
     "aeldari", "drukhari", "titan-legions",
     "genestealer-cults", "tyranids",
+    # Dark Angels: squads stripped + WO builds (via space-marines symlinks)
+    "dark-angels",
 ]
 
 
