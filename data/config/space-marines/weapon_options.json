@@ -1,5 +1,5 @@
 {
-  "_note": "space-marines weapon options \u2014 generated from BSData + MFM",
+  "_note": "space-marines weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Astraeus": {
     "info": {
@@ -50,6 +50,157 @@
         ],
         "fixed_melee": [
           "Armoured Feet"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
+  },
+  "Brutalis Dreadnought": {
+    "info": {
+      "M": "8\"",
+      "T": 10,
+      "SV": 2,
+      "W": 12,
+      "OC": 4
+    },
+    "pts": 150,
+    "builds": [
+      {
+        "name": "Brutalis Fists",
+        "fixed_ranged": [
+          "Brutalis Bolt Rifles"
+        ],
+        "fixed_melee": [
+          "Brutalis Fists"
+        ],
+        "ranged_choices": [
+          [
+            "Twin Icarus ironhail heavy stubber",
+            "Twin heavy bolter",
+            "Twin multi-melta"
+          ]
+        ],
+        "melee_choices": []
+      },
+      {
+        "name": "Brutalis Talons",
+        "fixed_ranged": [],
+        "fixed_melee": [
+          "Brutalis Talons"
+        ],
+        "ranged_choices": [
+          [
+            "Twin Icarus ironhail heavy stubber",
+            "Twin heavy bolter",
+            "Twin multi-melta"
+          ]
+        ],
+        "melee_choices": []
+      }
+    ]
+  },
+  "Dreadnought": {
+    "info": {
+      "M": "6\"",
+      "T": 9,
+      "SV": 2,
+      "W": 8,
+      "OC": 3
+    },
+    "pts": 135,
+    "builds": [
+      {
+        "name": "Assault Cannon",
+        "fixed_ranged": [
+          "Assault Cannon",
+          "Storm bolter"
+        ],
+        "fixed_melee": [
+          "Dreadnought Combat Weapon"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Twin lascannon",
+        "fixed_ranged": [
+          "Twin lascannon",
+          "Storm bolter"
+        ],
+        "fixed_melee": [
+          "Dreadnought Combat Weapon"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Multi-melta",
+        "fixed_ranged": [
+          "Multi-melta",
+          "Storm bolter"
+        ],
+        "fixed_melee": [
+          "Dreadnought Combat Weapon"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Heavy Plasma Cannon",
+        "fixed_ranged": [
+          "Heavy Plasma Cannon",
+          "Storm bolter"
+        ],
+        "fixed_melee": [
+          "Dreadnought Combat Weapon"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Missile Launcher",
+        "fixed_ranged": [
+          "Missile Launcher",
+          "Storm bolter"
+        ],
+        "fixed_melee": [
+          "Dreadnought Combat Weapon"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Heavy Flamer",
+        "fixed_ranged": [
+          "Heavy Flamer",
+          "Storm bolter"
+        ],
+        "fixed_melee": [
+          "Dreadnought Combat Weapon"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
+  },
+  "Firestrike Servo-Turrets": {
+    "info": {
+      "M": "3\"",
+      "T": 6,
+      "SV": 2,
+      "W": 6,
+      "OC": 2
+    },
+    "pts": 75,
+    "builds": [
+      {
+        "name": "Las-talon",
+        "fixed_ranged": [
+          "Twin Firestrike Las-talon"
+        ],
+        "fixed_melee": [
+          "Close combat weapon"
         ],
         "ranged_choices": [],
         "melee_choices": []
@@ -240,15 +391,6 @@
     ]
   },
   "Land Speeder": {
-    "ranged": [
-      "Multi-melta",
-      "Heavy Flamer",
-      "Onslaught gatling cannon",
-      "Stormfury Missile Launcher"
-    ],
-    "melee": [
-      "Close combat weapon"
-    ],
     "info": {
       "M": "14\"",
       "T": 8,
@@ -257,7 +399,53 @@
       "OC": 3,
       "deep_strike": true
     },
-    "pts": 95
+    "pts": 105,
+    "builds": [
+      {
+        "name": "Multi-melta",
+        "fixed_ranged": [
+          "Multi-melta"
+        ],
+        "fixed_melee": [
+          "Close combat weapon"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Heavy Flamer",
+        "fixed_ranged": [
+          "Heavy Flamer"
+        ],
+        "fixed_melee": [
+          "Close combat weapon"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Onslaught gatling cannon",
+        "fixed_ranged": [
+          "Onslaught gatling cannon"
+        ],
+        "fixed_melee": [
+          "Close combat weapon"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Stormfury Missile Launcher",
+        "fixed_ranged": [
+          "Stormfury Missile Launcher"
+        ],
+        "fixed_melee": [
+          "Close combat weapon"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Predator Annihilator": {
     "info": {
@@ -332,6 +520,69 @@
           [
             "Twin heavy bolter",
             "Twin lascannon"
+          ]
+        ],
+        "melee_choices": []
+      }
+    ]
+  },
+  "Redemptor Dreadnought": {
+    "info": {
+      "M": "8\"",
+      "T": 10,
+      "SV": 2,
+      "W": 12,
+      "OC": 4
+    },
+    "pts": 195,
+    "builds": [
+      {
+        "name": "Heavy Onslaught Gatling Cannon",
+        "fixed_ranged": [
+          "Heavy Onslaught Gatling Cannon"
+        ],
+        "fixed_melee": [
+          "Redemptor Fist"
+        ],
+        "ranged_choices": [
+          [
+            "Icarus Rocket Pod",
+            "Twin Fragstorm Grenade Launcher",
+            "Twin Storm Bolter"
+          ]
+        ],
+        "melee_choices": []
+      },
+      {
+        "name": "Macro Plasma Incinerator",
+        "fixed_ranged": [
+          "Macro Plasma Incinerator"
+        ],
+        "fixed_melee": [
+          "Redemptor Fist"
+        ],
+        "ranged_choices": [
+          [
+            "Icarus Rocket Pod",
+            "Twin Fragstorm Grenade Launcher",
+            "Twin Storm Bolter"
+          ]
+        ],
+        "melee_choices": []
+      },
+      {
+        "name": "Heavy Flamer",
+        "fixed_ranged": [
+          "Heavy Flamer"
+        ],
+        "fixed_melee": [
+          "Redemptor Fist"
+        ],
+        "ranged_choices": [
+          [
+            "Icarus Rocket Pod",
+            "Twin Fragstorm Grenade Launcher",
+            "Twin Storm Bolter"
           ]
         ],
         "melee_choices": []
@@ -505,6 +756,37 @@
       }
     ]
   },
+  "Stormhawk Interceptor": {
+    "info": {
+      "M": "20\"+",
+      "T": 9,
+      "SV": 3,
+      "W": 10,
+      "OC": 0
+    },
+    "pts": 155,
+    "builds": [
+      {
+        "name": "Twin assault cannon",
+        "fixed_ranged": [
+          "Twin assault cannon"
+        ],
+        "fixed_melee": [
+          "Armoured Hull"
+        ],
+        "ranged_choices": [
+          [
+            "Skyhammer Missile Launcher",
+            "Icarus Stormcannon",
+            "Las-talon",
+            "Twin heavy bolter",
+            "Typhoon missile launcher"
+          ]
+        ],
+        "melee_choices": []
+      }
+    ]
+  },
   "Stormraven Gunship": {
     "info": {
       "M": "14\"",
@@ -523,6 +805,36 @@
         ],
         "fixed_melee": [],
         "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
+  },
+  "Stormtalon Gunship": {
+    "info": {
+      "M": "20\"+",
+      "T": 8,
+      "SV": 3,
+      "W": 10,
+      "OC": 0
+    },
+    "pts": 165,
+    "builds": [
+      {
+        "name": "Twin assault cannon",
+        "fixed_ranged": [
+          "Twin assault cannon"
+        ],
+        "fixed_melee": [
+          "Armoured Hull"
+        ],
+        "ranged_choices": [
+          [
+            "Skyhammer Missile Launcher",
+            "Typhoon missile launcher",
+            "Twin heavy bolter",
+            "Twin lascannon"
+          ]
+        ],
         "melee_choices": []
       }
     ]
