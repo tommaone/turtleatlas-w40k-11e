@@ -75,6 +75,8 @@ MELEE_ONLY_WHITELIST = {
     "Land Raider Crusader", "Ynnari Venom",
     # Blast/Indirect heavy squads — legitimately low DPP vs MEQ
     "Desolation Squad",
+    # Under-modeled default-build squad (rich wargear modes not yet curated)
+    "Indomitor Kill Team",
 }
 
 

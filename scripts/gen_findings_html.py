@@ -15,6 +15,7 @@ FACTIONS = {
     'chaos-daemons': 'Chaos Daemons',
     'chaos-knights': 'Chaos Knights',
     'chaos-space-marines': 'Chaos Space Marines',
+    'chaos-titan-legions': 'Chaos Titan Legions',
     'dark-angels': 'Dark Angels',
     'death-guard': 'Death Guard',
     'deathwatch': 'Deathwatch',

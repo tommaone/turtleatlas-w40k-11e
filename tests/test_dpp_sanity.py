@@ -60,6 +60,13 @@ NO_WEAPONS_WHITELIST = {
     "Tesseract Vault", "Obelisk",
     # Config bugs (known)
     "Firestrike Servo-Turrets", "Valkyrie", "The Blue Scribes",
+    # Fortifications (utility, weak weapons) — added by the missers-curation pass
+    "Miasmic Malignifier", "Tidewall Droneport",
+    # Support Primarch (force multiplier > raw damage)
+    "Marneus Calgar In Armour Of Antilochus",
+    # Under-modeled default-build squad (Indomitor Kill Team has rich wargear
+    # options — special-weapon modes need curating; baseline Melee build only)
+    "Indomitor Kill Team",
 }
 
 # All factions to scan

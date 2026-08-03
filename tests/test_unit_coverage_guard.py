@@ -27,23 +27,16 @@ CONFIG_DIR = REPO / "data" / "config"
 
 # Confirmed-missing at audit time. Curate these → remove from this list.
 KNOWN_MISSING: dict[str, list[str]] = {
-    "adepta-sororitas": ["Celestian Sacresant (Anointed Halberd)", "Celestian Sacresant (Hallowed Mace)", "Geminae Superia", "Repentia Squad", "Sister Novitiate (Autogun)", "Sister Novitiate (Melee Weapon)"],
-    "aeldari": ["Hand of the Archon", "Scourges with Heavy Weapons", "Scourges with Shardcarbines", "Vyper"],
-    "black-templars": ["Librarian in Phobos Armour", "Librarian in Terminator Armour"],
-    "chaos-daemons": ["Soul Grinder"],
-    "chaos-titan-legions": ["Chaos Reaver Titan", "Chaos Warbringer Nemesis Titan", "Chaos Warhound Titan", "Chaos Warlord Titan"],
-    "dark-angels": ["Land Speeder Vengeance", "Nephilim Jetfighter", "Ravenwing Command Squad", "Ravenwing Dark Talon", "Ravenwing Darkshroud"],
-    "death-guard": ["Miasmic Malignifier", "Myphitic Blight-Haulers"],
-    "deathwatch": ["Decimus Kill Team", "Indomitor Kill Team"],
-    "drukhari": ["Avatar of Khaine", "Wraithknight with Ghostglaive"],
-    "genestealer-cults": ["Centaur RSV", "Commissar Graves on Foot", "Death Korps of Krieg", "Gaunt\u2019s Ghosts", "Hippogriff AFV", "Parasite of Mortrex", "Von Ryan's Leapers"],
-    "imperial-knights": ["Sydonian Dragoons with radium jezzails", "Sydonian Dragoons with taser lances"],
-    "necrons": ["Convergence Of Dominion", "Tomb Citadel Walls"],
-    "orks": ["Big\u2019Ed Bossbunka", "Burna Boy", "Loota", "Nob on Smasha Squig", "Runtherd", "Spanner", "Squighog Boy", "Squighog Boyz"],
-    "space-marines": ["Adrax Agatone", "Aethon Shaan", "Caanok Var", "Captain Titus", "Cato Sicarius", "Chief Librarian Tigurius", "Darnath Lysander", "Iron Father Feirros", "Kayvaan Shrike", "Kor\u2019Sarro Khan", "Marneus Calgar In Armour Of Antilochus", "Pedro Kantor", "Roboute Guilliman", "Suboden Khan", "Tor Garadon", "Uriel Ventris", "Victrix Honour Guard", "Vulkan He\u2019Stan"],
-    "space-wolves": ["Hunting Wolves", "Wolf Guard Headtakers", "Wolf Scout", "Wolf Scout Pack Leader", "Wolf Scout w/ haywire mine", "Wolf Scout w/ plasma gun", "Wolf Scout w/ runic stave and Thunderclap", "Wulfen"],
-    "tau-empire": ["Tidewall Droneport", "Tidewall Gunrig", "Tidewall Shieldline"],
-    "world-eaters": ["Jakhal"],
+    'adepta-sororitas': ['Celestian Sacresant (Anointed Halberd)', 'Celestian Sacresant (Hallowed Mace)', 'Geminae Superia', 'Sister Novitiate (Autogun)', 'Sister Novitiate (Melee Weapon)'],
+    'aeldari': ['Hand of the Archon', 'Scourges with Heavy Weapons', 'Scourges with Shardcarbines'],
+    'black-templars': ['Librarian in Phobos Armour', 'Librarian in Terminator Armour'],
+    'drukhari': ['Avatar of Khaine', 'Wraithknight with Ghostglaive'],
+    'genestealer-cults': ['Centaur RSV', 'Commissar Graves on Foot', 'Death Korps of Krieg', 'Gaunt’s Ghosts', 'Hippogriff AFV', 'Parasite of Mortrex', "Von Ryan's Leapers"],
+    'imperial-knights': ['Sydonian Dragoons with radium jezzails', 'Sydonian Dragoons with taser lances'],
+    'orks': ['Burna Boy', 'Loota', 'Nob on Smasha Squig', 'Runtherd', 'Spanner', 'Squighog Boy'],
+    'space-wolves': ['Hunting Wolves', 'Wolf Scout', 'Wolf Scout Pack Leader', 'Wolf Scout w/ haywire mine', 'Wolf Scout w/ plasma gun', 'Wolf Scout w/ runic stave and Thunderclap'],
+    'tau-empire': ['Tidewall Shieldline'],
+    'world-eaters': ['Jakhal'],
 }
 
 
