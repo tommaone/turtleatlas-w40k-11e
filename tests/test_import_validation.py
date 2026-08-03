@@ -267,6 +267,12 @@ HARDENED_FACTIONS = [
     # Grey Knights: reference conversion — squads stripped (builds canonical),
     # WO builds + characters slot builds, MFM pts verified
     "grey-knights",
+    # Wave 3 hardening — squads stripped + MFM pts verified
+    "adepta-sororitas", "adeptus-custodes", "adeptus-mechanicus",
+    "astra-militarum", "chaos-space-marines",
+    "leagues-of-votann", "thousand-sons", "world-eaters",
+    # Knight factions — no squads; WO builds + MFM pts verified
+    "chaos-knights", "imperial-knights",
 ]
 
 
