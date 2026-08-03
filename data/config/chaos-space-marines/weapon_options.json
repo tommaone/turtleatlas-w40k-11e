@@ -163,14 +163,6 @@
     ]
   },
   "Forgefiend": {
-    "ranged": [
-      "Ectoplasma cannon",
-      "Hades autocannon"
-    ],
-    "melee": [
-      "Armoured limbs",
-      "Forgefiend jaws"
-    ],
     "info": {
       "M": "8\"",
       "T": 10,
@@ -179,7 +171,59 @@
       "OC": 3,
       "INV": 5
     },
-    "pts": 160
+    "pts": 160,
+    "builds": [
+      {
+        "name": "Ectoplasma cannons",
+        "fixed_ranged": [
+          "Ectoplasma cannon",
+          "Ectoplasma cannon",
+          "Ectoplasma cannon"
+        ],
+        "fixed_melee": [
+          "Armoured limbs"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Hades autocannons",
+        "fixed_ranged": [
+          "Hades autocannon",
+          "Hades autocannon",
+          "Ectoplasma cannon"
+        ],
+        "fixed_melee": [
+          "Armoured limbs"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Ectoplasma cannons and jaws",
+        "fixed_ranged": [
+          "Ectoplasma cannon",
+          "Ectoplasma cannon"
+        ],
+        "fixed_melee": [
+          "Forgefiend jaws"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Hades autocannons and jaws",
+        "fixed_ranged": [
+          "Hades autocannon",
+          "Hades autocannon"
+        ],
+        "fixed_melee": [
+          "Forgefiend jaws"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Helbrute": {
     "info": {
@@ -243,17 +287,6 @@
     ]
   },
   "Khorne Lord Of Skulls": {
-    "ranged": [
-      "Hades gatling cannon",
-      "Skullhurler",
-      "Gorestorm cannon",
-      "Daemongore cannon",
-      "Ichor cannon"
-    ],
-    "melee": [
-      "Great cleaver of Khorne - strike",
-      "Great cleaver of Khorne - sweep"
-    ],
     "info": {
       "M": "8\"",
       "T": 13,
@@ -262,7 +295,32 @@
       "OC": 8,
       "INV": 5
     },
-    "pts": 450
+    "pts": 450,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [],
+        "fixed_melee": [],
+        "ranged_choices": [
+          [
+            "Hades gatling cannon",
+            "Skullhurler"
+          ],
+          [
+            "Gorestorm cannon",
+            "Daemongore cannon",
+            "Ichor cannon"
+          ]
+        ],
+        "melee_choices": [
+          [
+            "Great cleaver of Khorne - strike",
+            "Great cleaver of Khorne - sweep"
+          ]
+        ],
+        "max_melee": 1
+      }
+    ]
   },
   "Maulerfiend": {
     "info": {
