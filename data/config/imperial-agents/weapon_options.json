@@ -83,16 +83,6 @@
     ]
   },
   "Sisters Of Battle Immolator": {
-    "ranged": [
-      "Heavy bolter",
-      "Hunter-killer missile",
-      "Immolation flamers",
-      "Twin heavy bolter",
-      "Twin multi-melta"
-    ],
-    "melee": [
-      "Armoured tracks"
-    ],
     "info": {
       "M": "12\"",
       "T": 10,
@@ -101,6 +91,28 @@
       "OC": 2,
       "INV": 6
     },
-    "pts": 115
+    "pts": 105,
+    "builds": [
+      {
+        "name": "default",
+        "fixed_ranged": [
+          "Heavy bolter",
+          "Hunter-killer missile"
+        ],
+        "fixed_melee": [
+          "Armoured tracks"
+        ],
+        "ranged_choices": [
+          [
+            "Immolation flamers",
+            "Twin heavy bolter",
+            "Twin multi-melta"
+          ]
+        ],
+        "melee_choices": [],
+        "max_ranged": null,
+        "max_melee": null
+      }
+    ]
   }
 }
