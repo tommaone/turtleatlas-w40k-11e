@@ -261,6 +261,9 @@ HARDENED_FACTIONS = [
     "genestealer-cults", "tyranids",
     # Dark Angels: squads stripped + WO builds (via space-marines symlinks)
     "dark-angels",
+    # Space Marine chassis block (WO builds + squads stripped)
+    "space-marines",
+    "blood-angels", "black-templars", "deathwatch", "space-wolves",
 ]
 
 
