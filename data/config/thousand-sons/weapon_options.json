@@ -189,14 +189,6 @@
     ]
   },
   "Forgefiend": {
-    "ranged": [
-      "Ectoplasma cannon",
-      "Hades autocannon"
-    ],
-    "melee": [
-      "Forgefiend claws",
-      "Forgefiend jaws"
-    ],
     "info": {
       "M": "8\"",
       "T": 10,
@@ -205,7 +197,59 @@
       "OC": 3,
       "INV": 5
     },
-    "pts": 135
+    "pts": 135,
+    "builds": [
+      {
+        "name": "Ectoplasma cannons",
+        "fixed_ranged": [
+          "Ectoplasma cannon",
+          "Ectoplasma cannon",
+          "Ectoplasma cannon"
+        ],
+        "fixed_melee": [
+          "Forgefiend claws"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Hades autocannons",
+        "fixed_ranged": [
+          "Hades autocannon",
+          "Hades autocannon",
+          "Ectoplasma cannon"
+        ],
+        "fixed_melee": [
+          "Forgefiend claws"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Ectoplasma cannons and jaws",
+        "fixed_ranged": [
+          "Ectoplasma cannon",
+          "Ectoplasma cannon"
+        ],
+        "fixed_melee": [
+          "Forgefiend jaws"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Hades autocannons and jaws",
+        "fixed_ranged": [
+          "Hades autocannon",
+          "Hades autocannon"
+        ],
+        "fixed_melee": [
+          "Forgefiend jaws"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   },
   "Helbrute": {
     "info": {
@@ -317,16 +361,6 @@
     ]
   },
   "Sekhetar Robots": {
-    "ranged": [
-      "Pyreflux meltagun",
-      "Heavy warpflamer",
-      "Hellfyre missile rack",
-      "Warpflame projector"
-    ],
-    "melee": [
-      "Close combat weapon",
-      "Power claw"
-    ],
     "info": {
       "M": "8\"",
       "T": 6,
@@ -335,6 +369,35 @@
       "OC": 1,
       "INV": 5
     },
-    "pts": 80
+    "pts": 85,
+    "builds": [
+      {
+        "name": "Pyreflux meltagun",
+        "fixed_ranged": [
+          "Pyreflux meltagun",
+          "Heavy warpflamer",
+          "Hellfyre missile rack"
+        ],
+        "fixed_melee": [
+          "Close combat weapon"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      },
+      {
+        "name": "Warpflame projector and claw",
+        "fixed_ranged": [
+          "Warpflame projector",
+          "Heavy warpflamer",
+          "Hellfyre missile rack"
+        ],
+        "fixed_melee": [
+          "Close combat weapon",
+          "Power claw"
+        ],
+        "ranged_choices": [],
+        "melee_choices": []
+      }
+    ]
   }
 }
