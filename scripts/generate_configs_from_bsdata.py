@@ -117,12 +117,15 @@ def normalize_for_catalog(name: str, merged_weapons: dict[str, set[str]] | None 
     """
     n = strip_bsdata_prefixes(name)
     n = normalize_weapon_name(n)
-    # BSData uses "cannons" but catalog has "cannon" — strip trailing 's'
-    # Only if singular form exists in merged data
+    # BSData uses "cannons" but catalog has "cannon" — strip trailing 's' ONLY
+    # when the singular form is an exact catalog weapon name. A loose substring
+    # check ('bladevane' in 'bladevanes') wrongly singularizes plural catalog
+    # names (Bladevanes, Bladed wings, Wraithbone Fists, Razorwing missiles),
+    # producing names that resolve only via fuzzy partial match.
     if merged_weapons and n.endswith('s') and not n.endswith('ss'):
         singular = n[:-1]
         all_weapons = merged_weapons.get("ranged", set()) | merged_weapons.get("melee", set())
-        if any(singular.lower() in w.lower() or w.lower() in singular.lower() for w in all_weapons):
+        if singular.lower() in {w.lower() for w in all_weapons}:
             return singular
     return n
 
@@ -603,6 +606,18 @@ def generate_configs_for_faction(slug: str, bsdata_parser: BSDataParser11e,
             if any(nk + "s" == m or m + "s" == nk for m in norm_keys):
                 log.append(f"  Removed stale duplicate: {k}")
                 del section[k]
+
+    # Drop vehicles.json entries now shadowed by weapon_options. A vehicle
+    # whose loadout moved to the builds format (weapon_options) must not keep
+    # a stale flat-spec entry in vehicles.json — the engine consults
+    # weapon_options first, but the orphan still drifts (old pts, old builds)
+    # and confuses tooling that inspects each section independently.
+    for k in list(vehicles):
+        if k.startswith("_"):
+            continue
+        if any(k.lower() == wk.lower() for wk in weapon_options if not wk.startswith("_")):
+            log.append(f"  Removed shadowed vehicles.json entry: {k}")
+            del vehicles[k]
     
     # Write configs
     if not dry_run and config_dir.exists():

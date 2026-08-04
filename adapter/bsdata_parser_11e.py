@@ -1043,10 +1043,16 @@ class BSDataParser11e:
                 return cat
             break
         
-        # Check selectionEntries — compare both raw and arrow-stripped names
+        # Check selectionEntries — compare raw, arrow-stripped, AND
+        # count-stripped names. Choice wrappers ('2 Bright Lances') resolve
+        # to the base name ('Bright Lances') via _resolve_choice_option, so
+        # the raw SE name never matches the stripped choice name directly.
         for se in group.get("selectionEntries", []):
+            if se.get("hidden") == "true":
+                continue
             se_name = self._strip_arrow(se.get("name", ""))
-            if se_name != choice_name or se.get("hidden") == "true":
+            resolved_name, _ = self._resolve_choice_option(se)
+            if se_name != choice_name and resolved_name != choice_name:
                 continue
             cat = self._weapon_category_deep(se)
             if cat != "ability":
@@ -1059,7 +1065,7 @@ class BSDataParser11e:
                     "fist", "claw", "hammer", "blade", "power"}
         ranged_kw = {"pistol", "gun", "bolter", "rifle", "cannon",
                      "launcher", "flamer", "melta", "plasma",
-                     "storm bolter", "combi", "ranged"}
+                     "storm bolter", "combi", "ranged", "lance"}
         if any(kw in gname for kw in melee_kw):
             return "melee"
         if any(kw in gname for kw in ranged_kw):
@@ -1100,7 +1106,7 @@ class BSDataParser11e:
         ranged_keywords = {"pistol", "gun", "bolter", "rifle", "cannon",
                            "launcher", "flamer", "melta", "plasma",
                            "storm bolter", "psycannon", "psilencer",
-                           "incinerator", "combi", "ranged"}
+                           "incinerator", "combi", "ranged", "lance"}
         if any(kw in gname for kw in ranged_keywords):
             return True
         return False

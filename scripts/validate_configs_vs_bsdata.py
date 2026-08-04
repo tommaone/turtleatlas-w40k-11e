@@ -99,6 +99,22 @@ def normalize_weapon_name(name: str) -> str:
     return n
 
 
+def canonical_weapon(name: str, catalog_lower: set[str]) -> str:
+    """Canonical form used to compare config and BSData weapon names.
+
+    Mirrors the generator's normalize_for_catalog: strip profile suffixes,
+    then strip a trailing 's' only if the singular is an EXACT catalog weapon.
+    This aligns plural catalog names ('Twin Haywire Blasters') with the
+    singularized config ('Twin Haywire Blaster') the generator emits.
+    """
+    n = normalize_weapon_name(name).lower()
+    if n.endswith("s") and not n.endswith("ss"):
+        singular = n[:-1]
+        if singular in catalog_lower:
+            return singular
+    return n
+
+
 def load_merged_weapons(merged_path: Path) -> dict[str, list[dict]]:
     """Load merged data and return {unit_name: [weapon_entry_dicts]}."""
     with open(merged_path) as f:
@@ -144,45 +160,94 @@ def load_config(config_dir: Path) -> dict:
     return config
 
 
+def _add_build_weapons(build: dict, names: set[str]) -> None:
+    """Collect every weapon name from one build (all config formats)."""
+    for r in build.get("ranged", []) or []:
+        if isinstance(r, str):
+            names.add(r)
+        elif isinstance(r, dict) and r.get("name"):
+            names.add(r["name"])
+    for m in build.get("melee", []) or []:
+        if isinstance(m, str):
+            names.add(m)
+        elif isinstance(m, dict) and m.get("name"):
+            names.add(m["name"])
+    for rc in build.get("ranged_choices", []) or []:
+        if isinstance(rc, list):
+            for r in rc:
+                names.add(r)
+        elif isinstance(rc, str):
+            names.add(rc)
+    for mc in build.get("melee_choices", []) or []:
+        if isinstance(mc, list):
+            for m in mc:
+                names.add(m)
+        elif isinstance(mc, str):
+            names.add(mc)
+    # Typed fixed list + untyped slots (regenerated weapon_options entries)
+    for f in build.get("fixed", []) or []:
+        if f.get("name"):
+            names.add(f["name"])
+    for slot in build.get("slots", []) or []:
+        for c in slot.get("choices", []) or []:
+            if c.get("name"):
+                names.add(c["name"])
+    # Squad builds with models array
+    for m in build.get("models", []) or []:
+        if m.get("ranged"):
+            names.add(m["ranged"])
+        if m.get("melee"):
+            names.add(m["melee"])
+
+
 def extract_config_weapon_names(unit_cfg: dict) -> set[str]:
     """Extract all weapon names referenced in a config unit."""
     names = set()
 
-    # Squads: ranged (string), melee (string), specials (list), innate (list)
+    # Squads/vehicles top-level scalar fields: ranged/melee may be a string
+    # (squad legacy) or a list of dicts (vehicles flat spec: [{name,...}]).
     for key in ["ranged", "melee"]:
         val = unit_cfg.get(key)
         if isinstance(val, str) and val:
             names.add(val)
+        elif isinstance(val, list):
+            for w in val:
+                if isinstance(w, dict) and w.get("name"):
+                    names.add(w["name"])
+                elif isinstance(w, str):
+                    names.add(w)
     for s in unit_cfg.get("specials", []):
         names.add(s)
     for i in unit_cfg.get("innate", []):
         names.add(i)
+    # vehicles.json flat-spec fixed lists + weapon_slots
+    for key in ("fixed_ranged", "fixed_melee"):
+        for w in unit_cfg.get(key, []) or []:
+            if isinstance(w, str):
+                names.add(w)
+            elif isinstance(w, dict) and w.get("name"):
+                names.add(w["name"])
+    for slot in unit_cfg.get("weapon_slots", []) or []:
+        for entry in slot.get("from", []) or []:
+            if entry.get("weapon"):
+                names.add(entry["weapon"])
+            for wn in entry.get("weapons", []) or []:
+                names.add(wn)
+            if entry.get("melee_weapon"):
+                names.add(entry["melee_weapon"])
+            for wn in entry.get("melee_weapons", []) or []:
+                names.add(wn)
 
-    # Builds format: weapon_options.builds
+    # Builds format: characters nest under "weapon_options", squads and
+    # weapon_options entries store builds at the TOP level.
+    build_sources = []
     wo = unit_cfg.get("weapon_options", {})
-    for build in wo.get("builds", []):
-        for r in build.get("ranged", []):
-            names.add(r)
-        for m in build.get("melee", []):
-            names.add(m)
-        for rc in build.get("ranged_choices", []):
-            if isinstance(rc, list):
-                for r in rc:
-                    names.add(r)
-            elif isinstance(rc, str):
-                names.add(rc)
-        for mc in build.get("melee_choices", []):
-            if isinstance(mc, list):
-                for m in mc:
-                    names.add(m)
-            elif isinstance(mc, str):
-                names.add(mc)
-        # Squad builds with models array
-        for m in build.get("models", []):
-            if m.get("ranged"):
-                names.add(m["ranged"])
-            if m.get("melee"):
-                names.add(m["melee"])
+    if isinstance(wo, dict) and wo.get("builds"):
+        build_sources.extend(wo["builds"])
+    if unit_cfg.get("builds"):
+        build_sources.extend(unit_cfg["builds"])
+    for build in build_sources:
+        _add_build_weapons(build, names)
 
     return names
 
@@ -197,30 +262,56 @@ def is_weak_default(name: str) -> bool:
     return name.lower() in WEAK_DEFAULT_WEAPONS
 
 
+def _expand_two_prefix(names: list[str]) -> list[str]:
+    """Expand count-prefixed BSData fixed names ('Two X' -> 2x 'X').
+
+    The generator expands 'Two X' into 2x the single profile because the
+    'Two X' catalog profile carries single-weapon stats (A=1, not A=2).
+    The validator must apply the same expansion before comparing, or 2x
+    'dark lance' in the config fails to satisfy 'Two dark lances'.
+    """
+    out = []
+    for n in names:
+        if n.lower().startswith("two "):
+            base = n[4:]
+            out.append(base)
+            out.append(base)
+        else:
+            out.append(n)
+    return out
+
+
 def validate_unit(unit_name: str, unit_cfg: dict, merged_weapons: list[dict],
-                  bsdata_constraints: dict | None, verbose: bool = False) -> list[str]:
+                  bsdata_constraints: dict | None, global_weapon_names: set[str] | None = None,
+                  verbose: bool = False) -> list[str]:
     """Validate one unit's config against merged data and BSData constraints.
     
     Returns list of (severity, message) tuples.
     """
     issues = []
     merged_names = get_weapon_names_from_merged(merged_weapons)
+    # Shared choice groups (e.g. War Walker 'Heavy Weapons') resolve to
+    # weapon profiles that merged attributes to other units, so the per-unit
+    # snapshot is incomplete. Use the faction-wide weapon set for the
+    # "is this a real catalog weapon" decision; keep the per-unit set for
+    # unit-specific checks.
+    real_weapon_names = global_weapon_names or merged_names
     config_names = extract_config_weapon_names(unit_cfg)
 
     # ── 1. Every config weapon exists in merged data ────────────────
     for w in config_names:
         w_lower = w.lower()
-        if w_lower in merged_names:
+        if w_lower in real_weapon_names or w_lower in merged_names:
             continue
         # Skip generic weapons (engine handles via fallback)
         if is_generic_melee(w):
             continue
         # Try normalized name (strip profile suffix)
         norm = normalize_weapon_name(w).lower()
-        if norm in merged_names:
+        if norm in real_weapon_names or norm in merged_names:
             continue
-        # Try fuzzy: substring match
-        fuzzy = any(w_lower in m or m in w_lower for m in merged_names if m)
+        # Try fuzzy: substring match against the faction-wide set
+        fuzzy = any(w_lower in m or m in w_lower for m in real_weapon_names if m)
         if not fuzzy:
             issues.append(("HIGH", f"NOT IN DATA: '{w}'"))
 
@@ -233,7 +324,9 @@ def validate_unit(unit_name: str, unit_cfg: dict, merged_weapons: list[dict],
         build_name = build.get("name", "default")
 
         # ── 2a. Mandatory weapons (fixed_ranged, fixed_melee) ───────
-        for fw in build.get("fixed_ranged", []):
+        # Expand count-prefixed names so 2x 'dark lance' satisfies
+        # 'Two dark lances' (the generator expands the same way).
+        for fw in _expand_two_prefix(build.get("fixed_ranged", [])):
             fw_lower = fw.lower()
             # Check if config has this weapon (exact or normalized)
             config_has = any(
@@ -246,7 +339,7 @@ def validate_unit(unit_name: str, unit_cfg: dict, merged_weapons: list[dict],
                 if fw_lower in {n.lower() for n in merged_names}:
                     severity = "LOW" if is_weak_default(fw) else "MEDIUM"
                     issues.append((severity, f"MISSING FIXED RANGED: '{fw}' (build: {build_name})"))
-        for fw in build.get("fixed_melee", []):
+        for fw in _expand_two_prefix(build.get("fixed_melee", [])):
             fw_lower = fw.lower()
             # Skip generic melee weapons
             if is_generic_melee(fw):
@@ -262,41 +355,51 @@ def validate_unit(unit_name: str, unit_cfg: dict, merged_weapons: list[dict],
                     issues.append((severity, f"MISSING FIXED MELEE: '{fw}' (build: {build_name})"))
 
         # ── 2b. Choice groups: config picks ⊆ BSData choices ────────
+        # Compare in canonical form (singular↔plural aligned to the catalog)
+        # so a config 'Twin Haywire Blaster' matches BSData's
+        # 'Twin Haywire Blasters'.
+        catalog_lower = {n.lower() for n in (global_weapon_names or merged_names)}
         all_bsdata_ranged_choices = set()
         all_bsdata_melee_choices = set()
         for rc in build.get("ranged_choices", []):
             if isinstance(rc, list):
                 for c in rc:
                     all_bsdata_ranged_choices.add(c.lower())
-                    all_bsdata_ranged_choices.add(normalize_weapon_name(c).lower())
+                    all_bsdata_ranged_choices.add(canonical_weapon(c, catalog_lower))
         for mc in build.get("melee_choices", []):
             if isinstance(mc, list):
                 for c in mc:
                     all_bsdata_melee_choices.add(c.lower())
-                    all_bsdata_melee_choices.add(normalize_weapon_name(c).lower())
+                    all_bsdata_melee_choices.add(canonical_weapon(c, catalog_lower))
 
         # Only check extra weapons if there ARE choice groups
         if not all_bsdata_ranged_choices and not all_bsdata_melee_choices:
             continue  # No choice groups — nothing to check
 
-        # Fixed weapons
-        fixed_r = {fw.lower() for fw in build.get("fixed_ranged", [])}
-        fixed_r.update(normalize_weapon_name(fw).lower() for fw in build.get("fixed_ranged", []))
-        fixed_m = {fw.lower() for fw in build.get("fixed_melee", [])}
-        fixed_m.update(normalize_weapon_name(fw).lower() for fw in build.get("fixed_melee", []))
+        # Fixed weapons — expand count prefixes ('Two X' -> 2x 'X') and
+        # canonicalize so expanded 'dark lance' matches BSData's
+        # 'Two dark lances'.
+        fixed_r = set()
+        for fw in _expand_two_prefix(build.get("fixed_ranged", [])):
+            fixed_r.add(fw.lower())
+            fixed_r.add(canonical_weapon(fw, catalog_lower))
+        fixed_m = set()
+        for fw in build.get("fixed_melee", []):
+            fixed_m.add(fw.lower())
+            fixed_m.add(canonical_weapon(fw, catalog_lower))
 
         for w in config_names:
             w_lower = w.lower()
-            w_norm = normalize_weapon_name(w).lower()
-            if w_lower in fixed_r or w_lower in fixed_m or w_norm in fixed_r or w_norm in fixed_m:
+            w_canon = canonical_weapon(w, catalog_lower)
+            if w_lower in fixed_r or w_lower in fixed_m or w_canon in fixed_r or w_canon in fixed_m:
                 continue  # Fixed weapon — OK
             # Check if it's in any BSData choice group
-            in_ranged = w_lower in all_bsdata_ranged_choices or w_norm in all_bsdata_ranged_choices
-            in_melee = w_lower in all_bsdata_melee_choices or w_norm in all_bsdata_melee_choices
+            in_ranged = w_lower in all_bsdata_ranged_choices or w_canon in all_bsdata_ranged_choices
+            in_melee = w_lower in all_bsdata_melee_choices or w_canon in all_bsdata_melee_choices
             if not in_ranged and not in_melee:
                 # Not in any BSData choice group — might be an extra
                 if w_lower in {n.lower() for n in merged_names} or \
-                   w_norm in {n.lower() for n in merged_names}:
+                   w_canon in {n.lower() for n in merged_names}:
                     # Skip generic melee
                     if not is_generic_melee(w):
                         issues.append(("MEDIUM", f"EXTRA WEAPON (not in BSData choices): '{w}' (build: {build_name})"))
@@ -328,6 +431,14 @@ def validate_faction(slug: str, bsdata_parser: BSDataParser11e, verbose: bool = 
         return 0, [f"  Merged data not found: {merged_path}"]
     merged_weapons = load_merged_weapons(merged_path)
 
+    # Faction-wide weapon name set — shared choice groups (e.g. War Walker
+    # 'Heavy Weapons') resolve to profiles the per-unit merged snapshot
+    # attributes elsewhere; the global set is the "is this a real weapon"
+    # truth for check 1.
+    global_weapon_names: set[str] = set()
+    for weapons in merged_weapons.values():
+        global_weapon_names |= get_weapon_names_from_merged(weapons)
+
     # Load config
     config_dir = REPO_ROOT / "data" / "config" / slug
     if not config_dir.exists():
@@ -356,7 +467,8 @@ def validate_faction(slug: str, bsdata_parser: BSDataParser11e, verbose: bool = 
                         break
 
             unit_merged = merged_weapons.get(unit_name, [])
-            unit_errors = validate_unit(unit_name, unit_cfg, unit_merged, bsdata_c, verbose)
+            unit_errors = validate_unit(unit_name, unit_cfg, unit_merged, bsdata_c,
+                                        global_weapon_names, verbose)
 
             if unit_errors:
                 total_issues += len(unit_errors)
