@@ -230,6 +230,13 @@ class BSDataParser11e:
                 eid = entry.get("id", "")
                 if eid:
                     index[eid] = entry
+            # Also index sharedSelectionEntryGroups — entryLinks can target a
+            # shared group directly (e.g. War Walker's 'Heavy Weapons' group
+            # linked from the model's Wargear group).
+            for group in root.get("sharedSelectionEntryGroups", []):
+                gid = group.get("id", "")
+                if gid:
+                    index[gid] = group
             # Also index sharedProfiles (e.g. Invulnerable Save)
             for profile in root.get("sharedProfiles", []):
                 pid = profile.get("id", "")
@@ -930,13 +937,93 @@ class BSDataParser11e:
                 return "melee"
         return "ability"
 
+    @staticmethod
+    def _weapon_category_deep(entry: dict, depth: int = 0) -> str:
+        """Classify an entry, walking nested selectionEntries for the profile.
+
+        Choice wrappers (e.g. '2 Starcannons') are upgrade-type entries with no
+        own profile; the actual weapon profile lives on a nested selectionEntry
+        ('Starcannon'). Walk down until a profile is found or depth is exhausted.
+        """
+        if depth > 4:
+            return "ability"
+        cat = BSDataParser11e._weapon_category(entry)
+        if cat != "ability":
+            return cat
+        for se in entry.get("selectionEntries", []):
+            if se.get("hidden") == "true":
+                continue
+            cat = BSDataParser11e._weapon_category_deep(se, depth + 1)
+            if cat != "ability":
+                return cat
+        return "ability"
+
+    def _resolve_choice_option(self, se: dict) -> tuple[str, int]:
+        """Resolve a choice-group option to (catalog weapon name, count).
+
+        Choice wrappers display a count prefix ('2 Starcannons', 'Two magma
+        cutters') and nest the real weapon one level down ('Starcannon'). Return
+        the nested weapon's name so the engine can resolve it, and the count so
+        multi-weapon options (2× Starcannon) keep their multiplicity.
+
+        If the option itself carries a weapon profile, its display name is used
+        (a profile name like '➤ Missile Launcher - Starshot' is a BSData mode
+        label, not a catalog weapon name — the catalog key is 'Missile Launcher').
+        """
+        import re
+        raw = se.get("name", "")
+        name = self._strip_arrow(raw)
+        count = 1
+        m = re.match(r'^(\d+)\s+(.*)$', name)
+        if m:
+            count = int(m.group(1))
+            name = m.group(2)
+        elif name.lower().startswith("two "):
+            count = 2
+            name = name[4:]
+        # Only descend to nested selectionEntries when the option has no own
+        # profile (e.g. '2 Starcannons' wrapper). Otherwise keep its display name.
+        if self._weapon_category(se) == "ability":
+            def find_nested_name(entry: dict, depth: int = 0) -> str | None:
+                if depth > 4:
+                    return None
+                for sub in entry.get("selectionEntries", []):
+                    if sub.get("hidden") == "true":
+                        continue
+                    if self._weapon_category(sub) != "ability":
+                        sub_name = self._strip_arrow(sub.get("name", ""))
+                        if sub_name:
+                            return sub_name
+                    found = find_nested_name(sub, depth + 1)
+                    if found:
+                        return found
+                return None
+            nested = find_nested_name(se)
+            if nested:
+                name = nested
+        # Strip mode suffixes so the name matches the merged catalog
+        # ('Missile Launcher - Starshot' → 'Missile Launcher').
+        name = self._strip_mode_suffix(name)
+        return name, count
+
+    @staticmethod
+    def _strip_mode_suffix(name: str) -> str:
+        """Strip firing-mode suffixes from weapon names (e.g. '- Starshot')."""
+        for suffix in (" - starshot", " - sunburst", " - supercharge",
+                       " - standard", " - focused witchfire", " - witchfire",
+                       " - focused", " - sweep", " - strike"):
+            if name.lower().endswith(suffix):
+                return name[:-len(suffix)]
+        return name
+
     def _get_choice_type(self, choice_name: str,
                          group: dict,
                          entry_index: dict[str, dict]) -> str:
         """Determine weapon type ('ranged'/'melee') for a choice in a group.
         
-        Checks entryLinks (by targetId lookup) then selectionEntries (by direct profile).
-        Falls back to group-level classification (old heuristic) if not found.
+        Checks entryLinks (by targetId lookup) then selectionEntries (by direct
+        or nested profile). Falls back to group-level classification (old
+        heuristic) if not found.
         """
         # Check entryLinks first — compare both raw and arrow-stripped names
         for el in group.get("entryLinks", []):
@@ -947,11 +1034,11 @@ class BSDataParser11e:
             if tid:
                 target = entry_index.get(tid)
                 if target:
-                    cat = self._weapon_category(target)
+                    cat = self._weapon_category_deep(target)
                     if cat != "ability":
                         return cat
             # entryLink itself might have profiles
-            cat = self._weapon_category(el)
+            cat = self._weapon_category_deep(el)
             if cat != "ability":
                 return cat
             break
@@ -961,7 +1048,7 @@ class BSDataParser11e:
             se_name = self._strip_arrow(se.get("name", ""))
             if se_name != choice_name or se.get("hidden") == "true":
                 continue
-            cat = self._weapon_category(se)
+            cat = self._weapon_category_deep(se)
             if cat != "ability":
                 return cat
             break
@@ -978,6 +1065,13 @@ class BSDataParser11e:
         if any(kw in gname for kw in ranged_kw):
             return "ranged"
         
+        # Last fallback: classify from the choice name itself (e.g. '2 Starcannons')
+        cname = (choice_name or "").lower()
+        if any(kw in cname for kw in melee_kw):
+            return "melee"
+        if any(kw in cname for kw in ranged_kw):
+            return "ranged"
+
         return "ability"  # skip — not resolvable to a weapon profile
 
     @staticmethod
@@ -1024,6 +1118,101 @@ class BSDataParser11e:
                 if val > 1:
                     return val
         return 1
+
+    def _resolve_shared_group_target(self, el: dict, entry_index: dict[str, dict]) -> dict | None:
+        """If an entryLink targets a shared selectionEntryGroup, return that group."""
+        if el.get("hidden") == "true":
+            return None
+        tid = el.get("targetId", "")
+        if not tid:
+            return None
+        target = entry_index.get(tid)
+        # Shared selectionEntryGroups carry no "type" field (selectionEntries
+        # always have one: upgrade/model/unit). A group exposes selectionEntries
+        # and/or entryLinks at its own level.
+        if target is not None and "type" not in target and (
+                target.get("selectionEntries") is not None
+                or target.get("entryLinks") is not None):
+            return target
+        return None
+
+    def _collect_virtual_groups(self, entry_links: list[dict],
+                                entry_index: dict[str, dict]) -> list[dict]:
+        """Turn entryLinks that point at shared selectionEntryGroups into choice groups.
+
+        Some models link a whole choice group (e.g. War Walker 'Heavy Weapons')
+        rather than physically nesting it. The linked group's own options
+        (selectionEntries + entryLinks) become the choice options.
+        """
+        virtual: list[dict] = []
+        for el in entry_links or []:
+            group = self._resolve_shared_group_target(el, entry_index)
+            if group is not None:
+                virtual.append({
+                    "name": self._strip_arrow(el.get("name", "")),
+                    "entryLinks": group.get("entryLinks", []),
+                    "selectionEntries": group.get("selectionEntries", []),
+                    "constraints": group.get("constraints", []),
+                })
+        return virtual
+
+    def _is_build_package(self, se: dict, entry_index: dict[str, dict]) -> bool:
+        """True if a wargear selectionEntry is a NAMED build package (Pattern 1).
+
+        Build packages (e.g. 'Bolt Pistol, Master-crafted Bolter, Melee Weapon'
+        on a Captain) carry their weapons via entryLinks to real weapon targets,
+        or via nested selectionEntryGroups that contain weapons.
+
+        Fixed weapons (Wraithbone hull, Pulse Laser, etc.) also carry entryLinks,
+        but those point at crusade/system groups ('Weapon Modifications') that
+        resolve to NO weapon profiles. Treating those as build packages wrongly
+        flattens every vehicle into an all-fixed default build (the Vyper bug).
+        """
+        # entryLinks that resolve to weapon profiles → build package
+        for el in se.get("entryLinks", []):
+            if el.get("hidden") == "true":
+                continue
+            tid = el.get("targetId", "")
+            if not tid:
+                continue
+            target = self._resolve_entry(tid, entry_index)
+            if target is None:
+                continue
+            if self._resolve_profiles(target, entry_index):
+                return True
+            # entryLink to a shared selectionEntryGroup containing weapons →
+            # also a build package (e.g. a model linking its whole weapon group).
+            if "type" not in target and (
+                    target.get("selectionEntries") is not None
+                    or target.get("entryLinks") is not None):
+                for sel in target.get("selectionEntries", []):
+                    if sel.get("hidden") == "true":
+                        continue
+                    if self._resolve_profiles(sel, entry_index):
+                        return True
+                for el2 in target.get("entryLinks", []):
+                    if el2.get("hidden") == "true":
+                        continue
+                    t2 = self._resolve_entry(el2.get("targetId", ""), entry_index)
+                    if t2 is not None and self._resolve_profiles(t2, entry_index):
+                        return True
+        # nested selectionEntryGroups containing weapons → build package
+        for sg in se.get("selectionEntryGroups", []):
+            for sel in sg.get("selectionEntries", []):
+                if sel.get("hidden") == "true":
+                    continue
+                if self._resolve_profiles(sel, entry_index):
+                    return True
+            for el in sg.get("entryLinks", []):
+                if el.get("hidden") == "true":
+                    continue
+                tid = el.get("targetId", "")
+                if not tid:
+                    continue
+                target = self._resolve_entry(tid, entry_index)
+                if target is not None and self._resolve_profiles(target, entry_index):
+                    return True
+        return False
 
     def _classify_build_items(self, entry_links: list[dict], selection_entries: list[dict],
                                nested_groups: list[dict], entry_index: dict[str, dict],
@@ -1075,12 +1264,25 @@ class BSDataParser11e:
             elif cat == "melee":
                 fixed_melee.extend([name] * count)
 
-        # Nested selectionEntryGroups → choice groups
+        # Nested selectionEntryGroups → choice groups. EntryLinks that point at
+        # shared selectionEntryGroups (e.g. War Walker 'Heavy Weapons') count as
+        # choice groups too — collect them as virtual groups alongside any
+        # physically nested groups.
+        virtual_groups = self._collect_virtual_groups(entry_links, entry_index)
         for group in nested_groups:
+            virtual_groups.extend(
+                self._collect_virtual_groups(group.get("entryLinks", []), entry_index))
+        all_nested_groups = list(nested_groups) + virtual_groups
+
+        for group in all_nested_groups:
             choices = []
             # entryLinks within the group are the options
             for el in group.get("entryLinks", []):
                 if el.get("hidden") == "true":
+                    continue
+                # Links to shared selectionEntryGroups are separate choice
+                # groups (collected above), not options of this group.
+                if self._resolve_shared_group_target(el, entry_index) is not None:
                     continue
                 ename = self._strip_arrow(el.get("name", ""))
                 if ename:
@@ -1089,10 +1291,18 @@ class BSDataParser11e:
             for se in group.get("selectionEntries", []):
                 if se.get("hidden") == "true":
                     continue
-                ename = self._strip_arrow(se.get("name", ""))
+                ename, _count = self._resolve_choice_option(se)
                 if ename:
                     choices.append(ename)
 
+            if not choices:
+                continue
+
+            # Drop ability-only options (e.g. Scattershield) — they have no
+            # weapon profile and would fail engine resolution. Mirrors the
+            # type filter applied to the slots format below.
+            choices = [c for c in choices
+                       if self._get_choice_type(c, group, entry_index) != "ability"]
             if not choices:
                 continue
 
@@ -1113,22 +1323,12 @@ class BSDataParser11e:
             elif self._is_ranged_choice_group(group):
                 ranged_choices.append(choices)
             else:
-                # Ambiguous — classify by first choice's profile if available
+                # Ambiguous — classify by first choice's profile if available.
+                # Use _get_choice_type (checks BOTH entryLinks and inline
+                # selectionEntries) so groups whose options are inline weapons
+                # (e.g. Bright Lance Replacement on a Vyper) are not dropped.
                 first_name = choices[0] if choices else ""
-                first_el = None
-                for el in group.get("entryLinks", []):
-                    if el.get("name") == first_name:
-                        first_el = el
-                        break
-                if first_el:
-                    tid = first_el.get("targetId", "")
-                    target = entry_index.get(tid) if tid else None
-                    if target:
-                        cat = self._weapon_category(target)
-                    else:
-                        cat = "ability"
-                else:
-                    cat = "ability"
+                cat = self._get_choice_type(first_name, group, entry_index)
                 if cat == "ranged":
                     ranged_choices.append(choices)
                 elif cat == "melee":
@@ -1137,11 +1337,13 @@ class BSDataParser11e:
 
         # Build new format: untyped slots + typed choices
         slots: list[dict] = []
-        for group in nested_groups:
+        for group in all_nested_groups:
             gname = group.get("name", "")
             choices_typed: list[dict] = []
             for el in group.get("entryLinks", []):
                 if el.get("hidden") == "true" or not el.get("name"):
+                    continue
+                if self._resolve_shared_group_target(el, entry_index) is not None:
                     continue
                 ename = self._strip_arrow(el["name"])
                 wtype = self._get_choice_type(ename, group, entry_index)
@@ -1150,10 +1352,16 @@ class BSDataParser11e:
             for se in group.get("selectionEntries", []):
                 if se.get("hidden") == "true" or not se.get("name"):
                     continue
-                ename = self._strip_arrow(se["name"])
+                ename, count = self._resolve_choice_option(se)
                 wtype = self._get_choice_type(ename, group, entry_index)
+                if wtype == "ability":
+                    # Nested wrapper may carry the profile; recheck against the raw entry.
+                    wtype = self._weapon_category_deep(se)
                 if wtype != "ability":
-                    choices_typed.append({"name": ename, "type": wtype})
+                    choice = {"name": ename, "type": wtype}
+                    if count > 1:
+                        choice["count"] = count
+                    choices_typed.append(choice)
             if choices_typed:
                 slots.append({"name": gname, "choices": choices_typed})
         
@@ -1248,10 +1456,22 @@ class BSDataParser11e:
                 continue
             fr: list[str] = []
             fm: list[str] = []
+            seen_profiles: set[tuple[str, str]] = set()
             for w in weapons:
                 wname = w.get("name", "")
                 profs = w.get("profiles", [])
-                tname = profs[0].get("typeName", "") if profs else ""
+                if not profs:
+                    continue
+                tname = profs[0].get("typeName", "")
+                pname = profs[0].get("name", "")
+                # Dedupe by PRIMARY profile signature. Model-level entries
+                # (e.g. a Vyper model's own weapon entry) duplicate the hull
+                # melee profile under the model's name — treat as the same
+                # weapon so the augment subset check can match it to BSData.
+                sig = (self._norm_name(pname or wname), tname)
+                if sig in seen_profiles:
+                    continue
+                seen_profiles.add(sig)
                 if tname == "Melee Weapons":
                     fm.append(wname)
                 else:
@@ -1265,6 +1485,32 @@ class BSDataParser11e:
                 "fixed_melee": fm,
             }
         return out
+
+    def _is_singular_duplicate(self, key: str, mw: dict,
+                               existing: set[str],
+                               merged_map: dict[str, dict]) -> bool:
+        """True if a merged-only unit duplicates an existing unit as singular/plural.
+
+        BSData/merged sometimes carry both the unit entry ('Vypers') and the
+        model-level entry ('Vyper') with identical weapon lists. Only dedupe when
+        the names differ by a trailing 's' AND the weapon lists are identical.
+        """
+        for other_key, other in merged_map.items():
+            if other_key == key:
+                continue
+            other_weapons = set(other["fixed_ranged"]) | set(other["fixed_melee"])
+            mw_weapons = set(mw["fixed_ranged"]) | set(mw["fixed_melee"])
+            if other_weapons != mw_weapons:
+                continue
+            if key + "s" == other_key or other_key + "s" == key:
+                return True
+            if other_key in existing or key in existing:
+                # One variant is a real BSData unit — the other is the duplicate.
+                if other_key in existing and key + "s" == other_key:
+                    return True
+                if other_key in existing and other_key + "s" == key:
+                    return True
+        return False
 
     def _augment_from_merged(self, result: dict[str, dict],
                              merged_map: dict[str, dict]) -> dict[str, dict]:
@@ -1297,6 +1543,18 @@ class BSDataParser11e:
             for b in udata.get("builds", []):
                 bs_names |= {self._norm_name(x)
                              for x in b.get("fixed_ranged", []) + b.get("fixed_melee", [])}
+                # Weapons inside choice groups (and slots) are CAPTURED by
+                # BSData — they are options, not missing fixed weapons. The
+                # merged weapon list is the union of fixed + all options, so
+                # failing to count them here collapses any unit with choice
+                # structure into an all-fixed default build (the Vyper bug).
+                for group in b.get("ranged_choices", []) or []:
+                    bs_names |= {self._norm_name(x) for x in group}
+                for group in b.get("melee_choices", []) or []:
+                    bs_names |= {self._norm_name(x) for x in group}
+                for slot in b.get("slots", []) or []:
+                    for c in slot.get("choices", []) or []:
+                        bs_names |= {self._norm_name(c.get("name", ""))}
             if not merged_names or merged_names.issubset(bs_names):
                 continue  # BSData already complete — preserve its structure.
             ranged_choices: list = []
@@ -1323,6 +1581,12 @@ class BSDataParser11e:
         existing = {self._norm_name(n) for n in result}
         for key, mw in merged_map.items():
             if key in existing or not (mw["fixed_ranged"] or mw["fixed_melee"]):
+                continue
+            # Skip model-level duplicates: merged lists both 'Vypers' (unit) and
+            # 'Vyper' (the model's own entry) with identical weapons. The singular
+            # variant is not a separate datasheet — adding it produces a broken
+            # all-fixed duplicate build (every weapon fixed, no choices).
+            if self._is_singular_duplicate(key, mw, existing, merged_map):
                 continue
             fixed_typed = ([{"name": n, "type": "ranged"} for n in mw["fixed_ranged"]]
                            + [{"name": n, "type": "melee"} for n in mw["fixed_melee"]])
@@ -1379,13 +1643,28 @@ class BSDataParser11e:
                 if hidden == "true" or not name:
                     continue
 
-                # Find the "Wargear" selectionEntryGroup
+                # Find the "Wargear" selectionEntryGroup. Some units (e.g.
+                # Vypers) put their Wargear group on the NESTED model
+                # selectionEntry rather than the top-level unit entry.
                 wargear_group = None
                 for seg in entry.get("selectionEntryGroups", []):
                     seg_name = (seg.get("name") or "").lower()
                     if "wargear" in seg_name:
                         wargear_group = seg
                         break
+                if wargear_group is None:
+                    # Descend into nested model entries — the unit has no
+                    # top-level wargear, but the model may carry it.
+                    for sel in entry.get("selectionEntries", []):
+                        if sel.get("hidden") == "true":
+                            continue
+                        for seg in sel.get("selectionEntryGroups", []):
+                            seg_name = (seg.get("name") or "").lower()
+                            if "wargear" in seg_name:
+                                wargear_group = seg
+                                break
+                        if wargear_group is not None:
+                            break
                 if wargear_group is None:
                     continue
 
@@ -1394,13 +1673,14 @@ class BSDataParser11e:
                 # Determine if selectionEntries are build packages (Pattern 1)
                 # or inline weapons (Pattern 3). Build packages contain weapon
                 # entryLinks and/or nested choice groups — they may also have direct
-                # profiles (built-in weapon + optional upgrades).
+                # profiles (built-in weapon + optional upgrades). Fixed weapons
+                # (Pulse Laser, Wraithbone hull) carry only crusade-system
+                # entryLinks that resolve to no weapon profiles — NOT packages.
                 has_build_packages = False
                 for se in wargear_group.get("selectionEntries", []):
                     if se.get("hidden") == "true":
                         continue
-                    # Build packages: have entryLinks or nested choice groups
-                    if se.get("entryLinks") or se.get("selectionEntryGroups"):
+                    if self._is_build_package(se, entry_index):
                         has_build_packages = True
                         break
 

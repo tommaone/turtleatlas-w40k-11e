@@ -363,7 +363,10 @@ def generate_vehicle_config(unit_name: str, bsdata_constraint: dict,
             choices = []
             for c in slot.get("choices", []):
                 clean_name = normalize_for_catalog(c["name"], merged_weapons)
-                choices.append({"name": clean_name, "type": c.get("type", "ranged")})
+                choice = {"name": clean_name, "type": c.get("type", "ranged")}
+                if c.get("count", 1) > 1:
+                    choice["count"] = c["count"]
+                choices.append(choice)
             slots.append({"name": slot.get("name", ""), "choices": choices})
         
         generated_builds.append({
@@ -581,6 +584,25 @@ def generate_configs_for_faction(slug: str, bsdata_parser: BSDataParser11e,
         
         generated_count += 1
         log.append(f"  Generated: {unit_name} ({unit_type})")
+    
+    # Drop stale singular/plural duplicates the extraction no longer emits.
+    # Merged data carries both the unit entry ('Vypers') and the model-level
+    # entry ('Vyper') with identical weapons. The augment skips adding the
+    # singular duplicate as merged-only, but existing configs still hold the
+    # stale broken entry (every weapon fixed, no choices) — remove it.
+    # Scoped to weapon_options + vehicles: the squad/character generators still
+    # emit the legacy format and their configs are curated elsewhere — touching
+    # them here risks deleting valid plural-named entries.
+    norm_keys = {''.join(ch for ch in k.lower() if ch.isalnum())
+                 for k in bsdata_constraints}
+    for section in (weapon_options, vehicles):
+        for k in list(section.keys()):
+            nk = ''.join(ch for ch in k.lower() if ch.isalnum())
+            if nk in norm_keys:
+                continue
+            if any(nk + "s" == m or m + "s" == nk for m in norm_keys):
+                log.append(f"  Removed stale duplicate: {k}")
+                del section[k]
     
     # Write configs
     if not dry_run and config_dir.exists():

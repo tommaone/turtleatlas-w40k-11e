@@ -52,6 +52,25 @@ def _unit_fixed_names(builds: list[dict]) -> set[str]:
     return names
 
 
+def _unit_all_weapons(builds: list[dict]) -> set[str]:
+    """All weapon names captured by a unit's builds — fixed OR choice options.
+
+    Choice-aware extraction (vehicle fix) models optional weapon slots as
+    ranged_choices / slots instead of flattening every option into fixed. A
+    merged weapon is only "captured" if it appears somewhere in the builds.
+    """
+    names = _unit_fixed_names(builds)
+    for b in builds:
+        for group in b.get("ranged_choices", []) or []:
+            names |= {n.lower() for n in group}
+        for group in b.get("melee_choices", []) or []:
+            names |= {n.lower() for n in group}
+        for slot in b.get("slots", []) or []:
+            for c in slot.get("choices", []) or []:
+                names.add(c.get("name", "").lower())
+    return names
+
+
 @pytest.fixture(scope="module")
 def parser():
     return BSDataParser11e()
@@ -80,33 +99,51 @@ def gk_merged_weapons():
 ])
 def test_vehicle_fixed_weapons_complete(gk_constraints, gk_merged_weapons,
                                         unit, expected_count):
-    """Every fixed weapon the merged data lists must survive into the build(s)."""
+    """Every weapon the merged data lists must survive into the build(s).
+
+    Choice-aware extraction surfaces genuine optional slots (e.g. Thunderhawk
+    heavy cannon → Turbo-laser destructor) as choice groups rather than fixed.
+    A merged weapon is captured whether it is fixed or a choice option.
+    """
     assert unit in gk_constraints, f"unit missing from constraints: {unit}"
     builds = gk_constraints[unit]["builds"]
     assert builds, f"{unit} has no builds"
 
     merged_names = {n.lower() for n in gk_merged_weapons[unit]}
-    captured = _unit_fixed_names(builds)
+    captured = _unit_all_weapons(builds)
 
-    # The merged list IS the ground truth for FIXED weapons.
-    assert captured == merged_names, (
+    # The merged list IS the ground truth for weapons — none may be lost.
+    assert merged_names <= captured, (
         f"{unit}: merged lists {sorted(merged_names)} but parser captured "
         f"{sorted(captured)} (missing {sorted(merged_names - captured)})"
     )
-    assert len(captured) == expected_count, (
-        f"{unit}: expected {expected_count} fixed weapons, got {len(captured)}"
+    assert len(merged_names) == expected_count, (
+        f"{unit}: expected {expected_count} merged weapons, got {len(merged_names)}"
     )
 
 
 def test_thunderhawk_all_six_weapons(gk_constraints):
-    """Thunderhawk: all six merged weapons present by name."""
+    """Thunderhawk: all six merged weapons present (fixed or choice option).
+
+    The datasheet has real option slots the old all-fixed flattening destroyed:
+      - Thunderhawk heavy cannon  OR  Turbo-laser destructor
+      - Thunderhawk cluster bombs OR  Hellstrike missile battery
+    """
     expected = {
         "lascannon", "armoured hull", "twin heavy bolter",
         "thunderhawk heavy cannon", "turbo-laser destructor",
         "hellstrike missile battery",
     }
-    captured = _unit_fixed_names(gk_constraints["Grey Knights Thunderhawk Gunship"]["builds"])
-    assert captured == expected
+    captured = _unit_all_weapons(
+        gk_constraints["Grey Knights Thunderhawk Gunship"]["builds"])
+    assert expected <= captured
+
+    builds = gk_constraints["Grey Knights Thunderhawk Gunship"]["builds"]
+    fixed = _unit_fixed_names(builds)
+    assert fixed == {"lascannon", "armoured hull", "twin heavy bolter"}, (
+        "Thunderhawk fixed weapons: expected the 3 built-ins, "
+        f"got {sorted(fixed)} (options must be choices, not fixed)"
+    )
 
 
 def test_landraider_all_six_weapons(gk_constraints):
@@ -165,3 +202,97 @@ def test_chaos_daemons_slug_alias(parser):
     """The MFM slug 'chaos-daemons' must also resolve."""
     r = parser.extract_wargear_constraints("chaos-daemons")
     assert len(r) >= 1
+
+
+# ---------------------------------------------------------------------------
+# Aeldari vehicles — nested-model Wargear + choice-group preservation (Vyper bug)
+# ---------------------------------------------------------------------------
+
+
+@pytest.fixture(scope="module")
+def aeldari_constraints(parser):
+    return parser.extract_wargear_constraints("Aeldari")
+
+
+def test_vypers_nested_model_wargear_descent(aeldari_constraints):
+    """Vypers carry Wargear on the NESTED model entry, not the top-level unit.
+
+    The old top-level-only search fell through to the merged fallback, which
+    flattened every gun into fixed_ranged (the 14-entry 'loads all weapons'
+    artifact). The corrected extraction must surface the two choice slots.
+    """
+    assert "Vypers" in aeldari_constraints
+    builds = aeldari_constraints["Vypers"]["builds"]
+    assert builds, "Vypers has no builds"
+    b = builds[0]
+    # Only the hull is fixed; all guns are choices.
+    assert b.get("fixed_melee") == ["Wraithbone hull"], b.get("fixed_melee")
+    assert not b.get("fixed_ranged"), b.get("fixed_ranged")
+    slots = b.get("slots", [])
+    assert [s["name"] for s in slots] == [
+        "Bright Lance Replacement", "Shuriken Cannon Replacement",
+    ]
+    bl_choices = [c["name"] for c in slots[0]["choices"]]
+    assert bl_choices == ["Bright Lance", "Scatter Laser", "Starcannon"]
+    sc_choices = [c["name"] for c in slots[1]["choices"]]
+    assert sc_choices == ["Shuriken Cannon", "Missile Launcher"]
+
+
+def test_vypers_no_all_fixed_collapse(aeldari_constraints):
+    """The merge-augment must NOT collapse Vypers to an all-fixed default.
+
+    Every merged weapon is captured as a choice option, so the augment's subset
+    check passes and the choice structure is preserved.
+    """
+    b = aeldari_constraints["Vypers"]["builds"][0]
+    merged = {"bright lance", "scatter laser", "starcannon",
+              "shuriken cannon", "missile launcher", "wraithbone hull"}
+    captured = _unit_all_weapons(aeldari_constraints["Vypers"]["builds"])
+    assert merged <= captured
+    assert len(b.get("fixed_ranged") or []) < 3, (
+        "Vypers guns must be choices, not fixed"
+    )
+
+
+def test_no_singular_vyper_duplicate(aeldari_constraints):
+    """Merged lists both 'Vypers' (unit) and 'Vyper' (model-level duplicate).
+
+    The singular duplicate must NOT be added as a merged-only all-fixed build.
+    """
+    vyper_keys = [k for k in aeldari_constraints if k.lower() == "vyper"]
+    assert vyper_keys == [], f"singular 'Vyper' duplicate leaked: {vyper_keys}"
+    assert "Vypers" in aeldari_constraints
+
+
+def test_falcon_inline_choice_group(aeldari_constraints):
+    """Falcon's hull-weapon choice group uses inline selectionEntries."""
+    b = aeldari_constraints["Falcon"]["builds"][0]
+    assert b.get("fixed_ranged") == ["Pulse Laser"]
+    slots = b.get("slots", [])
+    assert [c["name"] for c in slots[0]["choices"]] == [
+        "Twin Shuriken Catapult", "Shuriken Cannon",
+    ]
+
+
+def test_crimson_hunter_count_choices(aeldari_constraints):
+    """Crimson Hunter's '2 Starcannons'/'2 Bright Lances' resolve with counts.
+
+    The wrapper upgrades nest the real weapon ('Starcannon') one level down;
+    the count prefix must survive so the engine applies the ×2 multiplicity.
+    """
+    b = aeldari_constraints["Crimson Hunter"]["builds"][0]
+    slots = b.get("slots", [])
+    assert [s["name"] for s in slots] == ["Weapon Option"]
+    choices = slots[0]["choices"]
+    assert [(c["name"], c.get("count", 1)) for c in choices] == [
+        ("Starcannon", 2), ("Bright Lance", 2),
+    ]
+
+
+def test_wave_serpent_two_slots(aeldari_constraints):
+    """Wave Serpent has both hull and turret weapon slots (no fixed guns)."""
+    b = aeldari_constraints["Wave Serpent"]["builds"][0]
+    assert not b.get("fixed_ranged"), b.get("fixed_ranged")
+    assert [s["name"] for s in b.get("slots", [])] == [
+        "Hull weapon", "Turret Weapon",
+    ]

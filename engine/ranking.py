@@ -1126,10 +1126,15 @@ class RankingEngine:
                 except KeyError:
                     skip_combo = True
                     break
-                if choice.get("type") == "melee":
-                    combo_melee.append(profile)
-                else:
-                    combo_ranged.append(profile)
+                # Choice may carry a count multiplier (e.g. '2 Starcannons' →
+                # Starcannon ×2). Append the profile once per count so
+                # multi-weapon options keep their multiplicity.
+                count = choice.get("count", 1) or 1
+                for _ in range(count):
+                    if choice.get("type") == "melee":
+                        combo_melee.append(profile)
+                    else:
+                        combo_ranged.append(profile)
             if skip_combo:
                 continue
             
