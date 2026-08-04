@@ -179,7 +179,11 @@ class TestSquadConfigIntegrity:
 
 
 class TestSquadDPPSanity:
-    """Every squad must have DPP >= 0.02 (with whitelist)."""
+    """Every squad must have DPP >= 0.01 (with whitelist).
+
+    0.01 after the overkill cap — high-D weapons now waste damage on mid-W
+    targets, so legit squads can sit below the old 0.02 floor.
+    """
 
     @pytest.mark.parametrize("key,cfg", list(ALL_SQUADS.items()))
     def test_squad_dpp_above_threshold(self, key, cfg):
@@ -198,9 +202,9 @@ class TestSquadDPPSanity:
 
         for entry in results:
             if entry["name"] == name:
-                if entry["dpp"] < 0.02:
+                if entry["dpp"] < 0.01:
                     pytest.fail(
-                        f"{faction}/{name}: DPP={entry['dpp']:.4f} < 0.02. "
+                        f"{faction}/{name}: DPP={entry['dpp']:.4f} < 0.01. "
                         f"Loadout: {entry['loadout_desc']}. "
                         f"Check: weapons loaded? loadout correct?"
                     )

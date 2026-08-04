@@ -1,29 +1,150 @@
 {
-  "_note": "Base config shared by all factions. Faction files use '_extends': '_base' to inherit this. Faction keys override base keys.",
-  "target_profiles": {
-    "GEQ": { "toughness": 3, "save": 5, "model_count": 20 },
-    "MEQ": { "toughness": 4, "save": 3, "model_count": 5 },
-    "TEQ": { "toughness": 5, "save": 2, "invuln": 4, "model_count": 3 },
-    "Light V": { "toughness": 7, "save": 3, "model_count": 1 },
-    "Heavy V": { "toughness": 10, "save": 2, "invuln": 4, "model_count": 1 },
-    "C'tan": { "toughness": 11, "save": 4, "invuln": 4, "model_count": 1 },
-    "Knight": { "toughness": 13, "save": 2, "invuln": 5, "model_count": 1 }
+ "_note": "Base config shared by all factions. Faction files use '_extends': '_base' to inherit this. Faction keys override base keys.",
+ "target_profiles": {
+  "GEQ": {
+   "toughness": 3,
+   "save": 5,
+   "model_count": 20,
+   "wounds_per_model": 1
   },
-  "mission_profiles": {
-    "Purge the Foe": { "dps": 0.60, "surv": 0.15, "obj": 0.05, "mob": 0.20 },
-    "Take and Hold": { "dps": 0.15, "surv": 0.35, "obj": 0.40, "mob": 0.10 },
-    "Reconnaissance": { "dps": 0.10, "surv": 0.10, "obj": 0.20, "mob": 0.60 },
-    "Priority Assets": { "dps": 0.40, "surv": 0.20, "obj": 0.30, "mob": 0.10 },
-    "Disruption": { "dps": 0.25, "surv": 0.15, "obj": 0.25, "mob": 0.35 },
-    "Purge (general)": { "dps": 0.60, "surv": 0.20, "obj": 0.05, "mob": 0.15 }
+  "MEQ": {
+   "toughness": 4,
+   "save": 3,
+   "model_count": 5,
+   "wounds_per_model": 2
   },
-  "unit_roles": {
-    "anvil": { "dps": 0.05, "surv": 0.85, "mob": 0.10, "description": "Durable unit meant to hold key objectives" },
-    "disposable": { "dps": 0.10, "surv": 0.30, "mob": 0.60, "description": "Cheap unit to spread across objectives" },
-    "mobile": { "dps": 0.20, "surv": 0.30, "mob": 0.50, "description": "Fast unit to grab distant objectives" },
-    "anchor": { "dps": 0.15, "surv": 0.70, "mob": 0.15, "description": "Expensive durable unit for key positions" }
+  "TEQ": {
+   "toughness": 5,
+   "save": 2,
+   "invuln": 4,
+   "model_count": 3,
+   "wounds_per_model": 3
   },
-  "meta_profiles": {
-    "all-comers": { "profiles": [["GEQ", 0.15], ["MEQ", 0.25], ["TEQ", 0.15], ["Light V", 0.20], ["Heavy V", 0.15], ["C'tan", 0.05], ["Knight", 0.05]], "melee_penalty": 1.0 }
+  "Light V": {
+   "toughness": 7,
+   "save": 3,
+   "model_count": 1,
+   "wounds_per_model": 10
+  },
+  "Heavy V": {
+   "toughness": 10,
+   "save": 2,
+   "invuln": 4,
+   "model_count": 1,
+   "wounds_per_model": 13
+  },
+  "C'tan": {
+   "toughness": 11,
+   "save": 4,
+   "invuln": 4,
+   "model_count": 1,
+   "wounds_per_model": 16
+  },
+  "Knight": {
+   "toughness": 13,
+   "save": 2,
+   "invuln": 5,
+   "model_count": 1,
+   "wounds_per_model": 26
   }
+ },
+ "mission_profiles": {
+  "Purge the Foe": {
+   "dps": 0.6,
+   "surv": 0.15,
+   "obj": 0.05,
+   "mob": 0.2
+  },
+  "Take and Hold": {
+   "dps": 0.15,
+   "surv": 0.35,
+   "obj": 0.4,
+   "mob": 0.1
+  },
+  "Reconnaissance": {
+   "dps": 0.1,
+   "surv": 0.1,
+   "obj": 0.2,
+   "mob": 0.6
+  },
+  "Priority Assets": {
+   "dps": 0.4,
+   "surv": 0.2,
+   "obj": 0.3,
+   "mob": 0.1
+  },
+  "Disruption": {
+   "dps": 0.25,
+   "surv": 0.15,
+   "obj": 0.25,
+   "mob": 0.35
+  },
+  "Purge (general)": {
+   "dps": 0.6,
+   "surv": 0.2,
+   "obj": 0.05,
+   "mob": 0.15
+  }
+ },
+ "unit_roles": {
+  "anvil": {
+   "dps": 0.05,
+   "surv": 0.85,
+   "mob": 0.1,
+   "description": "Durable unit meant to hold key objectives"
+  },
+  "disposable": {
+   "dps": 0.1,
+   "surv": 0.3,
+   "mob": 0.6,
+   "description": "Cheap unit to spread across objectives"
+  },
+  "mobile": {
+   "dps": 0.2,
+   "surv": 0.3,
+   "mob": 0.5,
+   "description": "Fast unit to grab distant objectives"
+  },
+  "anchor": {
+   "dps": 0.15,
+   "surv": 0.7,
+   "mob": 0.15,
+   "description": "Expensive durable unit for key positions"
+  }
+ },
+ "meta_profiles": {
+  "all-comers": {
+   "profiles": [
+    [
+     "GEQ",
+     0.1
+    ],
+    [
+     "MEQ",
+     0.3
+    ],
+    [
+     "TEQ",
+     0.2
+    ],
+    [
+     "Light V",
+     0.18
+    ],
+    [
+     "Heavy V",
+     0.12
+    ],
+    [
+     "C'tan",
+     0.05
+    ],
+    [
+     "Knight",
+     0.05
+    ]
+   ],
+   "melee_penalty": 1.0
+  }
+ }
 }

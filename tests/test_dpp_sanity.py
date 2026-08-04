@@ -14,8 +14,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "engine"))
 
 from ranking import RankingEngine
 
-# Minimum DPP threshold — below this = investigate
-MIN_DPP = 0.02
+# Minimum DPP threshold — below this = investigate.
+# 0.01 after the overkill cap: high-D weapons now waste damage on mid-W
+# targets, so legit anti-tank units legitimately sit in 0.01-0.02.
+# Broken configs (missing weapons) still register ~0.001-0.005 and get caught.
+MIN_DPP = 0.01
 
 # Units that legitimately have low DPP (not broken, just weak/ melee / support)
 NO_WEAPONS_WHITELIST = {
@@ -61,7 +64,7 @@ NO_WEAPONS_WHITELIST = {
     # Config bugs (known)
     "Firestrike Servo-Turrets", "Valkyrie", "The Blue Scribes",
     # Fortifications (utility, weak weapons) — added by the missers-curation pass
-    "Miasmic Malignifier", "Tidewall Droneport",
+    "Miasmic Malignifier", "Tidewall Droneport", "Tidewall Gunrig",
     # Support Primarch (force multiplier > raw damage)
     "Marneus Calgar In Armour Of Antilochus",
     # Under-modeled default-build squad (Indomitor Kill Team has rich wargear

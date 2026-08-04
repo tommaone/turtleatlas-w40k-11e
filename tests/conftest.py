@@ -45,23 +45,39 @@ def gk_merged():
 # Fixtures: Target profiles
 # ---------------------------------------------------------------------------
 
+# Canonical target profiles come from the shared engine config (single source
+# of truth — tests must not duplicate their own W/model_count values).
+
+_BASE_CFG_PATH = Path(__file__).resolve().parent.parent / "data" / "config" / "_base.json"
+
+
+def _target_from_cfg(key: str):
+    from dpp import TargetProfile
+    with open(_BASE_CFG_PATH) as f:
+        cfg = json.load(f)
+    t = cfg["target_profiles"][key]
+    return TargetProfile(
+        toughness=t["toughness"],
+        save=t.get("save", 7),
+        invuln=t.get("invuln"),
+        model_count=t.get("model_count", 1),
+        wounds_per_model=t.get("wounds_per_model", 1),
+    )
+
 
 @pytest.fixture
 def MEQ():
-    from dpp import TargetProfile
-    return TargetProfile(toughness=4, save=3, invuln=None)
+    return _target_from_cfg("MEQ")
 
 
 @pytest.fixture
 def TEQ():
-    from dpp import TargetProfile
-    return TargetProfile(toughness=5, save=2, invuln=4)
+    return _target_from_cfg("TEQ")
 
 
 @pytest.fixture
 def GEQ():
-    from dpp import TargetProfile
-    return TargetProfile(toughness=3, save=5, invuln=None)
+    return _target_from_cfg("GEQ")
 
 
 # ---------------------------------------------------------------------------

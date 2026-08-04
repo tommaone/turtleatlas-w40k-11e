@@ -460,7 +460,8 @@ def expected_damage(wounds: float, mortal_wounds: float,
                     damage: float = 1,
                     ignore_cover: bool = False,
                     extra_ap: int = 0,
-                    fnp: Optional[int] = None) -> float:
+                    fnp: Optional[int] = None,
+                    wounds_per_model: int = 1) -> float:
     """
     Compute expected damage after saves and damage.
 
@@ -474,6 +475,10 @@ def expected_damage(wounds: float, mortal_wounds: float,
         ignore_cover: ignore cover modifiers
         extra_ap: additional AP modifier
         fnp: feel no pain (5 = 5+++)
+        wounds_per_model: W characteristic per model — caps effective damage
+                          per unsaved wound (overkill waste: D6+2 on a 1W model
+                          deals only 1 damage, not 5.5). Real 11e damage
+                          allocation: excess damage is lost when a model dies.
 
     Returns:
         expected total damage
@@ -503,12 +508,17 @@ def expected_damage(wounds: float, mortal_wounds: float,
     else:
         p_fnp_save = 0
 
+    # Overkill cap [11e damage allocation]:
+    #   a single unsaved wound deals at most wounds_per_model
+    #   (D6+2 on a 1W GEQ wastes the excess)
+    effective_damage = min(damage, max(wounds_per_model, 1))
+
     # Regular damage
     p_pass_save = 1 - p_save
-    regular_damage = wounds * damage * p_pass_save * (1 - p_fnp_save)
+    regular_damage = wounds * effective_damage * p_pass_save * (1 - p_fnp_save)
 
     # Mortal damage (no save, FNP applies)
-    mortal_damage = mortal_wounds * damage * (1 - p_fnp_save)
+    mortal_damage = mortal_wounds * effective_damage * (1 - p_fnp_save)
 
     return regular_damage + mortal_damage
 
@@ -1029,10 +1039,16 @@ def compute_weapon_dpp(weapon: WeaponProfile,
         invuln=target.invuln,
         damage=effective_damage,
         ignore_cover=ignore_cover,
+        wounds_per_model=target.wounds_per_model,
     )
 
     # Weapon multiplicity: "2× Lascannon" means 2× the damage
     total_damage *= weapon.count
+
+    # Unit overkill cap — total damage can't exceed the wounds the unit has
+    # (e.g. 5x D6+2 shots vs a 5-model MEQ squad cap at 10, not 27.5)
+    unit_wounds = max(1, target.model_count * max(target.wounds_per_model, 1))
+    total_damage = min(total_damage, unit_wounds)
 
     dpp = total_damage / unit_points if unit_points > 0 else 0
 

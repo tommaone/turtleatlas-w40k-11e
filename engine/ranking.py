@@ -89,6 +89,7 @@ class FactionConfig:
                 toughness=spec["toughness"],
                 save=spec["save"],
                 invuln=spec.get("invuln"),
+                wounds_per_model=spec.get("wounds_per_model", 1),
                 model_count=spec.get("model_count", 1),
             )
 

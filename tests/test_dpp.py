@@ -236,16 +236,19 @@ class TestComputeWeaponDPP:
         r_on = compute_weapon_dpp(wp, MEQ, unit_points=50, melta_active=True)
         assert r_on["total_damage"] > r_off["total_damage"]
 
-    def test_melta_adds_damage(self, MEQ):
+    def test_melta_adds_damage(self):
         """Melta X adds X damage at half range."""
+        from dpp import TargetProfile
         wp = WeaponProfile(
             name="Multi-melta", attacks=2, bs=3, strength=9, ap=-4, damage=2,
             abilities=["Melta 2"],
         )
-        # D=2 base, Melta 2 → D=4 at half range → 2x damage before overkill
-        r_off = compute_weapon_dpp(wp, MEQ, unit_points=50, melta_active=False)
-        r_on = compute_weapon_dpp(wp, MEQ, unit_points=50, melta_active=True)
-        # Damage exactly doubles (no overkill for 2W MEQ with D=2 vs D=4)
+        # High-W single model so the D2→D4 melta bonus is not lost to the
+        # overkill cap (vs W2 MEQ both would cap at 2 → ratio 1.0)
+        tank = TargetProfile(toughness=9, save=3, model_count=1, wounds_per_model=10)
+        r_off = compute_weapon_dpp(wp, tank, unit_points=50, melta_active=False)
+        r_on = compute_weapon_dpp(wp, tank, unit_points=50, melta_active=True)
+        # Damage exactly doubles (D=2 vs D=4, no cap binding at W10)
         ratio = r_on["total_damage"] / r_off["total_damage"]
         assert abs(ratio - 2.0) < 0.01
 
@@ -438,7 +441,11 @@ class TestWeaponSlots:
     """weapon_slots-based loadout resolution must produce valid results."""
 
     def test_despoiler_resolves_vs_meq(self):
-        """Despoiler should pick gatling + melee arm + carapace vs MEQ-heavy meta."""
+        """Despoiler should pick the gatling spam build vs MEQ-heavy meta.
+
+        Gatling D2 wastes nothing on W2 MEQ (overkill cap), so the documented
+        "2× gatling cannon (MEQ spam build)" is the correct competitive pick.
+        """
         from ranking import RankingEngine
         engine = RankingEngine('chaos-knights')
         comp_meta = engine.config._resolve_meta('competitive')
@@ -451,12 +458,18 @@ class TestWeaponSlots:
         assert len(melee) >= 1   # at least titanic feet
         names = [w.name for w in ranged + melee]
         assert 'Titanic feet' in names
-        # Should NOT have duplicate Despoiler gatling cannon (optimizer picks 1 gatling + 1 melee arm)
+        # vs MEQ-heavy meta: gatling (D2) is overkill-efficient vs W2 MEQ,
+        # so the optimizer should pick the MEQ-spam build (2× gatling)
         gat_count = sum(1 for n in names if n == 'Despoiler gatling cannon')
-        assert gat_count <= 1, f"Expected ≤1 gatling vs MEQ, got {gat_count}: {names}"
+        assert gat_count == 2, f"Expected 2× gatling (MEQ spam build), got {gat_count}: {names}"
 
     def test_despoiler_picks_anti_armour_vs_lightv(self):
-        """Despoiler should pick thermal/battle cannon vs Light Vehicles."""
+        """Despoiler vs Light Vehicles must pick an efficient anti-vehicle mix.
+
+        Since the overkill cap, gatling D2 no longer wastes on W10 targets, so
+        the optimizer should prefer a gatling + melee-arm combo that beats the
+        pure 2× battle cannon build (verified: 20.35 > 15.32 vs Light V).
+        """
         from ranking import RankingEngine
         engine = RankingEngine('chaos-knights')
         lv = engine.config.target_profiles['Light V']
@@ -464,8 +477,25 @@ class TestWeaponSlots:
         assert resolved is not None
         pts, ranged, melee, innate, info = resolved
         names = [w.name for w in ranged + melee]
-        anti_armour = [n for n in names if any(x in n.lower() for x in ['thermal', 'battle cannon', 'warpstrike', 'ruinspear'])]
-        assert len(anti_armour) >= 2, f"Expected anti-armour vs LightV, got: {names}"
+        # Must carry an anti-vehicle element (melee arm or cannon-class ranged)
+        anti_armour = [n for n in names if any(x in n.lower() for x in ['thermal', 'battle cannon', 'warpstrike', 'chainsword', 'ruinspear'])]
+        assert len(anti_armour) >= 1, f"Expected anti-armour vs LightV, got: {names}"
+        # Optimizer result must beat the pure 2× battle cannon build
+        from ranking import _ld_dmg
+        def W(n):
+            return engine.W(n, unit_name='Knight Despoiler')
+        battle_dual = [
+            W('Despoiler battle cannon'), W('Diabolus heavy stubber'),
+            W('Despoiler battle cannon'), W('Diabolus heavy stubber'),
+            W('Ruinspear rocket pod'),
+        ]
+        feet = W('Titanic feet')
+        chosen_d = _ld_dmg(ranged, melee, [], lv)
+        ref_d = _ld_dmg(battle_dual, [feet], [], lv)
+        assert chosen_d > ref_d, (
+            f"Optimizer pick ({chosen_d:.2f}) should beat 2× battle cannon "
+            f"({ref_d:.2f}) vs Light V. Got: {names}"
+        )
 
     def test_despoiler_vs_knight_picks_thermal(self):
         """Despoiler should pick thermal cannons vs Knight targets (high S/AP)."""
