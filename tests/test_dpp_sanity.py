@@ -50,7 +50,7 @@ NO_WEAPONS_WHITELIST = {
     "Invader Atv", "Eliminator Squad", "Thunderhawk Gunship",
     "Onager Dunecrawler", "Blitza-Bommer", "Dakkajet",
     "Stormtalon Gunship", "Stormhawk Interceptor",
-    "War Dog Moirax", "Armiger Moirax", "War Walkers",
+    "War Dog Moirax", "Armiger Moirax",
     "Crisis Sunforge Battlesuits", "Crisis Starscythe Battlesuits",
     "Crisis Fireknife Battlesuits", "Inceptor Squad",
     "Desolation Squad", "Devastator Squad", "Centurion Devastator Squad",
