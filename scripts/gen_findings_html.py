@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Generate findings.html for each faction from engine rankings."""
-import sys, json, os, html
+import sys, json, os, html, re
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from engine.ranking import RankingEngine
 
@@ -36,6 +36,89 @@ FACTIONS = {
     'tyranids': 'Tyranids',
     'world-eaters': 'World Eaters',
 }
+
+# Landing-page sections: ordered faction slugs per section. Counts are NOT
+# hardcoded here — gen_index() reads them from the generated findings.html
+# files, so the index can never drift from the faction pages again.
+INDEX_SECTIONS = [
+    ("Imperium (14 factions)", [
+        'adepta-sororitas', 'adeptus-custodes', 'adeptus-mechanicus',
+        'astra-militarum', 'black-templars', 'blood-angels', 'dark-angels',
+        'deathwatch', 'grey-knights', 'imperial-agents', 'imperial-knights',
+        'space-marines', 'space-wolves', 'titan-legions',
+    ]),
+    ("Chaos (8 factions)", [
+        'chaos-daemons', 'chaos-knights', 'chaos-space-marines',
+        'chaos-titan-legions', 'death-guard', 'emperors-children',
+        'thousand-sons', 'world-eaters',
+    ]),
+    ("Xenos (8 factions)", [
+        'aeldari', 'drukhari', 'genestealer-cults', 'leagues-of-votann',
+        'necrons', 'orks', 'tau-empire', 'tyranids',
+    ]),
+]
+
+INDEX_HEADER = '''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Faction Findings — turtleatlas-w40k-11e</title>
+<style>
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,sans-serif;max-width:1100px;margin:0 auto;padding:30px 20px;background:#0d1117;color:#c9d1d9}
+  h1{font-size:1.8em;margin:0 0 4px;color:#f0f6fc}
+  .subtitle{color:#8b949e;font-size:0.95em;margin-bottom:28px}
+  .section{margin-bottom:30px}
+  .section h2{font-size:1.1em;color:#8b949e;border-bottom:1px solid #21262d;padding-bottom:8px;margin-bottom:14px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+  .card{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#161b22;border:1px solid#30363d;border-radius:8px;text-decoration:none;color:#c9d1d9;transition:border-color 0.15s,background 0.15s}
+  .card:hover{border-color:#58a6ff;background:#1c2128;text-decoration:none}
+  .fname{font-size:0.95em;font-weight:500}
+  .fmeta{font-size:0.8em;color:#6e7681;white-space:nowrap}
+</style></head><body>
+<h1>Faction Findings</h1>
+<p class="subtitle">DPP rankings for Warhammer 40,000 — 11th Edition. Data-driven, deterministic. No LLM in the loop.</p>
+'''
+
+
+def gen_index() -> int:
+    """Rebuild findings/index.html from the per-faction findings.html files.
+
+    Count = unique unit names across all missions, matching the faction page
+    subtitle (build_data's n_units). Factions with a missing findings.html
+    are skipped with a warning — never rendered as a fake "0 units" card.
+    """
+    counts = {}
+    for fid, fname in FACTIONS.items():
+        p = os.path.join(OUT, fid, 'findings.html')
+        if not os.path.isfile(p):
+            continue
+        names = set(re.findall(r'\{"name": "([^"]+)"', open(p, encoding='utf-8').read()))
+        counts[fid] = len(names)
+
+    sections_html = []
+    for title, fids in INDEX_SECTIONS:
+        cards = []
+        for fid in fids:
+            if fid not in counts:
+                print(f'WARNING: {fid} has no findings.html — card skipped')
+                continue
+            cards.append(
+                f'      <a class="card" href="{fid}/findings.html">\n'
+                f'        <span class="fname">{FACTIONS[fid]}</span>\n'
+                f'        <span class="fmeta">{counts[fid]} units</span>\n'
+                f'      </a>'
+            )
+        sections_html.append(
+            '<div class="section">\n'
+            f'  <h2>{title}</h2>\n'
+            '  <div class="grid">\n'
+            + '\n'.join(cards)
+            + '\n  </div>\n</div>'
+        )
+
+    html_out = INDEX_HEADER + '\n'.join(sections_html) + '\n</body></html>\n'
+    out = os.path.join(OUT, 'index.html')
+    with open(out, 'w', encoding='utf-8') as f:
+        f.write(html_out)
+    print(f'index.html written ({len(counts)} factions)')
+    return len(counts)
 MISSIONS = ['Take and Hold', 'Purge the Foe', 'Reconnaissance', 'Priority Assets', 'Disruption']
 WEIGHTS = {
     'Take and Hold': {'dps': 20, 'surv': 30, 'obj': 35, 'mob': 15},
@@ -265,11 +348,17 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate faction findings HTML')
     parser.add_argument('--all', action='store_true', help='Generate for all factions')
     parser.add_argument('--faction', type=str, help='Generate for a specific faction slug')
+    parser.add_argument('--index', action='store_true',
+                        help='Rebuild findings/index.html from existing faction pages')
     parser.add_argument('--max-points', type=int, default=2000,
                         help='Max unit points to include in rankings (default: 2000, 0=no limit)')
     args = parser.parse_args()
 
     max_pts = args.max_points if args.max_points > 0 else None
+
+    if args.index and not args.faction and not args.all:
+        gen_index()
+        sys.exit(0)
 
     factions_to_gen = FACTIONS
     if args.faction:
@@ -283,3 +372,7 @@ if __name__ == '__main__':
         with open(os.path.join(out_dir, 'findings.html'), 'w') as f:
             f.write(html)
         print(f'{fname}: {n_units} units, written to {out_dir}/findings.html')
+
+    # --all regenerates the landing page too, so counts can't drift
+    if args.all:
+        gen_index()
