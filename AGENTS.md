@@ -39,6 +39,10 @@ This is an unofficial, non-commercial fan project. Warhammer 40,000 is a registe
 
 Each subfolder has its own `AGENTS.md` with detailed instructions. Agents working in that directory will automatically pick up the relevant rules.
 
+## Project Memory — load first
+
+`memory/AGENTS.md` holds this project's learned rules (`feedback.md`) and reference data (`reference.md`). Read it before touching `engine/`, `adapter/`, `data/config/`, `scripts/`, or `findings/` — it encodes the conventions that cost real sessions to learn (MFM = points truth, one source of computation, dual-profile weapons, findings-index generation, config regeneration pipeline). Append new lessons to `feedback.md` in the same commit that proves them; never let a lesson live only in a conversation.
+
 ## Quick Start
 
 ```bash
