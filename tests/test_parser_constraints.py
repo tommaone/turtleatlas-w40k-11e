@@ -296,3 +296,205 @@ def test_wave_serpent_two_slots(aeldari_constraints):
     assert [s["name"] for s in b.get("slots", [])] == [
         "Hull weapon", "Turret Weapon",
     ]
+
+# ---------------------------------------------------------------------------
+# Aeldari squad model-composition — per-model builds with per-model slots
+# ---------------------------------------------------------------------------
+
+
+@pytest.fixture(scope="module")
+def aeldari_composition(parser):
+    return parser.extract_squad_composition("Aeldari")
+
+
+def test_composition_dark_reapers_structure(aeldari_composition):
+    """Dark Reapers: main model + exarch with a Weapon slot (4 options)."""
+    b = aeldari_composition["Dark Reapers"]["builds"][0]
+    models = b["models"]
+    assert [(m["name"], m.get("min"), m.get("max")) for m in models] == [
+        ("Dark Reaper", 4, 9),
+        ("Dark Reaper Exarch", 1, 1),
+    ]
+    dr = models[0]
+    assert dr["ranged"] == "Reaper Launcher"
+    assert dr["melee"] == "Close combat weapon"
+    ex = models[1]
+    assert ex["melee"] == "Close combat weapon"
+    slot = ex["slots"][0]
+    assert slot["name"] == "Weapon"
+    assert [c["ranged"] for c in slot["choices"]] == [
+        "Shuriken Cannon", "Tempest Launcher", "Missile Launcher", "Reaper Launcher",
+    ]
+    assert slot["choices"][-1].get("default") is True
+
+
+def test_composition_banshee_bundle_payload(aeldari_composition):
+    """Howling Banshees exarch: bundle choices resolve to {ranged, melee}."""
+    ex = aeldari_composition["Howling Banshees"]["builds"][0]["models"][1]
+    slot = ex["slots"][0]
+    assert slot["choices"][0]["name"] == "Banshee Blade and Shuriken Pistol"
+    assert slot["choices"][0]["ranged"] == "Shuriken Pistol"
+    assert slot["choices"][0]["melee"] == "Banshee Blade"
+    mirrors = [c for c in slot["choices"] if c["name"] == "Mirrorswords"][0]
+    assert "ranged" not in mirrors
+    assert mirrors["melee"] == "Mirrorswords"
+
+
+def test_composition_dire_avenger_two_catapults(aeldari_composition):
+    """Two Avenger Shuriken Catapults: min=2 on the linked catapult -> count 2."""
+    ex = aeldari_composition["Dire Avengers"]["builds"][0]["models"][1]
+    two = [c for c in ex["slots"][0]["choices"]
+           if c["name"] == "Two Avenger Shuriken Catapults"][0]
+    assert two["ranged"] == "Avenger shuriken catapult"
+    assert two.get("ranged_count") == 2
+    # Default points at the shared catapult SE (e007...) — lands on the
+    # single-catapult choice.
+    single = [c for c in ex["slots"][0]["choices"]
+              if c["name"] == "Avenger shuriken catapult"][0]
+    assert single.get("default") is True
+
+
+def test_composition_rangers_direct_models(aeldari_composition):
+    """Rangers put the model SE directly on the unit entry (no sibling SEGs)."""
+    b = aeldari_composition["Rangers"]["builds"][0]
+    assert [(m["name"], m.get("min"), m.get("max")) for m in b["models"]] == [
+        ("Ranger", 5, 10),
+    ]
+    assert b["models"][0]["ranged"] == ["Long rifle", "Shuriken Pistol"]
+    assert b["models"][0]["melee"] == "Close Combat Weapon"
+
+
+def test_composition_chainsabres_dual_profile(aeldari_composition):
+    """Chainsabres carries Melee+Ranged profiles in BSData — a dual-profile
+    weapon lands in BOTH lists (melee A5 + pistol A1). The loader resolves
+    the correct profile per list context."""
+    ex = aeldari_composition["Striking Scorpions"]["builds"][0]["models"][1]
+    chainsabres = [c for c in ex["slots"][0]["choices"]
+                   if c["name"] == "Chainsabres"][0]
+    assert chainsabres["ranged"] == "Chainsabres"
+    assert chainsabres["melee"] == "Chainsabres"
+
+
+def test_composition_harlequin_blade_infolink(aeldari_composition):
+    """Troupe: Harlequin's Blade lives as an infoLink profile ref on the model
+    SE (11e sharedProfiles pattern) — it must resolve to a melee fixed weapon,
+    not get dropped as an ability wrapper."""
+    blade_player = [m for m in aeldari_composition["Troupe"]["builds"][0]["models"]
+                    if m["name"] == "Player with Harlequin's Blade"][0]
+    assert blade_player["ranged"] == "Shuriken Pistol"
+    assert blade_player["melee"] == "Harlequin's Blade"
+
+
+def test_composition_troupe_parallel_variants(aeldari_composition):
+    """Troupe pool: 4 player variants share the squad budget (all capped/uncapped,
+    none mandatory) + a Lead Player leader (min=1 max=1)."""
+    models = aeldari_composition["Troupe"]["builds"][0]["models"]
+    players = [m for m in models if m.get("min") != 1]
+    assert {m["name"] for m in players} == {
+        "Player with Harlequin's Blade",
+        "Player with Harlequin's Special Weapon",
+        "Player with Fusion Pistol",
+        "Player with Neuro Disruptor",
+    }
+    blade = [m for m in players if m["name"] == "Player with Harlequin's Blade"][0]
+    assert blade.get("max") == 11
+    lead = [m for m in models if m.get("min") == 1][0]
+    assert lead["name"] == "Lead Player"
+    assert lead.get("max") == 1
+
+
+def test_composition_windriders_three_variants(aeldari_composition):
+    """Windriders: 3 parallel weapon variants, each capped at 6, no leader."""
+    models = aeldari_composition["Windriders"]["builds"][0]["models"]
+    assert [(m["name"], m.get("min"), m.get("max")) for m in models] == [
+        ("Windrider with Twin Shuriken Catapult", None, 6),
+        ("Windrider with Scatter Laser", None, 6),
+        ("Windrider with Shuriken Cannon", None, 6),
+    ]
+
+
+def test_composition_voidscarred_nested_pool(aeldari_composition):
+    """Corsair Voidscarred: base variants live in a NESTED 'Voidscarred' SEG
+    (min=4) inside '4 -9 Voidscarred'. The recursion must collect them and tag
+    them with pool_min=4; the capped specials stay untagged."""
+    models = aeldari_composition["Corsair Voidscarred"]["builds"][0]["models"]
+    base = [m for m in models if m.get("pool_min") == 4]
+    assert {m["name"] for m in base} == {
+        "Voidscarred w/ pistol and sword",
+        "Voidscarred w/ rifle",
+        "Voidscarred with Faolchú",
+        "Voidscarred with fusion pistol",
+        "Voidscarred with heavy weapon",
+        "Voidscarred with ranger long rifle",
+        "Voidscarred with special weapon",
+    }
+    specials = [m for m in models if not m.get("pool_min") and m.get("min") != 1]
+    assert {m["name"] for m in specials} == {
+        "Shade Runner", "Soul Weaver", "Way Seeker",
+    }
+    assert all(m["max"] == 1 for m in specials)
+    # heavy/special weapon variants carry a nested Weapon slot
+    heavy = [m for m in base if m["name"] == "Voidscarred with heavy weapon"][0]
+    assert [c["name"] for c in heavy["slots"][0]["choices"]] == [
+        "Shuriken cannon", "Wraithcannon",
+    ]
+    felarch = [m for m in models if m.get("min") == 1][0]
+    assert felarch["name"] == "Voidscarred Felarch"
+
+
+def test_composition_warlock_multiple_fixed_ranged(aeldari_composition):
+    """Warlock with Witchblade: fixed ranged is BOTH Shuriken Pistol AND
+    Destructor (own entryLinks) — a list, not a collapsed single."""
+    warlock = [m for m in aeldari_composition["Warlock Conclave"]["builds"][0]["models"]
+               if m["name"] == "Warlock with Witchblade"][0]
+    assert warlock["ranged"] == ["Shuriken Pistol", "Destructor"]
+    assert warlock["melee"] == "Witchblade"
+
+
+def test_composition_warlock_singing_spear_always_melee(aeldari_composition):
+    """Warlock with Singing Spear: the spear is dual-profile (throwable ranged
+    + melee half) — the model ALWAYS has a melee profile. The melee half must
+    not be dropped by first-profile resolution."""
+    warlock = [m for m in aeldari_composition["Warlock Conclave"]["builds"][0]["models"]
+               if m["name"] == "Warlock with Singing Spear"][0]
+    assert warlock["ranged"] == ["Singing Spear", "Shuriken Pistol", "Destructor"]
+    assert warlock["melee"] == "Singing Spear"
+
+
+def test_composition_warlock_skyrunner_three_ranged(aeldari_composition):
+    """Warlock Skyrunner with Singing Spear: 3 fixed ranged weapons
+    (Shuriken Pistol + Twin Shuriken Catapult + Destructor) + Singing Spear
+    (dual-profile: ranged AND melee)."""
+    skyrunner = [m for m in aeldari_composition["Warlock Skyrunners"]["builds"][0]["models"]
+                 if m["name"] == "Warlock Skyrunner with Singing Spear"][0]
+    assert set(skyrunner["ranged"]) == {
+        "Shuriken Pistol", "Twin Shuriken Catapult", "Destructor", "Singing Spear",
+    }
+    assert skyrunner["melee"] == "Singing Spear"
+
+
+def test_composition_reaver_splinter_pistol_preserved(aeldari_composition):
+    """Ynnari Reaver: Splinter Rifle + Splinter Pistol fixed ranged (the pistol
+    was dropped by the old single-weapon collapse)."""
+    reaver = [m for m in aeldari_composition["Ynnari Reavers"]["builds"][0]["models"]
+              if m["name"] == "Reaver"][0]
+    assert reaver["ranged"] == ["Splinter Rifle", "Splinter Pistol"]
+    assert reaver["melee"] == "Bladevanes"
+
+
+def test_squad_no_model_type_as_weapon(aeldari_constraints):
+    """Regression: the 61 squad false flags.
+
+    Model-type containers (Dark Reaper, Howling Banshee, Ranger) must NEVER
+    appear as fixed weapons in squad constraints. Squads now carry composition
+    builds (models[] with per-model slots); the unit-level fixed lists are
+    empty and the merge-augment must not clobber the composition back into an
+    all-fixed default build.
+    """
+    for unit in ("Dark Reapers", "Howling Banshees", "Rangers"):
+        builds = aeldari_constraints[unit]["builds"]
+        assert builds, f"{unit} has no builds"
+        b = builds[0]
+        assert "models" in b, f"{unit} composition was clobbered by augment"
+        assert not b.get("fixed_ranged"), b.get("fixed_ranged")
+        assert not b.get("fixed_melee"), b.get("fixed_melee")

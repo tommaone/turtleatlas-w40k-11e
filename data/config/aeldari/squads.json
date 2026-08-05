@@ -1,5 +1,5 @@
 {
-  "_note": "aeldari squads — builds format; ranged/melee dead fields stripped; INV swept against data/merged/aeldari.json InSv",
+  "_note": "aeldari squads — BSData model-composition builds (models[] with per-model slots); n/pts/info preserved from curated; INV swept against data/merged/aeldari.json InSv",
   "_source": "BSData 11e + MFM (auto-generated, curated)",
   "Corsair Skyreavers": {
     "n": 5,
@@ -15,117 +15,73 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Neuro disruptor",
-            "melee": "Corsair Blade"
-          }
-        ]
-      },
-      {
-        "name": "2x Shuriken pistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Shuriken pistol",
-            "melee": "Corsair Blade"
+            "name": "Skyreaver",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Skyreaver w/ pistol and blade",
+                "min": 0,
+                "max": 9,
+                "ranged": "Shuriken Pistol",
+                "melee": "Corsair Blade"
+              },
+              {
+                "name": "Skyreaver w/ blaster",
+                "min": 0,
+                "max": 1,
+                "ranged": "Corsair blaster",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Skyreaver w/ flamer",
+                "min": 0,
+                "max": 1,
+                "ranged": "Flamer",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Skyreaver w/ fusion gun",
+                "min": 0,
+                "max": 1,
+                "ranged": "Fusion gun",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Skyreaver w/ shredder",
+                "min": 0,
+                "max": 1,
+                "ranged": "Shredder",
+                "melee": "Close Combat Weapon"
+              }
+            ]
           },
           {
-            "count": 3,
-            "ranged": "Neuro disruptor",
-            "melee": "Corsair Blade"
-          }
-        ]
-      },
-      {
-        "name": "2x Blast Pistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Blast Pistol",
-            "melee": "Corsair Blade"
-          },
-          {
-            "count": 3,
-            "ranged": "Neuro disruptor",
-            "melee": "Corsair Blade"
-          }
-        ]
-      },
-      {
-        "name": "2x Shuriken Pistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Shuriken Pistol",
-            "melee": "Corsair Blade"
-          },
-          {
-            "count": 3,
-            "ranged": "Neuro disruptor",
-            "melee": "Corsair Blade"
-          }
-        ]
-      },
-      {
-        "name": "2x Corsair blaster",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Corsair blaster",
-            "melee": "Corsair Blade"
-          },
-          {
-            "count": 3,
-            "ranged": "Neuro disruptor",
-            "melee": "Corsair Blade"
-          }
-        ]
-      },
-      {
-        "name": "2x Flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Flamer",
-            "melee": "Corsair Blade"
-          },
-          {
-            "count": 3,
-            "ranged": "Neuro disruptor",
-            "melee": "Corsair Blade"
-          }
-        ]
-      },
-      {
-        "name": "2x Fusion gun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Fusion gun",
-            "melee": "Corsair Blade"
-          },
-          {
-            "count": 3,
-            "ranged": "Neuro disruptor",
-            "melee": "Corsair Blade"
-          }
-        ]
-      },
-      {
-        "name": "2x Shredder",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Shredder",
-            "melee": "Corsair Blade"
-          },
-          {
-            "count": 3,
-            "ranged": "Neuro disruptor",
-            "melee": "Corsair Blade"
+            "name": "Skyreaver Felarch",
+            "count": 1,
+            "melee": "Corsair Blade",
+            "slots": [
+              {
+                "name": "Weapon",
+                "choices": [
+                  {
+                    "name": "Neuro disruptor",
+                    "ranged": "Neuro disruptor"
+                  },
+                  {
+                    "name": "Shuriken pistol",
+                    "ranged": "Shuriken pistol",
+                    "default": true
+                  },
+                  {
+                    "name": "Blast Pistol",
+                    "ranged": "Blast Pistol"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -144,117 +100,99 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Shuriken cannon",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Wraithcannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Wraithcannon",
-            "melee": "Close Combat Weapon"
+            "name": "Voidreaver",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Voidreaver with Heavy weapon",
+                "min": 0,
+                "max": 1,
+                "melee": "Close Combat Weapon",
+                "slots": [
+                  {
+                    "name": "Weapon",
+                    "choices": [
+                      {
+                        "name": "Shuriken cannon",
+                        "ranged": "Shuriken cannon"
+                      },
+                      {
+                        "name": "Wraithcannon",
+                        "ranged": "Wraithcannon"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Voidreaver with Shuriken rifle",
+                "min": 0,
+                "max": 9,
+                "ranged": "Shuriken rifle",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Voidreaver with sword and pistol",
+                "min": 0,
+                "max": 9,
+                "ranged": "Shuriken Pistol",
+                "melee": [
+                  "Close Combat Weapon",
+                  "Power sword"
+                ]
+              },
+              {
+                "name": "Voidreaver with Blaster",
+                "min": 0,
+                "max": 2,
+                "ranged": [
+                  "Blaster",
+                  "Shuriken Pistol"
+                ],
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Voidreaver with Shredder",
+                "min": 0,
+                "max": 2,
+                "ranged": [
+                  "Shredder",
+                  "Shuriken Pistol"
+                ],
+                "melee": "Close Combat Weapon"
+              }
+            ]
           },
           {
-            "count": 3,
-            "ranged": "Shuriken cannon",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Shuriken rifle",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Shuriken rifle",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Shuriken cannon",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Shuriken Pistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Shuriken Pistol",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Shuriken cannon",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Blaster",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Blaster",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Shuriken cannon",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Corsair shredder",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Corsair shredder",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Shuriken cannon",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Neuro disruptor",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Neuro disruptor",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Shuriken cannon",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Shuriken pistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Shuriken pistol",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Shuriken cannon",
-            "melee": "Close Combat Weapon"
+            "name": "Voidreaver Felarch",
+            "count": 1,
+            "melee": [
+              "Power sword",
+              "Close Combat Weapon"
+            ],
+            "slots": [
+              {
+                "name": "Weapon",
+                "choices": [
+                  {
+                    "name": "Neuro disruptor",
+                    "ranged": "Neuro disruptor"
+                  },
+                  {
+                    "name": "Shuriken rifle",
+                    "ranged": "Shuriken rifle"
+                  },
+                  {
+                    "name": "Shuriken pistol",
+                    "ranged": "Shuriken pistol",
+                    "default": true
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -273,162 +211,167 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Shuriken Pistol",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Executioner",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Executioner",
-            "melee": "Close Combat Weapon"
+            "name": "Voidscarred",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Shade Runner",
+                "min": 0,
+                "max": 1,
+                "ranged": "Shuriken Pistol",
+                "melee": [
+                  "Paired Hekatarii blades",
+                  "Close Combat Weapon"
+                ]
+              },
+              {
+                "name": "Soul Weaver",
+                "min": 0,
+                "max": 1,
+                "ranged": "Shuriken Pistol",
+                "melee": [
+                  "Power sword",
+                  "Close Combat Weapon"
+                ]
+              },
+              {
+                "name": "Way Seeker",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Executioner",
+                  "Shuriken Pistol"
+                ],
+                "melee": [
+                  "Witch staff",
+                  "Close Combat Weapon"
+                ]
+              },
+              {
+                "name": "Voidscarred w/ pistol and sword",
+                "min": 0,
+                "max": 9,
+                "pool_min": 4,
+                "ranged": "Shuriken Pistol",
+                "melee": [
+                  "Power sword",
+                  "Close Combat Weapon"
+                ]
+              },
+              {
+                "name": "Voidscarred w/ rifle",
+                "min": 0,
+                "max": 9,
+                "pool_min": 4,
+                "ranged": "Shuriken rifle",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Voidscarred with Faolchú",
+                "min": 0,
+                "max": 1,
+                "pool_min": 4,
+                "ranged": "Shuriken Pistol",
+                "melee": [
+                  "Power sword",
+                  "Close Combat Weapon"
+                ]
+              },
+              {
+                "name": "Voidscarred with fusion pistol",
+                "min": 0,
+                "max": 1,
+                "pool_min": 4,
+                "ranged": [
+                  "Fusion pistol",
+                  "Shuriken Pistol"
+                ],
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Voidscarred with heavy weapon",
+                "min": 0,
+                "max": 1,
+                "pool_min": 4,
+                "melee": "Close Combat Weapon",
+                "slots": [
+                  {
+                    "name": "Weapon",
+                    "choices": [
+                      {
+                        "name": "Shuriken cannon",
+                        "ranged": "Shuriken cannon"
+                      },
+                      {
+                        "name": "Wraithcannon",
+                        "ranged": "Wraithcannon"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Voidscarred with ranger long rifle",
+                "min": 0,
+                "max": 1,
+                "pool_min": 4,
+                "ranged": "Long rifle",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Voidscarred with special weapon",
+                "min": 0,
+                "max": 1,
+                "pool_min": 4,
+                "melee": "Close Combat Weapon",
+                "slots": [
+                  {
+                    "name": "Weapon",
+                    "choices": [
+                      {
+                        "name": "Corsair shredder",
+                        "ranged": "Corsair shredder"
+                      },
+                      {
+                        "name": "Corsair blaster",
+                        "ranged": "Corsair blaster"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           },
           {
-            "count": 3,
-            "ranged": "Shuriken Pistol",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Shuriken rifle",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Shuriken rifle",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Shuriken Pistol",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Fusion pistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Fusion pistol",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Shuriken Pistol",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Shuriken cannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Shuriken cannon",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Shuriken Pistol",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Wraithcannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Wraithcannon",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Shuriken Pistol",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Long rifle",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Long rifle",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Shuriken Pistol",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Corsair shredder",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Corsair shredder",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Shuriken Pistol",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Corsair blaster",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Corsair blaster",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Shuriken Pistol",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Neuro disruptor",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Neuro disruptor",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Shuriken Pistol",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Shuriken pistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Shuriken pistol",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Shuriken Pistol",
-            "melee": "Close Combat Weapon"
+            "name": "Voidscarred Felarch",
+            "count": 1,
+            "melee": [
+              "Power sword",
+              "Close Combat Weapon"
+            ],
+            "slots": [
+              {
+                "name": "Weapon",
+                "choices": [
+                  {
+                    "name": "Neuro disruptor",
+                    "ranged": "Neuro disruptor"
+                  },
+                  {
+                    "name": "Shuriken pistol",
+                    "ranged": "Shuriken pistol",
+                    "default": true
+                  },
+                  {
+                    "name": "Shuriken rifle",
+                    "ranged": "Shuriken rifle"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -482,87 +425,42 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Reaper Launcher - Starshot",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Reaper Launcher - Starswarm",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Reaper Launcher - Starswarm",
+            "name": "Dark Reaper",
+            "count": 4,
+            "ranged": "Reaper Launcher",
             "melee": "Close combat weapon"
           },
           {
-            "count": 3,
-            "ranged": "Reaper Launcher - Starshot",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Shuriken Cannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Shuriken Cannon",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Reaper Launcher - Starshot",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Tempest Launcher",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Tempest Launcher",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Reaper Launcher - Starshot",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Missile Launcher - Starshot",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Missile Launcher - Starshot",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Reaper Launcher - Starshot",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Missile Launcher - Sunburst",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Missile Launcher - Sunburst",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Reaper Launcher - Starshot",
-            "melee": "Close combat weapon"
+            "name": "Dark Reaper Exarch",
+            "count": 1,
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapon",
+                "choices": [
+                  {
+                    "name": "Shuriken Cannon",
+                    "ranged": "Shuriken Cannon"
+                  },
+                  {
+                    "name": "Tempest Launcher",
+                    "ranged": "Tempest Launcher"
+                  },
+                  {
+                    "name": "Missile Launcher",
+                    "ranged": "Missile Launcher"
+                  },
+                  {
+                    "name": "Reaper Launcher",
+                    "ranged": "Reaper Launcher",
+                    "default": true
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -582,27 +480,53 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Avenger shuriken catapult",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "Shuriken Pistol",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Shuriken Pistol",
-            "melee": "Close Combat Weapon"
-          },
-          {
+            "name": "Dire Avenger",
             "count": 4,
             "ranged": "Avenger shuriken catapult",
             "melee": "Close Combat Weapon"
+          },
+          {
+            "name": "Dire Avenger Exarch",
+            "count": 1,
+            "melee": "Close Combat Weapon",
+            "slots": [
+              {
+                "name": "Weapon(s)",
+                "choices": [
+                  {
+                    "name": "Avenger shuriken catapult",
+                    "ranged": "Avenger shuriken catapult",
+                    "default": true
+                  },
+                  {
+                    "name": "Diresword and Shuriken Pistol",
+                    "ranged": "Shuriken Pistol",
+                    "melee": "Diresword"
+                  },
+                  {
+                    "name": "Power Glaive and Shuriken Pistol",
+                    "ranged": "Shuriken Pistol",
+                    "melee": "Power Glaive"
+                  },
+                  {
+                    "name": "Two Avenger Shuriken Catapults",
+                    "ranged": "Avenger shuriken catapult",
+                    "ranged_count": 2
+                  },
+                  {
+                    "name": "Diresword and Shimmershield",
+                    "melee": "Diresword"
+                  },
+                  {
+                    "name": "Power Glaive and Shimmershield",
+                    "melee": "Power Glaive"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -623,72 +547,43 @@
     "pts_3rd": 130,
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
+            "name": "Fire Dragon",
+            "count": 4,
             "ranged": "Dragon Fusion Gun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Exarch's Dragon Fusion Gun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Exarch's Dragon Fusion Gun",
             "melee": "Close combat weapon"
           },
           {
-            "count": 3,
-            "ranged": "Dragon Fusion Gun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Dragon's Breath Flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Dragon's Breath Flamer",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Dragon Fusion Gun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Firepike",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Firepike",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Dragon Fusion Gun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Dragon Fusion Pistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Dragon Fusion Pistol",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Dragon Fusion Gun",
-            "melee": "Close combat weapon"
+            "name": "Fire Dragon Exarch",
+            "count": 1,
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapon",
+                "choices": [
+                  {
+                    "name": "Exarch's Dragon Fusion Gun",
+                    "ranged": "Exarch's Dragon Fusion Gun",
+                    "default": true
+                  },
+                  {
+                    "name": "Dragon's Breath Flamer",
+                    "ranged": "Dragon's Breath Flamer"
+                  },
+                  {
+                    "name": "Firepike",
+                    "ranged": "Firepike"
+                  },
+                  {
+                    "name": "Dragon Fusion Pistol & Dragon Axe",
+                    "ranged": "Dragon Fusion Pistol",
+                    "melee": "Dragon Axe"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -707,91 +602,17 @@
     },
     "builds": [
       {
-        "name": "Shuriken Cannon Platform",
+        "name": "Default",
         "models": [
           {
+            "name": "Guardian Defender",
             "count": 10,
             "ranged": "Shuriken Catapult",
             "melee": "Close Combat Weapon"
           },
           {
+            "name": "Heavy Weapon Platform",
             "count": 1,
-            "ranged": "Shuriken Cannon",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "Scatter Laser Platform",
-        "models": [
-          {
-            "count": 10,
-            "ranged": "Shuriken Catapult",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Scatter Laser",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "Bright Lance Platform",
-        "models": [
-          {
-            "count": 10,
-            "ranged": "Shuriken Catapult",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Bright Lance",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "Aeldari Missile Launcher - Starshot Platform",
-        "models": [
-          {
-            "count": 10,
-            "ranged": "Shuriken Catapult",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Aeldari Missile Launcher - Starshot",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "Aeldari Missile Launcher - Sunburst Platform",
-        "models": [
-          {
-            "count": 10,
-            "ranged": "Shuriken Catapult",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Aeldari Missile Launcher - Sunburst",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "Starcannon Platform",
-        "models": [
-          {
-            "count": 10,
-            "ranged": "Shuriken Catapult",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Starcannon",
             "melee": "Close Combat Weapon"
           }
         ]
@@ -812,27 +633,44 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Shuriken Pistol",
-            "melee": "Banshee Blade"
-          }
-        ]
-      },
-      {
-        "name": "Triskele",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Triskele",
-            "melee": "Banshee Blade"
-          },
-          {
+            "name": "Howling Banshee",
             "count": 4,
             "ranged": "Shuriken Pistol",
             "melee": "Banshee Blade"
+          },
+          {
+            "name": "Howling Banshee Exarch",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Weapons",
+                "choices": [
+                  {
+                    "name": "Banshee Blade and Shuriken Pistol",
+                    "ranged": "Shuriken Pistol",
+                    "melee": "Banshee Blade",
+                    "default": true
+                  },
+                  {
+                    "name": "Executioner and Shuriken Pistol",
+                    "ranged": "Shuriken Pistol",
+                    "melee": "Executioner"
+                  },
+                  {
+                    "name": "Triskele and Shuriken Pistol",
+                    "ranged": "Triskele",
+                    "melee": "Triskele"
+                  },
+                  {
+                    "name": "Mirrorswords",
+                    "melee": "Mirrorswords"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -852,26 +690,15 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Ranger",
             "count": 5,
-            "ranged": "Shuriken Pistol",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "Long rifle",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Long rifle",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 4,
-            "ranged": "Shuriken Pistol",
+            "ranged": [
+              "Long rifle",
+              "Shuriken Pistol"
+            ],
             "melee": "Close Combat Weapon"
           }
         ]
@@ -926,57 +753,56 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Twin Shuriken Catapult",
-            "melee": "Laser Lance"
-          }
-        ]
-      },
-      {
-        "name": "2x Laser Lance",
-        "models": [
-          {
+            "name": "Shining Spear",
             "count": 2,
-            "ranged": "Laser Lance",
+            "ranged": [
+              "Twin Shuriken Catapult",
+              "Laser Lance"
+            ],
             "melee": "Laser Lance"
           },
           {
+            "name": "Shining Spear Exarch",
             "count": 1,
-            "ranged": "Twin Shuriken Catapult",
-            "melee": "Laser Lance"
-          }
-        ]
-      },
-      {
-        "name": "2x Star Lance",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Star Lance",
-            "melee": "Laser Lance"
-          },
-          {
-            "count": 1,
-            "ranged": "Twin Shuriken Catapult",
-            "melee": "Laser Lance"
-          }
-        ]
-      },
-      {
-        "name": "2x Shuriken Cannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Shuriken Cannon",
-            "melee": "Laser Lance"
-          },
-          {
-            "count": 1,
-            "ranged": "Twin Shuriken Catapult",
-            "melee": "Laser Lance"
+            "slots": [
+              {
+                "name": "Weapon Choice",
+                "choices": [
+                  {
+                    "name": "Laser Lance",
+                    "ranged": "Laser Lance",
+                    "melee": "Laser Lance",
+                    "default": true
+                  },
+                  {
+                    "name": "Paragon Sabre",
+                    "melee": "Paragon Sabre"
+                  },
+                  {
+                    "name": "Star Lance",
+                    "ranged": "Star Lance",
+                    "melee": "Star Lance"
+                  }
+                ]
+              },
+              {
+                "name": "Bike Weapon",
+                "choices": [
+                  {
+                    "name": "Twin Shuriken Catapult",
+                    "ranged": "Twin Shuriken Catapult",
+                    "default": true
+                  },
+                  {
+                    "name": "Shuriken Cannon",
+                    "ranged": "Shuriken Cannon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -996,41 +822,16 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Shroud Runner",
             "count": 3,
-            "ranged": "Shuriken Pistol",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Long rifle",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Long rifle",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Shuriken Pistol",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Scatter Laser",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Scatter Laser",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Shuriken Pistol",
+            "ranged": [
+              "Long rifle",
+              "Scatter Laser",
+              "Shuriken Pistol"
+            ],
             "melee": "Close Combat Weapon"
           }
         ]
@@ -1051,32 +852,41 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Skyweaver",
             "count": 2,
-            "ranged": "Skyweaver Haywire Cannon",
-            "melee": "Zephyrglaive"
-          }
-        ]
-      },
-      {
-        "name": "2x Shuriken Cannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Shuriken Cannon",
-            "melee": "Zephyrglaive"
-          }
-        ]
-      },
-      {
-        "name": "2x Star Bolas",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Star Bolas",
-            "melee": "Zephyrglaive"
+            "melee": "Close Combat Weapon",
+            "slots": [
+              {
+                "name": "Bike Weapon",
+                "choices": [
+                  {
+                    "name": "Shuriken Cannon",
+                    "ranged": "Shuriken Cannon"
+                  },
+                  {
+                    "name": "Skyweaver Haywire Cannon",
+                    "ranged": "Skyweaver Haywire Cannon"
+                  }
+                ]
+              },
+              {
+                "name": "Rider Weapon",
+                "choices": [
+                  {
+                    "name": "Star Bolas",
+                    "ranged": "Star Bolas",
+                    "default": true
+                  },
+                  {
+                    "name": "Zephyrglaive",
+                    "melee": "Zephyrglaive"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1095,41 +905,59 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 11,
-            "ranged": "Shuriken Pistol",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Flamer",
-            "melee": "Close Combat Weapon"
+            "name": "Storm Guardian",
+            "count": 10,
+            "alloc": [
+              {
+                "name": "Storm Guardian",
+                "min": 4,
+                "max": 10,
+                "ranged": "Shuriken Pistol",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Storm Guardian with Flamer",
+                "min": 0,
+                "max": 2,
+                "ranged": "Flamer",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Storm Guardian with Fusion Gun",
+                "min": 0,
+                "max": 2,
+                "ranged": "Fusion gun",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Storm Guardian with Power Sword",
+                "min": 0,
+                "max": 2,
+                "ranged": "Shuriken Pistol",
+                "melee": "Power sword"
+              },
+              {
+                "name": "Storm Guardian with Flamer & Power Sword",
+                "min": 0,
+                "max": 2,
+                "ranged": "Flamer",
+                "melee": "Power sword"
+              },
+              {
+                "name": "Storm Guardian with Fusion Gun & Power Sword",
+                "min": 0,
+                "max": 2,
+                "ranged": "Fusion gun",
+                "melee": "Power sword"
+              }
+            ]
           },
           {
-            "count": 9,
-            "ranged": "Shuriken Pistol",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Fusion gun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Fusion gun",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Shuriken Pistol",
+            "name": "Serpent's Scale Platform",
+            "count": 1,
             "melee": "Close Combat Weapon"
           }
         ]
@@ -1150,27 +978,40 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Shuriken pistol",
-            "melee": "Scorpion chainsword"
-          }
-        ]
-      },
-      {
-        "name": "Chainsabres",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Chainsabres",
-            "melee": "Scorpion chainsword"
-          },
-          {
+            "name": "Striking Scorpion",
             "count": 4,
             "ranged": "Shuriken pistol",
             "melee": "Scorpion chainsword"
+          },
+          {
+            "name": "Striking Scorpion Exarch",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Weapons",
+                "choices": [
+                  {
+                    "name": "Chainsabres",
+                    "ranged": "Chainsabres",
+                    "melee": "Chainsabres"
+                  },
+                  {
+                    "name": "Shuriken Pistol, Scorpion Chainsword & Scorpion's claw",
+                    "ranged": "Shuriken pistol",
+                    "melee": "Scorpion chainsword",
+                    "default": true
+                  },
+                  {
+                    "name": "Biting blade & Shuriken Pistol",
+                    "ranged": "Shuriken pistol",
+                    "melee": "Biting blade"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1192,72 +1033,43 @@
     "pts_3rd": 110,
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
+            "name": "Swooping Hawk",
+            "count": 4,
             "ranged": "Lasblaster",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Exarch's Lasblaster",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Exarch's Lasblaster",
-            "melee": "Close Combat Weapon"
+            "melee": "Close combat weapon"
           },
           {
-            "count": 3,
-            "ranged": "Lasblaster",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Hawk's Talon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Hawk's Talon",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Lasblaster",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Scatter Laser",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Scatter Laser",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Lasblaster",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Sunpistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Sunpistol",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Lasblaster",
-            "melee": "Close Combat Weapon"
+            "name": "Swooping Hawk Exarch",
+            "count": 1,
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapon",
+                "choices": [
+                  {
+                    "name": "Exarch's Lasblaster",
+                    "ranged": "Exarch's Lasblaster"
+                  },
+                  {
+                    "name": "Hawk's Talon",
+                    "ranged": "Hawk's Talon",
+                    "default": true
+                  },
+                  {
+                    "name": "Scatter Laser",
+                    "ranged": "Scatter Laser"
+                  },
+                  {
+                    "name": "Sunpistol & Power Sword",
+                    "ranged": "Sunpistol",
+                    "melee": "Power Sword"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1277,42 +1089,96 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Shuriken Pistol",
-            "melee": "Harlequin's Special Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Fusion Pistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Fusion Pistol",
-            "melee": "Harlequin's Special Weapon"
+            "name": "Player",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Player with Harlequin's Blade",
+                "min": 0,
+                "max": 11,
+                "ranged": "Shuriken Pistol",
+                "melee": "Harlequin's Blade"
+              },
+              {
+                "name": "Player with Harlequin's Special Weapon",
+                "min": 0,
+                "max": 11,
+                "ranged": "Shuriken Pistol",
+                "melee": "Harlequin's Special Weapon"
+              },
+              {
+                "name": "Player with Fusion Pistol",
+                "min": 0,
+                "ranged": "Fusion Pistol",
+                "slots": [
+                  {
+                    "name": "Weapon",
+                    "choices": [
+                      {
+                        "name": "Harlequin's Special Weapon",
+                        "melee": "Harlequin's Special Weapon"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Player with Neuro Disruptor",
+                "min": 0,
+                "ranged": "Neuro Disruptor",
+                "slots": [
+                  {
+                    "name": "Weapon",
+                    "choices": [
+                      {
+                        "name": "Harlequin's Special Weapon",
+                        "melee": "Harlequin's Special Weapon"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           },
           {
-            "count": 3,
-            "ranged": "Shuriken Pistol",
-            "melee": "Harlequin's Special Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Neuro Disruptor",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Neuro Disruptor",
-            "melee": "Harlequin's Special Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Shuriken Pistol",
-            "melee": "Harlequin's Special Weapon"
+            "name": "Lead Player",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Melee Weapon",
+                "choices": [
+                  {
+                    "name": "Harlequin's Special Weapon",
+                    "melee": "Harlequin's Special Weapon"
+                  },
+                  {
+                    "name": "Power sword",
+                    "melee": "Power sword"
+                  }
+                ]
+              },
+              {
+                "name": "Pistol",
+                "choices": [
+                  {
+                    "name": "Fusion Pistol",
+                    "ranged": "Fusion Pistol"
+                  },
+                  {
+                    "name": "Neuro Disruptor",
+                    "ranged": "Neuro Disruptor"
+                  },
+                  {
+                    "name": "Shuriken Pistol",
+                    "ranged": "Shuriken Pistol",
+                    "default": true
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1366,32 +1232,32 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Warlock",
             "count": 2,
-            "ranged": "Shuriken Pistol",
-            "melee": "Witchblade"
-          }
-        ]
-      },
-      {
-        "name": "2x Destructor",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Destructor",
-            "melee": "Witchblade"
-          }
-        ]
-      },
-      {
-        "name": "2x Singing Spear",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Singing Spear",
-            "melee": "Witchblade"
+            "alloc": [
+              {
+                "name": "Warlock with Witchblade",
+                "min": 0,
+                "ranged": [
+                  "Shuriken Pistol",
+                  "Destructor"
+                ],
+                "melee": "Witchblade"
+              },
+              {
+                "name": "Warlock with Singing Spear",
+                "min": 0,
+                "ranged": [
+                  "Singing Spear",
+                  "Shuriken Pistol",
+                  "Destructor"
+                ],
+                "melee": "Singing Spear"
+              }
+            ]
           }
         ]
       }
@@ -1411,42 +1277,36 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Warlock Skyrunner",
             "count": 1,
-            "ranged": "Shuriken Pistol",
-            "melee": "Witchblade"
-          }
-        ]
-      },
-      {
-        "name": "Destructor",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Destructor",
-            "melee": "Witchblade"
-          }
-        ]
-      },
-      {
-        "name": "Twin Shuriken Catapult",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Twin Shuriken Catapult",
-            "melee": "Witchblade"
-          }
-        ]
-      },
-      {
-        "name": "Singing Spear",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Singing Spear",
-            "melee": "Witchblade"
+            "alloc": [
+              {
+                "name": "Warlock Skyrunner with Witchblade",
+                "min": 0,
+                "max": 2,
+                "ranged": [
+                  "Twin Shuriken Catapult",
+                  "Shuriken Pistol",
+                  "Destructor"
+                ],
+                "melee": "Witchblade"
+              },
+              {
+                "name": "Warlock Skyrunner with Singing Spear",
+                "min": 0,
+                "max": 2,
+                "ranged": [
+                  "Shuriken Pistol",
+                  "Twin Shuriken Catapult",
+                  "Destructor",
+                  "Singing Spear"
+                ],
+                "melee": "Singing Spear"
+              }
+            ]
           }
         ]
       }
@@ -1468,57 +1328,43 @@
     "pts_3rd": 125,
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
+            "name": "Warp Spider",
+            "count": 4,
             "ranged": "Death spinner",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Exarch's Deathspinner",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Exarch's Deathspinner",
             "melee": "Close Combat Weapon"
           },
           {
-            "count": 3,
-            "ranged": "Death spinner",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Death Weavers",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Death Weavers",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Death spinner",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Spinneret Rifle",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Spinneret Rifle",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Death spinner",
-            "melee": "Close Combat Weapon"
+            "name": "Warp Spider Exarch",
+            "count": 1,
+            "melee": "Close Combat Weapon",
+            "slots": [
+              {
+                "name": "Weapon(s)",
+                "choices": [
+                  {
+                    "name": "Exarch's death spinner",
+                    "ranged": "Exarch's Deathspinner",
+                    "default": true
+                  },
+                  {
+                    "name": "1 Spinneret rifle & 1 Death weavers",
+                    "ranged": "Death Weavers"
+                  },
+                  {
+                    "name": "1 Powerblades & 1 Death Weavers",
+                    "ranged": "Death Weavers",
+                    "melee": "Powerblades"
+                  },
+                  {
+                    "name": "1 Powerblade array",
+                    "melee": "Powerblade Array"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1538,42 +1384,34 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Windrider",
             "count": 3,
-            "ranged": "Twin Shuriken Catapult",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Scatter Laser",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Scatter Laser",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Twin Shuriken Catapult",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Shuriken Cannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Shuriken Cannon",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Twin Shuriken Catapult",
-            "melee": "Close Combat Weapon"
+            "alloc": [
+              {
+                "name": "Windrider with Twin Shuriken Catapult",
+                "min": 0,
+                "max": 6,
+                "ranged": "Twin Shuriken Catapult",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Windrider with Scatter Laser",
+                "min": 0,
+                "max": 6,
+                "ranged": "Scatter Laser",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Windrider with Shuriken Cannon",
+                "min": 0,
+                "max": 6,
+                "ranged": "Shuriken Cannon",
+                "melee": "Close Combat Weapon"
+              }
+            ]
           }
         ]
       }
@@ -1592,20 +1430,27 @@
     },
     "builds": [
       {
-        "name": "Ghostswords",
+        "name": "Default",
         "models": [
           {
+            "name": "Wraithblade",
             "count": 5,
-            "melee": "Ghostswords"
-          }
-        ]
-      },
-      {
-        "name": "Ghostaxe & Forceshield",
-        "models": [
-          {
-            "count": 5,
-            "melee": "Ghostaxe"
+            "slots": [
+              {
+                "name": "Weapon",
+                "choices": [
+                  {
+                    "name": "Ghostswords",
+                    "melee": "Ghostswords",
+                    "default": true
+                  },
+                  {
+                    "name": "Ghostaxe and Forceshield",
+                    "melee": "Ghostaxe"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1624,27 +1469,28 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Wraithguard",
             "count": 5,
-            "ranged": "Wraithcannon",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "D-Scythe",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "D-Scythe",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 4,
-            "ranged": "Wraithcannon",
-            "melee": "Close Combat Weapon"
+            "melee": "Close Combat Weapon",
+            "slots": [
+              {
+                "name": "Weapon",
+                "choices": [
+                  {
+                    "name": "Wraithcannon",
+                    "ranged": "Wraithcannon",
+                    "default": true
+                  },
+                  {
+                    "name": "D-Scythe",
+                    "ranged": "D-Scythe"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1665,11 +1511,32 @@
     "pts_3rd": 90,
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
+            "name": "Incubi",
+            "count": 4,
             "melee": "Klaive"
+          },
+          {
+            "name": "Klaivex",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Demiklaives",
+                    "melee": "Demiklaives - Dual Blades"
+                  },
+                  {
+                    "name": "Klaive",
+                    "melee": "Klaive",
+                    "default": true
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1689,87 +1556,86 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Splinter rifle",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Blaster",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Blaster",
-            "melee": "Close Combat Weapon"
+            "name": "Kabalite Warrior",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Kabalite Warrior with Shredder",
+                "min": 0,
+                "max": 1,
+                "ranged": "Shredder",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Kabalite Warrior",
+                "min": 0,
+                "max": 9,
+                "ranged": "Splinter rifle",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Kabalite Warrior with Blaster",
+                "min": 0,
+                "max": 1,
+                "ranged": "Blaster",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Kabalite Warrior with Splinter Cannon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Splinter cannon",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Kabalite Warrior with Dark Lance",
+                "min": 0,
+                "max": 1,
+                "ranged": "Dark lance",
+                "melee": "Close Combat Weapon"
+              }
+            ]
           },
           {
-            "count": 8,
-            "ranged": "Splinter rifle",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Splinter Cannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Splinter Cannon",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Splinter rifle",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Dark Lance",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Dark Lance",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Splinter rifle",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Blast Pistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Blast Pistol",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Splinter rifle",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Splinter Pistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Splinter Pistol",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Splinter rifle",
-            "melee": "Close Combat Weapon"
+            "name": "Sybarite",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Ranged Weapon",
+                "choices": [
+                  {
+                    "name": "Blast Pistol",
+                    "ranged": "Blast Pistol"
+                  },
+                  {
+                    "name": "Splinter Pistol",
+                    "ranged": "Splinter Pistol"
+                  },
+                  {
+                    "name": "Splinter Rifle",
+                    "ranged": "Splinter Rifle",
+                    "default": true
+                  }
+                ]
+              },
+              {
+                "name": "Melee Weapon",
+                "choices": [
+                  {
+                    "name": "Close Combat Weapon",
+                    "melee": "Close Combat Weapon",
+                    "default": true
+                  },
+                  {
+                    "name": "Sybarite Weapon",
+                    "melee": "Sybarite Weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1789,57 +1655,72 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Splinter Rifle",
-            "melee": "Bladevanes"
-          }
-        ]
-      },
-      {
-        "name": "2x Splinter Pistol",
-        "models": [
-          {
+            "name": "Reaver",
             "count": 2,
+            "alloc": [
+              {
+                "name": "Reaver",
+                "min": 2,
+                "max": 5,
+                "ranged": [
+                  "Splinter Rifle",
+                  "Splinter Pistol"
+                ],
+                "melee": "Bladevanes"
+              },
+              {
+                "name": "Reaver with Blaster",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Blaster",
+                  "Splinter Pistol"
+                ],
+                "melee": "Bladevanes"
+              },
+              {
+                "name": "Reaver with Heat Lance",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Splinter Pistol",
+                  "Heat Lance"
+                ],
+                "melee": "Bladevanes"
+              }
+            ]
+          },
+          {
+            "name": "Arena Champion",
+            "count": 1,
             "ranged": "Splinter Pistol",
-            "melee": "Bladevanes"
-          },
-          {
-            "count": 1,
-            "ranged": "Splinter Rifle",
-            "melee": "Bladevanes"
-          }
-        ]
-      },
-      {
-        "name": "2x Blaster",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Blaster",
-            "melee": "Bladevanes"
-          },
-          {
-            "count": 1,
-            "ranged": "Splinter Rifle",
-            "melee": "Bladevanes"
-          }
-        ]
-      },
-      {
-        "name": "2x Heat Lance",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Heat Lance",
-            "melee": "Bladevanes"
-          },
-          {
-            "count": 1,
-            "ranged": "Splinter Rifle",
-            "melee": "Bladevanes"
+            "melee": [
+              "Agonizer",
+              "Bladevanes"
+            ],
+            "slots": [
+              {
+                "name": "Bike Weapon",
+                "choices": [
+                  {
+                    "name": "Splinter Rifle",
+                    "ranged": "Splinter Rifle",
+                    "default": true
+                  },
+                  {
+                    "name": "Blaster",
+                    "ranged": "Blaster"
+                  },
+                  {
+                    "name": "Heat Lance",
+                    "ranged": "Heat Lance"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1859,27 +1740,33 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Splinter Pistol",
-            "melee": "Hekatarii Blade"
-          }
-        ]
-      },
-      {
-        "name": "Blast Pistol",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Blast Pistol",
-            "melee": "Hekatarii Blade"
-          },
-          {
+            "name": "Wych",
             "count": 9,
             "ranged": "Splinter Pistol",
             "melee": "Hekatarii Blade"
+          },
+          {
+            "name": "Hekatrix",
+            "count": 1,
+            "melee": "Hekatarii Blade",
+            "slots": [
+              {
+                "name": "Pistol Choice",
+                "choices": [
+                  {
+                    "name": "Splinter Pistol",
+                    "ranged": "Splinter Pistol"
+                  },
+                  {
+                    "name": "Blast Pistol",
+                    "ranged": "Blast Pistol"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }

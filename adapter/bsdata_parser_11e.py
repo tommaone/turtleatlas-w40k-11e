@@ -938,6 +938,73 @@ class BSDataParser11e:
         return "ability"
 
     @staticmethod
+    def _weapon_categories(entry: dict) -> set[str]:
+        """ALL weapon categories present in an entry's inline profiles.
+
+        Dual-profile weapons (Singing Spear: Ranged + Melee, Chainsabres:
+        Melee + Ranged) return BOTH categories. The first-profile convention
+        only applies when a weapon is single-category — a Warlock with a
+        Singing Spear ALWAYS has the spear's melee profile too.
+        """
+        cats: set[str] = set()
+        for p in entry.get("profiles", []):
+            ptype = p.get("typeName", "")
+            if "Ranged" in ptype:
+                cats.add("ranged")
+            elif "Melee" in ptype:
+                cats.add("melee")
+        return cats
+
+    def _resolve_entry_category(self, entry: dict, entry_index: dict[str, dict]) -> str:
+        """Categorize a wargear entry as 'ranged'/'melee'/'ability', resolving
+        infoLink profile references (11e pattern: the weapon profile lives in
+        sharedProfiles and the SE carries only an infoLink of type=profile,
+        e.g. Harlequin's Blade on Troupe players).
+
+        Falls back to _weapon_category for entries with inline profiles.
+        """
+        cat = self._weapon_category(entry)
+        if cat != "ability":
+            return cat
+        for il in entry.get("infoLinks", []) or []:
+            if il.get("type") != "profile":
+                continue
+            tid = il.get("targetId", "")
+            target = entry_index.get(tid) if tid else None
+            if target is None:
+                continue
+            ptype = target.get("typeName", "")
+            if "Ranged" in ptype:
+                return "ranged"
+            if "Melee" in ptype:
+                return "melee"
+        return "ability"
+
+    def _resolve_entry_categories(self, entry: dict, entry_index: dict[str, dict]) -> set[str]:
+        """ALL categories of a wargear entry, resolving infoLink profile refs.
+
+        Dual-profile entries (Singing Spear, Chainsabres) return BOTH
+        categories so callers emit the weapon in both the ranged and melee
+        lists — the loader resolves the correct profile per list context.
+        """
+        cats = self._weapon_categories(entry)
+        if cats:
+            return cats
+        for il in entry.get("infoLinks", []) or []:
+            if il.get("type") != "profile":
+                continue
+            tid = il.get("targetId", "")
+            target = entry_index.get(tid) if tid else None
+            if target is None:
+                continue
+            ptype = target.get("typeName", "")
+            if "Ranged" in ptype:
+                cats.add("ranged")
+            elif "Melee" in ptype:
+                cats.add("melee")
+        return cats
+
+    @staticmethod
     def _weapon_category_deep(entry: dict, depth: int = 0) -> str:
         """Classify an entry, walking nested selectionEntries for the profile.
 
@@ -1539,6 +1606,10 @@ class BSDataParser11e:
             return result
         # Augment existing units.
         for uname, udata in list(result.items()):
+            # Squad composition builds (models[] with per-model slots) are
+            # complete — never collapse them into a merged default build.
+            if any("models" in b for b in udata.get("builds", [])):
+                continue
             key = self._norm_name(uname)
             mw = merged_map.get(key)
             if not mw:
@@ -1741,12 +1812,321 @@ class BSDataParser11e:
                 if builds:
                     result[name] = {"builds": builds}
 
+        # Squad model-composition units (no Wargear group — e.g. Dark Reapers,
+        # Howling Banshees) are parsed from their sibling-SEG structure into
+        # per-model builds with per-model slots. These are complete and MUST
+        # not be clobbered by the merged-data augment below.
+        composition = self._extract_squad_composition(roots, entry_index)
+        for cname, cdata in composition.items():
+            if cname not in result:
+                result[cname] = cdata
+
         # Augment BSData constraints with the merged-data FIXED weapon lists.
         # BSData wargear groups miss many fixed weapons (model profiles / shared
         # entryLinks); merged data carries the fully-resolved weapon list.
         self._augment_from_merged(result, self._load_merged_weapon_map(faction_name))
 
         return result
+
+    def extract_squad_composition(self, faction_name: str) -> dict[str, dict]:
+        """Public: squad model-composition builds for a faction (unit -> builds).
+
+        See _extract_squad_composition for the output shape. Mirrors what
+        NewRecruit consumes: per-model-type entries with fixed weapons and
+        per-model choose-one slots.
+        """
+        cat = self._resolve_faction_catalogue(faction_name)
+        if cat is None:
+            return {}
+        roots = self._load_catalogue_roots(cat, include_linked=True)
+        entry_index = self._build_entry_index(roots)
+        return self._extract_squad_composition(roots, entry_index)
+
+    def _extract_squad_composition(self, roots: list[dict],
+                                   entry_index: dict[str, dict]) -> dict[str, dict]:
+        """Extract squad model-composition builds for units with the sibling-SEG
+        pattern: top-level selectionEntryGroups that nest type=model SEs.
+
+        Returns: {
+            "Dark Reapers": {"builds": [{
+                "name": "Default",
+                "models": [
+                    {"name": "Dark Reaper", "count": 1, "min": 4, "max": 9,
+                     "ranged": "Reaper Launcher", "melee": "Close combat weapon",
+                     "slots": []},
+                    {"name": "Dark Reaper Exarch", "count": 1, "min": 1, "max": 1,
+                     "melee": "Close combat weapon",
+                     "slots": [{"name": "Weapon", "choices": [
+                         {"name": "Reaper Launcher", "ranged": "Reaper Launcher"},
+                         {"name": "Shuriken Cannon", "ranged": "Shuriken Cannon"}]}]}
+                ]
+            }]}
+        }
+        Counts are placeholders (1 per model type); the generator derives the
+        concrete per-type counts from the squad size n.
+        """
+        result: dict[str, dict] = {}
+        for root in roots:
+            for entry in root.get("sharedSelectionEntries", []):
+                if entry.get("type") != "unit":
+                    continue
+                name = entry.get("name", "")
+                if entry.get("hidden") == "true" or not name:
+                    continue
+                # Composition pattern: top-level SEGs that nest type=model SEs
+                # (Dark Reapers) OR direct type=model SEs on the unit entry
+                # (Rangers). Both mean "this unit is a squad of model types".
+                # Model pools may sit one SEG deeper (Corsair Voidscarred: the
+                # '4-9 Voidscarred' SEG nests a 'Voidscarred' SEG holding the
+                # base variants); recurse to collect them.
+                model_seg = []
+                seg_min_owners: dict[str, int] = {}
+
+                def _collect_models(seg_list: list[dict], depth: int = 0) -> None:
+                    for seg in seg_list:
+                        if seg.get("hidden") == "true":
+                            continue
+                        seg_min = None
+                        for c in seg.get("constraints", []):
+                            if (c.get("field") == "selections"
+                                    and c.get("type") == "min"):
+                                seg_min = c.get("value")
+                        for se in seg.get("selectionEntries", []):
+                            if se.get("hidden") != "true" and se.get("type") == "model":
+                                # A NESTED SEG's min is a per-pool constraint
+                                # (at least N models from this pool), not the
+                                # squad size — remember it for the alloc model.
+                                if depth > 0 and seg_min is not None:
+                                    seg_min_owners[se.get("id", "")] = seg_min
+                                model_seg.append(se)
+                        _collect_models(seg.get("selectionEntryGroups", []),
+                                        depth + 1)
+
+                _collect_models(entry.get("selectionEntryGroups", []))
+                for se in entry.get("selectionEntries", []):
+                    if se.get("hidden") != "true" and se.get("type") == "model":
+                        model_seg.append(se)
+                if not model_seg:
+                    continue
+                models = []
+                for se in model_seg:
+                    m = self._parse_composition_model(se, entry_index,
+                                                      seg_min_owners.get(se.get("id", "")))
+                    if m is not None:
+                        models.append(m)
+                if not models:
+                    continue
+                result[name] = {"builds": [{"name": "Default", "models": models}]}
+        return result
+
+    def _parse_composition_model(self, se: dict, entry_index: dict[str, dict],
+                                 pool_min: int | None = None) -> dict | None:
+        """Parse one type=model SE into a per-model entry.
+
+        Fixed weapons come from own selectionEntries (upgrade SEs with weapon
+        profiles, e.g. Dark Reaper: Reaper Launcher + Close combat weapon) and
+        own entryLinks (e.g. Dire Avenger: Avenger shuriken catapult). Slots
+        come from own selectionEntryGroups — each nested group is one
+        choose-one slot on that model type (e.g. Exarch "Weapon(s)").
+
+        Multiple fixed weapons per type are kept as a LIST on ranged/melee
+        (e.g. Warlock: Shuriken Pistol + Destructor; Voidscarred base:
+        Shuriken Pistol + Fusion pistol); single weapons stay a string. The
+        engine sums all ranged and reduces melee to the best per model.
+
+        pool_min: a nested SEG's min constraint (at least N models must come
+        from this pool, e.g. Voidscarred's base pool min=4). Recorded on the
+        model so the generator can carry it into the alloc payload.
+        """
+        model: dict = {"name": se.get("name", ""), "count": 1}
+        min_c = None
+        max_c = None
+        for c in se.get("constraints", []):
+            if c.get("field") != "selections":
+                continue
+            if c.get("type") == "min":
+                min_c = c.get("value")
+            elif c.get("type") == "max":
+                max_c = c.get("value")
+        if min_c is not None:
+            model["min"] = min_c
+        if max_c is not None:
+            model["max"] = max_c
+        if pool_min is not None:
+            model["pool_min"] = pool_min
+
+        fixed_r: list[str] = []
+        fixed_m: list[str] = []
+        # Own upgrade SEs (inline weapon profiles, or infoLink profile refs)
+        for sub in se.get("selectionEntries", []):
+            if sub.get("hidden") == "true":
+                continue
+            cats = self._resolve_entry_categories(sub, entry_index)
+            sname = self._strip_arrow(sub.get("name", ""))
+            if "ranged" in cats:
+                fixed_r.append(sname)
+            if "melee" in cats:
+                fixed_m.append(sname)
+        # Own entryLinks (shared weapon SEs)
+        for el in se.get("entryLinks", []):
+            if el.get("hidden") == "true":
+                continue
+            if self._resolve_shared_group_target(el, entry_index) is not None:
+                continue
+            cats = set()
+            tid = el.get("targetId", "")
+            if tid:
+                target = entry_index.get(tid)
+                if target is not None:
+                    cats = self._resolve_entry_categories(target, entry_index)
+            if not cats:
+                cats = self._resolve_entry_categories(el, entry_index)
+            ename = self._strip_arrow(el.get("name", ""))
+            if "ranged" in cats:
+                fixed_r.append(ename)
+            if "melee" in cats:
+                fixed_m.append(ename)
+        fixed_r = list(dict.fromkeys(x for x in fixed_r if x))
+        fixed_m = list(dict.fromkeys(x for x in fixed_m if x))
+        # Single weapon per type stays a string (existing schema); multiple
+        # fixed weapons per type become a list — the engine sums ranged and
+        # reduces melee to the best per model.
+        if fixed_r:
+            model["ranged"] = fixed_r[0] if len(fixed_r) == 1 else fixed_r
+        if fixed_m:
+            model["melee"] = fixed_m[0] if len(fixed_m) == 1 else fixed_m
+
+        slots: list[dict] = []
+        for group in se.get("selectionEntryGroups", []):
+            if group.get("hidden") == "true":
+                continue
+            default_id = group.get("defaultSelectionEntryId", "")
+            choices: list[dict] = []
+            for el in group.get("entryLinks", []):
+                if el.get("hidden") == "true":
+                    continue
+                if self._resolve_shared_group_target(el, entry_index) is not None:
+                    continue
+                choice = self._resolve_model_choice_payload(el, entry_index,
+                                                            is_entry_link=True)
+                if choice:
+                    if default_id and el.get("targetId") == default_id:
+                        choice["default"] = True
+                    choices.append(choice)
+            for ch in group.get("selectionEntries", []):
+                if ch.get("hidden") == "true":
+                    continue
+                choice = self._resolve_model_choice_payload(ch, entry_index,
+                                                            is_entry_link=False)
+                if choice:
+                    if default_id and ch.get("id") == default_id:
+                        choice["default"] = True
+                    choices.append(choice)
+            if choices:
+                slots.append({"name": group.get("name", ""), "choices": choices})
+        if slots:
+            model["slots"] = slots
+
+        # A model with no fixed weapons AND no slots carries nothing (e.g. a
+        # pure-ability wrapper) — skip it rather than emit a dead entry.
+        if not fixed_r and not fixed_m and not slots:
+            return None
+        return model
+
+    def _resolve_model_choice_payload(self, choice: dict, entry_index: dict[str, dict],
+                                      is_entry_link: bool = False) -> dict | None:
+        """Resolve one model-slot choice option into a bundle payload.
+
+        A choice may be a single weapon (entryLink to a shared weapon SE, or an
+        upgrade SE with a weapon profile) or a bundle (entryLinks + own SEs,
+        e.g. 'Banshee Blade and Shuriken Pistol'). The payload is the resolved
+        weapon package: {"name", "ranged"?, "melee"?, "ranged_count"?,
+        "melee_count"?}. Ability-only choices (e.g. Shimmershield alone) return
+        None. Counts come from constraints min>1 (e.g. 2x Avenger shuriken
+        catapult).
+        """
+        ranged: list[str] = []
+        melee: list[str] = []
+        ranged_count = 1
+        melee_count = 1
+        # A dual-profile weapon name (BSData artifact, e.g. Chainsabres and
+        # Singing Spear carry Melee + Ranged profiles with the same name)
+        # lands in BOTH the ranged and melee lists — the engine loads the
+        # matching profile per list context (loader `category` param).
+        seen_categories: dict[str, set] = {}
+
+        def add_weapon(name: str, cat: str, cnt: int) -> None:
+            nonlocal ranged_count, melee_count
+            if not name or cat not in ("ranged", "melee"):
+                return
+            name = self._strip_mode_suffix(self._strip_arrow(name))
+            cats = seen_categories.setdefault(name, set())
+            cats.add(cat)
+            if "ranged" in cats and name not in ranged:
+                ranged.append(name)
+                if cnt > ranged_count:
+                    ranged_count = cnt
+            if "melee" in cats and name not in melee:
+                melee.append(name)
+                if cnt > melee_count:
+                    melee_count = cnt
+
+        # Own profiles (e.g. Mirrorswords profile on the choice SE itself)
+        for p in choice.get("profiles", []):
+            ptype = p.get("typeName", "")
+            pname = p.get("name", "")
+            if "Ranged" in ptype:
+                add_weapon(pname, "ranged", 1)
+            elif "Melee" in ptype:
+                add_weapon(pname, "melee", 1)
+
+        # Own selectionEntries (upgrade SEs with profiles)
+        for sub in choice.get("selectionEntries", []):
+            if sub.get("hidden") == "true":
+                continue
+            cats = self._resolve_entry_categories(sub, entry_index)
+            sname = self._strip_arrow(sub.get("name", ""))
+            cnt = self._get_selection_count(sub)
+            if "ranged" in cats:
+                add_weapon(sname, "ranged", cnt)
+            if "melee" in cats:
+                add_weapon(sname, "melee", cnt)
+
+        # entryLinks — either the choice IS an entryLink, or it nests them
+        sources = [choice] if is_entry_link else choice.get("entryLinks", [])
+        for el in sources:
+            if el.get("hidden") == "true":
+                continue
+            if self._resolve_shared_group_target(el, entry_index) is not None:
+                continue
+            cats = set()
+            tid = el.get("targetId", "")
+            if tid:
+                target = entry_index.get(tid)
+                if target is not None:
+                    cats = self._resolve_entry_categories(target, entry_index)
+            if not cats:
+                cats = self._resolve_entry_categories(el, entry_index)
+            ename = self._strip_arrow(el.get("name", ""))
+            cnt = self._get_selection_count(el)
+            if "ranged" in cats:
+                add_weapon(ename, "ranged", cnt)
+            if "melee" in cats:
+                add_weapon(ename, "melee", cnt)
+
+        if not ranged and not melee:
+            return None
+
+        payload: dict = {"name": self._strip_arrow(choice.get("name", ""))}
+        if ranged:
+            payload["ranged"] = ranged[0]
+            if ranged_count > 1:
+                payload["ranged_count"] = ranged_count
+        if melee:
+            payload["melee"] = melee[0]
+            if melee_count > 1:
+                payload["melee_count"] = melee_count
+        return payload
 
     def query_faction(self, faction_name: str, include_legends: bool = False) -> dict | None:
         """Return full data for a faction, including linked catalogues."""

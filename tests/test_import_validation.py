@@ -417,20 +417,24 @@ class TestAllBuildsResolve:
                                     failures.append(
                                         f"{faction}/{unit} ({fn}) "
                                         f"choice='{w}': {e}")
-                        # Per-model weapons inside squad builds
+                        # Per-model weapons inside squad builds. ranged/melee
+                        # may be a string (single fixed weapon) or a list
+                        # (multiple fixed weapons, e.g. Warlock: Shuriken
+                        # Pistol + Destructor).
                         for m in b.get("models", []):
                             if not isinstance(m, dict):
                                 continue
                             for wl_key in ("ranged", "melee"):
                                 w = m.get(wl_key)
-                                if not w:
-                                    continue
-                                try:
-                                    eng.W(w, unit_name=unit)
-                                except Exception as e:
-                                    failures.append(
-                                        f"{faction}/{unit} ({fn}) "
-                                        f"models[{wl_key}]='{w}': {e}")
+                                if isinstance(w, str):
+                                    w = [w]
+                                for wn in w or []:
+                                    try:
+                                        eng.W(wn, unit_name=unit)
+                                    except Exception as e:
+                                        failures.append(
+                                            f"{faction}/{unit} ({fn}) "
+                                            f"models[{wl_key}]='{wn}': {e}")
         # Cut the failure list to a useful size in the assertion message
         shown = failures[:50]
         assert not failures, (

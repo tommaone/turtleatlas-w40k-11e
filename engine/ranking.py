@@ -246,6 +246,39 @@ def _best_melee(weapons, target, modifier, melta_active, heavy_stationary, hit_m
     )
 
 
+def _reduce_squad_melee(melee: list, target, modifier: Optional[WeaponModifier] = None,
+                        melta_active: bool = False, heavy_stationary: bool = False,
+                        hit_mode: HitMode = HitMode.NORMAL) -> list:
+    """Reduce a model's fixed melee weapons to the squad contract: one
+    non-Extra-Attacks weapon per model (all [EA] weapons kept, added on top).
+    Mirrors _ld_dmg's melee rule [24.11] so a model with [Power sword, Close
+    Combat Weapon] contributes only its best weapon.
+    """
+    if len(melee) <= 1:
+        return melee
+    ea = [w for w in melee if "Extra Attacks" in w.abilities or "Extra Attack" in w.abilities]
+    others = [w for w in melee if w not in ea]
+    if not others:
+        return melee
+    best = max(others, key=lambda w: _wp_dmg(w, target, modifier, melta_active=melta_active,
+                                             heavy_stationary=heavy_stationary,
+                                             hit_mode=hit_mode))
+    return ea + [best]
+
+
+def _best_alloc_index(metas: list[dict], alloc_n: list[int], indices) -> int:
+    """Index of the highest-damage alloc variant among indices with spare
+    capacity (cap = its max, or unlimited when max is absent).
+    """
+    best_i, best_d = -1, -1
+    for i in indices:
+        m = metas[i]
+        cap = m["max"] if m["max"] is not None else float("inf")
+        if alloc_n[i] < cap and m["dmg"] > best_d:
+            best_i, best_d = i, m["dmg"]
+    return best_i
+
+
 def _wp_dmg(wp, target, modifier: Optional[WeaponModifier] = None,
             melta_active: bool = False, heavy_stationary: bool = False, hit_mode: HitMode = HitMode.NORMAL):
     """Damage for a single weapon against target (single or weighted list)."""
@@ -435,27 +468,186 @@ class RankingEngine:
 
     # ── Loadout resolution ────────────────────────────────────────────
 
-    def _eval_squad_build(self, build, unit_name):
+    def _best_choice_combo(self, base_r: list, base_m: list, slots, unit_name: str,
+                           target) -> tuple[list, list]:
+        """Pick the best bundle combo for a model/choice with slots.
+
+        Each slot is choose-one over choices; bundles override the base
+        weapons for the types present. Returns (best_ranged, best_melee).
+        With no slots or no target, returns the base loadout unchanged.
+        """
+        if not slots or target is None:
+            return base_r, base_m
+        import itertools
+        slot_choice_lists = [s["choices"] for s in slots]
+        best_d, best_r, best_m = -1, None, None
+        for combo in itertools.product(*slot_choice_lists):
+            combo_r = list(base_r)
+            combo_m = list(base_m)
+            skip = False
+            for choice in combo:
+                try:
+                    if "ranged" in choice:
+                        combo_r = [self.W(choice["ranged"], unit_name=unit_name,
+                                          count=1, category="ranged")
+                                   for _ in range(choice.get("ranged_count", 1) or 1)]
+                    if "melee" in choice:
+                        combo_m = [self.W(choice["melee"], unit_name=unit_name,
+                                          count=1, category="melee")
+                                   for _ in range(choice.get("melee_count", 1) or 1)]
+                except KeyError:
+                    skip = True
+                    break
+            if skip:
+                continue
+            d = _ld_dmg(combo_r, combo_m, [], target, n_models=1)
+            if d > best_d:
+                best_d, best_r, best_m = d, combo_r, combo_m
+        if best_r is None:
+            return base_r, base_m
+        return best_r, best_m
+
+    def _resolve_alloc_model(self, model: dict, unit_name: str, target,
+                             ranged: list, melee: list, alloc_info: list) -> None:
+        """Distribute the squad budget across parallel-variant choices.
+
+        Parallel variants (Troupe players, Windriders, Storm Guardians) share
+        the squad's model budget. Each variant contributes independent
+        per-model damage, so the optimal allocation is greedy: fill per-variant
+        minimums first, then assign remaining models to the highest-damage
+        variant with spare capacity.
+        """
+        count = model.get("count", 0)
+        if count <= 0:
+            return
+        choices = model.get("alloc", []) or []
+        metas = []
+        for ch in choices:
+            r_names = ch.get("ranged") or []
+            m_names = ch.get("melee") or []
+            if isinstance(r_names, str):
+                r_names = [r_names]
+            if isinstance(m_names, str):
+                m_names = [m_names]
+            base_r = [self.W(rn, unit_name=unit_name, count=1, category="ranged") for rn in r_names]
+            base_m = [self.W(mn, unit_name=unit_name, count=1, category="melee") for mn in m_names]
+            try:
+                ch_r, ch_m = self._best_choice_combo(base_r, base_m, ch.get("slots"),
+                                                     unit_name, target)
+                if target is not None:
+                    ch_m = _reduce_squad_melee(ch_m, target)
+                dmg = _ld_dmg(ch_r, ch_m, [], target, n_models=1) if target is not None else 0
+            except KeyError:
+                dmg = -1
+                ch_r, ch_m = [], []
+            metas.append({"name": ch.get("name", ""), "ranged": ch_r, "melee": ch_m,
+                          "dmg": dmg, "min": ch.get("min", 0) or 0, "max": ch.get("max"),
+                          "pool_min": ch.get("pool_min", 0) or 0})
+        alloc_n = [0] * len(metas)
+        remaining = count
+        # Per-variant minimums (e.g. Ynnari Reaver min=2) fill first.
+        for i, m in enumerate(metas):
+            take = min(m["min"], remaining)
+            alloc_n[i] = take
+            remaining -= take
+        # Nested pool minimums (e.g. Voidscarred base pool min=4): variants
+        # sharing a pool_min must together contribute at least that many.
+        pools: dict[int, list[int]] = {}
+        for i, m in enumerate(metas):
+            if m["pool_min"]:
+                pools.setdefault(m["pool_min"], []).append(i)
+        for pool_min, members in pools.items():
+            while sum(alloc_n[i] for i in members) < pool_min and remaining > 0:
+                best_i = _best_alloc_index(metas, alloc_n, members)
+                if best_i < 0:
+                    break
+                alloc_n[best_i] += 1
+                remaining -= 1
+        # Remaining budget → highest-damage variant with spare capacity.
+        while remaining > 0:
+            best_i = _best_alloc_index(metas, alloc_n, range(len(metas)))
+            if best_i < 0:
+                break
+            alloc_n[best_i] += 1
+            remaining -= 1
+        used = [(metas[i]["name"], alloc_n[i])
+                for i in range(len(metas)) if alloc_n[i] > 0]
+        if used:
+            alloc_info.append((model.get("name", "Model"), used))
+        for i, m in enumerate(metas):
+            for _ in range(alloc_n[i]):
+                ranged.extend(m["ranged"])
+                melee.extend(m["melee"])
+
+    def _alloc_combo_space(self, choices: list[dict], count: int) -> int:
+        """Count the loadout space of an alloc model: bounded compositions of
+        `count` across the variant choices (each capped by its max).
+        """
+        if count <= 0 or not choices:
+            return 1
+        dp = [0] * (count + 1)
+        dp[0] = 1
+        for ch in choices:
+            cap = ch.get("max")
+            if cap is None:
+                cap = count
+            new = [0] * (count + 1)
+            for m in range(count + 1):
+                for t in range(min(cap, m) + 1):
+                    new[m] += dp[m - t]
+            dp = new
+        return dp[count]
+
+    def _eval_squad_build(self, build, unit_name, target=None):
         """Evaluate one explicit build for a squad.
 
         Each build has a 'models' array: [{count, ranged, melee}, ...]
+        Models may carry per-model 'slots' (choose-one groups, mirroring BSData
+        composition): the best combo of slot choices is picked independently
+        per model type (squad damage sums over models) and each choice's bundle
+        payload ({ranged, melee}) OVERRIDES that model's top-level weapons for
+        the types present.
+
+        Models may instead carry 'alloc' (parallel variants): the count is a
+        budget distributed across the variant choices (see _resolve_alloc_model).
+
         Returns {"ranged": [...], "melee": [...], "innate": [], "_build": build_dict}
         with one weapon entry per model (count models × each weapon).
         """
         ranged, melee, innate = [], [], []
+        alloc_info = []
         for model in build["models"]:
+            if model.get("alloc"):
+                self._resolve_alloc_model(model, unit_name, target, ranged, melee, alloc_info)
+                continue
             count = model.get("count", 1)
-            r_name = model.get("ranged")
-            m_name = model.get("melee")
+            r_names = model.get("ranged") or []
+            m_names = model.get("melee") or []
+            if isinstance(r_names, str):
+                r_names = [r_names]
+            if isinstance(m_names, str):
+                m_names = [m_names]
             r_kw = {}
             if "ranged_a" in model:
                 r_kw["a"] = model["ranged_a"]
+            base_r = [self.W(rn, unit_name=unit_name, count=1, category="ranged", **r_kw)
+                      for rn in r_names]
+            base_m = [self.W(mn, unit_name=unit_name, count=1, category="melee") for mn in m_names]
+
+            # Per-model slots: pick the best bundle combo for this model type.
+            best_r, best_m = self._best_choice_combo(base_r, base_m, model.get("slots"),
+                                                     unit_name, target)
+            # Fixed melee may list several weapons (Power sword + CCW): the
+            # squad damage contract is one non-EA melee weapon per model.
+            if target is not None:
+                best_m = _reduce_squad_melee(best_m, target)
             for _ in range(count):
-                if r_name:
-                    ranged.append(self.W(r_name, unit_name=unit_name, count=1, **r_kw))
-                if m_name:
-                    melee.append(self.W(m_name, unit_name=unit_name, count=1))
-        return {"ranged": ranged, "melee": melee, "innate": innate, "_build": build}
+                ranged.extend(best_r)
+                melee.extend(best_m)
+        result = {"ranged": ranged, "melee": melee, "innate": innate, "_build": build}
+        if alloc_info:
+            result["_alloc_info"] = alloc_info
+        return result
 
     def _best_squad_variant(self, name, target, mode=None):
         """Find optimal build for a squad vs a target.
@@ -486,7 +678,7 @@ class RankingEngine:
             )
         best, best_dpp = None, -1
         for build in builds:
-            ld = self._eval_squad_build(build, unit_name)
+            ld = self._eval_squad_build(build, unit_name, target=target)
             # Squad-level innate weapons (e.g. Purifying Flame on every
             # Purifier model) apply once per model — mirror the legacy path.
             if cfg.get("innate"):
@@ -500,6 +692,16 @@ class RankingEngine:
                 best = ld
 
         if best:
+            # Combo space = builds × per-model slot combos (e.g. Dark Reapers
+            # exarch Weapon slot explores 4 choices → 4 combos, not 1) × alloc
+            # distributions for parallel-variant models (bounded compositions).
+            slot_combos = 1
+            for m in best.get("_build", {}).get("models", []):
+                for slot in m.get("slots", []) or []:
+                    slot_combos *= max(1, len(slot.get("choices", []) or []))
+                if m.get("alloc"):
+                    slot_combos *= self._alloc_combo_space(m["alloc"], m.get("count", 0))
+            n_combos = len(builds) * slot_combos
             best["_n_combos"] = n_combos
             # Build description with per-model breakdown
             r_counts = {}
@@ -520,11 +722,22 @@ class RankingEngine:
 
             # Human-readable model list from the winning build
             build_info = best.get("_build", {})
+            alloc_info = best.get("_alloc_info", [])
+            alloc_by_name = {name: used for name, used in alloc_info}
             model_parts = []
             for m in build_info.get("models", []):
                 count = m.get("count", 1)
+                if m.get("alloc"):
+                    used = alloc_by_name.get(m.get("name"), [])
+                    inner = ", ".join(f"{n}×{cname}" for cname, n in used) if used else "-"
+                    model_parts.append(f"{count}×{m.get('name', 'Model')}[{inner}]")
+                    continue
                 r = m.get("ranged", "-")
                 me = m.get("melee", "-")
+                if isinstance(r, list):
+                    r = "+".join(r)
+                if isinstance(me, list):
+                    me = "+".join(me)
                 model_parts.append(f"{count}×{r}+{me}")
             parts = ["Models: " + ", ".join(model_parts)]
             parts.append(f"[best of {n_combos} builds vs {tag}, DPP/model={best_dpp:.4f}]")

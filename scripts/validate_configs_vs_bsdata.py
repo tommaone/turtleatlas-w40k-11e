@@ -192,12 +192,42 @@ def _add_build_weapons(build: dict, names: set[str]) -> None:
         for c in slot.get("choices", []) or []:
             if c.get("name"):
                 names.add(c["name"])
-    # Squad builds with models array
+    # Squad builds with models array. ranged/melee may be a string (single
+    # fixed weapon) or a list (multiple fixed weapons, e.g. Warlock:
+    # Shuriken Pistol + Destructor).
     for m in build.get("models", []) or []:
-        if m.get("ranged"):
-            names.add(m["ranged"])
-        if m.get("melee"):
-            names.add(m["melee"])
+        for key in ("ranged", "melee"):
+            val = m.get(key)
+            if isinstance(val, str):
+                names.add(val)
+            elif isinstance(val, list):
+                for v in val:
+                    names.add(v)
+        # Parallel-variant alloc models: choices carry variant loadouts
+        for ch in m.get("alloc", []) or []:
+            for key in ("ranged", "melee"):
+                val = ch.get(key)
+                if isinstance(val, str):
+                    names.add(val)
+                elif isinstance(val, list):
+                    for v in val:
+                        names.add(v)
+            for slot in ch.get("slots", []) or []:
+                for c in slot.get("choices", []) or []:
+                    if c.get("ranged"):
+                        names.add(c["ranged"])
+                    if c.get("melee"):
+                        names.add(c["melee"])
+        # Per-model slots: choices carry resolved bundle payloads
+        # ({name, ranged?, melee?}). The payload weapon names are real
+        # catalog weapons; the display name may be a bundle label
+        # ('Banshee Blade and Shuriken Pistol') that is NOT a catalog key.
+        for slot in m.get("slots", []) or []:
+            for c in slot.get("choices", []) or []:
+                if c.get("ranged"):
+                    names.add(c["ranged"])
+                if c.get("melee"):
+                    names.add(c["melee"])
 
 
 def extract_config_weapon_names(unit_cfg: dict) -> set[str]:

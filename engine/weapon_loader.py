@@ -208,6 +208,7 @@ class WeaponCatalog:
         a: float | None = None,
         abilities: list[str] | None = None,
         count: int | None = None,
+        category: str | None = None,
     ) -> WeaponProfile:
         """Load a weapon profile from the catalog.
 
@@ -223,6 +224,10 @@ class WeaponCatalog:
                    per model, so they MUST pass count=1 — the catalog count is
                    a datasheet-level "models with this weapon" group size and
                    would double-count when profiles are already expanded.
+            category: "ranged" or "melee" — select the matching profile of a
+                   DUAL-profile weapon (e.g. Singing Spear: Ranged + Melee,
+                   Chainsabres: Melee + Ranged) by list context. Without it,
+                   the FIRST profile wins (Singing Spear -> ranged).
 
         Returns:
             WeaponProfile namedtuple.
@@ -285,6 +290,19 @@ class WeaponCatalog:
                      if e["stats"].get("Keywords", "-").strip() in ("-", "")]
             if plain:
                 entries = plain
+
+        # Dual-profile weapons (Singing Spear: Ranged + Melee, Chainsabres:
+        # Melee + Ranged) share one catalog key with one entry per profile.
+        # When the caller knows the list context, load the matching profile —
+        # otherwise the FIRST profile wins.
+        if category:
+            cat_lower = category.strip().lower()
+            cat_entries = [
+                e for e in entries
+                if cat_lower in e.get("type_name", "").lower()
+            ]
+            if cat_entries:
+                entries = cat_entries
 
         entry = entries[0]  # Take first matching entry
         stats = entry["stats"]
