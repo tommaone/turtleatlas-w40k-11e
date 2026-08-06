@@ -4903,56 +4903,6 @@
       ]
     },
     {
-      "name": "Champion of the Chapter [Crucible]",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Champion of the Chapter [Crucible]",
-        "points": 70,
-        "stats": {
-          "M": "6\"",
-          "T": "4",
-          "Sv": "3+",
-          "W": "4",
-          "LD": "6+",
-          "OC": "1",
-          "InSv": ""
-        },
-        "keywords": [
-          "Character",
-          "Infantry",
-          "Grenades",
-          "Imperium",
-          "Champion of the Chapter",
-          "Tacticus",
-          "Faction: Adeptus Astartes",
-          "Crucible"
-        ],
-        "abilities": [
-          {
-            "name": "Exemplar Warrior",
-            "description": "Once per turn, when this model's unit is selected to shoot or fight, it can use this ability. If it does, until the end of the phase, each time this model makes an attack, you can re-roll the Wound Roll."
-          },
-          {
-            "name": "Leader",
-            "description": "This model can be attached to the following units:\n- **^^Tacticus^^** (Excluding ^^**Character^^** and **^^Fly**^^)\n- **^^Tactical Squad^^**"
-          }
-        ],
-        "weapons": [],
-        "rules": [
-          "Oath of Moment",
-          "Templar Vows",
-          "Leader",
-          "Crucible"
-        ]
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
       "name": "Chaplain",
       "in_bsdata": true,
       "in_mfm": true,
@@ -6478,6 +6428,440 @@
             ]
           },
           {
+            "name": "Deathwatch Terminator w/ Heavy Weapon",
+            "profiles": [
+              {
+                "name": "Assault Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              },
+              {
+                "name": "Power Fist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Heavy flamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              },
+              {
+                "name": "Power Fist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Plasma cannon - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Plasma cannon - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Blast, Hazardous"
+                }
+              },
+              {
+                "name": "Power fist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Cyclone missile launcher - frag",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "2D6",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Cyclone missile launcher - krak",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "D6",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Storm bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              },
+              {
+                "name": "Power fist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Chainfist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "8+",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Anti-Vehicle 3+"
+                }
+              },
+              {
+                "name": "Assault Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              },
+              {
+                "name": "Power Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Assault Cannon",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "6",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Devastating Wounds"
+                }
+              },
+              {
+                "name": "Chainfist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "8+",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Anti-Vehicle 3+"
+                }
+              },
+              {
+                "name": "Heavy flamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              },
+              {
+                "name": "Power Weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Heavy flamer",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "D6",
+                  "BS": "N/A",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Ignores Cover, Torrent"
+                }
+              },
+              {
+                "name": "Plasma cannon - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Plasma cannon - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Blast, Hazardous"
+                }
+              },
+              {
+                "name": "Power weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Plasma cannon - standard",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Plasma cannon - supercharge",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "D3",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-3",
+                  "D": "2",
+                  "Keywords": "Blast, Hazardous"
+                }
+              },
+              {
+                "name": "Chainfist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Anti-Vehicle 3+"
+                }
+              },
+              {
+                "name": "Cyclone missile launcher - frag",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "2D6",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Cyclone missile launcher - krak",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "D6",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Storm bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              },
+              {
+                "name": "Chainfist",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "8",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Anti-Vehicle 3+"
+                }
+              },
+              {
+                "name": "Cyclone missile launcher - frag",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "2D6",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Blast"
+                }
+              },
+              {
+                "name": "Cyclone missile launcher - krak",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "9",
+                  "AP": "-2",
+                  "D": "D6",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Storm bolter",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              },
+              {
+                "name": "Power weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "4",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-2",
+                  "D": "1",
+                  "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
             "name": "Deathwatch Terminator Sergeant",
             "profiles": [
               {
@@ -6872,310 +7256,6 @@
           "points": 5
         }
       ]
-    },
-    {
-      "name": "Deathwatch Veteran w/ carbine",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Deathwatch Veteran w/ carbine",
-        "points": null,
-        "stats": {
-          "M": "6\"",
-          "T": "4",
-          "Sv": "3+",
-          "W": "2",
-          "LD": "6+",
-          "OC": "2",
-          "InSv": ""
-        },
-        "keywords": [
-          "Tacticus",
-          "Faction: Deathwatch"
-        ],
-        "abilities": [],
-        "weapons": [
-          {
-            "name": "Close combat weapon",
-            "profiles": [
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Special-issue bolt pistol",
-            "profiles": [
-              {
-                "name": "Special-issue bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "Pistol, Precision, Lethal Hits"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Deathwatch marksman bolt carbine",
-            "profiles": [
-              {
-                "name": "Deathwatch marksman bolt carbine",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "Heavy, Lethal Hits"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Combat knife",
-            "profiles": [
-              {
-                "name": "Combat knife",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "Precision"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": []
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
-      "name": "Deathwatch Veteran w/ heavy thunder hammer",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Deathwatch Veteran w/ heavy thunder hammer",
-        "points": null,
-        "stats": {
-          "M": "6\"",
-          "T": "4",
-          "Sv": "3+",
-          "W": "2",
-          "LD": "6+",
-          "OC": "2",
-          "InSv": ""
-        },
-        "keywords": [
-          "Tacticus",
-          "Faction: Deathwatch"
-        ],
-        "abilities": [],
-        "weapons": [
-          {
-            "name": "Bolt pistol",
-            "profiles": [
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Pistol, Lethal Hits"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Power weapon and Astartes shield",
-            "profiles": [
-              {
-                "name": "Power weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Sustained Hits 1"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Heavy thunder hammer",
-            "profiles": [
-              {
-                "name": "Heavy thunder hammer",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "4+",
-                  "S": "10",
-                  "AP": "-2",
-                  "D": "3",
-                  "Keywords": "Devastating Wounds"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": []
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
-      "name": "Deathwatch Veteran w/ stalker bolt rifle",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Deathwatch Veteran w/ stalker bolt rifle",
-        "points": null,
-        "stats": {
-          "M": "6\"",
-          "T": "4",
-          "Sv": "3+",
-          "W": "2",
-          "LD": "6+",
-          "OC": "2",
-          "InSv": ""
-        },
-        "keywords": [
-          "Tacticus",
-          "Faction: Deathwatch"
-        ],
-        "abilities": [],
-        "weapons": [
-          {
-            "name": "Bolt pistol",
-            "profiles": [
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Pistol, Lethal Hits"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Close combat weapon",
-            "profiles": [
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Stalker bolt rifle",
-            "profiles": [
-              {
-                "name": "Stalker bolt rifle",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "30\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Heavy, Lethal Hits, Precision"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Plasma incinerator",
-            "profiles": [
-              {
-                "name": "Plasma incinerator - Standard",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "7",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Assault, Heavy"
-                }
-              },
-              {
-                "name": "Plasma incinerator - Supercharge",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "8",
-                  "AP": "-3",
-                  "D": "2",
-                  "Keywords": "Assault, Hazardous, Heavy"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": []
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
     },
     {
       "name": "Deathwatch Veterans",
@@ -8749,830 +8829,6 @@
           ]
         }
       ],
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
-      "name": "Devastator Squad",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Devastator Squad",
-        "points": 120,
-        "stats": {
-          "M": "6\"",
-          "T": "4",
-          "Sv": "3+",
-          "W": "2",
-          "LD": "6+",
-          "OC": "1",
-          "InSv": ""
-        },
-        "keywords": [
-          "Infantry",
-          "Grenades",
-          "Imperium",
-          "Devastator Squad",
-          "Faction: Adeptus Astartes"
-        ],
-        "abilities": [
-          {
-            "name": "Signum",
-            "description": "Each time this unit Remains Stationary, until the start of your next Movement phase, ranged weapons equipped by models in this unit have the [IGNORES COVER] ability."
-          },
-          {
-            "name": "Armorium Cherub",
-            "description": "Once per battle, after making a Hit roll for a model in this unit, you can change that roll to an unmodified 6."
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Devastator Marine w/ Boltgun",
-            "profiles": [
-              {
-                "name": "Boltgun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Close-Quarters"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Devastator Marine w/ Heavy Weapon",
-            "profiles": [
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Close-Quarters"
-                }
-              },
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Heavy Bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "4+",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Heavy, Sustained Hits 1"
-                }
-              },
-              {
-                "name": "Lascannon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "1",
-                  "BS": "4+",
-                  "S": "12",
-                  "AP": "-3",
-                  "D": "D6+1",
-                  "Keywords": "Heavy"
-                }
-              },
-              {
-                "name": "Grav-cannon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "3",
-                  "BS": "4+",
-                  "S": "6",
-                  "AP": "-1",
-                  "D": "3",
-                  "Keywords": "Anti-vehicle 2+, Heavy"
-                }
-              },
-              {
-                "name": "Multi-melta",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "2",
-                  "BS": "4+",
-                  "S": "9",
-                  "AP": "-4",
-                  "D": "D6",
-                  "Keywords": "Heavy, Melta 2"
-                }
-              },
-              {
-                "name": "Plasma cannon - standard",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "D3",
-                  "BS": "4+",
-                  "S": "7",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Blast, Heavy"
-                }
-              },
-              {
-                "name": "Plasma cannon - supercharge",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "D3",
-                  "BS": "4+",
-                  "S": "8",
-                  "AP": "-3",
-                  "D": "2",
-                  "Keywords": "Blast, Heavy, Hazardous"
-                }
-              },
-              {
-                "name": "Missile Launcher - Frag",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "D6",
-                  "BS": "4+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Blast, Heavy"
-                }
-              },
-              {
-                "name": "Missile Launcher - Krak",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "1",
-                  "BS": "4+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "D6",
-                  "Keywords": "Heavy"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Heavy Bolter",
-            "profiles": [
-              {
-                "name": "Heavy Bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "4+",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Heavy, Sustained Hits 1"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Lascannon",
-            "profiles": [
-              {
-                "name": "Lascannon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "1",
-                  "BS": "4+",
-                  "S": "12",
-                  "AP": "-3",
-                  "D": "D6+1",
-                  "Keywords": "Heavy"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Grav-cannon",
-            "profiles": [
-              {
-                "name": "Grav-cannon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "3",
-                  "BS": "4+",
-                  "S": "6",
-                  "AP": "-1",
-                  "D": "3",
-                  "Keywords": "Anti-vehicle 2+, Heavy"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Multi-melta",
-            "profiles": [
-              {
-                "name": "Multi-melta",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "2",
-                  "BS": "4+",
-                  "S": "9",
-                  "AP": "-4",
-                  "D": "D6",
-                  "Keywords": "Heavy, Melta 2"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Plasma cannon",
-            "profiles": [
-              {
-                "name": "Plasma cannon - standard",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "D3",
-                  "BS": "4+",
-                  "S": "7",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Blast, Heavy"
-                }
-              },
-              {
-                "name": "Plasma cannon - supercharge",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "D3",
-                  "BS": "4+",
-                  "S": "8",
-                  "AP": "-3",
-                  "D": "2",
-                  "Keywords": "Blast, Heavy, Hazardous"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Missile Launcher",
-            "profiles": [
-              {
-                "name": "Missile Launcher - Frag",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "D6",
-                  "BS": "4+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Blast, Heavy"
-                }
-              },
-              {
-                "name": "Missile Launcher - Krak",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "1",
-                  "BS": "4+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "D6",
-                  "Keywords": "Heavy"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Devastator Sergeant",
-            "profiles": [
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Astartes Chainsword",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Close-Quarters"
-                }
-              },
-              {
-                "name": "Grav-pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Anti-vehicle 2+, Pistol"
-                }
-              },
-              {
-                "name": "Plasma pistol - supercharge",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "8",
-                  "AP": "-3",
-                  "D": "2",
-                  "Keywords": "Hazardous, Pistol"
-                }
-              },
-              {
-                "name": "Plasma pistol - standard",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "7",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Pistol"
-                }
-              },
-              {
-                "name": "Power fist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Thunder Hammer",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "4+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Devastating Wounds"
-                }
-              },
-              {
-                "name": "Power weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Astartes Chainsword",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Power fist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Thunder Hammer",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "4+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Devastating Wounds"
-                }
-              },
-              {
-                "name": "Power weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Boltgun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Combi-weapon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "1",
-                  "BS": "4+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Close combat weapon",
-            "profiles": [
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Astartes Chainsword",
-            "profiles": [
-              {
-                "name": "Astartes Chainsword",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Bolt pistol",
-            "profiles": [
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Close-Quarters"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Grav-pistol",
-            "profiles": [
-              {
-                "name": "Grav-pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Anti-vehicle 2+, Pistol"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Plasma pistol",
-            "profiles": [
-              {
-                "name": "Plasma pistol - supercharge",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "8",
-                  "AP": "-3",
-                  "D": "2",
-                  "Keywords": "Hazardous, Pistol"
-                }
-              },
-              {
-                "name": "Plasma pistol - standard",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "7",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Pistol"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Power fist",
-            "profiles": [
-              {
-                "name": "Power fist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Thunder Hammer",
-            "profiles": [
-              {
-                "name": "Thunder Hammer",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "4+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Devastating Wounds"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Power weapon",
-            "profiles": [
-              {
-                "name": "Power weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Astartes Chainsword",
-            "profiles": [
-              {
-                "name": "Astartes Chainsword",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Power fist",
-            "profiles": [
-              {
-                "name": "Power fist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Thunder Hammer",
-            "profiles": [
-              {
-                "name": "Thunder Hammer",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "4+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Devastating Wounds"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Power weapon",
-            "profiles": [
-              {
-                "name": "Power weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Boltgun",
-            "profiles": [
-              {
-                "name": "Boltgun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Combi-weapon",
-            "profiles": [
-              {
-                "name": "Combi-weapon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "1",
-                  "BS": "4+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": [
-          "Oath of Moment",
-          "Templar Vows"
-        ]
-      },
-      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -11957,215 +11213,6 @@
           ]
         }
       ],
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
-      "name": "Gravis Veteran w/ infernus heavy bolter",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Gravis Veteran w/ infernus heavy bolter",
-        "points": null,
-        "stats": {
-          "M": "5\"",
-          "T": "6",
-          "Sv": "3+",
-          "W": "3",
-          "LD": "6+",
-          "OC": "2",
-          "InSv": ""
-        },
-        "keywords": [
-          "Gravis",
-          "Faction: Deathwatch"
-        ],
-        "abilities": [],
-        "weapons": [
-          {
-            "name": "Bolt pistol",
-            "profiles": [
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Pistol, Lethal Hits"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Close combat weapon",
-            "profiles": [
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Frag cannon",
-            "profiles": [
-              {
-                "name": "Frag cannon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "D3",
-                  "BS": "3+",
-                  "S": "7",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Blast, Heavy, Lethal Hits, Rapid Fire D3"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Hellstorm bolt rifle and grenade launcher",
-            "profiles": [
-              {
-                "name": "Hellstorm bolt rifle",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "30\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Assault, Heavy, Lethal Hits"
-                }
-              },
-              {
-                "name": "Astartes grenade launcher - frag",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "D3",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Blast"
-                }
-              },
-              {
-                "name": "Astartes grenade launcher - krak",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "D3",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Hellstorm bolt rifle",
-            "profiles": [
-              {
-                "name": "Hellstorm bolt rifle",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "30\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Assault, Heavy, Lethal Hits"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Astartes grenade launcher",
-            "profiles": [
-              {
-                "name": "Astartes grenade launcher - frag",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "D3",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Blast"
-                }
-              },
-              {
-                "name": "Astartes grenade launcher - krak",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "D3",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Infernus heavy bolter",
-            "profiles": [
-              {
-                "name": "Infernus heavy bolter - heavy bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "3",
-                  "Keywords": "Sustained Hits 1"
-                }
-              },
-              {
-                "name": "Infernus heavy bolter - heavy flamer",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "D6",
-                  "BS": "N/A",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "Ignores Cover, Torrent"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": []
-      },
-      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -15306,86 +14353,6 @@
       "wargear_options": null
     },
     {
-      "name": "Kill Team Sergeant",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Kill Team Sergeant",
-        "points": null,
-        "stats": {
-          "M": "6\"",
-          "T": "4",
-          "Sv": "3+",
-          "W": "2",
-          "LD": "6+",
-          "OC": "2",
-          "InSv": ""
-        },
-        "keywords": [
-          "Tacticus",
-          "Faction: Deathwatch"
-        ],
-        "abilities": [],
-        "weapons": [
-          {
-            "name": "Plasma pistol",
-            "profiles": [
-              {
-                "name": "Plasma pistol - Standard",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "7",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Pistol"
-                }
-              },
-              {
-                "name": "Plasma pistol - Supercharge",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "8",
-                  "AP": "-3",
-                  "D": "2",
-                  "Keywords": "Hazardous, Pistol"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Power weapon",
-            "profiles": [
-              {
-                "name": "Power weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Sustained Hits 1"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": []
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
       "name": "Land Raider",
       "in_bsdata": true,
       "in_mfm": true,
@@ -16505,56 +15472,6 @@
         "Terminator Assault Squad",
         "Terminator Squad"
       ],
-      "wargear_options": null
-    },
-    {
-      "name": "Librarius Adept [Crucible]",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Librarius Adept [Crucible]",
-        "points": 70,
-        "stats": {
-          "M": "6\"",
-          "T": "4",
-          "Sv": "3+",
-          "W": "3",
-          "LD": "6+",
-          "OC": "1",
-          "InSv": ""
-        },
-        "keywords": [
-          "Character",
-          "Infantry",
-          "Grenades",
-          "Imperium",
-          "Psyker",
-          "Tacticus",
-          "Faction: Adeptus Astartes",
-          "Librarius Adept",
-          "Crucible"
-        ],
-        "abilities": [
-          {
-            "name": "Veil of Time (Psychic)",
-            "description": "Weapons equipped by models in this unit have the [Sustained Hits 1] ability"
-          },
-          {
-            "name": "Leader",
-            "description": "This model can be attached to the following units:\n- **^^Tacticus^^** (Excluding ^^**Character^^** and **^^Fly**^^)\n- **^^Tactical Squad^^**"
-          }
-        ],
-        "weapons": [],
-        "rules": [
-          "Leader",
-          "Oath of Moment",
-          "Crucible"
-        ]
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
       "wargear_options": null
     },
     {
@@ -19056,555 +17973,6 @@
       "wargear_options": null
     },
     {
-      "name": "Scout Squad",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Scout Squad",
-        "points": 65,
-        "stats": {
-          "M": "6\"",
-          "T": "4",
-          "Sv": "4+",
-          "W": "2",
-          "LD": "6+",
-          "OC": "1",
-          "InSv": ""
-        },
-        "keywords": [
-          "Infantry",
-          "Grenades",
-          "Imperium",
-          "Smoke",
-          "Scout Squad",
-          "Faction: Adeptus Astartes"
-        ],
-        "abilities": [
-          {
-            "name": "Guerrilla Tactics",
-            "description": "At the end of your opponent’s turn, if this unit is more than 6\" away from all enemy models, you can remove this unit from the battlefield and place it into\nStrategic Reserves."
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Scouts w/ Boltgun",
-            "profiles": [
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Boltgun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Close-Quarters"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Scout Sergeant",
-            "profiles": [
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Close-Quarters"
-                }
-              },
-              {
-                "name": "Astartes Chainsword",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Boltgun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Combat Knife",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Astartes Shotgun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Assault"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Combat Knife",
-            "profiles": [
-              {
-                "name": "Combat Knife",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Astartes Shotgun",
-            "profiles": [
-              {
-                "name": "Astartes Shotgun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Assault"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Astartes Chainsword",
-            "profiles": [
-              {
-                "name": "Astartes Chainsword",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Boltgun",
-            "profiles": [
-              {
-                "name": "Boltgun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Scouts w/ Astartes Shotgun",
-            "profiles": [
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Close-Quarters"
-                }
-              },
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Astartes Shotgun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Assault"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Astartes Shotgun",
-            "profiles": [
-              {
-                "name": "Astartes Shotgun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Assault"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Scouts w/ Combat Knife",
-            "profiles": [
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Close-Quarters"
-                }
-              },
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Combat Knife",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Combat Knife",
-            "profiles": [
-              {
-                "name": "Combat Knife",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Scout w/ Heavy Weapon",
-            "profiles": [
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Close-Quarters"
-                }
-              },
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Heavy Bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "4+",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Heavy, Sustained Hits 1"
-                }
-              },
-              {
-                "name": "Missile Launcher - Frag",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "D6",
-                  "BS": "4+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Blast, Heavy"
-                }
-              },
-              {
-                "name": "Missile Launcher - Krak",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "1",
-                  "BS": "4+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "D6",
-                  "Keywords": "Heavy"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Heavy Bolter",
-            "profiles": [
-              {
-                "name": "Heavy Bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "4+",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Heavy, Sustained Hits 1"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Missile Launcher",
-            "profiles": [
-              {
-                "name": "Missile Launcher - Frag",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "D6",
-                  "BS": "4+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Blast, Heavy"
-                }
-              },
-              {
-                "name": "Missile Launcher - Krak",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "1",
-                  "BS": "4+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "D6",
-                  "Keywords": "Heavy"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Scout w/ Scout Sniper Rifle",
-            "profiles": [
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Close-Quarters"
-                }
-              },
-              {
-                "name": "Scout Sniper Rifle",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Heavy, Precision"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Scout Sniper Rifle",
-            "profiles": [
-              {
-                "name": "Scout Sniper Rifle",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Heavy, Precision"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": [
-          "Scouts",
-          "Infiltrators",
-          "Oath of Moment",
-          "Templar Vows"
-        ]
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
       "name": "Spectrus Kill Team",
       "in_bsdata": true,
       "in_mfm": true,
@@ -21816,1184 +20184,6 @@
       "wargear_options": null
     },
     {
-      "name": "Tactical Squad",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Tactical Squad",
-        "points": 140,
-        "stats": {
-          "M": "6\"",
-          "T": "4",
-          "Sv": "3+",
-          "W": "2",
-          "LD": "6+",
-          "OC": "2",
-          "InSv": ""
-        },
-        "keywords": [
-          "Infantry",
-          "Battleline",
-          "Grenades",
-          "Imperium",
-          "Faction: Adeptus Astartes",
-          "Tactical Squad"
-        ],
-        "abilities": [
-          {
-            "name": "Combat Squads",
-            "description": "At the start of the Declare Battle Formations step, before any units have been set up, this unit can be split into two units, each containing five models"
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Tactical Marine",
-            "profiles": [
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Close-Quarters"
-                }
-              },
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Boltgun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Tactical Marine Sergeant",
-            "profiles": [
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Twin lightning claws",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Twin-linked"
-                }
-              },
-              {
-                "name": "Astartes Chainsword",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Close-Quarters"
-                }
-              },
-              {
-                "name": "Grav-pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Anti-vehicle 2+, Pistol"
-                }
-              },
-              {
-                "name": "Plasma pistol - supercharge",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "8",
-                  "AP": "-3",
-                  "D": "2",
-                  "Keywords": "Hazardous, Pistol"
-                }
-              },
-              {
-                "name": "Plasma pistol - standard",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "7",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Pistol"
-                }
-              },
-              {
-                "name": "Power fist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Thunder Hammer",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "4+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Devastating Wounds"
-                }
-              },
-              {
-                "name": "Power weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Astartes Chainsword",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Storm bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Rapid Fire 2"
-                }
-              },
-              {
-                "name": "Power fist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Thunder Hammer",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "4+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Devastating Wounds"
-                }
-              },
-              {
-                "name": "Power weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Boltgun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Combi-weapon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "1",
-                  "BS": "4+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Astartes Chainsword",
-            "profiles": [
-              {
-                "name": "Astartes Chainsword",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Bolt pistol",
-            "profiles": [
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Close-Quarters"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Grav-pistol",
-            "profiles": [
-              {
-                "name": "Grav-pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Anti-vehicle 2+, Pistol"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Plasma pistol",
-            "profiles": [
-              {
-                "name": "Plasma pistol - supercharge",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "8",
-                  "AP": "-3",
-                  "D": "2",
-                  "Keywords": "Hazardous, Pistol"
-                }
-              },
-              {
-                "name": "Plasma pistol - standard",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "7",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Pistol"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Power fist",
-            "profiles": [
-              {
-                "name": "Power fist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Thunder Hammer",
-            "profiles": [
-              {
-                "name": "Thunder Hammer",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "4+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Devastating Wounds"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Power weapon",
-            "profiles": [
-              {
-                "name": "Power weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Astartes Chainsword",
-            "profiles": [
-              {
-                "name": "Astartes Chainsword",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Storm bolter",
-            "profiles": [
-              {
-                "name": "Storm bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Rapid Fire 2"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Power fist",
-            "profiles": [
-              {
-                "name": "Power fist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Thunder Hammer",
-            "profiles": [
-              {
-                "name": "Thunder Hammer",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "4+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Devastating Wounds"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Power weapon",
-            "profiles": [
-              {
-                "name": "Power weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Boltgun",
-            "profiles": [
-              {
-                "name": "Boltgun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Combi-weapon",
-            "profiles": [
-              {
-                "name": "Combi-weapon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "1",
-                  "BS": "4+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Anti-Infantry 4+, Devastating Wounds, Rapid Fire 1"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Tactical Marine w/Special Weapon",
-            "profiles": [
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Close-Quarters"
-                }
-              },
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Flamer",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "D6",
-                  "BS": "N/A",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Ignores Cover, Torrent"
-                }
-              },
-              {
-                "name": "Meltagun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "9",
-                  "AP": "-4",
-                  "D": "D6",
-                  "Keywords": "Melta 2"
-                }
-              },
-              {
-                "name": "Plasma gun - standard",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "7",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Rapid Fire 1"
-                }
-              },
-              {
-                "name": "Plasma gun - supercharge",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "8",
-                  "AP": "-3",
-                  "D": "2",
-                  "Keywords": "Rapid Fire 1, Hazardous"
-                }
-              },
-              {
-                "name": "Grav-gun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Anti-vehicle 2+"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Flamer",
-            "profiles": [
-              {
-                "name": "Flamer",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "D6",
-                  "BS": "N/A",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Ignores Cover, Torrent"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Meltagun",
-            "profiles": [
-              {
-                "name": "Meltagun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "9",
-                  "AP": "-4",
-                  "D": "D6",
-                  "Keywords": "Melta 2"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Plasma gun",
-            "profiles": [
-              {
-                "name": "Plasma gun - standard",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "7",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Rapid Fire 1"
-                }
-              },
-              {
-                "name": "Plasma gun - supercharge",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "8",
-                  "AP": "-3",
-                  "D": "2",
-                  "Keywords": "Rapid Fire 1, Hazardous"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Grav-gun",
-            "profiles": [
-              {
-                "name": "Grav-gun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Anti-vehicle 2+"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Tactical Marine w/Heavy or Special Weapon",
-            "profiles": [
-              {
-                "name": "Bolt pistol",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Close-Quarters"
-                }
-              },
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Flamer",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "D6",
-                  "BS": "N/A",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Ignores Cover, Torrent"
-                }
-              },
-              {
-                "name": "Meltagun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "9",
-                  "AP": "-4",
-                  "D": "D6",
-                  "Keywords": "Melta 2"
-                }
-              },
-              {
-                "name": "Plasma gun - standard",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "7",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Rapid Fire 1"
-                }
-              },
-              {
-                "name": "Plasma gun - supercharge",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "8",
-                  "AP": "-3",
-                  "D": "2",
-                  "Keywords": "Rapid Fire 1, Hazardous"
-                }
-              },
-              {
-                "name": "Grav-gun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Anti-vehicle 2+"
-                }
-              },
-              {
-                "name": "Heavy Bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "4+",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Heavy, Sustained Hits 1"
-                }
-              },
-              {
-                "name": "Multi-melta",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "2",
-                  "BS": "4+",
-                  "S": "9",
-                  "AP": "-4",
-                  "D": "D6",
-                  "Keywords": "Heavy, Melta 2"
-                }
-              },
-              {
-                "name": "Lascannon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "1",
-                  "BS": "4+",
-                  "S": "12",
-                  "AP": "-3",
-                  "D": "D6+1",
-                  "Keywords": "Heavy"
-                }
-              },
-              {
-                "name": "Missile Launcher - Frag",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "D6",
-                  "BS": "4+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Blast, Heavy"
-                }
-              },
-              {
-                "name": "Missile Launcher - Krak",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "1",
-                  "BS": "4+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "D6",
-                  "Keywords": "Heavy"
-                }
-              },
-              {
-                "name": "Plasma cannon - standard",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "D3",
-                  "BS": "4+",
-                  "S": "7",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Blast, Heavy"
-                }
-              },
-              {
-                "name": "Plasma cannon - supercharge",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "D3",
-                  "BS": "4+",
-                  "S": "8",
-                  "AP": "-3",
-                  "D": "2",
-                  "Keywords": "Blast, Heavy, Hazardous"
-                }
-              },
-              {
-                "name": "Grav-cannon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "3",
-                  "BS": "4+",
-                  "S": "6",
-                  "AP": "-1",
-                  "D": "3",
-                  "Keywords": "Anti-vehicle 2+, Heavy"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Flamer",
-            "profiles": [
-              {
-                "name": "Flamer",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "D6",
-                  "BS": "N/A",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Ignores Cover, Torrent"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Meltagun",
-            "profiles": [
-              {
-                "name": "Meltagun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "9",
-                  "AP": "-4",
-                  "D": "D6",
-                  "Keywords": "Melta 2"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Plasma gun",
-            "profiles": [
-              {
-                "name": "Plasma gun - standard",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "7",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Rapid Fire 1"
-                }
-              },
-              {
-                "name": "Plasma gun - supercharge",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "8",
-                  "AP": "-3",
-                  "D": "2",
-                  "Keywords": "Rapid Fire 1, Hazardous"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Grav-gun",
-            "profiles": [
-              {
-                "name": "Grav-gun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Anti-vehicle 2+"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Heavy Bolter",
-            "profiles": [
-              {
-                "name": "Heavy Bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "4+",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Heavy, Sustained Hits 1"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Multi-melta",
-            "profiles": [
-              {
-                "name": "Multi-melta",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "2",
-                  "BS": "4+",
-                  "S": "9",
-                  "AP": "-4",
-                  "D": "D6",
-                  "Keywords": "Heavy, Melta 2"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Lascannon",
-            "profiles": [
-              {
-                "name": "Lascannon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "1",
-                  "BS": "4+",
-                  "S": "12",
-                  "AP": "-3",
-                  "D": "D6+1",
-                  "Keywords": "Heavy"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Missile Launcher",
-            "profiles": [
-              {
-                "name": "Missile Launcher - Frag",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "D6",
-                  "BS": "4+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Blast, Heavy"
-                }
-              },
-              {
-                "name": "Missile Launcher - Krak",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "1",
-                  "BS": "4+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "D6",
-                  "Keywords": "Heavy"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Plasma cannon",
-            "profiles": [
-              {
-                "name": "Plasma cannon - standard",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "D3",
-                  "BS": "4+",
-                  "S": "7",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Blast, Heavy"
-                }
-              },
-              {
-                "name": "Plasma cannon - supercharge",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "D3",
-                  "BS": "4+",
-                  "S": "8",
-                  "AP": "-3",
-                  "D": "2",
-                  "Keywords": "Blast, Heavy, Hazardous"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Grav-cannon",
-            "profiles": [
-              {
-                "name": "Grav-cannon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "3",
-                  "BS": "4+",
-                  "S": "6",
-                  "AP": "-1",
-                  "D": "3",
-                  "Keywords": "Anti-vehicle 2+, Heavy"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": [
-          "Oath of Moment",
-          "Templar Vows"
-        ]
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
       "name": "Talonstrike Kill Team",
       "in_bsdata": true,
       "in_mfm": true,
@@ -23491,641 +20681,6 @@
         "Sword Brethren Squad",
         "Tactical Squad"
       ],
-      "wargear_options": null
-    },
-    {
-      "name": "Terminator Assault Squad",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": true,
-      "profile": {
-        "name": "Terminator Assault Squad",
-        "points": 155,
-        "stats": {
-          "M": "5\"",
-          "T": "5",
-          "Sv": "2+",
-          "W": "4",
-          "LD": "6+",
-          "OC": "1",
-          "InSv": "4+"
-        },
-        "keywords": [
-          "Infantry",
-          "Imperium",
-          "Terminator Assault Squad",
-          "Terminator",
-          "Faction: Adeptus Astartes"
-        ],
-        "abilities": [
-          {
-            "name": "Teleport Homer",
-            "description": "At the start of the battle, you can set up one Teleport Homer token for this unit anywhere on the battlefield that is not in your opponent’s deployment zone. If you do, once per battle, you can target this unit with the Rapid Ingress Stratagem for 0CP, but when resolving that Stratagem, you must set this unit up within 3\" horizontally of that token and not within 8\" horizontally of any enemy models. That token is then removed."
-          },
-          {
-            "name": "Terminatus Assault",
-            "description": "At the start of the Fight phase, each enemy unit within Engagement Range of this unit must take a Battle-Shock test."
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Assault Terminator w/ Thunder Hammer & Storm Shield",
-            "profiles": [
-              {
-                "name": "Thunder Hammer",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Devastating Wounds"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Thunder Hammer",
-            "profiles": [
-              {
-                "name": "Thunder Hammer",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Devastating Wounds"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Assault Terminator w/ Twin Lightning Claws",
-            "profiles": [
-              {
-                "name": "Twin Lightning Claws",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "6",
-                  "WS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Twin-linked"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Twin Lightning Claws",
-            "profiles": [
-              {
-                "name": "Twin Lightning Claws",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "6",
-                  "WS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Twin-linked"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Assault Terminator Sergeant",
-            "profiles": [
-              {
-                "name": "Thunder Hammer",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Devastating Wounds"
-                }
-              },
-              {
-                "name": "Twin Lightning Claws",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "6",
-                  "WS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Twin-linked"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Thunder Hammer & Storm Shield",
-            "profiles": [
-              {
-                "name": "Thunder Hammer",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Devastating Wounds"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Thunder Hammer",
-            "profiles": [
-              {
-                "name": "Thunder Hammer",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Devastating Wounds"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Twin Lightning Claws",
-            "profiles": [
-              {
-                "name": "Twin Lightning Claws",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "6",
-                  "WS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Twin-linked"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": [
-          "Deep Strike",
-          "Oath of Moment",
-          "Templar Vows"
-        ]
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
-      "name": "Terminator Squad",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": true,
-      "profile": {
-        "name": "Terminator Squad",
-        "points": 160,
-        "stats": {
-          "M": "5\"",
-          "T": "5",
-          "Sv": "2+",
-          "W": "3",
-          "LD": "6+",
-          "OC": "1",
-          "InSv": "4+"
-        },
-        "keywords": [
-          "Infantry",
-          "Imperium",
-          "Terminator",
-          "Terminator Squad",
-          "Faction: Adeptus Astartes"
-        ],
-        "abilities": [
-          {
-            "name": "Teleport Homer",
-            "description": "At the start of the battle, you can set up one Teleport Homer token for this unit anywhere on the battlefield that is not in your opponent’s deployment zone. If you do, once per battle, you can target this unit with the Rapid Ingress Stratagem for 0CP, but when resolving that Stratagem, you must set this unit up within 3\" horizontally of that token and not within 8\" horizontally of any enemy models. That token is then removed."
-          },
-          {
-            "name": "Fury of the First",
-            "description": "Each time a model in this unit makes an attack that targets your Oath of Moment target, add 1 to the Hit roll."
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Terminator Sergeant",
-            "profiles": [
-              {
-                "name": "Storm bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Rapid Fire 2"
-                }
-              },
-              {
-                "name": "Power weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Chainfist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "4+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Anti-Vehicle 3+"
-                }
-              },
-              {
-                "name": "Power fist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Power weapon",
-            "profiles": [
-              {
-                "name": "Power weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "3+",
-                  "S": "5",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Chainfist",
-            "profiles": [
-              {
-                "name": "Chainfist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "4+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Anti-Vehicle 3+"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Power fist",
-            "profiles": [
-              {
-                "name": "Power fist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Terminator w/ Power Fist",
-            "profiles": [
-              {
-                "name": "Power fist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Storm bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Rapid Fire 2"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Terminator w/ Chain Fist",
-            "profiles": [
-              {
-                "name": "Storm bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Rapid Fire 2"
-                }
-              },
-              {
-                "name": "Chainfist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "4+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Anti-Vehicle 3+"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Terminator w/ Heavy Weapon",
-            "profiles": [
-              {
-                "name": "Heavy Flamer",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "D6",
-                  "BS": "N/A",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "Ignores Cover, Torrent"
-                }
-              },
-              {
-                "name": "Assault Cannon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "6",
-                  "BS": "3+",
-                  "S": "6",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Devastating Wounds"
-                }
-              },
-              {
-                "name": "Storm bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Rapid Fire 2"
-                }
-              },
-              {
-                "name": "Cyclone missile launcher - frag",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "2D6",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Blast"
-                }
-              },
-              {
-                "name": "Cyclone missile launcher - krak",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "D6",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Chainfist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "4+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Anti-Vehicle 3+"
-                }
-              },
-              {
-                "name": "Power fist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Cyclone Missile Launcher & Storm Bolter",
-            "profiles": [
-              {
-                "name": "Storm bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Rapid Fire 2"
-                }
-              },
-              {
-                "name": "Cyclone missile launcher - frag",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "2D6",
-                  "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Blast"
-                }
-              },
-              {
-                "name": "Cyclone missile launcher - krak",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "D6",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Heavy Flamer",
-            "profiles": [
-              {
-                "name": "Heavy Flamer",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "D6",
-                  "BS": "N/A",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "Ignores Cover, Torrent"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Assault Cannon",
-            "profiles": [
-              {
-                "name": "Assault Cannon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "6",
-                  "BS": "3+",
-                  "S": "6",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Devastating Wounds"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Chainfist",
-            "profiles": [
-              {
-                "name": "Chainfist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "4+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "Anti-Vehicle 3+"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Power fist",
-            "profiles": [
-              {
-                "name": "Power fist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "2",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": [
-          "Deep Strike",
-          "Oath of Moment"
-        ]
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
       "wargear_options": null
     },
     {
@@ -24872,543 +21427,6 @@
       "wargear_options": null
     },
     {
-      "name": "Venerable Battle-Brother [Crucible]",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Venerable Battle-Brother [Crucible]",
-        "points": 160,
-        "stats": {
-          "M": "8\"",
-          "T": "10",
-          "Sv": "2+",
-          "W": "12",
-          "LD": "6+",
-          "OC": "4",
-          "InSv": ""
-        },
-        "keywords": [
-          "Character",
-          "Vehicle",
-          "Dreadnought",
-          "Venerable Battle-Brother",
-          "Faction: Adeptus Astartes",
-          "Imperium",
-          "Walker",
-          "Crucible"
-        ],
-        "abilities": [
-          {
-            "name": "Wisdom of the Ancients [Aura]",
-            "description": "When a friendly ^^**Adeptus Astartes Infantry**^^ unit is within 6\" of this model, each time a model in that unit makes an attack, re-roll a Hit roll of 1"
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Ballistus Missile Launcher and Armoured Feet",
-            "profiles": [
-              {
-                "name": "Armoured Feet",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "5",
-                  "WS": "2+",
-                  "S": "7",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Ballistus Missile Launcher - Frag",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "2D6",
-                  "BS": "2+",
-                  "S": "5",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Blast"
-                }
-              },
-              {
-                "name": "Ballistus Missile Launcher - Krak",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "2",
-                  "BS": "2+",
-                  "S": "10",
-                  "AP": "-2",
-                  "D": "D6",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Armoured Feet",
-            "profiles": [
-              {
-                "name": "Armoured Feet",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "5",
-                  "WS": "2+",
-                  "S": "7",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Ballistus Missile Launcher",
-            "profiles": [
-              {
-                "name": "Ballistus Missile Launcher - Frag",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "2D6",
-                  "BS": "2+",
-                  "S": "5",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Blast"
-                }
-              },
-              {
-                "name": "Ballistus Missile Launcher - Krak",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "2",
-                  "BS": "2+",
-                  "S": "10",
-                  "AP": "-2",
-                  "D": "D6",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Brutalis Fists & Brutalis Bolt Rifles",
-            "profiles": [
-              {
-                "name": "Brutalis Fists",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "6",
-                  "WS": "2+",
-                  "S": "12",
-                  "AP": "-2",
-                  "D": "3",
-                  "Keywords": "Twin-linked"
-                }
-              },
-              {
-                "name": "Brutalis Bolt Rifles",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "4",
-                  "BS": "2+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "Twin-linked"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Brutalis Fists",
-            "profiles": [
-              {
-                "name": "Brutalis Fists",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "6",
-                  "WS": "2+",
-                  "S": "12",
-                  "AP": "-2",
-                  "D": "3",
-                  "Keywords": "Twin-linked"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Brutalis Bolt Rifles",
-            "profiles": [
-              {
-                "name": "Brutalis Bolt Rifles",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "4",
-                  "BS": "2+",
-                  "S": "4",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "Twin-linked"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Brutalis Talons",
-            "profiles": [
-              {
-                "name": "Brutalis Talons - Strike",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "6",
-                  "WS": "2+",
-                  "S": "12",
-                  "AP": "-2",
-                  "D": "3",
-                  "Keywords": "Twin-linked"
-                }
-              },
-              {
-                "name": "Brutalis Talons - Sweep",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "10",
-                  "WS": "2+",
-                  "S": "7",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "Twin-linked"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Onslaught Gatling Cannon and Redemptor Fist",
-            "profiles": [
-              {
-                "name": "Redemptor Fist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "5",
-                  "WS": "2+",
-                  "S": "12",
-                  "AP": "-2",
-                  "D": "3",
-                  "Keywords": "-"
-                }
-              },
-              {
-                "name": "Onslaught gatling cannon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "8",
-                  "BS": "2+",
-                  "S": "5",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Devastating Wounds"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Onslaught gatling cannon",
-            "profiles": [
-              {
-                "name": "Onslaught gatling cannon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "8",
-                  "BS": "2+",
-                  "S": "5",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Devastating Wounds"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Heavy Flamer and Redemptor Fist",
-            "profiles": [
-              {
-                "name": "Heavy Flamer",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "D6",
-                  "BS": "N/A",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "Ignores Cover, Torrent"
-                }
-              },
-              {
-                "name": "Redemptor Fist",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "5",
-                  "WS": "2+",
-                  "S": "12",
-                  "AP": "-2",
-                  "D": "3",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Ballistus Lascannon",
-            "profiles": [
-              {
-                "name": "Ballistus Lascannon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "2",
-                  "BS": "2+",
-                  "S": "12",
-                  "AP": "-3",
-                  "D": "D6+1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Heavy Onslaught Gatling Cannon",
-            "profiles": [
-              {
-                "name": "Heavy Onslaught Gatling Cannon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "12",
-                  "BS": "2+",
-                  "S": "6",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Devastating Wounds"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Macro Plasma Incinerator",
-            "profiles": [
-              {
-                "name": "Macro Plasma Incinerator - Standard",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "D6+1",
-                  "BS": "2+",
-                  "S": "8",
-                  "AP": "-3",
-                  "D": "2",
-                  "Keywords": "Blast"
-                }
-              },
-              {
-                "name": "Macro Plasma Incinerator - Supercharge",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "D6+1",
-                  "BS": "2+",
-                  "S": "9",
-                  "AP": "-4",
-                  "D": "3",
-                  "Keywords": "Blast, Hazardous"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Twin Fragstorm Grenade Launcher",
-            "profiles": [
-              {
-                "name": "Twin Fragstorm Grenade Launcher",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "D6",
-                  "BS": "2+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Blast, Twin-linked"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Twin storm bolter",
-            "profiles": [
-              {
-                "name": "Twin storm bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "2+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Rapid Fire 2, Twin-linked"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Twin Heavy Bolter and Twin Icarus Ironhail Heavy Stubber",
-            "profiles": [
-              {
-                "name": "Twin Icarus ironhail heavy stubber",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "2+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Anti-FLY 4+, Rapid Fire 3, Twin-linked"
-                }
-              },
-              {
-                "name": "Twin heavy bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "2+",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Sustained Hits 1, Twin-linked"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Twin heavy bolter",
-            "profiles": [
-              {
-                "name": "Twin heavy bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "2+",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Sustained Hits 1, Twin-linked"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Twin Multi-Melta and Twin Icarus Ironhail Heavy Stubber",
-            "profiles": [
-              {
-                "name": "Twin Icarus ironhail heavy stubber",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "2+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Anti-FLY 4+, Rapid Fire 3, Twin-linked"
-                }
-              },
-              {
-                "name": "Twin multi-melta",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "2",
-                  "BS": "2+",
-                  "S": "9",
-                  "AP": "-4",
-                  "D": "D6",
-                  "Keywords": "Melta 2, Twin-linked"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Twin multi-melta",
-            "profiles": [
-              {
-                "name": "Twin multi-melta",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "2",
-                  "BS": "2+",
-                  "S": "9",
-                  "AP": "-4",
-                  "D": "D6",
-                  "Keywords": "Melta 2, Twin-linked"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Icarus rocket pod",
-            "profiles": [
-              {
-                "name": "Icarus rocket pod",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "D3",
-                  "BS": "2+",
-                  "S": "8",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Anti-fly 2+"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": [
-          "Oath of Moment",
-          "Templar Vows",
-          "Deadly Demise",
-          "Crucible"
-        ]
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
       "name": "Vindicator",
       "in_bsdata": true,
       "in_mfm": true,
@@ -25903,6 +21921,6 @@
     "bsdata_revision": 4,
     "bsdata_units": 102,
     "mfm_units": 89,
-    "merged_units": 102
+    "merged_units": 89
   }
 }

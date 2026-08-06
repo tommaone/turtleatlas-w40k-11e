@@ -341,56 +341,6 @@
       "wargear_options": null
     },
     {
-      "name": "Battlesuit Veteran [Crucible]",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Battlesuit Veteran [Crucible]",
-        "points": 60,
-        "stats": {
-          "M": "8\"",
-          "T": "4",
-          "Sv": "3+",
-          "W": "4",
-          "LD": "7+",
-          "OC": "1",
-          "InSv": "4+"
-        },
-        "keywords": [
-          "Character",
-          "Infantry",
-          "Crucible",
-          "Faction: T'au Empire",
-          "Fly",
-          "Battlesuit",
-          "Battlesuit Veteran"
-        ],
-        "abilities": [
-          {
-            "name": "Strategic Redeployment",
-            "description": "The bearer's unit is eligible to shoot in a turn in which it Fell Back."
-          },
-          {
-            "name": "Leader",
-            "description": "This model can be attached to the following unit:\n- **^^Stealth Battlesuits^^**"
-          }
-        ],
-        "weapons": [],
-        "rules": [
-          "For The Greater Good",
-          "Leader",
-          "Crucible",
-          "Infiltrators",
-          "Stealth"
-        ]
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
       "name": "Breacher Team",
       "in_bsdata": true,
       "in_mfm": true,
@@ -482,6 +432,32 @@
                   "D": "1",
                   "Keywords": "Indirect Fire, Twin-linked"
                 }
+              },
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
+                }
               }
             ]
           },
@@ -558,6 +534,37 @@
             ]
           },
           {
+            "name": "Drones (0-2)",
+            "profiles": [
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
             "name": "Breacher Fire Warriors",
             "profiles": [
               {
@@ -623,84 +630,6 @@
       "wargear_options": null
     },
     {
-      "name": "Breaching Robot",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Breaching Robot",
-        "points": 35,
-        "stats": {
-          "M": "6\"",
-          "T": "4",
-          "Sv": "4+",
-          "W": "3",
-          "LD": "6+",
-          "OC": "0",
-          "InSv": ""
-        },
-        "keywords": [
-          "Vehicle",
-          "Faction: Unaligned Forces",
-          "Breaching Robot",
-          "Allies: Unaligned Forces"
-        ],
-        "abilities": [
-          {
-            "name": "Limited Loadout",
-            "description": "This model cannot attempt to operate Hatchways and cannot perform Tactical Manoeuvres."
-          },
-          {
-            "name": "Assault Robot",
-            "description": "In the Deploy Armies step, when setting up a unit from your army within an Entry Zone, you can set this model up alongside that unit as if it was part of it, using the same Entry Zone."
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Cutting blade and cutting gear",
-            "profiles": [
-              {
-                "name": "Cutting blade",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "4+",
-                  "S": "4",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Cutting blade",
-            "profiles": [
-              {
-                "name": "Cutting blade",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "4+",
-                  "S": "4",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": []
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
       "name": "Broadside Battlesuits",
       "in_bsdata": true,
       "in_mfm": true,
@@ -735,6 +664,32 @@
           {
             "name": "Broadside Shas’ui",
             "profiles": [
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
+                }
+              },
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
               {
                 "name": "Crushing bulk",
                 "typeName": "Melee Weapons",
@@ -909,6 +864,32 @@
             "name": "Broadside Shas’vre",
             "profiles": [
               {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
+                }
+              },
+              {
                 "name": "Crushing bulk",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -984,6 +965,37 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "Indirect Fire, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Drones (0-2)",
+            "profiles": [
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
                 }
               }
             ]
@@ -1225,6 +1237,37 @@
                 }
               }
             ]
+          },
+          {
+            "name": "Drones (0-2)",
+            "profiles": [
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
+                }
+              }
+            ]
           }
         ],
         "rules": [
@@ -1425,6 +1468,37 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Drones (0-2)",
+            "profiles": [
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
                 }
               }
             ]
@@ -1668,6 +1742,37 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Drones (0-2)",
+            "profiles": [
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
                 }
               }
             ]
@@ -2063,6 +2168,32 @@
                 "stats": {
                   "Range": "30\"",
                   "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
+                }
+              },
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
                   "BS": "4+",
                   "S": "7",
                   "AP": "-1",
@@ -2099,6 +2230,37 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Drones (0-2)",
+            "profiles": [
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
                 }
               }
             ]
@@ -2142,6 +2304,32 @@
           {
             "name": "Crisis Fireknife Shas’ui",
             "profiles": [
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
+                }
+              },
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
               {
                 "name": "Battlesuit fists",
                 "typeName": "Melee Weapons",
@@ -2275,6 +2463,32 @@
                 }
               },
               {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
+                }
+              },
+              {
                 "name": "Burst cannon",
                 "typeName": "Ranged Weapons",
                 "stats": {
@@ -2321,6 +2535,37 @@
             ]
           },
           {
+            "name": "Drones (0-2)",
+            "profiles": [
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
             "name": "Burst cannon",
             "profiles": [
               {
@@ -2359,6 +2604,32 @@
           {
             "name": "Crisis Starscythe Shas’ui",
             "profiles": [
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
+                }
+              },
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
               {
                 "name": "Battlesuit fists",
                 "typeName": "Melee Weapons",
@@ -2499,6 +2770,32 @@
                   "D": "1",
                   "Keywords": "-"
                 }
+              },
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
+                }
               }
             ]
           },
@@ -2539,8 +2836,65 @@
             ]
           },
           {
+            "name": "Drones (0-2)",
+            "profiles": [
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
             "name": "Crisis Sunforge Shas’ui",
             "profiles": [
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
+                }
+              },
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
               {
                 "name": "Battlesuit fists",
                 "typeName": "Melee Weapons",
@@ -2917,6 +3271,37 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Drones (0-2)",
+            "profiles": [
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
                 }
               }
             ]
@@ -3477,53 +3862,6 @@
           ]
         }
       ],
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
-      "name": "Kinband Champion [Crucible]",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Kinband Champion [Crucible]",
-        "points": 55,
-        "stats": {
-          "M": "7\"",
-          "T": "3",
-          "Sv": "6+",
-          "W": "3",
-          "LD": "7+",
-          "OC": "1",
-          "InSv": ""
-        },
-        "keywords": [
-          "Character",
-          "Infantry",
-          "Crucible",
-          "Faction: T'au Empire",
-          "Kroot",
-          "Kinband Champion"
-        ],
-        "abilities": [
-          {
-            "name": "Leader",
-            "description": "This model can be attached to the following units:\n- **^^Kroot Carnivores^^**\n- **^^Kroot Farstalkers^^**"
-          }
-        ],
-        "weapons": [],
-        "rules": [
-          "Stealth",
-          "Leader",
-          "Crucible",
-          "War Leader",
-          "Scouts",
-          "Infiltrators",
-          "Harnessed Alien Instincts"
-        ]
-      },
-      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -5684,6 +6022,32 @@
                 }
               },
               {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
+                }
+              },
+              {
                 "name": "Semi-automatic grenade launcher - EMP",
                 "typeName": "Ranged Weapons",
                 "stats": {
@@ -5787,6 +6151,37 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "Pistol"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Drones (0-2)",
+            "profiles": [
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
                 }
               }
             ]
@@ -6510,143 +6905,6 @@
       ]
     },
     {
-      "name": "Searchlight",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Searchlight",
-        "points": 10,
-        "stats": {},
-        "keywords": [
-          "Allies: Unaligned Forces"
-        ],
-        "abilities": [
-          {
-            "name": "Enemy Spotted",
-            "description": "Each time a model from your army makes a ranged attack that targets an enemy unit that is within 9\" of and visible to any Searchlights from your army, re-roll a Hit of 1 and, if the model making that attack is a Sentry Gun, add 1 to the Hit roll as well."
-          },
-          {
-            "name": "Wall",
-            "description": "This model is a terrain feature and counts as a Wall."
-          },
-          {
-            "name": "Camera Network",
-            "description": "In the Create the Battlefield and Place Objective Markers step, set this terrain feature up in one of the Searchlight positions (marked D2 on the mission map) that does not already contain a Searchlight."
-          }
-        ],
-        "weapons": [],
-        "rules": []
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
-      "name": "Sentry Gun",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Sentry Gun",
-        "points": 30,
-        "stats": {
-          "M": "-",
-          "T": "4",
-          "Sv": "4+",
-          "W": "3",
-          "LD": "6+",
-          "OC": "0",
-          "InSv": ""
-        },
-        "keywords": [
-          "Vehicle",
-          "Faction: Unaligned Forces",
-          "Sentry Gun",
-          "Allies: Unaligned Forces"
-        ],
-        "abilities": [
-          {
-            "name": "Defensive Emplacement",
-            "description": "In the Create the Battlefield and Place Objective Markers step, set this model up in one of the Sentry Gun positions (marked D1 on the mission map)."
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Twin heavy bolter",
-            "profiles": [
-              {
-                "name": "Twin heavy bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "5+",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Heavy, Sustained Hits 1, Twin-linked"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": []
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
-      "name": "Shas'nel [Crucible]",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Shas'nel [Crucible]",
-        "points": 50,
-        "stats": {
-          "M": "6\"",
-          "T": "3",
-          "Sv": "4+",
-          "W": "3",
-          "LD": "7+",
-          "OC": "1",
-          "InSv": ""
-        },
-        "keywords": [
-          "Character",
-          "Infantry",
-          "Crucible",
-          "Grenades",
-          "Faction: T'au Empire",
-          "Shas'nel"
-        ],
-        "abilities": [
-          {
-            "name": "Volley Fire",
-            "description": "While this model is leading a unit, add 1 to the Attacks characteristic of ranged weapons equipped by models in that unit."
-          },
-          {
-            "name": "Leader",
-            "description": "This model can be attached to the following units:\n- **^^Breacher Team^^**\n- **^^Strike Team^^**"
-          }
-        ],
-        "weapons": [],
-        "rules": [
-          "For The Greater Good",
-          "Leader",
-          "Crucible"
-        ]
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
       "name": "Sky Ray Gunship",
       "in_bsdata": true,
       "in_mfm": true,
@@ -6911,6 +7169,32 @@
                 }
               },
               {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
+                }
+              },
+              {
                 "name": "Pulse pistol",
                 "typeName": "Ranged Weapons",
                 "stats": {
@@ -6965,6 +7249,37 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "-"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Drones (0-2)",
+            "profiles": [
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
                 }
               }
             ]
@@ -7507,6 +7822,32 @@
                   "D": "1",
                   "Keywords": "Indirect Fire, Twin-linked"
                 }
+              },
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
+                }
               }
             ]
           },
@@ -7578,6 +7919,37 @@
                   "AP": "0",
                   "D": "1",
                   "Keywords": "Indirect Fire, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Drones (0-2)",
+            "profiles": [
+              {
+                "name": "Missile pod",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "7",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "-"
+                }
+              },
+              {
+                "name": "Twin pulse carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "20\"",
+                  "A": "2",
+                  "BS": "5+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Assault, Twin-linked"
                 }
               }
             ]
@@ -9147,6 +9519,6 @@
     "bsdata_revision": 2,
     "bsdata_units": 49,
     "mfm_units": 43,
-    "merged_units": 49
+    "merged_units": 43
   }
 }

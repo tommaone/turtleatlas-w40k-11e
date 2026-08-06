@@ -462,84 +462,6 @@
       "wargear_options": null
     },
     {
-      "name": "Breaching Robot",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Breaching Robot",
-        "points": 35,
-        "stats": {
-          "M": "6\"",
-          "T": "4",
-          "Sv": "4+",
-          "W": "3",
-          "LD": "6+",
-          "OC": "0",
-          "InSv": ""
-        },
-        "keywords": [
-          "Vehicle",
-          "Faction: Unaligned Forces",
-          "Breaching Robot",
-          "Allies: Unaligned Forces"
-        ],
-        "abilities": [
-          {
-            "name": "Limited Loadout",
-            "description": "This model cannot attempt to operate Hatchways and cannot perform Tactical Manoeuvres."
-          },
-          {
-            "name": "Assault Robot",
-            "description": "In the Deploy Armies step, when setting up a unit from your army within an Entry Zone, you can set this model up alongside that unit as if it was part of it, using the same Entry Zone."
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Cutting blade and cutting gear",
-            "profiles": [
-              {
-                "name": "Cutting blade",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "4+",
-                  "S": "4",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Cutting blade",
-            "profiles": [
-              {
-                "name": "Cutting blade",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "4+",
-                  "S": "4",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": []
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
       "name": "Broodlord",
       "in_bsdata": true,
       "in_mfm": true,
@@ -2841,49 +2763,6 @@
       "wargear_options": null
     },
     {
-      "name": "Macro Organism [Crucible]",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Macro Organism [Crucible]",
-        "points": 150,
-        "stats": {
-          "M": "8\"",
-          "T": "10",
-          "Sv": "3+",
-          "W": "14",
-          "LD": "8+",
-          "OC": "4",
-          "InSv": ""
-        },
-        "keywords": [
-          "Character",
-          "Crucible",
-          "Great Devourer",
-          "Faction: Tyranids",
-          "Monster",
-          "Macro Organism"
-        ],
-        "abilities": [
-          {
-            "name": "Unstoppable Monstrosity",
-            "description": "At the start of each player's Command phase, this model regains up to D3 lost wounds."
-          }
-        ],
-        "weapons": [],
-        "rules": [
-          "Synapse",
-          "Deadly Demise",
-          "Crucible"
-        ]
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
       "name": "Maleceptor",
       "in_bsdata": true,
       "in_mfm": true,
@@ -3137,45 +3016,6 @@
           ]
         }
       ],
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
-      "name": "Mucolid Spores (Sporocyst)",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": true,
-      "profile": {
-        "name": "Mucolid Spores (Sporocyst)",
-        "points": null,
-        "stats": {
-          "M": "4\"",
-          "T": "4",
-          "Sv": "7+",
-          "W": "3",
-          "LD": "8+",
-          "OC": "0",
-          "InSv": ""
-        },
-        "keywords": [
-          "Mucolid Spores",
-          "Beast",
-          "Fly",
-          "Great Devourer",
-          "Faction: Tyranids",
-          "Reference"
-        ],
-        "abilities": [],
-        "weapons": [],
-        "rules": [
-          "Bio-minefield",
-          "Deep Strike",
-          "Floating Death",
-          "Synapse"
-        ]
-      },
-      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -3474,56 +3314,6 @@
         "Tyrant Guard",
         "Zoanthropes"
       ],
-      "wargear_options": null
-    },
-    {
-      "name": "Node Organism [Crucible]",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Node Organism [Crucible]",
-        "points": 80,
-        "stats": {
-          "M": "6\"",
-          "T": "5",
-          "Sv": "4+",
-          "W": "6",
-          "LD": "7+",
-          "OC": "1",
-          "InSv": ""
-        },
-        "keywords": [
-          "Character",
-          "Infantry",
-          "Crucible",
-          "Great Devourer",
-          "Synapse",
-          "Faction: Tyranids",
-          "Node Organism"
-        ],
-        "abilities": [
-          {
-            "name": "Alpha Warrior",
-            "description": "While this model is leading a unit, weapons equipped by models in that unit have the **[SUSTAINED HITS 1]** ability."
-          },
-          {
-            "name": "Leader",
-            "description": "This model can be attached to the following units:\n- **^^Tyranid Warriors with Melee Bio-weapons^^**\n- **^^Tyranid Warriors with Ranged Bio-weapons^^**"
-          }
-        ],
-        "weapons": [],
-        "rules": [
-          "Leader",
-          "Sustained Hits",
-          "Shadow in the Warp",
-          "Synapse",
-          "Crucible"
-        ]
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
       "wargear_options": null
     },
     {
@@ -3983,54 +3773,6 @@
       "wargear_options": null
     },
     {
-      "name": "Prime Organism [Crucible]",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Prime Organism [Crucible]",
-        "points": 135,
-        "stats": {
-          "M": "8\"",
-          "T": "9",
-          "Sv": "2+",
-          "W": "9",
-          "LD": "7+",
-          "OC": "3",
-          "InSv": ""
-        },
-        "keywords": [
-          "Character",
-          "Crucible",
-          "Great Devourer",
-          "Faction: Tyranids",
-          "Monster",
-          "Prime Organism"
-        ],
-        "abilities": [
-          {
-            "name": "Monstrous Barrage",
-            "description": "This unit is eligible to shoot and declare a charge in a turn in which it Advanced."
-          },
-          {
-            "name": "Leader",
-            "description": "This model can be attached to the following units:\n- **^^Carnifexes^^**\n- **^^Tyrant Guard^^**"
-          }
-        ],
-        "weapons": [],
-        "rules": [
-          "Deadly Demise",
-          "Synapse",
-          "Crucible",
-          "Leader"
-        ]
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
       "name": "Psychophage",
       "in_bsdata": true,
       "in_mfm": true,
@@ -4460,94 +4202,6 @@
       "wargear_options": null
     },
     {
-      "name": "Ripper Swarms (Parasite of Mortrex)",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": true,
-      "profile": {
-        "name": "Ripper Swarms (Parasite of Mortrex)",
-        "points": null,
-        "stats": {
-          "M": "6\"",
-          "T": "2",
-          "Sv": "6+",
-          "W": "4",
-          "LD": "8+",
-          "OC": "0",
-          "InSv": ""
-        },
-        "keywords": [
-          "Ripper Swarm",
-          "Swarm",
-          "Great Devourer",
-          "Faction: Tyranids",
-          "Harvester",
-          "Reference"
-        ],
-        "abilities": [],
-        "weapons": [
-          {
-            "name": "Spinemaw",
-            "profiles": [
-              {
-                "name": "Spinemaw",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "6\"",
-                  "A": "4",
-                  "BS": "5+",
-                  "S": "3",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Pistol"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Ripper Swarm",
-            "profiles": [
-              {
-                "name": "Chitinous claws and teeth",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "6",
-                  "WS": "5+",
-                  "S": "2",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Sustained Hits 1"
-                }
-              },
-              {
-                "name": "Spinemaw",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "6\"",
-                  "A": "4",
-                  "BS": "5+",
-                  "S": "3",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Pistol"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": [
-          "Deep Strike",
-          "Synapse",
-          "Chitinous Horrors (Aura)"
-        ]
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
       "name": "Screamer-Killer",
       "in_bsdata": true,
       "in_mfm": true,
@@ -4646,96 +4300,6 @@
       "wargear_options": null
     },
     {
-      "name": "Searchlight",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Searchlight",
-        "points": 10,
-        "stats": {},
-        "keywords": [
-          "Allies: Unaligned Forces"
-        ],
-        "abilities": [
-          {
-            "name": "Enemy Spotted",
-            "description": "Each time a model from your army makes a ranged attack that targets an enemy unit that is within 9\" of and visible to any Searchlights from your army, re-roll a Hit of 1 and, if the model making that attack is a Sentry Gun, add 1 to the Hit roll as well."
-          },
-          {
-            "name": "Wall",
-            "description": "This model is a terrain feature and counts as a Wall."
-          },
-          {
-            "name": "Camera Network",
-            "description": "In the Create the Battlefield and Place Objective Markers step, set this terrain feature up in one of the Searchlight positions (marked D2 on the mission map) that does not already contain a Searchlight."
-          }
-        ],
-        "weapons": [],
-        "rules": []
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
-      "name": "Sentry Gun",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Sentry Gun",
-        "points": 30,
-        "stats": {
-          "M": "-",
-          "T": "4",
-          "Sv": "4+",
-          "W": "3",
-          "LD": "6+",
-          "OC": "0",
-          "InSv": ""
-        },
-        "keywords": [
-          "Vehicle",
-          "Faction: Unaligned Forces",
-          "Sentry Gun",
-          "Allies: Unaligned Forces"
-        ],
-        "abilities": [
-          {
-            "name": "Defensive Emplacement",
-            "description": "In the Create the Battlefield and Place Objective Markers step, set this model up in one of the Sentry Gun positions (marked D1 on the mission map)."
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Twin heavy bolter",
-            "profiles": [
-              {
-                "name": "Twin heavy bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "5+",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Heavy, Sustained Hits 1, Twin-linked"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": []
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
       "name": "Spore Mines",
       "in_bsdata": true,
       "in_mfm": true,
@@ -4784,45 +4348,6 @@
           ]
         }
       ],
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
-      "name": "Spore Mines (Biovore)",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": true,
-      "profile": {
-        "name": "Spore Mines (Biovore)",
-        "points": null,
-        "stats": {
-          "M": "4\"",
-          "T": "4",
-          "Sv": "7+",
-          "W": "3",
-          "LD": "8+",
-          "OC": "0",
-          "InSv": ""
-        },
-        "keywords": [
-          "Spore Mines",
-          "Beast",
-          "Fly",
-          "Great Devourer",
-          "Faction: Tyranids",
-          "Reference"
-        ],
-        "abilities": [],
-        "weapons": [],
-        "rules": [
-          "Floating Death",
-          "Bio-minefield",
-          "Deep Strike",
-          "Synapse"
-        ]
-      },
-      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -7372,6 +6897,6 @@
     "bsdata_revision": 1,
     "bsdata_units": 61,
     "mfm_units": 52,
-    "merged_units": 61
+    "merged_units": 52
   }
 }

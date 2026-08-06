@@ -59,8 +59,11 @@ def _load_mfm_factions():
         data = yaml.safe_load(mfm_file.read_text())
         name = data.get("name", mfm_file.stem)
         slug = data.get("slug", mfm_file.stem)
-        units = [u["name"] for u in data.get("units", [])
-                 if not u.get("legends", False)]
+        # MFM lists model-count tiers (e.g. 5- and 10-model Aquila Kill Team)
+        # as separate rows with the same unit name. Merged dedupes to one
+        # entry per unit, so count unique names only.
+        units = sorted({u["name"] for u in data.get("units", [])
+                        if not u.get("legends", False)})
         result.append((name, slug, units))
     return result
 
@@ -204,7 +207,7 @@ def test_all_mfm_units_have_weapons(name, slug, mfm_units):
 # If a mismatch occurs, inspect the diff to see if it's a regression or a valid data update,
 # then update the snapshot accordingly.
 EXPECTED_COVERAGE = {
-    "total_mfm": 1462,
+    "total_mfm": 1433,
     "total_missing": 0,
     "total_empty_stats": 0,
 }

@@ -154,8 +154,13 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
                     if _weapon_matches(mult["weapon_name"], w) and w.get("count", 1) == 1:
                         w["count"] = count
 
-    # Union of names
-    all_names = sorted(set(bsdata_unit_map.keys()) | set(mfm_unit_map.keys()))
+    # Book-first: the faction roster is the MFM file. BSData-only units
+    # are linked-catalogue leaks (shared libraries like the Aeldari
+    # Library in Drukhari, god-marines in CSM, Knights/Daemons in every
+    # Imperium/Chaos faction) — they are NOT in the faction's book.
+    # Profiles for MFM book units may still come from linked catalogues
+    # (cross-faction fallback below), but the roster itself is the book.
+    all_names = sorted(set(mfm_unit_map.keys()))
 
     # -- Cross-faction fallback: find stats for MFM-only units in parent catalogues --
     def _find_cross_faction_profile(unit_name: str) -> dict | None:

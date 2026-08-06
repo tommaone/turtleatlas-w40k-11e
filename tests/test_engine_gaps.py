@@ -234,14 +234,15 @@ class TestKnightTyrantConfig:
 
 
 class TestSoulGrinderMerge:
-    """Soul Grinder: 4 god-specific variants, each with weapon_options.
+    """Soul Grinder: book-first merge keeps the plain entry; god variants absent.
 
-    The weapon_options.json has per-god Soul Grinder entries with ranged options.
-    resolve_loadout must take the weapon_options path and pick the
-    best ranged loadout vs a given target.
+    Book-first rule: only units in the faction's MFM book enter merged data.
+    The daemons book has a single "Soul Grinder" entry — the BSData-only
+    god-specific variants (Khorne/Nurgle/Slaanesh/Tzeentch Soul Grinder) are
+    contamination leaks and must NOT be in merged/config.
     """
 
-    SOUL_GRINDER_NAME = "Khorne Soul Grinder"  # representative variant
+    SOUL_GRINDER_NAME = "Soul Grinder"  # the only in-book variant
 
     def test_soul_grinder_resolves_via_weapon_options(self):
         """Soul Grinder must resolve via weapon_options (not vehicles fixed path)."""
@@ -297,24 +298,23 @@ class TestSoulGrinderMerge:
         wo = engine.config.weapon_options[self.SOUL_GRINDER_NAME]
         assert resolved[0] == wo["pts"], f"Expected {wo['pts']}pts"
 
-    def test_all_four_god_variants_exist(self):
-        """All 4 god-specific Soul Grinder variants must be in weapon_options."""
+    def test_all_four_god_variants_absent(self):
+        """God-specific variants are book-first leaks — must NOT be in config.
+
+        The daemons MFM book has only the plain "Soul Grinder". The four
+        BSData-only variants (Khorne/Nurgle/Slaanesh/Tzeentch) carry Faction
+        keywords but are not priced in the book, so they are excluded by the
+        book-first merge. This test locks that in so a future merge change
+        cannot silently re-leak them.
+        """
         from ranking import RankingEngine
         engine = RankingEngine("chaos-daemons")
         for god in ["Khorne", "Nurgle", "Slaanesh", "Tzeentch"]:
             name = f"{god} Soul Grinder"
-            wo = engine.config.weapon_options.get(name)
-            assert wo is not None, f"Missing {name} in weapon_options"
-            # Support both flat list format and builds format
-            if "builds" in wo:
-                all_ranged = []
-                for build in wo["builds"]:
-                    all_ranged.extend(build.get("fixed_ranged", []))
-                    for cl in build.get("ranged_choices", []):
-                        all_ranged.extend(cl)
-                assert len(all_ranged) >= 1, f"{name} must have ranged"
-            else:
-                assert "ranged" in wo and len(wo["ranged"]) >= 1, f"{name} must have ranged"
+            assert name not in engine.config.weapon_options, \
+                f"{name} is a book-first leak and must not be in config"
+            assert name not in engine.config.vehicles, \
+                f"{name} is a book-first leak and must not be in config"
 
 
 # ═══════════════════════════════════════════════════════════════════════

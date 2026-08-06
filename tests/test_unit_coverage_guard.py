@@ -29,7 +29,10 @@ CONFIG_DIR = REPO / "data" / "config"
 KNOWN_MISSING: dict[str, list[str]] = {
     'adepta-sororitas': ['Celestian Sacresant (Anointed Halberd)', 'Celestian Sacresant (Hallowed Mace)', 'Geminae Superia', 'Sister Novitiate (Autogun)', 'Sister Novitiate (Melee Weapon)'],
     'aeldari': ['Hand of the Archon', 'Scourges with Heavy Weapons', 'Scourges with Shardcarbines'],
+    'astra-militarum': ['Aegis Defence Line'],
     'black-templars': ['Librarian in Phobos Armour', 'Librarian in Terminator Armour'],
+    'chaos-daemons': ['Feculent Gnarlmaw', 'Skull Altar'],
+    'chaos-space-marines': ['Noctilith Crown'],
     'drukhari': ['Avatar of Khaine', 'Wraithknight with Ghostglaive'],
     'genestealer-cults': ['Centaur RSV', 'Commissar Graves on Foot', 'Death Korps of Krieg', 'Gaunt’s Ghosts', 'Hippogriff AFV', 'Parasite of Mortrex', "Von Ryan's Leapers"],
     'imperial-knights': ['Sydonian Dragoons with radium jezzails', 'Sydonian Dragoons with taser lances'],

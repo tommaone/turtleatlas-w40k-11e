@@ -395,84 +395,6 @@
       "wargear_options": null
     },
     {
-      "name": "Breaching Robot",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Breaching Robot",
-        "points": 35,
-        "stats": {
-          "M": "6\"",
-          "T": "4",
-          "Sv": "4+",
-          "W": "3",
-          "LD": "6+",
-          "OC": "0",
-          "InSv": ""
-        },
-        "keywords": [
-          "Vehicle",
-          "Faction: Unaligned Forces",
-          "Breaching Robot",
-          "Allies: Unaligned Forces"
-        ],
-        "abilities": [
-          {
-            "name": "Limited Loadout",
-            "description": "This model cannot attempt to operate Hatchways and cannot perform Tactical Manoeuvres."
-          },
-          {
-            "name": "Assault Robot",
-            "description": "In the Deploy Armies step, when setting up a unit from your army within an Entry Zone, you can set this model up alongside that unit as if it was part of it, using the same Entry Zone."
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Cutting blade and cutting gear",
-            "profiles": [
-              {
-                "name": "Cutting blade",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "4+",
-                  "S": "4",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Cutting blade",
-            "profiles": [
-              {
-                "name": "Cutting blade",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "4+",
-                  "S": "4",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": "-"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": []
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
       "name": "C’Tan Shard Of The Deceiver",
       "in_bsdata": true,
       "in_mfm": true,
@@ -2738,53 +2660,6 @@
       "wargear_options": null
     },
     {
-      "name": "Dynastic Conqueror [Crucible]",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Dynastic Conqueror [Crucible]",
-        "points": 85,
-        "stats": {
-          "M": "5\"",
-          "T": "5",
-          "Sv": "3+",
-          "W": "6",
-          "LD": "6+",
-          "OC": "1",
-          "InSv": "4+"
-        },
-        "keywords": [
-          "Character",
-          "Infantry",
-          "Noble",
-          "Dynastic Conqueror",
-          "Faction: Necrons",
-          "Crucible"
-        ],
-        "abilities": [
-          {
-            "name": "Leader",
-            "description": "This model can be attached to the following units: ^^**Immortals, Lychguard, Necron Warriors**^^"
-          },
-          {
-            "name": "Implacable Resistance",
-            "description": "Each time an attack is allocated to this model, subtract 1 from the Damage characteristic of that attack."
-          }
-        ],
-        "weapons": [],
-        "rules": [
-          "Leader",
-          "Reanimation Protocols",
-          "Detachment Rules"
-        ]
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
       "name": "Flayed Ones",
       "in_bsdata": true,
       "in_mfm": true,
@@ -3170,49 +3045,6 @@
           ]
         }
       ],
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
-      "name": "Hyperscientist [Crucible]",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Hyperscientist [Crucible]",
-        "points": 85,
-        "stats": {
-          "M": "5\"",
-          "T": "4",
-          "Sv": "4+",
-          "W": "4",
-          "LD": "6+",
-          "OC": "1",
-          "InSv": ""
-        },
-        "keywords": [
-          "Character",
-          "Infantry",
-          "Faction: Necrons",
-          "Crucible",
-          "Hyperscientist",
-          "Cryptek"
-        ],
-        "abilities": [
-          {
-            "name": "Leader",
-            "description": "This model can be attached to the following units: ^^**Immortals, Necron Warriors**^^"
-          }
-        ],
-        "weapons": [],
-        "rules": [
-          "Leader",
-          "Reanimation Protocols",
-          "Detachment Rules"
-        ]
-      },
-      "pricing": null,
       "role": null,
       "attachTo": null,
       "wargear_options": null
@@ -5546,96 +5378,6 @@
       "wargear_options": null
     },
     {
-      "name": "Searchlight",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Searchlight",
-        "points": 10,
-        "stats": {},
-        "keywords": [
-          "Allies: Unaligned Forces"
-        ],
-        "abilities": [
-          {
-            "name": "Enemy Spotted",
-            "description": "Each time a model from your army makes a ranged attack that targets an enemy unit that is within 9\" of and visible to any Searchlights from your army, re-roll a Hit of 1 and, if the model making that attack is a Sentry Gun, add 1 to the Hit roll as well."
-          },
-          {
-            "name": "Wall",
-            "description": "This model is a terrain feature and counts as a Wall."
-          },
-          {
-            "name": "Camera Network",
-            "description": "In the Create the Battlefield and Place Objective Markers step, set this terrain feature up in one of the Searchlight positions (marked D2 on the mission map) that does not already contain a Searchlight."
-          }
-        ],
-        "weapons": [],
-        "rules": []
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
-      "name": "Sentry Gun",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Sentry Gun",
-        "points": 30,
-        "stats": {
-          "M": "-",
-          "T": "4",
-          "Sv": "4+",
-          "W": "3",
-          "LD": "6+",
-          "OC": "0",
-          "InSv": ""
-        },
-        "keywords": [
-          "Vehicle",
-          "Faction: Unaligned Forces",
-          "Sentry Gun",
-          "Allies: Unaligned Forces"
-        ],
-        "abilities": [
-          {
-            "name": "Defensive Emplacement",
-            "description": "In the Create the Battlefield and Place Objective Markers step, set this model up in one of the Sentry Gun positions (marked D1 on the mission map)."
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Twin heavy bolter",
-            "profiles": [
-              {
-                "name": "Twin heavy bolter",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "5+",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Heavy, Sustained Hits 1, Twin-linked"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": []
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
       "name": "Seraptek Heavy Construct",
       "in_bsdata": true,
       "in_mfm": true,
@@ -6624,95 +6366,6 @@
       "wargear_options": null
     },
     {
-      "name": "Tomb Citadel Walls",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Tomb Citadel Walls",
-        "points": 180,
-        "stats": {
-          "M": "-",
-          "T": "13",
-          "Sv": "2+",
-          "W": "50",
-          "LD": "7+",
-          "OC": "0",
-          "InSv": "5+"
-        },
-        "keywords": [
-          "Fortification",
-          "Titanic",
-          "Vehicle",
-          "Frame",
-          "Tomb Citadel",
-          "Faction: Necrons"
-        ],
-        "abilities": [
-          {
-            "name": "Ziggurat Dock",
-            "description": "One friendly **^^Monolith, Obelisk, Tesseract Vault**^^ or **^^Sentry Pylon**^^ model can start the battle on top of this Fortification’s ziggurat platform. While such a model is on this platform, that model's ranged weapons have the [HEAVY] ability. Any friendly model can be set up or end any type of move on the ramps or platform sections of this **^^Fortification**^^."
-          },
-          {
-            "name": "Phased Cover",
-            "description": "Each time a ranged attack is allocated to a model, if that model is not fully visible to every model in the attacking unit because of this ^^**Fortification^^**, that model has the Benefit of Cover against that attack."
-          },
-          {
-            "name": "Damaged: 1-15 wounds remaining",
-            "description": "While this model has 1‑15 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll."
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Twin tesla destructor",
-            "profiles": [
-              {
-                "name": "Twin tesla destructor",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "6",
-                  "BS": "3+",
-                  "S": "8",
-                  "AP": "0",
-                  "D": "2",
-                  "Keywords": "Sustained Hits 2, Twin-linked"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Gauss exterminator",
-            "profiles": [
-              {
-                "name": "Gauss exterminator",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "1",
-                  "BS": "4+",
-                  "S": "14",
-                  "AP": "-3",
-                  "D": "6",
-                  "Keywords": "Lethal Hits"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": [
-          "Fortification",
-          "Deadly Demise",
-          "Reanimation Protocols",
-          "Detachment Rules"
-        ]
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
-    },
-    {
       "name": "Transcendent C’Tan",
       "in_bsdata": true,
       "in_mfm": true,
@@ -7231,52 +6884,6 @@
       "role": null,
       "attachTo": null,
       "wargear_options": null
-    },
-    {
-      "name": "Triarchal Overseer [Crucible]",
-      "in_bsdata": true,
-      "in_mfm": false,
-      "deep_strike": false,
-      "profile": {
-        "name": "Triarchal Overseer [Crucible]",
-        "points": 120,
-        "stats": {
-          "M": "8\"",
-          "T": "8",
-          "Sv": "3+",
-          "W": "12",
-          "LD": "7+",
-          "OC": "4",
-          "InSv": "4+"
-        },
-        "keywords": [
-          "Character",
-          "Faction: Necrons",
-          "Crucible",
-          "Vehicle",
-          "Walker",
-          "Triarch",
-          "Triarchal Overseer",
-          "Stalker"
-        ],
-        "abilities": [
-          {
-            "name": "Targeting Relay",
-            "description": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. Until the end of the phase, that unit cannot have the Benefit of Cover."
-          }
-        ],
-        "weapons": [],
-        "rules": [
-          "Reanimation Protocols",
-          "Detachment Rules",
-          "Deadly Demise",
-          "Scouts"
-        ]
-      },
-      "pricing": null,
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null
     }
   ],
   "_meta": {
@@ -7284,6 +6891,6 @@
     "bsdata_revision": 9,
     "bsdata_units": 59,
     "mfm_units": 52,
-    "merged_units": 59
+    "merged_units": 52
   }
 }

@@ -1561,28 +1561,61 @@ class BSDataParser11e:
 
     def _is_singular_duplicate(self, key: str, mw: dict,
                                existing: set[str],
-                               merged_map: dict[str, dict]) -> bool:
+                               merged_map: dict[str, dict],
+                               result: dict[str, dict] | None = None) -> bool:
         """True if a merged-only unit duplicates an existing unit as singular/plural.
 
         BSData/merged sometimes carry both the unit entry ('Vypers') and the
         model-level entry ('Vyper') with identical weapon lists. Only dedupe when
         the names differ by a trailing 's' AND the weapon lists are identical.
+
+        Since the merge is book-first (MFM name wins), the plural twin may only
+        exist in the BSData extraction (e.g. merged has 'Vyper', BSData extracts
+        'Vypers') — compare against `result` too, not just `merged_map`.
         """
+        def _weapons(u: dict) -> set[str]:
+            return set(u.get("fixed_ranged") or []) | set(u.get("fixed_melee") or [])
+
+        mw_weapons = _weapons(mw)
+
+        def _existing_weapons(norm_name: str) -> set[str] | None:
+            if not result:
+                return None
+            for orig, data in result.items():
+                if self._norm_name(orig) != norm_name:
+                    continue
+                merged_w: set[str] = set()
+                for b in data.get("builds", []):
+                    merged_w |= set(b.get("fixed_ranged") or [])
+                    merged_w |= set(b.get("fixed_melee") or [])
+                    for group in b.get("ranged_choices", []) or []:
+                        merged_w |= set(group)
+                    for group in b.get("melee_choices", []) or []:
+                        merged_w |= set(group)
+                    for slot in b.get("slots", []) or []:
+                        for c in slot.get("choices", []) or []:
+                            merged_w.add(c.get("name", ""))
+                return merged_w
+            return None
+
         for other_key, other in merged_map.items():
             if other_key == key:
                 continue
-            other_weapons = set(other["fixed_ranged"]) | set(other["fixed_melee"])
-            mw_weapons = set(mw["fixed_ranged"]) | set(mw["fixed_melee"])
-            if other_weapons != mw_weapons:
+            if _weapons(other) != mw_weapons:
                 continue
             if key + "s" == other_key or other_key + "s" == key:
                 return True
-            if other_key in existing or key in existing:
-                # One variant is a real BSData unit — the other is the duplicate.
-                if other_key in existing and key + "s" == other_key:
-                    return True
-                if other_key in existing and other_key + "s" == key:
-                    return True
+            if other_key in existing and (key + "s" == other_key
+                                          or other_key + "s" == key):
+                return True
+
+        # Book-first: plural twin may live only in the BSData extraction.
+        for twin_norm in (key + "s", key[:-1] if key.endswith("s") else ""):
+            if not twin_norm or twin_norm not in existing:
+                continue
+            twin_weps = _existing_weapons(twin_norm)
+            if twin_weps is not None and twin_weps == mw_weapons:
+                return True
         return False
 
     def _augment_from_merged(self, result: dict[str, dict],
@@ -1630,6 +1663,10 @@ class BSDataParser11e:
                 for group in b.get("melee_choices", []) or []:
                     bs_names |= {self._norm_name(x) for x in group}
                 for slot in b.get("slots", []) or []:
+                    # Slot/group name itself (e.g. Falcon's 'Heavy Weapons'
+                    # group) is captured as a merged weapon — count it as
+                    # covered, otherwise the group collapses to a fixed build.
+                    bs_names |= {self._norm_name(slot.get("name", ""))}
                     for c in slot.get("choices", []) or []:
                         bs_names |= {self._norm_name(c.get("name", ""))}
             if not merged_names or merged_names.issubset(bs_names):
@@ -1663,7 +1700,7 @@ class BSDataParser11e:
             # 'Vyper' (the model's own entry) with identical weapons. The singular
             # variant is not a separate datasheet — adding it produces a broken
             # all-fixed duplicate build (every weapon fixed, no choices).
-            if self._is_singular_duplicate(key, mw, existing, merged_map):
+            if self._is_singular_duplicate(key, mw, existing, merged_map, result):
                 continue
             fixed_typed = ([{"name": n, "type": "ranged"} for n in mw["fixed_ranged"]]
                            + [{"name": n, "type": "melee"} for n in mw["fixed_melee"]])
