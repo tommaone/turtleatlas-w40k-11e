@@ -94,8 +94,12 @@ def _default_weapon(cfg):
         return None
     rc = Counter()
     for m in base.get("models", []):
-        if m.get("ranged"):
-            rc[m["ranged"]] += m.get("count", 1)
+        r = m.get("ranged")
+        if isinstance(r, list):
+            for w in r:
+                rc[w] += m.get("count", 1)
+        elif r:
+            rc[r] += m.get("count", 1)
     return rc.most_common(1)[0][0] if rc else None
 
 
@@ -123,8 +127,12 @@ def _all_overarmed():
                 from collections import Counter
                 rc = Counter()
                 for m in b.get("models", []):
-                    if m.get("ranged"):
-                        rc[m["ranged"]] += m.get("count", 1)
+                    r = m.get("ranged")
+                    if isinstance(r, list):
+                        for w in r:
+                            rc[w] += m.get("count", 1)
+                    elif r:
+                        rc[r] += m.get("count", 1)
                 for w, c in rc.items():
                     if w == dflt:
                         continue

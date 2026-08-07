@@ -308,11 +308,17 @@ def aeldari_composition(parser):
 
 
 def test_composition_dark_reapers_structure(aeldari_composition):
-    """Dark Reapers: main model + exarch with a Weapon slot (4 options)."""
+    """Dark Reapers: main model + exarch with a Weapon slot (4 options).
+
+    The base Dark Reaper's min/max duplicates the containing group's
+    constraint (both 4/9) — the parser strips the duplicate, so the base
+    carries no per-model constraint. Flat pool (one base variant + exarch),
+    so the generator still emits count=n-1 + exarch.
+    """
     b = aeldari_composition["Dark Reapers"]["builds"][0]
     models = b["models"]
     assert [(m["name"], m.get("min"), m.get("max")) for m in models] == [
-        ("Dark Reaper", 4, 9),
+        ("Dark Reaper", None, None),
         ("Dark Reaper Exarch", 1, 1),
     ]
     dr = models[0]

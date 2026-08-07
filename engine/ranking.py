@@ -266,15 +266,27 @@ def _reduce_squad_melee(melee: list, target, modifier: Optional[WeaponModifier] 
     return ea + [best]
 
 
-def _best_alloc_index(metas: list[dict], alloc_n: list[int], indices) -> int:
+def _best_alloc_index(metas: list[dict], alloc_n: list[int], indices,
+                      groups: dict | None = None) -> int:
     """Index of the highest-damage alloc variant among indices with spare
     capacity (cap = its max, or unlimited when max is absent).
+
+    Variants tagged with a shared group_max may together contribute at most
+    group_max (e.g. Purgation's 'Heavy Weapons' group: 4 specials total,
+    mixed freely across types) — a variant whose group is at cap is skipped.
     """
     best_i, best_d = -1, -1
     for i in indices:
         m = metas[i]
         cap = m["max"] if m["max"] is not None else float("inf")
-        if alloc_n[i] < cap and m["dmg"] > best_d:
+        if alloc_n[i] >= cap:
+            continue
+        gm = m.get("group_max")
+        if gm and groups and gm in groups:
+            used = sum(alloc_n[j] for j in groups[gm])
+            if used >= gm:
+                continue
+        if m["dmg"] > best_d:
             best_i, best_d = i, m["dmg"]
     return best_i
 
@@ -542,9 +554,18 @@ class RankingEngine:
                 ch_r, ch_m = [], []
             metas.append({"name": ch.get("name", ""), "ranged": ch_r, "melee": ch_m,
                           "dmg": dmg, "min": ch.get("min", 0) or 0, "max": ch.get("max"),
-                          "pool_min": ch.get("pool_min", 0) or 0})
+                          "pool_min": ch.get("pool_min", 0) or 0,
+                          "group_max": ch.get("group_max", 0) or 0})
         alloc_n = [0] * len(metas)
         remaining = count
+        # Shared caps (e.g. Purgation 'Heavy Weapons' max=4): variants in the
+        # same group may together contribute at most group_max. Enforced in
+        # _best_alloc_index so both the pool loop and the greedy fill stop at
+        # the combined budget.
+        groups: dict[int, list[int]] = {}
+        for i, m in enumerate(metas):
+            if m["group_max"]:
+                groups.setdefault(m["group_max"], []).append(i)
         # Per-variant minimums (e.g. Ynnari Reaver min=2) fill first.
         for i, m in enumerate(metas):
             take = min(m["min"], remaining)
@@ -558,14 +579,14 @@ class RankingEngine:
                 pools.setdefault(m["pool_min"], []).append(i)
         for pool_min, members in pools.items():
             while sum(alloc_n[i] for i in members) < pool_min and remaining > 0:
-                best_i = _best_alloc_index(metas, alloc_n, members)
+                best_i = _best_alloc_index(metas, alloc_n, members, groups)
                 if best_i < 0:
                     break
                 alloc_n[best_i] += 1
                 remaining -= 1
         # Remaining budget → highest-damage variant with spare capacity.
         while remaining > 0:
-            best_i = _best_alloc_index(metas, alloc_n, range(len(metas)))
+            best_i = _best_alloc_index(metas, alloc_n, range(len(metas)), groups)
             if best_i < 0:
                 break
             alloc_n[best_i] += 1
@@ -581,22 +602,52 @@ class RankingEngine:
 
     def _alloc_combo_space(self, choices: list[dict], count: int) -> int:
         """Count the loadout space of an alloc model: bounded compositions of
-        `count` across the variant choices (each capped by its max).
+        `count` across the variant choices (each capped by its max; variants
+        tagged with a shared group_max may together contribute at most that).
         """
         if count <= 0 or not choices:
             return 1
-        dp = [0] * (count + 1)
-        dp[0] = 1
-        for ch in choices:
-            cap = ch.get("max")
-            if cap is None:
-                cap = count
-            new = [0] * (count + 1)
-            for m in range(count + 1):
-                for t in range(min(cap, m) + 1):
-                    new[m] += dp[m - t]
-            dp = new
-        return dp[count]
+        n = len(choices)
+        caps = [ch.get("max") if ch.get("max") is not None else count
+                for ch in choices]
+        # Group membership keyed by group_max value (one shared-cap group per
+        # unit in practice — Purgation/Purifier 'Heavy Weapons').
+        groups: dict[int, list[int]] = {}
+        for i, ch in enumerate(choices):
+            gm = ch.get("group_max")
+            if gm:
+                groups.setdefault(gm, []).append(i)
+        gid_of: dict[int, int] = {}
+        for k, members in groups.items():
+            for i in members:
+                gid_of[i] = k
+        group_order = list(groups.keys())
+
+        from functools import lru_cache
+        @lru_cache(maxsize=None)
+        def dfs(i: int, remaining: int, used: tuple) -> int:
+            # Exact compositions: all `count` models must be allocated, so the
+            # last variant must consume whatever is left.
+            if i == n:
+                return 1 if remaining == 0 else 0
+            total = 0
+            cap = min(caps[i], remaining)
+            if i in gid_of:
+                k = gid_of[i]
+                pos = group_order.index(k)
+                limit = k  # group key IS the shared group_max value
+                for t in range(cap + 1):
+                    if used[pos] + t > limit:
+                        continue
+                    u = list(used)
+                    u[pos] += t
+                    total += dfs(i + 1, remaining - t, tuple(u))
+            else:
+                for t in range(cap + 1):
+                    total += dfs(i + 1, remaining - t, used)
+            return total
+
+        return dfs(0, count, tuple([0] * len(group_order)))
 
     def _eval_squad_build(self, build, unit_name, target=None):
         """Evaluate one explicit build for a squad.

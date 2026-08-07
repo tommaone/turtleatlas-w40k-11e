@@ -91,7 +91,7 @@ def test_first_unit_pts_match_mfm(slug: str):
     mfm_pts = {}
     for u in mfm["units"]:
         if u.get("pricing"):
-            first = u["pricing"][0]["costs"][0]["points"]
+            first = [(c["models"], c["points"]) for c in u["pricing"][0]["costs"]]
             mfm_pts[_norm(u["name"])] = first
 
     errors = []
@@ -102,11 +102,25 @@ def test_first_unit_pts_match_mfm(slug: str):
         if "weapon_slots" in entry:
             continue
         config_pts = entry["pts"]
-        mfm_val = mfm_pts.get(norm_name)
-        if mfm_val is None:
+        n = entry.get("n")
+        mfm_costs = mfm_pts.get(norm_name)
+        if mfm_costs is None:
             errors.append(f"  {display:40s} no MFM price (in {fn})")
-        elif config_pts != mfm_val:
-            errors.append(f"  {display:40s} config={config_pts:4d}  mfm={mfm_val:4d}  ({fn})")
+            continue
+        # The engine resolves by model count (config n), not the first cost
+        # in the tier — a unit evaluated at n=5 uses the 5-model price.
+        mfm_val = None
+        if n is not None:
+            for models, points in mfm_costs:
+                if models == n:
+                    mfm_val = points
+                    break
+        if mfm_val is None:
+            mfm_val = mfm_costs[0][1]
+        if config_pts != mfm_val:
+            errors.append(
+                f"  {display:40s} config={config_pts:4d}  mfm={mfm_val:4d} (n={n})  ({fn})"
+            )
 
     assert not errors, (
         f"{slug}: {len(errors)} units have wrong 1st-unit pts:\n"
@@ -120,34 +134,49 @@ def test_third_unit_pts_match_mfm(slug: str):
     mfm = _load_mfm(slug)
     config_units = _load_config_units(slug)
 
-    # Build MFM third tier lookup
-    mfm_third = {}
+    # Build MFM third tier lookup, keyed by unit name. The engine resolves by
+    # model count (config n), not the first cost in the tier — a unit evaluated
+    # at n=5 uses the 5-model 3rd+ price, not the min-size one. The lookup is
+    # a dict of (name -> list of (models, points)) so each config unit picks
+    # the tier price matching its own n.
+    mfm_third: dict[str, list[tuple[int, int]]] = {}
     for u in mfm["units"]:
         if not u.get("pricing"):
             continue
-        third = None
+        third_costs = None
         for p in u["pricing"]:
             if p["range"] == "[3,)":
-                third = p["costs"][0]["points"]
+                third_costs = [(c["models"], c["points"]) for c in p["costs"]]
                 break
-        mfm_third[_norm(u["name"])] = third
+        if third_costs is not None:
+            mfm_third[_norm(u["name"])] = third_costs
 
     errors = []
     for norm_name, (display, entry, fn) in sorted(config_units.items()):
         if _is_exempt(display):
             continue
         config_pts_3rd = entry.get("pts_3rd")
-        mfm_val = mfm_third.get(norm_name)
+        n = entry.get("n")
+        mfm_costs = mfm_third.get(norm_name)
 
-        # If MFM has 3rd+ tier, config must match
-        if mfm_val is not None:
+        # If MFM has 3rd+ tier, config must match the price at its own n
+        if mfm_costs is not None:
+            mfm_val = None
+            if n is not None:
+                for models, points in mfm_costs:
+                    if models == n:
+                        mfm_val = points
+                        break
+            # Fall back to the min-size tier price when n is unknown
+            if mfm_val is None:
+                mfm_val = mfm_costs[0][1]
             if config_pts_3rd is None:
                 errors.append(
-                    f"  {display:40s} config missing pts_3rd, should be {mfm_val}"
+                    f"  {display:40s} config missing pts_3rd, should be {mfm_val} (n={n})"
                 )
             elif config_pts_3rd != mfm_val:
                 errors.append(
-                    f"  {display:40s} config={config_pts_3rd:4d}  mfm={mfm_val:4d}  ({fn})"
+                    f"  {display:40s} config={config_pts_3rd:4d}  mfm={mfm_val:4d} (n={n})  ({fn})"
                 )
         # If MFM has no 3rd+ tier, config must NOT have pts_3rd
         elif config_pts_3rd is not None:

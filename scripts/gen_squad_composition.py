@@ -90,6 +90,8 @@ def _variant_payload(m: dict) -> dict:
         out["max"] = m["max"]
     if m.get("pool_min") is not None:
         out["pool_min"] = m["pool_min"]
+    if m.get("group_max") is not None:
+        out["group_max"] = m["group_max"]
     if m.get("ranged"):
         out["ranged"] = m["ranged"]
     if m.get("melee"):

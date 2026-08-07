@@ -1918,16 +1918,21 @@ class BSDataParser11e:
                 # base variants); recurse to collect them.
                 model_seg = []
                 seg_min_owners: dict[str, int] = {}
+                seg_max_owners: dict[str, int] = {}
+                dup_strip_owners: set[str] = set()
 
                 def _collect_models(seg_list: list[dict], depth: int = 0) -> None:
                     for seg in seg_list:
                         if seg.get("hidden") == "true":
                             continue
                         seg_min = None
+                        seg_max = None
                         for c in seg.get("constraints", []):
-                            if (c.get("field") == "selections"
-                                    and c.get("type") == "min"):
-                                seg_min = c.get("value")
+                            if c.get("field") == "selections":
+                                if c.get("type") == "min":
+                                    seg_min = c.get("value")
+                                elif c.get("type") == "max":
+                                    seg_max = c.get("value")
                         for se in seg.get("selectionEntries", []):
                             if se.get("hidden") != "true" and se.get("type") == "model":
                                 # A NESTED SEG's min is a per-pool constraint
@@ -1935,6 +1940,45 @@ class BSDataParser11e:
                                 # squad size — remember it for the alloc model.
                                 if depth > 0 and seg_min is not None:
                                     seg_min_owners[se.get("id", "")] = seg_min
+                                # A nested SEG's max is a SHARED cap across its
+                                # variants (e.g. Purgation 'Heavy Weapons'
+                                # max=4: at most 4 special weapons total, mixed
+                                # freely), NOT a per-variant max. The engine
+                                # enforces it as a combined budget.
+                                if depth > 0 and seg_max is not None:
+                                    seg_max_owners[se.get("id", "")] = seg_max
+                                # Duplicate constraint: the base model entry
+                                # copies the group's min/max (BSData pattern,
+                                # e.g. Purgation 'Purgator' min=4/max=9 == the
+                                # '4-9 Purgators' group). Strip it — the group
+                                # constraint is the pool, not a forced base
+                                # count (at n=5 that would force 4 plain
+                                # models and hide the special weapons).
+                                # Leaders (min == max == 1) are exempt.
+                                # Only strip when the base SE is the group's
+                                # ONLY direct model (specials nested deeper,
+                                # e.g. Purgation) — when specials are direct
+                                # siblings (e.g. Ynnari Reavers Blaster/Heat
+                                # Lance), the base min is a real per-variant
+                                # minimum and must survive.
+                                if depth == 0 and seg_min is not None and seg_max is not None:
+                                    direct_models = [s for s in seg.get("selectionEntries", [])
+                                                     if isinstance(s, dict)
+                                                     and s.get("hidden") != "true"
+                                                     and s.get("type") == "model"]
+                                    se_min = None
+                                    se_max = None
+                                    for c in se.get("constraints", []):
+                                        if c.get("field") != "selections":
+                                            continue
+                                        if c.get("type") == "min":
+                                            se_min = c.get("value")
+                                        elif c.get("type") == "max":
+                                            se_max = c.get("value")
+                                    if (se_min == seg_min and se_max == seg_max
+                                            and not (se_min == 1 and se_max == 1)
+                                            and len(direct_models) == 1):
+                                        dup_strip_owners.add(se.get("id", ""))
                                 model_seg.append(se)
                         _collect_models(seg.get("selectionEntryGroups", []),
                                         depth + 1)
@@ -1947,8 +1991,11 @@ class BSDataParser11e:
                     continue
                 models = []
                 for se in model_seg:
-                    m = self._parse_composition_model(se, entry_index,
-                                                      seg_min_owners.get(se.get("id", "")))
+                    m = self._parse_composition_model(
+                        se, entry_index,
+                        seg_min_owners.get(se.get("id", "")),
+                        seg_max_owners.get(se.get("id", "")),
+                        se.get("id", "") in dup_strip_owners)
                     if m is not None:
                         models.append(m)
                 if not models:
@@ -1957,7 +2004,9 @@ class BSDataParser11e:
         return result
 
     def _parse_composition_model(self, se: dict, entry_index: dict[str, dict],
-                                 pool_min: int | None = None) -> dict | None:
+                                 pool_min: int | None = None,
+                                 group_max: int | None = None,
+                                 dup_strip: bool = False) -> dict | None:
         """Parse one type=model SE into a per-model entry.
 
         Fixed weapons come from own selectionEntries (upgrade SEs with weapon
@@ -1974,6 +2023,14 @@ class BSDataParser11e:
         pool_min: a nested SEG's min constraint (at least N models must come
         from this pool, e.g. Voidscarred's base pool min=4). Recorded on the
         model so the generator can carry it into the alloc payload.
+
+        group_max: a nested SEG's max constraint shared across its variants
+        (at most N combined, e.g. Purgation's 'Heavy Weapons' max=4). The
+        engine caps the SUM of the tagged variants, not each individually.
+
+        dup_strip: the base entry duplicated the group's min/max (BSData
+        pattern); drop the per-entry constraint so it does not force plain
+        models when the group min is satisfiable by special variants.
         """
         model: dict = {"name": se.get("name", ""), "count": 1}
         min_c = None
@@ -1985,12 +2042,19 @@ class BSDataParser11e:
                 min_c = c.get("value")
             elif c.get("type") == "max":
                 max_c = c.get("value")
+        if dup_strip:
+            # Group constraint duplicated on the base entry — skip; the pool
+            # carries it. Avoids forcing N plain models at squad size N.
+            min_c = None
+            max_c = None
         if min_c is not None:
             model["min"] = min_c
         if max_c is not None:
             model["max"] = max_c
         if pool_min is not None:
             model["pool_min"] = pool_min
+        if group_max is not None:
+            model["group_max"] = group_max
 
         fixed_r: list[str] = []
         fixed_m: list[str] = []

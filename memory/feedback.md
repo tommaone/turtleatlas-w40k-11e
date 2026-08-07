@@ -100,3 +100,27 @@ MFM files list model-count tiers (e.g. 5-model and 10-model Aquila Kill Team) as
 
 **Why:** the worktree's bsdata submodule isn't auto-populated; a "0 issues" HEAD baseline was an artifact, not a regression signal.
 **How:** to compare validator output across revisions, init the submodule in the worktree first (`git -C <wt> submodule update --init bsdata mfm`), then diff issue counts per faction. Treat the validator as advisory; pytest + findings validation are the gates.
+
+## Shared-cap SEGs are group-level max, not per-variant
+BSData encodes "Heavy weapons" on GK squads (Purgation/Purifier/Interceptor) as a nested SEG whose MAX is a combined budget shared across its model variants (Purgation max=4 specials total regardless of squad size, Purifier max=2, Interceptor max=1). The parser tags each variant with `group_max`; the generator passes it through; the engine enforces it as a SUM cap across the tagged variants in `_best_alloc_index` and `_alloc_combo_space`.
+
+**Why:** per-variant max alone would let a 10-model Purgation take 4+4+4=12 specials. The user-confirmed correction: Purgation cap is 4 at BOTH size 5 and size 10.
+**How:** `group_max` on each variant in the group; engine tracks `groups[group_max] -> [variant indices]` and skips a variant whose group is at cap.
+
+## Dup-strip fires only when the base SE is the group's ONLY direct model
+The parser strips a base model's min/max when it exactly duplicates the containing group's (BSData pattern: Purgator min=4/max=9 == '4-9 Purgators' group). But it MUST NOT strip when the group has sibling special variants in the SAME SEG (Ynnari Reavers: Reaver min=2 is a real per-variant minimum — Blaster/Heat Lance are direct siblings, stripping would let the engine drop all plain Reavers).
+
+**Why:** Purgation specials live in a NESTED SEG (safe to strip); Reavers specials are direct siblings (must keep min). The structural difference is `len(direct_models) == 1` on the SEG.
+**How:** strip condition = SE min/max == SEG min/max AND NOT leader AND the SEG has exactly one direct model SE.
+
+## GK special weapons replace BOTH storm bolter and Nemesis force weapon
+11e GK datasheets (40k.app/Wahapedia): "Up to 4 Purgators can each have their storm bolter AND Nemesis force weapon replaced with 1 incinerator and 1 close combat weapon (or psilencer/psycannon)". The special model loses its Nemesis melee for a CCW — so the alloc greedy is target-dependent: vs GEQ the torrent Incinerator wins (Purgation fills 4, Purifier 2, Interceptor 1 — the shared caps), vs MEQ/TEQ the plain Nemesis loadout wins because the melee delta outweighs the ranged gain. NOT a bug — the cap is a ceiling, not a mandate.
+
+**Why:** a competitive list running 4x Psycannon Purgation is a strategy choice (ranged pressure), not the engine failing to fill a cap.
+**How:** pin the target-dependence in tests (GEQ fills caps, MEQ goes plain); never assert "cap must be filled".
+
+## Pricing tests resolve by config n, not first cost in tier
+`test_pricing.py` originally compared config pts/pts_3rd against the FIRST cost in the MFM tier (min-size). A unit evaluated at n=5 must use the 5-model price — the engine's `_resolve_pts` matches `cost.get("models") == models`. With n=4→5 for GK Terminator/Paladin, the old test failed (expected 140/170, config 175/215).
+
+**Why:** "config n=5 with pts 175/215" is the user-confirmed evaluation point; the test must resolve the MFM price at the same n.
+**How:** `test_pricing.py` builds `(models, points)` lists per unit and picks the entry matching config `n`; falls back to min-size when n is absent.
