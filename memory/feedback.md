@@ -124,3 +124,9 @@ The parser strips a base model's min/max when it exactly duplicates the containi
 
 **Why:** "config n=5 with pts 175/215" is the user-confirmed evaluation point; the test must resolve the MFM price at the same n.
 **How:** `test_pricing.py` builds `(models, points)` lists per unit and picks the entry matching config `n`; falls back to min-size when n is absent.
+
+## Findings DPP must carry its target-mix — meta presets + selector
+`gen_findings_html.py` computed every faction's DPP against the default MEQ target and never exposed the meta. That made the number look objectively "low/high" when it was really "vs a MEQ list". The findings page now computes rankings against each of the faction's meta profiles (all-comers, competitive, infantry, vehicle, elite) and lets the viewer switch via a banner + `<select>` — the DPP cell and the top-# change live with the chosen composition.
+
+**Why:** user point — "40% vehicles vs pure terminators gives a completely different DPP, and the meta moves". A number without its target mix is an epistemic trap; the dojo's formula-transparency rule demands the mix be shown with the number.
+**How:** (1) `data/config/_base.json` defines canonical presets (competitive/infantry/vehicle/elite) so every faction has them; curated factions already override with the same keys. (2) `build_data` returns `{'meta': {preset: {mission: [unit]}}, 'meta_info': [...]}` instead of the old flat `{mission: [unit]}`. (3) JS reads `DATA.meta[active][mission]`, one `setMeta()` re-renders all tabs. (4) `tests/test_findings_validation.py` unwraps via `_meta_data(data)`/`_all_meta_units`/`_meta_unit_items` helpers. Weights are normalised to % in `_meta_weights_display`.

@@ -185,71 +185,133 @@ MISSION_FACTORS = {
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'findings')
 
 
-def build_data(fid, max_points=2000):
-    """Compute rankings and return (DATA dict, n_units) for JS embedding.
+# Canonical target-mix scenarios. Every faction exposes these presets via
+# config meta_profiles (base defines them; curated factions override with the
+# same keys). The findings renderer computes rankings against EACH preset and
+# lets the viewer switch. This satisfies the formula-transparency rule: a DPP
+# number carries the target composition it was computed against.
+META_LABELS = {
+    'all-comers': 'Balanced / All-comers',
+    'competitive': 'Competitive / Mixed',
+    'infantry': 'Infantry-heavy / Terminator list',
+    'vehicle': 'Vehicle-heavy',
+    'elite': 'Elite / Terminator-heavy',
+}
+# Default preset shown on load per faction. Fallback: first preset in config.
+DEFAULT_META = 'all-comers'
 
-    n_units is derived from the actual ranked output — the count of unique
-    unit names across all missions.  This is the source of truth for the
-    displayed unit count; config counts may differ because the engine
-    filters out units (max_points, Legends, resolve_loadout → None,
+
+def _preset_list(supported_meta):
+    """Ordered list of (slug, label) for the faction's available metas.
+
+    Preserves config order, dedupes, and reorders so DEFAULT_META is first
+    if present. Unknown slugs fall back to their raw slug as label.
+    """
+    slugs = [k for k in supported_meta.keys() if not k.startswith('_')]
+    # de-dupe preserving order
+    seen = set()
+    ordered = [s for s in slugs if not (s in seen or seen.add(s))]
+    if DEFAULT_META in ordered:
+        ordered = [DEFAULT_META] + [s for s in ordered if s != DEFAULT_META]
+    return [(s, META_LABELS.get(s, s)) for s in ordered]
+
+
+def _meta_weights_display(supported_configs, slug):
+    """Percent weights of a preset for the banner: [[name, pct], ...].
+
+    Normalised to sum 100 so the banner reads as the opponent army mix.
+    """
+    spec = supported_configs.get(slug)
+    if not spec:
+        return []
+    profiles = spec.get('profiles', spec) if isinstance(spec, dict) else spec
+    total = sum(float(w) for _, w in profiles)
+    if total <= 0:
+        return []
+    return [[name, round(float(w) / total * 100)] for name, w in profiles]
+
+
+def build_data(faction, max_points=2000):
+    """Compute rankings per meta preset for a faction.
+
+    Returns (DATA, n_ranked_units) where DATA['meta'][meta][mission] = [unit,...]
+    and DATA['meta_info'] lists each preset's slug, display label, and the
+    target-mix weights (%) it was computed against. n_ranked_units is the count
+    of unique unit names across all metas×missions — the source of truth for
+    the displayed unit count (config counts may differ because the engine
+    filters out units: max_points, Legends, resolve_loadout → None,
     faction-keyword mismatch, missing merged data).
     """
-    e = RankingEngine(fid)
+    e = RankingEngine(faction)
+    presets = _preset_list(e.config.meta_profiles)
+    meta_info = [{
+        'slug': slug,
+        'label': label,
+        'weights': _meta_weights_display(e.config.meta_profiles, slug),
+    } for slug, label in presets]
+
     data = {}
     all_unit_names = set()
-    for m in MISSIONS:
-        r = e.compute_ranking(mission=m, max_points=max_points)
-        w = WEIGHTS[m]
-        units = []
-        for u in r:
-            all_unit_names.add(u['name'])
-            # OBJ raw value
-            base_oc = u['mob'].get('objective_control', 0)
-            boost = u.get('oc_boost', 0)
-            total_oc = (base_oc + boost) * u['surv'].get('models', 1)
-            obj_raw = RankingEngine.obj_score(total_oc, u['_surv_turns']) if total_oc > 0 else 0.0
+    for slug, _label in presets:
+        data[slug] = {}
+        for m in MISSIONS:
+            r = e.compute_ranking(mission=m, meta_name=slug, max_points=max_points)
+            w = WEIGHTS[m]
+            units = []
+            for u in r:
+                all_unit_names.add(u['name'])
+                # OBJ raw value
+                base_oc = u['mob'].get('objective_control', 0)
+                boost = u.get('oc_boost', 0)
+                total_oc = (base_oc + boost) * u['surv'].get('models', 1)
+                obj_raw = RankingEngine.obj_score(total_oc, u['_surv_turns']) if total_oc > 0 else 0.0
 
-            # Weighted contributions
-            dpp_c = round(w['dps'] * u['_dps_pct'] / 100, 1) if w['dps'] else 0
-            surv_c = round(w['surv'] * u['_surv_pct'] / 100, 1) if w['surv'] else 0
-            obj_c = round(w['obj'] * u['_obj_pct'] / 100, 1) if w.get('obj') else 0
-            mob_c = round(w['mob'] * u['_mob_pct'] / 100, 1) if w['mob'] else 0
-
-            units.append({
-                'name': u['name'],
-                'pts': u['points'],
-                'score': round(u['_mission_score'], 1),
-                'dpp': round(u['dpp'], 4),
-                'dpp_pct': u['_dps_pct'],
-                'surv_turns': u['_surv_turns'],
-                'surv_pct': u['_surv_pct'],
-                'obj_raw': round(obj_raw, 1),
-                'obj_pct': u['_obj_pct'],
-                'mob_raw': u['_mob_pct'],
-                'mob_pct': u['_mob_pct'],
-                'dpp_c': dpp_c,
-                'surv_c': surv_c,
-                'obj_c': obj_c,
-                'mob_c': mob_c,
-                'ds': u['mob'].get('deep_strike', False),
-                'fly': u['mob'].get('fly', False),
-                'oc': base_oc,
-                't': u['surv']['toughness'],
-                'w': u['surv']['wounds_per_model'],
-                'inv': u['surv'].get('invuln'),
-                'fnp': u['surv'].get('fnp'),
-                'cfnp': u.get('conditional_fnp'),
-                'cfnp_type': u.get('conditional_fnp_type'),
-                'oc_boost': u.get('oc_boost', 0),
-                'cost_eff': u.get('_cost_eff'),
-                'loadout': u.get('loadout_desc', ''),
-            })
-        data[m] = units
-    return data, len(all_unit_names)
+                # Weighted contributions
+                dpp_c = round(w['dps'] * u['_dps_pct'] / 100, 1) if w['dps'] else 0
+                surv_c = round(w['surv'] * u['_surv_pct'] / 100, 1) if w['surv'] else 0
+                obj_c = round(w['obj'] * u['_obj_pct'] / 100, 1) if w.get('obj') else 0
+                mob_c = round(w['mob'] * u['_mob_pct'] / 100, 1) if w['mob'] else 0
+                units.append({
+                    'name': u['name'],
+                    'pts': u['points'],
+                    'score': round(u['_mission_score'], 1),
+                    'dpp': round(u['dpp'], 4),
+                    'dpp_pct': u['_dps_pct'],
+                    'surv_turns': u['_surv_turns'],
+                    'surv_pct': u['_surv_pct'],
+                    'obj_raw': round(obj_raw, 1),
+                    'obj_pct': u['_obj_pct'],
+                    'mob_raw': u['_mob_pct'],
+                    'mob_pct': u['_mob_pct'],
+                    'dpp_c': dpp_c,
+                    'surv_c': surv_c,
+                    'obj_c': obj_c,
+                    'mob_c': mob_c,
+                    'ds': u['mob'].get('deep_strike', False),
+                    'fly': u['mob'].get('fly', False),
+                    'oc': base_oc,
+                    't': u['surv']['toughness'],
+                    'w': u['surv']['wounds_per_model'],
+                    'wpm': u['surv'].get('wounds_per_model'),
+                    'inv': u['surv'].get('invuln'),
+                    'fnp': u['surv'].get('fnp'),
+                    'cfnp': u.get('conditional_fnp'),
+                    'cfnp_type': u.get('conditional_fnp_type'),
+                    'oc_boost': u.get('oc_boost', 0),
+                    'cost_eff': u.get('_cost_eff'),
+                    'loadout': u.get('loadout_desc', ''),
+                })
+            data[slug][m] = units
+    return {'meta': data, 'meta_info': meta_info}, len(all_unit_names)
 
 
 def gen_html(fname, data, n_units):
-    """Generate the full findings HTML."""
+    """Generate the full findings HTML.
+
+    data is the {meta, meta_info} structure from build_data. The whole page is
+    re-rendered client-side when the target-mix preset changes; the active mix
+    is shown in a banner so every DPP number is interpretable.
+    """
     data_json = json.dumps(data, default=str)
     weights_json = json.dumps(WEIGHTS)
     factors_json = json.dumps(MISSION_FACTORS)
@@ -310,10 +372,18 @@ tr:hover{{background:#141c28}}tr.top3{{background:#0d2137}}
 .mission-playstyle{{font-size:13px;font-weight:600;color:#b0bec5;margin-bottom:8px;font-style:italic}}
 .factor-list{{margin:0;padding-left:18px;font-size:12px;color:#78909c;line-height:1.8}}
 .factor-list li{{margin-bottom:2px}}
-.raw{{font-weight:600;font-size:11px;color:#b0bec5}}</style></head><body>
+.raw{{font-weight:600;font-size:11px;color:#b0bec5}}
+.preset-banner{{background:#0d1520;border:1px solid #263238;border-radius:8px;padding:12px 16px;margin-bottom:20px;display:flex;flex-wrap:wrap;align-items:center;gap:12px}}
+.preset-banner label{{font-size:11px;font-weight:700;color:#90a4ae;text-transform:uppercase;letter-spacing:0.5px}}
+.preset-banner select{{background:#0d2137;border:1px solid #4fc3f7;border-radius:6px;padding:8px 12px;color:#eceff1;font-size:13px;outline:none;cursor:pointer}}
+.preset-weights{{display:flex;gap:6px;flex-wrap:wrap}}
+.preset-weight{{background:#1a2030;border:1px solid #263238;border-radius:4px;padding:3px 8px;font-size:11px;color:#b0bec5}}
+.preset-weight b{{color:#ffa726}}
+.preset-note{{font-size:11px;color:#546e7a;width:100%}}</style></head><body>
 <div class="back"><a href="../index.html" id="back-link">&larr; All Factions</a></div>
 <h1>{fname}</h1>
 <div class="subtitle">{n_units} datasheets · {len(MISSIONS)} missions · Quad-vector (DPP + SURV + OBJ + MOB)</div>
+<div class="preset-banner" id="preset-banner"></div>
 <div class="tabs"><div class="tab active" onclick="showTab('missions')">Mission Rankings</div><div class="tab" onclick="showTab('top10')">Top 20 Summary</div><div class="tab" onclick="showTab('insights')">Key Insights</div></div>
 <div id="missions" class="tab-content active"></div>
 <div id="top10" class="tab-content"></div>
@@ -336,10 +406,14 @@ function bar(pct,cls){{return '<div class="bar-bg"><div class="bar-fill '+cls+'"
 function contrib(v){{return v===0?'<span class="contrib contrib-zero">--</span>':'<span class="contrib contrib-pos">+'+v+'</span>'}}
 function renderRow(u,i){{var tags=(u.ds?'<span class=\\"tag tag-ds\\">DS</span>':'')+(u.fly?'<span class=\\"tag tag-fly\\">FLY</span>':'')+(u.inv?'<span class=\\"tag tag-inv\\">INV '+u.inv+'</span>':'')+(u.fnp?'<span class=\\"tag tag-fnp\\">FNP '+u.fnp+'</span>':'')+(u.cfnp?'<span class=\\"tag tag-cfnp\\">CFNP '+u.cfnp+'+ vs '+u.cfnp_type+'</span>':'')+(u.oc_boost?'<span class=\\"tag tag-ocboost\\">OC+'+u.oc_boost+'/banner</span>':'')+(u.cost_eff!==null&&u.cost_eff!==undefined?'<span class=\\"tag tag-cost\\">COST '+u.cost_eff+'</span>':'');return '<tr class="'+(i<3?'top3':'')+'" data-name="'+u.name.toLowerCase()+'"><td class="'+rankClass(i+1)+'">'+(i+1)+'</td><td class="unit-name">'+u.name+'</td><td class="pts">'+u.pts+'</td><td class="score '+scoreClass(u.score)+'">'+u.score+'</td><td class="raw"'+(u.loadout?' title="'+u.loadout.replace(/"/g,'&quot;')+'"':'')+'>'+u.dpp+'</td><td class="bar-cell">'+bar(u.dpp_pct,'dpp')+' '+contrib(u.dpp_c)+'</td><td class="raw">'+u.surv_turns+'t</td><td class="bar-cell">'+bar(u.surv_pct,'surv')+' '+contrib(u.surv_c)+'</td><td class="raw">'+u.obj_raw+'</td><td class="bar-cell">'+bar(u.obj_pct,'obj')+' '+contrib(u.obj_c)+'</td><td class="raw">'+u.mob_raw+'</td><td class="bar-cell">'+bar(u.mob_pct,'mob')+' '+contrib(u.mob_c)+'</td><td>'+tags+'</td><td style="font-size:10px;color:#78909c">T'+u.t+' W'+u.w+' OC'+u.oc+'</td></tr>'}}
 function filterMission(mid){{var q=document.getElementById('search-'+mid).value.toLowerCase();var rows=document.getElementById('table-'+mid).querySelectorAll('tr[data-name]');var shown=0;rows.forEach(function(r){{var m=!q||r.getAttribute('data-name').indexOf(q)!==-1;r.style.display=m?'':'none';if(m)shown++}});document.getElementById('count-'+mid).textContent=shown+' / '+rows.length+' units'}}
-function renderMissions(){{var c=document.getElementById('missions'),html='';for(var mission in DATA){{var units=DATA[mission],w=WEIGHTS[mission],f=FACTORS[mission]||{{}},mid=mission.replace(/[^a-z]/gi,'');var factorHtml='';if(f.playstyle)factorHtml+='<div class="mission-playstyle">'+f.playstyle+'</div>';if(f.factors)factorHtml+='<ul class="factor-list">'+f.factors.map(function(x){{return '<li>'+x+'</li>'}}).join('')+'</ul>';html+='<div class="mission-card"><div class="mission-header"><div class="mission-name">'+mission+' <span style="font-size:13px;color:#78909c">('+units.length+' units)</span></div><div class="mission-weights"><span class="weight w-dpp">DPP '+w.dps+'%</span><span class="weight w-surv">SURV '+w.surv+'%</span><span class="weight w-obj">OBJ '+w.obj+'%</span><span class="weight w-mob">MOB '+w.mob+'%</span></div></div>'+(factorHtml?'<div class="mission-factors">'+factorHtml+'</div>':'')+'<div class="search-bar"><input id="search-'+mid+'" type="text" placeholder="Search units..." oninput="filterMission(\\''+mid+'\\')"><span class="count" id="count-'+mid+'">'+units.length+' / '+units.length+' units</span></div><div class="table-scroll"><table id="table-'+mid+'"><tr><th>#</th><th>Unit</th><th>Pts</th><th>Score</th><th>DPP</th><th class="bar-cell"></th><th>SURV</th><th class="bar-cell"></th><th>OBJ</th><th class="bar-cell"></th><th>MOB</th><th class="bar-cell"></th><th>Tags</th><th>Profile</th></tr>';units.forEach(function(u,i){{html+=renderRow(u,i)}});html+='</table></div></div>'}}c.innerHTML=html}}
-function renderTop10(){{var c=document.getElementById('top10'),unitData={{}};for(var mission in DATA){{var units=DATA[mission];for(var i=0;i<units.length;i++){{var u=units[i];if(!unitData[u.name])unitData[u.name]={{name:u.name,pts:u.pts,ds:u.ds,fly:u.fly,inv:u.inv,fnp:u.fnp,cfnp:u.cfnp,cfnp_type:u.cfnp_type,oc_boost:u.oc_boost,t:u.t,w:u.w,oc:u.oc,missions:{{}}}};unitData[u.name].missions[mission]={{score:u.score,rank:i+1}}}}}}for(var k in unitData){{var u=unitData[k],scores=Object.values(u.missions).map(function(m){{return m.score}});u.avgScore=Math.round(scores.reduce(function(a,b){{return a+b}},0)/scores.length*10)/10}}var sorted=Object.values(unitData).sort(function(a,b){{return b.avgScore-a.avgScore}}).slice(0,20);var html='<h2>Top 20 Units (Avg Score)</h2>';sorted.forEach(function(u,idx){{var badges=Object.entries(u.missions).sort(function(a,b){{return b[1].score-a[1].score}}).map(function(kv){{var m=kv[0],v=kv[1];return '<span class="mission-badge '+(v.rank===1?'top1':v.rank<=3?'top3':'top5')+'">#'+v.rank+' '+m+' ('+v.score+')</span>'}}).join(' ');var bc=['#ffd700','#c0c0c0','#cd7f32'];html+='<div class="insight-card" style="border-left-color:'+(idx<3?bc[idx]:'#4fc3f7')+'"><div class="insight-title" style="display:flex;justify-content:space-between"><span>#'+(idx+1)+' '+u.name+'</span><span class="pts">'+u.pts+'pts · avg '+u.avgScore+'</span></div><div style="margin:6px 0">'+(u.ds?'<span class="tag tag-ds">DS</span>':'')+(u.fly?'<span class="tag tag-fly">FLY</span>':'')+(u.inv?'<span class="tag tag-inv">INV '+u.inv+'</span>':'')+(u.fnp?'<span class="tag tag-fnp">FNP '+u.fnp+'</span>':'')+(u.cfnp?'<span class="tag tag-cfnp">CFNP '+u.cfnp+'+ vs '+u.cfnp_type+'</span>':'')+(u.oc_boost?'<span class="tag tag-ocboost">OC+'+u.oc_boost+'/banner</span>':'')+'<span style="font-size:11px;color:#78909c;margin-left:8px">T'+u.t+' W'+u.w+' OC'+u.oc+'</span></div><div>'+badges+'</div></div>'}});c.innerHTML=html}}
-function renderInsights(){{var c=document.getElementById('insights'),html='<h2>Key Insights</h2>';for(var mission in DATA){{var units=DATA[mission];if(units.length>0){{var u=units[0];html+='<div class="insight-card"><div class="insight-title">#1 in '+mission+': '+u.name+'</div><div class="insight-text">'+u.score+' score · '+u.pts+'pts · '+u.dpp+' DPP · T'+u.t+' W'+u.w+(u.inv?' INV'+u.inv:'')+(u.fnp?' FNP'+u.fnp:'')+(u.cfnp?' CFNP'+u.cfnp+'+'+u.cfnp_type:'')+(u.oc_boost?' OC+'+u.oc_boost+'/banner':'')+(u.ds?' DS':'')+(u.fly?' FLY':'')+' OC'+u.oc+'</div></div>'}}}}c.innerHTML=html}}
-renderMissions();renderTop10();renderInsights();
+var ACTIVE='';
+function isActive(meta){{return ACTIVE===''||ACTIVE===meta}}
+function renderBanner(){{var b=document.getElementById('preset-banner'),opts=DATA.meta_info.map(function(p){{var sel=isActive(p.slug)?' selected':'';return '<option value="'+p.slug+'"'+sel+'>'+p.label+'</option>'}}).join('');var info=DATA.meta_info.filter(function(m){{return isActive(m.slug)}})[0]||DATA.meta_info[0];var weights=(info&&info.weights?info.weights.map(function(w){{return '<span class="preset-weight">'+w[0]+' <b>'+w[1]+'%</b></span>'}}).join(''):'');b.innerHTML='<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;width:100%"><label for="meta-select">Target mix</label><select id="meta-select" onchange="setMeta(this.value)">'+opts+'</select><div class="preset-weights">'+weights+'</div></div><div class="preset-note">DPP is computed against this opponent army composition. Pack your list against a different meta and the rankings re-rank.</div>'}}
+function setMeta(slug){{ACTIVE=slug;renderBanner();renderMissions();renderTop10();renderInsights()}}
+function renderMissions(){{var c=document.getElementById('missions'),html='';var meta=ACTIVE===''?DATA.meta_info[0].slug:ACTIVE;for(var mission in DATA.meta[meta]){{var units=DATA.meta[meta][mission],w=WEIGHTS[mission],f=FACTORS[mission]||{{}},mid=mission.replace(/[^a-z]/gi,'');var factorHtml='';if(f.playstyle)factorHtml+='<div class="mission-playstyle">'+f.playstyle+'</div>';if(f.factors)factorHtml+='<ul class="factor-list">'+f.factors.map(function(x){{return '<li>'+x+'</li>'}}).join('')+'</ul>';html+='<div class="mission-card"><div class="mission-header"><div class="mission-name">'+mission+' <span style="font-size:13px;color:#78909c">('+units.length+' units)</span></div><div class="mission-weights"><span class="weight w-dpp">DPP '+w.dps+'%</span><span class="weight w-surv">SURV '+w.surv+'%</span><span class="weight w-obj">OBJ '+w.obj+'%</span><span class="weight w-mob">MOB '+w.mob+'%</span></div></div>'+(factorHtml?'<div class="mission-factors">'+factorHtml+'</div>':'')+'<div class="search-bar"><input id="search-'+mid+'" type="text" placeholder="Search units..." oninput="filterMission(\\''+mid+'\\')"><span class="count" id="count-'+mid+'">'+units.length+' / '+units.length+' units</span></div><div class="table-scroll"><table id="table-'+mid+'"><tr><th>#</th><th>Unit</th><th>Pts</th><th>Score</th><th>DPP</th><th class="bar-cell"></th><th>SURV</th><th class="bar-cell"></th><th>OBJ</th><th class="bar-cell"></th><th>MOB</th><th class="bar-cell"></th><th>Tags</th><th>Profile</th></tr>';units.forEach(function(u,i){{html+=renderRow(u,i)}});html+='</table></div></div>'}}c.innerHTML=html}}
+function renderTop10(){{var c=document.getElementById('top10'),unitData={{}};var meta=ACTIVE===''?DATA.meta_info[0].slug:ACTIVE;for(var mission in DATA.meta[meta]){{var units=DATA.meta[meta][mission];for(var i=0;i<units.length;i++){{var u=units[i];if(!unitData[u.name])unitData[u.name]={{name:u.name,pts:u.pts,ds:u.ds,fly:u.fly,inv:u.inv,fnp:u.fnp,cfnp:u.cfnp,cfnp_type:u.cfnp_type,oc_boost:u.oc_boost,t:u.t,w:u.w,oc:u.oc,missions:{{}}}};unitData[u.name].missions[mission]={{score:u.score,rank:i+1}}}}}}for(var k in unitData){{var u=unitData[k],scores=Object.values(u.missions).map(function(m){{return m.score}});u.avgScore=Math.round(scores.reduce(function(a,b){{return a+b}},0)/scores.length*10)/10}}var sorted=Object.values(unitData).sort(function(a,b){{return b.avgScore-a.avgScore}}).slice(0,20);var html='<h2>Top 20 Units (Avg Score)</h2>';sorted.forEach(function(u,idx){{var badges=Object.entries(u.missions).sort(function(a,b){{return b[1].score-a[1].score}}).map(function(kv){{var k=kv[0],v=kv[1];return '<span class="mission-badge '+(v.rank===1?'top1':v.rank<=3?'top3':'top5')+'">#'+v.rank+' '+k+' ('+v.score+')</span>'}}).join(' ');var bc=['#ffd700','#c0c0c0','#cd7f32'];html+='<div class="insight-card" style="border-left-color:'+(idx<3?bc[idx]:'#4fc3f7')+'"><div class="insight-title" style="display:flex;justify-content:space-between"><span>#'+(idx+1)+' '+u.name+'</span><span class="pts">'+u.pts+'pts · avg '+u.avgScore+'</span></div><div style="margin:6px 0">'+(u.ds?'<span class="tag tag-ds">DS</span>':'')+(u.fly?'<span class="tag tag-fly">FLY</span>':'')+(u.inv?'<span class="tag tag-inv">INV '+u.inv+'</span>':'')+(u.fnp?'<span class="tag tag-fnp">FNP '+u.fnp+'</span>':'')+(u.cfnp?'<span class="tag tag-cfnp">CFNP '+u.cfnp+'+ vs '+u.cfnp_type+'</span>':'')+(u.oc_boost?'<span class="tag tag-ocboost">OC+'+u.oc_boost+'/banner</span>':'')+'<span style="font-size:11px;color:#78909c;margin-left:8px">T'+u.t+' W'+u.w+' OC'+u.oc+'</span></div><div>'+badges+'</div></div>'}});c.innerHTML=html}}
+function renderInsights(){{var c=document.getElementById('insights'),html='<h2>Key Insights</h2>';var meta=ACTIVE===''?DATA.meta_info[0].slug:ACTIVE;for(var mission in DATA.meta[meta]){{var units=DATA.meta[meta][mission];if(units.length>0){{var u=units[0];html+='<div class="insight-card"><div class="insight-title">#1 in '+mission+': '+u.name+'</div><div class="insight-text">'+u.score+' score · '+u.pts+'pts · '+u.dpp+' DPP · T'+u.t+' W'+u.w+(u.inv?' INV'+u.inv:'')+(u.fnp?' FNP'+u.fnp:'')+(u.cfnp?' CFNP'+u.cfnp+'+'+u.cfnp_type:'')+(u.oc_boost?' OC+'+u.oc_boost+'/banner':'')+(u.ds?' DS':'')+(u.fly?' FLY':'')+' OC'+u.oc+'</div></div>'}}}}c.innerHTML=html}}
+renderBanner();renderMissions();renderTop10();renderInsights();
 </script></body></html>'''
 
 
