@@ -157,3 +157,28 @@ The naivie parser only recognized "melee"/"ranged"/"shooting phase". Adding `\bs
 ## Truth report regenerator must be hash-seeded or the commit diff churns
 `write_report()` iterates dicts during ranking; without a fixed `PYTHONHASHSEED` every run produces different floats AND different file bytes — a 12k-line diff on every regen, drowning real changes. Fixed: `write_report` now JSON-dumps with `sort_keys=True` and the canonical regen is `PYTHONHASHSEED=1 python -m tests.test_truth_roles_report`. Byte-identical across runs (verified). Do NOT regen with a bare `python3 -c "from tests...write_report()"`.
 **Why it matters:** a churny artifact makes every report PR an unreviewable diff; reviewers can't tell the 10 semantic leaf changes (a real drift) from 12k lines of hash noise.
+
+## Reroll detector generalization: weakest-wins, aura-skip, keyword/roll boundary
+Closed the M/V-only gate — class-keyed rerolls now detect CHARACTER / INFANTRY /
+TITANIC / WALKER / MOUNTED too (24 → 33 datasheets).
+**Weakest-wins mode rule:** when one roll noun appears in several clauses with
+different modes, '1s' wins over 'all'. Upgrade clauses ("re-roll a Hit roll of 1...
+if the target is a Psyker Character, you can re-roll the Hit roll instead") must
+not leak a full reroll onto the whole class — 'all' would over-claim. Under-claims
+the rare upgrade, never fabricates. Zero mode-conflicts in the accepted 24.
+**Aura-subject skip:** "each time THAT <other> model makes an attack" hands the
+reroll to a FRIENDLY unit, not the bearer (Atrapos "Consumed with Hunger" buffs War
+Dogs) — skip, or every aura attaches to the bearer's own attacks. "a friendly X
+model" that INCLUDES the bearer (Spirit Thief: Heretic Astartes) is kept.
+**keyword/roll boundary:** `\b(hit|wound|damage)(?:\s+roll)?` without a trailing
+`\b` matches "WOUND" inside "[DEVASTATING WOUNDS]" — a keyword, not a roll.
+Plural-leak false positive (Emperor's Champion "Sigismund's Heir" claimed a wound
+reroll from Dev-wounds). Always terminate roll-noun alternations with `\b`.
+**Note:** D-Cannon "re-roll Damage 1s... *instead* all vs TITANIC" now under-claims
+to 1s (the *instead* upgrade is the rare branch) — acceptable, directional.
+
+## Generalization scope checked against corpus
+Before writing code: surveyed the corpus. class-keyed rerolls = 33 abilities
+(detected). Unconditional/army-wide = 150+ (76 'all' + 74 '1s') — separate
+feature (needs `targets: ALL` + positional-trigger exclusion), filed on roadmap.
+Bundle-of-many-abilities units mix per-datasheet.

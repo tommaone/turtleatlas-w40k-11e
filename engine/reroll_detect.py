@@ -1,10 +1,12 @@
-"""Auto-detection of unit abilities that grant re-rolls vs MONSTER/VEHICLE.
+"""Auto-detection of unit abilities that grant re-rolls vs target classes.
 
 The engine is data-driven: it should not hardcode "Grand Master In Nemesis
 Dreadknight has Surge of Wrath". Instead it parses the ability DESCRIPTION
 from the merged BSData and derives a conditional reroll modifier. This keeps
 a single source of truth (the datasheet text) and automatically covers any
-faction's equivalent abilities (Eradicators, Fire Dragons, Sunforge, etc.).
+faction's equivalent abilities (Eradicators, Fire Dragons, Jain Zar, etc.).
+
+Target classes: MONSTER/VEHICLE + CHARACTER/INFANTRY/TITANIC/WALKER/MOUNTED.
 
 Epistemic boundary (dojo): the parser derives the MECHANIC (which rerolls,
 which phase, which target type) from GW text — that is interpretation, so the
@@ -18,11 +20,11 @@ Returned spec shape:
       "reroll_wounds": "all"|"1s"|None,
       "reroll_damage": "all"|"1s"|None,
       "phase": "ranged"|"melee"|"both",
-      "targets": ["MONSTER", "VEHICLE"] | ["CHARACTER", "MONSTER", "VEHICLE"] ...,
+      "targets": ["CHARACTER", "MONSTER", "VEHICLE"] ...,
       "ability_name": "Surge of Wrath",
       "raw": "<full description text>",
     }
-Returns None when no Monster/Vehicle reroll is present.
+Returns None when no class-keyed attack reroll is present.
 """
 import re
 
@@ -32,12 +34,23 @@ _TARGET_KEYWORDS = [
     "MONSTER", "VEHICLE", "CHARACTER", "INFANTRY", "TITANIC", "WALKER", "MOUNTED",
 ]
 
-_RE_HAS_MV = re.compile(r"(monster|vehicle)", re.I)
-# A re-roll verb — the START of a reroll clause. Clauses may list several
-# rolls after one verb ("you can re-roll a Hit roll and a Wound roll").
+_TARGET_KEYWORDS = [
+    "MONSTER", "VEHICLE", "CHARACTER", "INFANTRY", "TITANIC", "WALKER", "MOUNTED",
+]
+
+# Pre-filter: text must mention at least one target keyword (an attack reroll
+# with NO class keyword at all is the army-wide / unconditional case — modeled
+# separately; see docs/roadmap.md engine gap). Case/plural-insensitive.
+_RE_HAS_TARGET = re.compile(
+    r"\b(?:monster|vehicle|character|infantry|titanic|walker|mounted)s?\b",
+    re.I,
+)
+
 _RE_REROLL_VERB = re.compile(r"\bre-?roll\b", re.I)
 # A roll-type noun inside a reroll clause ("Hit roll", "wound roll", "damage").
-_RE_ROLL_NOUN = re.compile(r"\b(hit|wound|damage)(?:\s+roll)?", re.I)
+# Trailing \b required — without it "WOUNDS" (e.g. "[DEVASTATING WOUNDS]", a
+# keyword, not a roll) matches \bwound and fabricates a wound reroll.
+_RE_ROLL_NOUN = re.compile(r"\b(hit|wound|damage)\b(?:\s+roll)?", re.I)
 # "of 1" / "1s" attached to a single noun -> reroll 1s (not all).
 _RE_ONES_PER_NOUN = re.compile(r"\b(of\s+1|1s)\b", re.I)
 # melee/fight phrasing: "makes a melee attack", "fights", "in the Fight phase"
@@ -101,22 +114,63 @@ def _target_keywords(desc: str) -> list[str]:
     return out
 
 
+def _weakest(a: str | None, b: str | None) -> str | None:
+    """Merge two reroll modes conservatively: '1s' wins over 'all'.
+
+    Upgrade clauses ('re-roll a Hit roll of 1... if the target is a X unit,
+    you can re-roll the Hit roll instead') must not turn a common-case '1s'
+    into a full reroll — 'all' would over-claim for the whole target class.
+    Under-claiming the rare upgrade beats fabricating a full reroll.
+    """
+    if "1s" in (a, b):
+        return "1s"
+    if a or b:
+        return a or b
+    return None
+
+
+# Aura-grant abilities hand the reroll to OTHER units, not the bearer:
+# "each time that VS^**War Dog**^^ model makes an attack... you can re-roll
+# the Hit roll" (Atrapos "Consumed with Hunger"). If the reroll's attack
+# subject is "that X model/unit", the subject is a different friendly unit —
+# the bearer never benefits. Skip (do not over-claim). Self-attributed
+# phrasings ("each time this model", "each time a model in this unit") do
+# NOT match — they are the bearer's own attacks and stay detected.
+_RE_OTHER_SUBJECT = re.compile(
+    r"\beach\s+time\s+that\s+[^.;]{0,40}?\b(?:model|unit)\s+makes?\s+an?\s+attack",
+    re.I,
+)
+
+
 def detect_reroll_ability(ability: dict) -> dict | None:
     """Parse one ability dict from merged data into a reroll spec (or None)."""
     name = ability.get("name", "")
     desc = ability.get("description", "") or ""
-    if not desc or not _RE_HAS_MV.search(desc):
+    if not desc or not _RE_HAS_TARGET.search(desc):
         return None
 
-    # Only act when a reroll is present AND it is conditional on M/V targets.
+    # Only act when a reroll is present AND it is conditional on class targets.
     if not _RE_REROLL_VERB.search(desc):
+        return None
+
+    # Aura-grant abilities ("each time that <other> model makes an attack")
+    # hand the reroll to friendly units, not the bearer — skip entirely.
+    if _RE_OTHER_SUBJECT.search(desc):
         return None
 
     # Which rerolls does the text grant? Split into clauses, each starting at a
     # re-roll verb. One verb may govern several nouns ("you can re-roll a Hit
     # roll and a Wound roll") — every noun in the same clause gets the same
-    # mode. The mode is "1s" only when "of 1"/"1s" is attached to THAT noun
+    # mode. Mode is "1s" only when "of 1"/"1s" is attached to THAT noun
     # (bounded by the next noun in the clause), otherwise "all".
+    #
+    # Multi-clause negotiation: when one noun appears in several clauses with
+    # DIFFERENT modes, take the WEAKEST ("1s" wins over "all"). Upgrade
+    # clauses ("re-roll a Hit roll of 1. If the target is a Psyker Character,
+    # you can re-roll the Hit roll.") must not leak a full reroll onto the
+    # plain-class target — taking "1s" under-claims for the rare upgrade,
+    # but never fabricates a full reroll for the common case (no over-claim;
+    # "all" would fire on every CHARACTER, not just Psyker CHARACTERs).
     hits, wounds, dmg = None, None, None
     verbs = list(_RE_REROLL_VERB.finditer(desc))
     for i, vm in enumerate(verbs):
@@ -130,11 +184,11 @@ def detect_reroll_ability(ability: dict) -> dict | None:
             tail = clause[nm.end():seg_end]
             mode = "1s" if _RE_ONES_PER_NOUN.search(tail) else "all"
             if kind == "hit":
-                hits = mode
+                hits = _weakest(hits, mode)
             elif kind == "wound":
-                wounds = mode
+                wounds = _weakest(wounds, mode)
             elif kind == "damage":
-                dmg = mode
+                dmg = _weakest(dmg, mode)
 
     if hits is None and wounds is None and dmg is None:
         return None

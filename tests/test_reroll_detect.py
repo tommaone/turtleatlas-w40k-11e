@@ -252,4 +252,99 @@ class TestDamageRerollMean:
     def test_unrecognised_shape_returns_flat(self):
         """Unknown dice expressions fall back to flat (no silent boost)."""
         assert _damage_reroll_mean("D12", "all") == 1.0
+
+
+class TestGeneralizedKeywords:
+    """Beyond MONSTER/VEHICLE: CHARACTER / INFANTRY / TITANIC / WALKER / MOUNTED
+    rerolls are now detected too (previously gated on M/V only)."""
+
+    def test_character_reroll_detected(self):
+        s = _spec("Each time this model makes an attack that targets a "
+                  "Character unit, you can re-roll the Wound roll.",
+                  "Storm of Silence")
+        assert s is not None
+        assert s["reroll_wounds"] == "all"
+        assert s["targets"] == ["CHARACTER"]
+
+    def test_titanic_reroll_detected(self):
+        s = _spec("Each time this model makes a ranged attack that targets a "
+                  "Titanic or Towering unit, you can re-roll the Hit roll.",
+                  "Titan-killer")
+        assert s is not None
+        assert s["reroll_hits"] == "all"
+        assert s["targets"] == ["TITANIC"]  # Towering is not a class keyword
+
+    def test_walker_keyword_detected(self):
+        s = _spec("Each time this model makes an attack that targets a "
+                  "Character, Monster or Walker unit, you can re-roll the Hit "
+                  "roll and re-roll the Wound roll.", "A Challenge Worthy of Skill")
+        assert s is not None
+        assert s["reroll_hits"] == "all" and s["reroll_wounds"] == "all"
+        assert set(s["targets"]) == {"CHARACTER", "MONSTER", "WALKER"}
+
+
+class TestUpgradeClauseWeakestWins:
+    """'re-roll a 1s ... if target is X, re-roll instead' — the common-case
+    mode stays '1s' (under-claim) instead of jumping to a full reroll for the
+    whole class (over-claim)."""
+
+    def test_upgrade_stays_ones(self):
+        s = _spec("Each time this model makes an attack, re-roll a Hit roll of "
+                  "1. If that attack targets a Monster or Vehicle unit, you can "
+                  "re-roll the Hit roll instead.")
+        assert s is not None
+        assert s["reroll_hits"] == "1s"
+
+    def test_permissive_upgrade_keeps_ones(self):
+        """Hunter of Souls pattern: 'can re-roll the Hit roll' upgrade for
+        Psyker-Characters must not leak 'all' onto plain Characters."""
+        s = _spec("Each time this model makes an attack that targets a "
+                  "Character unit, re-roll a Hit roll of 1 and re-roll a Wound "
+                  "roll of 1. If that attack targets a Psyker Character unit, "
+                  "you can re-roll the Hit roll and the Wound roll.",
+                  "Hunter of Souls")
+        assert s is not None
+        assert s["reroll_hits"] == "1s"
+        assert s["reroll_wounds"] == "1s"
+
+
+class TestAuraGrantSkip:
+    """A reroll granted to OTHER friendly units (subject 'that X model/unit')
+    must NOT be attached to the bearer — over-claim."""
+
+    def test_aura_grant_not_bearer(self):
+        s = _spec("While a friendly War Dog model is within 6\" of this model, "
+                  "each time that War Dog model makes an attack that targets a "
+                  "TITANIC or TOWERING unit, you can re-roll the Hit roll.",
+                  "Consumed with Hunger (Aura)")
+        assert s is None
+
+    def test_friendly_including_bearer_kept(self):
+        """'a friendly Heretic Astartes model' includes the bearer (the model
+        is Heretic Astartes) — keep the reroll."""
+        s = _spec("At the start of your Shooting phase, select one visible "
+                  "enemy Vehicle unit. Until the end of the phase, each time a "
+                  "friendly Heretic Astartes model makes an attack that targets "
+                  "that unit, re-roll a Wound roll of 1.", "Spirit Thief")
+        assert s is not None
+        assert s["reroll_wounds"] == "1s"
+        assert "VEHICLE" in s["targets"]
+
+
+class TestKeywordBoundaryNoPluralLeak:
+    """[DEVASTATING WOUNDS] / [SUSTAINED HITS] keywords are NOT roll nouns — a
+    keyword's 'wound'/'hit' must not be parsed as a rerollable roll."""
+
+    def test_devastating_wounds_not_a_wound_reroll(self):
+        s = _spec("Each time this unit declares a charge, this unit can "
+                  "re-roll that charge roll. In the Fight phase, if this unit "
+                  "is engaged with a CHARACTER unit, this unit's melee attacks "
+                  "have [DEVASTATING WOUNDS] and [SUSTAINED HITS 1].",
+                  "Sigismund's Heir")
+        assert s is None
+
+    def test_hits_wounds_plural_not_matched(self):
+        s = _spec("Each time this model destroys an enemy unit, add 1 to this "
+                  "unit's WOUNDS characteristic and gain [SUSTAINED HITS 2].")
+        assert s is None
         assert _damage_reroll_mean("melta", "all") == 1.0

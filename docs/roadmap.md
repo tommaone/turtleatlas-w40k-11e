@@ -114,10 +114,15 @@ and recommend detachments/units based on mission and meta.
 
 ### Engine Improvements
 - [x] **Reroll abilities vs target class** — auto-detected MONSTER/VEHICLE rerolls
-  (24 datasheets), damage-reroll mean, context-aware scanning
-- [ ] **Generalize reroll to all keywords + other army rules** — reroll 1s,
-  +1 to wound, Sustained/Lethal Hits army-wide, FNP army-wide. Flat rankings
-  mislead without these.
+  (24 datasheets) + generalized to CHARACTER/INFANTRY/TITANIC/WALKER/MOUNTED
+  (33 datasheets): weakest-wins mode resolution (1s under-claims upgrades),
+  aura-subject skip ("that X model" attacks never attach to the bearer),
+  keyword/roll noun boundary fix ([DEVASTATING WOUNDS] is not a rerollable roll)
+- [ ] **Army-wide (unconditional) rerolls + other army rules** — 150+ abilities
+  grant rerolls with no target class ("re-roll a Hit roll of 1" unconditionally,
+  auras, leading-unit buffs). Requires `targets: ALL` semantics + conditional
+  exclusion (positional triggers like "within range of an objective marker").
+  Flat rankings mislead without these.
 - [ ] **Pistol/two-handed restriction** — pistol can't shoot with non-pistol
 - [ ] **Concentrated fire** — vehicles ranked vs single attacker; expected
   incoming-fire model needed
