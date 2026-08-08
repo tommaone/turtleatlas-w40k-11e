@@ -221,6 +221,63 @@ def _ld_dmg(ranged, melee, innate, target, modifier: Optional[WeaponModifier] = 
     return d
 
 
+def _ld_dmg_conditional(ranged, melee, innate, target, base_mod,
+                        reroll_spec, phase, melta_active=False,
+                        heavy_stationary=False, hit_mode=HitMode.NORMAL,
+                        n_models=1):
+    from engine.reroll_detect import _target_matches
+
+    def _phase_applies():
+        ph = reroll_spec["phase"]
+        if ph == "both":
+            return True
+        return ph == phase  # phase is "ranged" or "melee" for the list being computed
+
+    def _mod(include):
+        if base_mod is None:
+            m = WeaponModifier()
+        else:
+            m = WeaponModifier(
+                hit_modifier=base_mod.hit_modifier,
+                sustained_hits_extra=base_mod.sustained_hits_extra,
+                lethal_hits=base_mod.lethal_hits,
+                plus1_to_wound=base_mod.plus1_to_wound,
+                extra_ap=base_mod.extra_ap,
+                ignore_cover=base_mod.ignore_cover,
+                twin_linked=base_mod.twin_linked,
+                devastating_wounds=base_mod.devastating_wounds,
+                reroll_hits=base_mod.reroll_hits,
+                reroll_wounds=base_mod.reroll_wounds,
+                reroll_damage=base_mod.reroll_damage,
+            )
+        if include:
+            for f in ("reroll_hits", "reroll_wounds", "reroll_damage"):
+                a = getattr(m, f)
+                b = reroll_spec.get(f)
+                setattr(m, f, _pick(a, b))
+        return m
+
+    def _one(pro, w):
+        inc = _target_matches(reroll_spec["targets"], pro.toughness) and _phase_applies()
+        return _ld_dmg(ranged, melee, innate, pro, _mod(inc),
+                       melta_active=melta_active, heavy_stationary=heavy_stationary,
+                       hit_mode=hit_mode, n_models=n_models) * w
+
+    return sum(_one(p, w) for _, p, w in target) if isinstance(target, list) \
+        else _one(target, 1.0)
+
+
+def _pick(a, b):
+    """Merge two reroll modes: 'all' > '1s' > None."""
+    if not a and not b:
+        return None
+    if "all" in (a, b):
+        return "all"
+    if "1s" in (a, b):
+        return "1s"
+    return None
+
+
 def _best_melee(weapons, target, modifier, melta_active, heavy_stationary, hit_mode,
                 n_models: int = 1):
     """Best melee damage considering model count.
@@ -1650,6 +1707,21 @@ class RankingEngine:
                 continue
             pts, ranged_profiles, melee_profiles, innate_profiles, info = resolved
 
+            # Auto-detect datasheet abilities that grant re-rolls vs MONSTER/VEHICLE
+            # (Surge of Wrath, Assured Destruction, Bring it Down! etc). The reroll
+            # applies per-target, so damage is computed conditionally via
+            # _ld_dmg_conditional. No hand-authored config entries for these.
+            reroll_spec = None
+            try:
+                from engine.reroll_detect import detect_reroll_ability
+                for ab in profile.get("abilities", []) or []:
+                    spec = detect_reroll_ability(ab)
+                    if spec is not None:
+                        reroll_spec = spec
+                        break
+            except Exception:
+                reroll_spec = None
+
             # Skip units exceeding max game size (e.g. 2100pt Titan in 2000pt game)
             if max_points and pts > max_points:
                 continue
@@ -1688,15 +1760,29 @@ class RankingEngine:
                 n_models = self.config.squads[name]["n"]
 
             # DPP (with optional detachment modifier)
-            dmg_ranged = _ld_dmg(ranged_profiles, [], [], actual_target, unit_weapon_mod,
-                                 melta_active=melta_active, heavy_stationary=heavy_stationary,
-                                 hit_mode=unit_hit_mode, n_models=n_models) if ranged_profiles else 0
-            dmg_melee = _ld_dmg([], melee_profiles, [], actual_target, unit_weapon_mod,
-                                melta_active=melta_active, heavy_stationary=heavy_stationary,
-                                hit_mode=HitMode.NORMAL, n_models=n_models) if melee_profiles else 0
-            dmg_innate = _ld_dmg([], [], innate_profiles, actual_target, unit_weapon_mod,
-                                 melta_active=melta_active, heavy_stationary=heavy_stationary,
-                                 hit_mode=HitMode.NORMAL, n_models=n_models) if innate_profiles else 0
+            if reroll_spec is not None:
+                dmg_ranged = _ld_dmg_conditional(ranged_profiles, [], [], actual_target, unit_weapon_mod,
+                                                 reroll_spec, "ranged",
+                                                 melta_active=melta_active, heavy_stationary=heavy_stationary,
+                                                 hit_mode=unit_hit_mode, n_models=n_models) if ranged_profiles else 0
+                dmg_melee = _ld_dmg_conditional([], melee_profiles, [], actual_target, unit_weapon_mod,
+                                                reroll_spec, "melee",
+                                                melta_active=melta_active, heavy_stationary=heavy_stationary,
+                                                hit_mode=HitMode.NORMAL, n_models=n_models) if melee_profiles else 0
+                dmg_innate = _ld_dmg_conditional([], [], innate_profiles, actual_target, unit_weapon_mod,
+                                                 reroll_spec, "both",
+                                                 melta_active=melta_active, heavy_stationary=heavy_stationary,
+                                                 hit_mode=HitMode.NORMAL, n_models=n_models) if innate_profiles else 0
+            else:
+                dmg_ranged = _ld_dmg(ranged_profiles, [], [], actual_target, unit_weapon_mod,
+                                     melta_active=melta_active, heavy_stationary=heavy_stationary,
+                                     hit_mode=unit_hit_mode, n_models=n_models) if ranged_profiles else 0
+                dmg_melee = _ld_dmg([], melee_profiles, [], actual_target, unit_weapon_mod,
+                                    melta_active=melta_active, heavy_stationary=heavy_stationary,
+                                    hit_mode=HitMode.NORMAL, n_models=n_models) if melee_profiles else 0
+                dmg_innate = _ld_dmg([], [], innate_profiles, actual_target, unit_weapon_mod,
+                                     melta_active=melta_active, heavy_stationary=heavy_stationary,
+                                     hit_mode=HitMode.NORMAL, n_models=n_models) if innate_profiles else 0
             total_dmg = dmg_ranged + (dmg_melee * melee_penalty) + dmg_innate
             dpp_val = total_dmg / pts if pts > 0 else 0
 

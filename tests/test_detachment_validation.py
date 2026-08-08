@@ -538,8 +538,8 @@ class TestTier25InertFields:
         # SURV in compute_ranking: invulnerable_save, feel_no_pain
         # MOB in compute_ranking: movement_bonus
         applied_dpp = {"hit_modifier", "sustained_hits_extra", "lethal_hits",
-                       "reroll_hits", "reroll_wounds", "plus1_to_wound",
-                       "extra_ap", "ignore_cover"}
+                       "reroll_hits", "reroll_wounds", "reroll_damage",
+                       "plus1_to_wound", "extra_ap", "ignore_cover"}
         applied_surv = {"invulnerable_save", "feel_no_pain"}
         applied_mob = {"movement_bonus"}
         applied = applied_dpp | applied_surv | applied_mob

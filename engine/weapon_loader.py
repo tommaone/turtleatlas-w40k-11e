@@ -263,6 +263,7 @@ class WeaponCatalog:
                         ap=0,
                         damage=1.0,
                         abilities=[],
+                        damage_raw="1",
                     )
                 suggestions = sorted(self.by_name.keys())[:10]
                 raise KeyError(
@@ -379,6 +380,7 @@ class WeaponCatalog:
             damage=parsed_d,
             abilities=final_kw,
             count=entry.get("count", 1) if count is None else count,
+            damage_raw=raw_d,
         )
 
 

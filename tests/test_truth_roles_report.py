@@ -100,7 +100,16 @@ def _shares(weapons):
 
 def _unit_lean(eng, name):
     """dpp(vehicle) - dpp(infantry) from the engine's weighted-mix
-    optimisation — the same code path as the findings UI. Engine truth."""
+    optimisation — the same code path as the findings UI. Engine truth.
+
+    Uses _ld_dmg_conditional so datasheet reroll abilities vs
+    MONSTER/VEHICLE (Surge of Wrath etc.) are modelled exactly as the
+    engine models them: per-target, phase-gated. Without this the report
+    would diverge from compute_ranking for every ability-carrying unit.
+    """
+    from engine.ranking import _ld_dmg_conditional
+    from engine.reroll_detect import detect_reroll_ability
+
     vm = eng.resolve_meta("vehicle")
     im = eng.resolve_meta("infantry")
     res_v = eng.resolve_loadout(name, vm)
@@ -108,11 +117,36 @@ def _unit_lean(eng, name):
     if res_v is None or res_i is None:
         return None
 
+    # Locate the unit's datasheet profile to auto-detect reroll abilities
+    # (same lookup compute_ranking does).
+    reroll_spec = None
+    for unit in eng.data["units"]:
+        if unit["name"] == name:
+            profile = unit.get("profile") or {}
+            for ab in profile.get("abilities", []) or []:
+                spec = detect_reroll_ability(ab)
+                if spec is not None:
+                    reroll_spec = spec
+                    break
+            break
+
     def dpp_for(triples, res):
         pts, ranged, melee, innate, _ = res
         if pts <= 0:
             return 0.0
-        return sum(w * _ld_dmg(ranged, melee, innate, prof) for _, prof, w in triples) / pts
+        total = 0.0
+        for _, prof, w in triples:
+            if reroll_spec is None:
+                total += w * _ld_dmg(ranged, melee, innate, prof)
+            else:
+                # Mirror compute_ranking: conditional rerolls are applied
+                # per-phase so a melee-only spec (Surge of Wrath) never
+                # leaks onto ranged attacks.
+                dr = _ld_dmg_conditional(ranged, [], [], prof, None, reroll_spec, "ranged") if ranged else 0
+                dm = _ld_dmg_conditional([], melee, [], prof, None, reroll_spec, "melee") if melee else 0
+                di_ = _ld_dmg_conditional([], [], innate, prof, None, reroll_spec, "both") if innate else 0
+                total += w * (dr + dm + di_)
+        return total / pts
 
     dv, di = dpp_for(vm, res_v), dpp_for(im, res_i)
     return dv - di

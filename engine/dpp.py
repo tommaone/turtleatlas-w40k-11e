@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import math
+import re
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional
@@ -73,7 +74,9 @@ class WeaponProfile:
     ap: int
     damage: float            # average damage
     abilities: list[str] = field(default_factory=list)  # e.g. ["SUSTAINED HITS 1", "LETHAL HITS"]
-    count: int = 1           # number of this weapon (e.g. 2× twin lascannon)
+    count: int = 1           # number of this weapon (e.g. 2× triple lascannon)
+    damage_raw: str = ""     # original damage dice expression (e.g. "D6+1", "2") — needed
+                             # for honest reroll_damage math (D6 has variance; flat '3' doesn't)
 
 
 @dataclass
@@ -96,6 +99,7 @@ class WeaponModifier:
     devastating_wounds: bool = False # mortal wounds on crit wound
     reroll_hits: str | None = None   # "all", "1s", None
     reroll_wounds: str | None = None
+    reroll_damage: str | None = None # "all", "1s", None — reroll damage dice
     plus1_to_wound: bool = False
     extra_ap: int = 0
     ignore_cover: bool = False
@@ -118,6 +122,7 @@ class DetachmentModifier:
     hit_modifier: int = 0              # net BS modifier (e.g. -1 for +1 to hit)
     reroll_hits: str | None = None     # "all", "1s"
     reroll_wounds: str | None = None
+    reroll_damage: str | None = None   # "all", "1s"
     plus1_to_wound: bool = False
     sustained_hits_extra: int = 0
     lethal_hits: bool = False
@@ -149,6 +154,7 @@ class DetachmentModifier:
             hit_modifier=d.get("hit_modifier", 0),
             reroll_hits=d.get("reroll_hits"),
             reroll_wounds=d.get("reroll_wounds"),
+            reroll_damage=d.get("reroll_damage"),
             plus1_to_wound=d.get("plus1_to_wound", False),
             sustained_hits_extra=d.get("sustained_hits_extra", 0),
             lethal_hits=d.get("lethal_hits", False),
@@ -174,6 +180,7 @@ class DetachmentModifier:
             lethal_hits=self.lethal_hits,
             reroll_hits=self.reroll_hits,
             reroll_wounds=self.reroll_wounds,
+            reroll_damage=self.reroll_damage,
             plus1_to_wound=self.plus1_to_wound,
             extra_ap=self.extra_ap,
             ignore_cover=self.ignore_cover,
@@ -208,7 +215,7 @@ def merge_weapon_modifiers(modifiers: list[WeaponModifier]) -> WeaponModifier:
     base.twin_linked = any(m.twin_linked for m in modifiers)
 
     # Reroll priority: "all" > "1s" > None
-    for field in ("reroll_hits", "reroll_wounds"):
+    for field in ("reroll_hits", "reroll_wounds", "reroll_damage"):
         vals = [getattr(m, field) for m in modifiers if getattr(m, field)]
         if "all" in vals:
             setattr(base, field, "all")
@@ -455,13 +462,65 @@ def expected_wounds(hits: float, lethal_wounds: float,
     return regular_wounds, mortal_wounds
 
 
+def _damage_reroll_mean(damage_raw: str, reroll_mode: str | None) -> float:
+    """Expected damage multiplier after re-rolling damage dice.
+
+    The engine flattens dice to their mean (D6 -> 3.5) elsewhere. That is fine
+    for a single roll, but a damage RE-ROLL changes the expectation, and the
+    boost depends on the dice shape (a flat '3' never changes; a D6 does).
+
+    Returns a multiplier to apply to the flattened value. 1.0 for flat damage
+    or no reroll. Parses the original dice expression for shape.
+
+    Reroll semantics (player-optimised, matching 40k "you can re-roll"):
+      - 'all': keep a roll that is >= the die's mean, re-roll below it.
+      - '1s':  keep every result except a natural 1, re-roll 1s.
+    """
+    if reroll_mode not in ("all", "1s"):
+        return 1.0
+    raw = (damage_raw or "").strip()
+    if not raw:
+        return 1.0
+
+    # Fixed damage ("3", "4") — nothing to re-roll.
+    if re.fullmatch(r"\d+", raw):
+        return 1.0
+
+    # Dice expression: [count]D{sides}[+bonus], e.g. "D6", "2D6+3", "D3+1".
+    m = re.fullmatch(r"(\d*)D(6|3)(?:\s*\+\s*(\d+))?", raw)
+    if not m:
+        return 1.0  # unrecognised expression — treat flat
+    count = int(m.group(1)) if m.group(1) else 1
+    sides = int(m.group(2))
+    bonus = int(m.group(3)) if m.group(3) else 0
+
+    vals = list(range(1, sides + 1))          # D6 -> [1..6]
+    mean = sum(vals) / len(vals)              # D6 -> 3.5
+    n = len(vals)
+
+    if reroll_mode == "all":
+        # Keep rolls >= mean; re-roll below-mean rolls to the mean.
+        keep = [v for v in vals if v >= mean]
+        drop = [v for v in vals if v < mean]
+        expected = (sum(keep) + len(drop) * mean) / n
+    else:  # "1s" — re-roll natural 1s only.
+        keep = [v for v in vals if v != 1]
+        ones = n - len(keep)
+        expected = (sum(keep) + ones * mean) / n
+
+    base = count * mean + bonus
+    return (count * expected + bonus) / base if base > 0 else 1.0
+
+
 def expected_damage(wounds: float, mortal_wounds: float,
                     ap: int, save: int, invuln: Optional[int] = None,
                     damage: float = 1,
                     ignore_cover: bool = False,
                     extra_ap: int = 0,
                     fnp: Optional[int] = None,
-                    wounds_per_model: int = 1) -> float:
+                    wounds_per_model: int = 1,
+                    damage_raw: str = "",
+                    reroll_damage: str | None = None) -> float:
     """
     Compute expected damage after saves and damage.
 
@@ -471,7 +530,7 @@ def expected_damage(wounds: float, mortal_wounds: float,
         ap: armor penetration
         save: target save characteristic (3 = 3+)
         invuln: invulnerable save (4 = 4++)
-        damage: damage per wound
+        damage: damage per wound (flattened mean)
         ignore_cover: ignore cover modifiers
         extra_ap: additional AP modifier
         fnp: feel no pain (5 = 5+++)
@@ -479,6 +538,9 @@ def expected_damage(wounds: float, mortal_wounds: float,
                           per unsaved wound (overkill waste: D6+2 on a 1W model
                           deals only 1 damage, not 5.5). Real 11e damage
                           allocation: excess damage is lost when a model dies.
+        damage_raw: original damage dice expression (e.g. "D6+1") — required to
+                    compute the honest damage-RE-ROLL boost.
+        reroll_damage: "all", "1s" or None — re-roll damage dice vs the target.
 
     Returns:
         expected total damage
@@ -511,7 +573,8 @@ def expected_damage(wounds: float, mortal_wounds: float,
     # Overkill cap [11e damage allocation]:
     #   a single unsaved wound deals at most wounds_per_model
     #   (D6+2 on a 1W GEQ wastes the excess)
-    effective_damage = min(damage, max(wounds_per_model, 1))
+    damage_reroll_factor = _damage_reroll_mean(damage_raw, reroll_damage)
+    effective_damage = min(damage * damage_reroll_factor, max(wounds_per_model, 1))
 
     # Regular damage
     p_pass_save = 1 - p_save
@@ -1040,6 +1103,8 @@ def compute_weapon_dpp(weapon: WeaponProfile,
         damage=effective_damage,
         ignore_cover=ignore_cover,
         wounds_per_model=target.wounds_per_model,
+        damage_raw=weapon.damage_raw,
+        reroll_damage=mod.reroll_damage,
     )
 
     # Weapon multiplicity: "2× Lascannon" means 2× the damage
