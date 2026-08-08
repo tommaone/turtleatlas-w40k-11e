@@ -44,6 +44,61 @@ _RE_ONES_PER_NOUN = re.compile(r"\b(of\s+1|1s)\b", re.I)
 _RE_MELEE = re.compile(r"\bmelee\b|\bfights?\b|Fight phase", re.I)
 # ranged/shooting phrasing: "ranged attack", "shooting phase", "selected to shoot"
 _RE_RANGED = re.compile(r"\branged\b|shooting phase|\bshoot(?:s|ing)?\b", re.I)
+# Context phrases that mention a keyword as a CONDITION, not the target class:
+# "within Engagement Range of one or more friendly ADEPTUS ASTARTES VEHICLE
+# units" — the VEHICLE there is the friendly unit the target must be near,
+# NOT the class of unit the reroll keys off. If we scanned it as a target,
+# the reroll would fire on every monster/vehicle instead of only enemies
+# adjacent to our transports (Judgement of the Omnissiah false positive).
+_RE_CONTEXT_TOKEN = re.compile(r"\bfriendly\b", re.I)
+_RE_CONTEXT_EXCLUDING = re.compile(r"\bexcluding\b", re.I)
+# "within ... of" is a context cue ONLY when it names a nearby *entity* the
+# target must be next to ("within Engagement Range of one or more friendly
+# VEHICLE units"). A bare range condition ("targets a unit within 6\" of this
+# model and that unit is a MONSTER") is NOT context — the MONSTER is the
+# target. The proximity companion ("friendly"/"one or more") separates them.
+_RE_WITHIN_OF = re.compile(
+    r"\bwithin\b[^.]{0,120}?\bof\b[^.]{0,40}?(?:friendly|one\s+or\s+more)\b", re.I
+)
+
+
+def _target_keywords(desc: str) -> list[str]:
+    """Target-class keywords the reroll keys off (from the description text).
+
+    - "friendly ADEPTUS ASTARTES VEHICLE units" (the transports the enemy
+        must be near — Judgement of the Cruel)
+      - "excluding MONSTERS and VEHICLES" (the reroll fires on everything
+        EXCEPT them — Mek Gunz Splat!)
+      - "within N\\" of one or more friendly VEHICLE units" (proximity to
+        friendly transports — bare "within 6\\\" of this model" is only a
+        RANGE condition and does NOT mark the keyword as context) 
+    Treating these as targets would fire the reroll on every monster/vehicle
+    instead of the rule's real trigger.
+
+    Per-occurrence check: one contextual mention must not wipe a GENUINE
+    target-class mention in the same sentence ("targets a MONSTER or VEHICLE").
+    """
+    out = []
+    for kw in _TARGET_KEYWORDS:
+        # Allow both singular ("MONSTER") and plural ("MONSTERS") mentions.
+        pat = rf"\b{kw.lower()}s?\b"
+        for m in re.finditer(pat, desc.lower()):
+            # Look back to the start of the clause (sentence boundary), but cap
+            # the window — a context cue must be NEAR the keyword, or a genuine
+            # far target in the same sentence gets masked.
+            head = desc.lower()[:m.start()]
+            cut = max(head.rfind(ch) for ch in (".", "!", "?", ";")) + 1
+            window = head[cut:]
+            if len(window) > 60:
+                window = window[-60:]
+            ctx = (_RE_CONTEXT_TOKEN.search(window)
+                   or _RE_CONTEXT_EXCLUDING.search(window)
+                   or _RE_WITHIN_OF.search(window))
+            if ctx:
+                continue  # contextual mention — not a target class
+            out.append(kw)
+            break
+    return out
 
 
 def detect_reroll_ability(ability: dict) -> dict | None:
@@ -93,15 +148,20 @@ def detect_reroll_ability(ability: dict) -> dict | None:
         phase = "both"
 
     # Which target keywords the reroll keys off (from the description text).
-    targets = [kw for kw in _TARGET_KEYWORDS
-               if re.search(rf"\b{kw.lower()}", desc.lower())]
+    # Only class keywords count: "friendly"/"excluding"/"within ... of"
+    # mentions are the surrounding rule context, not the target — see
+    # _target_keywords. If every mention was context, return None; there is
+    # NEVER a default target class (that would fabricate a rule).
+    targets = _target_keywords(desc)
+    if not targets:
+        return None
 
     return {
         "reroll_hits": hits,
         "reroll_wounds": wounds,
         "reroll_damage": dmg,
         "phase": phase,
-        "targets": targets or ["MONSTER", "VEHICLE"],
+        "targets": targets,
         "ability_name": name,
         "raw": desc,
     }

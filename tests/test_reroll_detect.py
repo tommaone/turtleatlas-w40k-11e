@@ -113,6 +113,96 @@ class TestPhrasingVariants:
                      "is in melee.") is None
 
 
+class TestContextKeywordFalsePositives:
+    """KW in a context phrase is a CONDITION, not the target class — must not
+    become a pseudo-target (filed follow-up from Shredder pass 1)."""
+
+    def test_friendly_vehicle_is_context(self):
+        """Judgement of the Omnissiah: 'friendly VEHICLE units' is the proximity
+        condition, not the reroll class — engine must NOT grant the reroll vs
+        every vehicle."""
+        s = detect_reroll_ability({"name": "Judgement of the Omnissiah",
+            "description": "Each time this model makes an attack that targets "
+            "an enemy unit within Engagement Range of one or more friendly "
+            "VEHICLE units, you can re-roll the wound roll."})
+        assert s is None
+
+    def test_excluding_vehicle_is_context(self):
+        """Mek Gunz Splat!: the reroll fires on units at Starting Strength
+        EXCLUDING monsters/vehicles — the M/V mention is an exclusion."""
+        s = _spec("Each time a model in this unit makes a ranged attack that "
+                  "targets a unit that is at its Starting Strength (excluding "
+                  "MONSTERS and VEHICLES), re-roll a Hit roll of 1.")
+        assert s is None
+
+    def test_genuine_target_survives_context_in_same_text(self):
+        """Lokhust Heavy Destroyers: one clause excludes M/V, the NEXT clause
+        genuinely targets them — the per-occurrence check must keep the real
+        class while ignoring the exclusion."""
+        s = _spec("Each time a model in this unit makes an attack with an "
+                  "enmitic exterminator that targets a unit (excluding MONSTERS "
+                  "and VEHICLES), re-roll a Wound roll of 1. Each time a model "
+                  "in this unit makes an attack with a gauss destructor against "
+                  "a MONSTER or VEHICLE unit, re-roll a Wound roll of 1.")
+        assert s is not None
+        assert "MONSTER" in s["targets"] and "VEHICLE" in s["targets"]
+
+    def test_far_genuine_target_not_masked(self):
+        """A 'friendly/within' cue early in the sentence must not mask a real
+        M/V target later in the same sentence."""
+        s = _spec("If a friendly VEHICLE unit is within 6\", each time this "
+                  "model makes an attack that targets a MONSTER or VEHICLE "
+                  "unit, you can re-roll the Wound roll.")
+        assert s is not None
+        assert "MONSTER" in s["targets"] and "VEHICLE" in s["targets"]
+
+    def test_plural_keyword_matches(self):
+        """Descriptions say 'MONSTERS and VEHICLES' (plural) — singleton regex
+        must still hit them."""
+        s = detect_reroll_ability({"name": "Pl", "description":
+            "Each time this model makes an attack that targets a Monster or "
+            "Vehicle unit, you can re-roll the Hit roll."})
+        assert s is not None
+        assert "MONSTER" in s["targets"] and "VEHICLE" in s["targets"]
+
+    def test_all_mentions_context_returns_none(self):
+        """Every M/V mention is context — the reroll is a proximity/exclusion
+        trigger, not a class reroll. Must return None (no default class)."""
+        s = _spec("Each time this unit makes an attack that targets an enemy "
+                  "unit within Engagement Range of one or more friendly "
+                  "MONSTER or VEHICLE units, you can re-roll the Wound roll. "
+                  "Each time this model makes an attack (excluding MONSTERS "
+                  "and VEHICLES), you can re-roll the Hit roll.")
+        assert s is None
+
+
+class TestRangeConditionNotContext:
+    """A bare 'within X of this model' is a RANGE condition, not a
+    friendly-context phrase — the class keyword after it is still the target.
+    ('within ... of one or more friendly VEHICLE' IS context, see above.)"""
+
+    def test_range_then_class(self):
+        s = _spec("Each time this unit makes an attack against a unit within "
+                  "6\" of this model and that unit is a MONSTER or VEHICLE, "
+                  "you can re-roll the Hit roll.")
+        assert s is not None
+        assert "MONSTER" in s["targets"] and "VEHICLE" in s["targets"]
+
+    def test_range_then_class_reverse_order(self):
+        s = _spec("Each time this model makes an attack that targets a unit "
+                  "within half range of this model's weapon and that unit is "
+                  "a MONSTER, you can re-roll the Wound roll.")
+        assert s is not None
+        assert "MONSTER" in s["targets"]
+
+    def test_class_then_range_kept(self):
+        s = _spec("Each time this model makes an attack that targets a "
+                  "MONSTER or VEHICLE unit within 12\" of this model, you can "
+                  "re-roll the Hit roll.")
+        assert s is not None
+        assert "MONSTER" in s["targets"] and "VEHICLE" in s["targets"]
+
+
 # ──(Parser: target matching ──────────────────────────────────────────
 
 class TestTargetMatching:

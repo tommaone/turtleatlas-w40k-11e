@@ -264,7 +264,12 @@ def write_report(out_dir="reports", filename="crossfaction_truth_report.json"):
     Path(out_dir).mkdir(parents=True, exist_ok=True)
     combined = [faction_report(f) for f in ALL_FACTIONS]
     path = Path(out_dir) / filename
-    path.write_text(json.dumps(combined, indent=2))
+    # sort_keys keeps the artifact stable across runs — the ranking funnel
+    # iterates dicts in hash order, so without a fixed PYTHONHASHSEED the
+    # numbers (and file bytes) churn on every regen. Regenerate with
+    # `PYTHONHASHSEED=1 python -m tests.test_truth_roles_report`
+    # for a byte-identical, reviewable diff.
+    path.write_text(json.dumps(combined, indent=2, sort_keys=True))
     total = sum(len(r["failures"]) for r in combined)
     nwarn = sum(len(r["warnings"]) for r in combined)
     flagged = [r["faction"] for r in combined if r["failures"]]
