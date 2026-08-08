@@ -54,19 +54,25 @@ node mcp-server/index.js --port 3456
 
 MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rules` before answering domain questions. `turtleatlas-mcp` is the knowledge server.
 
-## Current state (2026-08-05)
+## Current state (2026-08-08)
 
-- 28 factions ranked, ~1500 units, HTML findings for all
+- 30 factions ranked, ~1500 units, HTML findings for all
+- Reroll-vs-MONSTER/VEHICLE engine live: `engine/reroll_detect.py` auto-detects
+  reroll abilities from merged ability text (24 datasheets across 15 factions),
+  `engine/dpp.py` applies qualified hit/wound/damage rerolls per toughness-band
+  target; GMNDK Surge of Wrath configured (`data/config/grey-knights/weapon_options.json`)
 - Aeldari squad-composition pilot done: dual-profile weapons (Singing Spear/Chainsabres), parallel-variant alloc (Troupe/Windriders/Storm Guardians), per-model slots, multi-fixed-weapon models, mixed squads (Kabalite 9+Sybarite)
-- 2898 tests passing, 36 skipped
+- 3288 tests passing, 36 skipped
 - Detachment modifiers: 26 (GK 9 + CK 8 + Daemons 9); SM/DA + 20+ factions not yet modeled
-- Head of main: `6e4558e` (docs roadmap). Dojo flow: main branch only, ask before push.
+- Head of main: `d57ec5c`. Dojo flow: main branch only, ask before push.
+- Report regen is hash-seeded: `PYTHONHASHSEED=1 python3 -m tests.test_truth_roles_report`
 
-## Next moves (as of 2026-08-05)
+## Next moves (as of 2026-08-08)
 
 1. Squad composition migration to remaining factions (Aeldari is the pilot)
-2. Detachment modifiers for SM, DA, all others
-3. Engine gaps: army rules modeling, T3 primary metric, concentrated fire, pistol/two-handed restriction, transport support
+2. Generalize reroll detection beyond M/V keywords (army rules modeling gap)
+3. Detachment modifiers for SM, DA, all others
+4. Engine gaps: T3 primary metric, concentrated fire, pistol/two-handed restriction, transport support
 
 ## Credentials
 

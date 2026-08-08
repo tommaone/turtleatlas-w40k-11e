@@ -1,7 +1,7 @@
 # Roadmap — turtleatlas-w40k-11e
 
 Quad-vector (DPP/SURV/OBJ/MOB) Warhammer 40k 11th edition ranking engine.
-28 factions, deterministic autobuilder, multi-faceted meta advisor.
+30 factions, deterministic autobuilder, multi-faceted meta advisor.
 
 **Goal:** LLM that can advise on army list building, evaluate loadouts,
 and recommend detachments/units based on mission and meta.
@@ -12,14 +12,15 @@ and recommend detachments/units based on mission and meta.
 
 | Metric | Value |
 |--------|-------|
-| Factions ranked | 28/30 (titan-only edge cases excluded) |
+| Factions ranked | 30/30 |
 | Units ranked | ~1500 |
-| Tests | 2898 passing, 36 skipped |
-| HTML findings | 28 factions, mobile-friendly |
-| Detachment modifiers | 26 (GK 9 + CK 8 + Daemons 9) |
-| Characters | 282 migrated to builds format |
+| Tests | 3288 passing, 36 skipped |
+| HTML findings | 30 factions, mobile-friendly |
+| Detachment modifiers | 26 (Grey Knights 9 + Chaos Knights 8 + Daemons 9) |
+| Characters | 282 migrated builds format |
 | Vehicles | 126 migrated to builds format |
-| Last commit | `9d4f0d5` — aeldari squad composition engine |
+| Reroll abilities auto-detected | 24 datasheets across 15 factions |
+| Last commit | `d57ec5c` — reroll context fix + deterministic report |
 
 ---
 
@@ -50,6 +51,14 @@ and recommend detachments/units based on mission and meta.
   - Multi-fixed-weapon models (Warlock: Shuriken Pistol + Destructor)
   - Melee reduction — one non-Extra-Attacks weapon per model [24.11]
   - Mixed squads with alloc minimums (Kabalite Warriors 9+Sybarite)
+- **Reroll-vs-MONSTER/VEHICLE auto-detection**:
+  - `engine/reroll_detect.py` — parses ability text for reroll hit/wound/damage,
+    phase (melee/ranged/both), and target keywords; context-aware scanning
+    (friendly/excluding/within-of ranges don't fake a target class)
+  - `engine/dpp.py` — damage-reroll mean (D6 all = 4.25), applies per-target
+    toughness-qualified rerolls per phase; single source of computation
+  - 24 datasheets across 15 factions auto-detected; GMNDK Surge of Wrath
+    configured and verified (hammer + Psycannon + Sublimator best build)
 
 ### Mission Profiles (Quad-Vector)
 | Mission | DPP | SURV | OBJ | MOB |
@@ -78,7 +87,7 @@ and recommend detachments/units based on mission and meta.
   - Findings regenerated after every config change
 
 ### Tests
-- 2898 passing, 36 skipped
+- 3288 passing, 36 skipped
 - Complex-unit pins (`test_aeldari_complex_units.py`) — structure asserted, no
   duplicated damage truth (engine is the single source of computation)
 - Parser dual-profile assertions, generator payload tests, findings validation
@@ -104,8 +113,11 @@ and recommend detachments/units based on mission and meta.
 - [ ] Squad composition migration to remaining factions (Aeldari is the pilot)
 
 ### Engine Improvements
-- [ ] **Army rules modeling** — reroll 1s, +1 to wound, Sustained/Lethal Hits
-  army-wide, FNP army-wide. Flat rankings mislead without these.
+- [x] **Reroll abilities vs target class** — auto-detected MONSTER/VEHICLE rerolls
+  (24 datasheets), damage-reroll mean, context-aware scanning
+- [ ] **Generalize reroll to all keywords + other army rules** — reroll 1s,
+  +1 to wound, Sustained/Lethal Hits army-wide, FNP army-wide. Flat rankings
+  mislead without these.
 - [ ] **Pistol/two-handed restriction** — pistol can't shoot with non-pistol
 - [ ] **Concentrated fire** — vehicles ranked vs single attacker; expected
   incoming-fire model needed
@@ -159,4 +171,4 @@ and recommend detachments/units based on mission and meta.
 
 ---
 
-*Last updated: 2026-08-05*
+*Last updated: 2026-08-08*
