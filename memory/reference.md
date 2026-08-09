@@ -75,15 +75,22 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
   not rewritten), 2 stale config squads removed (Deathwing Command Squad
   [Legends-only], Ravenwing Talonmaster [no catalogue], 35→33), 32 squads
   migrated via --force; 6 complex-unit tests added
-- 3316 tests passing, 36 skipped
+- **blood-angels migrated to complex layer (Wave 1 done)**: 33 squads
+  migrated via --force, 0 skipped, 1 kept (Invader ATV — no top-level
+  composition entry, curated builds preserved); 13 complex-unit tests added;
+  validator +1 issue is the documented Outrider EXTRA-WEAPON false positive;
+  findings unit set stable 97→97, top all-comers Take and Hold unit flipped
+  Terminator Assault Squad → Tactical Squad (alloc lets Tactical take a
+  special + heavy simultaneously)
+- 3329 tests passing, 36 skipped
 - Detachment modifiers: 26 (GK 9 + CK 8 + Daemons 9); SM/DA + 20+ factions not yet modeled
-- Head of main: `51ebe84`. Dojo flow: main branch only, ask before push.
+- Head of main: `00b85cc`. Dojo flow: main branch only, ask before push.
 - Report regen is hash-seeded: `PYTHONHASHSEED=1 python3 -m pytest tests/test_truth_roles_report.py` (NOT `python3 -m tests.test_truth_roles_report` — that module has no `__main__` block and silently does nothing)
 
 ## Next moves (as of 2026-08-09)
 
 1. Squad composition migration to remaining factions (Aeldari + Space Marines +
-   Dark Angels done — Wave 1 next: **Blood Angels → Space Wolves**; then Waves
+   Dark Angels + Blood Angels done — Wave 1 next: **Space Wolves**; then Waves
    2-4 per docs/checklist-squad-composition-migration.md)
 2. Engine gap: multi-profile weapons (Cyclone Missile Launcher frag+krak under
    one name — loader resolves only first profile, so missile slots under-rate
