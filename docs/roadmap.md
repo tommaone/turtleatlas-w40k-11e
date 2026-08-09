@@ -14,14 +14,14 @@ and recommend detachments/units based on mission and meta.
 |--------|-------|
 | Factions ranked | 30/30 |
 | Units ranked | ~1500 |
-| Tests | 3323 passing, 36 skipped |
+| Tests | 3336 passing, 36 skipped |
 | HTML findings | 30 factions, mobile-friendly |
 | Detachment modifiers | 26 (Grey Knights 9 + Chaos Knights 8 + Daemons 9) |
 | Characters | 282 migrated builds format |
 | Vehicles | 126 migrated to builds format |
 | Reroll abilities auto-detected | 24 datasheets across 15 factions |
-| Complex-layer squads | Aeldari, GK, Space Marines, Dark Angels, Space Wolves |
-| Last commit | `22fb2d8` — Space Wolves complex squad-composition migration |
+| Complex-layer squads | Aeldari, GK, Space Marines, Dark Angels, Space Wolves, Blood Angels |
+| Last commit | `27681e9` — merge BA complex squad-composition migration |
 
 ---
 
@@ -80,6 +80,11 @@ and recommend detachments/units based on mission and meta.
   - 34 squads, 38 vehicles, 31 characters
   - DWK damage_reduction=1 configured
   - Lion El'Jonson weapon fix (Fealty=melee, Arma Luminis=ranged)
+- **Blood Angels** — 33 squads migrated to the complex layer (Wave 1)
+  - Sanguinary Guard per-model slots (Encarmine Blade/Spear + Inferno
+    Pistol/Angelus Boltgun, target-dependent), Death Company alloc pools
+  - 13 structure-only pins added; Invader ATV kept curated (no top-level
+    composition entry)
 - **Space Wolves** — 36 squads migrated to the complex layer (first full
   SW config; characters/vehicles already in builds format)
   - Alloc pools: Wolf Guard Terminators (storm bolter / assault cannon /
@@ -104,10 +109,11 @@ and recommend detachments/units based on mission and meta.
   - Findings regenerated after every config change
 
 ### Tests
-- 3323 passing, 36 skipped
+- 3336 passing, 36 skipped
 - Complex-unit pins (`test_aeldari_complex_units.py`, `test_space_marines_complex_units.py`,
-  `test_dark_angels_complex_units.py`, `test_space_wolves_complex_units.py`) — structure
-  asserted, no duplicated damage truth (engine is the single source of computation)
+  `test_dark_angels_complex_units.py`, `test_space_wolves_complex_units.py`,
+  `test_blood_angels_complex_units.py`) — structure asserted, no duplicated
+  damage truth (engine is the single source of computation)
 - Parser dual-profile assertions, generator payload tests, findings validation
 
 ### Documentation
@@ -129,8 +135,8 @@ and recommend detachments/units based on mission and meta.
 ### Factions (priority order)
 - [ ] Detachment modifiers: Space Marines (Gladius, Ironstorm, Firestorm...), Dark Angels (Inner Circle Task Force...), all others
 - [ ] Squad composition migration to remaining factions — done: Aeldari (pilot),
-  GK, Space Marines, Dark Angels, Space Wolves; next: **Blood Angels** (Wave 1,
-  highest remaining complexity score 322), then Black Templars / Deathwatch
+  GK, Space Marines, Dark Angels, Space Wolves, Blood Angels; next:
+  **Black Templars / Deathwatch** (Wave 1, remaining big-marine codexes)
 
 ### Engine Improvements
 - [x] **Reroll abilities vs target class** — auto-detected MONSTER/VEHICLE rerolls

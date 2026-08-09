@@ -9,7 +9,7 @@
 | `data/merged/<faction>.json` | Merged BSData stats/weapons (source of truth for profiles) |
 | `data/config/<faction>/` | Derived configs — `squads.json`, `characters.json`, `vehicles.json`, `weapon_options.json`, `supported.json` |
 | `scripts/` | Generators + validators (see Commands) |
-| `tests/` | Pytest suite — 3316 passing, 36 skipped (2026-08-09) |
+| `tests/` | Pytest suite — 3336 passing, 36 skipped (2026-08-09) |
 | `findings/<faction>/findings.html` | Per-faction ranking pages |
 | `findings/index.html` | Landing page — GENERATED, never hand-edited |
 | `mfm/` | Munitorum Field Manual data (points source of truth) |
@@ -23,7 +23,7 @@
 ## Commands
 
 ```bash
-python3 -m pytest                                            # full suite (3316 passed / 36 skipped)
+python3 -m pytest                                            # full suite (3336 passed / 36 skipped)
 python3 scripts/gen_findings_html.py --faction aeldari       # regen one faction page
 python3 scripts/gen_findings_html.py --index                 # regen landing page counts
 python3 scripts/gen_findings_html.py --all                   # regen all factions + index
@@ -82,16 +82,24 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
   findings unit set stable 97→97, top all-comers Take and Hold unit flipped
   Terminator Assault Squad → Tactical Squad (alloc lets Tactical take a
   special + heavy simultaneously)
-- 3329 tests passing, 36 skipped
+- **space-wolves migrated to complex layer (Wave 1 done, merged after BA)**:
+  36 squads via gen_squad_composition --force; 7 complex-unit tests added;
+  SW plasma quirk — SW merged BSData lists 'Plasma pistol' profiles
+  standard-first so the bare name resolves to S7 AP-2 D1 (SM/DA/BA resolve
+  supercharge-first): SW Intercessor Sergeant takes Hand flamer + Power fist,
+  pack leaders resolve 'Plasma pistol - standard'. Data-order dependent —
+  pinned in test_space_wolves_complex_units.py. Long Fangs / Wolf Guard
+  absent from SW merged BSData (not even [Legends]) — documented, not asserted.
+- 3336 tests passing, 36 skipped
 - Detachment modifiers: 26 (GK 9 + CK 8 + Daemons 9); SM/DA + 20+ factions not yet modeled
-- Head of main: `00b85cc`. Dojo flow: main branch only, ask before push.
+- Head of main: merged SW + BA Wave-1 migrations. Dojo flow: main branch only, ask before push.
 - Report regen is hash-seeded: `PYTHONHASHSEED=1 python3 -m pytest tests/test_truth_roles_report.py` (NOT `python3 -m tests.test_truth_roles_report` — that module has no `__main__` block and silently does nothing)
 
 ## Next moves (as of 2026-08-09)
 
-1. Squad composition migration to remaining factions (Aeldari + Space Marines +
-   Dark Angels + Blood Angels done — Wave 1 next: **Space Wolves**; then Waves
-   2-4 per docs/checklist-squad-composition-migration.md)
+1. Squad composition migration to remaining factions — complex layer done:
+   Aeldari + GK + Space Marines + Dark Angels + Blood Angels + Space Wolves;
+   Wave 1 next: **Black Templars / Deathwatch** (per docs/checklist-squad-composition-migration.md)
 2. Engine gap: multi-profile weapons (Cyclone Missile Launcher frag+krak under
    one name — loader resolves only first profile, so missile slots under-rate
    vs AP-and-D6 options; affects slot picks + DPP truth on Terminator/Devastator
