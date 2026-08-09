@@ -155,8 +155,9 @@ The naivie parser only recognized "melee"/"ranged"/"shooting phase". Adding `\bs
 **How:** `_RE_MELEE` covers `melee|fights?|Fight phase`; `_RE_RANGED` covers `ranged|shooting phase|shoot`. Each gets a dedicated probe test.
 
 ## Truth report regenerator must be hash-seeded or the commit diff churns
-`write_report()` iterates dicts during ranking; without a fixed `PYTHONHASHSEED` every run produces different floats AND different file bytes — a 12k-line diff on every regen, drowning real changes. Fixed: `write_report` now JSON-dumps with `sort_keys=True` and the canonical regen is `PYTHONHASHSEED=1 python -m tests.test_truth_roles_report`. Byte-identical across runs (verified). Do NOT regen with a bare `python3 -c "from tests...write_report()"`.
-**Why it matters:** a churny artifact makes every report PR an unreviewable diff; reviewers can't tell the 10 semantic leaf changes (a real drift) from 12k lines of hash noise.
+`write_report()` iterates dicts during ranking; without a fixed `PYTHONHASHSEED` every run produces different floats AND different file bytes — a 12k-line diff on every regen, drowning real changes. Fixed: `write_report` now JSON-dumps with `sort_keys=True` and the canonical regen is `PYTHONHASHSEED=1 python3 -m pytest tests/test_truth_roles_report.py`. Byte-identical across runs (verified). Do NOT regen with a bare `python3 -c "from tests...write_report()"`.
+**Corrected 2026-08-09:** the OLD documented command `PYTHONHASHSEED=1 python3 -m tests.test_truth_roles_report` was a NO-OP — the module has no `__main__` block, so `python3 -m` exits silently without running the session fixture. The report only (re)writes when PYTEST executes the module (its session-scoped fixture writes the file). The "seeded regen" that produced the stale commit `1a2c541` was this no-op; the report is now regenerated only via pytest. Verify a regen actually ran: check the report mtime, don't trust the exit code.
+**Why it matters:** a churny artifact makes every report PR an unreviewable diff; reviewers can't tell the 10 semantic leaf changes (a real drift) from 12k lines of hash noise. And a silent no-op regen makes a STALE report look freshly rebuilt.
 
 ## Reroll detector generalization: weakest-wins, aura-skip, keyword/roll boundary
 Closed the M/V-only gate — class-keyed rerolls now detect CHARACTER / INFANTRY /
@@ -229,3 +230,28 @@ migration did not add a real defect; the diff-of-validator-issues method
   file contents ("WKB", "Aeldari Init", nonsense strings). Always Read →
   actually inspect the file before editing; never compose oldString from
   what I think I wrote earlier.
+
+## No-Legends rule in fuzzy_find_composition (Dark Angels migration)
+`[Legends]`/`Legends` BSData composition entries are NEVER matched — exact,
+case-insensitive exact, or substring. A config unit whose only BSData entry is
+Legends (Deathwing Command Squad → 'Deathwing Command Squad [Legends]') must be
+KEPT (no composition), not rewritten with a Legends payload.
+
+**Why:** config is the curated, current-edition roster; Legends entries are
+game-legacy content. Writing a Legends payload into a current config silently
+corrupts the loadout. DA had TWO stale config units from this: Deathwing Command
+Squad (only exists as `[Legends]`) and Ravenwing Talonmaster (in NO BSData
+catalogue at all) — both removed from `data/config/dark-angels/squads.json`
+(35→33). Invader ATV is a REAL squad variant (slot choice), NOT a legends unit —
+don't confuse the two.
+
+**How:** `_is_legends_name()` checks `"legends" in name.lower()`; every return
+path in `fuzzy_find_composition` filters through it. Regression tests in
+`tests/test_gen_squad_composition.py::test_no_legends_*` (4 cases) +
+`tests/test_dark_angels_complex_units.py::test_no_legends_unit_removed_from_config`.
+Before adding a no-legends rule, SURVEY the corpus first: 335 BSData composition
+entries are [Legends]/Legends across 30 factions, but only 2 config units
+(DA Deathwing Command Squad, SW Wolf Scouts) would be polluted by Legends-only
+matching. SW Wolf Scouts is a current-edition unit (in merged data, no legends
+flag) — its BSData catalogue has BOTH `Wolf Scouts` and `Wolf Scouts [Legends]`,
+so the no-legends rule must not remove real units.

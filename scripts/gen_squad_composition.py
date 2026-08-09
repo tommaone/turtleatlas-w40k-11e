@@ -50,17 +50,29 @@ def fuzzy_find_composition(composition: dict, unit_name: str) -> dict | None:
     vs 'with Heavy Bolters'). Substring fallback would match the BASE unit
     ('Eradicator Squad') and silently write the WRONG weapons (melta payload
     onto a heavy-bolter squad).
+
+    No-Legends rule: [Legends]/Legends composition entries are never matched.
+    A config unit whose only BSData entry is Legends (e.g. 'Deathwing Command
+    Squad' -> 'Deathwing Command Squad [Legends]') must be KEPT (no
+    composition), not rewritten with a Legends payload.
     """
     if unit_name in composition:
+        if _is_legends_name(unit_name):
+            return None
         return composition[unit_name]
     low = unit_name.lower()
     for bs_name, bs_data in composition.items():
         if bs_name.lower() == low:
-            return bs_data
+            return None if _is_legends_name(bs_name) else bs_data
     for bs_name, bs_data in composition.items():
         if low in bs_name.lower() or bs_name.lower() in low:
-            return bs_data
+            return None if _is_legends_name(bs_name) else bs_data
     return None
+
+
+def _is_legends_name(name: str) -> bool:
+    """True if the BSData name marks a Legends entry ('[Legends]'/'Legends')."""
+    return "legends" in name.lower()
 
 
 def _alloc_model_name(names: list[str]) -> str:

@@ -240,3 +240,40 @@ def test_alloc_model_name_player_unchanged(gen):
             "Player with Neuro Disruptor",
         ]
     ) == "Player"
+
+
+def test_no_legends_exact_match(gen, sm_composition):
+    """No-Legends rule: a config unit whose name IS a Legends entry must not
+    resolve — even on exact match."""
+    fake = {"Deathwing Command Squad [Legends]": {"builds": []}}
+    assert gen.fuzzy_find_composition(fake, "Deathwing Command Squad [Legends]") is None
+
+
+def test_no_legends_case_insensitive(gen):
+    """No-Legends rule: case-insensitive exact match against a Legends entry
+    must not resolve."""
+    fake = {"Wolf Scouts [Legends]": {"builds": []}}
+    assert gen.fuzzy_find_composition(fake, "Wolf Scouts") is None
+
+
+def test_no_legends_substring(gen):
+    """No-Legends rule: substring fallback must skip Legends entries — a
+    config unit that only exists as Legends is KEPT, not rewritten."""
+    fake = {
+        "Deathwing Command Squad [Legends]": {"builds": []},
+        "Deathwing Knights": {"builds": [{"name": "Default", "models": []}]},
+    }
+    # substring match to the Legends entry is blocked
+    assert gen.fuzzy_find_composition(fake, "Deathwing Command Squad") is None
+    # but a non-Legends entry still resolves normally
+    assert gen.fuzzy_find_composition(fake, "Deathwing Knights") is not None
+
+
+def test_no_legends_real_dark_angels(gen):
+    """Real-data regression: DA's 'Deathwing Command Squad' only exists as
+    '[Legends]' in BSData — the generator must KEEP it, not write the Legends
+    payload."""
+    from adapter.bsdata_parser_11e import BSDataParser11e
+    comp = BSDataParser11e().extract_squad_composition("dark-angels")
+    assert "Deathwing Command Squad [Legends]" in comp
+    assert gen.fuzzy_find_composition(comp, "Deathwing Command Squad") is None

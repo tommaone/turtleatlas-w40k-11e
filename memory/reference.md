@@ -73,7 +73,7 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
 - 3314 tests passing, 36 skipped
 - Detachment modifiers: 26 (GK 9 + CK 8 + Daemons 9); SM/DA + 20+ factions not yet modeled
 - Head of main: `1a2c541`. Dojo flow: main branch only, ask before push.
-- Report regen is hash-seeded: `PYTHONHASHSEED=1 python3 -m tests.test_truth_roles_report`
+- Report regen is hash-seeded: `PYTHONHASHSEED=1 python3 -m pytest tests/test_truth_roles_report.py` (NOT `python3 -m tests.test_truth_roles_report` — that module has no `__main__` block and silently does nothing)
 
 ## Next moves (as of 2026-08-08)
 
