@@ -9,7 +9,7 @@
 | `data/merged/<faction>.json` | Merged BSData stats/weapons (source of truth for profiles) |
 | `data/config/<faction>/` | Derived configs — `squads.json`, `characters.json`, `vehicles.json`, `weapon_options.json`, `supported.json` |
 | `scripts/` | Generators + validators (see Commands) |
-| `tests/` | Pytest suite — 2898 passing, 36 skipped (2026-08-05) |
+| `tests/` | Pytest suite — 3316 passing, 36 skipped (2026-08-09) |
 | `findings/<faction>/findings.html` | Per-faction ranking pages |
 | `findings/index.html` | Landing page — GENERATED, never hand-edited |
 | `mfm/` | Munitorum Field Manual data (points source of truth) |
@@ -23,7 +23,7 @@
 ## Commands
 
 ```bash
-python3 -m pytest                                            # full suite (2898 passed / 36 skipped)
+python3 -m pytest                                            # full suite (3316 passed / 36 skipped)
 python3 scripts/gen_findings_html.py --faction aeldari       # regen one faction page
 python3 scripts/gen_findings_html.py --index                 # regen landing page counts
 python3 scripts/gen_findings_html.py --all                   # regen all factions + index
@@ -54,9 +54,9 @@ node mcp-server/index.js --port 3456
 
 MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rules` before answering domain questions. `turtleatlas-mcp` is the knowledge server.
 
-## Current state (2026-08-08)
+## Current state (2026-08-09)
 
-- 30 factions ranked, ~1500 units, HTML findings for all
+- 30 factions ranked, 1403 datasheets, HTML findings for all
 - Reroll-vs-MONSTER/VEHICLE engine live: `engine/reroll_detect.py` auto-detects
   reroll abilities from merged ability text (24 datasheets across 15 factions),
   `engine/dpp.py` applies qualified hit/wound/damage rerolls per toughness-band
@@ -65,21 +65,26 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
   MOUNTED + M/V = 33 datasheets): weakest-wins upgrades, aura-subject skip,
   roll-noun `\b` boundary fix
 - Aeldari squad-composition pilot done: dual-profile weapons (Singing Spear/Chainsabres), parallel-variant alloc (Troupe/Windriders/Storm Guardians), per-model slots, multi-fixed-weapon models, mixed squads (Kabalite 9+Sybarite)
-- **space-marines migrated to complex layer (Wave 1 pilot done)**: generator
+- **space-marines migrated to complex layer (Wave 1 done)**: generator
   bugs fixed en route — case-insensitive exact name match before substring
   (Eradicator With Heavy Bolters must not resolve to melta base entry),
   deterministic alloc-name tie-break (hash-order safe); Victrix config weapon
   swap fixed (power-sword in ranged slot)
-- 3314 tests passing, 36 skipped
+- **dark-angels migrated to complex layer (Wave 1 done)**: no-Legends rule
+  ([Legends] composition entries never match — Deathwing Command Squad kept,
+  not rewritten), 2 stale config squads removed (Deathwing Command Squad
+  [Legends-only], Ravenwing Talonmaster [no catalogue], 35→33), 32 squads
+  migrated via --force; 6 complex-unit tests added
+- 3316 tests passing, 36 skipped
 - Detachment modifiers: 26 (GK 9 + CK 8 + Daemons 9); SM/DA + 20+ factions not yet modeled
-- Head of main: `1a2c541`. Dojo flow: main branch only, ask before push.
+- Head of main: `51ebe84`. Dojo flow: main branch only, ask before push.
 - Report regen is hash-seeded: `PYTHONHASHSEED=1 python3 -m pytest tests/test_truth_roles_report.py` (NOT `python3 -m tests.test_truth_roles_report` — that module has no `__main__` block and silently does nothing)
 
-## Next moves (as of 2026-08-08)
+## Next moves (as of 2026-08-09)
 
-1. Squad composition migration to remaining factions (Aeldari + Space Marines done —
-   Wave 1 next: Dark Angels → Blood Angels → Space Wolves; then Waves 2-4 per
-   docs/checklist-squad-composition-migration.md)
+1. Squad composition migration to remaining factions (Aeldari + Space Marines +
+   Dark Angels done — Wave 1 next: **Blood Angels → Space Wolves**; then Waves
+   2-4 per docs/checklist-squad-composition-migration.md)
 2. Engine gap: multi-profile weapons (Cyclone Missile Launcher frag+krak under
    one name — loader resolves only first profile, so missile slots under-rate
    vs AP-and-D6 options; affects slot picks + DPP truth on Terminator/Devastator
