@@ -14,13 +14,14 @@ and recommend detachments/units based on mission and meta.
 |--------|-------|
 | Factions ranked | 30/30 |
 | Units ranked | ~1500 |
-| Tests | 3288 passing, 36 skipped |
+| Tests | 3323 passing, 36 skipped |
 | HTML findings | 30 factions, mobile-friendly |
 | Detachment modifiers | 26 (Grey Knights 9 + Chaos Knights 8 + Daemons 9) |
 | Characters | 282 migrated builds format |
 | Vehicles | 126 migrated to builds format |
 | Reroll abilities auto-detected | 24 datasheets across 15 factions |
-| Last commit | `d57ec5c` — reroll context fix + deterministic report |
+| Complex-layer squads | Aeldari, GK, Space Marines, Dark Angels, Space Wolves |
+| Last commit | `22fb2d8` — Space Wolves complex squad-composition migration |
 
 ---
 
@@ -79,6 +80,22 @@ and recommend detachments/units based on mission and meta.
   - 34 squads, 38 vehicles, 31 characters
   - DWK damage_reduction=1 configured
   - Lion El'Jonson weapon fix (Fealty=melee, Arma Luminis=ranged)
+- **Space Wolves** — 36 squads migrated to the complex layer (first full
+  SW config; characters/vehicles already in builds format)
+  - Alloc pools: Wolf Guard Terminators (storm bolter / assault cannon /
+    storm shield), Wulfen (auto-launcher / Death Totem), Thunderwolf
+    Cavalry (plasma / boltgun / storm shield / bolt pistol), Intercessor
+    grenade launchers
+  - Per-model slots: Blood Claws / Grey Hunters / Wolf Guard Terminator
+    Pack Leaders, Intercessor Sergeant
+  - **SW plasma quirk**: SW merged BSData lists 'Plasma pistol' profiles
+    standard-first, so the bare name resolves to S7 AP-2 D1 (SM/DA resolve
+    supercharge-first). SW Intercessor Sergeant therefore takes Hand
+    flamer + Power fist; pack leaders resolve 'Plasma pistol - standard'.
+    Data-order dependent — pinned in test_space_wolves_complex_units.py
+  - Data gap: Long Fangs / Wolf Guard absent from SW merged BSData (not
+    even [Legends]) — documented, not asserted
+  - 7 structure-only pins added (full suite 3323 passing)
 - **Aeldari** — 71 datasheets ranked; squad composition engine driven from this faction
   - Complex units modeled: Warlocks (singing spear melee), Corsairs (Voidscarred
     weapon pool), Troupe (5× fusion), Storm Guardians (n=11, platform), Kabalite
@@ -87,9 +104,10 @@ and recommend detachments/units based on mission and meta.
   - Findings regenerated after every config change
 
 ### Tests
-- 3288 passing, 36 skipped
-- Complex-unit pins (`test_aeldari_complex_units.py`) — structure asserted, no
-  duplicated damage truth (engine is the single source of computation)
+- 3323 passing, 36 skipped
+- Complex-unit pins (`test_aeldari_complex_units.py`, `test_space_marines_complex_units.py`,
+  `test_dark_angels_complex_units.py`, `test_space_wolves_complex_units.py`) — structure
+  asserted, no duplicated damage truth (engine is the single source of computation)
 - Parser dual-profile assertions, generator payload tests, findings validation
 
 ### Documentation
@@ -110,7 +128,9 @@ and recommend detachments/units based on mission and meta.
 
 ### Factions (priority order)
 - [ ] Detachment modifiers: Space Marines (Gladius, Ironstorm, Firestorm...), Dark Angels (Inner Circle Task Force...), all others
-- [ ] Squad composition migration to remaining factions (Aeldari is the pilot)
+- [ ] Squad composition migration to remaining factions — done: Aeldari (pilot),
+  GK, Space Marines, Dark Angels, Space Wolves; next: **Blood Angels** (Wave 1,
+  highest remaining complexity score 322), then Black Templars / Deathwatch
 
 ### Engine Improvements
 - [x] **Reroll abilities vs target class** — auto-detected MONSTER/VEHICLE rerolls
@@ -176,4 +196,4 @@ and recommend detachments/units based on mission and meta.
 
 ---
 
-*Last updated: 2026-08-08*
+*Last updated: 2026-08-09*
