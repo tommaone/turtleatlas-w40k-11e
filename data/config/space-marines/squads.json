@@ -14,11 +14,49 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "melee": "Twin power fist"
+            "name": "Aggressors",
+            "count": 2,
+            "melee": "Twin power fist",
+            "slots": [
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Auto Boltstorm Gauntlets & Fragstorm Grenade Launcher",
+                    "ranged": "Auto Boltstorm Gauntlets"
+                  },
+                  {
+                    "name": "Flamestorm Gauntlets",
+                    "ranged": "Flamestorm Gauntlets",
+                    "default": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Aggressor Sergeant",
+            "count": 1,
+            "melee": "Twin power fist",
+            "slots": [
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Auto Boltstorm Gauntlets & Fragstorm Grenade Launcher",
+                    "ranged": "Auto Boltstorm Gauntlets"
+                  },
+                  {
+                    "name": "Flamestorm Gauntlets",
+                    "ranged": "Flamestorm Gauntlets",
+                    "default": true
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -38,12 +76,57 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
+            "name": "Assault Intercessors",
+            "count": 4,
             "ranged": "Heavy Bolt Pistol",
             "melee": "Astartes Chainsword"
+          },
+          {
+            "name": "Assault Intercessor Sergeant",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Weapon 1",
+                "choices": [
+                  {
+                    "name": "Hand flamer",
+                    "ranged": "Hand flamer"
+                  },
+                  {
+                    "name": "Plasma pistol",
+                    "ranged": "Plasma pistol"
+                  },
+                  {
+                    "name": "Heavy Bolt Pistol",
+                    "ranged": "Heavy Bolt Pistol"
+                  }
+                ]
+              },
+              {
+                "name": "Weapon 2",
+                "choices": [
+                  {
+                    "name": "Astartes Chainsword",
+                    "melee": "Astartes Chainsword"
+                  },
+                  {
+                    "name": "Power weapon",
+                    "melee": "Power weapon"
+                  },
+                  {
+                    "name": "Power fist",
+                    "melee": "Power fist"
+                  },
+                  {
+                    "name": "Thunder Hammer",
+                    "melee": "Thunder Hammer"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -63,42 +146,67 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Heavy Bolt Pistol",
-            "melee": "Astartes Chainsword"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma pistol - supercharge",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma pistol - supercharge",
-            "melee": "Astartes Chainsword"
+            "name": "Assault Intercessors",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Assault Intercessors with Jump Pack",
+                "min": 4,
+                "max": 9,
+                "ranged": "Heavy Bolt Pistol",
+                "melee": "Astartes Chainsword"
+              },
+              {
+                "name": "Assault Intercessors with Jump Pack w/ Plasma Pistol",
+                "min": 0,
+                "max": 2,
+                "ranged": "Plasma pistol",
+                "melee": "Astartes Chainsword"
+              }
+            ]
           },
           {
-            "count": 3,
-            "ranged": "Heavy Bolt Pistol",
-            "melee": "Astartes Chainsword"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma pistol - standard",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma pistol - standard",
-            "melee": "Astartes Chainsword"
-          },
-          {
-            "count": 3,
-            "ranged": "Heavy Bolt Pistol",
-            "melee": "Astartes Chainsword"
+            "name": "Assault Intercessor Sergeant with Jump Pack",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Weapon 1",
+                "choices": [
+                  {
+                    "name": "Hand flamer",
+                    "ranged": "Hand flamer"
+                  },
+                  {
+                    "name": "Plasma pistol",
+                    "ranged": "Plasma pistol"
+                  },
+                  {
+                    "name": "Heavy Bolt Pistol",
+                    "ranged": "Heavy Bolt Pistol"
+                  }
+                ]
+              },
+              {
+                "name": "Weapon 2",
+                "choices": [
+                  {
+                    "name": "Astartes Chainsword",
+                    "melee": "Astartes Chainsword"
+                  },
+                  {
+                    "name": "Power weapon",
+                    "melee": "Power weapon"
+                  },
+                  {
+                    "name": "Power fist",
+                    "melee": "Power fist"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -118,12 +226,37 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
+            "name": "Bladeguard Veterans",
+            "count": 2,
             "ranged": "Heavy Bolt Pistol",
             "melee": "Master-crafted power weapon"
+          },
+          {
+            "name": "Bladeguard Veteran Sergeant",
+            "count": 1,
+            "melee": "Master-crafted power weapon",
+            "slots": [
+              {
+                "name": "Pistol Option",
+                "choices": [
+                  {
+                    "name": "Heavy Bolt Pistol",
+                    "ranged": "Heavy Bolt Pistol"
+                  },
+                  {
+                    "name": "Plasma pistol",
+                    "ranged": "Plasma pistol"
+                  },
+                  {
+                    "name": "Neo-volkite Pistol",
+                    "ranged": "Neo-volkite Pistol"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -143,11 +276,64 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "melee": "Siege Drills"
+            "name": "Assault Centurion",
+            "count": 2,
+            "melee": "Siege Drills",
+            "slots": [
+              {
+                "name": "Centurion Option",
+                "choices": [
+                  {
+                    "name": "Centurion Bolters",
+                    "ranged": "Centurion Bolters"
+                  }
+                ]
+              },
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Twin flamer",
+                    "ranged": "Twin flamer"
+                  },
+                  {
+                    "name": "Twin meltagun",
+                    "ranged": "Twin meltagun"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Assault Centurion Sergeant",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Centurion Option",
+                "choices": [
+                  {
+                    "name": "Centurion Bolters",
+                    "ranged": "Centurion Bolters"
+                  }
+                ]
+              },
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Twin flamer",
+                    "ranged": "Twin flamer"
+                  },
+                  {
+                    "name": "Twin meltagun",
+                    "ranged": "Twin meltagun"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -166,12 +352,81 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Centurion Bolters",
-            "melee": "Centurion Fists"
+            "name": "Devastator Centurion",
+            "count": 2,
+            "melee": "Centurion Fists",
+            "slots": [
+              {
+                "name": "Centurion Option",
+                "choices": [
+                  {
+                    "name": "Centurion Bolters",
+                    "ranged": "Centurion Bolters"
+                  },
+                  {
+                    "name": "Centurion missile launcher",
+                    "ranged": "Centurion missile launcher"
+                  }
+                ]
+              },
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Twin heavy bolter",
+                    "ranged": "Twin heavy bolter"
+                  },
+                  {
+                    "name": "Twin lascannon",
+                    "ranged": "Twin lascannon"
+                  },
+                  {
+                    "name": "Grav-cannon",
+                    "ranged": "Grav-cannon",
+                    "default": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Devastator Centurion Sergeant",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Centurion Option",
+                "choices": [
+                  {
+                    "name": "Centurion Bolters",
+                    "ranged": "Centurion Bolters"
+                  },
+                  {
+                    "name": "Centurion missile launcher",
+                    "ranged": "Centurion missile launcher"
+                  }
+                ]
+              },
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Twin heavy bolter",
+                    "ranged": "Twin heavy bolter"
+                  },
+                  {
+                    "name": "Twin lascannon",
+                    "ranged": "Twin lascannon"
+                  },
+                  {
+                    "name": "Grav-cannon",
+                    "ranged": "Grav-cannon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -190,56 +445,39 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 4,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Bolt Rifle",
-        "models": [
-          {
+            "name": "Ancient",
             "count": 1,
-            "ranged": "Bolt Rifle",
+            "ranged": [
+              "Bolt Rifle",
+              "Bolt pistol"
+            ],
             "melee": "Close combat weapon"
           },
           {
-            "count": 3,
+            "name": "Company Champion",
+            "count": 1,
             "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Master-crafted Bolt Rifle",
-        "models": [
+            "melee": "Master-crafted Power Weapon"
+          },
           {
-            "count": 2,
-            "ranged": "Master-crafted Bolt Rifle",
+            "name": "Company Veteran w/ Bolt Rifle",
+            "count": 1,
+            "ranged": [
+              "Master-crafted Bolt Rifle",
+              "Bolt pistol"
+            ],
             "melee": "Close combat weapon"
           },
           {
-            "count": 2,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Master-crafted Heavy Bolter",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Master-crafted Heavy Bolter",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 2,
-            "ranged": "Bolt pistol",
+            "name": "Company Veteran w/ Heavy Bolter",
+            "count": 1,
+            "ranged": [
+              "Master-crafted Heavy Bolter",
+              "Bolt pistol"
+            ],
             "melee": "Close combat weapon"
           }
         ]
@@ -259,27 +497,61 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Castellan Launcher",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Castellan Launcher",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Castellan Launcher",
-            "melee": "Close combat weapon"
+            "name": "Desolation Marine",
+            "count": 4,
+            "ranged": [
+              "Bolt pistol",
+              "Castellan Launcher"
+            ],
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Superfrag Rocket Launcher",
+                    "ranged": "Superfrag Rocket Launcher",
+                    "default": true
+                  },
+                  {
+                    "name": "Superkrak Rocket Launcher",
+                    "ranged": "Superkrak Rocket Launcher"
+                  }
+                ]
+              }
+            ]
           },
           {
-            "count": 3,
-            "ranged": "Castellan Launcher",
-            "melee": "Close combat weapon"
+            "name": "Desolation Sergeant",
+            "count": 1,
+            "ranged": [
+              "Bolt pistol",
+              "Castellan Launcher"
+            ],
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Vengor launcher",
+                    "ranged": "Vengor launcher"
+                  },
+                  {
+                    "name": "Superfrag Rocket Launcher",
+                    "ranged": "Superfrag Rocket Launcher",
+                    "default": true
+                  },
+                  {
+                    "name": "Superkrak Rocket Launcher",
+                    "ranged": "Superkrak Rocket Launcher"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -298,102 +570,76 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Lascannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Lascannon",
-            "melee": "Close combat weapon"
+            "name": "Devastator Marine",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Devastator Marine w/ Boltgun",
+                "min": 0,
+                "max": 9,
+                "ranged": [
+                  "Boltgun",
+                  "Bolt pistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Devastator Marine w/ Heavy Weapon",
+                "min": 0,
+                "max": 4,
+                "ranged": "Bolt pistol",
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Weapon Option",
+                    "choices": [
+                      {
+                        "name": "Heavy Bolter",
+                        "ranged": "Heavy Bolter"
+                      },
+                      {
+                        "name": "Lascannon",
+                        "ranged": "Lascannon"
+                      },
+                      {
+                        "name": "Grav-cannon",
+                        "ranged": "Grav-cannon"
+                      },
+                      {
+                        "name": "Multi-melta",
+                        "ranged": "Multi-melta"
+                      },
+                      {
+                        "name": "Plasma cannon",
+                        "ranged": "Plasma cannon"
+                      },
+                      {
+                        "name": "Missile Launcher",
+                        "ranged": "Missile Launcher"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           },
           {
-            "count": 3,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Missile launcher",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Missile launcher",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Heavy bolter",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Heavy bolter",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Multi-melta",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Multi-melta",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Grav-cannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Grav-cannon",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma cannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma cannon",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
+            "name": "Devastator Sergeant",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Close combat weapon",
+                    "melee": "Close combat weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -412,12 +658,50 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Bolt Sniper Rifle",
-            "melee": "Close combat weapon"
+            "name": "Eliminator",
+            "count": 2,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Las fusil",
+                    "ranged": "Las fusil"
+                  },
+                  {
+                    "name": "Bolt Sniper Rifle",
+                    "ranged": "Bolt Sniper Rifle",
+                    "default": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Eliminator Sergeant",
+            "count": 1,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Las fusil",
+                    "ranged": "Las fusil"
+                  },
+                  {
+                    "name": "Instigator Bolt Carbine",
+                    "ranged": "Instigator Bolt Carbine"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -436,41 +720,41 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Melta rifle",
-        "models": [
-          {
+            "name": "Eradicator",
             "count": 2,
-            "ranged": "Melta rifle",
-            "melee": "Close combat weapon"
+            "alloc": [
+              {
+                "name": "Eradicator",
+                "min": 0,
+                "max": 5,
+                "ranged": [
+                  "Bolt pistol",
+                  "Melta rifle"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Eradicator with Multi-melta",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Multi-melta",
+                  "Bolt pistol"
+                ],
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
+            "name": "Eradicator Sergeant",
             "count": 1,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Multi-melta",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Multi-melta",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 2,
-            "ranged": "Bolt pistol",
+            "ranged": [
+              "Bolt pistol",
+              "Melta rifle"
+            ],
             "melee": "Close combat weapon"
           }
         ]
@@ -491,26 +775,24 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Heavy Bolter",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Heavy Bolter",
+            "name": "Eradicator",
+            "count": 2,
+            "ranged": [
+              "Heavy Bolter",
+              "Bolt pistol"
+            ],
             "melee": "Close combat weapon"
           },
           {
-            "count": 2,
-            "ranged": "Bolt pistol",
+            "name": "Eradicator Sergeant",
+            "count": 1,
+            "ranged": [
+              "Heavy Bolter",
+              "Bolt pistol"
+            ],
             "melee": "Close combat weapon"
           }
         ]
@@ -530,41 +812,41 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Heavy Bolt Rifle",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Heavy Bolt Rifle",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Heavy Bolter",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Heavy Bolter",
-            "melee": "Close combat weapon"
-          },
-          {
+            "name": "Heavy Intercessor",
             "count": 4,
-            "ranged": "Bolt pistol",
+            "alloc": [
+              {
+                "name": "Heavy Intercessors",
+                "min": 3,
+                "max": 9,
+                "ranged": [
+                  "Heavy Bolt Rifle",
+                  "Bolt pistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Heavy Intercessor w/Heavy Bolter",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Heavy Bolter",
+                  "Bolt pistol"
+                ],
+                "melee": "Close combat weapon"
+              }
+            ]
+          },
+          {
+            "name": "Heavy Intercessor Sergeant",
+            "count": 1,
+            "ranged": [
+              "Heavy Bolt Rifle",
+              "Bolt pistol"
+            ],
             "melee": "Close combat weapon"
           }
         ]
@@ -584,42 +866,36 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma Incinerator - Standard",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma Incinerator - Standard",
+            "name": "Hellblaster",
+            "count": 4,
+            "ranged": [
+              "Plasma Incinerator",
+              "Bolt pistol"
+            ],
             "melee": "Close combat weapon"
           },
           {
-            "count": 3,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma Incinerator - Supercharge",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma Incinerator - Supercharge",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
+            "name": "Hellblaster Sergeant",
+            "count": 1,
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Pistol Option",
+                "choices": [
+                  {
+                    "name": "Bolt pistol",
+                    "ranged": "Bolt pistol"
+                  },
+                  {
+                    "name": "Plasma pistol",
+                    "ranged": "Plasma pistol"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -639,12 +915,48 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Assault Bolters",
-            "melee": "Close combat weapon"
+            "name": "Inceptor",
+            "count": 2,
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Assault Bolters",
+                    "ranged": "Assault Bolters",
+                    "default": true
+                  },
+                  {
+                    "name": "Plasma Exterminators",
+                    "ranged": "Plasma Exterminators"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Inceptor Sergeant",
+            "count": 1,
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Assault Bolters",
+                    "ranged": "Assault Bolters"
+                  },
+                  {
+                    "name": "Plasma Exterminators",
+                    "ranged": "Plasma Exterminators"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -664,26 +976,24 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Bolt pistol",
-            "melee": "Paired Combat Blades"
-          }
-        ]
-      },
-      {
-        "name": "Occulus Bolt Carbine",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Occulus Bolt Carbine",
+            "name": "Incursor",
+            "count": 4,
+            "ranged": [
+              "Occulus Bolt Carbine",
+              "Bolt pistol"
+            ],
             "melee": "Paired Combat Blades"
           },
           {
-            "count": 4,
-            "ranged": "Bolt pistol",
+            "name": "Incursor Sergeant",
+            "count": 1,
+            "ranged": [
+              "Occulus Bolt Carbine",
+              "Bolt pistol"
+            ],
             "melee": "Paired Combat Blades"
           }
         ]
@@ -704,26 +1014,24 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Pyreblaster",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Bolt pistol",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Bolt pistol",
+            "name": "Infernus Marines",
+            "count": 4,
+            "ranged": [
+              "Pyreblaster",
+              "Bolt pistol"
+            ],
             "melee": "Close combat weapon"
           },
           {
-            "count": 4,
-            "ranged": "Pyreblaster",
+            "name": "Infernus Sergeant",
+            "count": 1,
+            "ranged": [
+              "Bolt pistol",
+              "Pyreblaster"
+            ],
             "melee": "Close combat weapon"
           }
         ]
@@ -743,26 +1051,24 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Marksman Bolt Carbine",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Marksman Bolt Carbine",
+            "name": "Infiltrator",
+            "count": 4,
+            "ranged": [
+              "Marksman Bolt Carbine",
+              "Bolt pistol"
+            ],
             "melee": "Close combat weapon"
           },
           {
-            "count": 4,
-            "ranged": "Bolt pistol",
+            "name": "Infiltrator Sergeant",
+            "count": 1,
+            "ranged": [
+              "Marksman Bolt Carbine",
+              "Bolt pistol"
+            ],
             "melee": "Close combat weapon"
           }
         ]
@@ -783,57 +1089,95 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Bolt Rifle",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Bolt Rifle",
-            "melee": "Close combat weapon"
+            "name": "Intercessor",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Intercessor",
+                "min": 4,
+                "max": 9,
+                "ranged": [
+                  "Bolt pistol",
+                  "Bolt Rifle"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Intercessor w/ Grenade Launcher",
+                "min": 0,
+                "max": 2,
+                "ranged": [
+                  "Bolt pistol",
+                  "Bolt Rifle",
+                  "Astartes grenade launcher"
+                ],
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 3,
+            "name": "Intercessor Sergeant",
+            "count": 1,
             "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Astartes grenade launcher - krak",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Astartes grenade launcher - krak",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Astartes grenade launcher - frag",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Astartes grenade launcher - frag",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
+            "slots": [
+              {
+                "name": "Weapon 1",
+                "choices": [
+                  {
+                    "name": "Hand flamer",
+                    "ranged": "Hand flamer"
+                  },
+                  {
+                    "name": "Power weapon",
+                    "melee": "Power weapon"
+                  },
+                  {
+                    "name": "Plasma pistol",
+                    "ranged": "Plasma pistol"
+                  },
+                  {
+                    "name": "Astartes Chainsword",
+                    "melee": "Astartes Chainsword"
+                  },
+                  {
+                    "name": "Bolt Rifle",
+                    "ranged": "Bolt Rifle"
+                  },
+                  {
+                    "name": "Bolt Rifle w/ Grenade Launcher",
+                    "ranged": "Bolt Rifle"
+                  }
+                ]
+              },
+              {
+                "name": "Weapon 2",
+                "choices": [
+                  {
+                    "name": "Power weapon",
+                    "melee": "Power weapon"
+                  },
+                  {
+                    "name": "Astartes Chainsword",
+                    "melee": "Astartes Chainsword"
+                  },
+                  {
+                    "name": "Power fist",
+                    "melee": "Power fist"
+                  },
+                  {
+                    "name": "Thunder Hammer",
+                    "melee": "Thunder Hammer"
+                  },
+                  {
+                    "name": "Close combat weapon",
+                    "melee": "Close combat weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -886,26 +1230,55 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Heavy Bolt Pistol",
-            "melee": "Astartes Chainsword"
-          }
-        ]
-      },
-      {
-        "name": "Twin bolt rifle",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Twin bolt rifle",
-            "melee": "Astartes Chainsword"
+            "name": "Outrider",
+            "count": 2,
+            "alloc": [
+              {
+                "name": "Outrider",
+                "min": 2,
+                "max": 5,
+                "ranged": [
+                  "Heavy Bolt Pistol",
+                  "Twin bolt rifle"
+                ],
+                "melee": "Astartes Chainsword"
+              },
+              {
+                "name": "Invader ATV",
+                "min": 0,
+                "max": 1,
+                "slots": [
+                  {
+                    "name": "Wargear",
+                    "choices": [
+                      {
+                        "name": "Bolt pistol",
+                        "ranged": "Bolt pistol"
+                      },
+                      {
+                        "name": "Twin bolt rifle",
+                        "ranged": "Twin bolt rifle"
+                      },
+                      {
+                        "name": "Close combat weapon",
+                        "melee": "Close combat weapon"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           },
           {
-            "count": 2,
-            "ranged": "Heavy Bolt Pistol",
+            "name": "Outrider Sergeant",
+            "count": 1,
+            "ranged": [
+              "Heavy Bolt Pistol",
+              "Twin bolt rifle"
+            ],
             "melee": "Astartes Chainsword"
           }
         ]
@@ -925,12 +1298,29 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Reivers",
             "count": 5,
             "ranged": "Special Issue Bolt Pistol",
-            "melee": "Close combat weapon"
+            "slots": [
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Combat Knife",
+                    "melee": "Combat Knife",
+                    "default": true
+                  },
+                  {
+                    "name": "Bolt Carbine and Close Combat Weapon",
+                    "ranged": "Bolt Carbine",
+                    "melee": "Close combat weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -949,57 +1339,104 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Bolt pistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Astartes Shotgun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Astartes Shotgun",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Scout Sniper Rifle",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Scout Sniper Rifle",
-            "melee": "Close combat weapon"
-          },
-          {
+            "name": "Scouts",
             "count": 4,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
+            "alloc": [
+              {
+                "name": "Scouts w/ Boltgun",
+                "min": 4,
+                "max": 9,
+                "ranged": [
+                  "Boltgun",
+                  "Bolt pistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Scouts w/ Astartes Shotgun",
+                "min": 0,
+                "max": 9,
+                "ranged": [
+                  "Astartes Shotgun",
+                  "Bolt pistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Scouts w/ Combat Knife",
+                "min": 0,
+                "max": 9,
+                "ranged": "Bolt pistol",
+                "melee": [
+                  "Combat Knife",
+                  "Close combat weapon"
+                ]
+              },
+              {
+                "name": "Scout w/ Heavy Weapon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Bolt pistol",
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Weapon Option",
+                    "choices": [
+                      {
+                        "name": "Heavy Bolter",
+                        "ranged": "Heavy Bolter"
+                      },
+                      {
+                        "name": "Missile Launcher",
+                        "ranged": "Missile Launcher"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Scout w/ Scout Sniper Rifle",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Scout Sniper Rifle",
+                  "Bolt pistol"
+                ],
+                "melee": "Close combat weapon"
+              }
+            ]
+          },
+          {
+            "name": "Scout Sergeant",
+            "count": 1,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapon option",
+                "choices": [
+                  {
+                    "name": "Astartes Chainsword",
+                    "melee": "Astartes Chainsword"
+                  },
+                  {
+                    "name": "Boltgun",
+                    "ranged": "Boltgun"
+                  },
+                  {
+                    "name": "Combat Knife",
+                    "melee": "Combat Knife"
+                  },
+                  {
+                    "name": "Astartes Shotgun",
+                    "ranged": "Astartes Shotgun"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1019,42 +1456,93 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Sternguard Bolt Pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Sternguard Bolt Rifle",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Sternguard Bolt Rifle",
-            "melee": "Close combat weapon"
+            "name": "Sternguard Veteran",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Sternguard Veteran w/ Bolt Rifle",
+                "min": 0,
+                "max": 9,
+                "ranged": [
+                  "Sternguard Bolt Pistol",
+                  "Sternguard Bolt Rifle"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Sternguard Veteran w/ Special Weapon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Sternguard Bolt Pistol",
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Weapon Option",
+                    "choices": [
+                      {
+                        "name": "Sternguard Heavy Bolter",
+                        "ranged": "Sternguard Heavy Bolter"
+                      },
+                      {
+                        "name": "Pyrecannon",
+                        "ranged": "Pyrecannon"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Sternguard Veteran w/ Combi-weapon",
+                "min": 0,
+                "max": 9,
+                "ranged": [
+                  "Sternguard Bolt Pistol",
+                  "Combi-weapon"
+                ],
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 3,
+            "name": "Sternguard Veteran Sergeant",
+            "count": 1,
             "ranged": "Sternguard Bolt Pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Combi-weapon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Combi-weapon",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Sternguard Bolt Pistol",
-            "melee": "Close combat weapon"
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Combi-weapon",
+                    "ranged": "Combi-weapon"
+                  },
+                  {
+                    "name": "Sternguard Bolt Rifle",
+                    "ranged": "Sternguard Bolt Rifle"
+                  }
+                ]
+              },
+              {
+                "name": "Melee Option",
+                "choices": [
+                  {
+                    "name": "Power weapon",
+                    "melee": "Power weapon"
+                  },
+                  {
+                    "name": "Power fist",
+                    "melee": "Power fist"
+                  },
+                  {
+                    "name": "Astartes Chainsword",
+                    "melee": "Astartes Chainsword"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1074,25 +1562,20 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Accelerator Autocannon",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Accelerator Autocannon",
+            "name": "Suppressor",
+            "count": 2,
+            "ranged": [
+              "Accelerator Autocannon",
+              "Bolt pistol"
+            ],
             "melee": "Close combat weapon"
           },
           {
-            "count": 2,
+            "name": "Suppressor Sergeant",
+            "count": 1,
             "ranged": "Bolt pistol",
             "melee": "Close combat weapon"
           }
@@ -1113,27 +1596,183 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Boltgun",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
+            "name": "Tactical Marine",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Tactical Marine",
+                "min": 7,
+                "max": 9,
+                "ranged": [
+                  "Bolt pistol",
+                  "Boltgun"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Tactical Marine w/Special Weapon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Bolt pistol",
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Weapon",
+                    "choices": [
+                      {
+                        "name": "Flamer",
+                        "ranged": "Flamer"
+                      },
+                      {
+                        "name": "Meltagun",
+                        "ranged": "Meltagun"
+                      },
+                      {
+                        "name": "Plasma gun",
+                        "ranged": "Plasma gun"
+                      },
+                      {
+                        "name": "Grav-gun",
+                        "ranged": "Grav-gun"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Tactical Marine w/Heavy or Special Weapon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Bolt pistol",
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Weapon",
+                    "choices": [
+                      {
+                        "name": "Flamer",
+                        "ranged": "Flamer"
+                      },
+                      {
+                        "name": "Meltagun",
+                        "ranged": "Meltagun"
+                      },
+                      {
+                        "name": "Plasma gun",
+                        "ranged": "Plasma gun"
+                      },
+                      {
+                        "name": "Grav-gun",
+                        "ranged": "Grav-gun"
+                      },
+                      {
+                        "name": "Heavy Bolter",
+                        "ranged": "Heavy Bolter"
+                      },
+                      {
+                        "name": "Multi-melta",
+                        "ranged": "Multi-melta"
+                      },
+                      {
+                        "name": "Lascannon",
+                        "ranged": "Lascannon"
+                      },
+                      {
+                        "name": "Missile Launcher",
+                        "ranged": "Missile Launcher"
+                      },
+                      {
+                        "name": "Plasma cannon",
+                        "ranged": "Plasma cannon"
+                      },
+                      {
+                        "name": "Grav-cannon",
+                        "ranged": "Grav-cannon"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           },
           {
-            "count": 9,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
+            "name": "Tactical Marine Sergeant",
+            "count": 1,
+            "melee": [
+              "Close combat weapon",
+              "Twin lightning claws"
+            ],
+            "slots": [
+              {
+                "name": "Weapon 1",
+                "choices": [
+                  {
+                    "name": "Astartes Chainsword",
+                    "melee": "Astartes Chainsword"
+                  },
+                  {
+                    "name": "Bolt pistol",
+                    "ranged": "Bolt pistol"
+                  },
+                  {
+                    "name": "Grav-pistol",
+                    "ranged": "Grav-pistol"
+                  },
+                  {
+                    "name": "Plasma pistol",
+                    "ranged": "Plasma pistol"
+                  },
+                  {
+                    "name": "Power fist",
+                    "melee": "Power fist"
+                  },
+                  {
+                    "name": "Thunder Hammer",
+                    "melee": "Thunder Hammer"
+                  },
+                  {
+                    "name": "Power weapon",
+                    "melee": "Power weapon"
+                  }
+                ]
+              },
+              {
+                "name": "Weapon 2",
+                "choices": [
+                  {
+                    "name": "Astartes Chainsword",
+                    "melee": "Astartes Chainsword"
+                  },
+                  {
+                    "name": "Storm bolter",
+                    "ranged": "Storm bolter"
+                  },
+                  {
+                    "name": "Power fist",
+                    "melee": "Power fist"
+                  },
+                  {
+                    "name": "Thunder Hammer",
+                    "melee": "Thunder Hammer"
+                  },
+                  {
+                    "name": "Power weapon",
+                    "melee": "Power weapon"
+                  },
+                  {
+                    "name": "Boltgun",
+                    "ranged": "Boltgun"
+                  },
+                  {
+                    "name": "Combi-weapon",
+                    "ranged": "Combi-weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1154,11 +1793,45 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "melee": "Thunder Hammer"
+            "name": "Assault Terminator",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Assault Terminator w/ Thunder Hammer & Storm Shield",
+                "min": 0,
+                "max": 9,
+                "melee": "Thunder Hammer"
+              },
+              {
+                "name": "Assault Terminator w/ Twin Lightning Claws",
+                "min": 0,
+                "max": 9,
+                "melee": "Twin Lightning Claws"
+              }
+            ]
+          },
+          {
+            "name": "Assault Terminator Sergeant",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Thunder Hammer & Storm Shield",
+                    "melee": "Thunder Hammer",
+                    "default": true
+                  },
+                  {
+                    "name": "Twin Lightning Claws",
+                    "melee": "Twin Lightning Claws"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1179,12 +1852,88 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
+            "name": "Terminator",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Terminator w/ Power Fist",
+                "min": 0,
+                "max": 9,
+                "ranged": "Storm bolter",
+                "melee": "Power fist"
+              },
+              {
+                "name": "Terminator w/ Chain Fist",
+                "min": 0,
+                "max": 9,
+                "ranged": "Storm bolter",
+                "melee": "Chainfist"
+              },
+              {
+                "name": "Terminator w/ Heavy Weapon",
+                "min": 0,
+                "max": 1,
+                "slots": [
+                  {
+                    "name": "Ranged Weapon Option",
+                    "choices": [
+                      {
+                        "name": "Heavy Flamer",
+                        "ranged": "Heavy Flamer"
+                      },
+                      {
+                        "name": "Assault Cannon",
+                        "ranged": "Assault Cannon"
+                      },
+                      {
+                        "name": "Cyclone Missile Launcher & Storm Bolter",
+                        "ranged": "Storm bolter"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Melee Weapon Option",
+                    "choices": [
+                      {
+                        "name": "Chainfist",
+                        "melee": "Chainfist"
+                      },
+                      {
+                        "name": "Power fist",
+                        "melee": "Power fist"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Terminator Sergeant",
+            "count": 1,
             "ranged": "Storm bolter",
-            "melee": "Power fist"
+            "slots": [
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Power weapon",
+                    "melee": "Power weapon"
+                  },
+                  {
+                    "name": "Chainfist",
+                    "melee": "Chainfist"
+                  },
+                  {
+                    "name": "Power fist",
+                    "melee": "Power fist"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1259,11 +2008,108 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "melee": "Vanguard Veteran Weapon"
+            "name": "Vanguard Veteran",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Vanguard Veterans with Jump Packs",
+                "min": 0,
+                "max": 9,
+                "melee": "Vanguard Veteran Weapon",
+                "slots": [
+                  {
+                    "name": "Pistol Option",
+                    "choices": [
+                      {
+                        "name": "Plasma pistol",
+                        "ranged": "Plasma pistol"
+                      },
+                      {
+                        "name": "Inferno Pistol",
+                        "ranged": "Inferno Pistol"
+                      },
+                      {
+                        "name": "Hand flamer",
+                        "ranged": "Hand flamer"
+                      },
+                      {
+                        "name": "Bolt pistol",
+                        "ranged": "Bolt pistol"
+                      },
+                      {
+                        "name": "Grav-pistol",
+                        "ranged": "Grav-pistol"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Vanguard Veteran w/Master-crafted Power Weapon",
+                "min": 0,
+                "max": 10,
+                "ranged": "Heavy Bolt Pistol",
+                "melee": "Master-crafted Power Weapon"
+              },
+              {
+                "name": "Vanguard Veteran w/Plasma Pistol & Master-crafter Power Weapon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Plasma pistol",
+                "melee": "Master-crafted Power Weapon"
+              }
+            ]
+          },
+          {
+            "name": "Vanguard Veteran Sergeant with Jump Pack",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Pistol Option",
+                "choices": [
+                  {
+                    "name": "Bolt pistol",
+                    "ranged": "Bolt pistol"
+                  },
+                  {
+                    "name": "Plasma pistol",
+                    "ranged": "Plasma pistol"
+                  },
+                  {
+                    "name": "Inferno Pistol",
+                    "ranged": "Inferno Pistol"
+                  },
+                  {
+                    "name": "Hand flamer",
+                    "ranged": "Hand flamer"
+                  },
+                  {
+                    "name": "Grav-pistol",
+                    "ranged": "Grav-pistol"
+                  },
+                  {
+                    "name": "Heavy Bolt Pistol",
+                    "ranged": "Heavy Bolt Pistol"
+                  }
+                ]
+              },
+              {
+                "name": "Melee Weapon",
+                "choices": [
+                  {
+                    "name": "Master-crafted Power Weapon",
+                    "melee": "Master-crafted Power Weapon"
+                  },
+                  {
+                    "name": "Vanguard Veteran Weapon",
+                    "melee": "Vanguard Veteran Weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1325,8 +2171,8 @@
         "models": [
           {
             "count": 3,
-            "ranged": "Master-crafted power weapon",
-            "melee": "Master-crafted Bolt Carbine"
+            "ranged": "Master-crafted Bolt Carbine",
+            "melee": "Master-crafted power weapon"
           }
         ]
       }

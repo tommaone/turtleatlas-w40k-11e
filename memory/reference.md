@@ -61,16 +61,29 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
   reroll abilities from merged ability text (24 datasheets across 15 factions),
   `engine/dpp.py` applies qualified hit/wound/damage rerolls per toughness-band
   target; GMNDK Surge of Wrath configured (`data/config/grey-knights/weapon_options.json`)
+  — NOW GENERALIZED to all class keywords (CHARACTER/INFANTRY/TITANIC/WALKER/
+  MOUNTED + M/V = 33 datasheets): weakest-wins upgrades, aura-subject skip,
+  roll-noun `\b` boundary fix
 - Aeldari squad-composition pilot done: dual-profile weapons (Singing Spear/Chainsabres), parallel-variant alloc (Troupe/Windriders/Storm Guardians), per-model slots, multi-fixed-weapon models, mixed squads (Kabalite 9+Sybarite)
-- 3288 tests passing, 36 skipped
+- **space-marines migrated to complex layer (Wave 1 pilot done)**: generator
+  bugs fixed en route — case-insensitive exact name match before substring
+  (Eradicator With Heavy Bolters must not resolve to melta base entry),
+  deterministic alloc-name tie-break (hash-order safe); Victrix config weapon
+  swap fixed (power-sword in ranged slot)
+- 3314 tests passing, 36 skipped
 - Detachment modifiers: 26 (GK 9 + CK 8 + Daemons 9); SM/DA + 20+ factions not yet modeled
-- Head of main: `d57ec5c`. Dojo flow: main branch only, ask before push.
+- Head of main: `1a2c541`. Dojo flow: main branch only, ask before push.
 - Report regen is hash-seeded: `PYTHONHASHSEED=1 python3 -m tests.test_truth_roles_report`
 
 ## Next moves (as of 2026-08-08)
 
-1. Squad composition migration to remaining factions (Aeldari is the pilot)
-2. Generalize reroll detection beyond M/V keywords (army rules modeling gap)
+1. Squad composition migration to remaining factions (Aeldari + Space Marines done —
+   Wave 1 next: Dark Angels → Blood Angels → Space Wolves; then Waves 2-4 per
+   docs/checklist-squad-composition-migration.md)
+2. Engine gap: multi-profile weapons (Cyclone Missile Launcher frag+krak under
+   one name — loader resolves only first profile, so missile slots under-rate
+   vs AP-and-D6 options; affects slot picks + DPP truth on Terminator/Devastator
+   heavy slots, not just SM)
 3. Detachment modifiers for SM, DA, all others
 4. Engine gaps: T3 primary metric, concentrated fire, pistol/two-handed restriction, transport support
 

@@ -42,11 +42,23 @@ CONFIG_DIR = REPO_ROOT / "data" / "config"
 
 
 def fuzzy_find_composition(composition: dict, unit_name: str) -> dict | None:
-    """Find composition entry by exact name, then substring match."""
+    """Find composition entry by exact name, then case-insensitive exact,
+    then substring match.
+
+    Case-insensitive exact MUST run before substring: squads.json keys and
+    BSData composition names differ only in case suffix ('With Heavy Bolters'
+    vs 'with Heavy Bolters'). Substring fallback would match the BASE unit
+    ('Eradicator Squad') and silently write the WRONG weapons (melta payload
+    onto a heavy-bolter squad).
+    """
     if unit_name in composition:
         return composition[unit_name]
+    low = unit_name.lower()
     for bs_name, bs_data in composition.items():
-        if unit_name.lower() in bs_name.lower() or bs_name.lower() in unit_name.lower():
+        if bs_name.lower() == low:
+            return bs_data
+    for bs_name, bs_data in composition.items():
+        if low in bs_name.lower() or bs_name.lower() in low:
             return bs_data
     return None
 
@@ -67,7 +79,15 @@ def _alloc_model_name(names: list[str]) -> str:
             stripped.append(re.split(r"\s+with\b|\sw/", n, maxsplit=1)[0])
     if not stripped:
         return "Model"
-    mode = max(set(stripped), key=stripped.count)
+    # Most frequent base, tie-break to the SHORTEST (modal base name wins
+    # over suffix variants; deterministic across runs — max(set(...)) on a
+    # count is hash-order dependent on ties).
+    from collections import Counter
+    counts = Counter(stripped)
+    mode = min(
+        counts.items(),
+        key=lambda kv: (-kv[1], len(kv[0])),
+    )[0]
     if mode:
         return mode
     prefix = stripped[0]

@@ -182,3 +182,50 @@ Before writing code: surveyed the corpus. class-keyed rerolls = 33 abilities
 (detected). Unconditional/army-wide = 150+ (76 'all' + 74 '1s') — separate
 feature (needs `targets: ALL` + positional-trigger exclusion), filed on roadmap.
 Bundle-of-many-abilities units mix per-datasheet.
+
+## Space Marines squad migration — generator bugs, engine gap, validator truth
+Wave-1 migration (34 squads) shipped with three real discoveries:
+
+### 1. fuzzy_find_composition: case-insensitive exact match BEFORE substring
+`'Eradicator Squad With Heavy Bolters'` in squads.json vs BSData
+`'Eradicator Squad'` + `'Eradicator Squad with Heavy Bolters'`: substring
+fallback matched `'eradicator squad' in 'eradicator squad with heavy bolters'`
+→ wrote the melta payload onto the heavy-bolter squad. Substring is the LAST
+resort; exact (then case-insensitive exact) must run first. Real-world cost:
+silent wrong- weapon loadouts feeding the engine.
+
+### 2. _alloc_model_name tie-break was hash-order nondeterministic
+`max(set(stripped), key=stripped.count)` on a count tie (Outrider vs
+Invader ATV, both 1) returns whichever hash-order wins — the alloc pool name
+flipped between runs. Now: most-frequent, then SHORTEST name. Deterministic
+across PYTHONHASHSEED values.
+
+### 3. Engine multi-profile gap (Cyclone Missile Launcher)
+frag (S4 D1 Blast) + krak (S9 AP-2 D6) live under ONE merged name; loader
+resolves only `entries[0]` → Cyclone scores as S4 D1 and always LOSES the
+slot to Assault Cannon (S6 D1 Devastating) vs every target incl T10/T12. This
+is the desktop-not-modeled gap for missile launchers — roadmap Item 2. It
+affected nothing before the migration; now pins in
+tests/test_space_marines_complex_units.py document the stable (if wrong)
+behavior so a future multi-profile loader makes the right test flips.
+
+### Validator truth (the Outrider +1)
+validate_configs_vs_bsdata went 128→129 issues — the ONE new issue was
+`EXTRA WEAPON 'Bolt pistol'` on Outrider Squad, a FALSE POSITIVE: the
+extractor mis-reads squad model entries as weapons (`fixed_ranged:
+['Invader ATV']`), same pre-existing noise for every alloc-bearing unit. The
+migration did not add a real defect; the diff-of-validator-issues method
+(compare old/new counts) tells the story without diffing whole HTML.
+
+### Test-discipline from this iteration
+- Tests pin STRUCTURE, not damage — follow test_aeldari_complex_units.py
+- MEQ fixture comes from conftest `_target_from_cfg("MEQ")` — never inline
+  your own T/W/model_count (duplicated truth)
+- When a test I wrote named a behavior wrong ('slot pick is target-dependent'),
+  the fix is to pin the engine's ACTUAL behavior + document why, not fudge
+- `len(res["ranged"]) >= n` invariant intentionally excludes melee-only-
+  leader squads (Devastator sergeant, Storm Guardian platform)
+- **Summoning caution**: I twice drafted edits/analyses that hallucinated
+  file contents ("WKB", "Aeldari Init", nonsense strings). Always Read →
+  actually inspect the file before editing; never compose oldString from
+  what I think I wrote earlier.

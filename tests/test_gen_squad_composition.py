@@ -38,6 +38,15 @@ def composition():
     return BSDataParser11e().extract_squad_composition("Aeldari")
 
 
+@pytest.fixture(scope="module")
+def sm_composition():
+    """Space Marines composition — used by the case-insensitive exact-match
+    regression (Eradicator Squad With Heavy Bolters must NOT resolve to the
+    base Eradicator Squad's melta payload)."""
+    from adapter.bsdata_parser_11e import BSDataParser11e
+    return BSDataParser11e().extract_squad_composition("space-marines")
+
+
 def _comp_for(composition, name):
     for bs_name, data in composition.items():
         if name.lower() in bs_name.lower() or bs_name.lower() in name.lower():
@@ -178,3 +187,56 @@ def test_single_pool_flat_dark_reapers(gen, composition):
     assert dr["name"] == "Dark Reaper"
     ex = [m for m in build["models"] if m.get("count") == 1][0]
     assert ex["name"] == "Dark Reaper Exarch"
+
+
+def test_case_insensitive_exact_match_heavy_bolters(gen, sm_composition):
+    """Regression: 'Eradicator Squad With Heavy Bolters' must resolve to the
+    heavy-bolter composition, NOT the base 'Eradicator Squad' melta payload.
+
+    The old code fell through to substring matching (bs_name in unit_name)
+    and would have written melta rifles into the heavy-bolter squad.
+    """
+    heavy = gen.fuzzy_find_composition(
+        sm_composition, "Eradicator Squad With Heavy Bolters"
+    )
+    assert heavy is not None
+    assert "Eradicator Squad with Heavy Bolters" in sm_composition
+    models = {m["name"]: m for m in heavy["builds"][0]["models"]}
+    flat = json.dumps(heavy)
+    assert "Multi-melta" not in flat
+    assert "Melta rifle" not in flat
+    assert models["Eradicator"]["ranged"] == ["Heavy Bolter", "Bolt pistol"]
+    assert models["Eradicator Sergeant"]["ranged"] == ["Heavy Bolter", "Bolt pistol"]
+
+
+def test_case_insensitive_exact_match_keeps_base(gen, sm_composition):
+    """The base 'Eradicator Squad' still resolves to its own melta entry."""
+    base = gen.fuzzy_find_composition(sm_composition, "Eradicator Squad")
+    assert base is not None
+    assert "Heavy Bolter" not in json.dumps(base)
+
+
+def test_alloc_model_name_deterministic_tiebreak(gen):
+    """Tie-break: 'Outrider' vs 'Invader ATV' both count 1 — the base name
+    (shortest) must win deterministically, NOT hash-order."""
+    assert gen._alloc_model_name(["Outrider", "Invader ATV"]) == "Outrider"
+    assert gen._alloc_model_name(["Invader ATV", "Outrider"]) == "Outrider"
+    # most-frequent still wins when no tie
+    mixed = [
+        "Assault Intercessors with Jump Pack",
+        "Assault Intercessors with Jump Pack w/ Plasma Pistol",
+        "Assault Intercessors with Jump Pack",
+    ]
+    assert gen._alloc_model_name(mixed) == "Assault Intercessors"
+
+
+def test_alloc_model_name_player_unchanged(gen):
+    """Troupe-style parallel variants keep 'Player' as the base name."""
+    assert gen._alloc_model_name(
+        [
+            "Player with Harlequin's Blade",
+            "Player with Harlequin's Special Weapon",
+            "Player with Fusion Pistol",
+            "Player with Neuro Disruptor",
+        ]
+    ) == "Player"
