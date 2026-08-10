@@ -94,17 +94,20 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
 - Head of main: merged SW + BA Wave-1 migrations. Dojo flow: main branch only, ask before push.
 - Report regen is hash-seeded: `PYTHONHASHSEED=1 python3 -m pytest tests/test_truth_roles_report.py` (NOT `python3 -m tests.test_truth_roles_report` — that module has no `__main__` block and silently does nothing)
 
-## Next moves (as of 2026-08-09)
+## Next moves (as of 2026-08-10)
 
 1. Squad composition migration to remaining factions — complex layer done:
    Aeldari + GK + Space Marines + Dark Angels + Blood Angels + Space Wolves;
-   Wave 1 next: **Black Templars / Deathwatch** (per docs/checklist-squad-composition-migration.md)
+   Wave 1 next: **Black Templars / Deathwatch** (per docs/checklist-squad-composition-migration.md),
+   then the rest of the 30 factions. **This is the gate.**
 2. ~~Engine gap: multi-profile weapons (Cyclone Missile Launcher frag+krak under
    one name — loader resolves only first profile)~~ **DONE 2026-08-10** — choice
    profiles now score as max-over-group (WeaponProfile.variants); plasma
    standard/supercharge, frag/krak, strike/sweep, Starshot/Sunburst all
    correct; SM Terminator/Devastator + SW/SM/DA/BA slot pins updated
-3. Detachment modifiers for SM, DA, all others
+3. Detachment modifiers for SM, DA, all others — **BLOCKED (2026-08-10 decision):
+   not until every army is on the slot setup.** A detachment bonus over an
+   imaginary loadout is a lie; calculations must be determined by real gear first.
 4. Engine gaps: T3 primary metric, concentrated fire, pistol/two-handed restriction, transport support
 
 ## Credentials

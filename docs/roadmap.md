@@ -133,18 +133,25 @@ and recommend detachments/units based on mission and meta.
 
 ## In Progress 🔄
 
-- **Detachment modifiers for remaining factions** — SM, DA, and 20+ other factions
-  not yet modeled (see Backlog)
+- **Squad-composition migration for ALL remaining factions** — until every
+  army runs the slot setup (weapon_options/builds, slots, alloc pools), the
+  engine's damage calculations are NOT determined by real gear — they use
+  generic configs. Detachment modifiers are BLOCKED on this: a detachment
+  bonus over an imaginary loadout is a lie. Migration is the gate.
 
 ---
 
 ## Backlog 📋
 
 ### Factions (priority order)
-- [ ] Detachment modifiers: Space Marines (Gladius, Ironstorm, Firestorm...), Dark Angels (Inner Circle Task Force...), all others
 - [ ] Squad composition migration to remaining factions — done: Aeldari (pilot),
   GK, Space Marines, Dark Angels, Space Wolves, Blood Angels; next:
-  **Black Templars / Deathwatch** (Wave 1, remaining big-marine codexes)
+  **Black Templars / Deathwatch** (Wave 1, remaining big-marine codexes),
+  then the rest of the 30 factions
+- [ ] Detachment modifiers: Space Marines (Gladius, Ironstorm, Firestorm...),
+  Dark Angels (Inner Circle Task Force...), all others — **BLOCKED** until
+  all armies are on the slot setup (calculations must be determined by real
+  gear first)
 
 ### Engine Improvements
 - [x] **Reroll abilities vs target class** — auto-detected MONSTER/VEHICLE rerolls

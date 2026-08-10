@@ -273,3 +273,16 @@ entries are [Legends]/Legends across 30 factions, but only 2 config units
 matching. SW Wolf Scouts is a current-edition unit (in merged data, no legends
 flag) — its BSData catalogue has BOTH `Wolf Scouts` and `Wolf Scouts [Legends]`,
 so the no-legends rule must not remove real units.
+
+## Detachment modifiers are BLOCKED until every army is on the slot setup
+No detachment work (SM/DA/others) until all factions run the slot-based
+configs (weapon_options/builds, slots, alloc pools). Until then the engine's
+loadouts are generic configs, not real gear.
+
+**Why:** (2026-08-10 decision) a detachment bonus applied to an imaginary
+loadout is a lie — it models a modifier over wargear the army doesn't actually
+resolve. GK/CK/Daemons detachments exist, but they predate the slot setup and
+must be re-verified against slot configs once those factions migrate.
+**How:** the roadmap gate is: squad-composition migration for all 30 factions
+FIRST (Wave 1: Black Templars / Deathwatch), detachment modifiers second.
+Never start detachment work on a faction that isn't on the slot setup.
