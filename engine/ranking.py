@@ -854,7 +854,7 @@ class RankingEngine:
             # Weapon details for turtledeck — full stats per weapon
             weapon_details = []
             for wp in best["ranged"]:
-                weapon_details.append({
+                detail = {
                     "slot": "ranged",
                     "name": wp.name,
                     "attacks": wp.attacks,
@@ -863,9 +863,25 @@ class RankingEngine:
                     "ap": wp.ap,
                     "damage": wp.damage,
                     "abilities": wp.abilities,
-                })
+                }
+                if getattr(wp, "variants", None):
+                    # Choice profiles (strike/sweep, frag/krak, standard/
+                    # supercharge): base stats above, full group here. Scoring
+                    # uses the max-over group, not just the base profile.
+                    detail["variants"] = [
+                        {
+                            "name": v.name,
+                            "attacks": v.attacks,
+                            "skill": v.bs,
+                            "strength": v.strength,
+                            "ap": v.ap,
+                            "damage": v.damage,
+                        }
+                        for v in wp.variants
+                    ]
+                weapon_details.append(detail)
             for wp in best["melee"]:
-                weapon_details.append({
+                detail = {
                     "slot": "melee",
                     "name": wp.name,
                     "attacks": wp.attacks,
@@ -874,7 +890,20 @@ class RankingEngine:
                     "ap": wp.ap,
                     "damage": wp.damage,
                     "abilities": wp.abilities,
-                })
+                }
+                if getattr(wp, "variants", None):
+                    detail["variants"] = [
+                        {
+                            "name": v.name,
+                            "attacks": v.attacks,
+                            "skill": v.bs,
+                            "strength": v.strength,
+                            "ap": v.ap,
+                            "damage": v.damage,
+                        }
+                        for v in wp.variants
+                    ]
+                weapon_details.append(detail)
             best["_weapon_details"] = weapon_details
             best["_dpp_per_model"] = best_dpp
         return best

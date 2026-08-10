@@ -69,8 +69,9 @@ class TestDarkAngelsComplexUnits:
 
     def test_deathwing_terminator_alloc(self, da_engine, MEQ):
         """Deathwing Terminator Squad n=5: 3 stock Terminators + 1 Heavy
-        Weapon variant (Assault Cannon vs MEQ) + 1 Sergeant. Storm bolters
-        on the 4 non-sergeant bodies."""
+        Weapon variant (Plasma cannon vs MEQ — supercharge profile beats
+        Assault Cannon vs 2W MEQ) + 1 Sergeant. Storm bolters on the 4
+        non-sergeant bodies."""
         res = _build(da_engine, "Deathwing Terminator Squad", MEQ)
         alloc = dict(res["_alloc_info"][0][1])
         assert alloc == {
@@ -78,7 +79,7 @@ class TestDarkAngelsComplexUnits:
             "Deathwing Terminator w/ Heavy Weapon": 1,
         }
         assert _rcount(res, "Storm Bolter") == 4
-        assert _rcount(res, "Assault cannon") == 1
+        assert _rcount(res, "Plasma cannon - standard") == 1
         assert _mcount(res, "Power Fist") == 4
         assert _mcount(res, "Power Weapon") == 1
         assert len(res["melee"]) == 5
@@ -125,5 +126,5 @@ class TestDarkAngelsComplexUnits:
         alloc = dict(res["_alloc_info"][0][1])
         assert alloc == {"Intercessor": 4}
         assert _rcount(res, "Bolt Rifle") == 4
-        assert _rcount(res, "Plasma pistol - supercharge") == 1
+        assert _rcount(res, "Plasma pistol - standard") == 1
         assert _mcount(res, "Power fist") == 1

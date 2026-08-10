@@ -66,7 +66,7 @@ class TestSpaceMarinesComplexUnits:
         ]
         assert _rcount(res, "Bolt Rifle") == 4
         assert _rcount(res, "Bolt pistol") == 4
-        assert _rcount(res, "Plasma pistol - supercharge") == 1
+        assert _rcount(res, "Plasma pistol - standard") == 1
         assert len(res["ranged"]) == 9
         assert _mcount(res, "Close combat weapon") == 4
         assert _mcount(res, "Power fist") == 1
@@ -75,26 +75,29 @@ class TestSpaceMarinesComplexUnits:
     def test_tactical_squad_pool_min_and_specials(self, sm_engine, MEQ):
         """Tactical Squad n=10: base pool holds its 7-model floor; one
         Special Weapon and one Heavy/Special weapon fill to 9 + Sergeant.
-        vs MEQ the heavy slot takes Multi-melta, the special Meltagun."""
+        vs MEQ the heavy slot takes Plasma cannon, the special Plasma gun —
+        plasma scores its supercharge choice profile (2× S8 AP-3 D2 beats
+        melta's overkill-capped D6 vs 2W MEQ)."""
         res = _build(sm_engine, "Tactical Squad", MEQ)
         alloc = dict(res["_alloc_info"][0][1])
         assert alloc["Tactical Marine"] == 7
         assert alloc["Tactical Marine w/Special Weapon"] == 1
         assert alloc["Tactical Marine w/Heavy or Special Weapon"] == 1
         assert _rcount(res, "Boltgun") == 7
-        assert _rcount(res, "Meltagun") == 1
-        assert _rcount(res, "Multi-melta") == 1
+        assert _rcount(res, "Plasma gun - standard") == 1
+        assert _rcount(res, "Plasma cannon - standard") == 1
         assert _mcount(res, "Close combat weapon") == 9
         assert _mcount(res, "Power fist") == 1
         assert len(res["melee"]) == 10
 
     def test_devastator_squad_all_heavy(self, sm_engine, MEQ):
         """Devastator Squad n=5: all 4 non-sergeant models take a Heavy
-        Weapon (4 slots in the pool); vs MEQ they all pick Multi-melta."""
+        Weapon (4 slots in the pool); vs MEQ they all pick Plasma cannon
+        (supercharge profile beats Multi-melta vs 2W MEQ)."""
         res = _build(sm_engine, "Devastator Squad", MEQ)
         alloc = dict(res["_alloc_info"][0][1])
         assert alloc == {"Devastator Marine w/ Heavy Weapon": 4}
-        assert _rcount(res, "Multi-melta") == 4
+        assert _rcount(res, "Plasma cannon - standard") == 4
         assert len(res["ranged"]) == 4
         assert _mcount(res, "Close combat weapon") == 5
 
@@ -178,7 +181,7 @@ class TestSpaceMarinesComplexUnits:
         res = _build(sm_engine, "Bladeguard Veteran Squad", MEQ)
         assert res.get("_alloc_info") is None
         assert _rcount(res, "Heavy Bolt Pistol") == 2
-        assert _rcount(res, "Plasma pistol - supercharge") == 1
+        assert _rcount(res, "Plasma pistol - standard") == 1
         assert _mcount(res, "Master-crafted power weapon") == 3
 
     def test_melee_reduction_one_per_model(self, sm_engine, MEQ):

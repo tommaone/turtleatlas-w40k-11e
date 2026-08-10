@@ -84,11 +84,10 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
   special + heavy simultaneously)
 - **space-wolves migrated to complex layer (Wave 1 done, merged after BA)**:
   36 squads via gen_squad_composition --force; 7 complex-unit tests added;
-  SW plasma quirk — SW merged BSData lists 'Plasma pistol' profiles
-  standard-first so the bare name resolves to S7 AP-2 D1 (SM/DA/BA resolve
-  supercharge-first): SW Intercessor Sergeant takes Hand flamer + Power fist,
-  pack leaders resolve 'Plasma pistol - standard'. Data-order dependent —
-  pinned in test_space_wolves_complex_units.py. Long Fangs / Wolf Guard
+  SW plasma quirk FIXED (2026-08-10): choice profiles (standard/supercharge,
+  frag/krak, strike/sweep) score as max-over-group via WeaponProfile.variants,
+  so plasma resolves identically across SW/SM/DA/BA (supercharge-scored) and
+  the displayed base is deterministically 'standard'. Long Fangs / Wolf Guard
   absent from SW merged BSData (not even [Legends]) — documented, not asserted.
 - 3336 tests passing, 36 skipped
 - Detachment modifiers: 26 (GK 9 + CK 8 + Daemons 9); SM/DA + 20+ factions not yet modeled
@@ -100,10 +99,11 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
 1. Squad composition migration to remaining factions — complex layer done:
    Aeldari + GK + Space Marines + Dark Angels + Blood Angels + Space Wolves;
    Wave 1 next: **Black Templars / Deathwatch** (per docs/checklist-squad-composition-migration.md)
-2. Engine gap: multi-profile weapons (Cyclone Missile Launcher frag+krak under
-   one name — loader resolves only first profile, so missile slots under-rate
-   vs AP-and-D6 options; affects slot picks + DPP truth on Terminator/Devastator
-   heavy slots, not just SM)
+2. ~~Engine gap: multi-profile weapons (Cyclone Missile Launcher frag+krak under
+   one name — loader resolves only first profile)~~ **DONE 2026-08-10** — choice
+   profiles now score as max-over-group (WeaponProfile.variants); plasma
+   standard/supercharge, frag/krak, strike/sweep, Starshot/Sunburst all
+   correct; SM Terminator/Devastator + SW/SM/DA/BA slot pins updated
 3. Detachment modifiers for SM, DA, all others
 4. Engine gaps: T3 primary metric, concentrated fire, pistol/two-handed restriction, transport support
 

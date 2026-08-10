@@ -45,6 +45,14 @@ and recommend detachments/units based on mission and meta.
 - **Overkill cap** — damage capped at wounds_per_model in `_shots_to_kill`
 - **Dual-profile weapons** — Singing Spear / Chainsabres resolve the correct
   profile per list context (ranged vs melee) via category-aware loader
+- **Choice profiles score as max-over-group** — frag/krak, standard/supercharge,
+  strike/sweep groups (Cyclone Missile Launcher, Plasma pistol/gun/cannon,
+  Reaper chainsword, Vaultswords, Missile Launcher, Astartes grenade launcher)
+  now score as max over ALL profiles instead of data-order entries[0]. The
+  plain-profile preference no longer collapses distinct choice profiles, and
+  the displayed base name is deterministic (prefer 'standard'/plain) so SW/SM
+  resolve identically. Fixes the plasma 'standard-only' quirk and the
+  under-rated missile slots.
 - **Squad composition engine** — complex squad loadouts:
   - Parallel-variant models (Troupe, Windriders, Storm Guardians) — greedy
     budget allocation by damage per variant
@@ -93,11 +101,11 @@ and recommend detachments/units based on mission and meta.
     grenade launchers
   - Per-model slots: Blood Claws / Grey Hunters / Wolf Guard Terminator
     Pack Leaders, Intercessor Sergeant
-  - **SW plasma quirk**: SW merged BSData lists 'Plasma pistol' profiles
-    standard-first, so the bare name resolves to S7 AP-2 D1 (SM/DA resolve
-    supercharge-first). SW Intercessor Sergeant therefore takes Hand
-    flamer + Power fist; pack leaders resolve 'Plasma pistol - standard'.
-    Data-order dependent — pinned in test_space_wolves_complex_units.py
+  - **SW plasma quirk FIXED (2026-08-10)**: SW/SM/DA/BA plasma now resolves
+    identically — choice profiles score max-over (standard/supercharge), so
+    SW Intercessor Sergeant and Grey Hunter Pack Leaders take Plasma pistol
+    (supercharge-scored), and the deterministic base rule displays
+    'Plasma pistol - standard' everywhere.
   - Data gap: Long Fangs / Wolf Guard absent from SW merged BSData (not
     even [Legends]) — documented, not asserted
   - 7 structure-only pins added (full suite 3323 passing)

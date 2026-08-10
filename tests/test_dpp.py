@@ -441,11 +441,13 @@ class TestWeaponSlots:
     """weapon_slots-based loadout resolution must produce valid results."""
 
     def test_despoiler_resolves_vs_meq(self):
-        """Despoiler should pick the gatling spam build vs MEQ-heavy meta.
+        """Despoiler should pick the best arm mix on the competitive meta.
 
-        Gatling D2 wastes nothing on W2 MEQ (overkill cap), so the documented
-        "2× gatling cannon (MEQ spam build)" is the correct competitive pick.
-        """
+        Choice profiles (Reaper chainsword strike/sweep) now score as max-over:
+        the sweep profile (A12 S9 AP-3 D2) dominates vs infantry, so the
+        optimizer trades one gatling arm for the chainsword arm (verified:
+        gatling+darkflamer+chainsword+rocket pod = 19.14 vs gatling_dual's
+        17.52 on the competitive meta)."""
         from ranking import RankingEngine
         engine = RankingEngine('chaos-knights')
         comp_meta = engine.config._resolve_meta('competitive')
@@ -458,10 +460,11 @@ class TestWeaponSlots:
         assert len(melee) >= 1   # at least titanic feet
         names = [w.name for w in ranged + melee]
         assert 'Titanic feet' in names
-        # vs MEQ-heavy meta: gatling (D2) is overkill-efficient vs W2 MEQ,
-        # so the optimizer should pick the MEQ-spam build (2× gatling)
+        # the chosen build carries the chainsword arm (sweep-scored) — the
+        # melee arm beats a second gatling arm on this mixed meta
+        assert any('chainsword' in n for n in names), f"no melee arm: {names}"
         gat_count = sum(1 for n in names if n == 'Despoiler gatling cannon')
-        assert gat_count == 2, f"Expected 2× gatling (MEQ spam build), got {gat_count}: {names}"
+        assert gat_count == 1, f"Expected 1× gatling (chainsword arm trades the second), got {gat_count}: {names}"
 
     def test_despoiler_picks_anti_armour_vs_lightv(self):
         """Despoiler vs Light Vehicles must pick an efficient anti-vehicle mix.
@@ -563,6 +566,85 @@ class TestWeaponSlots:
         # All targets should resolve successfully
         for tname in targets:
             assert len(loadouts[tname]) > 0, f"No weapons resolved for {tname}"
+
+
+class TestChoiceProfileMaxOver:
+    """Choice weapons (frag/krak, standard/supercharge, strike/sweep) score
+    as MAX over all profiles — never data-order entries[0].
+
+    Regression for the dual-profile loader fix: the shooter picks ONE profile
+    per attack, so expected damage is the best profile in the group, and the
+    displayed base name must be deterministic across factions."""
+
+    def _load(self, faction, name, **kw):
+        from ranking import RankingEngine
+        eng = RankingEngine(faction)
+        return eng.W(name, count=1, **kw)
+
+    def test_plasma_pistol_attaches_supercharge_variant(self):
+        """Bare 'Plasma pistol' carries standard + supercharge; the base is
+        deterministically 'standard' in SM AND SW (no data-order quirk)."""
+        for faction in ("space-marines", "space-wolves"):
+            wp = self._load(faction, "Plasma pistol", category="ranged")
+            assert wp.name == "Plasma pistol - standard", faction
+            var_names = {v.name for v in wp.variants}
+            assert var_names == {"Plasma pistol - supercharge"}, faction
+
+    def test_plasma_pistol_max_is_supercharge_vs_meq(self, MEQ):
+        """compute_weapon_dpp must return the supercharge profile (max), not
+        the standard base."""
+        wp = self._load("space-wolves", "Plasma pistol", category="ranged")
+        r = compute_weapon_dpp(wp, MEQ, unit_points=1)
+        assert r["weapon"] == "Plasma pistol - supercharge"
+        assert r["total_damage"] > 0
+
+    def test_cyclone_launcher_scores_best_of_three(self):
+        """Cyclone Missile Launcher & Storm Bolter: storm bolter + frag + krak
+        as one choice group — frag vs W1 MEQ (Blast, D1), krak vs T10 (S9 D6)."""
+        wp = self._load("space-marines", "Cyclone Missile Launcher & Storm Bolter",
+                        unit_name="Terminator Squad", category="ranged")
+        names = {wp.name} | {v.name for v in wp.variants}
+        assert names == {"Storm bolter",
+                         "Cyclone missile launcher - frag",
+                         "Cyclone missile launcher - krak"}
+        meq1 = TargetProfile(toughness=4, save=3, wounds_per_model=1, model_count=5)
+        t10 = TargetProfile(toughness=10, save=2, wounds_per_model=12, model_count=1)
+        r_meq = compute_weapon_dpp(wp, meq1, unit_points=1)
+        r_t10 = compute_weapon_dpp(wp, t10, unit_points=1)
+        assert r_meq["weapon"] == "Cyclone missile launcher - frag"
+        assert r_t10["weapon"] == "Cyclone missile launcher - krak"
+
+    def test_chainsword_sweep_vs_infantry_strike_vs_armour(self):
+        """Reaper chainsword (CK): sweep profile vs MEQ, strike vs T10 —
+        the optimizer may not see strike-only (old data-order bug)."""
+        wp = self._load("chaos-knights", "Reaper chainsword", category="melee")
+        assert {wp.name} | {v.name for v in wp.variants} == {
+            "Reaper chainsword - strike", "Reaper chainsword - sweep"}
+        meq = TargetProfile(toughness=4, save=3, wounds_per_model=2, model_count=5)
+        t10 = TargetProfile(toughness=10, save=2, wounds_per_model=12, model_count=1)
+        assert compute_weapon_dpp(wp, meq, unit_points=1)["weapon"] == \
+            "Reaper chainsword - sweep"
+        assert compute_weapon_dpp(wp, t10, unit_points=1)["weapon"] == \
+            "Reaper chainsword - strike"
+
+    def test_single_profile_weapon_has_no_variants(self):
+        """A plain weapon (Boltgun) must not gain phantom choice variants."""
+        wp = self._load("space-marines", "Boltgun", unit_name="Tactical Squad",
+                        category="ranged")
+        assert wp.variants == []
+
+    def test_aeldari_missile_launcher_choice_group_not_collapsed(self):
+        """The plain-profile preference must not collapse Starshot/Sunburst:
+        both choice profiles survive and max picks per target."""
+        wp = self._load("aeldari", "Missile Launcher", category="ranged")
+        names = {wp.name} | {v.name for v in wp.variants}
+        assert names == {"Missile Launcher - Starshot", "Missile Launcher - Sunburst"}
+        meq = TargetProfile(toughness=4, save=3, wounds_per_model=1, model_count=5)
+        t10 = TargetProfile(toughness=10, save=2, wounds_per_model=12, model_count=1)
+        assert compute_weapon_dpp(wp, meq, unit_points=1)["weapon"] == \
+            "Missile Launcher - Sunburst"
+        assert compute_weapon_dpp(wp, t10, unit_points=1)["weapon"] == \
+            "Missile Launcher - Starshot"
 
 
 # ---------------------------------------------------------------------------

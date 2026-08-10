@@ -13,7 +13,7 @@ from __future__ import annotations
 import json
 import math
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from enum import Enum
 from typing import Optional
 
@@ -77,6 +77,9 @@ class WeaponProfile:
     count: int = 1           # number of this weapon (e.g. 2× triple lascannon)
     damage_raw: str = ""     # original damage dice expression (e.g. "D6+1", "2") — needed
                              # for honest reroll_damage math (D6 has variance; flat '3' doesn't)
+    variants: list["WeaponProfile"] = field(default_factory=list)  # choice profiles of the same
+                             # weapon (frag/krak, standard/supercharge, strike/sweep) — the
+                             # shooter picks ONE per attack, so damage = max over variants.
 
 
 @dataclass
@@ -954,6 +957,24 @@ def compute_weapon_dpp(weapon: WeaponProfile,
         dict with breakdown
     """
     mod = modifier or WeaponModifier()
+
+    # Multi-profile choice weapons (frag/krak, standard/supercharge, strike/
+    # sweep): the shooter picks ONE profile per attack, so expected damage is
+    # the MAX over the group — not entries[0] (which was data-order dependent).
+    # Variants never carry their own variants; strip them so the recursion is
+    # bounded (base + each variant, each computed as a plain profile).
+    if weapon.variants:
+        base_plain = replace(weapon, variants=[])
+        results = [compute_weapon_dpp(
+            base_plain, target, modifier=mod, hit_mode=hit_mode,
+            unit_points=unit_points, melta_active=melta_active,
+            heavy_stationary=heavy_stationary)]
+        for v in weapon.variants:
+            results.append(compute_weapon_dpp(
+                replace(v, variants=[]), target, modifier=mod, hit_mode=hit_mode,
+                unit_points=unit_points, melta_active=melta_active,
+                heavy_stationary=heavy_stationary))
+        return max(results, key=lambda r: r["total_damage"])
 
     # Parse abilities from weapon
     sustained = 0

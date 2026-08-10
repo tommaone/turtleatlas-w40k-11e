@@ -121,7 +121,7 @@ class TestBloodAngelsComplexUnits:
         """Death Company Intercessors n=5: 3 base Death Company Intercessors
         (slot flips to Astartes Chainsword & Heavy Bolt Pistol vs MEQ),
         1 melee-weapon Intercessor (Power fist), 1 alternate-pistol
-        Intercessor (Plasma pistol - supercharge)."""
+        Intercessor (Plasma pistol — scores its supercharge profile)."""
         res = _build(ba_engine, "Death Company Intercessors", MEQ)
         assert _alloc(res) == {
             "Death Company Intercessor": 3,
@@ -129,7 +129,7 @@ class TestBloodAngelsComplexUnits:
             "Intercessor w/ alternate pistol": 1,
         }
         assert _rcount(res, "Heavy Bolt Pistol") == 4
-        assert _rcount(res, "Plasma pistol - supercharge") == 1
+        assert _rcount(res, "Plasma pistol - standard") == 1
         assert _mcount(res, "Astartes Chainsword") == 4
         assert _mcount(res, "Power fist") == 1
         assert len(res["melee"]) == 5
@@ -161,7 +161,7 @@ class TestBloodAngelsComplexUnits:
             "Vanguard Veteran w/Plasma Pistol & Master-crafter Power Weapon": 1,
         }
         assert _rcount(res, "Inferno Pistol") == 4
-        assert _rcount(res, "Plasma pistol - supercharge") == 1
+        assert _rcount(res, "Plasma pistol - standard") == 1
         assert _mcount(res, "Vanguard Veteran Weapon") == 3
         assert _mcount(res, "Master-crafted Power Weapon") == 2
         assert len(res["melee"]) == 5
@@ -182,11 +182,12 @@ class TestBloodAngelsComplexUnits:
 
     def test_devastator_squad_alloc(self, ba_engine, MEQ):
         """Devastator Squad n=5: the heavy-weapon variant (max 4) takes the
-        whole 4-model budget vs MEQ and its slot picks Multi-melta; the
+        whole 4-model budget vs MEQ and its slot picks Plasma cannon (the
+        supercharge choice profile beats Multi-melta vs 2W MEQ); the
         sergeant keeps Close combat weapon."""
         res = _build(ba_engine, "Devastator Squad", MEQ)
         assert _alloc(res) == {"Devastator Marine w/ Heavy Weapon": 4}
-        assert _rcount(res, "Multi-melta") == 4
+        assert _rcount(res, "Plasma cannon - standard") == 4
         assert _mcount(res, "Close combat weapon") == 5
         assert len(res["melee"]) == 5
 
@@ -211,7 +212,7 @@ class TestBloodAngelsComplexUnits:
         res = _build(ba_engine, "Intercessor Squad", MEQ)
         assert _alloc(res) == {"Intercessor": 4}
         assert _rcount(res, "Bolt Rifle") == 4
-        assert _rcount(res, "Plasma pistol - supercharge") == 1
+        assert _rcount(res, "Plasma pistol - standard") == 1
         assert _mcount(res, "Power fist") == 1
 
     def test_invader_atv_kept_curated(self):

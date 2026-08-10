@@ -73,17 +73,17 @@ class TestSpaceWolvesComplexUnits:
 
     def test_intercessor_alloc_and_sergeant_slots(self, sw_engine, MEQ):
         """Intercessor Squad n=5: base pool gets all 4 models (grenade
-        launchers not worth vs MEQ). SW-catalogue variant: the bare 'Plasma
-        pistol' resolves to STANDARD (S7 AP-2 D1) in SW, so the Sergeant
-        picks Hand flamer + Power fist — unlike SM/DA where plasma resolves
-        to supercharge and wins the slot."""
+        launchers not worth vs MEQ). The Sergeant's slot picks Plasma pistol
+        over Hand flamer vs MEQ — plasma now scores its supercharge choice
+        profile (max over standard/supercharge), so SW resolves identically
+        to SM/DA (no more data-order 'standard-only' quirk)."""
         res = _build(sw_engine, "Intercessor Squad", MEQ)
         assert res["_alloc_info"] == [
             ("Intercessor", [("Intercessor", 4)]),
         ]
         assert _rcount(res, "Bolt Rifle") == 4
         assert _rcount(res, "Bolt pistol") == 4
-        assert _rcount(res, "Hand flamer") == 1
+        assert _rcount(res, "Plasma pistol - standard") == 1
         assert len(res["ranged"]) == 9
         assert _mcount(res, "Close combat weapon") == 4
         assert _mcount(res, "Power fist") == 1
@@ -104,11 +104,12 @@ class TestSpaceWolvesComplexUnits:
     def test_grey_hunters_pack_leader_slots(self, sw_engine, MEQ):
         """Grey Hunters n=10: 9 fixed Bolt pistol + Carbine + Chainsword
         bodies; the Pack Leader's 'Replace Chainsword' slot picks Power fist
-        vs MEQ and keeps the Bolt Carbine (plasma-as-standard not worth the
-        swap)."""
+        vs MEQ and swaps the Carbine for Plasma pistol (plasma scores its
+        supercharge choice profile, so the swap is now worth it vs MEQ)."""
         res = _build(sw_engine, "Grey Hunters", MEQ)
-        assert _rcount(res, "Bolt Carbine") == 10
+        assert _rcount(res, "Bolt Carbine") == 9
         assert _rcount(res, "Bolt pistol") == 9
+        assert _rcount(res, "Plasma pistol - standard") == 1
         assert _mcount(res, "Astartes Chainsword") == 9
         assert _mcount(res, "Power fist") == 1
         assert len(res["melee"]) == 10

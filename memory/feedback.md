@@ -31,6 +31,13 @@ Singing Spear (Ranged + Melee) and Chainsabres (Melee + Ranged) share one catalo
 **Why:** the old first-profile convention dropped Warlocks' melee entirely (Warlocks must ALWAYS have a melee profile).
 **How:** pass `category` at every load site; a dual weapon lands in BOTH lists. Config shows both: e.g. Chainsabres choice is `{"ranged": "Chainsabres", "melee": "Chainsabres"}`.
 
+## Choice profiles (frag/krak, standard/supercharge, strike/sweep) score as MAX-over-group
+A choice weapon is ONE weapon with multiple profiles; the shooter picks ONE profile per attack. Scoring must be max over the group, never entries[0] (data-order).
+
+**Why:** entries[0] made results catalog-merge-order dependent (SW plasma = 'standard', SM = 'supercharge'; Cyclone launcher resolved as storm-bolter-only and under-rated missile slots; Devastator picked Multi-melta over Plasma cannon because supercharge was invisible). Pins flip, but they pin the old bug.
+**How:** `WeaponProfile.variants` holds the other choice profiles; `compute_weapon_dpp` returns max over base+variants. The loader NEVER collapses distinct ' - variant' profile names (the plain-profile preference applies only within one profile name — it dedupes catalogue copies, not choice profiles). Base name is deterministic: prefer 'standard', then a plain no-suffix profile, so SM/SW/DA/BA display identically. Variants recursion must strip variants (dataclasses.replace) or it loops forever.
+**Test pins that flipped:** SM/BA/DA Devastator heavy slot Plasma cannon (supercharge) over Multi-melta vs 2W MEQ; SW Intercessor Sergeant / Grey Hunter Pack Leader Plasma pistol over Hand flamer; SM Tactical specials to Plasma; DA Deathwing heavy to Plasma cannon; Chaos Knight Despoiler swaps a gatling arm for the chainsword arm (sweep-scored, verified 19.14 > 17.52 on the competitive meta).
+
 ## Findings index.html is generated, never hand-edited
 `scripts/gen_findings_html.py --index` rebuilds `findings/index.html` counts from the faction pages; `--all` regenerates it automatically.
 

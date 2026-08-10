@@ -24,6 +24,51 @@ from engine.dpp import WeaponProfile
 
 # ── Stat value parsers ──────────────────────────────────────────────
 
+def _base_name(profile_name: str) -> str:
+    """Strip a trailing ' - <variant>' segment ('Plasma pistol - supercharge'
+    → 'plasma pistol'). Choice profiles of one weapon share this base."""
+    n = profile_name.replace("\u27a4 ", "").strip().lower()
+    return n.rsplit(" - ", 1)[0].strip()
+
+
+def _stats_sig(entry) -> tuple:
+    """Stats signature of a catalog entry — case-only name variants of the
+    same weapon have identical signatures and must not be treated as
+    choice profiles."""
+    st = entry["stats"]
+    return (st.get("A"), st.get("S"), st.get("AP"), st.get("D"), st.get("Keywords"))
+
+
+def _choice_variant_entries(entries, base_entry) -> list:
+    """Entries that are CHOICE profiles of one weapon — profiles sharing a
+    base name after stripping a trailing ' - <variant>' segment (frag/krak,
+    standard/supercharge, Starshot/Sunburst, strike/sweep).
+
+    Excludes the already-selected base entry and case-only duplicates
+    (identical stats). A group with no shared base (e.g. a Battle Sister's
+    Bolt pistol + Boltgun + Close combat weapon — separate weapons the model
+    carries together) yields no variants: each profile is a distinct weapon.
+    """
+    bases = [_base_name(e["profile_name"]) for e in entries]
+    base_counts = Counter(bases)
+    base_sig = _stats_sig(base_entry)
+    seen: set = {base_entry["profile_name"].strip().lower()}
+    out = []
+    for e in entries:
+        if e is base_entry:
+            continue
+        if base_counts[_base_name(e["profile_name"])] < 2:
+            continue
+        if _stats_sig(e) == base_sig:
+            continue  # identical copy of the base
+        pn = e["profile_name"].strip().lower()
+        if pn in seen:
+            continue  # same choice profile from another unit (e.g. Intercessor + Assault Intercessor)
+        seen.add(pn)
+        out.append(e)
+    return out
+
+
 def _parse_int(s: str) -> int:
     """Parse '3+' → 3, '2+' → 2. Falls back to 0."""
     return int(s.rstrip("+")) if s and s.rstrip("+").isdigit() else 0
@@ -286,11 +331,16 @@ class WeaponCatalog:
         # Multiple weapon variants exist in BSData (e.g. Boltgun with Lethal Hits
         # from a shared catalogue vs plain Boltgun). Configs reference the weapon
         # by name — they mean the standard version, not a faction-specific variant.
+        # Choice groups (distinct ' - variant' profile names, Starshot/Sunburst,
+        # standard/supercharge) are NOT collapsed: they are separate profiles the
+        # shooter picks between, and collapsing them would silently drop options.
         if not unit_name and len(entries) > 1:
-            plain = [e for e in entries
-                     if e["stats"].get("Keywords", "-").strip() in ("-", "")]
-            if plain:
-                entries = plain
+            distinct_profile_names = {e["profile_name"] for e in entries}
+            if len(distinct_profile_names) == 1:
+                plain = [e for e in entries
+                         if e["stats"].get("Keywords", "-").strip() in ("-", "")]
+                if plain:
+                    entries = plain
 
         # Dual-profile weapons (Singing Spear: Ranged + Melee, Chainsabres:
         # Melee + Ranged) share one catalog key with one entry per profile.
@@ -305,7 +355,45 @@ class WeaponCatalog:
             if cat_entries:
                 entries = cat_entries
 
+        # Deterministic base profile within a choice group (plasma standard/
+        # supercharge, frag/krak, strike/sweep): prefer the 'standard' member
+        # (plasma) then a plain no-suffix profile (storm bolter in the cyclone
+        # combo) over data-order entries[0]. Scoring is max-over-the-group
+        # regardless; this only keeps the DISPLAYED base name stable across
+        # factions (SM shows 'Plasma pistol - standard' just like SW).
+        if len(entries) > 1:
+            std = next((e for e in entries
+                        if "standard" in e["profile_name"].lower()), None)
+            plain = next((e for e in entries
+                          if " - " not in e["profile_name"]), None)
+            preferred = std or plain
+            if preferred is not None:
+                entries = ([preferred] +
+                           [e for e in entries if e is not preferred])
+
         entry = entries[0]  # Take first matching entry
+        profile = self._profile_from_entry(
+            entry, key, unit_name=unit_name, bs=bs, ws=ws, a=a,
+            abilities=abilities, count=count,
+        )
+        # Multi-profile choice weapons (frag/krak, standard/supercharge,
+        # strike/sweep): the shooter picks ONE profile per attack. Attach the
+        # other profiles as `variants` so compute_weapon_dpp scores the group
+        # as max-over-profiles instead of data-order-dependent entries[0].
+        choice_entries = _choice_variant_entries(entries, entry)
+        if choice_entries:
+            profile.variants = [
+                self._profile_from_entry(
+                    e, key, unit_name=unit_name, bs=bs, ws=ws, a=a,
+                    abilities=abilities, count=count,
+                )
+                for e in choice_entries
+            ]
+        return profile
+
+    def _profile_from_entry(self, entry, key, *, unit_name, bs, ws, a, abilities, count):
+        """Build a WeaponProfile from one catalog entry (shared by load() for
+        the base profile and its choice variants)."""
         stats = entry["stats"]
 
         # Parse stats
