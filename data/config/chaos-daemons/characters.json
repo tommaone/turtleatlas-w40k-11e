@@ -16,16 +16,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Betraying Shades - witchfire",
-            "Betraying Shades - focused witchfire"
+          "fixed": [
+            {
+              "name": "Betraying Shades - witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Betraying Shades - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "The Blade of Shadows - sweep",
+              "type": "melee"
+            },
+            {
+              "name": "The Blade of Shadows - strike",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "The Blade of Shadows - sweep",
-            "The Blade of Shadows - strike"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -45,12 +54,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Blade of blood"
+          "fixed": [
+            {
+              "name": "Blade of blood",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -71,23 +81,40 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Hellfire breath"
+          "fixed": [
+            {
+              "name": "Hellfire breath",
+              "type": "ranged"
+            }
           ],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Bloodflail",
-              "Lash of Khorne"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Great axe of Khorne - strike",
-              "Great axe of Khorne - sweep"
-            ]
-          ],
-          "max_melee": 1
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Bloodflail",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Lash of Khorne",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Great axe of Khorne - strike",
+                  "type": "melee"
+                },
+                {
+                  "name": "Great axe of Khorne - sweep",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -107,15 +134,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Arcane Fireball - witchfire",
-            "Arcane Fireball - focused witchfire"
+          "fixed": [
+            {
+              "name": "Arcane Fireball - witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Arcane Fireball - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Herald combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Herald combat weapon"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -136,13 +169,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Coiled tentacles",
-            "Ravaging claws"
+          "fixed": [
+            {
+              "name": "Coiled tentacles",
+              "type": "melee"
+            },
+            {
+              "name": "Ravaging claws",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -162,15 +199,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Infernal cannon"
+          "fixed": [
+            {
+              "name": "Infernal cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Hellforged weapons - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Hellforged weapons - sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Hellforged weapons - strike",
-            "Hellforged weapons - sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -190,15 +233,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Infernal cannon"
+          "fixed": [
+            {
+              "name": "Infernal cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Hellforged weapons - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Hellforged weapons - sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Hellforged weapons - strike",
-            "Hellforged weapons - sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -218,12 +267,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Balesword and nurgling attendants"
+          "fixed": [
+            {
+              "name": "Balesword and nurgling attendants",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -243,15 +293,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Fires of Tzeentch - blue fire",
-            "Fires of Tzeentch - pink fire"
+          "fixed": [
+            {
+              "name": "Fires of Tzeentch - blue fire",
+              "type": "ranged"
+            },
+            {
+              "name": "Fires of Tzeentch - pink fire",
+              "type": "ranged"
+            },
+            {
+              "name": "Flamer mouths",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Flamer mouths"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -271,16 +327,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Arcane Fireball - witchfire",
-            "Arcane Fireball - focused witchfire"
+          "fixed": [
+            {
+              "name": "Arcane Fireball - witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Arcane Fireball - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Herald combat weapon",
+              "type": "melee"
+            },
+            {
+              "name": "Screamer bites",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Herald combat weapon",
-            "Screamer bites"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -300,15 +365,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Arcane Fireball - witchfire",
-            "Arcane Fireball - focused witchfire"
+          "fixed": [
+            {
+              "name": "Arcane Fireball - witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Arcane Fireball - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Herald combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Herald combat weapon"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -329,26 +400,44 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Putrid vomit"
+          "fixed": [
+            {
+              "name": "Putrid vomit",
+              "type": "ranged"
+            }
           ],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Plague flail"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Bilesword - strike",
-              "Bilesword - sweep",
-              "Doomsday bell"
-            ],
-            [
-              "Bileblade"
-            ]
-          ],
-          "max_melee": 1
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Plague flail",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Bilesword - strike",
+                  "type": "melee"
+                },
+                {
+                  "name": "Bilesword - sweep",
+                  "type": "melee"
+                },
+                {
+                  "name": "Doomsday bell",
+                  "type": "melee"
+                },
+                {
+                  "name": "Bileblade",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -368,13 +457,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Acidic maw",
-            "Lopping shears"
+          "fixed": [
+            {
+              "name": "Acidic maw",
+              "type": "melee"
+            },
+            {
+              "name": "Lopping shears",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -394,15 +487,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Heartstring lyre - cacophonous melody",
-            "Heartstring lyre - euphonic blast"
+          "fixed": [
+            {
+              "name": "Heartstring lyre - cacophonous melody",
+              "type": "ranged"
+            },
+            {
+              "name": "Heartstring lyre - euphonic blast",
+              "type": "ranged"
+            },
+            {
+              "name": "Ravaging claws",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Ravaging claws"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -422,15 +521,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Infernal Gateway - witchfire",
-            "Infernal Gateway - focused witchfire"
+          "fixed": [
+            {
+              "name": "Infernal Gateway - witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Infernal Gateway - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Staff of Tomorrow",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Staff of Tomorrow"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -451,14 +556,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Scalding Roar"
+          "fixed": [
+            {
+              "name": "Scalding Roar",
+              "type": "ranged"
+            },
+            {
+              "name": "Soul-rending fangs",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Soul-rending fangs"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -479,18 +587,33 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Phantasmagoria - witchfire",
-            "Phantasmagoria - focused witchfire",
-            "Living whip"
+          "fixed": [
+            {
+              "name": "Phantasmagoria - witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Phantasmagoria - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Living whip",
+              "type": "ranged"
+            },
+            {
+              "name": "Snapping claws",
+              "type": "melee"
+            },
+            {
+              "name": "Witstealer sword",
+              "type": "melee"
+            },
+            {
+              "name": "Ritual knife",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Snapping claws",
-            "Witstealer sword",
-            "Ritual knife"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -511,17 +634,29 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt of Change - witchfire",
-            "Bolt of Change - focused witchfire",
-            "Rod of sorcery"
+          "fixed": [
+            {
+              "name": "Bolt of Change - witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Bolt of Change - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Rod of sorcery",
+              "type": "ranged"
+            },
+            {
+              "name": "Staff of Tzeentch",
+              "type": "melee"
+            },
+            {
+              "name": "Baleful sword",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Staff of Tzeentch",
-            "Baleful sword"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -541,12 +676,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Foul balesword"
+          "fixed": [
+            {
+              "name": "Foul balesword",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -567,13 +703,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Blade of blood",
-            "Attendant's hellblades"
+          "fixed": [
+            {
+              "name": "Blade of blood",
+              "type": "melee"
+            },
+            {
+              "name": "Attendant's hellblades",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -593,15 +733,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Streams of brackish filth"
+          "fixed": [
+            {
+              "name": "Streams of brackish filth",
+              "type": "ranged"
+            },
+            {
+              "name": "Gnarlrod - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Gnarlrod - sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Gnarlrod - strike",
-            "Gnarlrod - sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -621,17 +767,29 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Lash of Slaanesh",
-            "Pavane of Slaanesh - witchfire",
-            "Pavane of Slaanesh - focused witchfire"
+          "fixed": [
+            {
+              "name": "Lash of Slaanesh",
+              "type": "ranged"
+            },
+            {
+              "name": "Pavane of Slaanesh - witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Pavane of Slaanesh - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Snapping claws",
+              "type": "melee"
+            },
+            {
+              "name": "Soulpiercer",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Snapping claws",
-            "Soulpiercer"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -651,15 +809,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bellow of endless fury"
+          "fixed": [
+            {
+              "name": "Bellow of endless fury",
+              "type": "ranged"
+            },
+            {
+              "name": "Slaughter and Carnage - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Slaughter and Carnage - sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Slaughter and Carnage - strike",
-            "Slaughter and Carnage - sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -679,13 +843,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Blade of blood",
-            "Juggernaut's bladed horn"
+          "fixed": [
+            {
+              "name": "Blade of blood",
+              "type": "melee"
+            },
+            {
+              "name": "Juggernaut's bladed horn",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -705,12 +873,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "The Slayer Sword"
+          "fixed": [
+            {
+              "name": "The Slayer Sword",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -730,12 +899,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Marotter"
+          "fixed": [
+            {
+              "name": "Marotter",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -755,14 +925,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Disgusting Sneezes"
+          "fixed": [
+            {
+              "name": "Disgusting Sneezes",
+              "type": "ranged"
+            },
+            {
+              "name": "Plaguesword and distended maw",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Plaguesword and distended maw"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -782,17 +955,29 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Scourging whip",
-            "Cacophonic choir - witchfire",
-            "Cacophonic choir - focused witchfire"
+          "fixed": [
+            {
+              "name": "Scourging whip",
+              "type": "ranged"
+            },
+            {
+              "name": "Cacophonic choir - witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Cacophonic choir - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Axe of Dominion",
+              "type": "melee"
+            },
+            {
+              "name": "Scourging whip",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Axe of Dominion",
-            "Scourging whip"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -812,12 +997,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Sharp quills"
+          "fixed": [
+            {
+              "name": "Sharp quills",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -837,15 +1023,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Infernal Flames - witchfire",
-            "Infernal Flames - focused witchfire"
+          "fixed": [
+            {
+              "name": "Infernal Flames - witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Infernal Flames - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "The Trickster's Staff",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "The Trickster's Staff"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -865,12 +1057,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Serrated claws"
+          "fixed": [
+            {
+              "name": "Serrated claws",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -890,16 +1083,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Lashes of torment"
+          "fixed": [
+            {
+              "name": "Lashes of torment",
+              "type": "ranged"
+            },
+            {
+              "name": "Lashes of torment",
+              "type": "melee"
+            },
+            {
+              "name": "Seeker tongues",
+              "type": "melee"
+            },
+            {
+              "name": "Slashing claws",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Lashes of torment",
-            "Seeker tongues",
-            "Slashing claws"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -919,12 +1121,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Ravaging claws"
+          "fixed": [
+            {
+              "name": "Ravaging claws",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }

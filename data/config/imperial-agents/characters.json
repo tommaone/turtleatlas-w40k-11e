@@ -16,14 +16,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Neural shredder"
+          "fixed": [
+            {
+              "name": "Neural shredder",
+              "type": "ranged"
+            },
+            {
+              "name": "Phase sword and poison blades",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Phase sword and poison blades"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -44,14 +47,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Animus speculum"
+          "fixed": [
+            {
+              "name": "Animus speculum",
+              "type": "ranged"
+            },
+            {
+              "name": "Life-draining touch",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Life-draining touch"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -70,14 +76,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Executioner pistol"
+          "fixed": [
+            {
+              "name": "Executioner pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Power sword and neuro gauntlet",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Power sword and neuro gauntlet"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -96,13 +105,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [],
-          "melee_choices": [
-            [
-              "Inquisitorial melee weapon",
-              "Force weapon"
-            ]
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Inquisitorial melee weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Force weapon",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -122,15 +139,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt pistol",
-            "Psychic Blast"
+          "fixed": [
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Psychic Blast",
+              "type": "ranged"
+            },
+            {
+              "name": "Nemesis daemon hammer",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Nemesis daemon hammer"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -149,15 +172,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Dirgesinger",
-            "Psychic Tempest"
+          "fixed": [
+            {
+              "name": "Dirgesinger",
+              "type": "ranged"
+            },
+            {
+              "name": "Psychic Tempest",
+              "type": "ranged"
+            },
+            {
+              "name": "Power fist",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Power fist"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -176,15 +205,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Castigation",
-            "Condemnor stake"
+          "fixed": [
+            {
+              "name": "Castigation",
+              "type": "ranged"
+            },
+            {
+              "name": "Condemnor stake",
+              "type": "ranged"
+            },
+            {
+              "name": "Master-crafted power sword",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Master-crafted power sword"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -203,14 +238,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Jindarii tox-cycler",
-            "Stubcarbine"
+          "fixed": [
+            {
+              "name": "Jindarii tox-cycler",
+              "type": "ranged"
+            },
+            {
+              "name": "Stubcarbine",
+              "type": "ranged"
+            },
+            {
+              "name": "Butcher blade",
+              "type": "melee"
+            },
+            {
+              "name": "Garralisk's claws and teeth",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Butcher blade",
-            "Garralisk's claws and teeth"
-          ]
+          "slots": []
         }
       ]
     }
@@ -229,10 +275,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Zealot's vindictor"
+          "fixed": [
+            {
+              "name": "Zealot's vindictor",
+              "type": "ranged"
+            }
           ],
-          "melee": []
+          "slots": []
         }
       ]
     }
@@ -251,12 +300,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Laspistol"
+          "fixed": [
+            {
+              "name": "Laspistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Force-orb cane",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Force-orb cane"
-          ]
+          "slots": []
         }
       ]
     }
@@ -275,19 +329,37 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Household pistol",
-            "Dartmask",
-            "Voltaic pistol",
-            "Laspistol"
+          "fixed": [
+            {
+              "name": "Household pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Dartmask",
+              "type": "ranged"
+            },
+            {
+              "name": "Voltaic pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Laspistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Monomolecular cane-rapier",
+              "type": "melee"
+            },
+            {
+              "name": "Death Cult power blade",
+              "type": "melee"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Monomolecular cane-rapier",
-            "Death Cult power blade",
-            "Close combat weapon"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -306,15 +378,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Exitus pistol",
-            "Exitus rifle"
+          "fixed": [
+            {
+              "name": "Exitus pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Exitus rifle",
+              "type": "ranged"
+            },
+            {
+              "name": "Vindicare combat knife",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Vindicare combat knife"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -333,14 +411,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Hellfire Extremis"
+          "fixed": [
+            {
+              "name": "Hellfire Extremis",
+              "type": "ranged"
+            },
+            {
+              "name": "Master-crafted power weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Master-crafted power weapon"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -359,10 +440,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Vigil spear"
+          "fixed": [
+            {
+              "name": "Vigil spear",
+              "type": "ranged"
+            }
           ],
-          "melee": []
+          "slots": []
         }
       ]
     }

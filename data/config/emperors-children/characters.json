@@ -15,12 +15,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Infernal cannon"
+          "fixed": [
+            {
+              "name": "Infernal cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Hellforged weapons - strike",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Hellforged weapons - strike"
-          ]
+          "slots": []
         }
       ]
     }
@@ -40,12 +45,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Infernal cannon"
+          "fixed": [
+            {
+              "name": "Infernal cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Hellforged weapons - strike",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Hellforged weapons - strike"
-          ]
+          "slots": []
         }
       ]
     }
@@ -65,16 +75,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Malefic lash"
+          "fixed": [
+            {
+              "name": "Malefic lash",
+              "type": "ranged"
+            },
+            {
+              "name": "Serpentine tail",
+              "type": "melee"
+            },
+            {
+              "name": "Daemonic blades - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Daemonic blades - sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Serpentine tail",
-            "Daemonic blades - strike",
-            "Daemonic blades - sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -94,13 +113,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Phantasmagoria - focused witchfire"
+          "fixed": [
+            {
+              "name": "Phantasmagoria - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Snapping claws",
+              "type": "melee"
+            },
+            {
+              "name": "Witstealer sword",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Snapping claws",
-            "Witstealer sword"
-          ]
+          "slots": []
         }
       ]
     },
@@ -120,29 +147,61 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt pistol"
+          "fixed": [
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon"
-          ],
-          "ranged_choices": [
-            [
-              "Plasma pistol - standard"
-            ],
-            [
-              "Screamer pistol"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Phoenix power spear",
-              "Master-crafted power sword"
-            ],
-            [
-              "Power fist",
-              "Rapture lash"
-            ]
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Plasma pistol - standard",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Ranged weapon 2",
+              "choices": [
+                {
+                  "name": "Screamer pistol",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Phoenix power spear",
+                  "type": "melee"
+                },
+                {
+                  "name": "Master-crafted power sword",
+                  "type": "melee"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 2",
+              "choices": [
+                {
+                  "name": "Power fist",
+                  "type": "melee"
+                },
+                {
+                  "name": "Rapture lash",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -163,10 +222,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Screamer pistol"
+          "fixed": [
+            {
+              "name": "Screamer pistol",
+              "type": "ranged"
+            }
           ],
-          "melee": []
+          "slots": []
         }
       ]
     }
@@ -185,13 +247,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Blade of the Laer",
-            "Lash of Torment"
+          "fixed": [
+            {
+              "name": "Blade of the Laer",
+              "type": "melee"
+            },
+            {
+              "name": "Lash of Torment",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -211,17 +277,29 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Lash of Slaanesh",
-            "Pavane of Slaanesh - witchfire",
-            "Pavane of Slaanesh - focused witchfire"
+          "fixed": [
+            {
+              "name": "Lash of Slaanesh",
+              "type": "ranged"
+            },
+            {
+              "name": "Pavane of Slaanesh - witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Pavane of Slaanesh - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Snapping claws",
+              "type": "melee"
+            },
+            {
+              "name": "Soulpiercer",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Snapping claws",
-            "Soulpiercer"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -239,13 +317,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt pistol",
-            "Agonising Energies - focused witchfire"
+          "fixed": [
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Agonising Energies - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Force weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Force weapon"
-          ]
+          "slots": []
         }
       ]
     }

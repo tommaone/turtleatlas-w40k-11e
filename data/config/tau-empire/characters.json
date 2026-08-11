@@ -14,12 +14,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Fireblade pulse rifle"
+          "fixed": [
+            {
+              "name": "Fireblade pulse rifle",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon"
-          ]
+          "slots": []
         }
       ]
     }
@@ -39,15 +44,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "High-intensity plasma rifle"
+          "fixed": [
+            {
+              "name": "High-intensity plasma rifle",
+              "type": "ranged"
+            },
+            {
+              "name": "Dawn Blade - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Dawn Blade - sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Dawn Blade - strike",
-            "Dawn Blade - sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -66,10 +77,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Battlesuit fists"
-          ]
+          "fixed": [
+            {
+              "name": "Battlesuit fists",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -88,10 +102,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Battlesuit fists"
-          ]
+          "fixed": [
+            {
+              "name": "Battlesuit fists",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -110,17 +127,29 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Pulse pistol",
-            "Light missile pod",
-            "High-energy fusion blaster",
-            "Flechette launcher"
+          "fixed": [
+            {
+              "name": "Pulse pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Light missile pod",
+              "type": "ranged"
+            },
+            {
+              "name": "High-energy fusion blaster",
+              "type": "ranged"
+            },
+            {
+              "name": "Flechette launcher",
+              "type": "ranged"
+            },
+            {
+              "name": "Battlesuit fists",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Battlesuit fists"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -138,14 +167,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Shade"
+          "fixed": [
+            {
+              "name": "Shade",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -165,10 +197,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Honour stave"
-          ]
+          "fixed": [
+            {
+              "name": "Honour stave",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -186,13 +221,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Pulse pistol",
-            "Longshot pulse rifles"
+          "fixed": [
+            {
+              "name": "Pulse pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Longshot pulse rifles",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapons",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapons"
-          ]
+          "slots": []
         }
       ]
     }
@@ -211,12 +254,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Kroot scattergun"
+          "fixed": [
+            {
+              "name": "Kroot scattergun",
+              "type": "ranged"
+            },
+            {
+              "name": "Twin ritualistic blades",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Twin ritualistic blades"
-          ]
+          "slots": []
         }
       ]
     }
@@ -234,16 +282,30 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Kalamandra's bite",
-            "Close combat weapon"
+          "fixed": [
+            {
+              "name": "Kalamandra's bite",
+              "type": "melee"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [
-            [
-              "Kroot long gun",
-              "Blast javelin"
-            ]
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Kroot long gun",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Blast javelin",
+                  "type": "ranged"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -262,12 +324,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Kroot rifle"
+          "fixed": [
+            {
+              "name": "Kroot rifle",
+              "type": "ranged"
+            },
+            {
+              "name": "Shaper's blade",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Shaper's blade"
-          ]
+          "slots": []
         }
       ]
     }
@@ -285,17 +352,30 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Kroot pistol"
+          "fixed": [
+            {
+              "name": "Kroot pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Shaper's blade",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Shaper's blade"
-          ],
-          "melee_choices": [
-            [
-              "Bladestave and prey-hook",
-              "Dart-bow and tri-blade"
-            ]
+          "slots": [
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Bladestave and prey-hook",
+                  "type": "melee"
+                },
+                {
+                  "name": "Dart-bow and tri-blade",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -316,21 +396,45 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Shardstorm burst system",
-            "Twin pulse blaster",
-            "XV pulse pistol",
-            "Fusion eliminator",
-            "Ion scattercannon - overcharge",
-            "Ion scattercannon - standard"
+          "fixed": [
+            {
+              "name": "Shardstorm burst system",
+              "type": "ranged"
+            },
+            {
+              "name": "Twin pulse blaster",
+              "type": "ranged"
+            },
+            {
+              "name": "XV pulse pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Fusion eliminator",
+              "type": "ranged"
+            },
+            {
+              "name": "Ion scattercannon - overcharge",
+              "type": "ranged"
+            },
+            {
+              "name": "Ion scattercannon - standard",
+              "type": "ranged"
+            },
+            {
+              "name": "XV pulse pistol",
+              "type": "melee"
+            },
+            {
+              "name": "Fusion eliminator",
+              "type": "melee"
+            },
+            {
+              "name": "Ion scattercannon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "XV pulse pistol",
-            "Fusion eliminator",
-            "Ion scattercannon"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }

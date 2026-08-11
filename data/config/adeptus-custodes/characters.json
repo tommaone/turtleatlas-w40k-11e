@@ -15,12 +15,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Somnus"
+          "fixed": [
+            {
+              "name": "Somnus",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -40,10 +41,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Vaultswords - Behemor"
-          ]
+          "fixed": [
+            {
+              "name": "Vaultswords - Behemor",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -62,21 +66,31 @@
       "builds": [
         {
           "name": "Witchseeker Flamer and CCW",
-          "ranged": [
-            "Witchseeker flamer"
+          "fixed": [
+            {
+              "name": "Witchseeker flamer",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon"
-          ]
+          "slots": []
         },
         {
           "name": "Master-crafted boltgun and CCW",
-          "ranged": [
-            "Master-crafted boltgun"
+          "fixed": [
+            {
+              "name": "Master-crafted boltgun",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon"
-          ]
+          "slots": []
         }
       ]
     }
@@ -96,13 +110,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Guardian Spear",
-            "Castellan axe",
-            "Sentinel Blade",
-            "Pyrithite Spear"
-          ]
+          "fixed": [
+            {
+              "name": "Guardian Spear",
+              "type": "melee"
+            },
+            {
+              "name": "Castellan axe",
+              "type": "melee"
+            },
+            {
+              "name": "Sentinel Blade",
+              "type": "melee"
+            },
+            {
+              "name": "Pyrithite Spear",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -122,10 +148,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Balistus grenade launcher"
+          "fixed": [
+            {
+              "name": "Balistus grenade launcher",
+              "type": "ranged"
+            }
           ],
-          "melee": []
+          "slots": []
         }
       ]
     }
@@ -144,10 +173,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Interceptor lance"
-          ]
+          "fixed": [
+            {
+              "name": "Interceptor lance",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -168,14 +200,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Eagle's Scream"
+          "fixed": [
+            {
+              "name": "Eagle's Scream",
+              "type": "ranged"
+            },
+            {
+              "name": "Watcher's Axe",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Watcher's Axe"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -195,14 +230,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Gnosis"
+          "fixed": [
+            {
+              "name": "Gnosis",
+              "type": "ranged"
+            },
+            {
+              "name": "Gnosis",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Gnosis"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }

@@ -15,29 +15,55 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Bolt pistol",
-              "Laspistol",
-              "Plasma pistol - standard",
-              "Plasma pistol - supercharge"
-            ],
-            [
-              "Boltgun"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Power weapon",
-              "Chainsword",
-              "Close combat weapon",
-              "Power fist"
-            ]
-          ],
-          "max_ranged": 1,
-          "max_melee": 1
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Bolt pistol",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Laspistol",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Plasma pistol - standard",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Plasma pistol - supercharge",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Boltgun",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Power weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Chainsword",
+                  "type": "melee"
+                },
+                {
+                  "name": "Close combat weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Power fist",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -55,27 +81,69 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Laspistol",
-            "Bolt pistol",
-            "Plasma pistol - standard",
-            "Plasma pistol - supercharge",
-            "Lasgun",
-            "Flamer",
-            "Grenade launcher - frag",
-            "Grenade launcher - krak",
-            "Meltagun",
-            "Plasma gun - standard",
-            "Plasma gun - supercharge"
+          "fixed": [
+            {
+              "name": "Laspistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma pistol - standard",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma pistol - supercharge",
+              "type": "ranged"
+            },
+            {
+              "name": "Lasgun",
+              "type": "ranged"
+            },
+            {
+              "name": "Flamer",
+              "type": "ranged"
+            },
+            {
+              "name": "Grenade launcher - frag",
+              "type": "ranged"
+            },
+            {
+              "name": "Grenade launcher - krak",
+              "type": "ranged"
+            },
+            {
+              "name": "Meltagun",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma gun - standard",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma gun - supercharge",
+              "type": "ranged"
+            },
+            {
+              "name": "Power fist",
+              "type": "melee"
+            },
+            {
+              "name": "Power weapon",
+              "type": "melee"
+            },
+            {
+              "name": "Chainsword",
+              "type": "melee"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Power fist",
-            "Power weapon",
-            "Chainsword",
-            "Close combat weapon"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -93,30 +161,81 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Laspistol",
-            "Lasgun",
-            "Flamer",
-            "Grenade launcher - frag",
-            "Grenade launcher - krak",
-            "Heavy flamer",
-            "Meltagun",
-            "Plasma gun - standard",
-            "Plasma gun - supercharge",
-            "Sniper rifle",
-            "Bolt pistol",
-            "Plasma pistol - standard",
-            "Plasma pistol - supercharge",
-            "Boltgun"
+          "fixed": [
+            {
+              "name": "Laspistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Lasgun",
+              "type": "ranged"
+            },
+            {
+              "name": "Flamer",
+              "type": "ranged"
+            },
+            {
+              "name": "Grenade launcher - frag",
+              "type": "ranged"
+            },
+            {
+              "name": "Grenade launcher - krak",
+              "type": "ranged"
+            },
+            {
+              "name": "Heavy flamer",
+              "type": "ranged"
+            },
+            {
+              "name": "Meltagun",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma gun - standard",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma gun - supercharge",
+              "type": "ranged"
+            },
+            {
+              "name": "Sniper rifle",
+              "type": "ranged"
+            },
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma pistol - standard",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma pistol - supercharge",
+              "type": "ranged"
+            },
+            {
+              "name": "Boltgun",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            },
+            {
+              "name": "Chainsword",
+              "type": "melee"
+            },
+            {
+              "name": "Power fist",
+              "type": "melee"
+            },
+            {
+              "name": "Power weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon",
-            "Chainsword",
-            "Power fist",
-            "Power weapon"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -135,23 +254,39 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Bolt pistol",
-              "Plasma pistol - standard",
-              "Plasma pistol - supercharge"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Power weapon",
-              "Chainsword"
-            ]
-          ],
-          "max_ranged": 1,
-          "max_melee": 1
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Bolt pistol",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Plasma pistol - standard",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Plasma pistol - supercharge",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Power weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Chainsword",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -170,23 +305,39 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Bolt pistol",
-              "Plasma pistol - standard",
-              "Plasma pistol - supercharge"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Power weapon",
-              "Chainsword"
-            ]
-          ],
-          "max_ranged": 1,
-          "max_melee": 1
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Bolt pistol",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Plasma pistol - standard",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Plasma pistol - supercharge",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Power weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Chainsword",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -205,14 +356,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt pistol"
+          "fixed": [
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Power sword and Manus Mortis",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Power sword and Manus Mortis"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -231,23 +385,39 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Bolt pistol",
-              "Plasma pistol - standard",
-              "Plasma pistol - supercharge"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Power weapon",
-              "Chainsword"
-            ]
-          ],
-          "max_ranged": 1,
-          "max_melee": 1
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Bolt pistol",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Plasma pistol - standard",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Plasma pistol - supercharge",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Power weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Chainsword",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -265,29 +435,77 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Plasma pistol - standard",
-            "Plasma pistol - supercharge",
-            "Laspistol",
-            "Boltgun",
-            "Plasma gun - standard",
-            "Plasma gun - supercharge",
-            "Meltagun",
-            "Grenade launcher - frag",
-            "Grenade launcher - krak",
-            "Flamer",
-            "Bolt pistol",
-            "Lasgun"
+          "fixed": [
+            {
+              "name": "Plasma pistol - standard",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma pistol - supercharge",
+              "type": "ranged"
+            },
+            {
+              "name": "Laspistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Boltgun",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma gun - standard",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma gun - supercharge",
+              "type": "ranged"
+            },
+            {
+              "name": "Meltagun",
+              "type": "ranged"
+            },
+            {
+              "name": "Grenade launcher - frag",
+              "type": "ranged"
+            },
+            {
+              "name": "Grenade launcher - krak",
+              "type": "ranged"
+            },
+            {
+              "name": "Flamer",
+              "type": "ranged"
+            },
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Lasgun",
+              "type": "ranged"
+            },
+            {
+              "name": "Power fist",
+              "type": "melee"
+            },
+            {
+              "name": "Power weapon",
+              "type": "melee"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            },
+            {
+              "name": "Trench club",
+              "type": "melee"
+            },
+            {
+              "name": "Chainsword",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Power fist",
-            "Power weapon",
-            "Close combat weapon",
-            "Trench club",
-            "Chainsword"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -305,35 +523,75 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Hunter-killer missile"
+          "fixed": [
+            {
+              "name": "Hunter-killer missile",
+              "type": "ranged"
+            },
+            {
+              "name": "Armoured tracks",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Armoured tracks"
-          ],
-          "ranged_choices": [
-            [
-              "Leman Russ battle cannon",
-              "Demolisher battle cannon",
-              "Vanquisher battle cannon",
-              "Eradicator nova cannon",
-              "Executioner plasma cannon - standard",
-              "Executioner plasma cannon - supercharge",
-              "Punisher gatling cannon",
-              "Exterminator autocannon"
-            ],
-            [
-              "Heavy bolter",
-              "Lascannon",
-              "Heavy flamer"
-            ],
-            [
-              "Storm bolter",
-              "Heavy stubber"
-            ]
-          ],
-          "melee_choices": [],
-          "max_ranged": 1
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Leman Russ battle cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Demolisher battle cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Vanquisher battle cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Eradicator nova cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Executioner plasma cannon - standard",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Executioner plasma cannon - supercharge",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Punisher gatling cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Exterminator autocannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Heavy bolter",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Lascannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Heavy flamer",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Storm bolter",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Heavy stubber",
+                  "type": "ranged"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -352,15 +610,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Laspistol"
+          "fixed": [
+            {
+              "name": "Laspistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Sabre of Sacrifice",
+              "type": "melee"
+            },
+            {
+              "name": "Savage claws",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Sabre of Sacrifice",
-            "Savage claws"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -379,15 +643,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Sol's Righteous Gaze"
+          "fixed": [
+            {
+              "name": "Sol's Righteous Gaze",
+              "type": "ranged"
+            },
+            {
+              "name": "Conquest",
+              "type": "melee"
+            },
+            {
+              "name": "Konstantin's hooves",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Conquest",
-            "Konstantin's hooves"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -406,26 +676,65 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Flamer",
-            "Grenade launcher - frag",
-            "Grenade launcher - krak",
-            "Meltagun",
-            "Hot-shot volley gun",
-            "Plasma gun - standard",
-            "Plasma gun - supercharge",
-            "Hot-shot lasgun",
-            "Hot-shot laspistol",
-            "Bolt pistol",
-            "Plasma pistol - standard",
-            "Plasma pistol - supercharge"
+          "fixed": [
+            {
+              "name": "Flamer",
+              "type": "ranged"
+            },
+            {
+              "name": "Grenade launcher - frag",
+              "type": "ranged"
+            },
+            {
+              "name": "Grenade launcher - krak",
+              "type": "ranged"
+            },
+            {
+              "name": "Meltagun",
+              "type": "ranged"
+            },
+            {
+              "name": "Hot-shot volley gun",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma gun - standard",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma gun - supercharge",
+              "type": "ranged"
+            },
+            {
+              "name": "Hot-shot lasgun",
+              "type": "ranged"
+            },
+            {
+              "name": "Hot-shot laspistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma pistol - standard",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma pistol - supercharge",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            },
+            {
+              "name": "Tempestus dagger",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon",
-            "Tempestus dagger"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -444,16 +753,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Holy Pistol",
-            "Zealot's vindicator"
+          "fixed": [
+            {
+              "name": "Holy Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Zealot's vindicator",
+              "type": "ranged"
+            },
+            {
+              "name": "Power weapon",
+              "type": "melee"
+            },
+            {
+              "name": "Zealot's vindicator",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Power weapon",
-            "Zealot's vindicator"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -471,14 +789,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Ripper gun"
+          "fixed": [
+            {
+              "name": "Ripper gun",
+              "type": "ranged"
+            },
+            {
+              "name": "Huge knife",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Huge knife"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -496,25 +817,45 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Close combat weapon"
+          "fixed": [
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [
-            [
-              "Ripper gun"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Bullgryn maul",
-              "Grenadier gauntlet"
-            ],
-            [
-              "Huge knife"
-            ]
-          ],
-          "max_ranged": 1
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Ripper gun",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Bullgryn maul",
+                  "type": "melee"
+                },
+                {
+                  "name": "Grenadier gauntlet",
+                  "type": "melee"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 2",
+              "choices": [
+                {
+                  "name": "Huge knife",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -533,16 +874,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Psychic maelstrom - witchfire",
-            "Psychic maelstrom - focused witchfire",
-            "Laspistol"
+          "fixed": [
+            {
+              "name": "Psychic maelstrom - witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Psychic maelstrom - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Laspistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Force weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Force weapon"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -560,25 +910,43 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Heavy stubber"
+          "fixed": [
+            {
+              "name": "Heavy stubber",
+              "type": "ranged"
+            },
+            {
+              "name": "Armoured tracks",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Armoured tracks"
-          ],
-          "ranged_choices": [
-            [
-              "Castigator gatling cannon",
-              "Pulveriser cannon"
-            ],
-            [
-              "Twin battle cannon",
-              "Coaxial autocannon",
-              "Oppressor cannon"
-            ]
-          ],
-          "melee_choices": [],
-          "max_ranged": 1
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Castigator gatling cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Pulveriser cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Twin battle cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Coaxial autocannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Oppressor cannon",
+                  "type": "ranged"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -596,14 +964,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Ripper pistol"
+          "fixed": [
+            {
+              "name": "Ripper pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Envenomed blade",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Envenomed blade"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -622,15 +993,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Mechanicus pistol"
+          "fixed": [
+            {
+              "name": "Mechanicus pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Enginseer Axe",
+              "type": "melee"
+            },
+            {
+              "name": "Servo-arm",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Enginseer Axe",
-            "Servo-arm"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -649,14 +1026,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Duty and Vengeance"
+          "fixed": [
+            {
+              "name": "Duty and Vengeance",
+              "type": "ranged"
+            },
+            {
+              "name": "Power weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Power weapon"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }

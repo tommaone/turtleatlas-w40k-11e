@@ -15,15 +15,26 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt pistol"
+          "fixed": [
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            }
           ],
-          "melee": [],
-          "melee_choices": [
-            [
-              "Master-crafted power weapon",
-              "Close combat weapon"
-            ]
+          "slots": [
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Master-crafted power weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Close combat weapon",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -44,26 +55,49 @@
       "builds": [
         {
           "name": "Storm Bolter and Melee Weapon",
-          "ranged": [
-            "Storm bolter"
+          "fixed": [
+            {
+              "name": "Storm bolter",
+              "type": "ranged"
+            }
           ],
-          "melee": [],
-          "melee_choices": [
-            [
-              "Master-crafted power weapon",
-              "Power fist",
-              "Thunder Hammer",
-              "Chainfist",
-              "Close combat weapon"
-            ]
+          "slots": [
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Master-crafted power weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Power fist",
+                  "type": "melee"
+                },
+                {
+                  "name": "Thunder Hammer",
+                  "type": "melee"
+                },
+                {
+                  "name": "Chainfist",
+                  "type": "melee"
+                },
+                {
+                  "name": "Close combat weapon",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         },
         {
           "name": "Thunder Hammer & Terminator Storm Shield",
-          "ranged": [],
-          "melee": [
-            "Thunder Hammer"
-          ]
+          "fixed": [
+            {
+              "name": "Thunder Hammer",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -81,13 +115,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Absolvor bolt pistol",
-            "Reductor Pistol"
+          "fixed": [
+            {
+              "name": "Absolvor bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Reductor Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon"
-          ]
+          "slots": []
         }
       ]
     }
@@ -105,12 +147,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Absolvor bolt pistol"
+          "fixed": [
+            {
+              "name": "Absolvor bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon"
-          ]
+          "slots": []
         }
       ]
     }
@@ -129,12 +176,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Heavy Bolt Pistol"
+          "fixed": [
+            {
+              "name": "Heavy Bolt Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon"
-          ]
+          "slots": []
         }
       ]
     }
@@ -153,44 +205,84 @@
       "builds": [
         {
           "name": "Bolt Pistol, Master-crafted Bolter, Melee Weapon",
-          "ranged": [
-            "Bolt pistol",
-            "Master-crafted bolter"
+          "fixed": [
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Master-crafted bolter",
+              "type": "ranged"
+            }
           ],
-          "melee": [],
-          "melee_choices": [
-            [
-              "Close combat weapon",
-              "Power fist",
-              "Master-crafted power weapon"
-            ]
+          "slots": [
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Close combat weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Power fist",
+                  "type": "melee"
+                },
+                {
+                  "name": "Master-crafted power weapon",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         },
         {
           "name": "Heavy Bolt Pistol, Master-crafted power weapon and 1 Relic Shield",
-          "ranged": [
-            "Heavy Bolt Pistol"
+          "fixed": [
+            {
+              "name": "Heavy Bolt Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Master-crafted power weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Master-crafted power weapon"
-          ]
+          "slots": []
         },
         {
           "name": "Pistol and Melee Weapon",
-          "ranged": [],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Plasma pistol - standard",
-              "Heavy Bolt Pistol",
-              "Neo-volkite Pistol"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Power fist",
-              "Master-crafted power weapon"
-            ]
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Plasma pistol - standard",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Heavy Bolt Pistol",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Neo-volkite Pistol",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Power fist",
+                  "type": "melee"
+                },
+                {
+                  "name": "Master-crafted power weapon",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -210,21 +302,31 @@
       "builds": [
         {
           "name": "Master-crafted Heavy Bolt Rifle and Master-crafted Power Weapon",
-          "ranged": [
-            "Master-crafted Heavy Bolt Rifle"
+          "fixed": [
+            {
+              "name": "Master-crafted Heavy Bolt Rifle",
+              "type": "ranged"
+            },
+            {
+              "name": "Master-crafted power weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Master-crafted power weapon"
-          ]
+          "slots": []
         },
         {
           "name": "Boltstorm Gauntlet, Powerfist, and Relic weapon",
-          "ranged": [
-            "Boltstorm gauntlet"
+          "fixed": [
+            {
+              "name": "Boltstorm gauntlet",
+              "type": "ranged"
+            },
+            {
+              "name": "Power fist",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Power fist"
-          ]
+          "slots": []
         }
       ]
     }
@@ -243,13 +345,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt pistol",
-            "Instigator Bolt Carbine"
+          "fixed": [
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Instigator Bolt Carbine",
+              "type": "ranged"
+            },
+            {
+              "name": "Combat Knife",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Combat Knife"
-          ]
+          "slots": []
         }
       ]
     }
@@ -268,19 +378,34 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Storm bolter",
-              "Combi-weapon"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Relic Weapon",
-              "Relic Fist"
-            ]
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Storm bolter",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Combi-weapon",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Relic Weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Relic Fist",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -301,38 +426,67 @@
       "builds": [
         {
           "name": "Melee and Pistol",
-          "ranged": [],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Heavy Bolt Pistol",
-              "Hand flamer",
-              "Plasma pistol - standard"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Astartes Chainsword",
-              "Power fist",
-              "Relic Weapon"
-            ]
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Heavy Bolt Pistol",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Hand flamer",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Plasma pistol - standard",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Astartes Chainsword",
+                  "type": "melee"
+                },
+                {
+                  "name": "Power fist",
+                  "type": "melee"
+                },
+                {
+                  "name": "Relic Weapon",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         },
         {
           "name": "Thunder Hammer and Relic Shield",
-          "ranged": [],
-          "melee": [
-            "Thunder Hammer"
-          ]
+          "fixed": [
+            {
+              "name": "Thunder Hammer",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         },
         {
           "name": "Chainsword and Relic Shield",
-          "ranged": [
-            "Heavy Bolt Pistol"
+          "fixed": [
+            {
+              "name": "Heavy Bolt Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Astartes Chainsword",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Astartes Chainsword"
-          ]
+          "slots": []
         }
       ]
     }
@@ -351,12 +505,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Absolvor bolt pistol"
+          "fixed": [
+            {
+              "name": "Absolvor bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Crozius arcanum",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Crozius arcanum"
-          ]
+          "slots": []
         }
       ]
     }
@@ -377,10 +536,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Crozius arcanum"
-          ]
+          "fixed": [
+            {
+              "name": "Crozius arcanum",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -399,13 +561,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Absolvor bolt pistol",
-            "Twin bolt rifle"
+          "fixed": [
+            {
+              "name": "Absolvor bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Twin bolt rifle",
+              "type": "ranged"
+            },
+            {
+              "name": "Crozius arcanum",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Crozius arcanum"
-          ]
+          "slots": []
         }
       ]
     }
@@ -425,21 +595,50 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Crozius arcanum"
+          "fixed": [
+            {
+              "name": "Crozius arcanum",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [
-            [
-              "Inferno Pistol",
-              "Combi-weapon",
-              "Hand flamer",
-              "Grav-pistol",
-              "Storm bolter",
-              "Plasma pistol - standard",
-              "Boltgun",
-              "Bolt pistol"
-            ]
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Inferno Pistol",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Combi-weapon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Hand flamer",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Grav-pistol",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Storm bolter",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Plasma pistol - standard",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Boltgun",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Bolt pistol",
+                  "type": "ranged"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -459,12 +658,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Absolvor bolt pistol"
+          "fixed": [
+            {
+              "name": "Absolvor bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Executioner Relic Blade",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Executioner Relic Blade"
-          ]
+          "slots": []
         }
       ]
     }
@@ -482,13 +686,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt pistol",
-            "Smite - Focused Witchfire"
+          "fixed": [
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Smite - Focused Witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Force weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Force weapon"
-          ]
+          "slots": []
         }
       ]
     }
@@ -506,13 +718,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt pistol",
-            "Smite - Focused Witchfire"
+          "fixed": [
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Smite - Focused Witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Force weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Force weapon"
-          ]
+          "slots": []
         }
       ]
     }
@@ -532,17 +752,30 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Smite - Focused Witchfire"
+          "fixed": [
+            {
+              "name": "Smite - Focused Witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Force weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Force weapon"
-          ],
-          "ranged_choices": [
-            [
-              "Combi-weapon",
-              "Storm bolter"
-            ]
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Combi-weapon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Storm bolter",
+                  "type": "ranged"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -561,33 +794,65 @@
       "builds": [
         {
           "name": "Neo-volkite pistol, Master-crafted Power Sword & Storm Shield",
-          "ranged": [
-            "Neo-volkite Pistol"
+          "fixed": [
+            {
+              "name": "Neo-volkite Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Master-crafted power weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Master-crafted power weapon"
-          ]
+          "slots": []
         },
         {
           "name": "Pistol, Master-crafted Bolter & Melee Weapon",
-          "ranged": [],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Bolt pistol",
-              "Heavy Bolt Pistol"
-            ],
-            [
-              "Plasma pistol - standard",
-              "Master-crafted bolter"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Close combat weapon",
-              "Master-crafted power weapon",
-              "Power fist"
-            ]
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Bolt pistol",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Heavy Bolt Pistol",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Ranged weapon 2",
+              "choices": [
+                {
+                  "name": "Plasma pistol - standard",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Master-crafted bolter",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Close combat weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Master-crafted power weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Power fist",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -607,13 +872,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt pistol",
-            "Master-crafted Scoped Bolt Carbine"
+          "fixed": [
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Master-crafted Scoped Bolt Carbine",
+              "type": "ranged"
+            },
+            {
+              "name": "Paired Combat Blades",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Paired Combat Blades"
-          ]
+          "slots": []
         }
       ]
     }
@@ -631,12 +904,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Master-crafted Special Issue Bolt Pistol"
+          "fixed": [
+            {
+              "name": "Master-crafted Special Issue Bolt Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Combat Knife",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Combat Knife"
-          ]
+          "slots": []
         }
       ]
     }
@@ -654,12 +932,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Combi-weapon"
+          "fixed": [
+            {
+              "name": "Combi-weapon",
+              "type": "ranged"
+            },
+            {
+              "name": "Paired Combat Blades",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Paired Combat Blades"
-          ]
+          "slots": []
         }
       ]
     }
@@ -677,14 +960,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Grav-pistol",
-            "Forge Bolter"
+          "fixed": [
+            {
+              "name": "Grav-pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Forge Bolter",
+              "type": "ranged"
+            },
+            {
+              "name": "Omnissian power axe",
+              "type": "melee"
+            },
+            {
+              "name": "Servo-arm",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Omnissian power axe",
-            "Servo-arm"
-          ]
+          "slots": []
         }
       ]
     }

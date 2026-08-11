@@ -14,16 +14,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Acheron flame cannon",
-            "Twin heavy bolter"
+          "fixed": [
+            {
+              "name": "Acheron flame cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Twin heavy bolter",
+              "type": "ranged"
+            },
+            {
+              "name": "Reaper chainfist - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Reaper chainfist - sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Reaper chainfist - strike",
-            "Reaper chainfist - sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -41,18 +50,33 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Atrapos lascutter - low intensity",
-            "Atrapos lascutter - high intensity",
-            "Graviton singularity cannon - contained",
-            "Graviton singularity cannon - singularity"
+          "fixed": [
+            {
+              "name": "Atrapos lascutter - low intensity",
+              "type": "ranged"
+            },
+            {
+              "name": "Atrapos lascutter - high intensity",
+              "type": "ranged"
+            },
+            {
+              "name": "Graviton singularity cannon - contained",
+              "type": "ranged"
+            },
+            {
+              "name": "Graviton singularity cannon - singularity",
+              "type": "ranged"
+            },
+            {
+              "name": "Atrapos lascutter - low intensity",
+              "type": "melee"
+            },
+            {
+              "name": "Atrapos lascutter - high intensity",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Atrapos lascutter - low intensity",
-            "Atrapos lascutter - high intensity"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -70,15 +94,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Castigator bolt cannon"
+          "fixed": [
+            {
+              "name": "Castigator bolt cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Tempest warblade - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Tempest warblade - sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Tempest warblade - strike",
-            "Tempest warblade - sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -96,15 +126,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Cerastus shock lance"
+          "fixed": [
+            {
+              "name": "Cerastus shock lance",
+              "type": "ranged"
+            },
+            {
+              "name": "Cerastus shock lance - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Cerastus shock lance - sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Cerastus shock lance - strike",
-            "Cerastus shock lance - sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -122,25 +158,48 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Lightning cannon",
-            "Phased plasma-fusil"
+          "fixed": [
+            {
+              "name": "Lightning cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Phased plasma-fusil",
+              "type": "ranged"
+            }
           ],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Twin rad cleanser"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Reaper chainsword - strike",
-              "Reaper chainsword - sweep",
-              "Hekaton siege claw - strike",
-              "Hekaton siege claw - sweep"
-            ]
-          ],
-          "max_melee": 1
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Twin rad cleanser",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Reaper chainsword - strike",
+                  "type": "melee"
+                },
+                {
+                  "name": "Reaper chainsword - sweep",
+                  "type": "melee"
+                },
+                {
+                  "name": "Hekaton siege claw - strike",
+                  "type": "melee"
+                },
+                {
+                  "name": "Hekaton siege claw - sweep",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -158,25 +217,48 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Graviton crusher",
-            "Volkite chierovile"
+          "fixed": [
+            {
+              "name": "Graviton crusher",
+              "type": "ranged"
+            },
+            {
+              "name": "Volkite chierovile",
+              "type": "ranged"
+            }
           ],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Twin rad cleanser"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Reaper chainsword - strike",
-              "Reaper chainsword - sweep",
-              "Hekaton siege claw - strike",
-              "Hekaton siege claw - sweep"
-            ]
-          ],
-          "max_melee": 1
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Twin rad cleanser",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Reaper chainsword - strike",
+                  "type": "melee"
+                },
+                {
+                  "name": "Reaper chainsword - sweep",
+                  "type": "melee"
+                },
+                {
+                  "name": "Hekaton siege claw - strike",
+                  "type": "melee"
+                },
+                {
+                  "name": "Hekaton siege claw - sweep",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -195,16 +277,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Diabolus heavy stubber",
-            "Volkite combustor"
+          "fixed": [
+            {
+              "name": "Diabolus heavy stubber",
+              "type": "ranged"
+            },
+            {
+              "name": "Volkite combustor",
+              "type": "ranged"
+            },
+            {
+              "name": "Balemace",
+              "type": "melee"
+            },
+            {
+              "name": "Electroscourge",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Balemace",
-            "Electroscourge"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -223,21 +314,39 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Desecrator laser destructor",
-            "Diabolus heavy stubber"
+          "fixed": [
+            {
+              "name": "Desecrator laser destructor",
+              "type": "ranged"
+            },
+            {
+              "name": "Diabolus heavy stubber",
+              "type": "ranged"
+            }
           ],
-          "melee": [],
-          "ranged_choices": [],
-          "melee_choices": [
-            [
-              "Reaper chainsword - strike",
-              "Reaper chainsword - sweep",
-              "Warpstrike claw - strike",
-              "Warpstrike claw - sweep"
-            ]
-          ],
-          "max_melee": 1
+          "slots": [
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Reaper chainsword - strike",
+                  "type": "melee"
+                },
+                {
+                  "name": "Reaper chainsword - sweep",
+                  "type": "melee"
+                },
+                {
+                  "name": "Warpstrike claw - strike",
+                  "type": "melee"
+                },
+                {
+                  "name": "Warpstrike claw - sweep",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -255,153 +364,336 @@
       "builds": [
         {
           "name": "melee_dual",
-          "ranged": [],
-          "melee": [
-            "Titanic feet"
+          "fixed": [
+            {
+              "name": "Titanic feet",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [
-            [
-              "Havoc missile pod",
-              "Ruinspear rocket pod",
-              "Hellstorm autocannons",
-              "Diabolus heavy stubber",
-              "Daemonbreath meltagun"
-            ]
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Havoc missile pod",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Ruinspear rocket pod",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Hellstorm autocannons",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Diabolus heavy stubber",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Daemonbreath meltagun",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Reaper chainsword",
+                  "type": "melee"
+                },
+                {
+                  "name": "Warpstrike claw",
+                  "type": "melee"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 2",
+              "choices": [
+                {
+                  "name": "Reaper chainsword",
+                  "type": "melee"
+                },
+                {
+                  "name": "Warpstrike claw",
+                  "type": "melee"
+                }
+              ]
+            }
           ],
-          "melee_choices": [
-            [
-              "Reaper chainsword",
-              "Warpstrike claw"
-            ]
-          ],
-          "max_ranged": 1,
-          "max_melee": 2
+          "no_duplicates": true
         },
         {
           "name": "gatling_one_arm",
-          "ranged": [
-            "Despoiler gatling cannon",
-            "Heavy darkflamer"
+          "fixed": [
+            {
+              "name": "Despoiler gatling cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Heavy darkflamer",
+              "type": "ranged"
+            },
+            {
+              "name": "Titanic feet",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Titanic feet"
-          ],
-          "ranged_choices": [
-            [
-              "Havoc missile pod",
-              "Ruinspear rocket pod",
-              "Hellstorm autocannons",
-              "Diabolus heavy stubber",
-              "Daemonbreath meltagun"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Reaper chainsword",
-              "Warpstrike claw"
-            ]
-          ],
-          "max_ranged": 1,
-          "max_melee": 1
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Havoc missile pod",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Ruinspear rocket pod",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Hellstorm autocannons",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Diabolus heavy stubber",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Daemonbreath meltagun",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Reaper chainsword",
+                  "type": "melee"
+                },
+                {
+                  "name": "Warpstrike claw",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         },
         {
           "name": "battle_cannon_one_arm",
-          "ranged": [
-            "Despoiler battle cannon",
-            "Diabolus heavy stubber"
+          "fixed": [
+            {
+              "name": "Despoiler battle cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Diabolus heavy stubber",
+              "type": "ranged"
+            },
+            {
+              "name": "Titanic feet",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Titanic feet"
-          ],
-          "ranged_choices": [
-            [
-              "Havoc missile pod",
-              "Ruinspear rocket pod",
-              "Hellstorm autocannons",
-              "Diabolus heavy stubber",
-              "Daemonbreath meltagun"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Reaper chainsword",
-              "Warpstrike claw"
-            ]
-          ],
-          "max_ranged": 1,
-          "max_melee": 1
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Havoc missile pod",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Ruinspear rocket pod",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Hellstorm autocannons",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Diabolus heavy stubber",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Daemonbreath meltagun",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Reaper chainsword",
+                  "type": "melee"
+                },
+                {
+                  "name": "Warpstrike claw",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         },
         {
           "name": "gatling_dual",
-          "ranged": [
-            "Despoiler gatling cannon",
-            "Heavy darkflamer",
-            "Despoiler gatling cannon",
-            "Heavy darkflamer"
+          "fixed": [
+            {
+              "name": "Despoiler gatling cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Heavy darkflamer",
+              "type": "ranged"
+            },
+            {
+              "name": "Despoiler gatling cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Heavy darkflamer",
+              "type": "ranged"
+            },
+            {
+              "name": "Titanic feet",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Titanic feet"
-          ],
-          "ranged_choices": [
-            [
-              "Havoc missile pod",
-              "Ruinspear rocket pod",
-              "Hellstorm autocannons",
-              "Diabolus heavy stubber",
-              "Daemonbreath meltagun"
-            ]
-          ],
-          "melee_choices": [],
-          "max_ranged": 1,
-          "max_melee": 0
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Havoc missile pod",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Ruinspear rocket pod",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Hellstorm autocannons",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Diabolus heavy stubber",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Daemonbreath meltagun",
+                  "type": "ranged"
+                }
+              ]
+            }
+          ]
         },
         {
           "name": "battle_cannon_dual",
-          "ranged": [
-            "Despoiler battle cannon",
-            "Diabolus heavy stubber",
-            "Despoiler battle cannon",
-            "Diabolus heavy stubber"
+          "fixed": [
+            {
+              "name": "Despoiler battle cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Diabolus heavy stubber",
+              "type": "ranged"
+            },
+            {
+              "name": "Despoiler battle cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Diabolus heavy stubber",
+              "type": "ranged"
+            },
+            {
+              "name": "Titanic feet",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Titanic feet"
-          ],
-          "ranged_choices": [
-            [
-              "Havoc missile pod",
-              "Ruinspear rocket pod",
-              "Hellstorm autocannons",
-              "Diabolus heavy stubber",
-              "Daemonbreath meltagun"
-            ]
-          ],
-          "melee_choices": [],
-          "max_ranged": 1,
-          "max_melee": 0
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Havoc missile pod",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Ruinspear rocket pod",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Hellstorm autocannons",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Diabolus heavy stubber",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Daemonbreath meltagun",
+                  "type": "ranged"
+                }
+              ]
+            }
+          ]
         },
         {
           "name": "gatling_plus_battle",
-          "ranged": [
-            "Despoiler gatling cannon",
-            "Heavy darkflamer",
-            "Despoiler battle cannon",
-            "Diabolus heavy stubber"
+          "fixed": [
+            {
+              "name": "Despoiler gatling cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Heavy darkflamer",
+              "type": "ranged"
+            },
+            {
+              "name": "Despoiler battle cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Diabolus heavy stubber",
+              "type": "ranged"
+            },
+            {
+              "name": "Titanic feet",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Titanic feet"
-          ],
-          "ranged_choices": [
-            [
-              "Havoc missile pod",
-              "Ruinspear rocket pod",
-              "Hellstorm autocannons",
-              "Diabolus heavy stubber",
-              "Daemonbreath meltagun"
-            ]
-          ],
-          "melee_choices": [],
-          "max_ranged": 1,
-          "max_melee": 0
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Havoc missile pod",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Ruinspear rocket pod",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Hellstorm autocannons",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Diabolus heavy stubber",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Daemonbreath meltagun",
+                  "type": "ranged"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -420,17 +712,29 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Diabolus heavy stubber"
+          "fixed": [
+            {
+              "name": "Diabolus heavy stubber",
+              "type": "ranged"
+            },
+            {
+              "name": "Reaper chainsword - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Reaper chainsword - sweep",
+              "type": "melee"
+            },
+            {
+              "name": "Warpstrike claw - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Warpstrike claw - sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Reaper chainsword - strike",
-            "Reaper chainsword - sweep",
-            "Warpstrike claw - strike",
-            "Warpstrike claw - sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -449,16 +753,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Darkflame lance",
-            "Terrorpulse missiles"
+          "fixed": [
+            {
+              "name": "Darkflame lance",
+              "type": "ranged"
+            },
+            {
+              "name": "Terrorpulse missiles",
+              "type": "ranged"
+            },
+            {
+              "name": "Fellbore - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Fellbore - sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Fellbore - strike",
-            "Fellbore - sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -476,21 +789,45 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Gheiststrike missile launcher",
-            "Twin desecrator cannon",
-            "Twin daemonbreath meltagun",
-            "Brimstone volcano lance",
-            "Ectoplasma decimator - standard",
-            "Ectoplasma decimator - supercharge",
-            "Darkflame cannon",
-            "Warpshock harpoon"
+          "fixed": [
+            {
+              "name": "Gheiststrike missile launcher",
+              "type": "ranged"
+            },
+            {
+              "name": "Twin desecrator cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Twin daemonbreath meltagun",
+              "type": "ranged"
+            },
+            {
+              "name": "Brimstone volcano lance",
+              "type": "ranged"
+            },
+            {
+              "name": "Ectoplasma decimator - standard",
+              "type": "ranged"
+            },
+            {
+              "name": "Ectoplasma decimator - supercharge",
+              "type": "ranged"
+            },
+            {
+              "name": "Darkflame cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Warpshock harpoon",
+              "type": "ranged"
+            },
+            {
+              "name": "Titanic feet",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Titanic feet"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }

@@ -14,13 +14,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Hyper blight grenades",
-            "Injector pistol"
+          "fixed": [
+            {
+              "name": "Hyper blight grenades",
+              "type": "ranged"
+            },
+            {
+              "name": "Injector pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Plague knives",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Plague knives"
-          ]
+          "slots": []
         }
       ]
     }
@@ -39,12 +47,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Infernal cannon"
+          "fixed": [
+            {
+              "name": "Infernal cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Hellforged weapons - strike",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Hellforged weapons - strike"
-          ]
+          "slots": []
         }
       ]
     }
@@ -64,12 +77,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Infernal cannon"
+          "fixed": [
+            {
+              "name": "Infernal cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Hellforged weapons - strike",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Hellforged weapons - strike"
-          ]
+          "slots": []
         }
       ]
     }
@@ -87,12 +105,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Plague sprayer"
+          "fixed": [
+            {
+              "name": "Plague sprayer",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon"
-          ]
+          "slots": []
         }
       ]
     }
@@ -112,26 +135,44 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Putrid vomit"
+          "fixed": [
+            {
+              "name": "Putrid vomit",
+              "type": "ranged"
+            }
           ],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Plague flail"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Bilesword - strike",
-              "Bilesword - sweep",
-              "Doomsday bell"
-            ],
-            [
-              "Bileblade"
-            ]
-          ],
-          "max_melee": 1
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Plague flail",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Bilesword - strike",
+                  "type": "melee"
+                },
+                {
+                  "name": "Bilesword - sweep",
+                  "type": "melee"
+                },
+                {
+                  "name": "Doomsday bell",
+                  "type": "melee"
+                },
+                {
+                  "name": "Bileblade",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -149,12 +190,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Boltgun"
+          "fixed": [
+            {
+              "name": "Boltgun",
+              "type": "ranged"
+            },
+            {
+              "name": "Plague knife",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Plague knife"
-          ]
+          "slots": []
         }
       ]
     }
@@ -174,10 +220,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Manreaper - strike"
-          ]
+          "fixed": [
+            {
+              "name": "Manreaper - strike",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -196,12 +245,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Plasma pistol - standard"
+          "fixed": [
+            {
+              "name": "Plasma pistol - standard",
+              "type": "ranged"
+            },
+            {
+              "name": "Great plague blade",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Great plague blade"
-          ]
+          "slots": []
         }
       ]
     }
@@ -221,12 +275,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Twin plague spewer"
+          "fixed": [
+            {
+              "name": "Twin plague spewer",
+              "type": "ranged"
+            },
+            {
+              "name": "Power fist",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Power fist"
-          ]
+          "slots": []
         }
       ]
     }
@@ -244,13 +303,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt pistol",
-            "Plague Wind - focused witchfire"
+          "fixed": [
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Plague Wind - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Corrupted staff",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Corrupted staff"
-          ]
+          "slots": []
         }
       ]
     }
@@ -270,16 +337,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Rotwind",
-            "Lantern"
+          "fixed": [
+            {
+              "name": "Rotwind",
+              "type": "ranged"
+            },
+            {
+              "name": "Lantern",
+              "type": "ranged"
+            },
+            {
+              "name": "Silence - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Silence - sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Silence - strike",
-            "Silence - sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -297,12 +373,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Plasma pistol - standard"
+          "fixed": [
+            {
+              "name": "Plasma pistol - standard",
+              "type": "ranged"
+            },
+            {
+              "name": "Cursed plague bell",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Cursed plague bell"
-          ]
+          "slots": []
         }
       ]
     }
@@ -320,12 +401,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt pistol"
+          "fixed": [
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Balesword",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Balesword"
-          ]
+          "slots": []
         }
       ]
     }
@@ -345,15 +431,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Streams of brackish filth"
+          "fixed": [
+            {
+              "name": "Streams of brackish filth",
+              "type": "ranged"
+            },
+            {
+              "name": "Gnarlrod - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Gnarlrod - sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Gnarlrod - strike",
-            "Gnarlrod - sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -371,12 +463,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Plasma pistol - standard"
+          "fixed": [
+            {
+              "name": "Plasma pistol - standard",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon"
-          ]
+          "slots": []
         }
       ]
     }
@@ -396,13 +493,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Lakrimae - strike",
-            "Lakrimae - sweep"
+          "fixed": [
+            {
+              "name": "Lakrimae - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Lakrimae - sweep",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }

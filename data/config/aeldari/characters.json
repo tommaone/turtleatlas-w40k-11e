@@ -15,14 +15,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "The Bloody Twins"
+          "fixed": [
+            {
+              "name": "The Bloody Twins",
+              "type": "ranged"
+            },
+            {
+              "name": "The Sword of Asur",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "The Sword of Asur"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -41,27 +44,55 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Shuriken Pistol",
-              "Reaper Launcher - Starshot",
-              "Reaper Launcher - Starswarm",
-              "Death spinner",
-              "Dragon Fusion Gun",
-              "Dragon Fusion Pistol"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Scorpion chainsword",
-              "Banshee Blade",
-              "Star Glaive"
-            ]
-          ],
-          "max_ranged": 1,
-          "max_melee": 1
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Shuriken Pistol",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Reaper Launcher - Starshot",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Reaper Launcher - Starswarm",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Death spinner",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Dragon Fusion Gun",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Dragon Fusion Pistol",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Scorpion chainsword",
+                  "type": "melee"
+                },
+                {
+                  "name": "Banshee Blade",
+                  "type": "melee"
+                },
+                {
+                  "name": "Star Glaive",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -81,27 +112,55 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Shuriken Pistol",
-              "Reaper Launcher - Starshot",
-              "Reaper Launcher - Starswarm",
-              "Death spinner",
-              "Dragon Fusion Gun",
-              "Dragon Fusion Pistol"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Scorpion chainsword",
-              "Banshee Blade",
-              "Star Glaive"
-            ]
-          ],
-          "max_ranged": 1,
-          "max_melee": 1
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Shuriken Pistol",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Reaper Launcher - Starshot",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Reaper Launcher - Starswarm",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Death spinner",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Dragon Fusion Gun",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Dragon Fusion Pistol",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Scorpion chainsword",
+                  "type": "melee"
+                },
+                {
+                  "name": "Banshee Blade",
+                  "type": "melee"
+                },
+                {
+                  "name": "Star Glaive",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -120,15 +179,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "The Wailing Doom"
+          "fixed": [
+            {
+              "name": "The Wailing Doom",
+              "type": "ranged"
+            },
+            {
+              "name": "The Wailing Doom - Strike",
+              "type": "melee"
+            },
+            {
+              "name": "The Wailing Doom - Sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "The Wailing Doom - Strike",
-            "The Wailing Doom - Sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -148,14 +213,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Fury of the Tempest"
+          "fixed": [
+            {
+              "name": "Fury of the Tempest",
+              "type": "ranged"
+            },
+            {
+              "name": "The Shining Blade",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "The Shining Blade"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -174,14 +242,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Shrieker Cannon"
+          "fixed": [
+            {
+              "name": "Shrieker Cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Jester's Blade",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Jester's Blade"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -200,15 +271,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Shuriken Pistol",
-            "Mind War"
+          "fixed": [
+            {
+              "name": "Shuriken Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Mind War",
+              "type": "ranged"
+            },
+            {
+              "name": "Staff of Ulthamar and witchblade",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Staff of Ulthamar and witchblade"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -227,17 +304,29 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Eldritch Storm",
-            "Shuriken Pistol",
-            "Singing Spear"
+          "fixed": [
+            {
+              "name": "Eldritch Storm",
+              "type": "ranged"
+            },
+            {
+              "name": "Shuriken Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Singing Spear",
+              "type": "ranged"
+            },
+            {
+              "name": "Witchblade",
+              "type": "melee"
+            },
+            {
+              "name": "Singing Spear",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Witchblade",
-            "Singing Spear"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -256,18 +345,33 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Eldritch Storm",
-            "Shuriken Pistol",
-            "Twin Shuriken Catapult",
-            "Singing Spear"
+          "fixed": [
+            {
+              "name": "Eldritch Storm",
+              "type": "ranged"
+            },
+            {
+              "name": "Shuriken Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Twin Shuriken Catapult",
+              "type": "ranged"
+            },
+            {
+              "name": "Singing Spear",
+              "type": "ranged"
+            },
+            {
+              "name": "Witchblade",
+              "type": "melee"
+            },
+            {
+              "name": "Singing Spear",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Witchblade",
-            "Singing Spear"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -286,15 +390,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Searsong - Beam",
-            "Searsong - Lance"
+          "fixed": [
+            {
+              "name": "Searsong - Beam",
+              "type": "ranged"
+            },
+            {
+              "name": "Searsong - Lance",
+              "type": "ranged"
+            },
+            {
+              "name": "The Fire Axe",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "The Fire Axe"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -313,14 +423,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Silent Death"
+          "fixed": [
+            {
+              "name": "Silent Death",
+              "type": "ranged"
+            },
+            {
+              "name": "Blade of Destruction",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Blade of Destruction"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -339,14 +452,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Dread of the Deep Void"
+          "fixed": [
+            {
+              "name": "Dread of the Deep Void",
+              "type": "ranged"
+            },
+            {
+              "name": "Waystave",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Waystave"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -366,15 +482,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Brood Twain"
+          "fixed": [
+            {
+              "name": "Brood Twain",
+              "type": "ranged"
+            },
+            {
+              "name": "Spider's Fangs",
+              "type": "melee"
+            },
+            {
+              "name": "Weaverender",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Spider's Fangs",
-            "Weaverender"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -393,14 +515,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Maugetar"
+          "fixed": [
+            {
+              "name": "Maugetar",
+              "type": "ranged"
+            },
+            {
+              "name": "Maugetar",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Maugetar"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -419,15 +544,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "The Eye of Wrath",
-            "Shuriken Pistol"
+          "fixed": [
+            {
+              "name": "The Eye of Wrath",
+              "type": "ranged"
+            },
+            {
+              "name": "Shuriken Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "The Spear of Twilight",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "The Spear of Twilight"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -446,15 +577,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Shuriken Pistol",
-            "Neuro Disruptor"
+          "fixed": [
+            {
+              "name": "Shuriken Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Neuro Disruptor",
+              "type": "ranged"
+            },
+            {
+              "name": "Miststave",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Miststave"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -473,12 +610,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Solitaire Weapons"
+          "fixed": [
+            {
+              "name": "Solitaire Weapons",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -497,14 +635,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Shuriken Pistol"
+          "fixed": [
+            {
+              "name": "Shuriken Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Witch Staff",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Witch Staff"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -524,14 +665,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Asu-var - quicksilver stance",
-            "Asu-var - duellist stance",
-            "Asu-var - mythic stance"
+          "fixed": [
+            {
+              "name": "Asu-var - quicksilver stance",
+              "type": "melee"
+            },
+            {
+              "name": "Asu-var - duellist stance",
+              "type": "melee"
+            },
+            {
+              "name": "Asu-var - mythic stance",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -551,15 +699,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Swirling soul energy"
+          "fixed": [
+            {
+              "name": "Swirling soul energy",
+              "type": "ranged"
+            },
+            {
+              "name": "Vilith-zhar - Strike",
+              "type": "melee"
+            },
+            {
+              "name": "Vilith-zhar - Sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Vilith-zhar - Strike",
-            "Vilith-zhar - Sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -578,23 +732,39 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Shuriken Pistol",
-              "Fusion Pistol",
-              "Neuro Disruptor"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Harlequin's Special Weapon",
-              "Troupe Master's Blade"
-            ]
-          ],
-          "max_ranged": 1,
-          "max_melee": 1
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Shuriken Pistol",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Fusion Pistol",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Neuro Disruptor",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Harlequin's Special Weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Troupe Master's Blade",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -613,17 +783,29 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Destructor",
-            "Shuriken Pistol",
-            "Singing Spear"
+          "fixed": [
+            {
+              "name": "Destructor",
+              "type": "ranged"
+            },
+            {
+              "name": "Shuriken Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Singing Spear",
+              "type": "ranged"
+            },
+            {
+              "name": "Witchblade",
+              "type": "melee"
+            },
+            {
+              "name": "Singing Spear",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Witchblade",
-            "Singing Spear"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -642,15 +824,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Splinter Pistol",
-            "Blast Pistol"
+          "fixed": [
+            {
+              "name": "Splinter Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Blast Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Huskblade",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Huskblade"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -669,15 +857,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Splinter Pistol",
-            "Blast Pistol"
+          "fixed": [
+            {
+              "name": "Splinter Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Blast Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Succubus Weapons",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Succubus Weapons"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -696,14 +890,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Storm of Whispers"
+          "fixed": [
+            {
+              "name": "Storm of Whispers",
+              "type": "ranged"
+            },
+            {
+              "name": "Kha-vir",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Kha-vir"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }

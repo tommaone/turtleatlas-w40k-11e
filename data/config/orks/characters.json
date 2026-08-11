@@ -15,12 +15,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Shoota"
+          "fixed": [
+            {
+              "name": "Shoota",
+              "type": "ranged"
+            },
+            {
+              "name": "Choppa",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Choppa"
-          ]
+          "slots": []
         }
       ]
     }
@@ -39,13 +44,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Shoota"
+          "fixed": [
+            {
+              "name": "Shoota",
+              "type": "ranged"
+            },
+            {
+              "name": "Beastchoppa",
+              "type": "melee"
+            },
+            {
+              "name": "Beast Snagga klaw",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Beastchoppa",
-            "Beast Snagga klaw"
-          ]
+          "slots": []
         }
       ]
     }
@@ -64,17 +77,30 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Slugga"
+          "fixed": [
+            {
+              "name": "Slugga",
+              "type": "ranged"
+            },
+            {
+              "name": "Beastchoppa",
+              "type": "melee"
+            },
+            {
+              "name": "Squigosaur’s jaws",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Beastchoppa",
-            "Squigosaur’s jaws"
-          ],
-          "ranged_choices": [
-            [
-              "Thump gun"
-            ]
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Thump gun",
+                  "type": "ranged"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -93,19 +119,34 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Traktor blasta",
-              "Kustom mega-blasta"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Drilla",
-              "Power klaw"
-            ]
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Traktor blasta",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Kustom mega-blasta",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Drilla",
+                  "type": "melee"
+                },
+                {
+                  "name": "Power klaw",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -124,17 +165,34 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Power klaw"
+          "fixed": [
+            {
+              "name": "Power klaw",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [
-            [
-              "Kustom mega-blasta",
-              "Kustom shoota",
-              "Kombi-weapon",
-              "Killsaw"
-            ]
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Kustom mega-blasta",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Kustom shoota",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Kombi-weapon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Killsaw",
+                  "type": "ranged"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -153,12 +211,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Shokk attack gun"
+          "fixed": [
+            {
+              "name": "Shokk attack gun",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon"
-          ]
+          "slots": []
         }
       ]
     }
@@ -176,12 +239,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Slugga"
+          "fixed": [
+            {
+              "name": "Slugga",
+              "type": "ranged"
+            },
+            {
+              "name": "Two-handed big choppa",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Two-handed big choppa"
-          ]
+          "slots": []
         }
       ]
     }
@@ -200,14 +268,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Slugga"
+          "fixed": [
+            {
+              "name": "Slugga",
+              "type": "ranged"
+            },
+            {
+              "name": "Mork’s Teeth",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Mork’s Teeth"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -226,13 +297,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Deffkilla boomstikks",
-            "Killa jet - burna"
+          "fixed": [
+            {
+              "name": "Deffkilla boomstikks",
+              "type": "ranged"
+            },
+            {
+              "name": "Killa jet - burna",
+              "type": "ranged"
+            },
+            {
+              "name": "Snagga klaw",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Snagga klaw"
-          ]
+          "slots": []
         }
       ]
     }
@@ -251,16 +330,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Mork’s Roar"
+          "fixed": [
+            {
+              "name": "Mork’s Roar",
+              "type": "ranged"
+            },
+            {
+              "name": "Gork’s Klaw - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Gork’s Klaw - sweep",
+              "type": "melee"
+            },
+            {
+              "name": "Makari’s stabba",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Gork’s Klaw - strike",
-            "Gork’s Klaw - sweep",
-            "Makari’s stabba"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -278,10 +366,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Kustom mega-slugga"
+          "fixed": [
+            {
+              "name": "Kustom mega-slugga",
+              "type": "ranged"
+            }
           ],
-          "melee": []
+          "slots": []
         }
       ]
     }
@@ -300,15 +391,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Thump gun"
+          "fixed": [
+            {
+              "name": "Thump gun",
+              "type": "ranged"
+            },
+            {
+              "name": "Big Chompa’s jaws",
+              "type": "melee"
+            },
+            {
+              "name": "Gutrippa",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Big Chompa’s jaws",
-            "Gutrippa"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -327,10 +424,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Beast Snagga klaw"
-          ]
+          "fixed": [
+            {
+              "name": "Beast Snagga klaw",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -349,11 +449,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "’Urty syringe",
-            "Power klaw"
-          ]
+          "fixed": [
+            {
+              "name": "’Urty syringe",
+              "type": "melee"
+            },
+            {
+              "name": "Power klaw",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -372,19 +478,39 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Kombi-weapon",
-            "Twin slugga"
+          "fixed": [
+            {
+              "name": "Kombi-weapon",
+              "type": "ranged"
+            },
+            {
+              "name": "Twin slugga",
+              "type": "ranged"
+            }
           ],
-          "melee": [],
-          "melee_choices": [
-            [
-              "Attack Squig"
-            ],
-            [
-              "Big choppa",
-              "Power klaw"
-            ]
+          "slots": [
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Attack Squig",
+                  "type": "melee"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 2",
+              "choices": [
+                {
+                  "name": "Big choppa",
+                  "type": "melee"
+                },
+                {
+                  "name": "Power klaw",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -404,12 +530,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Kustom shoota"
+          "fixed": [
+            {
+              "name": "Kustom shoota",
+              "type": "ranged"
+            },
+            {
+              "name": "Kustom choppa",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Kustom choppa"
-          ]
+          "slots": []
         }
       ]
     }
@@ -428,12 +559,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Big shoota"
+          "fixed": [
+            {
+              "name": "Big shoota",
+              "type": "ranged"
+            },
+            {
+              "name": "’Uge choppa",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "’Uge choppa"
-          ]
+          "slots": []
         }
       ]
     }
@@ -453,17 +589,29 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Psyko-gatler",
-            "Grabba dragga"
+          "fixed": [
+            {
+              "name": "Psyko-gatler",
+              "type": "ranged"
+            },
+            {
+              "name": "Grabba dragga",
+              "type": "ranged"
+            },
+            {
+              "name": "Fixit's wrench",
+              "type": "melee"
+            },
+            {
+              "name": "Grabba dragga",
+              "type": "melee"
+            },
+            {
+              "name": "Speeding bulk and flaming exhaust",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Fixit's wrench",
-            "Grabba dragga",
-            "Speeding bulk and flaming exhaust"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -481,12 +629,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "’Eadbanger"
+          "fixed": [
+            {
+              "name": "’Eadbanger",
+              "type": "ranged"
+            },
+            {
+              "name": "Weirdboy staff",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Weirdboy staff"
-          ]
+          "slots": []
         }
       ]
     }
@@ -504,12 +657,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Eyez of Mork"
+          "fixed": [
+            {
+              "name": "Eyez of Mork",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon"
-          ]
+          "slots": []
         }
       ]
     }
@@ -527,14 +685,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Squigstoppa"
+          "fixed": [
+            {
+              "name": "Squigstoppa",
+              "type": "ranged"
+            },
+            {
+              "name": "Da Grabzappa",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Da Grabzappa"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }

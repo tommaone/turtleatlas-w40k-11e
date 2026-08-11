@@ -15,23 +15,39 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Splinter Pistol",
-              "Blast Pistol"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Huskblade",
-              "Agoniser",
-              "Master-crafted power weapon"
-            ]
-          ],
-          "max_ranged": 1,
-          "max_melee": 1
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Splinter Pistol",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Blast Pistol",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Huskblade",
+                  "type": "melee"
+                },
+                {
+                  "name": "Agoniser",
+                  "type": "melee"
+                },
+                {
+                  "name": "Master-crafted power weapon",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -50,13 +66,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "The Executioner's demiklaives - Dual Blades",
-            "The Executioner's demiklaives - Single Blade"
+          "fixed": [
+            {
+              "name": "The Executioner's demiklaives - Dual Blades",
+              "type": "melee"
+            },
+            {
+              "name": "The Executioner's demiklaives - Single Blade",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -75,14 +95,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Stinger Pistol"
+          "fixed": [
+            {
+              "name": "Stinger Pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Haemonculus tools and scissorhands",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Haemonculus tools and scissorhands"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -101,13 +124,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Lady's Blade",
-            "Razor fan"
+          "fixed": [
+            {
+              "name": "Lady's Blade",
+              "type": "melee"
+            },
+            {
+              "name": "Razor fan",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -126,12 +153,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Lelith's blades"
+          "fixed": [
+            {
+              "name": "Lelith's blades",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -150,12 +178,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Archite glaive and agoniser"
+          "fixed": [
+            {
+              "name": "Archite glaive and agoniser",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }

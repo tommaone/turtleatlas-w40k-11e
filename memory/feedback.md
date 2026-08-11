@@ -359,3 +359,46 @@ longer reproduce (possibly an older interpreter or dependency version).
 This produced a clean report diff: exactly 2 changed blocks (BT, DW), no
 `"faction"` header lines changed. Do NOT commit a full-seed regen — it drags
 noise from untouched factions into the migration diff.
+
+## Legacy build resolver ties are hash-order, slots schema is insertion-order
+The legacy character build path dedups choice lists with
+`all_options = list({opt for cl in ranged_choice_lists for opt in cl})` — a
+set comprehension. Iteration order follows CPython string hashes, NOT
+insertion order. In a DPP tie (`>` strict comparison, first max wins) the
+picked weapon depends on the hash permutation. The slots schema
+(`_resolve_slots_build`) iterates choices in config order — deterministic.
+`scripts/migrate_characters_to_slots.py` preserves insertion order.
+
+**Why:** the A/B parity harness
+(`scripts/snapshot_char_loadouts.py` before/after +
+`scripts/compare_char_loadouts.py`) surfaced 16 loadout flips after the
+slots migration (Autarch Fusion Pistol→Gun, Commissar plasma
+supercharge→standard, Desecrator Warpstrike claw→Reaper chainsword). Every
+flip was a zero-delta tie (delta=0.00000 on the target) — optimal DPP value
+and optimal set unchanged; only the tie-break member changed.
+
+**How:** treat legacy-vs-slots diff as regression ONLY if the chosen
+weapon's DPP differs by more than epsilon. Tie flips are the migration
+working correctly (deterministic > hash-order). Parity harness before
+conversion is the proof; re-run it after any future schema change.
+
+## Character schema LOCKED to slots (2026-08-11)
+All 30 factions' characters are now on the slots schema:
+`{name, fixed: [{name, type}], slots: [{name, choices: [{name, type, count?}]}], no_duplicates?}`.
+Legacy keys (`ranged`, `melee`, `ranged_choices`, `melee_choices`,
+`max_ranged`, `max_melee`) are FORBIDDEN — guard test
+`tests/test_characters_builds_format.py::test_every_build_has_slots_schema`
+enforces it. Convert with `scripts/migrate_characters_to_slots.py`
+(idempotent, `--dry-run`/`--faction` flags).
+
+**Why:** roadmap gate — every army must run the slot setup
+(weapon_options/builds, slots, alloc pools) before detachment modifiers
+can be trusted; a bonus over an imaginary loadout is a lie.
+
+**How:** 476 builds converted in one pass (rest already slotted or
+buildless). max=N maps to N slots over the DEDUPED union + `no_duplicates`
+(capped at min(N, len(union))); max=1 is one slot over union; no-max is one
+slot per choice list. `no_duplicates` is build-level and applies across ALL
+slots (ranged+melee) — check for cross-type name collisions when a build
+has pick-N melee AND ranged choices (Knight Despoiler is clean: no overlap
+between ranged union and melee union).

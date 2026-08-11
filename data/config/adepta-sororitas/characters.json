@@ -15,13 +15,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Blade of Vigil",
-            "Scribe's staff"
+          "fixed": [
+            {
+              "name": "Blade of Vigil",
+              "type": "melee"
+            },
+            {
+              "name": "Scribe's staff",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -40,14 +44,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [],
-          "melee_choices": [
-            [
-              "Blessed blade",
-              "Power weapon",
-              "Hallowed Chainsword"
-            ]
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Blessed blade",
+                  "type": "melee"
+                },
+                {
+                  "name": "Power weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Hallowed Chainsword",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -68,12 +83,17 @@
       "builds": [
         {
           "name": "Ministorum Hand Flamer and Power Weapon",
-          "ranged": [
-            "Ministorum hand flamer"
+          "fixed": [
+            {
+              "name": "Ministorum hand flamer",
+              "type": "ranged"
+            },
+            {
+              "name": "Power weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Power weapon"
-          ]
+          "slots": []
         }
       ]
     }
@@ -93,13 +113,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Sanctity",
-            "The Outcast's Blades"
+          "fixed": [
+            {
+              "name": "Sanctity",
+              "type": "melee"
+            },
+            {
+              "name": "The Outcast's Blades",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -118,10 +142,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Dialogus staff"
-          ]
+          "fixed": [
+            {
+              "name": "Dialogus staff",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -140,10 +167,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Mace of the Righteous"
-          ]
+          "fixed": [
+            {
+              "name": "Mace of the Righteous",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -163,10 +193,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Chirugeon's tools"
-          ]
+          "fixed": [
+            {
+              "name": "Chirugeon's tools",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -185,12 +218,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Boltgun"
+          "fixed": [
+            {
+              "name": "Boltgun",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon"
-          ]
+          "slots": []
         }
       ]
     }
@@ -209,15 +247,29 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Ministorum heavy flamer",
-            "Heavy Bolter",
-            "Melta missile array"
+          "fixed": [
+            {
+              "name": "Ministorum heavy flamer",
+              "type": "ranged"
+            },
+            {
+              "name": "Heavy Bolter",
+              "type": "ranged"
+            },
+            {
+              "name": "Melta missile array",
+              "type": "ranged"
+            },
+            {
+              "name": "Mace of Saint Praxedes",
+              "type": "melee"
+            },
+            {
+              "name": "Throne of Blame",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Mace of Saint Praxedes",
-            "Throne of Blame"
-          ]
+          "slots": []
         }
       ]
     }
@@ -236,14 +288,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Twin Ministorum Heavy Flamer"
+          "fixed": [
+            {
+              "name": "Twin Ministorum Heavy Flamer",
+              "type": "ranged"
+            },
+            {
+              "name": "Mace of Castigation",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Mace of Castigation"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -262,10 +317,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Zealot's vindictor"
+          "fixed": [
+            {
+              "name": "Zealot's vindictor",
+              "type": "ranged"
+            }
           ],
-          "melee": []
+          "slots": []
         }
       ]
     }
@@ -284,17 +342,29 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Fidelis",
-            "Paragon missile launcher - prioris",
-            "Paragon missile launcher - sanctorum"
+          "fixed": [
+            {
+              "name": "Fidelis",
+              "type": "ranged"
+            },
+            {
+              "name": "Paragon missile launcher - prioris",
+              "type": "ranged"
+            },
+            {
+              "name": "Paragon missile launcher - sanctorum",
+              "type": "ranged"
+            },
+            {
+              "name": "Lance of Illumination - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Lance of Illumination - sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Lance of Illumination - strike",
-            "Lance of Illumination - sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -313,15 +383,26 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Palatine blade"
+          "fixed": [
+            {
+              "name": "Palatine blade",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [
-            [
-              "Bolt Pistol",
-              "Plasma pistol - standard"
-            ]
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Bolt Pistol",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Plasma pistol - standard",
+                  "type": "ranged"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -342,14 +423,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt Pistols"
+          "fixed": [
+            {
+              "name": "Bolt Pistols",
+              "type": "ranged"
+            },
+            {
+              "name": "Relic Weapons",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Relic Weapons"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }

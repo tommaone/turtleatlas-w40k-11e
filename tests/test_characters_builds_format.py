@@ -1,8 +1,16 @@
-"""Tests that all character configs use builds format.
+"""Tests that all character configs use the slots schema.
 
 Every character in characters.json must have weapon_options with builds array.
-Fixed-loadout characters get a single build with all weapons as fixed.
-Characters with wargear choices get proper choice lists.
+Fixed-loadout characters get a single build with all weapons as fixed and an
+empty slots list. Characters with wargear choices get proper typed slots.
+
+Locked schema (converted from legacy ranged/melee/choices — see
+scripts/migrate_characters_to_slots.py):
+    {name, fixed: [{name, type}], slots: [{name, choices: [{name, type, count?}]}],
+     no_duplicates?: bool}
+
+Legacy keys (ranged, melee, ranged_choices, melee_choices, max_ranged,
+max_melee) are FORBIDDEN.
 
 Run: python3 -m pytest tests/test_characters_builds_format.py -v
 """
@@ -72,11 +80,14 @@ class TestAllCharactersHaveBuildsFormat:
         )
 
     @pytest.mark.parametrize("faction", FACTIONS)
-    def test_every_build_has_required_keys(self, faction):
+    def test_every_build_has_slots_schema(self, faction):
+        """Slots schema is MANDATORY: every build has fixed + slots; legacy
+        ranged/melee/choices keys are forbidden."""
         chars = _load_characters(faction)
-        required = {"ranged", "melee"}
-        optional = {"ranged_choices", "melee_choices", "max_ranged", "max_melee", "name",
-                     "fixed", "slots", "no_duplicates"}
+        required = {"fixed", "slots"}
+        optional = {"name", "no_duplicates"}
+        legacy = {"ranged", "melee", "ranged_choices", "melee_choices",
+                  "max_ranged", "max_melee"}
         for name, cfg in chars.items():
             if name.startswith("_"):
                 continue
@@ -84,10 +95,13 @@ class TestAllCharactersHaveBuildsFormat:
                 continue
             for i, build in enumerate(cfg["weapon_options"]["builds"]):
                 keys = set(build.keys())
-                has_old = required.issubset(keys)
-                has_new = {"fixed", "slots"}.issubset(keys)
-                assert has_old or has_new, (
-                    f"{faction}/{name} build[{i}]: missing {required} (old format) or {{'fixed','slots'}} (new format), got {keys}"
+                assert required.issubset(keys), (
+                    f"{faction}/{name} build[{i}]: missing required {required}, got {keys}"
+                )
+                legacy_present = legacy & keys
+                assert not legacy_present, (
+                    f"{faction}/{name} build[{i}]: legacy keys present {legacy_present} — "
+                    f"slots schema is mandatory (see scripts/migrate_characters_to_slots.py)"
                 )
                 extra = keys - required - optional
                 assert not extra, (
@@ -113,15 +127,8 @@ class TestAllCharactersHaveBuildsFormat:
             if not _has_builds(cfg):
                 continue
             for i, build in enumerate(cfg["weapon_options"]["builds"]):
-                # Count weapons from old format (ranged/melee/choices)
-                total = (
-                    len(build.get("ranged", []))
-                    + len(build.get("melee", []))
-                    + sum(len(cl) for cl in build.get("ranged_choices", []))
-                    + sum(len(cl) for cl in build.get("melee_choices", []))
-                )
-                # Count weapons from new format (fixed + slots)
-                total += len(build.get("fixed", []))
+                # Count weapons from slots schema (fixed + slots)
+                total = len(build.get("fixed", []))
                 for slot in build.get("slots", []):
                     for c in slot.get("choices", []):
                         # Skip Crusade/upgrade entries that aren't real weapons

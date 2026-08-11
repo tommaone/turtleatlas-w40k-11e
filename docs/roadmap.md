@@ -17,10 +17,10 @@ and recommend detachments/units based on mission and meta.
 | Tests | 3350 passing, 36 skipped |
 | HTML findings | 30 factions, mobile-friendly |
 | Detachment modifiers | 26 (Grey Knights 9 + Chaos Knights 8 + Daemons 9) |
-| Characters | 282 migrated builds format |
+| Characters | 511 on slots schema (all 30 factions, 2026-08-11) |
 | Vehicles | 126 migrated to builds format |
 | Reroll abilities auto-detected | 24 datasheets across 15 factions |
-| Complex-layer squads | Aeldari, GK, Space Marines, Dark Angels, Space Wolves, Blood Angels |
+| Complex-layer squads | Aeldari, GK, Space Marines, Dark Angels, Space Wolves, Blood Angels, Black Templars, Deathwatch, Chaos Daemons |
 | Last commit | `27681e9` — merge BA complex squad-composition migration |
 
 ---
@@ -155,19 +155,37 @@ and recommend detachments/units based on mission and meta.
 ## In Progress 🔄
 
 - **Squad-composition migration for ALL remaining factions** — until every
-  army runs the slot setup (weapon_options/builds, slots, alloc pools), the
-  engine's damage calculations are NOT determined by real gear — they use
-  generic configs. Detachment modifiers are BLOCKED on this: a detachment
-  bonus over an imaginary loadout is a lie. Migration is the gate.
+  army runs the slot setup (slots, alloc pools), the engine's damage
+  calculations are NOT determined by real gear — they use generic configs.
+  Detachment modifiers are BLOCKED on this: a detachment bonus over an
+  imaginary loadout is a lie. Migration is the gate. Character slots schema
+  is DONE (2026-08-11); remaining: squad composition + vehicles on the
+  remaining factions.
 
 ---
 
 ## Backlog 📋
 
+- [x] **Character slots schema LOCKED (2026-08-11)** — all 30 factions, 511
+  characters converted from legacy `ranged`/`melee`/`ranged_choices`/
+  `melee_choices`/`max_ranged`/`max_melee` to `fixed` + `slots` +
+  `no_duplicates` (scripts/migrate_characters_to_slots.py). Guard test
+  `test_every_build_has_slots_schema` forbids legacy keys. A/B parity
+  harness (snapshot before/after, compare) proved behavior-preserving:
+  16 loadout flips were all zero-delta ties (legacy set()-order vs
+  insertion-order tie-break).
+- [x] **Chaos Daemons composition + book scoping (2026-08-11)** — daemons
+  squad composition locked to the book roster (17 squads: 6 battleline +
+  11 Other; verified vs Wahapedia). CSM leak fixed: composition and
+  wargear constraints now filtered by the faction's own MFM book roster
+  (`_load_merged_roster`), 53→18 daemon units, 139→57 constraints, 0 CSM.
+  Legends kept where MFM marks them (`Furies`, `Plague Toads`, `Pox
+  Riders`, DA `Deathwing Command Squad`).
+
 ### Factions (priority order)
 - [ ] Squad composition migration to remaining factions — done: Aeldari (pilot),
   GK, Space Marines, Dark Angels, Space Wolves, Blood Angels, Black Templars,
-  Deathwatch (Wave 1 complete); next: the rest of the 30 factions
+  Deathwatch, Chaos Daemons (Wave 1 complete); next: the rest of the 30 factions
 - [ ] Detachment modifiers: Space Marines (Gladius, Ironstorm, Firestorm...),
   Dark Angels (Inner Circle Task Force...), all others — **BLOCKED** until
   all armies are on the slot setup (calculations must be determined by real
@@ -237,4 +255,4 @@ and recommend detachments/units based on mission and meta.
 
 ---
 
-*Last updated: 2026-08-09*
+*Last updated: 2026-08-11*

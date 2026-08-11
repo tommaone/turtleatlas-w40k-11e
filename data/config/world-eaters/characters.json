@@ -16,13 +16,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Samni’arius and Spinegrinder - strike",
-            "Samni’arius and Spinegrinder - sweep"
+          "fixed": [
+            {
+              "name": "Samni’arius and Spinegrinder - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Samni’arius and Spinegrinder - sweep",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -42,16 +46,30 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Hellfire breath"
+          "fixed": [
+            {
+              "name": "Hellfire breath",
+              "type": "ranged"
+            }
           ],
-          "melee": [],
-          "melee_choices": [
-            [
-              "Great axe of Khorne - strike",
-              "Bloodflail",
-              "Lash of Khorne"
-            ]
+          "slots": [
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Great axe of Khorne - strike",
+                  "type": "melee"
+                },
+                {
+                  "name": "Bloodflail",
+                  "type": "melee"
+                },
+                {
+                  "name": "Lash of Khorne",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -71,12 +89,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Infernal cannon"
+          "fixed": [
+            {
+              "name": "Infernal cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Hellforged weapons - strike",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Hellforged weapons - strike"
-          ]
+          "slots": []
         }
       ]
     }
@@ -96,12 +119,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Infernal cannon"
+          "fixed": [
+            {
+              "name": "Infernal cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Hellforged weapons - strike",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Hellforged weapons - strike"
-          ]
+          "slots": []
         }
       ]
     }
@@ -120,15 +148,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Plasma pistol - standard",
-            "Plasma pistol - supercharge"
+          "fixed": [
+            {
+              "name": "Plasma pistol - standard",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma pistol - supercharge",
+              "type": "ranged"
+            },
+            {
+              "name": "Gorechild",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Gorechild"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -148,15 +182,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt pistol"
+          "fixed": [
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Coward's Bane",
+              "type": "melee"
+            },
+            {
+              "name": "Bladed horn",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Coward's Bane",
-            "Bladed horn"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -175,13 +215,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Plasma pistol - standard"
+          "fixed": [
+            {
+              "name": "Plasma pistol - standard",
+              "type": "ranged"
+            },
+            {
+              "name": "Bladed horn",
+              "type": "melee"
+            },
+            {
+              "name": "Exalted chainblade",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Bladed horn",
-            "Exalted chainblade"
-          ]
+          "slots": []
         }
       ]
     }
@@ -199,12 +247,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt pistol"
+          "fixed": [
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Axe of dismemberment",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Axe of dismemberment"
-          ]
+          "slots": []
         }
       ]
     }
@@ -224,15 +277,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bellow of endless fury"
+          "fixed": [
+            {
+              "name": "Bellow of endless fury",
+              "type": "ranged"
+            },
+            {
+              "name": "Slaughter and Carnage - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Slaughter and Carnage - sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Slaughter and Carnage - strike",
-            "Slaughter and Carnage - sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -251,10 +310,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Lacerator and daemonic claw"
-          ]
+          "fixed": [
+            {
+              "name": "Lacerator and daemonic claw",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }

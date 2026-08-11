@@ -14,12 +14,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Transmatter inverter - full charge"
+          "fixed": [
+            {
+              "name": "Transmatter inverter - full charge",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon"
-          ]
+          "slots": []
         }
       ]
     }
@@ -38,14 +43,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Kromlôk's Revenge - graviton strikes",
-            "Kromlôk's Revenge - plasma sweeps",
-            "Warforge gauntlets"
+          "fixed": [
+            {
+              "name": "Kromlôk's Revenge - graviton strikes",
+              "type": "melee"
+            },
+            {
+              "name": "Kromlôk's Revenge - plasma sweeps",
+              "type": "melee"
+            },
+            {
+              "name": "Warforge gauntlets",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -63,17 +75,29 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Autoch-pattern bolt pistol",
-            "Las-beam cutter"
+          "fixed": [
+            {
+              "name": "Autoch-pattern bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Las-beam cutter",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            },
+            {
+              "name": "Plasma torch",
+              "type": "melee"
+            },
+            {
+              "name": "Manipulator arms",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon",
-            "Plasma torch",
-            "Manipulator arms"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -92,15 +116,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Autoch-pattern bolt pistol"
+          "fixed": [
+            {
+              "name": "Autoch-pattern bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Bane - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Bane - sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Bane - strike",
-            "Bane - sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -118,15 +148,26 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Autoch-pattern combi-bolter"
+          "fixed": [
+            {
+              "name": "Autoch-pattern combi-bolter",
+              "type": "ranged"
+            }
           ],
-          "melee": [],
-          "melee_choices": [
-            [
-              "Mass hammer",
-              "Darkstar axe"
-            ]
+          "slots": [
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Mass hammer",
+                  "type": "melee"
+                },
+                {
+                  "name": "Darkstar axe",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -147,17 +188,29 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Ancestral Wrath - witchfire",
-            "Ancestral Wrath - focused witchfire",
-            "Autoch-pattern bolter"
+          "fixed": [
+            {
+              "name": "Ancestral Wrath - witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Ancestral Wrath - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Autoch-pattern bolter",
+              "type": "ranged"
+            },
+            {
+              "name": "Ancestral ward stave",
+              "type": "melee"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Ancestral ward stave",
-            "Close combat weapon"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -176,19 +229,34 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Autoch-pattern combi-bolter",
-              "Volkanite disintegrator"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Mass gauntlet",
-              "Forgewrought plasma axe"
-            ]
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Autoch-pattern combi-bolter",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Volkanite disintegrator",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Mass gauntlet",
+                  "type": "melee"
+                },
+                {
+                  "name": "Forgewrought plasma axe",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -207,12 +275,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Autoch-pattern bolt pistol"
+          "fixed": [
+            {
+              "name": "Autoch-pattern bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon"
-          ]
+          "slots": []
         }
       ]
     }
@@ -231,14 +304,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Volkanite disintegrator"
+          "fixed": [
+            {
+              "name": "Volkanite disintegrator",
+              "type": "ranged"
+            },
+            {
+              "name": "Blade of the Ancestors",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Blade of the Ancestors"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }

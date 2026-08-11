@@ -81,9 +81,11 @@ two completed factions at creation; since then SM/DA/BA/SW + BT/DW done.
 2. **Characters that snuck into squads.json** — BT's Chaplain Grimaldus
    (n=1, points, info, builds) was filed under squads.json. Characters
    must live in characters.json with the `weapon_options.builds` schema
-   (ranged/melee arrays + choices lists), not the squads `builds` schema.
-   The two old plasma builds (Standard/Supercharge) collapse to one bare
-   `"Plasma Pistol"` — the choice-profile max-over fix resolves it.
+   (fixed + slots — legacy ranged/melee/choices keys are FORBIDDEN since
+   2026-08-11, see scripts/migrate_characters_to_slots.py), not the squads
+   `builds` schema. The two old plasma builds (Standard/Supercharge)
+   collapse to one bare `"Plasma Pistol"` — the choice-profile max-over fix
+   resolves it.
 3. **Kept units still need curation** — DW's Decimus Kill Team was kept
    (no BSData composition) but its config was broken: the plasma swap was
    backwards (ranged 'Plasma pistol - Standard' / melee 'Plasma pistol -
@@ -95,6 +97,17 @@ two completed factions at creation; since then SM/DA/BA/SW + BT/DW done.
    slot. The validator flags the ATV's weapons as EXTRA for Outrider
    Squad. Same class as the standalone ATV flag already accepted in
    SM/BA/SW — documented, not fixed.
+5. **Legacy resolver ties are hash-order; slots are insertion-order** —
+   the legacy build path dedups choices via a set comprehension
+   (`all_options = list({opt for cl in ...})`), so in a DPP tie the
+   winner follows CPython string-hash order. The slots schema iterates
+   choices in config order. The 2026-08-11 slots migration flipped 16
+   loadouts (Autarch Fusion Pistol→Gun, plasma supercharge→standard, etc.)
+   — every flip was a zero-delta tie; optimal DPP unchanged. Diff
+   legacy-vs-slots loadouts only counts as a regression if the chosen
+   weapon's DPP differs by more than epsilon. Proof: A/B harness
+   (`scripts/snapshot_char_loadouts.py` before/after +
+   `scripts/compare_char_loadouts.py`).
 
 ## Migration order
 

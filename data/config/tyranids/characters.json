@@ -15,10 +15,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Broodlord Claws and Talons"
-          ]
+          "fixed": [
+            {
+              "name": "Broodlord Claws and Talons",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -38,12 +41,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Lictor claws and talons"
+          "fixed": [
+            {
+              "name": "Lictor claws and talons",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -62,26 +66,56 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [],
-          "melee_choices": [
-            [
-              "Monstrous bonesword and lash whip",
-              "Monstrous scything talons"
-            ],
-            [
-              "Monstrous scything talons"
-            ]
-          ],
-          "ranged_choices": [
-            [
-              "Heavy venom cannon",
-              "Stranglethorn cannon"
-            ],
-            [
-              "Stranglethorn cannon",
-              "Heavy venom cannon"
-            ]
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Heavy venom cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Stranglethorn cannon",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Ranged weapon 2",
+              "choices": [
+                {
+                  "name": "Stranglethorn cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Heavy venom cannon",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Monstrous bonesword and lash whip",
+                  "type": "melee"
+                },
+                {
+                  "name": "Monstrous scything talons",
+                  "type": "melee"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 2",
+              "choices": [
+                {
+                  "name": "Monstrous scything talons",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -101,14 +135,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Venom bolt"
+          "fixed": [
+            {
+              "name": "Venom bolt",
+              "type": "ranged"
+            },
+            {
+              "name": "Ravener heavy claws and talons",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Ravener heavy claws and talons"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     },
@@ -128,12 +165,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Psychic scream"
+          "fixed": [
+            {
+              "name": "Psychic scream",
+              "type": "ranged"
+            },
+            {
+              "name": "Neurotyrant claws and lashes",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Neurotyrant claws and lashes"
-          ]
+          "slots": []
         }
       ]
     }
@@ -151,13 +193,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Old One Eye’s claws and talons - Strike",
-            "Old One Eye’s claws and talons - Sweep"
+          "fixed": [
+            {
+              "name": "Old One Eye’s claws and talons - Strike",
+              "type": "melee"
+            },
+            {
+              "name": "Old One Eye’s claws and talons - Sweep",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -176,13 +222,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Barbed ovipositor",
-            "Clawed limbs"
+          "fixed": [
+            {
+              "name": "Barbed ovipositor",
+              "type": "melee"
+            },
+            {
+              "name": "Clawed limbs",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -200,10 +250,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Stinger salvoes"
+          "fixed": [
+            {
+              "name": "Stinger salvoes",
+              "type": "ranged"
+            }
           ],
-          "melee": []
+          "slots": []
         }
       ]
     }
@@ -222,13 +275,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Gaping maw",
-            "Scything talons"
+          "fixed": [
+            {
+              "name": "Gaping maw",
+              "type": "melee"
+            },
+            {
+              "name": "Scything talons",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -247,12 +304,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Synaptic Pulse"
+          "fixed": [
+            {
+              "name": "Synaptic Pulse",
+              "type": "ranged"
+            },
+            {
+              "name": "Bone Sabres",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Bone Sabres"
-          ]
+          "slots": []
         }
       ]
     }
@@ -270,12 +332,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Rending claw",
-            "Lash whip",
-            "Scything talons"
-          ]
+          "fixed": [
+            {
+              "name": "Rending claw",
+              "type": "melee"
+            },
+            {
+              "name": "Lash whip",
+              "type": "melee"
+            },
+            {
+              "name": "Scything talons",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -295,23 +366,40 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Tyrant talons"
+          "fixed": [
+            {
+              "name": "Tyrant talons",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [
-            [
-              "Stranglethorn cannon",
-              "Heavy venom cannon"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Monstrous scything talons",
-              "Monstrous bonesword and lash whip"
-            ]
-          ],
-          "max_melee": 1
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Stranglethorn cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Heavy venom cannon",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Monstrous scything talons",
+                  "type": "melee"
+                },
+                {
+                  "name": "Monstrous bonesword and lash whip",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -330,12 +418,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Prime talons"
+          "fixed": [
+            {
+              "name": "Prime talons",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }

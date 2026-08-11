@@ -16,15 +16,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Talon of Horus"
+          "fixed": [
+            {
+              "name": "Talon of Horus",
+              "type": "ranged"
+            },
+            {
+              "name": "Talon of Horus",
+              "type": "melee"
+            },
+            {
+              "name": "Drach'nyen",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Talon of Horus",
-            "Drach'nyen"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -43,22 +49,43 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Plasma pistol - standard"
-            ]
-          ],
-          "melee_choices": [
-            [
-              "Daemon hammer",
-              "Accursed weapon",
-              "Astartes chainblade"
-            ],
-            [
-              "Power fist"
-            ]
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Plasma pistol - standard",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Daemon hammer",
+                  "type": "melee"
+                },
+                {
+                  "name": "Accursed weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Astartes chainblade",
+                  "type": "melee"
+                }
+              ]
+            },
+            {
+              "name": "Melee weapon 2",
+              "choices": [
+                {
+                  "name": "Power fist",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -79,13 +106,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Combi-bolter",
-              "Combi-weapon"
-            ]
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Combi-bolter",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Combi-weapon",
+                  "type": "ranged"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -106,13 +141,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [],
-          "ranged_choices": [
-            [
-              "Plasma pistol - standard",
-              "Bolt pistol"
-            ]
+          "fixed": [],
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Plasma pistol - standard",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Bolt pistol",
+                  "type": "ranged"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -131,12 +174,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Balefire pike"
+          "fixed": [
+            {
+              "name": "Balefire pike",
+              "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Close combat weapon"
-          ]
+          "slots": []
         }
       ]
     }
@@ -155,16 +203,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Cypher's bolt pistol",
-            "Cypher's plasma pistol"
+          "fixed": [
+            {
+              "name": "Cypher's bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Cypher's plasma pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Cypher's bolt pistol",
+              "type": "melee"
+            },
+            {
+              "name": "Cypher's plasma pistol",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Cypher's bolt pistol",
-            "Cypher's plasma pistol"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -183,13 +240,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Accursed crozius",
-            "Close combat weapon"
+          "fixed": [
+            {
+              "name": "Accursed crozius",
+              "type": "melee"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -207,18 +268,33 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Autopistol",
-            "Warp Curse - witchfire",
-            "Warp Curse - focused witchfire"
+          "fixed": [
+            {
+              "name": "Autopistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Warp Curse - witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Warp Curse - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Commune blade",
+              "type": "melee"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            },
+            {
+              "name": "Commune stave",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Commune blade",
-            "Close combat weapon",
-            "Commune stave"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -238,15 +314,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Hellspear"
+          "fixed": [
+            {
+              "name": "Hellspear",
+              "type": "ranged"
+            },
+            {
+              "name": "Hellspear",
+              "type": "melee"
+            },
+            {
+              "name": "Herald's Talon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Hellspear",
-            "Herald's Talon"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -265,12 +347,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Infernal cannon"
+          "fixed": [
+            {
+              "name": "Infernal cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Hellforged weapons - strike",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Hellforged weapons - strike"
-          ]
+          "slots": []
         }
       ]
     }
@@ -290,12 +377,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Infernal cannon"
+          "fixed": [
+            {
+              "name": "Infernal cannon",
+              "type": "ranged"
+            },
+            {
+              "name": "Hellforged weapons - strike",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Hellforged weapons - strike"
-          ]
+          "slots": []
         }
       ]
     }
@@ -315,14 +407,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Tyrant's Claw heavy flamer"
+          "fixed": [
+            {
+              "name": "Tyrant's Claw heavy flamer",
+              "type": "ranged"
+            },
+            {
+              "name": "Tyrant's Claw and exalted power weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Tyrant's Claw and exalted power weapon"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -342,14 +437,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Baleflamer",
-            "Combi-bolter"
+          "fixed": [
+            {
+              "name": "Baleflamer",
+              "type": "ranged"
+            },
+            {
+              "name": "Combi-bolter",
+              "type": "ranged"
+            },
+            {
+              "name": "Last Argument and power fist",
+              "type": "melee"
+            },
+            {
+              "name": "Servo-harness",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Last Argument and power fist",
-            "Servo-harness"
-          ]
+          "slots": []
         }
       ]
     }
@@ -368,18 +474,34 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt pistol"
+          "fixed": [
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Bladed limbs",
+              "type": "melee"
+            },
+            {
+              "name": "Impaler chainglaive",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Bladed limbs",
-            "Impaler chainglaive"
-          ],
-          "ranged_choices": [
-            [
-              "Helstalker autocannon",
-              "Baleflamer"
-            ]
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Helstalker autocannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Baleflamer",
+                  "type": "ranged"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -398,10 +520,13 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Axe of dismemberment"
-          ]
+          "fixed": [
+            {
+              "name": "Axe of dismemberment",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
     }
@@ -420,12 +545,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Rite of Possession - focused witchfire"
+          "fixed": [
+            {
+              "name": "Rite of Possession - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Staff of possession",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Staff of possession"
-          ]
+          "slots": []
         }
       ]
     }
@@ -444,16 +574,30 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Bolt pistol",
-            "Plasma pistol - standard"
+          "fixed": [
+            {
+              "name": "Bolt pistol",
+              "type": "ranged"
+            },
+            {
+              "name": "Plasma pistol - standard",
+              "type": "ranged"
+            }
           ],
-          "melee": [],
-          "melee_choices": [
-            [
-              "Power sword",
-              "Power maul"
-            ]
+          "slots": [
+            {
+              "name": "Melee weapon 1",
+              "choices": [
+                {
+                  "name": "Power sword",
+                  "type": "melee"
+                },
+                {
+                  "name": "Power maul",
+                  "type": "melee"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -472,12 +616,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Infernal Gaze - focused witchfire"
+          "fixed": [
+            {
+              "name": "Infernal Gaze - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Force weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Force weapon"
-          ]
+          "slots": []
         }
       ]
     }
@@ -497,17 +646,30 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Infernal Gaze - focused witchfire"
+          "fixed": [
+            {
+              "name": "Infernal Gaze - focused witchfire",
+              "type": "ranged"
+            },
+            {
+              "name": "Force weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Force weapon"
-          ],
-          "ranged_choices": [
-            [
-              "Combi-bolter",
-              "Combi-weapon"
-            ]
+          "slots": [
+            {
+              "name": "Ranged weapon 1",
+              "choices": [
+                {
+                  "name": "Combi-bolter",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Combi-weapon",
+                  "type": "ranged"
+                }
+              ]
+            }
           ]
         }
       ]
@@ -528,13 +690,17 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [],
-          "melee": [
-            "Power fist",
-            "Ogryn weapons"
+          "fixed": [
+            {
+              "name": "Power fist",
+              "type": "melee"
+            },
+            {
+              "name": "Ogryn weapons",
+              "type": "melee"
+            }
           ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -554,15 +720,21 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Vashtorr's claw"
+          "fixed": [
+            {
+              "name": "Vashtorr's claw",
+              "type": "ranged"
+            },
+            {
+              "name": "Vashtorr's hammer - strike",
+              "type": "melee"
+            },
+            {
+              "name": "Vashtorr's hammer - sweep",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Vashtorr's hammer - strike",
-            "Vashtorr's hammer - sweep"
-          ],
-          "ranged_choices": [],
-          "melee_choices": []
+          "slots": []
         }
       ]
     }
@@ -580,14 +752,25 @@
       "builds": [
         {
           "name": "default",
-          "ranged": [
-            "Plasma pistol - standard",
-            "Flamer tendril",
-            "Melta tendril"
+          "fixed": [
+            {
+              "name": "Plasma pistol - standard",
+              "type": "ranged"
+            },
+            {
+              "name": "Flamer tendril",
+              "type": "ranged"
+            },
+            {
+              "name": "Melta tendril",
+              "type": "ranged"
+            },
+            {
+              "name": "Forge weapon",
+              "type": "melee"
+            }
           ],
-          "melee": [
-            "Forge weapon"
-          ]
+          "slots": []
         }
       ]
     }
