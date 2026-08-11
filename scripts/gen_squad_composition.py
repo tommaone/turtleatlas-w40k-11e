@@ -136,8 +136,12 @@ def _variant_payload(m: dict) -> dict:
 def make_build(unit_cfg: dict, comp: dict) -> dict | None:
     """Allocate model counts from squad size n and emit one composition build.
 
-    Leader entries (min == 1, e.g. Exarch, Felarch, Lead Player) get fixed
-    count 1. The remaining budget is allocated across the model pool:
+    Leader entries (min == 1 AND max == 1, e.g. Exarch, Felarch, Lead
+    Player, Terminator Sergeant) get fixed count 1. A base model with
+    min == 1 but max > 1 (e.g. Deathwatch Terminator min=1 max=9) is NOT a
+    leader — it is the pool's base type ("at least 1"), and its min
+    contributes to the pool's mandatory requirement. The remaining budget is
+    allocated across the model pool:
 
     - pool of one type → flat model entry with count = budget
       (Dark Reapers: n - 1 exarch)
@@ -152,8 +156,8 @@ def make_build(unit_cfg: dict, comp: dict) -> dict | None:
     n = unit_cfg.get("n", 1)
     models = comp["builds"][0]["models"]
 
-    leaders = [m for m in models if m.get("min") == 1]
-    pool = [m for m in models if m.get("min") != 1]
+    leaders = [m for m in models if m.get("min") == 1 and m.get("max", 1) == 1]
+    pool = [m for m in models if not (m.get("min") == 1 and m.get("max", 1) == 1)]
     budget = n - len(leaders)
     if budget < 0:
         return None

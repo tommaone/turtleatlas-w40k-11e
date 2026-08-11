@@ -267,8 +267,13 @@ def write_report(out_dir="reports", filename="crossfaction_truth_report.json"):
     # sort_keys keeps the artifact stable across runs — the ranking funnel
     # iterates dicts in hash order, so without a fixed PYTHONHASHSEED the
     # numbers (and file bytes) churn on every regen. Regenerate with
-    # `PYTHONHASHSEED=1 python -m tests.test_truth_roles_report`
-    # for a byte-identical, reviewable diff.
+    # `PYTHONHASHSEED=1 python3 -m pytest tests/test_truth_roles_report.py`.
+    # NOTE: as of 2026-08-10 the committed report is NOT byte-reproducible
+    # under any seed (hash-order drift in untouched factions; environment
+    # drift — best match seed 2 has a 2-line residual). For a faction
+    # migration, commit = committed report + ONLY the migrated factions'
+    # blocks (seed-stable); see memory/feedback.md "Truth-report
+    # regeneration is NOT byte-reproducible".
     path.write_text(json.dumps(combined, indent=2, sort_keys=True))
     total = sum(len(r["failures"]) for r in combined)
     nwarn = sum(len(r["warnings"]) for r in combined)

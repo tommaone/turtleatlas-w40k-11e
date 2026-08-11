@@ -14,7 +14,7 @@ and recommend detachments/units based on mission and meta.
 |--------|-------|
 | Factions ranked | 30/30 |
 | Units ranked | ~1500 |
-| Tests | 3336 passing, 36 skipped |
+| Tests | 3350 passing, 36 skipped |
 | HTML findings | 30 factions, mobile-friendly |
 | Detachment modifiers | 26 (Grey Knights 9 + Chaos Knights 8 + Daemons 9) |
 | Characters | 282 migrated builds format |
@@ -109,6 +109,26 @@ and recommend detachments/units based on mission and meta.
   - Data gap: Long Fangs / Wolf Guard absent from SW merged BSData (not
     even [Legends]) — documented, not asserted
   - 7 structure-only pins added (full suite 3323 passing)
+- **Black Templars** — 30 squads migrated to the complex layer (Wave 1
+  complete, 2026-08-10; 1 kept: Invader ATV, accepted false-positive class)
+  - Crusader Squad alloc pool (Initiate/Neophyte mix, pool_min + group_max),
+    Sword Brethren Squad per-model slots
+  - Chaplain Grimaldus moved squads.json → characters.json (weapon_options.
+    builds schema; two old plasma builds collapse to one bare 'Plasma Pistol')
+  - 5 structure-only pins added (squads + characters)
+- **Deathwatch** — 30 squads migrated to the complex layer (Wave 1
+  complete, 2026-08-10; 29 replaced + Decimus Kill Team curated, 1 kept:
+  Invader ATV, accepted false-positive class)
+  - Alloc pools: Deathwatch Veterans (thunder hammer / frag cannon),
+    Fortis/Indomitor/Spectrus/Talonstrike Kill Teams (group_max respected)
+  - Decimus Kill Team curated (was kept with a broken config: plasma swap
+    backwards, ranged weapon in the melee slot → datasheet Plasma pistol +
+    Power weapon)
+  - Generator leader fix: min==1 AND max==1 defines a leader; a base model
+    with min=1/max>1 (Deathwatch Terminator) stays in the pool. Bug caused
+    the squad to resolve 2/5 models. Verified behavior-neutral for shipped
+    factions.
+  - 7 structure-only pins added
 - **Aeldari** — 71 datasheets ranked; squad composition engine driven from this faction
   - Complex units modeled: Warlocks (singing spear melee), Corsairs (Voidscarred
     weapon pool), Troupe (5× fusion), Storm Guardians (n=11, platform), Kabalite
@@ -117,10 +137,11 @@ and recommend detachments/units based on mission and meta.
   - Findings regenerated after every config change
 
 ### Tests
-- 3336 passing, 36 skipped
+- 3350 passing, 36 skipped
 - Complex-unit pins (`test_aeldari_complex_units.py`, `test_space_marines_complex_units.py`,
   `test_dark_angels_complex_units.py`, `test_space_wolves_complex_units.py`,
-  `test_blood_angels_complex_units.py`) — structure asserted, no duplicated
+  `test_blood_angels_complex_units.py`, `test_black_templars_complex_units.py`,
+  `test_deathwatch_complex_units.py`) — structure asserted, no duplicated
   damage truth (engine is the single source of computation)
 - Parser dual-profile assertions, generator payload tests, findings validation
 
@@ -145,9 +166,8 @@ and recommend detachments/units based on mission and meta.
 
 ### Factions (priority order)
 - [ ] Squad composition migration to remaining factions — done: Aeldari (pilot),
-  GK, Space Marines, Dark Angels, Space Wolves, Blood Angels; next:
-  **Black Templars / Deathwatch** (Wave 1, remaining big-marine codexes),
-  then the rest of the 30 factions
+  GK, Space Marines, Dark Angels, Space Wolves, Blood Angels, Black Templars,
+  Deathwatch (Wave 1 complete); next: the rest of the 30 factions
 - [ ] Detachment modifiers: Space Marines (Gladius, Ironstorm, Firestorm...),
   Dark Angels (Inner Circle Task Force...), all others — **BLOCKED** until
   all armies are on the slot setup (calculations must be determined by real

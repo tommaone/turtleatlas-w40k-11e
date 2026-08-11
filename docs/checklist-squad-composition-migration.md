@@ -67,13 +67,42 @@ the generator overwrites curated builds with a single `Default`+alloc.
 
 Scores sum parallel-variant (×3), mixed-model-type (×2), slot, pool_min
 and multi-weapon-list units per faction. Aeldari = 179, GK = 163 — the
-two completed factions.
+two completed factions at creation; since then SM/DA/BA/SW + BT/DW done.
+
+## Gotchas learned (BT/DW wave, 2026-08-10)
+
+1. **min==1 is NOT always a leader** — `make_build` treated any model with
+   `min == 1` as a leader (fixed count 1). The DW Deathwatch Terminator
+   base model (`min: 1, max: 9` — "at least 1", not "exactly 1") consumed
+   the whole squad budget as a "leader" and the squad resolved 2/5 models.
+   Fix: a leader is `min == 1 AND max == 1`; a min==1 base model stays in
+   the pool and its min counts toward the mandatory requirement. Verified
+   behavior-neutral for all shipped factions (SM/DA/BA/SW/aeldari/GK).
+2. **Characters that snuck into squads.json** — BT's Chaplain Grimaldus
+   (n=1, points, info, builds) was filed under squads.json. Characters
+   must live in characters.json with the `weapon_options.builds` schema
+   (ranged/melee arrays + choices lists), not the squads `builds` schema.
+   The two old plasma builds (Standard/Supercharge) collapse to one bare
+   `"Plasma Pistol"` — the choice-profile max-over fix resolves it.
+3. **Kept units still need curation** — DW's Decimus Kill Team was kept
+   (no BSData composition) but its config was broken: the plasma swap was
+   backwards (ranged 'Plasma pistol - Standard' / melee 'Plasma pistol -
+   Supercharge' — a ranged weapon in the melee slot). Datasheet default is
+   Plasma pistol + Power weapon. "Kept" is not "done" — review every kept
+   unit's existing builds.
+4. **Invader ATV false-positive class** — the Outrider Squad composition
+   embeds the ATV (mount) as an alloc variant with a Bolt pistol wargear
+   slot. The validator flags the ATV's weapons as EXTRA for Outrider
+   Squad. Same class as the standalone ATV flag already accepted in
+   SM/BA/SW — documented, not fixed.
 
 ## Migration order
 
 - **Wave 1 — big marine codexes:** Space Marines → Dark Angels → Blood
   Angels → Space Wolves (BA/SW parallelisable). Then Black Templars,
-  Deathwatch.
+  Deathwatch. ✅ BT + DW done 2026-08-10 (30 BT squads replaced, 29 DW
+  replaced + Decimus Kill Team curated; Grimaldus moved to characters;
+  generator leader fix for min=1/max>1 base models).
 - **Wave 2 — major non-marine:** Astra Militarum → Adeptus Mechanicus.
 - **Wave 3 — chaos:** CSM + god-marines (after the shared-units question
   is settled; sync machinery exists but may be removed — see blockers).

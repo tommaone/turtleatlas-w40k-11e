@@ -286,3 +286,76 @@ must be re-verified against slot configs once those factions migrate.
 **How:** the roadmap gate is: squad-composition migration for all 30 factions
 FIRST (Wave 1: Black Templars / Deathwatch), detachment modifiers second.
 Never start detachment work on a faction that isn't on the slot setup.
+
+## min==1 is NOT always a leader (Deathwatch Terminator bug)
+`make_build` treated ANY model with `min == 1` as a leader (fixed count 1).
+The DW Deathwatch Terminator base model is `min: 1, max: 9` — "at least 1",
+not "exactly 1". It consumed the whole squad budget as a "leader" and the
+squad resolved 2/5 models (2 leaders, pool empty, budget lost).
+
+**Why:** BSData uses min==1 for two different things: fixed single-model
+leaders (Exarch, Felarch, Lead Player, Terminator Sergeant — min==1 AND
+max==1) and base-pool types that must be present ("at least 1" — min==1,
+max>1, e.g. Deathwatch Terminator). Treating the latter as a leader silently
+collapses the squad to the leader count.
+**How:** leader = `min == 1 and max == 1`; a min==1 base model stays in the
+pool and its min contributes to the mandatory requirement (pool_mandatory).
+Verified behavior-neutral for shipped factions (SM/DA/BA/SW/aeldari/GK: 0
+build diffs after the change; the only diffs were pre-existing BSData
+`group_max` source drift on Corsairs, unrelated). Regression pins:
+`tests/test_deathwatch_complex_units.py::test_deathwatch_terminator_squad_all_default`
+(5 storm bolters + 5 power fists, not 2).
+
+## "Kept" units still need curation — check their builds
+The generator's `kept (no composition)` bucket means "no BSData composition
+match", NOT "config is correct". DW's Decimus Kill Team was kept with a
+broken config: `ranged: 'Plasma pistol - Standard'` / `melee: 'Plasma pistol
+- Supercharge'` — a ranged weapon (Hazardous) in the melee slot, the plasma
+swap backwards. Datasheet default is Plasma pistol + Power weapon.
+
+**Why:** kept units ride whatever hand-curated builds they already had; a
+misplaced weapon or a stale loadout survives the migration untouched.
+**How:** review EVERY kept unit's existing builds during curation (step 3 of
+the checklist), not just the skipped ones. Decimus fixed to `ranged:
+"Plasma pistol"` + `melee: "Power weapon"` — the bare plasma resolves via the
+choice-profile max-over fix. Pin: `test_deathwatch_complex_units.py::test_decimus_kill_team_curated`.
+
+## Characters that snuck into squads.json
+BT's Chaplain Grimaldus (n=1, pts, info, builds) was filed under
+`data/config/black-templars/squads.json` — he is a character, not a squad.
+The two files use different build schemas: squads use flat `builds` with
+model entries; characters use `weapon_options.builds` with `ranged`/`melee`
+arrays + `ranged_choices`/`melee_choices` lists.
+
+**Why:** a character in squads.json resolves via `_best_squad_variant` (the
+wrong path) and never gets the character treatment; the generator skips it
+(the "skipped (parallel variants)" bucket) so it stays stuck in the wrong
+schema.
+**How:** move characters to characters.json, convert to the
+`weapon_options.builds` schema. Two old plasma builds (Standard/Supercharge)
+collapse to one bare `"Plasma Pistol"` — the max-over choice fix resolves it
+deterministically. Pin: `test_black_templars_complex_units.py::TestBlackTemplarsCharacters`.
+
+## Truth-report regeneration is NOT byte-reproducible from committed state
+The committed `reports/crossfaction_truth_report.json` is not reproducible by
+regenerating from HEAD under any seed: with configs stashed to pristine HEAD,
+`PYTHONHASHSEED=1 pytest tests/test_truth_roles_report.py` still produced a
+26-line drift in untouched factions (AM Commissar armor_share 0.4→0.3333, CSM
+Aggressor armor_share 0.6338→0.5357, etc.). Tried seeds 0,1,2,3,7,42,123,999,
+20260722; best match was seed 2 with a 2-line residual. The report's own
+comment says "byte-identical" but that claim is stale in this environment.
+
+**Why:** `write_report()` runs the ranking funnel over every faction; float
+results carry hash-order dependence deeper than the sort_keys guard, and the
+committed artifact was generated in a session whose seed/state we can no
+longer reproduce (possibly an older interpreter or dependency version).
+
+**How (proven isolation for a faction migration):**
+1. Regenerate with configs applied → regenerate with configs stashed (same seed).
+2. Diff the two: the ONLY blocks that differ must be the migrated faction(s).
+   BT/DW migrated blocks were byte-identical across seeds 1, 2, 42 — seed-stable.
+3. Commit = committed report with ONLY the migrated factions' blocks replaced
+   by the regenerated ones. All other factions stay byte-identical to committed.
+This produced a clean report diff: exactly 2 changed blocks (BT, DW), no
+`"faction"` header lines changed. Do NOT commit a full-seed regen — it drags
+noise from untouched factions into the migration diff.
