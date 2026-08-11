@@ -402,3 +402,30 @@ slot per choice list. `no_duplicates` is build-level and applies across ALL
 slots (ranged+melee) — check for cross-type name collisions when a build
 has pick-N melee AND ranged choices (Knight Despoiler is clean: no overlap
 between ranged union and melee union).
+
+## Knight arm bundles + mount slots (2026-08-11)
+BSData models the Knight Despoiler's arm bundles as single upgrade entries:
+"Gatling cannon and flamer" and "Battle cannon and heavy stubber". The weapon
+loader resolves those bundle names to ONLY the primary profile (gatling
+cannon; battle cannon) — the bundled secondary (Heavy darkflamer; Diabolus
+heavy stubber) is SILENTLY LOST if you reference the bundle name in a config
+slot. Split bundles into component weapons in `fixed` for full DPP.
+
+**Why:** the curated 6-build Despoiler config used split bundles (correct for
+DPP) but conflated two INDEPENDENT mounts into one "Ranged weapon 1" slot:
+[Havoc missile pod, Ruinspear rocket pod, Hellstorm autocannons, Diabolus
+heavy stubber, Daemonbreath meltagun] — forcing pick-one-of-five when the
+datasheet allows a carapace weapon AND a shoulder weapon simultaneously. It
+also omitted the Daemonbreath thermal cannon arm entirely and let a melee
+slot pick "Reaper chainsword" on arm2 (BSData: arm2's melee is Warpstrike
+claw only). Verified against BSData containers ("Carapace weapon", "Shoulder
+weapon", "Replace reaper chainsword", "Replace warpstrike claw").
+
+**How:** model the mounts as separate slots (Carapace weapon: pod/rocket/
+autocannons; Shoulder weapon: stubber/meltagun) on every build, split arm
+bundles into components, enumerate the full arm space (13 unique legal arm
+sets incl. thermal arms). Titanic feet is innate (min=1/max=1 on the BSData
+base) — `fixed`, never an arm slot. The parser's own
+`extract_wargear_constraints` already models the 4-slot structure correctly;
+hand-curated configs must not regress it. Verify a config against
+`extract_wargear_constraints` output before curating by hand.
