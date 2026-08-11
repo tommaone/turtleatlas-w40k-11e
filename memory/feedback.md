@@ -429,3 +429,17 @@ base) — `fixed`, never an arm slot. The parser's own
 `extract_wargear_constraints` already models the 4-slot structure correctly;
 hand-curated configs must not regress it. Verify a config against
 `extract_wargear_constraints` output before curating by hand.
+
+## Dual-profile weapons in `fixed`: reference the GROUP entry, never both profiles (2026-08-11)
+A choice weapon (standard/supercharge, low/high intensity) is ONE catalog entry whose variants are maxed by the engine. A config build must reference the GROUP name (e.g. `Ectoplasma decimator`) in `fixed`. Referencing BOTH `- standard` AND `- supercharge` as separate `fixed` entries double-counts in RANGED: `_ld_dmg` sums every ranged entry, so the shooter "gets" both profiles per attack. Melee is immune (`_best_melee` takes max for a single model), which is why fixing strike+sweep in melee is harmless — but the ranged path sums.
+
+**Why:** the Knight Tyrant config fixed `Ectoplasma decimator - standard` + `- supercharge` as two ranged weapons → 2x damage. Fixed by replacing both with the group entry `Ectoplasma decimator` (verified: MEQ dmg 2 → 1). Same trap found in `Chaos Cerastus Knight Atrapos` (fixes lascutter `- low/high intensity` + singularity cannon `- contained/singularity`) — flagged, separate ticket.
+
+**How:** if a validator flags `MISSING FIXED RANGED: '<group name>'` while the config uses `- profile` names, the config has the double-count bug — swap the two profile entries for the one group entry. The validator's MISSING is the early-warning, not noise.
+
+## BSData min2/max2 groups = N independent slots, duplicates legal (2026-08-11)
+A `min=2, max=2` selection group (Porphyrion "Shoulder weapons", Moirax "Weapons") is NOT one choose-one slot: it is N picks from the group, duplicates allowed. The parser's `extract_wargear_constraints` flattens it into one slot with 2 choices — insufficient for config. Model as N slots over the same choice list, WITHOUT `no_duplicates` (AA and LL are legal).
+
+**Why:** Porphyrion 2x autocannon is legal; a single shoulder slot would only ever pick one gun. Moirax arms: 2 independent arms x 5 options, duplicates legal → either 2 slots (bundle choice loses the claw to primary-profile resolution) or 15 enumerated builds with split components (Despoiler precedent, chosen).
+
+**How:** read the raw BSData group constraints (`selectionEntryGroups` `constraints`), not just the parser output, when the group has min/max > 1.
