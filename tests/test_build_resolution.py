@@ -102,8 +102,9 @@ class TestVehicleBuildResolution:
         return RankingEngine("chaos-knights")
 
     def test_knight_despoiler_picks_best_build(self, engine):
-        """Knight Despoiler has 6 builds (in characters with builds format).
-        Engine should pick the highest-DPP one."""
+        """Knight Despoiler has 13 builds (full BSData arm space, slots schema).
+        Engine should pick the highest-DPP one. Structure locked separately in
+        tests/test_chaos_knights_despoiler_builds.py."""
         target = _make_target()
         result = engine.resolve_loadout("Knight Despoiler", target)
         assert result is not None
@@ -113,7 +114,7 @@ class TestVehicleBuildResolution:
         assert pts > 0
 
     def test_knight_despoiler_resolves_cleanly(self, engine):
-        """Knight Despoiler has 6 builds modeling 4 independent wargear slots.
+        """Knight Despoiler builds model carapace + shoulder + 2 arm mounts.
         CAN duplicate big guns (rules-legal). Engine should resolve without error."""
         target = _make_target()
         result = engine.resolve_loadout("Knight Despoiler", target)
