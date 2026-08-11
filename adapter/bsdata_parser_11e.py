@@ -1485,6 +1485,64 @@ class BSDataParser11e:
     def _norm_name(s: str) -> str:
         return re.sub(r'[^a-z0-9]', '', (s or "").lower())
 
+    def _find_merged_data(self, faction_name: str) -> dict | None:
+        """Locate the merged data file for a faction (`data/merged/<faction>.json`).
+
+        Returns None when no merged file exists for the faction (callers then
+        fall back to unfiltered BSData-only behaviour).
+        """
+        mdir = Path(__file__).resolve().parent.parent / "data" / "merged"
+        if not mdir.is_dir():
+            return None
+        target = self._norm_name(faction_name)
+        # First pass: exact faction/slug match.
+        for path in sorted(mdir.glob("*.json")):
+            d = self._load_json(path)
+            if not d or "units" not in d:
+                continue
+            if (self._norm_name(d.get("faction", "")) == target
+                    or self._norm_name(d.get("slug", "")) == target):
+                return d
+        # Second pass: substring fallback (handles "Imperium - Grey Knights"
+        # -> grey-knights.json where display name is "Grey Knights").
+        for path in sorted(mdir.glob("*.json")):
+            d = self._load_json(path)
+            if not d or "units" not in d:
+                continue
+            fac = self._norm_name(d.get("faction", ""))
+            slug = self._norm_name(d.get("slug", ""))
+            if (target and (target in fac or target in slug
+                            or fac in target or slug in target)):
+                return d
+        return None
+
+    def _load_merged_roster(self, faction_name: str) -> set[str] | None:
+        """Return the faction's book roster (normalized unit names) from MFM.
+
+        The MFM faction yaml IS the book (same source merge.py scopes against).
+        It includes legends units (e.g. DA 'Deathwing Command Squad', daemons
+        'Furies'), which must STAY in the composition — legends entries are
+        never fuzzy-matched to config names, so they are inert book content.
+        Linked-catalogue allies (e.g. CSM units reachable from Chaos Daemons)
+        are NOT in the faction's MFM file, so they get dropped — they belong
+        in their own book.
+
+        Returns None when no MFM file exists (no filter applied).
+        """
+        merged_data = self._find_merged_data(faction_name)
+        if merged_data is None:
+            return None
+        slug = merged_data.get("slug") or merged_data.get("faction")
+        if not slug:
+            return None
+        mfm_path = Path(__file__).resolve().parent.parent / "mfm" / "data" / f"{slug}.yaml"
+        if not mfm_path.exists():
+            return None
+        import yaml
+        with open(mfm_path) as f:
+            mfm = yaml.safe_load(f)
+        return {self._norm_name(u.get("name", "")) for u in mfm.get("units", [])}
+
     def _load_merged_weapon_map(self, faction_name: str) -> dict[str, dict]:
         """Build normalized-unit-name -> {name, fixed_ranged, fixed_melee}.
 
@@ -1493,33 +1551,7 @@ class BSDataParser11e:
         typeName "Ranged Weapons" / "Melee Weapons"). The merged list is treated
         as the ground-truth FIXED weapon set for augmentation.
         """
-        mdir = Path(__file__).resolve().parent.parent / "data" / "merged"
-        if not mdir.is_dir():
-            return {}
-        target = self._norm_name(faction_name)
-        merged_data: dict | None = None
-        # First pass: exact faction/slug match.
-        for path in sorted(mdir.glob("*.json")):
-            d = self._load_json(path)
-            if not d or "units" not in d:
-                continue
-            if (self._norm_name(d.get("faction", "")) == target
-                    or self._norm_name(d.get("slug", "")) == target):
-                merged_data = d
-                break
-        # Second pass: substring fallback (handles "Imperium - Grey Knights"
-        # -> grey-knights.json where display name is "Grey Knights").
-        if merged_data is None:
-            for path in sorted(mdir.glob("*.json")):
-                d = self._load_json(path)
-                if not d or "units" not in d:
-                    continue
-                fac = self._norm_name(d.get("faction", ""))
-                slug = self._norm_name(d.get("slug", ""))
-                if (target and (target in fac or target in slug
-                                or fac in target or slug in target)):
-                    merged_data = d
-                    break
+        merged_data = self._find_merged_data(faction_name)
         if merged_data is None:
             return {}
         out: dict[str, dict] = {}
@@ -1853,7 +1885,9 @@ class BSDataParser11e:
         # Howling Banshees) are parsed from their sibling-SEG structure into
         # per-model builds with per-model slots. These are complete and MUST
         # not be clobbered by the merged-data augment below.
-        composition = self._extract_squad_composition(roots, entry_index)
+        book_roster = self._load_merged_roster(faction_name)
+        composition = self._extract_squad_composition(
+            roots, entry_index, book_roster=book_roster)
         for cname, cdata in composition.items():
             if cname not in result:
                 result[cname] = cdata
@@ -1862,6 +1896,13 @@ class BSDataParser11e:
         # BSData wargear groups miss many fixed weapons (model profiles / shared
         # entryLinks); merged data carries the fully-resolved weapon list.
         self._augment_from_merged(result, self._load_merged_weapon_map(faction_name))
+
+        # Book-first: drop linked-catalogue allies (CSM reachable from Chaos
+        # Daemons). Same rule as the composition filter above — the faction's
+        # roster is its MFM book; everything else belongs to its own book.
+        if book_roster is not None:
+            result = {k: v for k, v in result.items()
+                      if self._in_book(k, book_roster)}
 
         return result
 
@@ -1877,12 +1918,43 @@ class BSDataParser11e:
             return {}
         roots = self._load_catalogue_roots(cat, include_linked=True)
         entry_index = self._build_entry_index(roots)
-        return self._extract_squad_composition(roots, entry_index)
+        return self._extract_squad_composition(
+            roots, entry_index, book_roster=self._load_merged_roster(faction_name))
+
+    def _book_key(self, name: str) -> str:
+        """Normalize a composition/wargear key for book-roster membership.
+
+        BSData tags legends units with a '[Legends]' suffix; MFM book names
+        are clean ('Furies' == 'Furies [Legends]'), so strip the suffix.
+        """
+        return self._norm_name(re.sub(r'\s*\[?legends\]?$', '',
+                                      name, flags=re.IGNORECASE))
+
+    def _in_book(self, key: str, book_roster: set[str]) -> bool:
+        """True if a BSData key names a unit in the faction's MFM book.
+
+        Tolerates the plural twin (BSData 'Vypers' vs MFM 'Vyper') the same
+        way merge.py's _is_singular_duplicate does.
+        """
+        bk = self._book_key(key)
+        if bk in book_roster:
+            return True
+        if bk.endswith("s") and bk[:-1] in book_roster:
+            return True
+        if bk + "s" in book_roster:
+            return True
+        return False
 
     def _extract_squad_composition(self, roots: list[dict],
-                                   entry_index: dict[str, dict]) -> dict[str, dict]:
+                                   entry_index: dict[str, dict],
+                                   book_roster: set[str] | None = None) -> dict[str, dict]:
         """Extract squad model-composition builds for units with the sibling-SEG
         pattern: top-level selectionEntryGroups that nest type=model SEs.
+
+        `book_roster`: normalized set of the faction's book unit names (from
+        merged data). When provided, units NOT in the book are dropped — this
+        keeps linked-catalogue allies (CSM reachable from Chaos Daemons) out
+        of the faction's composition. None = no filtering.
 
         Returns: {
             "Dark Reapers": {"builds": [{
@@ -2001,6 +2073,9 @@ class BSDataParser11e:
                 if not models:
                     continue
                 result[name] = {"builds": [{"name": "Default", "models": models}]}
+        if book_roster is not None:
+            result = {k: v for k, v in result.items()
+                      if self._in_book(k, book_roster)}
         return result
 
     def _parse_composition_model(self, se: dict, entry_index: dict[str, dict],
