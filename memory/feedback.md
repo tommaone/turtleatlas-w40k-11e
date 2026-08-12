@@ -429,3 +429,23 @@ base) — `fixed`, never an arm slot. The parser's own
 `extract_wargear_constraints` already models the 4-slot structure correctly;
 hand-curated configs must not regress it. Verify a config against
 `extract_wargear_constraints` output before curating by hand.
+
+## Dual-profile weapons in `fixed`: category must follow the entry's type (2026-08-11)
+The slots resolver `_resolve_slots_build` originally called `W(name)` WITHOUT
+category, so a dual-profile weapon in `fixed` resolved to its FIRST catalog
+profile — the type field only SORTED the result into ranged/melee lists. A
+Singing Spear in the melee list came back as the thrown profile (A1 S9),
+and the Atrapos lascutter's melee list carried a RANGED high-intensity
+variant (A3.5 S14) as a scoring option. Fix: pass `category=f["type"]`
+(resp. `choice.get("type")`) to `W()` for every fixed entry and slot choice.
+
+**Why:** the Farseer's melee Singing Spear resolved A1 S9 (ranged) instead
+of A2 S3 (melee); Atrapos melee could max against a ranged variant.
+Cross-faction: every faction with a dual-profile weapon in a slots config
+was affected (Singing Spear, Chainsabres, lascutter, Hellspear, ...).
+
+**How:** in `_resolve_slots_build`, `self.W(f["name"], unit_name=name,
+category=f.get("type"))` and `self.W(choice["name"], unit_name=name,
+category=choice.get("type"))`. The loader's category filter matches
+`type_name` (Ranged Weapons/Melee Weapons), so single-category weapons are
+unaffected — only dual-profile entries change behaviour.
