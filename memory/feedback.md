@@ -474,3 +474,29 @@ value, for a single-maintainer repo.
 (commit per feature, message tells the why), run the suite, then push `main`.
 Close and delete any PRs/branches that were raised before this rule was set.
 
+
+## Imperial Knights: slot-migration specifics (2026-08-13)
+IK characters had the same dual-profile double-count class as CK, PLUS
+missing slot structure. Fixed in one pass:
+
+- **Group names**: Canis Rex (Las-impulsor), Cerastus Atrapos (lascutter +
+  Graviton singularity cannon), Castellan (Plasma decimator), Defender
+  (Plasma executor), Preceptor (Las-impulsor) — profile pairs
+  (`- high/low intensity`, `- standard/supercharge`) in ranged summed.
+- **Questoris knights** (Crusader/Errant/Gallant/Paladin/Warden/Preceptor)
+  were missing BSData slots: Carapace-mounted Weapon + Meltagun (+ Reaper
+  Chainsword where BSData offers it; Preceptor had NO melee at all).
+- **'Twin Icarus autocannon' does NOT resolve** in the merged catalog
+  (loader gap — profile lives in BSData Library but never merged). Use
+  `Icarus autocannons` (same A3 S7 profile) in the carapace slot. Validator
+  flags it EXTRA — accepted noise, same class as bundle-splits.
+- **Castellan/Valiant carapace**: BSData offers shieldbreaker/siegebreaker
+  bundle names that resolve to NOTHING in the merged catalog. No slot
+  modeled — documented gap, not a config bug.
+- **Magaera/Styrix**: mirror CK 2-build pattern (chainsword/hekaton),
+  Hekaton bundle split into components. Validator EXTRA noise accepted.
+
+**How:** run `validate_configs_vs_bsdata.py --faction imperial-knights` —
+12 issues remain, ALL MEDIUM accepted-noise class (bundle-splits +
+Icarus name gap), same as CK's 11. Deterministic check: 0 CRITICAL/MAJOR.
+Test lock: `tests/test_imperial_knights_slots_migration.py` (67 tests).
