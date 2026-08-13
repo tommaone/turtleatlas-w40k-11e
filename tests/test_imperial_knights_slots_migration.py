@@ -10,7 +10,9 @@ slot-schema precedent:
   '- contained' — DOUBLE-COUNTING the choice profiles in ranged.
 - Canis Rex: 'Las-impulsor' group (was '- high/low intensity' ranged pair,
   summed). Freedom's Hand group (strike/sweep are maxed by the engine, but
-  the group name is the clean reference).
+  the group name is the clean reference). Sir Hekhtur (pistol + CCW) is a
+  SEPARATE model in the unit — only fights after the Knight dies — so his
+  weapons are NOT in the Knight's loadout.
 - Castellan: 'Plasma decimator' group (was '- standard'/'supercharge' pair).
 - Defender: 'Plasma executor' group (same bug class).
 - Preceptor: 'Las-impulsor' group + now has Preceptor Multi-laser,
@@ -25,6 +27,10 @@ slot-schema precedent:
   'Hekaton siege claw and twin rad cleanser' bundle is SPLIT into
   components (Twin rad cleanser + Hekaton siege claw), Despoiler precedent;
   bundle names resolve to primary profile only.
+- Castellan / Valiant: carapace bundles (2 shieldbreakers + 1 siegebreaker
+  OR 1 + 2) modeled as 2 builds each with the components split into fixed —
+  same precedent. Twin meltagun is min2/max2 on BSData, so both builds
+  carry exactly 2 (each A1); the old config carried 1.
 
 STRUCTURE AND RESOLVABILITY ONLY — no damage values. The engine is the
 single source of computation; this test locks config shape, not math.
@@ -96,10 +102,16 @@ RAD_CLEANSER = "Twin rad cleanser"
 CHAIN = "Reaper chainsword"
 CLAW = "Hekaton siege claw"
 
-# ── Castellan / Valiant carapace: SKIPPED (catalog gap) ──────────────────
-# BSData offers 'shieldbreaker missile launchers and twin siegebreaker
-# cannon' / 'Shieldbreaker missile launcher and 2 twin siegebreaker
-# cannons' — neither resolves in the merged catalog. No slot is modeled.
+# ── Castellan / Valiant carapace: 2-build bundles ────────────────────────
+# BSData 'Carapace-mounted Weapons' (min1/max1) offers two bundles:
+#   - 2 shieldbreaker missile launchers + 1 twin siegebreaker cannon
+#   - 1 shieldbreaker missile launcher + 2 twin siegebreaker cannons
+# Bundle names don't resolve in the merged catalog; the components DO
+# (Shieldbreaker missile launcher A1, Twin siegebreaker cannon D6) — the
+# Despoiler split precedent. Each bundle is modeled as a build with the
+# components split into fixed.
+CARAPACE_BUILDS = ("shieldbreaker_heavy", "siegebreaker_heavy")
+CARAPACE_COMPONENTS = {"Shieldbreaker missile launcher", "Twin siegebreaker cannon"}
 
 
 def _build_weapons(build) -> set[str]:
@@ -234,6 +246,35 @@ class TestMagaeraStyrixBuilds:
         assert frozenset(f["name"] for f in by_name["hekaton"]["fixed"]) == hekaton
         assert by_name["chainsword"]["slots"] == []
         assert by_name["hekaton"]["slots"] == []
+
+
+class TestDominusCarapaceBuilds:
+    """Castellan/Valiant: 2 carapace bundles, split into component builds."""
+
+    @pytest.mark.parametrize("unit", ["Knight Castellan", "Knight Valiant"])
+    def test_exact_build_names(self, chars, unit):
+        builds = chars[unit]["weapon_options"]["builds"]
+        assert [b["name"] for b in builds] == list(CARAPACE_BUILDS), unit
+
+    @pytest.mark.parametrize("unit", ["Knight Castellan", "Knight Valiant"])
+    def test_carapace_components_present(self, chars, unit):
+        """Each build's fixed must carry BOTH carapace components (split bundles)."""
+        for b in chars[unit]["weapon_options"]["builds"]:
+            names = {f["name"] for f in b["fixed"]}
+            assert CARAPACE_COMPONENTS.issubset(names), f"{unit}/{b['name']}: {names}"
+            assert b["slots"] == [], f"{unit}/{b['name']}: unexpected slots"
+
+    @pytest.mark.parametrize("unit", ["Knight Castellan", "Knight Valiant"])
+    def test_bundle_counts(self, chars, unit):
+        """2 shieldbreakers + 1 siegebreaker vs 1 + 2 — exact component counts."""
+        from collections import Counter
+        by_name = {b["name"]: b for b in chars[unit]["weapon_options"]["builds"]}
+        sb = Counter(f["name"] for f in by_name["shieldbreaker_heavy"]["fixed"])
+        sg = Counter(f["name"] for f in by_name["siegebreaker_heavy"]["fixed"])
+        assert sb["Shieldbreaker missile launcher"] == 2, sb
+        assert sb["Twin siegebreaker cannon"] == 1, sb
+        assert sg["Shieldbreaker missile launcher"] == 1, sg
+        assert sg["Twin siegebreaker cannon"] == 2, sg
 
 
 class TestResolvability:

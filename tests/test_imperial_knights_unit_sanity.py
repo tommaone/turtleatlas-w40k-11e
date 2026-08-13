@@ -64,12 +64,18 @@ MELTAGUN_CHOICES = {"Meltagun", "Questoris heavy stubber"}
 CHAIN_CHOICES = {"Reaper chainsword", "Thunderstrike gauntlet"}
 
 # ── Canis Rex ────────────────────────────────────────────────────────────
+# BSData models TWO models in the unit: the Knight (Las-impulsor,
+# Questoris multi-laser, Freedom's Hand) and Sir Hekhtur as a SEPARATE
+# model (CCW + pistol) that only fights after the Knight is destroyed.
+# Hekhtur's weapons are NOT part of the Knight's loadout.
 CANIS_FIXED = {
-    LAS, "Questoris multi-laser", "Hekhtur's pistol", FREEDOM,
-    "Close combat weapon",
+    LAS, "Questoris multi-laser", FREEDOM,
 }
+HEKHTUR_WEAPONS = {"Hekhtur's pistol", "Close combat weapon"}
 
 # ── Questoris fixed inventories (ranged+melee, in any order) ─────────────
+# Castellan/Valiant are excluded: they carry 2 carapace builds, so their
+# fixed set is not canonical — the carapace tests cover them.
 QUESTORIS_FIXED = {
     "Knight Crusader": {"Avenger gatling cannon", "Heavy flamer", TITANIC},
     "Knight Errant": {"Thermal cannon"},
@@ -77,12 +83,16 @@ QUESTORIS_FIXED = {
     "Knight Paladin": {"Questoris heavy stubber", "Rapid-fire battle cannon"},
     "Knight Preceptor": {LAS},
     "Knight Warden": {"Avenger gatling cannon", "Heavy flamer"},
-    "Knight Castellan": {PLASMA_DEC, "Volcano lance", "Twin meltagun", TITANIC},
     "Knight Defender": {"Twin incendine combustor", "Conversion beam obliterator",
                         PLASMA_EXEC, "Phosphor blaster", TITANIC},
+    "Knight Destrier": {"Questoris heavy stubber", TITANIC},
+}
+
+# Dominus main weapons per unit (both carapace builds must carry these).
+DOMINUS_MAIN = {
+    "Knight Castellan": {PLASMA_DEC, "Volcano lance", "Twin meltagun", TITANIC},
     "Knight Valiant": {"Conflagration cannon", "Thundercoil harpoon",
                        "Twin meltagun", TITANIC},
-    "Knight Destrier": {"Questoris heavy stubber", TITANIC},
 }
 
 # ── Questoris slot structure (which slots each unit must carry) ──────────
@@ -93,10 +103,18 @@ QUESTORIS_SLOTS = {
     "Knight Paladin": {CARAPACE_SLOT, MELTAGUN_SLOT, CHAIN_SLOT},
     "Knight Preceptor": {"Preceptor Multi-laser", CARAPACE_SLOT, CHAIN_SLOT},
     "Knight Warden": {CARAPACE_SLOT, MELTAGUN_SLOT, CHAIN_SLOT},
-    # Castellan/Valiant: fixed-only by design (carapace catalog gap)
-    "Knight Castellan": set(),
-    "Knight Valiant": set(),
 }
+
+# ── Castellan / Valiant carapace bundles (2 builds each) ─────────────────
+# BSData 'Carapace-mounted Weapons' (min1/max1) offers two bundles:
+#   - 2 shieldbreaker missile launchers + 1 twin siegebreaker cannon
+#   - 1 shieldbreaker missile launcher + 2 twin siegebreaker cannons
+# Bundle names don't resolve; components DO (Despoiler precedent). Each
+# bundle is a build, components split into fixed.
+SHIELDBREAKER_LAUNCHER = "Shieldbreaker missile launcher"
+SIEGEBREAKER_CANNON = "Twin siegebreaker cannon"
+CARAPACE_BUILDS = ("shieldbreaker_heavy", "siegebreaker_heavy")
+CARAPACE_WEAPONS = {SHIELDBREAKER_LAUNCHER, SIEGEBREAKER_CANNON}
 
 # ── Destrier slots (mixed melee/ranged arm choices) ──────────────────────
 DESTRIER_SLOTS = {
@@ -181,13 +199,25 @@ def _resolve(engine, build, unit_name, target_name="MEQ"):
 
 
 class TestCanisRex:
-    """2-model unit (Canis Rex + Sir Hekhtur) — 5 fixed weapons, group names."""
+    """2-model unit — Canis Rex (Knight) + Sir Hekhtur (separate model).
+
+    Hekhtur only fights AFTER the Knight is destroyed; his pistol + CCW
+    must NEVER be in the Knight's loadout (they'd inflate the Knight's DPP).
+    """
 
     def test_exact_fixed_inventory(self, chars):
         build = chars["Canis Rex"]["weapon_options"]["builds"][0]
         fixed = frozenset(f["name"] for f in build["fixed"])
         assert fixed == CANIS_FIXED, fixed
         assert build["slots"] == []
+
+    def test_no_hekhtur_weapons(self, chars):
+        """Hekhtur is a separate model — his weapons don't join the Knight's loadout."""
+        build = chars["Canis Rex"]["weapon_options"]["builds"][0]
+        fixed = {f["name"] for f in build["fixed"]}
+        assert not (HEKHTUR_WEAPONS & fixed), (
+            f"Hekhtur weapons leaked into Canis Rex loadout: {HEKHTUR_WEAPONS & fixed}"
+        )
 
     def test_no_las_impulsor_profiles(self, chars):
         build = chars["Canis Rex"]["weapon_options"]["builds"][0]
@@ -201,10 +231,11 @@ class TestCanisRex:
         build = chars["Canis Rex"]["weapon_options"]["builds"][0]
         for t in TARGET_SAMPLES:
             ranged, melee = _resolve(engine, build, "Canis Rex", t)
-            assert len(ranged) == 3, f"{t}: {ranged}"
-            assert len(melee) == 2, f"{t}: {melee}"
+            assert len(ranged) == 2, f"{t}: {ranged}"
+            assert len(melee) == 1, f"{t}: {melee}"
             assert any(LAS in n for n in ranged), f"{t}: no las-impulsor in {ranged}"
             assert any(FREEDOM in n for n in melee), f"{t}: no Freedom's Hand in {melee}"
+            assert not any("Hekhtur" in n or "Close combat" in n for n in ranged + melee)
 
 
 class TestAtraposDualProfile:
@@ -300,11 +331,38 @@ class TestQuestorisSlots:
         by_name = {s["name"]: {c["name"] for c in s["choices"]} for s in build["slots"]}
         assert by_name == DESTRIER_SLOTS, by_name
 
-    def test_castellan_valiant_no_carapace_slot(self, chars):
-        """Shieldbreaker/siegebreaker bundle names don't resolve — gap documented."""
+    def test_castellan_valiant_carapace_builds(self, chars):
+        """Carapace bundles (2+1 / 1+2) are builds with split components —
+        the bundle names don't resolve, the components do (Despoiler precedent)."""
         for unit in ("Knight Castellan", "Knight Valiant"):
-            build = chars[unit]["weapon_options"]["builds"][0]
-            assert build["slots"] == [], f"{unit}: unexpected slots"
+            builds = chars[unit]["weapon_options"]["builds"]
+            assert [b["name"] for b in builds] == list(CARAPACE_BUILDS), unit
+            by_name = {b["name"]: b for b in builds}
+            for bname in CARAPACE_BUILDS:
+                b = by_name[bname]
+                assert b["slots"] == [], f"{unit}/{bname}: unexpected slots"
+                names = {f["name"] for f in b["fixed"]}
+                assert CARAPACE_WEAPONS.issubset(names), f"{unit}/{bname}: {names}"
+
+    @pytest.mark.parametrize("unit", DOMINUS_MAIN.keys())
+    def test_dominus_carapace_bundle_counts(self, chars, unit):
+        """2 shieldbreakers + 1 siegebreaker (heavy) vs 1 + 2 (heavy) — exact counts."""
+        from collections import Counter
+        builds = {b["name"]: b for b in chars[unit]["weapon_options"]["builds"]}
+        heavy_sb = Counter(
+            f["name"] for f in builds["shieldbreaker_heavy"]["fixed"])
+        heavy_sg = Counter(
+            f["name"] for f in builds["siegebreaker_heavy"]["fixed"])
+        assert heavy_sb[SHIELDBREAKER_LAUNCHER] == 2, f"{unit}: {heavy_sb}"
+        assert heavy_sb[SIEGEBREAKER_CANNON] == 1, f"{unit}: {heavy_sb}"
+        assert heavy_sg[SHIELDBREAKER_LAUNCHER] == 1, f"{unit}: {heavy_sg}"
+        assert heavy_sg[SIEGEBREAKER_CANNON] == 2, f"{unit}: {heavy_sg}"
+        # Twin meltagun is min2/max2 on BSData — both builds carry exactly 2.
+        assert heavy_sb["Twin meltagun"] == 2, f"{unit}: {heavy_sb}"
+        assert heavy_sg["Twin meltagun"] == 2, f"{unit}: {heavy_sg}"
+        # Both bundles carry the unit's fixed main weapons (count >= 1).
+        for main in DOMINUS_MAIN[unit]:
+            assert heavy_sb[main] >= 1 and heavy_sg[main] >= 1, (unit, main)
 
 
 class TestAcastus:
