@@ -216,6 +216,44 @@ def test_case_insensitive_exact_match_keeps_base(gen, sm_composition):
     assert "Heavy Bolter" not in json.dumps(base)
 
 
+@pytest.fixture(scope="module")
+def ork_composition():
+    """Orks composition — has 'Boyz' as a base entry; variant squads must NOT
+    ride the base payload."""
+    from adapter.bsdata_parser_11e import BSDataParser11e
+    return BSDataParser11e().extract_squad_composition("orks")
+
+
+def test_substring_is_one_way_variants_kept(gen, ork_composition):
+    """Regression: substring must ONLY match config-name-in-BSData-name.
+
+    The old code also matched the reverse direction ('Boyz' in 'Burna Boyz'),
+    silently writing the base Boyz payload onto units whose names are MORE
+    specific than any BSData entry: Burna Boyz (Burna weapons), Squighog Boyz
+    (Squig jaws), Boyz (Armageddon) (Shoota/Kombi variants). All three have
+    correct distinct builds in squads.json — they must be KEPT (no match),
+    never overwritten. Same class as the Eradicator fix, one layer deeper.
+    """
+    for name in ("Burna Boyz", "Squighog Boyz", "Boyz (Armageddon)"):
+        assert gen.fuzzy_find_composition(ork_composition, name) is None, (
+            f"{name} must be kept (no composition), not matched to base 'Boyz'"
+        )
+
+
+def test_substring_one_way_keeps_valid_base_matches(gen, ork_composition):
+    """Legitimate one-way substring matches still resolve: config 'Warbikers'
+    is a substring of BSData 'Warbikers' (exact); the point is that base
+    names still match themselves and the safe direction still works."""
+    assert gen.fuzzy_find_composition(ork_composition, "Beast Snagga Boyz") is not None
+    assert gen.fuzzy_find_composition(ork_composition, "Nobz") is not None
+    # A config name that is a strict substring of a BSData name still matches
+    # (one-way direction preserved): 'Grot Tanks' -> 'Grot Tanks [Legends]' is
+    # Legends-blocked; use a non-Legends analog via SM: 'Terminator Squad' ->
+    # 'Terminator Squad' exact. Verify the direction exists with a synthetic:
+    fake = {"Base Unit With Variant": {"builds": []}}
+    assert gen.fuzzy_find_composition(fake, "Base Unit") is not None
+
+
 def test_alloc_model_name_deterministic_tiebreak(gen):
     """Tie-break: 'Outrider' vs 'Invader ATV' both count 1 — the base name
     (shortest) must win deterministically, NOT hash-order."""

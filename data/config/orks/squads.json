@@ -14,27 +14,33 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Thump gun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Slugga",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Slugga",
-            "melee": "Close combat weapon"
+            "name": "Beast Snagga Boy",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Beast Snagga Boy w/ Thump gun",
+                "min": 0,
+                "max": 1,
+                "ranged": "Thump gun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Beast Snagga Boy",
+                "min": 8,
+                "max": 19,
+                "ranged": "Slugga",
+                "melee": "Choppa"
+              }
+            ]
           },
           {
-            "count": 9,
-            "ranged": "Thump gun",
-            "melee": "Close combat weapon"
+            "name": "Beast Snagga Nob",
+            "count": 1,
+            "ranged": "Slugga",
+            "melee": "Power snappa"
           }
         ]
       }
@@ -53,72 +59,67 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Slugga",
-            "melee": "Choppa"
-          }
-        ]
-      },
-      {
-        "name": "2x Shoota",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Shoota",
-            "melee": "Choppa"
+            "name": "Boy",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Boy",
+                "min": 0,
+                "max": 19,
+                "ranged": "Slugga",
+                "melee": "Choppa"
+              },
+              {
+                "name": "Boy w/ Shoota",
+                "min": 0,
+                "max": 19,
+                "ranged": [
+                  "Shoota",
+                  "Slugga"
+                ],
+                "melee": "Choppa"
+              },
+              {
+                "name": "Boy w/ Big shoota",
+                "min": 0,
+                "max": 2,
+                "group_max": 1,
+                "ranged": "Big shoota",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Boy w/ Rokkit launcha",
+                "min": 0,
+                "max": 2,
+                "group_max": 1,
+                "ranged": "Rokkit launcha",
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 8,
-            "ranged": "Slugga",
-            "melee": "Choppa"
-          }
-        ]
-      },
-      {
-        "name": "2x Big shoota",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Big shoota",
-            "melee": "Choppa"
-          },
-          {
-            "count": 8,
-            "ranged": "Slugga",
-            "melee": "Choppa"
-          }
-        ]
-      },
-      {
-        "name": "2x Rokkit launcha",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Rokkit launcha",
-            "melee": "Choppa"
-          },
-          {
-            "count": 8,
-            "ranged": "Slugga",
-            "melee": "Choppa"
-          }
-        ]
-      },
-      {
-        "name": "2x Kombi-weapon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Kombi-weapon",
-            "melee": "Choppa"
-          },
-          {
-            "count": 8,
-            "ranged": "Slugga",
-            "melee": "Choppa"
+            "name": "Boss Nob",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Big Choppa and Slugga",
+                "choices": [
+                  {
+                    "name": "Big choppa and slugga",
+                    "ranged": "Slugga",
+                    "default": true
+                  },
+                  {
+                    "name": "Kombi-weapon and close combat weapon",
+                    "ranged": "Kombi-weapon",
+                    "melee": "Close combat weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -222,30 +223,51 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 6,
-            "ranged": "Rokkit pistol",
-            "melee": "Smash hammer"
-          }
-        ]
-      },
-      {
-        "name": "Tankhammer",
-        "models": [
+            "name": "Breaka Boy",
+            "count": 5,
+            "alloc": [
+              {
+                "name": "Breaka Boy",
+                "min": 3,
+                "max": 5,
+                "melee": "Smash hammer"
+              },
+              {
+                "name": "Breaka Boy w/ Tankhammer",
+                "min": 0,
+                "max": 1,
+                "melee": "Tankhammer"
+              },
+              {
+                "name": "Breaka Boy w/ Knucklebustas",
+                "min": 0,
+                "max": 1,
+                "melee": "Knucklebustas"
+              }
+            ]
+          },
           {
-            "count": 6,
-            "melee": "Tankhammer"
-          }
-        ]
-      },
-      {
-        "name": "Knucklebustas",
-        "models": [
-          {
-            "count": 6,
-            "melee": "Knucklebustas"
+            "name": "Boss Nob",
+            "count": 1,
+            "melee": "Choppa",
+            "slots": [
+              {
+                "name": "Wargear Options",
+                "choices": [
+                  {
+                    "name": "Rokkit pistol",
+                    "ranged": "Rokkit pistol"
+                  },
+                  {
+                    "name": "Smash hammer",
+                    "melee": "Smash hammer"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -289,10 +311,17 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
+            "name": "Flash Gitz",
+            "count": 4,
+            "ranged": "Snazzgun",
+            "melee": "Choppa"
+          },
+          {
+            "name": "Kaptin",
+            "count": 1,
             "ranged": "Snazzgun",
             "melee": "Choppa"
           }
@@ -376,71 +405,71 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Slugga",
-            "melee": "Choppa"
-          }
-        ]
-      },
-      {
-        "name": "2x Kustom shoota",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Kustom shoota",
-            "melee": "Choppa"
-          },
-          {
-            "count": 8,
-            "ranged": "Slugga",
-            "melee": "Choppa"
-          }
-        ]
-      },
-      {
-        "name": "1x Burna",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Burna",
-            "melee": "Choppa"
-          },
-          {
+            "name": "Kommandos",
             "count": 9,
-            "ranged": "Slugga",
-            "melee": "Choppa"
-          }
-        ]
-      },
-      {
-        "name": "1x Rokkit launcha",
-        "models": [
+            "alloc": [
+              {
+                "name": "Kommandos w/ Slugga and choppa",
+                "min": 0,
+                "max": 9,
+                "ranged": "Slugga",
+                "melee": "Choppa"
+              },
+              {
+                "name": "Kommandos w/ Kustom shoota",
+                "min": 0,
+                "max": 2,
+                "ranged": "Kustom shoota",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Kommandos w/ Breacha ram",
+                "min": 0,
+                "max": 1,
+                "melee": "Breacha ram"
+              },
+              {
+                "name": "Kommandos w/ Burna",
+                "min": 0,
+                "max": 1,
+                "ranged": "Burna",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Kommandos w/ Rokkit launcha",
+                "min": 0,
+                "max": 1,
+                "ranged": "Rokkit launcha",
+                "melee": "Close combat weapon"
+              }
+            ]
+          },
           {
+            "name": "Boss Nob",
             "count": 1,
-            "ranged": "Rokkit launcha",
-            "melee": "Choppa"
-          },
-          {
-            "count": 9,
             "ranged": "Slugga",
-            "melee": "Choppa"
-          }
-        ]
-      },
-      {
-        "name": "2x Breacha ram",
-        "models": [
-          {
-            "count": 2,
-            "melee": "Breacha ram"
-          },
-          {
-            "count": 8,
-            "ranged": "Slugga",
-            "melee": "Choppa"
+            "slots": [
+              {
+                "name": "Choppa",
+                "choices": [
+                  {
+                    "name": "Choppa",
+                    "melee": "Choppa"
+                  },
+                  {
+                    "name": "Power klaw",
+                    "melee": "Power klaw"
+                  },
+                  {
+                    "name": "Big choppa",
+                    "melee": "Big choppa"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -486,46 +515,56 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Meganob",
             "count": 2,
-            "ranged": "Kustom shoota",
-            "melee": "Power klaw"
-          }
-        ]
-      },
-      {
-        "name": "Kombi-weapon",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Kombi-weapon",
-            "melee": "Power klaw"
-          },
-          {
-            "count": 1,
-            "ranged": "Kustom shoota",
-            "melee": "Power klaw"
-          }
-        ]
-      },
-      {
-        "name": "Killsaw",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Kustom shoota",
-            "melee": "Killsaw"
-          }
-        ]
-      },
-      {
-        "name": "Twin killsaw",
-        "models": [
-          {
-            "count": 2,
-            "melee": "Twin killsaw"
+            "alloc": [
+              {
+                "name": "Meganob w/ Kustom shoota and power klaw",
+                "min": 0,
+                "max": 6,
+                "ranged": "Kustom shoota",
+                "melee": "Power klaw"
+              },
+              {
+                "name": "Meganob w/ Kombi-weapon and power klaw",
+                "min": 0,
+                "max": 6,
+                "ranged": "Kombi-weapon",
+                "melee": "Power klaw"
+              },
+              {
+                "name": "Meganob w/ Kombi-weapon and killsaw",
+                "min": 0,
+                "max": 6,
+                "ranged": "Kombi-weapon",
+                "melee": "Killsaw"
+              },
+              {
+                "name": "Meganob w/ Kustom shoota and killsaw",
+                "min": 0,
+                "max": 6,
+                "ranged": "Kustom shoota",
+                "melee": "Killsaw"
+              },
+              {
+                "name": "Meganob w/ Killsaw and power klaw",
+                "min": 0,
+                "max": 6,
+                "melee": [
+                  "Power klaw",
+                  "Killsaw"
+                ]
+              },
+              {
+                "name": "Meganob w/ Twin killsaw",
+                "min": 0,
+                "max": 6,
+                "melee": "Twin killsaw"
+              }
+            ]
           }
         ]
       }
@@ -545,42 +584,61 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Slugga",
-            "melee": "Big choppa"
-          }
-        ]
-      },
-      {
-        "name": "Kombi-weapon",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Kombi-weapon",
-            "melee": "Big choppa"
+            "name": "Nob",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Nob w/ Slugga and big choppa",
+                "min": 0,
+                "max": 9,
+                "ranged": "Slugga",
+                "melee": "Big choppa"
+              },
+              {
+                "name": "Nob w/ Slugga and power klaw",
+                "min": 0,
+                "max": 9,
+                "ranged": "Slugga",
+                "melee": "Power klaw"
+              },
+              {
+                "name": "Nob w/ Kombi-weapon",
+                "min": 0,
+                "max": 9,
+                "ranged": "Kombi-weapon",
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 4,
-            "ranged": "Slugga",
-            "melee": "Big choppa"
-          }
-        ]
-      },
-      {
-        "name": "Power klaw",
-        "models": [
-          {
+            "name": "Boss Nob",
             "count": 1,
-            "ranged": "Slugga",
-            "melee": "Power klaw"
-          },
-          {
-            "count": 4,
-            "ranged": "Slugga",
-            "melee": "Big choppa"
+            "slots": [
+              {
+                "name": "Wargear Options",
+                "choices": [
+                  {
+                    "name": "Slugga and big choppa",
+                    "ranged": "Slugga",
+                    "melee": "Big choppa",
+                    "default": true
+                  },
+                  {
+                    "name": "Slugga and power klaw",
+                    "ranged": "Slugga",
+                    "melee": "Power klaw"
+                  },
+                  {
+                    "name": "Kombi-weapon",
+                    "ranged": "Kombi-weapon",
+                    "melee": "Close combat weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -600,27 +658,33 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Slugga",
-            "melee": "Choppa"
-          }
-        ]
-      },
-      {
-        "name": "Power klaw Nob",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Slugga",
-            "melee": "Power klaw"
-          },
-          {
+            "name": "Stormboy",
             "count": 4,
             "ranged": "Slugga",
             "melee": "Choppa"
+          },
+          {
+            "name": "Boss Nob",
+            "count": 1,
+            "ranged": "Slugga",
+            "slots": [
+              {
+                "name": "Choppa",
+                "choices": [
+                  {
+                    "name": "Choppa",
+                    "melee": "Choppa"
+                  },
+                  {
+                    "name": "Power klaw",
+                    "melee": "Power klaw"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -640,27 +704,54 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 6,
-            "ranged": "Rokkit pistol",
-            "melee": "Choppa"
-          }
-        ]
-      },
-      {
-        "name": "Rokkit launcha",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Rokkit launcha",
-            "melee": "Choppa"
+            "name": "Tankbusta",
+            "count": 5,
+            "alloc": [
+              {
+                "name": "Tankbusta w/ Rokkit launcha",
+                "min": 4,
+                "max": 5,
+                "ranged": "Rokkit launcha",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Tankbusta w/ Two rokkit launchas",
+                "min": 0,
+                "max": 1,
+                "ranged": "Rokkit launcha",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Tankbusta w/ Pulsa rokkit",
+                "min": 0,
+                "max": 1,
+                "ranged": "Rokkit launcha",
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 5,
-            "ranged": "Rokkit pistol",
-            "melee": "Choppa"
+            "name": "Boss Nob",
+            "count": 1,
+            "melee": "Choppa",
+            "slots": [
+              {
+                "name": "Wargear Options",
+                "choices": [
+                  {
+                    "name": "Smash hammer",
+                    "melee": "Smash hammer"
+                  },
+                  {
+                    "name": "Rokkit pistol",
+                    "ranged": "Rokkit pistol"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -680,27 +771,65 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Twin dakkagun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Slugga",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Slugga",
-            "melee": "Close combat weapon"
+            "name": "Warbiker",
+            "count": 2,
+            "alloc": [
+              {
+                "name": "Warbiker",
+                "min": 0,
+                "max": 5,
+                "ranged": "Twin dakkagun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Warbiker w/ Slugga",
+                "min": 0,
+                "max": 5,
+                "ranged": [
+                  "Twin dakkagun",
+                  "Slugga"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Warbiker w/ Choppa",
+                "min": 0,
+                "max": 5,
+                "ranged": "Twin dakkagun",
+                "melee": [
+                  "Choppa",
+                  "Close combat weapon"
+                ]
+              }
+            ]
           },
           {
-            "count": 2,
+            "name": "Boss Nob on Warbike",
+            "count": 1,
             "ranged": "Twin dakkagun",
-            "melee": "Close combat weapon"
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Wargear Options",
+                "choices": [
+                  {
+                    "name": "Slugga",
+                    "ranged": "Slugga"
+                  },
+                  {
+                    "name": "Big choppa",
+                    "melee": "Big choppa"
+                  },
+                  {
+                    "name": "Power klaw",
+                    "melee": "Power klaw"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }

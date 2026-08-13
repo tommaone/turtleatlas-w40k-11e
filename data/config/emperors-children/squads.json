@@ -14,9 +14,10 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Chaos Spawn",
             "count": 2,
             "melee": "Hideous Mutations"
           }
@@ -40,42 +41,140 @@
     "_note": "1 per 5 replaces combi-bolter with heavy flamer OR reaper autocannon; base Melee uses combi-weapon + power fist (legacy loadout, not the datasheet default)",
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Combi-weapon",
-            "melee": "Power fist"
-          }
-        ]
-      },
-      {
-        "name": "Heavy flamer",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Heavy flamer",
-            "melee": "Power fist"
+            "name": "Heavy weapon",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Accursed weapon and combi-bolter",
+                "min": 0,
+                "max": 4,
+                "ranged": "Combi-bolter",
+                "melee": "Accursed weapon"
+              },
+              {
+                "name": "Accursed weapon and combi-weapon",
+                "min": 0,
+                "max": 4,
+                "ranged": "Combi-weapon",
+                "melee": "Accursed weapon"
+              },
+              {
+                "name": "Power fist and combi-weapon",
+                "min": 0,
+                "max": 3,
+                "ranged": "Combi-weapon",
+                "melee": "Power fist"
+              },
+              {
+                "name": "Chainfist and combi-bolter",
+                "min": 0,
+                "max": 1,
+                "ranged": "Combi-bolter",
+                "melee": "Chainfist"
+              },
+              {
+                "name": "Heavy weapon",
+                "min": 0,
+                "max": 1,
+                "slots": [
+                  {
+                    "name": "Ranged weapon",
+                    "choices": [
+                      {
+                        "name": "Heavy flamer",
+                        "ranged": "Heavy flamer"
+                      },
+                      {
+                        "name": "Reaper autocannon",
+                        "ranged": "Reaper autocannon"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Melee weapon",
+                    "choices": [
+                      {
+                        "name": "Chainfist",
+                        "melee": "Chainfist"
+                      },
+                      {
+                        "name": "Power fist",
+                        "melee": "Power fist"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Power fist and combi-bolter",
+                "min": 0,
+                "max": 3,
+                "ranged": "Combi-bolter",
+                "melee": "Power fist"
+              },
+              {
+                "name": "Chainfist and combi-weapon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Combi-weapon",
+                "melee": "Chainfist"
+              },
+              {
+                "name": "Paired accursed weapons",
+                "min": 0,
+                "max": 1,
+                "melee": "Paired accursed weapons"
+              }
+            ]
           },
           {
-            "count": 4,
-            "ranged": "Combi-weapon",
-            "melee": "Power fist"
-          }
-        ]
-      },
-      {
-        "name": "Reaper autocannon",
-        "models": [
-          {
+            "name": "Terminator Champion",
             "count": 1,
-            "ranged": "Reaper autocannon",
-            "melee": "Power fist"
-          },
-          {
-            "count": 4,
-            "ranged": "Combi-weapon",
-            "melee": "Power fist"
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Paired accursed weapons",
+                    "melee": "Paired accursed weapons"
+                  },
+                  {
+                    "name": "Accursed weapon and combi-bolter",
+                    "ranged": "Combi-bolter",
+                    "melee": "Accursed weapon",
+                    "default": true
+                  },
+                  {
+                    "name": "Accursed weapon and combi-weapon",
+                    "ranged": "Combi-weapon",
+                    "melee": "Accursed weapon"
+                  },
+                  {
+                    "name": "Chainfist and combi-bolter",
+                    "ranged": "Combi-bolter",
+                    "melee": "Chainfist"
+                  },
+                  {
+                    "name": "Chainfist and combi-weapon",
+                    "ranged": "Combi-weapon",
+                    "melee": "Chainfist"
+                  },
+                  {
+                    "name": "Power fist and combi-bolter",
+                    "ranged": "Combi-bolter",
+                    "melee": "Power fist"
+                  },
+                  {
+                    "name": "Power fist and combi-weapon",
+                    "ranged": "Combi-weapon",
+                    "melee": "Power fist"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -96,10 +195,16 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
+            "name": "Daemonette",
+            "count": 9,
+            "melee": "Slashing claws"
+          },
+          {
+            "name": "Alluress",
+            "count": 1,
             "melee": "Slashing claws"
           }
         ]
@@ -121,9 +226,10 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Fiends",
             "count": 3,
             "melee": "Barbed tail and dissecting claws"
           }
@@ -145,9 +251,10 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Flawless Blade",
             "count": 3,
             "ranged": "Bolt pistol",
             "melee": "Blissblade"
@@ -169,12 +276,45 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
+            "name": "Infractor",
+            "count": 4,
             "ranged": "Bolt pistol",
             "melee": "Duelling sabre"
+          },
+          {
+            "name": "Obsessionist",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Pistol",
+                "choices": [
+                  {
+                    "name": "Bolt pistol",
+                    "ranged": "Bolt pistol"
+                  },
+                  {
+                    "name": "Plasma pistol",
+                    "ranged": "Plasma pistol"
+                  }
+                ]
+              },
+              {
+                "name": "Melee weapon",
+                "choices": [
+                  {
+                    "name": "Rapture lash",
+                    "melee": "Rapture lash"
+                  },
+                  {
+                    "name": "Power sword",
+                    "melee": "Power sword"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -195,42 +335,48 @@
     "_note": "up to 2 per unit replace sonic blaster with blastmaster; varied vs single frequency are the two profiles of the same gun",
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 6,
-            "ranged": "Sonic blaster",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Blastmaster - varied frequency",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Blastmaster - varied frequency",
-            "melee": "Close combat weapon"
+            "name": "Noise Marine",
+            "count": 5,
+            "alloc": [
+              {
+                "name": "Noise Marine w/ sonic blaster",
+                "min": 3,
+                "max": 5,
+                "ranged": "Sonic blaster",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Noise Marine w/ blastmaster",
+                "min": 0,
+                "max": 2,
+                "ranged": "Blastmaster",
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 4,
-            "ranged": "Sonic blaster",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Blastmaster - single frequency",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Blastmaster - single frequency",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 4,
-            "ranged": "Sonic blaster",
-            "melee": "Close combat weapon"
+            "name": "Disharmonist",
+            "count": 1,
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Sonic Blaster",
+                "choices": [
+                  {
+                    "name": "Sonic blaster",
+                    "ranged": "Sonic blaster"
+                  },
+                  {
+                    "name": "Screamer pistol and power sword",
+                    "ranged": "Screamer pistol",
+                    "melee": "Power sword"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -251,11 +397,23 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "melee": "Lashing tongues"
+            "name": "Seeker",
+            "count": 4,
+            "melee": [
+              "Lashing tongues",
+              "Slashing claws"
+            ]
+          },
+          {
+            "name": "Heartseeker",
+            "count": 1,
+            "melee": [
+              "Lashing tongues",
+              "Slashing claws"
+            ]
           }
         ]
       }
@@ -275,77 +433,66 @@
     "_note": "1 per 5 replaces boltgun with meltagun or plasma gun; plasma standard vs supercharge are the two profiles of the same gun",
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Plasma gun - standard",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Plasma gun - standard",
-            "melee": "Close combat weapon"
-          },
-          {
+            "name": "Tormentor",
             "count": 4,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Plasma gun - supercharge",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Plasma gun - supercharge",
-            "melee": "Close combat weapon"
+            "alloc": [
+              {
+                "name": "Tormentor",
+                "min": 4,
+                "max": 9,
+                "ranged": "Boltgun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Tormentor w/ plasma gun",
+                "min": 0,
+                "max": 2,
+                "ranged": "Plasma gun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Tormentor w/ meltagun",
+                "min": 0,
+                "max": 2,
+                "ranged": "Meltagun",
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 4,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Meltagun",
-        "models": [
-          {
+            "name": "Obsessionist",
             "count": 1,
-            "ranged": "Meltagun",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 4,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Mixed",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Meltagun",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Plasma gun - supercharge",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
+            "slots": [
+              {
+                "name": "Bolt Pistol",
+                "choices": [
+                  {
+                    "name": "Bolt pistol",
+                    "ranged": "Bolt pistol"
+                  },
+                  {
+                    "name": "Plasma pistol",
+                    "ranged": "Plasma pistol"
+                  }
+                ]
+              },
+              {
+                "name": "Power Sword",
+                "choices": [
+                  {
+                    "name": "Rapture lash",
+                    "melee": "Rapture lash"
+                  },
+                  {
+                    "name": "Power sword",
+                    "melee": "Power sword"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }

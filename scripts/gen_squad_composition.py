@@ -51,6 +51,11 @@ def fuzzy_find_composition(composition: dict, unit_name: str) -> dict | None:
     ('Eradicator Squad') and silently write the WRONG weapons (melta payload
     onto a heavy-bolter squad).
 
+    Substring is ONE-WAY (config name inside BSData name only). The reverse
+    direction ('Boyz' in 'Burna Boyz') matches config units that are MORE
+    specific than any BSData entry to the base composition — a silent wrong-
+    payload hazard. Such units are KEPT for manual curation instead.
+
     No-Legends rule: [Legends]/Legends composition entries are never matched.
     A config unit whose only BSData entry is Legends (e.g. 'Deathwing Command
     Squad' -> 'Deathwing Command Squad [Legends]') must be KEPT (no
@@ -65,7 +70,14 @@ def fuzzy_find_composition(composition: dict, unit_name: str) -> dict | None:
         if bs_name.lower() == low:
             return None if _is_legends_name(bs_name) else bs_data
     for bs_name, bs_data in composition.items():
-        if low in bs_name.lower() or bs_name.lower() in low:
+        # ONLY the config-name-in-BSData-name direction is safe. The reverse
+        # ('Boyz' in 'Burna Boyz', 'Chaos Spawn' in 'Chaos Spawn (Flesh
+        # Change)') matches a config unit whose name is MORE specific than
+        # any BSData entry to the BASE composition and silently writes the
+        # wrong payload (same hazard class as the Eradicator fix — see
+        # memory/feedback.md §1). Units with no safe match are KEPT so they
+        # can be curated manually.
+        if low in bs_name.lower():
             return None if _is_legends_name(bs_name) else bs_data
     return None
 

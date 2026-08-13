@@ -500,3 +500,56 @@ missing slot structure. Fixed in one pass:
 12 issues remain, ALL MEDIUM accepted-noise class (bundle-splits +
 Icarus name gap), same as CK's 11. Deterministic check: 0 CRITICAL/MAJOR.
 Test lock: `tests/test_imperial_knights_slots_migration.py` (67 tests).
+
+## CSM + EC + Orks slot migration (2026-08-13)
+Wave-2 completion: three factions migrated in one pass.
+
+### CSM
+- **Fabius Bile is a 2-model character unit** (Fabius Bile + Surgeon
+  Acolyte, 100 pts). BSData: Fabius carries Xyclos needler + The Chirurgeon
+  + Rod of Torment; the Acolyte carries Surgeon Acolyte's tools. The old
+  squads.json entry gave BOTH models needler+Chirurgeon (wrong) and dropped
+  the other two weapons. Lives in characters.json as ONE fixed build with
+  all four weapons. No test in test_dpp_sanity/test_squad_wargear needed
+  updates (Fabius stays whitelisted as support character).
+- **Choice weapons reference GROUP names** (same rule as IK, extended):
+  Dark Commune Warp Curse had BOTH `- witchfire` AND `- focused witchfire`
+  in fixed = ranged DOUBLE-COUNT (ranged sums in _ld_dmg; melee maxes).
+  Single-profile locks (Daemon Prince Hellforged weapons strike-only,
+  MoP Rite of Possession focused-only, Sorcerer Infernal Gaze focused-only,
+  Reave-Captain/Warpsmith Plasma pistol standard-only) permanently excluded
+  the other profile. All fixed to group names — `W('Group', unit)` resolves
+  to a profile WITH variants and the engine maxes per target.
+- Validator noise envelope confirmed: CSM 60 issues vs DA 133 / BA 128 /
+  SW 136 — the MISSING 'Legionary w/ boltgun' class is BSData composition
+  model-names, not config defects.
+
+### EC
+- 9 squads, clean probe, 8-test complex-unit lock. Complex units: Chaos
+  Terminators (alloc pool + champion Wargear slot), Noise Marines (alloc
+  min3/max2 + Disharmonist slot), Infractors/Tormentors (Obsessionist
+  two-slot). Validator 10 issues (all pre-existing noise class).
+
+### Orks + generator fix (the real find)
+- **fuzzy_find_composition substring is now ONE-WAY** (config name inside
+  BSData name). The old `or bs_name.lower() in low` direction matched
+  config units whose names are MORE specific than any BSData entry to the
+  BASE composition: 'Boyz' in 'Burna Boyz' → Burna payload overwritten by
+  base Boyz slugga/choppa; same for Squighog Boyz, Boyz (Armageddon),
+  Chaos Spawn (Flesh Change), Ripper Swarms (Parasite of Mortrex). Those
+  are now KEPT for manual curation. Same hazard class as the Eradicator
+  fix (memory §1), one layer deeper — exact/case-insensitive-exact first
+  did not save them because there IS no matching BSData entry at all.
+- Cross-faction scan proved only 5 units change behavior, all correctly
+  becoming kept (no legit match lost). Regression tests:
+  tests/test_gen_squad_composition.py::test_substring_is_one_way_* (2).
+- Orks: 10 regenerated + 7 kept (Burna Boyz, Squighog Boyz, Boyz
+  (Armageddon), Gretchin, Gretchin (Armageddon), Lootas, Wartrakk). Kept
+  units retain curated builds; test_orks_complex_units.py (17 tests)
+  locks them. Validator 75 issues BEFORE and AFTER migration — zero new.
+- Deterministic: CSM 2 INFO (Fabius Epic Hero keyword naming — benign),
+  EC 0, Orks 2 INFO (Ghazghkull keyword + Kill Rig abilities).
+
+**How:** seeded full suite 3588 passed / 36 skipped. Generator change
+isolated: run `pytest tests/test_gen_squad_composition.py` (18) first,
+then per-faction complex tests, then full suite.
