@@ -13,16 +13,33 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Asterius volkite culverin",
-          "Karacnos mortar battery",
-          "Twin conversion beam cannon"
+        "fixed": [
+          {
+            "name": "Asterius volkite culverin",
+            "type": "ranged"
+          },
+          {
+            "name": "Asterius volkite culverin",
+            "type": "ranged"
+          },
+          {
+            "name": "Karacnos mortar battery",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin conversion beam cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin conversion beam cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Titanic feet",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Titanic feet"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -38,14 +55,61 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Twin magna lascannon"
+        "fixed": [
+          {
+            "name": "Twin magna lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin magna lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Titanic feet",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Titanic feet"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Carapace weapon",
+            "choices": [
+              {
+                "name": "Acastus ironstorm missile pod",
+                "type": "ranged"
+              },
+              {
+                "name": "Helios defence missiles",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Shoulder weapon 1",
+            "choices": [
+              {
+                "name": "Acastus autocannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Lascannon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Shoulder weapon 2",
+            "choices": [
+              {
+                "name": "Acastus autocannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Lascannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -61,20 +125,35 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Avenger chaincannon",
-          "Daemonbreath spear"
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Avenger chaincannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Daemonbreath spear",
+            "type": "ranged"
+          }
         ],
-        "fixed_melee": [
-          "Armoured feet"
-        ],
-        "ranged_choices": [
-          [
-            "Diabolus heavy stubber",
-            "Havoc multi-launcher"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Carapace weapon",
+            "choices": [
+              {
+                "name": "Diabolus heavy stubber",
+                "type": "ranged"
+              },
+              {
+                "name": "Havoc multi-launcher",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -90,20 +169,35 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "War Dog autocannon",
-          "War Dog autocannon"
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "War Dog autocannon",
+            "type": "ranged"
+          },
+          {
+            "name": "War Dog autocannon",
+            "type": "ranged"
+          }
         ],
-        "fixed_melee": [
-          "Armoured feet"
-        ],
-        "ranged_choices": [
-          [
-            "Diabolus heavy stubber",
-            "Daemonbreath meltagun"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Carapace weapon",
+            "choices": [
+              {
+                "name": "Diabolus heavy stubber",
+                "type": "ranged"
+              },
+              {
+                "name": "Daemonbreath meltagun",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -119,19 +213,31 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Daemonbreath spear"
+        "fixed": [
+          {
+            "name": "Daemonbreath spear",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaper chaintalon",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Reaper chaintalon"
-        ],
-        "ranged_choices": [
-          [
-            "Diabolus heavy stubber",
-            "Daemonbreath meltagun"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Carapace weapon",
+            "choices": [
+              {
+                "name": "Diabolus heavy stubber",
+                "type": "ranged"
+              },
+              {
+                "name": "Daemonbreath meltagun",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -147,18 +253,31 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [
-          "Reaper chaintalon",
-          "Slaughterclaw"
+        "fixed": [
+          {
+            "name": "Reaper chaintalon",
+            "type": "melee"
+          },
+          {
+            "name": "Slaughterclaw",
+            "type": "melee"
+          }
         ],
-        "ranged_choices": [
-          [
-            "Diabolus heavy stubber",
-            "Havoc multi-launcher"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Carapace weapon",
+            "choices": [
+              {
+                "name": "Diabolus heavy stubber",
+                "type": "ranged"
+              },
+              {
+                "name": "Havoc multi-launcher",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -174,13 +293,298 @@
     "pts_3rd": 160,
     "builds": [
       {
-        "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [
-          "Armoured feet"
+        "name": "moirax_volkite_volkite",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Volkite veuglaire",
+            "type": "ranged"
+          },
+          {
+            "name": "Volkite veuglaire",
+            "type": "ranged"
+          }
         ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
+      },
+      {
+        "name": "moirax_conversion_conversion",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Conversion beam cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Conversion beam cannon",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_graviton_graviton",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Graviton pulsar",
+            "type": "ranged"
+          },
+          {
+            "name": "Graviton pulsar",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_lightning_lightning",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Lightning lock",
+            "type": "ranged"
+          },
+          {
+            "name": "Lightning lock",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_claw_claw",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Rad cleanser",
+            "type": "ranged"
+          },
+          {
+            "name": "Siege claw",
+            "type": "melee"
+          },
+          {
+            "name": "Rad cleanser",
+            "type": "ranged"
+          },
+          {
+            "name": "Siege claw",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_volkite_conversion",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Volkite veuglaire",
+            "type": "ranged"
+          },
+          {
+            "name": "Conversion beam cannon",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_volkite_graviton",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Volkite veuglaire",
+            "type": "ranged"
+          },
+          {
+            "name": "Graviton pulsar",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_volkite_lightning",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Volkite veuglaire",
+            "type": "ranged"
+          },
+          {
+            "name": "Lightning lock",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_volkite_claw",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Volkite veuglaire",
+            "type": "ranged"
+          },
+          {
+            "name": "Rad cleanser",
+            "type": "ranged"
+          },
+          {
+            "name": "Siege claw",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_conversion_graviton",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Conversion beam cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Graviton pulsar",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_conversion_lightning",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Conversion beam cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Lightning lock",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_conversion_claw",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Conversion beam cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Rad cleanser",
+            "type": "ranged"
+          },
+          {
+            "name": "Siege claw",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_graviton_lightning",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Graviton pulsar",
+            "type": "ranged"
+          },
+          {
+            "name": "Lightning lock",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_graviton_claw",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Graviton pulsar",
+            "type": "ranged"
+          },
+          {
+            "name": "Rad cleanser",
+            "type": "ranged"
+          },
+          {
+            "name": "Siege claw",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_lightning_claw",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Lightning lock",
+            "type": "ranged"
+          },
+          {
+            "name": "Rad cleanser",
+            "type": "ranged"
+          },
+          {
+            "name": "Siege claw",
+            "type": "melee"
+          }
+        ],
+        "slots": []
       }
     ]
   },
@@ -196,26 +600,48 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [],
-        "ranged_choices": [
-          [
-            "Diabolus heavy stubber",
-            "Havoc multi-launcher"
-          ],
-          [
-            "Avenger chaincannon",
-            "Daemonbreath spear"
-          ]
-        ],
-        "melee_choices": [
-          [
-            "Slaughterclaw",
-            "Reaper chaintalon"
-          ]
-        ],
-        "max_ranged": 1,
-        "max_melee": 1
+        "fixed": [],
+        "slots": [
+          {
+            "name": "Carapace weapon",
+            "choices": [
+              {
+                "name": "Diabolus heavy stubber",
+                "type": "ranged"
+              },
+              {
+                "name": "Havoc multi-launcher",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Chaincannon/spear",
+            "choices": [
+              {
+                "name": "Avenger chaincannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Daemonbreath spear",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Slaughterclaw/chaintalon",
+            "choices": [
+              {
+                "name": "Slaughterclaw",
+                "type": "melee"
+              },
+              {
+                "name": "Reaper chaintalon",
+                "type": "melee"
+              }
+            ]
+          }
+        ]
       }
     ]
   }
