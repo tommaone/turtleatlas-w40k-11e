@@ -1437,13 +1437,19 @@ class RankingEngine:
         
         no_duplicates = build.get("no_duplicates", False)
         
-        # Fixed weapons sorted by type (skip unresolvable)
+        # Fixed weapons sorted by type (skip unresolvable).
+        # Pass the declared type as category so DUAL-profile weapons
+        # (Singing Spear, Chainsabres, Atrapos lascutter) resolve the
+        # matching profile per list — without it the first profile wins
+        # and the melee list can receive the ranged profile (or vice
+        # versa), polluting damage with cross-category variants.
         fixed_items = build.get("fixed", [])
         b_ranged = []
         b_melee = []
         for f in fixed_items:
             try:
-                w = self.W(f["name"], unit_name=name)
+                w = self.W(f["name"], unit_name=name,
+                           category=f.get("type"))
             except KeyError:
                 continue
             if f.get("type") == "melee":
@@ -1472,7 +1478,8 @@ class RankingEngine:
             skip_combo = False
             for choice in combo:
                 try:
-                    profile = self.W(choice["name"], unit_name=name)
+                    profile = self.W(choice["name"], unit_name=name,
+                                     category=choice.get("type"))
                 except KeyError:
                     skip_combo = True
                     break
