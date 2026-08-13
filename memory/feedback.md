@@ -463,3 +463,14 @@ category=f.get("type"))` and `self.W(choice["name"], unit_name=name,
 category=choice.get("type"))`. The loader's category filter matches
 `type_name` (Ranged Weapons/Melee Weapons), so single-category weapons are
 unaffected — only dual-profile entries change behaviour.
+
+## Process: this project ships commits to main directly, no PRs (2026-08-13)
+No pull requests, no feature branches. Work lands as one commit per feature
+straight on `main`, then `git push origin main`. PRs and long-lived branches
+were tried and explicitly rejected by the maintainer — they add ceremony, not
+value, for a single-maintainer repo.
+
+**How:** develop on a scratch branch if useful, but merge into local `main`
+(commit per feature, message tells the why), run the suite, then push `main`.
+Close and delete any PRs/branches that were raised before this rule was set.
+
