@@ -14,11 +14,25 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Mutant",
             "count": 8,
-            "melee": "Hideous mutations"
+            "alloc": [
+              {
+                "name": "Torment",
+                "min": 3,
+                "max": 6,
+                "melee": "Hideous mutations"
+              },
+              {
+                "name": "Mutant",
+                "min": 5,
+                "max": 10,
+                "melee": "Blasphemous appendages"
+              }
+            ]
           }
         ]
       }
@@ -38,42 +52,137 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Combi-bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Meltagun",
-        "models": [
-          {
+            "name": "Biker",
             "count": 2,
-            "ranged": "Meltagun",
-            "melee": "Close combat weapon"
+            "alloc": [
+              {
+                "name": "Biker w/ combi-bolter and bolt pistol",
+                "min": 0,
+                "max": 5,
+                "ranged": [
+                  "Combi-bolter",
+                  "Bolt pistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Biker w/ combi-bolter and chainsword",
+                "min": 0,
+                "max": 5,
+                "ranged": "Combi-bolter",
+                "melee": [
+                  "Astartes chainsword",
+                  "Close combat weapon"
+                ]
+              },
+              {
+                "name": "Biker w/ flamer",
+                "min": 0,
+                "max": 2,
+                "group_max": 2,
+                "ranged": [
+                  "Flamer",
+                  "Combi-bolter"
+                ],
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Bolt pistol or chainsword",
+                    "choices": [
+                      {
+                        "name": "Bolt pistol",
+                        "ranged": "Bolt pistol"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Biker w/ meltagun",
+                "min": 0,
+                "max": 2,
+                "group_max": 2,
+                "ranged": [
+                  "Combi-bolter",
+                  "Meltagun"
+                ],
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Bolt pistol or chainsword",
+                    "choices": [
+                      {
+                        "name": "Bolt pistol",
+                        "ranged": "Bolt pistol"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Biker w/ plasma gun",
+                "min": 0,
+                "max": 2,
+                "group_max": 2,
+                "ranged": [
+                  "Plasma gun",
+                  "Combi-bolter"
+                ],
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Bolt pistol or chainsword",
+                    "choices": [
+                      {
+                        "name": "Bolt pistol",
+                        "ranged": "Bolt pistol"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Biker w/ combi-weapon",
+                "min": 0,
+                "max": 2,
+                "group_max": 2,
+                "ranged": "Combi-weapon",
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Bolt pistol or chainsword",
+                    "choices": [
+                      {
+                        "name": "Bolt pistol",
+                        "ranged": "Bolt pistol"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           },
           {
+            "name": "Biker Champion",
             "count": 1,
-            "ranged": "Combi-bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Combi-weapon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Combi-weapon",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Combi-bolter",
-            "melee": "Close combat weapon"
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Combi-bolter",
+                    "ranged": "Combi-bolter"
+                  },
+                  {
+                    "name": "Close combat weapon",
+                    "melee": "Close combat weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -92,9 +201,10 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Chaos Spawn",
             "count": 2,
             "melee": "Hideous Mutations"
           }
@@ -117,42 +227,109 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Combi-weapon",
-            "melee": "Power fist"
-          }
-        ]
-      },
-      {
-        "name": "2x Heavy flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Heavy flamer",
-            "melee": "Power fist"
+            "name": "Heavy weapon",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Accursed weapon and combi-bolter",
+                "min": 0,
+                "max": 9,
+                "ranged": "Combi-bolter",
+                "melee": "Accursed weapon"
+              },
+              {
+                "name": "Accursed weapon and combi-weapon",
+                "min": 0,
+                "max": 9,
+                "ranged": "Combi-weapon",
+                "melee": "Accursed weapon"
+              },
+              {
+                "name": "Power fist and combi-weapon",
+                "min": 0,
+                "max": 6,
+                "ranged": "Combi-weapon",
+                "melee": "Power fist"
+              },
+              {
+                "name": "Chainfist and combi-bolter",
+                "min": 0,
+                "max": 2,
+                "ranged": "Combi-bolter",
+                "melee": "Chainfist"
+              },
+              {
+                "name": "Heavy weapon",
+                "min": 0,
+                "max": 2,
+                "slots": [
+                  {
+                    "name": "Ranged weapon",
+                    "choices": [
+                      {
+                        "name": "Heavy flamer",
+                        "ranged": "Heavy flamer"
+                      },
+                      {
+                        "name": "Reaper autocannon",
+                        "ranged": "Reaper autocannon"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Melee weapon",
+                    "choices": [
+                      {
+                        "name": "Chainfist",
+                        "melee": "Chainfist"
+                      },
+                      {
+                        "name": "Power fist",
+                        "melee": "Power fist"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Power fist and combi-bolter",
+                "min": 0,
+                "max": 6,
+                "ranged": "Combi-bolter",
+                "melee": "Power fist"
+              },
+              {
+                "name": "Chainfist and combi-weapon",
+                "min": 0,
+                "max": 2,
+                "ranged": "Combi-weapon",
+                "melee": "Chainfist"
+              },
+              {
+                "name": "Paired accursed weapons",
+                "min": 0,
+                "max": 2,
+                "melee": "Paired accursed weapons"
+              }
+            ]
           },
           {
-            "count": 3,
-            "ranged": "Combi-weapon",
-            "melee": "Power fist"
-          }
-        ]
-      },
-      {
-        "name": "2x Reaper autocannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Reaper autocannon",
-            "melee": "Power fist"
-          },
-          {
-            "count": 3,
-            "ranged": "Combi-weapon",
-            "melee": "Power fist"
+            "name": "Terminator Champion",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Paired accursed weapons",
+                    "melee": "Paired accursed weapons"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -171,12 +348,87 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Chosen",
             "count": 5,
-            "ranged": "Combi-weapon",
-            "melee": "Paired accursed weapons"
+            "alloc": [
+              {
+                "name": "Chosen w/ boltgun",
+                "min": 0,
+                "max": 9,
+                "ranged": [
+                  "Bolt pistol",
+                  "Boltgun"
+                ],
+                "melee": "Accursed weapon"
+              },
+              {
+                "name": "Chosen w/ boltgun and plasma pistol",
+                "min": 0,
+                "max": 4,
+                "ranged": [
+                  "Plasma pistol",
+                  "Boltgun"
+                ],
+                "melee": "Accursed weapon"
+              },
+              {
+                "name": "Chosen w/ combi-weapon and bolt pistol",
+                "min": 0,
+                "max": 4,
+                "ranged": [
+                  "Bolt pistol",
+                  "Combi-weapon"
+                ],
+                "melee": "Accursed weapon"
+              },
+              {
+                "name": "Chosen w/ paired accursed weapons and plasma pistol",
+                "min": 0,
+                "max": 2,
+                "ranged": "Plasma pistol",
+                "melee": "Paired accursed weapons"
+              },
+              {
+                "name": "Chosen w/ power fist and bolt pistol",
+                "min": 0,
+                "max": 2,
+                "ranged": [
+                  "Boltgun",
+                  "Bolt pistol"
+                ],
+                "melee": "Power fist"
+              },
+              {
+                "name": "Chosen w/ combi-weapon and plasma pistol",
+                "min": 0,
+                "max": 4,
+                "ranged": [
+                  "Plasma pistol",
+                  "Combi-weapon"
+                ],
+                "melee": "Accursed weapon"
+              },
+              {
+                "name": "Chosen w/ paired accursed weapons and bolt pistol",
+                "min": 0,
+                "max": 2,
+                "ranged": "Bolt pistol",
+                "melee": "Paired accursed weapons"
+              },
+              {
+                "name": "Chosen w/ power fist and plasma pistol",
+                "min": 0,
+                "max": 2,
+                "ranged": [
+                  "Boltgun",
+                  "Plasma pistol"
+                ],
+                "melee": "Power fist"
+              }
+            ]
           }
         ]
       }
@@ -196,51 +448,34 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Autopistol",
-        "models": [
-          {
-            "count": 1,
+            "name": "Cultist w/ autopistol and brutal assault weapon",
+            "count": 9,
             "ranged": "Autopistol",
-            "melee": "Close combat weapon"
+            "melee": "Brutal assault weapon"
           },
           {
-            "count": 9,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      }
-    ]
-  },
-  "Fabius Bile": {
-    "n": 2,
-    "pts": 100,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 5,
-      "OC": 1
-    },
-    "builds": [
-      {
-        "name": "Melee",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Xyclos needler",
-            "melee": "The Chirurgeon"
+            "name": "Cultist Champion",
+            "count": 1,
+            "melee": "Brutal assault weapon",
+            "slots": [
+              {
+                "name": "Pistol",
+                "choices": [
+                  {
+                    "name": "Bolt pistol",
+                    "ranged": "Bolt pistol"
+                  },
+                  {
+                    "name": "Autopistol",
+                    "ranged": "Autopistol",
+                    "default": true
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -259,27 +494,58 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Autopistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Corrupted stave",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Corrupted stave",
-            "melee": "Close combat weapon"
+            "name": "Beastman",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Beastman",
+                "min": 0,
+                "max": 9,
+                "ranged": "Autopistol",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Beastman w/ great weapon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Autopistol",
+                "melee": "Great weapon"
+              },
+              {
+                "name": "Beastman w/ corrupted stave",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Corrupted stave",
+                  "Autopistol"
+                ],
+                "melee": "Corrupted stave"
+              }
+            ]
           },
           {
-            "count": 9,
-            "ranged": "Autopistol",
-            "melee": "Close combat weapon"
+            "name": "Fellgor Champion",
+            "count": 1,
+            "melee": "Chainsword",
+            "slots": [
+              {
+                "name": "Pistol",
+                "choices": [
+                  {
+                    "name": "Bolt pistol",
+                    "ranged": "Bolt pistol",
+                    "default": true
+                  },
+                  {
+                    "name": "Plasma pistol",
+                    "ranged": "Plasma pistol"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -298,87 +564,48 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Havoc",
             "count": 5,
-            "ranged": "Havoc autocannon",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Havoc lascannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Havoc lascannon",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Havoc autocannon",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Havoc missile launcher - frag",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Havoc missile launcher - frag",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Havoc autocannon",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Havoc missile launcher - krak",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Havoc missile launcher - krak",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Havoc autocannon",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Havoc reaper chaincannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Havoc reaper chaincannon",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Havoc autocannon",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Havoc heavy bolter",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Havoc heavy bolter",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Havoc autocannon",
-            "melee": "Close combat weapon"
+            "alloc": [
+              {
+                "name": "Havoc w/ autocannon",
+                "min": 0,
+                "max": 4,
+                "ranged": "Havoc autocannon",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Havoc w/ lascannon",
+                "min": 0,
+                "max": 4,
+                "ranged": "Havoc lascannon",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Havoc w/ missile launcher",
+                "min": 0,
+                "max": 4,
+                "ranged": "Havoc missile launcher",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Havoc w/ reaper chaincannon",
+                "min": 0,
+                "max": 4,
+                "ranged": "Havoc reaper chaincannon",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Havoc w/ heavy bolter",
+                "min": 0,
+                "max": 4,
+                "ranged": "Havoc heavy bolter",
+                "melee": "Close combat weapon"
+              }
+            ]
           }
         ]
       }
@@ -398,132 +625,115 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Balefire tome",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Flamer",
-            "melee": "Close combat weapon"
+            "name": "Legionary",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Legionary w/ boltgun",
+                "min": 0,
+                "max": 9,
+                "ranged": [
+                  "Boltgun",
+                  "Bolt pistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Legionary w/ chainsword",
+                "min": 0,
+                "max": 9,
+                "ranged": "Bolt pistol",
+                "melee": [
+                  "Astartes chainsword",
+                  "Close combat weapon"
+                ]
+              },
+              {
+                "name": "Legionary w/ heavy melee weapon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Bolt pistol",
+                "melee": [
+                  "Heavy melee weapon",
+                  "Close combat weapon"
+                ]
+              },
+              {
+                "name": "Legionary w/ balefire tome",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Balefire tome",
+                  "Bolt pistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Legionary w/ other weapon",
+                "min": 0,
+                "max": 2,
+                "ranged": "Bolt pistol",
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Weapon",
+                    "choices": [
+                      {
+                        "name": "Meltagun",
+                        "ranged": "Meltagun"
+                      },
+                      {
+                        "name": "Flamer",
+                        "ranged": "Flamer"
+                      },
+                      {
+                        "name": "Havoc autocannon",
+                        "ranged": "Havoc autocannon"
+                      },
+                      {
+                        "name": "Heavy bolter",
+                        "ranged": "Heavy bolter"
+                      },
+                      {
+                        "name": "Lascannon",
+                        "ranged": "Lascannon"
+                      },
+                      {
+                        "name": "Missile launcher",
+                        "ranged": "Missile launcher - frag"
+                      },
+                      {
+                        "name": "Reaper chaincannon",
+                        "ranged": "Reaper chaincannon"
+                      },
+                      {
+                        "name": "Plasma pistol and Astartes chainsword",
+                        "ranged": "Plasma pistol",
+                        "melee": "Astartes chainsword"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           },
           {
-            "count": 3,
-            "ranged": "Balefire tome",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Havoc autocannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Havoc autocannon",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Balefire tome",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Heavy bolter",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Heavy bolter",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Balefire tome",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Lascannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Lascannon",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Balefire tome",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Missile launcher - frag",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Missile launcher - frag",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Balefire tome",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Missile launcher - krak",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Missile launcher - krak",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Balefire tome",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Reaper chaincannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Reaper chaincannon",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Balefire tome",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Meltagun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Meltagun",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Balefire tome",
-            "melee": "Close combat weapon"
+            "name": "Aspiring Champion",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Close combat weapon",
+                    "melee": "Close combat weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -542,72 +752,37 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
+            "name": "Garreon the Corpsemaster",
+            "count": 1,
             "ranged": "Absolver bolt pistol",
             "melee": "Reductor array"
-          }
-        ]
-      },
-      {
-        "name": "2x Mind Wrench",
-        "models": [
+          },
           {
-            "count": 2,
+            "name": "Garlon Souleater",
+            "count": 1,
             "ranged": "Mind Wrench",
-            "melee": "Reductor array"
+            "melee": "Force stave"
           },
           {
-            "count": 3,
-            "ranged": "Absolver bolt pistol",
-            "melee": "Reductor array"
-          }
-        ]
-      },
-      {
-        "name": "2x Bolt pistol",
-        "models": [
-          {
-            "count": 2,
+            "name": "Katar Garrix",
+            "count": 1,
             "ranged": "Bolt pistol",
-            "melee": "Reductor array"
+            "melee": "Axe of Ending"
           },
           {
-            "count": 3,
-            "ranged": "Absolver bolt pistol",
-            "melee": "Reductor array"
-          }
-        ]
-      },
-      {
-        "name": "2x Laspistol",
-        "models": [
-          {
-            "count": 2,
+            "name": "Captain Sargotta",
+            "count": 1,
             "ranged": "Laspistol",
-            "melee": "Reductor array"
+            "melee": "Power sabre"
           },
           {
-            "count": 3,
-            "ranged": "Absolver bolt pistol",
-            "melee": "Reductor array"
-          }
-        ]
-      },
-      {
-        "name": "2x Londaxi maimer",
-        "models": [
-          {
-            "count": 2,
+            "name": "The Enforcer",
+            "count": 1,
             "ranged": "Londaxi maimer",
-            "melee": "Reductor array"
-          },
-          {
-            "count": 3,
-            "ranged": "Absolver bolt pistol",
-            "melee": "Reductor array"
+            "melee": "Bionic gauntlet"
           }
         ]
       }
@@ -628,11 +803,12 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Mutilator",
             "count": 3,
-            "melee": "Fleshmetal weapons - rending strikes"
+            "melee": "Fleshmetal weapons"
           }
         ]
       }
@@ -652,72 +828,117 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Legionary",
             "count": 5,
-            "ranged": "Heavy bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Missile launcher - frag",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Missile launcher - frag",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Heavy bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Missile launcher - krak",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Missile launcher - krak",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Heavy bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Flamer",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Heavy bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Meltagun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Meltagun",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Heavy bolter",
-            "melee": "Close combat weapon"
+            "alloc": [
+              {
+                "name": "Legionary w/ boltgun",
+                "min": 0,
+                "max": 9,
+                "ranged": [
+                  "Boltgun",
+                  "Bolt pistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Legionary w/ chainsword",
+                "min": 0,
+                "max": 9,
+                "ranged": "Bolt pistol",
+                "melee": [
+                  "Astartes chainsword",
+                  "Close combat weapon"
+                ]
+              },
+              {
+                "name": "Legionary w/ heavy weapon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Bolt pistol",
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Weapon",
+                    "choices": [
+                      {
+                        "name": "Heavy bolter",
+                        "ranged": "Heavy bolter"
+                      },
+                      {
+                        "name": "Missile launcher",
+                        "ranged": "Missile launcher - frag"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Legionary w/ special weapon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Bolt pistol",
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Weapon",
+                    "choices": [
+                      {
+                        "name": "Meltagun",
+                        "ranged": "Meltagun"
+                      },
+                      {
+                        "name": "Flamer",
+                        "ranged": "Flamer"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Legionary w/ accursed weapon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Bolt pistol",
+                "melee": [
+                  "Accursed weapon",
+                  "Close combat weapon"
+                ]
+              },
+              {
+                "name": "Legionary w/ Nostraman chainglaive",
+                "min": 0,
+                "max": 1,
+                "ranged": "Bolt pistol",
+                "melee": [
+                  "Nostraman chainglaive",
+                  "Close combat weapon"
+                ]
+              },
+              {
+                "name": "Legionary w/ paired accursed weapons",
+                "min": 0,
+                "max": 1,
+                "ranged": "Bolt pistol",
+                "melee": [
+                  "Paired accursed weapons",
+                  "Close combat weapon"
+                ]
+              },
+              {
+                "name": "Legionary w/ voice eater",
+                "min": 0,
+                "max": 1,
+                "ranged": "Bolt pistol",
+                "melee": [
+                  "Astartes chainsword",
+                  "Close combat weapon"
+                ]
+              }
+            ]
           }
         ]
       }
@@ -738,32 +959,26 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Obliterator",
             "count": 2,
-            "ranged": "Fleshmetal guns - focused malice",
-            "melee": "Crushing fists"
-          }
-        ]
-      },
-      {
-        "name": "2x Fleshmetal guns - ruinous salvo",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Fleshmetal guns - ruinous salvo",
-            "melee": "Crushing fists"
-          }
-        ]
-      },
-      {
-        "name": "2x Fleshmetal guns - warp hail",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Fleshmetal guns - warp hail",
-            "melee": "Crushing fists"
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Crushing fists",
+                    "melee": "Crushing fists"
+                  },
+                  {
+                    "name": "Fleshmetal guns",
+                    "ranged": "Fleshmetal guns - focused malice"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -784,11 +999,22 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Possessed",
             "count": 5,
-            "melee": "Hideous mutations"
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Hideous mutations",
+                    "melee": "Hideous mutations"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -809,12 +1035,74 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Raptor",
             "count": 5,
-            "ranged": "Bolt pistol",
-            "melee": "Astartes chainsword"
+            "alloc": [
+              {
+                "name": "Raptor",
+                "min": 0,
+                "max": 9,
+                "ranged": "Bolt pistol",
+                "melee": "Astartes chainsword"
+              },
+              {
+                "name": "Raptor w/ plasma pistol",
+                "min": 0,
+                "max": 4,
+                "ranged": "Plasma pistol",
+                "melee": "Astartes chainsword"
+              },
+              {
+                "name": "Raptor w/ heavy melee weapon",
+                "min": 0,
+                "max": 4,
+                "ranged": "Bolt pistol",
+                "melee": "Heavy melee weapon"
+              },
+              {
+                "name": "Raptor w/ mutations",
+                "min": 0,
+                "max": 2,
+                "ranged": "Bolt pistol",
+                "melee": "Mutations"
+              },
+              {
+                "name": "Raptor w/ meltagun",
+                "min": 0,
+                "max": 2,
+                "group_max": 4,
+                "ranged": [
+                  "Bolt pistol",
+                  "Meltagun"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Raptor w/ plasma gun",
+                "min": 0,
+                "max": 2,
+                "group_max": 4,
+                "ranged": [
+                  "Plasma gun",
+                  "Bolt pistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Raptor w/ flamer",
+                "min": 0,
+                "max": 2,
+                "group_max": 4,
+                "ranged": [
+                  "Flamer",
+                  "Bolt pistol"
+                ],
+                "melee": "Close combat weapon"
+              }
+            ]
           }
         ]
       }
@@ -834,12 +1122,77 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
+            "name": "Red Corsairs Raider",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Red Corsairs Raider",
+                "min": 2,
+                "max": 9,
+                "ranged": [
+                  "Boltgun",
+                  "Bolt pistol"
+                ],
+                "melee": "Reaver's blade"
+              },
+              {
+                "name": "Red Corsairs Raider w/ meltagun",
+                "min": 0,
+                "max": 2,
+                "group_max": 4,
+                "ranged": [
+                  "Meltagun",
+                  "Bolt pistol"
+                ],
+                "melee": "Reaver's blade"
+              },
+              {
+                "name": "Red Corsairs Raider w/ power fist",
+                "min": 0,
+                "max": 2,
+                "group_max": 4,
+                "ranged": [
+                  "Boltgun",
+                  "Bolt pistol"
+                ],
+                "melee": "Power fist"
+              },
+              {
+                "name": "Red Corsairs Raider w/ power fist and meltagun",
+                "min": 0,
+                "max": 2,
+                "group_max": 4,
+                "ranged": [
+                  "Meltagun",
+                  "Bolt pistol"
+                ],
+                "melee": "Power fist"
+              }
+            ]
+          },
+          {
+            "name": "Red Corsairs Raider Champion",
+            "count": 1,
             "ranged": "Boltgun",
-            "melee": "Reaver's blade"
+            "melee": "Reaver's blade",
+            "slots": [
+              {
+                "name": "Pistol choice",
+                "choices": [
+                  {
+                    "name": "Bolt pistol",
+                    "ranged": "Bolt pistol"
+                  },
+                  {
+                    "name": "Hand flamer",
+                    "ranged": "Hand flamer"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -859,117 +1212,97 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Flamer",
-            "melee": "Close combat weapon"
+            "name": "Guardsman",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Guardsman w/ lasgun",
+                "min": 0,
+                "max": 9,
+                "ranged": "Lasgun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Guardsman w/ flamer",
+                "min": 0,
+                "max": 1,
+                "group_max": 3,
+                "ranged": "Flamer",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Guardsman w/ plasma gun",
+                "min": 0,
+                "max": 1,
+                "group_max": 3,
+                "ranged": "Plasma gun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Guardsman w/ meltagun",
+                "min": 0,
+                "max": 1,
+                "group_max": 3,
+                "ranged": "Meltagun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Guardsman w/ Cultist sniper rifle",
+                "min": 0,
+                "max": 1,
+                "group_max": 3,
+                "ranged": "Cultist sniper rifle",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Guardsman w/ Cultist grenade launcher",
+                "min": 0,
+                "max": 1,
+                "group_max": 3,
+                "ranged": "Cultist grenade launcher",
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 8,
-            "ranged": "Lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma gun - standard",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma gun - standard",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma gun - supercharge",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma gun - supercharge",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Meltagun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Meltagun",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Cultist sniper rifle",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Cultist sniper rifle",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Cultist grenade launcher - frag",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Cultist grenade launcher - frag",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Cultist grenade launcher - krak",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Cultist grenade launcher - krak",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Lasgun",
-            "melee": "Close combat weapon"
+            "name": "Traitor Sergeant",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Melee weapon",
+                "choices": [
+                  {
+                    "name": "Close combat weapon",
+                    "melee": "Close combat weapon"
+                  },
+                  {
+                    "name": "Chainsword",
+                    "melee": "Chainsword"
+                  },
+                  {
+                    "name": "Power weapon",
+                    "melee": "Power weapon"
+                  }
+                ]
+              },
+              {
+                "name": "Ranged weapon",
+                "choices": [
+                  {
+                    "name": "Corrupted pistol",
+                    "ranged": "Corrupted pistol",
+                    "default": true
+                  },
+                  {
+                    "name": "Boltgun",
+                    "ranged": "Boltgun"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -990,11 +1323,37 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "melee": "Warp claws"
+            "name": "Warp Talon",
+            "count": 4,
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Warp claws",
+                    "melee": "Warp claws"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Warp Talon Champion",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Warp claws",
+                    "melee": "Warp claws"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
