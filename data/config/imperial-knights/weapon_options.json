@@ -1,5 +1,5 @@
 {
-  "_note": "imperial-knights weapon options — generated from BSData + MFM",
+  "_note": "imperial-knights weapon options — slots schema, migrated from BSData truth (2026-08-13)",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Acastus Knight Asterius": {
     "info": {
@@ -14,16 +14,33 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Twin conversion beam cannon",
-          "Asterius volkite culverin",
-          "Karacnos mortar battery"
+        "fixed": [
+          {
+            "name": "Twin conversion beam cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin conversion beam cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Asterius volkite culverin",
+            "type": "ranged"
+          },
+          {
+            "name": "Asterius volkite culverin",
+            "type": "ranged"
+          },
+          {
+            "name": "Karacnos mortar battery",
+            "type": "ranged"
+          },
+          {
+            "name": "Titanic feet",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Titanic feet"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -39,49 +56,107 @@
     "pts": 725,
     "builds": [
       {
-        "name": "2x Acastus autocannon",
-        "fixed_ranged": [
-          "Twin magna lascannon",
-          "Acastus autocannon",
-          "Acastus autocannon",
-          "Acastus ironstorm missile pod",
-          "Helios defence missiles"
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Twin magna lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin magna lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Titanic feet",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Titanic feet"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
-      },
+        "slots": [
+          {
+            "name": "Carapace weapon",
+            "choices": [
+              {
+                "name": "Acastus ironstorm missile pod",
+                "type": "ranged"
+              },
+              {
+                "name": "Helios defence missiles",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Shoulder weapon 1",
+            "choices": [
+              {
+                "name": "Acastus autocannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Lascannon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Shoulder weapon 2",
+            "choices": [
+              {
+                "name": "Acastus autocannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Lascannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Armiger Helverin": {
+    "info": {
+      "M": "12\"",
+      "T": 9,
+      "SV": 3,
+      "W": 14,
+      "OC": 6,
+      "INV": 5
+    },
+    "pts": 140,
+    "builds": [
       {
-        "name": "Acastus autocannon + Lascannon",
-        "fixed_ranged": [
-          "Twin magna lascannon",
-          "Acastus autocannon",
-          "Lascannon",
-          "Acastus ironstorm missile pod",
-          "Helios defence missiles"
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Armiger autocannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armiger autocannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Titanic feet"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
-      },
-      {
-        "name": "2x Lascannon",
-        "fixed_ranged": [
-          "Twin magna lascannon",
-          "Lascannon",
-          "Lascannon",
-          "Acastus ironstorm missile pod",
-          "Helios defence missiles"
-        ],
-        "fixed_melee": [
-          "Titanic feet"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Heavy Stubber",
+            "choices": [
+              {
+                "name": "Meltagun",
+                "type": "ranged"
+              },
+              {
+                "name": "Questoris heavy stubber",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -95,15 +170,301 @@
       "INV": 5
     },
     "pts": 150,
+    "pts_3rd": 160,
     "builds": [
       {
-        "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [
-          "Armoured feet"
+        "name": "moirax_volkite_volkite",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Volkite veuglaire",
+            "type": "ranged"
+          },
+          {
+            "name": "Volkite veuglaire",
+            "type": "ranged"
+          }
         ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
+      },
+      {
+        "name": "moirax_conversion_conversion",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Conversion beam cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Conversion beam cannon",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_graviton_graviton",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Graviton pulsar",
+            "type": "ranged"
+          },
+          {
+            "name": "Graviton pulsar",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_lightning_lightning",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Lightning lock",
+            "type": "ranged"
+          },
+          {
+            "name": "Lightning lock",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_claw_claw",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Rad cleanser",
+            "type": "ranged"
+          },
+          {
+            "name": "Rad cleanser",
+            "type": "ranged"
+          },
+          {
+            "name": "Siege claw",
+            "type": "melee"
+          },
+          {
+            "name": "Siege claw",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_volkite_conversion",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Volkite veuglaire",
+            "type": "ranged"
+          },
+          {
+            "name": "Conversion beam cannon",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_volkite_graviton",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Volkite veuglaire",
+            "type": "ranged"
+          },
+          {
+            "name": "Graviton pulsar",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_volkite_lightning",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Volkite veuglaire",
+            "type": "ranged"
+          },
+          {
+            "name": "Lightning lock",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_volkite_claw",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Volkite veuglaire",
+            "type": "ranged"
+          },
+          {
+            "name": "Rad cleanser",
+            "type": "ranged"
+          },
+          {
+            "name": "Siege claw",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_conversion_graviton",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Conversion beam cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Graviton pulsar",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_conversion_lightning",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Conversion beam cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Lightning lock",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_conversion_claw",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Conversion beam cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Rad cleanser",
+            "type": "ranged"
+          },
+          {
+            "name": "Siege claw",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_graviton_lightning",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Graviton pulsar",
+            "type": "ranged"
+          },
+          {
+            "name": "Lightning lock",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_graviton_claw",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Graviton pulsar",
+            "type": "ranged"
+          },
+          {
+            "name": "Rad cleanser",
+            "type": "ranged"
+          },
+          {
+            "name": "Siege claw",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "moirax_lightning_claw",
+        "fixed": [
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          },
+          {
+            "name": "Lightning lock",
+            "type": "ranged"
+          },
+          {
+            "name": "Rad cleanser",
+            "type": "ranged"
+          },
+          {
+            "name": "Siege claw",
+            "type": "melee"
+          }
+        ],
+        "slots": []
       }
     ]
   },
@@ -120,14 +481,31 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Thermal spear"
+        "fixed": [
+          {
+            "name": "Thermal spear",
+            "type": "ranged"
+          },
+          {
+            "name": "Reaper chain-cleaver",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Reaper chain-cleaver"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Heavy Stubber",
+            "choices": [
+              {
+                "name": "Meltagun",
+                "type": "ranged"
+              },
+              {
+                "name": "Questoris heavy stubber",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   }
