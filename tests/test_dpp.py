@@ -83,25 +83,67 @@ class TestComputeWeaponDPP:
         cover = compute_weapon_dpp(wp, MEQ, unit_points=100, hit_mode=HitMode.COVER)
         assert cover["total_damage"] == normal["total_damage"]
 
-    def test_anti_infantry_increases_damage(self, MEQ):
-        """Anti-Infantry should increase damage vs INFANTRY target."""
-        # Note: The engine does not yet resolve anti-keywords against target keywords
-        # (TargetProfile has no keyword field). This test verifies that the
-        # Anti keyword is parsed and that damage is computed with anti_info set.
-        # For now we just check structural soundness — damage >= 0.
-        wp = WeaponProfile(
-            name="Purifying Flame",
-            attacks=3,
-            bs=3,
-            strength=4,
-            ap=-1,
-            damage=1,
-            abilities=["Anti-Infantry 2+", "Ignores Cover", "Psychic"],
+    def test_anti_infantry_wound_target_override(self, MEQ):
+        """Anti-Infantry X+ must wound on X+, not the S/T comparison.
+
+        11e Anti-X: an unmodified wound roll of X+ vs the matching keyword
+        scores a Critical Wound, which always succeeds regardless of S/T.
+        A S4 weapon vs T4 MEQ would normally wound on 4+; Anti-Infantry 4+
+        keeps that, but Anti-Infantry 2+ must wound on 2+.
+        """
+        base = WeaponProfile(
+            name="Anti-Infantry 4+",
+            attacks=6, bs=3, strength=4, ap=-1, damage=1,
+            abilities=["Anti-Infantry 4+"],
         )
-        result = compute_weapon_dpp(wp, MEQ, unit_points=100)
-        assert result["total_damage"] >= 0
-        # Anti keyword is parsed and does not crash
-        assert "total_damage" in result
+        better = WeaponProfile(
+            name="Anti-Infantry 2+",
+            attacks=6, bs=3, strength=4, ap=-1, damage=1,
+            abilities=["Anti-Infantry 2+"],
+        )
+        r4 = compute_weapon_dpp(base, MEQ, unit_points=100)
+        r2 = compute_weapon_dpp(better, MEQ, unit_points=100)
+        # Anti-Infantry 2+ wounds on 2+ (5/6) vs 4+ (3/6): ~1.67x wounds.
+        # On a 3+ save target with AP-1, damage ratio should reflect that.
+        assert r2["total_damage"] > r4["total_damage"] * 1.5
+
+    def test_anti_vehicle_punches_up(self, Knight):
+        """Anti-VEHICLE 3+ must let a S8 weapon wound T13 on 3+.
+
+        Regression for the chainfist bug: without the wound-target override,
+        a chainfist (WS4 S8) scored 0.67 vs a Knight while a power fist
+        (WS3 S8) scored 0.89 — the anti-tank weapon lost to the generic fist.
+        """
+        chainfist = WeaponProfile(
+            name="Chainfist", attacks=3, bs=4, strength=8, ap=-2, damage=2,
+            abilities=["Anti-VEHICLE 3+"],
+        )
+        fist = WeaponProfile(
+            name="Power fist", attacks=3, bs=3, strength=8, ap=-2, damage=2,
+            abilities=[],
+        )
+        rc = compute_weapon_dpp(chainfist, Knight, unit_points=100)
+        rf = compute_weapon_dpp(fist, Knight, unit_points=100)
+        # Anti-VEHICLE 3+ → wound on 3+ (4/6) vs 5+ (2/6): 2x wounds.
+        # WS4 vs WS3 is 1/6 fewer hits, so chainfist must still clearly win.
+        assert rc["total_damage"] > rf["total_damage"] * 1.3
+
+    def test_anti_keyword_non_matching_target(self, MEQ):
+        """Anti-VEHICLE must not affect damage vs INFANTRY targets."""
+        wp = WeaponProfile(
+            name="Test", attacks=6, bs=3, strength=4, ap=-1, damage=1,
+            abilities=["Anti-VEHICLE 3+"],
+        )
+        with_anti = compute_weapon_dpp(wp, MEQ, unit_points=100)
+        without = compute_weapon_dpp(
+            WeaponProfile(
+                name="Test", attacks=6, bs=3, strength=4, ap=-1, damage=1,
+                abilities=[],
+            ),
+            MEQ, unit_points=100,
+        )
+        # T4 MEQ is not in the VEHICLE toughness band: Anti must be inert.
+        assert abs(with_anti["total_damage"] - without["total_damage"]) < 1e-9
 
     def test_dpp_scales_with_unit_points(self, storm_bolter, MEQ):
         """DPP should decrease as unit points increase."""

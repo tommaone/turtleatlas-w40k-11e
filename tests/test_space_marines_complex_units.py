@@ -226,16 +226,22 @@ class TestSpaceMarinesComplexUnits:
                 f"{name}: {len(res['ranged'])} ranged entries for {n} models"
             )
 
-    def test_slot_pick_survival_vs_target_gap(self, sm_engine, MEQ):
-        """Terminator heavy slot is NOT target-dependent yet — pins the
-        current (documented) engine limitation so it reads as intentional.
+    def test_slot_pick_chainfist_punches_up(self, sm_engine, MEQ):
+        """Terminator melee IS target-dependent now: the Chain Fist's
+        Anti-VEHICLE 3+ must out-rank the Power Fist vs heavy targets while
+        losing to it vs infantry — subject to the datasheet cap of 1 chainfist
+        per 5 models.
 
-        The Cyclone Missile Launcher is a multi-profile weapon (frag + krak
-        profiles under one name). The weapon loader resolves only the FIRST
-        profile (frag: S4 D1) so the Cyclone cannot out-damage the Assault
-        Cannon (S6 D1 Devastating) vs ANY target — the engine always picks
-        the Assault Cannon. This test pins that stable behavior and the gap:
-        when multi-profile resolution lands, this assertion flips.
+        Regression for the Anti-X wound-target bug: before the fix, the
+        engine only treated Anti-VEHICLE 3+ as a crit threshold and never
+        lowered the wound target, so a WS4 chainfist (S8) scored below a
+        WS3 power fist (S8) even vs T13 Knights — the anti-tank weapon lost
+        to the generic fist everywhere. That is now fixed, and the config
+        enforces the 1-chainfist-per-5 datasheet cap via group_max.
+
+        Note: the Cyclone Missile Launcher remains a separate documented gap
+        (multi-profile frag+krak: the loader resolves only the first profile,
+        so the Assault Cannon keeps winning the heavy slot).
         """
         from engine.dpp import TargetProfile
         heavy = TargetProfile(
@@ -246,5 +252,12 @@ class TestSpaceMarinesComplexUnits:
         vs_heavy = _build(sm_engine, "Terminator Squad", heavy)
         assert _rcount(vs_meq, "Assault Cannon") == 1
         assert _rcount(vs_heavy, "Assault Cannon") == 1
-        # Both targets keep the same allocation AND slot content.
-        assert vs_meq["_alloc_info"] == vs_heavy["_alloc_info"]
+        # vs MEQ: Power Fist (no Anti-INFANTRY — nothing punches down to T4).
+        # vs heavy: the one allowed Chain Fist (Anti-VEHICLE 3+ wounds T10 on
+        # 3+ not 5+); the rest stay on Power Fists (1-per-5 datasheet cap).
+        # Weapon profiles resolve to canonical names: "Power fist"/"Chainfist".
+        assert vs_meq["_alloc_info"] != vs_heavy["_alloc_info"]
+        assert _mcount(vs_meq, "Power fist") == 5
+        assert _mcount(vs_meq, "Chainfist") == 0
+        assert _mcount(vs_heavy, "Chainfist") == 1
+        assert _mcount(vs_heavy, "Power fist") == 4

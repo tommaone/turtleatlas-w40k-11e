@@ -416,6 +416,19 @@ def expected_wounds(hits: float, lethal_wounds: float,
     if lance and effective_s < effective_t:
         wound_target -= 1
 
+    # Anti-X (11e): an unmodified wound roll of X+ against a target with the
+    # matching keyword scores a Critical Wound, which is ALWAYS successful
+    # regardless of Strength vs Toughness. So when the keyword matches, the
+    # effective wound target is the easier of the S/T comparison and the Anti
+    # value (Anti can never make wounding harder than S/T already allows).
+    anti_matches = False
+    anti_val = 6
+    if anti_info:
+        anti_val, anti_kw = anti_info
+        anti_matches = bool(anti_kw) and _anti_keyword_matches(anti_kw, toughness)
+        if anti_matches:
+            wound_target = min(wound_target, anti_val)
+
     if wound_target >= 7:
         p_wound = 0
     elif wound_target <= 1:
@@ -427,10 +440,8 @@ def expected_wounds(hits: float, lethal_wounds: float,
     # - Without Anti: unmodified 6 is the only crit
     # - With Anti-X: unmodified X+ is also critical (if keyword matches)
     crit_roll = 6  # natural crit on unmodified 6
-    if anti_info:
-        anti_val, anti_kw = anti_info
-        if anti_kw and _anti_keyword_matches(anti_kw, toughness):
-            crit_roll = min(anti_val, 6)
+    if anti_matches:
+        crit_roll = min(anti_val, 6)
 
     # A crit wound requires both wounding AND rolling at or above the crit threshold
     crit_wound_threshold = max(wound_target, crit_roll)

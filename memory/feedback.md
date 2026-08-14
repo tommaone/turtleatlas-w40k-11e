@@ -553,3 +553,50 @@ Wave-2 completion: three factions migrated in one pass.
 **How:** seeded full suite 3588 passed / 36 skipped. Generator change
 isolated: run `pytest tests/test_gen_squad_composition.py` (18) first,
 then per-faction complex tests, then full suite.
+
+## Anti-X keyword fixes the wound target, not just the crit threshold
+The engine parsed `Anti-X Y+` into `anti_info` but only used it for the
+critical-wound threshold — never to override the wound target. Result: a
+Chainfist (WS4 S8 Anti-VEHICLE 3+) scored 0.670 vs a Knight (T13) while a
+Power Fist (WS3 S8) scored 0.890, because the fist hit on 3+ vs 4+ and the
+chainfist's anti rule never lowered the wound target. 11e rule: an
+unmodified wound roll of Y+ vs the matching keyword scores a Critical Wound
+= always successful regardless of S/T, so effective wound target is
+min(S/T target, anti_val).
+
+**Fix (engine/dpp.py `expected_wounds`):** when `anti_matches`, set
+`wound_target = min(wound_target, anti_val)`; reuse `anti_matches` for the
+crit-roll branch. The keyword match is a toughness-band heuristic
+(`ANTI_KEYWORD_TOUGHNESS` in engine/dpp.py: VEHICLE 6–13, INFANTRY 3–5,
+CHARACTER 3–10, etc.) because TargetProfile has no keyword field.
+
+**How:** 3 regression tests in tests/test_dpp.py
+(`test_anti_infantry_wound_target_override`, `test_anti_vehicle_punches_up`
+— replaced `test_anti_infantry_increases_damage`,
+`test_anti_keyword_non_matching_target`) + `Knight` fixture in
+tests/conftest.py. 6 stale tests updated: 5 Aeldari (Felarch → Neuro
+disruptor Anti-INFANTRY 2+, Warlock Conclave/Skyrunner → Witchblade vs MEQ,
+Singing Spear vs TEQ/vehicles) + 1 SM (`test_slot_pick_chainfist_punches_up`).
+
+## Datasheet caps like "1 chainfist per 5 models" are NOT in BSData
+BSData encodes per-variant maxes (e.g. Chainfist max=1 per variant) but NOT
+the shared datasheet cap. The generator copies maxes verbatim, so two
+chainfist variants (combi-bolter + combi-weapon) each max=1 → engine can
+take BOTH = 2 chainfists, plus heavy-weapon melee slot + champion slot =
+up to 4 in a 5-man squad. CSM was worse: max=2 per variant = BSData's
+10-model cap applied to an n=5 config.
+
+**Fix:** config-level, engine mechanism already existed — `group_max` (a
+value shared by variants = combined budget, enforced in
+`_best_alloc_index` and `_alloc_combo_space`). Set `group_max: 1` on the
+chainfist alloc variants AND strip Chainfist from the heavy-weapon melee
+slot and champion Wargear slot choices (slots are per-model, group_max
+cannot span them). Applied to: EC Chaos Terminators, CSM Chaos Terminator
+Squad, SM-family Terminator Squads (space-marines, black-templars,
+blood-angels, dark-angels, space-wolves).
+
+**How:** `test_slot_pick_chainfist_punches_up` now asserts 1 chainfist +
+4 power fists vs T10 (was 5 chainfists — that pinned the un-capped config);
+EC `test_champion_wargear_slot` asserts no chainfist in champion choices.
+Engine verification: every terminator squad resolves to exactly 1
+chainfist vs Knight, 0 vs MEQ/TEQ.

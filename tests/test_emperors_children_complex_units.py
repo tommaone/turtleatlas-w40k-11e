@@ -4,7 +4,8 @@ Locks the regenerated EC squads to the BSData truth (verified 2026-08-13
 against the "Chaos - Emperor's Children Library" catalogue):
 
 - Chaos Terminators: alloc pool (4 profiles, chainfist capped at 1) +
-  Terminator Champion Wargear slot (paired accursed weapons option).
+  Terminator Champion Wargear slot (paired accursed weapons option, no
+  chainfist — the 1-chainfist-per-5 datasheet cap lives in the pool).
 - Noise Marines: alloc pool (sonic blaster min 3, blastmaster max 2) +
   Disharmonist Sonic Blaster slot (screamer pistol + power sword option).
 - Infractors: Obsessionist carries TWO slots (Pistol + Melee weapon).
@@ -54,6 +55,8 @@ class TestChaosTerminators:
         assert m["count"] == 4
         alloc = {a["name"]: a for a in m["alloc"]}
         assert alloc["Chainfist and combi-bolter"]["max"] == 1
+        assert alloc["Chainfist and combi-bolter"]["group_max"] == 1
+        assert alloc["Chainfist and combi-weapon"]["group_max"] == 1
         assert alloc["Accursed weapon and combi-bolter"]["min"] == 0
         assert alloc["Accursed weapon and combi-bolter"]["ranged"] == "Combi-bolter"
         assert alloc["Power fist and combi-weapon"]["max"] == 3
@@ -64,7 +67,10 @@ class TestChaosTerminators:
         slot = m["slots"][0]
         names = {c["name"] for c in slot["choices"]}
         assert "Paired accursed weapons" in names
-        assert "Chainfist and combi-bolter" in names
+        # 1-chainfist-per-5 datasheet cap: the champion cannot add a second
+        # chainfist on top of the pool's shared group_max=1.
+        assert "Chainfist and combi-bolter" not in names
+        assert "Chainfist and combi-weapon" not in names
 
 
 class TestNoiseMarines:

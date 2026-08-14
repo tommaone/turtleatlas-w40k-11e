@@ -75,12 +75,15 @@ class TestAeldariComplexUnits:
             "Voidscarred with special weapon": 1,
         }
         # The MEQ-optimal slot picks: heavy -> Shuriken cannon (D2 beats
-        # Wraithcannon vs 2W), special -> Corsair blaster, Felarch -> rifle.
+        # Wraithcannon vs 2W), special -> Corsair blaster, Felarch ->
+        # Neuro disruptor (Anti-Infantry 2+ wounds MEQ on 2+ — beats the
+        # Shuriken rifle's S/T wound target).
         assert _rcount(res, "Shuriken Pistol") == 2
         assert _rcount(res, "Fusion pistol") == 1
         assert _rcount(res, "Shuriken cannon") == 1
         assert _rcount(res, "Corsair blaster") == 1
-        assert _rcount(res, "Shuriken rifle") == 1
+        assert _rcount(res, "Neuro disruptor") == 1
+        assert _rcount(res, "Shuriken rifle") == 0
         assert len(res["ranged"]) == 6  # 5 models, fusion model fires 2
         # Melee reduced to one non-EA weapon per model (24.11): sword models
         # drop the CCW, Felarch drops its CCW.
@@ -90,10 +93,27 @@ class TestAeldariComplexUnits:
 
     def test_warlock_conclave_multi_fixed_and_singing_spear(
             self, aeldari_engine, MEQ):
-        """Warlock Conclave n=2: both models take the Singing Spear variant
-        (best vs MEQ); each fires its FULL fixed list (Spear + Pistol +
-        Destructor) AND fights with the spear's melee half (A2 S3 D3)."""
+        """Warlock Conclave n=2 vs MEQ: both models take the Witchblade
+        variant (Anti-Infantry 2+ wounds T4 on 2+ — beats the Singing
+        Spear's S/T 4+); each fires its FULL fixed list (Pistol +
+        Destructor) AND fights with the Witchblade melee (A2 S3 D2)."""
         res = _build(aeldari_engine, "Warlock Conclave", MEQ)
+        assert res["_alloc_info"] == [
+            ("Warlock", [("Warlock with Witchblade", 2)]),
+        ]
+        assert _rcount(res, "Shuriken Pistol") == 2
+        assert _rcount(res, "Destructor") == 2
+        assert _rcount(res, "Singing Spear") == 0
+        assert len(res["ranged"]) == 4  # 2 fixed weapons per model, all fire
+        # Warlocks ALWAYS have a melee profile — the Witchblade.
+        assert _mcount(res, "Witchblade") == 2
+        assert len(res["melee"]) == 2
+
+    def test_warlock_conclave_spear_wins_on_vehicle(self, aeldari_engine, TEQ):
+        """vs TEQ the Singing Spear beats the Witchblade: no Anti-INFANTRY
+        match at T5, and the spear's S9 D3 ranges better than S3 D2. Pins
+        that Anti-Infantry flips the pick only where the keyword applies."""
+        res = _build(aeldari_engine, "Warlock Conclave", TEQ)
         assert res["_alloc_info"] == [
             ("Warlock", [("Warlock with Singing Spear", 2)]),
         ]
@@ -101,15 +121,31 @@ class TestAeldariComplexUnits:
         assert _rcount(res, "Shuriken Pistol") == 2
         assert _rcount(res, "Destructor") == 2
         assert len(res["ranged"]) == 6  # 3 fixed weapons per model, all fire
-        # Warlocks ALWAYS have a melee profile — the spear's melee half.
+        # The spear's melee half (A2 S3 D3) lands in the melee list.
         assert _mcount(res, "Singing Spear") == 2
         assert len(res["melee"]) == 2
 
     def test_warlock_skyrunner_four_ranged_plus_melee(self, aeldari_engine, MEQ):
-        """Warlock Skyrunner n=1: Singing Spear variant fires FOUR fixed
-        weapons (Twin Shuriken Catapult + Pistol + Destructor + Spear) AND
-        has the spear's melee half."""
+        """Warlock Skyrunner n=1 vs MEQ: Witchblade variant fires THREE
+        fixed weapons (Twin Shuriken Catapult + Pistol + Destructor) AND
+        has the Witchblade melee."""
         res = _build(aeldari_engine, "Warlock Skyrunners", MEQ)
+        assert res["_alloc_info"] == [
+            ("Warlock Skyrunner", [("Warlock Skyrunner with Witchblade", 1)]),
+        ]
+        assert Counter(w.name for w in res["ranged"]) == Counter({
+            "Shuriken Pistol": 1,
+            "Twin Shuriken Catapult": 1,
+            "Destructor": 1,
+        })
+        assert len(res["ranged"]) == 3
+        assert _mcount(res, "Witchblade") == 1
+        assert len(res["melee"]) == 1
+
+    def test_warlock_skyrunner_spear_four_ranged(self, aeldari_engine, TEQ):
+        """Warlock Skyrunner vs TEQ: the Singing Spear wins (S9 D3 vs no
+        Anti match) and fires FOUR fixed weapons plus the spear melee."""
+        res = _build(aeldari_engine, "Warlock Skyrunners", TEQ)
         assert res["_alloc_info"] == [
             ("Warlock Skyrunner", [("Warlock Skyrunner with Singing Spear", 1)]),
         ]
@@ -152,7 +188,7 @@ class TestAeldariComplexUnits:
         assert _rcount(res, "Blaster") == 2
         assert _rcount(res, "Shuriken Pistol") == 3  # 2 blaster + 1 shredder
         assert _rcount(res, "Corsair shredder") == 1
-        assert _rcount(res, "Shuriken rifle") == 1  # Felarch slot pick
+        assert _rcount(res, "Neuro disruptor") == 1  # Felarch slot pick
         assert len(res["ranged"]) == 8
         assert _mcount(res, "Close Combat Weapon") == 4
         assert _mcount(res, "Power sword") == 1  # Felarch
@@ -278,17 +314,21 @@ class TestAeldariKnownEdgeCases:
         # Sanity: the unit IS 3 models and the champion's slot DID fire.
         assert _rcount(res, "Blaster") == 1
 
-    def test_singing_spear_dual_profile_keeps_melee(self, aeldari_engine, MEQ):
+    def test_singing_spear_dual_profile_keeps_melee(self, aeldari_engine, TEQ):
         """Singing Spear is a dual-profile weapon: throwable Ranged (S9 A1
         12" Assault Psychic) + a Melee half (S3 A2). Warlocks ALWAYS have a
         melee profile — the spear's melee half must survive first-profile
-        resolution and land in the melee list."""
-        res = _build(aeldari_engine, "Warlock Conclave", MEQ)
+        resolution and land in the melee list.
+
+        Tested vs TEQ: the Anti-Infantry Witchblade loses here (no INFANTRY
+        match at T5), so the allocator picks the Singing Spear variant and
+        the dual-profile resolution is observable."""
+        res = _build(aeldari_engine, "Warlock Conclave", TEQ)
         me = [w for w in res["melee"]]
         assert len(me) == 2
         assert all(w.name == "Singing Spear" for w in me)
         assert all(w.strength == 3 and w.attacks == 2 for w in me)
-        skyrunner = _build(aeldari_engine, "Warlock Skyrunners", MEQ)
+        skyrunner = _build(aeldari_engine, "Warlock Skyrunners", TEQ)
         assert len(skyrunner["melee"]) == 1
         assert skyrunner["melee"][0].name == "Singing Spear"
 

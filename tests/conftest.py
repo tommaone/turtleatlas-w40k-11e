@@ -80,6 +80,11 @@ def GEQ():
     return _target_from_cfg("GEQ")
 
 
+@pytest.fixture
+def Knight():
+    return _target_from_cfg("Knight")
+
+
 # ---------------------------------------------------------------------------
 # Fixtures: Sample weapons
 # ---------------------------------------------------------------------------
