@@ -86,6 +86,6 @@ def test_damage_non_negative_across_targets(faction):
 def test_all_units_rank_under_every_meta(faction):
     """Every faction must rank some units under each meta (no meta dead)."""
     eng = load_engine(faction)
-    for meta in ("all-comers", "competitive", "infantry", "vehicle", "elite"):
+    for meta in ("all-comers", "competitive", "anti-horde", "infantry", "vehicle", "elite"):
         res = eng.compute_ranking(mission="Take and Hold", meta_name=meta)
         assert res, f"{faction}: no ranked units under '{meta}' meta"

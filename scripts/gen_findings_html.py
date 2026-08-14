@@ -193,12 +193,13 @@ OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
 META_LABELS = {
     'all-comers': 'Balanced / All-comers',
     'competitive': 'Competitive / Mixed',
+    'anti-horde': 'Anti-horde / GEQ swarm',
     'infantry': 'Infantry-heavy / Terminator list',
     'vehicle': 'Vehicle-heavy',
     'elite': 'Elite / Terminator-heavy',
 }
 # Default preset shown on load per faction. Fallback: first preset in config.
-DEFAULT_META = 'all-comers'
+DEFAULT_META = 'competitive'
 
 
 def _preset_list(supported_meta):

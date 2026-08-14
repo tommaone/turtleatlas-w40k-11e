@@ -3,9 +3,11 @@
 Locks the regenerated EC squads to the BSData truth (verified 2026-08-13
 against the "Chaos - Emperor's Children Library" catalogue):
 
-- Chaos Terminators: alloc pool (4 profiles, chainfist capped at 1) +
-  Terminator Champion Wargear slot (paired accursed weapons option, no
-  chainfist — the 1-chainfist-per-5 datasheet cap lives in the pool).
+- Chaos Terminators: alloc pool (4 profiles, chainfist capped at 1,
+  power fists capped at 3 shared) + Terminator Champion Wargear slot
+  (paired accursed weapons option, no chainfist, no power fist — the
+  per-5 datasheet caps live in the pool: 1 chainfist, 3 power fists,
+  1 heavy weapon, 1 paired accursed).
 - Noise Marines: alloc pool (sonic blaster min 3, blastmaster max 2) +
   Disharmonist Sonic Blaster slot (screamer pistol + power sword option).
 - Infractors: Obsessionist carries TWO slots (Pistol + Melee weapon).
@@ -60,6 +62,18 @@ class TestChaosTerminators:
         assert alloc["Accursed weapon and combi-bolter"]["min"] == 0
         assert alloc["Accursed weapon and combi-bolter"]["ranged"] == "Combi-bolter"
         assert alloc["Power fist and combi-weapon"]["max"] == 3
+        # up-to-3-power-fists-per-5 datasheet cap: both Power fist variants
+        # share one group_max so the pool can never field a 4th fist.
+        assert alloc["Power fist and combi-weapon"]["group_max"] == 3
+        assert alloc["Power fist and combi-bolter"]["group_max"] == 3
+        # 1 heavy weapon per 5: heavy model keeps its Accursed weapon
+        # (the heavy weapon replaces the combi-bolter, not the melee).
+        hw = alloc["Heavy weapon"]
+        assert hw["max"] == 1
+        melee_slot = next(s for s in hw["slots"] if s["name"] == "Melee weapon")
+        melee_choices = {c["name"] for c in melee_slot["choices"]}
+        assert melee_choices == {"Accursed weapon"}
+        assert "Power fist" not in melee_choices
 
     def test_champion_wargear_slot(self, squads):
         m = _model(squads, "Chaos Terminators", "Terminator Champion")
@@ -71,6 +85,10 @@ class TestChaosTerminators:
         # chainfist on top of the pool's shared group_max=1.
         assert "Chainfist and combi-bolter" not in names
         assert "Chainfist and combi-weapon" not in names
+        # up-to-3-power-fists-per-5: the champion cannot add a 4th fist
+        # on top of the pool's shared group_max=3.
+        assert "Power fist and combi-bolter" not in names
+        assert "Power fist and combi-weapon" not in names
 
 
 class TestNoiseMarines:

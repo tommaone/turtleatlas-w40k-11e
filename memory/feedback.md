@@ -600,3 +600,36 @@ blood-angels, dark-angels, space-wolves).
 EC `test_champion_wargear_slot` asserts no chainfist in champion choices.
 Engine verification: every terminator squad resolves to exactly 1
 chainfist vs Knight, 0 vs MEQ/TEQ.
+
+## Per-5 caps apply to MORE than chainfist — check the whole datasheet
+The "1 chainfist per 5" lesson was incomplete: Chaos Terminators also cap
+heavy weapons (1), paired accursed (1), and power fists (3) per 5 models.
+EC had 2 Power fist variants each max=3 with NO shared group_max → engine
+could field 6; CSM had max=6 each (10-model BSData caps in an n=5 config).
+The heavy-weapon model's melee slot ALSO offered Power fist (a 4th fist
+outside the alloc caps) and the champion slot offered Power fist too.
+
+**Fix:** same pattern, applied to power fists:
+- `group_max: 3` on BOTH Power fist alloc variants (EC + CSM)
+- heavy weapon `max: 2 → 1`, paired accursed `max: 2 → 1` (CSM 10-model
+  caps scaled to n=5)
+- heavy-weapon melee slot → Accursed weapon only (per datasheet the heavy
+  weapon replaces the combi-bolter, NOT the melee weapon)
+- strip Power fist from EC champion Wargear choices (group_max cannot
+  span the champion slot)
+
+**Lesson:** when a datasheet says "for every 5 models", audit EVERY swap
+line, not just the one that bit you. Also scale BSData maxes to the config
+n (BSData often encodes 10-model caps; n=5 configs inherit them wrongly).
+
+## Default findings meta is a single-source config + renderer default
+Findings default mode is `DEFAULT_META` in scripts/gen_findings_html.py
+(moves the chosen slug first in meta_info; the JS renders meta_info[0]).
+Metas themselves live in data/config/_base.json `meta_profiles`; 5 curated
+factions (chaos-daemons, chaos-knights, dark-angels, grey-knights,
+space-marines) OVERRIDE the whole dict via shallow `_extends` — adding a
+meta to _base alone is NOT enough, it must be added to each override too.
+
+**This change:** default → competitive (was all-comers); added `anti-horde`
+preset (GEQ 0.5 / MEQ 0.25 / TEQ 0.05 / Light V 0.1 / Heavy V 0.05 /
+Knight 0.05, melee_penalty 0.8) to _base + all 5 overrides.

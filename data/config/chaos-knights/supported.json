@@ -2,8 +2,13 @@
   "_extends": "_base",
   "key": "chaos-knights",
   "name": "Chaos Knights",
-  "army_rules": ["Harbingers of Dread (Darkness: Stealth)", "Super-heavy Walker"],
-  "keywords": ["FACTION: CHAOS KNIGHTS"],
+  "army_rules": [
+    "Harbingers of Dread (Darkness: Stealth)",
+    "Super-heavy Walker"
+  ],
+  "keywords": [
+    "FACTION: CHAOS KNIGHTS"
+  ],
   "allies": {
     "daemons": {
       "faction": "chaos-daemons",
@@ -29,10 +34,163 @@
     "traitoris-lance": "purge-the-foe"
   },
   "meta_profiles": {
-    "competitive": { "profiles": [["MEQ", 0.35], ["TEQ", 0.15], ["Light V", 0.25], ["Heavy V", 0.15], ["Knight", 0.10]], "melee_penalty": 0.8 },
-    "infantry": { "profiles": [["GEQ", 0.15], ["MEQ", 0.45], ["TEQ", 0.25], ["Light V", 0.10], ["Heavy V", 0.05]], "melee_penalty": 0.8 },
-    "vehicle": { "profiles": [["Light V", 0.25], ["Heavy V", 0.35], ["C'tan", 0.15], ["Knight", 0.25]], "melee_penalty": 0.8 },
-    "elite": { "profiles": [["TEQ", 0.30], ["Heavy V", 0.30], ["C'tan", 0.20], ["Knight", 0.20]], "melee_penalty": 0.8 },
-    "all-comers": { "profiles": [["GEQ", 0.15], ["MEQ", 0.25], ["TEQ", 0.15], ["Light V", 0.20], ["Heavy V", 0.15], ["C'tan", 0.05], ["Knight", 0.05]], "melee_penalty": 1.0 }
+    "competitive": {
+      "profiles": [
+        [
+          "MEQ",
+          0.35
+        ],
+        [
+          "TEQ",
+          0.15
+        ],
+        [
+          "Light V",
+          0.25
+        ],
+        [
+          "Heavy V",
+          0.15
+        ],
+        [
+          "Knight",
+          0.1
+        ]
+      ],
+      "melee_penalty": 0.8
+    },
+    "anti-horde": {
+      "profiles": [
+        [
+          "GEQ",
+          0.5
+        ],
+        [
+          "MEQ",
+          0.25
+        ],
+        [
+          "TEQ",
+          0.05
+        ],
+        [
+          "Light V",
+          0.1
+        ],
+        [
+          "Heavy V",
+          0.05
+        ],
+        [
+          "C'tan",
+          0.0
+        ],
+        [
+          "Knight",
+          0.05
+        ]
+      ],
+      "melee_penalty": 0.8
+    },
+    "infantry": {
+      "profiles": [
+        [
+          "GEQ",
+          0.15
+        ],
+        [
+          "MEQ",
+          0.45
+        ],
+        [
+          "TEQ",
+          0.25
+        ],
+        [
+          "Light V",
+          0.1
+        ],
+        [
+          "Heavy V",
+          0.05
+        ]
+      ],
+      "melee_penalty": 0.8
+    },
+    "vehicle": {
+      "profiles": [
+        [
+          "Light V",
+          0.25
+        ],
+        [
+          "Heavy V",
+          0.35
+        ],
+        [
+          "C'tan",
+          0.15
+        ],
+        [
+          "Knight",
+          0.25
+        ]
+      ],
+      "melee_penalty": 0.8
+    },
+    "elite": {
+      "profiles": [
+        [
+          "TEQ",
+          0.3
+        ],
+        [
+          "Heavy V",
+          0.3
+        ],
+        [
+          "C'tan",
+          0.2
+        ],
+        [
+          "Knight",
+          0.2
+        ]
+      ],
+      "melee_penalty": 0.8
+    },
+    "all-comers": {
+      "profiles": [
+        [
+          "GEQ",
+          0.15
+        ],
+        [
+          "MEQ",
+          0.25
+        ],
+        [
+          "TEQ",
+          0.15
+        ],
+        [
+          "Light V",
+          0.2
+        ],
+        [
+          "Heavy V",
+          0.15
+        ],
+        [
+          "C'tan",
+          0.05
+        ],
+        [
+          "Knight",
+          0.05
+        ]
+      ],
+      "melee_penalty": 1.0
+    }
   }
 }

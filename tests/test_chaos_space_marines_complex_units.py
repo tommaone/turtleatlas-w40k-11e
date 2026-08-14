@@ -210,3 +210,57 @@ class TestRegeneratedSquads:
                 res = csm_engine._best_squad_variant(name, csm_engine.resolve_target(t))
                 assert res is not None, f"{name} {t}: did not resolve"
                 assert res.get("ranged") or res.get("melee"), f"{name} {t}: empty"
+
+
+class TestChaosTerminatorSquad:
+    """Chaos Terminator Squad n=5: per-5 datasheet caps live in the alloc pool.
+
+    Datasheet (verified against wahapedia 2026-08-14): per 5 models —
+    1 heavy flamer OR reaper autocannon, any number combi-weapons,
+    1 paired accursed weapons, up to 3 power fists, 1 chainfist.
+    """
+
+    def _model(self, squads, model_name) -> dict:
+        build = squads["Chaos Terminator Squad"]["builds"][0]
+        return next(m for m in build["models"] if m["name"] == model_name)
+
+    def test_alloc_pool_caps(self, squads):
+        m = self._model(squads, "Heavy weapon")
+        assert m["count"] == 4
+        alloc = {a["name"]: a for a in m["alloc"]}
+        # 1 chainfist per 5
+        assert alloc["Chainfist and combi-bolter"]["group_max"] == 1
+        assert alloc["Chainfist and combi-weapon"]["group_max"] == 1
+        # up to 3 power fists per 5, shared across both variants
+        assert alloc["Power fist and combi-bolter"]["group_max"] == 3
+        assert alloc["Power fist and combi-weapon"]["group_max"] == 3
+        # 1 heavy weapon per 5; heavy model keeps Accursed weapon in melee
+        hw = alloc["Heavy weapon"]
+        assert hw["max"] == 1
+        melee_slot = next(s for s in hw["slots"] if s["name"] == "Melee weapon")
+        melee_choices = {c["name"] for c in melee_slot["choices"]}
+        assert melee_choices == {"Accursed weapon"}
+        # 1 paired accursed weapons per 5
+        assert alloc["Paired accursed weapons"]["max"] == 1
+
+    def test_champion_wargear_slot(self, squads):
+        m = self._model(squads, "Terminator Champion")
+        assert m["count"] == 1
+        slot = m["slots"][0]
+        names = {c["name"] for c in slot["choices"]}
+        assert "Paired accursed weapons" in names
+        # champion cannot add a chainfist or power fist beyond the pool caps
+        assert not any("Chainfist" in n for n in names)
+        assert not any("Power fist" in n for n in names)
+
+    def test_resolve_caps_vs_targets(self, csm_engine):
+        """Engine output respects the per-5 caps (structure, not numbers)."""
+        for tname, exp in [("MEQ", (3, 0)), ("TEQ", (3, 0)), ("Knight", (2, 1))]:
+            t = csm_engine.resolve_target(tname)
+            res = csm_engine._best_squad_variant("Chaos Terminator Squad", t)
+            assert res is not None
+            pf = sum(1 for w in res["melee"] if "Power fist" in w.name)
+            cf = sum(1 for w in res["melee"] if "Chainfist" in w.name)
+            hw = sum(1 for w in res["ranged"] if w.name in ("Heavy flamer", "Reaper autocannon"))
+            assert pf <= 3 and cf <= 1 and hw <= 1, f"{tname}: PF={pf} CF={cf} HW={hw}"
+            assert (pf, cf) == exp, f"{tname}: got PF={pf} CF={cf}, expected {exp}"
