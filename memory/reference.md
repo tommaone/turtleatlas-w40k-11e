@@ -9,7 +9,7 @@
 | `data/merged/<faction>.json` | Merged BSData stats/weapons (source of truth for profiles) |
 | `data/config/<faction>/` | Derived configs — `squads.json`, `characters.json`, `vehicles.json`, `weapon_options.json`, `supported.json` |
 | `scripts/` | Generators + validators (see Commands) |
-| `tests/` | Pytest suite — 3621 passing, 36 skipped, 1 xfailed (2026-08-15) |
+| `tests/` | Pytest suite — 3636 passing, 36 skipped, 1 xfailed (2026-08-15) |
 | `findings/<faction>/findings.html` | Per-faction ranking pages |
 | `findings/index.html` | Landing page — GENERATED, never hand-edited |
 | `mfm/` | Munitorum Field Manual data (points source of truth) |
@@ -63,12 +63,18 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
   Then `33b6638` (docs) + the 2026-08-15 IK/CK audit (`2ca0b40`): full seeded
   suite **3621 passed / 36 skipped / 1 xfailed**.
 - 30 factions ranked, 1403 datasheets, HTML findings for all.
-- **Complex-layer squad configs (alloc pools / per-model slots) — 11
+- **Complex-layer squad configs (alloc pools / per-model slots) — 12
   factions**: aeldari, black-templars, blood-angels, chaos-space-marines,
   dark-angels, deathwatch, emperors-children, grey-knights, orks,
-  space-marines, space-wolves. Chaos Daemons book-scoped (17 squads, mostly
-  fixed-wargear so no alloc needed). Characters slots schema: ALL 30
-  factions (2026-08-11).
+  space-marines, space-wolves, world-eaters (Wave 3b 2026-08-15). Chaos
+  Daemons book-scoped (17 squads, mostly fixed-wargear so no alloc needed).
+  Characters slots schema: ALL 30 factions (2026-08-11).
+- **World Eaters migration (Wave 3b, 2026-08-15, commit `81c3123`):** 9 of 10
+  squads regenerated from BSData composition (flat → alloc/leader-model
+  builds); Jakhals kept (data gap — pool = 2 Dishonoured variants only).
+  Validator noise 36 → 21 (15 HIGH alloc-cap findings cleared). Parser fix:
+  `_BOOK_WEAPON_NAMES` book-first map in `_parse_composition_model`
+  (daemons-linked WE Bloodcrushers horn → WE book's 'Bladed horn').
 - **Knights (IK/CK)** are NOT squad composition — live in
   `characters.json` with `weapon_options.builds`. **Wave 3a audit DONE
   2026-08-15**: every in-scope unit verified against
@@ -100,13 +106,13 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
 1. Squad composition migration to remaining factions — complex layer done:
    Aeldari + GK + Space Marines + Dark Angels + Blood Angels + Space Wolves +
    Black Templars + Deathwatch (Wave 1) + CSM/EC/Orks (Wave 2) + alloc caps
-   sweep on the 9 alloc-layer factions (2026-08-15, commit `3370194`).
-   **Wave 3a DONE (2026-08-15): IK/CK slot-completion audit** — 0-slot
-   end-state verified correct for Castellan/Valiant/Tyrant/Cerastus/Rampager/
-   Ruinator/Abominant; profile-split melee entries consolidated to group
-   names; 27 test locks. **Wave 3b NEXT: World Eaters generator migration
-   (10 squads, light tier).** IK/CK batch was committed + pushed BEFORE WE
-   per the explicit user request (the gate). **This is the active item.**
+   sweep on the 9 alloc-layer factions (2026-08-15, commit `3370194`) +
+   Wave 3a IK/CK slot-completion audit (`2ca0b40`) + **Wave 3b World Eaters
+   generator migration (`81c3123`)**. Remaining: Astra Militarum, Adeptus
+   Mechanicus, and the rest of the 30 factions — one faction per commit,
+   gate on the 11th-ed datasheet-verified flat caps (see docs/roadmap.md).
+   **Wave 3 (user decision) is now fully delivered; the next Wave candidate
+   is AM/AdMech.**
 2. ~~Engine gap: multi-profile weapons (Cyclone Missile Launcher frag+krak under
    one name — loader resolves only first profile)~~ **DONE 2026-08-10** — choice
    profiles now score as max-over-group (WeaponProfile.variants); plasma

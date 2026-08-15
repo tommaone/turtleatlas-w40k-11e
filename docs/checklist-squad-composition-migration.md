@@ -136,17 +136,8 @@ order below for the real status).
 
 ### Next — Wave 3 (changed 2026-08-15, user decision)
 
-- **Chaos Knights + Imperial Knights — slot-completion audit.** Knights live
-  in `characters.json` with `weapon_options.builds`, NOT squad composition.
-  The 2026-08-13 pass already slotted Questoris (Crusader/Errant/Paladin/
-  Warden/Preceptor: 3 slots), Gallant/Destrier (2), Desecrator (1) and
-  Despoiler (2, 13 enumerated builds). This wave completes the remaining
-  builds: Castellan/Valiant (2 discrete builds each, 0 slots — carapace
-  documented gap), Tyrant (4 builds, 0 slots), all Cerastus (0 slots),
-  Acheron/Atrapos/Castigator/Lancer, plus Canis Rex / Defender / Rampager /
-  Ruinator / Abominant / Magaera / Styrix re-audit. Verify against
-  `extract_wargear_constraints` + BSData containers; keep the discrete-build
-  end-state (knights aren't generator-alloc factions).
+- ~~Chaos Knights + Imperial Knights — slot-completion audit~~ ✅ DONE
+  (2026-08-15, commits `2ca0b40` + `a33c65e`) — see Wave 3a below.
 - **World Eaters — generator migration.** 10 squads, light tier (score 51):
   Bloodcrushers, Bloodletters, Chaos Spawn, Chaos Terminators (4 builds),
   Eightbound, Exalted Eightbound, Flesh Hounds, Goremongers (2 builds),
@@ -202,6 +193,54 @@ and the Lancer dual-profile ranged+melee shape.
 Validator: IK 16 / CK 11 MEDIUM (unchanged, all accepted noise). Deterministic:
 0 CRITICAL/MAJOR both factions. Full seeded suite: 3621 passed / 36 skipped /
 1 xfailed.
+
+### Wave 3b — World Eaters generator migration ✅ (2026-08-15, commit `81c3123`)
+
+10 squads, light tier. `gen_squad_composition --faction world-eaters`
+replaced 9 flat builds with composition builds; Jakhals kept curated (data
+gap — BSData composition holds only the 2 Dishonoured variants, max 2 each,
+no base Jakhal model, so budget 10 is inexpressible; stays flat Autopistol +
+Chainblades x10).
+
+Regenerated:
+- **Bloodcrushers** (2 base Hellblade+Bladed horn + 1 Bloodhunter),
+  **Bloodletters** (9 + Bloodreaper), **Chaos Spawn** (2), **Eightbound**
+  (2 + champion), **Exalted Eightbound** (2 + champion, Chainblades — the
+  old curated build said 'Close combat weapon'), **Flesh Hounds** (4 + 1
+  Gore Hound — only the Gore Hound has Burning roar; the old flat build
+  gave it to all 5), **Goremongers** (7 alloc: harpoon/2-pistols/chainblade
+  + Blood Herald).
+- **Chaos Terminators** (n=5): heavy-weapon alloc pool x4 — combi-bolter/
+  weapon x accursed/chainfist/power-fist with shared group_max (chainfist
+  1, power fist 3), paired accursed weapons, heavy weapon variant (flamer/
+  autocannon slot) + Terminator Champion Weapons slot (paired accursed /
+  combi-weapon / combi-bolter default).
+- **Khorne Berzerkers** (n=10): base Chainblade alloc min5 max9 + 3 swap
+  variants max2 each (eviscerator+bolt, eviscerator+plasma, chainblade+
+  plasma) + Champion Pistol slot (bolt/plasma).
+
+Validator noise dropped **36 → 21** (the old flat configs carried 15 HIGH
+alloc-cap findings — the validator expects parallel-variant pools to be
+alloc builds; all cleared). Remaining 21 = pre-existing vehicle/
+weapon_options MEDIUM/LOW. Squad configs: 0 issues. Deterministic: 0.
+
+**Parser fix (book-first weapon names):** WE's Bloodcrushers SE lives in
+the linked Chaos Daemons catalogue, so composition carried the daemons-local
+name `Juggernaut's bladed horn` — which does not resolve against the WE
+catalog (book-first merge; WE book calls it `Bladed horn`, identical
+profile A4 S6 AP-1 D1 Extra Attacks Lance). Added `_BOOK_WEAPON_NAMES` map
+in `_parse_composition_model` so the generator emits the faction book's
+name; regenerated squads reference `Bladed horn`. Regression tests:
+`test_we_book_first_weapon_names` + `test_we_book_first_weapons_resolve`
+(test_gen_squad_composition.py) + 14 locks in
+tests/test_world_eaters_complex_units.py (structure-only, Jakhals kept,
+all squads resolve per target).
+
+Also removed the dead `'world-eaters': ['Jakhal']` KNOWN_MISSING entry
+(test_unit_coverage_guard.py) — it was a singular/plural spelling mismatch;
+'Jakhals' has always been in config.
+
+Full seeded suite: **3636 passed / 36 skipped / 1 xfailed**.
 
 ### Later waves
 
