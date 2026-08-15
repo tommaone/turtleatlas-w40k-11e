@@ -239,6 +239,67 @@ class TestMagaeraStyrixBuilds:
             assert res is not None, f"{unit}: no loadout for {t}"
 
 
+class TestWave3CerastusAndMiscBuilds:
+    """Wave-3 (2026-08-15) audit locks: Cerastus x3 + Rampager/Ruinator/Abominant.
+
+    All are fixed loadouts with NO BSData choice slots (0-slot end-state is
+    correct). Melee weapons reference GROUP names — never '- strike'/'- sweep'
+    profile pairs. The group entry resolves with variants the engine maxes
+    (melee path); profile pairs were the pre-slots pattern and are the same
+    double-entry class the IK lock forbids in ranged.
+    """
+
+    FIXED_INVENTORIES = {
+        "Chaos Cerastus Knight Acheron": {
+            "Acheron flame cannon", "Twin heavy bolter", "Reaper chainfist"},
+        "Chaos Cerastus Knight Castigator": {
+            "Castigator bolt cannon", "Tempest warblade"},
+        "Knight Rampager": {
+            "Diabolus heavy stubber", "Reaper chainsword", "Warpstrike claw"},
+        "Knight Ruinator": {
+            "Darkflame lance", "Terrorpulse missiles", "Fellbore"},
+        "Knight Abominant": {
+            "Diabolus heavy stubber", "Volkite combustor", "Balemace", "Electroscourge"},
+    }
+
+    @pytest.mark.parametrize("unit,expected", FIXED_INVENTORIES.items())
+    def test_fixed_inventory(self, chars, unit, expected):
+        build = chars[unit]["weapon_options"]["builds"][0]
+        names = {f["name"] for f in build["fixed"]}
+        assert names == expected, f"{unit}: {names}"
+        assert build["slots"] == [], f"{unit}: unexpected slots"
+
+    @pytest.mark.parametrize("unit", FIXED_INVENTORIES.keys())
+    def test_no_profile_suffixes(self, chars, unit):
+        for b in chars[unit]["weapon_options"]["builds"]:
+            for f in b["fixed"]:
+                assert " - " not in f["name"], f"{unit}: profile entry '{f['name']}'"
+
+    @pytest.mark.parametrize("unit", FIXED_INVENTORIES.keys())
+    def test_all_names_resolve(self, engine, chars, unit):
+        for b in chars[unit]["weapon_options"]["builds"]:
+            for name in _build_weapons(b):
+                try:
+                    engine.W(name, unit_name=unit)
+                except KeyError:
+                    pytest.fail(f"{unit}/{b['name']}: '{name}' does not resolve")
+
+    def test_lancer_dual_profile(self, engine, chars):
+        """Shock lance is ranged (12" A6 S6) AND melee (strike/sweep)."""
+        build = chars["Chaos Cerastus Knight Lancer"]["weapon_options"]["builds"][0]
+        ranged, melee = _resolve(engine, build, "Chaos Cerastus Knight Lancer")
+        assert any("shock lance" in n for n in ranged), f"no ranged lance: {ranged}"
+        assert any("shock lance" in n for n in melee), f"no melee lance: {melee}"
+
+    def test_lancer_inventory(self, chars):
+        """One ranged group entry + one melee group entry, no profile pairs."""
+        build = chars["Chaos Cerastus Knight Lancer"]["weapon_options"]["builds"][0]
+        names = [f["name"] for f in build["fixed"]]
+        assert names == ["Cerastus shock lance", "Cerastus shock lance"], names
+        assert sorted(f["type"] for f in build["fixed"]) == ["melee", "ranged"]
+        assert build["slots"] == []
+
+
 class TestPorphyrion:
     """Fixed 2x magna + feet; carapace slot + TWO shoulder slots (duplicates legal)."""
 

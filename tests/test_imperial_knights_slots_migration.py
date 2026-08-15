@@ -55,7 +55,10 @@ WEAPON_OPTIONS = CONFIG_DIR / "imperial-knights" / "weapon_options.json"
 # ── Fixed double-count weapons (must be GROUP names only) ───────────────
 GROUP_NAMES = {
     "Canis Rex": {"Las-impulsor", "Freedom's Hand"},
+    "Cerastus Knight Acheron": {"Reaper chainfist"},
     "Cerastus Knight Atrapos": {"Atrapos lascutter", "Graviton singularity cannon"},
+    "Cerastus Knight Castigator": {"Tempest warblade"},
+    "Cerastus Knight Lancer": {"Cerastus shock lance"},
     "Knight Castellan": {"Plasma decimator"},
     "Knight Defender": {"Plasma executor"},
     "Knight Preceptor": {"Las-impulsor"},
@@ -186,6 +189,45 @@ class TestAtrapos:
         ranged, melee = _resolve(engine, build, "Cerastus Knight Atrapos")
         assert any("lascutter" in n for n in ranged), f"no ranged lascutter: {ranged}"
         assert any("lascutter" in n for n in melee), f"no melee lascutter: {melee}"
+
+
+class TestCerastusFixedBuilds:
+    """Wave-3 (2026-08-15) audit locks: Acheron/Castigator/Lancer.
+
+    All three are fixed loadouts with NO BSData choice slots (0-slot
+    end-state is correct). Melee weapons reference GROUP names — never
+    '- strike'/'- sweep' profile pairs (the group resolves with variants
+    the engine maxes; profile pairs are the old pre-slots pattern).
+    """
+
+    CERASTUS_FIXED = {
+        "Cerastus Knight Acheron": {
+            "Twin heavy bolter", "Acheron flame cannon", "Reaper chainfist"},
+        "Cerastus Knight Castigator": {
+            "Castigator bolt cannon", "Tempest warblade"},
+    }
+
+    @pytest.mark.parametrize("unit,expected", CERASTUS_FIXED.items())
+    def test_fixed_inventory(self, chars, unit, expected):
+        build = chars[unit]["weapon_options"]["builds"][0]
+        names = {f["name"] for f in build["fixed"]}
+        assert names == expected, f"{unit}: {names}"
+        assert build["slots"] == [], f"{unit}: unexpected slots"
+
+    def test_lancer_dual_profile(self, engine, chars):
+        """Shock lance is ranged (12" A6 S6) AND melee (strike/sweep)."""
+        build = chars["Cerastus Knight Lancer"]["weapon_options"]["builds"][0]
+        ranged, melee = _resolve(engine, build, "Cerastus Knight Lancer")
+        assert any("shock lance" in n for n in ranged), f"no ranged lance: {ranged}"
+        assert any("shock lance" in n for n in melee), f"no melee lance: {melee}"
+
+    def test_lancer_inventory(self, chars):
+        """One ranged group entry + one melee group entry, no profile pairs."""
+        build = chars["Cerastus Knight Lancer"]["weapon_options"]["builds"][0]
+        names = [f["name"] for f in build["fixed"]]
+        assert names == ["Cerastus shock lance", "Cerastus shock lance"], names
+        assert sorted(f["type"] for f in build["fixed"]) == ["melee", "ranged"]
+        assert build["slots"] == []
 
 
 class TestQuestorisSlots:
