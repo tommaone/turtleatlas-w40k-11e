@@ -157,6 +157,52 @@ order below for the real status).
 **Commit + push the IK/CK batch BEFORE starting WE** (explicit user request,
 2026-08-15).
 
+### Wave 3a — IK/CK slot-completion audit ✅ (2026-08-15, commit `2ca0b40`)
+
+Audit verdict: the 0-slot / discrete-build end-state is **correct as
+shipped** — verified every in-scope unit against `extract_wargear_constraints`
++ raw BSData containers:
+
+- **Castellan/Valiant** (2 builds each): BSData `Carapace-mounted Weapons`
+  is a pick-1 group (min1/max1) with two bundles — 2 shieldbreakers + 1
+  siegebreaker / 1 + 2. Both builds cover exactly those bundles, components
+  split into fixed (they resolve; only the bundle names don't — documented
+  gap, Despoiler precedent).
+- **Tyrant** (4 builds): BSData Main weapons (pick-1: volcano+ecto /
+  darkflame+harpoon) x Carapace weapons (pick-1: gheist-heavy / desecrator-
+  heavy). The 4 builds cover all 2x2 combos. The parser's `count: 2` on the
+  carapace choice is its flattening of the two SE bundles — raw group is
+  min1/max1; config follows the raw.
+- **Cerastus x4 (IK+CK)** + **Rampager/Ruinator/Abominant**: zero choice
+  slots in BSData — fixed loadouts only; 0-slot end-state is correct.
+- **Canis Rex / Defender / Magaera / Styrix**: already complete (2026-08-13).
+  Canis Rex = Knight only (Hekhtur out); Defender/Canis Rex dual-profile
+  guns already on group names.
+
+Changes applied (all DPP-neutral, verified by before/after harness on
+GEQ/MEQ/TEQ/Knight):
+
+- Consolidated **profile-split melee entries to GROUP names** — the same
+  double-entry class the IK `FORBIDDEN_PROFILES` lock forbids in ranged,
+  leftover from the pre-slots pattern: IK Cerastus Lancer + CK Cerastus
+  Acheron/Castigator/Lancer + CK Rampager + CK Ruinator. Melee is maxed so
+  the pairs were harmless; group entries resolve with variants the engine
+  maxes per target.
+- **Cerastus Lancer (IK+CK)**: kept the ranged `Cerastus shock lance`
+  profile (12" A6 S6 AP0 D2, Assault Sustained 2 — real 11e ranged profile;
+  the CK parser models it ranged, IK parser models it melee; merged catalog
+  has both).
+
+New locks: 27 tests — IK `GROUP_NAMES` extended to all 3 Cerastus melee
+units (so the no-profile-suffix + group-name tests now cover them) + new
+`TestCerastusFixedBuilds` (IK) and `TestWave3CerastusAndMiscBuilds` (CK)
+locking fixed inventories, slots==[], no ` - ` profile suffixes, resolution,
+and the Lancer dual-profile ranged+melee shape.
+
+Validator: IK 16 / CK 11 MEDIUM (unchanged, all accepted noise). Deterministic:
+0 CRITICAL/MAJOR both factions. Full seeded suite: 3621 passed / 36 skipped /
+1 xfailed.
+
 ### Later waves
 
 - **Wave 4 — major non-marine:** Astra Militarum → Adeptus Mechanicus

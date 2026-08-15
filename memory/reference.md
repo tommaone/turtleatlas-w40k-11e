@@ -9,7 +9,7 @@
 | `data/merged/<faction>.json` | Merged BSData stats/weapons (source of truth for profiles) |
 | `data/config/<faction>/` | Derived configs — `squads.json`, `characters.json`, `vehicles.json`, `weapon_options.json`, `supported.json` |
 | `scripts/` | Generators + validators (see Commands) |
-| `tests/` | Pytest suite — 3594 passing, 36 skipped, 1 xfailed (2026-08-15) |
+| `tests/` | Pytest suite — 3621 passing, 36 skipped, 1 xfailed (2026-08-15) |
 | `findings/<faction>/findings.html` | Per-faction ranking pages |
 | `findings/index.html` | Landing page — GENERATED, never hand-edited |
 | `mfm/` | Munitorum Field Manual data (points source of truth) |
@@ -60,6 +60,8 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
   (aeldari/BT/BA/DA/DW/GK/orks/SM/SW): 7 FLAT_CAPS entries, generator
   `max=None` FLAT_CAPS rescue fix, 8 stale tests corrected to datasheet
   truth. Full seeded suite: **3594 passed / 36 skipped / 1 xfailed**.
+  Then `33b6638` (docs) + the 2026-08-15 IK/CK audit (`2ca0b40`): full seeded
+  suite **3621 passed / 36 skipped / 1 xfailed**.
 - 30 factions ranked, 1403 datasheets, HTML findings for all.
 - **Complex-layer squad configs (alloc pools / per-model slots) — 11
   factions**: aeldari, black-templars, blood-angels, chaos-space-marines,
@@ -68,12 +70,16 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
   fixed-wargear so no alloc needed). Characters slots schema: ALL 30
   factions (2026-08-11).
 - **Knights (IK/CK)** are NOT squad composition — live in
-  `characters.json` with `weapon_options.builds`. Questoris (Crusader/
-  Errant/Paladin/Warden/Preceptor: 3 slots), Gallant/Destrier (2), Desecrator
-  (1), Despoiler (2 slots, 13 builds) done 2026-08-13. Remaining for the
-  slot-completion audit: Castellan/Valiant (2 builds each, 0 slots),
-  Tyrant (4, 0), all Cerastus (0), Canis Rex / Defender / Rampager /
-  Ruinator / Abominant / Magaera / Styrix re-audit.
+  `characters.json` with `weapon_options.builds`. **Wave 3a audit DONE
+  2026-08-15**: every in-scope unit verified against
+  `extract_wargear_constraints` + raw BSData containers; the 0-slot /
+  discrete-build end-state is correct as shipped (Castellan/Valiant 2
+  carapace bundles each, Tyrant 4 builds = 2 main x 2 carapace, Cerastus x4
+  + Rampager/Ruinator/Abominant have zero BSData choice slots). Consolidated
+  6 units' profile-split melee entries (`- strike`/`- sweep`) to GROUP names
+  (DPP-neutral, verified by harness): IK + CK Lancer, CK Acheron/Castigator/
+  Rampager/Ruinator. 27 new test locks. Validator: IK 16 / CK 11 MEDIUM
+  (unchanged accepted noise).
 - **World Eaters**: 10 squads, all flat builds — not yet migrated.
 - **Validator state**: 0 CRITICAL/MAJOR across shipped factions; MEDIUM/LOW
   noise envelope per faction (BT 129, BA 128, DA 133, SW 136, SM 129,
@@ -95,13 +101,12 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
    Aeldari + GK + Space Marines + Dark Angels + Blood Angels + Space Wolves +
    Black Templars + Deathwatch (Wave 1) + CSM/EC/Orks (Wave 2) + alloc caps
    sweep on the 9 alloc-layer factions (2026-08-15, commit `3370194`).
-   **Wave 3 (2026-08-15, USER DECISION — changed from AM/AdMech): Chaos
-   Knights + Imperial Knights slot-completion audit first (knights live in
-   characters.json weapon_options.builds, NOT squads; 2026-08-13 pass slotted
-   Questoris + Despoiler — this wave completes Cerastus/Castellan/Valiant/
-   Tyrant/Armiger-class builds), then World Eaters generator migration (10
-   squads, light tier).** Commit + push the IK/CK batch BEFORE starting WE
-   (explicit user request). **This is the gate.**
+   **Wave 3a DONE (2026-08-15): IK/CK slot-completion audit** — 0-slot
+   end-state verified correct for Castellan/Valiant/Tyrant/Cerastus/Rampager/
+   Ruinator/Abominant; profile-split melee entries consolidated to group
+   names; 27 test locks. **Wave 3b NEXT: World Eaters generator migration
+   (10 squads, light tier).** IK/CK batch was committed + pushed BEFORE WE
+   per the explicit user request (the gate). **This is the active item.**
 2. ~~Engine gap: multi-profile weapons (Cyclone Missile Launcher frag+krak under
    one name — loader resolves only first profile)~~ **DONE 2026-08-10** — choice
    profiles now score as max-over-group (WeaponProfile.variants); plasma
