@@ -29,6 +29,9 @@ sys.path.insert(0, str(REPO_ROOT))
 
 from adapter.bsdata_parser_11e import BSDataParser11e
 
+sys.path.insert(0, str(REPO_ROOT / "scripts"))
+from gen_squad_composition import fuzzy_find_composition, make_build
+
 # ── Slug → BSData catalogue name mapping ───────────────────────────
 SLUG_TO_BSDATA_CAT = {
     "chaos-space-marines": "Chaos - Chaos Space Marines",
@@ -445,6 +448,51 @@ def validate_unit(unit_name: str, unit_cfg: dict, merged_weapons: list[dict],
     return issues
 
 
+def check_alloc_caps(unit_name: str, unit_cfg: dict, comp: dict,
+                     faction: str) -> list[tuple[str, str]]:
+    """Verify config alloc caps match the BSData-derived expected caps.
+
+    Re-runs the generator's make_build (single source of truth) and compares
+    every alloc variant's max / group_max against the committed config. This
+    catches both stale hand-patched caps (e.g. Interceptor specials max=2 at
+    n=5) and caps that were never scaled from BSData's reference squad size.
+
+    Returns [(severity, message)] — empty when the unit matches exactly or the
+    config has no alloc structure to compare.
+    """
+    expected = make_build(unit_cfg, comp, faction, unit_name)
+    if expected is None:
+        return []  # generator skips this unit — nothing to check
+    issues = []
+    expected_models = expected.get("models", [])
+    actual_models = (unit_cfg.get("builds") or [{}])[0].get("models", [])
+    for em in expected_models:
+        for ev in em.get("alloc", []):
+            ev_name = ev.get("name", "")
+            av = None
+            for am in actual_models:
+                for candidate in am.get("alloc", []):
+                    if candidate.get("name") == ev_name:
+                        av = candidate
+                        break
+                if av:
+                    break
+            if av is None:
+                issues.append(("HIGH",
+                               f"ALLOC CAP MISSING VARIANT '{ev_name}': expected max={ev.get('max')} "
+                               f"group_max={ev.get('group_max')}"))
+                continue
+            if av.get("max") != ev.get("max"):
+                issues.append(("HIGH",
+                               f"ALLOC CAP '{ev_name}': config max={av.get('max')} "
+                               f"!= expected {ev.get('max')}"))
+            if (av.get("group_max") or 0) != (ev.get("group_max") or 0):
+                issues.append(("HIGH",
+                               f"GROUP CAP '{ev_name}': config group_max={av.get('group_max')} "
+                               f"!= expected {ev.get('group_max')}"))
+    return issues
+
+
 def validate_faction(slug: str, bsdata_parser: BSDataParser11e, verbose: bool = False) -> tuple[int, list[str]]:
     """Validate all configs for one faction. Returns (issue_count, lines)."""
     lines = []
@@ -475,6 +523,9 @@ def validate_faction(slug: str, bsdata_parser: BSDataParser11e, verbose: bool = 
         return 0, [f"  Config dir not found: {config_dir}"]
     config = load_config(config_dir)
 
+    # BSData squad composition — source of truth for alloc cap checks.
+    composition = bsdata_parser.extract_squad_composition(slug)
+
     total_issues = 0
 
     # Validate each unit type
@@ -499,6 +550,14 @@ def validate_faction(slug: str, bsdata_parser: BSDataParser11e, verbose: bool = 
             unit_merged = merged_weapons.get(unit_name, [])
             unit_errors = validate_unit(unit_name, unit_cfg, unit_merged, bsdata_c,
                                         global_weapon_names, verbose)
+
+            # Alloc cap check — only for squad-type units (squads.json).
+            cap_errors = []
+            if config_key == "squads" and composition:
+                comp = fuzzy_find_composition(composition, unit_name)
+                if comp:
+                    cap_errors = check_alloc_caps(unit_name, unit_cfg, comp, slug)
+            unit_errors.extend(cap_errors)
 
             if unit_errors:
                 total_issues += len(unit_errors)

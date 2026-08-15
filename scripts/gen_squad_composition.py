@@ -34,8 +34,18 @@ import json
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+_SCRIPT_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(_SCRIPT_DIR.parent))
+sys.path.insert(0, str(_SCRIPT_DIR))
 from adapter.bsdata_parser_11e import BSDataParser11e
+from alloc_caps import (
+    derive_ref,
+    expected_alloc_max,
+    expected_shared_group_max,
+    pool_capacity_of,
+    scaled_max,
+    shared_group_weapons,
+)
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 CONFIG_DIR = REPO_ROOT / "data" / "config"
@@ -145,7 +155,9 @@ def _variant_payload(m: dict) -> dict:
     return out
 
 
-def make_build(unit_cfg: dict, comp: dict) -> dict | None:
+def make_build(unit_cfg: dict, comp: dict,
+               faction: str | None = None,
+               unit_name: str | None = None) -> dict | None:
     """Allocate model counts from squad size n and emit one composition build.
 
     Leader entries (min == 1 AND max == 1, e.g. Exarch, Felarch, Lead
@@ -189,6 +201,24 @@ def make_build(unit_cfg: dict, comp: dict) -> dict | None:
             return None
 
     models_out = []
+    # Shared-budget melee swaps (Terminator power fists/chainfists) are
+    # enforced at VARIANT level via group_max. Slot choices that carry one of
+    # those weapons MUST be dropped — a per-model slot copy would let the
+    # engine double-count the shared budget (e.g. CSM Heavy weapon melee slot
+    # offering Power fist on top of the 3-per-5 power fist variants, or the EC
+    # champion Wargear slot mirroring the pool's Power fist/Chainfist combos).
+    # The slot keeps its default choice.
+    shared_weapons = shared_group_weapons(faction, unit_name)
+
+    def _strip_shared_swaps(model: dict) -> dict:
+        if shared_weapons:
+            for slot in model.get("slots", []) or []:
+                slot["choices"] = [
+                    c for c in slot.get("choices", [])
+                    if not (c.get("melee") in shared_weapons)
+                ]
+        return model
+
     if pool:
         if len(pool) == 1:
             m = pool[0]
@@ -200,14 +230,54 @@ def make_build(unit_cfg: dict, comp: dict) -> dict | None:
                     out["melee"] = m["melee"]
                 if m.get("slots"):
                     out["slots"] = m["slots"]
-                models_out.append(out)
+                models_out.append(_strip_shared_swaps(out))
         else:
             # Parallel variants share the squad budget — emit an alloc model.
             alloc = [_variant_payload(m) for m in pool]
+            # Scale per-variant maxes from BSData's reference squad size to
+            # config n (per-5 datasheet caps), keeping flat caps verbatim.
+            ref = derive_ref(models)
+            pool_capacity = pool_capacity_of(models)
+            for v, m in zip(alloc, pool):
+                if v.get("max") is None:
+                    continue
+                # Shared melee-weapon budget (Terminators): the datasheet caps
+                # the SUM of variants carrying the same melee weapon ("up to 3
+                # power fists per 5 models"), but BSData splits them across
+                # ranged variants (combi-bolter / combi-weapon) with no group
+                # marker. Inject the shared group_max before the scaling
+                # logic; variants tagged with the same group_max value share
+                # one combined cap in the engine.
+                shared = expected_shared_group_max(
+                    faction, unit_name, v.get("melee"), n, ref)
+                if shared is not None:
+                    v["group_max"] = shared
+                if v.get("group_max") is not None:
+                    # Variant inside a nested SEG — three encodings:
+                    # 1. per-5-marked group (Raptors '2 selections per 5
+                    #    models', Red Corsairs, Plague specials): BOTH the
+                    #    group cap and the variant max are ref-scaled — scale
+                    #    both by n/ref.
+                    # 2. no marker but variant > group (Purifier 4>2,
+                    #    Interceptor 2>1): group_max is the per-5 RATE
+                    #    (verbatim), the variant max is ref-scaled — scale
+                    #    the variant only.
+                    # 3. no marker and variant <= group (Purgation 4==4,
+                    #    Chaos Bikers 2==2): FLAT — both verbatim.
+                    if m.get("group_per5"):
+                        v["max"] = scaled_max(v["max"], n, ref)
+                        v["group_max"] = scaled_max(v["group_max"], n, ref)
+                    elif v["max"] > v["group_max"]:
+                        v["max"] = scaled_max(v["max"], n, ref)
+                    # else: flat — leave both verbatim.
+                else:
+                    v["max"] = expected_alloc_max(
+                        faction, unit_name, v["name"],
+                        m.get("max"), n, ref, pool_capacity, budget)
             models_out.append({
                 "name": _alloc_model_name([m.get("name", "") for m in pool]),
                 "count": budget,
-                "alloc": alloc,
+                "alloc": [_strip_shared_swaps(v) for v in alloc],
             })
     for e in leaders:
         out = {"name": e.get("name", ""), "count": 1}
@@ -217,7 +287,7 @@ def make_build(unit_cfg: dict, comp: dict) -> dict | None:
             out["melee"] = e["melee"]
         if e.get("slots"):
             out["slots"] = e["slots"]
-        models_out.append(out)
+        models_out.append(_strip_shared_swaps(out))
 
     if not models_out:
         return None
@@ -253,7 +323,7 @@ def main():
         if not comp:
             kept += 1
             continue
-        build = make_build(unit_cfg, comp)
+        build = make_build(unit_cfg, comp, args.faction, unit_name)
         if build is None:
             skipped += 1
             continue

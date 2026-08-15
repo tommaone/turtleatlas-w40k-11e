@@ -633,3 +633,57 @@ meta to _base alone is NOT enough, it must be added to each override too.
 **This change:** default → competitive (was all-comers); added `anti-horde`
 preset (GEQ 0.5 / MEQ 0.25 / TEQ 0.05 / Light V 0.1 / Heavy V 0.05 /
 Knight 0.05, melee_penalty 0.8) to _base + all 5 overrides.
+
+## infoLink-only weapon profiles in slot payloads get dropped by _resolve_model_choice_payload
+CSM/EC raw BSData encode the Accursed weapon default choice of the Heavy-weapon
+model's melee slot as a nested SE whose profile is an infoLink `type=profile`
+(targetId like `79e9-512b-5b1e-d478`), while WE encodes the same weapon as a
+resolvable entryLink. `_resolve_model_choice_payload` handled entryLinks but
+returned None for profile-type infoLinks → the Accursed weapon (the DEFAULT
+choice) was dropped from the slot entirely, leaving only Chainfist/Power fist.
+
+**Fix (adapter/bsdata_parser_11e.py):** resolve profile-type infoLinks via
+`target.get("typeName")` — check "Ranged"/"Melee" on the resolved entry, NOT
+`_resolve_entry_categories(target)` (which returns empty for bare profile
+entries). Parser outputs for all factions are otherwise unchanged
+(blast-radius dry-run: CSM 18, EC 9, GK 6, SM 28/kept 4, WE 9/skip 1,
+Aeldari 26/kept 3, AdMech 15, Orks 10/kept 7).
+
+## Shared-group weapons must NEVER be emitted in nested slots — only as group_max variants
+Root cause of the PF=4 regression: the Heavy-weapon model's nested melee slot
+offered Chainfist/Power fist, which are ALSO top-level alloc variants with
+`group_max` (3-per-5 power fists). The engine double-counts: 3 via variants +
+1 via the heavy model's slot = 4. Same for EC champion Wargear slot, which
+mirrored the pool variants (Power fist/Chainfist combos) → a 4th fist on the
+champion.
+
+Per the 11e datasheet the heavy flamer/reaper replaces ONLY the combi-bolter —
+the model KEEPS its accursed weapon. Power fist/chainfist are separate
+accursed-weapon swaps budgeted at variant level via group_max.
+
+**Fix (scripts/gen_squad_composition.py + scripts/alloc_caps.py):**
+`shared_group_weapons(faction, unit)` helper returns the SHARED_GROUPS melee
+weapons for a unit; `_strip_shared_swaps(model)` removes slot choices whose
+melee weapon is in that set. Applied to alloc variants AND leader models (EC
+champion). Slots keep only their default choice. Engine-verified: CSM + EC
+Terminators now resolve GEQ PF=0/CF=0/HW=1, MEQ/TEQ PF=3/CF=0/HW=1, Knight
+PF=2/CF=1/HW=1 — all within caps.
+
+## Fixed-range unit compositions ("3-6 Torments, 5-10 Mutants") are FLAT, not per-5
+Accursed Cultists (CSM) unit composition is two coupled fixed ranges
+(Torment 3-6, Mutant 5-10, squad 8-16) — NO per-5 scaling. The proportional
+scaling treated Torment max=6 @ ref 10 → 5 @ n=8 (wrong) and Mutant (max ==
+pool capacity) → base-variant min(budget, capacity) = 8 (wrong; datasheet
+says 10 flat). Both are FLAT_CAPS entries now.
+
+**Lesson:** when a unit's composition is expressed as "X-Y of type A, P-Q of
+type B" with no "for every N models", the ranges are flat at any squad size.
+Verify the datasheet wording — "3-6 Torments, 5-10 Mutants" ≠ per-5.
+## Per-5 special-weapon rates scale correctly (Tormentors) — stale tests were pre-mechanism
+EC Tormentors: BSData encodes meltagun/plasma gun max=2 at ref 10; datasheet
+says "for every 5 models, 1 meltagun / 1 plasma gun" → at n=5 the mechanism's
+scaled max=1 is CORRECT. Test asserted 2 (verbatim BSData ref value) — stale.
+Same for Aeldari Troupe blade max (11 verbatim → 4 = budget at n=5 with 1
+leader) and Windriders (6 verbatim → 3 = scaled at n=3). When the mechanism
+differs from a committed test, re-derive from the datasheet before trusting
+either side.

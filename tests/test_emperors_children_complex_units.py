@@ -123,8 +123,9 @@ class TestTormentors:
         assert m["count"] == 4
         alloc = {a["name"]: a for a in m["alloc"]}
         assert alloc["Tormentor"]["min"] == 4
-        assert alloc["Tormentor w/ plasma gun"]["max"] == 2
-        assert alloc["Tormentor w/ meltagun"]["max"] == 2
+        # Per-5 datasheet rate: 1 meltagun / 1 plasma gun per 5 models.
+        assert alloc["Tormentor w/ plasma gun"]["max"] == 1
+        assert alloc["Tormentor w/ meltagun"]["max"] == 1
 
     def test_obsessionist_slots(self, squads):
         m = _model(squads, "Tormentors", "Obsessionist")

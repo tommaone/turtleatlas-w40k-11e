@@ -1992,6 +1992,14 @@ class BSDataParser11e:
                 seg_min_owners: dict[str, int] = {}
                 seg_max_owners: dict[str, int] = {}
                 dup_strip_owners: set[str] = set()
+                pool_cap_owners: dict[str, int] = {}
+                # SEs inside a NESTED SEG whose error modifiers carry a
+                # "per N models" marker (e.g. Raptors '2 selections per 5
+                # models'). Those SEGs store the REF-SCALED max (4 at ref 10 =
+                # 2 per 5) — the generator must scale group_max by n/ref.
+                # SEGs without the marker store the datasheet rate verbatim
+                # (Purifier 'Heavy weapons' max=2 is the per-5 rate).
+                group_per5_owners: set[str] = set()
 
                 def _collect_models(seg_list: list[dict], depth: int = 0) -> None:
                     for seg in seg_list:
@@ -2005,6 +2013,16 @@ class BSDataParser11e:
                                     seg_min = c.get("value")
                                 elif c.get("type") == "max":
                                     seg_max = c.get("value")
+                        seg_per5 = False
+                        if depth > 0:
+                            # "per N models" error-modifier marker (BSData
+                            # authors annotate per-5/per-3 groups this way).
+                            for mod in seg.get("modifiers", []) or []:
+                                if (mod.get("type") == "add"
+                                        and mod.get("field") == "error"
+                                        and re.search(r"per \d+ models?", str(mod.get("value") or ""), re.I)):
+                                    seg_per5 = True
+                                    break
                         for se in seg.get("selectionEntries", []):
                             if se.get("hidden") != "true" and se.get("type") == "model":
                                 # A NESTED SEG's min is a per-pool constraint
@@ -2019,6 +2037,8 @@ class BSDataParser11e:
                                 # enforces it as a combined budget.
                                 if depth > 0 and seg_max is not None:
                                     seg_max_owners[se.get("id", "")] = seg_max
+                                    if seg_per5:
+                                        group_per5_owners.add(se.get("id", ""))
                                 # Duplicate constraint: the base model entry
                                 # copies the group's min/max (BSData pattern,
                                 # e.g. Purgation 'Purgator' min=4/max=9 == the
@@ -2051,6 +2071,25 @@ class BSDataParser11e:
                                             and not (se_min == 1 and se_max == 1)
                                             and len(direct_models) == 1):
                                         dup_strip_owners.add(se.get("id", ""))
+                                        # Remember the group's max so the
+                                        # reference squad size survives the
+                                        # strip (Purgation/Purifier base
+                                        # 'Purgator'/'Purifier' max=None but
+                                        # the '4-9 X' group max=9 is the real
+                                        # pool capacity).
+                                        pool_cap_owners[se.get("id", "")] = seg_max
+                                    elif (se_min is None and se_max is None
+                                            and seg_max is not None
+                                            and depth == 0):
+                                        # Constraint-less base model: the SE
+                                        # carries NO min/max of its own — the
+                                        # group constraint IS the pool (e.g.
+                                        # Purifier 'Purifier', Strike Squad
+                                        # 'Grey Knight'). Same effect as the
+                                        # dup-strip case above: keep the group
+                                        # max as the pool capacity so ref
+                                        # survives.
+                                        pool_cap_owners[se.get("id", "")] = seg_max
                                 model_seg.append(se)
                         _collect_models(seg.get("selectionEntryGroups", []),
                                         depth + 1)
@@ -2067,7 +2106,9 @@ class BSDataParser11e:
                         se, entry_index,
                         seg_min_owners.get(se.get("id", "")),
                         seg_max_owners.get(se.get("id", "")),
-                        se.get("id", "") in dup_strip_owners)
+                        se.get("id", "") in dup_strip_owners,
+                        pool_cap_owners.get(se.get("id", "")),
+                        se.get("id", "") in group_per5_owners)
                     if m is not None:
                         models.append(m)
                 if not models:
@@ -2081,7 +2122,9 @@ class BSDataParser11e:
     def _parse_composition_model(self, se: dict, entry_index: dict[str, dict],
                                  pool_min: int | None = None,
                                  group_max: int | None = None,
-                                 dup_strip: bool = False) -> dict | None:
+                                 dup_strip: bool = False,
+                                 pool_capacity: int | None = None,
+                                 group_per5: bool = False) -> dict | None:
         """Parse one type=model SE into a per-model entry.
 
         Fixed weapons come from own selectionEntries (upgrade SEs with weapon
@@ -2102,6 +2145,10 @@ class BSDataParser11e:
         group_max: a nested SEG's max constraint shared across its variants
         (at most N combined, e.g. Purgation's 'Heavy Weapons' max=4). The
         engine caps the SUM of the tagged variants, not each individually.
+
+        group_per5: the nested SEG carries a "per N models" error-modifier
+        marker — its group_max is ref-scaled (Raptors 4 at ref 10 = 2 per 5)
+        and must be scaled by n/ref in the generator.
 
         dup_strip: the base entry duplicated the group's min/max (BSData
         pattern); drop the per-entry constraint so it does not force plain
@@ -2130,6 +2177,10 @@ class BSDataParser11e:
             model["pool_min"] = pool_min
         if group_max is not None:
             model["group_max"] = group_max
+        if group_per5:
+            model["group_per5"] = True
+        if pool_capacity is not None:
+            model["pool_capacity"] = pool_capacity
 
         fixed_r: list[str] = []
         fixed_m: list[str] = []
@@ -2289,6 +2340,27 @@ class BSDataParser11e:
                 add_weapon(ename, "ranged", cnt)
             if "melee" in cats:
                 add_weapon(ename, "melee", cnt)
+
+        # profile-type infoLinks — BSData 11e pattern: a slot choice that is a
+        # bare SE with only an infoLink to a shared weapon profile (e.g. the
+        # Accursed weapon DEFAULT choice on the CSM Terminator heavy-weapon
+        # model's melee slot). Without this the default "keep accursed weapon"
+        # option is dropped and the slot forces a swap.
+        for il in choice.get("infoLinks", []):
+            if il.get("hidden") == "true" or il.get("type") != "profile":
+                continue
+            tid = il.get("targetId", "")
+            if not tid:
+                continue
+            target = entry_index.get(tid)
+            if target is None:
+                continue
+            ptype = target.get("typeName", "")
+            iname = self._strip_arrow(il.get("name", "") or target.get("name", ""))
+            if "Ranged" in ptype:
+                add_weapon(iname, "ranged", 1)
+            elif "Melee" in ptype:
+                add_weapon(iname, "melee", 1)
 
         if not ranged and not melee:
             return None

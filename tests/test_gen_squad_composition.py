@@ -71,7 +71,7 @@ def test_troupe_emits_alloc(gen, composition):
         "Player with Neuro Disruptor",
     }
     blade = [v for v in am["alloc"] if v["name"] == "Player with Harlequin's Blade"][0]
-    assert blade["min"] == 0 and blade["max"] == 11
+    assert blade["min"] == 0 and blade["max"] == 4
     lead = [m for m in build["models"] if m["name"] == "Lead Player"][0]
     assert lead["count"] == 1
 
@@ -84,7 +84,7 @@ def test_windriders_emits_alloc(gen, composition):
     assert am["name"] == "Windrider"
     assert am["count"] == 3
     assert len(am["alloc"]) == 3
-    assert all(v.get("max") == 6 for v in am["alloc"])
+    assert all(v.get("max") == 3 for v in am["alloc"])
 
 
 def test_storm_guardians_keeps_mins(gen, composition):

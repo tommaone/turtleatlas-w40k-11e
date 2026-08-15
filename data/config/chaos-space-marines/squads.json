@@ -61,7 +61,7 @@
               {
                 "name": "Biker w/ combi-bolter and bolt pistol",
                 "min": 0,
-                "max": 5,
+                "max": 2,
                 "ranged": [
                   "Combi-bolter",
                   "Bolt pistol"
@@ -71,7 +71,7 @@
               {
                 "name": "Biker w/ combi-bolter and chainsword",
                 "min": 0,
-                "max": 5,
+                "max": 2,
                 "ranged": "Combi-bolter",
                 "melee": [
                   "Astartes chainsword",
@@ -95,6 +95,10 @@
                       {
                         "name": "Bolt pistol",
                         "ranged": "Bolt pistol"
+                      },
+                      {
+                        "name": "Astartes chainsword",
+                        "melee": "Astartes chainsword"
                       }
                     ]
                   }
@@ -117,6 +121,10 @@
                       {
                         "name": "Bolt pistol",
                         "ranged": "Bolt pistol"
+                      },
+                      {
+                        "name": "Astartes chainsword",
+                        "melee": "Astartes chainsword"
                       }
                     ]
                   }
@@ -139,6 +147,10 @@
                       {
                         "name": "Bolt pistol",
                         "ranged": "Bolt pistol"
+                      },
+                      {
+                        "name": "Astartes chainsword",
+                        "melee": "Astartes chainsword"
                       }
                     ]
                   }
@@ -158,6 +170,10 @@
                       {
                         "name": "Bolt pistol",
                         "ranged": "Bolt pistol"
+                      },
+                      {
+                        "name": "Astartes chainsword",
+                        "melee": "Astartes chainsword"
                       }
                     ]
                   }
@@ -236,21 +252,21 @@
               {
                 "name": "Accursed weapon and combi-bolter",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": "Combi-bolter",
                 "melee": "Accursed weapon"
               },
               {
                 "name": "Accursed weapon and combi-weapon",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": "Combi-weapon",
                 "melee": "Accursed weapon"
               },
               {
                 "name": "Power fist and combi-weapon",
                 "min": 0,
-                "max": 6,
+                "max": 3,
                 "ranged": "Combi-weapon",
                 "melee": "Power fist",
                 "group_max": 3
@@ -258,10 +274,10 @@
               {
                 "name": "Chainfist and combi-bolter",
                 "min": 0,
-                "max": 2,
-                "group_max": 1,
+                "max": 1,
                 "ranged": "Combi-bolter",
-                "melee": "Chainfist"
+                "melee": "Chainfist",
+                "group_max": 1
               },
               {
                 "name": "Heavy weapon",
@@ -286,7 +302,8 @@
                     "choices": [
                       {
                         "name": "Accursed weapon",
-                        "melee": "Accursed weapon"
+                        "melee": "Accursed weapon",
+                        "default": true
                       }
                     ]
                   }
@@ -295,7 +312,7 @@
               {
                 "name": "Power fist and combi-bolter",
                 "min": 0,
-                "max": 6,
+                "max": 3,
                 "ranged": "Combi-bolter",
                 "melee": "Power fist",
                 "group_max": 3
@@ -303,10 +320,10 @@
               {
                 "name": "Chainfist and combi-weapon",
                 "min": 0,
-                "max": 2,
-                "group_max": 1,
+                "max": 1,
                 "ranged": "Combi-weapon",
-                "melee": "Chainfist"
+                "melee": "Chainfist",
+                "group_max": 1
               },
               {
                 "name": "Paired accursed weapons",
@@ -357,7 +374,7 @@
               {
                 "name": "Chosen w/ boltgun",
                 "min": 0,
-                "max": 9,
+                "max": 5,
                 "ranged": [
                   "Bolt pistol",
                   "Boltgun"
@@ -367,7 +384,7 @@
               {
                 "name": "Chosen w/ boltgun and plasma pistol",
                 "min": 0,
-                "max": 4,
+                "max": 2,
                 "ranged": [
                   "Plasma pistol",
                   "Boltgun"
@@ -377,7 +394,7 @@
               {
                 "name": "Chosen w/ combi-weapon and bolt pistol",
                 "min": 0,
-                "max": 4,
+                "max": 2,
                 "ranged": [
                   "Bolt pistol",
                   "Combi-weapon"
@@ -387,14 +404,14 @@
               {
                 "name": "Chosen w/ paired accursed weapons and plasma pistol",
                 "min": 0,
-                "max": 2,
+                "max": 1,
                 "ranged": "Plasma pistol",
                 "melee": "Paired accursed weapons"
               },
               {
                 "name": "Chosen w/ power fist and bolt pistol",
                 "min": 0,
-                "max": 2,
+                "max": 1,
                 "ranged": [
                   "Boltgun",
                   "Bolt pistol"
@@ -404,7 +421,7 @@
               {
                 "name": "Chosen w/ combi-weapon and plasma pistol",
                 "min": 0,
-                "max": 4,
+                "max": 2,
                 "ranged": [
                   "Plasma pistol",
                   "Combi-weapon"
@@ -414,14 +431,14 @@
               {
                 "name": "Chosen w/ paired accursed weapons and bolt pistol",
                 "min": 0,
-                "max": 2,
+                "max": 1,
                 "ranged": "Bolt pistol",
                 "melee": "Paired accursed weapons"
               },
               {
                 "name": "Chosen w/ power fist and plasma pistol",
                 "min": 0,
-                "max": 2,
+                "max": 1,
                 "ranged": [
                   "Boltgun",
                   "Plasma pistol"
@@ -634,7 +651,7 @@
               {
                 "name": "Legionary w/ boltgun",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": [
                   "Boltgun",
                   "Bolt pistol"
@@ -644,7 +661,7 @@
               {
                 "name": "Legionary w/ chainsword",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": "Bolt pistol",
                 "melee": [
                   "Astartes chainsword",
@@ -674,7 +691,7 @@
               {
                 "name": "Legionary w/ other weapon",
                 "min": 0,
-                "max": 2,
+                "max": 1,
                 "ranged": "Bolt pistol",
                 "melee": "Close combat weapon",
                 "slots": [
@@ -704,6 +721,10 @@
                       {
                         "name": "Missile launcher",
                         "ranged": "Missile launcher - frag"
+                      },
+                      {
+                        "name": "Plasma gun",
+                        "ranged": "Plasma gun"
                       },
                       {
                         "name": "Reaper chaincannon",
@@ -837,7 +858,7 @@
               {
                 "name": "Legionary w/ boltgun",
                 "min": 0,
-                "max": 9,
+                "max": 5,
                 "ranged": [
                   "Boltgun",
                   "Bolt pistol"
@@ -847,7 +868,7 @@
               {
                 "name": "Legionary w/ chainsword",
                 "min": 0,
-                "max": 9,
+                "max": 5,
                 "ranged": "Bolt pistol",
                 "melee": [
                   "Astartes chainsword",
@@ -893,6 +914,10 @@
                       {
                         "name": "Flamer",
                         "ranged": "Flamer"
+                      },
+                      {
+                        "name": "Plasma gun",
+                        "ranged": "Plasma gun"
                       }
                     ]
                   }
@@ -1044,36 +1069,36 @@
               {
                 "name": "Raptor",
                 "min": 0,
-                "max": 9,
+                "max": 5,
                 "ranged": "Bolt pistol",
                 "melee": "Astartes chainsword"
               },
               {
                 "name": "Raptor w/ plasma pistol",
                 "min": 0,
-                "max": 4,
+                "max": 2,
                 "ranged": "Plasma pistol",
                 "melee": "Astartes chainsword"
               },
               {
                 "name": "Raptor w/ heavy melee weapon",
                 "min": 0,
-                "max": 4,
+                "max": 2,
                 "ranged": "Bolt pistol",
                 "melee": "Heavy melee weapon"
               },
               {
                 "name": "Raptor w/ mutations",
                 "min": 0,
-                "max": 2,
+                "max": 1,
                 "ranged": "Bolt pistol",
                 "melee": "Mutations"
               },
               {
                 "name": "Raptor w/ meltagun",
                 "min": 0,
-                "max": 2,
-                "group_max": 4,
+                "max": 1,
+                "group_max": 2,
                 "ranged": [
                   "Bolt pistol",
                   "Meltagun"
@@ -1083,8 +1108,8 @@
               {
                 "name": "Raptor w/ plasma gun",
                 "min": 0,
-                "max": 2,
-                "group_max": 4,
+                "max": 1,
+                "group_max": 2,
                 "ranged": [
                   "Plasma gun",
                   "Bolt pistol"
@@ -1094,8 +1119,8 @@
               {
                 "name": "Raptor w/ flamer",
                 "min": 0,
-                "max": 2,
-                "group_max": 4,
+                "max": 1,
+                "group_max": 2,
                 "ranged": [
                   "Flamer",
                   "Bolt pistol"
@@ -1131,7 +1156,7 @@
               {
                 "name": "Red Corsairs Raider",
                 "min": 2,
-                "max": 9,
+                "max": 4,
                 "ranged": [
                   "Boltgun",
                   "Bolt pistol"
@@ -1141,8 +1166,8 @@
               {
                 "name": "Red Corsairs Raider w/ meltagun",
                 "min": 0,
-                "max": 2,
-                "group_max": 4,
+                "max": 1,
+                "group_max": 2,
                 "ranged": [
                   "Meltagun",
                   "Bolt pistol"
@@ -1152,8 +1177,8 @@
               {
                 "name": "Red Corsairs Raider w/ power fist",
                 "min": 0,
-                "max": 2,
-                "group_max": 4,
+                "max": 1,
+                "group_max": 2,
                 "ranged": [
                   "Boltgun",
                   "Bolt pistol"
@@ -1163,8 +1188,8 @@
               {
                 "name": "Red Corsairs Raider w/ power fist and meltagun",
                 "min": 0,
-                "max": 2,
-                "group_max": 4,
+                "max": 1,
+                "group_max": 2,
                 "ranged": [
                   "Meltagun",
                   "Bolt pistol"
