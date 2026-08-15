@@ -16,11 +16,23 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "melee": "Hellblade"
+            "name": "Bloodcrusher",
+            "count": 2,
+            "melee": [
+              "Hellblade",
+              "Bladed horn"
+            ]
+          },
+          {
+            "name": "Bloodhunter",
+            "count": 1,
+            "melee": [
+              "Hellblade",
+              "Bladed horn"
+            ]
           }
         ]
       }
@@ -42,10 +54,16 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
+            "name": "Bloodletter",
+            "count": 9,
+            "melee": "Hellblade"
+          },
+          {
+            "name": "Bloodreaper",
+            "count": 1,
             "melee": "Hellblade"
           }
         ]
@@ -65,9 +83,10 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Chaos Spawn",
             "count": 2,
             "melee": "Hideous Mutations"
           }
@@ -90,57 +109,120 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Combi-bolter",
-            "melee": "Accursed weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Combi-weapon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Combi-weapon",
-            "melee": "Accursed weapon"
+            "name": "Heavy weapon",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Combi-bolter, accursed weapon",
+                "min": 0,
+                "max": 4,
+                "ranged": "Combi-bolter",
+                "melee": "Accursed weapon"
+              },
+              {
+                "name": "Combi-bolter, chainfist",
+                "min": 0,
+                "max": 1,
+                "ranged": "Combi-bolter",
+                "melee": "Chainfist",
+                "group_max": 1
+              },
+              {
+                "name": "Combi-bolter, power fist",
+                "min": 0,
+                "max": 3,
+                "ranged": "Combi-bolter",
+                "melee": "Power fist",
+                "group_max": 3
+              },
+              {
+                "name": "Combi-weapon, accursed weapon",
+                "min": 0,
+                "max": 4,
+                "ranged": "Combi-weapon",
+                "melee": "Accursed weapon"
+              },
+              {
+                "name": "Combi-weapon, chainfist",
+                "min": 0,
+                "max": 1,
+                "ranged": "Combi-weapon",
+                "melee": "Chainfist",
+                "group_max": 1
+              },
+              {
+                "name": "Combi-weapon, power fist",
+                "min": 0,
+                "max": 3,
+                "ranged": "Combi-weapon",
+                "melee": "Power fist",
+                "group_max": 3
+              },
+              {
+                "name": "Paired accursed weapons",
+                "min": 0,
+                "max": 1,
+                "melee": "Paired accursed weapons"
+              },
+              {
+                "name": "Heavy weapon",
+                "min": 0,
+                "max": 1,
+                "slots": [
+                  {
+                    "name": "Melee weapon",
+                    "choices": [
+                      {
+                        "name": "Accursed weapon",
+                        "melee": "Accursed weapon"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Heavy weapon",
+                    "choices": [
+                      {
+                        "name": "Heavy flamer",
+                        "ranged": "Heavy flamer"
+                      },
+                      {
+                        "name": "Reaper autocannon",
+                        "ranged": "Reaper autocannon"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           },
           {
-            "count": 3,
-            "ranged": "Combi-bolter",
-            "melee": "Accursed weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Reaper autocannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Reaper autocannon",
-            "melee": "Accursed weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Combi-bolter",
-            "melee": "Accursed weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Heavy flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Heavy flamer",
-            "melee": "Accursed weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Combi-bolter",
-            "melee": "Accursed weapon"
+            "name": "Terminator Champion",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Weapons",
+                "choices": [
+                  {
+                    "name": "Paired accursed weapons",
+                    "melee": "Paired accursed weapons"
+                  },
+                  {
+                    "name": "Combi-weapon, accursed weapon",
+                    "ranged": "Combi-weapon",
+                    "melee": "Accursed weapon"
+                  },
+                  {
+                    "name": "Combi-bolter, accursed weapon",
+                    "ranged": "Combi-bolter",
+                    "melee": "Accursed weapon",
+                    "default": true
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -161,10 +243,16 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
+            "name": "Eightbound",
+            "count": 2,
+            "melee": "Chainblades"
+          },
+          {
+            "name": "Eightbound Champion",
+            "count": 1,
             "melee": "Chainblades"
           }
         ]
@@ -187,11 +275,17 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "melee": "Close combat weapon"
+            "name": "Exalted Eightbound",
+            "count": 2,
+            "melee": "Chainblades"
+          },
+          {
+            "name": "Exalted Eightbound Champion",
+            "count": 1,
+            "melee": "Chainblades"
           }
         ]
       }
@@ -213,10 +307,16 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
+            "name": "Flesh Hound",
+            "count": 4,
+            "melee": "Gore-drenched fangs"
+          },
+          {
+            "name": "Gore Hound",
+            "count": 1,
             "ranged": "Burning roar",
             "melee": "Gore-drenched fangs"
           }
@@ -237,27 +337,49 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 8,
-            "ranged": "Autopistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Blood harpoon",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Blood harpoon",
-            "melee": "Close combat weapon"
+            "name": "Goremonger",
+            "count": 7,
+            "alloc": [
+              {
+                "name": "Goremonger w/ blood harpoon",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Blood harpoon",
+                  "Autopistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Goremonger w/ 2 pistols",
+                "min": 0,
+                "max": 1,
+                "ranged": "Autopistol",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Goremonger w/ chainblade",
+                "min": 7,
+                "max": 7,
+                "ranged": "Autopistol",
+                "melee": [
+                  "Chainblade",
+                  "Close combat weapon"
+                ]
+              }
+            ]
           },
           {
-            "count": 7,
+            "name": "Blood Herald",
+            "count": 1,
             "ranged": "Autopistol",
-            "melee": "Close combat weapon"
+            "melee": [
+              "Chainblade",
+              "Close combat weapon"
+            ]
           }
         ]
       }
@@ -300,12 +422,61 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Bolt pistol",
-            "melee": "Chainblade"
+            "name": "Khorne Berzerker",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Khorne Berzerker",
+                "min": 5,
+                "max": 9,
+                "ranged": "Bolt pistol",
+                "melee": "Chainblade"
+              },
+              {
+                "name": "Khorne Berzerker w/ eviscerator and bolt pistol",
+                "min": 0,
+                "max": 2,
+                "ranged": "Bolt pistol",
+                "melee": "Khornate eviscerator"
+              },
+              {
+                "name": "Khorne Berzerker w/ eviscerator and plasma pistol",
+                "min": 0,
+                "max": 2,
+                "ranged": "Plasma pistol",
+                "melee": "Khornate eviscerator"
+              },
+              {
+                "name": "Khorne Berzerker w/ chainblade and plasma pistol",
+                "min": 0,
+                "max": 2,
+                "ranged": "Plasma pistol",
+                "melee": "Chainblade"
+              }
+            ]
+          },
+          {
+            "name": "Khorne Berzerker Champion",
+            "count": 1,
+            "melee": "Chainblade",
+            "slots": [
+              {
+                "name": "Pistol",
+                "choices": [
+                  {
+                    "name": "Bolt pistol",
+                    "ranged": "Bolt pistol"
+                  },
+                  {
+                    "name": "Plasma pistol",
+                    "ranged": "Plasma pistol"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }

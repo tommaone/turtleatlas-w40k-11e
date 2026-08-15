@@ -30,6 +30,17 @@ SKIP_FACTIONS = {"Unaligned Forces"}
 CRUCIBLE_RE = re.compile(r'\[Crucible\]', re.IGNORECASE)
 MULTIPLICITY_RE = re.compile(r'^(\d+)\s+(.+)$')
 
+# Book-first weapon names for squad composition. Linked-catalogue SEs (e.g.
+# the Chaos Daemons units reachable from World Eaters) carry their own
+# book-local weapon names; the merged catalog is book-first, so composition
+# must reference the faction book's name or the weapon will not resolve
+# against that faction's catalog (identical profiles, different local names).
+_BOOK_WEAPON_NAMES: dict[str, dict[str, str]] = {
+    "world-eaters": {
+        "Juggernaut's bladed horn": "Bladed horn",
+    },
+}
+
 
 class BSDataParser11e:
     """Parses BSData 11e JSON catalogue files for unit profiles."""
@@ -1919,7 +1930,8 @@ class BSDataParser11e:
         roots = self._load_catalogue_roots(cat, include_linked=True)
         entry_index = self._build_entry_index(roots)
         return self._extract_squad_composition(
-            roots, entry_index, book_roster=self._load_merged_roster(faction_name))
+            roots, entry_index, book_roster=self._load_merged_roster(faction_name),
+            faction=faction_name)
 
     def _book_key(self, name: str) -> str:
         """Normalize a composition/wargear key for book-roster membership.
@@ -1947,7 +1959,8 @@ class BSDataParser11e:
 
     def _extract_squad_composition(self, roots: list[dict],
                                    entry_index: dict[str, dict],
-                                   book_roster: set[str] | None = None) -> dict[str, dict]:
+                                   book_roster: set[str] | None = None,
+                                   faction: str | None = None) -> dict[str, dict]:
         """Extract squad model-composition builds for units with the sibling-SEG
         pattern: top-level selectionEntryGroups that nest type=model SEs.
 
@@ -2108,7 +2121,8 @@ class BSDataParser11e:
                         seg_max_owners.get(se.get("id", "")),
                         se.get("id", "") in dup_strip_owners,
                         pool_cap_owners.get(se.get("id", "")),
-                        se.get("id", "") in group_per5_owners)
+                        se.get("id", "") in group_per5_owners,
+                        faction=faction)
                     if m is not None:
                         models.append(m)
                 if not models:
@@ -2124,7 +2138,8 @@ class BSDataParser11e:
                                  group_max: int | None = None,
                                  dup_strip: bool = False,
                                  pool_capacity: int | None = None,
-                                 group_per5: bool = False) -> dict | None:
+                                 group_per5: bool = False,
+                                 faction: str | None = None) -> dict | None:
         """Parse one type=model SE into a per-model entry.
 
         Fixed weapons come from own selectionEntries (upgrade SEs with weapon
@@ -2258,7 +2273,38 @@ class BSDataParser11e:
         # pure-ability wrapper) — skip it rather than emit a dead entry.
         if not fixed_r and not fixed_m and not slots:
             return None
+        self._map_book_weapon_names(model, faction)
         return model
+
+    def _map_book_weapon_names(self, model: dict, faction: str) -> None:
+        """Rewrite weapon names to the faction book's local names.
+
+        Linked-catalogue SEs (Chaos Daemons reachable from World Eaters)
+        carry daemon-local weapon names; the merged catalog is book-first
+        (the WE book calls the Bloodcrusher horn "Bladed horn"). Composition
+        must reference the book name or the weapon will not resolve against
+        the faction catalog — the same book-first rule merge.py applies to
+        profiles.
+        """
+        if faction not in _BOOK_WEAPON_NAMES:
+            return
+        mapping = _BOOK_WEAPON_NAMES[faction]
+
+        def _map(v):
+            if isinstance(v, str):
+                return mapping.get(v, v)
+            if isinstance(v, list):
+                return [_map(x) for x in v]
+            return v
+
+        for key in ("ranged", "melee"):
+            if key in model:
+                model[key] = _map(model[key])
+        for slot in model.get("slots", []) or []:
+            for c in slot.get("choices", []) or []:
+                for key in ("ranged", "melee"):
+                    if key in c:
+                        c[key] = _map(c[key])
 
     def _resolve_model_choice_payload(self, choice: dict, entry_index: dict[str, dict],
                                       is_entry_link: bool = False) -> dict | None:

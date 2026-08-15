@@ -47,6 +47,15 @@ def sm_composition():
     return BSDataParser11e().extract_squad_composition("space-marines")
 
 
+@pytest.fixture(scope="module")
+def we_composition():
+    """World Eaters composition — used by the book-first weapon-name
+    regression (the daemons-linked Bloodcrushers horn must reference the
+    WE book's 'Bladed horn', not the daemons-local name)."""
+    from adapter.bsdata_parser_11e import BSDataParser11e
+    return BSDataParser11e().extract_squad_composition("world-eaters")
+
+
 def _comp_for(composition, name):
     for bs_name, data in composition.items():
         if name.lower() in bs_name.lower() or bs_name.lower() in name.lower():
@@ -315,3 +324,49 @@ def test_no_legends_real_dark_angels(gen):
     comp = BSDataParser11e().extract_squad_composition("dark-angels")
     assert "Deathwing Command Squad [Legends]" in comp
     assert gen.fuzzy_find_composition(comp, "Deathwing Command Squad") is None
+
+
+def test_we_book_first_weapon_names(we_composition):
+    """Daemons-linked squads reference the WE book's weapon names.
+
+    The WE Bloodcrushers SE lives in the Chaos Daemons catalogue; its melee
+    weapons are the daemons-local 'Juggernaut's bladed horn'. The merged
+    catalog is book-first and only carries the WE book's 'Bladed horn'
+    (identical profile), so composition must emit the book name or the
+    config would not resolve against the faction catalog.
+    """
+    models = we_composition["Bloodcrushers"]["builds"][0]["models"]
+    for m in models:
+        melee = m.get("melee")
+        melee_list = melee if isinstance(melee, list) else [melee]
+        assert "Bladed horn" in melee_list, f"{m['name']}: {melee}"
+        assert "Juggernaut's bladed horn" not in melee_list
+
+
+def test_we_book_first_weapons_resolve(we_composition):
+    """Every WE composition weapon must resolve against the faction catalog."""
+    from engine.ranking import RankingEngine
+    eng = RankingEngine("world-eaters")
+    failed = []
+
+    def names(p):
+        return [p] if isinstance(p, str) else (p if isinstance(p, list) else [])
+
+    for unit, cfg in we_composition.items():
+        for b in cfg["builds"]:
+            for m in b["models"]:
+                for key in ("ranged", "melee"):
+                    for n in names(m.get(key)):
+                        try:
+                            eng.W(n, unit_name=unit)
+                        except KeyError:
+                            failed.append(f"{unit}/{m.get('name')} {key}: {n}")
+                for slot in m.get("slots", []):
+                    for c in slot.get("choices", []):
+                        for key in ("ranged", "melee"):
+                            for n in names(c.get(key)):
+                                try:
+                                    eng.W(n, unit_name=unit)
+                                except KeyError:
+                                    failed.append(f"{unit} slot: {n}")
+    assert not failed, f"unresolvable composition weapons:\n" + "\n".join(failed)

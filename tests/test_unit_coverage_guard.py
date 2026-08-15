@@ -39,7 +39,6 @@ KNOWN_MISSING: dict[str, list[str]] = {
     'orks': ['Burna Boy', 'Loota', 'Nob on Smasha Squig', 'Runtherd', 'Spanner', 'Squighog Boy'],
     'space-wolves': ['Hunting Wolves', 'Wolf Scout', 'Wolf Scout Pack Leader', 'Wolf Scout w/ haywire mine', 'Wolf Scout w/ plasma gun', 'Wolf Scout w/ runic stave and Thunderclap'],
     'tau-empire': ['Tidewall Shieldline'],
-    'world-eaters': ['Jakhal'],
 }
 
 
