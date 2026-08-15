@@ -155,14 +155,14 @@
               {
                 "name": "Assault Intercessors with Jump Pack",
                 "min": 4,
-                "max": 9,
+                "max": 4,
                 "ranged": "Heavy Bolt Pistol",
                 "melee": "Astartes Chainsword"
               },
               {
                 "name": "Assault Intercessors with Jump Pack w/ Plasma Pistol",
                 "min": 0,
-                "max": 2,
+                "max": 1,
                 "ranged": "Plasma pistol",
                 "melee": "Astartes Chainsword"
               }
@@ -623,7 +623,7 @@
               {
                 "name": "Death Company Marine",
                 "min": 2,
-                "max": 10,
+                "max": 5,
                 "ranged": "Heavy Bolt Pistol",
                 "melee": "Astartes Chainsword"
               },
@@ -809,14 +809,14 @@
               {
                 "name": "Death Company Marine",
                 "min": 0,
-                "max": 10,
+                "max": 5,
                 "ranged": "Heavy Bolt Pistol",
                 "melee": "Astartes Chainsword"
               },
               {
                 "name": "Death Company Marine w/ alternate weapons",
                 "min": 0,
-                "max": 7,
+                "max": 3,
                 "slots": [
                   {
                     "name": "Pistol Weapon",
@@ -964,7 +964,7 @@
               {
                 "name": "Devastator Marine w/ Boltgun",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": [
                   "Boltgun",
                   "Bolt pistol"
@@ -1114,7 +1114,7 @@
               {
                 "name": "Eradicator",
                 "min": 0,
-                "max": 5,
+                "max": 2,
                 "ranged": [
                   "Bolt pistol",
                   "Melta rifle"
@@ -1206,7 +1206,7 @@
               {
                 "name": "Heavy Intercessors",
                 "min": 3,
-                "max": 9,
+                "max": 4,
                 "ranged": [
                   "Heavy Bolt Rifle",
                   "Bolt pistol"
@@ -1483,7 +1483,7 @@
               {
                 "name": "Intercessor",
                 "min": 4,
-                "max": 9,
+                "max": 4,
                 "ranged": [
                   "Bolt pistol",
                   "Bolt Rifle"
@@ -1493,7 +1493,7 @@
               {
                 "name": "Intercessor w/ Grenade Launcher",
                 "min": 0,
-                "max": 2,
+                "max": 1,
                 "ranged": [
                   "Bolt pistol",
                   "Bolt Rifle",
@@ -1644,7 +1644,7 @@
               {
                 "name": "Outrider",
                 "min": 2,
-                "max": 5,
+                "max": 2,
                 "ranged": [
                   "Heavy Bolt Pistol",
                   "Twin bolt rifle"
@@ -1808,7 +1808,7 @@
               {
                 "name": "Scouts w/ Boltgun",
                 "min": 4,
-                "max": 9,
+                "max": 4,
                 "ranged": [
                   "Boltgun",
                   "Bolt pistol"
@@ -1818,7 +1818,7 @@
               {
                 "name": "Scouts w/ Astartes Shotgun",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": [
                   "Astartes Shotgun",
                   "Bolt pistol"
@@ -1828,7 +1828,7 @@
               {
                 "name": "Scouts w/ Combat Knife",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": "Bolt pistol",
                 "melee": [
                   "Combat Knife",
@@ -1925,7 +1925,7 @@
               {
                 "name": "Sternguard Veteran w/ Bolt Rifle",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": [
                   "Sternguard Bolt Pistol",
                   "Sternguard Bolt Rifle"
@@ -1957,7 +1957,7 @@
               {
                 "name": "Sternguard Veteran w/ Combi-weapon",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": [
                   "Sternguard Bolt Pistol",
                   "Combi-weapon"
@@ -2262,13 +2262,13 @@
               {
                 "name": "Assault Terminator w/ Thunder Hammer & Storm Shield",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "melee": "Thunder Hammer"
               },
               {
                 "name": "Assault Terminator w/ Twin Lightning Claws",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "melee": "Twin Lightning Claws"
               }
             ]
@@ -2321,17 +2321,16 @@
               {
                 "name": "Terminator w/ Power Fist",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": "Storm bolter",
                 "melee": "Power fist"
               },
               {
                 "name": "Terminator w/ Chain Fist",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": "Storm bolter",
-                "melee": "Chainfist",
-                "group_max": 1
+                "melee": "Chainfist"
               },
               {
                 "name": "Terminator w/ Heavy Weapon",
@@ -2359,6 +2358,10 @@
                     "name": "Melee Weapon Option",
                     "choices": [
                       {
+                        "name": "Chainfist",
+                        "melee": "Chainfist"
+                      },
+                      {
                         "name": "Power fist",
                         "melee": "Power fist"
                       }
@@ -2379,6 +2382,10 @@
                   {
                     "name": "Power weapon",
                     "melee": "Power weapon"
+                  },
+                  {
+                    "name": "Chainfist",
+                    "melee": "Chainfist"
                   },
                   {
                     "name": "Power fist",
@@ -2415,7 +2422,7 @@
               {
                 "name": "Vanguard Veterans with Jump Packs",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "melee": "Vanguard Veteran Weapon",
                 "slots": [
                   {
@@ -2448,7 +2455,7 @@
               {
                 "name": "Vanguard Veteran w/Master-crafted Power Weapon",
                 "min": 0,
-                "max": 10,
+                "max": 4,
                 "ranged": "Heavy Bolt Pistol",
                 "melee": "Master-crafted Power Weapon"
               },

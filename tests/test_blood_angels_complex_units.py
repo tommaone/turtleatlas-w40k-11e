@@ -104,18 +104,29 @@ class TestBloodAngelsComplexUnits:
 
     def test_death_company_marines_jump_packs_alloc(self, ba_engine, MEQ, GEQ):
         """Death Company Marines With Jump Packs n=5: the alternate-weapons
-        variant (max 7) takes the whole squad budget vs both MEQ and GEQ.
-        Slot picks are target-dependent: Inferno Pistol + Power fist vs MEQ,
-        Hand flamer + Power weapon vs GEQ."""
+        variant is capped at 3 (1 flat pistol swap + 1 flat power-melee swap +
+        1 per-5 eviscerator), so 2 marines stay base. Slot picks are
+        target-dependent: Inferno Pistol + Power fist vs MEQ, Hand flamer +
+        Power weapon vs GEQ."""
         res = _build(ba_engine, "Death Company Marines With Jump Packs", MEQ)
-        assert _alloc(res) == {"Death Company Marine w/ alternate weapons": 5}
-        assert _rcount(res, "Inferno Pistol") == 5
-        assert _mcount(res, "Power fist") == 5
+        assert _alloc(res) == {
+            "Death Company Marine": 2,
+            "Death Company Marine w/ alternate weapons": 3,
+        }
+        assert _rcount(res, "Heavy Bolt Pistol") == 2
+        assert _rcount(res, "Inferno Pistol") == 3
+        assert _mcount(res, "Astartes Chainsword") == 2
+        assert _mcount(res, "Power fist") == 3
 
         res_geq = _build(ba_engine, "Death Company Marines With Jump Packs", GEQ)
-        assert _alloc(res_geq) == {"Death Company Marine w/ alternate weapons": 5}
-        assert _rcount(res_geq, "Hand flamer") == 5
-        assert _mcount(res_geq, "Power weapon") == 5
+        assert _alloc(res_geq) == {
+            "Death Company Marine": 2,
+            "Death Company Marine w/ alternate weapons": 3,
+        }
+        assert _rcount(res_geq, "Heavy Bolt Pistol") == 2
+        assert _rcount(res_geq, "Hand flamer") == 3
+        assert _mcount(res_geq, "Astartes Chainsword") == 2
+        assert _mcount(res_geq, "Power weapon") == 3
 
     def test_death_company_intercessors_alloc(self, ba_engine, MEQ):
         """Death Company Intercessors n=5: 3 base Death Company Intercessors

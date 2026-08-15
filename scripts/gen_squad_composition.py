@@ -240,6 +240,13 @@ def make_build(unit_cfg: dict, comp: dict,
             pool_capacity = pool_capacity_of(models)
             for v, m in zip(alloc, pool):
                 if v.get("max") is None:
+                    # BSData may omit the cap entirely (max=None, e.g. Troupe
+                    # fusion/neuro pistols) where the datasheet has a flat
+                    # budget. expected_alloc_max returns the FLAT_CAPS
+                    # registry value when present, else None (still uncapped).
+                    v["max"] = expected_alloc_max(
+                        faction, unit_name, v["name"], None, n, ref,
+                        pool_capacity, budget)
                     continue
                 # Shared melee-weapon budget (Terminators): the datasheet caps
                 # the SUM of variants carrying the same melee weapon ("up to 3

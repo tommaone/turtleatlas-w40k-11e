@@ -229,15 +229,16 @@ class TestSpaceMarinesComplexUnits:
     def test_slot_pick_chainfist_punches_up(self, sm_engine, MEQ):
         """Terminator melee IS target-dependent now: the Chain Fist's
         Anti-VEHICLE 3+ must out-rank the Power Fist vs heavy targets while
-        losing to it vs infantry — subject to the datasheet cap of 1 chainfist
-        per 5 models.
+        losing to it vs infantry. The 11e datasheet allows ANY number of
+        models to swap their power fist for a chainfist — no per-5 cap.
 
         Regression for the Anti-X wound-target bug: before the fix, the
         engine only treated Anti-VEHICLE 3+ as a crit threshold and never
         lowered the wound target, so a WS4 chainfist (S8) scored below a
         WS3 power fist (S8) even vs T13 Knights — the anti-tank weapon lost
-        to the generic fist everywhere. That is now fixed, and the config
-        enforces the 1-chainfist-per-5 datasheet cap via group_max.
+        to the generic fist everywhere. That is now fixed: vs a heavy target
+        the whole squad swings chainfists; vs infantry they stay on Power
+        Fists.
 
         Note: the Cyclone Missile Launcher remains a separate documented gap
         (multi-profile frag+krak: the loader resolves only the first profile,
@@ -253,11 +254,11 @@ class TestSpaceMarinesComplexUnits:
         assert _rcount(vs_meq, "Assault Cannon") == 1
         assert _rcount(vs_heavy, "Assault Cannon") == 1
         # vs MEQ: Power Fist (no Anti-INFANTRY — nothing punches down to T4).
-        # vs heavy: the one allowed Chain Fist (Anti-VEHICLE 3+ wounds T10 on
-        # 3+ not 5+); the rest stay on Power Fists (1-per-5 datasheet cap).
+        # vs heavy: every model swaps to the Chain Fist (Anti-VEHICLE 3+
+        # wounds T10 on 3+ not 5+); the uncapped datasheet allows all 5.
         # Weapon profiles resolve to canonical names: "Power fist"/"Chainfist".
         assert vs_meq["_alloc_info"] != vs_heavy["_alloc_info"]
         assert _mcount(vs_meq, "Power fist") == 5
         assert _mcount(vs_meq, "Chainfist") == 0
-        assert _mcount(vs_heavy, "Chainfist") == 1
-        assert _mcount(vs_heavy, "Power fist") == 4
+        assert _mcount(vs_heavy, "Chainfist") == 5
+        assert _mcount(vs_heavy, "Power fist") == 0

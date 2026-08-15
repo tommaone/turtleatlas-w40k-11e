@@ -176,32 +176,39 @@ class TestAeldariComplexUnits:
         assert len(res["melee"]) == 3
 
     def test_voidreavers_slot_variants_and_felarch(self, aeldari_engine, MEQ):
-        """Corsair Voidreavers n=5: heavy slot + 2 specials + Felarch slot."""
+        """Corsair Voidreavers n=5: 1 heavy + 1 special (Blaster/Shredder share
+        a per-5 budget of 1, so the Blaster takes it) + 2 sword-and-pistol
+        bodies + Felarch slot."""
         res = _build(aeldari_engine, "Corsair Voidreavers", MEQ)
         used = dict(res["_alloc_info"][0][1])
         assert used == {
             "Voidreaver with Heavy weapon": 1,
-            "Voidreaver with Blaster": 2,
-            "Voidreaver with Shredder": 1,
+            "Voidreaver with sword and pistol": 2,
+            "Voidreaver with Blaster": 1,
         }
         assert _rcount(res, "Shuriken cannon") == 1
-        assert _rcount(res, "Blaster") == 2
-        assert _rcount(res, "Shuriken Pistol") == 3  # 2 blaster + 1 shredder
-        assert _rcount(res, "Corsair shredder") == 1
+        assert _rcount(res, "Blaster") == 1
+        assert _rcount(res, "Shuriken Pistol") == 3  # 2 sword-and-pistol + 1 blaster
+        assert _rcount(res, "Corsair shredder") == 0  # shared per-5 special budget
         assert _rcount(res, "Neuro disruptor") == 1  # Felarch slot pick
-        assert len(res["ranged"]) == 8
-        assert _mcount(res, "Close Combat Weapon") == 4
-        assert _mcount(res, "Power sword") == 1  # Felarch
+        assert len(res["ranged"]) == 6
+        assert _mcount(res, "Close Combat Weapon") == 2  # heavy + blaster
+        assert _mcount(res, "Power sword") == 3  # 2 sword-and-pistol + Felarch
         assert len(res["melee"]) == 5
 
     def test_troupe_lead_player_slot_all_fusion(self, aeldari_engine, MEQ):
-        """Troupe n=5: all 4 Players take Fusion Pistol; Lead Player slot
-        picks Fusion Pistol too — 5 Fusion Pistols."""
+        """Troupe n=5: the Player pool caps Fusion Pistol AND Neuro Disruptor
+        at 2 each (separate datasheet budgets); the Lead Player slot picks
+        Fusion Pistol — 3 Fusion Pistols + 2 Neuro Disruptors."""
         res = _build(aeldari_engine, "Troupe", MEQ)
         assert res["_alloc_info"] == [
-            ("Player", [("Player with Fusion Pistol", 4)]),
+            ("Player", [
+                ("Player with Fusion Pistol", 2),
+                ("Player with Neuro Disruptor", 2),
+            ]),
         ]
-        assert _rcount(res, "Fusion Pistol") == 5
+        assert _rcount(res, "Fusion Pistol") == 3  # 2 players + Lead Player
+        assert _rcount(res, "Neuro Disruptor") == 2
         assert len(res["ranged"]) == 5
         assert _mcount(res, "Harlequin's Special Weapon") == 4
         assert _mcount(res, "Power sword") == 1  # Lead Player

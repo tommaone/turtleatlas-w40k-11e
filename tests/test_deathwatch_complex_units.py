@@ -72,19 +72,25 @@ class TestDeathwatchComplexUnits:
     """Real-config regression pins: exact resolved loadout per complex unit."""
 
     def test_deathwatch_veterans_alloc(self, dw_engine, MEQ):
-        """Deathwatch Veterans n=5: 3 Deathwatch thunder hammer + 2 frag
-        cannon (frag cannon maxes at 2; the hammer out-scores the remaining
-        specials vs MEQ)."""
+        """Deathwatch Veterans n=5: 2 Deathwatch thunder hammers (up-to-2 cap)
+        + 1 frag cannon + 1 infernus heavy bolter (separate per-5 budgets, so
+        both heavies are legal) + the Watch Sergeant taking the combi-weapon
+        and xenophase blade slots."""
         res = _build(dw_engine, "Deathwatch Veterans", MEQ)
         assert res["_alloc_info"] == [
             ("Veteran", [
-                ("Veteran w/ Deathwatch thunder hammer", 3),
-                ("Veteran w/ frag cannon and CCW", 2),
+                ("Veteran w/ Deathwatch thunder hammer", 2),
+                ("Veteran w/ frag cannon and CCW", 1),
+                ("Veteran w/ infernus heavy bolter and CCW", 1),
+                ("Sgt w/ combi-weapon and xenophase blade", 1),
             ]),
         ]
-        assert _rcount(res, "Frag cannon") == 2
-        assert _mcount(res, "Deathwatch thunder hammer") == 3
+        assert _rcount(res, "Frag cannon") == 1
+        assert _rcount(res, "Infernus heavy bolter - heavy bolter") == 1
+        assert _rcount(res, "Combi-weapon") == 1
+        assert _mcount(res, "Deathwatch thunder hammer") == 2
         assert _mcount(res, "Close combat weapon") == 2
+        assert _mcount(res, "Xenophase blade") == 1
         assert len(res["melee"]) == 5
 
     def test_deathwatch_terminator_squad_all_default(self, dw_engine, MEQ):

@@ -125,7 +125,9 @@ class TestRegeneratedSquads:
     def test_boyz_alloc(self, squads):
         m = _model(squads, "Boyz", "Boy")
         alloc = {a["name"]: a for a in m["alloc"]}
-        assert alloc["Boy w/ Big shoota"]["max"] == 2
+        # Big shoota and rokkit launcha share a single 1-per-10 budget.
+        assert alloc["Boy w/ Big shoota"]["max"] == 1
+        assert alloc["Boy w/ Rokkit launcha"]["max"] == 1
         assert alloc["Boy"]["min"] == 0
 
     def test_boss_nob_slots(self, squads):

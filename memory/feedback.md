@@ -687,3 +687,44 @@ Same for Aeldari Troupe blade max (11 verbatim → 4 = budget at n=5 with 1
 leader) and Windriders (6 verbatim → 3 = scaled at n=3). When the mechanism
 differs from a committed test, re-derive from the datasheet before trusting
 either side.
+
+## Wave-3: 9-faction caps sweep — stale tests were datasheet-wrong, mechanism was right (2026-08-15)
+Regenerated aeldari/BT/BA/DA/DW/GK/orks/SM/SW with the caps mechanism. Eight
+stale tests pinned PRE-mechanism BSData verbatim values; every one resolved to
+a datasheet-correct lower number:
+
+| Unit | Old test | Datasheet truth |
+|------|----------|-----------------|
+| SM Terminator chainfist | 1 per squad | ANY number (11e: "any number of models can replace power fist") — group_max=None, all 5 take Chainfist vs T10 |
+| DC Marines w/ Jump Packs | 5 alternate weapons | 3 (1 pistol + 1 melee + 1 per-5 eviscerator) |
+| Corsair Voidreavers | 2 Blaster + 1 Shredder | 1 special per 5, Blaster/Shredder SHARED group_max=1 |
+| Troupe | 4 Fusion Pistol | 2 Fusion + 2 Neuro (SEPARATE budgets of 2 each) |
+| Thunderwolf Cavalry | 3 plasma | 1 (per-3) |
+| Wolf Guard Terminators | 2 Assault Cannon | 1 (per-5) |
+| Deathwatch Veterans | 3 hammers + 2 frag | 2 hammers (up-to-2) + 1 frag + 1 infernus (SEPARATE per-5 budgets) |
+| Boyz | 2 Big shoota | 1 (Big shoota/rokkit SHARED per-10 group_max=1) |
+
+**Key distinctions:** (a) "1 frag cannon per 5" and "1 infernus heavy bolter
+per 5" are SEPARATE clauses → both heavies legal at n=5, do NOT group_max them;
+(b) Troupe fusion/neuro are separate budgets; (c) DW thunder hammer is an
+up-to-2 cap, not per-5.
+
+**Tooling:** inventory_alloc_diffs.py gains `_slot_diffs` — the old
+variant-count comparison MISSED alloc-variant slot deltas (Terminator
+heavy-melee Chainfist choice, Wolf Guard caps) because slot payloads are
+per-model, not per-variant-count. Always check BOTH `~variant max` lines and
+`+slot choices` lines; and don't `head`-truncate inventory output — the
+Wolf Guard diff existed but was cut off by the pagination, so it looked like
+the tool missed it.
+
+**Engine dump:** RankingEngine requires `faction_key` — `resolve_loadout`
+returns a 5-tuple (points, ranged, melee, innate, info) and `_alloc_info`
+lives in the info dict only via `_best_squad_variant`; use
+`engine._best_squad_variant(name, target)` for test-pin dumps, not
+`resolve_loadout`.
+
+**Generator fix:** `max is None` variants (Troupe fusion/neuro — uncapped in
+BSData) previously hit a bare `continue` and stayed uncapped forever;
+now they route through `expected_alloc_max` (the FLAT_CAPS rescue) so a
+datasheet flat cap applies. Any future "uncapped" variant that is actually
+capped per datasheet needs a FLAT_CAPS entry, not a mechanism change.

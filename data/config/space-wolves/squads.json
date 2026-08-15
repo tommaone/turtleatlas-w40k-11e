@@ -155,14 +155,14 @@
               {
                 "name": "Assault Intercessors with Jump Pack",
                 "min": 4,
-                "max": 9,
+                "max": 4,
                 "ranged": "Heavy Bolt Pistol",
                 "melee": "Astartes Chainsword"
               },
               {
                 "name": "Assault Intercessors with Jump Pack w/ Plasma Pistol",
                 "min": 0,
-                "max": 2,
+                "max": 1,
                 "ranged": "Plasma pistol",
                 "melee": "Astartes Chainsword"
               }
@@ -699,7 +699,7 @@
               {
                 "name": "Eradicator",
                 "min": 0,
-                "max": 5,
+                "max": 2,
                 "ranged": [
                   "Bolt pistol",
                   "Melta rifle"
@@ -882,7 +882,7 @@
               {
                 "name": "Heavy Intercessors",
                 "min": 3,
-                "max": 9,
+                "max": 4,
                 "ranged": [
                   "Heavy Bolt Rifle",
                   "Bolt pistol"
@@ -1159,7 +1159,7 @@
               {
                 "name": "Intercessor",
                 "min": 4,
-                "max": 9,
+                "max": 4,
                 "ranged": [
                   "Bolt pistol",
                   "Bolt Rifle"
@@ -1169,7 +1169,7 @@
               {
                 "name": "Intercessor w/ Grenade Launcher",
                 "min": 0,
-                "max": 2,
+                "max": 1,
                 "ranged": [
                   "Bolt pistol",
                   "Bolt Rifle",
@@ -1320,7 +1320,7 @@
               {
                 "name": "Outrider",
                 "min": 2,
-                "max": 5,
+                "max": 2,
                 "ranged": [
                   "Heavy Bolt Pistol",
                   "Twin bolt rifle"
@@ -1429,7 +1429,7 @@
               {
                 "name": "Scouts w/ Boltgun",
                 "min": 4,
-                "max": 9,
+                "max": 4,
                 "ranged": [
                   "Boltgun",
                   "Bolt pistol"
@@ -1439,7 +1439,7 @@
               {
                 "name": "Scouts w/ Astartes Shotgun",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": [
                   "Astartes Shotgun",
                   "Bolt pistol"
@@ -1449,7 +1449,7 @@
               {
                 "name": "Scouts w/ Combat Knife",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": "Bolt pistol",
                 "melee": [
                   "Combat Knife",
@@ -1546,7 +1546,7 @@
               {
                 "name": "Sternguard Veteran w/ Bolt Rifle",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": [
                   "Sternguard Bolt Pistol",
                   "Sternguard Bolt Rifle"
@@ -1578,7 +1578,7 @@
               {
                 "name": "Sternguard Veteran w/ Combi-weapon",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": [
                   "Sternguard Bolt Pistol",
                   "Combi-weapon"
@@ -1688,13 +1688,13 @@
               {
                 "name": "Assault Terminator w/ Thunder Hammer & Storm Shield",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "melee": "Thunder Hammer"
               },
               {
                 "name": "Assault Terminator w/ Twin Lightning Claws",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "melee": "Twin Lightning Claws"
               }
             ]
@@ -1747,17 +1747,16 @@
               {
                 "name": "Terminator w/ Power Fist",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": "Storm bolter",
                 "melee": "Power fist"
               },
               {
                 "name": "Terminator w/ Chain Fist",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": "Storm bolter",
-                "melee": "Chainfist",
-                "group_max": 1
+                "melee": "Chainfist"
               },
               {
                 "name": "Terminator w/ Heavy Weapon",
@@ -1785,6 +1784,10 @@
                     "name": "Melee Weapon Option",
                     "choices": [
                       {
+                        "name": "Chainfist",
+                        "melee": "Chainfist"
+                      },
+                      {
                         "name": "Power fist",
                         "melee": "Power fist"
                       }
@@ -1805,6 +1808,10 @@
                   {
                     "name": "Power weapon",
                     "melee": "Power weapon"
+                  },
+                  {
+                    "name": "Chainfist",
+                    "melee": "Chainfist"
                   },
                   {
                     "name": "Power fist",
@@ -1840,7 +1847,7 @@
               {
                 "name": "Thunderwolf w/ plasma pistol",
                 "min": 0,
-                "max": 6,
+                "max": 1,
                 "ranged": "Plasma pistol",
                 "melee": [
                   "Wolf Guard Weapon",
@@ -1850,7 +1857,7 @@
               {
                 "name": "Thunderwolf w/ boltgun",
                 "min": 0,
-                "max": 6,
+                "max": 3,
                 "ranged": "Boltgun",
                 "melee": [
                   "Wolf Guard Weapon",
@@ -1860,7 +1867,7 @@
               {
                 "name": "Thunderwolf w/ storm shield",
                 "min": 0,
-                "max": 6,
+                "max": 3,
                 "melee": [
                   "Wolf Guard Weapon",
                   "Crushing teeth and claws"
@@ -1869,7 +1876,7 @@
               {
                 "name": "Thunderwolf w/ bolt pistol",
                 "min": 0,
-                "max": 6,
+                "max": 3,
                 "ranged": "Bolt pistol",
                 "melee": [
                   "Wolf Guard Weapon",
@@ -1906,7 +1913,7 @@
               {
                 "name": "Vanguard Veterans with Jump Packs",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "melee": "Vanguard Veteran Weapon",
                 "slots": [
                   {
@@ -1939,7 +1946,7 @@
               {
                 "name": "Vanguard Veteran w/Master-crafted Power Weapon",
                 "min": 0,
-                "max": 10,
+                "max": 4,
                 "ranged": "Heavy Bolt Pistol",
                 "melee": "Master-crafted Power Weapon"
               },
@@ -2029,21 +2036,21 @@
               {
                 "name": "Wolf Guard Terminator w/ storm bolter",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": "Storm Bolter",
                 "melee": "Master-crafted Power Weapon"
               },
               {
                 "name": "Wolf Guard Terminator w/ Assault Cannon",
                 "min": 0,
-                "max": 2,
+                "max": 1,
                 "ranged": "Assault Cannon",
                 "melee": "Power fist"
               },
               {
                 "name": "Wolf Guard Terminator w/ storm shield",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "melee": "Master-crafted Power Weapon"
               }
             ]
@@ -2188,13 +2195,13 @@
               {
                 "name": "Wulfen w/Death Totem",
                 "min": 0,
-                "max": 10,
+                "max": 5,
                 "melee": "Thunder Hammer"
               },
               {
                 "name": "Wulfen w/Auto-launcher",
                 "min": 0,
-                "max": 10,
+                "max": 5,
                 "ranged": "Stormfrag auto-launcher",
                 "melee": "Thunder Hammer"
               }
@@ -2249,14 +2256,14 @@
               {
                 "name": "Wulfen w/Auto-launcher",
                 "min": 0,
-                "max": 10,
+                "max": 5,
                 "ranged": "Stormfrag auto-launcher",
                 "melee": "Wulfen Weapons"
               },
               {
                 "name": "Wulfen w/Death Totem",
                 "min": 0,
-                "max": 10,
+                "max": 5,
                 "melee": "Wulfen Weapons"
               }
             ]

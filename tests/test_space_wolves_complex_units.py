@@ -116,19 +116,19 @@ class TestSpaceWolvesComplexUnits:
 
     def test_wolf_guard_terminators_alloc_and_pack_leader(self, sw_engine, MEQ):
         """Wolf Guard Terminators n=5: 4 models split across the alloc pool
-        (2 storm bolter / 2 Assault Cannon vs MEQ — the cannon variant maxes
-        at 2); the Pack Leader slot picks Twin Lightning Claws."""
+        (3 storm bolter / 1 Assault Cannon vs MEQ — the cannon variant is
+        capped at 1 per-5); the Pack Leader slot picks Twin Lightning Claws."""
         res = _build(sw_engine, "Wolf Guard Terminators", MEQ)
         assert res["_alloc_info"] == [
             ("Wolf Guard Terminator", [
-                ("Wolf Guard Terminator w/ storm bolter", 2),
-                ("Wolf Guard Terminator w/ Assault Cannon", 2),
+                ("Wolf Guard Terminator w/ storm bolter", 3),
+                ("Wolf Guard Terminator w/ Assault Cannon", 1),
             ]),
         ]
-        assert _rcount(res, "Storm Bolter") == 2
-        assert _rcount(res, "Assault Cannon") == 2
-        assert _mcount(res, "Master-crafted Power Weapon") == 2
-        assert _mcount(res, "Power fist") == 2
+        assert _rcount(res, "Storm Bolter") == 3
+        assert _rcount(res, "Assault Cannon") == 1
+        assert _mcount(res, "Master-crafted Power Weapon") == 3
+        assert _mcount(res, "Power fist") == 1
         assert _mcount(res, "Twin lightning claws") == 1
         assert len(res["melee"]) == 5
 
@@ -154,13 +154,18 @@ class TestSpaceWolvesComplexUnits:
         assert _mcount(res, "Thunder Hammer") == 5
 
     def test_thunderwolf_cavalry_alloc_plasma(self, sw_engine, MEQ):
-        """Thunderwolf Cavalry n=3: all 3 allocate to the plasma pistol
-        variant vs MEQ (resolves to Plasma pistol - standard in SW)."""
+        """Thunderwolf Cavalry n=3: only 1 plasma pistol is allowed (per-3
+        datasheet cap) — 1 plasma + 2 boltgun vs MEQ (plasma resolves to
+        Plasma pistol - standard in SW)."""
         res = _build(sw_engine, "Thunderwolf Cavalry", MEQ)
         assert res["_alloc_info"] == [
-            ("Thunderwolf", [("Thunderwolf w/ plasma pistol", 3)]),
+            ("Thunderwolf", [
+                ("Thunderwolf w/ plasma pistol", 1),
+                ("Thunderwolf w/ boltgun", 2),
+            ]),
         ]
-        assert _rcount(res, "Plasma pistol - standard") == 3
+        assert _rcount(res, "Plasma pistol - standard") == 1
+        assert _rcount(res, "Boltgun") == 2
         assert _mcount(res, "Wolf Guard Weapon") == 3
         assert _mcount(res, "Crushing teeth and claws") == 3
         assert len(res["melee"]) == 6

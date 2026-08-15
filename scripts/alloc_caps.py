@@ -59,6 +59,36 @@ FLAT_CAPS: dict[tuple[str, str, str], int] = {
     # (Torment + Mutant = squad size), so neither variant scales with n/ref.
     ("chaos-space-marines", "Accursed Cultists", "Torment"): 6,
     ("chaos-space-marines", "Accursed Cultists", "Mutant"): 10,
+    # "For every 5 models in this unit, up to 2 Paladins can each have their
+    # storm bolter replaced with one of the following: 1 incinerator /
+    # psilencer / psycannon" — the BSData max=2 IS the per-5 rate, stored
+    # verbatim without a per-5 marker (same encoding as Purifier below). The
+    # generic proportional scaling wrongly halves it (2@ref10 -> 1@n5).
+    ("grey-knights", "Paladin Squad", "Paladin with Heavy Weapon"): 2,
+    # "Up to 2 Players can each have their shuriken pistol replaced with
+    # 1 fusion pistol ..." and the same for neuro disruptor — SEPARATE flat
+    # budgets of 2 at n<=9 (4 at n>=10). BSData stores max=None (no cap),
+    # so without the registry the engine could take 4 fusion pistols in a
+    # 5-model Troupe. Config n=5 -> cap 2.
+    ("aeldari", "Troupe", "Player with Fusion Pistol"): 2,
+    ("aeldari", "Troupe", "Player with Neuro Disruptor"): 2,
+    # "For every 3 models in this unit, 1 Thunderwolf Cavalry model's bolt
+    # pistol can be replaced with 1 plasma pistol" — per-3 rate, NOT
+    # any-number. BSData stores max=6 (same as the any-number boltgun/storm
+    # shield variants), so the mechanism treats it as base/any-number and
+    # emits the whole budget (3 at n=3). Config n=3 -> cap 1.
+    ("space-wolves", "Thunderwolf Cavalry", "Thunderwolf w/ plasma pistol"): 1,
+    # Death Company: "1 model's heavy bolt pistol can be replaced with 1 hand
+    # flamer / inferno pistol / plasma pistol" AND "1 model's chainsword can
+    # be replaced with 1 power fist / power weapon / thunder hammer" — two
+    # FLAT one-model allowances. BSData splits the non-JP unit into
+    # alternate weapons (max=2 = the two flat swaps) + separate Eviscerator
+    # model (per-5); the JP unit merges everything into one variant whose
+    # BSData max=7 is garbage. Config n=5: non-JP 2, JP adds the per-5
+    # eviscerator (1) -> 3.
+    ("blood-angels", "Death Company Marines", "Death Company Marine w/ alternate weapons"): 2,
+    ("blood-angels", "Death Company Marines With Bolt Rifles", "Death Company Marine w/ alternate weapons"): 2,
+    ("blood-angels", "Death Company Marines With Jump Packs", "Death Company Marine w/ alternate weapons"): 3,
 }
 
 # Shared melee-weapon budgets, keyed (faction, unit, melee weapon) -> shared

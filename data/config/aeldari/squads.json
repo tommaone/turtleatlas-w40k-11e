@@ -24,7 +24,7 @@
               {
                 "name": "Skyreaver w/ pistol and blade",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": "Shuriken Pistol",
                 "melee": "Corsair Blade"
               },
@@ -32,6 +32,7 @@
                 "name": "Skyreaver w/ blaster",
                 "min": 0,
                 "max": 1,
+                "group_max": 2,
                 "ranged": "Corsair blaster",
                 "melee": "Close Combat Weapon"
               },
@@ -39,6 +40,7 @@
                 "name": "Skyreaver w/ flamer",
                 "min": 0,
                 "max": 1,
+                "group_max": 2,
                 "ranged": "Flamer",
                 "melee": "Close Combat Weapon"
               },
@@ -46,6 +48,7 @@
                 "name": "Skyreaver w/ fusion gun",
                 "min": 0,
                 "max": 1,
+                "group_max": 2,
                 "ranged": "Fusion gun",
                 "melee": "Close Combat Weapon"
               },
@@ -53,6 +56,7 @@
                 "name": "Skyreaver w/ shredder",
                 "min": 0,
                 "max": 1,
+                "group_max": 2,
                 "ranged": "Shredder",
                 "melee": "Close Combat Weapon"
               }
@@ -130,14 +134,14 @@
               {
                 "name": "Voidreaver with Shuriken rifle",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": "Shuriken rifle",
                 "melee": "Close Combat Weapon"
               },
               {
                 "name": "Voidreaver with sword and pistol",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "ranged": "Shuriken Pistol",
                 "melee": [
                   "Close Combat Weapon",
@@ -147,7 +151,8 @@
               {
                 "name": "Voidreaver with Blaster",
                 "min": 0,
-                "max": 2,
+                "max": 1,
+                "group_max": 1,
                 "ranged": [
                   "Blaster",
                   "Shuriken Pistol"
@@ -157,7 +162,8 @@
               {
                 "name": "Voidreaver with Shredder",
                 "min": 0,
-                "max": 2,
+                "max": 1,
+                "group_max": 1,
                 "ranged": [
                   "Shredder",
                   "Shuriken Pistol"
@@ -253,7 +259,7 @@
               {
                 "name": "Voidscarred w/ pistol and sword",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "pool_min": 4,
                 "ranged": "Shuriken Pistol",
                 "melee": [
@@ -264,7 +270,7 @@
               {
                 "name": "Voidscarred w/ rifle",
                 "min": 0,
-                "max": 9,
+                "max": 4,
                 "pool_min": 4,
                 "ranged": "Shuriken rifle",
                 "melee": "Close Combat Weapon"
@@ -1098,14 +1104,14 @@
               {
                 "name": "Player with Harlequin's Blade",
                 "min": 0,
-                "max": 11,
+                "max": 4,
                 "ranged": "Shuriken Pistol",
                 "melee": "Harlequin's Blade"
               },
               {
                 "name": "Player with Harlequin's Special Weapon",
                 "min": 0,
-                "max": 11,
+                "max": 4,
                 "ranged": "Shuriken Pistol",
                 "melee": "Harlequin's Special Weapon"
               },
@@ -1118,12 +1124,18 @@
                     "name": "Weapon",
                     "choices": [
                       {
+                        "name": "Harlequin's Blade",
+                        "melee": "Harlequin's Blade",
+                        "default": true
+                      },
+                      {
                         "name": "Harlequin's Special Weapon",
                         "melee": "Harlequin's Special Weapon"
                       }
                     ]
                   }
-                ]
+                ],
+                "max": 2
               },
               {
                 "name": "Player with Neuro Disruptor",
@@ -1134,12 +1146,18 @@
                     "name": "Weapon",
                     "choices": [
                       {
+                        "name": "Harlequin's Blade",
+                        "melee": "Harlequin's Blade",
+                        "default": true
+                      },
+                      {
                         "name": "Harlequin's Special Weapon",
                         "melee": "Harlequin's Special Weapon"
                       }
                     ]
                   }
-                ]
+                ],
+                "max": 2
               }
             ]
           },
@@ -1150,6 +1168,11 @@
               {
                 "name": "Melee Weapon",
                 "choices": [
+                  {
+                    "name": "Harlequin's Blade",
+                    "melee": "Harlequin's Blade",
+                    "default": true
+                  },
                   {
                     "name": "Harlequin's Special Weapon",
                     "melee": "Harlequin's Special Weapon"
@@ -1245,7 +1268,8 @@
                   "Shuriken Pistol",
                   "Destructor"
                 ],
-                "melee": "Witchblade"
+                "melee": "Witchblade",
+                "max": null
               },
               {
                 "name": "Warlock with Singing Spear",
@@ -1255,7 +1279,8 @@
                   "Shuriken Pistol",
                   "Destructor"
                 ],
-                "melee": "Singing Spear"
+                "melee": "Singing Spear",
+                "max": null
               }
             ]
           }
@@ -1286,7 +1311,7 @@
               {
                 "name": "Warlock Skyrunner with Witchblade",
                 "min": 0,
-                "max": 2,
+                "max": 1,
                 "ranged": [
                   "Twin Shuriken Catapult",
                   "Shuriken Pistol",
@@ -1297,7 +1322,7 @@
               {
                 "name": "Warlock Skyrunner with Singing Spear",
                 "min": 0,
-                "max": 2,
+                "max": 1,
                 "ranged": [
                   "Shuriken Pistol",
                   "Twin Shuriken Catapult",
@@ -1393,21 +1418,21 @@
               {
                 "name": "Windrider with Twin Shuriken Catapult",
                 "min": 0,
-                "max": 6,
+                "max": 3,
                 "ranged": "Twin Shuriken Catapult",
                 "melee": "Close Combat Weapon"
               },
               {
                 "name": "Windrider with Scatter Laser",
                 "min": 0,
-                "max": 6,
+                "max": 3,
                 "ranged": "Scatter Laser",
                 "melee": "Close Combat Weapon"
               },
               {
                 "name": "Windrider with Shuriken Cannon",
                 "min": 0,
-                "max": 6,
+                "max": 3,
                 "ranged": "Shuriken Cannon",
                 "melee": "Close Combat Weapon"
               }
@@ -1664,7 +1689,7 @@
               {
                 "name": "Reaver",
                 "min": 2,
-                "max": 5,
+                "max": 2,
                 "ranged": [
                   "Splinter Rifle",
                   "Splinter Pistol"
