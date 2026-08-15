@@ -67,7 +67,11 @@ the generator overwrites curated builds with a single `Default`+alloc.
 
 Scores sum parallel-variant (×3), mixed-model-type (×2), slot, pool_min
 and multi-weapon-list units per faction. Aeldari = 179, GK = 163 — the
-two completed factions at creation; since then SM/DA/BA/SW + BT/DW done.
+two completed factions at creation. Since then done: SM/DA/BA/SW + BT/DW
+(2026-08-06→10), Chaos Daemons (2026-08-11), CSM/EC/Orks (2026-08-13),
+and the 9-faction caps sweep (2026-08-15). The table is historical —
+treat it as difficulty ranking, not a done/remaining list (see Migration
+order below for the real status).
 
 ## Gotchas learned (BT/DW wave, 2026-08-10)
 
@@ -111,16 +115,56 @@ two completed factions at creation; since then SM/DA/BA/SW + BT/DW done.
 
 ## Migration order
 
+### Done ✅
+
+- **Pilot:** Aeldari (generator + alloc) and GK (curated discrete builds).
 - **Wave 1 — big marine codexes:** Space Marines → Dark Angels → Blood
   Angels → Space Wolves (BA/SW parallelisable). Then Black Templars,
   Deathwatch. ✅ BT + DW done 2026-08-10 (30 BT squads replaced, 29 DW
   replaced + Decimus Kill Team curated; Grimaldus moved to characters;
   generator leader fix for min=1/max>1 base models).
-- **Wave 2 — major non-marine:** Astra Militarum → Adeptus Mechanicus.
-- **Wave 3 — chaos:** CSM + god-marines (after the shared-units question
-  is settled; sync machinery exists but may be removed — see blockers).
-- **Wave 4 — quick wins:** Necrons → Tyranids → Orks → Tau (also gives
-  the T3-benchmark factions engine attention).
+- **Chaos Daemons book scoping + composition** (2026-08-11) — locked to the
+  book roster (17 squads); builds exist, most daemons have no wargear
+  variants so alloc pools aren't needed (fixed-wargear end-state is valid).
+- **Wave 2 — CSM + EC + Orks** (2026-08-13): CSM slot migration (Fabius
+  Bile 2-model character, choice weapons → group names), EC complex units,
+  Orks generator one-way-substring fix + 10 regenerated / 7 kept.
+- **Caps sweep on the 9 alloc-layer factions** (2026-08-15, commit
+  `3370194`): aeldari/BT/BA/DA/DW/GK/orks/SM/SW regenerated through the caps
+  mechanism (FLAT_CAPS + shared group_max) — validator issues strictly
+  down, 8 stale tests corrected to datasheet truth.
+
+### Next — Wave 3 (changed 2026-08-15, user decision)
+
+- **Chaos Knights + Imperial Knights — slot-completion audit.** Knights live
+  in `characters.json` with `weapon_options.builds`, NOT squad composition.
+  The 2026-08-13 pass already slotted Questoris (Crusader/Errant/Paladin/
+  Warden/Preceptor: 3 slots), Gallant/Destrier (2), Desecrator (1) and
+  Despoiler (2, 13 enumerated builds). This wave completes the remaining
+  builds: Castellan/Valiant (2 discrete builds each, 0 slots — carapace
+  documented gap), Tyrant (4 builds, 0 slots), all Cerastus (0 slots),
+  Acheron/Atrapos/Castigator/Lancer, plus Canis Rex / Defender / Rampager /
+  Ruinator / Abominant / Magaera / Styrix re-audit. Verify against
+  `extract_wargear_constraints` + BSData containers; keep the discrete-build
+  end-state (knights aren't generator-alloc factions).
+- **World Eaters — generator migration.** 10 squads, light tier (score 51):
+  Bloodcrushers, Bloodletters, Chaos Spawn, Chaos Terminators (4 builds),
+  Eightbound, Exalted Eightbound, Flesh Hounds, Goremongers (2 builds),
+  Jakhals, Khorne Berzerkers. All flat builds today. Book-scope first (WE is
+  a god-marine — the shared-units question from Wave 2 blockers was settled:
+  sync map removed, roster = own MFM book).
+
+**Commit + push the IK/CK batch BEFORE starting WE** (explicit user request,
+2026-08-15).
+
+### Later waves
+
+- **Wave 4 — major non-marine:** Astra Militarum → Adeptus Mechanicus
+  (moved from the original Wave 2 by the 2026-08-15 decision).
+- **Wave 5 — remaining god-marines:** Death Guard → Thousand Sons (CSM + EC
+  + WE handled; WE moved up to Wave 3).
+- **Wave 6 — quick wins:** Necrons → Tyranids → Tau (Orks done in Wave 2;
+  also gives the T3-benchmark factions engine attention).
 
 Note on marine codexes: chapter catalogs are SM base + chapter addons
 (verify overlap before treating BA/DA/SW scores as independent work —

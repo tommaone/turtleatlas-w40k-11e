@@ -14,14 +14,14 @@ and recommend detachments/units based on mission and meta.
 |--------|-------|
 | Factions ranked | 30/30 |
 | Units ranked | ~1500 |
-| Tests | 3350 passing, 36 skipped |
+| Tests | 3594 passing, 36 skipped, 1 xfailed |
 | HTML findings | 30 factions, mobile-friendly |
 | Detachment modifiers | 26 (Grey Knights 9 + Chaos Knights 8 + Daemons 9) |
 | Characters | 511 on slots schema (all 30 factions, 2026-08-11) |
 | Vehicles | 126 migrated to builds format |
 | Reroll abilities auto-detected | 24 datasheets across 15 factions |
-| Complex-layer squads | Aeldari, GK, Space Marines, Dark Angels, Space Wolves, Blood Angels, Black Templars, Deathwatch, Chaos Daemons |
-| Last commit | `27681e9` — merge BA complex squad-composition migration |
+| Complex-layer squads | Aeldari, GK, SM, DA, SW, BA, BT, DW, Chaos Daemons, CSM, EC, Orks (11 with alloc/slots) + 9-faction caps sweep (2026-08-15) |
+| Last commit | `3370194` — caps sweep on the 9 alloc-layer factions |
 
 ---
 
@@ -135,13 +135,28 @@ and recommend detachments/units based on mission and meta.
     9-alloc, Windriders parallel variants
   - 30 vehicles/characters migrated to builds format
   - Findings regenerated after every config change
+- **Chaos Space Marines + Emperor's Children + Orks** — migrated to the complex
+  layer (2026-08-13, Wave 2): CSM slot migration (Fabius Bile as 2-model
+  character, choice weapons → group names), EC complex units (Terminators alloc
+  + champion slot), Orks generator one-way-substring fix + 10 regenerated / 7
+  kept. 17 complex-unit pins added.
+- **Alloc-caps sweep (2026-08-15, Wave 3 prep)** — the 9 alloc-layer factions
+  (aeldari/BT/BA/DA/DW/GK/orks/SM/SW) regenerated through the caps mechanism:
+  7 FLAT_CAPS entries (Paladin heavy 2, Troupe fusion/neuro 2/2, Thunderwolf
+  plasma 1, DC alternate weapons 2/2/3), generator `max=None` FLAT_CAPS rescue
+  fix, `inventory_alloc_diffs.py` slot-diff tooling. 8 stale tests corrected to
+  datasheet truth (Terminator chainfist uncapped, DW Veterans separate per-5
+  budgets, Boyz shared per-10 budget, etc.). Validator issues strictly down in
+  every faction; truth-report diff confined to in-scope blocks.
 
 ### Tests
-- 3350 passing, 36 skipped
+- 3594 passing, 36 skipped, 1 xfailed
 - Complex-unit pins (`test_aeldari_complex_units.py`, `test_space_marines_complex_units.py`,
   `test_dark_angels_complex_units.py`, `test_space_wolves_complex_units.py`,
   `test_blood_angels_complex_units.py`, `test_black_templars_complex_units.py`,
-  `test_deathwatch_complex_units.py`) — structure asserted, no duplicated
+  `test_deathwatch_complex_units.py`, `test_orks_complex_units.py`,
+  `test_chaos_space_marines_complex_units.py`,
+  `test_emperors_children_complex_units.py`) — structure asserted, no duplicated
   damage truth (engine is the single source of computation)
 - Parser dual-profile assertions, generator payload tests, findings validation
 
@@ -185,7 +200,11 @@ and recommend detachments/units based on mission and meta.
 ### Factions (priority order)
 - [ ] Squad composition migration to remaining factions — done: Aeldari (pilot),
   GK, Space Marines, Dark Angels, Space Wolves, Blood Angels, Black Templars,
-  Deathwatch, Chaos Daemons (Wave 1 complete); next: the rest of the 30 factions
+  Deathwatch, Chaos Daemons (Wave 1 complete) + CSM/EC/Orks (Wave 2, 2026-08-13)
+  + alloc caps sweep on the 9 alloc-layer factions (2026-08-15). **Wave 3
+  (2026-08-15, user decision): Chaos Knights + Imperial Knights slot-completion
+  audit, then World Eaters generator migration.** Remaining after: Astra
+  Militarum, Adeptus Mechanicus, and the rest of the 30 factions
 - [ ] Detachment modifiers: Space Marines (Gladius, Ironstorm, Firestorm...),
   Dark Angels (Inner Circle Task Force...), all others — **BLOCKED** until
   all armies are on the slot setup (calculations must be determined by real
