@@ -385,22 +385,33 @@ class BSDataParser11e:
     # -- Unit extraction -------------------------------------------------------
 
     def _collect_entries(self, roots: list[dict],
-                         entry_index: dict[str, dict] | None = None) -> list[dict]:
+                         entry_index: dict[str, dict] | None = None,
+                         own_root: dict | None = None) -> tuple[list[dict], set[str]]:
         """Collect all unique unit/model entries across all roots.
 
         Collects from:
         1. sharedSelectionEntries on root catalogues
         2. entryLinks on root catalogues (for factions like Drukhari that
            reference units via a shared Library instead of inline entries)
+
+        Returns (entries, own_ids): own_ids is the set of entry ids that came
+        from the queried catalogue itself (``own_root``, the first root), NOT
+        from linked libraries. Linked-library entries exist to fill gaps (units
+        the faction's own catalogue does not define); they must not override the
+        faction's own definition when both are present (see query_faction dedupe).
         """
         seen: set[str] = set()
+        own_ids: set[str] = set()
         entries: list[dict] = []
         for root in roots:
+            is_own = own_root is not None and root is own_root
             for entry in root.get("sharedSelectionEntries", []):
                 eid = entry.get("id", "")
                 if eid and eid not in seen:
                     seen.add(eid)
                     entries.append(entry)
+                    if is_own:
+                        own_ids.add(eid)
 
             # Resolve entryLinks that reference unit/model selection entries
             if entry_index:
@@ -413,7 +424,9 @@ class BSDataParser11e:
                         continue
                     seen.add(tid)
                     entries.append(target)
-        return entries
+                    if is_own:
+                        own_ids.add(tid)
+        return entries, own_ids
 
     def extract_units(self, cat: dict, faction_name: str,
                       include_legends: bool = False,
@@ -433,7 +446,8 @@ class BSDataParser11e:
         for root in roots:
             self._build_parent_groups(root)
 
-        entries = self._collect_entries(roots, entry_index=entry_index)
+        entries, own_ids = self._collect_entries(roots, entry_index=entry_index,
+                                                 own_root=cat)
         for entry in entries:
             entry_type = entry.get("type", "")
             if entry_type not in ("model", "unit"):
@@ -872,6 +886,10 @@ class BSDataParser11e:
                 "abilities": abilities,
                 "weapons": weapons,
                 "rules": rules,
+                # Internal provenance used by query_faction's dedupe: True when
+                # this entry came from the queried catalogue itself rather than
+                # a linked library. Stripped from returned units in query_faction.
+                "_own_catalogue": entry.get("id", "") in own_ids,
             }
 
             units.append(unit_entry)
@@ -2450,9 +2468,15 @@ class BSDataParser11e:
                     else:
                         deduped.append(u)
                         seen[key] = u
-                # Deduplicate pass 2: same name, prefer more complete entry
-                # (handles stale main-catalogue duplicates alongside updated library entries,
-                #  e.g. Bloodletters OC=1 from World Eaters + OC=2 from Daemons Library)
+                # Deduplicate pass 2: same name, prefer the faction's own
+                # catalogue entry over a linked-library duplicate.
+                # (Linked-library entries fill gaps for units the faction's own
+                #  catalogue does not define — e.g. Drukhari's Library — but must
+                #  NOT override the faction's own definition. The old "most
+                #  complete" heuristic let a stale 10e Chaos Daemons Library
+                #  Bloodletters (OC=2, Faction: Legiones Daemonica, legacy rule
+                #  leftovers) beat the current World Eaters entry (OC=1,
+                #  Faction: Blood Legions).)
                 name_groups: dict[str, list[dict]] = {}
                 for u in deduped:
                     n = u['name'].lower().strip()
@@ -2462,15 +2486,21 @@ class BSDataParser11e:
                     if len(group) == 1:
                         units.append(group[0])
                     else:
-                        # Prefer entry with stats first, then most completeness
+                        # Own-catalogue entry with stats wins outright. Otherwise
+                        # prefer stats first, then most completeness (fills gaps
+                        # for factions whose own catalogue is a Library shell).
                         def sort_key(u):
+                            own = 1 if u.get('_own_catalogue') and u.get('stats') else 0
                             has_stats = 1 if u.get('stats') else 0
                             completeness = (len(u.get('abilities', [])) +
                                             len(u.get('rules', [])) +
                                             len(u.get('weapons', [])))
-                            return (has_stats, completeness)
+                            return (own, has_stats, completeness)
                         group.sort(key=sort_key, reverse=True)
                         units.append(group[0])
+                # Strip internal provenance flag before returning
+                for u in units:
+                    u.pop('_own_catalogue', None)
                 all_units = self.extract_units(cat, name, include_legends=True, entry_index=entry_index)
                 legends_count = len(all_units) - len(units)
                 return {
