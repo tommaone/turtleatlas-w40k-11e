@@ -745,3 +745,29 @@ must match the same convention.
 (or `--faction X` then `--index`). After regen, verify diff scope == the
 factions whose configs changed this commit; unexpected faction diffs are
 either stale findings (an earlier config commit skipped regen) or a bug.
+
+## Conditional damage boosts are auto-detected, pure-damage only
+Abilities that improve ONLY the Damage characteristic vs a target class
+(Rend and Tear: "+1 Damage vs Monster/Vehicle") are now auto-detected from
+`profile.abilities` (`engine/damage_boost_detect.py`) and applied per-target
+in `compute_weapon_dpp` via the `damage_boost` spec. Data-driven — no config
+entries. Matches the Anti-keyword toughness heuristic (`_anti_keyword_matches`).
+
+**Why:** World Eaters Exalted Eightbound was ranked 9/29 vs vehicle metas
+(dpp 0.0498) while its Rend and Tear (+1 D) went unmodeled; the correct value
+is 0.0747 (~3rd). The engine must claim exactly what the text supports.
+
+**Pure-damage gate — the epistemic boundary:** abilities that ALSO boost
+Strength or AP in the same clause (Tor Garadon "Siege Captain": S/AP/D by 2;
+Acastus Knight Asterius "Sunderer of Fortresses": S/D by 1) are REJECTED,
+not partially modeled. A D-component-only claim misrepresents the ability
+(S+2 changes wound rolls — half the point). Known issue: mixed boosts remain
+unmodeled until S/AP boost support exists; do NOT "fix" by relaxing the gate
+to partial modeling.
+
+**How:** detection is conservative — smallest amount wins ("+1 ... +2 ...
+instead" → 1), aura-grants ("each time a FRIENDLY unit makes an attack") are
+skipped, phase comes from melee/ranged wording. Findings diff scope after
+this feature: exactly the factions with detected abilities (world-eaters +
+orks — Mozrog "Da Bigger Dey Iz…"). Phase-gated in the ranking loop
+(`_boost_for`); applied BEFORE the overkill cap in `expected_damage`.

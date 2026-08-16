@@ -9,6 +9,8 @@ Damage Per Point engine for 11th Edition Warhammer 40k.
 | `dpp.py` | Core DPP engine — `compute_dpp()`, `resolve_loadout()`, `_ld_dmg()` |
 | `ranking.py` | Generic 3-vector ranking engine — `compute_ranking()` |
 | `weapon_loader.py` | Weapon catalog from merged BSData + MFM data |
+| `reroll_detect.py` | Auto-detect conditional reroll abilities (Surge of Wrath class) |
+| `damage_boost_detect.py` | Auto-detect pure damage-boost abilities (Rend and Tear class) |
 | `gk_demo.py` | Grey Knights demo script |
 | `gk_ranking.py` | GK-specific ranking script |
 

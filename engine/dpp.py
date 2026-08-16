@@ -951,7 +951,8 @@ def compute_weapon_dpp(weapon: WeaponProfile,
                        hit_mode: HitMode = HitMode.NORMAL,
                        unit_points: float = 1.0,
                        melta_active: bool = False,
-                       heavy_stationary: bool = False) -> dict:
+                       heavy_stationary: bool = False,
+                       damage_boost: Optional[dict] = None) -> dict:
     """
     Compute expected damage per point for a single weapon against a target.
 
@@ -963,6 +964,10 @@ def compute_weapon_dpp(weapon: WeaponProfile,
         unit_points: total unit points cost
         melta_active: assume ≤ half range for Melta bonus
         heavy_stationary: assume the unit remained stationary for Heavy bonus
+        damage_boost: optional conditional damage spec (Rend and Tear class):
+            {"amount": 1, "targets": ["MONSTER", "VEHICLE"]} — adds `amount`
+            to the Damage characteristic when the target's toughness matches
+            any target class (same heuristic as Anti keywords).
 
     Returns:
         dict with breakdown
@@ -979,12 +984,12 @@ def compute_weapon_dpp(weapon: WeaponProfile,
         results = [compute_weapon_dpp(
             base_plain, target, modifier=mod, hit_mode=hit_mode,
             unit_points=unit_points, melta_active=melta_active,
-            heavy_stationary=heavy_stationary)]
+            heavy_stationary=heavy_stationary, damage_boost=damage_boost)]
         for v in weapon.variants:
             results.append(compute_weapon_dpp(
                 replace(v, variants=[]), target, modifier=mod, hit_mode=hit_mode,
                 unit_points=unit_points, melta_active=melta_active,
-                heavy_stationary=heavy_stationary))
+                heavy_stationary=heavy_stationary, damage_boost=damage_boost))
         return max(results, key=lambda r: r["total_damage"])
 
     # Parse abilities from weapon
@@ -1124,6 +1129,16 @@ def compute_weapon_dpp(weapon: WeaponProfile,
 
     # Melta: add X to damage at half range
     effective_damage = weapon.damage + (melta_x if melta_active else 0)
+
+    # Conditional damage boost (Rend and Tear class): +N damage vs target
+    # classes matched by the ability ("improve the Damage characteristic by 1
+    # when targeting a Monster or Vehicle unit"). Matched via the same
+    # toughness heuristic used for Anti keywords; applied BEFORE the overkill
+    # cap in expected_damage (a boosted D3 on a W2 model still wastes to 2).
+    if damage_boost:
+        boost_kws = damage_boost.get("targets", []) or []
+        if any(_anti_keyword_matches(kw, target.toughness) for kw in boost_kws):
+            effective_damage += damage_boost.get("amount", 0)
 
     # Damage after save
     total_damage = expected_damage(

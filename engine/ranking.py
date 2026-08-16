@@ -175,7 +175,8 @@ def _load_catalog(merged_path: str, faction: str | None = None) -> WeaponCatalog
 
 def _ld_dmg(ranged, melee, innate, target, modifier: Optional[WeaponModifier] = None,
             melta_active: bool = False, heavy_stationary: bool = False,
-            hit_mode: HitMode = HitMode.NORMAL, n_models: int = 1):
+            hit_mode: HitMode = HitMode.NORMAL, n_models: int = 1,
+            damage_boost: Optional[dict] = None):
     """Total damage across all weapon lists against a target.
 
     11e melee rule [24.11]: [Extra Attacks] weapons are ALWAYS used in
@@ -190,11 +191,15 @@ def _ld_dmg(ranged, melee, innate, target, modifier: Optional[WeaponModifier] = 
         best per model = max within each model's options, then SUM across models.
         The weapon list already has n_models entries (one per model), each already
         the best pick for that model's loadout. Sum them all.
+
+    damage_boost: optional Rend-and-Tear-class spec forwarded to _wp_dmg
+    (per-target conditional +N damage).
     """
     d = 0
     for wp in ranged:
         d += _wp_dmg(wp, target, modifier, melta_active=melta_active,
-                     heavy_stationary=heavy_stationary, hit_mode=hit_mode)
+                     heavy_stationary=heavy_stationary, hit_mode=hit_mode,
+                     damage_boost=damage_boost)
 
     ea_melee = []
     other_melee = []
@@ -207,24 +212,28 @@ def _ld_dmg(ranged, melee, innate, target, modifier: Optional[WeaponModifier] = 
     if ea_melee:
         for wp in ea_melee:
             d += _wp_dmg(wp, target, modifier, melta_active=melta_active,
-                         heavy_stationary=heavy_stationary, hit_mode=hit_mode)
+                         heavy_stationary=heavy_stationary, hit_mode=hit_mode,
+                         damage_boost=damage_boost)
         if other_melee:
             d += _best_melee(other_melee, target, modifier, melta_active,
-                             heavy_stationary, hit_mode, n_models)
+                             heavy_stationary, hit_mode, n_models,
+                             damage_boost=damage_boost)
     elif other_melee:
         d += _best_melee(other_melee, target, modifier, melta_active,
-                         heavy_stationary, hit_mode, n_models)
+                         heavy_stationary, hit_mode, n_models,
+                         damage_boost=damage_boost)
 
     for wp in innate:
         d += _wp_dmg(wp, target, modifier, melta_active=melta_active,
-                     heavy_stationary=heavy_stationary, hit_mode=hit_mode)
+                     heavy_stationary=heavy_stationary, hit_mode=hit_mode,
+                     damage_boost=damage_boost)
     return d
 
 
 def _ld_dmg_conditional(ranged, melee, innate, target, base_mod,
                         reroll_spec, phase, melta_active=False,
                         heavy_stationary=False, hit_mode=HitMode.NORMAL,
-                        n_models=1):
+                        n_models=1, damage_boost: Optional[dict] = None):
     from engine.reroll_detect import _target_matches
 
     def _phase_applies():
@@ -261,7 +270,8 @@ def _ld_dmg_conditional(ranged, melee, innate, target, base_mod,
         inc = _target_matches(reroll_spec["targets"], pro.toughness) and _phase_applies()
         return _ld_dmg(ranged, melee, innate, pro, _mod(inc),
                        melta_active=melta_active, heavy_stationary=heavy_stationary,
-                       hit_mode=hit_mode, n_models=n_models) * w
+                       hit_mode=hit_mode, n_models=n_models,
+                       damage_boost=damage_boost) * w
 
     return sum(_one(p, w) for _, p, w in target) if isinstance(target, list) \
         else _one(target, 1.0)
@@ -279,7 +289,7 @@ def _pick(a, b):
 
 
 def _best_melee(weapons, target, modifier, melta_active, heavy_stationary, hit_mode,
-                n_models: int = 1):
+                n_models: int = 1, damage_boost: Optional[dict] = None):
     """Best melee damage considering model count.
 
     n_models=1 (character): multiple weapons = loadout choices → pick best (max).
@@ -290,7 +300,8 @@ def _best_melee(weapons, target, modifier, melta_active, heavy_stationary, hit_m
         # Character / single model: pick best weapon
         return max(
             (_wp_dmg(wp, target, modifier, melta_active=melta_active,
-                     heavy_stationary=heavy_stationary, hit_mode=hit_mode)
+                     heavy_stationary=heavy_stationary, hit_mode=hit_mode,
+                     damage_boost=damage_boost)
              for wp in weapons),
             default=0
         )
@@ -298,7 +309,8 @@ def _best_melee(weapons, target, modifier, melta_active, heavy_stationary, hit_m
     # Squad: one weapon per model → sum all
     return sum(
         _wp_dmg(wp, target, modifier, melta_active=melta_active,
-                heavy_stationary=heavy_stationary, hit_mode=hit_mode)
+                heavy_stationary=heavy_stationary, hit_mode=hit_mode,
+                damage_boost=damage_boost)
         for wp in weapons
     )
 
@@ -349,14 +361,17 @@ def _best_alloc_index(metas: list[dict], alloc_n: list[int], indices,
 
 
 def _wp_dmg(wp, target, modifier: Optional[WeaponModifier] = None,
-            melta_active: bool = False, heavy_stationary: bool = False, hit_mode: HitMode = HitMode.NORMAL):
+            melta_active: bool = False, heavy_stationary: bool = False, hit_mode: HitMode = HitMode.NORMAL,
+            damage_boost: Optional[dict] = None):
     """Damage for a single weapon against target (single or weighted list)."""
     if isinstance(target, list):
         return sum(w * compute_weapon_dpp(wp, tp, modifier=modifier, unit_points=1, hit_mode=hit_mode,
-                                          melta_active=melta_active, heavy_stationary=heavy_stationary)["total_damage"]
+                                          melta_active=melta_active, heavy_stationary=heavy_stationary,
+                                          damage_boost=damage_boost)["total_damage"]
                    for _, tp, w in target)
     return compute_weapon_dpp(wp, target, modifier=modifier, unit_points=1, hit_mode=hit_mode,
-                              melta_active=melta_active, heavy_stationary=heavy_stationary)["total_damage"]
+                              melta_active=melta_active, heavy_stationary=heavy_stationary,
+                              damage_boost=damage_boost)["total_damage"]
 
 
 # ---------------------------------------------------------------------------
@@ -1758,6 +1773,21 @@ class RankingEngine:
             except Exception:
                 reroll_spec = None
 
+            # Auto-detect datasheet abilities that boost damage vs a target
+            # class (Rend and Tear: "+1 Damage vs Monster/Vehicle"). Same
+            # data-driven pattern as reroll detection; applied per-target in
+            # compute_weapon_dpp. No hand-authored config entries.
+            boost_spec = None
+            try:
+                from engine.damage_boost_detect import detect_damage_boost
+                for ab in profile.get("abilities", []) or []:
+                    spec = detect_damage_boost(ab)
+                    if spec is not None:
+                        boost_spec = spec
+                        break
+            except Exception:
+                boost_spec = None
+
             # Skip units exceeding max game size (e.g. 2100pt Titan in 2000pt game)
             if max_points and pts > max_points:
                 continue
@@ -1795,30 +1825,45 @@ class RankingEngine:
             if name in self.config.squads:
                 n_models = self.config.squads[name]["n"]
 
+            # Damage boost applies only in the phases the ability names
+            # (Rend and Tear is melee-only; a shooting-conditional boost
+            # keys off ranged). "both" specs apply everywhere.
+            def _boost_for(phase):
+                if boost_spec is None:
+                    return None
+                ph = boost_spec["phase"]
+                return boost_spec if (ph == "both" or ph == phase) else None
+
             # DPP (with optional detachment modifier)
             if reroll_spec is not None:
                 dmg_ranged = _ld_dmg_conditional(ranged_profiles, [], [], actual_target, unit_weapon_mod,
                                                  reroll_spec, "ranged",
                                                  melta_active=melta_active, heavy_stationary=heavy_stationary,
-                                                 hit_mode=unit_hit_mode, n_models=n_models) if ranged_profiles else 0
+                                                 hit_mode=unit_hit_mode, n_models=n_models,
+                                                 damage_boost=_boost_for("ranged")) if ranged_profiles else 0
                 dmg_melee = _ld_dmg_conditional([], melee_profiles, [], actual_target, unit_weapon_mod,
                                                 reroll_spec, "melee",
                                                 melta_active=melta_active, heavy_stationary=heavy_stationary,
-                                                hit_mode=HitMode.NORMAL, n_models=n_models) if melee_profiles else 0
+                                                hit_mode=HitMode.NORMAL, n_models=n_models,
+                                                damage_boost=_boost_for("melee")) if melee_profiles else 0
                 dmg_innate = _ld_dmg_conditional([], [], innate_profiles, actual_target, unit_weapon_mod,
                                                  reroll_spec, "both",
                                                  melta_active=melta_active, heavy_stationary=heavy_stationary,
-                                                 hit_mode=HitMode.NORMAL, n_models=n_models) if innate_profiles else 0
+                                                 hit_mode=HitMode.NORMAL, n_models=n_models,
+                                                 damage_boost=_boost_for("both")) if innate_profiles else 0
             else:
                 dmg_ranged = _ld_dmg(ranged_profiles, [], [], actual_target, unit_weapon_mod,
                                      melta_active=melta_active, heavy_stationary=heavy_stationary,
-                                     hit_mode=unit_hit_mode, n_models=n_models) if ranged_profiles else 0
+                                     hit_mode=unit_hit_mode, n_models=n_models,
+                                     damage_boost=_boost_for("ranged")) if ranged_profiles else 0
                 dmg_melee = _ld_dmg([], melee_profiles, [], actual_target, unit_weapon_mod,
                                     melta_active=melta_active, heavy_stationary=heavy_stationary,
-                                    hit_mode=HitMode.NORMAL, n_models=n_models) if melee_profiles else 0
+                                    hit_mode=HitMode.NORMAL, n_models=n_models,
+                                    damage_boost=_boost_for("melee")) if melee_profiles else 0
                 dmg_innate = _ld_dmg([], [], innate_profiles, actual_target, unit_weapon_mod,
                                      melta_active=melta_active, heavy_stationary=heavy_stationary,
-                                     hit_mode=HitMode.NORMAL, n_models=n_models) if innate_profiles else 0
+                                     hit_mode=HitMode.NORMAL, n_models=n_models,
+                                     damage_boost=_boost_for("both")) if innate_profiles else 0
             total_dmg = dmg_ranged + (dmg_melee * melee_penalty) + dmg_innate
             dpp_val = total_dmg / pts if pts > 0 else 0
 
@@ -1923,6 +1968,7 @@ class RankingEngine:
                 "notes": notes,
                 "conditional_fnp": cond_fnp,
                 "conditional_fnp_type": cond_fnp_type,
+                "damage_boost": boost_spec,
                 "oc_boost": oc_boost_val,
             }
             if meta_name:
