@@ -728,3 +728,20 @@ BSData) previously hit a bare `continue` and stayed uncapped forever;
 now they route through `expected_alloc_max` (the FLAT_CAPS rescue) so a
 datasheet flat cap applies. Any future "uncapped" variant that is actually
 capped per datasheet needs a FLAT_CAPS entry, not a mechanism change.
+
+## Findings generation is PYTHONHASHSEED-dependent — always run it seeded
+`gen_findings_html.py` resolves ties and combo counts through dict/set
+iteration; unseeded runs flip results between identical inputs (e.g. the
+Thousand Sons Defiler's choice weapon rendered as Electroscourge one run,
+Heavy baleflamer the next; "best of N combos" counts drift). PYTHONHASHSEED=1
+reproduces the committed artifact byte-for-byte.
+
+**Why:** regenerating findings unseeded looks like data drift when it is
+iteration noise; a stale findings commit hides real drift and seed noise at
+once. The full pytest suite already runs under PYTHONHASHSEED=1; findings
+must match the same convention.
+
+**How:** `PYTHONHASHSEED=1 python3 scripts/gen_findings_html.py --all --index`
+(or `--faction X` then `--index`). After regen, verify diff scope == the
+factions whose configs changed this commit; unexpected faction diffs are
+either stale findings (an earlier config commit skipped regen) or a bug.

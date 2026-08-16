@@ -38,7 +38,10 @@ the generator overwrites curated builds with a single `Default`+alloc.
    tests/test_aeldari_complex_units.py): assert STRUCTURE (alloc
    distribution, weapon names/counts, melee reduction), never damage
    values — one source of computation.
-9. python3 scripts/gen_findings_html.py --faction X, then --index
+9. PYTHONHASHSEED=1 python3 scripts/gen_findings_html.py --faction X,
+   then --index (must be seeded — unseeded runs flip tie-breaks and
+   combo counts; verify diff scope == only factions whose configs
+   changed this commit, else stale findings from a skipped regen)
 10. Diff unit-name sets old vs new HTML before trusting a count change
     (Vyper lesson: a drop of 1 can be a removed phantom row or a real
     regression — identify the dropped unit first).
