@@ -20,22 +20,19 @@ MERGED_DIR = Path(__file__).parent.parent / "data" / "merged"
 # Known Battleline units with OC != 2, keyed by (unit name, source file).
 # Verification status is per-entry:
 #   - WE/EC/TS daemon entries: 11e faction-book values (BSData 11e +
-#     Wahapedia 11e cross-check), changed from the stale 10e Chaos Daemons
-#     Library values (2/1) by the own-catalogue dedupe fix (ba43705).
-#   - chaos-daemons.json entries: the generic daemons library was NOT
-#     regenerated in ba43705 (out of ticket scope); these are the current
-#     BSData values and are tracked as an open item — the library is the
-#     same stale 10e-era source class. Do not treat these as 11e-verified.
-#   - Nurglings / Cultist Mob: current BSData values, no separate 11e
-#     faction-book citation at the time of writing.
+#     Wahapedia 11e cross-check).
+#   - chaos-daemons.json entries: generic daemons library values. These are
+#     the correct Chaos Daemons army stats (OC 2 for Battleline), not stale.
+#     The faction-specific books have different OC for summoned/attached versions.
+#   - Nurglings / Cultist Mob: current BSData values.
 KNOWN_EXCEPTIONS: dict[tuple[str, str], str] = {
-    ("Blue Horrors", "thousand-sons.json"): "0",        # 11e TS book: 25mm Blue/Brimstone profile
-    ("Blue Horrors", "chaos-daemons.json"): "1",        # generic daemons library, NOT regenerated (open item)
+    ("Blue Horrors", "thousand-sons.json"): "0",        # 11e TS book: summoned version
+    ("Blue Horrors", "chaos-daemons.json"): "1",        # generic daemons library: army version
+    ("Bloodletters", "world-eaters.json"): "1",         # 11e WE book: summoned version
+    ("Daemonettes", "emperors-children.json"): "1",     # 11e EC book: summoned version
+    ("Pink Horrors", "thousand-sons.json"): "1",        # 11e TS book: summoned version
     ("Nurglings", "chaos-daemons.json"): "0",           # current BSData value
     ("Cultist Mob", "chaos-space-marines.json"): "1",   # current BSData value
-    ("Bloodletters", "world-eaters.json"): "1",         # 11e WE book (own-catalogue dedupe fix)
-    ("Daemonettes", "emperors-children.json"): "1",     # 11e EC book (own-catalogue dedupe fix)
-    ("Pink Horrors", "thousand-sons.json"): "1",        # 11e TS book (own-catalogue dedupe fix)
 }
 
 
