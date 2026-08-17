@@ -1,8 +1,8 @@
 {
   "faction": "Aeldari",
   "slug": "aeldari",
-  "version": "1.1",
-  "firstSeen": "2026-07-22",
+  "version": "1.2",
+  "firstSeen": "2026-08-05",
   "detachments": [
     {
       "name": "Armoured Warhost",
@@ -522,7 +522,7 @@
                   "S": "6",
                   "AP": "-3",
                   "D": "3",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -633,7 +633,11 @@
         ],
         "rules": [
           "Battle Focus",
-          "Leader"
+          "Fights First",
+          "Leader",
+          "Infiltrators",
+          "Stealth",
+          "Scouts"
         ]
       },
       "pricing": [
@@ -753,7 +757,7 @@
                   "S": "6",
                   "AP": "-3",
                   "D": "3",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -954,7 +958,7 @@
                   "S": "16",
                   "AP": "-4",
                   "D": "D6+2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -967,7 +971,7 @@
                   "S": "8",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -1102,6 +1106,127 @@
       "wargear_options": null
     },
     {
+      "name": "Clanblade",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "deep_strike": false,
+      "profile": {
+        "name": "Clanblade",
+        "points": 70,
+        "stats": {
+          "M": "10\"",
+          "T": "5",
+          "Sv": "4+",
+          "W": "4",
+          "LD": "6+",
+          "OC": "2",
+          "InSv": ""
+        },
+        "keywords": [
+          "Character",
+          "Faction: Asuryani",
+          "Aeldari",
+          "Mounted",
+          "Exodite",
+          "Mobile",
+          "Leader",
+          "Clanblade"
+        ],
+        "abilities": [
+          {
+            "name": "Cornered Prey",
+            "description": "When an enemy unit **engaged** with this unit is selected to make a **fall‑back move**, that enemy unit must use the **desperate escape mode**. If that enemy unit is **battle‑shocked**, ‑1 from those **hazard rolls**."
+          },
+          {
+            "name": "Blade of the Clans",
+            "description": "This unit’s melee attacks have **[SUSTAINED HITS 1]**."
+          },
+          {
+            "name": "Leader",
+            "description": "This model can be attached to the following unit:\n- **DRAGON KNIGHTS**\n"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Moonblades",
+            "profiles": [
+              {
+                "name": "Moonblades",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "5",
+                  "WS": "2+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Lethal Hits, Twin-linked"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Drakesteed Fangs and Talons",
+            "profiles": [
+              {
+                "name": "Drakesteed Fangs and Talons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Extra Attacks"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Solar Carbine",
+            "profiles": [
+              {
+                "name": "Solar Carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Battle Focus",
+          "Leader",
+          "Sustained Hits"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 70
+            }
+          ]
+        }
+      ],
+      "role": "leader",
+      "attachTo": [
+        "Dragon Knights"
+      ],
+      "wargear_options": null
+    },
+    {
       "name": "Corsair Skyreavers",
       "in_bsdata": true,
       "in_mfm": true,
@@ -1148,7 +1273,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -1205,7 +1330,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -1290,7 +1415,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -1308,7 +1433,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -1317,7 +1442,7 @@
             "name": "Skyreaver w/ blaster",
             "profiles": [
               {
-                "name": "Close Combat Weapon",
+                "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
@@ -1326,7 +1451,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -1366,7 +1491,7 @@
             "name": "Skyreaver w/ flamer",
             "profiles": [
               {
-                "name": "Close Combat Weapon",
+                "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
@@ -1375,7 +1500,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -1415,7 +1540,7 @@
             "name": "Skyreaver w/ fusion gun",
             "profiles": [
               {
-                "name": "Close Combat Weapon",
+                "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
@@ -1424,7 +1549,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -1464,7 +1589,7 @@
             "name": "Skyreaver w/ shredder",
             "profiles": [
               {
-                "name": "Close Combat Weapon",
+                "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
@@ -1473,7 +1598,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -1584,7 +1709,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -1610,7 +1735,7 @@
                   "S": "14",
                   "AP": "-4",
                   "D": "D6+1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -1646,7 +1771,7 @@
                   "S": "14",
                   "AP": "-4",
                   "D": "D6+1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -1664,7 +1789,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -1713,7 +1838,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -1739,7 +1864,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -1757,7 +1882,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -1819,7 +1944,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -1881,7 +2006,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -1894,7 +2019,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -1951,7 +2076,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -2013,7 +2138,8 @@
         ],
         "rules": [
           "Scouts",
-          "Battle Focus"
+          "Battle Focus",
+          "Fights First"
         ]
       },
       "pricing": [
@@ -2074,7 +2200,7 @@
             "name": "Shade Runner",
             "profiles": [
               {
-                "name": "Close Combat Weapon",
+                "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
@@ -2083,7 +2209,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -2136,7 +2262,7 @@
             "name": "Soul Weaver",
             "profiles": [
               {
-                "name": "Close Combat Weapon",
+                "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
@@ -2145,7 +2271,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -2171,7 +2297,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -2189,7 +2315,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -2198,7 +2324,7 @@
             "name": "Way Seeker",
             "profiles": [
               {
-                "name": "Close Combat Weapon",
+                "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
@@ -2207,7 +2333,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -2291,7 +2417,7 @@
             "name": "Voidscarred w/ pistol and sword",
             "profiles": [
               {
-                "name": "Close Combat Weapon",
+                "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
@@ -2300,7 +2426,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -2326,7 +2452,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -2344,7 +2470,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -2353,7 +2479,7 @@
             "name": "Voidscarred w/ rifle",
             "profiles": [
               {
-                "name": "Close Combat Weapon",
+                "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
@@ -2362,7 +2488,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -2402,7 +2528,7 @@
             "name": "Voidscarred with Faolchú",
             "profiles": [
               {
-                "name": "Close Combat Weapon",
+                "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
@@ -2411,7 +2537,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -2437,7 +2563,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -2455,7 +2581,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -2464,7 +2590,7 @@
             "name": "Voidscarred with fusion pistol",
             "profiles": [
               {
-                "name": "Close Combat Weapon",
+                "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
@@ -2473,7 +2599,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -2526,7 +2652,7 @@
             "name": "Voidscarred with heavy weapon",
             "profiles": [
               {
-                "name": "Close Combat Weapon",
+                "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
@@ -2535,7 +2661,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -2561,7 +2687,7 @@
                   "S": "14",
                   "AP": "-4",
                   "D": "D6+1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -2597,7 +2723,7 @@
                   "S": "14",
                   "AP": "-4",
                   "D": "D6+1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -2606,7 +2732,7 @@
             "name": "Voidscarred with ranger long rifle",
             "profiles": [
               {
-                "name": "Close Combat Weapon",
+                "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
@@ -2615,7 +2741,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -2655,7 +2781,7 @@
             "name": "Voidscarred with special weapon",
             "profiles": [
               {
-                "name": "Close Combat Weapon",
+                "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
@@ -2664,7 +2790,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -2735,7 +2861,7 @@
             "name": "Voidscarred Felarch",
             "profiles": [
               {
-                "name": "Close Combat Weapon",
+                "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
@@ -2744,7 +2870,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -2757,7 +2883,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -2814,7 +2940,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -2876,7 +3002,8 @@
         ],
         "rules": [
           "Scouts",
-          "Battle Focus"
+          "Battle Focus",
+          "Fights First"
         ]
       },
       "pricing": [
@@ -2950,7 +3077,7 @@
                   "S": "9",
                   "AP": "-2",
                   "D": "D6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -2968,7 +3095,7 @@
                   "S": "6",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -2986,7 +3113,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ],
@@ -3005,7 +3132,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -3023,7 +3150,7 @@
                   "S": "12",
                   "AP": "-3",
                   "D": "D6+2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ],
@@ -3042,7 +3169,7 @@
                   "S": "12",
                   "AP": "-3",
                   "D": "D6+2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -3130,7 +3257,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -3256,7 +3383,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -3305,7 +3432,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -3323,7 +3450,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -3419,7 +3546,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -3597,7 +3724,7 @@
                   "S": "4",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -3615,7 +3742,7 @@
                   "S": "6",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -3704,7 +3831,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -3722,7 +3849,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -3740,7 +3867,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -3766,7 +3893,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -3792,7 +3919,7 @@
                   "S": "5",
                   "AP": "-3",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -3831,7 +3958,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -3844,7 +3971,7 @@
                   "S": "5",
                   "AP": "-3",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -3862,7 +3989,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -3880,7 +4007,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -3929,7 +4056,7 @@
                   "S": "5",
                   "AP": "-3",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -3996,7 +4123,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -4014,7 +4141,7 @@
                   "S": "5",
                   "AP": "-3",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -4054,6 +4181,181 @@
             {
               "models": 10,
               "points": 150
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
+      "name": "Dragon Knights",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "deep_strike": false,
+      "profile": {
+        "name": "Dragon Knights",
+        "points": 90,
+        "stats": {
+          "M": "10\"",
+          "T": "5",
+          "Sv": "4+",
+          "W": "4",
+          "LD": "7+",
+          "OC": "2",
+          "InSv": ""
+        },
+        "keywords": [
+          "Faction: Asuryani",
+          "Aeldari",
+          "Mounted",
+          "Exodite",
+          "Mobile",
+          "Dragon Knights"
+        ],
+        "abilities": [
+          {
+            "name": "Agile Reach",
+            "description": "When this unit is **selected to fight**, melee weapons equipped by **unengaged** models in this unit that are within 3\" of an enemy unit that is **engaged** with this unit can target that enemy unit."
+          },
+          {
+            "name": "On the Hunt",
+            "description": "When this unit is selected to make a **fall‑back move**, that **fall‑back move** does not prevent this unit from being **eligible to shoot** and **eligible to declare a charge**."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Dragon Knight",
+            "profiles": [
+              {
+                "name": "Drakesteed Fangs and Talons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Extra Attacks"
+                }
+              },
+              {
+                "name": "Laser Lance",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Lance"
+                }
+              },
+              {
+                "name": "Laser Lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Assault"
+                }
+              },
+              {
+                "name": "Solar Carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dragon Knight Leader",
+            "profiles": [
+              {
+                "name": "Drakesteed Fangs and Talons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Extra Attacks"
+                }
+              },
+              {
+                "name": "Solar Carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              },
+              {
+                "name": "Laser Lance",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Lance"
+                }
+              },
+              {
+                "name": "Laser Lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "6\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Battle Focus"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 3,
+              "points": 90
+            },
+            {
+              "models": 6,
+              "points": 180
             }
           ]
         }
@@ -4236,7 +4538,7 @@
                   "S": "9",
                   "AP": "-2",
                   "D": "D6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -4254,7 +4556,7 @@
                   "S": "6",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -4285,7 +4587,7 @@
                   "S": "10",
                   "AP": "-2",
                   "D": "D6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -4311,7 +4613,7 @@
                   "S": "12",
                   "AP": "-3",
                   "D": "D6+2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -4337,7 +4639,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -4785,7 +5087,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -4821,7 +5123,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -4839,7 +5141,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -4891,7 +5193,7 @@
                   "S": "6",
                   "AP": "-4",
                   "D": "D6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -4922,7 +5224,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -4994,7 +5296,7 @@
                   "S": "6",
                   "AP": "-4",
                   "D": "D6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -5025,7 +5327,7 @@
                   "S": "6",
                   "AP": "-4",
                   "D": "D6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -5168,7 +5470,7 @@
                   "S": "6",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -5319,7 +5621,7 @@
                   "S": "5",
                   "AP": "-4",
                   "D": "3",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -5399,7 +5701,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -5443,7 +5745,7 @@
                   "S": "10",
                   "AP": "-2",
                   "D": "D6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -5469,7 +5771,7 @@
                   "S": "12",
                   "AP": "-3",
                   "D": "D6+2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -5495,7 +5797,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -5508,14 +5810,15 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
           }
         ],
         "rules": [
-          "Battle Focus"
+          "Battle Focus",
+          "Fights First"
         ]
       },
       "pricing": [
@@ -6302,6 +6605,117 @@
       "wargear_options": null
     },
     {
+      "name": "Leystalker",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "deep_strike": false,
+      "profile": {
+        "name": "Leystalker",
+        "points": 80,
+        "stats": {
+          "M": "10\"",
+          "T": "5",
+          "Sv": "4+",
+          "W": "4",
+          "LD": "7+",
+          "OC": "2",
+          "InSv": ""
+        },
+        "keywords": [
+          "Character",
+          "Faction: Asuryani",
+          "Aeldari",
+          "Mounted",
+          "Exodite",
+          "Mobile",
+          "Leystalker"
+        ],
+        "abilities": [
+          {
+            "name": "Panicked Quarry",
+            "description": "In your Shooting phase, when this unit has shot, select one enemy unit (excluding **MONSTER/VEHICLE** units) hit by those attacks. That enemy unit makes a **battle‑shock roll**, with ‑1 to that **battle‑shock roll**."
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Hunting Blades",
+            "profiles": [
+              {
+                "name": "Hunting Blades",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "2",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": ""
+                }
+              }
+            ]
+          },
+          {
+            "name": "Long Rifle",
+            "profiles": [
+              {
+                "name": "Long Rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "36\"",
+                  "A": "2",
+                  "BS": "2+",
+                  "S": "6",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Devastating Wounds: non-Monster/Vehicle, Precision"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Drakesteed Fangs and Talons",
+            "profiles": [
+              {
+                "name": "Drakesteed Fangs and Talons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Extra Attacks"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Battle Focus",
+          "Lone Operative",
+          "Stealth",
+          "Scouts"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 80
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null
+    },
+    {
       "name": "Lhykhis",
       "in_bsdata": true,
       "in_mfm": true,
@@ -6494,7 +6908,7 @@
                   "S": "6",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -6590,7 +7004,7 @@
                   "S": "6",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -6723,7 +7137,7 @@
                   "S": "12",
                   "AP": "-2",
                   "D": "4",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -6741,7 +7155,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -6777,7 +7191,7 @@
                   "S": "18",
                   "AP": "-4",
                   "D": "6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -6795,7 +7209,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -6808,7 +7222,7 @@
                   "S": "18",
                   "AP": "-4",
                   "D": "12",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -6821,7 +7235,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "4",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -6839,7 +7253,7 @@
                   "S": "9",
                   "AP": "-2",
                   "D": "D6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -6852,7 +7266,7 @@
                   "S": "18",
                   "AP": "-4",
                   "D": "12",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -6865,7 +7279,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "4",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -6883,7 +7297,7 @@
                   "S": "9",
                   "AP": "-2",
                   "D": "D6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -6896,7 +7310,7 @@
                   "S": "18",
                   "AP": "-4",
                   "D": "12",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -6909,7 +7323,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "4",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -6922,7 +7336,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -6958,7 +7372,7 @@
                   "S": "18",
                   "AP": "-4",
                   "D": "6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -6976,7 +7390,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -6989,7 +7403,7 @@
                   "S": "18",
                   "AP": "-4",
                   "D": "12",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -7002,7 +7416,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "4",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -7020,7 +7434,7 @@
                   "S": "9",
                   "AP": "-2",
                   "D": "D6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -7033,7 +7447,7 @@
                   "S": "18",
                   "AP": "-4",
                   "D": "12",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -7046,7 +7460,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "4",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -7064,7 +7478,7 @@
                   "S": "9",
                   "AP": "-2",
                   "D": "D6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -7077,7 +7491,7 @@
                   "S": "18",
                   "AP": "-4",
                   "D": "12",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -7090,7 +7504,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "4",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -7103,7 +7517,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -7121,7 +7535,7 @@
                   "S": "9",
                   "AP": "-2",
                   "D": "D6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -7139,7 +7553,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -7334,7 +7748,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -7472,7 +7886,7 @@
                   "S": "10",
                   "AP": "-1",
                   "D": "3",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -7636,7 +8050,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -7972,7 +8386,7 @@
                   "S": "5",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -8073,7 +8487,7 @@
                   "S": "5",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -8215,7 +8629,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -8370,7 +8784,7 @@
                   "S": "7",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -8388,7 +8802,7 @@
                   "S": "6",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -8406,7 +8820,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -8445,7 +8859,7 @@
                   "S": "7",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -8458,7 +8872,7 @@
                   "S": "6",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -8719,7 +9133,7 @@
                   "S": "6",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -8773,7 +9187,7 @@
                   "S": "6",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -8879,7 +9293,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -8937,6 +9351,159 @@
       "wargear_options": null
     },
     {
+      "name": "Stonesinger",
+      "in_bsdata": true,
+      "in_mfm": true,
+      "deep_strike": false,
+      "profile": {
+        "name": "Stonesinger",
+        "points": 60,
+        "stats": {
+          "M": "10\"",
+          "T": "5",
+          "Sv": "4+",
+          "W": "4",
+          "LD": "7+",
+          "OC": "2",
+          "InSv": ""
+        },
+        "keywords": [
+          "Character",
+          "Faction: Asuryani",
+          "Aeldari",
+          "Mounted",
+          "Exodite",
+          "Mobile",
+          "Psyker",
+          "Support",
+          "Stonesinger"
+        ],
+        "abilities": [
+          {
+            "name": "Elemental Ensnarement",
+            "description": "At the end of your Fight phase, if this unit is not **battle‑shocked**, you can use this ability. If you do, roll one D6:\n- On a 1, this unit is **battle‑shocked**.\n- Select one **visible** enemy **MONSTER/VEHICLE** unit (excluding **TITANIC** units) within 18\" of this unit. That enemy unit is **ensnared** until the start of your next turn:\n    - While a unit is **ensnared**, that unit has ‑2\" **M** and cannot be **pinned**."
+          },
+          {
+            "name": "Support",
+            "description": "This model can be attached to the following unit:\n- **DRAGON KNIGHTS**\n"
+          }
+        ],
+        "weapons": [
+          {
+            "name": "Song of Waning",
+            "profiles": [
+              {
+                "name": "Song of Waning",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "3",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "-2",
+                  "D": "3",
+                  "Keywords": "Anti-Monster/Vehicle 3+, Psychic"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Stone Stave",
+            "profiles": [
+              {
+                "name": "Stone Stave",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "3",
+                  "AP": "-1",
+                  "D": "2",
+                  "Keywords": "ANTI-non‑MONSTER/VEHICLE 2+, PSYCHIC"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Venomcrest Spit",
+            "profiles": [
+              {
+                "name": "Venomcrest Spit",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "12\"",
+                  "A": "3",
+                  "BS": "6+",
+                  "S": "3",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": "Anti-non-Monster/Vehicle 3+, Blast 1, Torrent"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Drakesteed Fangs and Talons",
+            "profiles": [
+              {
+                "name": "Drakesteed Fangs and Talons",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "-1",
+                  "D": "1",
+                  "Keywords": "Extra Attacks"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Solar Carbine",
+            "profiles": [
+              {
+                "name": "Solar Carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Rapid Fire 2"
+                }
+              }
+            ]
+          }
+        ],
+        "rules": [
+          "Battle Focus",
+          "Support"
+        ]
+      },
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 60
+            }
+          ]
+        }
+      ],
+      "role": "support",
+      "attachTo": [
+        "Dragon Knights"
+      ],
+      "wargear_options": null
+    },
+    {
       "name": "Storm Guardians",
       "in_bsdata": true,
       "in_mfm": true,
@@ -8987,7 +9554,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -9018,7 +9585,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -9049,7 +9616,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -9093,7 +9660,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -9124,7 +9691,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -9142,7 +9709,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -9173,14 +9740,15 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
           }
         ],
         "rules": [
-          "Battle Focus"
+          "Battle Focus",
+          "Fights First"
         ]
       },
       "pricing": [
@@ -9350,7 +9918,7 @@
                   "S": "8",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -9451,7 +10019,7 @@
                   "S": "8",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -9500,7 +10068,7 @@
                   "S": "8",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -9679,7 +10247,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -9715,7 +10283,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -9733,7 +10301,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -9785,7 +10353,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -9816,7 +10384,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -9888,7 +10456,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -9919,7 +10487,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -10075,7 +10643,8 @@
         "rules": [
           "Battle Focus",
           "Disparate Paths",
-          "Leader"
+          "Leader",
+          "Fights First"
         ]
       },
       "pricing": [
@@ -10159,7 +10728,7 @@
                   "S": "12",
                   "AP": "-4",
                   "D": "D6+1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -10172,7 +10741,7 @@
                   "S": "6",
                   "AP": "-4",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -10809,7 +11378,7 @@
             "description": "While this model is leading a unit, each time a model in that unit makes a Pile In or Consolidate move, it can move up to 6\" instead of 3\". In addition, it does not need to end that move closer to the closest enemy model, provided it ends as close as possible to the closest enemy unit."
           },
           {
-            "name": "Cegorach’s Favour:",
+            "name": "Cegorach’s Favour",
             "description": "Each time this model makes a melee attack you can re-roll a Hit roll of 1 and add 1 to the Wound roll."
           }
         ],
@@ -10977,7 +11546,7 @@
                   "S": "9",
                   "AP": "-1",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -10995,7 +11564,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -11087,7 +11656,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -11136,7 +11705,7 @@
                   "S": "12",
                   "AP": "-3",
                   "D": "4",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -11228,7 +11797,7 @@
                   "S": "6",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -11246,7 +11815,7 @@
                   "S": "12",
                   "AP": "-3",
                   "D": "D6+2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -11282,7 +11851,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -11318,7 +11887,7 @@
                   "S": "10",
                   "AP": "-2",
                   "D": "D6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -11349,7 +11918,7 @@
                   "S": "6",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -11362,7 +11931,7 @@
                   "S": "12",
                   "AP": "-3",
                   "D": "D6+2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -11388,7 +11957,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -11414,7 +11983,7 @@
                   "S": "10",
                   "AP": "-2",
                   "D": "D6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -11497,7 +12066,7 @@
                   "S": "5",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -11528,7 +12097,7 @@
                   "S": "10",
                   "AP": "-2",
                   "D": "D6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -11554,7 +12123,7 @@
                   "S": "12",
                   "AP": "-3",
                   "D": "D6+2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -11580,7 +12149,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -11611,7 +12180,7 @@
                   "S": "10",
                   "AP": "-2",
                   "D": "D6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -11637,7 +12206,7 @@
                   "S": "12",
                   "AP": "-3",
                   "D": "D6+2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -11663,7 +12232,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -11676,7 +12245,7 @@
                   "S": "5",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -12447,7 +13016,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -12496,7 +13065,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -12841,7 +13410,7 @@
                   "S": "6",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -13053,7 +13622,7 @@
             "name": "Windrider with Twin Shuriken Catapult",
             "profiles": [
               {
-                "name": "Close Combat Weapon",
+                "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
@@ -13062,11 +13631,11 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
-                "name": "Twin Shuriken Catapult",
+                "name": "Twin shuriken catapult",
                 "typeName": "Ranged Weapons",
                 "stats": {
                   "Range": "18\"",
@@ -13075,16 +13644,16 @@
                   "S": "4",
                   "AP": "-1",
                   "D": "1",
-                  "Keywords": "Assault, Twin Linked"
+                  "Keywords": "Assault, Twin-linked"
                 }
               }
             ]
           },
           {
-            "name": "Twin Shuriken Catapult",
+            "name": "Twin shuriken catapult",
             "profiles": [
               {
-                "name": "Twin Shuriken Catapult",
+                "name": "Twin shuriken catapult",
                 "typeName": "Ranged Weapons",
                 "stats": {
                   "Range": "18\"",
@@ -13093,7 +13662,7 @@
                   "S": "4",
                   "AP": "-1",
                   "D": "1",
-                  "Keywords": "Assault, Twin Linked"
+                  "Keywords": "Assault, Twin-linked"
                 }
               }
             ]
@@ -13102,7 +13671,7 @@
             "name": "Windrider with Scatter Laser",
             "profiles": [
               {
-                "name": "Close Combat Weapon",
+                "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
@@ -13111,11 +13680,11 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
-                "name": "Scatter Laser",
+                "name": "Scatter laser",
                 "typeName": "Ranged Weapons",
                 "stats": {
                   "Range": "36\"",
@@ -13130,10 +13699,10 @@
             ]
           },
           {
-            "name": "Scatter Laser",
+            "name": "Scatter laser",
             "profiles": [
               {
-                "name": "Scatter Laser",
+                "name": "Scatter laser",
                 "typeName": "Ranged Weapons",
                 "stats": {
                   "Range": "36\"",
@@ -13151,7 +13720,7 @@
             "name": "Windrider with Shuriken Cannon",
             "profiles": [
               {
-                "name": "Close Combat Weapon",
+                "name": "Close combat weapon",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
@@ -13160,11 +13729,11 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
-                "name": "Shuriken Cannon",
+                "name": "Shuriken cannon",
                 "typeName": "Ranged Weapons",
                 "stats": {
                   "Range": "24\"",
@@ -13179,10 +13748,10 @@
             ]
           },
           {
-            "name": "Shuriken Cannon",
+            "name": "Shuriken cannon",
             "profiles": [
               {
-                "name": "Shuriken Cannon",
+                "name": "Shuriken cannon",
                 "typeName": "Ranged Weapons",
                 "stats": {
                   "Range": "24\"",
@@ -13270,7 +13839,7 @@
                   "S": "5",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -13288,7 +13857,25 @@
                   "S": "7",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
+                }
+              }
+            ]
+          },
+          {
+            "name": "Ghostaxe",
+            "profiles": [
+              {
+                "name": "Ghostaxe",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "3",
+                  "WS": "4+",
+                  "S": "7",
+                  "AP": "-2",
+                  "D": "2",
+                  "Keywords": ""
                 }
               }
             ]
@@ -13306,7 +13893,7 @@
                   "S": "5",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -13319,13 +13906,15 @@
                   "S": "7",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
           }
         ],
-        "rules": []
+        "rules": [
+          "Feel No Pain"
+        ]
       },
       "pricing": [
         {
@@ -13392,7 +13981,7 @@
                   "S": "14",
                   "AP": "-4",
                   "D": "D6+1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -13428,7 +14017,7 @@
                   "S": "5",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -13441,7 +14030,7 @@
                   "S": "14",
                   "AP": "-4",
                   "D": "D6+1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -13460,7 +14049,9 @@
             ]
           }
         ],
-        "rules": []
+        "rules": [
+          "Feel No Pain"
+        ]
       },
       "pricing": [
         {
@@ -13534,7 +14125,7 @@
                   "S": "8",
                   "AP": "-1",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -13642,7 +14233,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -13736,7 +14327,7 @@
                   "S": "16",
                   "AP": "-3",
                   "D": "6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -13749,7 +14340,7 @@
                   "S": "8",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -13821,7 +14412,7 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -13908,7 +14499,7 @@
                   "S": "10",
                   "AP": "-3",
                   "D": "D6+1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -13921,7 +14512,7 @@
                   "S": "7",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -13939,7 +14530,7 @@
                   "S": "7",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -13993,7 +14584,7 @@
                   "S": "10",
                   "AP": "-2",
                   "D": "D6",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -14024,7 +14615,7 @@
                   "S": "12",
                   "AP": "-3",
                   "D": "D6+2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -14078,14 +14669,15 @@
                   "S": "8",
                   "AP": "-3",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
           }
         ],
         "rules": [
-          "Deadly Demise"
+          "Deadly Demise",
+          "Feel No Pain"
         ]
       },
       "pricing": [
@@ -14139,7 +14731,7 @@
           },
           {
             "name": "Reborn Mastermind",
-            "description": "Once per battle round, one model from your army with this ability can use it when its unit is targeted with a Stratgem. If it does, reduce the CP cost of that usage of that Stratagem by 1CP."
+            "description": "Once per battle round, one model from your army with this ability can use it when its unit is targeted with a Stratagem. If it does, reduce the CP cost of that usage of that Stratagem by 1CP."
           }
         ],
         "weapons": [
@@ -14266,7 +14858,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -14284,7 +14876,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -14315,7 +14907,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -14328,7 +14920,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -14359,7 +14951,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -14377,7 +14969,7 @@
                   "S": "4",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -14385,7 +14977,8 @@
         ],
         "rules": [
           "Battle Focus",
-          "Disparate Paths"
+          "Disparate Paths",
+          "Fights First"
         ]
       },
       "pricing": [
@@ -14466,7 +15059,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -14515,7 +15108,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -14564,7 +15157,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -14613,7 +15206,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -14662,7 +15255,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -14750,7 +15343,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -14835,7 +15428,7 @@
                   "S": "3",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -14861,7 +15454,8 @@
         ],
         "rules": [
           "Disparate Paths",
-          "Battle Focus"
+          "Battle Focus",
+          "Fights First"
         ]
       },
       "pricing": [
@@ -14927,7 +15521,7 @@
                   "S": "6",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -14945,7 +15539,7 @@
                   "S": "5",
                   "AP": "-2",
                   "D": "2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -14963,7 +15557,7 @@
                   "S": "12",
                   "AP": "-3",
                   "D": "D6+2",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -15073,7 +15667,7 @@
                   "S": "4",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -15127,7 +15721,7 @@
                   "S": "4",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -15171,7 +15765,7 @@
                   "S": "4",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -15225,7 +15819,7 @@
                   "S": "4",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -15269,7 +15863,7 @@
                   "S": "4",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -15323,7 +15917,7 @@
                   "S": "4",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -15367,7 +15961,7 @@
                   "S": "4",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -15460,7 +16054,7 @@
                   "S": "4",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -15577,7 +16171,7 @@
           },
           {
             "name": "Storm of Blades",
-            "description": "While this model is leading a unit, melee weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability."
+            "description": "While this model is leading a unit, melee weapons equipped by models in that unit have the **[SUSTAINED HITS 1]** ability."
           },
           {
             "name": "Leader",
@@ -15710,7 +16304,7 @@
                   "S": "5",
                   "AP": "0",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -15863,7 +16457,7 @@
                   "S": "3",
                   "AP": "-1",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -15899,7 +16493,7 @@
                   "S": "3",
                   "AP": "-1",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -15917,7 +16511,7 @@
                   "S": "3",
                   "AP": "-1",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               },
               {
@@ -15961,7 +16555,7 @@
                   "S": "3",
                   "AP": "-1",
                   "D": "1",
-                  "Keywords": "-"
+                  "Keywords": ""
                 }
               }
             ]
@@ -16006,7 +16600,8 @@
         "rules": [
           "Battle Focus",
           "Disparate Paths",
-          "Invulnerable Save (4+*)"
+          "Invulnerable Save (4+*)",
+          "Fights First"
         ]
       },
       "pricing": [
@@ -16111,7 +16706,8 @@
         "rules": [
           "Battle Focus",
           "Leader",
-          "Disparate Paths"
+          "Disparate Paths",
+          "Feel No Pain"
         ]
       },
       "pricing": [
@@ -16143,8 +16739,8 @@
   "_meta": {
     "bsdata_faction": "Xenos - Aeldari",
     "bsdata_revision": 1,
-    "bsdata_units": 100,
-    "mfm_units": 72,
-    "merged_units": 72
+    "bsdata_units": 104,
+    "mfm_units": 76,
+    "merged_units": 76
   }
 }

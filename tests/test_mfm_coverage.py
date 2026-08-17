@@ -207,7 +207,7 @@ def test_all_mfm_units_have_weapons(name, slug, mfm_units):
 # If a mismatch occurs, inspect the diff to see if it's a regression or a valid data update,
 # then update the snapshot accordingly.
 EXPECTED_COVERAGE = {
-    "total_mfm": 1433,
+    "total_mfm": 1437,
     "total_missing": 0,
     "total_empty_stats": 0,
 }

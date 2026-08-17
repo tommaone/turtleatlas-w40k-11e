@@ -88,7 +88,7 @@ class TestAeldariComplexUnits:
         # Melee reduced to one non-EA weapon per model (24.11): sword models
         # drop the CCW, Felarch drops its CCW.
         assert _mcount(res, "Power sword") == 2
-        assert _mcount(res, "Close Combat Weapon") == 3
+        assert _mcount(res, "Close combat weapon") == 3
         assert len(res["melee"]) == 5
 
     def test_warlock_conclave_multi_fixed_and_singing_spear(
@@ -240,8 +240,9 @@ class TestAeldariComplexUnits:
         assert res["_alloc_info"] == [
             ("Windrider", [("Windrider with Shuriken Cannon", 3)]),
         ]
-        assert _rcount(res, "Shuriken Cannon") == 3
-        assert _mcount(res, "Close Combat Weapon") == 3
+        assert _rcount(res, "Shuriken cannon") == 3
+        # BSData 2026-08 library lowercased this profile for Windriders.
+        assert _mcount(res, "Close combat weapon") == 3
 
     def test_kabalite_warriors_nine_alloc_sybarite(self, aeldari_engine, MEQ):
         """Ynnari Kabalite Warriors n=10: 9-model alloc (all capped specials

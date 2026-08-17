@@ -351,7 +351,9 @@ class TestSquadAllocModels:
         ]}
         ld = aeldari_engine._eval_squad_build(build, "Windriders", target=target)
         names = [w.name for w in ld["ranged"]]
-        assert names == ["Shuriken Cannon"] * 3
+        # BSData 2026-08 library lowercases this profile ("Shuriken cannon").
+        # Alloc info keeps the config variant name ("Shuriken Cannon", capital C).
+        assert names == ["Shuriken cannon"] * 3
         assert ld["_alloc_info"] == [(
             "Windrider", [("Shuriken Cannon", 3)],
         )]
