@@ -28,7 +28,7 @@ CONFIG_DIR = REPO / "data" / "config"
 # Confirmed-missing at audit time. Curate these → remove from this list.
 KNOWN_MISSING: dict[str, list[str]] = {
     'adepta-sororitas': ['Celestian Sacresant (Anointed Halberd)', 'Celestian Sacresant (Hallowed Mace)', 'Geminae Superia', 'Sister Novitiate (Autogun)', 'Sister Novitiate (Melee Weapon)'],
-    'aeldari': ['Clanblade', 'Dragon Knights', 'Hand of the Archon', 'Leystalker', 'Scourges with Heavy Weapons', 'Scourges with Shardcarbines', 'Stonesinger'],
+    'aeldari': ['Hand of the Archon', 'Scourges with Heavy Weapons', 'Scourges with Shardcarbines'],
     'astra-militarum': ['Aegis Defence Line'],
     'black-templars': ['Librarian in Phobos Armour', 'Librarian in Terminator Armour'],
     'chaos-daemons': ['Feculent Gnarlmaw', 'Skull Altar'],

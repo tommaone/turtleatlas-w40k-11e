@@ -1,5 +1,5 @@
 {
-  "_note": "aeldari squads — BSData model-composition builds (models[] with per-model slots); n/pts/info preserved from curated; INV swept against data/merged/aeldari.json InSv",
+  "_note": "aeldari squads \u2014 BSData model-composition builds (models[] with per-model slots); n/pts/info preserved from curated; INV swept against data/merged/aeldari.json InSv",
   "_source": "BSData 11e + MFM (auto-generated, curated)",
   "Corsair Skyreavers": {
     "n": 5,
@@ -276,7 +276,7 @@
                 "melee": "Close Combat Weapon"
               },
               {
-                "name": "Voidscarred with Faolchú",
+                "name": "Voidscarred with Faolch\u00fa",
                 "min": 0,
                 "max": 1,
                 "pool_min": 4,
@@ -1796,5 +1796,35 @@
         ]
       }
     ]
+  },
+  "Dragon Knights": {
+    "n": 3,
+    "pts": 90,
+    "innate": [],
+    "info": {
+      "M": "10\"",
+      "T": 5,
+      "SV": 4,
+      "W": 4,
+      "OC": 2
+    },
+    "builds": [
+      {
+        "name": "Default",
+        "models": [
+          {
+            "name": "Dragon Knight",
+            "count": 2,
+            "melee": "Dragon Knight"
+          },
+          {
+            "name": "Dragon Knight Leader",
+            "count": 1,
+            "melee": "Dragon Knight Leader"
+          }
+        ]
+      }
+    ],
+    "_source": "BSData 11e (Exodites)"
   }
 }
