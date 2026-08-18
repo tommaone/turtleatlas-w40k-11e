@@ -29,6 +29,7 @@ const BASE_DIR = join(__dirname, "..");
 const DATA_DIR = join(BASE_DIR, "data");
 const MERGED_DIR = join(DATA_DIR, "merged");
 const CONFIG_DIR = join(DATA_DIR, "config");
+const FINDINGS_DIR = join(BASE_DIR, "findings");
 
 class TurtleAtlasW40kServer {
   constructor() {
@@ -558,6 +559,30 @@ print(json.dumps(output))
             },
           },
         },
+        {
+          name: "get_findings",
+          description:
+            "Retrieve pre-computed DPP/SURV/MOB findings for a faction across all missions. These are pipeline-verified baseline values with known assumptions. Use as the ground truth for unit evaluation — the LLM layers detachment combos, disposition analysis, and cross-faction comparisons on top. MANDATORY: NEVER fabricate DPP, effective wounds, or mission scores. Only this tool's output is authoritative. Violation: presenting numbers not from this tool's output makes the analysis unreliable.",
+          inputSchema: {
+            type: "object",
+            properties: {
+              faction: {
+                type: "string",
+                description: "Faction key (e.g. grey-knights, chaos-knights)",
+              },
+              mission: {
+                type: "string",
+                enum: ["Take and Hold", "Purge the Foe", "Reconnaissance", "Priority Assets", "Disruption"],
+                description: "Mission name filter. If omitted, returns all 5 missions.",
+              },
+              top_n: {
+                type: "number",
+                description: "Number of top units to return per mission (sorted by mission score). Default: 10. Use 0 for all units.",
+              },
+            },
+            required: ["faction"],
+          },
+        },
       ],
     }));
 
@@ -586,6 +611,8 @@ print(json.dumps(output))
           return this.#handleComputeMob(args);
         case "rank_units":
           return this.#handleRankUnits(args);
+        case "get_findings":
+          return this.#handleGetFindings(args);
         default:
           throw new McpError(
             ErrorCode.MethodNotFound,
@@ -986,6 +1013,113 @@ print(json.dumps(output))
     out += `**Context:** target=${target}, mission=${mission || "none"}, tier=${tier}, detachment=${det || "none"}\n`;
     out += `**Formula:** DPP = total_damage / points. SURV = effective wound pool at AP0/AP2/AP4. MOB = mobility tier (static/slow/standard/cavalry/fast/very_fast/skyborne).\n`;
     out += `**Limitation:** Does not model stratagems, command rerolls, or conditional buffs beyond selected detachment modifier.\n`;
+
+    return this.#text(out);
+  }
+
+  // -------- Get findings (pre-computed pipeline output) -------------------
+
+  #handleGetFindings(args) {
+    const faction = (args?.faction || "").toLowerCase().trim();
+    if (!faction) {
+      return this.#text("Missing required parameter: faction");
+    }
+
+    // Path traversal guard — faction keys must be alphanumeric + hyphens only
+    if (!/^[a-z0-9-]+$/.test(faction)) {
+      return this.#text(`Invalid faction key "${faction}". Faction keys contain only lowercase letters, digits, and hyphens.`);
+    }
+
+    // List factions that have findings
+    const findingsPath = join(FINDINGS_DIR, faction, "findings.json");
+    if (!existsSync(findingsPath)) {
+      // Discover which factions have findings
+      let available = [];
+      try {
+        const dirs = readdirSync(FINDINGS_DIR, { withFileTypes: true })
+          .filter(d => d.isDirectory() && !d.name.startsWith("_"));
+        for (const d of dirs) {
+          if (existsSync(join(FINDINGS_DIR, d.name, "findings.json"))) {
+            available.push(d.name);
+          }
+        }
+      } catch { /* ignore */ }
+
+      if (available.length === 0) {
+        return this.#text(`No findings data available yet. Findings are generated per-faction by the pipeline.`);
+      }
+      return this.#text(
+        `No findings for faction "${faction}".\n\nFactions with findings: ${available.join(", ")}`
+      );
+    }
+
+    const data = this.#loadJson(findingsPath);
+    if (!data || typeof data !== "object") {
+      return this.#text(`Failed to load findings for "${faction}". File may be corrupt.`);
+    }
+
+    const allMissions = Object.keys(data);
+    if (allMissions.length === 0) {
+      return this.#text(`Findings file for "${faction}" is empty (no missions).`);
+    }
+
+    // Filter to requested mission or show all
+    const missionFilter = args?.mission;
+    const missions = missionFilter
+      ? allMissions.filter(m => m.toLowerCase() === missionFilter.toLowerCase())
+      : allMissions;
+
+    if (missionFilter && missions.length === 0) {
+      return this.#text(
+        `Mission "${missionFilter}" not found in findings for "${faction}".\nAvailable missions: ${allMissions.join(", ")}`
+      );
+    }
+
+    const topN = (args?.top_n !== undefined && args?.top_n !== null)
+      ? Math.floor(args.top_n)
+      : 10;
+
+    let out = `# Findings: ${faction}\n\n`;
+    out += `*Pre-computed pipeline output. Baseline values with known assumptions.*\n\n`;
+
+    for (const mission of missions) {
+      const units = data[mission];
+      if (!Array.isArray(units) || units.length === 0) {
+        out += `## ${mission}\n\nNo units found.\n\n`;
+        continue;
+      }
+
+      // Sort by mission score descending (the composite metric)
+      const sorted = [...units].sort((a, b) => (b._mission_score || 0) - (a._mission_score || 0));
+      const shown = topN > 0 ? sorted.slice(0, topN) : sorted;
+
+      out += `## ${mission} (${units.length} units${topN > 0 && sorted.length > topN ? `, showing top ${topN}` : ""})\n\n`;
+      out += `| # | Unit | Pts | DPP | Dmg | Surv(AP0) | Mob | Score |\n`;
+      out += `|---|------|-----|-----|-----|-----------|-----|-------|\n`;
+
+      for (let i = 0; i < shown.length; i++) {
+        const u = shown[i];
+        const dpp = typeof u.dpp === "number" ? u.dpp.toFixed(4) : u.dpp || "-";
+        const dmg = typeof u.total_damage === "number" ? u.total_damage.toFixed(2) : u.total_damage || "-";
+        const surv = u.surv?.effective_wounds?.ap0 ?? "-";
+        const mob = u.mob?.mobility_tier || "-";
+        const score = typeof u._mission_score === "number" ? u._mission_score.toFixed(1) : "-";
+        out += `| ${i + 1} | ${u.name} | ${u.points || "?"} | ${dpp} | ${dmg} | ${surv} | ${mob} | ${score} |\n`;
+      }
+      out += `\n`;
+    }
+
+    // Assumptions block per LLM boundary contract
+    out += `---\n`;
+    out += `**Formula:** DPP = total_damage / points. Score = composite of DPS%, SURV%, MOB%, OBJ% weighted by mission.\n`;
+    out += `**Modeled:** 11e wound table, Cover (BS penalty), Plunging Fire, Sustained/Lethal Hits, Devastating Wounds, Twin-Linked, Anti-X, Lance, Ignores Cover, Melta range.\n`;
+    out += `**Not modeled:** detachment buffs, stratagems, command rerolls, cover modifiers on saves, FNP (except conditional), unit coherency, transport constraints.\n`;
+    out += `**Assumptions:**\n`;
+    out += `- Target profile: MEQ (T4, SV3+) unless otherwise noted\n`;
+    out += `- No cover factored into saves\n`;
+    out += `- No detachment buffs, stratagems, or command rerolls\n`;
+    out += `- Average dice (no variance band)\n`;
+    out += `- Pricing tier: 1st (Munitorum Field Manual)\n`;
 
     return this.#text(out);
   }
