@@ -65,10 +65,10 @@ Available tools:
 
 CRITICAL 11th EDITION RULES:
 - NO psychic phase exists in 11e. Psychic weapons are regular weapons with PSYCHIC keyword.
-- Cover modifies BS (hit roll), NOT saves. Cover = +1 to hit roll for attacker.
+- Cover makes shooting HARDER: attacker gets -1 to hit roll (BS3+ becomes BS4+). Cover does NOT modify saves.
 - PSYCHIC weapons ignore cover.
 - There are no "psychic phases", "denied the witch", or "psychic tests" in 11e.
-- If you mention psychic phase, you are quoting 9th edition rules - STOP.
+- NEVER mention "+1 save from cover" - that is 10th edition, NOT 11th.
 
 No explanation. Just TOOL_CALL JSON line."""
 
@@ -98,8 +98,10 @@ def chat(user_input: str, client: MCPClient, system_prompt: str) -> str:
         interpret_prompt = f"""Data engine returned this. Analyze briefly in 4 tiers:
 FACTS (raw data)  USE CASES  CONSTRAINTS  STRATEGY
 
-CRITICAL: This is Warhammer 40k 11th Edition. There is NO psychic phase.
-Psychic weapons are just weapons with PSYCHIC keyword. Do NOT mention psychic phase.
+CRITICAL 11th EDITION RULES - DO NOT VIOLATE:
+- Cover: attacker gets -1 to hit (BS4+ instead of BS3+). Cover does NOT give +1 save.
+- NO psychic phase. Psychic = weapon keyword only.
+- If you write "+1 save from cover" you are quoting 10th edition. WRONG.
 
 Question: {user_input}
 
