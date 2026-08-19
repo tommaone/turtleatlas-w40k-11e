@@ -1025,45 +1025,67 @@ print(json.dumps(output))
       return this.#text("Missing required parameter: faction");
     }
 
-    // Path traversal guard — faction keys must be alphanumeric + hyphens only
+    // Path traversal guard
     if (!/^[a-z0-9-]+$/.test(faction)) {
-      return this.#text(`Invalid faction key "${faction}". Faction keys contain only lowercase letters, digits, and hyphens.`);
+      return this.#text(`Invalid faction key "${faction}".`);
     }
 
-    // List factions that have findings
-    const findingsPath = join(FINDINGS_DIR, faction, "findings.json");
-    if (!existsSync(findingsPath)) {
-      // Discover which factions have findings
+    // Look for HTML findings file
+    const htmlPath = join(FINDINGS_DIR, faction, "findings.html");
+    if (!existsSync(htmlPath)) {
+      // Discover which factions have HTML findings
       let available = [];
       try {
         const dirs = readdirSync(FINDINGS_DIR, { withFileTypes: true })
           .filter(d => d.isDirectory() && !d.name.startsWith("_"));
         for (const d of dirs) {
-          if (existsSync(join(FINDINGS_DIR, d.name, "findings.json"))) {
+          if (existsSync(join(FINDINGS_DIR, d.name, "findings.html"))) {
             available.push(d.name);
           }
         }
       } catch { /* ignore */ }
 
       if (available.length === 0) {
-        return this.#text(`No findings data available yet. Findings are generated per-faction by the pipeline.`);
+        return this.#text(`No findings data available yet.`);
       }
       return this.#text(
         `No findings for faction "${faction}".\n\nFactions with findings: ${available.join(", ")}`
       );
     }
 
-    const data = this.#loadJson(findingsPath);
-    if (!data || typeof data !== "object") {
-      return this.#text(`Failed to load findings for "${faction}". File may be corrupt.`);
+    // Parse HTML to extract DATA object
+    let html;
+    try {
+      html = readFileSync(htmlPath, "utf-8");
+    } catch {
+      return this.#text(`Failed to read findings HTML for "${faction}".`);
     }
 
-    const allMissions = Object.keys(data);
-    if (allMissions.length === 0) {
-      return this.#text(`Findings file for "${faction}" is empty (no missions).`);
+    // Extract const DATA = {...} from script tag
+    const dataMatch = html.match(/const\s+DATA\s*=\s*(\{[\s\S]+?\});\s*const\s+WEIGHTS/);
+    if (!dataMatch) {
+      return this.#text(`Failed to parse findings HTML for "${faction}" — DATA object not found.`);
     }
 
-    // Filter to requested mission or show all
+    let data;
+    try {
+      data = eval("(" + dataMatch[1] + ")");
+    } catch {
+      return this.#text(`Failed to evaluate findings data for "${faction}".`);
+    }
+
+    if (!data || !data.meta) {
+      return this.#text(`Findings data for "${faction}" is malformed.`);
+    }
+
+    // Default to first meta (competitive) unless specified
+    const metaSlug = args?.meta || Object.keys(data.meta)[0];
+    const metaData = data.meta[metaSlug];
+    if (!metaData) {
+      return this.#text(`Meta "${metaSlug}" not found. Available: ${Object.keys(data.meta).join(", ")}`);
+    }
+
+    const allMissions = Object.keys(metaData);
     const missionFilter = args?.mission;
     const missions = missionFilter
       ? allMissions.filter(m => m.toLowerCase() === missionFilter.toLowerCase())
@@ -1071,7 +1093,7 @@ print(json.dumps(output))
 
     if (missionFilter && missions.length === 0) {
       return this.#text(
-        `Mission "${missionFilter}" not found in findings for "${faction}".\nAvailable missions: ${allMissions.join(", ")}`
+        `Mission "${missionFilter}" not found.\nAvailable: ${allMissions.join(", ")}`
       );
     }
 
@@ -1079,47 +1101,41 @@ print(json.dumps(output))
       ? Math.floor(args.top_n)
       : 10;
 
-    let out = `# Findings: ${faction}\n\n`;
-    out += `*Pre-computed pipeline output. Baseline values with known assumptions.*\n\n`;
+    let out = `# Findings: ${faction} (${metaSlug})\n\n`;
+    out += `*Source: findings.html — pre-computed with penalties (FLYCOST, OC0, etc.).*\n\n`;
 
     for (const mission of missions) {
-      const units = data[mission];
+      const units = metaData[mission];
       if (!Array.isArray(units) || units.length === 0) {
         out += `## ${mission}\n\nNo units found.\n\n`;
         continue;
       }
 
-      // Sort by mission score descending (the composite metric)
-      const sorted = [...units].sort((a, b) => (b._mission_score || 0) - (a._mission_score || 0));
-      const shown = topN > 0 ? sorted.slice(0, topN) : sorted;
+      const shown = topN > 0 ? units.slice(0, topN) : units;
 
-      out += `## ${mission} (${units.length} units${topN > 0 && sorted.length > topN ? `, showing top ${topN}` : ""})\n\n`;
-      out += `| # | Unit | Pts | DPP | Dmg | Surv(AP0) | Mob | Score |\n`;
-      out += `|---|------|-----|-----|-----|-----------|-----|-------|\n`;
+      out += `## ${mission} (${units.length} units${topN > 0 && units.length > topN ? `, showing top ${topN}` : ""})\n\n`;
+      out += `| # | Unit | Pts | Score | DPP | DPP% | SURV | OBJ% | MOB% | Tags |\n`;
+      out += `|---|------|-----|-------|-----|------|------|------|------|------|\n`;
 
       for (let i = 0; i < shown.length; i++) {
         const u = shown[i];
-        const dpp = typeof u.dpp === "number" ? u.dpp.toFixed(4) : u.dpp || "-";
-        const dmg = typeof u.total_damage === "number" ? u.total_damage.toFixed(2) : u.total_damage || "-";
-        const surv = u.surv?.effective_wounds?.ap0 ?? "-";
-        const mob = u.mob?.mobility_tier || "-";
-        const score = typeof u._mission_score === "number" ? u._mission_score.toFixed(1) : "-";
-        out += `| ${i + 1} | ${u.name} | ${u.points || "?"} | ${dpp} | ${dmg} | ${surv} | ${mob} | ${score} |\n`;
+        const tags = [];
+        if (u.ds) tags.push("DS");
+        if (u.fly) tags.push("FLY");
+        if (u.inv) tags.push(`INV${u.inv}`);
+        if (u.fnp) tags.push(`FNP${u.fnp}`);
+        if (u.oc === 0) tags.push("OC0");
+        if (u.cost_eff !== null && u.cost_eff !== undefined) tags.push(`COST${u.cost_eff}`);
+
+        out += `| ${i + 1} | ${u.name} | ${u.pts} | ${u.score} | ${u.dpp} | ${u.dpp_pct}% | ${u.surv_turns}t | ${u.obj_pct}% | ${u.mob_pct}% | ${tags.join(" ")} |\n`;
       }
       out += `\n`;
     }
 
-    // Assumptions block per LLM boundary contract
     out += `---\n`;
-    out += `**Formula:** DPP = total_damage / points. Score = composite of DPS%, SURV%, MOB%, OBJ% weighted by mission.\n`;
-    out += `**Modeled:** 11e wound table, Cover (BS penalty), Plunging Fire, Sustained/Lethal Hits, Devastating Wounds, Twin-Linked, Anti-X, Lance, Ignores Cover, Melta range.\n`;
-    out += `**Not modeled:** detachment buffs, stratagems, command rerolls, cover modifiers on saves, FNP (except conditional), unit coherency, transport constraints.\n`;
-    out += `**Assumptions:**\n`;
-    out += `- Target profile: MEQ (T4, SV3+) unless otherwise noted\n`;
-    out += `- No cover factored into saves\n`;
-    out += `- No detachment buffs, stratagems, or command rerolls\n`;
-    out += `- Average dice (no variance band)\n`;
-    out += `- Pricing tier: 1st (Munitorum Field Manual)\n`;
+    out += `**Formula:** Score = DPP${allMissions.length > 0 ? '×' : ''} + SURV + OBJ + MOB weighted by mission.\n`;
+    out += `**Penalties applied:** FLYCOST (aircraft OC0), cost efficiency, objective penalty for OC0 units.\n`;
+    out += `**Not modeled:** detachment buffs, stratagems, command rerolls.\n`;
 
     return this.#text(out);
   }

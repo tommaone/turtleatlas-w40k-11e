@@ -3,7 +3,7 @@
 
 import requests
 
-OC = "http://127.0.0.1:32768"
+OC = "http://127.0.0.1:55187"
 
 
 def chat(text: str) -> str:
