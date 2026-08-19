@@ -13,15 +13,21 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Hunter-killer missile",
-          "Storm Bolter"
+        "fixed": [
+          {
+            "name": "Hunter-killer missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm Bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -38,15 +44,21 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Arachnus heavy blaze cannon",
-          "Arachnus magna-blaze cannon"
+        "fixed": [
+          {
+            "name": "Arachnus heavy blaze cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Arachnus magna-blaze cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -63,19 +75,31 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Twin lastrum bolt cannon"
+        "fixed": [
+          {
+            "name": "Twin lastrum bolt cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [
-          [
-            "Twin iliastus accelerator cannon",
-            "Twin arachnus heavy blaze cannon"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Twin iliastus accelerator cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin arachnus heavy blaze cannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -92,12 +116,13 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Achillus dreadspear"
+        "fixed": [
+          {
+            "name": "Achillus dreadspear",
+            "type": "ranged"
+          }
         ],
-        "fixed_melee": [],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -114,15 +139,21 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Twin arachnus blaze cannon",
-          "Twin lastrum bolt cannon"
+        "fixed": [
+          {
+            "name": "Twin arachnus blaze cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin lastrum bolt cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -139,16 +170,25 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Arachnus heavy blaze cannon",
-          "Spiculus heavy bolt launcher",
-          "Twin lastrum bolt cannon"
+        "fixed": [
+          {
+            "name": "Arachnus heavy blaze cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Spiculus heavy bolt launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin lastrum bolt cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -166,14 +206,17 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Spiculus bolt launcher"
+        "fixed": [
+          {
+            "name": "Spiculus bolt launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured feet",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured feet"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -190,14 +233,17 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Combi-bolter"
+        "fixed": [
+          {
+            "name": "Combi-bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Contemptor combat weapon",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Contemptor combat weapon"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -213,17 +259,29 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Hunter-killer missile",
-          "Godhammer lascannon",
-          "Storm bolter",
-          "Twin heavy bolter"
+        "fixed": [
+          {
+            "name": "Hunter-killer missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Godhammer lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   }

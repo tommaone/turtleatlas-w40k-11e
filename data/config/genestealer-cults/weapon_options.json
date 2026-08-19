@@ -1,5 +1,5 @@
 {
-  "_note": "genestealer-cults weapon options — curated builds (BSData + MFM)",
+  "_note": "genestealer-cults weapon options \u2014 curated builds (BSData + MFM)",
   "_source": "BSData 11e + MFM (curated builds)",
   "Achilles Ridgerunners": {
     "pts": 95,
@@ -12,49 +12,36 @@
     },
     "builds": [
       {
-        "name": "Heavy mining laser",
-        "fixed_ranged": [
-          "Twin heavy stubber"
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Twin heavy stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [
-          [
-            "Heavy mining laser"
-          ]
-        ],
-        "melee_choices": []
-      },
-      {
-        "name": "Achilles missile launcher",
-        "fixed_ranged": [
-          "Twin heavy stubber"
-        ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [
-          [
-            "Achilles missile launcher"
-          ]
-        ],
-        "melee_choices": []
-      },
-      {
-        "name": "Heavy mortar",
-        "fixed_ranged": [
-          "Twin heavy stubber"
-        ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [
-          [
-            "Heavy mortar"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Heavy mining laser",
+                "type": "ranged"
+              },
+              {
+                "name": "Achilles missile launcher",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy mortar",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -69,52 +56,40 @@
     },
     "builds": [
       {
-        "name": "Heavy mining laser",
-        "fixed_ranged": [
-          "Heavy stubber",
-          "Demolition charge cache"
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Heavy stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Demolition charge cache",
+            "type": "ranged"
+          },
+          {
+            "name": "Drilldozer blade",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Drilldozer blade"
-        ],
-        "ranged_choices": [
-          [
-            "Heavy mining laser"
-          ]
-        ],
-        "melee_choices": []
-      },
-      {
-        "name": "Clearance incinerator",
-        "fixed_ranged": [
-          "Heavy stubber",
-          "Demolition charge cache"
-        ],
-        "fixed_melee": [
-          "Drilldozer blade"
-        ],
-        "ranged_choices": [
-          [
-            "Clearance incinerator"
-          ]
-        ],
-        "melee_choices": []
-      },
-      {
-        "name": "Heavy seismic cannon",
-        "fixed_ranged": [
-          "Heavy stubber",
-          "Demolition charge cache"
-        ],
-        "fixed_melee": [
-          "Drilldozer blade"
-        ],
-        "ranged_choices": [
-          [
-            "Heavy seismic cannon"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Heavy mining laser",
+                "type": "ranged"
+              },
+              {
+                "name": "Clearance incinerator",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy seismic cannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -130,16 +105,25 @@
     "builds": [
       {
         "name": "Standard",
-        "fixed_ranged": [
-          "Twin autocannon",
-          "Demolition charge cache",
-          "Heavy stubber"
+        "fixed": [
+          {
+            "name": "Twin autocannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Demolition charge cache",
+            "type": "ranged"
+          },
+          {
+            "name": "Heavy stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Goliath wheels",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Goliath wheels"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   }

@@ -12,16 +12,25 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Cognis heavy stubber",
-          "Heavy phosphor blaster",
-          "Twin cognis lascannon"
+        "fixed": [
+          {
+            "name": "Cognis heavy stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Heavy phosphor blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin cognis lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -38,25 +47,31 @@
     "builds": [
       {
         "name": "Twin cognis autocannon",
-        "fixed_ranged": [
-          "Twin cognis autocannon"
+        "fixed": [
+          {
+            "name": "Twin cognis autocannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ironstrider feet",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Ironstrider feet"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       },
       {
         "name": "Twin cognis lascannon",
-        "fixed_ranged": [
-          "Twin cognis lascannon"
+        "fixed": [
+          {
+            "name": "Twin cognis lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ironstrider feet",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Ironstrider feet"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -74,22 +89,46 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [],
-        "ranged_choices": [
-          [
-            "Twin Kastelan phosphor blaster",
-            "Kastelan phosphor blaster",
-            "Incendine combustor",
-            "Heavy phosphor blaster"
-          ]
-        ],
-        "melee_choices": [
-          [
-            "Close combat weapon",
-            "Twin Kastelan fist",
-            "Kastelan fist"
-          ]
+        "fixed": [],
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Twin Kastelan phosphor blaster",
+                "type": "ranged"
+              },
+              {
+                "name": "Kastelan phosphor blaster",
+                "type": "ranged"
+              },
+              {
+                "name": "Incendine combustor",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy phosphor blaster",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Melee weapon 1",
+            "choices": [
+              {
+                "name": "Close combat weapon",
+                "type": "melee"
+              },
+              {
+                "name": "Twin Kastelan fist",
+                "type": "melee"
+              },
+              {
+                "name": "Kastelan fist",
+                "type": "melee"
+              }
+            ]
+          }
         ]
       }
     ]
@@ -107,14 +146,17 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Cognis heavy stubber"
+        "fixed": [
+          {
+            "name": "Cognis heavy stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Dunecrawler legs",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Dunecrawler legs"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -130,15 +172,21 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Cognis heavy stubber",
-          "Disruptor missile launcher"
+        "fixed": [
+          {
+            "name": "Cognis heavy stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Disruptor missile launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -155,15 +203,21 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Phosphor serpenta",
-          "Radium jezzail"
+        "fixed": [
+          {
+            "name": "Phosphor serpenta",
+            "type": "ranged"
+          },
+          {
+            "name": "Radium jezzail",
+            "type": "ranged"
+          },
+          {
+            "name": "Ironstrider feet",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Ironstrider feet"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   }

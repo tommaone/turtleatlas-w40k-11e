@@ -263,10 +263,19 @@ class TestSoulGrinderMerge:
         expected_ranged = [
             "Torrent of burning blood", "Harvester cannon",
         ]
-        # Support both flat list format and builds format
+        # Support both new slots format and legacy builds format
         if "builds" in wo:
             all_ranged = []
             for build in wo["builds"]:
+                # New format: fixed = [{name, type}], slots = [{name, choices}]
+                for w in build.get("fixed", []):
+                    if w.get("type") == "ranged":
+                        all_ranged.append(w["name"])
+                for slot in build.get("slots", []):
+                    for ch in slot.get("choices", []):
+                        if ch.get("type") == "ranged":
+                            all_ranged.append(ch["name"])
+                # Legacy format fallback
                 all_ranged.extend(build.get("fixed_ranged", []))
                 for cl in build.get("ranged_choices", []):
                     all_ranged.extend(cl)

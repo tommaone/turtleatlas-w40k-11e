@@ -14,16 +14,25 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Havoc launcher",
-          "Twin heavy bolter",
-          "Soulshatter lascannon"
+        "fixed": [
+          {
+            "name": "Havoc launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Soulshatter lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -39,14 +48,17 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Havoc launcher"
+        "fixed": [
+          {
+            "name": "Havoc launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -63,31 +75,47 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [
-          "Shearing claws"
+        "fixed": [
+          {
+            "name": "Shearing claws",
+            "type": "melee"
+          }
         ],
-        "ranged_choices": [
-          [
-            "Electroscourge",
-            "Hades lascannon",
-            "Heavy reaper autocannon",
-            "Heavy missile launcher"
-          ],
-          [
-            "Hades battle cannon",
-            "Ectoplasma destructor"
-          ],
-          [
-            "Electroscourge",
-            "Hades lascannon",
-            "Heavy reaper autocannon",
-            "Heavy baleflamer"
-          ],
-          []
-        ],
-        "melee_choices": [],
-        "max_ranged": 1
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Electroscourge",
+                "type": "ranged"
+              },
+              {
+                "name": "Hades lascannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy reaper autocannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy missile launcher",
+                "type": "ranged"
+              },
+              {
+                "name": "Hades battle cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Ectoplasma destructor",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy baleflamer",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -103,12 +131,13 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [
-          "Heldrake claws"
+        "fixed": [
+          {
+            "name": "Heldrake claws",
+            "type": "melee"
+          }
         ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -126,12 +155,13 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [
-          "Maulerfiend fists"
+        "fixed": [
+          {
+            "name": "Maulerfiend fists",
+            "type": "melee"
+          }
         ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   }

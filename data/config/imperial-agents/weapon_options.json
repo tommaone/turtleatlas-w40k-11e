@@ -1,5 +1,5 @@
 {
-  "_note": "imperial-agents weapon options — generated from BSData + MFM",
+  "_note": "imperial-agents weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Corvus Blackstar": {
     "info": {
@@ -13,14 +13,17 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Hurricane bolter"
+        "fixed": [
+          {
+            "name": "Hurricane bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -36,19 +39,26 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Hunter-killer missile",
-          "Storm bolter"
+        "fixed": [
+          {
+            "name": "Hunter-killer missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
   "Inquisitorial Chimera": {
+    "pts": 60,
     "info": {
       "M": "10\"",
       "T": 9,
@@ -56,29 +66,73 @@
       "W": 11,
       "OC": 2
     },
-    "pts": 60,
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Hunter-killer missile",
-          "Lasgun array"
+        "fixed": [
+          {
+            "name": "Lasgun array",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [
-          [
-            "Heavy bolter",
-            "Heavy flamer"
-          ],
-          [
-            "Heavy bolter",
-            "Heavy flamer",
-            "Multi-laser"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Main weapon",
+            "choices": [
+              {
+                "name": "Multi-laser",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy flamer",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Hull weapon",
+            "choices": [
+              {
+                "name": "Heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy flamer",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Pintle mount",
+            "choices": [
+              {
+                "name": "Heavy stubber",
+                "type": "ranged"
+              },
+              {
+                "name": "Storm bolter",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Extra weapon",
+            "choices": [
+              {
+                "name": "Hunter-killer missile",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -95,23 +149,39 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Heavy bolter",
-          "Hunter-killer missile"
+        "fixed": [
+          {
+            "name": "Heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Hunter-killer missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [
-          [
-            "Immolation flamers",
-            "Twin heavy bolter",
-            "Twin multi-melta"
-          ]
-        ],
-        "melee_choices": [],
-        "max_ranged": null,
-        "max_melee": null
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Immolation flamers",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin multi-melta",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   }

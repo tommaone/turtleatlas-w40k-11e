@@ -14,21 +14,31 @@
     "builds": [
       {
         "name": "Spirit Syphon",
-        "fixed_ranged": [
-          "Spirit Syphon"
+        "fixed": [
+          {
+            "name": "Spirit Syphon",
+            "type": "ranged"
+          },
+          {
+            "name": "Spirit-leech Tentacles",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Spirit-leech Tentacles"
-        ]
+        "slots": []
       },
       {
         "name": "Spirit Vortex",
-        "fixed_ranged": [
-          "Spirit Vortex"
+        "fixed": [
+          {
+            "name": "Spirit Vortex",
+            "type": "ranged"
+          },
+          {
+            "name": "Spirit-leech Tentacles",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Spirit-leech Tentacles"
-        ]
+        "slots": []
       }
     ]
   },
@@ -46,21 +56,31 @@
     "builds": [
       {
         "name": "Disintegrator Cannon",
-        "fixed_ranged": [
-          "Disintegrator Cannon"
+        "fixed": [
+          {
+            "name": "Disintegrator Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Bladevanes and chainsnares",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Bladevanes and chainsnares"
-        ]
+        "slots": []
       },
       {
         "name": "Dark Lance",
-        "fixed_ranged": [
-          "Dark Lance"
+        "fixed": [
+          {
+            "name": "Dark Lance",
+            "type": "ranged"
+          },
+          {
+            "name": "Bladevanes and chainsnares",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Bladevanes and chainsnares"
-        ]
+        "slots": []
       }
     ]
   },
@@ -78,47 +98,91 @@
     "builds": [
       {
         "name": "3x Disintegrator Cannon",
-        "fixed_ranged": [
-          "Disintegrator Cannon",
-          "Disintegrator Cannon",
-          "Disintegrator Cannon"
+        "fixed": [
+          {
+            "name": "Disintegrator Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Disintegrator Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Disintegrator Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Bladevanes",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Bladevanes"
-        ]
+        "slots": []
       },
       {
         "name": "2x Disintegrator Cannon + Dark Lance",
-        "fixed_ranged": [
-          "Disintegrator Cannon",
-          "Disintegrator Cannon",
-          "Dark Lance"
+        "fixed": [
+          {
+            "name": "Disintegrator Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Disintegrator Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Dark Lance",
+            "type": "ranged"
+          },
+          {
+            "name": "Bladevanes",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Bladevanes"
-        ]
+        "slots": []
       },
       {
         "name": "Disintegrator Cannon + 2x Dark Lance",
-        "fixed_ranged": [
-          "Disintegrator Cannon",
-          "Dark Lance",
-          "Dark Lance"
+        "fixed": [
+          {
+            "name": "Disintegrator Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Dark Lance",
+            "type": "ranged"
+          },
+          {
+            "name": "Dark Lance",
+            "type": "ranged"
+          },
+          {
+            "name": "Bladevanes",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Bladevanes"
-        ]
+        "slots": []
       },
       {
         "name": "3x Dark Lance",
-        "fixed_ranged": [
-          "Dark Lance",
-          "Dark Lance",
-          "Dark Lance"
+        "fixed": [
+          {
+            "name": "Dark Lance",
+            "type": "ranged"
+          },
+          {
+            "name": "Dark Lance",
+            "type": "ranged"
+          },
+          {
+            "name": "Dark Lance",
+            "type": "ranged"
+          },
+          {
+            "name": "Bladevanes",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Bladevanes"
-        ]
+        "slots": []
       }
     ]
   },
@@ -134,79 +198,163 @@
     "builds": [
       {
         "name": "Twin Dark Lances + Splinter Cannon",
-        "fixed_ranged": [
-          "Dark Lance",
-          "Dark Lance",
-          "Splinter Cannon"
+        "fixed": [
+          {
+            "name": "Dark Lance",
+            "type": "ranged"
+          },
+          {
+            "name": "Dark Lance",
+            "type": "ranged"
+          },
+          {
+            "name": "Splinter Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Bladed Wings",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Bladed Wings"
-        ],
-        "ranged_choices": [
-          [
-            "Razorwing Missiles - Monoscythe Missiles",
-            "Razorwing Missiles - Neurotoxin Missiles",
-            "Razorwing Missiles - Shatterfield Missiles"
-          ]
-        ],
-        "max_ranged": 1
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Razorwing Missiles - Monoscythe Missiles",
+                "type": "ranged"
+              },
+              {
+                "name": "Razorwing Missiles - Neurotoxin Missiles",
+                "type": "ranged"
+              },
+              {
+                "name": "Razorwing Missiles - Shatterfield Missiles",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "Twin Dark Lances + Twin Splinter Rifle",
-        "fixed_ranged": [
-          "Dark Lance",
-          "Dark Lance",
-          "Twin Splinter Rifle"
+        "fixed": [
+          {
+            "name": "Dark Lance",
+            "type": "ranged"
+          },
+          {
+            "name": "Dark Lance",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin Splinter Rifle",
+            "type": "ranged"
+          },
+          {
+            "name": "Bladed Wings",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Bladed Wings"
-        ],
-        "ranged_choices": [
-          [
-            "Razorwing Missiles - Monoscythe Missiles",
-            "Razorwing Missiles - Neurotoxin Missiles",
-            "Razorwing Missiles - Shatterfield Missiles"
-          ]
-        ],
-        "max_ranged": 1
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Razorwing Missiles - Monoscythe Missiles",
+                "type": "ranged"
+              },
+              {
+                "name": "Razorwing Missiles - Neurotoxin Missiles",
+                "type": "ranged"
+              },
+              {
+                "name": "Razorwing Missiles - Shatterfield Missiles",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "Twin Disintegrator Cannons + Splinter Cannon",
-        "fixed_ranged": [
-          "Disintegrator Cannon",
-          "Disintegrator Cannon",
-          "Splinter Cannon"
+        "fixed": [
+          {
+            "name": "Disintegrator Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Disintegrator Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Splinter Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Bladed Wings",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Bladed Wings"
-        ],
-        "ranged_choices": [
-          [
-            "Razorwing Missiles - Monoscythe Missiles",
-            "Razorwing Missiles - Neurotoxin Missiles",
-            "Razorwing Missiles - Shatterfield Missiles"
-          ]
-        ],
-        "max_ranged": 1
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Razorwing Missiles - Monoscythe Missiles",
+                "type": "ranged"
+              },
+              {
+                "name": "Razorwing Missiles - Neurotoxin Missiles",
+                "type": "ranged"
+              },
+              {
+                "name": "Razorwing Missiles - Shatterfield Missiles",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "Twin Disintegrator Cannons + Twin Splinter Rifle",
-        "fixed_ranged": [
-          "Disintegrator Cannon",
-          "Disintegrator Cannon",
-          "Twin Splinter Rifle"
+        "fixed": [
+          {
+            "name": "Disintegrator Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Disintegrator Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin Splinter Rifle",
+            "type": "ranged"
+          },
+          {
+            "name": "Bladed Wings",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Bladed Wings"
-        ],
-        "ranged_choices": [
-          [
-            "Razorwing Missiles - Monoscythe Missiles",
-            "Razorwing Missiles - Neurotoxin Missiles",
-            "Razorwing Missiles - Shatterfield Missiles"
-          ]
-        ],
-        "max_ranged": 1
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Razorwing Missiles - Monoscythe Missiles",
+                "type": "ranged"
+              },
+              {
+                "name": "Razorwing Missiles - Neurotoxin Missiles",
+                "type": "ranged"
+              },
+              {
+                "name": "Razorwing Missiles - Shatterfield Missiles",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -223,43 +371,75 @@
     "builds": [
       {
         "name": "Macro-Scalpel + Chain-flails + Twin Splinter Cannon",
-        "fixed_ranged": [
-          "Twin Splinter Cannon"
+        "fixed": [
+          {
+            "name": "Twin Splinter Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Macro-Scalpel",
+            "type": "melee"
+          },
+          {
+            "name": "Chain-flails",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Macro-Scalpel",
-          "Chain-flails"
-        ]
+        "slots": []
       },
       {
         "name": "Macro-Scalpel + Talos Gauntlet + Twin Haywire Blasters",
-        "fixed_ranged": [
-          "Twin Haywire Blasters"
+        "fixed": [
+          {
+            "name": "Twin Haywire Blasters",
+            "type": "ranged"
+          },
+          {
+            "name": "Macro-Scalpel",
+            "type": "melee"
+          },
+          {
+            "name": "Talos Gauntlet",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Macro-Scalpel",
-          "Talos Gauntlet"
-        ]
+        "slots": []
       },
       {
         "name": "Talos Ichor Injector + Talos Gauntlet + Twin Heat Lance",
-        "fixed_ranged": [
-          "Twin Heat Lance"
+        "fixed": [
+          {
+            "name": "Twin Heat Lance",
+            "type": "ranged"
+          },
+          {
+            "name": "Talos Ichor Injector",
+            "type": "melee"
+          },
+          {
+            "name": "Talos Gauntlet",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Talos Ichor Injector",
-          "Talos Gauntlet"
-        ]
+        "slots": []
       },
       {
         "name": "Twin Liquifier Gun + Chain-flails + Stinger Pod",
-        "fixed_ranged": [
-          "Twin Liquifier Gun",
-          "Stinger Pod"
+        "fixed": [
+          {
+            "name": "Twin Liquifier Gun",
+            "type": "ranged"
+          },
+          {
+            "name": "Stinger Pod",
+            "type": "ranged"
+          },
+          {
+            "name": "Chain-flails",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Chain-flails"
-        ]
+        "slots": []
       }
     ]
   },
@@ -277,23 +457,39 @@
     "builds": [
       {
         "name": "Twin Splinter Cannons",
-        "fixed_ranged": [
-          "Splinter Cannon",
-          "Splinter Cannon"
+        "fixed": [
+          {
+            "name": "Splinter Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Splinter Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Bladevanes",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Bladevanes"
-        ]
+        "slots": []
       },
       {
         "name": "Splinter Cannon + Twin Splinter Rifle",
-        "fixed_ranged": [
-          "Splinter Cannon",
-          "Twin Splinter Rifle"
+        "fixed": [
+          {
+            "name": "Splinter Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin Splinter Rifle",
+            "type": "ranged"
+          },
+          {
+            "name": "Bladevanes",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Bladevanes"
-        ]
+        "slots": []
       }
     ]
   },
@@ -310,35 +506,59 @@
     "builds": [
       {
         "name": "2x Void Lance",
-        "fixed_ranged": [
-          "Void Lance"
+        "fixed": [
+          {
+            "name": "Void Lance",
+            "type": "ranged"
+          },
+          {
+            "name": "Bladed Wings",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Bladed Wings"
-        ],
-        "ranged_choices": [
-          [
-            "Voidraven Missiles -  Implosion Missiles",
-            "Voidraven Missiles - Shatterfield Missiles"
-          ]
-        ],
-        "max_ranged": 1
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Voidraven Missiles -  Implosion Missiles",
+                "type": "ranged"
+              },
+              {
+                "name": "Voidraven Missiles - Shatterfield Missiles",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "2x Dark Scythe",
-        "fixed_ranged": [
-          "Dark Scythe"
+        "fixed": [
+          {
+            "name": "Dark Scythe",
+            "type": "ranged"
+          },
+          {
+            "name": "Bladed Wings",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Bladed Wings"
-        ],
-        "ranged_choices": [
-          [
-            "Voidraven Missiles -  Implosion Missiles",
-            "Voidraven Missiles - Shatterfield Missiles"
-          ]
-        ],
-        "max_ranged": 1
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Voidraven Missiles -  Implosion Missiles",
+                "type": "ranged"
+              },
+              {
+                "name": "Voidraven Missiles - Shatterfield Missiles",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   }

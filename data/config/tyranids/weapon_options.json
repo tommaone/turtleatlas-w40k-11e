@@ -13,28 +13,89 @@
     "builds": [
       {
         "name": "Mixed bio-weapons",
-        "fixed_ranged": [],
-        "fixed_melee": [],
-        "ranged_choices": [
-          [
-            "Bio-plasma",
-            "Spine banks",
-            "Deathspitters with slimer maggots",
-            "Devourers with brainleech worms",
-            "Heavy venom cannon",
-            "Stranglethorn cannon"
-          ]
+        "fixed": [],
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Bio-plasma",
+                "type": "ranged"
+              },
+              {
+                "name": "Spine banks",
+                "type": "ranged"
+              },
+              {
+                "name": "Deathspitters with slimer maggots",
+                "type": "ranged"
+              },
+              {
+                "name": "Devourers with brainleech worms",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy venom cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Stranglethorn cannon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Ranged weapon 2",
+            "choices": [
+              {
+                "name": "Bio-plasma",
+                "type": "ranged"
+              },
+              {
+                "name": "Spine banks",
+                "type": "ranged"
+              },
+              {
+                "name": "Deathspitters with slimer maggots",
+                "type": "ranged"
+              },
+              {
+                "name": "Devourers with brainleech worms",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy venom cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Stranglethorn cannon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Melee weapon 1",
+            "choices": [
+              {
+                "name": "Chitinous claws and teeth",
+                "type": "melee"
+              },
+              {
+                "name": "Carnifex scything talons",
+                "type": "melee"
+              },
+              {
+                "name": "Carnifex crushing claws",
+                "type": "melee"
+              },
+              {
+                "name": "Carnifex extra scything talons",
+                "type": "melee"
+              }
+            ]
+          }
         ],
-        "melee_choices": [
-          [
-            "Chitinous claws and teeth",
-            "Carnifex scything talons",
-            "Carnifex crushing claws",
-            "Carnifex extra scything talons"
-          ]
-        ],
-        "max_ranged": 2,
-        "max_melee": 1
+        "no_duplicates": true
       }
     ]
   },
@@ -49,23 +110,39 @@
     "builds": [
       {
         "name": "Twin stranglethorn cannon",
-        "fixed_ranged": [
-          "Stinger salvoes",
-          "Twin stranglethorn cannon"
+        "fixed": [
+          {
+            "name": "Stinger salvoes",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin stranglethorn cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Scything wings",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Scything wings"
-        ]
+        "slots": []
       },
       {
         "name": "Twin heavy venom cannon",
-        "fixed_ranged": [
-          "Stinger salvoes",
-          "Twin heavy venom cannon"
+        "fixed": [
+          {
+            "name": "Stinger salvoes",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy venom cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Scything wings",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Scything wings"
-        ]
+        "slots": []
       }
     ]
   },
@@ -82,13 +159,21 @@
     "builds": [
       {
         "name": "Grasping tongue + claws",
-        "fixed_ranged": [
-          "Grasping tongue"
+        "fixed": [
+          {
+            "name": "Grasping tongue",
+            "type": "ranged"
+          },
+          {
+            "name": "Shovelling claws",
+            "type": "melee"
+          },
+          {
+            "name": "Ravenous maw",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Shovelling claws",
-          "Ravenous maw"
-        ]
+        "slots": []
       }
     ]
   },
@@ -105,14 +190,25 @@
     "builds": [
       {
         "name": "Bio-titan",
-        "fixed_ranged": [
-          "Bio-plasma torrent",
-          "Dire bio-cannon"
+        "fixed": [
+          {
+            "name": "Bio-plasma torrent",
+            "type": "ranged"
+          },
+          {
+            "name": "Dire bio-cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Lashwhip pods",
+            "type": "melee"
+          },
+          {
+            "name": "Titanic scything talons",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Lashwhip pods",
-          "Titanic scything talons"
-        ]
+        "slots": []
       }
     ]
   },
@@ -127,15 +223,29 @@
     "builds": [
       {
         "name": "Drool cannon + Tentaclids",
-        "fixed_ranged": [
-          "Drool cannon",
-          "Tentaclids",
-          "Stinger salvoes"
+        "fixed": [
+          {
+            "name": "Drool cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Tentaclids",
+            "type": "ranged"
+          },
+          {
+            "name": "Stinger salvoes",
+            "type": "ranged"
+          },
+          {
+            "name": "Thorax spur",
+            "type": "melee"
+          },
+          {
+            "name": "Scything wings",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Thorax spur",
-          "Scything wings"
-        ]
+        "slots": []
       }
     ]
   },
@@ -153,13 +263,21 @@
     "builds": [
       {
         "name": "Psychic overload",
-        "fixed_ranged": [
-          "Psychic overload"
+        "fixed": [
+          {
+            "name": "Psychic overload",
+            "type": "ranged"
+          },
+          {
+            "name": "Massive scything talons - strike",
+            "type": "melee"
+          },
+          {
+            "name": "Massive scything talons - sweep",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Massive scything talons - strike",
-          "Massive scything talons - sweep"
-        ]
+        "slots": []
       }
     ]
   },
@@ -176,11 +294,17 @@
     "builds": [
       {
         "name": "Distendible jaw + talons",
-        "fixed_ranged": [],
-        "fixed_melee": [
-          "Distendible jaw",
-          "Mawloc scything talons"
-        ]
+        "fixed": [
+          {
+            "name": "Distendible jaw",
+            "type": "melee"
+          },
+          {
+            "name": "Mawloc scything talons",
+            "type": "melee"
+          }
+        ],
+        "slots": []
       }
     ]
   },
@@ -196,13 +320,21 @@
     "builds": [
       {
         "name": "Toxinjecter harpoon",
-        "fixed_ranged": [
-          "Toxinjecter Harpoon"
+        "fixed": [
+          {
+            "name": "Toxinjecter Harpoon",
+            "type": "ranged"
+          },
+          {
+            "name": "Monstrous scything talons",
+            "type": "melee"
+          },
+          {
+            "name": "Toxinjecter Harpoon",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Monstrous scything talons",
-          "Toxinjecter Harpoon"
-        ]
+        "slots": []
       }
     ]
   },
@@ -219,33 +351,57 @@
     "builds": [
       {
         "name": "Neuroparasite",
-        "fixed_ranged": [
-          "Psychic tendril - neuroparasite"
+        "fixed": [
+          {
+            "name": "Psychic tendril - neuroparasite",
+            "type": "ranged"
+          },
+          {
+            "name": "Monstrous rending claws",
+            "type": "melee"
+          },
+          {
+            "name": "Monstrous scything talons",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Monstrous rending claws",
-          "Monstrous scything talons"
-        ]
+        "slots": []
       },
       {
         "name": "Neurolance",
-        "fixed_ranged": [
-          "Psychic tendril - neurolance"
+        "fixed": [
+          {
+            "name": "Psychic tendril - neurolance",
+            "type": "ranged"
+          },
+          {
+            "name": "Monstrous rending claws",
+            "type": "melee"
+          },
+          {
+            "name": "Monstrous scything talons",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Monstrous rending claws",
-          "Monstrous scything talons"
-        ]
+        "slots": []
       },
       {
         "name": "Neuroblast",
-        "fixed_ranged": [
-          "Psychic tendril - neuroblast"
+        "fixed": [
+          {
+            "name": "Psychic tendril - neuroblast",
+            "type": "ranged"
+          },
+          {
+            "name": "Monstrous rending claws",
+            "type": "melee"
+          },
+          {
+            "name": "Monstrous scything talons",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Monstrous rending claws",
-          "Monstrous scything talons"
-        ]
+        "slots": []
       }
     ]
   },
@@ -262,33 +418,57 @@
     "builds": [
       {
         "name": "Fleshborer hive",
-        "fixed_ranged": [
-          "Stinger salvoes",
-          "Fleshborer hive"
+        "fixed": [
+          {
+            "name": "Stinger salvoes",
+            "type": "ranged"
+          },
+          {
+            "name": "Fleshborer hive",
+            "type": "ranged"
+          },
+          {
+            "name": "Powerful limbs",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Powerful limbs"
-        ]
+        "slots": []
       },
       {
         "name": "Acid spray",
-        "fixed_ranged": [
-          "Stinger salvoes",
-          "Acid spray"
+        "fixed": [
+          {
+            "name": "Stinger salvoes",
+            "type": "ranged"
+          },
+          {
+            "name": "Acid spray",
+            "type": "ranged"
+          },
+          {
+            "name": "Powerful limbs",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Powerful limbs"
-        ]
+        "slots": []
       },
       {
         "name": "Rupture cannon",
-        "fixed_ranged": [
-          "Stinger salvoes",
-          "Rupture cannon"
+        "fixed": [
+          {
+            "name": "Stinger salvoes",
+            "type": "ranged"
+          },
+          {
+            "name": "Rupture cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Powerful limbs",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Powerful limbs"
-        ]
+        "slots": []
       }
     ]
   },
@@ -305,12 +485,17 @@
     "builds": [
       {
         "name": "Bio-plasmic cannon",
-        "fixed_ranged": [
-          "Bio-plasmic cannon"
+        "fixed": [
+          {
+            "name": "Bio-plasmic cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Powerful limbs",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Powerful limbs"
-        ]
+        "slots": []
       }
     ]
   },
@@ -326,12 +511,17 @@
     "builds": [
       {
         "name": "Dire bio-cannon",
-        "fixed_ranged": [
-          "Dire bio-cannon"
+        "fixed": [
+          {
+            "name": "Dire bio-cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Gargantuan scything talons",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Gargantuan scything talons"
-        ]
+        "slots": []
       }
     ]
   },
@@ -347,12 +537,17 @@
     "builds": [
       {
         "name": "Psychoclastic torrent",
-        "fixed_ranged": [
-          "Psychoclastic torrent"
+        "fixed": [
+          {
+            "name": "Psychoclastic torrent",
+            "type": "ranged"
+          },
+          {
+            "name": "Talons and betentacled maw",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Talons and betentacled maw"
-        ]
+        "slots": []
       }
     ]
   },
@@ -369,12 +564,17 @@
     "builds": [
       {
         "name": "Bio-plasmic scream",
-        "fixed_ranged": [
-          "Bio-plasmic scream"
+        "fixed": [
+          {
+            "name": "Bio-plasmic scream",
+            "type": "ranged"
+          },
+          {
+            "name": "Screamer-killer talons",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Screamer-killer talons"
-        ]
+        "slots": []
       }
     ]
   },
@@ -390,12 +590,17 @@
     "builds": [
       {
         "name": "Sporocyst bio-weapon",
-        "fixed_ranged": [
-          "Sporocyst bio-weapon"
+        "fixed": [
+          {
+            "name": "Sporocyst bio-weapon",
+            "type": "ranged"
+          },
+          {
+            "name": "Flensing whips",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Flensing whips"
-        ]
+        "slots": []
       }
     ]
   },
@@ -411,12 +616,17 @@
     "builds": [
       {
         "name": "Massive toxic lashes",
-        "fixed_ranged": [
-          "Massive toxic lashes"
+        "fixed": [
+          {
+            "name": "Massive toxic lashes",
+            "type": "ranged"
+          },
+          {
+            "name": "Massive toxic lashes",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Massive toxic lashes"
-        ]
+        "slots": []
       }
     ]
   },
@@ -433,12 +643,17 @@
     "builds": [
       {
         "name": "Bio-electric pulse",
-        "fixed_ranged": [
-          "Bio-electric pulse"
+        "fixed": [
+          {
+            "name": "Bio-electric pulse",
+            "type": "ranged"
+          },
+          {
+            "name": "Trygon scything talons",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Trygon scything talons"
-        ]
+        "slots": []
       }
     ]
   },
@@ -455,12 +670,17 @@
     "builds": [
       {
         "name": "Tyrannocyte Bio-weapons",
-        "fixed_ranged": [
-          "Tyrannocyte Bio-weapons"
+        "fixed": [
+          {
+            "name": "Tyrannocyte Bio-weapons",
+            "type": "ranged"
+          },
+          {
+            "name": "Flensing Whips",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Flensing Whips"
-        ]
+        "slots": []
       }
     ]
   }

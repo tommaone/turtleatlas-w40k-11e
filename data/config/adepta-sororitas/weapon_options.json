@@ -14,24 +14,39 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Heavy bolter"
+        "fixed": [
+          {
+            "name": "Heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [
-          [
-            "Castigator autocannons",
-            "Castigator battle cannon"
-          ],
-          [
-            "Storm bolter",
-            "Hunter-Killer Missile"
-          ]
-        ],
-        "melee_choices": [],
-        "max_ranged": 1
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Castigator autocannons",
+                "type": "ranged"
+              },
+              {
+                "name": "Castigator battle cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Storm bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Hunter-Killer Missile",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -48,15 +63,21 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Hunter-Killer Missile",
-          "Heavy Bolter"
+        "fixed": [
+          {
+            "name": "Hunter-Killer Missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Heavy Bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -73,15 +94,21 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Hunter-Killer Missile",
-          "Heavy Bolter"
+        "fixed": [
+          {
+            "name": "Hunter-Killer Missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Heavy Bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -98,24 +125,43 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [],
-        "ranged_choices": [
-          [
-            "Heavy Bolter",
-            "Mortifier flamer"
-          ]
-        ],
-        "melee_choices": [
-          [
-            "Twin Penitent Buzz-Blades",
-            "Twin Penitent Flails",
-            "Penitent Buzz-Blade",
-            "Penitent Flail"
-          ]
-        ],
-        "max_ranged": null,
-        "max_melee": null
+        "fixed": [],
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Heavy Bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Mortifier flamer",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Melee weapon 1",
+            "choices": [
+              {
+                "name": "Twin Penitent Buzz-Blades",
+                "type": "melee"
+              },
+              {
+                "name": "Twin Penitent Flails",
+                "type": "melee"
+              },
+              {
+                "name": "Penitent Buzz-Blade",
+                "type": "melee"
+              },
+              {
+                "name": "Penitent Flail",
+                "type": "melee"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -132,29 +178,57 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Bolt pistol"
+        "fixed": [
+          {
+            "name": "Bolt pistol",
+            "type": "ranged"
+          }
         ],
-        "fixed_melee": [],
-        "ranged_choices": [
-          [
-            "Paragon Storm Bolters",
-            "Paragon Grenade Launchers"
-          ],
-          [
-            "Heavy Bolter",
-            "Multi-melta",
-            "Ministorum heavy flamer"
-          ]
-        ],
-        "melee_choices": [
-          [
-            "Paragon War Blade",
-            "Paragon War Mace"
-          ]
-        ],
-        "max_ranged": null,
-        "max_melee": null
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Paragon Storm Bolters",
+                "type": "ranged"
+              },
+              {
+                "name": "Paragon Grenade Launchers",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Ranged weapon 2",
+            "choices": [
+              {
+                "name": "Heavy Bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Multi-melta",
+                "type": "ranged"
+              },
+              {
+                "name": "Ministorum heavy flamer",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Melee weapon 1",
+            "choices": [
+              {
+                "name": "Paragon War Blade",
+                "type": "melee"
+              },
+              {
+                "name": "Paragon War Mace",
+                "type": "melee"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -171,21 +245,35 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Penitent Flamers"
+        "fixed": [
+          {
+            "name": "Penitent Flamers",
+            "type": "ranged"
+          }
         ],
-        "fixed_melee": [],
-        "ranged_choices": [],
-        "melee_choices": [
-          [
-            "Twin Penitent Buzz-Blades",
-            "Twin Penitent Flails",
-            "Penitent Buzz-Blade",
-            "Penitent Flail"
-          ]
-        ],
-        "max_ranged": null,
-        "max_melee": null
+        "slots": [
+          {
+            "name": "Melee weapon 1",
+            "choices": [
+              {
+                "name": "Twin Penitent Buzz-Blades",
+                "type": "melee"
+              },
+              {
+                "name": "Twin Penitent Flails",
+                "type": "melee"
+              },
+              {
+                "name": "Penitent Buzz-Blade",
+                "type": "melee"
+              },
+              {
+                "name": "Penitent Flail",
+                "type": "melee"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -202,15 +290,21 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Hunter-Killer Missile",
-          "Storm bolter"
+        "fixed": [
+          {
+            "name": "Hunter-Killer Missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   }

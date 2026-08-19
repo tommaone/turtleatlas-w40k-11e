@@ -13,21 +13,39 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Havoc launcher",
-          "Twin heavy bolter",
-          "Soulshatter lascannon"
+        "fixed": [
+          {
+            "name": "Havoc launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Soulshatter lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [
-          [
-            "Combi-bolter",
-            "Combi-weapon"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Combi-bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Combi-weapon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -43,20 +61,35 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Havoc launcher",
-          "Predator twin lascannon"
+        "fixed": [
+          {
+            "name": "Havoc launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Predator twin lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [
-          [
-            "Combi-bolter",
-            "Combi-weapon"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Combi-bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Combi-weapon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -72,20 +105,35 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Havoc launcher",
-          "Predator autocannon"
+        "fixed": [
+          {
+            "name": "Havoc launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Predator autocannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [
-          [
-            "Combi-bolter",
-            "Combi-weapon"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Combi-bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Combi-weapon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -101,20 +149,35 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Combi-bolter",
-          "Havoc launcher"
+        "fixed": [
+          {
+            "name": "Combi-bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Havoc launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [
-          [
-            "Combi-bolter",
-            "Combi-weapon"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Combi-bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Combi-weapon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -131,31 +194,47 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [
-          "Shearing claws"
+        "fixed": [
+          {
+            "name": "Shearing claws",
+            "type": "melee"
+          }
         ],
-        "ranged_choices": [
-          [
-            "Electroscourge",
-            "Hades lascannon",
-            "Heavy reaper autocannon",
-            "Heavy missile launcher"
-          ],
-          [
-            "Hades battle cannon",
-            "Ectoplasma destructor"
-          ],
-          [
-            "Heavy reaper autocannon",
-            "Electroscourge",
-            "Hades lascannon",
-            "Heavy baleflamer"
-          ],
-          []
-        ],
-        "melee_choices": [],
-        "max_ranged": 1
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Electroscourge",
+                "type": "ranged"
+              },
+              {
+                "name": "Hades lascannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy reaper autocannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy missile launcher",
+                "type": "ranged"
+              },
+              {
+                "name": "Hades battle cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Ectoplasma destructor",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy baleflamer",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -172,53 +251,83 @@
     "builds": [
       {
         "name": "Ectoplasma cannons",
-        "fixed_ranged": [
-          "Ectoplasma cannon",
-          "Ectoplasma cannon",
-          "Ectoplasma cannon"
+        "fixed": [
+          {
+            "name": "Ectoplasma cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ectoplasma cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ectoplasma cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Forgefiend claws",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Forgefiend claws"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       },
       {
         "name": "Hades autocannons",
-        "fixed_ranged": [
-          "Hades autocannon",
-          "Hades autocannon",
-          "Ectoplasma cannon"
+        "fixed": [
+          {
+            "name": "Hades autocannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Hades autocannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ectoplasma cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Forgefiend claws",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Forgefiend claws"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       },
       {
         "name": "Ectoplasma cannons and jaws",
-        "fixed_ranged": [
-          "Ectoplasma cannon",
-          "Ectoplasma cannon"
+        "fixed": [
+          {
+            "name": "Ectoplasma cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ectoplasma cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Forgefiend jaws",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Forgefiend jaws"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       },
       {
         "name": "Hades autocannons and jaws",
-        "fixed_ranged": [
-          "Hades autocannon",
-          "Hades autocannon"
+        "fixed": [
+          {
+            "name": "Hades autocannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Hades autocannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Forgefiend jaws",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Forgefiend jaws"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -234,26 +343,51 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [
-          "Close combat weapon"
+        "fixed": [
+          {
+            "name": "Close combat weapon",
+            "type": "melee"
+          }
         ],
-        "ranged_choices": [
-          [
-            "Missile launcher",
-            "Helbrute hammer",
-            "Power scourge"
-          ],
-          [
-            "Twin heavy bolter",
-            "Twin lascannon",
-            "Multi-melta",
-            "Twin autocannon",
-            "Plasma cannon"
-          ]
-        ],
-        "melee_choices": [],
-        "max_ranged": 1
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Missile launcher",
+                "type": "ranged"
+              },
+              {
+                "name": "Helbrute hammer",
+                "type": "ranged"
+              },
+              {
+                "name": "Power scourge",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin lascannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Multi-melta",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin autocannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Plasma cannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -269,17 +403,27 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [
-          "Heldrake claws"
+        "fixed": [
+          {
+            "name": "Heldrake claws",
+            "type": "melee"
+          }
         ],
-        "ranged_choices": [
-          [
-            "Hades autocannon",
-            "Baleflamer"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Hades autocannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Baleflamer",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -296,26 +440,52 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [],
-        "ranged_choices": [
-          [
-            "Hades gatling cannon",
-            "Skullhurler"
-          ],
-          [
-            "Gorestorm cannon",
-            "Daemongore cannon",
-            "Ichor cannon"
-          ]
-        ],
-        "melee_choices": [
-          [
-            "Great cleaver of Khorne - strike",
-            "Great cleaver of Khorne - sweep"
-          ]
-        ],
-        "max_melee": 1
+        "fixed": [],
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Hades gatling cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Skullhurler",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Ranged weapon 2",
+            "choices": [
+              {
+                "name": "Gorestorm cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Daemongore cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Ichor cannon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Melee weapon 1",
+            "choices": [
+              {
+                "name": "Great cleaver of Khorne - strike",
+                "type": "melee"
+              },
+              {
+                "name": "Great cleaver of Khorne - sweep",
+                "type": "melee"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -332,12 +502,13 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [
-          "Maulerfiend fists"
+        "fixed": [
+          {
+            "name": "Maulerfiend fists",
+            "type": "melee"
+          }
         ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   }

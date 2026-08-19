@@ -13,22 +13,43 @@
     "builds": [
       {
         "name": "Twin Heavy Rail Cannon",
-        "fixed_ranged": [
-          "Twin heavy rail cannon",
-          "Missile pod",
-          "Burst cannon",
-          "Seeker missile"
+        "fixed": [
+          {
+            "name": "Twin heavy rail cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Missile pod",
+            "type": "ranged"
+          },
+          {
+            "name": "Burst cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Seeker missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [
-          [
-            "Cyclic ion blaster - standard",
-            "Cyclic ion blaster - overcharge"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Cyclic ion blaster - standard",
+                "type": "ranged"
+              },
+              {
+                "name": "Cyclic ion blaster - overcharge",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -45,18 +66,33 @@
     "builds": [
       {
         "name": "Heavy Rail Rifle + Twin Smart Missile System",
-        "fixed_ranged": [
-          "Heavy rail rifle",
-          "High-yield missile pods",
-          "Seeker missile",
-          "Twin plasma rifle",
-          "Twin smart missile system"
+        "fixed": [
+          {
+            "name": "Heavy rail rifle",
+            "type": "ranged"
+          },
+          {
+            "name": "High-yield missile pods",
+            "type": "ranged"
+          },
+          {
+            "name": "Seeker missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin plasma rifle",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin smart missile system",
+            "type": "ranged"
+          },
+          {
+            "name": "Crushing bulk",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Crushing bulk"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -73,15 +109,21 @@
     "builds": [
       {
         "name": "Fireknife",
-        "fixed_ranged": [
-          "Missile pod",
-          "Plasma rifle"
+        "fixed": [
+          {
+            "name": "Missile pod",
+            "type": "ranged"
+          },
+          {
+            "name": "Plasma rifle",
+            "type": "ranged"
+          },
+          {
+            "name": "Battlesuit fists",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Battlesuit fists"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -98,15 +140,21 @@
     "builds": [
       {
         "name": "Starscythe",
-        "fixed_ranged": [
-          "Burst cannon",
-          "T'au flamer"
+        "fixed": [
+          {
+            "name": "Burst cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "T'au flamer",
+            "type": "ranged"
+          },
+          {
+            "name": "Battlesuit fists",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Battlesuit fists"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -122,17 +170,29 @@
     "builds": [
       {
         "name": "Accelerator Burst Cannon",
-        "fixed_ranged": [
-          "Accelerator burst cannon",
-          "Twin pulse carbine",
-          "Smart missile system",
-          "Seeker missile"
+        "fixed": [
+          {
+            "name": "Accelerator burst cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin pulse carbine",
+            "type": "ranged"
+          },
+          {
+            "name": "Smart missile system",
+            "type": "ranged"
+          },
+          {
+            "name": "Seeker missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -148,23 +208,48 @@
     "builds": [
       {
         "name": "Cyclic Ion Raker + Twin Cannons",
-        "fixed_ranged": [],
-        "fixed_melee": [
-          "Ghostkeel fists"
+        "fixed": [
+          {
+            "name": "Ghostkeel fists",
+            "type": "melee"
+          }
         ],
-        "ranged_choices": [
-          [
-            "Cyclic ion raker - standard",
-            "Cyclic ion raker - overcharge",
-            "Fusion collider"
-          ],
-          [
-            "Twin burst cannon",
-            "Twin T'au flamer",
-            "Twin fusion blaster"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Cyclic ion raker - standard",
+                "type": "ranged"
+              },
+              {
+                "name": "Cyclic ion raker - overcharge",
+                "type": "ranged"
+              },
+              {
+                "name": "Fusion collider",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Ranged weapon 2",
+            "choices": [
+              {
+                "name": "Twin burst cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin T'au flamer",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin fusion blaster",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -180,23 +265,47 @@
     "builds": [
       {
         "name": "Railgun + Ion Cannon",
-        "fixed_ranged": [
-          "Seeker missile",
-          "Accelerator burst cannon",
-          "Twin pulse carbine",
-          "Smart missile system"
+        "fixed": [
+          {
+            "name": "Seeker missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Accelerator burst cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin pulse carbine",
+            "type": "ranged"
+          },
+          {
+            "name": "Smart missile system",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [
-          [
-            "Railgun",
-            "Ion cannon - standard",
-            "Ion cannon - overcharge"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Railgun",
+                "type": "ranged"
+              },
+              {
+                "name": "Ion cannon - standard",
+                "type": "ranged"
+              },
+              {
+                "name": "Ion cannon - overcharge",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -212,22 +321,43 @@
     "builds": [
       {
         "name": "Heavy Rail Cannon + Ion Cannon",
-        "fixed_ranged": [
-          "Heavy rail cannon",
-          "Long-barrelled burst cannon array",
-          "Seeker missile",
-          "Missile pod"
+        "fixed": [
+          {
+            "name": "Heavy rail cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Long-barrelled burst cannon array",
+            "type": "ranged"
+          },
+          {
+            "name": "Seeker missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Missile pod",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [
-          [
-            "Ion cannon - standard",
-            "Ion cannon - overcharge"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Ion cannon - standard",
+                "type": "ranged"
+              },
+              {
+                "name": "Ion cannon - overcharge",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -243,17 +373,29 @@
     "builds": [
       {
         "name": "Twin Pulse Carbine + Seeker Missile",
-        "fixed_ranged": [
-          "Twin pulse carbine",
-          "Piranha burst cannon",
-          "Piranha fusion blaster",
-          "Seeker missile"
+        "fixed": [
+          {
+            "name": "Twin pulse carbine",
+            "type": "ranged"
+          },
+          {
+            "name": "Piranha burst cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Piranha fusion blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Seeker missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -268,21 +410,39 @@
     "builds": [
       {
         "name": "Quad Ion Turret",
-        "fixed_ranged": [
-          "Seeker missile",
-          "Missile pod",
-          "Accelerator burst cannon"
+        "fixed": [
+          {
+            "name": "Seeker missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Missile pod",
+            "type": "ranged"
+          },
+          {
+            "name": "Accelerator burst cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [
-          [
-            "Quad ion turret - standard",
-            "Quad ion turret - overcharge"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Quad ion turret - standard",
+                "type": "ranged"
+              },
+              {
+                "name": "Quad ion turret - overcharge",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -299,23 +459,47 @@
     "builds": [
       {
         "name": "Heavy Burst Cannon + Ion Accelerator",
-        "fixed_ranged": [
-          "Missile pod",
-          "Twin smart missile system",
-          "Twin fusion blaster",
-          "Twin plasma rifle"
+        "fixed": [
+          {
+            "name": "Missile pod",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin smart missile system",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin fusion blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin plasma rifle",
+            "type": "ranged"
+          },
+          {
+            "name": "Riptide fists",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Riptide fists"
-        ],
-        "ranged_choices": [
-          [
-            "Heavy burst cannon",
-            "Ion accelerator - standard",
-            "Ion accelerator - overcharge"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Heavy burst cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Ion accelerator - standard",
+                "type": "ranged"
+              },
+              {
+                "name": "Ion accelerator - overcharge",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -331,17 +515,29 @@
     "builds": [
       {
         "name": "Seeker Missile Rack",
-        "fixed_ranged": [
-          "Seeker missile rack",
-          "Accelerator burst cannon",
-          "Twin pulse carbine",
-          "Smart missile system"
+        "fixed": [
+          {
+            "name": "Seeker missile rack",
+            "type": "ranged"
+          },
+          {
+            "name": "Accelerator burst cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin pulse carbine",
+            "type": "ranged"
+          },
+          {
+            "name": "Smart missile system",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -358,25 +554,55 @@
     "builds": [
       {
         "name": "Pulse Driver / Pulse Blast Cannon",
-        "fixed_ranged": [
-          "Cluster rocket system",
-          "Destroyer missiles",
-          "Twin smart missile system",
-          "Twin airbursting fragmentation projector",
-          "Twin burst cannon",
-          "Twin T'au flamer"
+        "fixed": [
+          {
+            "name": "Cluster rocket system",
+            "type": "ranged"
+          },
+          {
+            "name": "Destroyer missiles",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin smart missile system",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin airbursting fragmentation projector",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin burst cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin T'au flamer",
+            "type": "ranged"
+          },
+          {
+            "name": "Thunderous footfalls",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Thunderous footfalls"
-        ],
-        "ranged_choices": [
-          [
-            "Pulse Driver Cannon",
-            "Pulse blast cannon - focused",
-            "Pulse blast cannon - dispersed"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Pulse Driver Cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Pulse blast cannon - focused",
+                "type": "ranged"
+              },
+              {
+                "name": "Pulse blast cannon - dispersed",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -391,21 +617,39 @@
     "builds": [
       {
         "name": "Twin Ion Rifle + Twin Missile Pod",
-        "fixed_ranged": [
-          "Seeker missile",
-          "Twin missile pod",
-          "Missile pod"
+        "fixed": [
+          {
+            "name": "Seeker missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin missile pod",
+            "type": "ranged"
+          },
+          {
+            "name": "Missile pod",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [
-          [
-            "Twin ion rifle - standard",
-            "Twin ion rifle - overcharged"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Twin ion rifle - standard",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin ion rifle - overcharged",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -422,25 +666,55 @@
     "builds": [
       {
         "name": "Tri-axis Ion Cannon + Pulse Ordnance",
-        "fixed_ranged": [
-          "Burst cannon",
-          "Smart missile system",
-          "Fusion eradicator",
-          "Pulse ordnance driver",
-          "Nexus missile launcher",
-          "Heavy rail cannon array",
-          "Fragmentation cluster shell launcher"
+        "fixed": [
+          {
+            "name": "Burst cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Smart missile system",
+            "type": "ranged"
+          },
+          {
+            "name": "Fusion eradicator",
+            "type": "ranged"
+          },
+          {
+            "name": "Pulse ordnance driver",
+            "type": "ranged"
+          },
+          {
+            "name": "Nexus missile launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Heavy rail cannon array",
+            "type": "ranged"
+          },
+          {
+            "name": "Fragmentation cluster shell launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Crushing feet",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Crushing feet"
-        ],
-        "ranged_choices": [
-          [
-            "Tri-axis ion cannon - standard",
-            "Tri-axis ion cannon - supercharge"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Tri-axis ion cannon - standard",
+                "type": "ranged"
+              },
+              {
+                "name": "Tri-axis ion cannon - supercharge",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -456,28 +730,64 @@
     "builds": [
       {
         "name": "Swiftstrike Railgun + Ion Cannons",
-        "fixed_ranged": [
-          "Missile pod",
-          "Burst cannon",
-          "Swiftstrike burst cannon",
-          "Swiftstrike railgun",
-          "Seeker missile",
-          "Skyspear missile rack"
+        "fixed": [
+          {
+            "name": "Missile pod",
+            "type": "ranged"
+          },
+          {
+            "name": "Burst cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Swiftstrike burst cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Swiftstrike railgun",
+            "type": "ranged"
+          },
+          {
+            "name": "Seeker missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Skyspear missile rack",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [
-          [
-            "Cyclic ion blaster - standard",
-            "Cyclic ion blaster - overcharge"
-          ],
-          [
-            "Ion cannon - standard",
-            "Ion cannon - overcharge"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Cyclic ion blaster - standard",
+                "type": "ranged"
+              },
+              {
+                "name": "Cyclic ion blaster - overcharge",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Ranged weapon 2",
+            "choices": [
+              {
+                "name": "Ion cannon - standard",
+                "type": "ranged"
+              },
+              {
+                "name": "Ion cannon - overcharge",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -495,14 +805,17 @@
     "builds": [
       {
         "name": "Sunforge",
-        "fixed_ranged": [
-          "Fusion blaster"
+        "fixed": [
+          {
+            "name": "Fusion blaster",
+            "type": "ranged"
+          },
+          {
+            "name": "Battlesuit fists",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Battlesuit fists"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   }

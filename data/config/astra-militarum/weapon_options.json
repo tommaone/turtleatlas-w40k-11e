@@ -1,5 +1,5 @@
 {
-  "_note": "astra-militarum weapon options — generated from BSData + MFM",
+  "_note": "astra-militarum weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Armoured Sentinels": {
     "info": {
@@ -13,31 +13,64 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [],
-        "ranged_choices": [
-          [
-            "Multi-laser",
-            "Autocannon",
-            "Lascannon",
-            "Heavy flamer",
-            "Missile launcher - frag",
-            "Missile launcher - krak",
-            "Plasma cannon - standard",
-            "Plasma cannon - supercharge"
-          ],
-          [
-            "Hunter-killer missile"
-          ]
+        "fixed": [
+          {
+            "name": "Hunter-killer missile",
+            "type": "ranged"
+          }
         ],
-        "melee_choices": [
-          [
-            "Close combat weapon",
-            "Sentinel chainsaw"
-          ]
-        ],
-        "max_ranged": null,
-        "max_melee": null
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Multi-laser",
+                "type": "ranged"
+              },
+              {
+                "name": "Autocannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Lascannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy flamer",
+                "type": "ranged"
+              },
+              {
+                "name": "Missile launcher - frag",
+                "type": "ranged"
+              },
+              {
+                "name": "Missile launcher - krak",
+                "type": "ranged"
+              },
+              {
+                "name": "Plasma cannon - standard",
+                "type": "ranged"
+              },
+              {
+                "name": "Plasma cannon - supercharge",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Melee weapon 1",
+            "choices": [
+              {
+                "name": "Close combat weapon",
+                "type": "melee"
+              },
+              {
+                "name": "Sentinel chainsaw",
+                "type": "melee"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -52,16 +85,25 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Heavy stubber",
-          "Lascannon",
-          "Avenger bolt cannon"
+        "fixed": [
+          {
+            "name": "Heavy stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Avenger bolt cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -77,19 +119,37 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Coaxial autocannon",
-          "Demolisher cannon",
-          "Heavy stubber",
-          "Lascannon",
-          "Twin heavy bolter",
-          "Baneblade cannon"
+        "fixed": [
+          {
+            "name": "Coaxial autocannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Demolisher cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Heavy stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Baneblade cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -105,16 +165,25 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Lascannon",
-          "Twin heavy bolter",
-          "Tremor cannon"
+        "fixed": [
+          {
+            "name": "Lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Tremor cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -130,20 +199,30 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Lascannon",
-          "Twin heavy bolter",
-          "Quake cannon"
+        "fixed": [
+          {
+            "name": "Lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Quake cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
   "Chimera": {
+    "pts": 85,
     "info": {
       "M": "10\"",
       "T": 9,
@@ -151,22 +230,73 @@
       "W": 11,
       "OC": 2
     },
-    "pts": 75,
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Lasgun array"
+        "fixed": [
+          {
+            "name": "Lasgun array",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [
-          [
-            "Hunter-killer missile"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Main weapon",
+            "choices": [
+              {
+                "name": "Multi-laser",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy flamer",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Hull weapon",
+            "choices": [
+              {
+                "name": "Heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy flamer",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Pintle mount",
+            "choices": [
+              {
+                "name": "Heavy stubber",
+                "type": "ranged"
+              },
+              {
+                "name": "Storm bolter",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Extra weapon",
+            "choices": [
+              {
+                "name": "Hunter-killer missile",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -182,16 +312,25 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Lascannon",
-          "Twin heavy bolter",
-          "Magma cannon"
+        "fixed": [
+          {
+            "name": "Lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Magma cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -207,19 +346,37 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Coaxial autocannon",
-          "Demolisher cannon",
-          "Heavy stubber",
-          "Lascannon",
-          "Twin heavy bolter",
-          "Hellhammer cannon"
+        "fixed": [
+          {
+            "name": "Coaxial autocannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Demolisher cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Heavy stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Hellhammer cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -235,26 +392,47 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Hunter-killer missile"
+        "fixed": [
+          {
+            "name": "Hunter-killer missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [
-          [
-            "Heavy flamer",
-            "Multi-melta",
-            "Heavy bolter"
-          ],
-          [
-            "Chem cannon",
-            "Inferno cannon",
-            "Melta cannon"
-          ]
-        ],
-        "melee_choices": [],
-        "max_ranged": 1
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Heavy flamer",
+                "type": "ranged"
+              },
+              {
+                "name": "Multi-melta",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Chem cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Inferno cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Melta cannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -270,25 +448,48 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [
-          "Armoured hull"
+        "fixed": [
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "ranged_choices": [
-          [
-            "Heavy stubber",
-            "Meltagun"
-          ],
-          [
-            "Vigilator cannon",
-            "Melta cannon",
-            "Chiron gatling cannon",
-            "Lascannon"
-          ]
-        ],
-        "melee_choices": [],
-        "max_ranged": null,
-        "max_melee": null
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Heavy stubber",
+                "type": "ranged"
+              },
+              {
+                "name": "Meltagun",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Ranged weapon 2",
+            "choices": [
+              {
+                "name": "Vigilator cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Melta cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Chiron gatling cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Lascannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -304,14 +505,17 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Executioner plasma cannon"
+        "fixed": [
+          {
+            "name": "Executioner plasma cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -327,23 +531,35 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Heavy stubber"
+        "fixed": [
+          {
+            "name": "Heavy stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [
-          [
-            "Twin battle cannon"
-          ],
-          [
-            "Castigator gatling cannon",
-            "Pulveriser cannon"
-          ]
-        ],
-        "melee_choices": [],
-        "max_ranged": 1
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Twin battle cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Castigator gatling cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Pulveriser cannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -359,31 +575,64 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [],
-        "ranged_choices": [
-          [
-            "Multi-laser",
-            "Autocannon",
-            "Lascannon",
-            "Heavy flamer",
-            "Missile launcher - frag",
-            "Missile launcher - krak",
-            "Plasma cannon - standard",
-            "Plasma cannon - supercharge"
-          ],
-          [
-            "Hunter-killer missile"
-          ]
+        "fixed": [
+          {
+            "name": "Hunter-killer missile",
+            "type": "ranged"
+          }
         ],
-        "melee_choices": [
-          [
-            "Close combat weapon",
-            "Sentinel chainsaw"
-          ]
-        ],
-        "max_ranged": null,
-        "max_melee": null
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Multi-laser",
+                "type": "ranged"
+              },
+              {
+                "name": "Autocannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Lascannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy flamer",
+                "type": "ranged"
+              },
+              {
+                "name": "Missile launcher - frag",
+                "type": "ranged"
+              },
+              {
+                "name": "Missile launcher - krak",
+                "type": "ranged"
+              },
+              {
+                "name": "Plasma cannon - standard",
+                "type": "ranged"
+              },
+              {
+                "name": "Plasma cannon - supercharge",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Melee weapon 1",
+            "choices": [
+              {
+                "name": "Close combat weapon",
+                "type": "melee"
+              },
+              {
+                "name": "Sentinel chainsaw",
+                "type": "melee"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -399,16 +648,25 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Lascannon",
-          "Twin heavy bolter",
-          "Volcano cannon"
+        "fixed": [
+          {
+            "name": "Lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Volcano cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -424,17 +682,29 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Twin heavy bolter",
-          "Lascannon",
-          "Heavy stubber",
-          "Vulcan mega-bolter"
+        "fixed": [
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Heavy stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Vulcan mega-bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -450,16 +720,25 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Twin heavy bolter",
-          "Lascannon",
-          "Stormsword siege cannon"
+        "fixed": [
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Stormsword siege cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -475,18 +754,21 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Twin autocannon"
+        "fixed": [
+          {
+            "name": "Twin autocannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          }
         ],
-        "fixed_melee": [
-          "Armoured tracks"
-        ],
-        "ranged_choices": [
-          [
-            "Storm bolter"
-          ]
-        ],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -502,12 +784,13 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [
-          "Armoured tracks"
+        "fixed": [
+          {
+            "name": "Armoured tracks",
+            "type": "melee"
+          }
         ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -523,12 +806,13 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [
-          "Armoured hull"
+        "fixed": [
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   }

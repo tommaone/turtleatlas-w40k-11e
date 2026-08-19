@@ -1,5 +1,5 @@
 {
-  "_note": "blood-angels weapon options — generated from BSData + MFM",
+  "_note": "blood-angels weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Astraeus": {
     "pts": 525,
@@ -14,21 +14,39 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Ironhail Heavy Stubber",
-          "Storm bolter",
-          "Twin macro-accelerator cannon"
+        "fixed": [
+          {
+            "name": "Ironhail Heavy Stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin macro-accelerator cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [
-          [
-            "Twin heavy bolter",
-            "Twin lascannon"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Twin heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin lascannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -44,31 +62,71 @@
     "builds": [
       {
         "name": "Baal Flamestorm Cannon",
-        "fixed_ranged": [
-          "Baal Flamestorm Cannon",
-          "Heavy Bolter",
-          "Heavy Bolter",
-          "Heavy Flamer",
-          "Storm bolter",
-          "Hunter-killer missile"
+        "fixed": [
+          {
+            "name": "Baal Flamestorm Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Heavy Bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Heavy Bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Heavy Flamer",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Hunter-killer missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured Tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured Tracks"
-        ]
+        "slots": []
       },
       {
         "name": "Twin Assault Cannon",
-        "fixed_ranged": [
-          "Twin Assault Cannon",
-          "Heavy Bolter",
-          "Heavy Bolter",
-          "Heavy Flamer",
-          "Storm bolter",
-          "Hunter-killer missile"
+        "fixed": [
+          {
+            "name": "Twin Assault Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Heavy Bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Heavy Bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Heavy Flamer",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Hunter-killer missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured Tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured Tracks"
-        ]
+        "slots": []
       }
     ]
   },
@@ -84,15 +142,21 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Ballistus Lascannon",
-          "Ballistus Missile Launcher"
+        "fixed": [
+          {
+            "name": "Ballistus Lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Ballistus Missile Launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured Feet",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured Feet"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -108,35 +172,63 @@
     "builds": [
       {
         "name": "Brutalis Fists",
-        "fixed_ranged": [
-          "Brutalis Bolt Rifles"
+        "fixed": [
+          {
+            "name": "Brutalis Bolt Rifles",
+            "type": "ranged"
+          },
+          {
+            "name": "Brutalis Fists",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Brutalis Fists"
-        ],
-        "ranged_choices": [
-          [
-            "Twin Icarus ironhail heavy stubber",
-            "Twin heavy bolter",
-            "Twin multi-melta"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Twin Icarus ironhail heavy stubber",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin multi-melta",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "Brutalis Talons",
-        "fixed_ranged": [],
-        "fixed_melee": [
-          "Brutalis Talons"
+        "fixed": [
+          {
+            "name": "Brutalis Talons",
+            "type": "melee"
+          }
         ],
-        "ranged_choices": [
-          [
-            "Twin Icarus ironhail heavy stubber",
-            "Twin heavy bolter",
-            "Twin multi-melta"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Twin Icarus ironhail heavy stubber",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin multi-melta",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -152,16 +244,13 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [],
-        "fixed_melee": [],
-        "ranged_choices": [],
-        "melee_choices": [
-          [
-            "Blood Talons"
-          ]
+        "fixed": [
+          {
+            "name": "Blood Talons",
+            "type": "melee"
+          }
         ],
-        "max_ranged": 1,
-        "max_melee": 1
+        "slots": []
       }
     ]
   },
@@ -177,75 +266,111 @@
     "builds": [
       {
         "name": "Assault Cannon",
-        "fixed_ranged": [
-          "Assault Cannon",
-          "Storm bolter"
+        "fixed": [
+          {
+            "name": "Assault Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Dreadnought Combat Weapon",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Dreadnought Combat Weapon"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       },
       {
         "name": "Twin lascannon",
-        "fixed_ranged": [
-          "Twin lascannon",
-          "Storm bolter"
+        "fixed": [
+          {
+            "name": "Twin lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Dreadnought Combat Weapon",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Dreadnought Combat Weapon"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       },
       {
         "name": "Multi-melta",
-        "fixed_ranged": [
-          "Multi-melta",
-          "Storm bolter"
+        "fixed": [
+          {
+            "name": "Multi-melta",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Dreadnought Combat Weapon",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Dreadnought Combat Weapon"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       },
       {
         "name": "Heavy Plasma Cannon",
-        "fixed_ranged": [
-          "Heavy Plasma Cannon",
-          "Storm bolter"
+        "fixed": [
+          {
+            "name": "Heavy Plasma Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Dreadnought Combat Weapon",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Dreadnought Combat Weapon"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       },
       {
         "name": "Missile Launcher",
-        "fixed_ranged": [
-          "Missile Launcher",
-          "Storm bolter"
+        "fixed": [
+          {
+            "name": "Missile Launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Dreadnought Combat Weapon",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Dreadnought Combat Weapon"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       },
       {
         "name": "Heavy Flamer",
-        "fixed_ranged": [
-          "Heavy Flamer",
-          "Storm bolter"
+        "fixed": [
+          {
+            "name": "Heavy Flamer",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Dreadnought Combat Weapon",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Dreadnought Combat Weapon"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -261,14 +386,17 @@
     "builds": [
       {
         "name": "Las-talon",
-        "fixed_ranged": [
-          "Twin Firestrike Las-talon"
+        "fixed": [
+          {
+            "name": "Twin Firestrike Las-talon",
+            "type": "ranged"
+          },
+          {
+            "name": "Close combat weapon",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Close combat weapon"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -284,17 +412,29 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Icarus Rocket Pod",
-          "Ironhail Heavy Stubber",
-          "Tempest Bolter",
-          "Twin Heavy Onslaught Gatling Cannon"
+        "fixed": [
+          {
+            "name": "Icarus Rocket Pod",
+            "type": "ranged"
+          },
+          {
+            "name": "Ironhail Heavy Stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Tempest Bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin Heavy Onslaught Gatling Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured Hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured Hull"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -310,16 +450,25 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Fragstorm grenade launcher",
-          "Heavy Bolter",
-          "Twin Ironhail Heavy Stubber"
+        "fixed": [
+          {
+            "name": "Fragstorm grenade launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Heavy Bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin Ironhail Heavy Stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Invictor Fist",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Invictor Fist"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -335,18 +484,33 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Hunter-killer missile",
-          "Multi-melta",
-          "Storm bolter",
-          "Twin heavy bolter",
-          "Godhammer Lascannon"
+        "fixed": [
+          {
+            "name": "Hunter-killer missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Multi-melta",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Godhammer Lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured Tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured Tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -362,18 +526,33 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Hunter-killer missile",
-          "Multi-melta",
-          "Storm bolter",
-          "Twin assault cannon",
-          "Flamestorm Cannon"
+        "fixed": [
+          {
+            "name": "Hunter-killer missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Multi-melta",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin assault cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Flamestorm Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured Tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured Tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -390,47 +569,59 @@
     "builds": [
       {
         "name": "Multi-melta",
-        "fixed_ranged": [
-          "Multi-melta"
+        "fixed": [
+          {
+            "name": "Multi-melta",
+            "type": "ranged"
+          },
+          {
+            "name": "Close combat weapon",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Close combat weapon"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       },
       {
         "name": "Heavy Flamer",
-        "fixed_ranged": [
-          "Heavy Flamer"
+        "fixed": [
+          {
+            "name": "Heavy Flamer",
+            "type": "ranged"
+          },
+          {
+            "name": "Close combat weapon",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Close combat weapon"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       },
       {
         "name": "Onslaught gatling cannon",
-        "fixed_ranged": [
-          "Onslaught gatling cannon"
+        "fixed": [
+          {
+            "name": "Onslaught gatling cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Close combat weapon",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Close combat weapon"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       },
       {
         "name": "Stormfury Missile Launcher",
-        "fixed_ranged": [
-          "Stormfury Missile Launcher"
+        "fixed": [
+          {
+            "name": "Stormfury Missile Launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Close combat weapon",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Close combat weapon"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -446,16 +637,25 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Hunter-killer missile",
-          "Storm bolter",
-          "Predator Twin Lascannon"
+        "fixed": [
+          {
+            "name": "Hunter-killer missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Predator Twin Lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured Tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured Tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -471,16 +671,25 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Hunter-killer missile",
-          "Storm bolter",
-          "Predator Autocannon"
+        "fixed": [
+          {
+            "name": "Hunter-killer missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Predator Autocannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured Tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured Tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -496,20 +705,35 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Hunter-killer missile",
-          "Storm bolter"
+        "fixed": [
+          {
+            "name": "Hunter-killer missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured Tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured Tracks"
-        ],
-        "ranged_choices": [
-          [
-            "Twin heavy bolter",
-            "Twin lascannon"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Twin heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin lascannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -526,54 +750,99 @@
     "builds": [
       {
         "name": "Heavy Onslaught Gatling Cannon",
-        "fixed_ranged": [
-          "Heavy Onslaught Gatling Cannon"
+        "fixed": [
+          {
+            "name": "Heavy Onslaught Gatling Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Redemptor Fist",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Redemptor Fist"
-        ],
-        "ranged_choices": [
-          [
-            "Icarus Rocket Pod",
-            "Twin Fragstorm Grenade Launcher",
-            "Twin Storm Bolter"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Icarus Rocket Pod",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin Fragstorm Grenade Launcher",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin Storm Bolter",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "Macro Plasma Incinerator",
-        "fixed_ranged": [
-          "Macro Plasma Incinerator"
+        "fixed": [
+          {
+            "name": "Macro Plasma Incinerator",
+            "type": "ranged"
+          },
+          {
+            "name": "Redemptor Fist",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Redemptor Fist"
-        ],
-        "ranged_choices": [
-          [
-            "Icarus Rocket Pod",
-            "Twin Fragstorm Grenade Launcher",
-            "Twin Storm Bolter"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Icarus Rocket Pod",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin Fragstorm Grenade Launcher",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin Storm Bolter",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "Heavy Flamer",
-        "fixed_ranged": [
-          "Heavy Flamer"
+        "fixed": [
+          {
+            "name": "Heavy Flamer",
+            "type": "ranged"
+          },
+          {
+            "name": "Redemptor Fist",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Redemptor Fist"
-        ],
-        "ranged_choices": [
-          [
-            "Icarus Rocket Pod",
-            "Twin Fragstorm Grenade Launcher",
-            "Twin Storm Bolter"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Icarus Rocket Pod",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin Fragstorm Grenade Launcher",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin Storm Bolter",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -589,24 +858,51 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Heavy Onslaught Gatling Cannon",
-          "Icarus Rocket Pod",
-          "Ironhail Heavy Stubber",
-          "Twin heavy bolter",
-          "Twin Icarus ironhail heavy stubber",
-          "Repulsor Executioner Defensive Array"
+        "fixed": [
+          {
+            "name": "Heavy Onslaught Gatling Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Icarus Rocket Pod",
+            "type": "ranged"
+          },
+          {
+            "name": "Ironhail Heavy Stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin Icarus ironhail heavy stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Repulsor Executioner Defensive Array",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured Hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured Hull"
-        ],
-        "ranged_choices": [
-          [
-            "Macro Plasma Incinerator",
-            "Heavy Laser Destroyer"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Macro Plasma Incinerator",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy Laser Destroyer",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -622,15 +918,21 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Hunter-killer missile",
-          "Storm bolter"
+        "fixed": [
+          {
+            "name": "Hunter-killer missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured Tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured Tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -647,16 +949,25 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Fragstorm grenade launcher",
-          "Onslaught gatling cannon",
-          "Twin Ironhail Heavy Stubber"
+        "fixed": [
+          {
+            "name": "Fragstorm grenade launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Onslaught gatling cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin Ironhail Heavy Stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Close combat weapon",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Close combat weapon"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -673,16 +984,25 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Hammerstrike Missile Launcher",
-          "Krakstorm Grenade Launcher",
-          "Melta Destroyer"
+        "fixed": [
+          {
+            "name": "Hammerstrike Missile Launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Krakstorm Grenade Launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Melta Destroyer",
+            "type": "ranged"
+          },
+          {
+            "name": "Close combat weapon",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Close combat weapon"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -699,16 +1019,25 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Stormfury Missiles",
-          "Thunderstrike Las-talon",
-          "Twin Icarus Rocket Pod"
+        "fixed": [
+          {
+            "name": "Stormfury Missiles",
+            "type": "ranged"
+          },
+          {
+            "name": "Thunderstrike Las-talon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin Icarus Rocket Pod",
+            "type": "ranged"
+          },
+          {
+            "name": "Close combat weapon",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Close combat weapon"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -723,22 +1052,43 @@
     "builds": [
       {
         "name": "Twin assault cannon",
-        "fixed_ranged": [
-          "Twin assault cannon"
+        "fixed": [
+          {
+            "name": "Twin assault cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured Hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured Hull"
-        ],
-        "ranged_choices": [
-          [
-            "Skyhammer Missile Launcher",
-            "Icarus Stormcannon",
-            "Las-talon",
-            "Twin heavy bolter",
-            "Typhoon missile launcher"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Skyhammer Missile Launcher",
+                "type": "ranged"
+              },
+              {
+                "name": "Icarus Stormcannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Las-talon",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Typhoon missile launcher",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -755,12 +1105,13 @@
     "builds": [
       {
         "name": "2 Hurricane Bolters",
-        "fixed_ranged": [
-          "Hurricane Bolter"
+        "fixed": [
+          {
+            "name": "Hurricane Bolter",
+            "type": "ranged"
+          }
         ],
-        "fixed_melee": [],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -775,21 +1126,39 @@
     "builds": [
       {
         "name": "Twin assault cannon",
-        "fixed_ranged": [
-          "Twin assault cannon"
+        "fixed": [
+          {
+            "name": "Twin assault cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured Hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured Hull"
-        ],
-        "ranged_choices": [
-          [
-            "Skyhammer Missile Launcher",
-            "Typhoon missile launcher",
-            "Twin heavy bolter",
-            "Twin lascannon"
-          ]
-        ],
-        "melee_choices": []
+        "slots": [
+          {
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Skyhammer Missile Launcher",
+                "type": "ranged"
+              },
+              {
+                "name": "Typhoon missile launcher",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin lascannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
@@ -805,15 +1174,21 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Lascannon",
-          "Twin heavy bolter"
+        "fixed": [
+          {
+            "name": "Lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured hull"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -829,16 +1204,25 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Hunter-killer missile",
-          "Storm bolter",
-          "Demolisher Cannon"
+        "fixed": [
+          {
+            "name": "Hunter-killer missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Demolisher Cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured Tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured Tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   },
@@ -854,16 +1238,25 @@
     "builds": [
       {
         "name": "default",
-        "fixed_ranged": [
-          "Hunter-killer missile",
-          "Storm bolter",
-          "Whirlwind Vengeance Launcher"
+        "fixed": [
+          {
+            "name": "Hunter-killer missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Whirlwind Vengeance Launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured Tracks",
+            "type": "melee"
+          }
         ],
-        "fixed_melee": [
-          "Armoured Tracks"
-        ],
-        "ranged_choices": [],
-        "melee_choices": []
+        "slots": []
       }
     ]
   }

@@ -14,14 +14,15 @@ and recommend detachments/units based on mission and meta.
 |--------|-------|
 | Factions ranked | 30/30 |
 | Units ranked | ~1500 |
-| Tests | 3594 passing, 36 skipped, 1 xfailed |
+| Tests | 1112+ passing, 36 skipped |
 | HTML findings | 30 factions, mobile-friendly |
 | Detachment modifiers | 26 (Grey Knights 9 + Chaos Knights 8 + Daemons 9) |
 | Characters | 511 on slots schema (all 30 factions, 2026-08-11) |
 | Vehicles | 126 migrated to builds format |
+| Weapon_options on slots | **ALL 30/30 factions** (Wave 3+4, 2026-08-19) |
 | Reroll abilities auto-detected | 24 datasheets across 15 factions |
 | Complex-layer squads | Aeldari, GK, SM, DA, SW, BA, BT, DW, Chaos Daemons, CSM, EC, Orks (11 with alloc/slots) + 9-faction caps sweep (2026-08-15) |
-| Last commit | `3370194` — caps sweep on the 9 alloc-layer factions |
+| Last change | Wave 4 — ALL weapon_options migrated to slots (602 builds, 0 legacy) |
 
 ---
 
@@ -140,6 +141,17 @@ and recommend detachments/units based on mission and meta.
   character, choice weapons → group names), EC complex units (Terminators alloc
   + champion slot), Orks generator one-way-substring fix + 10 regenerated / 7
   kept. 17 complex-unit pins added.
+- **Wave 4 weapon_options migration (2026-08-19)** — ALL 30/30 factions now
+  on slots format. 297 builds migrated across 22 factions (Aeldari through
+  Tyranids). Fixed data bug: Iron claw (chaos-daemons) mis-typed as ranged.
+  Fixed test: `test_soul_grinder_has_all_ranged_options` updated for new
+  format. 1112+ tests passing, 0 failures.
+- **Wave 3 weapon_options migration (2026-08-19)**:
+  - CK + IK slot-completion audit: both CLEAN (20 + 22 units, all on slots, 0 legacy)
+  - WE weapon_options.json: 10 units migrated from legacy (fixed_ranged/fixed_melee/ranged_choices) to slots format
+  - CSM/EC/Orks: discovered still on legacy format despite roadmap listing; migrated 38 builds total
+  - `scripts/migrate_weapon_options_to_slots.py` — generic migration tool for any faction
+  - 697 tests passing, 0 failures
 - **Alloc-caps sweep (2026-08-15, Wave 3 prep)** — the 9 alloc-layer factions
   (aeldari/BT/BA/DA/DW/GK/orks/SM/SW) regenerated through the caps mechanism:
   7 FLAT_CAPS entries (Paladin heavy 2, Troupe fusion/neuro 2/2, Thunderwolf
@@ -169,13 +181,10 @@ and recommend detachments/units based on mission and meta.
 
 ## In Progress 🔄
 
-- **Squad-composition migration for ALL remaining factions** — until every
-  army runs the slot setup (slots, alloc pools), the engine's damage
-  calculations are NOT determined by real gear — they use generic configs.
-  Detachment modifiers are BLOCKED on this: a detachment bonus over an
-  imaginary loadout is a lie. Migration is the gate. Character slots schema
-  is DONE (2026-08-11); remaining: squad composition + vehicles on the
-  remaining factions.
+- **Detachment modifiers UNBLOCKED for weapon_options** — all 30 factions now
+  have slots schema on characters + weapon_options. Remaining blocker:
+  squad composition (alloc pools) on ~14 factions. Once squads are on slots,
+  detachment modifiers can be added for any faction.
 
 ---
 
@@ -198,17 +207,15 @@ and recommend detachments/units based on mission and meta.
   Riders`, DA `Deathwing Command Squad`).
 
 ### Factions (priority order)
-- [ ] Squad composition migration to remaining factions — done: Aeldari (pilot),
+- [x] Squad composition migration to remaining factions — done: Aeldari (pilot),
   GK, Space Marines, Dark Angels, Space Wolves, Blood Angels, Black Templars,
-  Deathwatch, Chaos Daemons (Wave 1 complete) + CSM/EC/Orks (Wave 2, 2026-08-13)
-  + alloc caps sweep on the 9 alloc-layer factions (2026-08-15). **Wave 3
-  (2026-08-15, user decision): Chaos Knights + Imperial Knights slot-completion
-  audit, then World Eaters generator migration.** Remaining after: Astra
-  Militarum, Adeptus Mechanicus, and the rest of the 30 factions
+  Deathwatch, Chaos Daemons (Wave 1) + CSM/EC/Orks (Wave 2, 2026-08-13)
+  + alloc caps sweep (2026-08-15). **Wave 3 (2026-08-19): CK/IK audit
+  CLEAN, WE/CSM/EC/Orks weapon_options migrated to slots.**
+  **Wave 4 (2026-08-19): ALL 30/30 factions weapon_options on slots.**
 - [ ] Detachment modifiers: Space Marines (Gladius, Ironstorm, Firestorm...),
-  Dark Angels (Inner Circle Task Force...), all others — **BLOCKED** until
-  all armies are on the slot setup (calculations must be determined by real
-  gear first)
+  Dark Angels (Inner Circle Task Force...), all others — **PARTIALLY
+  UNBLOCKED** (weapon_options done; squad alloc still pending for ~14 factions)
 
 ### Engine Improvements
 - [x] **Reroll abilities vs target class** — auto-detected MONSTER/VEHICLE rerolls
@@ -274,4 +281,4 @@ and recommend detachments/units based on mission and meta.
 
 ---
 
-*Last updated: 2026-08-11*
+*Last updated: 2026-08-19 (Wave 4 complete)*
