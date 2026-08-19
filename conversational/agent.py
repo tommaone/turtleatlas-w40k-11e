@@ -63,6 +63,13 @@ Example: TOOL_CALL: {{"name": "get_findings", "args": {{"faction": "grey-knights
 Available tools:
 {tools_description}
 
+CRITICAL 11th EDITION RULES:
+- NO psychic phase exists in 11e. Psychic weapons are regular weapons with PSYCHIC keyword.
+- Cover modifies BS (hit roll), NOT saves. Cover = +1 to hit roll for attacker.
+- PSYCHIC weapons ignore cover.
+- There are no "psychic phases", "denied the witch", or "psychic tests" in 11e.
+- If you mention psychic phase, you are quoting 9th edition rules - STOP.
+
 No explanation. Just TOOL_CALL JSON line."""
 
 
@@ -87,16 +94,19 @@ def chat(user_input: str, client: MCPClient, system_prompt: str) -> str:
         result = client.call_tool(name, args)
         print(f"  📊 {result[:120]}...")
 
-        # Feed result back — ask Big Pickle to interpret
+        # Feed result back - ask Big Pickle to interpret
         interpret_prompt = f"""Data engine returned this. Analyze briefly in 4 tiers:
-🟢 FACTS (raw data)  🟡 USE CASES  🟠 CONSTRAINTS  🔴 STRATEGY
+FACTS (raw data)  USE CASES  CONSTRAINTS  STRATEGY
+
+CRITICAL: This is Warhammer 40k 11th Edition. There is NO psychic phase.
+Psychic weapons are just weapons with PSYCHIC keyword. Do NOT mention psychic phase.
 
 Question: {user_input}
 
 Data:
 {result[:3000]}
 
-Use tables. Be concise."""
+Use tables. Be concise. Do not invent rules."""
 
         response = send_message(sid, interpret_prompt)
 

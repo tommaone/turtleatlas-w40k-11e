@@ -1102,7 +1102,7 @@ print(json.dumps(output))
       : 10;
 
     let out = `# Findings: ${faction} (${metaSlug})\n\n`;
-    out += `*Source: findings.html — pre-computed with penalties (FLYCOST, OC0, etc.).*\n\n`;
+    out += `*Source: findings.html - pre-computed with penalties (FLYCOST, OC0, etc.).*\n\n`;
 
     for (const mission of missions) {
       const units = metaData[mission];
