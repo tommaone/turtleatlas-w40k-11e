@@ -866,60 +866,7 @@ class RankingEngine:
             parts.append(f"[best of {n_combos} builds vs {tag}, DPP/model={best_dpp:.4f}]")
             best["_desc"] = "; ".join(parts)
 
-            # Weapon details for turtledeck — full stats per weapon
-            weapon_details = []
-            for wp in best["ranged"]:
-                detail = {
-                    "slot": "ranged",
-                    "name": wp.name,
-                    "attacks": wp.attacks,
-                    "skill": wp.bs,
-                    "strength": wp.strength,
-                    "ap": wp.ap,
-                    "damage": wp.damage,
-                    "abilities": wp.abilities,
-                }
-                if getattr(wp, "variants", None):
-                    # Choice profiles (strike/sweep, frag/krak, standard/
-                    # supercharge): base stats above, full group here. Scoring
-                    # uses the max-over group, not just the base profile.
-                    detail["variants"] = [
-                        {
-                            "name": v.name,
-                            "attacks": v.attacks,
-                            "skill": v.bs,
-                            "strength": v.strength,
-                            "ap": v.ap,
-                            "damage": v.damage,
-                        }
-                        for v in wp.variants
-                    ]
-                weapon_details.append(detail)
-            for wp in best["melee"]:
-                detail = {
-                    "slot": "melee",
-                    "name": wp.name,
-                    "attacks": wp.attacks,
-                    "skill": wp.bs,
-                    "strength": wp.strength,
-                    "ap": wp.ap,
-                    "damage": wp.damage,
-                    "abilities": wp.abilities,
-                }
-                if getattr(wp, "variants", None):
-                    detail["variants"] = [
-                        {
-                            "name": v.name,
-                            "attacks": v.attacks,
-                            "skill": v.bs,
-                            "strength": v.strength,
-                            "ap": v.ap,
-                            "damage": v.damage,
-                        }
-                        for v in wp.variants
-                    ]
-                weapon_details.append(detail)
-            best["_weapon_details"] = weapon_details
+            best["_weapon_details"] = self._weapon_details_from_profiles(best["ranged"], best["melee"])
             best["_dpp_per_model"] = best_dpp
         return best
 
@@ -1140,6 +1087,8 @@ class RankingEngine:
                     info["_n_combos"] = n_combos
                     info["_modes"] = [b.get("name") for b in wo["builds"]]
                     info["_multimodal"] = len(wo["builds"]) > 1
+                    info["_weapon_details"] = self._weapon_details_from_profiles(best_build[0], best_build[1])
+                    info["_desc"] = f"Ranged: {len(best_build[0])} weapons; Melee: {len(best_build[1])} weapons"
                     return (pts, best_build[0], best_build[1], [], info)
 
             # The flat ranged/melee fallback (legacy _best_vehicle_variant)
@@ -1294,6 +1243,8 @@ class RankingEngine:
                     ch_info["_n_combos"] = n_combos
                     ch_info["_modes"] = [b.get("name") for b in ch["weapon_options"]["builds"]]
                     ch_info["_multimodal"] = len(ch["weapon_options"]["builds"]) > 1
+                    ch_info["_weapon_details"] = self._weapon_details_from_profiles(best_build[0], best_build[1])
+                    ch_info["_desc"] = self._loadout_desc(best_build[0], best_build[1], [])
                     return (pts, best_build[0], best_build[1], [], ch_info)
 
             # Per-slot weapon_options (existing fallback for non-build configs)
@@ -1329,6 +1280,8 @@ class RankingEngine:
             ch_info = dict(ch.get("info", {}))
             if n_combos > 1:
                 ch_info["_n_combos"] = n_combos
+            ch_info["_weapon_details"] = self._weapon_details_from_profiles(ranged, melee)
+            ch_info["_desc"] = self._loadout_desc(ranged, melee, innate)
             return (pts, ranged, melee, innate, ch_info)
 
         # Fixed vehicle loadout — or weapon_slots based
@@ -1346,7 +1299,10 @@ class RankingEngine:
                      for w in vh.get("melee", [])]
             innate = [self.W(w["name"], unit_name=w.get("unit_name", name))
                       for w in vh.get("innate", [])]
-            return (pts, ranged, melee, innate, vh.get("info"))
+            vh_info = dict(vh.get("info") or {})
+            vh_info["_weapon_details"] = self._weapon_details_from_profiles(ranged, melee)
+            vh_info["_desc"] = self._loadout_desc(ranged, melee, innate)
+            return (pts, ranged, melee, innate, vh_info)
 
         return None
 
@@ -1435,6 +1391,8 @@ class RankingEngine:
 
         slot_info = dict(vh.get("info", {}))
         slot_info["_n_combos"] = n_combos
+        slot_info["_weapon_details"] = self._weapon_details_from_profiles(best_ranged, best_melee)
+        slot_info["_desc"] = self._loadout_desc(best_ranged, best_melee, fixed_innate)
         return (best_pts, best_ranged, best_melee, fixed_innate, slot_info)
 
     def _resolve_slots_build(self, build: dict, name: str, target) -> tuple | None:
@@ -2328,6 +2286,56 @@ class RankingEngine:
                 i_counts[wp.name] = i_counts.get(wp.name, 0) + 1
             parts.append("Innate: " + ", ".join(f"{c}×{n}" for n, c in sorted(i_counts.items())))
         return "; ".join(parts)
+
+    @staticmethod
+    def _weapon_details_from_profiles(ranged, melee):
+        """Build weapon_details list from WeaponProfile objects.
+
+        Aggregates duplicate weapons into a single entry with a count,
+        so the HTML shows "3× Plaguespurt gauntlet" instead of 3 rows.
+        """
+        from collections import Counter
+        details = []
+        # Count by (slot, name) to aggregate duplicates
+        counts = Counter()
+        profiles = {}
+        for wp in ranged:
+            key = ("ranged", wp.name)
+            counts[key] += 1
+            if key not in profiles:
+                profiles[key] = wp
+        for wp in melee:
+            key = ("melee", wp.name)
+            counts[key] += 1
+            if key not in profiles:
+                profiles[key] = wp
+        for (slot, wname), count in sorted(counts.items()):
+            wp = profiles[(slot, wname)]
+            detail = {
+                "slot": slot,
+                "name": wp.name,
+                "count": count,
+                "attacks": wp.attacks,
+                "skill": wp.bs,
+                "strength": wp.strength,
+                "ap": wp.ap,
+                "damage": wp.damage,
+                "abilities": wp.abilities,
+            }
+            if getattr(wp, "variants", None):
+                detail["variants"] = [
+                    {
+                        "name": v.name,
+                        "attacks": v.attacks,
+                        "skill": v.bs,
+                        "strength": v.strength,
+                        "ap": v.ap,
+                        "damage": v.damage,
+                    }
+                    for v in wp.variants
+                ]
+            details.append(detail)
+        return details
 
     # ── Printing ─────────────────────────────────────────────────────
 
