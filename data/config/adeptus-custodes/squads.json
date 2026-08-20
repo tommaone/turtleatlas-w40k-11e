@@ -15,42 +15,34 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Agamatus Custodian (Twin las-pulsar)",
             "count": 3,
-            "ranged": "Lastrum bolt cannon",
-            "melee": "Interceptor Lance"
-          }
-        ]
-      },
-      {
-        "name": "2x Adrathic devastator",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Adrathic devastator",
-            "melee": "Interceptor Lance"
-          },
-          {
-            "count": 1,
-            "ranged": "Lastrum bolt cannon",
-            "melee": "Interceptor Lance"
-          }
-        ]
-      },
-      {
-        "name": "2x Twin las-pulsar",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Twin las-pulsar",
-            "melee": "Interceptor Lance"
-          },
-          {
-            "count": 1,
-            "ranged": "Lastrum bolt cannon",
-            "melee": "Interceptor Lance"
+            "alloc": [
+              {
+                "name": "Agamatus Custodian (Lastrum bolt cannon)",
+                "min": 0,
+                "ranged": "Lastrum bolt cannon",
+                "melee": "Interceptor Lance",
+                "max": null
+              },
+              {
+                "name": "Agamatus Custodian (Adrathic devastator)",
+                "min": 0,
+                "ranged": "Adrathic devastator",
+                "melee": "Interceptor Lance",
+                "max": null
+              },
+              {
+                "name": "Agamatus Custodian (Twin las-pulsar)",
+                "min": 0,
+                "ranged": "Twin las-pulsar",
+                "melee": "Interceptor Lance",
+                "max": null
+              }
+            ]
           }
         ]
       }
@@ -71,32 +63,40 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Allarus Custodian (Castellan Axe)",
             "count": 2,
-            "ranged": "Balistus grenade launcher",
-            "melee": "Guardian Spear"
-          }
-        ]
-      },
-      {
-        "name": "2x Guardian Spear",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Guardian Spear",
-            "melee": "Guardian Spear"
-          }
-        ]
-      },
-      {
-        "name": "2x Castellan axe",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Castellan axe",
-            "melee": "Guardian Spear"
+            "alloc": [
+              {
+                "name": "Allarus Custodian (Guardian Spear)",
+                "min": 0,
+                "max": 2,
+                "ranged": [
+                  "Guardian Spear",
+                  "Balistus grenade launcher"
+                ],
+                "melee": "Guardian Spear"
+              },
+              {
+                "name": "Allarus Custodian (Castellan Axe)",
+                "min": 0,
+                "max": 2,
+                "ranged": [
+                  "Castellan Axe",
+                  "Balistus grenade launcher"
+                ],
+                "melee": "Castellan Axe"
+              },
+              {
+                "name": "Allarus Custodian (Vexilla & Misericordia)",
+                "min": 0,
+                "max": 1,
+                "ranged": "Balistus grenade launcher",
+                "melee": "Misericordia"
+              }
+            ]
           }
         ]
       }
@@ -117,42 +117,55 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Aquilon Custodian (Talon & Lastrum bolter)",
             "count": 3,
-            "ranged": "Lastrum storm bolter",
-            "melee": "Solerite power gauntlet"
-          }
-        ]
-      },
-      {
-        "name": "2x Twin adrathic destructor",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Twin adrathic destructor",
-            "melee": "Solerite power gauntlet"
-          },
-          {
-            "count": 1,
-            "ranged": "Lastrum storm bolter",
-            "melee": "Solerite power gauntlet"
-          }
-        ]
-      },
-      {
-        "name": "2x Infernus firepike",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Infernus firepike",
-            "melee": "Solerite power gauntlet"
-          },
-          {
-            "count": 1,
-            "ranged": "Lastrum storm bolter",
-            "melee": "Solerite power gauntlet"
+            "alloc": [
+              {
+                "name": "Aquilon Custodian (Gauntlet & Lastrum bolter)",
+                "min": 0,
+                "ranged": "Lastrum storm bolter",
+                "melee": "Solerite power gauntlet",
+                "max": null
+              },
+              {
+                "name": "Aquilon Custodian (Gauntlet & Twin adrathic destructor)",
+                "min": 0,
+                "ranged": "Twin adrathic destructor",
+                "melee": "Solerite power gauntlet",
+                "max": null
+              },
+              {
+                "name": "Aquilon Custodian (Gauntlet & Infernus firepike)",
+                "min": 0,
+                "ranged": "Infernus firepike",
+                "melee": "Solerite power gauntlet",
+                "max": null
+              },
+              {
+                "name": "Aquilon Custodian (Talon & infernus firepike)",
+                "min": 0,
+                "ranged": "Infernus firepike",
+                "melee": "Solerite power talon",
+                "max": null
+              },
+              {
+                "name": "Aquilon Custodian (Talon & Lastrum bolter)",
+                "min": 0,
+                "ranged": "Lastrum storm bolter",
+                "melee": "Solerite power talon",
+                "max": null
+              },
+              {
+                "name": "Aquilon Custodian (Talon & Twin adrathic destructor)",
+                "min": 0,
+                "ranged": "Twin adrathic destructor",
+                "melee": "Solerite power talon",
+                "max": null
+              }
+            ]
           }
         ]
       }
@@ -173,27 +186,33 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Custodian Guard (Guardian Spear)",
             "count": 4,
-            "ranged": "Guardian Spear",
-            "melee": "Guardian Spear"
-          }
-        ]
-      },
-      {
-        "name": "Sentinel Blade",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Sentinel Blade",
-            "melee": "Guardian Spear"
-          },
-          {
-            "count": 3,
-            "ranged": "Guardian Spear",
-            "melee": "Guardian Spear"
+            "alloc": [
+              {
+                "name": "Custodian Guard (Guardian Spear)",
+                "min": 0,
+                "ranged": "Guardian Spear",
+                "melee": "Guardian Spear",
+                "max": null
+              },
+              {
+                "name": "Custodian Guard (Sentinel Blade & Praesidium Shield)",
+                "min": 0,
+                "ranged": "Sentinel blade",
+                "melee": "Sentinel blade",
+                "max": null
+              },
+              {
+                "name": "Custodian Guard (Vexilla, Praesidium Shield & Misericordia)",
+                "min": 0,
+                "max": 1,
+                "melee": "Misericordia"
+              }
+            ]
           }
         ]
       }
@@ -214,27 +233,27 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Custodian Guard (Adrasite spear)",
             "count": 5,
-            "ranged": "Adrasite spear",
-            "melee": "Adrasite spear"
-          }
-        ]
-      },
-      {
-        "name": "Pyrithite spear",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Pyrithite spear",
-            "melee": "Adrasite spear"
-          },
-          {
-            "count": 4,
-            "ranged": "Adrasite spear",
-            "melee": "Adrasite spear"
+            "alloc": [
+              {
+                "name": "Custodian Guard (Adrasite spear)",
+                "min": 0,
+                "ranged": "Adrasite spear",
+                "melee": "Adrasite spear",
+                "max": null
+              },
+              {
+                "name": "Custodian Guard (Pyrithite spear)",
+                "min": 0,
+                "ranged": "Pyrithite spear",
+                "melee": "Pyrithite spear",
+                "max": null
+              }
+            ]
           }
         ]
       }
@@ -256,27 +275,50 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Custodian Warden",
             "count": 4,
-            "ranged": "Guardian Spear",
-            "melee": "Guardian Spear"
-          }
-        ]
-      },
-      {
-        "name": "Castellan axe",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Castellan axe",
-            "melee": "Guardian Spear"
-          },
-          {
-            "count": 3,
-            "ranged": "Guardian Spear",
-            "melee": "Guardian Spear"
+            "alloc": [
+              {
+                "name": "Custodian Warden (Guardian Spear)",
+                "min": 0,
+                "max": 4,
+                "ranged": "Guardian Spear",
+                "melee": "Guardian Spear"
+              },
+              {
+                "name": "Custodian Warden (Castellan axe)",
+                "min": 0,
+                "max": 4,
+                "ranged": "Castellan Axe",
+                "melee": "Castellan Axe"
+              },
+              {
+                "name": "Custodian Warden w/ Vexilla",
+                "min": 0,
+                "max": 1,
+                "slots": [
+                  {
+                    "name": "Weapon",
+                    "choices": [
+                      {
+                        "name": "Guardian Spear",
+                        "ranged": "Guardian Spear",
+                        "melee": "Guardian Spear",
+                        "default": true
+                      },
+                      {
+                        "name": "Castellan Axe",
+                        "ranged": "Castellan axe",
+                        "melee": "Castellan axe"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -295,10 +337,17 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 4,
+            "name": "Prosecutor",
+            "count": 3,
+            "ranged": "Boltgun",
+            "melee": "Close combat weapon"
+          },
+          {
+            "name": "Prosecutor Sister Superior",
+            "count": 1,
             "ranged": "Boltgun",
             "melee": "Close combat weapon"
           }
@@ -321,9 +370,10 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Sagittarum Custodian",
             "count": 5,
             "ranged": "Adrastus bolt caliver",
             "melee": "Misericordia"
@@ -347,27 +397,27 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Venatari Custodian (Venatari lance)",
             "count": 3,
-            "ranged": "Venatari lance",
-            "melee": "Venatari lance"
-          }
-        ]
-      },
-      {
-        "name": "Kinetic destroyer",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Kinetic destroyer",
-            "melee": "Venatari lance"
-          },
-          {
-            "count": 2,
-            "ranged": "Venatari lance",
-            "melee": "Venatari lance"
+            "alloc": [
+              {
+                "name": "Venatari Custodian (Venatari lance)",
+                "min": 0,
+                "ranged": "Venatari lance",
+                "melee": "Venatari lance",
+                "max": null
+              },
+              {
+                "name": "Venatari Custodian (Kinetic Destroyer & Tarsus Buckler)",
+                "min": 0,
+                "ranged": "Kinetic destroyer",
+                "melee": "Tarsis buckler",
+                "max": null
+              }
+            ]
           }
         ]
       }
@@ -388,27 +438,27 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Vertus Praetor (Salvo Launcher)",
             "count": 2,
-            "ranged": "Salvo launcher",
-            "melee": "Interceptor lance"
-          }
-        ]
-      },
-      {
-        "name": "Vertus hurricane bolter",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Vertus hurricane bolter",
-            "melee": "Interceptor lance"
-          },
-          {
-            "count": 1,
-            "ranged": "Salvo launcher",
-            "melee": "Interceptor lance"
+            "alloc": [
+              {
+                "name": "Vertus Praetor (Salvo Launcher)",
+                "min": 0,
+                "max": 2,
+                "ranged": "Salvo launcher",
+                "melee": "Interceptor lance"
+              },
+              {
+                "name": "Vertus Praetor (Hurricane Bolter)",
+                "min": 0,
+                "max": 2,
+                "ranged": "Vertus hurricane bolter",
+                "melee": "Interceptor lance"
+              }
+            ]
           }
         ]
       }
@@ -427,10 +477,16 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 4,
+            "name": "Vigilator",
+            "count": 3,
+            "melee": "Executioner greatblade"
+          },
+          {
+            "name": "Vigilator Sister Superior",
+            "count": 1,
             "melee": "Executioner greatblade"
           }
         ]
@@ -450,10 +506,17 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 4,
+            "name": "Witchseeker",
+            "count": 3,
+            "ranged": "Witchseeker flamer",
+            "melee": "Close combat weapon"
+          },
+          {
+            "name": "Witchseeker Sister Superior",
+            "count": 1,
             "ranged": "Witchseeker flamer",
             "melee": "Close combat weapon"
           }

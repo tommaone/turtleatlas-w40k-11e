@@ -15,9 +15,10 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Corpuscarii Electro-Priests",
             "count": 5,
             "ranged": "Electrostatic gauntlets",
             "melee": "Electrostatic gauntlets"
@@ -40,9 +41,10 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Fulgurite Electro-Priests",
             "count": 5,
             "melee": "Electroleech stave"
           }
@@ -64,42 +66,25 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Hastarii arc blaster",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Eradication caster - focused",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Eradication caster - focused",
+            "name": "Hastarii Exterminator",
+            "count": 4,
+            "ranged": [
+              "Hastarii arc blaster",
+              "Eradication caster"
+            ],
             "melee": "Close combat weapon"
           },
           {
-            "count": 3,
-            "ranged": "Hastarii arc blaster",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Eradication caster - dissipated",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Eradication caster - dissipated",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Hastarii arc blaster",
-            "melee": "Close combat weapon"
+            "name": "Hastarii Exterminator Alpha",
+            "count": 1,
+            "ranged": [
+              "Hastarii arc blaster",
+              "Eradication caster"
+            ],
+            "melee": "Power weapon"
           }
         ]
       }
@@ -120,27 +105,25 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Hastarii phosphor blaster",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Neutron fusil",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Neutron fusil",
+            "name": "Hastarii Fusilier",
+            "count": 4,
+            "ranged": [
+              "Hastarii phosphor blaster",
+              "Neutron fusil"
+            ],
             "melee": "Close combat weapon"
           },
           {
-            "count": 4,
-            "ranged": "Hastarii phosphor blaster",
-            "melee": "Close combat weapon"
+            "name": "Hastarii Fusilier Alpha",
+            "count": 1,
+            "ranged": [
+              "Hastarii phosphor blaster",
+              "Neutron fusil"
+            ],
+            "melee": "Power weapon"
           }
         ]
       }
@@ -161,27 +144,41 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Kataphron Breacher (Torsion cannon & arc claw)",
             "count": 3,
-            "ranged": "Heavy arc rifle",
-            "melee": "Arc claw"
-          }
-        ]
-      },
-      {
-        "name": "Torsion cannon",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Torsion cannon",
-            "melee": "Arc claw"
-          },
-          {
-            "count": 2,
-            "ranged": "Heavy arc rifle",
-            "melee": "Arc claw"
+            "alloc": [
+              {
+                "name": "Kataphron Breacher (Heavy arc rifle & arc claw)",
+                "min": 0,
+                "max": 3,
+                "ranged": "Heavy arc rifle",
+                "melee": "Arc claw"
+              },
+              {
+                "name": "Kataphron Breacher (Heavy arc rifle & hydraulic claw)",
+                "min": 0,
+                "max": 3,
+                "ranged": "Heavy arc rifle",
+                "melee": "Hydraulic claw"
+              },
+              {
+                "name": "Kataphron Breacher (Torsion cannon & arc claw)",
+                "min": 0,
+                "max": 3,
+                "ranged": "Torsion cannon",
+                "melee": "Arc claw"
+              },
+              {
+                "name": "Kataphron Breacher (Torsion cannon & hydraulic claw)",
+                "min": 0,
+                "max": 3,
+                "ranged": "Torsion cannon",
+                "melee": "Hydraulic claw"
+              }
+            ]
           }
         ]
       }
@@ -201,72 +198,53 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Kataphron Destroyer (Heavy grav-cannon & Cognis flamer)",
             "count": 3,
-            "ranged": "Heavy grav-cannon",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Cognis flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Cognis flamer",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Heavy grav-cannon",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Phosphor blaster",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Phosphor blaster",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Heavy grav-cannon",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Kataphron plasma culverin - standard",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Kataphron plasma culverin - standard",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Heavy grav-cannon",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Kataphron plasma culverin - supercharge",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Kataphron plasma culverin - supercharge",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Heavy grav-cannon",
-            "melee": "Close combat weapon"
+            "alloc": [
+              {
+                "name": "Kataphron Destroyer (Heavy grav-cannon & Cognis flamer)",
+                "min": 0,
+                "ranged": [
+                  "Heavy grav-cannon",
+                  "Cognis flamer"
+                ],
+                "melee": "Close combat weapon",
+                "max": null
+              },
+              {
+                "name": "Kataphron Destroyer (Heavy grav-cannon & phosphor blaster)",
+                "min": 0,
+                "ranged": [
+                  "Heavy grav-cannon",
+                  "Phosphor blaster"
+                ],
+                "melee": "Close combat weapon",
+                "max": null
+              },
+              {
+                "name": "Kataphron Destroyer (Kataphron plasma culverin & Phosphor blaster)",
+                "min": 0,
+                "ranged": [
+                  "Phosphor blaster",
+                  "Kataphron plasma culverin"
+                ],
+                "melee": "Close combat weapon",
+                "max": null
+              },
+              {
+                "name": "Kataphron Destroyer (Kataphron plasma culverin & Cognis flamer)",
+                "min": 0,
+                "ranged": [
+                  "Cognis flamer",
+                  "Kataphron plasma culverin"
+                ],
+                "melee": "Close combat weapon",
+                "max": null
+              }
+            ]
           }
         ]
       }
@@ -286,25 +264,17 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Flechette blaster",
-            "melee": "Taser goad"
-          }
-        ]
-      },
-      {
-        "name": "Flechette carbine",
-        "models": [
-          {
-            "count": 1,
+            "name": "Pteraxii Skystalkers",
+            "count": 4,
             "ranged": "Flechette carbine",
-            "melee": "Taser goad"
+            "melee": "Close combat weapon"
           },
           {
-            "count": 4,
+            "name": "Pteraxii Skystalker Alpha",
+            "count": 1,
             "ranged": "Flechette blaster",
             "melee": "Taser goad"
           }
@@ -327,27 +297,22 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Flechette blaster",
-            "melee": "Taser goad"
-          }
-        ]
-      },
-      {
-        "name": "Phosphor torch",
-        "models": [
-          {
-            "count": 1,
+            "name": "Pteraxii Sterylizors",
+            "count": 4,
             "ranged": "Phosphor torch",
-            "melee": "Taser goad"
+            "melee": "Pteraxii talons"
           },
           {
-            "count": 4,
+            "name": "Pteraxii Sterylizor Alpha",
+            "count": 1,
             "ranged": "Flechette blaster",
-            "melee": "Taser goad"
+            "melee": [
+              "Taser goad",
+              "Pteraxii talons"
+            ]
           }
         ]
       }
@@ -368,26 +333,35 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Galvanic carbine",
-            "melee": "Cavalry sabre & clawed limbs"
-          }
-        ]
-      },
-      {
-        "name": "Mechanicus pistol",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Mechanicus pistol",
-            "melee": "Cavalry sabre & clawed limbs"
+            "name": "Serberys Raider",
+            "count": 2,
+            "alloc": [
+              {
+                "name": "Serberys Raider",
+                "min": 1,
+                "max": 2,
+                "ranged": "Galvanic carbine",
+                "melee": "Cavalry sabre & clawed limbs"
+              },
+              {
+                "name": "Serberys Raider w/ data-tether",
+                "min": 0,
+                "max": 1,
+                "ranged": "Galvanic carbine",
+                "melee": "Cavalry sabre & clawed limbs"
+              }
+            ]
           },
           {
-            "count": 2,
-            "ranged": "Galvanic carbine",
+            "name": "Serberys Raider Alpha",
+            "count": 1,
+            "ranged": [
+              "Galvanic carbine",
+              "Mechanicus pistol"
+            ],
             "melee": "Cavalry sabre & clawed limbs"
           }
         ]
@@ -408,57 +382,46 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Sulphur breath",
-            "melee": "Clawed limbs"
-          }
-        ]
-      },
-      {
-        "name": "2x Phosphor pistol",
-        "models": [
-          {
+            "name": "Serberys Sulphurhound (Twin phosphor pistols)",
             "count": 2,
-            "ranged": "Phosphor pistol",
-            "melee": "Clawed limbs"
+            "alloc": [
+              {
+                "name": "Serberys Sulphurhound (Twin phosphor pistols)",
+                "min": 0,
+                "ranged": [
+                  "Phosphor pistol",
+                  "Sulphur breath"
+                ],
+                "melee": "Clawed limbs",
+                "max": null
+              },
+              {
+                "name": "Serberys Sulphurhound (Phosphor blast carbine & Phosphor pistol)",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Phosphor blast carbine",
+                  "Phosphor pistol",
+                  "Sulphur breath"
+                ],
+                "melee": "Clawed limbs"
+              }
+            ]
           },
           {
+            "name": "Serberys Sulphurhound Alpha",
             "count": 1,
-            "ranged": "Sulphur breath",
-            "melee": "Clawed limbs"
-          }
-        ]
-      },
-      {
-        "name": "1x Phosphor blast carbine",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Phosphor blast carbine",
-            "melee": "Clawed limbs"
-          },
-          {
-            "count": 2,
-            "ranged": "Sulphur breath",
-            "melee": "Clawed limbs"
-          }
-        ]
-      },
-      {
-        "name": "2x Mechanicus pistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Mechanicus pistol",
-            "melee": "Clawed limbs"
-          },
-          {
-            "count": 1,
-            "ranged": "Sulphur breath",
-            "melee": "Clawed limbs"
+            "ranged": [
+              "Mechanicus pistol",
+              "Sulphur breath"
+            ],
+            "melee": [
+              "Cavalry arc maul",
+              "Clawed limbs"
+            ]
           }
         ]
       }
@@ -477,86 +440,51 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 9,
-            "ranged": "Incendine igniter",
-            "melee": "Servo-claw"
-          }
-        ]
-      },
-      {
-        "name": "1x Meltagun",
-        "models": [
+            "name": "Combat Servitor",
+            "count": 6,
+            "alloc": [
+              {
+                "name": "Combat Servitor w/ incendine igniter",
+                "min": 0,
+                "max": 3,
+                "ranged": "Incendine igniter",
+                "melee": "Servo-claw"
+              },
+              {
+                "name": "Combat Servitor w/ meltagun",
+                "min": 0,
+                "max": 1,
+                "ranged": "Meltagun",
+                "melee": "Servo-claw"
+              },
+              {
+                "name": "Combat Servitor w/ phophor blaster",
+                "min": 2,
+                "max": 6,
+                "ranged": "Phosphor blaster",
+                "melee": "Servo-claw"
+              }
+            ]
+          },
           {
+            "name": "Servitor Underseer",
             "count": 1,
-            "ranged": "Meltagun",
-            "melee": "Servo-claw"
-          },
-          {
-            "count": 8,
-            "ranged": "Incendine igniter",
-            "melee": "Servo-claw"
-          }
-        ]
-      },
-      {
-        "name": "2x Phosphor blaster",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Phosphor blaster",
-            "melee": "Servo-claw"
-          },
-          {
-            "count": 7,
-            "ranged": "Incendine igniter",
-            "melee": "Servo-claw"
-          }
-        ]
-      },
-      {
-        "name": "2x Mechanicus pistol",
-        "models": [
-          {
-            "count": 2,
             "ranged": "Mechanicus pistol",
-            "melee": "Servo-claw"
+            "melee": "Dataspikes"
           },
           {
-            "count": 7,
-            "ranged": "Incendine igniter",
-            "melee": "Servo-claw"
-          }
-        ]
-      },
-      {
-        "name": "2x Heavy arc rifle",
-        "models": [
-          {
-            "count": 2,
+            "name": "Gun Servitor w/ heavy arc rifle",
+            "count": 1,
             "ranged": "Heavy arc rifle",
             "melee": "Servo-claw"
           },
           {
-            "count": 7,
-            "ranged": "Incendine igniter",
-            "melee": "Servo-claw"
-          }
-        ]
-      },
-      {
-        "name": "2x Heavy bolter",
-        "models": [
-          {
-            "count": 2,
+            "name": "Gun Servitor w/ heavy bolter",
+            "count": 1,
             "ranged": "Heavy bolter",
-            "melee": "Servo-claw"
-          },
-          {
-            "count": 7,
-            "ranged": "Incendine igniter",
             "melee": "Servo-claw"
           }
         ]
@@ -577,27 +505,41 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Sicarian Infiltrator (Power weapon & stubcarbine)",
             "count": 5,
-            "ranged": "Stubcarbine",
-            "melee": "Power weapon"
-          }
-        ]
-      },
-      {
-        "name": "Flechette blaster",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Flechette blaster",
-            "melee": "Power weapon"
-          },
-          {
-            "count": 4,
-            "ranged": "Stubcarbine",
-            "melee": "Power weapon"
+            "alloc": [
+              {
+                "name": "Sicarian Infiltrator (Power weapon & stubcarbine)",
+                "min": 0,
+                "ranged": "Stubcarbine",
+                "melee": "Power weapon",
+                "max": null
+              },
+              {
+                "name": "Sicarian Infiltrator (Taser goad & flechette blaster)",
+                "min": 0,
+                "ranged": "Flechette blaster",
+                "melee": "Taser goad",
+                "max": null
+              },
+              {
+                "name": "Sicarian Infiltrator Princeps (Power weapon & stub carbine)",
+                "min": 0,
+                "ranged": "Stubcarbine",
+                "melee": "Power weapon",
+                "max": null
+              },
+              {
+                "name": "Sicarian Infiltrator Princeps (Taser goad & flechette blaster)",
+                "min": 0,
+                "ranged": "Flechette blaster",
+                "melee": "Taser goad",
+                "max": null
+              }
+            ]
           }
         ]
       }
@@ -618,11 +560,37 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Sicarian Ruststalker (Transonic blades)",
             "count": 5,
-            "melee": "Transonic razor & chordclaw"
+            "alloc": [
+              {
+                "name": "Sicarian Ruststalker (Transonic razor & chordclaw)",
+                "min": 0,
+                "melee": "Transonic razor & chordclaw",
+                "max": null
+              },
+              {
+                "name": "Sicarian Ruststalker (Transonic blades)",
+                "min": 0,
+                "melee": "Transonic blades",
+                "max": null
+              },
+              {
+                "name": "Sicarian Ruststalker Princeps (Transonic blades & chordclaw)",
+                "min": 0,
+                "melee": "Transonic blades & chordclaw",
+                "max": null
+              },
+              {
+                "name": "Sicarian Ruststalker Princeps (Transonic razor & chordclaw)",
+                "min": 0,
+                "melee": "Transonic razor & chordclaw",
+                "max": null
+              }
+            ]
           }
         ]
       }
@@ -643,72 +611,79 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Transuranic arquebus",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Arc rifle",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Arc rifle",
-            "melee": "Close combat weapon"
-          },
-          {
+            "name": "Skitarii Ranger",
             "count": 9,
-            "ranged": "Transuranic arquebus",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Plasma caliver -  supercharge",
-        "models": [
+            "alloc": [
+              {
+                "name": "Skitarii Ranger w/ transuranic arquebus",
+                "min": 0,
+                "max": 1,
+                "ranged": "Transuranic arquebus",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Skitarii Ranger w/ arc rifle",
+                "min": 0,
+                "max": 1,
+                "ranged": "Arc rifle",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Skitarii Ranger w/ plasma caliver",
+                "min": 0,
+                "max": 1,
+                "ranged": "Plasma caliver",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Skitarii Ranger w/ galvanic rifle",
+                "min": 5,
+                "max": 9,
+                "ranged": "Galvanic rifle",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Skitarii Ranger w/ data-tether",
+                "min": 0,
+                "max": 1,
+                "ranged": "Galvanic rifle",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Skitarii Ranger w/ omnispex",
+                "min": 0,
+                "max": 1,
+                "ranged": "Galvanic rifle",
+                "melee": "Close combat weapon"
+              }
+            ]
+          },
           {
+            "name": "Skitarii Ranger Alpha",
             "count": 1,
-            "ranged": "Plasma caliver -  supercharge",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Transuranic arquebus",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Plasma caliver - standard",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Plasma caliver - standard",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Transuranic arquebus",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Galvanic rifle",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Galvanic rifle",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Transuranic arquebus",
-            "melee": "Close combat weapon"
+            "melee": [
+              "Alpha combat weapon",
+              "Close combat weapon"
+            ],
+            "slots": [
+              {
+                "name": "Ranged weapon",
+                "choices": [
+                  {
+                    "name": "Mechanicus pistol",
+                    "ranged": "Mechanicus pistol"
+                  },
+                  {
+                    "name": "Galvanic rifle",
+                    "ranged": "Galvanic rifle",
+                    "default": true
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -728,72 +703,79 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Transuranic arquebus",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Arc rifle",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Arc rifle",
-            "melee": "Close combat weapon"
-          },
-          {
+            "name": "Skitarii Vanguard",
             "count": 9,
-            "ranged": "Transuranic arquebus",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Plasma caliver -  supercharge",
-        "models": [
+            "alloc": [
+              {
+                "name": "Skitarii Vanguard w/ transuranic arquebus",
+                "min": 0,
+                "max": 1,
+                "ranged": "Transuranic arquebus",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Skitarii Vanguard w/ arc rifle",
+                "min": 0,
+                "max": 1,
+                "ranged": "Arc rifle",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Skitarii Vanguard w/ plasma caliver",
+                "min": 0,
+                "max": 1,
+                "ranged": "Plasma caliver",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Skitarii Vanguard w/ radium carbine",
+                "min": 0,
+                "max": 9,
+                "ranged": "Radium carbine",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Skitarii Vanguard w/ data-tether",
+                "min": 0,
+                "max": 1,
+                "ranged": "Radium carbine",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Skitarii Vanguard w/ omnispex",
+                "min": 0,
+                "max": 1,
+                "ranged": "Radium carbine",
+                "melee": "Close combat weapon"
+              }
+            ]
+          },
           {
+            "name": "Skitarii Vanguard Alpha",
             "count": 1,
-            "ranged": "Plasma caliver -  supercharge",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Transuranic arquebus",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Plasma caliver - standard",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Plasma caliver - standard",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Transuranic arquebus",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Radium carbine",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Radium carbine",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Transuranic arquebus",
-            "melee": "Close combat weapon"
+            "melee": [
+              "Alpha combat weapon",
+              "Close combat weapon"
+            ],
+            "slots": [
+              {
+                "name": "Ranged weapon",
+                "choices": [
+                  {
+                    "name": "Mechanicus pistol",
+                    "ranged": "Mechanicus pistol"
+                  },
+                  {
+                    "name": "Radium carbine",
+                    "ranged": "Radium carbine",
+                    "default": true
+                  }
+                ]
+              }
+            ]
           }
         ]
       }

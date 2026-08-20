@@ -16,32 +16,32 @@
     "_note": "All Thunderkyn models must be equipped with the same weapon — one mode per weapon choice",
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Brôkhyr Thunderkyn",
             "count": 3,
-            "ranged": "Bolt cannon",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Graviton blast cannon",
-        "models": [
-          {
-            "count": 3,
-            "ranged": "Graviton blast cannon",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "SP conversion beamer",
-        "models": [
-          {
-            "count": 3,
-            "ranged": "SP conversion beamer",
-            "melee": "Close combat weapon"
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapon",
+                "choices": [
+                  {
+                    "name": "Bolt cannon",
+                    "ranged": "Bolt cannon",
+                    "default": true
+                  },
+                  {
+                    "name": "Graviton blast cannon",
+                    "ranged": "Graviton blast cannon"
+                  },
+                  {
+                    "name": "SP conversion beamer",
+                    "ranged": "SP conversion beamer"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -62,65 +62,62 @@
     "_note": "Base Beserks carry a squad-wide melee weapon (Concussion maul or Heavy plasma axe); 1 per 5 may swap to twin concussion gauntlets or a mole grenade launcher",
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Beserk",
             "count": 5,
-            "melee": "Concussion maul"
-          }
-        ]
-      },
-      {
-        "name": "Heavy plasma axe",
-        "models": [
-          {
-            "count": 5,
-            "melee": "Heavy plasma axe"
-          }
-        ]
-      },
-      {
-        "name": "Twin concussion gauntlets",
-        "models": [
-          {
-            "count": 1,
-            "melee": "Twin concussion gauntlets"
-          },
-          {
-            "count": 4,
-            "melee": "Concussion maul"
-          }
-        ]
-      },
-      {
-        "name": "Mole grenade launcher",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Mole grenade launcher",
-            "melee": "Concussion maul"
-          },
-          {
-            "count": 4,
-            "melee": "Concussion maul"
-          }
-        ]
-      },
-      {
-        "name": "Mixed",
-        "models": [
-          {
-            "count": 1,
-            "melee": "Twin concussion gauntlets"
-          },
-          {
-            "count": 1,
-            "ranged": "Mole grenade launcher",
-            "melee": "Concussion maul"
-          },
-          {
-            "count": 3,
-            "melee": "Concussion maul"
+            "alloc": [
+              {
+                "name": "Beserk",
+                "min": 3,
+                "max": 5,
+                "slots": [
+                  {
+                    "name": "Squad weapon choice",
+                    "choices": [
+                      {
+                        "name": "Concussion maul",
+                        "melee": "Concussion maul"
+                      },
+                      {
+                        "name": "Heavy plasma axe",
+                        "melee": "Heavy plasma axe",
+                        "default": true
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Beserk w/ twin concussion gauntlets",
+                "min": 0,
+                "max": 1,
+                "melee": "Twin concussion gauntlets"
+              },
+              {
+                "name": "Beserk w/ mole grenade launcher",
+                "min": 0,
+                "max": 1,
+                "ranged": "Mole grenade launcher",
+                "slots": [
+                  {
+                    "name": "Weapon",
+                    "choices": [
+                      {
+                        "name": "Concussion maul",
+                        "melee": "Concussion maul"
+                      },
+                      {
+                        "name": "Heavy plasma axe",
+                        "melee": "Heavy plasma axe",
+                        "default": true
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -140,22 +137,28 @@
     "_note": "Main weapon choice per model: Breacher ordnance (default) or Tremor shells; every model keeps Plasma picks",
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Cthonian Earthshaker",
             "count": 2,
-            "ranged": "Breacher ordnance",
-            "melee": "Plasma picks"
-          }
-        ]
-      },
-      {
-        "name": "Tremor shells",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Tremor shells",
-            "melee": "Plasma picks"
+            "ranged": "Autoch-pattern bolt pistol",
+            "melee": "Plasma picks",
+            "slots": [
+              {
+                "name": "Main weapon",
+                "choices": [
+                  {
+                    "name": "Breacher ordnance",
+                    "ranged": "Breacher ordnance"
+                  },
+                  {
+                    "name": "Tremor shells",
+                    "ranged": "Tremor shells"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -176,62 +179,81 @@
     "_note": "Up to 2 per 5 Hearthguard replace their Exo-armour grenade launcher with an EtaCarn plasma gun or Volkanite disintegrator; mixing allowed",
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
+            "name": "Einhyr Hearthguard",
+            "count": 4,
             "ranged": "Exo-armour grenade launcher",
-            "melee": "Concussion gauntlet"
-          }
-        ]
-      },
-      {
-        "name": "EtaCarn plasma gun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "EtaCarn plasma gun",
-            "melee": "Concussion gauntlet"
+            "slots": [
+              {
+                "name": "Squad ranged weapon",
+                "choices": [
+                  {
+                    "name": "EtaCarn plasma gun",
+                    "ranged": "EtaCarn plasma gun",
+                    "default": true
+                  },
+                  {
+                    "name": "Volkanite disintegrator",
+                    "ranged": "Volkanite disintegrator"
+                  }
+                ]
+              },
+              {
+                "name": "Squad melee weapon",
+                "choices": [
+                  {
+                    "name": "Concussion gauntlet",
+                    "melee": "Concussion gauntlet",
+                    "default": true
+                  },
+                  {
+                    "name": "Plasma blade gauntlet",
+                    "melee": "Plasma blade gauntlet"
+                  }
+                ]
+              }
+            ]
           },
           {
-            "count": 3,
-            "ranged": "Exo-armour grenade launcher",
-            "melee": "Concussion gauntlet"
-          }
-        ]
-      },
-      {
-        "name": "Volkanite disintegrator",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Volkanite disintegrator",
-            "melee": "Concussion gauntlet"
-          },
-          {
-            "count": 3,
-            "ranged": "Exo-armour grenade launcher",
-            "melee": "Concussion gauntlet"
-          }
-        ]
-      },
-      {
-        "name": "Mixed",
-        "models": [
-          {
+            "name": "Hesyr",
             "count": 1,
-            "ranged": "EtaCarn plasma gun",
-            "melee": "Concussion gauntlet"
-          },
-          {
-            "count": 1,
-            "ranged": "Volkanite disintegrator",
-            "melee": "Concussion gauntlet"
-          },
-          {
-            "count": 3,
             "ranged": "Exo-armour grenade launcher",
-            "melee": "Concussion gauntlet"
+            "slots": [
+              {
+                "name": "Ranged weapon",
+                "choices": [
+                  {
+                    "name": "EtaCarn plasma gun",
+                    "ranged": "EtaCarn plasma gun",
+                    "default": true
+                  },
+                  {
+                    "name": "Volkanite disintegrator",
+                    "ranged": "Volkanite disintegrator"
+                  }
+                ]
+              },
+              {
+                "name": "Exchange melee weapon for hammer",
+                "choices": [
+                  {
+                    "name": "Concussion gauntlet",
+                    "melee": "Concussion gauntlet",
+                    "default": true
+                  },
+                  {
+                    "name": "Plasma blade gauntlet",
+                    "melee": "Plasma blade gauntlet"
+                  },
+                  {
+                    "name": "Graviton hammer",
+                    "melee": "Graviton hammer"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -252,127 +274,127 @@
     "_note": "Per 10: up to 2 heavy weapons (HYLas rotary cannon, HYLas auto rifle, L7 missile launcher, magna-rail rifle, EtaCarn plasma beamer) and up to 1 ion blaster replace the Autoch-pattern bolter",
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Autoch-pattern bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Ion blaster",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Ion blaster",
-            "melee": "Close combat weapon"
-          },
-          {
+            "name": "Hearthkyn Warrior",
             "count": 9,
-            "ranged": "Autoch-pattern bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "HYLas rotary cannon",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "HYLas rotary cannon",
-            "melee": "Close combat weapon"
+            "alloc": [
+              {
+                "name": "Hearthkyn Warrior w/ bolter",
+                "min": 0,
+                "max": 9,
+                "ranged": [
+                  "Autoch-pattern bolt pistol",
+                  "Autoch-pattern bolter"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Hearthkyn Warrior w/ ion blaster",
+                "min": 0,
+                "max": 9,
+                "ranged": [
+                  "Autoch-pattern bolt pistol",
+                  "Ion blaster"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Hearthkyn Warrior w/ plasma knife",
+                "min": 0,
+                "max": 2,
+                "ranged": "Autoch-pattern bolt pistol",
+                "melee": [
+                  "Close combat weapon",
+                  "Plasma knife"
+                ]
+              },
+              {
+                "name": "Hearthkyn Warrior w/ HYLas rotary cannon",
+                "min": 0,
+                "max": 1,
+                "group_max": 2,
+                "ranged": [
+                  "Autoch-pattern bolt pistol",
+                  "HYLas rotary cannon"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Hearthkyn Warrior w/ HYLas auto rifle",
+                "min": 0,
+                "max": 1,
+                "group_max": 2,
+                "ranged": [
+                  "Autoch-pattern bolt pistol",
+                  "HYLas auto rifle"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Hearthkyn Warrior w/ L7 missile launcher",
+                "min": 0,
+                "max": 1,
+                "group_max": 2,
+                "ranged": [
+                  "Autoch-pattern bolt pistol",
+                  "L7 missile launcher"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Hearthkyn Warrior w/ magna-rail rifle",
+                "min": 0,
+                "max": 1,
+                "group_max": 2,
+                "ranged": [
+                  "Autoch-pattern bolt pistol",
+                  "Magna-rail rifle"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Hearthkyn Warrior w/ EtaCarn plasma beamer",
+                "min": 0,
+                "max": 1,
+                "group_max": 2,
+                "ranged": [
+                  "Autoch-pattern bolt pistol",
+                  "EtaCarn plasma beamer"
+                ],
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 9,
-            "ranged": "Autoch-pattern bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "HYLas auto rifle",
-        "models": [
-          {
+            "name": "Theyn",
             "count": 1,
-            "ranged": "HYLas auto rifle",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Autoch-pattern bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "L7 missile launcher",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "L7 missile launcher",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Autoch-pattern bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Magna-rail rifle",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Magna-rail rifle",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Autoch-pattern bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "EtaCarn plasma beamer",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "EtaCarn plasma beamer",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Autoch-pattern bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Mixed",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Magna-rail rifle",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "HYLas rotary cannon",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Ion blaster",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 7,
-            "ranged": "Autoch-pattern bolter",
-            "melee": "Close combat weapon"
+            "ranged": "Autoch-pattern bolt pistol",
+            "melee": [
+              "Close combat weapon",
+              "Theyn's melee weapon"
+            ],
+            "slots": [
+              {
+                "name": "Weapon",
+                "choices": [
+                  {
+                    "name": "Autoch-pattern bolter",
+                    "ranged": "Autoch-pattern bolter",
+                    "default": true
+                  },
+                  {
+                    "name": "Ion blaster",
+                    "ranged": "Ion blaster"
+                  },
+                  {
+                    "name": "Theyn's pistol",
+                    "ranged": "Theyn's pistol"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -393,92 +415,83 @@
     "_note": "Pioneers may swap bolt revolver for a bolt shotgun or magna-coil autocannon, and up to 1 per 3 takes a heavy weapon (HYLas rotary cannon or ion beamer)",
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Hernkyn Pioneer",
             "count": 3,
-            "ranged": "Bolt revolver",
-            "melee": "Plasma knife"
-          }
-        ]
-      },
-      {
-        "name": "Bolt shotgun",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Bolt shotgun",
-            "melee": "Plasma knife"
-          },
-          {
-            "count": 2,
-            "ranged": "Bolt revolver",
-            "melee": "Plasma knife"
-          }
-        ]
-      },
-      {
-        "name": "Magna-coil autocannon",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Magna-coil autocannon",
-            "melee": "Plasma knife"
-          },
-          {
-            "count": 2,
-            "ranged": "Bolt revolver",
-            "melee": "Plasma knife"
-          }
-        ]
-      },
-      {
-        "name": "HYLas rotary cannon",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "HYLas rotary cannon",
-            "melee": "Plasma knife"
-          },
-          {
-            "count": 2,
-            "ranged": "Bolt revolver",
-            "melee": "Plasma knife"
-          }
-        ]
-      },
-      {
-        "name": "Ion beamer",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Ion beamer",
-            "melee": "Plasma knife"
-          },
-          {
-            "count": 2,
-            "ranged": "Bolt revolver",
-            "melee": "Plasma knife"
-          }
-        ]
-      },
-      {
-        "name": "Mixed",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "HYLas rotary cannon",
-            "melee": "Plasma knife"
-          },
-          {
-            "count": 1,
-            "ranged": "Magna-coil autocannon",
-            "melee": "Plasma knife"
-          },
-          {
-            "count": 1,
-            "ranged": "Bolt revolver",
-            "melee": "Plasma knife"
+            "alloc": [
+              {
+                "name": "Hernkyn Pioneer",
+                "min": 0,
+                "max": 3,
+                "ranged": [
+                  "Bolt revolver",
+                  "Bolt shotgun",
+                  "Magna-coil autocannon"
+                ],
+                "melee": "Plasma knife"
+              },
+              {
+                "name": "Hernkyn Pioneer w/ comms array",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Bolt revolver",
+                  "Bolt shotgun",
+                  "Magna-coil autocannon"
+                ],
+                "melee": "Plasma knife"
+              },
+              {
+                "name": "Hernkyn Pioneer w/ pan-spectral scanner",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Bolt revolver",
+                  "Bolt shotgun",
+                  "Magna-coil autocannon"
+                ],
+                "melee": "Plasma knife"
+              },
+              {
+                "name": "Hernkyn Pioneer w/ searchlight",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Bolt revolver",
+                  "Bolt shotgun",
+                  "Magna-coil autocannon"
+                ],
+                "melee": "Plasma knife"
+              },
+              {
+                "name": "Hernkyn Pioneer w/ HYLas rotary cannon",
+                "min": 0,
+                "max": 1,
+                "group_max": 1,
+                "ranged": [
+                  "HYLas rotary cannon",
+                  "Bolt revolver",
+                  "Bolt shotgun",
+                  "Magna-coil autocannon"
+                ],
+                "melee": "Plasma knife"
+              },
+              {
+                "name": "Hernkyn Pioneer w/ ion beamer",
+                "min": 0,
+                "max": 1,
+                "group_max": 1,
+                "ranged": [
+                  "Ion beamer",
+                  "Bolt revolver",
+                  "Bolt shotgun",
+                  "Magna-coil autocannon"
+                ],
+                "melee": "Plasma knife"
+              }
+            ]
           }
         ]
       }
@@ -498,72 +511,62 @@
     "_note": "Yaegir squad weapon choice applies to all regular models (bolt shotgun default); up to 1 APM launcher and up to 1 magna-coil rifle replace a bolt shotgun; Theyn takes bolt shotgun or bolt revolver and plasma knife",
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Bolt shotgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "APM launcher",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "APM launcher",
-            "melee": "Close combat weapon"
-          },
-          {
+            "name": "Hernkyn Yaegir",
             "count": 9,
-            "ranged": "Bolt shotgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Magna-coil rifle",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Magna-coil rifle",
-            "melee": "Close combat weapon"
+            "alloc": [
+              {
+                "name": "Hernkyn Yaegir w/ bolt shotgun",
+                "min": 0,
+                "max": 9,
+                "ranged": "Bolt shotgun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Hernkyn Yaegir w/ APM launcher",
+                "min": 0,
+                "max": 1,
+                "ranged": "APM launcher",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Hernkyn Yaegir w/ magna-coil rifle",
+                "min": 0,
+                "max": 1,
+                "ranged": "Magna-coil rifle",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Hernkyn Yaegir w/ revolver and knife",
+                "min": 0,
+                "max": 9,
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 9,
-            "ranged": "Bolt shotgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Bolt revolver and plasma knife",
-        "models": [
-          {
-            "count": 10,
-            "ranged": "Bolt revolver",
-            "melee": "Plasma knife"
-          }
-        ]
-      },
-      {
-        "name": "Mixed",
-        "models": [
-          {
+            "name": "Yaegir Theyn",
             "count": 1,
-            "ranged": "APM launcher",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Magna-coil rifle",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Bolt shotgun",
-            "melee": "Close combat weapon"
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapon",
+                "choices": [
+                  {
+                    "name": "Bolt revolver and plasma knife",
+                    "ranged": "Bolt revolver",
+                    "melee": "Plasma knife"
+                  },
+                  {
+                    "name": "Bolt shotgun",
+                    "ranged": "Bolt shotgun",
+                    "default": true
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -584,12 +587,35 @@
     "_note": "No wargear options — every model carries the heavy volkanite disintegrator and plasma knife",
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
+            "name": "Ironkin Steeljack",
+            "count": 2,
             "ranged": "Heavy volkanite disintegrator",
             "melee": "Plasma knife"
+          },
+          {
+            "name": "Steeljack Theyn",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Weapons",
+                "choices": [
+                  {
+                    "name": "Disintegrator and knife",
+                    "ranged": "Heavy volkanite disintegrator",
+                    "melee": "Plasma knife",
+                    "default": true
+                  },
+                  {
+                    "name": "Bolter and sword",
+                    "ranged": "Autoch-pattern bolter",
+                    "melee": "Plasma sword"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -610,22 +636,47 @@
     "_note": "Melee weapon choice per model: concussion gauntlet (default) or plasma sword",
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Autoch-pattern bolter",
-            "melee": "Concussion gauntlet"
-          }
-        ]
-      },
-      {
-        "name": "Plasma sword",
-        "models": [
+            "name": "Ironkin Steeljack",
+            "count": 2,
+            "alloc": [
+              {
+                "name": "Ironkin Steeljack w/ concussion gauntlet",
+                "min": 0,
+                "max": 2,
+                "ranged": "Autoch-pattern bolter",
+                "melee": "Concussion gauntlet"
+              },
+              {
+                "name": "Ironkin Steeljack w/ plasma sword",
+                "min": 0,
+                "max": 2,
+                "ranged": "Autoch-pattern bolter",
+                "melee": "Plasma sword"
+              }
+            ]
+          },
           {
-            "count": 3,
+            "name": "Steeljack Theyn",
+            "count": 1,
             "ranged": "Autoch-pattern bolter",
-            "melee": "Plasma sword"
+            "slots": [
+              {
+                "name": "Melee Weapon",
+                "choices": [
+                  {
+                    "name": "Plasma sword",
+                    "melee": "Plasma sword"
+                  },
+                  {
+                    "name": "Concussion gauntlet",
+                    "melee": "Concussion gauntlet"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }

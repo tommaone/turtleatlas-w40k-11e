@@ -398,12 +398,45 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
+            "name": "Jakhal Pack Leader",
+            "count": 1,
             "ranged": "Autopistol",
             "melee": "Chainblades"
+          },
+          {
+            "name": "Jakhal",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Jakhal",
+                "min": 0,
+                "max": 9,
+                "ranged": "Autopistol",
+                "melee": "Chainblades"
+              },
+              {
+                "name": "Jakhal w/ mauler chainblade",
+                "min": 0,
+                "max": 9,
+                "ranged": "Autopistol",
+                "melee": "Mauler chainblade"
+              },
+              {
+                "name": "Dishonoured w/ skullsmasher and mangler",
+                "min": 0,
+                "max": 2,
+                "melee": "Skullsmasher and mangler"
+              },
+              {
+                "name": "Dishonoured w/ paired manglers",
+                "min": 0,
+                "max": 2,
+                "melee": "Paired manglers"
+              }
+            ]
           }
         ]
       }

@@ -16,9 +16,10 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Blue Horror",
             "count": 10,
             "ranged": "Coruscating Blue flames",
             "melee": "Blue claws"
@@ -41,9 +42,10 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Chaos Spawn",
             "count": 2,
             "melee": "Hideous Mutations"
           }
@@ -90,11 +92,18 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Flickering flames",
+            "name": "Flamer",
+            "count": 2,
+            "ranged": "Flickering Flames",
+            "melee": "Flamer mouths"
+          },
+          {
+            "name": "Pyrocaster",
+            "count": 1,
+            "ranged": "Flickering Flames",
             "melee": "Flamer mouths"
           }
         ]
@@ -116,11 +125,12 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Pink Horror",
             "count": 10,
-            "ranged": "Coruscating pink flames",
+            "ranged": "Coruscating Pink flames",
             "melee": "Pink claws"
           }
         ]
@@ -142,57 +152,56 @@
     "_note": "Sergeant (Aspiring Sorcerer) modeled as a distinct model entry with Force weapon + Malefic Curse. Soulreaper cannon max 1 per squad (BSData constraint). Warpflamer max 9 (flexible).",
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 1,
-            "ranged": "Malefic Curse",
-            "melee": "Force weapon"
-          },
-          {
+            "name": "Rubric Marine",
             "count": 4,
-            "ranged": "Inferno boltgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Warpflamer",
-        "models": [
+            "alloc": [
+              {
+                "name": "Rubric Marine w/ inferno boltgun",
+                "min": 0,
+                "max": 4,
+                "ranged": "Inferno boltgun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Rubric Marine w/ warpflamer",
+                "min": 0,
+                "max": 4,
+                "ranged": "Warpflamer",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Rubric Marine w/ soulreaper cannon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Soulreaper cannon",
+                "melee": "Close combat weapon"
+              }
+            ]
+          },
           {
+            "name": "Aspiring Sorcerer",
             "count": 1,
             "ranged": "Malefic Curse",
-            "melee": "Force weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Warpflamer",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Inferno boltgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Soulreaper cannon",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Malefic Curse",
-            "melee": "Force weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Soulreaper cannon",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Inferno boltgun",
-            "melee": "Close combat weapon"
+            "melee": "Force weapon",
+            "slots": [
+              {
+                "name": "Pistol",
+                "choices": [
+                  {
+                    "name": "Inferno bolt pistol",
+                    "ranged": "Inferno bolt pistol",
+                    "default": true
+                  },
+                  {
+                    "name": "Warpflame pistol",
+                    "ranged": "Warpflame pistol"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -213,72 +222,57 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Inferno combi-bolter",
-            "melee": "Prosperine khopesh"
-          }
-        ]
-      },
-      {
-        "name": "2x Heavy warpflamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Heavy warpflamer",
-            "melee": "Prosperine khopesh"
+            "name": "Scarab Occult Terminator",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Scarab Occult Terminator",
+                "min": 3,
+                "max": 4,
+                "ranged": "Inferno combi-bolter",
+                "melee": "Prosperine khopesh"
+              },
+              {
+                "name": "Scarab Occult Terminator w/ heavy warpflamer",
+                "min": 0,
+                "max": 2,
+                "group_max": 2,
+                "ranged": "Heavy warpflamer",
+                "melee": "Prosperine khopesh"
+              },
+              {
+                "name": "Scarab Occult Terminator w/ soulreaper cannon",
+                "min": 0,
+                "max": 2,
+                "group_max": 2,
+                "ranged": "Soulreaper cannon",
+                "melee": "Prosperine khopesh"
+              }
+            ]
           },
           {
-            "count": 3,
-            "ranged": "Inferno combi-bolter",
-            "melee": "Prosperine khopesh"
-          }
-        ]
-      },
-      {
-        "name": "2x Soulreaper cannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Soulreaper cannon",
-            "melee": "Prosperine khopesh"
-          },
-          {
-            "count": 3,
-            "ranged": "Inferno combi-bolter",
-            "melee": "Prosperine khopesh"
-          }
-        ]
-      },
-      {
-        "name": "2x Malefic Curse",
-        "models": [
-          {
-            "count": 2,
+            "name": "Scarab Occult Sorcerer",
+            "count": 1,
             "ranged": "Malefic Curse",
-            "melee": "Prosperine khopesh"
-          },
-          {
-            "count": 3,
-            "ranged": "Inferno combi-bolter",
-            "melee": "Prosperine khopesh"
-          }
-        ]
-      },
-      {
-        "name": "2x Hellfyre missile rack",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Hellfyre missile rack",
-            "melee": "Prosperine khopesh"
-          },
-          {
-            "count": 3,
-            "ranged": "Inferno combi-bolter",
-            "melee": "Prosperine khopesh"
+            "melee": "Force weapon",
+            "slots": [
+              {
+                "name": "Weapon",
+                "choices": [
+                  {
+                    "name": "Inferno combi-bolter",
+                    "ranged": "Inferno combi-bolter"
+                  },
+                  {
+                    "name": "Prosperine khopesh",
+                    "melee": "Prosperine khopesh"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -300,9 +294,10 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Screamer",
             "count": 3,
             "melee": "Lamprey bite"
           }
@@ -324,12 +319,46 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Autopistol",
-            "melee": "Divining spear"
+            "name": "Divining spear Enlightened",
+            "count": 2,
+            "alloc": [
+              {
+                "name": "Divining spear Enlightened",
+                "min": 0,
+                "max": 2,
+                "melee": "Divining spear"
+              },
+              {
+                "name": "Pistol and chainsword Enlightened",
+                "min": 0,
+                "max": 2,
+                "ranged": "Autopistol",
+                "melee": "Chainsword"
+              }
+            ]
+          },
+          {
+            "name": "Aviarch",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Weapons",
+                "choices": [
+                  {
+                    "name": "Divining spear",
+                    "melee": "Divining spear"
+                  },
+                  {
+                    "name": "Autopistol and chainsword",
+                    "ranged": "Autopistol",
+                    "melee": "Chainsword"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -349,10 +378,17 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
+            "name": "Enlightened",
+            "count": 2,
+            "ranged": "Fatecaster greatbow",
+            "melee": "Close combat weapon"
+          },
+          {
+            "name": "Aviarch",
+            "count": 1,
             "ranged": "Fatecaster greatbow",
             "melee": "Close combat weapon"
           }
@@ -374,12 +410,47 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Autopistol",
-            "melee": "Chainsword"
+            "name": "Tzaangor",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Tzaangor w/ Tzaangor blades",
+                "min": 0,
+                "max": 9,
+                "melee": "Tzaangor blades"
+              },
+              {
+                "name": "Tzaangor w/ pistol and chainsword",
+                "min": 0,
+                "max": 9,
+                "ranged": "Autopistol",
+                "melee": "Chainsword"
+              }
+            ]
+          },
+          {
+            "name": "Twistbray",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Weapons",
+                "choices": [
+                  {
+                    "name": "Pistol and chainsword",
+                    "ranged": "Autopistol",
+                    "melee": "Chainsword"
+                  },
+                  {
+                    "name": "Tzaangor blades",
+                    "melee": "Tzaangor blades",
+                    "default": true
+                  }
+                ]
+              }
+            ]
           }
         ]
       }

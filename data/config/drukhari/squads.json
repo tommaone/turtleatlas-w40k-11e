@@ -15,102 +15,141 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Splinter Rifle",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Blaster",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Blaster",
-            "melee": "Close Combat Weapon"
+            "name": "Kabalite Agent",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Kabalite Agent with stinger pistol",
+                "min": 0,
+                "max": 1,
+                "ranged": "Stinger pistol",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Kabalite Agent",
+                "min": 0,
+                "max": 9,
+                "ranged": "Splinter rifle",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Kabalite Agent with special weapon",
+                "min": 0,
+                "max": 1,
+                "melee": "Close Combat Weapon",
+                "slots": [
+                  {
+                    "name": "Weapon Choice",
+                    "choices": [
+                      {
+                        "name": "Blaster",
+                        "ranged": "Blaster",
+                        "default": true
+                      },
+                      {
+                        "name": "Shredder",
+                        "ranged": "Shredder"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Kabalite Agent with heavy weapon",
+                "min": 0,
+                "max": 1,
+                "melee": "Close Combat Weapon",
+                "slots": [
+                  {
+                    "name": "Weapon Choice",
+                    "choices": [
+                      {
+                        "name": "Dark lance",
+                        "ranged": "Dark Lance"
+                      },
+                      {
+                        "name": "Splinter cannon",
+                        "ranged": "Splinter Cannon"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Kabalite Agent with shardcarbine",
+                "min": 0,
+                "max": 1,
+                "ranged": "Shardcarbine",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Kabalite Agent with pain sculptors",
+                "min": 0,
+                "max": 1,
+                "melee": [
+                  "Pain sculptors",
+                  "Close Combat Weapon"
+                ]
+              },
+              {
+                "name": "Kabalite Agent with razorflail",
+                "min": 0,
+                "max": 1,
+                "ranged": "Splinter Pistol",
+                "melee": [
+                  "Razorflail",
+                  "Close Combat Weapon"
+                ]
+              },
+              {
+                "name": "Kabalite Agent with stimm-needler",
+                "min": 0,
+                "max": 1,
+                "ranged": "Splinter rifle",
+                "melee": "Close Combat Weapon"
+              }
+            ]
           },
           {
-            "count": 9,
-            "ranged": "Splinter Rifle",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Shredder",
-        "models": [
-          {
+            "name": "Kabalite Archsybarite",
             "count": 1,
-            "ranged": "Shredder",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Splinter Rifle",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Dark Lance",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Dark Lance",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Splinter Rifle",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Splinter Cannon",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Splinter Cannon",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Splinter Rifle",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Shardcarbine",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Shardcarbine",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Splinter Rifle",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Stinger Pistol",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Stinger Pistol",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Splinter Rifle",
-            "melee": "Close Combat Weapon"
+            "slots": [
+              {
+                "name": "Ranged Weapon",
+                "choices": [
+                  {
+                    "name": "Blast Pistol",
+                    "ranged": "Blast Pistol"
+                  },
+                  {
+                    "name": "Splinter Pistol",
+                    "ranged": "Splinter Pistol"
+                  },
+                  {
+                    "name": "Splinter Rifle",
+                    "ranged": "Splinter Rifle",
+                    "default": true
+                  }
+                ]
+              },
+              {
+                "name": "Melee Weapon",
+                "choices": [
+                  {
+                    "name": "Close Combat Weapon",
+                    "melee": "Close Combat Weapon",
+                    "default": true
+                  },
+                  {
+                    "name": "Power Weapon",
+                    "melee": "Power Weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -131,42 +170,40 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Splinter Pods",
-            "melee": "Hellglaive"
-          }
-        ]
-      },
-      {
-        "name": "1x Power Weapon",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Splinter Pistol",
-            "melee": "Power weapon"
-          },
-          {
+            "name": "Hellion",
             "count": 4,
             "ranged": "Splinter Pods",
             "melee": "Hellglaive"
-          }
-        ]
-      },
-      {
-        "name": "1x Stunclaw",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Splinter Pistol",
-            "melee": "Stunclaw"
           },
           {
-            "count": 4,
+            "name": "Heliarch",
+            "count": 1,
             "ranged": "Splinter Pods",
-            "melee": "Hellglaive"
+            "slots": [
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Hellglaive",
+                    "melee": "Hellglaive",
+                    "default": true
+                  },
+                  {
+                    "name": "1 Splinter pistol and 1 Power weapon",
+                    "ranged": "Splinter Pistol",
+                    "melee": "Power Weapon"
+                  },
+                  {
+                    "name": "1 Splinter pistol and 1 Stunclaw",
+                    "ranged": "Splinter Pistol",
+                    "melee": "Stunclaw"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -186,11 +223,31 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
+            "name": "Incubi",
+            "count": 4,
             "melee": "Klaive"
+          },
+          {
+            "name": "Klaivex",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Demiklaives",
+                    "melee": "Demiklaives - Dual Blades"
+                  },
+                  {
+                    "name": "Klaive",
+                    "melee": "Klaive"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -210,72 +267,86 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Splinter Rifle",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Blaster",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Blaster",
-            "melee": "Close Combat Weapon"
+            "name": "Kabalite Warrior",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Kabalite Warrior with Shredder",
+                "min": 0,
+                "max": 1,
+                "ranged": "Shredder",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Kabalite Warrior",
+                "min": 0,
+                "max": 9,
+                "ranged": "Splinter rifle",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Kabalite Warrior with Blaster",
+                "min": 0,
+                "max": 1,
+                "ranged": "Blaster",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Kabalite Warrior with Splinter Cannon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Splinter cannon",
+                "melee": "Close Combat Weapon"
+              },
+              {
+                "name": "Kabalite Warrior with Dark Lance",
+                "min": 0,
+                "max": 1,
+                "ranged": "Dark lance",
+                "melee": "Close Combat Weapon"
+              }
+            ]
           },
           {
-            "count": 9,
-            "ranged": "Splinter Rifle",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Dark Lance",
-        "models": [
-          {
+            "name": "Sybarite",
             "count": 1,
-            "ranged": "Dark Lance",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Splinter Rifle",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Shredder",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Shredder",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Splinter Rifle",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Splinter Cannon",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Splinter Cannon",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Splinter Rifle",
-            "melee": "Close Combat Weapon"
+            "slots": [
+              {
+                "name": "Ranged Weapon",
+                "choices": [
+                  {
+                    "name": "Blast Pistol",
+                    "ranged": "Blast Pistol"
+                  },
+                  {
+                    "name": "Splinter Pistol",
+                    "ranged": "Splinter Pistol"
+                  },
+                  {
+                    "name": "Splinter Rifle",
+                    "ranged": "Splinter Rifle",
+                    "default": true
+                  }
+                ]
+              },
+              {
+                "name": "Melee Weapon",
+                "choices": [
+                  {
+                    "name": "Close Combat Weapon",
+                    "melee": "Close Combat Weapon",
+                    "default": true
+                  },
+                  {
+                    "name": "Power Weapon",
+                    "melee": "Power Weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -296,10 +367,17 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
+            "name": "Mandrake",
+            "count": 4,
+            "ranged": "Baleblast",
+            "melee": "Glimmersteel Blade"
+          },
+          {
+            "name": "Nightfiend",
+            "count": 1,
             "ranged": "Baleblast",
             "melee": "Glimmersteel Blade"
           }
@@ -321,42 +399,69 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Splinter Rifle",
-            "melee": "Bladevanes"
-          }
-        ]
-      },
-      {
-        "name": "1x Blaster",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Blaster",
-            "melee": "Bladevanes"
+            "name": "Reaver",
+            "count": 2,
+            "alloc": [
+              {
+                "name": "Reaver",
+                "min": 2,
+                "max": 2,
+                "ranged": [
+                  "Splinter Rifle",
+                  "Splinter Pistol"
+                ],
+                "melee": "Bladevanes"
+              },
+              {
+                "name": "Reaver with Blaster",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Blaster",
+                  "Splinter Pistol"
+                ],
+                "melee": "Bladevanes"
+              },
+              {
+                "name": "Reaver with Heat Lance",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Splinter Pistol",
+                  "Heat Lance"
+                ],
+                "melee": "Bladevanes"
+              }
+            ]
           },
           {
-            "count": 2,
-            "ranged": "Splinter Rifle",
-            "melee": "Bladevanes"
-          }
-        ]
-      },
-      {
-        "name": "1x Heat Lance",
-        "models": [
-          {
+            "name": "Arena Champion",
             "count": 1,
-            "ranged": "Heat Lance",
-            "melee": "Bladevanes"
-          },
-          {
-            "count": 2,
-            "ranged": "Splinter Rifle",
-            "melee": "Bladevanes"
+            "ranged": "Splinter Pistol",
+            "melee": "Bladevanes",
+            "slots": [
+              {
+                "name": "Bike Weapon",
+                "choices": [
+                  {
+                    "name": "Splinter Rifle",
+                    "ranged": "Splinter Rifle",
+                    "default": true
+                  },
+                  {
+                    "name": "Blaster",
+                    "ranged": "Blaster"
+                  },
+                  {
+                    "name": "Heat Lance",
+                    "ranged": "Heat Lance"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -377,92 +482,71 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 1,
-            "ranged": "Shardcarbine",
-            "melee": "Close Combat Weapon"
+            "name": "Scourge with Heavy Weapon",
+            "count": 4,
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Ranged Weapon",
+                "choices": [
+                  {
+                    "name": "Blaster",
+                    "ranged": "Blaster"
+                  },
+                  {
+                    "name": "Heat Lance",
+                    "ranged": "Heat Lance"
+                  },
+                  {
+                    "name": "Splinter Cannon",
+                    "ranged": "Splinter Cannon",
+                    "default": true
+                  },
+                  {
+                    "name": "Shredder",
+                    "ranged": "Shredder"
+                  },
+                  {
+                    "name": "Dark Lance",
+                    "ranged": "Dark Lance"
+                  },
+                  {
+                    "name": "Haywire Blaster",
+                    "ranged": "Haywire Blaster"
+                  }
+                ]
+              }
+            ]
           },
           {
-            "count": 4,
-            "ranged": "Splinter Cannon",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "4x Blaster",
-        "models": [
-          {
+            "name": "Solarite",
             "count": 1,
-            "ranged": "Shardcarbine",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 4,
-            "ranged": "Blaster",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "4x Dark Lance",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Shardcarbine",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 4,
-            "ranged": "Dark Lance",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "4x Haywire Blaster",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Shardcarbine",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 4,
-            "ranged": "Haywire Blaster",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "4x Heat Lance",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Shardcarbine",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 4,
-            "ranged": "Heat Lance",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "4x Shredder",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Shardcarbine",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 4,
-            "ranged": "Shredder",
-            "melee": "Close Combat Weapon"
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Shardcarbine",
+                    "ranged": "Shardcarbine",
+                    "default": true
+                  },
+                  {
+                    "name": "1 Blast pistol and 1 Power weapon",
+                    "ranged": "Blast Pistol",
+                    "melee": "Power Weapon"
+                  },
+                  {
+                    "name": "1 Splinter pistol and 1 Power weapon",
+                    "ranged": "Splinter Pistol",
+                    "melee": "Power Weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -483,42 +567,72 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Shardcarbine",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Blaster",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Blaster",
-            "melee": "Close Combat Weapon"
+            "name": "Scourge",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Scourge with Special Weapon",
+                "min": 0,
+                "max": 1,
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Ranged Weapon",
+                    "choices": [
+                      {
+                        "name": "Blaster",
+                        "ranged": "Blaster"
+                      },
+                      {
+                        "name": "Shredder",
+                        "ranged": "Shredder"
+                      },
+                      {
+                        "name": "Shardcarbine",
+                        "ranged": "Shardcarbine",
+                        "default": true
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Scourge",
+                "min": 4,
+                "max": 4,
+                "ranged": "Shardcarbine",
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 4,
-            "ranged": "Shardcarbine",
-            "melee": "Close Combat Weapon"
-          }
-        ]
-      },
-      {
-        "name": "1x Shredder",
-        "models": [
-          {
+            "name": "Solarite",
             "count": 1,
-            "ranged": "Shredder",
-            "melee": "Close Combat Weapon"
-          },
-          {
-            "count": 4,
-            "ranged": "Shardcarbine",
-            "melee": "Close Combat Weapon"
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapon Option",
+                "choices": [
+                  {
+                    "name": "Shardcarbine",
+                    "ranged": "Shardcarbine"
+                  },
+                  {
+                    "name": "1 Blast pistol and 1 Power weapon",
+                    "ranged": "Blast Pistol",
+                    "melee": "Power Weapon"
+                  },
+                  {
+                    "name": "1 Splinter pistol and 1 Power weapon",
+                    "ranged": "Splinter Pistol",
+                    "melee": "Power Weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -538,67 +652,63 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "melee": "Twin Torturer's Tools"
-          }
-        ]
-      },
-      {
-        "name": "1x Hexrifle",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Hexrifle",
-            "melee": "Torturer's tool"
+            "name": "Wrack",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Wrack",
+                "min": 0,
+                "max": 4,
+                "melee": "Twin torturer's tools"
+              },
+              {
+                "name": "Wrack with Hexrifle",
+                "min": 0,
+                "max": 1,
+                "ranged": "Hexrifle",
+                "melee": "Torturer's tool"
+              },
+              {
+                "name": "Wrack with Liquifier Gun",
+                "min": 0,
+                "max": 1,
+                "ranged": "Liquifier gun",
+                "melee": "Torturer's tool"
+              },
+              {
+                "name": "Wrack with Ossefactor",
+                "min": 0,
+                "max": 1,
+                "ranged": "Ossefactor",
+                "melee": "Torturer's tool"
+              },
+              {
+                "name": "Wrack with Stinger Pistol",
+                "min": 0,
+                "max": 1,
+                "ranged": "Stinger pistol",
+                "melee": "Torturer's tool"
+              }
+            ]
           },
           {
-            "count": 4,
-            "melee": "Twin Torturer's Tools"
-          }
-        ]
-      },
-      {
-        "name": "1x Liquifier Gun",
-        "models": [
-          {
+            "name": "Acothyst",
             "count": 1,
-            "ranged": "Liquifier Gun",
-            "melee": "Torturer's tool"
-          },
-          {
-            "count": 4,
-            "melee": "Twin Torturer's Tools"
-          }
-        ]
-      },
-      {
-        "name": "1x Ossefactor",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Ossefactor",
-            "melee": "Torturer's tool"
-          },
-          {
-            "count": 4,
-            "melee": "Twin Torturer's Tools"
-          }
-        ]
-      },
-      {
-        "name": "1x Stinger Pistol",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Stinger Pistol",
-            "melee": "Torturer's tool"
-          },
-          {
-            "count": 4,
-            "melee": "Twin Torturer's Tools"
+            "slots": [
+              {
+                "name": "Weapon Options",
+                "choices": [
+                  {
+                    "name": "Twin torturer's tools",
+                    "melee": "Twin Torturer's Tools",
+                    "default": true
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -618,56 +728,60 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Splinter Pistol",
-            "melee": "Hekatarii Blade"
-          }
-        ]
-      },
-      {
-        "name": "1x Blast Pistol",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Blast Pistol",
-            "melee": "Hekatarii Blade"
-          },
-          {
+            "name": "Wych",
             "count": 9,
-            "ranged": "Splinter Pistol",
-            "melee": "Hekatarii Blade"
-          }
-        ]
-      },
-      {
-        "name": "1x Power Weapon",
-        "models": [
+            "alloc": [
+              {
+                "name": "Wych",
+                "min": 6,
+                "max": 9,
+                "ranged": "Splinter Pistol",
+                "melee": "Hekatarii Blade"
+              },
+              {
+                "name": "Wych w/ Gladiatorial weapons",
+                "min": 0,
+                "max": 3,
+                "melee": "Gladiatorial weapons"
+              }
+            ]
+          },
           {
+            "name": "Hekatrix",
             "count": 1,
-            "ranged": "Splinter Pistol",
-            "melee": "Power weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Splinter Pistol",
-            "melee": "Hekatarii Blade"
-          }
-        ]
-      },
-      {
-        "name": "3x Gladiatorial Weapons",
-        "models": [
-          {
-            "count": 3,
-            "melee": "Gladiatorial weapons"
-          },
-          {
-            "count": 7,
-            "ranged": "Splinter Pistol",
-            "melee": "Hekatarii Blade"
+            "slots": [
+              {
+                "name": "Pistol Choice",
+                "choices": [
+                  {
+                    "name": "Splinter Pistol",
+                    "ranged": "Splinter Pistol",
+                    "default": true
+                  },
+                  {
+                    "name": "Blast Pistol",
+                    "ranged": "Blast Pistol"
+                  }
+                ]
+              },
+              {
+                "name": "Blade Choice",
+                "choices": [
+                  {
+                    "name": "Hekatarii Blade",
+                    "melee": "Hekatarii Blade",
+                    "default": true
+                  },
+                  {
+                    "name": "Power weapon",
+                    "melee": "Power weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }

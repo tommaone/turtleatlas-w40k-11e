@@ -14,102 +14,111 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Boltgun",
-            "melee": "Power weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Frag cannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Frag cannon",
-            "melee": "Power weapon"
+            "name": "Veteran",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Veteran w/ boltgun and power weapon",
+                "min": 0,
+                "max": 4,
+                "ranged": "Boltgun",
+                "melee": "Power weapon"
+              },
+              {
+                "name": "Veteran w/ Deathwatch thunder hammer",
+                "min": 0,
+                "max": 2,
+                "melee": "Deathwatch thunder hammer"
+              },
+              {
+                "name": "Veteran w/ frag cannon and CCW",
+                "min": 0,
+                "max": 1,
+                "ranged": "Frag cannon",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Veteran w/ infernus heavy bolter and CCW",
+                "min": 0,
+                "max": 1,
+                "ranged": "Infernus heavy bolter",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Veteran w/ Astartes shield and boltgun",
+                "min": 0,
+                "max": 2,
+                "ranged": "Boltgun"
+              },
+              {
+                "name": "Veteran w/ Astartes shield and power weapon",
+                "min": 0,
+                "max": 2,
+                "melee": "Power weapon"
+              },
+              {
+                "name": "Veteran w/ stalker-pattern boltgun and CCW",
+                "min": 0,
+                "max": 1,
+                "ranged": "Stalker-pattern boltgun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Veteran w/ Deathwatch shotgun and CCW",
+                "min": 0,
+                "max": 2,
+                "ranged": "Deathwatch shotgun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Veteran w/ Black Shield blades",
+                "min": 0,
+                "max": 1,
+                "melee": "Black Shield blades"
+              }
+            ]
           },
           {
-            "count": 3,
-            "ranged": "Boltgun",
-            "melee": "Power weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Infernus heavy bolter - heavy bolter",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Infernus heavy bolter - heavy bolter",
-            "melee": "Power weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Boltgun",
-            "melee": "Power weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Infernus heavy bolter - heavy flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Infernus heavy bolter - heavy flamer",
-            "melee": "Power weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Boltgun",
-            "melee": "Power weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Stalker-pattern boltgun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Stalker-pattern boltgun",
-            "melee": "Power weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Boltgun",
-            "melee": "Power weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Deathwatch shotgun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Deathwatch shotgun",
-            "melee": "Power weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Boltgun",
-            "melee": "Power weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Combi-weapon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Combi-weapon",
-            "melee": "Power weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Boltgun",
-            "melee": "Power weapon"
+            "name": "Watch Sergeant",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Black Shield blades",
+                    "melee": "Black Shield blades"
+                  },
+                  {
+                    "name": "Deathwatch thunder hammer",
+                    "melee": "Deathwatch thunder hammer"
+                  },
+                  {
+                    "name": "Deathwatch shotgun and close combat weapon",
+                    "ranged": "Deathwatch shotgun",
+                    "melee": "Close combat weapon"
+                  },
+                  {
+                    "name": "Frag cannon and close combat weapon",
+                    "ranged": "Frag cannon",
+                    "melee": "Close combat weapon"
+                  },
+                  {
+                    "name": "Infernus heavy bolter and close combat weapon",
+                    "ranged": "Infernus heavy bolter",
+                    "melee": "Close combat weapon"
+                  },
+                  {
+                    "name": "Stalker-pattern boltgun and close combat weapon",
+                    "ranged": "Stalker-pattern boltgun",
+                    "melee": "Close combat weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -128,102 +137,109 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 11,
-            "ranged": "Arbites combat shotgun",
-            "melee": "Mechanical bite"
-          }
-        ]
-      },
-      {
-        "name": "2x Arbites shotpistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Arbites shotpistol",
-            "melee": "Mechanical bite"
+            "name": "Exaction Vigilant",
+            "count": 10,
+            "alloc": [
+              {
+                "name": "Exaction Vigilant w/ medi-kit",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Arbites combat shotgun",
+                  "Arbites shotpistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Exaction Vigilant w/ excruciator maul",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Arbites combat shotgun",
+                  "Arbites shotpistol"
+                ],
+                "melee": [
+                  "Excruciator maul",
+                  "Close combat weapon"
+                ]
+              },
+              {
+                "name": "Exaction Vigilant w/ soulguilt scanner",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Arbites combat shotgun",
+                  "Arbites shotpistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Exaction Vigilant w/ shotgun",
+                "min": 4,
+                "max": 9,
+                "ranged": [
+                  "Arbites combat shotgun",
+                  "Arbites shotpistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Exaction Vigilant w/ grenade launcher",
+                "min": 0,
+                "max": 1,
+                "group_max": 2,
+                "ranged": [
+                  "Arbites grenade launcher",
+                  "Arbites shotpistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Exaction Vigilant w/ executioner shotgun",
+                "min": 0,
+                "max": 1,
+                "group_max": 2,
+                "ranged": [
+                  "Executioner shotgun",
+                  "Arbites shotpistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Exaction Vigilant w/ heavy stubber",
+                "min": 0,
+                "max": 1,
+                "group_max": 2,
+                "ranged": [
+                  "Heavy stubber",
+                  "Arbites shotpistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Exaction Vigilant w/ webber",
+                "min": 0,
+                "max": 1,
+                "group_max": 2,
+                "ranged": [
+                  "Webber",
+                  "Arbites shotpistol"
+                ],
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 9,
-            "ranged": "Arbites combat shotgun",
-            "melee": "Mechanical bite"
-          }
-        ]
-      },
-      {
-        "name": "2x Arbites grenade launcher - frag",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Arbites grenade launcher - frag",
-            "melee": "Mechanical bite"
-          },
-          {
-            "count": 9,
-            "ranged": "Arbites combat shotgun",
-            "melee": "Mechanical bite"
-          }
-        ]
-      },
-      {
-        "name": "2x Arbites grenade launcher - krak",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Arbites grenade launcher - krak",
-            "melee": "Mechanical bite"
-          },
-          {
-            "count": 9,
-            "ranged": "Arbites combat shotgun",
-            "melee": "Mechanical bite"
-          }
-        ]
-      },
-      {
-        "name": "2x Executioner shotgun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Executioner shotgun",
-            "melee": "Mechanical bite"
-          },
-          {
-            "count": 9,
-            "ranged": "Arbites combat shotgun",
-            "melee": "Mechanical bite"
-          }
-        ]
-      },
-      {
-        "name": "2x Heavy stubber",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Heavy stubber",
-            "melee": "Mechanical bite"
-          },
-          {
-            "count": 9,
-            "ranged": "Arbites combat shotgun",
-            "melee": "Mechanical bite"
-          }
-        ]
-      },
-      {
-        "name": "2x Webber",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Webber",
-            "melee": "Mechanical bite"
-          },
-          {
-            "count": 9,
-            "ranged": "Arbites combat shotgun",
-            "melee": "Mechanical bite"
+            "name": "Proctor-Exactant",
+            "count": 1,
+            "ranged": [
+              "Arbites combat shotgun",
+              "Arbites shotpistol"
+            ],
+            "melee": "Close combat weapon"
           }
         ]
       }
@@ -244,55 +260,55 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Storm bolter",
-            "melee": "Nemesis force weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Incinerator",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Incinerator",
-            "melee": "Nemesis force weapon"
+            "name": "Terminator",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Terminator",
+                "min": 0,
+                "max": 4,
+                "ranged": "Storm bolter",
+                "melee": "Nemesis force weapon"
+              },
+              {
+                "name": "Terminator w/ heavy weapon",
+                "min": 0,
+                "max": 1,
+                "melee": "Nemesis force weapon",
+                "slots": [
+                  {
+                    "name": "Weapon",
+                    "choices": [
+                      {
+                        "name": "Incinerator",
+                        "ranged": "Incinerator"
+                      },
+                      {
+                        "name": "Psilencer",
+                        "ranged": "Psilencer"
+                      },
+                      {
+                        "name": "Psycannon",
+                        "ranged": "Psycannon"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Terminator w/ narthecium",
+                "min": 0,
+                "max": 1,
+                "melee": "Nemesis force weapon"
+              }
+            ]
           },
           {
-            "count": 3,
-            "ranged": "Storm bolter",
-            "melee": "Nemesis force weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Psilencer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Psilencer",
-            "melee": "Nemesis force weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Storm bolter",
-            "melee": "Nemesis force weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Psycannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Psycannon",
-            "melee": "Nemesis force weapon"
-          },
-          {
-            "count": 3,
+            "name": "Terminator Justicar",
+            "count": 1,
             "ranged": "Storm bolter",
             "melee": "Nemesis force weapon"
           }
@@ -313,102 +329,98 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
+            "name": "Navis Armsman",
+            "count": 7,
+            "alloc": [
+              {
+                "name": "Navis Armsman w/ power weapon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Autopistol",
+                "melee": [
+                  "Power weapon",
+                  "Close combat weapon"
+                ]
+              },
+              {
+                "name": "Navis Armsman",
+                "min": 5,
+                "max": 7,
+                "ranged": "Navis shotgun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Navis Armsman w/ chainfist",
+                "min": 0,
+                "max": 1,
+                "ranged": "Autopistol",
+                "melee": [
+                  "Chainfist",
+                  "Close combat weapon"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Navis Armsman w/ heavy shotgun",
+            "count": 1,
             "ranged": "Navis heavy shotgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Navis las-volley",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Navis las-volley",
             "melee": "Close combat weapon"
           },
           {
-            "count": 8,
-            "ranged": "Navis heavy shotgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma gun - standard",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma gun - standard",
-            "melee": "Close combat weapon"
+            "name": "Navis Armsman w/ special weapon",
+            "count": 1,
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapon",
+                "choices": [
+                  {
+                    "name": "Meltagun",
+                    "ranged": "Meltagun"
+                  },
+                  {
+                    "name": "Navis las-volley",
+                    "ranged": "Navis las-volley",
+                    "default": true
+                  },
+                  {
+                    "name": "Plasma gun",
+                    "ranged": "Plasma gun"
+                  }
+                ]
+              }
+            ]
           },
           {
-            "count": 8,
-            "ranged": "Navis heavy shotgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma gun - supercharge",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma gun - supercharge",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Navis heavy shotgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Meltagun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Meltagun",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Navis heavy shotgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Autopistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Autopistol",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Navis heavy shotgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Demolition charge",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Demolition charge",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Navis heavy shotgun",
-            "melee": "Close combat weapon"
+            "name": "Navis Sergeant-at-Arms",
+            "count": 1,
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapons",
+                "choices": [
+                  {
+                    "name": "Navis shotgun",
+                    "ranged": "Navis shotgun",
+                    "default": true
+                  },
+                  {
+                    "name": "Autopistol and chainsword",
+                    "ranged": "Autopistol",
+                    "melee": "Chainsword"
+                  },
+                  {
+                    "name": "Bolt pistol and power weapon",
+                    "ranged": "Bolt pistol",
+                    "melee": "Power weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -427,102 +439,71 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Agent",
             "count": 6,
-            "ranged": "Agent firearm",
-            "melee": "Agent melee weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma pistol - standard",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma pistol - standard",
-            "melee": "Agent melee weapon"
-          },
-          {
-            "count": 4,
-            "ranged": "Agent firearm",
-            "melee": "Agent melee weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma pistol - supercharge",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma pistol - supercharge",
-            "melee": "Agent melee weapon"
-          },
-          {
-            "count": 4,
-            "ranged": "Agent firearm",
-            "melee": "Agent melee weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Heavy bolter",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Heavy bolter",
-            "melee": "Agent melee weapon"
-          },
-          {
-            "count": 4,
-            "ranged": "Agent firearm",
-            "melee": "Agent melee weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Multi-melta",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Multi-melta",
-            "melee": "Agent melee weapon"
-          },
-          {
-            "count": 4,
-            "ranged": "Agent firearm",
-            "melee": "Agent melee weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma cannon - standard",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma cannon - standard",
-            "melee": "Agent melee weapon"
-          },
-          {
-            "count": 4,
-            "ranged": "Agent firearm",
-            "melee": "Agent melee weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma cannon - supercharge",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma cannon - supercharge",
-            "melee": "Agent melee weapon"
-          },
-          {
-            "count": 4,
-            "ranged": "Agent firearm",
-            "melee": "Agent melee weapon"
+            "alloc": [
+              {
+                "name": "Agent",
+                "min": 2,
+                "max": 6,
+                "ranged": "Agent firearm",
+                "melee": "Agent melee weapon"
+              },
+              {
+                "name": "Agent w/ plasma pistol",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Plasma pistol",
+                  "Agent firearm"
+                ],
+                "melee": "Agent melee weapon"
+              },
+              {
+                "name": "Agent w/ eviscerator",
+                "min": 0,
+                "max": 1,
+                "ranged": "Agent firearm",
+                "melee": [
+                  "Eviscerator",
+                  "Agent melee weapon"
+                ]
+              },
+              {
+                "name": "Agent w/ mystic stave",
+                "min": 0,
+                "max": 1,
+                "ranged": "Agent firearm",
+                "melee": [
+                  "Mystic stave",
+                  "Agent melee weapon"
+                ]
+              },
+              {
+                "name": "Servitor w/ heavy bolter",
+                "min": 0,
+                "max": 1,
+                "ranged": "Heavy bolter",
+                "melee": "Agent melee weapon"
+              },
+              {
+                "name": "Servitor w/ multi-melta",
+                "min": 0,
+                "max": 1,
+                "ranged": "Multi-melta",
+                "melee": "Agent melee weapon"
+              },
+              {
+                "name": "Servitor w/ plasma cannon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Plasma cannon",
+                "melee": "Agent melee weapon"
+              }
+            ]
           }
         ]
       }
@@ -591,87 +572,78 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 9,
-            "ranged": "Plasma gun - standard",
-            "melee": "Burning hands"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma gun - supercharge",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma gun - supercharge",
-            "melee": "Burning hands"
+            "name": "Sanctifier",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Sanctifier w/ hand flamer",
+                "min": 4,
+                "max": 4,
+                "ranged": "Ministorum hand flamer",
+                "melee": "Sanctifier melee weapon"
+              },
+              {
+                "name": "Sanctifier w/ two hand flamers",
+                "min": 0,
+                "max": 1,
+                "ranged": "Ministorum hand flamer",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Sanctifier w/ simulacrum imperialis",
+                "min": 0,
+                "max": 1,
+                "ranged": "Ministorum hand flamer",
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 7,
-            "ranged": "Plasma gun - standard",
-            "melee": "Burning hands"
-          }
-        ]
-      },
-      {
-        "name": "2x Meltagun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Meltagun",
-            "melee": "Burning hands"
-          },
-          {
-            "count": 7,
-            "ranged": "Plasma gun - standard",
-            "melee": "Burning hands"
-          }
-        ]
-      },
-      {
-        "name": "2x Holy fire",
-        "models": [
-          {
-            "count": 2,
+            "name": "Miraculist",
+            "count": 1,
             "ranged": "Holy fire",
             "melee": "Burning hands"
           },
           {
-            "count": 7,
-            "ranged": "Plasma gun - standard",
-            "melee": "Burning hands"
-          }
-        ]
-      },
-      {
-        "name": "2x Ministorum flamer",
-        "models": [
+            "name": "Salvationist",
+            "count": 1,
+            "melee": "Close combat weapon"
+          },
           {
-            "count": 2,
+            "name": "Death Cult Assassin",
+            "count": 1,
+            "melee": "Death Cult blades"
+          },
+          {
+            "name": "Missionary w/ plasma gun",
+            "count": 1,
+            "ranged": "Holy fire",
+            "melee": "Sanctifier melee weapon",
+            "slots": [
+              {
+                "name": "Weapon",
+                "choices": [
+                  {
+                    "name": "Meltagun",
+                    "ranged": "Meltagun"
+                  },
+                  {
+                    "name": "Plasma gun",
+                    "ranged": "Plasma gun",
+                    "default": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Missionary w/ flamer",
+            "count": 1,
             "ranged": "Ministorum flamer",
-            "melee": "Burning hands"
-          },
-          {
-            "count": 7,
-            "ranged": "Plasma gun - standard",
-            "melee": "Burning hands"
-          }
-        ]
-      },
-      {
-        "name": "2x Ministorum hand flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Ministorum hand flamer",
-            "melee": "Burning hands"
-          },
-          {
-            "count": 7,
-            "ranged": "Plasma gun - standard",
-            "melee": "Burning hands"
+            "melee": "Sanctifier melee weapon"
           }
         ]
       }
@@ -691,117 +663,153 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Boltgun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
+            "name": "Battle Sister",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Battle Sister",
+                "min": 6,
+                "max": 9,
+                "ranged": [
+                  "Bolt pistol",
+                  "Boltgun"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Battle Sister w/ Simulacrum Imperialis",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Bolt pistol",
+                  "Boltgun"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Battle Sister w/ Special or Heavy Weapon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Bolt pistol",
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Weapon",
+                    "choices": [
+                      {
+                        "name": "Artificer-crafted storm bolter",
+                        "ranged": "Artificer-crafted storm bolter"
+                      },
+                      {
+                        "name": "Meltagun",
+                        "ranged": "Meltagun"
+                      },
+                      {
+                        "name": "Ministorum flamer",
+                        "ranged": "Ministorum flamer"
+                      },
+                      {
+                        "name": "Multi-melta",
+                        "ranged": "Multi-melta"
+                      },
+                      {
+                        "name": "Ministorum heavy flamer",
+                        "ranged": "Ministorum heavy flamer"
+                      },
+                      {
+                        "name": "Heavy bolter",
+                        "ranged": "Heavy bolter"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Battle Sister w/ Special Weapon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Bolt pistol",
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Weapon",
+                    "choices": [
+                      {
+                        "name": "Artificer-crafted storm bolter",
+                        "ranged": "Artificer-crafted storm bolter"
+                      },
+                      {
+                        "name": "Meltagun",
+                        "ranged": "Meltagun"
+                      },
+                      {
+                        "name": "Ministorum flamer",
+                        "ranged": "Ministorum flamer"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           },
           {
-            "count": 8,
+            "name": "Sister Superior",
+            "count": 1,
             "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Ministorum heavy flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Ministorum heavy flamer",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Heavy bolter",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Heavy bolter",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Artificer-crafted storm bolter",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Artificer-crafted storm bolter",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Meltagun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Meltagun",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Ministorum flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Ministorum flamer",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Multi-melta",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Multi-melta",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Melee Weapon",
+                "choices": [
+                  {
+                    "name": "Chainsword",
+                    "melee": "Chainsword",
+                    "default": true
+                  },
+                  {
+                    "name": "Power weapon",
+                    "melee": "Power weapon"
+                  }
+                ]
+              },
+              {
+                "name": "Ranged Weapon",
+                "choices": [
+                  {
+                    "name": "Bolt pistol",
+                    "ranged": "Bolt pistol"
+                  },
+                  {
+                    "name": "Condemnor boltgun",
+                    "ranged": "Condemnor boltgun"
+                  },
+                  {
+                    "name": "Combi-weapon",
+                    "ranged": "Combi-weapon"
+                  },
+                  {
+                    "name": "Ministorum hand flamer",
+                    "ranged": "Ministorum hand flamer"
+                  },
+                  {
+                    "name": "Inferno pistol",
+                    "ranged": "Inferno pistol"
+                  },
+                  {
+                    "name": "Plasma pistol",
+                    "ranged": "Plasma pistol"
+                  },
+                  {
+                    "name": "Boltgun",
+                    "ranged": "Boltgun",
+                    "default": true
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -821,12 +829,19 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 11,
+            "name": "Subductor",
+            "count": 10,
             "ranged": "Arbites shotpistol",
-            "melee": "Mechanical bite"
+            "melee": "Shock maul"
+          },
+          {
+            "name": "Proctor Subductor",
+            "count": 1,
+            "ranged": "Arbites shotpistol",
+            "melee": "Shock maul"
           }
         ]
       }
@@ -845,102 +860,76 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 11,
-            "ranged": "Arbites combat shotgun",
-            "melee": "Mechanical bite"
-          }
-        ]
-      },
-      {
-        "name": "2x Arbites shotpistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Arbites shotpistol",
-            "melee": "Mechanical bite"
+            "name": "Vigilant",
+            "count": 10,
+            "alloc": [
+              {
+                "name": "Vigilant w/ shotgun",
+                "min": 7,
+                "max": 9,
+                "ranged": [
+                  "Arbites combat shotgun",
+                  "Arbites shotpistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Vigilant w/ grenade launcher",
+                "min": 0,
+                "max": 1,
+                "group_max": 2,
+                "ranged": [
+                  "Arbites grenade launcher",
+                  "Arbites shotpistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Vigilant w/ executioner shotgun",
+                "min": 0,
+                "max": 1,
+                "group_max": 2,
+                "ranged": [
+                  "Executioner shotgun",
+                  "Arbites shotpistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Vigilant w/ heavy stubber",
+                "min": 0,
+                "max": 1,
+                "group_max": 2,
+                "ranged": [
+                  "Heavy stubber",
+                  "Arbites shotpistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Vigilant w/ webber",
+                "min": 0,
+                "max": 1,
+                "group_max": 2,
+                "ranged": [
+                  "Webber",
+                  "Arbites shotpistol"
+                ],
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 9,
-            "ranged": "Arbites combat shotgun",
-            "melee": "Mechanical bite"
-          }
-        ]
-      },
-      {
-        "name": "2x Arbites grenade launcher - frag",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Arbites grenade launcher - frag",
-            "melee": "Mechanical bite"
-          },
-          {
-            "count": 9,
-            "ranged": "Arbites combat shotgun",
-            "melee": "Mechanical bite"
-          }
-        ]
-      },
-      {
-        "name": "2x Arbites grenade launcher - krak",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Arbites grenade launcher - krak",
-            "melee": "Mechanical bite"
-          },
-          {
-            "count": 9,
-            "ranged": "Arbites combat shotgun",
-            "melee": "Mechanical bite"
-          }
-        ]
-      },
-      {
-        "name": "2x Executioner shotgun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Executioner shotgun",
-            "melee": "Mechanical bite"
-          },
-          {
-            "count": 9,
-            "ranged": "Arbites combat shotgun",
-            "melee": "Mechanical bite"
-          }
-        ]
-      },
-      {
-        "name": "2x Heavy stubber",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Heavy stubber",
-            "melee": "Mechanical bite"
-          },
-          {
-            "count": 9,
-            "ranged": "Arbites combat shotgun",
-            "melee": "Mechanical bite"
-          }
-        ]
-      },
-      {
-        "name": "2x Webber",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Webber",
-            "melee": "Mechanical bite"
-          },
-          {
-            "count": 9,
-            "ranged": "Arbites combat shotgun",
-            "melee": "Mechanical bite"
+            "name": "Proctor-Vigilant",
+            "count": 1,
+            "ranged": [
+              "Arbites combat shotgun",
+              "Arbites shotpistol"
+            ],
+            "melee": "Close combat weapon"
           }
         ]
       }
@@ -959,56 +948,38 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 6,
-            "ranged": "Laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Artificer shotgun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Artificer shotgun",
+            "name": "Voidsman",
+            "count": 3,
+            "ranged": [
+              "Lasgun",
+              "Laspistol"
+            ],
             "melee": "Close combat weapon"
           },
           {
-            "count": 4,
-            "ranged": "Laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Lasgun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Lasgun",
+            "name": "Voidmaster",
+            "count": 1,
+            "ranged": [
+              "Artificer shotgun",
+              "Laspistol"
+            ],
             "melee": "Close combat weapon"
           },
           {
-            "count": 4,
-            "ranged": "Laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Voidsman rotor cannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Voidsman rotor cannon",
-            "melee": "Close combat weapon"
+            "name": "Canid",
+            "count": 1,
+            "melee": "Vicious bite"
           },
           {
-            "count": 4,
-            "ranged": "Laspistol",
+            "name": "Voidsman w/ rotor cannon",
+            "count": 1,
+            "ranged": [
+              "Voidsman rotor cannon",
+              "Laspistol"
+            ],
             "melee": "Close combat weapon"
           }
         ]

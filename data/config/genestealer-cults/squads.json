@@ -17,10 +17,16 @@
     "pts_3rd": 150,
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
+            "name": "Aberrant",
+            "count": 4,
+            "melee": "Aberrant weapons"
+          },
+          {
+            "name": "Aberrant Hypermorph",
+            "count": 1,
             "melee": "Aberrant weapons"
           }
         ]
@@ -42,26 +48,52 @@
     "_note": "11e per-5 rule: for every 5 models, up to 3 Acolyte Hybrids can each replace autopistol + cult claws and knife with 1 heavy mining tool; Acolyte Leader's cult claws and knife can be replaced with 1 Leader's bio-weapons (leader swap not modelled)",
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Autopistol",
-            "melee": "Cult claws and knife"
-          }
-        ]
-      },
-      {
-        "name": "3x Heavy mining tool",
-        "models": [
-          {
-            "count": 3,
-            "melee": "Heavy mining tool"
+            "name": "Acolyte Hybrid",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Acolyte Hybrid w/ Auto Pistol",
+                "min": 0,
+                "max": 4,
+                "ranged": "Autopistol",
+                "melee": "Cult claws and knife"
+              },
+              {
+                "name": "Acolyte Hybrid w/ Cult Icon",
+                "min": 0,
+                "max": 1,
+                "melee": "Cult claws and knife"
+              },
+              {
+                "name": "Acolyte Hybrid w/ Heavy Mining Tool",
+                "min": 0,
+                "max": 3,
+                "melee": "Heavy mining tool"
+              }
+            ]
           },
           {
-            "count": 2,
+            "name": "Acolyte Leader",
+            "count": 1,
             "ranged": "Autopistol",
-            "melee": "Cult claws and knife"
+            "slots": [
+              {
+                "name": "Cult Claws and Knife",
+                "choices": [
+                  {
+                    "name": "Cult claws and knife",
+                    "melee": "Cult claws and knife"
+                  },
+                  {
+                    "name": "Leader's Bio-weapons",
+                    "melee": "Leader's Bio-weapons"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -82,27 +114,53 @@
     "_note": "11e per-5 rule: for every 5 models, up to 2 Acolyte Hybrids can each have their hand flamer replaced with 1 demolition charges; Acolyte Leader's cult claws and knife can be replaced with 1 Leader's bio-weapons (leader swap not modelled)",
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Hand flamer",
-            "melee": "Cult claws and knife"
-          }
-        ]
-      },
-      {
-        "name": "2x Demolition charge",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Demolition charge",
-            "melee": "Cult claws and knife"
+            "name": "Acolyte Hybrid",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Acolyte Hybrid w/ Hand Flamer",
+                "min": 0,
+                "ranged": "Hand flamer",
+                "melee": "Cult claws and knife",
+                "max": null
+              },
+              {
+                "name": "Acolyte Hybrid w/ Cult Icon",
+                "min": 0,
+                "max": 1,
+                "melee": "Cult claws and knife"
+              },
+              {
+                "name": "Acolyte Hybrid w/ Demolition Charge, and Cult Claws and Knife",
+                "min": 0,
+                "max": 2,
+                "ranged": "Demolition charge",
+                "melee": "Cult claws and knife"
+              }
+            ]
           },
           {
-            "count": 3,
+            "name": "Acolyte Leader",
+            "count": 1,
             "ranged": "Hand flamer",
-            "melee": "Cult claws and knife"
+            "slots": [
+              {
+                "name": "Cult Claws and Knife",
+                "choices": [
+                  {
+                    "name": "Cult claws and knife",
+                    "melee": "Cult claws and knife"
+                  },
+                  {
+                    "name": "Leader's bio-weapons",
+                    "melee": "Leader's bio-weapons"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -123,112 +181,67 @@
     "_note": "11e per-4 rule: for every 4 Atalan Jackals, up to 2 close combat weapons can be replaced with 1 Atalan power weapon and 1 Atalan small arms can be replaced with 1 grenade launcher; Wolfquad's heavy stubber can be replaced with Atalan incinerator or mining laser. Grenade launcher modelled as krak profile",
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Atalan Jackal",
             "count": 4,
-            "ranged": "Atalan small arms",
-            "melee": "Close combat weapon"
+            "alloc": [
+              {
+                "name": "Atalan Jackal w/ Grenade launcher",
+                "min": 0,
+                "max": 1,
+                "ranged": "Grenade launcher",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Atalan Jackal",
+                "min": 1,
+                "max": 4,
+                "ranged": "Atalan small arms",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Atalan Jackal w/ Atalan power weapon",
+                "min": 0,
+                "max": 2,
+                "ranged": "Atalan small arms",
+                "melee": "Atalan power weapon"
+              },
+              {
+                "name": "Atalan Jackal w/ Grenade launcher & power weapon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Grenade launcher",
+                "melee": "Atalan power weapon"
+              }
+            ]
           },
           {
-            "count": 1,
-            "ranged": "Heavy stubber",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Atalan power weapon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Atalan small arms",
-            "melee": "Atalan power weapon"
-          },
-          {
-            "count": 2,
-            "ranged": "Atalan small arms",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Heavy stubber",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Grenade launcher",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Grenade launcher - krak",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Atalan small arms",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Heavy stubber",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Mining laser",
-        "models": [
-          {
-            "count": 4,
-            "ranged": "Atalan small arms",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Mining laser",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Atalan incinerator",
-        "models": [
-          {
-            "count": 4,
-            "ranged": "Atalan small arms",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Atalan incinerator",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Mixed",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Atalan small arms",
-            "melee": "Atalan power weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Grenade launcher - krak",
-            "melee": "Close combat weapon"
-          },
-          {
+            "name": "Atalan Wolfquad",
             "count": 1,
             "ranged": "Atalan small arms",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Mining laser",
-            "melee": "Close combat weapon"
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Heavy Stubber",
+                "choices": [
+                  {
+                    "name": "Mining laser",
+                    "ranged": "Mining laser"
+                  },
+                  {
+                    "name": "Atalan incinerator",
+                    "ranged": "Atalan incinerator"
+                  },
+                  {
+                    "name": "Heavy stubber",
+                    "ranged": "Heavy stubber",
+                    "default": true
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -251,22 +264,48 @@
     "_note": "11e rule: any number of models can each have their autopistol replaced with 1 hand flamer; one Hybrid Metamorph's autopistol can be replaced with 1 cult icon (not modelled)",
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Autopistol",
-            "melee": "Metamorph mutations - strike"
-          }
-        ]
-      },
-      {
-        "name": "5x Hand flamer",
-        "models": [
+            "name": "Hybrid Metamorph",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Hybrid Metamorph w/ Autopistol",
+                "min": 0,
+                "ranged": "Autopistol",
+                "melee": "Metamorph mutations",
+                "max": null
+              },
+              {
+                "name": "Hybrid Metamorph w/ Cult Icon",
+                "min": 0,
+                "max": 1,
+                "melee": "Metamorph mutations"
+              },
+              {
+                "name": "Hybrid Metamorph w/ Hand Flamer",
+                "min": 0,
+                "ranged": "Hand flamer",
+                "melee": "Metamorph mutations",
+                "max": null
+              }
+            ]
+          },
           {
-            "count": 5,
-            "ranged": "Hand flamer",
-            "melee": "Metamorph mutations - strike"
+            "name": "Metamorph Leader",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Leader's Bio-weapons",
+                    "melee": "Leader's Bio-weapons"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -287,122 +326,112 @@
     "_note": "11e per-10 rule: for every 10 models, up to 2 Neophyte Hybrids can each replace hybrid firearm with 1 heavy weapon (mining laser, seismic cannon, heavy stubber) and up to 2 with 1 special weapon (webber, flamer, grenade launcher); they keep autopistol + close combat weapon. Grenade launcher modelled as krak profile",
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Hybrid firearm",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Mining laser",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Mining laser",
-            "melee": "Close combat weapon"
+            "name": "Neophyte Hybrid",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Neophyte Hybrid w/ Hybrid Firearm",
+                "min": 4,
+                "max": 9,
+                "ranged": [
+                  "Hybrid firearm",
+                  "Autopistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Neophyte Hybrid w/ Hybrid Firearm & Cult Icon",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Hybrid firearm",
+                  "Autopistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Neophyte Hybrid w/ Heavy Weapon",
+                "min": 0,
+                "max": 2,
+                "ranged": "Autopistol",
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Heavy Weapon Selection",
+                    "choices": [
+                      {
+                        "name": "Heavy stubber",
+                        "ranged": "Heavy stubber"
+                      },
+                      {
+                        "name": "Mining laser",
+                        "ranged": "Mining laser"
+                      },
+                      {
+                        "name": "Seismic cannon",
+                        "ranged": "Seismic cannon"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Neophyte Hybrid w/ Special Weapon",
+                "min": 0,
+                "max": 2,
+                "ranged": "Autopistol",
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Special Weapon Selection",
+                    "choices": [
+                      {
+                        "name": "Webber",
+                        "ranged": "Webber"
+                      },
+                      {
+                        "name": "Flamer",
+                        "ranged": "Flamer"
+                      },
+                      {
+                        "name": "Grenade launcher",
+                        "ranged": "Grenade launcher"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           },
           {
-            "count": 8,
-            "ranged": "Hybrid firearm",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Seismic cannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Seismic cannon",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hybrid firearm",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Heavy stubber",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Heavy stubber",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hybrid firearm",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Webber",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Webber",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hybrid firearm",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Flamer",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hybrid firearm",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Grenade launcher",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Grenade launcher - krak",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hybrid firearm",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Mixed",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Mining laser",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 2,
-            "ranged": "Flamer",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 6,
-            "ranged": "Hybrid firearm",
-            "melee": "Close combat weapon"
+            "name": "Neophyte Leader",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Autopistol, hybrid firearm and close combat weapon",
+                    "ranged": "Hybrid firearm",
+                    "melee": "Close combat weapon",
+                    "default": true
+                  },
+                  {
+                    "name": "Autopistol, anointed pistol and power weapon",
+                    "ranged": "Anointed pistol",
+                    "melee": "Power weapon"
+                  },
+                  {
+                    "name": "Autopistol, anointed pistol and chainsword",
+                    "ranged": "Anointed pistol",
+                    "melee": "Chainsword"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -424,9 +453,10 @@
     "pts_3rd": 85,
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Purestrain Genestealer",
             "count": 5,
             "melee": "Cult claws and talons"
           }

@@ -15,9 +15,10 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Arco-Flagellant",
             "count": 3,
             "melee": "Arco-flails"
           }
@@ -39,11 +40,52 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Boltgun",
+            "name": "Battle Sister",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Battle Sister",
+                "min": 6,
+                "max": 9,
+                "ranged": [
+                  "Bolt pistol",
+                  "Boltgun"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Battle Sister w/ Simulacrum Imperialis",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Bolt pistol",
+                  "Boltgun"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Battle Sister w/ Special or Heavy Weapon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Bolt pistol",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Battle Sister w/ Special Weapon",
+                "min": 0,
+                "max": 1,
+                "ranged": "Bolt pistol",
+                "melee": "Close combat weapon"
+              }
+            ]
+          },
+          {
+            "name": "Sister Superior",
+            "count": 1,
+            "ranged": "Bolt pistol",
             "melee": "Close combat weapon"
           }
         ]
@@ -64,27 +106,72 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Condemnor bolt pistol",
-            "melee": "Null mace"
-          }
-        ]
-      },
-      {
-        "name": "Ministorum hand flamer",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Ministorum hand flamer",
-            "melee": "Null mace"
+            "name": "Insidiant",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Insidiant",
+                "min": 2,
+                "max": 9,
+                "ranged": "Condemnor bolt pistol",
+                "melee": "Null mace"
+              },
+              {
+                "name": "Insidiant w/ hand flamer",
+                "min": 0,
+                "max": 2,
+                "ranged": "Ministorum hand flamer",
+                "melee": "Null mace"
+              },
+              {
+                "name": "Insidiant w/ blessed sword",
+                "min": 0,
+                "max": 2,
+                "melee": "Blessed sword"
+              },
+              {
+                "name": "Insidiant w/ virge of admonition",
+                "min": 0,
+                "max": 1,
+                "melee": "Virge of admonition"
+              },
+              {
+                "name": "Insidiant w/ denuncia",
+                "min": 0,
+                "max": 1,
+                "melee": "Null mace"
+              },
+              {
+                "name": "Insidiant w/ simulacrum",
+                "min": 0,
+                "max": 1,
+                "ranged": "Condemnor bolt pistol",
+                "melee": "Null mace"
+              }
+            ]
           },
           {
-            "count": 9,
-            "ranged": "Condemnor bolt pistol",
-            "melee": "Null mace"
+            "name": "Celestian Insidiant Superior",
+            "count": 1,
+            "melee": "Null mace",
+            "slots": [
+              {
+                "name": "Pistol",
+                "choices": [
+                  {
+                    "name": "Inferno pistol",
+                    "ranged": "Inferno pistol"
+                  },
+                  {
+                    "name": "Condemnor bolt pistol",
+                    "ranged": "Condemnor bolt pistol"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -104,11 +191,30 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "melee": "Anointed Halberd"
+            "name": "Sacresant Superior",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Melee Weapon",
+                "choices": [
+                  {
+                    "name": "Anointed Halberd",
+                    "melee": "Anointed Halberd"
+                  },
+                  {
+                    "name": "Hallowed Mace",
+                    "melee": "Hallowed Mace"
+                  },
+                  {
+                    "name": "Spear of the Faithful",
+                    "melee": "Spear of the Faithful"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -129,56 +235,65 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Artificer-crafted storm bolter",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Artificer-crafted storm bolter",
-            "melee": "Close combat weapon"
+            "name": "Dominion",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Dominion",
+                "min": 4,
+                "max": 9,
+                "ranged": [
+                  "Bolt pistol",
+                  "Boltgun"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Dominion w/ Simulacrum Imperialis",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Bolt pistol",
+                  "Boltgun"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Dominion w/ Special Weapon",
+                "min": 0,
+                "max": 4,
+                "ranged": "Bolt pistol",
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Dominion Special Weapon",
+                    "choices": [
+                      {
+                        "name": "Artificer-crafted storm bolter",
+                        "ranged": "Artificer-crafted storm bolter",
+                        "default": true
+                      },
+                      {
+                        "name": "Meltagun",
+                        "ranged": "Meltagun"
+                      },
+                      {
+                        "name": "Ministorum Flamer",
+                        "ranged": "Ministorum flamer"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           },
           {
-            "count": 8,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Meltagun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Meltagun",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Boltgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Ministorum flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Ministorum flamer",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Boltgun",
+            "name": "Dominion Superior",
+            "count": 1,
+            "ranged": "Bolt pistol",
             "melee": "Close combat weapon"
           }
         ]
@@ -200,41 +315,37 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Ministorum heavy flamer",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Multi-melta",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Multi-melta",
-            "melee": "Close combat weapon"
+            "name": "Retributor",
+            "count": 4,
+            "ranged": "Bolt pistol",
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Retributor Weapons",
+                "choices": [
+                  {
+                    "name": "Ministorum heavy flamer",
+                    "ranged": "Ministorum heavy flamer"
+                  },
+                  {
+                    "name": "Multi-melta",
+                    "ranged": "Multi-melta"
+                  },
+                  {
+                    "name": "Heavy bolter",
+                    "ranged": "Heavy bolter"
+                  }
+                ]
+              }
+            ]
           },
           {
-            "count": 3,
-            "ranged": "Ministorum heavy flamer",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Heavy bolter",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Heavy bolter",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Ministorum heavy flamer",
+            "name": "Retributor Superior",
+            "count": 1,
+            "ranged": "Bolt pistol",
             "melee": "Close combat weapon"
           }
         ]
@@ -258,27 +369,13 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Bolt Pistol",
-            "melee": "Power Weapon"
-          }
-        ]
-      },
-      {
-        "name": "The Ardent Blade",
-        "models": [
-          {
+            "name": "Saint Celestine",
             "count": 1,
             "ranged": "The Ardent Blade",
-            "melee": "Power Weapon"
-          },
-          {
-            "count": 2,
-            "ranged": "Bolt Pistol",
-            "melee": "Power Weapon"
+            "melee": "The Ardent Blade"
           }
         ]
       }
@@ -298,87 +395,78 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 9,
-            "ranged": "Plasma gun - standard",
-            "melee": "Burning hands"
-          }
-        ]
-      },
-      {
-        "name": "1x Plasma gun - supercharge",
-        "models": [
+            "name": "Sanctifier",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Sanctifier w/ hand flamer",
+                "min": 4,
+                "max": 4,
+                "ranged": "Ministorum hand flamer",
+                "melee": "Sanctifier melee weapon"
+              },
+              {
+                "name": "Sanctifier w/ two hand flamers",
+                "min": 0,
+                "max": 1,
+                "ranged": "Ministorum hand flamer",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Sanctifier w/ simulacrum imperialis",
+                "min": 0,
+                "max": 1,
+                "ranged": "Ministorum hand flamer",
+                "melee": "Close combat weapon"
+              }
+            ]
+          },
           {
+            "name": "Miraculist",
             "count": 1,
-            "ranged": "Plasma gun - supercharge",
-            "melee": "Burning hands"
-          },
-          {
-            "count": 8,
-            "ranged": "Plasma gun - standard",
-            "melee": "Burning hands"
-          }
-        ]
-      },
-      {
-        "name": "2x Meltagun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Meltagun",
-            "melee": "Burning hands"
-          },
-          {
-            "count": 7,
-            "ranged": "Plasma gun - standard",
-            "melee": "Burning hands"
-          }
-        ]
-      },
-      {
-        "name": "2x Holy fire",
-        "models": [
-          {
-            "count": 2,
             "ranged": "Holy fire",
             "melee": "Burning hands"
           },
           {
-            "count": 7,
-            "ranged": "Plasma gun - standard",
-            "melee": "Burning hands"
-          }
-        ]
-      },
-      {
-        "name": "2x Ministorum flamer",
-        "models": [
+            "name": "Salvationist",
+            "count": 1,
+            "melee": "Close combat weapon"
+          },
           {
-            "count": 2,
+            "name": "Death Cult Assassin",
+            "count": 1,
+            "melee": "Death Cult blades"
+          },
+          {
+            "name": "Missionary w/ plasma gun",
+            "count": 1,
+            "ranged": "Holy fire",
+            "melee": "Sanctifier melee weapon",
+            "slots": [
+              {
+                "name": "Weapon",
+                "choices": [
+                  {
+                    "name": "Meltagun",
+                    "ranged": "Meltagun"
+                  },
+                  {
+                    "name": "Plasma gun",
+                    "ranged": "Plasma gun",
+                    "default": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Missionary w/ flamer",
+            "count": 1,
             "ranged": "Ministorum flamer",
-            "melee": "Burning hands"
-          },
-          {
-            "count": 7,
-            "ranged": "Plasma gun - standard",
-            "melee": "Burning hands"
-          }
-        ]
-      },
-      {
-        "name": "2x Ministorum hand flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Ministorum hand flamer",
-            "melee": "Burning hands"
-          },
-          {
-            "count": 7,
-            "ranged": "Plasma gun - standard",
-            "melee": "Burning hands"
+            "melee": "Sanctifier melee weapon"
           }
         ]
       }
@@ -399,27 +487,85 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Ministorum hand flamer",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Inferno Pistol",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Inferno Pistol",
-            "melee": "Close combat weapon"
+            "name": "Seraphim",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Seraphim",
+                "min": 2,
+                "max": 4,
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Seraphim with Special Weapons",
+                "min": 0,
+                "max": 1,
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Special Weapon",
+                    "choices": [
+                      {
+                        "name": "2x Ministorum Hand Flamers",
+                        "ranged": "Ministorum hand flamer",
+                        "ranged_count": 2,
+                        "default": true
+                      },
+                      {
+                        "name": "2x Inferno Pistols",
+                        "ranged": "Inferno Pistol",
+                        "ranged_count": 2
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           },
           {
-            "count": 4,
-            "ranged": "Ministorum hand flamer",
-            "melee": "Close combat weapon"
+            "name": "Seraphim Superior",
+            "count": 1,
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapons",
+                "choices": [
+                  {
+                    "name": "2 Bolt Pistols",
+                    "ranged": "Bolt pistol",
+                    "ranged_count": 2,
+                    "default": true
+                  },
+                  {
+                    "name": "Bolt Pistol and Plasma Pistol",
+                    "ranged": "Bolt pistol"
+                  },
+                  {
+                    "name": "Plasma Pistol and Power Weapon",
+                    "ranged": "Plasma pistol",
+                    "melee": "Power Weapon"
+                  },
+                  {
+                    "name": "Bolt Pistol and Power Weapon",
+                    "ranged": "Bolt pistol",
+                    "melee": "Power Weapon"
+                  },
+                  {
+                    "name": "Bolt Pistol and Chainsword",
+                    "ranged": "Bolt pistol",
+                    "melee": "Chainsword"
+                  },
+                  {
+                    "name": "Plasma Pistol and Chainsword",
+                    "ranged": "Plasma pistol",
+                    "melee": "Chainsword"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -440,27 +586,47 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Ministorum flamer",
-            "melee": "Novitiate melee weapon"
-          }
-        ]
-      },
-      {
-        "name": "Novitiate autogun",
-        "models": [
-          {
+            "name": "Novitiate Superior",
             "count": 1,
-            "ranged": "Novitiate autogun",
-            "melee": "Novitiate melee weapon"
+            "ranged": "Bolt pistol",
+            "melee": "Power weapon"
           },
           {
+            "name": "Novitiate",
             "count": 9,
-            "ranged": "Ministorum flamer",
-            "melee": "Novitiate melee weapon"
+            "alloc": [
+              {
+                "name": "Novitiate",
+                "min": 0,
+                "max": 9,
+                "ranged": "Novitiate autopistol",
+                "melee": "Novitiate melee weapon"
+              },
+              {
+                "name": "Novitiate with Banner",
+                "min": 0,
+                "max": 1,
+                "ranged": "Novitiate autopistol",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Novitiate with Simulacrum",
+                "min": 0,
+                "max": 1,
+                "ranged": "Novitiate autopistol",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Novitiate with Flamer",
+                "min": 0,
+                "max": 2,
+                "ranged": "Ministorum flamer",
+                "melee": "Close combat weapon"
+              }
+            ]
           }
         ]
       }
@@ -481,27 +647,33 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Plasma pistol - supercharge",
-            "melee": "Power weapon"
-          }
-        ]
-      },
-      {
-        "name": "Plasma pistol - standard",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Plasma pistol - standard",
-            "melee": "Power weapon"
+            "name": "Zephyrim",
+            "count": 4,
+            "ranged": "Bolt pistol",
+            "melee": "Power Weapon"
           },
           {
-            "count": 4,
-            "ranged": "Plasma pistol - supercharge",
-            "melee": "Power weapon"
+            "name": "Zephyrim Superior",
+            "count": 1,
+            "melee": "Power Weapon",
+            "slots": [
+              {
+                "name": "Pistol",
+                "choices": [
+                  {
+                    "name": "Bolt pistol",
+                    "ranged": "Bolt pistol"
+                  },
+                  {
+                    "name": "Plasma pistol",
+                    "ranged": "Plasma pistol"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -521,12 +693,18 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Penitent Eviscerator",
-            "melee": "Bolt pistol"
+            "name": "Sister Repentia",
+            "count": 4,
+            "melee": "Penitent Eviscerator"
+          },
+          {
+            "name": "Repentia Superior",
+            "count": 1,
+            "ranged": "Bolt pistol",
+            "melee": "Neural Whips"
           }
         ]
       }

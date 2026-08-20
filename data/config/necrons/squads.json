@@ -14,42 +14,40 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Canoptek Macrocyte",
             "count": 5,
-            "ranged": "Atomiser beam",
-            "melee": "Claws"
-          }
-        ]
-      },
-      {
-        "name": "2x Tesla caster",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Tesla caster",
-            "melee": "Claws"
-          },
-          {
-            "count": 3,
-            "ranged": "Atomiser beam",
-            "melee": "Claws"
-          }
-        ]
-      },
-      {
-        "name": "2x Gauss scalpel",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Gauss scalpel",
-            "melee": "Claws"
-          },
-          {
-            "count": 3,
-            "ranged": "Atomiser beam",
-            "melee": "Claws"
+            "alloc": [
+              {
+                "name": "Canoptek Macrocyte w/ atomiser beam",
+                "min": 0,
+                "max": 1,
+                "ranged": "Atomiser beam",
+                "melee": "Claws"
+              },
+              {
+                "name": "Canoptek Macrocyte w/ tesla caster",
+                "min": 0,
+                "max": 5,
+                "ranged": "Tesla caster",
+                "melee": "Claws"
+              },
+              {
+                "name": "Canoptek Macrocyte w/ accelerator mandible",
+                "min": 0,
+                "max": 1,
+                "melee": "Claws"
+              },
+              {
+                "name": "Canoptek Macrocyte w/ gauss scalpel",
+                "min": 0,
+                "max": 5,
+                "ranged": "Gauss scalpel",
+                "melee": "Claws"
+              }
+            ]
           }
         ]
       }
@@ -68,9 +66,10 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Canoptek Scarab Swarm",
             "count": 3,
             "melee": "Feeder mandibles"
           }
@@ -91,27 +90,34 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 2,
-            "ranged": "Twin gauss reaper",
-            "melee": "Claws"
-          }
-        ]
-      },
-      {
-        "name": "Dimensional isolator",
-        "models": [
-          {
+            "name": "Tomb Crawler w/ twin gauss reaper",
             "count": 1,
-            "ranged": "Dimensional isolator",
+            "ranged": "Twin gauss reaper",
             "melee": "Claws"
           },
           {
+            "name": "Tomb Crawler w/ twin gauss reaper",
             "count": 1,
-            "ranged": "Twin gauss reaper",
-            "melee": "Claws"
+            "melee": "Claws",
+            "slots": [
+              {
+                "name": "Weapon choice",
+                "choices": [
+                  {
+                    "name": "Twin gauss reaper",
+                    "ranged": "Twin gauss reaper",
+                    "default": true
+                  },
+                  {
+                    "name": "Dimensional isolator",
+                    "ranged": "Dimensional isolator"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -131,27 +137,53 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Wraith",
             "count": 3,
-            "ranged": "Transdimensional beamer",
-            "melee": "Vicious claws"
-          }
-        ]
-      },
-      {
-        "name": "Particle caster",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Particle caster",
-            "melee": "Vicious claws"
-          },
-          {
-            "count": 2,
-            "ranged": "Transdimensional beamer",
-            "melee": "Vicious claws"
+            "alloc": [
+              {
+                "name": "Wraith w/ claws and beamer",
+                "min": 0,
+                "max": 3,
+                "ranged": "Transdimensional beamer",
+                "melee": "Vicious claws"
+              },
+              {
+                "name": "Wraith w/ claws and particle caster",
+                "min": 0,
+                "max": 3,
+                "ranged": "Particle caster",
+                "melee": "Vicious claws"
+              },
+              {
+                "name": "Wraith w/ claws",
+                "min": 0,
+                "max": 3,
+                "melee": "Vicious claws"
+              },
+              {
+                "name": "Wraith w/ coils",
+                "min": 0,
+                "max": 3,
+                "melee": "Whip coils"
+              },
+              {
+                "name": "Wraith w/ coils and beamer",
+                "min": 0,
+                "max": 3,
+                "ranged": "Transdimensional beamer",
+                "melee": "Whip coils"
+              },
+              {
+                "name": "Wraith w/ coils and particle caster",
+                "min": 0,
+                "max": 3,
+                "ranged": "Particle caster",
+                "melee": "Whip coils"
+              }
+            ]
           }
         ]
       }
@@ -171,9 +203,10 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Cryptothrall",
             "count": 2,
             "ranged": "Scouring eye",
             "melee": "Scythed limbs"
@@ -197,9 +230,10 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Deathmark",
             "count": 5,
             "ranged": "Synaptic disintegrator",
             "melee": "Close combat weapon"
@@ -221,9 +255,10 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Flayed One",
             "count": 5,
             "melee": "Flayer claws"
           }
@@ -244,22 +279,28 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Immortal",
             "count": 5,
-            "ranged": "Gauss blaster",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Tesla carbine",
-        "models": [
-          {
-            "count": 5,
-            "ranged": "Tesla carbine",
-            "melee": "Close combat weapon"
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapons",
+                "choices": [
+                  {
+                    "name": "Gauss blaster",
+                    "ranged": "Gauss blaster",
+                    "default": true
+                  },
+                  {
+                    "name": "Tesla carbine",
+                    "ranged": "Tesla carbine"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -279,9 +320,10 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Lokhust Destroyer",
             "count": 1,
             "ranged": "Gauss cannon",
             "melee": "Close combat weapon"
@@ -304,22 +346,27 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Destroyer",
             "count": 1,
-            "ranged": "Enmitic exterminator",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Gauss destructor",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Gauss destructor",
-            "melee": "Close combat weapon"
+            "alloc": [
+              {
+                "name": "Destroyer w/ enmitic exterminator",
+                "min": 0,
+                "max": 1,
+                "ranged": "Enmitic exterminator",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Destroyer w/ gauss destructor",
+                "min": 0,
+                "max": 1,
+                "ranged": "Gauss destructor",
+                "melee": "Close combat weapon"
+              }
+            ]
           }
         ]
       }
@@ -338,20 +385,27 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Lychguard",
             "count": 5,
-            "melee": "Warscythe"
-          }
-        ]
-      },
-      {
-        "name": "Sword & shield",
-        "models": [
-          {
-            "count": 5,
-            "melee": "Hyperphase sword and dispersion shield"
+            "slots": [
+              {
+                "name": "Weapons",
+                "choices": [
+                  {
+                    "name": "Warscythe",
+                    "melee": "Warscythe",
+                    "default": true
+                  },
+                  {
+                    "name": "Hyperphase sword and dispersion shield",
+                    "melee": "Hyperphase sword"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -370,27 +424,27 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Warrior",
             "count": 10,
-            "ranged": "Gauss flayer",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Gauss reaper",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Gauss reaper",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 9,
-            "ranged": "Gauss flayer",
-            "melee": "Close combat weapon"
+            "alloc": [
+              {
+                "name": "Warrior w/ gauss flayer",
+                "min": 0,
+                "max": 10,
+                "ranged": "Gauss flayer",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Warrior w/ gauss reaper",
+                "min": 0,
+                "max": 10,
+                "ranged": "Gauss reaper",
+                "melee": "Close combat weapon"
+              }
+            ]
           }
         ]
       }
@@ -411,9 +465,10 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Ophydian Destroyer",
             "count": 3,
             "melee": "Ophydian hyperphase weapons"
           }
@@ -435,9 +490,10 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Skorpekh Destroyer",
             "count": 3,
             "melee": "Skorpekh hyperphase weapons"
           }
@@ -460,42 +516,32 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Tomb Blade",
             "count": 3,
-            "ranged": "Twin gauss blaster",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Particle beamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Particle beamer",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Twin gauss blaster",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Twin tesla carbine",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Twin tesla carbine",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Twin gauss blaster",
-            "melee": "Close combat weapon"
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Weapon",
+                "choices": [
+                  {
+                    "name": "Twin gauss blaster",
+                    "ranged": "Twin gauss blaster",
+                    "default": true
+                  },
+                  {
+                    "name": "Particle beamer",
+                    "ranged": "Particle beamer"
+                  },
+                  {
+                    "name": "Twin tesla carbine",
+                    "ranged": "Twin tesla carbine"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -515,27 +561,29 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Triarch Praetorian",
             "count": 5,
-            "ranged": "Rod of covenant",
-            "melee": "Rod of covenant"
-          }
-        ]
-      },
-      {
-        "name": "Particle caster",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Particle caster",
-            "melee": "Rod of covenant"
-          },
-          {
-            "count": 4,
-            "ranged": "Rod of covenant",
-            "melee": "Rod of covenant"
+            "slots": [
+              {
+                "name": "Weapons",
+                "choices": [
+                  {
+                    "name": "Rod of covenant",
+                    "ranged": "Rod of covenant",
+                    "melee": "Rod of covenant",
+                    "default": true
+                  },
+                  {
+                    "name": "Particle caster and voidblade",
+                    "ranged": "Particle caster",
+                    "melee": "Voidblade"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }

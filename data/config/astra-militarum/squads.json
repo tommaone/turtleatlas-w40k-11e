@@ -78,27 +78,59 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Laspistol",
-            "melee": "Hunting lance - frag tip"
-          }
-        ]
-      },
-      {
-        "name": "Lasgun",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Lasgun",
-            "melee": "Hunting lance - frag tip"
+            "name": "Rough Rider",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Rough Rider w/ Hunting lance",
+                "min": 3,
+                "max": 4,
+                "ranged": [
+                  "Laspistol",
+                  "Lasgun"
+                ],
+                "melee": [
+                  "Hunting lance",
+                  "Steed's hooves"
+                ]
+              },
+              {
+                "name": "Rough Rider w/ Goad lance",
+                "min": 0,
+                "max": 1,
+                "ranged": [
+                  "Laspistol",
+                  "Lasgun"
+                ],
+                "melee": [
+                  "Goad lance",
+                  "Steed's hooves"
+                ]
+              }
+            ]
           },
           {
-            "count": 4,
-            "ranged": "Laspistol",
-            "melee": "Hunting lance - frag tip"
+            "name": "Rough Rider Sergeant",
+            "count": 1,
+            "ranged": [
+              "Lasgun",
+              "Laspistol"
+            ],
+            "melee": "Steed's hooves",
+            "slots": [
+              {
+                "name": "Wargear Options",
+                "choices": [
+                  {
+                    "name": "Power sabre",
+                    "melee": "Power sabre"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -121,12 +153,47 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Grenadier gauntlet",
-            "melee": "Bullgryn maul"
+            "name": "Bullgryn",
+            "count": 2,
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Grenadier Gauntlet",
+                "choices": [
+                  {
+                    "name": "Bullgryn maul",
+                    "melee": "Bullgryn maul"
+                  },
+                  {
+                    "name": "Grenadier gauntlet",
+                    "ranged": "Grenadier gauntlet"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Bullgryn Bone 'ead",
+            "count": 1,
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Grenadier Gauntlet",
+                "choices": [
+                  {
+                    "name": "Bullgryn maul",
+                    "melee": "Bullgryn maul"
+                  },
+                  {
+                    "name": "Grenadier gauntlet",
+                    "ranged": "Grenadier gauntlet"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -145,102 +212,63 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Heavy Weapons Team",
             "count": 3,
-            "ranged": "Laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Heavy bolter",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Heavy bolter",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Mortar",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Mortar",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Missile launcher - frag",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Missile launcher - frag",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Missile launcher - krak",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Missile launcher - krak",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Lascannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Lascannon",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Autocannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Autocannon",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Laspistol",
-            "melee": "Close combat weapon"
+            "alloc": [
+              {
+                "name": "Heavy Weapons Team w/ Heavy bolter",
+                "min": 0,
+                "max": 3,
+                "ranged": [
+                  "Laspistol",
+                  "Heavy bolter"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Heavy Weapons Team w/ Mortar",
+                "min": 0,
+                "max": 3,
+                "ranged": [
+                  "Mortar",
+                  "Laspistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Heavy Weapons Team w/ Missile launcher",
+                "min": 0,
+                "max": 3,
+                "ranged": [
+                  "Missile launcher",
+                  "Laspistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Heavy Weapons Team w/ Lascannon",
+                "min": 0,
+                "max": 3,
+                "ranged": [
+                  "Laspistol",
+                  "Lascannon"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Heavy Weapons Team w/ Autocannon",
+                "min": 0,
+                "max": 3,
+                "ranged": [
+                  "Laspistol",
+                  "Autocannon"
+                ],
+                "melee": "Close combat weapon"
+              }
+            ]
           }
         ]
       }
@@ -373,130 +401,61 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Autostubber",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Autostubber",
-            "melee": "Close combat weapon"
+            "name": "Recon Trooper",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Recon Trooper w/ Lasgun",
+                "min": 3,
+                "max": 9,
+                "ranged": "Lasgun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Recon Trooper w/ Autostubber",
+                "min": 0,
+                "max": 1,
+                "ranged": "Autostubber",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Recon Trooper w/ Vox-caster",
+                "min": 0,
+                "max": 1,
+                "ranged": "Lasgun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Recon Trooper w/ Long-las",
+                "min": 0,
+                "max": 2,
+                "ranged": "Long-las",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Recon Trooper w/ Plasma gun",
+                "min": 0,
+                "max": 1,
+                "group_max": 1,
+                "ranged": "Plasma gun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Recon Trooper w/ Meltagun",
+                "min": 0,
+                "max": 1,
+                "group_max": 1,
+                "ranged": "Meltagun",
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 8,
-            "ranged": "Lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Long-las",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Long-las",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Missile launcher - frag",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Missile launcher - frag",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Missile launcher - krak",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Missile launcher - krak",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Laspistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Laspistol",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma gun - standard",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma gun - standard",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma gun - supercharge",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma gun - supercharge",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Meltagun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Meltagun",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
+            "name": "Recon Sergeant",
+            "count": 1,
             "ranged": "Lasgun",
             "melee": "Close combat weapon"
           }
@@ -517,102 +476,63 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Heavy Weapons Team",
             "count": 3,
-            "ranged": "Heavy bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Lasgun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Lasgun",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Heavy bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Mortar",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Mortar",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Heavy bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Missile launcher - frag",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Missile launcher - frag",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Heavy bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Missile launcher - krak",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Missile launcher - krak",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Heavy bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Lascannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Lascannon",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Heavy bolter",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Autocannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Autocannon",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 1,
-            "ranged": "Heavy bolter",
-            "melee": "Close combat weapon"
+            "alloc": [
+              {
+                "name": "Heavy Weapons Team w/ Heavy bolter",
+                "min": 0,
+                "max": 3,
+                "ranged": [
+                  "Heavy bolter",
+                  "Lasgun"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Heavy Weapons Team w/ Mortar",
+                "min": 0,
+                "max": 3,
+                "ranged": [
+                  "Mortar",
+                  "Lasgun"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Heavy Weapons Team w/ Missile launcher",
+                "min": 0,
+                "max": 3,
+                "ranged": [
+                  "Missile launcher",
+                  "Lasgun"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Heavy Weapons Team w/ Lascannon",
+                "min": 0,
+                "max": 3,
+                "ranged": [
+                  "Lascannon",
+                  "Lasgun"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Heavy Weapons Team w/ Autocannon",
+                "min": 0,
+                "max": 3,
+                "ranged": [
+                  "Lasgun",
+                  "Autocannon"
+                ],
+                "melee": "Close combat weapon"
+              }
+            ]
           }
         ]
       }
@@ -889,12 +809,27 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
+            "name": "Death Rider",
+            "count": 4,
             "ranged": "Death Rider lascarbine",
-            "melee": "Steed's savage claws"
+            "melee": [
+              "Steed's savage claws",
+              "Frag lance",
+              "Power sabre"
+            ]
+          },
+          {
+            "name": "Ridemaster",
+            "count": 1,
+            "ranged": "Death Rider lascarbine",
+            "melee": [
+              "Steed's savage claws",
+              "Power sabre",
+              "Frag lance"
+            ]
           }
         ]
       }
@@ -913,52 +848,46 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Ordnance Team",
             "count": 2,
-            "ranged": "Lasgun",
-            "melee": "Battery close combat weapons"
-          }
-        ]
-      },
-      {
-        "name": "2x Laspistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Laspistol",
-            "melee": "Battery close combat weapons"
-          }
-        ]
-      },
-      {
-        "name": "2x Malleus rocket launcher",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Malleus rocket launcher",
-            "melee": "Battery close combat weapons"
-          }
-        ]
-      },
-      {
-        "name": "2x Bombast field gun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Bombast field gun",
-            "melee": "Battery close combat weapons"
-          }
-        ]
-      },
-      {
-        "name": "2x Heavy lascannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Heavy lascannon",
-            "melee": "Battery close combat weapons"
+            "alloc": [
+              {
+                "name": "Ordnance Team w/ Malleus rocket launcher",
+                "min": 0,
+                "max": 2,
+                "ranged": [
+                  "Malleus rocket launcher",
+                  "Lasgun",
+                  "Laspistol"
+                ],
+                "melee": "Battery close combat weapons"
+              },
+              {
+                "name": "Ordnance Team w/ Bombast field gun",
+                "min": 0,
+                "max": 2,
+                "ranged": [
+                  "Bombast field gun",
+                  "Lasgun",
+                  "Laspistol"
+                ],
+                "melee": "Battery close combat weapons"
+              },
+              {
+                "name": "Ordnance Team w/ Heavy lascannon",
+                "min": 0,
+                "max": 2,
+                "ranged": [
+                  "Heavy lascannon",
+                  "Lasgun",
+                  "Laspistol"
+                ],
+                "melee": "Battery close combat weapons"
+              }
+            ]
           }
         ]
       }
@@ -978,87 +907,43 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 6,
+            "name": "Ibram Gaunt",
+            "count": 1,
             "ranged": "Bolt pistol",
             "melee": "Gaunt's chainsword"
-          }
-        ]
-      },
-      {
-        "name": "2x Corbec's hot-shot lascarbine",
-        "models": [
+          },
           {
-            "count": 2,
+            "name": "Tanith Ghost w/ Corbec's hot-shot lascarbine",
+            "count": 1,
             "ranged": "Corbec's hot-shot lascarbine",
-            "melee": "Gaunt's chainsword"
+            "melee": "Straight silver knife"
           },
           {
-            "count": 4,
-            "ranged": "Bolt pistol",
-            "melee": "Gaunt's chainsword"
-          }
-        ]
-      },
-      {
-        "name": "2x Larkin's long-las",
-        "models": [
-          {
-            "count": 2,
+            "name": "Tanith Ghost w/ Larkin's long-las",
+            "count": 1,
             "ranged": "Larkin's long-las",
-            "melee": "Gaunt's chainsword"
+            "melee": "Straight silver knife"
           },
           {
-            "count": 4,
-            "ranged": "Bolt pistol",
-            "melee": "Gaunt's chainsword"
-          }
-        ]
-      },
-      {
-        "name": "2x Lascarbine",
-        "models": [
-          {
-            "count": 2,
+            "name": "Tanith Ghost w/ Mkoll's Straight Silver Knife",
+            "count": 1,
             "ranged": "Lascarbine",
-            "melee": "Gaunt's chainsword"
+            "melee": "Mkoll's straight silver knife"
           },
           {
-            "count": 4,
-            "ranged": "Bolt pistol",
-            "melee": "Gaunt's chainsword"
-          }
-        ]
-      },
-      {
-        "name": "2x Rawne's lascarbine",
-        "models": [
-          {
-            "count": 2,
+            "name": "Tanith Ghost w/ Rawne's lascarbine",
+            "count": 1,
             "ranged": "Rawne's lascarbine",
-            "melee": "Gaunt's chainsword"
+            "melee": "Straight silver knife"
           },
           {
-            "count": 4,
-            "ranged": "Bolt pistol",
-            "melee": "Gaunt's chainsword"
-          }
-        ]
-      },
-      {
-        "name": "2x Bragg's autocannon",
-        "models": [
-          {
-            "count": 2,
+            "name": "Tanith Ghost w/ Bragg's autocannon",
+            "count": 1,
             "ranged": "Bragg's autocannon",
-            "melee": "Gaunt's chainsword"
-          },
-          {
-            "count": 4,
-            "ranged": "Bolt pistol",
-            "melee": "Gaunt's chainsword"
+            "melee": "Straight silver knife"
           }
         ]
       }
@@ -1077,192 +962,117 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Hot-shot lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Hot-shot marksman rifle",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Hot-shot marksman rifle",
-            "melee": "Close combat weapon"
+            "name": "Kasrkin Trooper",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Kasrkin Trooper",
+                "min": 2,
+                "max": 9,
+                "ranged": "Hot-shot lasgun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Kasrkin Trooper w/ Hot-shot marksman rifle",
+                "min": 0,
+                "max": 1,
+                "ranged": "Hot-shot marksman rifle",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Kasrkin Trooper w/ Hot-shot laspistol and melta mine",
+                "min": 0,
+                "max": 1,
+                "ranged": "Hot-shot laspistol",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Kasrkin Trooper w/ Vox-caster",
+                "min": 0,
+                "max": 1,
+                "ranged": "Hot-shot lasgun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Kasrkin Trooper w/ Flamer",
+                "min": 0,
+                "max": 2,
+                "group_max": 4,
+                "ranged": "Flamer",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Kasrkin Trooper w/ Plasma gun",
+                "min": 0,
+                "max": 2,
+                "group_max": 4,
+                "ranged": "Plasma gun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Kasrkin Trooper w/ Hot-shot volley gun",
+                "min": 0,
+                "max": 2,
+                "group_max": 4,
+                "ranged": "Hot-shot volley gun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Kasrkin Trooper w/ Meltagun",
+                "min": 0,
+                "max": 2,
+                "group_max": 4,
+                "ranged": "Meltagun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Kasrkin Trooper w/ Grenade launcher",
+                "min": 0,
+                "max": 2,
+                "group_max": 4,
+                "ranged": "Grenade launcher",
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 8,
-            "ranged": "Hot-shot lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Hot-shot laspistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Hot-shot laspistol",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Flamer",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma gun - standard",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma gun - standard",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma gun - supercharge",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma gun - supercharge",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Hot-shot volley gun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Hot-shot volley gun",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Meltagun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Meltagun",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Grenade launcher - frag",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Grenade launcher - frag",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Grenade launcher - krak",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Grenade launcher - krak",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma pistol - standard",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma pistol - standard",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma pistol - supercharge",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma pistol - supercharge",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lasgun",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Bolt pistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lasgun",
-            "melee": "Close combat weapon"
+            "name": "Kasrkin Sergeant",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Hot-shot Laspistol",
+                "choices": [
+                  {
+                    "name": "Hot-shot laspistol",
+                    "ranged": "Hot-shot laspistol"
+                  },
+                  {
+                    "name": "Plasma pistol",
+                    "ranged": "Plasma pistol"
+                  },
+                  {
+                    "name": "Bolt pistol",
+                    "ranged": "Bolt pistol"
+                  }
+                ]
+              },
+              {
+                "name": "Chainsword",
+                "choices": [
+                  {
+                    "name": "Chainsword",
+                    "melee": "Chainsword"
+                  },
+                  {
+                    "name": "Power weapon",
+                    "melee": "Power weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1282,102 +1092,57 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Autopistol",
-            "melee": "Trench club"
-          }
-        ]
-      },
-      {
-        "name": "2x Flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Flamer",
-            "melee": "Trench club"
+            "name": "Krieg Combat Engineer",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Krieg Combat Engineer",
+                "min": 0,
+                "max": 4,
+                "ranged": "Autopistol",
+                "melee": "Trench club"
+              },
+              {
+                "name": "Krieg Combat Engineer w/ Flamer",
+                "min": 0,
+                "max": 1,
+                "ranged": "Flamer",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Krieg Combat Engineer w/ Combat shotgun",
+                "min": 0,
+                "max": 4,
+                "ranged": "Combat shotgun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Krieg Combat Engineer w/ Remote mine",
+                "min": 0,
+                "max": 1,
+                "ranged": "Autopistol",
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 3,
-            "ranged": "Autopistol",
-            "melee": "Trench club"
-          }
-        ]
-      },
-      {
-        "name": "2x Combat shotgun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Combat shotgun",
-            "melee": "Trench club"
-          },
-          {
-            "count": 3,
-            "ranged": "Autopistol",
-            "melee": "Trench club"
-          }
-        ]
-      },
-      {
-        "name": "2x Hand flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Hand flamer",
-            "melee": "Trench club"
-          },
-          {
-            "count": 3,
-            "ranged": "Autopistol",
-            "melee": "Trench club"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma pistol - standard",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma pistol - standard",
-            "melee": "Trench club"
-          },
-          {
-            "count": 3,
-            "ranged": "Autopistol",
-            "melee": "Trench club"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma pistol - supercharge",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma pistol - supercharge",
-            "melee": "Trench club"
-          },
-          {
-            "count": 3,
-            "ranged": "Autopistol",
-            "melee": "Trench club"
-          }
-        ]
-      },
-      {
-        "name": "2x Bolt pistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Bolt pistol",
-            "melee": "Trench club"
-          },
-          {
-            "count": 3,
-            "ranged": "Autopistol",
-            "melee": "Trench club"
+            "name": "Krieg Engineer Watchmaster",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Autopistol and trench club",
+                "choices": [
+                  {
+                    "name": "Combat shotgun and close combat weapon",
+                    "ranged": "Combat shotgun",
+                    "melee": "Close combat weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1397,55 +1162,47 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 4,
-            "ranged": "Laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Krieg heavy flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Krieg heavy flamer",
-            "melee": "Close combat weapon"
+            "name": "Heavy Weapons Gunners",
+            "count": 3,
+            "alloc": [
+              {
+                "name": "Heavy Weapons Gunners w/ Krieg heavy flamer",
+                "min": 0,
+                "max": 3,
+                "ranged": [
+                  "Krieg heavy flamer",
+                  "Laspistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Heavy Weapons Gunners w/ Twin Krieg heavy stubber",
+                "min": 0,
+                "max": 3,
+                "ranged": [
+                  "Twin Krieg heavy stubber",
+                  "Laspistol"
+                ],
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Heavy Weapons Gunners w/ Lascannon",
+                "min": 0,
+                "max": 3,
+                "ranged": [
+                  "Lascannon",
+                  "Laspistol"
+                ],
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 2,
-            "ranged": "Laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Twin Krieg heavy stubber",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Twin Krieg heavy stubber",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 2,
-            "ranged": "Laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Lascannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Lascannon",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 2,
+            "name": "Fire Coordinator",
+            "count": 1,
             "ranged": "Laspistol",
             "melee": "Close combat weapon"
           }
@@ -1466,10 +1223,17 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
+            "name": "Ogryn",
+            "count": 2,
+            "ranged": "Ripper gun",
+            "melee": "Ripper gun"
+          },
+          {
+            "name": "Ogryn Bone 'ead",
+            "count": 1,
             "ranged": "Ripper gun",
             "melee": "Ripper gun"
           }
@@ -1490,27 +1254,27 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Ratling",
             "count": 5,
-            "ranged": "Sniper rifle",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "Tankstopper rifle",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Tankstopper rifle",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 4,
-            "ranged": "Sniper rifle",
-            "melee": "Close combat weapon"
+            "alloc": [
+              {
+                "name": "Ratlings",
+                "min": 5,
+                "max": 5,
+                "ranged": "Sniper rifle",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Ratling w/ tankstopper rifle",
+                "min": 0,
+                "max": 1,
+                "ranged": "Tankstopper rifle",
+                "melee": "Close combat weapon"
+              }
+            ]
           }
         ]
       }
@@ -1530,162 +1294,121 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 10,
-            "ranged": "Hot-shot lascarbine",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Hot-shot laspistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Hot-shot laspistol",
-            "melee": "Close combat weapon"
+            "name": "Tempestus Aquilon",
+            "count": 9,
+            "alloc": [
+              {
+                "name": "Tempestus Aquilon",
+                "min": 4,
+                "max": 9,
+                "ranged": "Hot-shot lascarbine",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Tempestus Aquilon w/ 2 Hot-shot laspistols",
+                "min": 0,
+                "max": 1,
+                "ranged": "Hot-shot laspistol",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Tempestus Aquilon w/ 1 Hot-shot laspistol",
+                "min": 0,
+                "max": 2,
+                "ranged": "Hot-shot laspistol",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Tempestus Aquilon w/ Hot-shot long-las",
+                "min": 0,
+                "max": 1,
+                "ranged": "Hot-shot long las",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Tempestus Aquilon w/ Special weapon",
+                "min": 0,
+                "max": 1,
+                "melee": "Close combat weapon",
+                "slots": [
+                  {
+                    "name": "Special weapon",
+                    "choices": [
+                      {
+                        "name": "Plasma carbine",
+                        "ranged": "Plasma carbine"
+                      },
+                      {
+                        "name": "Melta carbine",
+                        "ranged": "Melta carbine"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           },
           {
-            "count": 8,
-            "ranged": "Hot-shot lascarbine",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Hot-shot long las",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Hot-shot long las",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lascarbine",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma carbine - standard",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma carbine - standard",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lascarbine",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma carbine - supercharge",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma carbine - supercharge",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lascarbine",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Melta carbine",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Melta carbine",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lascarbine",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Bolt pistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lascarbine",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Sentry flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Sentry flamer",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lascarbine",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Sentry hot-shot volley gun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Sentry hot-shot volley gun",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lascarbine",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Sentry grenade launcher - frag",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Sentry grenade launcher - frag",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lascarbine",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Sentry grenade launcher - krak",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Sentry grenade launcher - krak",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 8,
-            "ranged": "Hot-shot lascarbine",
-            "melee": "Close combat weapon"
+            "name": "Tempestor Aquilon",
+            "count": 1,
+            "melee": "Close combat weapon",
+            "slots": [
+              {
+                "name": "Hot-shot Lascarbine",
+                "choices": [
+                  {
+                    "name": "Hot-shot lascarbine",
+                    "ranged": "Hot-shot lascarbine"
+                  },
+                  {
+                    "name": "Chainsword",
+                    "melee": "Chainsword"
+                  },
+                  {
+                    "name": "Power weapon",
+                    "melee": "Power weapon"
+                  },
+                  {
+                    "name": "Hot-shot laspistol",
+                    "ranged": "Hot-shot laspistol"
+                  }
+                ]
+              },
+              {
+                "name": "Pistol",
+                "choices": [
+                  {
+                    "name": "Hot-shot laspistol",
+                    "ranged": "Hot-shot laspistol"
+                  },
+                  {
+                    "name": "Bolt pistol",
+                    "ranged": "Bolt pistol"
+                  }
+                ]
+              },
+              {
+                "name": "Sentry Flamer",
+                "choices": [
+                  {
+                    "name": "Sentry flamer",
+                    "ranged": "Sentry flamer",
+                    "default": true
+                  },
+                  {
+                    "name": "Sentry hot-shot volley gun",
+                    "ranged": "Sentry hot-shot volley gun"
+                  },
+                  {
+                    "name": "Sentry grenade launcher",
+                    "ranged": "Sentry grenade launcher - frag"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -1705,177 +1428,107 @@
     },
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 5,
-            "ranged": "Hot-shot laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Hot-shot lasgun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Hot-shot lasgun",
-            "melee": "Close combat weapon"
+            "name": "Tempestus Scion",
+            "count": 4,
+            "alloc": [
+              {
+                "name": "Tempestus Scion w/ Vox-caster",
+                "min": 0,
+                "max": 1,
+                "ranged": "Hot-shot laspistol",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Tempestus Scion",
+                "min": 0,
+                "max": 4,
+                "ranged": "Hot-shot lasgun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Tempestus Scion w/ Flamer",
+                "min": 0,
+                "max": 2,
+                "group_max": 2,
+                "ranged": "Flamer",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Tempestus Scion w/ Grenade launcher",
+                "min": 0,
+                "max": 2,
+                "group_max": 2,
+                "ranged": "Grenade launcher",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Tempestus Scion w/ Hot-shot volley gun",
+                "min": 0,
+                "max": 2,
+                "group_max": 2,
+                "ranged": "Hot-shot volley gun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Tempestus Scion w/ Meltagun",
+                "min": 0,
+                "max": 2,
+                "group_max": 2,
+                "ranged": "Meltagun",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Tempestus Scion w/ Plasma gun",
+                "min": 0,
+                "max": 2,
+                "group_max": 2,
+                "ranged": "Plasma gun",
+                "melee": "Close combat weapon"
+              }
+            ]
           },
           {
-            "count": 3,
-            "ranged": "Hot-shot laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Flamer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Flamer",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Hot-shot laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Grenade launcher - frag",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Grenade launcher - frag",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Hot-shot laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Grenade launcher - krak",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Grenade launcher - krak",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Hot-shot laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Hot-shot volley gun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Hot-shot volley gun",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Hot-shot laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Meltagun",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Meltagun",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Hot-shot laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma gun - standard",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma gun - standard",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Hot-shot laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma gun - supercharge",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma gun - supercharge",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Hot-shot laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Bolt pistol",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Hot-shot laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma pistol - standard",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma pistol - standard",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Hot-shot laspistol",
-            "melee": "Close combat weapon"
-          }
-        ]
-      },
-      {
-        "name": "2x Plasma pistol - supercharge",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Plasma pistol - supercharge",
-            "melee": "Close combat weapon"
-          },
-          {
-            "count": 3,
-            "ranged": "Hot-shot laspistol",
-            "melee": "Close combat weapon"
+            "name": "Tempestor",
+            "count": 1,
+            "slots": [
+              {
+                "name": "Hot-shot Laspistol",
+                "choices": [
+                  {
+                    "name": "Hot-shot laspistol",
+                    "ranged": "Hot-shot laspistol"
+                  },
+                  {
+                    "name": "Bolt pistol",
+                    "ranged": "Bolt pistol"
+                  },
+                  {
+                    "name": "Plasma pistol",
+                    "ranged": "Plasma pistol"
+                  }
+                ]
+              },
+              {
+                "name": "Chainsword",
+                "choices": [
+                  {
+                    "name": "Chainsword",
+                    "melee": "Chainsword"
+                  },
+                  {
+                    "name": "Power fist",
+                    "melee": "Power fist"
+                  },
+                  {
+                    "name": "Power weapon",
+                    "melee": "Power weapon"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }

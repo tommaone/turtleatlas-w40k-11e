@@ -14,12 +14,26 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Barbgaunt",
             "count": 5,
-            "ranged": "Barblauncher",
-            "melee": "Chitinous claws and teeth"
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Barblauncher",
+                    "ranged": "Barblauncher"
+                  },
+                  {
+                    "name": "Chitinous claws and teeth",
+                    "melee": "Chitinous claws and teeth"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -38,12 +52,26 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Biovore",
             "count": 1,
-            "ranged": "Spore mine launcher",
-            "melee": "Chitin-barbed limbs"
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Chitin-barbed limbs",
+                    "melee": "Chitin-barbed limbs"
+                  },
+                  {
+                    "name": "Spore mine launcher",
+                    "ranged": "Spore mine launcher"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -63,12 +91,26 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Gargoyles",
             "count": 10,
-            "ranged": "Fleshborer",
-            "melee": "Blinding venom"
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Blinding venom",
+                    "melee": "Blinding venom"
+                  },
+                  {
+                    "name": "Fleshborer",
+                    "ranged": "Fleshborer"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -89,11 +131,22 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Genestealer",
             "count": 5,
-            "melee": "Genestealers claws and talons"
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Genestealers claws and talons",
+                    "melee": "Genestealers claws and talons"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -113,27 +166,27 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Hive Guard",
             "count": 3,
-            "ranged": "Shockcannon",
-            "melee": "Chitinous claws and teeth"
-          }
-        ]
-      },
-      {
-        "name": "Impaler cannon",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Impaler cannon",
-            "melee": "Chitinous claws and teeth"
-          },
-          {
-            "count": 2,
-            "ranged": "Shockcannon",
-            "melee": "Chitinous claws and teeth"
+            "alloc": [
+              {
+                "name": "Hive Guard w/ shockcannon",
+                "min": 0,
+                "max": 3,
+                "ranged": "Shockcannon",
+                "melee": "Chitinous claws and teeth"
+              },
+              {
+                "name": "Hive Guard w/ impaler cannon",
+                "min": 0,
+                "max": 3,
+                "ranged": "Impaler cannon",
+                "melee": "Chitinous claws and teeth"
+              }
+            ]
           }
         ]
       }
@@ -152,9 +205,10 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Hormagaunts",
             "count": 10,
             "melee": "Hormagaunt talons"
           }
@@ -247,10 +301,16 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 11,
+            "name": "Neurogaunt",
+            "count": 10,
+            "melee": "Chitinous claws and teeth"
+          },
+          {
+            "name": "Neurogaunt Nodebeast",
+            "count": 1,
             "melee": "Chitinous claws and teeth"
           }
         ]
@@ -297,9 +357,10 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Pyrovore",
             "count": 1,
             "ranged": "Flamespurt",
             "melee": "Chitin-barbed limbs"
@@ -323,9 +384,10 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Ravener",
             "count": 5,
             "melee": "Ravener claws and talons"
           }
@@ -347,12 +409,23 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Ripper Swarm",
             "count": 1,
-            "ranged": "Spinemaw",
-            "melee": "Chitinous claws and teeth"
+            "melee": "Chitinous claws and teeth",
+            "slots": [
+              {
+                "name": "Spinemaw",
+                "choices": [
+                  {
+                    "name": "Spinemaw",
+                    "ranged": "Spinemaw"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -444,87 +517,60 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Termagant",
             "count": 10,
-            "ranged": "Fleshborer",
-            "melee": "Chitinous claws and teeth"
-          }
-        ]
-      },
-      {
-        "name": "2x Termagant spinefist",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Termagant spinefist",
-            "melee": "Chitinous claws and teeth"
-          },
-          {
-            "count": 8,
-            "ranged": "Fleshborer",
-            "melee": "Chitinous claws and teeth"
-          }
-        ]
-      },
-      {
-        "name": "2x Termagant devourer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Termagant devourer",
-            "melee": "Chitinous claws and teeth"
-          },
-          {
-            "count": 8,
-            "ranged": "Fleshborer",
-            "melee": "Chitinous claws and teeth"
-          }
-        ]
-      },
-      {
-        "name": "2x Shardlauncher",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Shardlauncher",
-            "melee": "Chitinous claws and teeth"
-          },
-          {
-            "count": 8,
-            "ranged": "Fleshborer",
-            "melee": "Chitinous claws and teeth"
-          }
-        ]
-      },
-      {
-        "name": "2x Spike rifle",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Spike rifle",
-            "melee": "Chitinous claws and teeth"
-          },
-          {
-            "count": 8,
-            "ranged": "Fleshborer",
-            "melee": "Chitinous claws and teeth"
-          }
-        ]
-      },
-      {
-        "name": "2x Strangleweb",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Strangleweb",
-            "melee": "Chitinous claws and teeth"
-          },
-          {
-            "count": 8,
-            "ranged": "Fleshborer",
-            "melee": "Chitinous claws and teeth"
+            "alloc": [
+              {
+                "name": "Termagants",
+                "min": 7,
+                "max": 10,
+                "melee": "Chitinous claws and teeth",
+                "slots": [
+                  {
+                    "name": "Weapons",
+                    "choices": [
+                      {
+                        "name": "Fleshborer",
+                        "ranged": "Fleshborer",
+                        "default": true
+                      },
+                      {
+                        "name": "Termagant spinefist",
+                        "ranged": "Termagant spinefist"
+                      },
+                      {
+                        "name": "Termagant devourer",
+                        "ranged": "Termagant devourer"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Termagant w/ Shardlauncher",
+                "min": 0,
+                "max": 1,
+                "ranged": "Shardlauncher",
+                "melee": "Chitinous claws and teeth"
+              },
+              {
+                "name": "Termagant w/ Spike rifle",
+                "min": 0,
+                "max": 1,
+                "ranged": "Spike rifle",
+                "melee": "Chitinous claws and teeth"
+              },
+              {
+                "name": "Termagant w/ Strangleweb",
+                "min": 0,
+                "max": 1,
+                "ranged": "Strangleweb",
+                "melee": "Chitinous claws and teeth"
+              }
+            ]
           }
         ]
       }
@@ -543,10 +589,16 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
+            "name": "Tyranid Warrior",
+            "count": 2,
+            "melee": "Tyranid Warrior claws and talons"
+          },
+          {
+            "name": "Tyranid Prime",
+            "count": 1,
             "melee": "Tyranid Warrior claws and talons"
           }
         ]
@@ -566,72 +618,71 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Deathspitter",
-            "melee": "Tyranid Warrior claws and talons"
-          }
-        ]
-      },
-      {
-        "name": "2x Spinefists",
-        "models": [
-          {
+            "name": "Tyranid Warrior",
             "count": 2,
-            "ranged": "Spinefists",
-            "melee": "Tyranid Warrior claws and talons"
+            "melee": "Tyranid Warrior claws and talons",
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Deathspitter",
+                    "ranged": "Deathspitter"
+                  },
+                  {
+                    "name": "Spinefists",
+                    "ranged": "Spinefists"
+                  },
+                  {
+                    "name": "Venom cannon",
+                    "ranged": "Venom cannon"
+                  },
+                  {
+                    "name": "Devourer",
+                    "ranged": "Devourer"
+                  },
+                  {
+                    "name": "Barbed strangler",
+                    "ranged": "Barbed strangler"
+                  }
+                ]
+              }
+            ]
           },
           {
+            "name": "Tyranid Prime",
             "count": 1,
-            "ranged": "Deathspitter",
-            "melee": "Tyranid Warrior claws and talons"
-          }
-        ]
-      },
-      {
-        "name": "2x Venom cannon",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Venom cannon",
-            "melee": "Tyranid Warrior claws and talons"
-          },
-          {
-            "count": 1,
-            "ranged": "Deathspitter",
-            "melee": "Tyranid Warrior claws and talons"
-          }
-        ]
-      },
-      {
-        "name": "2x Barbed strangler",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Barbed strangler",
-            "melee": "Tyranid Warrior claws and talons"
-          },
-          {
-            "count": 1,
-            "ranged": "Deathspitter",
-            "melee": "Tyranid Warrior claws and talons"
-          }
-        ]
-      },
-      {
-        "name": "2x Devourer",
-        "models": [
-          {
-            "count": 2,
-            "ranged": "Devourer",
-            "melee": "Tyranid Warrior claws and talons"
-          },
-          {
-            "count": 1,
-            "ranged": "Deathspitter",
-            "melee": "Tyranid Warrior claws and talons"
+            "melee": "Tyranid Warrior claws and talons",
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Deathspitter",
+                    "ranged": "Deathspitter"
+                  },
+                  {
+                    "name": "Spinefists",
+                    "ranged": "Spinefists"
+                  },
+                  {
+                    "name": "Venom cannon",
+                    "ranged": "Venom cannon"
+                  },
+                  {
+                    "name": "Barbed strangler",
+                    "ranged": "Barbed strangler"
+                  },
+                  {
+                    "name": "Devourer",
+                    "ranged": "Devourer"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -651,11 +702,31 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Tyrant Guard",
             "count": 3,
-            "melee": "Scything talons and rending claws"
+            "slots": [
+              {
+                "name": "Wargear",
+                "choices": [
+                  {
+                    "name": "Scything talons and rending claws",
+                    "melee": "Scything talons and rending claws",
+                    "default": true
+                  },
+                  {
+                    "name": "Bone cleaver, lash whip and rending claws",
+                    "melee": "Bone cleaver, lash whip and rending claws"
+                  },
+                  {
+                    "name": "Crushing claws and rending claws",
+                    "melee": "Crushing claws and rending claws"
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -674,9 +745,10 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
+            "name": "Venomthrope",
             "count": 3,
             "melee": "Toxic lashes"
           }
@@ -722,26 +794,18 @@
     "innate": [],
     "builds": [
       {
-        "name": "Melee",
+        "name": "Default",
         "models": [
           {
-            "count": 3,
-            "ranged": "Warp blast - witchfire",
-            "melee": "Chitinous claws and teeth"
-          }
-        ]
-      },
-      {
-        "name": "Warp blast - focused witchfire",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Warp blast - focused witchfire",
+            "name": "Zoanthrope",
+            "count": 2,
+            "ranged": "Warp blast",
             "melee": "Chitinous claws and teeth"
           },
           {
-            "count": 2,
-            "ranged": "Warp blast - witchfire",
+            "name": "Neurothrope",
+            "count": 1,
+            "ranged": "Warp blast",
             "melee": "Chitinous claws and teeth"
           }
         ]
