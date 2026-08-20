@@ -301,6 +301,8 @@ def build_data(faction, max_points=2000):
                     'oc_boost': u.get('oc_boost', 0),
                     'cost_eff': u.get('_cost_eff'),
                     'loadout': u.get('loadout_desc', ''),
+                    'wd': u.get('weapon_details'),
+                    'ld': u.get('loadout_detail'),
                 })
             data[slug][m] = units
     return {'meta': data, 'meta_info': meta_info}, len(all_unit_names)
@@ -359,6 +361,18 @@ tr:hover{{background:#141c28}}tr.top3{{background:#0d2137}}
 .tag-ds{{background:#1a237e;color:#7986cb}}.tag-fly{{background:#4a148c;color:#ba68c8}}
 .tag-inv{{background:#e65100;color:#ffcc80}}.tag-fnp{{background:#1b5e20;color:#81c784}}
 .tag-cfnp{{background:#4a148c;color:#ce93d8}}.tag-ocboost{{background:#004d40;color:#80cbc4}}.tag-cost{{background:#37474f;color:#b0bec5}}
+.ld-cell{{position:relative;cursor:help}}
+.ld-popup{{display:none;position:absolute;right:0;top:100%;z-index:100;background:#0d1520;border:1px solid #4fc3f7;border-radius:8px;padding:12px 16px;min-width:380px;max-width:500px;box-shadow:0 8px 32px rgba(0,0,0,.6);font-size:11px;color:#b0bec5;text-align:left;white-space:normal}}
+.ld-cell:hover .ld-popup{{display:block}}
+.ld-popup h4{{color:#4fc3f7;font-size:12px;margin:0 0 8px;border-bottom:1px solid #1a2030;padding-bottom:4px}}
+.ld-popup .ld-weapon{{display:flex;gap:8px;padding:3px 0;border-bottom:1px solid #1a203022}}
+.ld-popup .ld-weapon:last-child{{border-bottom:none}}
+.ld-popup .ld-wslot{{font-weight:700;color:#90a4ae;min-width:48px;text-transform:uppercase;font-size:9px}}
+.ld-popup .ld-wname{{color:#eceff1;font-weight:600}}
+.ld-popup .ld-wstats{{color:#78909c;font-size:10px}}
+.ld-popup .ld-wvariant{{color:#ffa726;font-size:10px;margin-left:4px}}
+.ld-popup .ld-mix{{margin-top:8px;padding-top:6px;border-top:1px solid #1a2030;color:#546e7a;font-size:10px}}
+.ld-popup .ld-mix b{{color:#ffa726}}
 .insight-card{{background:#151b24;border-radius:8px;padding:16px;margin-bottom:12px;border-left:4px solid #4fc3f7}}
 .insight-title{{font-weight:700;color:#eceff1;margin-bottom:6px}}
 .insight-text{{font-size:13px;color:#b0bec5}}
@@ -405,7 +419,8 @@ function scoreClass(s){{return s>=75?'score-high':s>=50?'score-mid':'score-low'}
 function rankClass(r){{return r===1?'rank rank-1':r===2?'rank rank-2':r===3?'rank rank-3':'rank'}}
 function bar(pct,cls){{return '<div class="bar-bg"><div class="bar-fill '+cls+'" style="width:'+pct+'%"></div><div class="bar-label">'+pct+'%</div></div>'}}
 function contrib(v){{return v===0?'<span class="contrib contrib-zero">--</span>':'<span class="contrib contrib-pos">+'+v+'</span>'}}
-function renderRow(u,i){{var tags=(u.ds?'<span class=\\"tag tag-ds\\">DS</span>':'')+(u.fly?'<span class=\\"tag tag-fly\\">FLY</span>':'')+(u.inv?'<span class=\\"tag tag-inv\\">INV '+u.inv+'</span>':'')+(u.fnp?'<span class=\\"tag tag-fnp\\">FNP '+u.fnp+'</span>':'')+(u.cfnp?'<span class=\\"tag tag-cfnp\\">CFNP '+u.cfnp+'+ vs '+u.cfnp_type+'</span>':'')+(u.oc_boost?'<span class=\\"tag tag-ocboost\\">OC+'+u.oc_boost+'/banner</span>':'')+(u.cost_eff!==null&&u.cost_eff!==undefined?'<span class=\\"tag tag-cost\\">COST '+u.cost_eff+'</span>':'');return '<tr class="'+(i<3?'top3':'')+'" data-name="'+u.name.toLowerCase()+'"><td class="'+rankClass(i+1)+'">'+(i+1)+'</td><td class="unit-name">'+u.name+'</td><td class="pts">'+u.pts+'</td><td class="score '+scoreClass(u.score)+'">'+u.score+'</td><td class="raw"'+(u.loadout?' title="'+u.loadout.replace(/"/g,'&quot;')+'"':'')+'>'+u.dpp+'</td><td class="bar-cell">'+bar(u.dpp_pct,'dpp')+' '+contrib(u.dpp_c)+'</td><td class="raw">'+u.surv_turns+'t</td><td class="bar-cell">'+bar(u.surv_pct,'surv')+' '+contrib(u.surv_c)+'</td><td class="raw">'+u.obj_raw+'</td><td class="bar-cell">'+bar(u.obj_pct,'obj')+' '+contrib(u.obj_c)+'</td><td class="raw">'+u.mob_raw+'</td><td class="bar-cell">'+bar(u.mob_pct,'mob')+' '+contrib(u.mob_c)+'</td><td>'+tags+'</td><td style="font-size:10px;color:#78909c">T'+u.t+' W'+u.w+' OC'+u.oc+'</td></tr>'}}
+function ldPopup(u){{if(!u.wd&&!u.ld)return'';var h='<div class="ld-popup">';h+='<h4>'+u.name+'</h4>';if(u.ld)h+='<div style="margin-bottom:6px;color:#eceff1;font-size:11px">'+u.ld.replace(/\\[best of [^\\]]+\\]/g,'')+'</div>';if(u.wd&&u.wd.length){{u.wd.forEach(function(w){{h+='<div class="ld-weapon"><span class="ld-wslot">'+w.slot+'</span><span class="ld-wname">'+w.name+'</span><span class="ld-wstats">A'+w.attacks+' '+w.skill+' S'+w.strength+' AP'+w.ap+' D'+w.damage+'</span>';if(w.abilities&&w.abilities.length)h+='<span class="ld-wvariant">'+w.abilities.join(', ')+'</span>';if(w.variants&&w.variants.length){{h+='<div style="margin-left:56px;margin-top:2px">';w.variants.forEach(function(v){{h+='<span class="ld-wvariant">'+v.name+': A'+v.attacks+' '+v.skill+' S'+v.strength+' AP'+v.ap+' D'+v.damage+'</span> '}});h+='</div>'}}h+='</div>'}})}}h+='<div class="ld-mix">DPP computed vs current target mix</div>';h+='</div>';return h}}
+function renderRow(u,i){{var tags=(u.ds?'<span class=\\"tag tag-ds\\">DS</span>':'')+(u.fly?'<span class=\\"tag tag-fly\\">FLY</span>':'')+(u.inv?'<span class=\\"tag tag-inv\\">INV '+u.inv+'</span>':'')+(u.fnp?'<span class=\\"tag tag-fnp\\">FNP '+u.fnp+'</span>':'')+(u.cfnp?'<span class=\\"tag tag-cfnp\\">CFNP '+u.cfnp+'+ vs '+u.cfnp_type+'</span>':'')+(u.oc_boost?'<span class=\\"tag tag-ocboost\\">OC+'+u.oc_boost+'/banner</span>':'')+(u.cost_eff!==null&&u.cost_eff!==undefined?'<span class=\\"tag tag-cost\\">COST '+u.cost_eff+'</span>':'');return '<tr class="'+(i<3?'top3':'')+'" data-name="'+u.name.toLowerCase()+'"><td class="'+rankClass(i+1)+'">'+(i+1)+'</td><td class="unit-name">'+u.name+'</td><td class="pts">'+u.pts+'</td><td class="score '+scoreClass(u.score)+'">'+u.score+'</td><td class="ld-cell"><span class="raw">'+u.dpp+'</span>'+ldPopup(u)+'</td><td class="bar-cell">'+bar(u.dpp_pct,'dpp')+' '+contrib(u.dpp_c)+'</td><td class="raw">'+u.surv_turns+'t</td><td class="bar-cell">'+bar(u.surv_pct,'surv')+' '+contrib(u.surv_c)+'</td><td class="raw">'+u.obj_raw+'</td><td class="bar-cell">'+bar(u.obj_pct,'obj')+' '+contrib(u.obj_c)+'</td><td class="raw">'+u.mob_raw+'</td><td class="bar-cell">'+bar(u.mob_pct,'mob')+' '+contrib(u.mob_c)+'</td><td>'+tags+'</td><td style="font-size:10px;color:#78909c">T'+u.t+' W'+u.w+' OC'+u.oc+'</td></tr>'}}
 function filterMission(mid){{var q=document.getElementById('search-'+mid).value.toLowerCase();var rows=document.getElementById('table-'+mid).querySelectorAll('tr[data-name]');var shown=0;rows.forEach(function(r){{var m=!q||r.getAttribute('data-name').indexOf(q)!==-1;r.style.display=m?'':'none';if(m)shown++}});document.getElementById('count-'+mid).textContent=shown+' / '+rows.length+' units'}}
 var ACTIVE='';
 function isActive(meta){{return ACTIVE===''||ACTIVE===meta}}

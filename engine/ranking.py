@@ -990,6 +990,12 @@ class RankingEngine:
                 squad_info["_multimodal"] = len(squad_info["_modes"]) > 1
             if ld and "_n_combos" in ld:
                 squad_info["_n_combos"] = ld["_n_combos"]
+            if ld and "_desc" in ld:
+                squad_info["_desc"] = ld["_desc"]
+            if ld and "_weapon_details" in ld:
+                squad_info["_weapon_details"] = ld["_weapon_details"]
+            if ld and "_dpp_per_model" in ld:
+                squad_info["_dpp_per_model"] = ld["_dpp_per_model"]
             return (pts, ld["ranged"], ld["melee"], ld["innate"], squad_info)
 
         # Vehicle with weapon options (NDK / GMNDK / all vehicles)
@@ -1970,6 +1976,8 @@ class RankingEngine:
                 "conditional_fnp_type": cond_fnp_type,
                 "damage_boost": boost_spec,
                 "oc_boost": oc_boost_val,
+                "weapon_details": info.get("_weapon_details") if info else None,
+                "loadout_detail": info.get("_desc") if info else None,
             }
             if meta_name:
                 result_entry["_meta_name"] = meta_name
