@@ -196,6 +196,17 @@ class WeaponCatalog:
                     self._variant_groups[key].setdefault(sig, []).append(entry)
 
         # Build by_name and default BS/WS per weapon
+        # Unit-level psyker lookup: only units with "Psyker" keyword
+        # get the faction Psychic overlay applied to their weapons.
+        self._psyker_units: set[str] = set()
+        for u in self.data.get("units", []):
+            uname = u.get("name", "")
+            prof = u.get("profile")
+            if prof and isinstance(prof, dict):
+                kws = prof.get("keywords", [])
+                if isinstance(kws, list) and "Psyker" in kws:
+                    self._psyker_units.add(uname)
+
         self._default_bs: dict[str, int] = {}
         self._default_ws: dict[str, int] = {}
 
@@ -449,8 +460,15 @@ class WeaponCatalog:
         # that would conflict — specifically "Rapid Fire" (Storm Bolters) and
         # "Torrent" (Incinerators). These weapons are explicitly NOT Psychic
         # per the 11e Grey Knights Faction Pack.
+        #
+        # CRITICAL: Only apply Psychic if the owning unit is a PSYKER.
+        # Shared vehicles (Stormraven, Thunderhawk, Rhino) are NOT psykers —
+        # their weapons are conventional ballistic, not psychic.
         NON_PSychIC_OVERLAP = {"Rapid Fire", "Torrent"}
+        unit_is_psyker = unit_name and unit_name in self._psyker_units
         for fk in self._faction_keywords:
+            if fk == "Psychic" and not unit_is_psyker:
+                continue  # skip Psychic for non-psyker units
             if fk == "Psychic" and any(
                 any(overlap in kw for overlap in NON_PSychIC_OVERLAP)
                 for kw in final_kw
