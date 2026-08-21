@@ -913,6 +913,7 @@ class BSDataParser11e:
         "Defiler",
         "Chaos Lord in Terminator Armour",
         "Khorne Lord of Skulls",
+        "Lord Discordant on Helstalker",
     }
 
     def extract_wargear_slots(self, entry: dict) -> dict | None:
@@ -949,6 +950,18 @@ class BSDataParser11e:
                     "name": se["name"],
                     "type": weapon_type,
                 })
+
+        # Pattern 1b: entryLinks at Wargear level = fixed weapons (shared entries)
+        for el in wargear_group.get("entryLinks", []):
+            el_name = el.get("name", "")
+            if not el_name:
+                continue
+            target = self._resolve_entry_link(el)
+            weapon_type = self._detect_weapon_type(target) if target else "ranged"
+            fixed.append({
+                "name": el_name,
+                "type": weapon_type,
+            })
 
         # Pattern 2: nested selectionEntryGroups = weapon choice slots
         for seg in wargear_group.get("selectionEntryGroups", []):

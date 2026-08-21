@@ -92,6 +92,33 @@ KLOS_SLOTS = [
 ]
 KLOS_DPP_CURATED = 0.0599
 
+# ── Lord Discordant on Helstalker ────────────────────────────────────────
+
+LD_BSNAME = "Lord Discordant on Helstalker"
+LD_MERGED_NAME = "Lord Discordant On Helstalker"
+LD_FIXED = [
+    {"name": "Bladed limbs", "type": "melee"},
+    {"name": "Impaler chainglaive", "type": "melee"},
+    {"name": "Bolt pistol", "type": "ranged"},
+]
+LD_SLOTS = [
+    {
+        "name": "Autocannon or baleflamer",
+        "choices": [
+            {"name": "Helstalker autocannon", "type": "ranged"},
+            {"name": "Baleflamer", "type": "ranged"},
+        ],
+    },
+    {
+        "name": "Injector or magma cutter",
+        "choices": [
+            {"name": "Techno-virus injector", "type": "melee"},
+            {"name": "Magma cutter", "type": "ranged"},
+        ],
+    },
+]
+LD_DPP_CURATED = 0.0891
+
 
 @pytest.fixture(scope="module")
 def parser():
@@ -260,4 +287,62 @@ class TestEngineBSDataFallbackKLOS:
             csm_engine.config.weapon_options = orig_wo
             csm_engine.config.vehicles = orig_vh
             csm_engine.config.squads = orig_sq
+            csm_engine.config.characters = orig_ch
+
+
+# ── Lord Discordant on Helstalker ────────────────────────────────────────
+
+@pytest.fixture(scope="module")
+def ld_extracted_slots(parser):
+    """Extract wargear slots from BSData for Lord Discordant."""
+    data = parser.query_faction(FACTION_BSNAME)
+    for u in data["units"]:
+        if u["name"] == LD_BSNAME:
+            return u.get("wargear_slots")
+    pytest.fail(f"{LD_BSNAME} not found in BSData extraction")
+
+
+class TestBSDataExtractionLD:
+    """Parser-level: Lord Discordant wargear extraction."""
+
+    def test_wargear_slots_present(self, ld_extracted_slots):
+        assert ld_extracted_slots is not None
+
+    def test_fixed_weapons(self, ld_extracted_slots):
+        assert ld_extracted_slots["fixed"] == LD_FIXED
+
+    def test_slot_count(self, ld_extracted_slots):
+        assert len(ld_extracted_slots["slots"]) == 2
+
+    def test_slot_choices(self, ld_extracted_slots):
+        for exp_slot in LD_SLOTS:
+            got_slot = next(
+                s for s in ld_extracted_slots["slots"] if s["name"] == exp_slot["name"]
+            )
+            got_choices = [(c["name"], c["type"]) for c in got_slot["choices"]]
+            exp_choices = [(c["name"], c["type"]) for c in exp_slot["choices"]]
+            assert got_choices == exp_choices
+
+
+class TestEngineBSDataFallbackLD:
+    """Engine-level: Lord Discordant BSData fallback."""
+
+    def test_curated_dpp(self, csm_engine):
+        result = csm_engine.compute_ranking()
+        ld = next(u for u in result if u["name"] == LD_MERGED_NAME)
+        assert ld["dpp"] == pytest.approx(LD_DPP_CURATED, abs=0.0001)
+
+    def test_bsdata_fallback_matches_dpp(self, csm_engine):
+        """BSData fallback produces same DPP as curated config."""
+        import copy
+
+        orig_ch = copy.deepcopy(csm_engine.config.characters)
+
+        try:
+            csm_engine.config.characters.pop(LD_MERGED_NAME, None)
+
+            result = csm_engine.compute_ranking()
+            ld = next(u for u in result if u["name"] == LD_MERGED_NAME)
+            assert ld["dpp"] == pytest.approx(LD_DPP_CURATED, abs=0.0001)
+        finally:
             csm_engine.config.characters = orig_ch
