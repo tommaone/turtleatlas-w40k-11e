@@ -912,6 +912,7 @@ class BSDataParser11e:
     WARGEAR_WHITELIST: set[str] = {
         "Defiler",
         "Chaos Lord in Terminator Armour",
+        "Khorne Lord of Skulls",
     }
 
     def extract_wargear_slots(self, entry: dict) -> dict | None:

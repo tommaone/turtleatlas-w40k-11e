@@ -68,6 +68,30 @@ EXPECTED_SLOTS = [
 EXPECTED_COMBOS = 4 * 2 * 4 * 2  # 64
 EXPECTED_DPP_CURATED = 0.0760  # hand-curated baseline
 
+# ── Khorne Lord of Skulls ───────────────────────────────────────────────
+
+KLOS_BSNAME = "Khorne Lord of Skulls"  # BSData uses lowercase 'o'
+KLOS_MERGED_NAME = "Khorne Lord Of Skulls"  # merged JSON capitalizes
+KLOS_FIXED = [{"name": "Great cleaver of Khorne", "type": "melee"}]
+KLOS_SLOTS = [
+    {
+        "name": "Hades gatling cannon",
+        "choices": [
+            {"name": "Hades gatling cannon", "type": "ranged"},
+            {"name": "Skullhurler", "type": "ranged"},
+        ],
+    },
+    {
+        "name": "Gorestorm cannon",
+        "choices": [
+            {"name": "Gorestorm cannon", "type": "ranged"},
+            {"name": "Daemongore cannon", "type": "ranged"},
+            {"name": "Ichor cannon", "type": "ranged"},
+        ],
+    },
+]
+KLOS_DPP_CURATED = 0.0599
+
 
 @pytest.fixture(scope="module")
 def parser():
@@ -165,6 +189,73 @@ class TestEngineBSDataFallback:
 
             assert defiler["dpp"] == pytest.approx(EXPECTED_DPP_CURATED, abs=0.0001)
             assert defiler.get("n_combos") == EXPECTED_COMBOS
+        finally:
+            csm_engine.config.weapon_options = orig_wo
+            csm_engine.config.vehicles = orig_vh
+            csm_engine.config.squads = orig_sq
+            csm_engine.config.characters = orig_ch
+
+
+# ── Khorne Lord of Skulls ───────────────────────────────────────────────
+
+@pytest.fixture(scope="module")
+def klos_extracted_slots(parser):
+    """Extract wargear slots from BSData for Khorne Lord of Skulls."""
+    data = parser.query_faction(FACTION_BSNAME)
+    for u in data["units"]:
+        if u["name"] == KLOS_BSNAME:
+            return u.get("wargear_slots")
+    pytest.fail(f"{KLOS_BSNAME} not found in BSData extraction")
+
+
+class TestBSDataExtractionKLOS:
+    """Parser-level: Khorne Lord of Skulls wargear extraction."""
+
+    def test_wargear_slots_present(self, klos_extracted_slots):
+        assert klos_extracted_slots is not None
+
+    def test_fixed_weapons(self, klos_extracted_slots):
+        assert klos_extracted_slots["fixed"] == KLOS_FIXED
+
+    def test_slot_count(self, klos_extracted_slots):
+        assert len(klos_extracted_slots["slots"]) == 2
+
+    def test_slot_choices(self, klos_extracted_slots):
+        for exp_slot in KLOS_SLOTS:
+            got_slot = next(
+                s for s in klos_extracted_slots["slots"] if s["name"] == exp_slot["name"]
+            )
+            got_choices = [(c["name"], c["type"]) for c in got_slot["choices"]]
+            exp_choices = [(c["name"], c["type"]) for c in exp_slot["choices"]]
+            assert got_choices == exp_choices
+
+
+class TestEngineBSDataFallbackKLOS:
+    """Engine-level: Khorne Lord of Skulls BSData fallback."""
+
+    def test_curated_dpp(self, csm_engine):
+        result = csm_engine.compute_ranking()
+        klos = next(u for u in result if u["name"] == KLOS_MERGED_NAME)
+        assert klos["dpp"] == pytest.approx(KLOS_DPP_CURATED, abs=0.0001)
+
+    def test_bsdata_fallback_matches_dpp(self, csm_engine):
+        """BSData fallback produces same DPP as curated config."""
+        import copy
+
+        orig_wo = copy.deepcopy(csm_engine.config.weapon_options)
+        orig_vh = copy.deepcopy(csm_engine.config.vehicles)
+        orig_sq = copy.deepcopy(csm_engine.config.squads)
+        orig_ch = copy.deepcopy(csm_engine.config.characters)
+
+        try:
+            csm_engine.config.weapon_options.pop(KLOS_MERGED_NAME, None)
+            csm_engine.config.vehicles.pop(KLOS_MERGED_NAME, None)
+            csm_engine.config.squads.pop(KLOS_MERGED_NAME, None)
+            csm_engine.config.characters.pop(KLOS_MERGED_NAME, None)
+
+            result = csm_engine.compute_ranking()
+            klos = next(u for u in result if u["name"] == KLOS_MERGED_NAME)
+            assert klos["dpp"] == pytest.approx(KLOS_DPP_CURATED, abs=0.0001)
         finally:
             csm_engine.config.weapon_options = orig_wo
             csm_engine.config.vehicles = orig_vh
