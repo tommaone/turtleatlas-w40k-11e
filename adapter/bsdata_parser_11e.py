@@ -437,6 +437,9 @@ class BSDataParser11e:
         else:
             roots = self._load_catalogue_roots(cat, include_linked=True)
 
+        # Store for wargear slot extraction (entryLink resolution)
+        self._current_entry_index = entry_index
+
         units: list[dict] = []
         _profile_cache: dict[str, list[dict]] = {}
 
@@ -892,9 +895,122 @@ class BSDataParser11e:
                 "_own_catalogue": entry.get("id", "") in own_ids,
             }
 
+            # Auto-extract wargear slots for whitelisted units
+            if name in self.WARGEAR_WHITELIST:
+                wargear_slots = self.extract_wargear_slots(entry)
+                if wargear_slots:
+                    unit_entry["wargear_slots"] = wargear_slots
+
             units.append(unit_entry)
 
         return units
+
+    # -- Wargear slot extraction (BSData selectionEntryGroups) ----------------
+
+    # Units whose BSData wargear structure has been validated against Wahapedia.
+    # Only units on this list get auto-extracted wargear_slots in the merged output.
+    WARGEAR_WHITELIST: set[str] = {
+        "Defiler",
+        "Chaos Lord in Terminator Armour",
+    }
+
+    def extract_wargear_slots(self, entry: dict) -> dict | None:
+        """Extract structured wargear slots from a BSData unit entry.
+
+        Walks the selectionEntryGroups tree under the 'Wargear' group and
+        returns a dict with:
+          - fixed: list of {"name": ..., "type": "ranged"|"melee"} (always equipped)
+          - slots: list of {"name": ..., "choices": [...]}
+
+        Returns None if no Wargear group or no extractable structure.
+
+        Handles two patterns observed in BSData:
+        1. Defiler: fixed weapons as direct selectionEntries + slot groups as
+           nested selectionEntryGroups within Wargear.
+        2. Chaos Lord: no fixed weapons, only nested selectionEntryGroups.
+        """
+        wargear_group = None
+        for seg in entry.get("selectionEntryGroups", []):
+            if seg.get("name", "").lower() == "wargear":
+                wargear_group = seg
+                break
+        if wargear_group is None:
+            return None
+
+        fixed: list[dict] = []
+        slots: list[dict] = []
+
+        # Pattern 1: direct selectionEntries in Wargear = fixed weapons
+        for se in wargear_group.get("selectionEntries", []):
+            if se.get("type") == "upgrade" and se.get("profiles"):
+                weapon_type = self._detect_weapon_type(se)
+                fixed.append({
+                    "name": se["name"],
+                    "type": weapon_type,
+                })
+
+        # Pattern 2: nested selectionEntryGroups = weapon choice slots
+        for seg in wargear_group.get("selectionEntryGroups", []):
+            slot_name = seg.get("name", "")
+            if not slot_name:
+                continue
+            choices = []
+            # Direct selectionEntries (upgrade type with inline profiles)
+            for ch in seg.get("selectionEntries", []):
+                ch_name = ch.get("name", "")
+                if not ch_name:
+                    continue
+                weapon_type = self._detect_weapon_type(ch)
+                choices.append({
+                    "name": ch_name,
+                    "type": weapon_type,
+                })
+            # entryLinks (references to shared selectionEntries)
+            for el in seg.get("entryLinks", []):
+                el_name = el.get("name", "")
+                if not el_name:
+                    continue
+                # Resolve the target to get weapon type
+                target = self._resolve_entry_link(el)
+                weapon_type = self._detect_weapon_type(target) if target else "ranged"
+                choices.append({
+                    "name": el_name,
+                    "type": weapon_type,
+                })
+            if choices:
+                slots.append({
+                    "name": slot_name,
+                    "choices": choices,
+                })
+
+        if not fixed and not slots:
+            return None
+        return {"fixed": fixed, "slots": slots}
+
+    def _detect_weapon_type(self, entry: dict) -> str:
+        """Detect ranged vs melee from a BSData entry's profiles."""
+        for p in entry.get("profiles", []):
+            type_name = p.get("typeName", "")
+            if "Ranged" in type_name:
+                return "ranged"
+            if "Melee" in type_name:
+                return "melee"
+            # Fallback: check Range characteristic
+            for c in p.get("characteristics", []):
+                if c.get("name") == "Range":
+                    rng = c.get("$text", "")
+                    if rng.lower() == "melee":
+                        return "melee"
+                    return "ranged"
+        return "ranged"  # default
+
+    def _resolve_entry_link(self, entry: dict) -> dict | None:
+        """If an entry is an entryLink, resolve to the target shared entry."""
+        if entry.get("type") == "selectionEntry" and entry.get("targetId"):
+            target_id = entry["targetId"]
+            if hasattr(self, '_current_entry_index') and self._current_entry_index:
+                return self._current_entry_index.get(target_id)
+        return None
 
     def build_multiplicity_index(self, cat: dict,
                                   entry_index: dict[str, dict] | None = None

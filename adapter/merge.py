@@ -210,6 +210,7 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
             "role": mfm_u.get("role") if mfm_u else None,
             "attachTo": mfm_u.get("attachTo") if mfm_u else None,
             "wargear_options": mfm_u.get("wargear") if mfm_u else None,
+            "wargear_slots": profile.get("wargear_slots") if profile else None,
         })
 
     # -- Step 2: Fuzzy match fixup for 0-point units --

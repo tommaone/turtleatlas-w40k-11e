@@ -68,6 +68,7 @@ class FactionConfig:
         self.weapon_options: dict = _load("weapon_options")
         self.notes: dict = _load("notes")
 
+
         # Build lookup sets (skip metadata keys starting with _)
         self.known_units: set[str] = set()
         for src in (self.squads, self.characters, self.vehicles, self.weapon_options):
@@ -478,6 +479,14 @@ class RankingEngine:
                         if u["name"] not in seen_names:
                             self.data["units"].append(u)
                             seen_names.add(u["name"])
+
+        # BSData wargear_slots fallback: auto-extracted weapon slots from
+        # BSData selectionEntryGroups. Only used when no hand-curated config exists.
+        self._bsdata_wargear_slots: dict[str, dict] = {}
+        for u in self.data.get("units", []):
+            ws = u.get("wargear_slots")
+            if ws:
+                self._bsdata_wargear_slots[u["name"]] = ws
 
         # Detachment modifiers — loaded lazily on first access
         self._detachment_modifiers: dict[str, list[DetachmentModifier]] | None = None
@@ -1303,6 +1312,23 @@ class RankingEngine:
             vh_info["_weapon_details"] = self._weapon_details_from_profiles(ranged, melee)
             vh_info["_desc"] = self._loadout_desc(ranged, melee, innate)
             return (pts, ranged, melee, innate, vh_info)
+
+        # BSData wargear_slots fallback: auto-extracted weapon slots from
+        # BSData selectionEntryGroups. Only used when no hand-curated config exists.
+        if name in self._bsdata_wargear_slots:
+            ws = self._bsdata_wargear_slots[name]
+            unit_data = next((u for u in self.data.get("units", []) if u["name"] == name), None)
+            pricing = unit_data.get("pricing") if unit_data else None
+            # Build a virtual build dict — format matches _resolve_slots_build
+            build = {"name": "default", "fixed": ws.get("fixed", []), "slots": ws.get("slots", [])}
+            sb = self._resolve_slots_build(build, name, target)
+            if sb is not None:
+                b_ranged, b_melee, n_combos = sb
+                pts = self._resolve_pts(100, None, pricing, 1, tier)
+                vh_info = {"_n_combos": n_combos, "_bsdata_auto": True}
+                vh_info["_weapon_details"] = self._weapon_details_from_profiles(b_ranged, b_melee)
+                vh_info["_desc"] = self._loadout_desc(b_ranged, b_melee, [])
+                return (pts, b_ranged, b_melee, [], vh_info)
 
         return None
 
