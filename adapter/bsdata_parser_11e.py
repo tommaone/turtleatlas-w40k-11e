@@ -915,6 +915,7 @@ class BSDataParser11e:
         "Khorne Lord of Skulls",
         "Lord Discordant on Helstalker",
         "Helbrute",
+        "Maulerfiend",
     }
 
     def extract_wargear_slots(self, entry: dict) -> dict | None:

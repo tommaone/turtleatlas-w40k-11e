@@ -152,6 +152,24 @@ HB_SLOTS = [
 ]
 HB_DPP_CURATED = 0.0488
 
+# ── Maulerfiend ──────────────────────────────────────────────────────────
+# Golden truth: verified against New Recruit wiki (11e) + Goonhammer 2026-08-22.
+# Fixed fists; 1 slot (Head weapons): 2 magma cutters or Lasher tendrils.
+
+MF_BSNAME = "Maulerfiend"
+MF_MERGED_NAME = "Maulerfiend"
+MF_FIXED = [{"name": "Maulerfiend fists", "type": "melee"}]
+MF_SLOTS = [
+    {
+        "name": "Head weapons",
+        "choices": [
+            {"name": "2 magma cutters", "type": "ranged"},
+            {"name": "Lasher tendrils", "type": "melee"},
+        ],
+    },
+]
+MF_DPP_CURATED = 0.0444
+
 
 @pytest.fixture(scope="module")
 def parser():
@@ -446,5 +464,61 @@ class TestEngineBSDataFallbackHB:
             result = csm_engine.compute_ranking()
             hb = next(u for u in result if u["name"] == HB_MERGED_NAME)
             assert hb["dpp"] == pytest.approx(HB_DPP_CURATED, abs=0.0001)
+        finally:
+            csm_engine.config.weapon_options = orig_wo
+
+
+# ── Maulerfiend ──────────────────────────────────────────────────────────
+
+@pytest.fixture(scope="module")
+def mf_extracted_slots(parser):
+    """Extract wargear slots from BSData for Maulerfiend."""
+    data = parser.query_faction(FACTION_BSNAME)
+    for u in data["units"]:
+        if u["name"] == MF_BSNAME:
+            return u.get("wargear_slots")
+    pytest.fail(f"{MF_BSNAME} not found in BSData extraction")
+
+
+class TestBSDataExtractionMF:
+    """Parser-level: Maulerfiend wargear extraction."""
+
+    def test_wargear_slots_present(self, mf_extracted_slots):
+        assert mf_extracted_slots is not None
+
+    def test_fixed_weapons(self, mf_extracted_slots):
+        assert mf_extracted_slots["fixed"] == MF_FIXED
+
+    def test_slot_count(self, mf_extracted_slots):
+        assert len(mf_extracted_slots["slots"]) == 1
+
+    def test_slot_choices(self, mf_extracted_slots):
+        got_slot = mf_extracted_slots["slots"][0]
+        assert got_slot["name"] == MF_SLOTS[0]["name"]
+        got_choices = [(c["name"], c["type"]) for c in got_slot["choices"]]
+        exp_choices = [(c["name"], c["type"]) for c in MF_SLOTS[0]["choices"]]
+        assert got_choices == exp_choices
+
+
+class TestEngineBSDataFallbackMF:
+    """Engine-level: Maulerfiend BSData fallback."""
+
+    def test_curated_dpp(self, csm_engine):
+        result = csm_engine.compute_ranking()
+        mf = next(u for u in result if u["name"] == MF_MERGED_NAME)
+        assert mf["dpp"] == pytest.approx(MF_DPP_CURATED, abs=0.0001)
+
+    def test_bsdata_fallback_matches_dpp(self, csm_engine):
+        """BSData fallback produces same DPP as curated config."""
+        import copy
+
+        orig_wo = copy.deepcopy(csm_engine.config.weapon_options)
+
+        try:
+            csm_engine.config.weapon_options.pop(MF_MERGED_NAME, None)
+
+            result = csm_engine.compute_ranking()
+            mf = next(u for u in result if u["name"] == MF_MERGED_NAME)
+            assert mf["dpp"] == pytest.approx(MF_DPP_CURATED, abs=0.0001)
         finally:
             csm_engine.config.weapon_options = orig_wo
