@@ -2,51 +2,46 @@
   "_note": "space-marines weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Astraeus": {
-    "pts": 525,
     "builds": [
       {
         "name": "default",
         "fixed": [
           {
-            "name": "Twin Icarus ironhail heavy stubber",
+            "name": "Twin macro-accelerator cannon",
             "type": "ranged"
           },
           {
             "name": "Armoured hull",
+            "type": "melee"
+          },
+          {
+            "name": "Ironhail Heavy Stubber",
             "type": "ranged"
           },
           {
-            "name": "ironhail heavy stubber",
-            "type": "ranged"
-          },
-          {
-            "name": "storm bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "twin macro accelerator cannon",
+            "name": "Storm bolter",
             "type": "ranged"
           }
         ],
         "slots": [
           {
-            "name": "Weapon 1",
+            "name": "Hull weapon",
             "choices": [
               {
-                "name": "Two astraeus las ripppers",
+                "name": "Twin heavy bolter",
                 "type": "ranged"
               },
               {
-                "name": "Two plasma eradicators",
+                "name": "Twin lascannon",
                 "type": "ranged"
               }
             ]
           },
           {
-            "name": "Weapon 2",
+            "name": "Sponson weapons",
             "choices": [
               {
-                "name": "Two astraeus las ripppers",
+                "name": "Two Astraeus las-rippers",
                 "type": "ranged"
               },
               {
@@ -58,14 +53,7 @@
         ]
       }
     ],
-    "info": {
-      "M": "10\"",
-      "T": 12,
-      "SV": 2,
-      "W": 24,
-      "OC": 8,
-      "INV": 5
-    }
+    "pts": 525
   },
   "Ballistus Dreadnought": {
     "info": {
@@ -102,7 +90,6 @@
     ]
   },
   "Brutalis Dreadnought": {
-    "pts": 150,
     "builds": [
       {
         "name": "default",
@@ -110,28 +97,24 @@
           {
             "name": "Twin Icarus ironhail heavy stubber",
             "type": "ranged"
-          },
-          {
-            "name": "Brutalis bolt rifles",
-            "type": "ranged"
           }
         ],
         "slots": [
           {
-            "name": "Melee weapon",
+            "name": "Melee Weapon Option",
             "choices": [
               {
-                "name": "Brutalis fists",
-                "type": "melee"
+                "name": "Brutalis Fists & Brutalis Bolt Rifles",
+                "type": "ranged"
               },
               {
-                "name": "Brutalis talons",
+                "name": "Brutalis Talons",
                 "type": "melee"
               }
             ]
           },
           {
-            "name": "Ranged weapon",
+            "name": "Ranged Weapon Option",
             "choices": [
               {
                 "name": "Twin heavy bolter",
@@ -146,13 +129,7 @@
         ]
       }
     ],
-    "info": {
-      "M": "8\"",
-      "T": 10,
-      "SV": 2,
-      "W": 12,
-      "OC": 4
-    }
+    "pts": 150
   },
   "Dreadnought": {
     "pts": 135,
@@ -1237,7 +1214,6 @@
     ]
   },
   "Thunderhawk Gunship": {
-    "pts": 840,
     "builds": [
       {
         "name": "default",
@@ -1247,37 +1223,37 @@
             "type": "melee"
           },
           {
-            "name": "lascannon",
+            "name": "Lascannon",
             "type": "ranged"
           },
           {
-            "name": "twin heavy bolter",
+            "name": "Twin heavy bolter",
             "type": "ranged"
           }
         ],
         "slots": [
           {
-            "name": "Sponsons",
-            "choices": [
-              {
-                "name": "2 heavy bolters",
-                "type": "ranged"
-              },
-              {
-                "name": "2 lascannons",
-                "type": "ranged"
-              }
-            ]
-          },
-          {
-            "name": "Bomb rack",
+            "name": "Bombs or missiles",
             "choices": [
               {
                 "name": "Thunderhawk cluster bombs",
                 "type": "ranged"
               },
               {
-                "name": "Thunderhawk missiles",
+                "name": "Hellstrike missile battery",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Main weapon",
+            "choices": [
+              {
+                "name": "Thunderhawk heavy cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Turbo-laser destructor",
                 "type": "ranged"
               }
             ]
@@ -1285,13 +1261,7 @@
         ]
       }
     ],
-    "info": {
-      "M": "20+\"",
-      "T": 12,
-      "SV": 2,
-      "W": 30,
-      "OC": 0
-    }
+    "pts": 840
   },
   "Vindicator": {
     "info": {

@@ -50,7 +50,6 @@
     ]
   },
   "Chaos Predator Annihilator": {
-    "pts": 135,
     "builds": [
       {
         "name": "default",
@@ -61,7 +60,7 @@
           },
           {
             "name": "Armoured tracks",
-            "type": "ranged"
+            "type": "melee"
           },
           {
             "name": "Havoc launcher",
@@ -73,11 +72,11 @@
             "name": "Pintle weapon",
             "choices": [
               {
-                "name": "Combi bolter",
+                "name": "Combi-bolter",
                 "type": "ranged"
               },
               {
-                "name": "Combi weapon",
+                "name": "Combi-weapon",
                 "type": "ranged"
               }
             ]
@@ -86,7 +85,7 @@
             "name": "Sponsons",
             "choices": [
               {
-                "name": "2 plague heavy bolters",
+                "name": "2 heavy bolters",
                 "type": "ranged"
               },
               {
@@ -98,13 +97,7 @@
         ]
       }
     ],
-    "info": {
-      "M": "10\"",
-      "T": 10,
-      "SV": 3,
-      "W": 11,
-      "OC": 3
-    }
+    "pts": 135
   },
   "Chaos Predator Destructor": {
     "pts": 145,
@@ -300,35 +293,33 @@
     ]
   },
   "Foetid Bloat-Drone": {
-    "info": {
-      "M": "10\"",
-      "T": 9,
-      "SV": 3,
-      "W": 10,
-      "OC": 3,
-      "INV": 5
-    },
-    "pts": 100,
     "builds": [
       {
         "name": "default",
         "fixed": [
           {
-            "name": "Plaguespitter",
-            "type": "ranged"
-          },
-          {
             "name": "Plague probe",
-            "type": "melee"
-          },
-          {
-            "name": "Fleshmower",
             "type": "melee"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Two plaguespitters",
+                "type": "ranged"
+              },
+              {
+                "name": "Fleshmower",
+                "type": "melee"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "pts": 100
   },
   "Helbrute": {
     "builds": [
@@ -586,7 +577,7 @@
                 "type": "melee"
               },
               {
-                "name": "2 plaguespitters",
+                "name": "Two plaguespitters",
                 "type": "ranged"
               }
             ]

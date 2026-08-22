@@ -291,16 +291,6 @@
     }
   },
   "Ethereal": {
-    "pts": 50,
-    "info": {
-      "M": "6\"",
-      "T": 3,
-      "SV": 5,
-      "W": 3,
-      "OC": 1,
-      "INV": 5,
-      "FNP": 5
-    },
     "weapon_options": {
       "builds": [
         {
@@ -311,14 +301,25 @@
               "type": "melee"
             },
             {
-              "name": "drones (0 2)",
+              "name": "Drones (0-2)",
               "type": "ranged"
             }
           ],
-          "slots": []
+          "slots": [
+            {
+              "name": "Hover Drone",
+              "choices": [
+                {
+                  "name": "Hover Drone",
+                  "type": "ranged"
+                }
+              ]
+            }
+          ]
         }
       ]
-    }
+    },
+    "pts": 50
   },
   "Firesight Team": {
     "pts": 55,
@@ -382,38 +383,30 @@
     }
   },
   "Kroot Lone-Spear": {
-    "pts": 80,
-    "info": {
-      "M": "12\"",
-      "T": 5,
-      "SV": 5,
-      "W": 6,
-      "OC": 2
-    },
     "weapon_options": {
       "builds": [
         {
           "name": "default",
           "fixed": [
             {
-              "name": "Kalamandra's bite",
+              "name": "Close combat weapon",
               "type": "melee"
             },
             {
-              "name": "Close combat weapon",
+              "name": "Kalamandra's bite",
               "type": "melee"
             }
           ],
           "slots": [
             {
-              "name": "Ranged weapon 1",
+              "name": "Wargear Options",
               "choices": [
                 {
-                  "name": "Kroot long gun",
+                  "name": "Blast javelin and hunting javelin",
                   "type": "ranged"
                 },
                 {
-                  "name": "Blast javelin",
+                  "name": "Kroot long gun",
                   "type": "ranged"
                 }
               ]
@@ -421,7 +414,8 @@
           ]
         }
       ]
-    }
+    },
+    "pts": 80
   },
   "Kroot Trail Shaper": {
     "pts": 50,

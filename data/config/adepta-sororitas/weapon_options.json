@@ -2,15 +2,6 @@
   "_note": "adepta-sororitas weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Castigator": {
-    "info": {
-      "M": "10\"",
-      "T": 10,
-      "SV": 3,
-      "W": 11,
-      "OC": 3,
-      "INV": 6
-    },
-    "pts": 165,
     "builds": [
       {
         "name": "default",
@@ -26,7 +17,7 @@
         ],
         "slots": [
           {
-            "name": "Ranged weapon 1",
+            "name": "Main gun",
             "choices": [
               {
                 "name": "Castigator autocannons",
@@ -35,7 +26,12 @@
               {
                 "name": "Castigator battle cannon",
                 "type": "ranged"
-              },
+              }
+            ]
+          },
+          {
+            "name": "Secondary weapons",
+            "choices": [
               {
                 "name": "Storm bolter",
                 "type": "ranged"
@@ -48,7 +44,8 @@
           }
         ]
       }
-    ]
+    ],
+    "pts": 165
   },
   "Exorcist": {
     "pts": 180,

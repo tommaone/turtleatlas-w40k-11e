@@ -1583,7 +1583,9 @@ class RankingEngine:
                 """Extract leading integer from a stat value. Returns default if unparseable."""
                 s = str(val).replace('"', '').replace('+', '').replace('*', '').strip()
                 digits = ''.join(c for c in s if c.isdigit() or c == '-')
-                return int(digits) if digits else default
+                if not digits or digits == '-':
+                    return default
+                return int(digits)
             t_val = _safe_int(stats.get("T", "4"), 4)
             sv_val = _safe_int(stats.get("Sv", stats.get("SV", "3+")), 3)
             w_val = _safe_int(stats.get("W", "2"), 2)

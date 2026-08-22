@@ -540,47 +540,39 @@
   },
   "Warboss": {
     "pts": 85,
-    "info": {
-      "M": "6\"",
-      "T": 5,
-      "SV": 4,
-      "W": 6,
-      "OC": 1,
-      "INV": 5
-    },
     "weapon_options": {
       "builds": [
         {
           "name": "default",
-          "fixed": [
-            {
-              "name": "Slugga",
-              "type": "ranged"
-            },
-            {
-              "name": "Close combat weapon",
-              "type": "melee"
-            }
-          ],
           "slots": [
             {
-              "name": "Weapon",
+              "name": "Attack Squig",
               "choices": [
                 {
-                  "name": "Power klaw",
+                  "name": "Attack squig",
                   "type": "melee"
-                },
+                }
+              ]
+            },
+            {
+              "name": "Kombi-weapon, Twin Sluggas and Big Choppa",
+              "choices": [
                 {
-                  "name": "Kombi weapon, twin sluggas and big choppa",
+                  "name": "Kombi-weapon, twin sluggas and big choppa",
                   "type": "ranged"
                 },
                 {
-                  "name": "Kombi weapon, twin sluggas and power klaw",
+                  "name": "Kustom choppa and kustom shoota",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Kombi-weapon, twin sluggas and power klaw",
                   "type": "ranged"
                 }
               ]
             }
-          ]
+          ],
+          "fixed": []
         }
       ]
     }

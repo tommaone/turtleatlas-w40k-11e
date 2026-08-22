@@ -167,17 +167,9 @@
     ]
   },
   "Burna-Bommer": {
-    "pts": 115,
-    "info": {
-      "M": "-",
-      "T": 9,
-      "SV": 3,
-      "W": 12,
-      "INV": 6
-    },
     "builds": [
       {
-        "name": "Burna Run",
+        "name": "default",
         "fixed": [
           {
             "name": "Twin big shoota",
@@ -188,17 +180,24 @@
             "type": "ranged"
           },
           {
-            "name": "Skorcha missile rack",
-            "type": "ranged"
-          },
-          {
             "name": "Armoured hull",
             "type": "melee"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Skorcha Missile Rack",
+            "choices": [
+              {
+                "name": "Skorcha missile rack",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "pts": 115
   },
   "Deff Dread": {
     "pts": 110,
@@ -1082,40 +1081,39 @@
     ]
   },
   "Warboss": {
-    "pts": 85,
     "builds": [
       {
         "name": "default",
-        "fixed": [
-          {
-            "name": "Slugga",
-            "type": "ranged"
-          },
-          {
-            "name": "Close combat weapon",
-            "type": "melee"
-          }
-        ],
         "slots": [
           {
-            "name": "Weapon",
+            "name": "Attack Squig",
             "choices": [
               {
-                "name": "Power klaw",
+                "name": "Attack squig",
                 "type": "melee"
-              },
+              }
+            ]
+          },
+          {
+            "name": "Kombi-weapon, Twin Sluggas and Big Choppa",
+            "choices": [
               {
-                "name": "Kombi weapon, twin sluggas and big choppa",
+                "name": "Kombi-weapon, twin sluggas and big choppa",
                 "type": "ranged"
               },
               {
-                "name": "Kombi weapon, twin sluggas and power klaw",
+                "name": "Kustom choppa and kustom shoota",
+                "type": "ranged"
+              },
+              {
+                "name": "Kombi-weapon, twin sluggas and power klaw",
                 "type": "ranged"
               }
             ]
           }
         ]
       }
-    ]
+    ],
+    "pts": 85
   }
 }

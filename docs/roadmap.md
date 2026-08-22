@@ -22,8 +22,8 @@ and recommend detachments/units based on mission and meta.
 | Weapon_options on slots | **ALL 30/30 factions** (Wave 3+4, 2026-08-19) |
 | Reroll abilities auto-detected | 24 datasheets across 15 factions |
 | Complex-layer squads | Aeldari, GK, SM, DA, SW, BA, BT, DW, Chaos Daemons, CSM, EC, Orks (11 with alloc/slots) + 9-faction caps sweep (2026-08-15) |
-| BSData audit | 209 findings, 163 guilty units, 1 COMBO gap (DC Dread — deliberate) |
-| Last change | BSData weapon slot audit + fixes across 15 factions (2026-08-22) |
+| BSData audit | **22 findings — ALL blocked on empty BSData stats. 0 actionable** |
+| Last change | Audit grind complete: 209 → 22 findings, all MISSING_CHOICES/SLOT_COUNT/FIXED/COMBO/POINTS_DRIFT resolved (2026-08-22) |
 
 ---
 
@@ -160,6 +160,23 @@ and recommend detachments/units based on mission and meta.
   - 17 dual-entry configs synced (characters.json ↔ weapon_options.json overwrite bug)
   - Audit: 209 findings, 163 guilty units, 1 COMBO gap (DC Dread — deliberate)
   - 616/617 tests pass, 152/152 findings validation pass
+- **Audit grind COMPLETE (2026-08-22)** — 209 → 22 findings, 0 actionable:
+  - 32 units rebuilt from BSData slot structure (Castigator split to 2 slots,
+    Thunderhawks restructured, Warboss/DC Dread/Brutalis/Astraeus/etc.)
+  - ~20 name normalizations ('Plasma pistol - standard' → 'Plasma pistol',
+    '2 plaguespitters' → 'Two plaguespitters', 'Hades爆裂炮' → 'Hades gatling cannon')
+  - 49 POINTS_DRIFT + 90 MISSING_FIXED + 13 MISSING_FIXED (sweep 2) resolved
+  - Einhyr Champion pts synced to BSData (110→65); DC Dread COMBO gap resolved
+    (full slots rebuild matching BSData: Blood Talons now a Melee Weapon Option
+    slot choice; BA complex-unit tests still green)
+  - Engine `_safe_int` fix: stat value "-" no longer crashes OC parsing
+  - `scripts/audit_curated_vs_bsdata.py` — audit promoted into the repo;
+    skips squad-schema (`models`) builds — different schema, not comparable
+  - Remaining 22 findings: ALL NO_CURATED on units with EMPTY BSData stats
+    (Archaeopters, Gladiators, Impulsors, Repulsor, Necron flyers/Obelisk/
+    Tesseract Vault, Venomcrawler, Galatus, Pallas, Skorpius Dunerider,
+    Bloat-drone variant). Blocked on merged-data profiles — adding configs
+    crashes the engine (units unrankable). Revisit when merged data regenerates.
 - **Alloc-caps sweep (2026-08-15, Wave 3 prep)** — the 9 alloc-layer factions
   (aeldari/BT/BA/DA/DW/GK/orks/SM/SW) regenerated through the caps mechanism:
   7 FLAT_CAPS entries (Paladin heavy 2, Troupe fusion/neuro 2/2, Thunderwolf
@@ -189,14 +206,15 @@ and recommend detachments/units based on mission and meta.
 
 ## In Progress 🔄
 
-- **BSData weapon slot audit grind** — 209 findings remaining (163 guilty
-  units). Mostly MISSING_FIXED (bolt pistol, armoured tracks, drones),
-  POINTS_DRIFT, and NO_CURATED entries. Combo gaps down to 1 (DC Dread,
-  deliberate). Fixing iteratively: batch scripts per finding type.
 - **Detachment modifiers UNBLOCKED for weapon_options** — all 30 factions now
   have slots schema on characters + weapon_options. Remaining blocker:
   squad composition (alloc pools) on ~14 factions. Once squads are on slots,
   detachment modifiers can be added for any faction.
+- **NO_CURATED empty-stats units (22)** — blocked on merged BSData profiles.
+  These units have wargear structure but no stats (M/T/SV/W/OC) in
+  data/merged/*.json, so the engine cannot rank them and curated configs
+  crash the ranking loop. Fix: regenerate merged data with a parser fix for
+  these entries, then run scripts/audit_curated_vs_bsdata.py to build configs.
 
 ---
 
@@ -293,4 +311,4 @@ and recommend detachments/units based on mission and meta.
 
 ---
 
-*Last updated: 2026-08-22 (BSData audit grind)*
+*Last updated: 2026-08-22 (audit grind complete — 0 actionable findings)*

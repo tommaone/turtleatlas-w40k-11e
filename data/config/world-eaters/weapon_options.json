@@ -345,14 +345,6 @@
     }
   },
   "Helbrute": {
-    "info": {
-      "M": "6\"",
-      "T": 9,
-      "SV": 2,
-      "W": 8,
-      "OC": 3
-    },
-    "pts": 120,
     "builds": [
       {
         "name": "default",
@@ -364,7 +356,7 @@
         ],
         "slots": [
           {
-            "name": "Missile launcher",
+            "name": "Replace missile launcher",
             "choices": [
               {
                 "name": "Helbrute fist with combi-bolter",
@@ -375,12 +367,12 @@
                 "type": "ranged"
               },
               {
-                "name": "Helbrute hammer",
-                "type": "melee"
-              },
-              {
                 "name": "Missile launcher",
                 "type": "ranged"
+              },
+              {
+                "name": "Helbrute hammer",
+                "type": "melee"
               },
               {
                 "name": "Power scourge",
@@ -389,10 +381,14 @@
             ]
           },
           {
-            "name": "Multi-melta",
+            "name": "Replace multi-melta",
             "choices": [
               {
-                "name": "Helbrute fist with combi-bolter",
+                "name": "Multi-melta",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin autocannon",
                 "type": "ranged"
               },
               {
@@ -400,15 +396,11 @@
                 "type": "ranged"
               },
               {
-                "name": "Helbrute plasma cannon",
+                "name": "Helbrute fist with combi-bolter",
                 "type": "ranged"
               },
               {
-                "name": "Multi-melta",
-                "type": "ranged"
-              },
-              {
-                "name": "Twin autocannon",
+                "name": "Plasma cannon",
                 "type": "ranged"
               },
               {
@@ -423,7 +415,8 @@
           }
         ]
       }
-    ]
+    ],
+    "pts": 120
   },
   "Heldrake": {
     "info": {
@@ -462,7 +455,6 @@
     ]
   },
   "Khorne Lord Of Skulls": {
-    "pts": 505,
     "builds": [
       {
         "name": "default",
@@ -474,31 +466,31 @@
         ],
         "slots": [
           {
-            "name": "Gun",
+            "name": "Replace gatling cannon",
             "choices": [
               {
-                "name": "Daemon skulllauncher",
+                "name": "Hades gatling cannon",
                 "type": "ranged"
               },
               {
-                "name": "Harpus bomb rack",
+                "name": "Skullhurler",
                 "type": "ranged"
               }
             ]
           },
           {
-            "name": "Cannon",
+            "name": "Replace gorestorm cannon",
             "choices": [
-              {
-                "name": "Ichor cannon",
-                "type": "ranged"
-              },
               {
                 "name": "Gorestorm cannon",
                 "type": "ranged"
               },
               {
-                "name": "Hades\u7206\u88c2\u70ae",
+                "name": "Daemongore cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Ichor cannon",
                 "type": "ranged"
               }
             ]
@@ -506,14 +498,7 @@
         ]
       }
     ],
-    "info": {
-      "M": "12\"",
-      "T": 13,
-      "SV": 3,
-      "W": 24,
-      "OC": 8,
-      "INV": 5
-    }
+    "pts": 505
   },
   "Maulerfiend": {
     "pts": 140,

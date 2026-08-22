@@ -1,5 +1,5 @@
 {
-  "_note": "blood-angels characters — generated from BSData + MFM",
+  "_note": "blood-angels characters \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Ancient": {
     "pts": 40,
@@ -706,41 +706,13 @@
     }
   },
   "Death Company Captain With Jump Pack": {
-    "pts": 75,
-    "info": {
-      "M": "12\"",
-      "T": 4,
-      "SV": 3,
-      "W": 5,
-      "OC": 1,
-      "INV": 4,
-      "deep_strike": true
-    },
     "weapon_options": {
       "builds": [
         {
           "name": "default",
-          "fixed": [],
           "slots": [
             {
-              "name": "Ranged weapon 1",
-              "choices": [
-                {
-                  "name": "Hand flamer",
-                  "type": "ranged"
-                },
-                {
-                  "name": "Plasma pistol - standard",
-                  "type": "ranged"
-                },
-                {
-                  "name": "Heavy Bolt Pistol",
-                  "type": "ranged"
-                }
-              ]
-            },
-            {
-              "name": "Melee weapon 1",
+              "name": "Melee",
               "choices": [
                 {
                   "name": "Power fist",
@@ -755,11 +727,30 @@
                   "type": "melee"
                 }
               ]
+            },
+            {
+              "name": "Pistol",
+              "choices": [
+                {
+                  "name": "Heavy Bolt Pistol",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Hand flamer",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Plasma pistol",
+                  "type": "ranged"
+                }
+              ]
             }
-          ]
+          ],
+          "fixed": []
         }
       ]
-    }
+    },
+    "pts": 75
   },
   "Judiciar": {
     "pts": 55,

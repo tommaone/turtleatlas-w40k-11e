@@ -214,30 +214,46 @@
     ]
   },
   "Death Company Dreadnought": {
-    "info": {
-      "M": "8\"",
-      "T": 10,
-      "SV": 2,
-      "W": 12,
-      "OC": 4
-    },
-    "pts": 150,
     "builds": [
       {
         "name": "default",
         "fixed": [
           {
-            "name": "Blood Talons",
-            "type": "melee"
-          },
-          {
-            "name": "twin icarus ironhail heavy stubber",
+            "name": "Twin Icarus ironhail heavy stubber",
             "type": "ranged"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Melee Weapon Option",
+            "choices": [
+              {
+                "name": "Blood Fists & Blood Fist Bolt Rifles",
+                "type": "ranged"
+              },
+              {
+                "name": "Blood Talons",
+                "type": "melee"
+              }
+            ]
+          },
+          {
+            "name": "Ranged Weapon Option",
+            "choices": [
+              {
+                "name": "Twin heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin multi-melta",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "pts": 150
   },
   "Dreadnought": {
     "pts": 135,

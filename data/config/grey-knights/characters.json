@@ -1,5 +1,5 @@
 {
-  "_note": "grey-knights characters — generated from BSData + MFM",
+  "_note": "grey-knights characters \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Brother-Captain": {
     "pts": 95,
@@ -308,28 +308,13 @@
     }
   },
   "Venerable Dreadnought": {
-    "pts": 130,
-    "info": {
-      "M": "8\"",
-      "T": 9,
-      "SV": 2,
-      "W": 8,
-      "OC": 3,
-      "deep_strike": true
-    },
     "weapon_options": {
       "builds": [
         {
           "name": "default",
-          "fixed": [
-            {
-              "name": "Dreadnought combat weapon",
-              "type": "melee"
-            }
-          ],
           "slots": [
             {
-              "name": "Assault cannon swap",
+              "name": "Assault Cannon",
               "choices": [
                 {
                   "name": "Assault cannon",
@@ -346,22 +331,23 @@
               ]
             },
             {
-              "name": "Storm bolter swap",
+              "name": "Storm Bolter and Dreadnought Combat Weapon",
               "choices": [
                 {
-                  "name": "Storm bolter",
+                  "name": "Storm bolter and Dreadnought combat weapon",
                   "type": "ranged"
                 },
                 {
-                  "name": "Heavy flamer",
+                  "name": "Heavy flamer and Dreadnought combat weapon",
                   "type": "ranged"
                 }
               ]
             }
-          ]
+          ],
+          "fixed": []
         }
       ]
     },
-    "pts_3rd": 140
+    "pts": 130
   }
 }
