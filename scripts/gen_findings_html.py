@@ -86,12 +86,14 @@ INDEX_HEADER = '''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><me
 '''
 
 
-def extract_army_scores(data, top_n=10):
+def extract_army_scores(data, top_n=20):
     """Army-level score per mission from build_data output.
 
     Per unit: best score across target-mix presets (best tool for the job).
     Army score: mean of the top_n unit scores — represents the faction's
     best available options without letting roster size dominate.
+    Factions with fewer than top_n ranked units average their whole roster
+    (sample-size caveat when comparing against large factions).
 
     Returns {mission: score} dict (unrounded floats).
     """
@@ -159,7 +161,7 @@ def render_tier_section(tiers):
         '<div class="section">\n'
         '  <h2>Army Tier List</h2>\n'
         f'  <p style="color:#8b949e;font-size:0.85em;margin:0 0 10px">'
-        f'Faction strength by disposition — mean of each faction\'s top-10 unit '
+        f'Faction strength by disposition — mean of each faction\'s top-20 unit '
         f'scores. Tiers are percentile-banded per view.</p>\n'
         f'  <div class="tierbar" id="tierbar">{btns_html}</div>\n'
         '  <div id="tierlist"></div>\n'
