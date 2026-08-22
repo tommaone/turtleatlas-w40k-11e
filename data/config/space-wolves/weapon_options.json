@@ -1,5 +1,5 @@
 {
-  "_note": "space-wolves weapon options — generated from BSData + MFM",
+  "_note": "space-wolves weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Astraeus": {
     "pts": 525,
@@ -1091,26 +1091,48 @@
     ]
   },
   "Venerable Dreadnought": {
+    "pts": 140,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Dreadnought combat weapon",
+            "type": "melee"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Heavy weapon",
+            "choices": [
+              {
+                "name": "Assault cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Multi melta",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin lascannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "8\"",
       "T": 9,
       "SV": 2,
       "W": 8,
       "OC": 3
-    },
-    "pts": 125,
-    "builds": [
-      {
-        "name": "Fenrisian great axe and blizzard shield",
-        "fixed": [
-          {
-            "name": "Fenrisian great axe",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      }
-    ]
+    }
   },
   "Vindicator": {
     "pts": 185,

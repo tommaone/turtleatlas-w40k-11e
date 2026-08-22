@@ -1,5 +1,5 @@
 {
-  "_note": "adeptus-mechanicus weapon options — generated from BSData + MFM",
+  "_note": "adeptus-mechanicus weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Archaeopter Stratoraptor": {
     "info": {
@@ -134,6 +134,49 @@
     ]
   },
   "Onager Dunecrawler": {
+    "pts": 155,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Broad spectrum data-tether",
+            "type": "ranged"
+          },
+          {
+            "name": "Cognis heavy stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Dunecrawler legs",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Main weapon",
+            "choices": [
+              {
+                "name": "Eradication beamer",
+                "type": "ranged"
+              },
+              {
+                "name": "Daedalus missile launcher & Icarus array",
+                "type": "ranged"
+              },
+              {
+                "name": "Neutron laser & Cognis heavy stubber",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin Onager heavy phosphor blaster",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "8\"",
       "T": 10,
@@ -141,54 +184,47 @@
       "W": 11,
       "OC": 3,
       "INV": 4
-    },
-    "pts": 155,
+    }
+  },
+  "Skorpius Disintegrator": {
+    "pts": 115,
     "builds": [
       {
         "name": "default",
         "fixed": [
           {
-            "name": "Cognis heavy stubber",
+            "name": "Armoured hull",
             "type": "ranged"
           },
           {
-            "name": "Dunecrawler legs",
-            "type": "melee"
+            "name": "Cognis heavy stubber",
+            "type": "ranged"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Main weapon",
+            "choices": [
+              {
+                "name": "Belleros energy cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Ferrumite cannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
-  },
-  "Skorpius Disintegrator": {
+    ],
     "info": {
       "M": "10\"",
       "T": 10,
       "SV": 2,
       "W": 12,
       "OC": 3
-    },
-    "pts": 160,
-    "builds": [
-      {
-        "name": "default",
-        "fixed": [
-          {
-            "name": "Cognis heavy stubber",
-            "type": "ranged"
-          },
-          {
-            "name": "Disruptor missile launcher",
-            "type": "ranged"
-          },
-          {
-            "name": "Armoured hull",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      }
-    ]
+    }
   },
   "Sydonian Dragoons With Radium Jezzails": {
     "info": {
@@ -215,6 +251,50 @@
           {
             "name": "Ironstrider feet",
             "type": "melee"
+          }
+        ],
+        "slots": []
+      }
+    ]
+  },
+  "Sydonian Skatros": {
+    "pts": 65,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Sydonian legs",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Radium jezzail",
+                "type": "ranged"
+              },
+              {
+                "name": "Skatros transuranic arquebus",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Tech-Priest Manipulus": {
+    "pts": 70,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Magnarail lance",
+            "type": "ranged"
           }
         ],
         "slots": []

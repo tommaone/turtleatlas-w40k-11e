@@ -1,40 +1,53 @@
 {
-  "_note": "emperors-children weapon options — builds format, MFM pts verified (v1.1)",
+  "_note": "emperors-children weapon options \u2014 builds format, MFM pts verified (v1.1)",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Chaos Land Raider": {
+    "pts": 220,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Armoured tracks",
+            "type": "ranged"
+          },
+          {
+            "name": "Havoc launcher",
+            "type": "ranged"
+          },
+          {
+            "name": "Combi bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Combi bolter",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Combi bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Combi weapon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "10\"",
       "T": 12,
       "SV": 2,
       "W": 16,
       "OC": 5
-    },
-    "pts": 220,
-    "pts_3rd": 240,
-    "builds": [
-      {
-        "name": "default",
-        "fixed": [
-          {
-            "name": "Havoc launcher",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin heavy bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "Soulshatter lascannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Armoured tracks",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      }
-    ]
+    }
   },
   "Chaos Rhino": {
     "info": {
@@ -83,10 +96,36 @@
         ],
         "slots": [
           {
-            "name": "Ranged weapon 1",
+            "name": "Battle cannon",
             "choices": [
               {
-                "name": "Electroscourge",
+                "name": "Hades battle cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Ectoplasma destructor",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Excruciator cannons",
+            "choices": [
+              {
+                "name": "Two excruciator cannons",
+                "type": "ranged"
+              },
+              {
+                "name": "Two magma cutters",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Baleflamer",
+            "choices": [
+              {
+                "name": "Heavy baleflamer",
                 "type": "ranged"
               },
               {
@@ -98,20 +137,29 @@
                 "type": "ranged"
               },
               {
+                "name": "Electroscourge",
+                "type": "melee"
+              }
+            ]
+          },
+          {
+            "name": "Missile launcher",
+            "choices": [
+              {
                 "name": "Heavy missile launcher",
                 "type": "ranged"
               },
               {
-                "name": "Hades battle cannon",
+                "name": "Hades lascannon",
                 "type": "ranged"
               },
               {
-                "name": "Ectoplasma destructor",
+                "name": "Heavy reaper autocannon",
                 "type": "ranged"
               },
               {
-                "name": "Heavy baleflamer",
-                "type": "ranged"
+                "name": "Electroscourge",
+                "type": "melee"
               }
             ]
           }
@@ -120,14 +168,7 @@
     ]
   },
   "Heldrake": {
-    "info": {
-      "M": "12\"",
-      "T": 10,
-      "SV": 3,
-      "W": 14,
-      "INV": 5
-    },
-    "pts": 175,
+    "pts": 140,
     "builds": [
       {
         "name": "default",
@@ -137,21 +178,33 @@
             "type": "melee"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Baleflamer",
+                "type": "ranged"
+              },
+              {
+                "name": "Hades autocannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
-  },
-  "Maulerfiend": {
+    ],
     "info": {
-      "M": "10\"",
+      "M": "12\"",
       "T": 10,
       "SV": 3,
-      "W": 12,
-      "OC": 3,
+      "W": 14,
       "INV": 5
-    },
-    "pts": 120,
-    "pts_3rd": 130,
+    }
+  },
+  "Maulerfiend": {
+    "pts": 160,
     "builds": [
       {
         "name": "default",
@@ -161,7 +214,95 @@
             "type": "melee"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Head weapons",
+            "choices": [
+              {
+                "name": "2 magma cutters",
+                "type": "ranged"
+              },
+              {
+                "name": "Lasher tendrils",
+                "type": "melee"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "info": {
+      "M": "10\"",
+      "T": 10,
+      "SV": 3,
+      "W": 12,
+      "OC": 3,
+      "INV": 5
+    }
+  },
+  "Keeper Of Secrets": {
+    "pts": 290,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Phantasmagoria",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Living whip",
+                "type": "melee"
+              },
+              {
+                "name": "Ritual knife",
+                "type": "melee"
+              },
+              {
+                "name": "Shining aegis",
+                "type": "melee"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Lord Kakophonist": {
+    "pts": 75,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Screamer pistol",
+            "type": "ranged"
+          },
+          {
+            "name": "Close combat weapon",
+            "type": "melee"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Power sword",
+                "type": "melee"
+              },
+              {
+                "name": "Screamer pistol and close combat weapon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   }

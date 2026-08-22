@@ -1,5 +1,5 @@
 {
-  "_note": "deathwatch weapon options — generated from BSData + MFM",
+  "_note": "deathwatch weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Astraeus": {
     "pts": 525,
@@ -153,30 +153,70 @@
     ]
   },
   "Corvus Blackstar": {
-    "info": {
-      "M": "14\"",
-      "T": 10,
-      "SV": 3,
-      "W": 14,
-      "OC": 0
-    },
     "pts": 180,
     "builds": [
       {
         "name": "default",
         "fixed": [
           {
-            "name": "Hurricane bolter",
+            "name": "Armoured hull",
             "type": "ranged"
           },
           {
-            "name": "Armoured hull",
-            "type": "melee"
+            "name": "Hurricane bolter",
+            "type": "ranged"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Centreline weapon",
+            "choices": [
+              {
+                "name": "Twin assault cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin lascannon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Missile choice",
+            "choices": [
+              {
+                "name": "2 blackstar rocket launchers",
+                "type": "ranged"
+              },
+              {
+                "name": "2 stormstrike missile launchers",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Wargear",
+            "choices": [
+              {
+                "name": "Auspex array",
+                "type": "ranged"
+              },
+              {
+                "name": "Infernum halo-launcher",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "info": {
+      "M": "14\"",
+      "T": 10,
+      "SV": 3,
+      "W": 14,
+      "OC": 0
+    }
   },
   "Dreadnought": {
     "pts": 135,

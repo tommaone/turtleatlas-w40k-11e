@@ -1,5 +1,5 @@
 {
-  "_note": "space-marines weapon options — generated from BSData + MFM",
+  "_note": "space-marines weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Astraeus": {
     "info": {
@@ -153,124 +153,60 @@
     ]
   },
   "Dreadnought": {
+    "pts": 135,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [],
+        "slots": [
+          {
+            "name": "Arm weapon",
+            "choices": [
+              {
+                "name": "Dreadnought combat weapon w/ heavy flamer",
+                "type": "melee"
+              },
+              {
+                "name": "Dreadnought combat weapon w/ storm bolter",
+                "type": "melee"
+              },
+              {
+                "name": "Close combat weapon w/ missile launcher",
+                "type": "melee"
+              }
+            ]
+          },
+          {
+            "name": "Heavy weapon",
+            "choices": [
+              {
+                "name": "Assault cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Multi-melta",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin lascannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy plasma cannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "6\"",
       "T": 9,
       "SV": 2,
       "W": 8,
       "OC": 3
-    },
-    "pts": 135,
-    "builds": [
-      {
-        "name": "Assault Cannon",
-        "fixed": [
-          {
-            "name": "Assault Cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Storm bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "Dreadnought Combat Weapon",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Twin lascannon",
-        "fixed": [
-          {
-            "name": "Twin lascannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Storm bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "Dreadnought Combat Weapon",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Multi-melta",
-        "fixed": [
-          {
-            "name": "Multi-melta",
-            "type": "ranged"
-          },
-          {
-            "name": "Storm bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "Dreadnought Combat Weapon",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Heavy Plasma Cannon",
-        "fixed": [
-          {
-            "name": "Heavy Plasma Cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Storm bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "Dreadnought Combat Weapon",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Missile Launcher",
-        "fixed": [
-          {
-            "name": "Missile Launcher",
-            "type": "ranged"
-          },
-          {
-            "name": "Storm bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "Dreadnought Combat Weapon",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Heavy Flamer",
-        "fixed": [
-          {
-            "name": "Heavy Flamer",
-            "type": "ranged"
-          },
-          {
-            "name": "Storm bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "Dreadnought Combat Weapon",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      }
-    ]
+    }
   },
   "Firestrike Servo-Turrets": {
     "info": {
@@ -299,38 +235,44 @@
     ]
   },
   "Gladiator Lancer": {
-    "info": {
-      "M": "10\"",
-      "T": 10,
-      "SV": 3,
-      "W": 12,
-      "OC": 3
-    },
     "pts": 160,
     "builds": [
       {
         "name": "default",
         "fixed": [
           {
-            "name": "Icarus Rocket Pod",
+            "name": "Armoured hull",
             "type": "ranged"
           },
           {
-            "name": "Ironhail Heavy Stubber",
+            "name": "Storm bolter",
             "type": "ranged"
-          },
-          {
-            "name": "Lancer Laser Destroyer",
-            "type": "ranged"
-          },
-          {
-            "name": "Armoured Hull",
-            "type": "melee"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Two fragstorm grenade launchers",
+                "type": "ranged"
+              },
+              {
+                "name": "Two storm bolters",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "info": {
+      "M": "10\"",
+      "T": 10,
+      "SV": 3,
+      "W": 12,
+      "OC": 3
+    }
   },
   "Gladiator Reaper": {
     "info": {
@@ -409,14 +351,7 @@
     ]
   },
   "Invictor Tactical Warsuit": {
-    "info": {
-      "M": "8\"",
-      "T": 8,
-      "SV": 3,
-      "W": 12,
-      "OC": 4
-    },
-    "pts": 125,
+    "pts": 140,
     "builds": [
       {
         "name": "default",
@@ -424,23 +359,32 @@
           {
             "name": "Fragstorm grenade launcher",
             "type": "ranged"
-          },
-          {
-            "name": "Heavy Bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin Ironhail Heavy Stubber",
-            "type": "ranged"
-          },
-          {
-            "name": "Invictor Fist",
-            "type": "melee"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Incendium cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin ironhail autocannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "info": {
+      "M": "8\"",
+      "T": 8,
+      "SV": 3,
+      "W": 12,
+      "OC": 4
+    }
   },
   "Land Raider": {
     "info": {
@@ -638,52 +582,67 @@
     ]
   },
   "Predator Annihilator": {
-    "info": {
-      "M": "10",
-      "T": 10,
-      "SV": 3,
-      "W": 11,
-      "OC": 3
-    },
     "pts": 135,
     "builds": [
       {
         "name": "default",
         "fixed": [
           {
+            "name": "Predator twin lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "ranged"
+          },
+          {
             "name": "Hunter-killer missile",
             "type": "ranged"
           },
           {
             "name": "Storm bolter",
             "type": "ranged"
-          },
-          {
-            "name": "Predator Twin Lascannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Armoured Tracks",
-            "type": "melee"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Sponson weapons",
+            "choices": [
+              {
+                "name": "2 lascannons",
+                "type": "ranged"
+              },
+              {
+                "name": "2 heavy bolters",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
-  },
-  "Predator Destructor": {
+    ],
     "info": {
       "M": "10",
       "T": 10,
       "SV": 3,
       "W": 11,
       "OC": 3
-    },
+    }
+  },
+  "Predator Destructor": {
     "pts": 140,
     "builds": [
       {
         "name": "default",
         "fixed": [
+          {
+            "name": "Predator autocannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "ranged"
+          },
           {
             "name": "Hunter-killer missile",
             "type": "ranged"
@@ -691,19 +650,32 @@
           {
             "name": "Storm bolter",
             "type": "ranged"
-          },
-          {
-            "name": "Predator Autocannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Armoured Tracks",
-            "type": "melee"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Sponson weapons",
+            "choices": [
+              {
+                "name": "2 lascannons",
+                "type": "ranged"
+              },
+              {
+                "name": "2 heavy bolters",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "info": {
+      "M": "10",
+      "T": 10,
+      "SV": 3,
+      "W": 11,
+      "OC": 3
+    }
   },
   "Razorback": {
     "info": {
@@ -1064,43 +1036,37 @@
     ]
   },
   "Stormhawk Interceptor": {
-    "info": {
-      "M": "20\"+",
-      "T": 9,
-      "SV": 3,
-      "W": 10,
-      "OC": 0
-    },
     "pts": 155,
     "builds": [
       {
-        "name": "Twin assault cannon",
+        "name": "default",
         "fixed": [
           {
-            "name": "Twin assault cannon",
+            "name": "Armoured hull",
             "type": "ranged"
           },
           {
-            "name": "Armoured Hull",
-            "type": "melee"
+            "name": "Twin assault cannon",
+            "type": "ranged"
           }
         ],
         "slots": [
           {
-            "name": "Ranged weapon 1",
+            "name": "Weapon 1",
             "choices": [
               {
-                "name": "Skyhammer Missile Launcher",
-                "type": "ranged"
-              },
-              {
-                "name": "Icarus Stormcannon",
+                "name": "Icarus stormcannon",
                 "type": "ranged"
               },
               {
                 "name": "Las-talon",
                 "type": "ranged"
-              },
+              }
+            ]
+          },
+          {
+            "name": "Weapon 2",
+            "choices": [
               {
                 "name": "Twin heavy bolter",
                 "type": "ranged"
@@ -1108,14 +1074,77 @@
               {
                 "name": "Typhoon missile launcher",
                 "type": "ranged"
+              },
+              {
+                "name": "Skyhammer missile launcher",
+                "type": "ranged"
               }
             ]
           }
         ]
       }
-    ]
+    ],
+    "info": {
+      "M": "20\"+",
+      "T": 9,
+      "SV": 3,
+      "W": 10,
+      "OC": 0
+    }
   },
   "Stormraven Gunship": {
+    "pts": 280,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Stormstrike missiles",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Weapon option 1",
+            "choices": [
+              {
+                "name": "Twin heavy plasma cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin assault cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin lascannon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Weapon option 2",
+            "choices": [
+              {
+                "name": "Typhoon missile launcher",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin multi-melta",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "14\"",
       "T": 10,
@@ -1123,20 +1152,7 @@
       "W": 14,
       "OC": 0,
       "damage_reduction": 1
-    },
-    "pts": 280,
-    "builds": [
-      {
-        "name": "2 Hurricane Bolters",
-        "fixed": [
-          {
-            "name": "Hurricane Bolter",
-            "type": "ranged"
-          }
-        ],
-        "slots": []
-      }
-    ]
+    }
   },
   "Stormtalon Gunship": {
     "info": {
@@ -1187,42 +1203,11 @@
     ]
   },
   "Thunderhawk Gunship": {
-    "info": {
-      "M": "20+\"",
-      "T": 12,
-      "SV": 2,
-      "W": 30,
-      "OC": 0
-    },
-    "pts": 840,
+    "pts": 330,
     "builds": [
       {
         "name": "default",
         "fixed": [
-          {
-            "name": "Lascannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Lascannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin heavy bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin heavy bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin heavy bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin heavy bolter",
-            "type": "ranged"
-          },
           {
             "name": "Armoured hull",
             "type": "melee"
@@ -1230,39 +1215,41 @@
         ],
         "slots": [
           {
-            "name": "Turbo-laser destructor",
+            "name": "Sponsons",
             "choices": [
               {
-                "name": "Thunderhawk heavy cannon",
+                "name": "2 heavy bolters",
                 "type": "ranged"
               },
               {
-                "name": "Turbo-laser destructor",
+                "name": "2 lascannons",
                 "type": "ranged"
               }
             ]
           },
           {
-            "name": "Missile battery 1",
+            "name": "Bomb rack",
             "choices": [
               {
-                "name": "Hellstrike missile battery",
+                "name": "Thunderhawk cluster bombs",
                 "type": "ranged"
-              }
-            ]
-          },
-          {
-            "name": "Missile battery 2",
-            "choices": [
+              },
               {
-                "name": "Hellstrike missile battery",
+                "name": "Thunderhawk missiles",
                 "type": "ranged"
               }
             ]
           }
         ]
       }
-    ]
+    ],
+    "info": {
+      "M": "20+\"",
+      "T": 12,
+      "SV": 2,
+      "W": 30,
+      "OC": 0
+    }
   },
   "Vindicator": {
     "info": {

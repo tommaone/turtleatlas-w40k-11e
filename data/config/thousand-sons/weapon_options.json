@@ -1,5 +1,5 @@
 {
-  "_note": "thousand-sons weapon options — generated from BSData + MFM",
+  "_note": "thousand-sons weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Chaos Land Raider": {
     "info": {
@@ -50,92 +50,118 @@
     ]
   },
   "Chaos Predator Annihilator": {
-    "info": {
-      "M": "10\"",
-      "T": 10,
-      "SV": 3,
-      "W": 11,
-      "OC": 3
-    },
-    "pts": 140,
+    "pts": 145,
     "builds": [
       {
         "name": "default",
         "fixed": [
-          {
-            "name": "Havoc launcher",
-            "type": "ranged"
-          },
           {
             "name": "Predator twin lascannon",
             "type": "ranged"
           },
           {
             "name": "Armoured tracks",
-            "type": "melee"
+            "type": "ranged"
+          },
+          {
+            "name": "Havoc launcher",
+            "type": "ranged"
           }
         ],
         "slots": [
           {
-            "name": "Ranged weapon 1",
+            "name": "Pintle weapon",
             "choices": [
               {
-                "name": "Inferno combi-bolter",
+                "name": "Inferno combi bolter",
                 "type": "ranged"
               },
               {
-                "name": "Inferno combi-weapon",
+                "name": "Inferno combi weapon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Sponsons",
+            "choices": [
+              {
+                "name": "2 inferno heavy bolters",
+                "type": "ranged"
+              },
+              {
+                "name": "2 lascannons",
                 "type": "ranged"
               }
             ]
           }
         ]
       }
-    ]
-  },
-  "Chaos Predator Destructor": {
+    ],
     "info": {
       "M": "10\"",
       "T": 10,
       "SV": 3,
       "W": 11,
       "OC": 3
-    },
-    "pts": 140,
+    }
+  },
+  "Chaos Predator Destructor": {
+    "pts": 150,
     "builds": [
       {
         "name": "default",
         "fixed": [
-          {
-            "name": "Havoc launcher",
-            "type": "ranged"
-          },
           {
             "name": "Predator autocannon",
             "type": "ranged"
           },
           {
             "name": "Armoured tracks",
-            "type": "melee"
+            "type": "ranged"
+          },
+          {
+            "name": "Havoc launcher",
+            "type": "ranged"
           }
         ],
         "slots": [
           {
-            "name": "Ranged weapon 1",
+            "name": "Pintle weapon",
             "choices": [
               {
-                "name": "Inferno combi-bolter",
+                "name": "Inferno combi bolter",
                 "type": "ranged"
               },
               {
-                "name": "Inferno combi-weapon",
+                "name": "Inferno combi weapon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Sponsons",
+            "choices": [
+              {
+                "name": "2 inferno heavy bolters",
+                "type": "ranged"
+              },
+              {
+                "name": "2 lascannons",
                 "type": "ranged"
               }
             ]
           }
         ]
       }
-    ]
+    ],
+    "info": {
+      "M": "10\"",
+      "T": 10,
+      "SV": 3,
+      "W": 11,
+      "OC": 3
+    }
   },
   "Chaos Rhino": {
     "info": {
@@ -246,10 +272,36 @@
         ],
         "slots": [
           {
-            "name": "Ranged weapon 1",
+            "name": "Battle cannon",
             "choices": [
               {
-                "name": "Electroscourge",
+                "name": "Hades battle cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Ectoplasma destructor",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Excruciator cannons",
+            "choices": [
+              {
+                "name": "Two excruciator cannons",
+                "type": "ranged"
+              },
+              {
+                "name": "Two pyraflux magma cutters",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Baleflamer",
+            "choices": [
+              {
+                "name": "Heavy baleflamer",
                 "type": "ranged"
               },
               {
@@ -261,20 +313,29 @@
                 "type": "ranged"
               },
               {
+                "name": "Electroscourge",
+                "type": "melee"
+              }
+            ]
+          },
+          {
+            "name": "Missile launcher",
+            "choices": [
+              {
                 "name": "Heavy missile launcher",
                 "type": "ranged"
               },
               {
-                "name": "Hades battle cannon",
+                "name": "Hades lascannon",
                 "type": "ranged"
               },
               {
-                "name": "Ectoplasma destructor",
+                "name": "Heavy reaper autocannon",
                 "type": "ranged"
               },
               {
-                "name": "Heavy baleflamer",
-                "type": "ranged"
+                "name": "Electroscourge",
+                "type": "melee"
               }
             ]
           }
@@ -283,6 +344,41 @@
     ]
   },
   "Forgefiend": {
+    "pts": 160,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [],
+        "slots": [
+          {
+            "name": "Arm weapons",
+            "choices": [
+              {
+                "name": "2 ectoplasma cannons",
+                "type": "ranged"
+              },
+              {
+                "name": "2 hades autocannons",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Head weapons",
+            "choices": [
+              {
+                "name": "Ectoplasma cannon and claws",
+                "type": "ranged"
+              },
+              {
+                "name": "Forgefiend jaws",
+                "type": "melee"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "8\"",
       "T": 10,
@@ -290,101 +386,17 @@
       "W": 12,
       "OC": 3,
       "INV": 5
-    },
-    "pts": 135,
-    "builds": [
-      {
-        "name": "Ectoplasma cannons",
-        "fixed": [
-          {
-            "name": "Ectoplasma cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Ectoplasma cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Ectoplasma cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Forgefiend claws",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Hades autocannons",
-        "fixed": [
-          {
-            "name": "Hades autocannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Hades autocannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Ectoplasma cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Forgefiend claws",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Ectoplasma cannons and jaws",
-        "fixed": [
-          {
-            "name": "Ectoplasma cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Ectoplasma cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Forgefiend jaws",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Hades autocannons and jaws",
-        "fixed": [
-          {
-            "name": "Hades autocannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Hades autocannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Forgefiend jaws",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      }
-    ]
+    }
   },
   "Helbrute": {
     "info": {
-      "M": "8\"",
+      "M": "6\"",
       "T": 9,
       "SV": 2,
       "W": 8,
-      "OC": 3,
-      "INV": 5
+      "OC": 3
     },
-    "pts": 110,
+    "pts": 130,
     "builds": [
       {
         "name": "default",
@@ -396,26 +408,43 @@
         ],
         "slots": [
           {
-            "name": "Ranged weapon 1",
+            "name": "Missile launcher",
             "choices": [
+              {
+                "name": "Helbrute fist with combi-bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Helbrute fist with heavy flamer",
+                "type": "ranged"
+              },
+              {
+                "name": "Helbrute hammer",
+                "type": "melee"
+              },
               {
                 "name": "Missile launcher",
                 "type": "ranged"
               },
               {
-                "name": "Helbrute hammer",
-                "type": "ranged"
-              },
-              {
                 "name": "Power scourge",
+                "type": "melee"
+              }
+            ]
+          },
+          {
+            "name": "Multi-melta",
+            "choices": [
+              {
+                "name": "Helbrute fist with combi-bolter",
                 "type": "ranged"
               },
               {
-                "name": "Twin inferno heavy bolter",
+                "name": "Helbrute fist with heavy flamer",
                 "type": "ranged"
               },
               {
-                "name": "Twin lascannon",
+                "name": "Helbrute plasma cannon",
                 "type": "ranged"
               },
               {
@@ -427,7 +456,11 @@
                 "type": "ranged"
               },
               {
-                "name": "Helbrute plasma cannon",
+                "name": "Twin inferno heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin lascannon",
                 "type": "ranged"
               }
             ]
@@ -473,15 +506,7 @@
     ]
   },
   "Maulerfiend": {
-    "info": {
-      "M": "10\"",
-      "T": 10,
-      "SV": 3,
-      "W": 12,
-      "OC": 3,
-      "INV": 5
-    },
-    "pts": 120,
+    "pts": 160,
     "builds": [
       {
         "name": "default",
@@ -491,9 +516,31 @@
             "type": "melee"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Head weapons",
+            "choices": [
+              {
+                "name": "2 magma cutters",
+                "type": "ranged"
+              },
+              {
+                "name": "Lasher tendrils",
+                "type": "melee"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "info": {
+      "M": "10\"",
+      "T": 10,
+      "SV": 3,
+      "W": 12,
+      "OC": 3,
+      "INV": 5
+    }
   },
   "Mutalith Vortex Beast": {
     "info": {

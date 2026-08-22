@@ -1,5 +1,5 @@
 {
-  "_note": "tau-empire weapon options — generated from BSData + MFM",
+  "_note": "tau-empire weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Ax-1-0 Tiger Shark": {
     "info": {
@@ -254,60 +254,66 @@
     ]
   },
   "Hammerhead Gunship": {
-    "info": {
-      "M": "10\"",
-      "T": 10,
-      "SV": 3,
-      "W": 14,
-      "OC": 3
-    },
-    "pts": 140,
+    "pts": 150,
     "builds": [
       {
-        "name": "Railgun + Ion Cannon",
+        "name": "default",
         "fixed": [
           {
-            "name": "Seeker missile",
-            "type": "ranged"
-          },
-          {
-            "name": "Accelerator burst cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin pulse carbine",
-            "type": "ranged"
-          },
-          {
-            "name": "Smart missile system",
-            "type": "ranged"
-          },
-          {
             "name": "Armoured hull",
-            "type": "melee"
+            "type": "ranged"
           }
         ],
         "slots": [
           {
-            "name": "Ranged weapon 1",
+            "name": "Main weapon",
             "choices": [
               {
                 "name": "Railgun",
                 "type": "ranged"
               },
               {
-                "name": "Ion cannon - standard",
+                "name": "Ion cannon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Seeker missiles",
+            "choices": [
+              {
+                "name": "Seeker missile",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Twin pulse carbines",
+            "choices": [
+              {
+                "name": "2 accelerator burst cannons",
                 "type": "ranged"
               },
               {
-                "name": "Ion cannon - overcharge",
+                "name": "2 twin pulse carbines",
+                "type": "ranged"
+              },
+              {
+                "name": "2 smart missile systems",
                 "type": "ranged"
               }
             ]
           }
         ]
       }
-    ]
+    ],
+    "info": {
+      "M": "10\"",
+      "T": 10,
+      "SV": 3,
+      "W": 14,
+      "OC": 3
+    }
   },
   "Manta": {
     "info": {
@@ -653,7 +659,7 @@
       }
     ]
   },
-  "Ta’Unar Supremacy Armour": {
+  "Ta\u2019Unar Supremacy Armour": {
     "info": {
       "M": "8\"",
       "T": 13,
@@ -719,77 +725,83 @@
     ]
   },
   "Tiger Shark": {
-    "info": {
-      "M": "-",
-      "T": 11,
-      "SV": 3,
-      "W": 18,
-      "INV": 5
-    },
-    "pts": 325,
+    "pts": 375,
     "builds": [
       {
-        "name": "Swiftstrike Railgun + Ion Cannons",
+        "name": "default",
         "fixed": [
+          {
+            "name": "Armoured hull",
+            "type": "ranged"
+          },
           {
             "name": "Missile pod",
             "type": "ranged"
-          },
-          {
-            "name": "Burst cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Swiftstrike burst cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Swiftstrike railgun",
-            "type": "ranged"
-          },
-          {
-            "name": "Seeker missile",
-            "type": "ranged"
-          },
-          {
-            "name": "Skyspear missile rack",
-            "type": "ranged"
-          },
-          {
-            "name": "Armoured hull",
-            "type": "melee"
           }
         ],
         "slots": [
           {
-            "name": "Ranged weapon 1",
+            "name": "Burst cannons",
             "choices": [
               {
-                "name": "Cyclic ion blaster - standard",
+                "name": "2 cyclic ion blasters",
                 "type": "ranged"
               },
               {
-                "name": "Cyclic ion blaster - overcharge",
+                "name": "2 burst cannons",
                 "type": "ranged"
               }
             ]
           },
           {
-            "name": "Ranged weapon 2",
+            "name": "Ion cannons",
             "choices": [
               {
-                "name": "Ion cannon - standard",
+                "name": "2 ion cannons",
                 "type": "ranged"
               },
               {
-                "name": "Ion cannon - overcharge",
+                "name": "2 swiftstrike burst cannons",
+                "type": "ranged"
+              },
+              {
+                "name": "2 swiftstrike railguns",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Seeker missiles",
+            "choices": [
+              {
+                "name": "Seeker missile",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Transport bay",
+            "choices": [
+              {
+                "name": "Transport bay",
+                "type": "ranged"
+              },
+              {
+                "name": "2 skyspear missile racks",
                 "type": "ranged"
               }
             ]
           }
         ]
       }
-    ]
+    ],
+    "info": {
+      "M": "-",
+      "T": 11,
+      "SV": 3,
+      "W": 18,
+      "INV": 5
+    }
   },
   "Crisis Sunforge Battlesuits": {
     "info": {
@@ -816,6 +828,52 @@
           }
         ],
         "slots": []
+      }
+    ]
+  },
+  "Taunar Supremacy Armour": {
+    "pts": 375,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Armoured hull",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Main weapon",
+            "choices": [
+              {
+                "name": "Heavy rail cannon array and fragmentation cluster shell launcher",
+                "type": "ranged"
+              },
+              {
+                "name": "Tri-axis ion cannon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Secondary weapons",
+            "choices": [
+              {
+                "name": "2 nexus missile launchers",
+                "type": "ranged"
+              },
+              {
+                "name": "3 pulse ordnance drivers",
+                "type": "ranged"
+              },
+              {
+                "name": "Fusion eradicator",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   }

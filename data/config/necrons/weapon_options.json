@@ -1,8 +1,38 @@
 {
-  "_note": "necrons weapon options — generated from BSData + MFM",
+  "_note": "necrons weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Annihilation Barge": {
     "pts": 95,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Twin tesla destructor",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured bulk",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Secondary weapon",
+            "choices": [
+              {
+                "name": "Gauss cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Tesla cannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "10\"",
       "T": 8,
@@ -10,45 +40,7 @@
       "W": 9,
       "OC": 3,
       "INV": 4
-    },
-    "builds": [
-      {
-        "name": "Tesla cannon",
-        "fixed": [
-          {
-            "name": "Twin tesla destructor",
-            "type": "ranged"
-          },
-          {
-            "name": "Tesla cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Armoured bulk",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Gauss cannon",
-        "fixed": [
-          {
-            "name": "Twin tesla destructor",
-            "type": "ranged"
-          },
-          {
-            "name": "Gauss cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Armoured bulk",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      }
-    ]
+    }
   },
   "Canoptek Doomstalker": {
     "pts": 140,
@@ -144,29 +136,12 @@
   },
   "Monolith": {
     "pts": 420,
-    "pts_3rd": 440,
-    "info": {
-      "M": "8\"",
-      "T": 13,
-      "SV": 2,
-      "W": 22,
-      "OC": 8,
-      "deep_strike": true
-    },
     "builds": [
       {
-        "name": "Particle whip",
+        "name": "default",
         "fixed": [
           {
             "name": "Particle whip",
-            "type": "ranged"
-          },
-          {
-            "name": "Four death rays",
-            "type": "ranged"
-          },
-          {
-            "name": "Four gauss flux arcs",
             "type": "ranged"
           },
           {
@@ -174,13 +149,60 @@
             "type": "melee"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Weapons",
+            "choices": [
+              {
+                "name": "Four death rays",
+                "type": "ranged"
+              },
+              {
+                "name": "Four gauss flux arcs",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "info": {
+      "M": "8\"",
+      "T": 13,
+      "SV": 2,
+      "W": 22,
+      "OC": 8,
+      "deep_strike": true
+    }
   },
   "Seraptek Heavy Construct": {
     "pts": 540,
-    "pts_3rd": 570,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Titanic forelimbs",
+            "type": "melee"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Weapons",
+            "choices": [
+              {
+                "name": "Two singularity generators",
+                "type": "ranged"
+              },
+              {
+                "name": "Two synaptic obliterators and two transdimensional projectors",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "10\"",
       "T": 12,
@@ -188,49 +210,7 @@
       "W": 24,
       "OC": 10,
       "INV": 5
-    },
-    "builds": [
-      {
-        "name": "Singularity generators",
-        "fixed": [
-          {
-            "name": "Two singularity generators",
-            "type": "ranged"
-          },
-          {
-            "name": "Titanic forelimbs - strike",
-            "type": "melee"
-          },
-          {
-            "name": "Titanic forelimbs - sweep",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Synaptic obliterator & projector",
-        "fixed": [
-          {
-            "name": "Synaptic obliterator",
-            "type": "ranged"
-          },
-          {
-            "name": "Transdimensional projector",
-            "type": "ranged"
-          },
-          {
-            "name": "Titanic forelimbs - strike",
-            "type": "melee"
-          },
-          {
-            "name": "Titanic forelimbs - sweep",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      }
-    ]
+    }
   },
   "The Silent King": {
     "pts": 420,
@@ -277,18 +257,9 @@
   },
   "Triarch Stalker": {
     "pts": 110,
-    "pts_3rd": 120,
-    "info": {
-      "M": "8\"",
-      "T": 8,
-      "SV": 3,
-      "W": 12,
-      "OC": 4,
-      "INV": 4
-    },
     "builds": [
       {
-        "name": "Heat ray",
+        "name": "default",
         "fixed": [
           {
             "name": "Stalker's forelimbs",
@@ -297,47 +268,73 @@
         ],
         "slots": [
           {
-            "name": "Ranged weapon 1",
+            "name": "Weapon",
             "choices": [
               {
-                "name": "Heat ray - dispersed",
+                "name": "Heat ray",
                 "type": "ranged"
               },
               {
-                "name": "Heat ray - focused",
+                "name": "Particle shredder",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy gauss cannon array",
                 "type": "ranged"
               }
             ]
           }
         ]
-      },
+      }
+    ],
+    "info": {
+      "M": "8\"",
+      "T": 8,
+      "SV": 3,
+      "W": 12,
+      "OC": 4,
+      "INV": 4
+    }
+  },
+  "Catacomb Command Barge": {
+    "pts": 120,
+    "builds": [
       {
-        "name": "Particle shredder",
+        "name": "default",
         "fixed": [
           {
-            "name": "Particle shredder",
+            "name": "Resurrection orb",
             "type": "ranged"
-          },
-          {
-            "name": "Stalker's forelimbs",
-            "type": "melee"
           }
         ],
-        "slots": []
-      },
-      {
-        "name": "Heavy gauss cannon array",
-        "fixed": [
+        "slots": [
           {
-            "name": "Heavy gauss cannon array",
-            "type": "ranged"
+            "name": "Main weapon",
+            "choices": [
+              {
+                "name": "Gauss cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Tesla cannon",
+                "type": "ranged"
+              }
+            ]
           },
           {
-            "name": "Stalker's forelimbs",
-            "type": "melee"
+            "name": "Overlord's weapon",
+            "choices": [
+              {
+                "name": "Staff of light",
+                "type": "ranged"
+              },
+              {
+                "name": "Overlord's blade",
+                "type": "melee"
+              }
+            ]
           }
-        ],
-        "slots": []
+        ]
       }
     ]
   }

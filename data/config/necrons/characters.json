@@ -1,7 +1,7 @@
 {
-  "_note": "necrons characters — generated from BSData + MFM",
+  "_note": "necrons characters \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
-  "C’Tan Shard Of The Deceiver": {
+  "C\u2019Tan Shard Of The Deceiver": {
     "pts": 330,
     "info": {
       "M": "8\"",
@@ -31,7 +31,7 @@
       ]
     }
   },
-  "C’Tan Shard Of The Nightbringer": {
+  "C\u2019Tan Shard Of The Nightbringer": {
     "pts": 360,
     "info": {
       "M": "10\"",
@@ -65,7 +65,7 @@
       ]
     }
   },
-  "C’Tan Shard Of The Void Dragon": {
+  "C\u2019Tan Shard Of The Void Dragon": {
     "pts": 345,
     "info": {
       "M": "10\"",
@@ -299,21 +299,35 @@
       "builds": [
         {
           "name": "default",
-          "fixed": [
+          "fixed": [],
+          "slots": [
             {
-              "name": "Staff of light",
-              "type": "ranged"
+              "name": "Weapon",
+              "choices": [
+                {
+                  "name": "Lord's blade",
+                  "type": "melee"
+                },
+                {
+                  "name": "Staff of light",
+                  "type": "ranged"
+                }
+              ]
             },
             {
-              "name": "Lord's blade",
-              "type": "melee"
-            },
-            {
-              "name": "Staff of light",
-              "type": "melee"
+              "name": "Equipment",
+              "choices": [
+                {
+                  "name": "Nanoscarab amulet",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Resurrection orb",
+                  "type": "ranged"
+                }
+              ]
             }
-          ],
-          "slots": []
+          ]
         }
       ]
     }
@@ -393,27 +407,29 @@
           "name": "default",
           "fixed": [
             {
-              "name": "Tachyon arrow",
+              "name": "Resurrection orb",
               "type": "ranged"
-            },
-            {
-              "name": "Staff of light",
-              "type": "ranged"
-            },
-            {
-              "name": "Overlord's blade",
-              "type": "melee"
-            },
-            {
-              "name": "Voidscythe",
-              "type": "melee"
-            },
-            {
-              "name": "Staff of light",
-              "type": "melee"
             }
           ],
-          "slots": []
+          "slots": [
+            {
+              "name": "Weapon",
+              "choices": [
+                {
+                  "name": "Overlord's blade and tachyon arrow",
+                  "type": "melee"
+                },
+                {
+                  "name": "Voidscythe",
+                  "type": "melee"
+                },
+                {
+                  "name": "Staff of light",
+                  "type": "ranged"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -577,7 +593,7 @@
       ]
     }
   },
-  "Transcendent C’Tan": {
+  "Transcendent C\u2019Tan": {
     "pts": 340,
     "info": {
       "M": "8\"",

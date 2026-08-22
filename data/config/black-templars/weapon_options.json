@@ -1,5 +1,5 @@
 {
-  "_note": "black-templars weapon options — generated from BSData + MFM",
+  "_note": "black-templars weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Astraeus": {
     "pts": 525,
@@ -733,26 +733,73 @@
     ]
   },
   "Repulsor Executioner": {
+    "pts": 255,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Repulsor executioner defensive array",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "ranged"
+          },
+          {
+            "name": "Heavy onslaught gatling cannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Icarus rocket pod",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin Icarus ironhail heavy stubber",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Pintle mount",
+            "choices": [
+              {
+                "name": "Ironhail heavy stubber",
+                "type": "ranged"
+              },
+              {
+                "name": "Multi-melta",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Turret weapon",
+            "choices": [
+              {
+                "name": "Heavy laser destroyer",
+                "type": "ranged"
+              },
+              {
+                "name": "Macro plasma incinerator",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "10\"",
       "T": 12,
       "SV": 3,
       "W": 16,
       "OC": 5
-    },
-    "pts": 245,
-    "builds": [
-      {
-        "name": "default",
-        "fixed": [
-          {
-            "name": "Repulsor Executioner Defensive Array",
-            "type": "ranged"
-          }
-        ],
-        "slots": []
-      }
-    ]
+    }
   },
   "Rhino": {
     "pts": 75,

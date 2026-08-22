@@ -1,43 +1,12 @@
 {
-  "_note": "grey-knights weapon options — generated from BSData + MFM",
+  "_note": "grey-knights weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Grey Knights Thunderhawk Gunship": {
-    "pts": 805,
-    "info": {
-      "M": "20\"",
-      "T": 12,
-      "SV": 2,
-      "W": 30,
-      "OC": 0
-    },
+    "pts": 330,
     "builds": [
       {
         "name": "default",
         "fixed": [
-          {
-            "name": "Lascannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Lascannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin heavy bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin heavy bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin heavy bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin heavy bolter",
-            "type": "ranged"
-          },
           {
             "name": "Armoured hull",
             "type": "melee"
@@ -45,39 +14,41 @@
         ],
         "slots": [
           {
-            "name": "Turbo-laser destructor",
+            "name": "Sponsons",
             "choices": [
               {
-                "name": "Thunderhawk heavy cannon",
+                "name": "2 heavy bolters",
                 "type": "ranged"
               },
               {
-                "name": "Turbo-laser destructor",
+                "name": "2 lascannons",
                 "type": "ranged"
               }
             ]
           },
           {
-            "name": "Missile battery 1",
+            "name": "Bomb rack",
             "choices": [
               {
-                "name": "Hellstrike missile battery",
+                "name": "Thunderhawk cluster bombs",
                 "type": "ranged"
-              }
-            ]
-          },
-          {
-            "name": "Missile battery 2",
-            "choices": [
+              },
               {
-                "name": "Hellstrike missile battery",
+                "name": "Thunderhawk missiles",
                 "type": "ranged"
               }
             ]
           }
         ]
       }
-    ]
+    ],
+    "info": {
+      "M": "20\"",
+      "T": 12,
+      "SV": 2,
+      "W": 30,
+      "OC": 0
+    }
   },
   "Land Raider": {
     "pts": 220,
@@ -356,36 +327,59 @@
   },
   "Stormhawk Interceptor": {
     "pts": 160,
-    "info": {
-      "M": "-",
-      "T": 9,
-      "SV": 3,
-      "W": 10
-    },
     "builds": [
       {
         "name": "default",
         "fixed": [
-          {
-            "name": "Las-talon",
-            "type": "ranged"
-          },
-          {
-            "name": "Skyhammer missile launcher",
-            "type": "ranged"
-          },
           {
             "name": "Twin assault cannon",
             "type": "ranged"
           },
           {
             "name": "Armoured hull",
-            "type": "melee"
+            "type": "ranged"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Weapon 1",
+            "choices": [
+              {
+                "name": "Icarus stormcannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Las-talon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Weapon 2",
+            "choices": [
+              {
+                "name": "Twin heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Typhoon missile launcher",
+                "type": "ranged"
+              },
+              {
+                "name": "Skyhammer missile launcher",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "info": {
+      "M": "-",
+      "T": 9,
+      "SV": 3,
+      "W": 10
+    }
   },
   "Stormraven Gunship": {
     "pts": 280,
@@ -538,35 +532,112 @@
   },
   "Stormtalon Gunship": {
     "pts": 170,
-    "info": {
-      "M": "-",
-      "T": 9,
-      "SV": 3,
-      "W": 10
-    },
     "builds": [
       {
         "name": "default",
         "fixed": [
-          {
-            "name": "Skyhammer missile launcher",
-            "type": "ranged"
-          },
           {
             "name": "Twin assault cannon",
             "type": "ranged"
           },
           {
             "name": "Armoured hull",
-            "type": "melee"
+            "type": "ranged"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Twin lascannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Typhoon missile launcher",
+                "type": "ranged"
+              },
+              {
+                "name": "Skyhammer missile launcher",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "info": {
+      "M": "-",
+      "T": 9,
+      "SV": 3,
+      "W": 10
+    }
   },
   "Grand Master In Nemesis Dreadknight": {
     "pts": 200,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Fragstorm grenade launcher",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Melee weapon",
+            "choices": [
+              {
+                "name": "Dreadfists",
+                "type": "melee"
+              },
+              {
+                "name": "Nemesis daemon greathammer",
+                "type": "melee"
+              },
+              {
+                "name": "Nemesis greatsword",
+                "type": "melee"
+              },
+              {
+                "name": "Nemesis mace",
+                "type": "melee"
+              },
+              {
+                "name": "Nemesis flail",
+                "type": "melee"
+              }
+            ]
+          },
+          {
+            "name": "Ranged weapon",
+            "choices": [
+              {
+                "name": "Sublimator",
+                "type": "ranged"
+              },
+              {
+                "name": "Gatling psilencer",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy incinerator",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy psycannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "8\"",
       "T": 8,
@@ -575,155 +646,6 @@
       "OC": 4,
       "INV": 4,
       "deep_strike": true
-    },
-    "builds": [
-      {
-        "name": "Melee (Dreadfists)",
-        "fixed": [
-          {
-            "name": "Dreadfists",
-            "type": "melee"
-          },
-          {
-            "name": "Fragstorm grenade launcher",
-            "type": "ranged"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Greatsword + Psycannon + Incinerator",
-        "fixed": [
-          {
-            "name": "Nemesis greatsword",
-            "type": "melee"
-          },
-          {
-            "name": "Heavy psycannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Heavy incinerator",
-            "type": "ranged"
-          },
-          {
-            "name": "Fragstorm grenade launcher",
-            "type": "ranged"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Greatsword + Psycannon + Sublimator",
-        "fixed": [
-          {
-            "name": "Nemesis greatsword",
-            "type": "melee"
-          },
-          {
-            "name": "Heavy psycannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Sublimator",
-            "type": "ranged"
-          },
-          {
-            "name": "Fragstorm grenade launcher",
-            "type": "ranged"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Greatsword + Incinerator + Psilencer",
-        "fixed": [
-          {
-            "name": "Nemesis greatsword",
-            "type": "melee"
-          },
-          {
-            "name": "Heavy incinerator",
-            "type": "ranged"
-          },
-          {
-            "name": "Gatling psilencer",
-            "type": "ranged"
-          },
-          {
-            "name": "Fragstorm grenade launcher",
-            "type": "ranged"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Daemon hammer + Psycannon + Incinerator",
-        "fixed": [
-          {
-            "name": "Nemesis daemon greathammer",
-            "type": "melee"
-          },
-          {
-            "name": "Heavy psycannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Heavy incinerator",
-            "type": "ranged"
-          },
-          {
-            "name": "Fragstorm grenade launcher",
-            "type": "ranged"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Daemon hammer + Psycannon + Sublimator",
-        "fixed": [
-          {
-            "name": "Nemesis daemon greathammer",
-            "type": "melee"
-          },
-          {
-            "name": "Heavy psycannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Sublimator",
-            "type": "ranged"
-          },
-          {
-            "name": "Fragstorm grenade launcher",
-            "type": "ranged"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Mace + Incinerator + Psilencer",
-        "fixed": [
-          {
-            "name": "Nemesis mace",
-            "type": "melee"
-          },
-          {
-            "name": "Heavy incinerator",
-            "type": "ranged"
-          },
-          {
-            "name": "Gatling psilencer",
-            "type": "ranged"
-          },
-          {
-            "name": "Fragstorm grenade launcher",
-            "type": "ranged"
-          }
-        ],
-        "slots": []
-      }
-    ],
-    "pts_3rd": 215
+    }
   }
 }

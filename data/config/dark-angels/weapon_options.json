@@ -1,5 +1,5 @@
 {
-  "_note": "space-marines weapon options — generated from BSData + MFM",
+  "_note": "space-marines weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Astraeus": {
     "info": {
@@ -1364,13 +1364,7 @@
     ]
   },
   "Nephilim Jetfighter": {
-    "pts": 180,
-    "info": {
-      "T": 8,
-      "SV": 3,
-      "W": 11,
-      "OC": 1
-    },
+    "pts": 140,
     "builds": [
       {
         "name": "default",
@@ -1380,25 +1374,33 @@
             "type": "ranged"
           },
           {
-            "name": "Blacksword missiles",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin heavy bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "Avenger mega bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "Nephilim lascannons",
+            "name": "Infernum halo launcher",
             "type": "ranged"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Avenger mega bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Nephilim lascannons",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "info": {
+      "T": 8,
+      "SV": 3,
+      "W": 11,
+      "OC": 1
+    }
   },
   "Ravenwing Dark Talon": {
     "pts": 200,
@@ -1430,32 +1432,38 @@
     ]
   },
   "Ravenwing Darkshroud": {
-    "pts": 70,
-    "info": {
-      "T": 8,
-      "SV": 3,
-      "W": 10,
-      "OC": 3
-    },
+    "pts": 110,
     "builds": [
       {
         "name": "default",
         "fixed": [
           {
-            "name": "Close Combat Weapon",
-            "type": "melee"
-          },
-          {
-            "name": "Assault cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Heavy bolter",
+            "name": "Infernum halo launcher",
             "type": "ranged"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Assault cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy bolter",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "info": {
+      "T": 8,
+      "SV": 3,
+      "W": 10,
+      "OC": 3
+    }
   }
 }

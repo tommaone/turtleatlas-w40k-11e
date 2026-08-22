@@ -2,30 +2,70 @@
   "_note": "imperial-agents weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Corvus Blackstar": {
-    "info": {
-      "M": "14\"",
-      "T": 10,
-      "SV": 3,
-      "W": 14,
-      "OC": 0
-    },
     "pts": 180,
     "builds": [
       {
         "name": "default",
         "fixed": [
           {
-            "name": "Hurricane bolter",
-            "type": "ranged"
-          },
-          {
             "name": "Armoured hull",
             "type": "melee"
+          },
+          {
+            "name": "Hurricane bolter",
+            "type": "ranged"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Turret weapon",
+            "choices": [
+              {
+                "name": "Twin assault cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin lascannon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Launcher",
+            "choices": [
+              {
+                "name": "2 blackstar rocket launchers",
+                "type": "ranged"
+              },
+              {
+                "name": "2 stormstrike missile launchers",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Hull upgrade",
+            "choices": [
+              {
+                "name": "Auspex array",
+                "type": "ranged"
+              },
+              {
+                "name": "Infernum halo launcher",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "info": {
+      "M": "14\"",
+      "T": 10,
+      "SV": 3,
+      "W": 14,
+      "OC": 0
+    }
   },
   "Imperial Rhino": {
     "info": {

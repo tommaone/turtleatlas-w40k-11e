@@ -1,5 +1,5 @@
 {
-  "_note": "adepta-sororitas weapon options — generated from BSData + MFM",
+  "_note": "adepta-sororitas weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Castigator": {
     "info": {
@@ -82,6 +82,41 @@
     ]
   },
   "Immolator": {
+    "pts": 115,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Armoured tracks",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Immolation flamers",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin multi-melta",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "12\"",
       "T": 10,
@@ -89,28 +124,7 @@
       "W": 11,
       "OC": 2,
       "INV": 6
-    },
-    "pts": 100,
-    "builds": [
-      {
-        "name": "default",
-        "fixed": [
-          {
-            "name": "Hunter-Killer Missile",
-            "type": "ranged"
-          },
-          {
-            "name": "Heavy Bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "Armoured tracks",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      }
-    ]
+    }
   },
   "Mortifiers": {
     "info": {

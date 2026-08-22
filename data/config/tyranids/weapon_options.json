@@ -1,5 +1,5 @@
 {
-  "_note": "tyranids weapon options — builds format (curated); flat entries and v-only vehicles converted to builds, verified vs merged + MFM",
+  "_note": "tyranids weapon options \u2014 builds format (curated); flat entries and v-only vehicles converted to builds, verified vs merged + MFM",
   "_source": "BSData 11e + MFM; builds curated (fixed weapons from merged)",
   "Carnifexes": {
     "pts": 90,
@@ -100,51 +100,43 @@
     ]
   },
   "Harpy": {
-    "pts": 185,
+    "pts": 150,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Scything wings",
+            "type": "melee"
+          },
+          {
+            "name": "Spike columns",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Twin heavy venom cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin stranglethorn cannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "-",
       "T": 9,
       "SV": 3,
       "W": 12
-    },
-    "builds": [
-      {
-        "name": "Twin stranglethorn cannon",
-        "fixed": [
-          {
-            "name": "Stinger salvoes",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin stranglethorn cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Scything wings",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Twin heavy venom cannon",
-        "fixed": [
-          {
-            "name": "Stinger salvoes",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin heavy venom cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Scything wings",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      }
-    ]
+    }
   },
   "Haruspex": {
     "pts": 125,
@@ -407,70 +399,43 @@
   },
   "Tyrannofex": {
     "pts": 180,
-    "pts_3rd": 190,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Stinger salvo",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Acid spray",
+                "type": "ranged"
+              },
+              {
+                "name": "Fleshborer hive",
+                "type": "ranged"
+              },
+              {
+                "name": "Rupture cannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "9\"",
       "T": 12,
       "SV": 2,
       "W": 16,
       "OC": 5
-    },
-    "builds": [
-      {
-        "name": "Fleshborer hive",
-        "fixed": [
-          {
-            "name": "Stinger salvoes",
-            "type": "ranged"
-          },
-          {
-            "name": "Fleshborer hive",
-            "type": "ranged"
-          },
-          {
-            "name": "Powerful limbs",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Acid spray",
-        "fixed": [
-          {
-            "name": "Stinger salvoes",
-            "type": "ranged"
-          },
-          {
-            "name": "Acid spray",
-            "type": "ranged"
-          },
-          {
-            "name": "Powerful limbs",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Rupture cannon",
-        "fixed": [
-          {
-            "name": "Stinger salvoes",
-            "type": "ranged"
-          },
-          {
-            "name": "Rupture cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Powerful limbs",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      }
-    ]
+    }
   },
   "Exocrine": {
     "pts": 140,

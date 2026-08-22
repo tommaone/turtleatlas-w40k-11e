@@ -1,41 +1,18 @@
 {
-  "_note": "orks weapon options — generated from BSData + MFM",
+  "_note": "orks weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Battlewagon": {
     "pts": 145,
-    "info": {
-      "M": "10\"",
-      "T": 10,
-      "SV": 3,
-      "W": 16,
-      "OC": 5
-    },
     "builds": [
       {
-        "name": "Deff rolla + Killkannon",
+        "name": "default",
         "fixed": [
           {
+            "name": "'Ard case",
+            "type": "ranged"
+          },
+          {
             "name": "Lobba",
-            "type": "ranged"
-          },
-          {
-            "name": "Big shoota",
-            "type": "ranged"
-          },
-          {
-            "name": "Killkannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Zzap gun",
-            "type": "ranged"
-          },
-          {
-            "name": "Kannon - shell",
-            "type": "ranged"
-          },
-          {
-            "name": "Kannon - frag",
             "type": "ranged"
           },
           {
@@ -44,20 +21,54 @@
           },
           {
             "name": "Grabbin' klaw",
-            "type": "melee"
+            "type": "ranged"
           },
           {
-            "name": "Deff rolla",
-            "type": "melee"
+            "name": "Big shoota",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Big gun",
+            "choices": [
+              {
+                "name": "Killkannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Zzap gun",
+                "type": "ranged"
+              },
+              {
+                "name": "Kannon",
+                "type": "ranged"
+              }
+            ]
           },
           {
             "name": "Tracks and wheels",
-            "type": "melee"
+            "choices": [
+              {
+                "name": "Deff rolla",
+                "type": "melee"
+              },
+              {
+                "name": "Tracks and wheels",
+                "type": "ranged"
+              }
+            ]
           }
-        ],
-        "slots": []
+        ]
       }
-    ]
+    ],
+    "info": {
+      "M": "10\"",
+      "T": 10,
+      "SV": 3,
+      "W": 16,
+      "OC": 5
+    }
   },
   "Big Mek Dakkarig": {
     "pts": 100,
@@ -191,6 +202,44 @@
   },
   "Deff Dread": {
     "pts": 110,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Stompy feet",
+            "type": "melee"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Wargear",
+            "choices": [
+              {
+                "name": "Dread klaw",
+                "type": "melee"
+              },
+              {
+                "name": "Big shoota",
+                "type": "ranged"
+              },
+              {
+                "name": "Kustom mega-blasta",
+                "type": "ranged"
+              },
+              {
+                "name": "Rokkit launcha",
+                "type": "ranged"
+              },
+              {
+                "name": "Skorcha",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "8\"",
       "T": 9,
@@ -198,39 +247,7 @@
       "W": 8,
       "OC": 3,
       "INV": 6
-    },
-    "builds": [
-      {
-        "name": "Dread klaw + Dakka",
-        "fixed": [
-          {
-            "name": "Big shoota",
-            "type": "ranged"
-          },
-          {
-            "name": "Kustom mega-blasta",
-            "type": "ranged"
-          },
-          {
-            "name": "Rokkit launcha",
-            "type": "ranged"
-          },
-          {
-            "name": "Skorcha",
-            "type": "ranged"
-          },
-          {
-            "name": "Stompy feet",
-            "type": "melee"
-          },
-          {
-            "name": "Dread klaw",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      }
-    ]
+    }
   },
   "Deffkoptas": {
     "pts": 75,
@@ -260,7 +277,7 @@
             "type": "ranged"
           },
           {
-            "name": "Spinnin’ blades",
+            "name": "Spinnin\u2019 blades",
             "type": "melee"
           }
         ],
@@ -270,41 +287,39 @@
   },
   "Gargantuan Squiggoth": {
     "pts": 440,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Huge tusks",
+            "type": "melee"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Wargear",
+            "choices": [
+              {
+                "name": "Supa-kannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Kannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "10\"",
       "T": 13,
       "SV": 3,
       "W": 30,
       "OC": 12
-    },
-    "builds": [
-      {
-        "name": "Supa-kannon + Tusks",
-        "fixed": [
-          {
-            "name": "Supa-kannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Kannon - shell",
-            "type": "ranged"
-          },
-          {
-            "name": "Kannon - frag",
-            "type": "ranged"
-          },
-          {
-            "name": "Huge tusks - strike",
-            "type": "melee"
-          },
-          {
-            "name": "Huge tusks - sweep",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      }
-    ]
+    }
   },
   "Gorkanaut": {
     "pts": 255,
@@ -363,7 +378,7 @@
         "name": "Stikka kannon + Butcha boyz",
         "fixed": [
           {
-            "name": "’Eavy lobba",
+            "name": "\u2019Eavy lobba",
             "type": "ranged"
           },
           {
@@ -405,7 +420,7 @@
             "type": "ranged"
           },
           {
-            "name": "’Eavy lobba",
+            "name": "\u2019Eavy lobba",
             "type": "ranged"
           },
           {
@@ -796,65 +811,294 @@
   },
   "Wazbom Blastajet": {
     "pts": 165,
-    "info": {
-      "M": "-",
-      "T": 9,
-      "SV": 3,
-      "W": 12,
-      "INV": 6
-    },
     "builds": [
       {
-        "name": "Wazbom mega-kannon",
+        "name": "default",
         "fixed": [
           {
             "name": "Smasha gun",
             "type": "ranged"
           },
           {
-            "name": "Twin wazbom mega-kannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin tellyport mega-blasta",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin supa-shoota",
-            "type": "ranged"
-          },
-          {
             "name": "Armoured hull",
-            "type": "melee"
+            "type": "ranged"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Main weapon",
+            "choices": [
+              {
+                "name": "Twin wazbom mega-kannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin tellyport mega-blasta",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Wargear",
+            "choices": [
+              {
+                "name": "Blastajet force field",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin supa-shoota",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
-  },
-  "Dakkajet": {
-    "pts": 125,
+    ],
     "info": {
       "M": "-",
       "T": 9,
       "SV": 3,
       "W": 12,
       "INV": 6
-    },
+    }
+  },
+  "Dakkajet": {
+    "pts": 125,
     "builds": [
       {
-        "name": "Dakka",
+        "name": "default",
         "fixed": [
           {
-            "name": "Twin supa-shoota",
-            "type": "ranged"
-          },
-          {
             "name": "Armoured hull",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Twin supa-shootas",
+            "choices": [
+              {
+                "name": "Twin supa-shoota",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "info": {
+      "M": "-",
+      "T": 9,
+      "SV": 3,
+      "W": 12,
+      "INV": 6
+    }
+  },
+  "Big Mek in Mega Armour": {
+    "pts": 80,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Power klaw",
             "type": "melee"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Additional Options",
+            "choices": [
+              {
+                "name": "Tellyport blasta",
+                "type": "ranged"
+              },
+              {
+                "name": "Kustom force field",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Grot Oiler",
+            "choices": [
+              {
+                "name": "Grot oiler",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Kustom mega-blasta",
+                "type": "ranged"
+              },
+              {
+                "name": "Kustom shoota",
+                "type": "ranged"
+              },
+              {
+                "name": "Kombi-weapon",
+                "type": "ranged"
+              },
+              {
+                "name": "Killsaw",
+                "type": "melee"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Mek": {
+    "pts": 45,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Kustom mega-blasta",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Killsaw",
+                "type": "melee"
+              },
+              {
+                "name": "Wrench",
+                "type": "melee"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Painboss": {
+    "pts": 70,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Beast snagga klaw",
+            "type": "melee"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Grot orderly",
+            "choices": [
+              {
+                "name": "Grot orderly",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Painboy": {
+    "pts": 90,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "'Urty syringe",
+            "type": "melee"
+          },
+          {
+            "name": "Power klaw",
+            "type": "melee"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Grot orderly",
+            "choices": [
+              {
+                "name": "Grot orderly",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Big Mek with Shokk Attack Gun": {
+    "pts": 70,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Close combat weapon",
+            "type": "melee"
+          },
+          {
+            "name": "Shokk attack gun",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Grot assistant",
+            "choices": [
+              {
+                "name": "Grot assistant",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Warboss": {
+    "pts": 75,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Slugga",
+            "type": "ranged"
+          },
+          {
+            "name": "Close combat weapon",
+            "type": "melee"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Power klaw",
+                "type": "melee"
+              },
+              {
+                "name": "Kombi weapon, twin sluggas and big choppa",
+                "type": "ranged"
+              },
+              {
+                "name": "Kombi weapon, twin sluggas and power klaw",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   }
