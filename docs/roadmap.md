@@ -14,7 +14,7 @@ and recommend detachments/units based on mission and meta.
 |--------|-------|
 | Factions ranked | 30/30 |
 | Units ranked | ~1500 |
-| Tests | 1112+ passing, 36 skipped |
+| Tests | 616/617 passing (1 pre-existing Wraithknight invuln) |
 | HTML findings | 30 factions, mobile-friendly |
 | Detachment modifiers | 26 (Grey Knights 9 + Chaos Knights 8 + Daemons 9) |
 | Characters | 511 on slots schema (all 30 factions, 2026-08-11) |
@@ -22,7 +22,8 @@ and recommend detachments/units based on mission and meta.
 | Weapon_options on slots | **ALL 30/30 factions** (Wave 3+4, 2026-08-19) |
 | Reroll abilities auto-detected | 24 datasheets across 15 factions |
 | Complex-layer squads | Aeldari, GK, SM, DA, SW, BA, BT, DW, Chaos Daemons, CSM, EC, Orks (11 with alloc/slots) + 9-faction caps sweep (2026-08-15) |
-| Last change | Wave 4 — ALL weapon_options migrated to slots (602 builds, 0 legacy) |
+| BSData audit | 209 findings, 163 guilty units, 1 COMBO gap (DC Dread — deliberate) |
+| Last change | BSData weapon slot audit + fixes across 15 factions (2026-08-22) |
 
 ---
 
@@ -152,6 +153,13 @@ and recommend detachments/units based on mission and meta.
   - CSM/EC/Orks: discovered still on legacy format despite roadmap listing; migrated 38 builds total
   - `scripts/migrate_weapon_options_to_slots.py` — generic migration tool for any faction
   - 697 tests passing, 0 failures
+- **BSData weapon slot audit (2026-08-22)** — comprehensive audit comparing
+  curated weapon_options against BSData ground truth across all 30 factions.
+  - 24+ units fixed across 15 factions (negative gaps, missing slots, wrong combos)
+  - 13 character configs fixed (missing `weapon_options` wrapper — engine crash)
+  - 17 dual-entry configs synced (characters.json ↔ weapon_options.json overwrite bug)
+  - Audit: 209 findings, 163 guilty units, 1 COMBO gap (DC Dread — deliberate)
+  - 616/617 tests pass, 152/152 findings validation pass
 - **Alloc-caps sweep (2026-08-15, Wave 3 prep)** — the 9 alloc-layer factions
   (aeldari/BT/BA/DA/DW/GK/orks/SM/SW) regenerated through the caps mechanism:
   7 FLAT_CAPS entries (Paladin heavy 2, Troupe fusion/neuro 2/2, Thunderwolf
@@ -181,6 +189,10 @@ and recommend detachments/units based on mission and meta.
 
 ## In Progress 🔄
 
+- **BSData weapon slot audit grind** — 209 findings remaining (163 guilty
+  units). Mostly MISSING_FIXED (bolt pistol, armoured tracks, drones),
+  POINTS_DRIFT, and NO_CURATED entries. Combo gaps down to 1 (DC Dread,
+  deliberate). Fixing iteratively: batch scripts per finding type.
 - **Detachment modifiers UNBLOCKED for weapon_options** — all 30 factions now
   have slots schema on characters + weapon_options. Remaining blocker:
   squad composition (alloc pools) on ~14 factions. Once squads are on slots,
@@ -281,4 +293,4 @@ and recommend detachments/units based on mission and meta.
 
 ---
 
-*Last updated: 2026-08-19 (Wave 4 complete)*
+*Last updated: 2026-08-22 (BSData audit grind)*
