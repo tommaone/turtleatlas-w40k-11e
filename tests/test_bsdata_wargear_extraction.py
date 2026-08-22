@@ -199,6 +199,84 @@ NDK_SLOTS = [
 ]
 NDK_DPP_CURATED = 0.0465
 
+# ── Redemptor Dreadnought (Space Marines) ────────────────────────────────
+# Golden truth: verified against New Recruit wiki (11e) + Lexicanum 2026-08-22.
+# Fixed fist + Icarus pod; 3 replace-groups = 8 combos.
+# Curated config was wrong: Icarus pod sat inside a choice slot, off-arm
+# gatling/flamer choice missing entirely.
+
+SM_SLUG = "space-marines"
+SM_BSNAME = "Imperium - Adeptus Astartes - Space Marines"
+RD_BSNAME = "Redemptor Dreadnought"
+RD_MERGED_NAME = "Redemptor Dreadnought"
+RD_FIXED = [
+    {"name": "Redemptor Fist", "type": "melee"},
+    {"name": "Icarus Rocket Pod", "type": "ranged"},
+]
+RD_SLOTS = [
+    {
+        "name": "Weapon Option 1",
+        "choices": [
+            {"name": "Macro Plasma Incinerator", "type": "ranged"},
+            {"name": "Heavy Onslaught Gatling Cannon", "type": "ranged"},
+        ],
+    },
+    {
+        "name": "Weapon Option 2",
+        "choices": [
+            {"name": "Heavy Flamer", "type": "ranged"},
+            {"name": "Onslaught gatling cannon", "type": "ranged"},
+        ],
+    },
+    {
+        "name": "Weapon Option 3",
+        "choices": [
+            {"name": "Twin Fragstorm Grenade Launcher", "type": "ranged"},
+            {"name": "Twin Storm Bolter", "type": "ranged"},
+        ],
+    },
+]
+RD_DPP_CURATED = 0.0690
+
+# ── Wraithknight (Aeldari) ───────────────────────────────────────────────
+# Golden truth: verified against New Recruit wiki (11e) 2026-08-22.
+# Asymmetric arms are CORRECT in 11e (9th/10e rules no longer apply):
+# Left Arm {HWcannon, Scattershield} x Right Arm {Suncannon, HWcannon} x
+# single Secondary of 3 = 12 combos.
+# Curated was stale: pts 435 vs MFM 385, missing Scattershield slot,
+# unconditional INV:4 that the datasheet profile does not have.
+
+AELDARI_SLUG = "aeldari"
+AELDARI_BSNAME = "Xenos - Aeldari"
+WK_BSNAME = "Wraithknight"
+WK_MERGED_NAME = "Wraithknight"
+WK_FIXED = [{"name": "Titanic feet", "type": "melee"}]
+WK_SLOTS = [
+    {
+        "name": "Left Arm",
+        "choices": [
+            {"name": "Heavy Wraithcannon", "type": "ranged"},
+            {"name": "Scattershield", "type": "ranged"},
+        ],
+    },
+    {
+        "name": "Right Arm",
+        "choices": [
+            {"name": "Suncannon", "type": "ranged"},
+            {"name": "Heavy Wraithcannon", "type": "ranged"},
+        ],
+    },
+    {
+        "name": "Secondary Weapons",
+        "choices": [
+            {"name": "Scatter Laser", "type": "ranged"},
+            {"name": "Shuriken Cannon", "type": "ranged"},
+            {"name": "Starcannon", "type": "ranged"},
+        ],
+    },
+]
+WK_DPP_CURATED = 0.0460
+
 
 @pytest.fixture(scope="module")
 def parser():
@@ -223,6 +301,16 @@ def csm_engine():
 @pytest.fixture(scope="module")
 def gk_engine():
     return RankingEngine(GK_SLUG)
+
+
+@pytest.fixture(scope="module")
+def sm_engine():
+    return RankingEngine(SM_SLUG)
+
+
+@pytest.fixture(scope="module")
+def aeldari_engine():
+    return RankingEngine(AELDARI_SLUG)
 
 
 # ── Parser tests ─────────────────────────────────────────────────────────
@@ -614,3 +702,127 @@ class TestEngineBSDataFallbackNDK:
             assert ndk["dpp"] == pytest.approx(NDK_DPP_CURATED, abs=0.0001)
         finally:
             gk_engine.config.weapon_options = orig_wo
+
+
+# ── Redemptor Dreadnought (Space Marines) ────────────────────────────────
+
+@pytest.fixture(scope="module")
+def rd_extracted_slots(parser):
+    """Extract wargear slots from BSData for Redemptor Dreadnought."""
+    data = parser.query_faction(SM_BSNAME)
+    for u in data["units"]:
+        if u["name"] == RD_BSNAME:
+            return u.get("wargear_slots")
+    pytest.fail(f"{RD_BSNAME} not found in BSData extraction")
+
+
+class TestBSDataExtractionRD:
+    """Parser-level: Redemptor Dreadnought extraction."""
+
+    def test_wargear_slots_present(self, rd_extracted_slots):
+        assert rd_extracted_slots is not None
+
+    def test_fixed_weapons(self, rd_extracted_slots):
+        assert rd_extracted_slots["fixed"] == RD_FIXED
+
+    def test_slot_count(self, rd_extracted_slots):
+        assert len(rd_extracted_slots["slots"]) == 3
+
+    def test_slot_choices(self, rd_extracted_slots):
+        for exp_slot in RD_SLOTS:
+            got_slot = next(
+                s for s in rd_extracted_slots["slots"] if s["name"] == exp_slot["name"]
+            )
+            got_choices = [(c["name"], c["type"]) for c in got_slot["choices"]]
+            exp_choices = [(c["name"], c["type"]) for c in exp_slot["choices"]]
+            assert got_choices == exp_choices
+
+
+class TestEngineBSDataFallbackRD:
+    """Engine-level: Redemptor Dreadnought BSData fallback."""
+
+    def test_curated_dpp(self, sm_engine):
+        result = sm_engine.compute_ranking()
+        rd = next(u for u in result if u["name"] == RD_MERGED_NAME)
+        assert rd["dpp"] == pytest.approx(RD_DPP_CURATED, abs=0.0001)
+
+    def test_bsdata_fallback_matches_dpp(self, sm_engine):
+        """BSData fallback produces same DPP as curated config."""
+        import copy
+
+        orig_wo = copy.deepcopy(sm_engine.config.weapon_options)
+
+        try:
+            sm_engine.config.weapon_options.pop(RD_MERGED_NAME, None)
+
+            result = sm_engine.compute_ranking()
+            rd = next(u for u in result if u["name"] == RD_MERGED_NAME)
+            assert rd["dpp"] == pytest.approx(RD_DPP_CURATED, abs=0.0001)
+        finally:
+            sm_engine.config.weapon_options = orig_wo
+
+
+# ── Wraithknight (Aeldari) ───────────────────────────────────────────────
+
+@pytest.fixture(scope="module")
+def wk_extracted_slots(parser):
+    """Extract wargear slots from BSData for Wraithknight."""
+    data = parser.query_faction(AELDARI_BSNAME)
+    for u in data["units"]:
+        if u["name"] == WK_BSNAME:
+            return u.get("wargear_slots")
+    pytest.fail(f"{WK_BSNAME} not found in BSData extraction")
+
+
+class TestBSDataExtractionWK:
+    """Parser-level: Wraithknight extraction (asymmetric arms are correct in 11e)."""
+
+    def test_wargear_slots_present(self, wk_extracted_slots):
+        assert wk_extracted_slots is not None
+
+    def test_fixed_weapons(self, wk_extracted_slots):
+        assert wk_extracted_slots["fixed"] == WK_FIXED
+
+    def test_slot_count(self, wk_extracted_slots):
+        assert len(wk_extracted_slots["slots"]) == 3
+
+    def test_left_arm_has_scattershield(self, wk_extracted_slots):
+        """Curated config was missing the Scattershield option entirely."""
+        left = next(
+            s for s in wk_extracted_slots["slots"] if s["name"] == "Left Arm"
+        )
+        names = [c["name"] for c in left["choices"]]
+        assert "Scattershield" in names
+
+    def test_slot_choices(self, wk_extracted_slots):
+        for exp_slot in WK_SLOTS:
+            got_slot = next(
+                s for s in wk_extracted_slots["slots"] if s["name"] == exp_slot["name"]
+            )
+            got_choices = [(c["name"], c["type"]) for c in got_slot["choices"]]
+            exp_choices = [(c["name"], c["type"]) for c in exp_slot["choices"]]
+            assert got_choices == exp_choices
+
+
+class TestEngineBSDataFallbackWK:
+    """Engine-level: Wraithknight BSData fallback."""
+
+    def test_curated_dpp(self, aeldari_engine):
+        result = aeldari_engine.compute_ranking()
+        wk = next(u for u in result if u["name"] == WK_MERGED_NAME)
+        assert wk["dpp"] == pytest.approx(WK_DPP_CURATED, abs=0.0001)
+
+    def test_bsdata_fallback_matches_dpp(self, aeldari_engine):
+        """BSData fallback produces same DPP as curated config."""
+        import copy
+
+        orig_wo = copy.deepcopy(aeldari_engine.config.weapon_options)
+
+        try:
+            aeldari_engine.config.weapon_options.pop(WK_MERGED_NAME, None)
+
+            result = aeldari_engine.compute_ranking()
+            wk = next(u for u in result if u["name"] == WK_MERGED_NAME)
+            assert wk["dpp"] == pytest.approx(WK_DPP_CURATED, abs=0.0001)
+        finally:
+            aeldari_engine.config.weapon_options = orig_wo

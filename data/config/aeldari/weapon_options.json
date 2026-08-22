@@ -531,14 +531,13 @@
     ]
   },
   "Wraithknight": {
-    "pts": 435,
+    "pts": 385,
     "info": {
       "M": "12\"",
       "T": 12,
       "SV": 2,
       "W": 18,
-      "OC": 10,
-      "INV": 4
+      "OC": 10
     },
     "builds": [
       {
@@ -551,7 +550,20 @@
         ],
         "slots": [
           {
-            "name": "Primary Arm",
+            "name": "Left Arm",
+            "choices": [
+              {
+                "name": "Heavy Wraithcannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Scattershield",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Right Arm",
             "choices": [
               {
                 "name": "Suncannon",

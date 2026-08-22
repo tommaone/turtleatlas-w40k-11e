@@ -917,6 +917,8 @@ class BSDataParser11e:
         "Helbrute",
         "Maulerfiend",
         "Nemesis Dreadknight",
+        "Redemptor Dreadnought",
+        "Wraithknight",
     }
 
     def extract_wargear_slots(self, entry: dict) -> dict | None:
