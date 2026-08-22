@@ -230,6 +230,11 @@ and recommend detachments/units based on mission and meta.
 
 ## In Progress 🔄
 
+- **WAR PLAN: docs/warplan-detachments.md** — detachment modifiers for all
+  30 factions + army-wide rerolls, executed via Splinter fan-out with
+  Shredder gates. Phases: P0 inventory/baseline → P1 reroll engine core
+  (serial, heavy) → P2 squad alloc ×3 waves → P3 modifier configs +
+  dual-view tier list → P4 invuln footnote cleanup.
 - **Detachment modifiers UNBLOCKED for weapon_options** — all 30 factions now
   have slots schema on characters + weapon_options. Remaining blocker:
   squad composition (alloc pools) on ~14 factions. Once squads are on slots,
