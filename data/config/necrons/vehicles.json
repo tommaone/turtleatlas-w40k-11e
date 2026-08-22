@@ -1,29 +1,6 @@
 {
-  "_note": "necrons vehicles — generated from BSData + MFM",
+  "_note": "necrons vehicles \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
-  "Canoptek Reanimator": {
-    "pts": 70,
-    "ranged": [
-      {
-        "name": "Atomiser beam",
-        "unit_name": "Canoptek Reanimator"
-      }
-    ],
-    "melee": [
-      {
-        "name": "Reanimator's claws",
-        "unit_name": "Canoptek Reanimator"
-      }
-    ],
-    "innate": [],
-    "info": {
-      "M": "8\"",
-      "T": 6,
-      "SV": 3,
-      "W": 6,
-      "OC": 3
-    }
-  },
   "Canoptek Spyders": {
     "pts": 65,
     "ranged": [
@@ -47,102 +24,6 @@
       "OC": 2
     }
   },
-  "Ghost Ark": {
-    "pts": 100,
-    "ranged": [
-      {
-        "name": "Gauss flayer array",
-        "unit_name": "Ghost Ark"
-      }
-    ],
-    "melee": [
-      {
-        "name": "Armoured bulk",
-        "unit_name": "Ghost Ark"
-      }
-    ],
-    "innate": [],
-    "info": {
-      "M": "10\"",
-      "T": 9,
-      "SV": 3,
-      "W": 14,
-      "OC": 3,
-      "INV": 4
-    }
-  },
-  "Night Scythe": {
-    "pts": 125,
-    "ranged": [
-      {
-        "name": "Twin tesla destructor",
-        "unit_name": "Night Scythe"
-      }
-    ],
-    "melee": [
-      {
-        "name": "Armoured bulk",
-        "unit_name": "Night Scythe"
-      }
-    ],
-    "innate": [],
-    "info": {
-      "M": "14\"",
-      "T": 9,
-      "SV": 3,
-      "W": 12,
-      "OC": 0,
-      "deep_strike": true
-    }
-  },
-  "Obelisk": {
-    "pts": 280,
-    "ranged": [
-      {
-        "name": "Tesla sphere",
-        "unit_name": "Obelisk"
-      }
-    ],
-    "melee": [
-      {
-        "name": "Armoured bulk",
-        "unit_name": "Obelisk"
-      }
-    ],
-    "innate": [],
-    "info": {
-      "M": "8\"",
-      "T": 13,
-      "SV": 2,
-      "W": 24,
-      "OC": 8,
-      "deep_strike": true
-    }
-  },
-  "Tesseract Vault": {
-    "pts": 445,
-    "ranged": [
-      {
-        "name": "Tesla sphere",
-        "unit_name": "Tesseract Vault"
-      }
-    ],
-    "melee": [
-      {
-        "name": "Armoured bulk",
-        "unit_name": "Tesseract Vault"
-      }
-    ],
-    "innate": [],
-    "info": {
-      "M": "8\"",
-      "T": 12,
-      "SV": 2,
-      "W": 24,
-      "OC": 8,
-      "INV": 4
-    }
-  },
   "Convergence Of Dominion": {
     "pts": 60,
     "ranged": [
@@ -162,23 +43,21 @@
   },
   "Tomb Citadel Walls": {
     "pts": 180,
-    "ranged": [
+    "builds": [
       {
-        "name": "Twin tesla destructor",
-        "unit_name": "Tomb Citadel Walls"
-      },
-      {
-        "name": "gauss destructor",
-        "unit_name": "Tomb Citadel Walls"
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Twin tesla destructor",
+            "type": "ranged"
+          },
+          {
+            "name": "Gauss exterminator",
+            "type": "ranged"
+          }
+        ],
+        "slots": []
       }
-    ],
-    "melee": [],
-    "innate": [],
-    "info": {
-      "T": 13,
-      "SV": 2,
-      "W": 50,
-      "OC": 0
-    }
+    ]
   }
 }
