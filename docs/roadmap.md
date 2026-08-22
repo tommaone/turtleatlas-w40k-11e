@@ -315,7 +315,11 @@ and recommend detachments/units based on mission and meta.
 2. **`ranged_a` type** — config expects float but can get dict `{}`. Needs validation.
 3. **Weapon name normalization** — mixed apostrophes (U+0027 vs U+2019) between
    config and catalog keys.
-4. **Config `info` blocks missing INV vs merged data (~30 units)** — audit
+4. **Conditional invuln support** — Wraithknight Scattershield is a Left Arm
+   *choice* per BSData; engine `info` blocks are static so loadout-dependent
+   INV cannot be expressed (test now xfail with rationale). Feature: resolve
+   INV from chosen build, fall back to static info.
+5. **Config `info` blocks missing INV vs merged data (~30 units)** — audit
    covers wargear only, not info blocks. Found via Chaos Warhound scoring
    worse than its Imperial twin (missing M + INV in config). CTL fixed
    (2026-08-22, parity restored). Remaining: Chaos Knights 17 entries with
@@ -323,6 +327,18 @@ and recommend detachments/units based on mission and meta.
    army-rule-derived), SM/SW/DW Captains `4+`, Battlewagon/Dark Talon/
    Helbrute. Do NOT mass-add: footnote'd invulns need verified sources
    per no-fabricated-modifiers rule.
+
+---
+
+## Corrections Log 📝
+
+- **2026-08-23**: Roadmap prose claimed ~14 factions lacked squad alloc.
+  Scripted inventory (`grep alloc/group_max` over squads.json) shows
+  **25/30 have the complex layer**; only chaos-daemons + 4 knight/titan
+  single-model armies remain. Phase 2 of the war plan is nearly moot;
+  detachment modifier work (Phase 3) unblocks immediately after
+  chaos-daemons migration. Lesson: roadmap prose rots — inventory must
+  be scripted (now part of scripts/p0_snapshot.py workflow).
 
 ---
 

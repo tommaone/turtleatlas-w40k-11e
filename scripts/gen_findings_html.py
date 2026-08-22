@@ -82,7 +82,7 @@ INDEX_HEADER = '''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><me
   .tierscore{font-size:0.85em;color:#8b949e;white-space:nowrap}
 </style></head><body>
 <h1>Faction Findings</h1>
-<p class="subtitle">DPP rankings for Warhammer 40,000 — 11th Edition. Data-driven, deterministic. No LLM in the loop.</p>
+<p class="subtitle">DPP rankings for Warhammer 40,000 — 11th Edition. Data-driven, deterministic. No LLM in the loop. <a href="../docs/army-buy-guide.md" style="color:#58a6ff">Army Buy Guide &rarr;</a></p>
 '''
 
 
