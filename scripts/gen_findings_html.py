@@ -71,18 +71,118 @@ INDEX_HEADER = '''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><me
   .card:hover{border-color:#58a6ff;background:#1c2128;text-decoration:none}
   .fname{font-size:0.95em;font-weight:500}
   .fmeta{font-size:0.8em;color:#6e7681;white-space:nowrap}
+  .tierbar{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
+  .tierbtn{padding:6px 14px;background:#161b22;border:1px solid#30363d;border-radius:6px;color:#c9d1d9;font-size:0.85em;cursor:pointer}
+  .tierbtn.active{background:#1f6feb;border-color:#1f6feb;color:#fff}
+  .tierrow{display:flex;align-items:center;gap:10px;padding:8px 12px;background:#161b22;border:1px solid#30363d;border-radius:8px;margin-bottom:6px;text-decoration:none;color:#c9d1d9}
+  .tierrow:hover{border-color:#58a6ff;background:#1c2128;text-decoration:none}
+  .tierbadge{flex:0 0 34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:6px;font-weight:700;font-size:1.05em;color:#fff}
+  .t-S{background:#d29922}.t-A{background:#3fb950}.t-B{background:#58a6ff}.t-C{background:#bc8cff}.t-D{background:#6e7681}
+  .tiername{flex:1;font-size:0.95em}
+  .tierscore{font-size:0.85em;color:#8b949e;white-space:nowrap}
 </style></head><body>
 <h1>Faction Findings</h1>
 <p class="subtitle">DPP rankings for Warhammer 40,000 — 11th Edition. Data-driven, deterministic. No LLM in the loop.</p>
 '''
 
 
-def gen_index() -> int:
+def extract_army_scores(data, top_n=10):
+    """Army-level score per mission from build_data output.
+
+    Per unit: best score across target-mix presets (best tool for the job).
+    Army score: mean of the top_n unit scores — represents the faction's
+    best available options without letting roster size dominate.
+
+    Returns {mission: score} dict (unrounded floats).
+    """
+    scores = {}
+    for m in MISSIONS:
+        best = {}
+        for preset_units in data['meta'].values():
+            for u in preset_units.get(m, []):
+                if u['name'] not in best or u['score'] > best[u['name']]:
+                    best[u['name']] = u['score']
+        top = sorted(best.values(), reverse=True)[:top_n]
+        scores[m] = sum(top) / len(top) if top else 0.0
+    return scores
+
+
+TIERS_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                          'findings', 'army_tiers.json')
+
+
+def compute_tiers_entry(fname, data, n_units):
+    """Build one faction's army-tier entry for the landing page."""
+    scores = extract_army_scores(data)
+    return {
+        'name': fname,
+        'n_units': n_units,
+        'missions': {m: round(s, 1) for m, s in scores.items()},
+        'overall': round(sum(scores.values()) / len(scores), 1),
+    }
+
+
+def _tier_of(score, ranked_scores):
+    """Percentile-based tier: S top 15%, A next 20%, B middle 30%, C next 20%, D bottom 15%."""
+    n = len(ranked_scores)
+    rank = ranked_scores.index(score)
+    pct = rank / max(n - 1, 1)
+    if pct < 0.15:
+        return 'S'
+    if pct < 0.35:
+        return 'A'
+    if pct < 0.65:
+        return 'B'
+    if pct < 0.85:
+        return 'C'
+    return 'D'
+
+
+def render_tier_section(tiers):
+    """Landing-page army tier list with disposition filter (client-side)."""
+    import json as _json
+    entries = sorted(tiers.values(), key=lambda t: -t['overall'])
+    payload = [
+        {'fid': fid, **t}
+        for fid, t in tiers.items()
+    ]
+    data_js = _json.dumps(payload, ensure_ascii=False)
+
+    buttons = ['Overall'] + MISSIONS
+    btns_html = ''.join(
+        f'<button class="tierbtn{" active" if i == 0 else ""}" '
+        f'onclick="setTierMode(this,\'{b}\')">{b}</button>'
+        for i, b in enumerate(buttons)
+    )
+
+    return (
+        '<div class="section">\n'
+        '  <h2>Army Tier List</h2>\n'
+        f'  <p style="color:#8b949e;font-size:0.85em;margin:0 0 10px">'
+        f'Faction strength by disposition — mean of each faction\'s top-10 unit '
+        f'scores. Tiers are percentile-banded per view.</p>\n'
+        f'  <div class="tierbar" id="tierbar">{btns_html}</div>\n'
+        '  <div id="tierlist"></div>\n'
+        '</div>\n'
+        '<script>\n'
+        f'var TIERS={data_js};\n'
+        'function setTierMode(btn,mode){document.querySelectorAll(".tierbtn").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");renderTiers(mode)}\n'
+        'function tierOf(score,sorted){var r=sorted.indexOf(score);var p=r/Math.max(sorted.length-1,1);return p<0.15?"S":p<0.35?"A":p<0.65?"B":p<0.85?"C":"D"}\n'
+        'function renderTiers(mode){var key=mode==="Overall"?null:mode;var rows=TIERS.map(function(t){return{fid:t.fid,name:t.name,score:key?t.missions[key]:t.overall}});rows.sort(function(a,b){return b.score-a.score});var sorted=rows.map(function(r){return r.score});var html="";rows.forEach(function(r,i){var t=tierOf(r.score,sorted);html+=\'<a class="tierrow" href="\'+r.fid+\'/findings.html"><span class="tierbadge t-\'+t+\'">\'+t+\'</span><span class="tiername">\'+(i+1)+". "+r.name+\'</span><span class="tierscore">\'+r.score.toFixed(1)+"</span></a>"});document.getElementById("tierlist").innerHTML=html}\n'
+        'renderTiers("Overall");\n'
+        '</script>\n'
+    )
+
+
+def gen_index(tiers=None) -> int:
     """Rebuild findings/index.html from the per-faction findings.html files.
 
     Count = unique unit names across all missions, matching the faction page
     subtitle (build_data's n_units). Factions with a missing findings.html
     are skipped with a warning — never rendered as a fake "0 units" card.
+
+    tiers: {fid: entry} from compute_tiers_entry — renders the army tier list.
+    Loaded from findings/army_tiers.json when not provided (--index path).
     """
     counts = {}
     for fid, fname in FACTIONS.items():
@@ -91,6 +191,13 @@ def gen_index() -> int:
             continue
         names = set(re.findall(r'\{"name": "([^"]+)"', open(p, encoding='utf-8').read()))
         counts[fid] = len(names)
+
+    tier_section = ''
+    if tiers is None and os.path.isfile(TIERS_FILE):
+        with open(TIERS_FILE, encoding='utf-8') as f:
+            tiers = json.load(f)
+    if tiers:
+        tier_section = render_tier_section(tiers)
 
     sections_html = []
     for title, fids in INDEX_SECTIONS:
@@ -113,7 +220,8 @@ def gen_index() -> int:
             + '\n  </div>\n</div>'
         )
 
-    html_out = INDEX_HEADER + '\n'.join(sections_html) + '\n</body></html>\n'
+    html_out = (INDEX_HEADER + tier_section
+                + '\n'.join(sections_html) + '\n</body></html>\n')
     out = os.path.join(OUT, 'index.html')
     with open(out, 'w', encoding='utf-8') as f:
         f.write(html_out)
@@ -462,6 +570,12 @@ if __name__ == '__main__':
     if args.faction:
         factions_to_gen = {args.faction: FACTIONS[args.faction]}
 
+    tiers = None
+    tiers_path = os.path.join(OUT, 'army_tiers.json')
+    if os.path.isfile(tiers_path):
+        with open(tiers_path, encoding='utf-8') as f:
+            tiers = json.load(f)
+
     for fid, fname in factions_to_gen.items():
         data, n_units = build_data(fid, max_points=max_pts)
         html = gen_html(fname, data, n_units)
@@ -470,7 +584,13 @@ if __name__ == '__main__':
         with open(os.path.join(out_dir, 'findings.html'), 'w') as f:
             f.write(html)
         print(f'{fname}: {n_units} units, written to {out_dir}/findings.html')
+        # Army tier list — only meaningful when generating the full faction set
+        if not args.faction:
+            tiers = tiers or {}
+            tiers[fid] = compute_tiers_entry(fname, data, n_units)
+            with open(tiers_path, 'w', encoding='utf-8') as f:
+                json.dump(tiers, f, indent=1, ensure_ascii=False)
 
     # --all regenerates the landing page too, so counts can't drift
     if args.all:
-        gen_index()
+        gen_index(tiers=tiers)
