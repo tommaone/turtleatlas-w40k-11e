@@ -182,7 +182,9 @@ def main():
             continue
         curated, covered = load_curated(bsdata_slug := slug)
         bsdata = extract_wargear(bp, fn)
-        names = set(covered) | set(bsdata)
+        # Units covered by a config but not comparable (squad models-schema)
+        # are deliberately excluded from wargear comparison entirely.
+        names = (set(covered) | set(bsdata)) - (covered - set(curated))
         for n in sorted(names):
             findings = compare(n, curated.get(n), bsdata.get(n))
             for finding in findings:
