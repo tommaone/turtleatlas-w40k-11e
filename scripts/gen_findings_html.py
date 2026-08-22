@@ -88,6 +88,12 @@ INDEX_HEADER = '''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><me
 
 DECAY = 0.95  # rank-decay: effective roster depth ~1/(1-lambda) = 20 units
 
+# Excluded from the army tier list: Titan Legions field single datasheets
+# far above 2000pt tournament reality (Warhound 1100pts is their cheapest,
+# nothing above Warhound appears in 2000pt events). Their placement would
+# be theoretical noise, not signal.
+EXCLUDE_FROM_TIERS = {'titan-legions', 'chaos-titan-legions'}
+
 
 def extract_army_scores(data, decay=DECAY):
     """Army-level score per mission from build_data output.
@@ -177,6 +183,7 @@ def render_tier_section(tiers):
         '<div class="section">\n'
         '  <h2>Army Tier List</h2>\n'
         f'  <p style="color:#8b949e;font-size:0.85em;margin:0 0 10px">'
+        f'Ranking assumes <b>2000pt matched play</b>. '
         f'Roster-quality index per disposition — weighted mean over all ranked '
         f'datasheets, rank-decayed (best sheets count most, tail still matters; '
         f'effective depth ~20 units). No detachment/army rules. '
@@ -605,7 +612,7 @@ if __name__ == '__main__':
             f.write(html)
         print(f'{fname}: {n_units} units, written to {out_dir}/findings.html')
         # Army tier list — only meaningful when generating the full faction set
-        if not args.faction:
+        if not args.faction and fid not in EXCLUDE_FROM_TIERS:
             tiers = tiers or {}
             tiers[fid] = compute_tiers_entry(fname, data, n_units)
             with open(tiers_path, 'w', encoding='utf-8') as f:
