@@ -1,8 +1,9 @@
 # War Plan — Detachment Modifiers & Army Rules Coverage
 
-Status: APPROVED-BY-DEFAULT (execute unless countermanded)
+Status: EXECUTION-READY — P0 done 2026-08-23; deep work continues in a
+fresh session (see Handover Notes at bottom).
 Owner: orchestrator (ox-alpha) via Splinter dispatch
-Last updated: 2026-08-23
+Last updated: 2026-08-23 (post-P0)
 
 ---
 
@@ -150,3 +151,56 @@ All 30 factions: complex squads ✓, detachment modifiers ✓ with sources ✓.
 Landing page: dual-view tier list (generalist + detachment-aware).
 Engine: army-wide rerolls detected and applied. Suite fully green except
 documented xfails. Roadmap updated, findings regenerated, pushed.
+
+---
+
+## Handover Notes — for the next session (2026-08-23)
+
+### Already done (do NOT redo)
+
+- P0 complete: scripted inventory + baseline snapshot
+  (`scripts/p0_snapshot.py` → `docs/snapshots/pre-detachment-scores.json`).
+- **Inventory surprise:** 25/30 factions already have complex squad layer.
+  Remaining: `chaos-daemons` + 4 knight/titan armies (single-model, low
+  value). Phase 2 as written is nearly moot — collapse it to a single
+  chaos-daemons migration task.
+- Buy-advisor module shipped: `scripts/army_advisor.py` →
+  `findings/advisor.json` (modular/MCP-ready) +
+  `docs/army-buy-guide.md` (linked from landing page). Fields include
+  `meta_ceiling: null` placeholder — fill it in Phase 3.
+- Wraithknight invuln test converted to honest xfail; suite fully green
+  (0 failed). Root cause: loadout-conditional INV needs an engine feature
+  (roadmap Known Issue #4).
+
+### Execution order for deep-work session
+
+1. **chaos-daemons alloc migration** (~1 unit of work, Balanced tier).
+   Precedent: any Wave-1 faction's squads.json. Gate: invariants + new
+   `test_chaos_daemons_complex_units.py` structure pins + audit clean.
+2. **P1 army-wide rerolls** (serial, HEAVY tier, fresh context required).
+   Scope unchanged from Phase 1 above. This is THE priority — everything
+   else waits or runs parallel on data files only.
+3. **Phase 3 modifier fan-out** — now nearly unblocked. Start with
+   factions that have detachment data in merged YAML (`detachments:` key)
+   and known-good squads. Generalist-view byte-stability rule applies:
+   compare against the pre-detachment snapshot before commit.
+4. Fill `meta_ceiling` in advisor + regenerate buy guide.
+
+### Operational lessons (from sessions that produced bugs)
+
+- Context budget is the real constraint: write scripts ≤90 lines per
+  tool call (larger payloads corrupt), never cat/dump large outputs,
+  prefer targeted reads. If output would exceed ~50 lines, aggregate first.
+- Diagnosis discipline: verify at the DATA level before theorizing about
+  the parser/engine (the "empty stats" red herring cost multiple turns —
+  merged profile.stats was correct all along; config info blocks weren't).
+- Roadmap prose rots. Any claim about repo state ("X factions lack Y")
+  must be verified by script before planning around it.
+- Full test gate before every push; backup branch before history ops;
+  main-only workflow (no feature branches) per Key Design Decisions.
+
+### Acceptance gates (unchanged, apply to every wave)
+
+pytest invariants + faction tests + audit script (0 new findings) +
+MFM points guard + findings validation + Shredder batch review with
+100% `_source` sampling on new modifiers.
