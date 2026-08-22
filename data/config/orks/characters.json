@@ -1,5 +1,5 @@
 {
-  "_note": "orks characters — generated from BSData + MFM",
+  "_note": "orks characters \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Bannernob": {
     "pts": 50,
@@ -87,7 +87,7 @@
               "type": "melee"
             },
             {
-              "name": "Squigosaur’s jaws",
+              "name": "Squigosaur\u2019s jaws",
               "type": "melee"
             }
           ],
@@ -173,7 +173,29 @@
           ],
           "slots": [
             {
-              "name": "Ranged weapon 1",
+              "name": "Additional Options",
+              "choices": [
+                {
+                  "name": "Tellyport blasta",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Kustom force field",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Grot Oiler",
+              "choices": [
+                {
+                  "name": "Grot oiler",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Weapon",
               "choices": [
                 {
                   "name": "Kustom mega-blasta",
@@ -189,7 +211,7 @@
                 },
                 {
                   "name": "Killsaw",
-                  "type": "ranged"
+                  "type": "melee"
                 }
               ]
             }
@@ -213,15 +235,25 @@
           "name": "default",
           "fixed": [
             {
-              "name": "Shokk attack gun",
-              "type": "ranged"
-            },
-            {
               "name": "Close combat weapon",
               "type": "melee"
+            },
+            {
+              "name": "Shokk attack gun",
+              "type": "ranged"
             }
           ],
-          "slots": []
+          "slots": [
+            {
+              "name": "Grot assistant",
+              "choices": [
+                {
+                  "name": "Grot assistant",
+                  "type": "ranged"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -274,7 +306,7 @@
               "type": "ranged"
             },
             {
-              "name": "Mork’s Teeth",
+              "name": "Mork\u2019s Teeth",
               "type": "melee"
             }
           ],
@@ -332,19 +364,19 @@
           "name": "default",
           "fixed": [
             {
-              "name": "Mork’s Roar",
+              "name": "Mork\u2019s Roar",
               "type": "ranged"
             },
             {
-              "name": "Gork’s Klaw - strike",
+              "name": "Gork\u2019s Klaw - strike",
               "type": "melee"
             },
             {
-              "name": "Gork’s Klaw - sweep",
+              "name": "Gork\u2019s Klaw - sweep",
               "type": "melee"
             },
             {
-              "name": "Makari’s stabba",
+              "name": "Makari\u2019s stabba",
               "type": "melee"
             }
           ],
@@ -368,11 +400,25 @@
           "name": "default",
           "fixed": [
             {
-              "name": "Kustom mega-slugga",
+              "name": "Kustom mega-blasta",
               "type": "ranged"
             }
           ],
-          "slots": []
+          "slots": [
+            {
+              "name": "Weapon",
+              "choices": [
+                {
+                  "name": "Killsaw",
+                  "type": "melee"
+                },
+                {
+                  "name": "Wrench",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -397,7 +443,7 @@
               "type": "ranged"
             },
             {
-              "name": "Big Chompa’s jaws",
+              "name": "Big Chompa\u2019s jaws",
               "type": "melee"
             },
             {
@@ -426,11 +472,21 @@
           "name": "default",
           "fixed": [
             {
-              "name": "Beast Snagga klaw",
+              "name": "Beast snagga klaw",
               "type": "melee"
             }
           ],
-          "slots": []
+          "slots": [
+            {
+              "name": "Grot orderly",
+              "choices": [
+                {
+                  "name": "Grot orderly",
+                  "type": "ranged"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -451,7 +507,7 @@
           "name": "default",
           "fixed": [
             {
-              "name": "’Urty syringe",
+              "name": "'Urty syringe",
               "type": "melee"
             },
             {
@@ -459,7 +515,17 @@
               "type": "melee"
             }
           ],
-          "slots": []
+          "slots": [
+            {
+              "name": "Grot orderly",
+              "choices": [
+                {
+                  "name": "Grot orderly",
+                  "type": "ranged"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -480,34 +546,29 @@
           "name": "default",
           "fixed": [
             {
-              "name": "Kombi-weapon",
+              "name": "Slugga",
               "type": "ranged"
             },
             {
-              "name": "Twin slugga",
-              "type": "ranged"
+              "name": "Close combat weapon",
+              "type": "melee"
             }
           ],
           "slots": [
             {
-              "name": "Melee weapon 1",
+              "name": "Weapon",
               "choices": [
-                {
-                  "name": "Attack Squig",
-                  "type": "melee"
-                }
-              ]
-            },
-            {
-              "name": "Melee weapon 2",
-              "choices": [
-                {
-                  "name": "Big choppa",
-                  "type": "melee"
-                },
                 {
                   "name": "Power klaw",
                   "type": "melee"
+                },
+                {
+                  "name": "Kombi weapon, twin sluggas and big choppa",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Kombi weapon, twin sluggas and power klaw",
+                  "type": "ranged"
                 }
               ]
             }
@@ -565,7 +626,7 @@
               "type": "ranged"
             },
             {
-              "name": "’Uge choppa",
+              "name": "\u2019Uge choppa",
               "type": "melee"
             }
           ],
@@ -631,7 +692,7 @@
           "name": "default",
           "fixed": [
             {
-              "name": "’Eadbanger",
+              "name": "\u2019Eadbanger",
               "type": "ranged"
             },
             {

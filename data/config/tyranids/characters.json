@@ -1,5 +1,5 @@
 {
-  "_note": "tyranids characters — generated from BSData + MFM",
+  "_note": "tyranids characters \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Broodlord": {
     "pts": 80,
@@ -69,33 +69,7 @@
           "fixed": [],
           "slots": [
             {
-              "name": "Ranged weapon 1",
-              "choices": [
-                {
-                  "name": "Heavy venom cannon",
-                  "type": "ranged"
-                },
-                {
-                  "name": "Stranglethorn cannon",
-                  "type": "ranged"
-                }
-              ]
-            },
-            {
-              "name": "Ranged weapon 2",
-              "choices": [
-                {
-                  "name": "Stranglethorn cannon",
-                  "type": "ranged"
-                },
-                {
-                  "name": "Heavy venom cannon",
-                  "type": "ranged"
-                }
-              ]
-            },
-            {
-              "name": "Melee weapon 1",
+              "name": "Melee weapon",
               "choices": [
                 {
                   "name": "Monstrous bonesword and lash whip",
@@ -104,15 +78,31 @@
                 {
                   "name": "Monstrous scything talons",
                   "type": "melee"
+                },
+                {
+                  "name": "Yrmgarl factors",
+                  "type": "melee"
                 }
               ]
             },
             {
-              "name": "Melee weapon 2",
+              "name": "Ranged weapon",
               "choices": [
                 {
-                  "name": "Monstrous scything talons",
-                  "type": "melee"
+                  "name": "Stranglethorn cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Venom cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "The Miasma Cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Heavy venom cannon",
+                  "type": "ranged"
                 }
               ]
             }
@@ -195,11 +185,11 @@
           "name": "default",
           "fixed": [
             {
-              "name": "Old One Eye’s claws and talons - Strike",
+              "name": "Old One Eye\u2019s claws and talons - Strike",
               "type": "melee"
             },
             {
-              "name": "Old One Eye’s claws and talons - Sweep",
+              "name": "Old One Eye\u2019s claws and talons - Sweep",
               "type": "melee"
             }
           ],
@@ -252,11 +242,25 @@
           "name": "default",
           "fixed": [
             {
-              "name": "Stinger salvoes",
+              "name": "Stinger salvo",
               "type": "ranged"
             }
           ],
-          "slots": []
+          "slots": [
+            {
+              "name": "Weapon",
+              "choices": [
+                {
+                  "name": "Massive crushing claws",
+                  "type": "melee"
+                },
+                {
+                  "name": "Massive scything talons",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }

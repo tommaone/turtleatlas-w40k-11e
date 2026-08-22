@@ -2,37 +2,43 @@
   "_note": "adeptus-mechanicus weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Archaeopter Stratoraptor": {
-    "info": {
-      "M": "-",
-      "T": 9,
-      "SV": 3,
-      "W": 10
-    },
     "pts": 185,
     "builds": [
       {
         "name": "default",
         "fixed": [
           {
-            "name": "Cognis heavy stubber",
-            "type": "ranged"
-          },
-          {
-            "name": "Heavy phosphor blaster",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin cognis lascannon",
-            "type": "ranged"
-          },
-          {
             "name": "Armoured hull",
             "type": "melee"
+          },
+          {
+            "name": "2 twin ironhail heavy stubbers",
+            "type": "ranged"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Upgrade",
+            "choices": [
+              {
+                "name": "Chaff launcher",
+                "type": "ranged"
+              },
+              {
+                "name": "Command uplink",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "info": {
+      "M": "-",
+      "T": 9,
+      "SV": 3,
+      "W": 10
+    }
   },
   "Ironstrider Ballistarii": {
     "info": {
@@ -265,7 +271,7 @@
         "fixed": [
           {
             "name": "Sydonian legs",
-            "type": "ranged"
+            "type": "melee"
           }
         ],
         "slots": [
@@ -297,7 +303,21 @@
             "type": "ranged"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Magnarail lance",
+                "type": "ranged"
+              },
+              {
+                "name": "Transonic cannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
     ]
   }

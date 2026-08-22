@@ -115,19 +115,29 @@
           "name": "default",
           "fixed": [
             {
-              "name": "Phantasmagoria - focused witchfire",
+              "name": "Phantasmagoria",
               "type": "ranged"
-            },
-            {
-              "name": "Snapping claws",
-              "type": "melee"
-            },
-            {
-              "name": "Witstealer sword",
-              "type": "melee"
             }
           ],
-          "slots": []
+          "slots": [
+            {
+              "name": "Weapon",
+              "choices": [
+                {
+                  "name": "Living whip",
+                  "type": "melee"
+                },
+                {
+                  "name": "Ritual knife",
+                  "type": "melee"
+                },
+                {
+                  "name": "Shining aegis",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -215,9 +225,27 @@
             {
               "name": "Screamer pistol",
               "type": "ranged"
+            },
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
             }
           ],
-          "slots": []
+          "slots": [
+            {
+              "name": "Weapon",
+              "choices": [
+                {
+                  "name": "Power sword",
+                  "type": "melee"
+                },
+                {
+                  "name": "Screamer pistol and close combat weapon",
+                  "type": "ranged"
+                }
+              ]
+            }
+          ]
         }
       ]
     }

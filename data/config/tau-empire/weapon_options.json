@@ -159,55 +159,50 @@
     ]
   },
   "Devilfish": {
+    "pts": 85,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          },
+          {
+            "name": "2 burst cannons",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "2 smart missile systems",
+                "type": "ranged"
+              },
+              {
+                "name": "2 twin pulse carbines",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "12\"",
       "T": 9,
       "SV": 3,
       "W": 13,
       "OC": 2
-    },
-    "pts": 85,
-    "builds": [
-      {
-        "name": "Accelerator Burst Cannon",
-        "fixed": [
-          {
-            "name": "Accelerator burst cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin pulse carbine",
-            "type": "ranged"
-          },
-          {
-            "name": "Smart missile system",
-            "type": "ranged"
-          },
-          {
-            "name": "Seeker missile",
-            "type": "ranged"
-          },
-          {
-            "name": "Armoured hull",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      }
-    ]
+    }
   },
   "Ghostkeel Battlesuit": {
-    "info": {
-      "M": "10\"",
-      "T": 8,
-      "SV": 2,
-      "W": 12,
-      "OC": 3
-    },
     "pts": 150,
     "builds": [
       {
-        "name": "Cyclic Ion Raker + Twin Cannons",
+        "name": "default",
         "fixed": [
           {
             "name": "Ghostkeel fists",
@@ -216,14 +211,10 @@
         ],
         "slots": [
           {
-            "name": "Ranged weapon 1",
+            "name": "Primary weapon",
             "choices": [
               {
-                "name": "Cyclic ion raker - standard",
-                "type": "ranged"
-              },
-              {
-                "name": "Cyclic ion raker - overcharge",
+                "name": "Cyclic ion raker",
                 "type": "ranged"
               },
               {
@@ -233,7 +224,7 @@
             ]
           },
           {
-            "name": "Ranged weapon 2",
+            "name": "Twin weapon",
             "choices": [
               {
                 "name": "Twin burst cannon",
@@ -251,7 +242,14 @@
           }
         ]
       }
-    ]
+    ],
+    "info": {
+      "M": "10\"",
+      "T": 8,
+      "SV": 2,
+      "W": 12,
+      "OC": 3
+    }
   },
   "Hammerhead Gunship": {
     "pts": 150,
@@ -316,17 +314,10 @@
     }
   },
   "Manta": {
-    "info": {
-      "M": "40\"",
-      "T": 14,
-      "SV": 2,
-      "W": 60,
-      "INV": 5
-    },
     "pts": 2100,
     "builds": [
       {
-        "name": "Heavy Rail Cannon + Ion Cannon",
+        "name": "default",
         "fixed": [
           {
             "name": "Heavy rail cannon",
@@ -347,25 +338,22 @@
           {
             "name": "Armoured hull",
             "type": "melee"
+          },
+          {
+            "name": "Ion cannon",
+            "type": "ranged"
           }
         ],
-        "slots": [
-          {
-            "name": "Ranged weapon 1",
-            "choices": [
-              {
-                "name": "Ion cannon - standard",
-                "type": "ranged"
-              },
-              {
-                "name": "Ion cannon - overcharge",
-                "type": "ranged"
-              }
-            ]
-          }
-        ]
+        "slots": []
       }
-    ]
+    ],
+    "info": {
+      "M": "40\"",
+      "T": 14,
+      "SV": 2,
+      "W": 60,
+      "INV": 5
+    }
   },
   "Piranhas": {
     "info": {
@@ -453,6 +441,54 @@
     ]
   },
   "Riptide Battlesuit": {
+    "pts": 190,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Riptide fists",
+            "type": "melee"
+          },
+          {
+            "name": "Armoured projectiles",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Primary weapon",
+            "choices": [
+              {
+                "name": "Heavy burst cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Ion accelerator",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Secondary system",
+            "choices": [
+              {
+                "name": "Twin plasma rifle",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin fusion blasters",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin smart missile system",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "10\"",
       "T": 9,
@@ -460,94 +496,101 @@
       "W": 14,
       "OC": 4,
       "INV": 4
-    },
-    "pts": 180,
+    }
+  },
+  "Sky Ray Gunship": {
+    "pts": 140,
     "builds": [
       {
-        "name": "Heavy Burst Cannon + Ion Accelerator",
+        "name": "default",
         "fixed": [
           {
-            "name": "Missile pod",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin smart missile system",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin fusion blaster",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin plasma rifle",
-            "type": "ranged"
-          },
-          {
-            "name": "Riptide fists",
+            "name": "Armoured hull",
             "type": "melee"
+          },
+          {
+            "name": "Seeker missile",
+            "type": "ranged"
+          },
+          {
+            "name": "Seeker missile",
+            "type": "ranged"
           }
         ],
         "slots": [
           {
-            "name": "Ranged weapon 1",
+            "name": "Weapon",
             "choices": [
               {
-                "name": "Heavy burst cannon",
+                "name": "2 accelerator burst cannons",
                 "type": "ranged"
               },
               {
-                "name": "Ion accelerator - standard",
+                "name": "2 smart missile systems",
                 "type": "ranged"
               },
               {
-                "name": "Ion accelerator - overcharge",
+                "name": "2 twin pulse carbines",
                 "type": "ranged"
               }
             ]
           }
         ]
       }
-    ]
-  },
-  "Sky Ray Gunship": {
+    ],
     "info": {
       "M": "10\"",
       "T": 10,
       "SV": 3,
       "W": 14,
       "OC": 3
-    },
-    "pts": 140,
-    "builds": [
-      {
-        "name": "Seeker Missile Rack",
-        "fixed": [
-          {
-            "name": "Seeker missile rack",
-            "type": "ranged"
-          },
-          {
-            "name": "Accelerator burst cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin pulse carbine",
-            "type": "ranged"
-          },
-          {
-            "name": "Smart missile system",
-            "type": "ranged"
-          },
-          {
-            "name": "Armoured hull",
-            "type": "melee"
-          }
-        ],
-        "slots": []
-      }
-    ]
+    }
   },
   "Stormsurge": {
+    "pts": 360,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Armoured projectiles",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Primary weapon",
+            "choices": [
+              {
+                "name": "Pulse driver cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Cluster rocket system and destroyer missiles",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Secondary system",
+            "choices": [
+              {
+                "name": "Twin smart missile system",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin fusion blasters",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin airbursting fragmentation projector",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "8\"",
       "T": 11,
@@ -555,62 +598,7 @@
       "W": 20,
       "OC": 6,
       "INV": 4
-    },
-    "pts": 360,
-    "builds": [
-      {
-        "name": "Pulse Driver / Pulse Blast Cannon",
-        "fixed": [
-          {
-            "name": "Cluster rocket system",
-            "type": "ranged"
-          },
-          {
-            "name": "Destroyer missiles",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin smart missile system",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin airbursting fragmentation projector",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin burst cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin T'au flamer",
-            "type": "ranged"
-          },
-          {
-            "name": "Thunderous footfalls",
-            "type": "melee"
-          }
-        ],
-        "slots": [
-          {
-            "name": "Ranged weapon 1",
-            "choices": [
-              {
-                "name": "Pulse Driver Cannon",
-                "type": "ranged"
-              },
-              {
-                "name": "Pulse blast cannon - focused",
-                "type": "ranged"
-              },
-              {
-                "name": "Pulse blast cannon - dispersed",
-                "type": "ranged"
-              }
-            ]
-          }
-        ]
-      }
-    ]
+    }
   },
   "Sun Shark Bomber": {
     "info": {

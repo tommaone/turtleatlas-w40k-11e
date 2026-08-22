@@ -121,17 +121,39 @@
       "builds": [
         {
           "name": "default",
-          "fixed": [],
+          "fixed": [
+            {
+              "name": "Resurrection orb",
+              "type": "ranged"
+            },
+            {
+              "name": "Vanishing point",
+              "type": "ranged"
+            }
+          ],
           "slots": [
             {
-              "name": "Melee weapon 1",
+              "name": "Main weapon",
               "choices": [
                 {
-                  "name": "Overlord's blade",
+                  "name": "Gauss cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Tesla cannon",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Overlord's weapon",
+              "choices": [
+                {
+                  "name": "Hyperphase reap-blade",
                   "type": "melee"
                 },
                 {
-                  "name": "Staff of light",
+                  "name": "Voidblade",
                   "type": "melee"
                 }
               ]

@@ -1328,40 +1328,38 @@
   },
   "Land Speeder Vengeance": {
     "pts": 130,
-    "info": {
-      "T": 8,
-      "SV": 3,
-      "W": 10,
-      "OC": 3
-    },
     "builds": [
       {
         "name": "default",
         "fixed": [
           {
-            "name": "Close Combat Weapon",
-            "type": "melee"
-          },
-          {
-            "name": "Plasma storm battery - standard",
-            "type": "ranged"
-          },
-          {
-            "name": "Plasma storm battery - supercharge",
-            "type": "ranged"
-          },
-          {
-            "name": "Assault cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Heavy bolter",
+            "name": "Plasma storm battery",
             "type": "ranged"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Assault cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy bolter",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "info": {
+      "T": 8,
+      "SV": 3,
+      "W": 10,
+      "OC": 3
+    }
   },
   "Nephilim Jetfighter": {
     "pts": 140,

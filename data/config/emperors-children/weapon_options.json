@@ -50,30 +50,44 @@
     }
   },
   "Chaos Rhino": {
-    "info": {
-      "M": "12\"",
-      "T": 9,
-      "SV": 3,
-      "W": 10,
-      "OC": 2
-    },
     "pts": 70,
     "builds": [
       {
         "name": "default",
         "fixed": [
           {
-            "name": "Havoc launcher",
+            "name": "Armoured tracks",
             "type": "ranged"
           },
           {
-            "name": "Armoured tracks",
-            "type": "melee"
+            "name": "Combi bolter",
+            "type": "ranged"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Combi bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Combi weapon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "info": {
+      "M": "12\"",
+      "T": 9,
+      "SV": 3,
+      "W": 10,
+      "OC": 2
+    }
   },
   "Defiler": {
     "info": {

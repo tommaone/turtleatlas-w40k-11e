@@ -506,22 +506,19 @@
     ]
   },
   "Khorne Lord Of Skulls": {
-    "info": {
-      "M": "8\"",
-      "T": 13,
-      "SV": 3,
-      "W": 24,
-      "OC": 8,
-      "INV": 5
-    },
-    "pts": 450,
+    "pts": 270,
     "builds": [
       {
         "name": "default",
-        "fixed": [],
+        "fixed": [
+          {
+            "name": "Great cleaver of Khorne",
+            "type": "melee"
+          }
+        ],
         "slots": [
           {
-            "name": "Ranged weapon 1",
+            "name": "Hades gatling cannon",
             "choices": [
               {
                 "name": "Hades gatling cannon",
@@ -534,7 +531,7 @@
             ]
           },
           {
-            "name": "Ranged weapon 2",
+            "name": "Gorestorm cannon",
             "choices": [
               {
                 "name": "Gorestorm cannon",
@@ -549,23 +546,18 @@
                 "type": "ranged"
               }
             ]
-          },
-          {
-            "name": "Melee weapon 1",
-            "choices": [
-              {
-                "name": "Great cleaver of Khorne - strike",
-                "type": "melee"
-              },
-              {
-                "name": "Great cleaver of Khorne - sweep",
-                "type": "melee"
-              }
-            ]
           }
         ]
       }
-    ]
+    ],
+    "info": {
+      "M": "8\"",
+      "T": 13,
+      "SV": 3,
+      "W": 24,
+      "OC": 8,
+      "INV": 5
+    }
   },
   "Maulerfiend": {
     "info": {

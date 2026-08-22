@@ -112,21 +112,31 @@
           "name": "default",
           "fixed": [
             {
-              "name": "Mechanicus pistol",
-              "type": "ranged"
-            },
-            {
-              "name": "Sydonian Feet",
+              "name": "Sydonian legs",
               "type": "melee"
             }
           ],
-          "slots": []
+          "slots": [
+            {
+              "name": "Weapon",
+              "choices": [
+                {
+                  "name": "Radium jezzail",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Skatros transuranic arquebus",
+                  "type": "ranged"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
   },
   "Tech-Priest Dominus": {
-    "pts": 85,
+    "pts": 65,
     "info": {
       "M": "6\"",
       "T": 4,
@@ -143,23 +153,19 @@
           "fixed": [
             {
               "name": "Mechadendrites",
+              "type": "ranged"
+            },
+            {
+              "name": "Omnissian axe",
               "type": "melee"
             }
           ],
           "slots": [
             {
-              "name": "Weapon 1",
+              "name": "Weapon",
               "choices": [
                 {
                   "name": "Eradication ray",
-                  "type": "ranged"
-                },
-                {
-                  "name": "Macrostubber",
-                  "type": "ranged"
-                },
-                {
-                  "name": "Phosphor serpenta",
                   "type": "ranged"
                 },
                 {
@@ -172,19 +178,11 @@
               "name": "Weapon 2",
               "choices": [
                 {
-                  "name": "Eradication ray",
-                  "type": "ranged"
-                },
-                {
                   "name": "Macrostubber",
                   "type": "ranged"
                 },
                 {
                   "name": "Phosphor serpenta",
-                  "type": "ranged"
-                },
-                {
-                  "name": "Volkite blaster",
                   "type": "ranged"
                 }
               ]
@@ -244,11 +242,25 @@
           "name": "default",
           "fixed": [
             {
-              "name": "Omnissian staff",
-              "type": "melee"
+              "name": "Magnarail lance",
+              "type": "ranged"
             }
           ],
-          "slots": []
+          "slots": [
+            {
+              "name": "Weapon",
+              "choices": [
+                {
+                  "name": "Magnarail lance",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Transonic cannon",
+                  "type": "ranged"
+                }
+              ]
+            }
+          ]
         }
       ]
     }

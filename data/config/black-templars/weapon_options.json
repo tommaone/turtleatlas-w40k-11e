@@ -299,30 +299,48 @@
     ]
   },
   "Gladiator Reaper": {
-    "info": {
-      "M": "10\"",
-      "T": 10,
-      "SV": 3,
-      "W": 12,
-      "OC": 3
-    },
     "pts": 160,
     "builds": [
       {
         "name": "default",
         "fixed": [
           {
-            "name": "Tempest Bolter",
+            "name": "Armoured hull",
             "type": "ranged"
           },
           {
-            "name": "Twin Heavy Onslaught Gatling Cannon",
+            "name": "Icarus rocket pod",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
             "type": "ranged"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Multi-melta",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "info": {
+      "M": "10\"",
+      "T": 10,
+      "SV": 3,
+      "W": 12,
+      "OC": 3
+    }
   },
   "Invictor Tactical Warsuit": {
     "pts": 125,

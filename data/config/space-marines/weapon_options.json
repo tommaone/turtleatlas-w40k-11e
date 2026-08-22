@@ -2,6 +2,50 @@
   "_note": "space-marines weapon options \u2014 generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Astraeus": {
+    "pts": 525,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Twin Icarus ironhail heavy stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Weapon 1",
+            "choices": [
+              {
+                "name": "Two astraeus las ripppers",
+                "type": "ranged"
+              },
+              {
+                "name": "Two plasma eradicators",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Weapon 2",
+            "choices": [
+              {
+                "name": "Two astraeus las ripppers",
+                "type": "ranged"
+              },
+              {
+                "name": "Two plasma eradicators",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "10\"",
       "T": 12,
@@ -9,46 +53,7 @@
       "W": 24,
       "OC": 8,
       "INV": 5
-    },
-    "pts": 525,
-    "builds": [
-      {
-        "name": "default",
-        "fixed": [
-          {
-            "name": "Ironhail Heavy Stubber",
-            "type": "ranged"
-          },
-          {
-            "name": "Storm bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "Twin macro-accelerator cannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Armoured hull",
-            "type": "melee"
-          }
-        ],
-        "slots": [
-          {
-            "name": "Ranged weapon 1",
-            "choices": [
-              {
-                "name": "Twin heavy bolter",
-                "type": "ranged"
-              },
-              {
-                "name": "Twin lascannon",
-                "type": "ranged"
-              }
-            ]
-          }
-        ]
-      }
-    ]
+    }
   },
   "Ballistus Dreadnought": {
     "info": {
@@ -81,63 +86,37 @@
     ]
   },
   "Brutalis Dreadnought": {
-    "info": {
-      "M": "8\"",
-      "T": 10,
-      "SV": 2,
-      "W": 12,
-      "OC": 4
-    },
     "pts": 150,
     "builds": [
       {
-        "name": "Brutalis Fists",
+        "name": "default",
         "fixed": [
           {
-            "name": "Brutalis Bolt Rifles",
+            "name": "Twin Icarus ironhail heavy stubber",
             "type": "ranged"
           },
           {
-            "name": "Brutalis Fists",
-            "type": "melee"
+            "name": "Brutalis bolt rifles",
+            "type": "ranged"
           }
         ],
         "slots": [
           {
-            "name": "Ranged weapon 1",
+            "name": "Melee weapon",
             "choices": [
               {
-                "name": "Twin Icarus ironhail heavy stubber",
-                "type": "ranged"
+                "name": "Brutalis fists",
+                "type": "melee"
               },
               {
-                "name": "Twin heavy bolter",
-                "type": "ranged"
-              },
-              {
-                "name": "Twin multi-melta",
-                "type": "ranged"
+                "name": "Brutalis talons",
+                "type": "melee"
               }
             ]
-          }
-        ]
-      },
-      {
-        "name": "Brutalis Talons",
-        "fixed": [
+          },
           {
-            "name": "Brutalis Talons",
-            "type": "melee"
-          }
-        ],
-        "slots": [
-          {
-            "name": "Ranged weapon 1",
+            "name": "Ranged weapon",
             "choices": [
-              {
-                "name": "Twin Icarus ironhail heavy stubber",
-                "type": "ranged"
-              },
               {
                 "name": "Twin heavy bolter",
                 "type": "ranged"
@@ -150,7 +129,14 @@
           }
         ]
       }
-    ]
+    ],
+    "info": {
+      "M": "8\"",
+      "T": 10,
+      "SV": 2,
+      "W": 12,
+      "OC": 4
+    }
   },
   "Dreadnought": {
     "pts": 135,
@@ -1313,6 +1299,25 @@
           {
             "name": "Armoured Tracks",
             "type": "melee"
+          }
+        ],
+        "slots": []
+      }
+    ]
+  },
+  "Ancient In Terminator Armor": {
+    "pts": 80,
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Twin lightning claws",
+            "type": "melee"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
           }
         ],
         "slots": []
