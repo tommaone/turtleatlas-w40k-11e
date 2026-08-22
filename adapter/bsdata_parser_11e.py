@@ -914,6 +914,7 @@ class BSDataParser11e:
         "Chaos Lord in Terminator Armour",
         "Khorne Lord of Skulls",
         "Lord Discordant on Helstalker",
+        "Helbrute",
     }
 
     def extract_wargear_slots(self, entry: dict) -> dict | None:

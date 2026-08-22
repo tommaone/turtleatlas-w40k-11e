@@ -119,6 +119,39 @@ LD_SLOTS = [
 ]
 LD_DPP_CURATED = 0.0891
 
+# ── Helbrute ─────────────────────────────────────────────────────────────
+# Golden truth: verified against New Recruit wiki (11e) 2026-08-22.
+# Two independent replace-groups: Missile launcher (5) x Multi-melta (7) = 35 combos.
+
+HB_BSNAME = "Helbrute"
+HB_MERGED_NAME = "Helbrute"
+HB_FIXED = [{"name": "Close combat weapon", "type": "melee"}]
+HB_SLOTS = [
+    {
+        "name": "Missile launcher",
+        "choices": [
+            {"name": "Helbrute fist with combi-bolter", "type": "ranged"},
+            {"name": "Helbrute fist with heavy flamer", "type": "ranged"},
+            {"name": "Missile launcher", "type": "ranged"},
+            {"name": "Helbrute hammer", "type": "melee"},
+            {"name": "Power scourge", "type": "melee"},
+        ],
+    },
+    {
+        "name": "Multi-melta",
+        "choices": [
+            {"name": "Multi-melta", "type": "ranged"},
+            {"name": "Twin autocannon", "type": "ranged"},
+            {"name": "Helbrute fist with heavy flamer", "type": "ranged"},
+            {"name": "Helbrute fist with combi-bolter", "type": "ranged"},
+            {"name": "Helbrute plasma cannon", "type": "ranged"},
+            {"name": "Twin heavy bolter", "type": "ranged"},
+            {"name": "Twin lascannon", "type": "ranged"},
+        ],
+    },
+]
+HB_DPP_CURATED = 0.0488
+
 
 @pytest.fixture(scope="module")
 def parser():
@@ -346,3 +379,72 @@ class TestEngineBSDataFallbackLD:
             assert ld["dpp"] == pytest.approx(LD_DPP_CURATED, abs=0.0001)
         finally:
             csm_engine.config.characters = orig_ch
+
+
+# ── Helbrute ─────────────────────────────────────────────────────────────
+
+@pytest.fixture(scope="module")
+def hb_extracted_slots(parser):
+    """Extract wargear slots from BSData for Helbrute."""
+    data = parser.query_faction(FACTION_BSNAME)
+    for u in data["units"]:
+        if u["name"] == HB_BSNAME:
+            return u.get("wargear_slots")
+    pytest.fail(f"{HB_BSNAME} not found in BSData extraction")
+
+
+class TestBSDataExtractionHB:
+    """Parser-level: Helbrute wargear extraction."""
+
+    def test_wargear_slots_present(self, hb_extracted_slots):
+        assert hb_extracted_slots is not None
+
+    def test_fixed_weapons(self, hb_extracted_slots):
+        assert hb_extracted_slots["fixed"] == HB_FIXED
+
+    def test_slot_count(self, hb_extracted_slots):
+        assert len(hb_extracted_slots["slots"]) == 2
+
+    def test_slot_choices(self, hb_extracted_slots):
+        for exp_slot in HB_SLOTS:
+            got_slot = next(
+                s for s in hb_extracted_slots["slots"] if s["name"] == exp_slot["name"]
+            )
+            got_choices = [(c["name"], c["type"]) for c in got_slot["choices"]]
+            exp_choices = [(c["name"], c["type"]) for c in exp_slot["choices"]]
+            assert got_choices == exp_choices
+
+    def test_melee_types_correct(self, hb_extracted_slots):
+        """Hammer and scourge are melee — curated config had them wrong."""
+        ml_slot = next(
+            s
+            for s in hb_extracted_slots["slots"]
+            if s["name"] == "Missile launcher"
+        )
+        by_name = {c["name"]: c["type"] for c in ml_slot["choices"]}
+        assert by_name["Helbrute hammer"] == "melee"
+        assert by_name["Power scourge"] == "melee"
+
+
+class TestEngineBSDataFallbackHB:
+    """Engine-level: Helbrute BSData fallback."""
+
+    def test_curated_dpp(self, csm_engine):
+        result = csm_engine.compute_ranking()
+        hb = next(u for u in result if u["name"] == HB_MERGED_NAME)
+        assert hb["dpp"] == pytest.approx(HB_DPP_CURATED, abs=0.0001)
+
+    def test_bsdata_fallback_matches_dpp(self, csm_engine):
+        """BSData fallback produces same DPP as curated config."""
+        import copy
+
+        orig_wo = copy.deepcopy(csm_engine.config.weapon_options)
+
+        try:
+            csm_engine.config.weapon_options.pop(HB_MERGED_NAME, None)
+
+            result = csm_engine.compute_ranking()
+            hb = next(u for u in result if u["name"] == HB_MERGED_NAME)
+            assert hb["dpp"] == pytest.approx(HB_DPP_CURATED, abs=0.0001)
+        finally:
+            csm_engine.config.weapon_options = orig_wo
