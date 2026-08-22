@@ -233,122 +233,44 @@
     },
     "builds": [
       {
-        "name": "Melee (Dreadfists)",
-        "fixed": [
+        "name": "default",
+        "fixed": [],
+        "slots": [
           {
             "name": "Dreadfists",
-            "type": "melee"
+            "choices": [
+              {
+                "name": "Nemesis greatsword",
+                "type": "melee"
+              },
+              {
+                "name": "Nemesis daemon greathammer",
+                "type": "melee"
+              },
+              {
+                "name": "Dreadfists",
+                "type": "melee"
+              }
+            ]
+          },
+          {
+            "name": "Ranged Weapons",
+            "choices": [
+              {
+                "name": "Gatling psilencer",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy psycannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy incinerator",
+                "type": "ranged"
+              }
+            ]
           }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Greatsword + Psycannon + Incinerator",
-        "fixed": [
-          {
-            "name": "Nemesis greatsword",
-            "type": "melee"
-          },
-          {
-            "name": "Heavy psycannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Heavy incinerator",
-            "type": "ranged"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Greatsword + Psycannon + Psilencer",
-        "fixed": [
-          {
-            "name": "Nemesis greatsword",
-            "type": "melee"
-          },
-          {
-            "name": "Heavy psycannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Gatling psilencer",
-            "type": "ranged"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Greatsword + Incinerator + Psilencer",
-        "fixed": [
-          {
-            "name": "Nemesis greatsword",
-            "type": "melee"
-          },
-          {
-            "name": "Heavy incinerator",
-            "type": "ranged"
-          },
-          {
-            "name": "Gatling psilencer",
-            "type": "ranged"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Daemon hammer + Psycannon + Incinerator",
-        "fixed": [
-          {
-            "name": "Nemesis daemon greathammer",
-            "type": "melee"
-          },
-          {
-            "name": "Heavy psycannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Heavy incinerator",
-            "type": "ranged"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Daemon hammer + Psycannon + Psilencer",
-        "fixed": [
-          {
-            "name": "Nemesis daemon greathammer",
-            "type": "melee"
-          },
-          {
-            "name": "Heavy psycannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Gatling psilencer",
-            "type": "ranged"
-          }
-        ],
-        "slots": []
-      },
-      {
-        "name": "Daemon hammer + Incinerator + Psilencer",
-        "fixed": [
-          {
-            "name": "Nemesis daemon greathammer",
-            "type": "melee"
-          },
-          {
-            "name": "Heavy incinerator",
-            "type": "ranged"
-          },
-          {
-            "name": "Gatling psilencer",
-            "type": "ranged"
-          }
-        ],
-        "slots": []
+        ]
       }
     ],
     "pts_3rd": 210

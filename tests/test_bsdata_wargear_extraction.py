@@ -170,6 +170,35 @@ MF_SLOTS = [
 ]
 MF_DPP_CURATED = 0.0444
 
+# ── Nemesis Dreadknight (Grey Knights — cross-faction proof) ─────────────
+# Golden truth: verified against New Recruit wiki (11e) 2026-08-22.
+# 2 slots: Dreadfists group (3 melee) x Ranged Weapons (3 ranged) = 9 combos.
+
+GK_SLUG = "grey-knights"
+GK_BSNAME = "Imperium - Grey Knights"
+NDK_BSNAME = "Nemesis Dreadknight"
+NDK_MERGED_NAME = "Nemesis Dreadknight"
+NDK_FIXED = []
+NDK_SLOTS = [
+    {
+        "name": "Dreadfists",
+        "choices": [
+            {"name": "Nemesis greatsword", "type": "melee"},
+            {"name": "Nemesis daemon greathammer", "type": "melee"},
+            {"name": "Dreadfists", "type": "melee"},
+        ],
+    },
+    {
+        "name": "Ranged Weapons",
+        "choices": [
+            {"name": "Gatling psilencer", "type": "ranged"},
+            {"name": "Heavy psycannon", "type": "ranged"},
+            {"name": "Heavy incinerator", "type": "ranged"},
+        ],
+    },
+]
+NDK_DPP_CURATED = 0.0465
+
 
 @pytest.fixture(scope="module")
 def parser():
@@ -189,6 +218,11 @@ def extracted_slots(parser):
 @pytest.fixture(scope="module")
 def csm_engine():
     return RankingEngine(FACTION_SLUG)
+
+
+@pytest.fixture(scope="module")
+def gk_engine():
+    return RankingEngine(GK_SLUG)
 
 
 # ── Parser tests ─────────────────────────────────────────────────────────
@@ -522,3 +556,61 @@ class TestEngineBSDataFallbackMF:
             assert mf["dpp"] == pytest.approx(MF_DPP_CURATED, abs=0.0001)
         finally:
             csm_engine.config.weapon_options = orig_wo
+
+
+# ── Nemesis Dreadknight (Grey Knights) ───────────────────────────────────
+
+@pytest.fixture(scope="module")
+def ndk_extracted_slots(parser):
+    """Extract wargear slots from BSData for Nemesis Dreadknight."""
+    data = parser.query_faction(GK_BSNAME)
+    for u in data["units"]:
+        if u["name"] == NDK_BSNAME:
+            return u.get("wargear_slots")
+    pytest.fail(f"{NDK_BSNAME} not found in BSData extraction")
+
+
+class TestBSDataExtractionNDK:
+    """Parser-level: Nemesis Dreadknight extraction (cross-faction)."""
+
+    def test_wargear_slots_present(self, ndk_extracted_slots):
+        assert ndk_extracted_slots is not None
+
+    def test_fixed_weapons(self, ndk_extracted_slots):
+        assert ndk_extracted_slots["fixed"] == NDK_FIXED
+
+    def test_slot_count(self, ndk_extracted_slots):
+        assert len(ndk_extracted_slots["slots"]) == 2
+
+    def test_slot_choices(self, ndk_extracted_slots):
+        for exp_slot in NDK_SLOTS:
+            got_slot = next(
+                s for s in ndk_extracted_slots["slots"] if s["name"] == exp_slot["name"]
+            )
+            got_choices = [(c["name"], c["type"]) for c in got_slot["choices"]]
+            exp_choices = [(c["name"], c["type"]) for c in exp_slot["choices"]]
+            assert got_choices == exp_choices
+
+
+class TestEngineBSDataFallbackNDK:
+    """Engine-level: Nemesis Dreadknight BSData fallback."""
+
+    def test_curated_dpp(self, gk_engine):
+        result = gk_engine.compute_ranking()
+        ndk = next(u for u in result if u["name"] == NDK_MERGED_NAME)
+        assert ndk["dpp"] == pytest.approx(NDK_DPP_CURATED, abs=0.0001)
+
+    def test_bsdata_fallback_matches_dpp(self, gk_engine):
+        """BSData fallback produces same DPP as curated config."""
+        import copy
+
+        orig_wo = copy.deepcopy(gk_engine.config.weapon_options)
+
+        try:
+            gk_engine.config.weapon_options.pop(NDK_MERGED_NAME, None)
+
+            result = gk_engine.compute_ranking()
+            ndk = next(u for u in result if u["name"] == NDK_MERGED_NAME)
+            assert ndk["dpp"] == pytest.approx(NDK_DPP_CURATED, abs=0.0001)
+        finally:
+            gk_engine.config.weapon_options = orig_wo
