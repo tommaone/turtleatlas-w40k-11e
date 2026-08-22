@@ -310,6 +310,14 @@ and recommend detachments/units based on mission and meta.
 2. **`ranged_a` type** — config expects float but can get dict `{}`. Needs validation.
 3. **Weapon name normalization** — mixed apostrophes (U+0027 vs U+2019) between
    config and catalog keys.
+4. **Config `info` blocks missing INV vs merged data (~30 units)** — audit
+   covers wargear only, not info blocks. Found via Chaos Warhound scoring
+   worse than its Imperial twin (missing M + INV in config). CTL fixed
+   (2026-08-22, parity restored). Remaining: Chaos Knights 17 entries with
+   `InSv='5+*'` (asterisk footnote needs source verification — may be
+   army-rule-derived), SM/SW/DW Captains `4+`, Battlewagon/Dark Talon/
+   Helbrute. Do NOT mass-add: footnote'd invulns need verified sources
+   per no-fabricated-modifiers rule.
 
 ---
 
