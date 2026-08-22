@@ -22,8 +22,8 @@ and recommend detachments/units based on mission and meta.
 | Weapon_options on slots | **ALL 30/30 factions** (Wave 3+4, 2026-08-19) |
 | Reroll abilities auto-detected | 24 datasheets across 15 factions |
 | Complex-layer squads | Aeldari, GK, SM, DA, SW, BA, BT, DW, Chaos Daemons, CSM, EC, Orks (11 with alloc/slots) + 9-faction caps sweep (2026-08-15) |
-| BSData audit | **22 findings — ALL blocked on empty BSData stats. 0 actionable** |
-| Last change | Audit grind complete: 209 → 22 findings, all MISSING_CHOICES/SLOT_COUNT/FIXED/COMBO/POINTS_DRIFT resolved (2026-08-22) |
+| BSData audit | **0 findings, 0 guilty units — ALL CLEAN (2026-08-22)** |
+| Last change | NO_CURATED unblocked: 18 configs generated from BSData fallback, 0 audit findings |
 
 ---
 
@@ -177,6 +177,30 @@ and recommend detachments/units based on mission and meta.
     Tesseract Vault, Venomcrawler, Galatus, Pallas, Skorpius Dunerider,
     Bloat-drone variant). Blocked on merged-data profiles — adding configs
     crashes the engine (units unrankable). Revisit when merged data regenerates.
+- **NO_CURATED UNBLOCKED — audit ALL CLEAN (2026-08-22)** — 0 findings:
+  - Diagnosis correction: the "empty stats" units were never a parser gap.
+    Stats always extracted to `merged.profile.stats`; the earlier check read
+    the wrong dict level. Real blocker: no curated config + engine
+    `known_units` gate; earlier crashes came from generated configs missing
+    `info` block or `slots` key.
+  - `scripts/gen_no_curated_configs.py` — fallback generator producing
+    complete entries (pts + info + builds) from BSData wargear_slots +
+    merged profile. Legends/hidden excluded; squad-schema units skipped.
+  - 18 configs generated (Gladiators Lancer/Valiant, Impulsor BT+SM,
+    Repulsor + LRC BT, Contemptor-Galatus, Pallas, Archaeopter
+    Fusilave/Transvector, Skorpius Dunerider, Venomcrawler, Foetid
+    Bloat-drone w/ heavy blight launcher, Necron Obelisk/Tesseract Vault/
+    Night Scythe/Ghost Ark/Canoptek Reanimator). All rank with real DPP;
+    BT Land Raider Crusader DPP parity with SM/DA (0.0383).
+  - Engine fix: builds without a `slots` key fell out of
+    `_resolve_slots_build` → zero damage. Explicit `"slots": []` enforced.
+  - Kommandos / Wartrakk / Invader ATV / Tzaangors: already ranked via
+    squad models-schema configs; audit now skips them as covered.
+  - Legends shortlist: 386 `[Legends]` unit entries catalogued across all
+    faction catalogues (Astra Militarum Library 63, SM 43, Orks 33,
+    Aeldari 30, Astartes Heresy 37, ...). Excluded at all three layers:
+    parser (`include_legends=False`), audit (`[Legends]`/hidden filter),
+    rank time (`config.is_legends()`). None in the blocked set.
 - **Alloc-caps sweep (2026-08-15, Wave 3 prep)** — the 9 alloc-layer factions
   (aeldari/BT/BA/DA/DW/GK/orks/SM/SW) regenerated through the caps mechanism:
   7 FLAT_CAPS entries (Paladin heavy 2, Troupe fusion/neuro 2/2, Thunderwolf
@@ -210,11 +234,6 @@ and recommend detachments/units based on mission and meta.
   have slots schema on characters + weapon_options. Remaining blocker:
   squad composition (alloc pools) on ~14 factions. Once squads are on slots,
   detachment modifiers can be added for any faction.
-- **NO_CURATED empty-stats units (22)** — blocked on merged BSData profiles.
-  These units have wargear structure but no stats (M/T/SV/W/OC) in
-  data/merged/*.json, so the engine cannot rank them and curated configs
-  crash the ranking loop. Fix: regenerate merged data with a parser fix for
-  these entries, then run scripts/audit_curated_vs_bsdata.py to build configs.
 
 ---
 
@@ -311,4 +330,4 @@ and recommend detachments/units based on mission and meta.
 
 ---
 
-*Last updated: 2026-08-22 (audit grind complete — 0 actionable findings)*
+*Last updated: 2026-08-22 (audit ALL CLEAN — 0 findings, NO_CURATED unblocked)*
