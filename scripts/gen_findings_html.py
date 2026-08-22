@@ -86,14 +86,24 @@ INDEX_HEADER = '''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><me
 '''
 
 
-def extract_army_scores(data, top_n=20):
+DECAY = 0.95  # rank-decay: effective roster depth ~1/(1-lambda) = 20 units
+
+
+def extract_army_scores(data, decay=DECAY):
     """Army-level score per mission from build_data output.
 
+    Roster-quality index: weighted mean over ALL ranked datasheets with
+    rank-decay weights (best unit counts most, tail still contributes).
+    Replaces the synthetic 2000pt draft — real lists aren't greedy stacks,
+    role data is too sparse to simulate legal construction, and players
+    field variety rather than only their top sheets. Decay answers each
+    failure mode:
+      - small-roster factions (Chaos Knights ~5 sheets): every sheet counts,
+        no arbitrary top-N cliff
+      - elite-spike flattery: junk tail drags the score down
+      - big-roster bias: weights saturate (sheet #60 ~= zero contribution)
+
     Per unit: best score across target-mix presets (best tool for the job).
-    Army score: mean of the top_n unit scores — represents the faction's
-    best available options without letting roster size dominate.
-    Factions with fewer than top_n ranked units average their whole roster
-    (sample-size caveat when comparing against large factions).
 
     Returns {mission: score} dict (unrounded floats).
     """
@@ -102,10 +112,16 @@ def extract_army_scores(data, top_n=20):
         best = {}
         for preset_units in data['meta'].values():
             for u in preset_units.get(m, []):
-                if u['name'] not in best or u['score'] > best[u['name']]:
-                    best[u['name']] = u['score']
-        top = sorted(best.values(), reverse=True)[:top_n]
-        scores[m] = sum(top) / len(top) if top else 0.0
+                prev = best.get(u['name'])
+                if prev is None or u['score'] > prev[0]:
+                    best[u['name']] = (u['score'], u['pts'])
+        vals = sorted((v[0] for v in best.values()), reverse=True)
+        if not vals:
+            scores[m] = 0.0
+            continue
+        num = sum(s * (decay ** i) for i, s in enumerate(vals))
+        den = sum(decay ** i for i in range(len(vals)))
+        scores[m] = num / den
     return scores
 
 
@@ -161,8 +177,10 @@ def render_tier_section(tiers):
         '<div class="section">\n'
         '  <h2>Army Tier List</h2>\n'
         f'  <p style="color:#8b949e;font-size:0.85em;margin:0 0 10px">'
-        f'Faction strength by disposition — mean of each faction\'s top-20 unit '
-        f'scores. Tiers are percentile-banded per view.</p>\n'
+        f'Roster-quality index per disposition — weighted mean over all ranked '
+        f'datasheets, rank-decayed (best sheets count most, tail still matters; '
+        f'effective depth ~20 units). No detachment/army rules. '
+        f'Tiers are percentile-banded per view.</p>\n'
         f'  <div class="tierbar" id="tierbar">{btns_html}</div>\n'
         '  <div id="tierlist"></div>\n'
         '</div>\n'
