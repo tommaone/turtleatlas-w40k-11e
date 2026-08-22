@@ -1,0 +1,575 @@
+{
+ "_formula": {
+  "overall_index": "rank-decay weighted mean (lambda=0.95) of unit mission scores across Take and Hold, Purge the Foe, Reconnaissance, Priority Assets, Disruption",
+  "unit_score": "engine _mission_score (quad-vector percentile composite)",
+  "not_modeled": [
+   "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+   "statline quality persists across balance patches; rules packages do not",
+   "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+   "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+  ]
+ },
+ "generated": "2026-08-23",
+ "factions": [
+  {
+   "fid": "aeldari",
+   "name": "Aeldari",
+   "overall_index": 68.9,
+   "ceiling": 72.9,
+   "floor": 63.5,
+   "versatility": 90.6,
+   "roster_depth": 74,
+   "best_disposition": "Purge the Foe",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 56,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "dark-angels",
+   "name": "Dark Angels",
+   "overall_index": 68.4,
+   "ceiling": 75.0,
+   "floor": 56.8,
+   "versatility": 81.8,
+   "roster_depth": 98,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 79,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "space-marines",
+   "name": "Space Marines",
+   "overall_index": 68.4,
+   "ceiling": 75.4,
+   "floor": 56.3,
+   "versatility": 80.9,
+   "roster_depth": 101,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 72,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "blood-angels",
+   "name": "Blood Angels",
+   "overall_index": 68.2,
+   "ceiling": 73.8,
+   "floor": 58.9,
+   "versatility": 85.1,
+   "roster_depth": 97,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 59,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "chaos-daemons",
+   "name": "Chaos Daemons",
+   "overall_index": 68.1,
+   "ceiling": 70.0,
+   "floor": 65.1,
+   "versatility": 95.1,
+   "roster_depth": 51,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 15,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "space-wolves",
+   "name": "Space Wolves",
+   "overall_index": 67.4,
+   "ceiling": 73.2,
+   "floor": 56.5,
+   "versatility": 83.3,
+   "roster_depth": 99,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 79,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "black-templars",
+   "name": "Black Templars",
+   "overall_index": 66.6,
+   "ceiling": 72.9,
+   "floor": 55.3,
+   "versatility": 82.4,
+   "roster_depth": 88,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 62,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "deathwatch",
+   "name": "Deathwatch",
+   "overall_index": 66.5,
+   "ceiling": 72.5,
+   "floor": 56.1,
+   "versatility": 83.6,
+   "roster_depth": 87,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 57,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "chaos-space-marines",
+   "name": "Chaos Space Marines",
+   "overall_index": 63.3,
+   "ceiling": 69.0,
+   "floor": 52.9,
+   "versatility": 83.9,
+   "roster_depth": 53,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 53,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "drukhari",
+   "name": "Drukhari",
+   "overall_index": 62.4,
+   "ceiling": 67.0,
+   "floor": 57.0,
+   "versatility": 90.0,
+   "roster_depth": 23,
+   "best_disposition": "Purge the Foe",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 20,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "necrons",
+   "name": "Necrons",
+   "overall_index": 62.1,
+   "ceiling": 66.9,
+   "floor": 53.1,
+   "versatility": 86.2,
+   "roster_depth": 52,
+   "best_disposition": "Purge the Foe",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 26,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "thousand-sons",
+   "name": "Thousand Sons",
+   "overall_index": 62.1,
+   "ceiling": 66.7,
+   "floor": 54.2,
+   "versatility": 87.5,
+   "roster_depth": 34,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 37,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "world-eaters",
+   "name": "World Eaters",
+   "overall_index": 61.8,
+   "ceiling": 66.3,
+   "floor": 54.3,
+   "versatility": 88.0,
+   "roster_depth": 30,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 49,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "orks",
+   "name": "Orks",
+   "overall_index": 61.6,
+   "ceiling": 68.7,
+   "floor": 48.8,
+   "versatility": 80.1,
+   "roster_depth": 58,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 37,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "tyranids",
+   "name": "Tyranids",
+   "overall_index": 61.1,
+   "ceiling": 67.2,
+   "floor": 50.3,
+   "versatility": 83.1,
+   "roster_depth": 52,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 17,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "chaos-knights",
+   "name": "Chaos Knights",
+   "overall_index": 60.7,
+   "ceiling": 68.2,
+   "floor": 49.9,
+   "versatility": 81.7,
+   "roster_depth": 20,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 9,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "tau-empire",
+   "name": "T'au Empire",
+   "overall_index": 60.3,
+   "ceiling": 65.4,
+   "floor": 51.5,
+   "versatility": 86.1,
+   "roster_depth": 41,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 0,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "emperors-children",
+   "name": "Emperor's Children",
+   "overall_index": 60.2,
+   "ceiling": 63.9,
+   "floor": 54.2,
+   "versatility": 90.3,
+   "roster_depth": 23,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 0,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "astra-militarum",
+   "name": "Astra Militarum",
+   "overall_index": 59.5,
+   "ceiling": 66.7,
+   "floor": 46.0,
+   "versatility": 79.3,
+   "roster_depth": 71,
+   "best_disposition": "Take and Hold",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 57,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "imperial-knights",
+   "name": "Imperial Knights",
+   "overall_index": 59.3,
+   "ceiling": 65.3,
+   "floor": 51.4,
+   "versatility": 86.1,
+   "roster_depth": 22,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 9,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "adeptus-custodes",
+   "name": "Adeptus Custodes",
+   "overall_index": 59.2,
+   "ceiling": 63.6,
+   "floor": 50.8,
+   "versatility": 87.2,
+   "roster_depth": 31,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 24,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "adeptus-mechanicus",
+   "name": "Adeptus Mechanicus",
+   "overall_index": 58.4,
+   "ceiling": 64.6,
+   "floor": 46.6,
+   "versatility": 82.0,
+   "roster_depth": 34,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 17,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "death-guard",
+   "name": "Death Guard",
+   "overall_index": 57.4,
+   "ceiling": 63.0,
+   "floor": 47.5,
+   "versatility": 84.5,
+   "roster_depth": 36,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 18,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "genestealer-cults",
+   "name": "Genestealer Cults",
+   "overall_index": 57.2,
+   "ceiling": 62.1,
+   "floor": 48.0,
+   "versatility": 85.9,
+   "roster_depth": 24,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 30,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "grey-knights",
+   "name": "Grey Knights",
+   "overall_index": 57.2,
+   "ceiling": 63.7,
+   "floor": 45.3,
+   "versatility": 81.6,
+   "roster_depth": 26,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 26,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "adepta-sororitas",
+   "name": "Adepta Sororitas",
+   "overall_index": 57.0,
+   "ceiling": 62.1,
+   "floor": 47.5,
+   "versatility": 85.4,
+   "roster_depth": 33,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 46,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "imperial-agents",
+   "name": "Imperial Agents",
+   "overall_index": 55.4,
+   "ceiling": 61.6,
+   "floor": 43.4,
+   "versatility": 81.8,
+   "roster_depth": 29,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 28,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "leagues-of-votann",
+   "name": "Leagues of Votann",
+   "overall_index": 54.9,
+   "ceiling": 60.9,
+   "floor": 43.5,
+   "versatility": 82.6,
+   "roster_depth": 22,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 14,
+   "meta_ceiling": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  }
+ ]
+}
