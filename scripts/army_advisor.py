@@ -136,13 +136,17 @@ def guide(data):
              if x["versatility"] >= sorted(y["versatility"] for y in f)[half]]
 
     lines = [
-        "# Choosing Your Army — practical help so you don't waste money",
+        "# Choosing Your Army — where each faction's strength actually sits",
         "",
         "*Generated 2026-08-23 from engine outputs (rank-decay roster index, "
         "MFM v1.2). Full method + caveats in findings/advisor.json.*",
         "",
+        "> No purchase is safe. This narrows the field — it tells you where "
+        "each faction's strength sits today, not what your local meta will "
+        "do to it next month.",
+        "",
         SIGNALS_DOC,
-        "## Foundation picks (buy with confidence)",
+        "## Foundation picks (strongest long-term signal)",
         "",
     ]
     lines += [f"- **{x['name']}** — overall {x['overall_index']}, versatility "

@@ -1,6 +1,8 @@
-# Choosing Your Army — practical help so you don't waste money
+# Choosing Your Army — where each faction's strength actually sits
 
 *Generated 2026-08-23 from engine outputs (rank-decay roster index, MFM v1.2). Full method + caveats in findings/advisor.json.*
+
+> No purchase is safe. This narrows the field — it tells you where each faction's strength sits today, not what your local meta will do to it next month.
 
 ## Signal definitions (heuristic layer — 🔴 STRATEGY, not engine fact)
 
@@ -16,7 +18,7 @@
   rate recently: underlying quality the meta hasn't re-priced. Highest
   upside, needs patience.
 
-## Foundation picks (buy with confidence)
+## Foundation picks (strongest long-term signal)
 
 - **Aeldari** — overall 68.9, versatility 90.6 (best Purge the Foe)
 - **Chaos Daemons** — overall 68.4, versatility 94.7 (best Purge the Foe)
@@ -39,7 +41,7 @@
 
 ## Value windows (underpriced quality)
 
-- **Drukhari** — overall 62.4, versatile 90.1
+- **Drukhari** — overall 62.4, versatile 90.0
 - **Necrons** — overall 62.2, versatile 86.1
 - **Thousand Sons** — overall 62.0, versatile 87.4
 - **World Eaters** — overall 61.8, versatile 87.8

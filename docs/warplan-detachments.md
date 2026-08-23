@@ -186,7 +186,7 @@ documented xfails. Roadmap updated, findings regenerated, pushed.
    factions that have detachment data in merged YAML (`detachments:` key)
    and known-good squads. Generalist-view byte-stability rule applies:
    compare against the pre-detachment snapshot before commit.
-4. Fill `meta_ceiling` in advisor + regenerate buy guide.
+4. Fill `meta_ceiling` in advisor + regenerate army choice guide.
 
 ### Operational lessons (from sessions that produced bugs)
 
