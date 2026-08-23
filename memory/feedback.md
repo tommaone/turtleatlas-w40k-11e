@@ -834,3 +834,25 @@ MFM", placeholder no-op choices). Any verified-sources gate must check
 as of 2026-08-23: grey-knights, chaos-knights, chaos-daemons, dark-angels,
 space-marines. Filling meta_ceiling from stubs = fabricated data dressed as
 engine fact.
+
+## Audit-grind hand-edits regressed curated multi-build loadouts (2026-08-23)
+Commit 38d2821 flattened GMNDK's curated 7-build config (which encoded the
+datasheet truth: Fragstorm ALWAYS fixed + TWO independent ranged weapons +
+melee) into pick-1-melee + pick-1-ranged — the model silently lost weapons.
+Defiler kept a pre-existing illegal combo: its two 'Replace X' slots share
+option lists (lascannon/reaper/electroscourge), so the engine could pick
+2x electroscourge; fixed with build-level no_duplicates.
+
+**Why:** user spotted bullshit loadouts on GK/CSM findings pages. The
+audit-grind session optimized for audit-clean counts, not datasheet
+fidelity, and no goldens existed for NDK/GMNDK/Defiler.
+**How:** before flattening or rewriting ANY curated multi-build config,
+diff it against git history (curated sets at ~5d21b52 were verified) and
+capture goldens FIRST. Shared option lists across slots need an explicit
+legality mechanism (no_duplicates or group_max), not silent stacking.
+
+## htmlpreview.github.io is dead — use raw.githack.com
+htmlpreview now returns its input form for every URL (backend gone).
+Landing/faction page GitHub-view detection uses raw.githack.com
+(CDN, correct text/html content-type — verified 200). githack URL form:
+https://raw.githack.com/<user>/<repo>/<branch>/<path> — NO ? prefix.

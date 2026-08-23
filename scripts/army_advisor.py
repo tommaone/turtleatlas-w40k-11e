@@ -168,6 +168,56 @@ def guide(data):
     GUIDE_OUT.write_text("\n".join(lines) + "\n")
     print(f"wrote {GUIDE_OUT}")
 
+    # findings/army-choice-guide.html — same content, rendered for the
+    # landing-page link (a raw .md URL is not user-friendly anywhere).
+    import re as _re
+    html = ["<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\">"
+            "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
+            "<title>Choosing Your Army</title><style>"
+            "body{font-family:system-ui,sans-serif;max-width:860px;margin:0 auto;"
+            "padding:30px 20px;background:#0d1117;color:#c9d1d9;line-height:1.6}"
+            "h1{color:#f0f6fc}h2{color:#58a6ff;border-bottom:1px solid #21262d;"
+            "padding-bottom:6px;margin-top:28px}blockquote{border-left:3px solid #bc8cff;"
+            "margin:12px 0;padding:6px 14px;color:#d2a8ff;background:#161b22;border-radius:0 6px 6px 0}"
+            "li{margin:4px 0}strong{color:#f0f6fc}"
+            ".back{font-size:13px;margin-bottom:20px}"
+            ".back a{color:#4fc3f7;text-decoration:none}</style></head><body>"]
+    html.append('<div class="back"><a href="index.html">&larr; All Factions</a></div>')
+    inlist = False
+    for ln in lines:
+        s = ln.strip()
+        if not s:
+            if inlist:
+                html.append("</ul>")
+                inlist = False
+            continue
+        bold = _re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
+        if bold.startswith("# "):
+            html.append(f"<h1>{bold[2:]}</h1>")
+        elif bold.startswith("## "):
+            if inlist:
+                html.append("</ul>")
+                inlist = False
+            html.append(f"<h2>{_re.sub(r'</?strong>', '', bold[3:])}</h2>")
+        elif bold.startswith(">"):
+            html.append(f"<blockquote>{bold.lstrip('> ')}</blockquote>")
+        elif bold.startswith("- "):
+            if not inlist:
+                html.append("<ul>")
+                inlist = True
+            html.append(f"<li>{bold[2:]}</li>")
+        else:
+            if inlist:
+                html.append("</ul>")
+                inlist = False
+            html.append(f"<p>{bold}</p>")
+    if inlist:
+        html.append("</ul>")
+    html.append("</body></html>")
+    guide_html = GUIDE_OUT.parent.parent / "findings" / "army-choice-guide.html"
+    guide_html.write_text("\n".join(html) + "\n", encoding="utf-8")
+    print(f"wrote {guide_html}")
+
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()

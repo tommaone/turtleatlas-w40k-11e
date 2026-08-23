@@ -14,7 +14,7 @@
   .tierbar{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
   .tierbtn{padding:6px 14px;background:#161b22;border:1px solid#30363d;border-radius:6px;color:#c9d1d9;font-size:0.85em;cursor:pointer}
   .tierbtn.active{background:#1f6feb;border-color:#1f6feb;color:#fff}
-  .tierrow{display:flex;align-items:center;gap:10px;padding:8px 12px;background:#161b22;border:1px solid#30363d;border-radius:8px;margin-bottom:6px;text-decoration:none;color:#c9d1d9}
+  .tiergrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}.tiercard{position:relative;display:flex;flex-direction:column;gap:2px;padding:10px 12px 8px 12px;background:#161b22;border:1px solid#30363d;border-radius:8px;text-decoration:none;color:#c9d1d9}.tiercard:hover{border-color:#58a6ff;background:#1c2128}.tc-badge{position:absolute;top:10px;right:10px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:6px;font-weight:700;font-size:0.95em;color:#fff}.tc-rank{font-size:0.7em;color:#6e7681}.tc-name{font-size:0.92em;font-weight:600;color:#e6edf3;padding-right:30px;line-height:1.25}.tc-score{font-size:1.15em;font-weight:700;color:#f0f6fc;margin-top:4px}.tc-units{font-size:0.72em;color:#6e7681}
   .tierrow:hover{border-color:#58a6ff;background:#1c2128;text-decoration:none}
   .tierbadge{flex:0 0 34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:6px;font-weight:700;font-size:1.05em;color:#fff}
   .t-S{background:#d29922}.t-A{background:#3fb950}.t-B{background:#58a6ff}.t-C{background:#bc8cff}.t-D{background:#6e7681}
@@ -22,72 +22,72 @@
   .tierscore{font-size:0.85em;color:#8b949e;white-space:nowrap}
 </style></head><body>
 <h1>Faction Findings</h1>
-<p class="subtitle">DPP rankings for Warhammer 40,000 — 11th Edition. Data-driven, deterministic. No LLM in the loop. <a href="../docs/army-choice-guide.md" style="color:#58a6ff">Choosing Your Army &rarr;</a></p>
+<p class="subtitle" style="margin-bottom:14px">Warhammer 40,000 — 11th Edition. Deterministic DPP rankings. <a data-rel href="army-choice-guide.html" style="color:#58a6ff">Choosing Your Army &rarr;</a></p>
 <div class="section">
   <h2>Army Tier List</h2>
-  <p style="color:#8b949e;font-size:0.85em;margin:0 0 10px">Ranking assumes <b>2000pt matched play</b>. Roster-quality index per disposition — weighted mean over all ranked datasheets, rank-decayed (best sheets count most, tail still matters; effective depth ~20 units). Rules packages are assessed qualitatively per faction in the expert layer (resources/experts/<faction>.md) — band ratings grounded in verified mechanics, not engine numbers. Cross-faction numeric comparison of detachment rules is deliberately not attempted: the engine models only a subset of each package, so such numbers would compare incomparable things. Tiers are percentile-banded per view.</p>
-  <div class="tierbar" id="tierbar"><button class="tierbtn active" onclick="setTierMode(this,'Overall')">Overall</button><button class="tierbtn" onclick="setTierMode(this,'Take and Hold')">Take and Hold</button><button class="tierbtn" onclick="setTierMode(this,'Purge the Foe')">Purge the Foe</button><button class="tierbtn" onclick="setTierMode(this,'Reconnaissance')">Reconnaissance</button><button class="tierbtn" onclick="setTierMode(this,'Priority Assets')">Priority Assets</button><button class="tierbtn" onclick="setTierMode(this,'Disruption')">Disruption</button></div>
-  <div id="tierlist"></div>
+  <p style="color:#8b949e;font-size:0.8em;margin:0 0 10px">2000pt matched play · rank-decay roster index · rules-free. Rules packages are assessed per faction inside each faction page (Key Insights tab) — deliberately not compared numerically here.</p>
+  <div class="tierbar"><button class="tierbtn active" onclick="setTierMode(this,'Overall')">Overall</button><button class="tierbtn" onclick="setTierMode(this,'Take and Hold')">Take and Hold</button><button class="tierbtn" onclick="setTierMode(this,'Purge the Foe')">Purge the Foe</button><button class="tierbtn" onclick="setTierMode(this,'Reconnaissance')">Reconnaissance</button><button class="tierbtn" onclick="setTierMode(this,'Priority Assets')">Priority Assets</button><button class="tierbtn" onclick="setTierMode(this,'Disruption')">Disruption</button></div>
+  <div id="tierlist" class="tiergrid"></div>
 </div>
 <script>
 var TIERS=[{"fid": "adepta-sororitas", "name": "Adepta Sororitas", "n_units": 33, "missions": {"Take and Hold": 60.8, "Purge the Foe": 60.6, "Reconnaissance": 47.5, "Priority Assets": 62.1, "Disruption": 54.1}, "overall": 57.0}, {"fid": "adeptus-custodes", "name": "Adeptus Custodes", "n_units": 31, "missions": {"Take and Hold": 61.9, "Purge the Foe": 62.4, "Reconnaissance": 50.8, "Priority Assets": 63.6, "Disruption": 57.2}, "overall": 59.2}, {"fid": "adeptus-mechanicus", "name": "Adeptus Mechanicus", "n_units": 34, "missions": {"Take and Hold": 61.7, "Purge the Foe": 63.8, "Reconnaissance": 46.6, "Priority Assets": 64.6, "Disruption": 55.3}, "overall": 58.4}, {"fid": "aeldari", "name": "Aeldari", "n_units": 74, "missions": {"Take and Hold": 69.9, "Purge the Foe": 72.9, "Reconnaissance": 63.5, "Priority Assets": 72.1, "Disruption": 66.0}, "overall": 68.9}, {"fid": "astra-militarum", "name": "Astra Militarum", "n_units": 71, "missions": {"Take and Hold": 66.7, "Purge the Foe": 63.7, "Reconnaissance": 46.0, "Priority Assets": 65.7, "Disruption": 55.3}, "overall": 59.5}, {"fid": "black-templars", "name": "Black Templars", "n_units": 88, "missions": {"Take and Hold": 71.8, "Purge the Foe": 70.5, "Reconnaissance": 55.3, "Priority Assets": 72.9, "Disruption": 62.2}, "overall": 66.6}, {"fid": "blood-angels", "name": "Blood Angels", "n_units": 97, "missions": {"Take and Hold": 72.4, "Purge the Foe": 72.1, "Reconnaissance": 58.9, "Priority Assets": 73.8, "Disruption": 63.9}, "overall": 68.2}, {"fid": "chaos-daemons", "name": "Chaos Daemons", "n_units": 51, "missions": {"Take and Hold": 68.7, "Purge the Foe": 70.6, "Reconnaissance": 65.3, "Priority Assets": 70.4, "Disruption": 67.3}, "overall": 68.4, "det": {"missions": {"Take and Hold": 69.9, "Purge the Foe": 73.2, "Reconnaissance": 73.1, "Priority Assets": 71.7, "Disruption": 71.9}, "overall": 72.0, "best": {"Take and Hold": "DAEMONIC INCURSION", "Purge the Foe": "DAEMONIC INCURSION", "Reconnaissance": "DAEMONIC INCURSION", "Priority Assets": "DAEMONIC INCURSION", "Disruption": "DAEMONIC INCURSION"}}}, {"fid": "chaos-knights", "name": "Chaos Knights", "n_units": 20, "missions": {"Take and Hold": 64.5, "Purge the Foe": 62.5, "Reconnaissance": 49.9, "Priority Assets": 68.2, "Disruption": 58.6}, "overall": 60.7, "det": {"missions": {"Take and Hold": 64.5, "Purge the Foe": 62.5, "Reconnaissance": 49.9, "Priority Assets": 68.2, "Disruption": 58.6}, "overall": 60.7, "best": {"Take and Hold": "BASTIONS OF TYRANNY", "Purge the Foe": "BASTIONS OF TYRANNY", "Reconnaissance": "BASTIONS OF TYRANNY", "Priority Assets": "BASTIONS OF TYRANNY", "Disruption": "BASTIONS OF TYRANNY"}}}, {"fid": "chaos-space-marines", "name": "Chaos Space Marines", "n_units": 53, "missions": {"Take and Hold": 67.8, "Purge the Foe": 66.8, "Reconnaissance": 52.9, "Priority Assets": 69.1, "Disruption": 59.9}, "overall": 63.3}, {"fid": "dark-angels", "name": "Dark Angels", "n_units": 98, "missions": {"Take and Hold": 73.5, "Purge the Foe": 72.4, "Reconnaissance": 56.8, "Priority Assets": 75.0, "Disruption": 64.1}, "overall": 68.4, "det": {"missions": {"Take and Hold": 73.5, "Purge the Foe": 72.4, "Reconnaissance": 56.8, "Priority Assets": 75.1, "Disruption": 64.1}, "overall": 68.4, "best": {"Take and Hold": "INNER CIRCLE TASK FORCE", "Purge the Foe": "COMPANY OF HUNTERS", "Reconnaissance": "COMPANY OF HUNTERS", "Priority Assets": "INNER CIRCLE TASK FORCE", "Disruption": "INNER CIRCLE TASK FORCE"}}}, {"fid": "death-guard", "name": "Death Guard", "n_units": 36, "missions": {"Take and Hold": 62.2, "Purge the Foe": 59.6, "Reconnaissance": 47.5, "Priority Assets": 63.0, "Disruption": 54.9}, "overall": 57.4}, {"fid": "deathwatch", "name": "Deathwatch", "n_units": 87, "missions": {"Take and Hold": 71.0, "Purge the Foe": 70.5, "Reconnaissance": 56.1, "Priority Assets": 72.5, "Disruption": 62.5}, "overall": 66.5}, {"fid": "drukhari", "name": "Drukhari", "n_units": 23, "missions": {"Take and Hold": 61.8, "Purge the Foe": 67.0, "Reconnaissance": 57.0, "Priority Assets": 65.4, "Disruption": 60.9}, "overall": 62.4}, {"fid": "emperors-children", "name": "Emperor's Children", "n_units": 23, "missions": {"Take and Hold": 61.0, "Purge the Foe": 63.4, "Reconnaissance": 54.2, "Priority Assets": 63.9, "Disruption": 58.6}, "overall": 60.2}, {"fid": "genestealer-cults", "name": "Genestealer Cults", "n_units": 24, "missions": {"Take and Hold": 59.8, "Purge the Foe": 61.3, "Reconnaissance": 48.0, "Priority Assets": 62.1, "Disruption": 54.9}, "overall": 57.2}, {"fid": "grey-knights", "name": "Grey Knights", "n_units": 26, "missions": {"Take and Hold": 60.5, "Purge the Foe": 62.3, "Reconnaissance": 45.4, "Priority Assets": 63.8, "Disruption": 54.6}, "overall": 57.3, "det": {"missions": {"Take and Hold": 61.2, "Purge the Foe": 64.0, "Reconnaissance": 49.0, "Priority Assets": 64.5, "Disruption": 57.0}, "overall": 59.2, "best": {"Take and Hold": "SANCTIC SPEARHEAD", "Purge the Foe": "SANCTIC SPEARHEAD", "Reconnaissance": "SANCTIC SPEARHEAD", "Priority Assets": "SANCTIC SPEARHEAD", "Disruption": "SANCTIC SPEARHEAD"}}}, {"fid": "imperial-agents", "name": "Imperial Agents", "n_units": 29, "missions": {"Take and Hold": 59.9, "Purge the Foe": 59.7, "Reconnaissance": 43.4, "Priority Assets": 61.6, "Disruption": 52.4}, "overall": 55.4}, {"fid": "imperial-knights", "name": "Imperial Knights", "n_units": 22, "missions": {"Take and Hold": 62.2, "Purge the Foe": 59.6, "Reconnaissance": 51.4, "Priority Assets": 65.3, "Disruption": 58.0}, "overall": 59.3}, {"fid": "leagues-of-votann", "name": "Leagues of Votann", "n_units": 22, "missions": {"Take and Hold": 59.5, "Purge the Foe": 60.2, "Reconnaissance": 43.6, "Priority Assets": 61.7, "Disruption": 52.3}, "overall": 55.5}, {"fid": "necrons", "name": "Necrons", "n_units": 52, "missions": {"Take and Hold": 64.4, "Purge the Foe": 67.1, "Reconnaissance": 53.2, "Priority Assets": 67.0, "Disruption": 59.5}, "overall": 62.2}, {"fid": "orks", "name": "Orks", "n_units": 58, "missions": {"Take and Hold": 66.0, "Purge the Foe": 66.4, "Reconnaissance": 48.8, "Priority Assets": 68.7, "Disruption": 58.1}, "overall": 61.6}, {"fid": "space-marines", "name": "Space Marines", "n_units": 101, "missions": {"Take and Hold": 73.8, "Purge the Foe": 72.5, "Reconnaissance": 56.3, "Priority Assets": 75.4, "Disruption": 63.9}, "overall": 68.4, "det": {"missions": {"Take and Hold": 73.8, "Purge the Foe": 72.5, "Reconnaissance": 56.3, "Priority Assets": 75.4, "Disruption": 63.9}, "overall": 68.4, "best": {"Take and Hold": "1ST COMPANY TASK FORCE", "Purge the Foe": "1ST COMPANY TASK FORCE", "Reconnaissance": "1ST COMPANY TASK FORCE", "Priority Assets": "1ST COMPANY TASK FORCE", "Disruption": "1ST COMPANY TASK FORCE"}}}, {"fid": "space-wolves", "name": "Space Wolves", "n_units": 99, "missions": {"Take and Hold": 72.3, "Purge the Foe": 71.9, "Reconnaissance": 56.5, "Priority Assets": 73.2, "Disruption": 63.0}, "overall": 67.4}, {"fid": "tau-empire", "name": "T'au Empire", "n_units": 41, "missions": {"Take and Hold": 63.3, "Purge the Foe": 64.5, "Reconnaissance": 51.6, "Priority Assets": 65.9, "Disruption": 57.8}, "overall": 60.6}, {"fid": "thousand-sons", "name": "Thousand Sons", "n_units": 34, "missions": {"Take and Hold": 63.6, "Purge the Foe": 65.8, "Reconnaissance": 54.1, "Priority Assets": 66.7, "Disruption": 59.7}, "overall": 62.0}, {"fid": "tyranids", "name": "Tyranids", "n_units": 52, "missions": {"Take and Hold": 65.0, "Purge the Foe": 65.4, "Reconnaissance": 50.3, "Priority Assets": 67.2, "Disruption": 57.6}, "overall": 61.1}, {"fid": "world-eaters", "name": "World Eaters", "n_units": 30, "missions": {"Take and Hold": 64.4, "Purge the Foe": 64.3, "Reconnaissance": 54.2, "Priority Assets": 66.4, "Disruption": 59.6}, "overall": 61.8}];
-var RAW_BASE="https://raw.githubusercontent.com/tommaone/turtleatlas-w40k-11e/main/findings/";function ghFix(){if(window.location.hostname==="github.com"||window.location.href.includes("htmlpreview.github.io")){var els=document.querySelectorAll("a[href$='/findings.html']");for(var i=0;i<els.length;i++){var h=els[i].getAttribute("href");if(h.indexOf("http")!==0)els[i].href="https://htmlpreview.github.io/?"+RAW_BASE+h}}}function setTierMode(btn,mode){document.querySelectorAll(".tierbar .tierbtn").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");renderTiers(mode)}function tierOf(score,sorted){var r=sorted.indexOf(score);var p=r/Math.max(sorted.length-1,1);return p<0.15?"S":p<0.35?"A":p<0.65?"B":p<0.85?"C":"D"}function renderTiers(mode){var key=(mode==="Overall")?null:mode;var rows=[];for(var i=0;i<TIERS.length;i++){var t=TIERS[i];rows.push({fid:t.fid,name:t.name,score:key?t.missions[key]:t.overall});}rows.sort(function(a,b){return b.score-a.score});var sorted=rows.map(function(r){return r.score;});var html="";for(var i=0;i<rows.length;i++){var r=rows[i],t=tierOf(r.score,sorted);html+='<a class="tierrow" href="'+r.fid+'/findings.html"><span class="tierbadge t-'+t+'">'+t+'</span><span class="tiername">'+(i+1)+". "+r.name+'</span><span class="tierscore">'+r.score.toFixed(1)+"</span></a>";}document.getElementById("tierlist").innerHTML=html;ghFix();}renderTiers("Overall");ghFix();</script>
+var RAW_BASE="https://raw.githack.com/tommaone/turtleatlas-w40k-11e/main/findings/";function ghFix(){if(window.location.hostname==="github.com"||window.location.href.includes("raw.githack.com")){var els=document.querySelectorAll("a[data-rel]");for(var i=0;i<els.length;i++){var h=els[i].getAttribute("href");if(h.indexOf("http")!==0)els[i].href=RAW_BASE+h}}}function setTierMode(btn,mode){document.querySelectorAll(".tierbar .tierbtn").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");renderTiers(mode)}function tierOf(score,sorted){var r=sorted.indexOf(score);var p=r/Math.max(sorted.length-1,1);return p<0.15?"S":p<0.35?"A":p<0.65?"B":p<0.85?"C":"D"}function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}function renderTiers(mode){var key=(mode==="Overall")?null:mode;var rows=[];for(var i=0;i<TIERS.length;i++){var t=TIERS[i];rows.push({fid:t.fid,name:t.name,score:key?t.missions[key]:t.overall,n:t.n_units});}rows.sort(function(a,b){return b.score-a.score});var sorted=rows.map(function(r){return r.score;});var html="";for(var i=0;i<rows.length;i++){var r=rows[i],t=tierOf(r.score,sorted),col=t==="S"?"#d29922":t==="A"?"#3fb950":t==="B"?"#58a6ff":t==="C"?"#bc8cff":"#6e7681";html+='<a class="tiercard" data-rel href="'+r.fid+'/findings.html">'+'<span class="tc-badge" style="background:'+col+'">'+t+'</span>'+'<span class="tc-rank">'+(i+1)+'</span>'+'<span class="tc-name">'+esc(r.name)+'</span>'+'<span class="tc-score">'+r.score.toFixed(1)+'</span>'+'<span class="tc-units">'+r.n+' units</span></a>';}document.getElementById("tierlist").innerHTML=html;ghFix()}renderTiers("Overall");ghFix();</script>
 <div class="section">
   <h2>Imperium (14 factions)</h2>
   <div class="grid">
-      <a class="card" href="adepta-sororitas/findings.html">
+      <a class="card" data-rel href="adepta-sororitas/findings.html">
         <span class="fname">Adepta Sororitas</span>
         <span class="fmeta">43 units</span>
       </a>
-      <a class="card" href="adeptus-custodes/findings.html">
+      <a class="card" data-rel href="adeptus-custodes/findings.html">
         <span class="fname">Adeptus Custodes</span>
         <span class="fmeta">40 units</span>
       </a>
-      <a class="card" href="adeptus-mechanicus/findings.html">
+      <a class="card" data-rel href="adeptus-mechanicus/findings.html">
         <span class="fname">Adeptus Mechanicus</span>
         <span class="fmeta">47 units</span>
       </a>
-      <a class="card" href="astra-militarum/findings.html">
+      <a class="card" data-rel href="astra-militarum/findings.html">
         <span class="fname">Astra Militarum</span>
         <span class="fmeta">88 units</span>
       </a>
-      <a class="card" href="black-templars/findings.html">
+      <a class="card" data-rel href="black-templars/findings.html">
         <span class="fname">Black Templars</span>
         <span class="fmeta">104 units</span>
       </a>
-      <a class="card" href="blood-angels/findings.html">
+      <a class="card" data-rel href="blood-angels/findings.html">
         <span class="fname">Blood Angels</span>
         <span class="fmeta">115 units</span>
       </a>
-      <a class="card" href="dark-angels/findings.html">
+      <a class="card" data-rel href="dark-angels/findings.html">
         <span class="fname">Dark Angels</span>
         <span class="fmeta">138 units</span>
       </a>
-      <a class="card" href="deathwatch/findings.html">
+      <a class="card" data-rel href="deathwatch/findings.html">
         <span class="fname">Deathwatch</span>
         <span class="fmeta">97 units</span>
       </a>
-      <a class="card" href="grey-knights/findings.html">
+      <a class="card" data-rel href="grey-knights/findings.html">
         <span class="fname">Grey Knights</span>
         <span class="fmeta">39 units</span>
       </a>
-      <a class="card" href="imperial-agents/findings.html">
+      <a class="card" data-rel href="imperial-agents/findings.html">
         <span class="fname">Imperial Agents</span>
         <span class="fmeta">37 units</span>
       </a>
-      <a class="card" href="imperial-knights/findings.html">
+      <a class="card" data-rel href="imperial-knights/findings.html">
         <span class="fname">Imperial Knights</span>
         <span class="fmeta">44 units</span>
       </a>
-      <a class="card" href="space-marines/findings.html">
+      <a class="card" data-rel href="space-marines/findings.html">
         <span class="fname">Space Marines</span>
         <span class="fmeta">137 units</span>
       </a>
-      <a class="card" href="space-wolves/findings.html">
+      <a class="card" data-rel href="space-wolves/findings.html">
         <span class="fname">Space Wolves</span>
         <span class="fmeta">116 units</span>
       </a>
-      <a class="card" href="titan-legions/findings.html">
+      <a class="card" data-rel href="titan-legions/findings.html">
         <span class="fname">Titan Legions</span>
         <span class="fmeta">2 units</span>
       </a>
@@ -96,35 +96,35 @@ var RAW_BASE="https://raw.githubusercontent.com/tommaone/turtleatlas-w40k-11e/ma
 <div class="section">
   <h2>Chaos (8 factions)</h2>
   <div class="grid">
-      <a class="card" href="chaos-daemons/findings.html">
+      <a class="card" data-rel href="chaos-daemons/findings.html">
         <span class="fname">Chaos Daemons</span>
         <span class="fmeta">60 units</span>
       </a>
-      <a class="card" href="chaos-knights/findings.html">
+      <a class="card" data-rel href="chaos-knights/findings.html">
         <span class="fname">Chaos Knights</span>
         <span class="fmeta">39 units</span>
       </a>
-      <a class="card" href="chaos-space-marines/findings.html">
+      <a class="card" data-rel href="chaos-space-marines/findings.html">
         <span class="fname">Chaos Space Marines</span>
         <span class="fmeta">81 units</span>
       </a>
-      <a class="card" href="chaos-titan-legions/findings.html">
+      <a class="card" data-rel href="chaos-titan-legions/findings.html">
         <span class="fname">Chaos Titan Legions</span>
         <span class="fmeta">1 units</span>
       </a>
-      <a class="card" href="death-guard/findings.html">
+      <a class="card" data-rel href="death-guard/findings.html">
         <span class="fname">Death Guard</span>
         <span class="fmeta">49 units</span>
       </a>
-      <a class="card" href="emperors-children/findings.html">
+      <a class="card" data-rel href="emperors-children/findings.html">
         <span class="fname">Emperor's Children</span>
         <span class="fmeta">38 units</span>
       </a>
-      <a class="card" href="thousand-sons/findings.html">
+      <a class="card" data-rel href="thousand-sons/findings.html">
         <span class="fname">Thousand Sons</span>
         <span class="fmeta">47 units</span>
       </a>
-      <a class="card" href="world-eaters/findings.html">
+      <a class="card" data-rel href="world-eaters/findings.html">
         <span class="fname">World Eaters</span>
         <span class="fmeta">42 units</span>
       </a>
@@ -133,35 +133,35 @@ var RAW_BASE="https://raw.githubusercontent.com/tommaone/turtleatlas-w40k-11e/ma
 <div class="section">
   <h2>Xenos (8 factions)</h2>
   <div class="grid">
-      <a class="card" href="aeldari/findings.html">
+      <a class="card" data-rel href="aeldari/findings.html">
         <span class="fname">Aeldari</span>
         <span class="fmeta">97 units</span>
       </a>
-      <a class="card" href="drukhari/findings.html">
+      <a class="card" data-rel href="drukhari/findings.html">
         <span class="fname">Drukhari</span>
         <span class="fmeta">32 units</span>
       </a>
-      <a class="card" href="genestealer-cults/findings.html">
+      <a class="card" data-rel href="genestealer-cults/findings.html">
         <span class="fname">Genestealer Cults</span>
         <span class="fmeta">35 units</span>
       </a>
-      <a class="card" href="leagues-of-votann/findings.html">
+      <a class="card" data-rel href="leagues-of-votann/findings.html">
         <span class="fname">Leagues of Votann</span>
         <span class="fmeta">34 units</span>
       </a>
-      <a class="card" href="necrons/findings.html">
+      <a class="card" data-rel href="necrons/findings.html">
         <span class="fname">Necrons</span>
         <span class="fmeta">66 units</span>
       </a>
-      <a class="card" href="orks/findings.html">
+      <a class="card" data-rel href="orks/findings.html">
         <span class="fname">Orks</span>
         <span class="fmeta">74 units</span>
       </a>
-      <a class="card" href="tau-empire/findings.html">
+      <a class="card" data-rel href="tau-empire/findings.html">
         <span class="fname">T'au Empire</span>
         <span class="fmeta">56 units</span>
       </a>
-      <a class="card" href="tyranids/findings.html">
+      <a class="card" data-rel href="tyranids/findings.html">
         <span class="fname">Tyranids</span>
         <span class="fmeta">63 units</span>
       </a>

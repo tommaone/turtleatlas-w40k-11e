@@ -74,7 +74,7 @@ INDEX_HEADER = '''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><me
   .tierbar{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
   .tierbtn{padding:6px 14px;background:#161b22;border:1px solid#30363d;border-radius:6px;color:#c9d1d9;font-size:0.85em;cursor:pointer}
   .tierbtn.active{background:#1f6feb;border-color:#1f6feb;color:#fff}
-  .tierrow{display:flex;align-items:center;gap:10px;padding:8px 12px;background:#161b22;border:1px solid#30363d;border-radius:8px;margin-bottom:6px;text-decoration:none;color:#c9d1d9}
+  .tiergrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}.tiercard{position:relative;display:flex;flex-direction:column;gap:2px;padding:10px 12px 8px 12px;background:#161b22;border:1px solid#30363d;border-radius:8px;text-decoration:none;color:#c9d1d9}.tiercard:hover{border-color:#58a6ff;background:#1c2128}.tc-badge{position:absolute;top:10px;right:10px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:6px;font-weight:700;font-size:0.95em;color:#fff}.tc-rank{font-size:0.7em;color:#6e7681}.tc-name{font-size:0.92em;font-weight:600;color:#e6edf3;padding-right:30px;line-height:1.25}.tc-score{font-size:1.15em;font-weight:700;color:#f0f6fc;margin-top:4px}.tc-units{font-size:0.72em;color:#6e7681}
   .tierrow:hover{border-color:#58a6ff;background:#1c2128;text-decoration:none}
   .tierbadge{flex:0 0 34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:6px;font-weight:700;font-size:1.05em;color:#fff}
   .t-S{background:#d29922}.t-A{background:#3fb950}.t-B{background:#58a6ff}.t-C{background:#bc8cff}.t-D{background:#6e7681}
@@ -82,7 +82,7 @@ INDEX_HEADER = '''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><me
   .tierscore{font-size:0.85em;color:#8b949e;white-space:nowrap}
 </style></head><body>
 <h1>Faction Findings</h1>
-<p class="subtitle">DPP rankings for Warhammer 40,000 — 11th Edition. Data-driven, deterministic. No LLM in the loop. <a href="../docs/army-choice-guide.md" style="color:#58a6ff">Choosing Your Army &rarr;</a></p>
+<p class="subtitle" style="margin-bottom:14px">Warhammer 40,000 \u2014 11th Edition. Deterministic DPP rankings. <a data-rel href="army-choice-guide.html" style="color:#58a6ff">Choosing Your Army &rarr;</a></p>
 '''
 
 
@@ -212,15 +212,17 @@ def _tier_of(score, ranked_scores):
 
 
 INDEX_SCRIPT = (
-    'var RAW_BASE="https://raw.githubusercontent.com/tommaone/turtleatlas-w40k-11e/main/findings/";'
+    'var RAW_BASE="https://raw.githack.com/tommaone/turtleatlas-w40k-11e/main/findings/";'
 
-    'function ghFix(){if(window.location.hostname==="github.com"||window.location.href.includes("htmlpreview.github.io")){var els=document.querySelectorAll("a[href$=\'/findings.html\']");for(var i=0;i<els.length;i++){var h=els[i].getAttribute("href");if(h.indexOf("http")!==0)els[i].href="https://htmlpreview.github.io/?"+RAW_BASE+h}}}'
+    'function ghFix(){if(window.location.hostname==="github.com"||window.location.href.includes("raw.githack.com")){var els=document.querySelectorAll("a[data-rel]");for(var i=0;i<els.length;i++){var h=els[i].getAttribute("href");if(h.indexOf("http")!==0)els[i].href=RAW_BASE+h}}}'
 
     'function setTierMode(btn,mode){document.querySelectorAll(".tierbar .tierbtn").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");renderTiers(mode)}'
 
     'function tierOf(score,sorted){var r=sorted.indexOf(score);var p=r/Math.max(sorted.length-1,1);return p<0.15?"S":p<0.35?"A":p<0.65?"B":p<0.85?"C":"D"}'
 
-    'function renderTiers(mode){var key=(mode==="Overall")?null:mode;var rows=[];for(var i=0;i<TIERS.length;i++){var t=TIERS[i];rows.push({fid:t.fid,name:t.name,score:key?t.missions[key]:t.overall});}rows.sort(function(a,b){return b.score-a.score});var sorted=rows.map(function(r){return r.score;});var html="";for(var i=0;i<rows.length;i++){var r=rows[i],t=tierOf(r.score,sorted);html+=\'<a class="tierrow" href="\'+r.fid+\'/findings.html"><span class="tierbadge t-\'+t+\'">\'+t+\'</span><span class="tiername">\'+(i+1)+". "+r.name+\'</span><span class="tierscore">\'+r.score.toFixed(1)+"</span></a>";}document.getElementById("tierlist").innerHTML=html;ghFix();}'
+    'function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}'
+
+    'function renderTiers(mode){var key=(mode==="Overall")?null:mode;var rows=[];for(var i=0;i<TIERS.length;i++){var t=TIERS[i];rows.push({fid:t.fid,name:t.name,score:key?t.missions[key]:t.overall,n:t.n_units});}rows.sort(function(a,b){return b.score-a.score});var sorted=rows.map(function(r){return r.score;});var html="";for(var i=0;i<rows.length;i++){var r=rows[i],t=tierOf(r.score,sorted),col=t==="S"?"#d29922":t==="A"?"#3fb950":t==="B"?"#58a6ff":t==="C"?"#bc8cff":"#6e7681";html+=\'<a class="tiercard" data-rel href="\'+r.fid+\'/findings.html">\'+\'<span class="tc-badge" style="background:\'+col+\'">\'+t+\'</span>\'+\'<span class="tc-rank">\'+(i+1)+\'</span>\'+\'<span class="tc-name">\'+esc(r.name)+\'</span>\'+\'<span class="tc-score">\'+r.score.toFixed(1)+\'</span>\'+\'<span class="tc-units">\'+r.n+\' units</span></a>\';}document.getElementById("tierlist").innerHTML=html;ghFix()}'
 
     'renderTiers("Overall");ghFix();'
 
@@ -228,65 +230,7 @@ INDEX_SCRIPT = (
 
 
 def render_tier_section(tiers):
-    """Landing-page army tier list with disposition filter (client-side)."""
-    import json as _json
-    entries = sorted(tiers.values(), key=lambda t: -t['overall'])
-    payload = [
-        {'fid': fid, **t}
-        for fid, t in tiers.items()
-    ]
-    data_js = _json.dumps(payload, ensure_ascii=False)
-
-    buttons = ['Overall'] + MISSIONS
-    btns_html = ''.join(
-        f'<button class="tierbtn{" active" if i == 0 else ""}" '
-        f'onclick="setTierMode(this,\'{b}\')">{b}</button>'
-        for i, b in enumerate(buttons)
-    )
-    # Detachment-aware view toggle — only rendered when at least one faction
-    # carries engine-computed detachment scores (war plan P3 dual view).
-    has_det = any('det' in t for t in tiers.values())
-
-    det_note = (
-        'Rules packages are assessed qualitatively per faction in the expert '
-        'layer (resources/experts/<faction>.md) — band ratings grounded in '
-        'verified mechanics, not engine numbers. Cross-faction numeric '
-        'comparison of detachment rules is deliberately not attempted: the '
-        'engine models only a subset of each package, so such numbers would '
-        'compare incomparable things.'
-    )
-
-def render_tier_section(tiers):
-    """Landing-page army tier list with disposition filter (client-side)."""
-    import json as _json
-    entries = sorted(tiers.values(), key=lambda t: -t['overall'])
-    payload = [
-        {'fid': fid, **t}
-        for fid, t in tiers.items()
-    ]
-    data_js = _json.dumps(payload, ensure_ascii=False)
-
-    buttons = ['Overall'] + MISSIONS
-    btns_html = ''.join(
-        f'<button class="tierbtn{" active" if i == 0 else ""}" '
-        f'onclick="setTierMode(this,\'{b}\')">{b}</button>'
-        for i, b in enumerate(buttons)
-    )
-    # Detachment-aware view toggle — only rendered when at least one faction
-    # carries engine-computed detachment scores (war plan P3 dual view).
-    has_det = any('det' in t for t in tiers.values())
-
-    det_note = (
-        'Rules packages are assessed qualitatively per faction in the expert '
-        'layer (resources/experts/<faction>.md) — band ratings grounded in '
-        'verified mechanics, not engine numbers. Cross-faction numeric '
-        'comparison of detachment rules is deliberately not attempted: the '
-        'engine models only a subset of each package, so such numbers would '
-        'compare incomparable things.'
-    )
-
-def render_tier_section(tiers):
-    """Landing-page army tier list with disposition filter (client-side)."""
+    """Landing-page army tier list — dense grid, top of page."""
     import json as _json
     payload = [{'fid': fid, **t} for fid, t in tiers.items()]
     data_js = _json.dumps(payload, ensure_ascii=False)
@@ -297,25 +241,15 @@ def render_tier_section(tiers):
         f'onclick="setTierMode(this,\'{b}\')">{b}</button>'
         for i, b in enumerate(buttons)
     )
-    det_note = (
-        'Rules packages are assessed qualitatively per faction in the expert '
-        'layer (resources/experts/<faction>.md) — band ratings grounded in '
-        'verified mechanics, not engine numbers. Cross-faction numeric '
-        'comparison of detachment rules is deliberately not attempted: the '
-        'engine models only a subset of each package, so such numbers would '
-        'compare incomparable things.'
-    )
     return (
         '<div class="section">\n'
         '  <h2>Army Tier List</h2>\n'
-        f'  <p style="color:#8b949e;font-size:0.85em;margin:0 0 10px">'
-        f'Ranking assumes <b>2000pt matched play</b>. '
-        f'Roster-quality index per disposition — weighted mean over all ranked '
-        f'datasheets, rank-decayed (best sheets count most, tail still matters; '
-        f'effective depth ~20 units). {det_note} '
-        f'Tiers are percentile-banded per view.</p>\n'
-        f'  <div class="tierbar" id="tierbar">{btns_html}</div>\n'
-        '  <div id="tierlist"></div>\n'
+        f'  <p style="color:#8b949e;font-size:0.8em;margin:0 0 10px">'
+        f'2000pt matched play · rank-decay roster index · rules-free. '
+        f'Rules packages are assessed per faction inside each faction page '
+        f'(Key Insights tab) \u2014 deliberately not compared numerically here.</p>\n'
+        f'  <div class="tierbar">{btns_html}</div>\n'
+        '  <div id="tierlist" class="tiergrid"></div>\n'
         '</div>\n'
         '<script>\n'
         f'var TIERS={data_js};\n'
@@ -357,7 +291,7 @@ def gen_index(tiers=None) -> int:
                 print(f'WARNING: {fid} has no findings.html — card skipped')
                 continue
             cards.append(
-                f'      <a class="card" href="{fid}/findings.html">\n'
+                f'      <a class="card" data-rel href="{fid}/findings.html">\n'
                 f'        <span class="fname">{FACTIONS[fid]}</span>\n'
                 f'        <span class="fmeta">{counts[fid]} units</span>\n'
                 f'      </a>'
@@ -719,9 +653,9 @@ const EXPERT={expert_json};
 const WEIGHTS={weights_json};
 const FACTORS={factors_json};
 (function(){{
-  if(window.location.href.includes('htmlpreview.github.io')){{
+  if(window.location.href.includes('raw.githack.com')){{
     var bl=document.getElementById('back-link');
-    if(bl)bl.href='https://htmlpreview.github.io/?https://raw.githubusercontent.com/tommaone/turtleatlas-w40k-11e/main/findings/index.html';
+    if(bl)bl.href='https://raw.githack.com/tommaone/turtleatlas-w40k-11e/main/findings/index.html';
   }}
 }})();
 
@@ -731,7 +665,7 @@ function rankClass(r){{return r===1?'rank rank-1':r===2?'rank rank-2':r===3?'ran
 function bar(pct,cls){{return '<div class="bar-bg"><div class="bar-fill '+cls+'" style="width:'+pct+'%"></div><div class="bar-label">'+pct+'%</div></div>'}}
 function contrib(v){{return v===0?'<span class="contrib contrib-zero">--</span>':'<span class="contrib contrib-pos">+'+v+'</span>'}}
 function ldPopup(u){{if(!u.wd&&!u.ld)return'';var h='<div class="ld-popup">';h+='<h4>'+u.name+'</h4>';if(u.ld)h+='<div style="margin-bottom:6px;color:#eceff1;font-size:11px">'+u.ld.replace(/\\[best of [^\\]]+\\]/g,'')+'</div>';if(u.wd&&u.wd.length){{u.wd.forEach(function(w){{var cnt=w.count||1;var cntStr=cnt>1?'<span class="ld-count">'+cnt+'×</span>':'';h+='<div class="ld-weapon"><span class="ld-wslot">'+w.slot+'</span><span class="ld-wname">'+cntStr+w.name+'</span><span class="ld-wstats">A'+w.attacks+' '+w.skill+' S'+w.strength+' AP'+w.ap+' D'+w.damage+'</span>';if(w.abilities&&w.abilities.length)h+='<span class="ld-wvariant">'+w.abilities.join(', ')+'</span>';if(w.variants&&w.variants.length){{h+='<div style="margin-left:56px;margin-top:2px">';w.variants.forEach(function(v){{h+='<span class="ld-wvariant">'+v.name+': A'+v.attacks+' '+v.skill+' S'+v.strength+' AP'+v.ap+' D'+v.damage+'</span> '}});h+='</div>'}}h+='</div>'}})}}h+='<div class="ld-mix">DPP computed vs current target mix</div>';h+='</div>';return h}}
-var _ldHideTimer=null;
+
 function _ldPosPopup(el){{var popup=el.querySelector('.ld-popup');if(!popup)return;popup.style.display='block';var rect=el.getBoundingClientRect();var pH=popup.offsetHeight||200;var pW=popup.offsetWidth||420;var vw=window.innerWidth;var vh=window.innerHeight;var left=Math.min(Math.max(10,rect.left),vw-pW-10);if(rect.bottom+pH+10>vh)popup.style.top=Math.max(10,rect.top-pH-4)+'px';else popup.style.top=rect.bottom+4+'px';popup.style.left=left+'px'}}
 function _ldHidePopup(el){{var popup=el.querySelector('.ld-popup');if(popup){{popup.style.display='none';popup.style.left='';popup.style.top=''}}}}
 function toggleLd(el){{var wasOpen=el.classList.contains('open');document.querySelectorAll('.ld-cell.open').forEach(function(c){{c.classList.remove('open');_ldHidePopup(c)}});if(!wasOpen){{el.classList.add('open');_ldPosPopup(el)}}}}
@@ -744,10 +678,11 @@ function renderBanner(){{var b=document.getElementById('preset-banner'),opts=DAT
 function setMeta(slug){{ACTIVE=slug;renderBanner();renderMissions();renderTop10();renderInsights()}}
 function renderMissions(){{var c=document.getElementById('missions'),html='';var meta=ACTIVE===''?DATA.meta_info[0].slug:ACTIVE;for(var mission in DATA.meta[meta]){{var units=DATA.meta[meta][mission],w=WEIGHTS[mission],f=FACTORS[mission]||{{}},mid=mission.replace(/[^a-z]/gi,'');var factorHtml='';if(f.playstyle)factorHtml+='<div class="mission-playstyle">'+f.playstyle+'</div>';if(f.factors)factorHtml+='<ul class="factor-list">'+f.factors.map(function(x){{return '<li>'+x+'</li>'}}).join('')+'</ul>';html+='<div class="mission-card"><div class="mission-header"><div class="mission-name">'+mission+' <span style="font-size:13px;color:#78909c">('+units.length+' units)</span></div><div class="mission-weights"><span class="weight w-dpp">DPP '+w.dps+'%</span><span class="weight w-surv">SURV '+w.surv+'%</span><span class="weight w-obj">OBJ '+w.obj+'%</span><span class="weight w-mob">MOB '+w.mob+'%</span></div></div>'+(factorHtml?'<details class="mission-factors"><summary>How this disposition scores ▾</summary>'+factorHtml+'</details>':'')+'<div class="search-bar"><input id="search-'+mid+'" type="text" placeholder="Search units..." oninput="filterMission(\\''+mid+'\\')"><span class="count" id="count-'+mid+'">'+units.length+' / '+units.length+' units</span></div><div class="table-scroll"><table id="table-'+mid+'"><tr><th>#</th><th>Unit</th><th>Pts</th><th>Score</th><th>DPP</th><th class="bar-cell"></th><th>SURV</th><th class="bar-cell"></th><th>OBJ</th><th class="bar-cell"></th><th>MOB</th><th class="bar-cell"></th><th>Tags</th><th>Profile</th></tr>';units.forEach(function(u,i){{html+=renderRow(u,i)}});html+='</table></div></div>'}}c.innerHTML=html}}
 function renderTop10(){{var c=document.getElementById('top10'),unitData={{}};var meta=ACTIVE===''?DATA.meta_info[0].slug:ACTIVE;for(var mission in DATA.meta[meta]){{var units=DATA.meta[meta][mission];for(var i=0;i<units.length;i++){{var u=units[i];if(!unitData[u.name])unitData[u.name]={{name:u.name,pts:u.pts,ds:u.ds,fly:u.fly,inv:u.inv,fnp:u.fnp,cfnp:u.cfnp,cfnp_type:u.cfnp_type,oc_boost:u.oc_boost,t:u.t,w:u.w,oc:u.oc,missions:{{}}}};unitData[u.name].missions[mission]={{score:u.score,rank:i+1}}}}}}for(var k in unitData){{var u=unitData[k],scores=Object.values(u.missions).map(function(m){{return m.score}});u.avgScore=Math.round(scores.reduce(function(a,b){{return a+b}},0)/scores.length*10)/10}}var sorted=Object.values(unitData).sort(function(a,b){{return b.avgScore-a.avgScore}}).slice(0,20);var html='<h2>Top 20 Units (Avg Score)</h2>';sorted.forEach(function(u,idx){{var badges=Object.entries(u.missions).sort(function(a,b){{return b[1].score-a[1].score}}).map(function(kv){{var k=kv[0],v=kv[1];return '<span class="mission-badge '+(v.rank===1?'top1':v.rank<=3?'top3':'top5')+'">#'+v.rank+' '+k+' ('+v.score+')</span>'}}).join(' ');var bc=['#ffd700','#c0c0c0','#cd7f32'];html+='<div class="insight-card" style="border-left-color:'+(idx<3?bc[idx]:'#4fc3f7')+'"><div class="insight-title" style="display:flex;justify-content:space-between"><span>#'+(idx+1)+' '+u.name+'</span><span class="pts">'+u.pts+'pts · avg '+u.avgScore+'</span></div><div style="margin:6px 0">'+(u.ds?'<span class="tag tag-ds">DS</span>':'')+(u.fly?'<span class="tag tag-fly">FLY</span>':'')+(u.inv?'<span class="tag tag-inv">INV '+u.inv+'</span>':'')+(u.fnp?'<span class="tag tag-fnp">FNP '+u.fnp+'</span>':'')+(u.cfnp?'<span class="tag tag-cfnp">CFNP '+u.cfnp+'+ vs '+u.cfnp_type+'</span>':'')+(u.oc_boost?'<span class="tag tag-ocboost">OC+'+u.oc_boost+'/banner</span>':'')+'<span style="font-size:11px;color:#78909c;margin-left:8px">T'+u.t+' W'+u.w+' OC'+u.oc+'</span></div><div>'+badges+'</div></div>'}});c.innerHTML=html}}
-function renderInsights(){{var c=document.getElementById('insights'),html='<h2>Key Insights</h2>';if(EXPERT){{html+='<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #bc8cff;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:11px;color:#8b949e"><b style="color:#bc8cff">Expert assessment</b> — interpretation layer (rules packages are NOT engine numbers). Ratings are band-scale judgement grounded in verified 11e mechanics; DPP/scores below remain generalist and rules-free.</div>';if(EXPERT.play_pattern)html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">How this army plays</div><div class="insight-text">'+EXPERT.play_pattern+'</div></div>';if(EXPERT.army_rule)html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">Army rule</div><div class="insight-text">'+EXPERT.army_rule.replace(/\\n/g,'<br>')+'</div></div>';if(EXPERT.disposition_fit&&EXPERT.disposition_fit.length){{html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">Disposition fit (expert verdict)</div><table style="width:100%;font-size:11px;border-collapse:collapse;margin-top:6px">';EXPERT.disposition_fit.forEach(function(r){{var col=r.fit==="Strong"?"#3fb950":r.fit==="Moderate"?"#58a6ff":r.fit==="Situational"?"#d29922":"#6e7681";html+='<tr><td style="padding:3px 6px;color:#c5cdd9;white-space:nowrap">'+r.mission+'</td><td style="padding:3px 6px;color:'+col+';font-weight:700;white-space:nowrap">'+r.fit+'</td><td style="padding:3px 6px;color:#8b949e">'+r.why+'</td></tr>'}});html+='</table></div>'}}if(EXPERT.detachments&&EXPERT.detachments.length){{var order={{Strong:0,Moderate:1,Situational:2,Weak:3,Unrated:4}};var dets=EXPERT.detachments.slice().sort(function(a,b){{return (order[a.rating]||9)-(order[b.rating]||9)||a.dp-b.dp}});html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">Detachments (best first, expert rating)</div>';dets.slice(0,8).forEach(function(d){{var col=d.rating==="Strong"?"#3fb950":d.rating==="Moderate"?"#58a6ff":d.rating==="Situational"?"#d29922":"#6e7681";html+='<div style="display:flex;gap:8px;padding:3px 0;font-size:11px;flex-wrap:wrap"><span style="color:'+col+';font-weight:700;min-width:86px">'+d.rating+'</span><span style="color:#c5cdd9">'+d.name+'</span><span style="color:#78909c">'+d.dp+'DP → '+d.objective+'</span></div>'}});html+='</div>'}}}}var meta=ACTIVE===''?DATA.meta_info[0].slug:ACTIVE;for(var mission in DATA.meta[meta]){{var units=DATA.meta[meta][mission];if(units.length>0){{var u=units[0];html+='<div class="insight-card"><div class="insight-title">#1 in '+mission+': '+u.name+'</div><div class="insight-text">'+u.score+' score · '+u.pts+'pts · '+u.dpp+' DPP · T'+u.t+' W'+u.w+(u.inv?' INV'+u.inv:'')+(u.fnp?' FNP'+u.fnp:'')+(u.cfnp?' CFNP'+u.cfnp+'+'+u.cfnp_type:'')+(u.oc_boost?' OC+'+u.oc_boost+'/banner':'')+(u.ds?' DS':'')+(u.fly?' FLY':'')+' OC'+u.oc+'</div></div>'}}}}c.innerHTML=html}}
+function renderInsights(){{var c=document.getElementById('insights'),html='<h2>Key Insights</h2>';if(EXPERT){{html+='<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #bc8cff;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:11px;color:#8b949e"><b style="color:#bc8cff">Expert assessment</b> — interpretation layer (rules packages are NOT engine numbers). Ratings are band-scale judgement grounded in verified 11e mechanics; DPP/scores below remain generalist and rules-free.</div>';if(EXPERT.play_pattern)html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">How this army plays</div><div class="insight-text">'+EXPERT.play_pattern+'</div></div>';if(EXPERT.army_rule)html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">Army rule</div><div class="insight-text">'+EXPERT.army_rule.replace(/\\n/g,'<br>')+'</div></div>';if(EXPERT.disposition_fit&&EXPERT.disposition_fit.length){{html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">Disposition fit (expert verdict)</div><table style="width:100%;font-size:11px;border-collapse:collapse;margin-top:6px">';EXPERT.disposition_fit.forEach(function(r){{var col=r.fit==="Strong"?"#3fb950":r.fit==="Moderate"?"#58a6ff":r.fit==="Situational"?"#d29922":"#6e7681";html+='<tr><td style="padding:3px 6px;color:#c5cdd9;white-space:nowrap">'+r.mission+'</td><td style="padding:3px 6px;color:'+col+';font-weight:700;white-space:nowrap">'+r.fit+'</td><td style="padding:3px 6px;color:#8b949e">'+r.why+'</td></tr>'}});html+='</table></div>'}}if(EXPERT.detachments&&EXPERT.detachments.length){{var order={{Strong:0,Moderate:1,Situational:2,Weak:3,Unrated:4}};var dets=EXPERT.detachments.slice().sort(function(a,b){{return (order[a.rating]||9)-(order[b.rating]||9)||a.dp-b.dp}});html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">Detachments (all, best first — expert rating)</div><div style="max-height:420px;overflow-y:auto">';dets.forEach(function(d){{var col=d.rating==="Strong"?"#3fb950":d.rating==="Moderate"?"#58a6ff":d.rating==="Situational"?"#d29922":"#6e7681";html+='<div style="display:flex;gap:8px;padding:3px 0;font-size:11px;flex-wrap:wrap"><span style="color:'+col+';font-weight:700;min-width:86px">'+d.rating+'</span><span style="color:#c5cdd9">'+d.name+'</span><span style="color:#78909c">'+d.dp+'DP → '+d.objective+'</span></div>'}});html+='</div></div>'}}}}var meta=ACTIVE===''?DATA.meta_info[0].slug:ACTIVE;for(var mission in DATA.meta[meta]){{var units=DATA.meta[meta][mission];if(units.length>0){{var u=units[0];html+='<div class="insight-card"><div class="insight-title">#1 in '+mission+': '+u.name+'</div><div class="insight-text">'+u.score+' score · '+u.pts+'pts · '+u.dpp+' DPP · T'+u.t+' W'+u.w+(u.inv?' INV'+u.inv:'')+(u.fnp?' FNP'+u.fnp:'')+(u.cfnp?' CFNP'+u.cfnp+'+'+u.cfnp_type:'')+(u.oc_boost?' OC+'+u.oc_boost+'/banner':'')+(u.ds?' DS':'')+(u.fly?' FLY':'')+' OC'+u.oc+'</div></div>'}}}}c.innerHTML=html}}
 renderBanner();renderMissions();renderTop10();renderInsights();
-document.addEventListener('mouseover',function(e){{var cell=e.target.closest('.ld-cell');if(cell){{clearTimeout(_ldHideTimer);if(!cell.classList.contains('open'))_ldPosPopup(cell)}}}});
-document.addEventListener('mouseout',function(e){{var cell=e.target.closest('.ld-cell');if(cell){{var related=e.relatedTarget?e.relatedTarget.closest('.ld-cell'):null;if(related!==cell)_ldHideTimer=setTimeout(function(){{if(!cell.classList.contains('open'))_ldHidePopup(cell)}},150)}}}});
+function _ldHideAll(){{document.querySelectorAll('.ld-cell').forEach(function(c){{if(!c.classList.contains('open'))_ldHidePopup(c)}})}}
+document.addEventListener('mouseover',function(e){{var cell=e.target.closest('.ld-cell');if(cell&&!cell.classList.contains('open')){{_ldHideAll();_ldPosPopup(cell)}}}});
+document.addEventListener('mouseout',function(e){{var cell=e.target.closest('.ld-cell');if(cell&&!cell.classList.contains('open'))_ldHidePopup(cell)}});
 </script></body></html>'''
 
 
