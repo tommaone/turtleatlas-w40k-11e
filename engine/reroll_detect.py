@@ -225,3 +225,129 @@ def _target_matches(spec_targets, toughness: int) -> bool:
     """Does a target profile's toughness fall under any spec'd keyword?"""
     from engine.dpp import _anti_keyword_matches
     return any(_anti_keyword_matches(kw, toughness) for kw in spec_targets)
+
+
+# ── Army-wide / unconditional rerolls (war plan Phase 1) ──────────────────
+#
+# The class-keyed detector above covers ~43 datasheet abilities keyed off a
+# target CLASS (MONSTER/VEHICLE/...). Corpus survey (2026-08-23): 194 further
+# abilities mention re-roll with NO class keyword. Of those most are NOT
+# DPP-relevant (charge/advance/desperate-escape/reanimation rolls), several
+# are SINGLE rerolls ("re-roll one Hit roll" — weaker than even '1s'), and
+# many carry conditions ("targets the closest eligible target"). Only a small
+# clean set (Hearthkyn Pan-spectral Scanning, Brother-Captain Eye of
+# Judgement, Troupe Master Cegorach's Favour, ...) is an unconditional
+# attack-reroll the engine may apply always-on.
+#
+# Conservative gate chain (every gate under-claims rather than fabricates):
+#   1. strict "<hit|wound|damage> roll(s)" noun required — kills "re-roll the
+#      dice to see how many wounds are regenerated" (Reanimation Protocols).
+#   2. NO class keywords (those belong to detect_reroll_ability).
+#   3. self-subject required ("this model/unit", "a model in this unit").
+#   4. no condition cues → else returned with positional=True and the engine
+#      does NOT apply it always-on.
+#   5. "re-roll one X roll" single-reroll phrasing → None (no mode for it;
+#      claiming '1s' would over-claim).
+
+_RE_STRICT_ROLL_NOUN = re.compile(r"\b(hit|wound|damage)\s+rolls?\b", re.I)
+_RE_SELF_SUBJECT = re.compile(
+    r"\b(?:this model|this unit|a model in this unit|models? in this unit)\b",
+    re.I,
+)
+_RE_SINGLE_REROLL = re.compile(r"\bre-?roll\s+one\b", re.I)
+# "add 1 to the Wound roll" names a MODIFIER, not a reroll (Troupe Master
+# Cegorach's Favour). A strict noun directly governed by "add … to the" must
+# not be claimed as a reroll target.
+_RE_ADD_MODIFIER = re.compile(r"\badd(?:\s+\d+)?\s+to\s+the\s+$", re.I)
+# Positional / conditional triggers: the reroll fires only in a game state the
+# engine does not model, so it must NOT be applied unconditionally.
+# - "while this model is leading a unit, each time a model in THAT unit ..."
+#   buffs flow to the led unit, not the standalone character (Morvenn Vahl,
+#   Old One Eye Alpha Leader, Virulent Aura) — conditional + other-subject.
+# - "select one enemy unit ... each time a friendly model makes an attack"
+#   hands rerolls to OTHER units (Razorback Fire Support, Priority Target).
+# - "each time ANOTHER X model makes an attack" — ally buff (Kroot Lone-Spear).
+_RE_CONDITIONAL_CUE = re.compile(
+    r"\b(?:within|objective|marker|engagement range|half range|"
+    r"while |leading|unless|once per|at the start of|if this|if that|if the |"
+    r"remaining|below half|starting strength|closest eligible|oath of moment|"
+    r"spotted|\bfly\b|dark pact|after this (?:model|unit) has shot|"
+    r"select one enemy unit|another\s+\w+\s+model|from your army)\b",
+    re.I,
+)
+
+
+def detect_army_wide_reroll(ability: dict) -> dict | None:
+    """Detect an unconditional (army-wide) attack reroll on a datasheet.
+
+    Returns the same spec shape as detect_reroll_ability plus:
+        "targets": ["ALL"],
+        "positional": bool — True when a condition cue was found; callers
+                             must NOT apply the spec always-on in that case.
+    Returns None when the text is not a clean unconditional attack reroll.
+    """
+    name = ability.get("name", "")
+    desc = ability.get("description", "") or ""
+    if not desc or not _RE_REROLL_VERB.search(desc):
+        return None
+    # Class-keyed texts belong to detect_reroll_ability — never double-claim.
+    if _RE_HAS_TARGET.search(desc):
+        return None
+    # Aura-grant to OTHER units — never the bearer's own attacks.
+    if _RE_OTHER_SUBJECT.search(desc):
+        return None
+    # Single rerolls ("re-roll one Hit roll") have no honest mode — skip.
+    if _RE_SINGLE_REROLL.search(desc):
+        return None
+    # Self-subject: the reroll must govern THIS model's/unit's attacks.
+    if not _RE_SELF_SUBJECT.search(desc):
+        return None
+
+    # Which rerolls? Same clause walk as the class detector but with STRICT
+    # "<noun> roll" nouns so non-attack dice (charge, advance, reanimation)
+    # cannot leak in.
+    hits, wounds, dmg = None, None, None
+    verbs = list(_RE_REROLL_VERB.finditer(desc))
+    for i, vm in enumerate(verbs):
+        start = vm.end()
+        end = verbs[i + 1].start() if i + 1 < len(verbs) else len(desc)
+        clause = desc[start:end]
+        nouns = list(_RE_STRICT_ROLL_NOUN.finditer(clause))
+        for j, nm in enumerate(nouns):
+            kind = nm.group(1).lower()
+            # Skip modifier phrasing ("add 1 to the Wound roll") — the noun
+            # here is governed by "add … to", not by the re-roll verb.
+            if _RE_ADD_MODIFIER.search(clause[max(0, nm.start() - 30):nm.start()]):
+                continue
+            seg_end = nouns[j + 1].start() if j + 1 < len(nouns) else len(clause)
+            tail = clause[nm.end():seg_end]
+            mode = "1s" if _RE_ONES_PER_NOUN.search(tail) else "all"
+            if kind == "hit":
+                hits = _weakest(hits, mode)
+            elif kind == "wound":
+                wounds = _weakest(wounds, mode)
+            elif kind == "damage":
+                dmg = _weakest(dmg, mode)
+
+    if hits is None and wounds is None and dmg is None:
+        return None
+
+    if _RE_MELEE.search(desc) and not _RE_RANGED.search(desc):
+        phase = "melee"
+    elif _RE_RANGED.search(desc) and not _RE_MELEE.search(desc):
+        phase = "ranged"
+    else:
+        phase = "both"
+
+    positional = bool(_RE_CONDITIONAL_CUE.search(desc))
+
+    return {
+        "reroll_hits": hits,
+        "reroll_wounds": wounds,
+        "reroll_damage": dmg,
+        "phase": phase,
+        "targets": ["ALL"],
+        "positional": positional,
+        "ability_name": name,
+        "raw": desc,
+    }

@@ -234,7 +234,8 @@ def _ld_dmg(ranged, melee, innate, target, modifier: Optional[WeaponModifier] = 
 def _ld_dmg_conditional(ranged, melee, innate, target, base_mod,
                         reroll_spec, phase, melta_active=False,
                         heavy_stationary=False, hit_mode=HitMode.NORMAL,
-                        n_models=1, damage_boost: Optional[dict] = None):
+                        n_models=1, damage_boost: Optional[dict] = None,
+                        always_spec: Optional[dict] = None):
     from engine.reroll_detect import _target_matches
 
     def _phase_applies():
@@ -242,6 +243,13 @@ def _ld_dmg_conditional(ranged, melee, innate, target, base_mod,
         if ph == "both":
             return True
         return ph == phase  # phase is "ranged" or "melee" for the list being computed
+
+    def _always_applies():
+        """Army-wide (targets ALL) reroll spec applies in every phase it names."""
+        if always_spec is None or always_spec.get("positional"):
+            return False
+        ph = always_spec["phase"]
+        return ph in ("both", phase)
 
     def _mod(include):
         if base_mod is None:
@@ -260,10 +268,18 @@ def _ld_dmg_conditional(ranged, melee, innate, target, base_mod,
                 reroll_wounds=base_mod.reroll_wounds,
                 reroll_damage=base_mod.reroll_damage,
             )
+        # Two independent reroll sources merge strongest-wins (_pick): if a
+        # unit has both an army-wide aura AND a class-keyed ability, the best
+        # applicable mode per noun wins — that is the actual game rule.
         if include:
             for f in ("reroll_hits", "reroll_wounds", "reroll_damage"):
                 a = getattr(m, f)
                 b = reroll_spec.get(f)
+                setattr(m, f, _pick(a, b))
+        if always_spec is not None and _always_applies():
+            for f in ("reroll_hits", "reroll_wounds", "reroll_damage"):
+                a = getattr(m, f)
+                b = always_spec.get(f)
                 setattr(m, f, _pick(a, b))
         return m
 
@@ -1755,15 +1771,26 @@ class RankingEngine:
             # applies per-target, so damage is computed conditionally via
             # _ld_dmg_conditional. No hand-authored config entries for these.
             reroll_spec = None
+            army_reroll_spec = None
             try:
-                from engine.reroll_detect import detect_reroll_ability
+                from engine.reroll_detect import detect_reroll_ability, detect_army_wide_reroll
                 for ab in profile.get("abilities", []) or []:
                     spec = detect_reroll_ability(ab)
                     if spec is not None:
                         reroll_spec = spec
                         break
+                # Army-wide (targets ALL) rerolls: only when no class-keyed
+                # spec claimed this unit's text. Positional specs are detected
+                # but flagged; _always_applies() refuses to apply them.
+                if reroll_spec is None:
+                    for ab in profile.get("abilities", []) or []:
+                        aspec = detect_army_wide_reroll(ab)
+                        if aspec is not None:
+                            army_reroll_spec = aspec
+                            break
             except Exception:
                 reroll_spec = None
+                army_reroll_spec = None
 
             # Auto-detect datasheet abilities that boost damage vs a target
             # class (Rend and Tear: "+1 Damage vs Monster/Vehicle"). Same
@@ -1832,17 +1859,47 @@ class RankingEngine:
                                                  reroll_spec, "ranged",
                                                  melta_active=melta_active, heavy_stationary=heavy_stationary,
                                                  hit_mode=unit_hit_mode, n_models=n_models,
-                                                 damage_boost=_boost_for("ranged")) if ranged_profiles else 0
+                                                 damage_boost=_boost_for("ranged"),
+                                                 always_spec=army_reroll_spec) if ranged_profiles else 0
                 dmg_melee = _ld_dmg_conditional([], melee_profiles, [], actual_target, unit_weapon_mod,
                                                 reroll_spec, "melee",
                                                 melta_active=melta_active, heavy_stationary=heavy_stationary,
                                                 hit_mode=HitMode.NORMAL, n_models=n_models,
-                                                damage_boost=_boost_for("melee")) if melee_profiles else 0
+                                                damage_boost=_boost_for("melee"),
+                                                always_spec=army_reroll_spec) if melee_profiles else 0
                 dmg_innate = _ld_dmg_conditional([], [], innate_profiles, actual_target, unit_weapon_mod,
                                                  reroll_spec, "both",
                                                  melta_active=melta_active, heavy_stationary=heavy_stationary,
                                                  hit_mode=HitMode.NORMAL, n_models=n_models,
-                                                 damage_boost=_boost_for("both")) if innate_profiles else 0
+                                                 damage_boost=_boost_for("both"),
+                                                 always_spec=army_reroll_spec) if innate_profiles else 0
+            elif army_reroll_spec is not None and not army_reroll_spec.get("positional"):
+                # Army-wide-only unit: route through the conditional path with
+                # a dummy class spec whose targets never match — the ALL-target
+                # rerolls apply via always_spec in every phase it names.
+                # Positional specs fall through to the plain path: they are
+                # NOT modeled, so the unit must score exactly as before
+                # (the split-call path has subtly different numerics).
+                never = {"targets": [], "phase": "neither"}  # class spec never matches; ALL rerolls flow via always_spec
+                dmg_ranged = _ld_dmg_conditional(ranged_profiles, [], [], actual_target, unit_weapon_mod,
+                                                 never, "ranged",
+                                                 melta_active=melta_active, heavy_stationary=heavy_stationary,
+                                                 hit_mode=unit_hit_mode, n_models=n_models,
+                                                 damage_boost=_boost_for("ranged"),
+                                                 always_spec=army_reroll_spec) if ranged_profiles else 0
+                dmg_melee = _ld_dmg_conditional([], melee_profiles, [], actual_target, unit_weapon_mod,
+                                                never, "melee",
+                                                melta_active=melta_active, heavy_stationary=heavy_stationary,
+                                                hit_mode=HitMode.NORMAL, n_models=n_models,
+                                                damage_boost=_boost_for("melee"),
+                                                always_spec=army_reroll_spec) if melee_profiles else 0
+                dmg_innate = _ld_dmg_conditional([], [], innate_profiles, actual_target, unit_weapon_mod,
+                                                 {"targets": [], "phase": "both"},
+                                                 "both",
+                                                 melta_active=melta_active, heavy_stationary=heavy_stationary,
+                                                 hit_mode=HitMode.NORMAL, n_models=n_models,
+                                                 damage_boost=_boost_for("both"),
+                                                 always_spec=army_reroll_spec) if innate_profiles else 0
             else:
                 dmg_ranged = _ld_dmg(ranged_profiles, [], [], actual_target, unit_weapon_mod,
                                      melta_active=melta_active, heavy_stationary=heavy_stationary,
