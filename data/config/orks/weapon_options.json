@@ -1,5 +1,5 @@
 {
-  "_note": "orks weapon options \u2014 generated from BSData + MFM",
+  "_note": "orks weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Battlewagon": {
     "pts": 145,
@@ -276,7 +276,7 @@
             "type": "ranged"
           },
           {
-            "name": "Spinnin\u2019 blades",
+            "name": "Spinnin’ blades",
             "type": "melee"
           }
         ],
@@ -381,7 +381,7 @@
         "name": "Stikka kannon + Butcha boyz",
         "fixed": [
           {
-            "name": "\u2019Eavy lobba",
+            "name": "’Eavy lobba",
             "type": "ranged"
           },
           {
@@ -423,7 +423,7 @@
             "type": "ranged"
           },
           {
-            "name": "\u2019Eavy lobba",
+            "name": "’Eavy lobba",
             "type": "ranged"
           },
           {
@@ -1081,9 +1081,21 @@
     ]
   },
   "Warboss": {
+    "pts": 85,
+    "_note": "Warboss wargear is datasheet-paired: kombi+twin sluggas pairs with big choppa OR power klaw; kustom shoota pairs ONLY with kustom choppa. Modeled as three fixed-pair builds so no illegal cross combo scores. Bundle name resolves both profiles via declared type (Chainsabres precedent).",
     "builds": [
       {
         "name": "default",
+        "fixed": [
+          {
+            "name": "Kombi-weapon, twin sluggas and big choppa",
+            "type": "ranged"
+          },
+          {
+            "name": "Kombi-weapon, twin sluggas and big choppa",
+            "type": "melee"
+          }
+        ],
         "slots": [
           {
             "name": "Attack Squig",
@@ -1093,27 +1105,57 @@
                 "type": "melee"
               }
             ]
+          }
+        ]
+      },
+      {
+        "name": "kombi-powerklaw",
+        "fixed": [
+          {
+            "name": "Kombi-weapon",
+            "type": "ranged"
           },
           {
-            "name": "Kombi-weapon, Twin Sluggas and Big Choppa",
+            "name": "Power klaw",
+            "type": "melee"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Attack Squig",
             "choices": [
               {
-                "name": "Kombi-weapon, twin sluggas and big choppa",
-                "type": "ranged"
-              },
+                "name": "Attack squig",
+                "type": "melee"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "shoota-choppa",
+        "fixed": [
+          {
+            "name": "Kustom shoota",
+            "type": "ranged"
+          },
+          {
+            "name": "Kustom choppa",
+            "type": "melee"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Attack Squig",
+            "choices": [
               {
-                "name": "Kustom choppa and kustom shoota",
-                "type": "ranged"
-              },
-              {
-                "name": "Kombi-weapon, twin sluggas and power klaw",
-                "type": "ranged"
+                "name": "Attack squig",
+                "type": "melee"
               }
             ]
           }
         ]
       }
-    ],
-    "pts": 85
+    ]
   }
 }

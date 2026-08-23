@@ -1,5 +1,5 @@
 {
-  "_note": "orks characters \u2014 generated from BSData + MFM",
+  "_note": "orks characters — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Bannernob": {
     "pts": 50,
@@ -87,7 +87,7 @@
               "type": "melee"
             },
             {
-              "name": "Squigosaur\u2019s jaws",
+              "name": "Squigosaur’s jaws",
               "type": "melee"
             }
           ],
@@ -306,7 +306,7 @@
               "type": "ranged"
             },
             {
-              "name": "Mork\u2019s Teeth",
+              "name": "Mork’s Teeth",
               "type": "melee"
             }
           ],
@@ -368,19 +368,19 @@
           "name": "default",
           "fixed": [
             {
-              "name": "Mork\u2019s Roar",
+              "name": "Mork’s Roar",
               "type": "ranged"
             },
             {
-              "name": "Gork\u2019s Klaw - strike",
+              "name": "Gork’s Klaw - strike",
               "type": "melee"
             },
             {
-              "name": "Gork\u2019s Klaw - sweep",
+              "name": "Gork’s Klaw - sweep",
               "type": "melee"
             },
             {
-              "name": "Makari\u2019s stabba",
+              "name": "Makari’s stabba",
               "type": "melee"
             }
           ],
@@ -451,7 +451,7 @@
               "type": "ranged"
             },
             {
-              "name": "Big Chompa\u2019s jaws",
+              "name": "Big Chompa’s jaws",
               "type": "melee"
             },
             {
@@ -541,9 +541,21 @@
   "Warboss": {
     "pts": 85,
     "weapon_options": {
+      "pts": 85,
+      "_note": "Warboss wargear is datasheet-paired: kombi+twin sluggas pairs with big choppa OR power klaw; kustom shoota pairs ONLY with kustom choppa. Modeled as three fixed-pair builds so no illegal cross combo scores. Bundle name resolves both profiles via declared type (Chainsabres precedent).",
       "builds": [
         {
           "name": "default",
+          "fixed": [
+            {
+              "name": "Kombi-weapon, twin sluggas and big choppa",
+              "type": "ranged"
+            },
+            {
+              "name": "Kombi-weapon, twin sluggas and big choppa",
+              "type": "melee"
+            }
+          ],
           "slots": [
             {
               "name": "Attack Squig",
@@ -553,26 +565,56 @@
                   "type": "melee"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "name": "kombi-powerklaw",
+          "fixed": [
+            {
+              "name": "Kombi-weapon",
+              "type": "ranged"
             },
             {
-              "name": "Kombi-weapon, Twin Sluggas and Big Choppa",
+              "name": "Power klaw",
+              "type": "melee"
+            }
+          ],
+          "slots": [
+            {
+              "name": "Attack Squig",
               "choices": [
                 {
-                  "name": "Kombi-weapon, twin sluggas and big choppa",
-                  "type": "ranged"
-                },
-                {
-                  "name": "Kustom choppa and kustom shoota",
-                  "type": "ranged"
-                },
-                {
-                  "name": "Kombi-weapon, twin sluggas and power klaw",
-                  "type": "ranged"
+                  "name": "Attack squig",
+                  "type": "melee"
                 }
               ]
             }
+          ]
+        },
+        {
+          "name": "shoota-choppa",
+          "fixed": [
+            {
+              "name": "Kustom shoota",
+              "type": "ranged"
+            },
+            {
+              "name": "Kustom choppa",
+              "type": "melee"
+            }
           ],
-          "fixed": []
+          "slots": [
+            {
+              "name": "Attack Squig",
+              "choices": [
+                {
+                  "name": "Attack squig",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -626,7 +668,7 @@
               "type": "ranged"
             },
             {
-              "name": "\u2019Uge choppa",
+              "name": "’Uge choppa",
               "type": "melee"
             }
           ],
@@ -692,7 +734,7 @@
           "name": "default",
           "fixed": [
             {
-              "name": "\u2019Eadbanger",
+              "name": "’Eadbanger",
               "type": "ranged"
             },
             {

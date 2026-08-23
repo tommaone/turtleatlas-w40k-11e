@@ -121,7 +121,7 @@ class TestBlackTemplarsCharacters:
         res = bt_engine.resolve_loadout("High Marshal Helbrecht", MEQ)
         assert res is not None
         pts, ranged, melee, innate, info = res
-        assert pts == 120
+        assert pts == 110  # MFM v1.2 truth (was 120 pre-refresh)
         assert Counter(w.name for w in ranged) == {"Ferocity": 1}
         assert Counter(w.name for w in melee) == {
             "Sword of the High Marshals - Sweep": 1,
