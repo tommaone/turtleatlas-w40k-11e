@@ -299,3 +299,99 @@
 - **Grand Master Voldus Stealth**: Voldus has Stealth rule, other terminator characters don't.
 - **Aircraft M/OC**: Stormhawk and Stormtalon have M"-" and OC"-" (not 0). Stormraven has M14" and OC0.
 - **Dreadknight Type**: Nemesis Dreadknight has both Monster and Vehicle keywords. GMNDK also has Character.
+
+## Army Rules & Detachments — Expert Assessment
+
+> 🔴 STRATEGY TIER — interpretation layer. Ratings below are expert-player
+> judgement grounded in the mechanics facts cited; they are NOT engine output.
+> Engine numbers (DPP/tier scores) live in findings/ and are GENERALIST ONLY.
+> No assumptions presented as facts: every factual claim traces to merged
+> data, the research corpus, or engine output. Judgements are labeled.
+
+**Research basis**: workspace/detachment_research/grey-knights.json (2026-08-23,
+packs v1.1).
+
+### Army Rule
+- **Gate of Infinity**: faction-wide mobility rule — Grey Knights units can arrive via Deep Strike and teleport around the board; the research corpus references a per-turn/unit-count cap on its use ([unverified] exact cap not detailed in corpus).
+- **Play pattern** *(interpretation)*: an elite army that ignores deployment distance entirely. Every unit arriving where it is needed each turn compresses the game into short, decisive engagements — list construction favours few, hard-hitting units over bodies.
+
+### Disposition Fit (current meta verdict)
+| Disposition | Fit | Grounded reasoning |
+|-------------|-----|--------------------|
+| Take and Hold | Strong | Warpbane Task Force (T&H) gives army-wide hit rerolls from a zone that starts in your deployment zone; Hallowed Conclave (T&H) keeps Terminators fighting on objectives. |
+| Purge the Foe | Moderate | Brotherhood Strike (PURGE) rewards the whole army's Deep Strike habit, but only on arrival turns. |
+| Reconnaissance | Situational | Both RECON options (Augurium TF, Immaterial Interdiction) are conditional redeploy/surge effects on specific units. |
+| Priority Assets | Moderate | Sanctic Spearhead helps vehicle/Dreadknight pushes; Argent Assault is too narrow to anchor the disposition. |
+| Disruption | Weak | Fires of Purgation needs Purgation Squad pinning first; Banishers gates melee buffs behind a Leadership test. |
+
+### Detachment Assessments
+<!-- one block per detachment, ordered by DP -->
+
+#### Argent Assault (1DP → PRIORITY ASSETS)
+- **Mechanics**: Dauntless Champions — when a Paladin Squad fights, if its attack Strength is lower than the target's Toughness those attacks get +1 to wound.
+- **Rating**: Situational for Priority Assets vs high-Toughness lists
+- **Synergies**: Paladin Squad melee into vehicles/monsters; a Grand Master In Nemesis Dreadknight does not benefit (not a Paladin Squad).
+- **Limits**: PALADIN SQUAD units only; no bonus when S ≥ T (so nothing vs equal/lower-T targets). Double-gated per research not_modeled.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/grey-knights/
+
+#### Fires Of Purgation (1DP → DISRUPTION)
+- **Mechanics**: Searing Soulflame — enemy units pinned by a Purgation Squad's Righteous Persecution make battle-shock rolls at -1 when selected.
+- **Rating**: Weak for Disruption
+- **Synergies**: Purgation Squad is the mandatory enabler; without it the detachment rule does nothing.
+- **Limits**: Battle-shock debuff with no DPP/SURV/MOB/OBJ expression; requires the pinning trigger first.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/grey-knights/
+
+#### Immaterial Interdiction (1DP → RECONNAISSANCE)
+- **Mechanics**: Echojump — after an Interceptor Squad shoots, it makes a surge move of up to D6+1"; cannot use Personal Teleporters that turn.
+- **Rating**: Situational for Reconnaissance
+- **Synergies**: Interceptor Squad (M12", Fly) — already the fastest GK unit.
+- **Limits**: Forfeits Personal Teleporters when used; modeled as movement_bonus 4 approximation only (research confidence: medium, stale_confirmed_changed); Astral Overlap and Predestined Coordinates enhancements are point-cost upgrades excluded from modeling.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/grey-knights/
+
+#### Augurium Task Force (2DP → RECONNAISSANCE)
+- **Mechanics**: Prescient Redeployment — battle round 2+, at start of Movement phase, one eligible GK unit may leave the battlefield into Strategic Reserves for later redeployment, if Gate of Infinity capacity was not used.
+- **Rating**: Situational for Reconnaissance
+- **Synergies**: Interceptor Squad or Strike Squad objective units that bounce between table quarters.
+- **Limits**: Requires unused Gate of Infinity capacity; round 2+; Strategic Reserves flexibility not numerically modeled.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/grey-knights/
+
+#### Banishers (2DP → DISRUPTION)
+- **Mechanics**: Channelled Force — when a GK unit is selected to fight, pass a Leadership test to give its melee [psychic] weapons Sustained Hits 1 OR Lethal Hits until end of phase (choose one per activation).
+- **Rating**: Situational for Disruption / melee-heavy builds
+- **Synergies**: Paladin Squad and Brotherhood Terminator Squad Nemesis force weapon volume — the more dice rolled, the more a Sustained/Lethal pick converts.
+- **Limits**: Gated on a passed Leadership test per activation; Sustained OR Lethal (never both); [psychic] melee weapons only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/grey-knights/
+
+#### Brotherhood Strike (2DP → PURGE THE FOE)
+- **Mechanics**: Fury of Titan — units set up via Deep Strike re-roll hit rolls of 1 and wound rolls of 1 until end of that turn.
+- **Rating**: Moderate for Purge the Foe
+- **Synergies**: The entire roster Deep Strikes — Brotherhood Terminator Squad, Strike Squad, Nemesis Dreadknight all arrive with rerolls baked in.
+- **Limits**: Conditional — arrival turn only, not always-on (research not_modeled).
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/grey-knights/
+
+#### Hallowed Conclave (2DP → TAKE AND HOLD)
+- **Mechanics**: Duty Before All — GK TERMINATOR units are eligible to shoot and declare charges in a turn they Fell Back.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Brotherhood Terminator Squad and Paladin Squad grind on objectives without being tarpitted; characters in Terminator armour likewise.
+- **Limits**: TERMINATOR keyword scope only; fall-back-and-shoot eligibility has no numeric modifier expression.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/grey-knights/
+
+#### Sanctic Spearhead (2DP → PRIORITY ASSETS)
+- **Mechanics**: Mailed Fist — GK VEHICLE units that Advance add a flat 6" to Move (no Advance roll) and their ranged weapons gain ASSAULT that turn.
+- **Rating**: Situational for Priority Assets (Moderate in Dreadknight/vehicle-heavy builds)
+- **Synergies**: Grand Master In Nemesis Dreadknight and Nemesis Dreadknight qualify via the VEHICLE keyword (per this expert file's keyword data); Land Raider variants push up the board shooting.
+- **Limits**: Only on turns the unit Advances; ASSAULT grant not expressible in the modifier vocabulary; flat advance removes variance but isn't separately modeled.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/grey-knights/
+
+#### Warpbane Task Force (3DP → TAKE AND HOLD)
+- **Mechanics**: Hallowed Ground — your deployment zone plus areas around Purifier Squads (expandable by controlling objectives) are Hallowed Ground: all GK models re-roll hit rolls of 1 (ranged vs visible targets, and melee); full hit re-rolls if wholly within Hallowed Ground and/or a Purifier Squad.
+- **Rating**: Strong for Take and Hold (positional gates below apply)
+- **Synergies**: Purifier Squad gets full hit re-rolls anywhere; Brotherhood Terminator Squad holding home/mid objectives sits inside the free deployment-zone zone.
+- **Limits**: Full re-roll upgrade is positional; ranged re-roll needs visible targets; zone expansion depends on objective control (all flagged in research not_modeled).
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/grey-knights/
+
+### Enhancements & Stratagems Worth Taking
+- Astral Overlap (Stealth) and Predestined Coordinates (first-turn ingress move) exist as point-cost upgrades in Immaterial Interdiction per the research file — value judgement *(interpretation)*: Stealth on a deep-striking elite army is the stronger buy because GK already controls arrival timing.
+
+### Overall Army Play Pattern
+*(interpretation)* Grey Knights want to play a teleporting strike-faction game: concede the board early, land the whole army exactly where the mission needs it from turn 1-2 via Gate of Infinity + Deep Strike, win the local fight decisively with reroll-supported elite shooting and melee (Warpbane/Brotherhood Strike), and lean on 2+/4+ durability plus fall-back-and-shoot tricks (Hallowed Conclave) to hold what they take. Their disposition fit concentrates in Take and Hold and Purge the Foe; they are structurally poor at Disposition-style disruption because almost every non-damage tool (Fires of Purgation, Banishers) is gated behind another unit's action or a dice test.

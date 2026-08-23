@@ -66,3 +66,40 @@ Common weapons and their CORRECT profiles for this faction:
 
 - {Nuance 1}: {what to double-check}
 - {Nuance 2}: {what to double-check}
+
+## Army Rules & Detachments — Expert Assessment
+
+> 🔴 STRATEGY TIER — interpretation layer. Ratings below are expert-player
+> judgement grounded in the mechanics facts cited; they are NOT engine output.
+> Engine numbers (DPP/tier scores) live in findings/ and are GENERALIST ONLY.
+> No assumptions presented as facts: every factual claim traces to merged
+> data, the research corpus, or engine output. Judgements are labeled.
+
+**Research basis**: workspace/detachment_research/<faction>.json (2026-08-23,
+packs v1.1). Edition snapshot date mandatory on this section.
+
+### Army Rule
+- **{rule name}**: {mechanics paraphrase}
+- **Play pattern**: {how it shapes list construction / tempo}
+
+### Disposition Fit (current meta verdict)
+| Disposition | Fit | Grounded reasoning |
+|-------------|-----|--------------------|
+| Take and Hold | Strong/Moderate/Situational/Weak | {why} |
+| Purge the Foe | ... | ... |
+| Reconnaissance | ... | ... |
+| Priority Assets | ... | ... |
+| Disruption | ... | ... |
+
+### Detachment Assessments
+<!-- one block per detachment, ordered by DP -->
+
+#### {DETACHMENT NAME} ({dp}DP → {objective})
+- **Mechanics**: {paraphrase from research file}
+- **Rating**: {Strong/Moderate/Situational/Weak} for {disposition(s)}
+- **Synergies**: {which unit archetypes light up — reference engine top units by name only}
+- **Limits**: {not_modeled items, conditional gates, CP economy}
+- **_source**: {research URL}
+
+### Enhancements & Stratagems Worth Taking
+- {top picks with why — labelled interpretation}

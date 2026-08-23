@@ -496,3 +496,100 @@ This is a mobility advantage not reflected in base MOB scoring.
 - **Nurgle Plague Legion's Melancholic Miasma is NOT a defensive buff** — it's a board control + battleshock tool. Don't model it as Stealth.
 - **Flux tokens (Scintillating) can be used by your opponent** — there's risk/reward in hoarding them vs spending them.
 - **Blood Legion has TWO detachment rules** — Murdercall (reactive surge) AND Blood Tainted (objective control). Most players forget Blood Tainted.
+
+## Army Rules & Detachments — Expert Assessment
+
+> 🔴 STRATEGY TIER — interpretation layer. Ratings below are expert-player
+> judgement grounded in the mechanics facts cited; they are NOT engine output.
+> Engine numbers (DPP/tier scores) live in findings/ and are GENERALIST ONLY.
+> No assumptions presented as facts: every factual claim traces to merged
+> data, the research corpus, or engine output. Judgements are labeled.
+
+**Research basis**: workspace/detachment_research/chaos-daemons.json (2026-08-23,
+packs v1.1).
+
+### Army Rule
+- **Shadow of Chaos**: an area associated with the army that interacts with enemy units and deployment rules — referenced by Daemonic Incursion (Deep Strike wholly within it) and Plague Legion (Nurgle aura extends it by 9"). Exact full rule text not in corpus [unverified].
+- **Daemonic Terror**: per the Plague Legion research notes, failed enemy battleshock interacts with healing for the army [unverified] — interaction flagged as unmodeled in the corpus.
+- **Play pattern** *(interpretation)*: a keyword-driven army where god-specific sub-rules mean list construction is "pick your god (or Be'lakor) and lean in" — mixed-god lists dilute most detachment value.
+
+### Disposition Fit (current meta verdict)
+| Disposition | Fit | Grounded reasoning |
+|-------------|-----|--------------------|
+| Take and Hold | Situational | Plague Legion is board-control/morale tech with no numeric punch; Lords Of The Warp is +1 OC on characters only. |
+| Purge the Foe | Moderate | Blood Legion (Khorne surge + objective stickiness) and Shadow Legion (five keyword-scoped combat buffs) are real kill-turn enablers. |
+| Reconnaissance | Moderate | Warptide gives BATTLELINE advance-and-charge plus Assault — every god has battleline, so it applies to any list. |
+| Priority Assets | Situational | Legion Of Excess is SLAANESH-scoped with a voluntary trade-off; Scintillating Legion hands reroll resources to the opponent. |
+| Disruption | Situational | Cavalcade is MOUNTED-only; Daemonic Incursion's 3DP buys a conditional Deep Strike placement improvement. |
+
+### Detachment Assessments
+<!-- one block per detachment, ordered by DP -->
+
+#### Cavalcade Of Chaos (1DP → DISRUPTION)
+- **Mechanics**: Unholy Avalanche — MOUNTED daemon units that Fell Back this turn remain eligible to shoot and to declare a charge.
+- **Rating**: Situational for Disruption
+- **Synergies**: Slaanesh-mounted packages (Seekers, Hellflayers) hit-and-run repeatedly.
+- **Limits**: MOUNTED filter only; fall-back eligibility has no numeric modifier expression (advance_and_charge covers Advance, not Fall Back, per research).
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/chaos-daemons/
+
+#### Lords Of The Warp (1DP → TAKE AND HOLD)
+- **Mechanics**: Loci of Power — friendly LEGIONES DAEMONICA CHARACTER models (excluding MONSTERS) get +1 Leadership and +1 Objective Control.
+- **Rating**: Weak for Take and Hold
+- **Synergies**: Herald-type characters babysitting home objectives.
+- **Limits**: Character-only, non-MONSTER scope; engine must restrict oc_boost to characters (research notes old config left it inert); +1 OC rarely moves primary scoring on its own.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/chaos-daemons/
+
+#### Warptide (1DP → RECONNAISSANCE)
+- **Mechanics**: Shudderblink — when a BATTLELINE daemon unit Advances, its ranged attacks gain ASSAULT that turn and the Advance does not stop it declaring a charge.
+- **Rating**: Moderate for Reconnaissance
+- **Synergies**: Any battleline core — Bloodletters, Daemonettes, Plaguebearers, Pink Horrors — becomes a fast scoring threat.
+- **Limits**: BATTLELINE units only (engine must restrict advance_and_charge accordingly per research); ASSAULT-on-Advance shooting effect not numerically modeled.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/chaos-daemons/
+
+#### Blood Legion (2DP → PURGE THE FOE)
+- **Mechanics**: Two rules. Murdercall — when an enemy unit ends a move within 8" of friendly KHORNE daemons in the opponent's Movement phase, one such KHORNE unit may surge-move up to D6". Blood Tainted — objectives stay under your control after KHORNE units destroy enemies on them until the opponent's control exceeds yours.
+- **Rating**: Situational for Purge the Foe (Khorne-heavy lists)
+- **Synergies**: Bloodletters / Bloodcrushers / Skulltaker forward lines; Blood Tainted makes kills on objectives stick for T&H crossover value.
+- **Limits**: Both halves are KHORNE-scoped; Murdercall is reactive once-per-trigger, not a speed stat (research stale note).
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/chaos-daemons/
+
+#### Legion Of Excess (2DP → PRIORITY ASSETS)
+- **Mechanics**: Beguiling Aura — SLAANESH units may charge after Falling Back. Seductive Gambit — when a SLAANESH unit ends a charge, declare the Gambit: lose Fights First until end of turn, gain full hit re-rolls and wound re-rolls of 1.
+- **Rating**: Situational for Priority Assets
+- **Synergies**: Shalaxi Helbane / Keeper Of Secrets / Fiends hit-and-run cycles; Gambit turns a charging Daemonette block into a full-reroll blender.
+- **Limits**: SLAANESH-only scope; Gambit is voluntary per-charge and trades away Fights First (research flags old always-on rerolls modeling as wrong).
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/chaos-daemons/
+
+#### Plague Legion (2DP → TAKE AND HOLD)
+- **Mechanics**: Melancholic Miasma — enemies within 9" of friendly NURGLE daemons count as inside your Shadow of Chaos; each Command phase one enemy unit in your Shadow of Chaos must take a battle-shock test.
+- **Rating**: Situational for Take and Hold
+- **Synergies**: Plaguebearers / Nurglings / Great Unclean One walls spreading the aura; interacts with Daemonic Terror per research notes (unmodeled).
+- **Limits**: Pure morale/board-control mechanics — no DPP/SURV/MOB/OBJ expression; NURGLE-scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/chaos-daemons/
+
+#### Scintillating Legion (2DP → PRIORITY ASSETS)
+- **Mechanics**: Fates in Flux — start with three Flux tokens; spend one to re-roll any Advance/Hit/Wound/Damage/save/Hazardous roll for a TZEENTCH unit; each spend gives the opponent a token they can spend too; you regain one per Command phase while they hold any.
+- **Rating**: Situational for Priority Assets
+- **Synergies**: Lord Of Change / Kairos Fateweaver / Pink Horrors shooting phases where tokens convert failed key rolls.
+- **Limits**: Finite shared resource economy — research explicitly states the old reroll_hits:'all' config materially overestimated it; tokens also feed Tzeentch stratagems (CP-dependent).
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/chaos-daemons/
+
+#### Shadow Legion (2DP → PURGE THE FOE)
+- **Mechanics**: Be'lakor-themed muster restrictions plus five keyword-scoped abilities: KHORNE units shoot/charge after Advancing; TZEENTCH units get Stealth and -1 vs melee hits; NURGLE units subtract 1 from incoming wound rolls when attacker S > T; SLAANESH units can't be snap-shot; UNDIVIDED units get Dark Pacts and HERETIC ASTARTES models Deep Strike.
+- **Rating**: Moderate for Purge the Foe
+- **Synergies**: Mixed-god lists built under Be'Lakor — Bloodletters with advance-and-shoot/charge are the standout purge piece.
+- **Limits**: Every ability is keyword-scoped, none army-wide (research keeps all out of numeric modeling); muster restrictions constrain list building.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/chaos-daemons/
+
+#### Daemonic Incursion (3DP → DISRUPTION)
+- **Mechanics**: Warp Rifts — LEGIONES DAEMONICA units set up via Deep Strike deploy more than 6" from enemies (instead of more than 8") when wholly within your Shadow of Chaos and/or within 6" of a matching-god Greater Daemon-type unit.
+- **Rating**: Situational for Disruption
+- **Synergies**: Bloodletters / Daemonettes deep striking beside Bloodthirster / Keeper Of Secrets / Skarbrand-type anchors; Corrupt Realspace extends Shadow of Chaos around objectives (CP-dependent).
+- **Limits**: Conditional placement improvement, not reach or damage; at 3DP it competes against detachments with broader effects; old config movement_bonus modeling overstated it (research stale note).
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/chaos-daemons/
+
+### Enhancements & Stratagems Worth Taking
+- *(Interpretation, from research file mentions only)* Corrupt Realspace (extends Shadow of Chaos around controlled objectives) is the named CP tool that makes Daemonic Incursion functional; Warp Surge grants charge-after-Advance. Both are CP-dependent — budget accordingly rather than treating them as always available.
+
+### Overall Army Play Pattern
+*(interpretation)* Chaos Daemons play as a set of god-specific sub-armies wearing one codex: nearly every detachment rule is keyword-filtered, so the army wants to commit to Khorne melee pressure (Blood Legion), Nurgle morale/board control (Plague Legion), Slaanesh mobility tricks (Legion Of Excess) or Tzeentch reroll economy (Scintillating Legion) rather than split gods. The best general-purpose picks are the ones that ignore god lines — Warptide's battleline advance-and-charge and Shadow Legion's Be'lakor bundle — which is why the faction's fit concentrates in Purge the Foe and Reconnaissance while its Take and Hold options are morale tools whose value never shows up in raw damage math.

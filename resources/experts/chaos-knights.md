@@ -434,3 +434,92 @@ is theoretical — real output depends on delivery.
 ### Key Rule
 
 **Iconoclast Fiefdom is in every S/A tier combo.** It fixes CK's only real weakness — cheap objective bodies. Any list without it has a harder path to win.
+
+## Army Rules & Detachments — Expert Assessment
+
+> 🔴 STRATEGY TIER — interpretation layer. Ratings below are expert-player
+> judgement grounded in the mechanics facts cited; they are NOT engine output.
+> Engine numbers (DPP/tier scores) live in findings/ and are GENERALIST ONLY.
+> No assumptions presented as facts: every factual claim traces to merged
+> data, the research corpus, or engine output. Judgements are labeled.
+
+**Research basis**: workspace/detachment_research/chaos-knights.json (2026-08-23,
+packs v1.1).
+
+### Army Rule
+- **Dread abilities**: the army selects Dread abilities before battle (Traitoris Lance grants a second selection); research corpus describes them as individually conditional army-wide effects (battleshock pressure, Stealth-type effects) [unverified] — full list of Dread abilities not present in the corpus.
+- **Play pattern** *(interpretation)*: a low-model-count army of huge, expensive hulls whose rules lean on battleshock interaction and pre-game choices rather than always-on combat math.
+
+### Disposition Fit (current meta verdict)
+| Disposition | Fit | Grounded reasoning |
+|-------------|-----|--------------------|
+| Take and Hold | Moderate | Lords Of Dread (+2 OC on CHARACTER knights) and Iconoclast Fiefdom's DAMNED allies directly address the faction's objective-holding weakness. |
+| Purge the Foe | Situational | Only Traitoris Lance maps to PURGE and its value depends entirely on which second Dread ability is picked. |
+| Reconnaissance | Moderate | Houndpack Lance restructures War Dogs into BATTLELINE with CHARACTER upgrades — a genuine fast-coverage gameplan. |
+| Priority Assets | Weak | Bastions Of Tyranny needs battle-shocked targets first; Infernal Lance is activated with self-inflicted mortal wound risk. |
+| Disruption | Situational | Helhunt Lance is per-Knight aura tech; Hunting Warpack is once-per-round detection utility. |
+
+### Detachment Assessments
+<!-- one block per detachment, ordered by DP -->
+
+#### Bastions Of Tyranny (1DP → PRIORITY ASSETS)
+- **Mechanics**: Knight Tyrant units' attacks get +1 to hit when targeting a battle-shocked enemy unit.
+- **Rating**: Weak for Priority Assets
+- **Synergies**: Knight Tyrant shooting; pairs conceptually with battleshock pressure but the faction has few forced-battleshock engines in-corpus.
+- **Limits**: Requires the opponent to fail battleshock first; KNIGHT TYRANT units only (research notes old config sign error, corrected to +1).
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/chaos-knights/
+
+#### Hunting Warpack (1DP → RECONNAISSANCE)
+- **Mechanics**: Once per battle round, in your Shooting phase, select one visible enemy within 12" of a friendly WAR DOG unit; it gains +6" detection range.
+- **Rating**: Situational for Reconnaissance
+- **Synergies**: Any War Dog screen enables it; utility is anti-stealth/detection, not damage.
+- **Limits**: Once-per-round cap; detection-range mechanic has no modifier expression (research not_modeled). Snarling Rivalry enhancement (Executioner ranged IGNORES COVER) is an enhancement choice, not the detachment rule.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/chaos-knights/
+
+#### Iconoclast Fiefdom (1DP → TAKE AND HOLD)
+- **Mechanics**: May include DAMNED units (Codex: Chaos Space Marines) up to 500 points combined; friendly DAMNED units re-roll Leadership tests.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Cheap CSM objective bodies screen and score while the big Knights fight — this is the detachment that patches the faction's core weakness (few OC-bearing models).
+- **Limits**: Benefits the allied DAMNED units, not the Knights themselves; Leadership rerolls sit outside the modifier vocabulary.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/chaos-knights/
+
+#### Helhunt Lance (2DP → DISRUPTION)
+- **Mechanics**: A Titanic Chaos Knights unit affected by its own Aura ability also affects itself while 2+ friendly WAR DOG models are within that aura's range (e.g. Knight Desecrator's reroll-1s-to-hit applies to itself).
+- **Rating**: Situational for Disruption
+- **Synergies**: Knight Desecrator plus War Dog screens (War Dog Brigand / War Dog Karnivore) — benefit depends on which aura the chosen Knight carries.
+- **Limits**: Per-Knight, positional trigger (2+ War Dog models in range); no universal numeric effect per research.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/chaos-knights/
+
+#### Houndpack Lance (2DP → RECONNAISSANCE)
+- **Mechanics**: Each Command phase mark one enemy unit; WAR DOG attacks against it gain Sustained Hits 1 if visible. Army building: 3+ WAR DOG units required; WAR DOGs become BATTLELINE; three selected WAR DOG units gain CHARACTER.
+- **Rating**: Moderate for Reconnaissance (War Dog-heavy lists only)
+- **Synergies**: War Dog Huntsman, War Dog Karnivore, War Dog Brigand spam; CHARACTER WAR DOGs unlock character enhancements and better OC play.
+- **Limits**: Sustained Hits applies only to the single marked unit each round (modeled conservatively as always-on per research); list-building rules reshape the whole army.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/chaos-knights/
+
+#### Lords Of Dread (2DP → TAKE AND HOLD)
+- **Mechanics**: Chaos Knights CHARACTER models gain +2 Objective Control; once per battle round, if your WARLORD is on the battlefield, use Claimed for the Dark Gods stratagem for 0CP.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: A Knight Tyrant warlord standing on an objective becomes hard to out-score; the free stratagem use stretches a naturally tight CP economy.
+- **Limits**: OC boost on CHARACTER models only; free stratagem is once per round and conditional on Warlord presence.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/chaos-knights/
+
+#### Traitoris Lance (2DP → PURGE THE FOE)
+- **Mechanics**: At the start of battle round 1, after selecting Dread abilities normally, select one additional Dread ability active for the army (cannot be the randomly selected one) — the army runs two instead of one.
+- **Rating**: Situational for Purge the Foe
+- **Synergies**: Value scales with the Dread ability pool; stacking two complementary effects (e.g. pressure + Stealth-type) is the draw.
+- **Limits**: Pre-game choice; individual Dread ability effects are conditional and outside the numeric vocabulary per research — no universal rating driver.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/chaos-knights/
+
+#### Infernal Lance (3DP → PRIORITY ASSETS)
+- **Mechanics**: Command-phase activation: any Chaos Knights unit takes a Leadership test (failure = D3 mortal wounds) to become Empowered until next Command phase; each Empowered unit picks ONE of: +3" Move; Lethal Hits OR Sustained Hits 1; 5+ invulnerable save OR Feel No Pain 6+.
+- **Rating**: Situational for Priority Assets
+- **Synergies**: Knight Tyrant / Knight Despoiler wanting a burst turn (+3" move or offensive pick).
+- **Limits**: Entirely activated — LD test each round with D3 MW downside; pick-one options never stack; research explicitly supersedes the old always-on config modeling as contradicting the verified design.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/chaos-knights/
+
+### Enhancements & Stratagems Worth Taking
+- *(Interpretation, from research file mentions only)* Snarling Rivalry (Executioner ranged IGNORES COVER, Hunting Warpack enhancement) is the named enhancement worth noting for shooting into cover-camping targets; the corpus documents no other named enhancements for this faction.
+
+### Overall Army Play Pattern
+*(interpretation)* Chaos Knights want to trade efficiently with a handful of giant hulls screened by cheap War Dogs: push mid-board with the big Knights, keep 2-3 War Dogs alive for detection/scoring support, and patch the objective game through Iconoclast Fiefdom allies or Lords Of Dread character-OC rather than raw numbers. The detachment roster rewards pre-game planning (Dread abilities, Empowerment scheduling) more than in-game flexibility, which is why the faction's ceiling sits in Take and Hold and Reconnaissance builds while its Priority Assets options are either opponent-dependent (Bastions Of Tyranny) or risk-loaded (Infernal Lance).
