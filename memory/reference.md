@@ -126,3 +126,28 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
 ## Credentials
 
 None. Public repo — mechanics and commands only. Credential loading goes through `$ENV_VAR` references, never hardcoded values.
+
+## 2026-08-23 war-plan session state
+
+- Baseline repaired: the 2026-08-22 audit-grind commits left 14 failures on
+  main (unresolvable "2 x weapon" slot names, non-weapon wargear in slots,
+  stale Helbrecht pts pin, missing GK/EC pts_3rd). All fixed; suite
+  **3825 passed / 36 skipped / 1 xfailed** (PYTHONHASHSEED=1).
+- chaos-daemons migrated to named-model composition layer (15 regenerated,
+  2 single-model chariots kept flat). Complex-layer coverage complete for
+  all multi-model factions.
+- P1 army-wide rerolls SHIPPED: `detect_army_wide_reroll` +
+  `_ld_dmg_conditional(always_spec=…)` + goldens
+  (tests/test_army_wide_rerolls.py, 14 tests). Applied always-on to exactly
+  4 datasheet abilities after honest gating (Troupe Master, Brother-Captain,
+  Iron-Master visor, Hearthkyn Pan-spectral Scanning); 127 conditional ones
+  flagged positional and NOT applied.
+- P3 dual view SHIPPED (capability + verified factions): landing page
+  Generalist ↔ With Detachments toggle; `detachment_view()` computes
+  best-detachment roster index per disposition — gated on VERIFIED sources
+  only (GK/CK/CD/DA/SM pass; auto-generated MFM stubs are excluded).
+  meta_ceiling filled in findings/advisor.json + buy guide for those 5.
+- REMAINING for P3 DoD: author verified detachment modifiers for the other
+  25 factions (research per faction from 40k.app/Goonhammer/Warhammer
+  Community; every modifier needs `_source`). The stub configs list each
+  faction's detachment names + DP costs already.

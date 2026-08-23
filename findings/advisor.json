@@ -3,7 +3,7 @@
   "overall_index": "rank-decay weighted mean (lambda=0.95) of unit mission scores across Take and Hold, Purge the Foe, Reconnaissance, Priority Assets, Disruption",
   "unit_score": "engine _mission_score (quad-vector percentile composite)",
   "not_modeled": [
-   "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+   "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
    "statline quality persists across balance patches; rules packages do not",
    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -23,9 +23,31 @@
    "worst_disposition": "Reconnaissance",
    "points_churn": 56,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "chaos-daemons",
+   "name": "Chaos Daemons",
+   "overall_index": 68.4,
+   "ceiling": 70.6,
+   "floor": 65.3,
+   "versatility": 94.7,
+   "roster_depth": 51,
+   "best_disposition": "Purge the Foe",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 15,
+   "meta_ceiling": 72.0,
+   "meta_ceiling_best_detachment": "DAEMONIC INCURSION",
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -42,10 +64,11 @@
    "best_disposition": "Priority Assets",
    "worst_disposition": "Reconnaissance",
    "points_churn": 79,
-   "meta_ceiling": null,
+   "meta_ceiling": 68.4,
+   "meta_ceiling_best_detachment": "INNER CIRCLE TASK FORCE",
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -62,10 +85,11 @@
    "best_disposition": "Priority Assets",
    "worst_disposition": "Reconnaissance",
    "points_churn": 72,
-   "meta_ceiling": null,
+   "meta_ceiling": 68.4,
+   "meta_ceiling_best_detachment": "1ST COMPANY TASK FORCE",
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -83,29 +107,10 @@
    "worst_disposition": "Reconnaissance",
    "points_churn": 59,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
-    "statline quality persists across balance patches; rules packages do not",
-    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
-    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
-   ]
-  },
-  {
-   "fid": "chaos-daemons",
-   "name": "Chaos Daemons",
-   "overall_index": 68.1,
-   "ceiling": 70.0,
-   "floor": 65.1,
-   "versatility": 95.1,
-   "roster_depth": 51,
-   "best_disposition": "Priority Assets",
-   "worst_disposition": "Reconnaissance",
-   "points_churn": 15,
-   "meta_ceiling": null,
-   "_classification": "engine_output+heuristic",
-   "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -123,9 +128,10 @@
    "worst_disposition": "Reconnaissance",
    "points_churn": 79,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -143,9 +149,10 @@
    "worst_disposition": "Reconnaissance",
    "points_churn": 62,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -163,9 +170,10 @@
    "worst_disposition": "Reconnaissance",
    "points_churn": 57,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -175,17 +183,18 @@
    "fid": "chaos-space-marines",
    "name": "Chaos Space Marines",
    "overall_index": 63.3,
-   "ceiling": 69.0,
+   "ceiling": 69.1,
    "floor": 52.9,
-   "versatility": 83.9,
+   "versatility": 83.8,
    "roster_depth": 53,
    "best_disposition": "Priority Assets",
    "worst_disposition": "Reconnaissance",
    "points_churn": 53,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -195,17 +204,18 @@
    "fid": "drukhari",
    "name": "Drukhari",
    "overall_index": 62.4,
-   "ceiling": 67.0,
+   "ceiling": 66.9,
    "floor": 57.0,
-   "versatility": 90.0,
+   "versatility": 90.1,
    "roster_depth": 23,
    "best_disposition": "Purge the Foe",
    "worst_disposition": "Reconnaissance",
    "points_churn": 20,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -214,18 +224,19 @@
   {
    "fid": "necrons",
    "name": "Necrons",
-   "overall_index": 62.1,
-   "ceiling": 66.9,
-   "floor": 53.1,
-   "versatility": 86.2,
+   "overall_index": 62.2,
+   "ceiling": 67.1,
+   "floor": 53.2,
+   "versatility": 86.1,
    "roster_depth": 52,
    "best_disposition": "Purge the Foe",
    "worst_disposition": "Reconnaissance",
    "points_churn": 26,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -234,18 +245,19 @@
   {
    "fid": "thousand-sons",
    "name": "Thousand Sons",
-   "overall_index": 62.1,
+   "overall_index": 62.0,
    "ceiling": 66.7,
-   "floor": 54.2,
-   "versatility": 87.5,
+   "floor": 54.1,
+   "versatility": 87.4,
    "roster_depth": 34,
    "best_disposition": "Priority Assets",
    "worst_disposition": "Reconnaissance",
    "points_churn": 37,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -255,17 +267,18 @@
    "fid": "world-eaters",
    "name": "World Eaters",
    "overall_index": 61.8,
-   "ceiling": 66.3,
-   "floor": 54.3,
-   "versatility": 88.0,
+   "ceiling": 66.4,
+   "floor": 54.2,
+   "versatility": 87.8,
    "roster_depth": 30,
    "best_disposition": "Priority Assets",
    "worst_disposition": "Reconnaissance",
    "points_churn": 49,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -283,9 +296,10 @@
    "worst_disposition": "Reconnaissance",
    "points_churn": 37,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -303,9 +317,10 @@
    "worst_disposition": "Reconnaissance",
    "points_churn": 17,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -322,10 +337,11 @@
    "best_disposition": "Priority Assets",
    "worst_disposition": "Reconnaissance",
    "points_churn": 9,
-   "meta_ceiling": null,
+   "meta_ceiling": 60.7,
+   "meta_ceiling_best_detachment": "BASTIONS OF TYRANNY",
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -334,18 +350,19 @@
   {
    "fid": "tau-empire",
    "name": "T'au Empire",
-   "overall_index": 60.3,
-   "ceiling": 65.4,
-   "floor": 51.5,
-   "versatility": 86.1,
+   "overall_index": 60.6,
+   "ceiling": 65.9,
+   "floor": 51.6,
+   "versatility": 85.7,
    "roster_depth": 41,
    "best_disposition": "Priority Assets",
    "worst_disposition": "Reconnaissance",
    "points_churn": 0,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -363,9 +380,10 @@
    "worst_disposition": "Reconnaissance",
    "points_churn": 0,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -383,9 +401,10 @@
    "worst_disposition": "Reconnaissance",
    "points_churn": 57,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -403,9 +422,10 @@
    "worst_disposition": "Reconnaissance",
    "points_churn": 9,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -423,9 +443,10 @@
    "worst_disposition": "Reconnaissance",
    "points_churn": 24,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -443,9 +464,10 @@
    "worst_disposition": "Reconnaissance",
    "points_churn": 17,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -463,9 +485,31 @@
    "worst_disposition": "Reconnaissance",
    "points_churn": 18,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "grey-knights",
+   "name": "Grey Knights",
+   "overall_index": 57.3,
+   "ceiling": 63.8,
+   "floor": 45.4,
+   "versatility": 81.6,
+   "roster_depth": 26,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 26,
+   "meta_ceiling": 59.2,
+   "meta_ceiling_best_detachment": "SANCTIC SPEARHEAD",
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -483,29 +527,10 @@
    "worst_disposition": "Reconnaissance",
    "points_churn": 30,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
-    "statline quality persists across balance patches; rules packages do not",
-    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
-    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
-   ]
-  },
-  {
-   "fid": "grey-knights",
-   "name": "Grey Knights",
-   "overall_index": 57.2,
-   "ceiling": 63.7,
-   "floor": 45.3,
-   "versatility": 81.6,
-   "roster_depth": 26,
-   "best_disposition": "Priority Assets",
-   "worst_disposition": "Reconnaissance",
-   "points_churn": 26,
-   "meta_ceiling": null,
-   "_classification": "engine_output+heuristic",
-   "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -523,9 +548,31 @@
    "worst_disposition": "Reconnaissance",
    "points_churn": 46,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
+    "statline quality persists across balance patches; rules packages do not",
+    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
+    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
+   ]
+  },
+  {
+   "fid": "leagues-of-votann",
+   "name": "Leagues of Votann",
+   "overall_index": 55.5,
+   "ceiling": 61.7,
+   "floor": 43.6,
+   "versatility": 81.9,
+   "roster_depth": 22,
+   "best_disposition": "Priority Assets",
+   "worst_disposition": "Reconnaissance",
+   "points_churn": 14,
+   "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
+   "_classification": "engine_output+heuristic",
+   "_caveats": [
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
@@ -543,29 +590,10 @@
    "worst_disposition": "Reconnaissance",
    "points_churn": 28,
    "meta_ceiling": null,
+   "meta_ceiling_best_detachment": null,
    "_classification": "engine_output+heuristic",
    "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
-    "statline quality persists across balance patches; rules packages do not",
-    "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
-    "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"
-   ]
-  },
-  {
-   "fid": "leagues-of-votann",
-   "name": "Leagues of Votann",
-   "overall_index": 54.9,
-   "ceiling": 60.9,
-   "floor": 43.5,
-   "versatility": 82.6,
-   "roster_depth": 22,
-   "best_disposition": "Priority Assets",
-   "worst_disposition": "Reconnaissance",
-   "points_churn": 14,
-   "meta_ceiling": null,
-   "_classification": "engine_output+heuristic",
-   "_caveats": [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules packaging this index deliberately excludes"

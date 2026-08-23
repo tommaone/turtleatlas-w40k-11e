@@ -31,7 +31,10 @@ ADVISOR_OUT = REPO / "findings" / "advisor.json"
 GUIDE_OUT = REPO / "docs" / "army-buy-guide.md"
 
 CAVEATS = [
-    "no detachment or army rules modeled (meta_ceiling=null until war plan P3)",
+    "meta_ceiling is engine-computed only for factions with VERIFIED "
+    "detachment data (grey-knights, chaos-knights, chaos-daemons, "
+    "dark-angels, space-marines); null = generalist index is the ceiling "
+    "proxy (auto-generated MFM stubs are not detachment rules)",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy "
     "for GW attention, not a prediction; Astartes flavours share one codex "
@@ -60,6 +63,10 @@ def build():
         ms = t["missions"]
         vals = list(ms.values())
         ceiling, floor = max(vals), min(vals)
+        # meta_ceiling (war plan P3): detachment-aware overall when the
+        # faction carries verified detachment modifiers — engine-computed,
+        # never hand-authored. None = generalist only.
+        det = t.get("det") or {}
         factions.append({
             "fid": fid,
             "name": t["name"],
@@ -71,7 +78,9 @@ def build():
             "best_disposition": max(ms, key=ms.get),
             "worst_disposition": min(ms, key=ms.get),
             "points_churn": churn.get(t["name"], 0),
-            "meta_ceiling": None,
+            "meta_ceiling": det.get("overall"),
+            "meta_ceiling_best_detachment": (det.get("best") or {}).get(
+                max(ms, key=ms.get)),
             "_classification": "engine_output+heuristic",
             "_caveats": CAVEATS,
         })

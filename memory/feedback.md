@@ -771,3 +771,66 @@ skipped, phase comes from melee/ranged wording. Findings diff scope after
 this feature: exactly the factions with detected abilities (world-eaters +
 orks — Mozrog "Da Bigger Dey Iz…"). Phase-gated in the ranking loop
 (`_boost_for`); applied BEFORE the overkill cap in `expected_damage`.
+
+## weapon_options.json shadows characters.json for dual-entry units (2026-08-23)
+`RankingEngine` resolves a unit from `weapon_options` BEFORE `characters`
+(ranking.py ~line 958). A character present in BOTH files is scored from
+weapon_options.json — editing only characters.json is a no-op. The
+dual-entry sync test (test_golden_vulnerable_units) exists to catch drift.
+
+**Why:** Einhyr Champion crest fix initially landed in characters.json and
+changed nothing; the low-DPP persisted until weapon_options.json was fixed.
+**How:** when repairing a character config, grep both files for the unit;
+fix weapon_options.json (the authoritative copy) and mirror to characters.json.
+
+## Non-weapon wargear in slots kills every combo → 0 DPP (2026-08-23)
+`_resolve_slots_build` SKIPS any combo containing one unresolvable choice.
+A slot whose choices are all non-weapon wargear (crests, amulets, support
+systems) or one literal "2 x weapon" name (catalog has singular names) makes
+the whole build resolve to fixed-only (often nothing) → 0 damage.
+
+**Why:** 14 baseline test failures from the 2026-08-22 audit-grind session:
+Forgefiend ×3 factions ("2 ectoplasma cannons"), Tau vehicles ("2 ion
+cannons", "Transport bay" slot), Lokhust Lord Equipment, Votann Crests.
+**How:** multiplicity = `{"name": "<singular>", "count": N}` on the choice,
+never a plural literal name. Non-weapon items have no DPP effect — remove
+them from slots entirely. Verify every name with `engine.W(name, category=…)`.
+
+## Dual-profile bundle choices must land in BOTH lists (Warboss pattern)
+A paired wargear option ("kombi-weapon AND big choppa") declared as ONE slot
+choice with type "ranged" silently loses its melee half. Fix per Chainsabres
+precedent: reference the bundle name TWICE in `fixed` with each declared type
+— W(bundle, category='ranged') gives the ranged profile, category='melee'
+gives the melee profile. If pairings are datasheet-locked (shoota pairs ONLY
+with kustom choppa), model as multiple fixed-pair builds so no illegal cross
+combo can score.
+
+## Army-wide reroll detector gates (war plan P1)
+`detect_army_wide_reroll` claims an always-on reroll only after ALL of:
+strict `<hit|wound|damage> roll(s)` noun (kills "re-roll the dice … wounds
+are regenerated"); NO class keyword (class texts belong to the keyed
+detector); self-subject ("this model/unit"); single-reroll phrasing
+("re-roll one Hit roll") excluded — no honest mode, claiming '1s' would
+over-claim; condition cues → positional=True, engine refuses always-on.
+Condition cue set includes: while/leading ("while this model is leading a
+unit" buffs flow to the LED unit), select-one-enemy-unit + another-model
+(Fire Support / Advanced Scouting are ally buffs), closest eligible, Oath of
+Moment, Spotted, FLY, Dark Pact. "add N to the Wound roll" is a MODIFIER,
+not a reroll — noun preceded by "add … to the" is skipped.
+**How:** corpus first, then regexes; audit the applied list against
+datasheet knowledge before trusting it (30 applied → 4 after honest gating).
+
+## Truth-report isolation now has two noise sources
+Environment drift makes ALL factions' blocks churn between sessions; real
+changes must be isolated by regenerating at HEAD vs applied (same seed) and
+committing committed+real-blocks only. NOTE: the report records role-lean
+fields (armor_share, best_s, lean_delta…), NOT dpp — a DPP-only change
+(e.g. army-wide hit rerolls) may legitimately leave blocks byte-identical.
+
+## Auto-generated detachment stubs are NOT detachment rules
+Most factions carry detachment_modifiers.json stubs ("auto-generated from
+MFM", placeholder no-op choices). Any verified-sources gate must check
+`_source` for "auto-generated" and treat those as generalist-only. Verified
+as of 2026-08-23: grey-knights, chaos-knights, chaos-daemons, dark-angels,
+space-marines. Filling meta_ceiling from stubs = fabricated data dressed as
+engine fact.

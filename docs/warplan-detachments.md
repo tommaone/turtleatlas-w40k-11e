@@ -1,7 +1,9 @@
 # War Plan — Detachment Modifiers & Army Rules Coverage
 
-Status: EXECUTION-READY — P0 done 2026-08-23; deep work continues in a
-fresh session (see Handover Notes at bottom).
+Status: IN PROGRESS — deep-work session 2026-08-23 delivered baseline
+repair, chaos-daemons migration, P1 engine core (shipped), P3 capability +
+5 verified factions. Remaining: verified modifier authoring for 25 factions
+(see Handover Notes bottom).
 Owner: orchestrator (ox-alpha) via Splinter dispatch
 Last updated: 2026-08-23 (post-P0)
 

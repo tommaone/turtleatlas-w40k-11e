@@ -146,6 +146,55 @@ def compute_tiers_entry(fname, data, n_units):
     }
 
 
+def detachment_view(fid, max_points=2000):
+    """Best-detachment roster index per disposition (war plan P3 dual view).
+
+    For each configured detachment: full ranking pass, roster index per
+    mission; keep the BEST detachment per mission. Returns None when the
+    faction has no detachment_modifiers.json (generalist-only view).
+
+    Returns {'missions': {m: score}, 'overall': x,
+             'best': {m: detachment_name}} — engine-derived numbers only.
+    """
+    det_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                            'data', 'config', fid, 'detachment_modifiers.json')
+    if not os.path.isfile(det_path):
+        return None
+    with open(det_path, encoding='utf-8') as f:
+        dets = json.load(f).get('detachments') or {}
+    # Verified-sources gate (war plan P3): auto-generated MFM stubs carry
+    # placeholder no-op modifiers — they are NOT detachment rules. A faction
+    # whose every entry is auto-generated stays generalist-only.
+    if dets and all(
+        'auto-generated' in str(d.get('_source', '')).lower()
+        for d in dets.values()
+    ):
+        return None
+    best = None
+    for det_name in sorted(dets):
+        try:
+            data, _n = build_data(fid, max_points=max_points,
+                                  detachment=det_name)
+            scores = extract_army_scores(data)
+        except Exception as e:
+            print(f'  ! detachment {det_name} failed for {fid}: {e}')
+            continue
+        if best is None:
+            best = {m: (s, det_name) for m, s in scores.items()}
+            continue
+        for m, s in scores.items():
+            if s > best[m][0]:
+                best[m] = (s, det_name)
+    if best is None:
+        return None
+    missions = {m: round(s, 1) for m, (s, _) in best.items()}
+    return {
+        'missions': missions,
+        'overall': round(sum(s for s, _ in best.values()) / len(best), 1),
+        'best': {m: d for m, (_, d) in best.items()},
+    }
+
+
 def _tier_of(score, ranked_scores):
     """Percentile-based tier: S top 15%, A next 20%, B middle 30%, C next 20%, D bottom 15%."""
     n = len(ranked_scores)
@@ -178,6 +227,18 @@ def render_tier_section(tiers):
         f'onclick="setTierMode(this,\'{b}\')">{b}</button>'
         for i, b in enumerate(buttons)
     )
+    # Detachment-aware view toggle — only rendered when at least one faction
+    # carries engine-computed detachment scores (war plan P3 dual view).
+    has_det = any('det' in t for t in tiers.values())
+
+    det_note = (
+        'Generalist view is rules-free; With Detachments applies each '
+        'faction\'s best configured detachment per disposition (only factions '
+        'with verified detachment data change position).'
+        if has_det else
+        'No detachment/army rules.'
+    )
+    viewbar_style = '' if has_det else 'display:none'
 
     return (
         '<div class="section">\n'
@@ -186,16 +247,22 @@ def render_tier_section(tiers):
         f'Ranking assumes <b>2000pt matched play</b>. '
         f'Roster-quality index per disposition — weighted mean over all ranked '
         f'datasheets, rank-decayed (best sheets count most, tail still matters; '
-        f'effective depth ~20 units). No detachment/army rules. '
+        f'effective depth ~20 units). {det_note} '
         f'Tiers are percentile-banded per view.</p>\n'
         f'  <div class="tierbar" id="tierbar">{btns_html}</div>\n'
+        f'  <div class="tierbar" id="viewbar" style="{viewbar_style}">'
+        '<button class="tierbtn viewbtn active" onclick="setTierView(this,\'gen\')">Generalist</button>'
+        '<button class="tierbtn viewbtn" onclick="setTierView(this,\'det\')">With Detachments</button>'
+        '</div>\n'
         '  <div id="tierlist"></div>\n'
         '</div>\n'
         '<script>\n'
         f'var TIERS={data_js};\n'
-        'function setTierMode(btn,mode){document.querySelectorAll(".tierbtn").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");renderTiers(mode)}\n'
+        'var TIER_VIEW="gen";\n'
+        'function setTierMode(btn,mode){document.querySelectorAll(".tierbar .tierbtn:not(.viewbtn)").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");renderTiers(mode)}\n'
+        'function setTierView(btn,v){document.querySelectorAll(".viewbtn").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");TIER_VIEW=v;renderTiers(document.querySelector(".tierbar .tierbtn.active:not(.viewbtn)").textContent)}\n'
         'function tierOf(score,sorted){var r=sorted.indexOf(score);var p=r/Math.max(sorted.length-1,1);return p<0.15?"S":p<0.35?"A":p<0.65?"B":p<0.85?"C":"D"}\n'
-        'function renderTiers(mode){var key=mode==="Overall"?null:mode;var rows=TIERS.map(function(t){return{fid:t.fid,name:t.name,score:key?t.missions[key]:t.overall}});rows.sort(function(a,b){return b.score-a.score});var sorted=rows.map(function(r){return r.score});var html="";rows.forEach(function(r,i){var t=tierOf(r.score,sorted);html+=\'<a class="tierrow" href="\'+r.fid+\'/findings.html"><span class="tierbadge t-\'+t+\'">\'+t+\'</span><span class="tiername">\'+(i+1)+". "+r.name+\'</span><span class="tierscore">\'+r.score.toFixed(1)+"</span></a>"});document.getElementById("tierlist").innerHTML=html}\n'
+        'function renderTiers(mode){var key=mode==="Overall"?null:mode;var rows=TIERS.map(function(t){var useDet=TIER_VIEW==="det"&&t.det;if(useDet){return{fid:t.fid,name:t.name+" ▲",score:key?t.det.missions[key]:t.det.overall}}return{fid:t.fid,name:t.name,score:key?t.missions[key]:t.overall}});rows.sort(function(a,b){return b.score-a.score});var sorted=rows.map(function(r){return r.score});var html="";rows.forEach(function(r,i){var t=tierOf(r.score,sorted);html+=\'<a class="tierrow" href="\'+r.fid+\'/findings.html"><span class="tierbadge t-\'+t+\'">\'+t+\'</span><span class="tiername">\'+(i+1)+". "+r.name+\'</span><span class="tierscore">\'+r.score.toFixed(1)+"</span></a>"});document.getElementById("tierlist").innerHTML=html}\n'
         'renderTiers("Overall");\n'
         '</script>\n'
     )
@@ -367,8 +434,12 @@ def _meta_weights_display(supported_configs, slug):
     return [[name, round(float(w) / total * 100)] for name, w in profiles]
 
 
-def build_data(faction, max_points=2000):
+def build_data(faction, max_points=2000, detachment=None):
     """Compute rankings per meta preset for a faction.
+
+    detachment: optional detachment name — when set, the faction's
+    detachment_modifiers.json entry is applied to every ranking pass
+    (war plan P3 detachment-aware view). None = rules-free generalist view.
 
     Returns (DATA, n_ranked_units) where DATA['meta'][meta][mission] = [unit,...]
     and DATA['meta_info'] lists each preset's slug, display label, and the
@@ -391,7 +462,8 @@ def build_data(faction, max_points=2000):
     for slug, _label in presets:
         data[slug] = {}
         for m in MISSIONS:
-            r = e.compute_ranking(mission=m, meta_name=slug, max_points=max_points)
+            r = e.compute_ranking(mission=m, meta_name=slug, max_points=max_points,
+                                  detachment=detachment)
             w = WEIGHTS[m]
             units = []
             for u in r:
@@ -614,7 +686,14 @@ if __name__ == '__main__':
         # Army tier list — only meaningful when generating the full faction set
         if not args.faction and fid not in EXCLUDE_FROM_TIERS:
             tiers = tiers or {}
-            tiers[fid] = compute_tiers_entry(fname, data, n_units)
+            entry = compute_tiers_entry(fname, data, n_units)
+            # Detachment-aware dual view (war plan P3): engine-computed
+            # best-detachment scores. Only for factions with verified
+            # detachment_modifiers.json; generalist fields stay untouched.
+            det = detachment_view(fid, max_points=max_pts)
+            if det is not None:
+                entry['det'] = det
+            tiers[fid] = entry
             with open(tiers_path, 'w', encoding='utf-8') as f:
                 json.dump(tiers, f, indent=1, ensure_ascii=False)
 
