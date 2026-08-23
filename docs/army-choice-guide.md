@@ -1,4 +1,4 @@
-# Army Buy Guide — long-term trends
+# Choosing Your Army — practical help so you don't waste money
 
 *Generated 2026-08-23 from engine outputs (rank-decay roster index, MFM v1.2). Full method + caveats in findings/advisor.json.*
 

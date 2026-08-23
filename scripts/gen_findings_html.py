@@ -82,7 +82,7 @@ INDEX_HEADER = '''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><me
   .tierscore{font-size:0.85em;color:#8b949e;white-space:nowrap}
 </style></head><body>
 <h1>Faction Findings</h1>
-<p class="subtitle">DPP rankings for Warhammer 40,000 — 11th Edition. Data-driven, deterministic. No LLM in the loop. <a href="../docs/army-buy-guide.md" style="color:#58a6ff">Army Buy Guide &rarr;</a></p>
+<p class="subtitle">DPP rankings for Warhammer 40,000 — 11th Edition. Data-driven, deterministic. No LLM in the loop. <a href="../docs/army-choice-guide.md" style="color:#58a6ff">Choosing Your Army &rarr;</a></p>
 '''
 
 
@@ -211,6 +211,22 @@ def _tier_of(score, ranked_scores):
     return 'D'
 
 
+INDEX_SCRIPT = (
+    'var RAW_BASE="https://raw.githubusercontent.com/tommaone/turtleatlas-w40k-11e/main/findings/";'
+
+    'function ghFix(){if(window.location.hostname==="github.com"||window.location.href.includes("htmlpreview.github.io")){var els=document.querySelectorAll("a[href$=\'/findings.html\']");for(var i=0;i<els.length;i++){var h=els[i].getAttribute("href");if(h.indexOf("http")!==0)els[i].href="https://htmlpreview.github.io/?"+RAW_BASE+h}}}'
+
+    'function setTierMode(btn,mode){document.querySelectorAll(".tierbar .tierbtn").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");renderTiers(mode)}'
+
+    'function tierOf(score,sorted){var r=sorted.indexOf(score);var p=r/Math.max(sorted.length-1,1);return p<0.15?"S":p<0.35?"A":p<0.65?"B":p<0.85?"C":"D"}'
+
+    'function renderTiers(mode){var key=(mode==="Overall")?null:mode;var rows=[];for(var i=0;i<TIERS.length;i++){var t=TIERS[i];rows.push({fid:t.fid,name:t.name,score:key?t.missions[key]:t.overall});}rows.sort(function(a,b){return b.score-a.score});var sorted=rows.map(function(r){return r.score;});var html="";for(var i=0;i<rows.length;i++){var r=rows[i],t=tierOf(r.score,sorted);html+=\'<a class="tierrow" href="\'+r.fid+\'/findings.html"><span class="tierbadge t-\'+t+\'">\'+t+\'</span><span class="tiername">\'+(i+1)+". "+r.name+\'</span><span class="tierscore">\'+r.score.toFixed(1)+"</span></a>";}document.getElementById("tierlist").innerHTML=html;ghFix();}'
+
+    'renderTiers("Overall");ghFix();'
+
+)
+
+
 def render_tier_section(tiers):
     """Landing-page army tier list with disposition filter (client-side)."""
     import json as _json
@@ -232,14 +248,63 @@ def render_tier_section(tiers):
     has_det = any('det' in t for t in tiers.values())
 
     det_note = (
-        'Generalist view is rules-free; With Detachments applies each '
-        'faction\'s best configured detachment per disposition (only factions '
-        'with verified detachment data change position).'
-        if has_det else
-        'No detachment/army rules.'
+        'Rules packages are assessed qualitatively per faction in the expert '
+        'layer (resources/experts/<faction>.md) — band ratings grounded in '
+        'verified mechanics, not engine numbers. Cross-faction numeric '
+        'comparison of detachment rules is deliberately not attempted: the '
+        'engine models only a subset of each package, so such numbers would '
+        'compare incomparable things.'
     )
-    viewbar_style = '' if has_det else 'display:none'
 
+def render_tier_section(tiers):
+    """Landing-page army tier list with disposition filter (client-side)."""
+    import json as _json
+    entries = sorted(tiers.values(), key=lambda t: -t['overall'])
+    payload = [
+        {'fid': fid, **t}
+        for fid, t in tiers.items()
+    ]
+    data_js = _json.dumps(payload, ensure_ascii=False)
+
+    buttons = ['Overall'] + MISSIONS
+    btns_html = ''.join(
+        f'<button class="tierbtn{" active" if i == 0 else ""}" '
+        f'onclick="setTierMode(this,\'{b}\')">{b}</button>'
+        for i, b in enumerate(buttons)
+    )
+    # Detachment-aware view toggle — only rendered when at least one faction
+    # carries engine-computed detachment scores (war plan P3 dual view).
+    has_det = any('det' in t for t in tiers.values())
+
+    det_note = (
+        'Rules packages are assessed qualitatively per faction in the expert '
+        'layer (resources/experts/<faction>.md) — band ratings grounded in '
+        'verified mechanics, not engine numbers. Cross-faction numeric '
+        'comparison of detachment rules is deliberately not attempted: the '
+        'engine models only a subset of each package, so such numbers would '
+        'compare incomparable things.'
+    )
+
+def render_tier_section(tiers):
+    """Landing-page army tier list with disposition filter (client-side)."""
+    import json as _json
+    payload = [{'fid': fid, **t} for fid, t in tiers.items()]
+    data_js = _json.dumps(payload, ensure_ascii=False)
+
+    buttons = ['Overall'] + MISSIONS
+    btns_html = ''.join(
+        f'<button class="tierbtn{" active" if i == 0 else ""}" '
+        f'onclick="setTierMode(this,\'{b}\')">{b}</button>'
+        for i, b in enumerate(buttons)
+    )
+    det_note = (
+        'Rules packages are assessed qualitatively per faction in the expert '
+        'layer (resources/experts/<faction>.md) — band ratings grounded in '
+        'verified mechanics, not engine numbers. Cross-faction numeric '
+        'comparison of detachment rules is deliberately not attempted: the '
+        'engine models only a subset of each package, so such numbers would '
+        'compare incomparable things.'
+    )
     return (
         '<div class="section">\n'
         '  <h2>Army Tier List</h2>\n'
@@ -250,21 +315,12 @@ def render_tier_section(tiers):
         f'effective depth ~20 units). {det_note} '
         f'Tiers are percentile-banded per view.</p>\n'
         f'  <div class="tierbar" id="tierbar">{btns_html}</div>\n'
-        f'  <div class="tierbar" id="viewbar" style="{viewbar_style}">'
-        '<button class="tierbtn viewbtn active" onclick="setTierView(this,\'gen\')">Generalist</button>'
-        '<button class="tierbtn viewbtn" onclick="setTierView(this,\'det\')">With Detachments</button>'
-        '</div>\n'
         '  <div id="tierlist"></div>\n'
         '</div>\n'
         '<script>\n'
         f'var TIERS={data_js};\n'
-        'var TIER_VIEW="gen";\n'
-        'function setTierMode(btn,mode){document.querySelectorAll(".tierbar .tierbtn:not(.viewbtn)").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");renderTiers(mode)}\n'
-        'function setTierView(btn,v){document.querySelectorAll(".viewbtn").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");TIER_VIEW=v;renderTiers(document.querySelector(".tierbar .tierbtn.active:not(.viewbtn)").textContent)}\n'
-        'function tierOf(score,sorted){var r=sorted.indexOf(score);var p=r/Math.max(sorted.length-1,1);return p<0.15?"S":p<0.35?"A":p<0.65?"B":p<0.85?"C":"D"}\n'
-        'function renderTiers(mode){var key=mode==="Overall"?null:mode;var rows=TIERS.map(function(t){var useDet=TIER_VIEW==="det"&&t.det;if(useDet){return{fid:t.fid,name:t.name+" ▲",score:key?t.det.missions[key]:t.det.overall}}return{fid:t.fid,name:t.name,score:key?t.missions[key]:t.overall}});rows.sort(function(a,b){return b.score-a.score});var sorted=rows.map(function(r){return r.score});var html="";rows.forEach(function(r,i){var t=tierOf(r.score,sorted);html+=\'<a class="tierrow" href="\'+r.fid+\'/findings.html"><span class="tierbadge t-\'+t+\'">\'+t+\'</span><span class="tiername">\'+(i+1)+". "+r.name+\'</span><span class="tierscore">\'+r.score.toFixed(1)+"</span></a>"});document.getElementById("tierlist").innerHTML=html}\n'
-        'renderTiers("Overall");\n'
-        '</script>\n'
+        + INDEX_SCRIPT
+        + '</script>\n'
     )
 
 
@@ -515,7 +571,50 @@ def build_data(faction, max_points=2000, detachment=None):
     return {'meta': data, 'meta_info': meta_info}, len(all_unit_names)
 
 
-def gen_html(fname, data, n_units):
+def parse_expert_assessment(fid):
+    """Parse the Army Rules & Detachments assessment from the expert file.
+
+    Returns a plain dict for the Key Insights tab (interpretation layer —
+    clearly labelled there as NOT engine output), or None when no expert
+    file/section exists. Facts inside trace to workspace research corpus;
+    ratings are band-scale judgement by design (see resources/experts).
+    """
+    path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                        'resources', 'experts', f'{fid}.md')
+    if not os.path.isfile(path):
+        return None
+    md = open(path, encoding='utf-8').read()
+    m = re.search(r'## Army Rules & Detachments[^\n]*\n(.*?)(?=\n## |\Z)', md, re.S)
+    if not m:
+        return None
+    sec = m.group(1)
+
+    out = {'disposition_fit': [], 'detachments': [], 'army_rule': '',
+           'play_pattern': ''}
+    am = re.search(r'### Army Rule\s*\n(.*?)(?=\n### |\Z)', sec, re.S)
+    if am:
+        out['army_rule'] = am.group(1).strip()
+    for row in re.findall(
+            r'^\|\s*(Take and Hold|Purge the Foe|Reconnaissance|Priority Assets|Disruption)'
+            r'\s*\|\s*(Strong|Moderate|Situational|Weak)\s*\|\s*(.+?)\s*\|\s*$',
+            sec, re.M):
+        out['disposition_fit'].append({'mission': row[0], 'fit': row[1],
+                                       'why': row[2]})
+    for blk in re.finditer(
+            r'####\s+(.+?)\s*\((\d+)DP\s*(?:→|->)\s*([A-Z &]+)\)\s*\n(.*?)(?=\n#### |\n### |\Z)',
+            sec, re.S):
+        name, dp, obj, body = blk.group(1), blk.group(2), blk.group(3), blk.group(4)
+        rm = re.search(r'\*\*Rating\*\*:?\s*(Strong|Moderate|Situational|Weak)', body)
+        out['detachments'].append({
+            'name': name.strip(), 'dp': int(dp), 'objective': obj.strip(),
+            'rating': rm.group(1) if rm else 'Unrated'})
+    pm = re.search(r'\*\*Overall army play pattern\*\*[^\n]*\n?(.*)', sec)
+    if pm:
+        out['play_pattern'] = pm.group(1).strip()[:1200]
+    return out if (out['detachments'] or out['disposition_fit']) else None
+
+
+def gen_html(fname, data, n_units, fid=None):
     """Generate the full findings HTML.
 
     data is the {meta, meta_info} structure from build_data. The whole page is
@@ -525,6 +624,8 @@ def gen_html(fname, data, n_units):
     data_json = json.dumps(data, default=str)
     weights_json = json.dumps(WEIGHTS)
     factors_json = json.dumps(MISSION_FACTORS)
+    expert_json = json.dumps(parse_expert_assessment(fid) if fid else None,
+                             ensure_ascii=False)
     return f'''<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><title>{fname} — Findings</title>
 <style>
@@ -569,7 +670,8 @@ tr:hover{{background:#141c28}}tr.top3{{background:#0d2137}}
 .tag-inv{{background:#e65100;color:#ffcc80}}.tag-fnp{{background:#1b5e20;color:#81c784}}
 .tag-cfnp{{background:#4a148c;color:#ce93d8}}.tag-ocboost{{background:#004d40;color:#80cbc4}}.tag-cost{{background:#37474f;color:#b0bec5}}
 .ld-cell{{position:static;cursor:help}}
-.ld-popup{{display:none;position:fixed;z-index:1000;background:#0d1520;border:1px solid #4fc3f7;border-radius:8px;padding:12px 16px;min-width:300px;max-width:90vw;width:420px;box-shadow:0 8px 32px rgba(0,0,0,.6);font-size:11px;color:#b0bec5;text-align:left;white-space:normal}}
+.ld-popup{{display:none;position:fixed;z-index:1000;pointer-events:none;background:#0d1520;border:1px solid #4fc3f7;border-radius:8px;padding:12px 16px;min-width:300px;max-width:90vw;width:420px;box-shadow:0 8px 32px rgba(0,0,0,.6);font-size:11px;color:#b0bec5;text-align:left;white-space:normal}}
+.ld-cell.open .ld-popup{{pointer-events:auto}}
 .ld-popup h4{{color:#4fc3f7;font-size:12px;margin:0 0 8px;border-bottom:1px solid #1a2030;padding-bottom:4px}}
 .ld-popup .ld-weapon{{display:flex;gap:8px;padding:3px 0;border-bottom:1px solid #1a203022;flex-wrap:wrap}}
 .ld-popup .ld-weapon:last-child{{border-bottom:none}}
@@ -613,6 +715,7 @@ tr:hover{{background:#141c28}}tr.top3{{background:#0d2137}}
 <div id="insights" class="tab-content"></div>
 <script>
 const DATA={data_json};
+const EXPERT={expert_json};
 const WEIGHTS={weights_json};
 const FACTORS={factors_json};
 (function(){{
@@ -639,9 +742,9 @@ var ACTIVE='';
 function isActive(meta){{return ACTIVE===''||ACTIVE===meta}}
 function renderBanner(){{var b=document.getElementById('preset-banner'),opts=DATA.meta_info.map(function(p){{var sel=isActive(p.slug)?' selected':'';return '<option value="'+p.slug+'"'+sel+'>'+p.label+'</option>'}}).join('');var info=DATA.meta_info.filter(function(m){{return isActive(m.slug)}})[0]||DATA.meta_info[0];var weights=(info&&info.weights?info.weights.map(function(w){{return '<span class="preset-weight">'+w[0]+' <b>'+w[1]+'%</b></span>'}}).join(''):'');b.innerHTML='<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;width:100%"><label for="meta-select">Target mix</label><select id="meta-select" onchange="setMeta(this.value)">'+opts+'</select><div class="preset-weights">'+weights+'</div></div><div class="preset-note">DPP is computed against this opponent army composition. Pack your list against a different meta and the rankings re-rank.</div>'}}
 function setMeta(slug){{ACTIVE=slug;renderBanner();renderMissions();renderTop10();renderInsights()}}
-function renderMissions(){{var c=document.getElementById('missions'),html='';var meta=ACTIVE===''?DATA.meta_info[0].slug:ACTIVE;for(var mission in DATA.meta[meta]){{var units=DATA.meta[meta][mission],w=WEIGHTS[mission],f=FACTORS[mission]||{{}},mid=mission.replace(/[^a-z]/gi,'');var factorHtml='';if(f.playstyle)factorHtml+='<div class="mission-playstyle">'+f.playstyle+'</div>';if(f.factors)factorHtml+='<ul class="factor-list">'+f.factors.map(function(x){{return '<li>'+x+'</li>'}}).join('')+'</ul>';html+='<div class="mission-card"><div class="mission-header"><div class="mission-name">'+mission+' <span style="font-size:13px;color:#78909c">('+units.length+' units)</span></div><div class="mission-weights"><span class="weight w-dpp">DPP '+w.dps+'%</span><span class="weight w-surv">SURV '+w.surv+'%</span><span class="weight w-obj">OBJ '+w.obj+'%</span><span class="weight w-mob">MOB '+w.mob+'%</span></div></div>'+(factorHtml?'<div class="mission-factors">'+factorHtml+'</div>':'')+'<div class="search-bar"><input id="search-'+mid+'" type="text" placeholder="Search units..." oninput="filterMission(\\''+mid+'\\')"><span class="count" id="count-'+mid+'">'+units.length+' / '+units.length+' units</span></div><div class="table-scroll"><table id="table-'+mid+'"><tr><th>#</th><th>Unit</th><th>Pts</th><th>Score</th><th>DPP</th><th class="bar-cell"></th><th>SURV</th><th class="bar-cell"></th><th>OBJ</th><th class="bar-cell"></th><th>MOB</th><th class="bar-cell"></th><th>Tags</th><th>Profile</th></tr>';units.forEach(function(u,i){{html+=renderRow(u,i)}});html+='</table></div></div>'}}c.innerHTML=html}}
+function renderMissions(){{var c=document.getElementById('missions'),html='';var meta=ACTIVE===''?DATA.meta_info[0].slug:ACTIVE;for(var mission in DATA.meta[meta]){{var units=DATA.meta[meta][mission],w=WEIGHTS[mission],f=FACTORS[mission]||{{}},mid=mission.replace(/[^a-z]/gi,'');var factorHtml='';if(f.playstyle)factorHtml+='<div class="mission-playstyle">'+f.playstyle+'</div>';if(f.factors)factorHtml+='<ul class="factor-list">'+f.factors.map(function(x){{return '<li>'+x+'</li>'}}).join('')+'</ul>';html+='<div class="mission-card"><div class="mission-header"><div class="mission-name">'+mission+' <span style="font-size:13px;color:#78909c">('+units.length+' units)</span></div><div class="mission-weights"><span class="weight w-dpp">DPP '+w.dps+'%</span><span class="weight w-surv">SURV '+w.surv+'%</span><span class="weight w-obj">OBJ '+w.obj+'%</span><span class="weight w-mob">MOB '+w.mob+'%</span></div></div>'+(factorHtml?'<details class="mission-factors"><summary>How this disposition scores ▾</summary>'+factorHtml+'</details>':'')+'<div class="search-bar"><input id="search-'+mid+'" type="text" placeholder="Search units..." oninput="filterMission(\\''+mid+'\\')"><span class="count" id="count-'+mid+'">'+units.length+' / '+units.length+' units</span></div><div class="table-scroll"><table id="table-'+mid+'"><tr><th>#</th><th>Unit</th><th>Pts</th><th>Score</th><th>DPP</th><th class="bar-cell"></th><th>SURV</th><th class="bar-cell"></th><th>OBJ</th><th class="bar-cell"></th><th>MOB</th><th class="bar-cell"></th><th>Tags</th><th>Profile</th></tr>';units.forEach(function(u,i){{html+=renderRow(u,i)}});html+='</table></div></div>'}}c.innerHTML=html}}
 function renderTop10(){{var c=document.getElementById('top10'),unitData={{}};var meta=ACTIVE===''?DATA.meta_info[0].slug:ACTIVE;for(var mission in DATA.meta[meta]){{var units=DATA.meta[meta][mission];for(var i=0;i<units.length;i++){{var u=units[i];if(!unitData[u.name])unitData[u.name]={{name:u.name,pts:u.pts,ds:u.ds,fly:u.fly,inv:u.inv,fnp:u.fnp,cfnp:u.cfnp,cfnp_type:u.cfnp_type,oc_boost:u.oc_boost,t:u.t,w:u.w,oc:u.oc,missions:{{}}}};unitData[u.name].missions[mission]={{score:u.score,rank:i+1}}}}}}for(var k in unitData){{var u=unitData[k],scores=Object.values(u.missions).map(function(m){{return m.score}});u.avgScore=Math.round(scores.reduce(function(a,b){{return a+b}},0)/scores.length*10)/10}}var sorted=Object.values(unitData).sort(function(a,b){{return b.avgScore-a.avgScore}}).slice(0,20);var html='<h2>Top 20 Units (Avg Score)</h2>';sorted.forEach(function(u,idx){{var badges=Object.entries(u.missions).sort(function(a,b){{return b[1].score-a[1].score}}).map(function(kv){{var k=kv[0],v=kv[1];return '<span class="mission-badge '+(v.rank===1?'top1':v.rank<=3?'top3':'top5')+'">#'+v.rank+' '+k+' ('+v.score+')</span>'}}).join(' ');var bc=['#ffd700','#c0c0c0','#cd7f32'];html+='<div class="insight-card" style="border-left-color:'+(idx<3?bc[idx]:'#4fc3f7')+'"><div class="insight-title" style="display:flex;justify-content:space-between"><span>#'+(idx+1)+' '+u.name+'</span><span class="pts">'+u.pts+'pts · avg '+u.avgScore+'</span></div><div style="margin:6px 0">'+(u.ds?'<span class="tag tag-ds">DS</span>':'')+(u.fly?'<span class="tag tag-fly">FLY</span>':'')+(u.inv?'<span class="tag tag-inv">INV '+u.inv+'</span>':'')+(u.fnp?'<span class="tag tag-fnp">FNP '+u.fnp+'</span>':'')+(u.cfnp?'<span class="tag tag-cfnp">CFNP '+u.cfnp+'+ vs '+u.cfnp_type+'</span>':'')+(u.oc_boost?'<span class="tag tag-ocboost">OC+'+u.oc_boost+'/banner</span>':'')+'<span style="font-size:11px;color:#78909c;margin-left:8px">T'+u.t+' W'+u.w+' OC'+u.oc+'</span></div><div>'+badges+'</div></div>'}});c.innerHTML=html}}
-function renderInsights(){{var c=document.getElementById('insights'),html='<h2>Key Insights</h2>';var meta=ACTIVE===''?DATA.meta_info[0].slug:ACTIVE;for(var mission in DATA.meta[meta]){{var units=DATA.meta[meta][mission];if(units.length>0){{var u=units[0];html+='<div class="insight-card"><div class="insight-title">#1 in '+mission+': '+u.name+'</div><div class="insight-text">'+u.score+' score · '+u.pts+'pts · '+u.dpp+' DPP · T'+u.t+' W'+u.w+(u.inv?' INV'+u.inv:'')+(u.fnp?' FNP'+u.fnp:'')+(u.cfnp?' CFNP'+u.cfnp+'+'+u.cfnp_type:'')+(u.oc_boost?' OC+'+u.oc_boost+'/banner':'')+(u.ds?' DS':'')+(u.fly?' FLY':'')+' OC'+u.oc+'</div></div>'}}}}c.innerHTML=html}}
+function renderInsights(){{var c=document.getElementById('insights'),html='<h2>Key Insights</h2>';if(EXPERT){{html+='<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #bc8cff;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:11px;color:#8b949e"><b style="color:#bc8cff">Expert assessment</b> — interpretation layer (rules packages are NOT engine numbers). Ratings are band-scale judgement grounded in verified 11e mechanics; DPP/scores below remain generalist and rules-free.</div>';if(EXPERT.play_pattern)html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">How this army plays</div><div class="insight-text">'+EXPERT.play_pattern+'</div></div>';if(EXPERT.army_rule)html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">Army rule</div><div class="insight-text">'+EXPERT.army_rule.replace(/\\n/g,'<br>')+'</div></div>';if(EXPERT.disposition_fit&&EXPERT.disposition_fit.length){{html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">Disposition fit (expert verdict)</div><table style="width:100%;font-size:11px;border-collapse:collapse;margin-top:6px">';EXPERT.disposition_fit.forEach(function(r){{var col=r.fit==="Strong"?"#3fb950":r.fit==="Moderate"?"#58a6ff":r.fit==="Situational"?"#d29922":"#6e7681";html+='<tr><td style="padding:3px 6px;color:#c5cdd9;white-space:nowrap">'+r.mission+'</td><td style="padding:3px 6px;color:'+col+';font-weight:700;white-space:nowrap">'+r.fit+'</td><td style="padding:3px 6px;color:#8b949e">'+r.why+'</td></tr>'}});html+='</table></div>'}}if(EXPERT.detachments&&EXPERT.detachments.length){{var order={{Strong:0,Moderate:1,Situational:2,Weak:3,Unrated:4}};var dets=EXPERT.detachments.slice().sort(function(a,b){{return (order[a.rating]||9)-(order[b.rating]||9)||a.dp-b.dp}});html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">Detachments (best first, expert rating)</div>';dets.slice(0,8).forEach(function(d){{var col=d.rating==="Strong"?"#3fb950":d.rating==="Moderate"?"#58a6ff":d.rating==="Situational"?"#d29922":"#6e7681";html+='<div style="display:flex;gap:8px;padding:3px 0;font-size:11px;flex-wrap:wrap"><span style="color:'+col+';font-weight:700;min-width:86px">'+d.rating+'</span><span style="color:#c5cdd9">'+d.name+'</span><span style="color:#78909c">'+d.dp+'DP → '+d.objective+'</span></div>'}});html+='</div>'}}}}var meta=ACTIVE===''?DATA.meta_info[0].slug:ACTIVE;for(var mission in DATA.meta[meta]){{var units=DATA.meta[meta][mission];if(units.length>0){{var u=units[0];html+='<div class="insight-card"><div class="insight-title">#1 in '+mission+': '+u.name+'</div><div class="insight-text">'+u.score+' score · '+u.pts+'pts · '+u.dpp+' DPP · T'+u.t+' W'+u.w+(u.inv?' INV'+u.inv:'')+(u.fnp?' FNP'+u.fnp:'')+(u.cfnp?' CFNP'+u.cfnp+'+'+u.cfnp_type:'')+(u.oc_boost?' OC+'+u.oc_boost+'/banner':'')+(u.ds?' DS':'')+(u.fly?' FLY':'')+' OC'+u.oc+'</div></div>'}}}}c.innerHTML=html}}
 renderBanner();renderMissions();renderTop10();renderInsights();
 document.addEventListener('mouseover',function(e){{var cell=e.target.closest('.ld-cell');if(cell){{clearTimeout(_ldHideTimer);if(!cell.classList.contains('open'))_ldPosPopup(cell)}}}});
 document.addEventListener('mouseout',function(e){{var cell=e.target.closest('.ld-cell');if(cell){{var related=e.relatedTarget?e.relatedTarget.closest('.ld-cell'):null;if(related!==cell)_ldHideTimer=setTimeout(function(){{if(!cell.classList.contains('open'))_ldHidePopup(cell)}},150)}}}});
@@ -677,7 +780,7 @@ if __name__ == '__main__':
 
     for fid, fname in factions_to_gen.items():
         data, n_units = build_data(fid, max_points=max_pts)
-        html = gen_html(fname, data, n_units)
+        html = gen_html(fname, data, n_units, fid=fid)
         out_dir = os.path.join(OUT, fid)
         os.makedirs(out_dir, exist_ok=True)
         with open(os.path.join(out_dir, 'findings.html'), 'w') as f:

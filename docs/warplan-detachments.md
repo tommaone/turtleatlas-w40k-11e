@@ -168,7 +168,7 @@ documented xfails. Roadmap updated, findings regenerated, pushed.
   chaos-daemons migration task.
 - Buy-advisor module shipped: `scripts/army_advisor.py` →
   `findings/advisor.json` (modular/MCP-ready) +
-  `docs/army-buy-guide.md` (linked from landing page). Fields include
+  `docs/army-choice-guide.md` (linked from landing page). Fields include
   `meta_ceiling: null` placeholder — fill it in Phase 3.
 - Wraithknight invuln test converted to honest xfail; suite fully green
   (0 failed). Root cause: loadout-conditional INV needs an engine feature

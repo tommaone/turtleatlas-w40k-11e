@@ -2,7 +2,7 @@
 """Army buy-advisor: long-term trend metrics from engine outputs.
 
 Modular by design: emits findings/advisor.json (machine-readable, MCP /
-conversational ready) and can render docs/army-buy-guide.md (--guide).
+conversational ready) and can render docs/army-choice-guide.md (--guide).
 
 Metrics per faction (all derived from engine outputs, never re-computed):
 - overall_index      mean rank-decay score across the 5 dispositions
@@ -28,7 +28,7 @@ REPO = Path(__file__).resolve().parent.parent
 TIERS = REPO / "findings" / "army_tiers.json"
 CHANGELOG = REPO / "mfm" / "DATA-CHANGELOG.md"
 ADVISOR_OUT = REPO / "findings" / "advisor.json"
-GUIDE_OUT = REPO / "docs" / "army-buy-guide.md"
+GUIDE_OUT = REPO / "docs" / "army-choice-guide.md"
 
 CAVEATS = [
     "meta_ceiling is engine-computed only for factions with VERIFIED "
@@ -136,7 +136,7 @@ def guide(data):
              if x["versatility"] >= sorted(y["versatility"] for y in f)[half]]
 
     lines = [
-        "# Army Buy Guide — long-term trends",
+        "# Choosing Your Army — practical help so you don't waste money",
         "",
         "*Generated 2026-08-23 from engine outputs (rank-decay roster index, "
         "MFM v1.2). Full method + caveats in findings/advisor.json.*",
