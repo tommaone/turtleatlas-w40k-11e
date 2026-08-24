@@ -1473,10 +1473,14 @@ class RankingEngine:
                            category=f.get("type"))
             except KeyError:
                 continue
-            if f.get("type") == "melee":
-                b_melee.append(w)
-            else:
-                b_ranged.append(w)
+            # Fixed entries may carry multiplicity ("count": 2 soulshatter
+            # lascannons, 2 excruciator cannons) — append per count.
+            f_cnt = f.get("count", 1) or 1
+            for _ in range(f_cnt):
+                if f.get("type") == "melee":
+                    b_melee.append(w)
+                else:
+                    b_ranged.append(w)
         
         slot_choice_lists = [s["choices"] for s in slots]
         

@@ -123,3 +123,36 @@ def test_golden_source_file_exists():
     data = json.loads(GOLDEN.read_text())
     for u in data["units"]:
         assert u.get("_source"), f"{u['unit']}: golden entry without source"
+
+
+class TestCsmVehicleCounts:
+    """Golden follow-ups (2026-08-24): datasheet weapon counts on CSM vehicles.
+
+    Sources: wahapedia.ru 11ed Chaos Land Raider / Venomcrawler datasheets.
+    Root cause of both defects: 'count' was ignored on FIXED entries.
+    """
+
+    def test_land_raider_two_soulshatter(self, csm_engine, MEQ):
+        res = csm_engine.resolve_loadout("Chaos Land Raider", MEQ)
+        _pts, ranged, _m, _i, _info = res
+        names = [w.name for w in ranged]
+        assert names.count("Soulshatter lascannon") == 2, (
+            f"datasheet: 2 soulshatter lascannons, got {names}")
+
+    def test_venomcrawler_two_excruciators(self, csm_engine, MEQ):
+        res = csm_engine.resolve_loadout("Venomcrawler", MEQ)
+        _pts, ranged, _m, _i, _info = res
+        names = [w.name for w in ranged]
+        assert names.count("Excruciator cannon") == 2
+
+    def test_predator_sponsons_resolve(self, csm_engine, MEQ):
+        """'2 lascannons' literal name was unresolvable — sponsons vanished."""
+        cfg = json.load(open(Path(__file__).resolve().parent.parent
+                             / "data/config/chaos-space-marines/weapon_options.json"))
+        b = cfg["Chaos Predator Destructor"]["builds"][0]
+        sponsons = [s for s in b["slots"] if s["name"] == "Sponsons"][0]
+        for c in sponsons["choices"]:
+            assert "count" in c, f"sponson choice {c['name']} lacks count"
+            assert c["count"] == 2
+            # catalogue-exact singular must resolve
+            csm_engine.W(c["name"], unit_name="Defiler", category=c.get("type"))
