@@ -90,6 +90,27 @@ class TestRepulsorExecutioner:
         assert len(pintles) <= 1, f"max one pintle gun, got {pintles}"
 
 
+
+class TestSponsonPairs:
+    """Golden follow-up (2026-08-24): datasheet grants 2 storm bolters,
+    replaceable with 2 fragstorm grenade launchers (wahapedia 11ed).
+    Literal '2 Fragstorm Grenade Launchers' names were unresolvable."""
+
+    @pytest.mark.parametrize("unit,slot", [
+        ("Gladiator Lancer", "Sponson Weapons"),
+        ("Impulsor", "Sponsons"),
+    ])
+    def test_sponson_pair_resolves(self, engine, MEQ, unit, slot):
+        res = engine.resolve_loadout(unit, MEQ)
+        assert res is not None
+        _pts, ranged, _m, _i, _info = res
+        names = [w.name.lower() for w in ranged]
+        sponsons = [r for r in names
+                    if r in ("storm bolter", "fragstorm grenade launcher")]
+        assert len(sponsons) == 2, f"{unit}: pair expected, got {names}"
+        assert len(set(sponsons)) == 1, f"{unit}: both must match, got {sponsons}"
+
+
 def test_golden_source_file_exists():
     data = json.loads(GOLDEN.read_text())
     for u in data["units"]:

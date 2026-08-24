@@ -318,7 +318,8 @@
         "Tzaangor Enlightened",
         "Tzaangor Enlightened With Fatecaster Greatbows"
       ],
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Blue Horrors",
@@ -414,7 +415,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Chaos Land Raider",
@@ -589,7 +591,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Chaos Predator Annihilator",
@@ -784,7 +787,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Chaos Predator Destructor",
@@ -978,7 +982,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Chaos Rhino",
@@ -1136,7 +1141,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Chaos Spawn",
@@ -1208,7 +1214,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Chaos Vindicator",
@@ -1364,7 +1371,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Daemon Prince Of Tzeentch",
@@ -1496,7 +1504,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Daemon Prince Of Tzeentch With Wings",
@@ -1636,7 +1645,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Defiler",
@@ -1975,7 +1985,87 @@
         "rules": [
           "Deadly Demise",
           "Damaged: 1-6 wounds remaining"
-        ]
+        ],
+        "wargear_slots": {
+          "fixed": [
+            {
+              "name": "Shearing claws",
+              "type": "melee"
+            }
+          ],
+          "slots": [
+            {
+              "name": "Replace heavy missile launcher",
+              "choices": [
+                {
+                  "name": "Heavy missile launcher",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Electroscourge",
+                  "type": "melee"
+                },
+                {
+                  "name": "Hades lascannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Heavy reaper autocannon",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Main cannon",
+              "choices": [
+                {
+                  "name": "Hades battle cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Ectoplasma destructor",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Replace heavy baleflamer",
+              "choices": [
+                {
+                  "name": "Heavy baleflamer",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Electroscourge",
+                  "type": "melee"
+                },
+                {
+                  "name": "Hades lascannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Heavy reaper autocannon",
+                  "type": "ranged"
+                }
+              ]
+            },
+            {
+              "name": "Replace excruciator cannons",
+              "choices": [
+                {
+                  "name": "Excruciator cannon",
+                  "type": "ranged",
+                  "count": 2
+                },
+                {
+                  "name": "Pyraflux magma cutter",
+                  "type": "ranged",
+                  "count": 2
+                }
+              ]
+            }
+          ]
+        }
       },
       "pricing": [
         {
@@ -2010,7 +2100,87 @@
           "item": "Heavy reaper autocannon",
           "points": 15
         }
-      ]
+      ],
+      "wargear_slots": {
+        "fixed": [
+          {
+            "name": "Shearing claws",
+            "type": "melee"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Replace heavy missile launcher",
+            "choices": [
+              {
+                "name": "Heavy missile launcher",
+                "type": "ranged"
+              },
+              {
+                "name": "Electroscourge",
+                "type": "melee"
+              },
+              {
+                "name": "Hades lascannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy reaper autocannon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Main cannon",
+            "choices": [
+              {
+                "name": "Hades battle cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Ectoplasma destructor",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Replace heavy baleflamer",
+            "choices": [
+              {
+                "name": "Heavy baleflamer",
+                "type": "ranged"
+              },
+              {
+                "name": "Electroscourge",
+                "type": "melee"
+              },
+              {
+                "name": "Hades lascannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy reaper autocannon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Replace excruciator cannons",
+            "choices": [
+              {
+                "name": "Excruciator cannon",
+                "type": "ranged",
+                "count": 2
+              },
+              {
+                "name": "Pyraflux magma cutter",
+                "type": "ranged",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "name": "Exalted Sorcerer",
@@ -2150,7 +2320,8 @@
       "attachTo": [
         "Rubric Marines"
       ],
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Exalted Sorcerer On Disc Of Tzeentch",
@@ -2294,7 +2465,8 @@
         "Tzaangor Enlightened",
         "Tzaangor Enlightened With Fatecaster Greatbows"
       ],
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Flamers",
@@ -2416,7 +2588,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Forgefiend",
@@ -2593,7 +2766,8 @@
           "item": "Ectoplasma cannon",
           "points": 5
         }
-      ]
+      ],
+      "wargear_slots": null
     },
     {
       "name": "Helbrute",
@@ -3006,7 +3180,75 @@
         "rules": [
           "Deadly Demise",
           "Mortal Sorcery (Aura)"
-        ]
+        ],
+        "wargear_slots": {
+          "fixed": [
+            {
+              "name": "Close combat weapon",
+              "type": "melee"
+            }
+          ],
+          "slots": [
+            {
+              "name": "Missile launcher",
+              "choices": [
+                {
+                  "name": "Helbrute fist with combi-bolter",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Helbrute fist with heavy flamer",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Missile launcher",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Helbrute hammer",
+                  "type": "melee"
+                },
+                {
+                  "name": "Power scourge",
+                  "type": "melee"
+                }
+              ]
+            },
+            {
+              "name": "Multi-melta",
+              "choices": [
+                {
+                  "name": "Multi-melta",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Twin autocannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Helbrute fist with heavy flamer",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Helbrute fist with combi-bolter",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Helbrute plasma cannon",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Twin inferno heavy bolter",
+                  "type": "ranged"
+                },
+                {
+                  "name": "Twin lascannon",
+                  "type": "ranged"
+                }
+              ]
+            }
+          ]
+        }
       },
       "pricing": [
         {
@@ -3022,7 +3264,75 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": {
+        "fixed": [
+          {
+            "name": "Close combat weapon",
+            "type": "melee"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Missile launcher",
+            "choices": [
+              {
+                "name": "Helbrute fist with combi-bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Helbrute fist with heavy flamer",
+                "type": "ranged"
+              },
+              {
+                "name": "Missile launcher",
+                "type": "ranged"
+              },
+              {
+                "name": "Helbrute hammer",
+                "type": "melee"
+              },
+              {
+                "name": "Power scourge",
+                "type": "melee"
+              }
+            ]
+          },
+          {
+            "name": "Multi-melta",
+            "choices": [
+              {
+                "name": "Multi-melta",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin autocannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Helbrute fist with heavy flamer",
+                "type": "ranged"
+              },
+              {
+                "name": "Helbrute fist with combi-bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Helbrute plasma cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin inferno heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin lascannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "name": "Heldrake",
@@ -3131,7 +3441,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Infernal Master",
@@ -3266,7 +3577,8 @@
       "attachTo": [
         "Rubric Marines"
       ],
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Kairos Fateweaver",
@@ -3383,7 +3695,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Lord Of Change",
@@ -3545,7 +3858,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Magnus The Red",
@@ -3681,7 +3995,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Maulerfiend",
@@ -3795,7 +4110,31 @@
           "Deadly Demise",
           "Damaged: 1-4 wounds remaining",
           "Mortal Sorcery (Aura)"
-        ]
+        ],
+        "wargear_slots": {
+          "fixed": [
+            {
+              "name": "Maulerfiend fists",
+              "type": "melee"
+            }
+          ],
+          "slots": [
+            {
+              "name": "Head weapons",
+              "choices": [
+                {
+                  "name": "Magma cutter",
+                  "type": "ranged",
+                  "count": 2
+                },
+                {
+                  "name": "Lasher tendrils",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
+        }
       },
       "pricing": [
         {
@@ -3821,7 +4160,31 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": {
+        "fixed": [
+          {
+            "name": "Maulerfiend fists",
+            "type": "melee"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Head weapons",
+            "choices": [
+              {
+                "name": "Magma cutter",
+                "type": "ranged",
+                "count": 2
+              },
+              {
+                "name": "Lasher tendrils",
+                "type": "melee"
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "name": "Mutalith Vortex Beast",
@@ -3971,7 +4334,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Pink Horrors",
@@ -4062,7 +4426,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Rubric Marines",
@@ -4392,7 +4757,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Scarab Occult Terminators",
@@ -4723,7 +5089,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Screamers",
@@ -4801,7 +5168,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Sekhetar Robots",
@@ -5164,7 +5532,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Sorcerer",
@@ -5310,7 +5679,8 @@
       "attachTo": [
         "Rubric Marines"
       ],
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Sorcerer In Terminator Armour",
@@ -5457,7 +5827,8 @@
       "attachTo": [
         "Scarab Occult Terminators"
       ],
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Tzaangor Enlightened",
@@ -5608,7 +5979,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Tzaangor Enlightened With Fatecaster Greatbows",
@@ -5729,7 +6101,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Tzaangor Shaman",
@@ -5836,7 +6209,8 @@
         "Tzaangor Enlightened With Fatecaster Greatbows",
         "Tzaangors"
       ],
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     },
     {
       "name": "Tzaangors",
@@ -6023,7 +6397,8 @@
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null
+      "wargear_options": null,
+      "wargear_slots": null
     }
   ],
   "_meta": {

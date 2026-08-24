@@ -921,6 +921,22 @@ class BSDataParser11e:
         "Wraithknight",
     }
 
+    @staticmethod
+    def _split_pair_name(name: str) -> tuple[str, int]:
+        """Split a multiplicity prefix from a weapon display name.
+
+        BSData encodes paired weapons as wrapper entries ('2 magma cutters',
+        'Two excruciator cannons') whose profile carries SINGLE-instance
+        stats. Return (singular catalogue name, count) so downstream engines
+        can multiply attacks correctly.
+        """
+        m = MULTIPLICITY_RE.match(name)
+        if m:
+            return m.group(2), int(m.group(1))
+        if name.lower().startswith("two "):
+            return name[4:], 2
+        return name, 1
+
     def extract_wargear_slots(self, entry: dict) -> dict | None:
         """Extract structured wargear slots from a BSData unit entry.
 
@@ -951,9 +967,11 @@ class BSDataParser11e:
         for se in wargear_group.get("selectionEntries", []):
             if se.get("type") == "upgrade" and se.get("profiles"):
                 weapon_type = self._detect_weapon_type(se)
+                fx_name, fx_count = self._split_pair_name(se["name"])
                 fixed.append({
-                    "name": se["name"],
+                    "name": fx_name,
                     "type": weapon_type,
+                    **({"count": fx_count} if fx_count > 1 else {}),
                 })
 
         # Pattern 1b: entryLinks at Wargear level = fixed weapons (shared entries)
@@ -963,9 +981,11 @@ class BSDataParser11e:
                 continue
             target = self._resolve_entry_link(el)
             weapon_type = self._detect_weapon_type(target) if target else "ranged"
+            fx_name, fx_count = self._split_pair_name(el_name)
             fixed.append({
-                "name": el_name,
+                "name": fx_name,
                 "type": weapon_type,
+                **({"count": fx_count} if fx_count > 1 else {}),
             })
 
         # Pattern 2: nested selectionEntryGroups = weapon choice slots
@@ -974,15 +994,20 @@ class BSDataParser11e:
             if not slot_name:
                 continue
             choices = []
-            # Direct selectionEntries (upgrade type with inline profiles)
+            # Direct selectionEntries (upgrade type with inline profiles).
+            # Pair wrappers ('2 magma cutters', 'Two excruciator cannons')
+            # carry no own profile — descend to the nested singular weapon
+            # so the catalogue-exact name resolves and multiplicity survives.
             for ch in seg.get("selectionEntries", []):
                 ch_name = ch.get("name", "")
                 if not ch_name:
                     continue
                 weapon_type = self._detect_weapon_type(ch)
+                ch_name, ch_count = self._resolve_choice_option(ch)
                 choices.append({
                     "name": ch_name,
                     "type": weapon_type,
+                    **({"count": ch_count} if ch_count > 1 else {}),
                 })
             # entryLinks (references to shared selectionEntries)
             for el in seg.get("entryLinks", []):
@@ -992,9 +1017,12 @@ class BSDataParser11e:
                 # Resolve the target to get weapon type
                 target = self._resolve_entry_link(el)
                 weapon_type = self._detect_weapon_type(target) if target else "ranged"
+                src = target if target is not None else {"name": el_name}
+                el_name, el_count = self._resolve_choice_option(src)
                 choices.append({
                     "name": el_name,
                     "type": weapon_type,
+                    **({"count": el_count} if el_count > 1 else {}),
                 })
             if choices:
                 slots.append({

@@ -165,10 +165,16 @@ class TestNameNormalizationGoldens:
     def test_bloat_drone_two_plaguespitters(self):
         data = json.loads((CONFIG / "death-guard" / "weapon_options.json").read_text())
         ch = data["Foetid Bloat Drone"]
-        names = {c["name"].lower() for b in ch["builds"]
-                 for s in b.get("slots", []) for c in s["choices"]}
-        assert "two plaguespitters" in names
-        assert not any(n.startswith("2 ") for n in names), names
+        choices = [c for b in ch["builds"] for s in b.get("slots", [])
+                   for c in s["choices"]]
+        names = {c["name"].lower() for c in choices}
+        # 2026-08-24: pair choices are catalogue singular + count (engine
+        # multiplies), not 'Two X' literals carrying single-profile stats.
+        spitters = [c for c in choices if c["name"].lower() == "plaguespitter"]
+        assert len(spitters) == 1
+        assert spitters[0].get("count") == 2
+        assert not any(n.startswith("2 ") or n.startswith("two ")
+                       for n in names), names
 
     def test_warboss_has_attack_squig_slot(self):
         data = json.loads((CONFIG / "orks" / "characters.json").read_text())

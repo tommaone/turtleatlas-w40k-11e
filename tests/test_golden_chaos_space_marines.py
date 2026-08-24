@@ -141,6 +141,22 @@ class TestKhorneLordOfSkulls:
         assert len(set(names) & pair_b) == 1
 
 
+class TestWeaponPairCounts:
+    """Golden follow-up (2026-08-24): Defiler/Maulerfiend pair choices
+    under-counted (same defect class as TestCsmVehicleCounts in
+    test_golden_loadouts.py; Land Raider/Venomcrawler/Destructor were
+    fixed separately by commit 9e7292a)."""
+
+    def test_defiler_two_excruciators(self, engine, MEQ):
+        res = engine.resolve_loadout("Defiler", MEQ)
+        _pts, ranged, _m, _i, _info = res
+        assert [w.name for w in ranged].count("Excruciator cannon") == 2
+
+    def test_maulerfiend_two_magma_cutters(self, engine, MEQ):
+        res = engine.resolve_loadout("Maulerfiend", MEQ)
+        _pts, ranged, _m, _i, _info = res
+        assert [w.name for w in ranged].count("Magma cutter") == 2
+
 def test_golden_source_file_exists():
     data = json.loads(GOLDEN.read_text())
     for u in data["units"]:

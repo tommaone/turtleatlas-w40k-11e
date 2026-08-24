@@ -59,14 +59,15 @@ EXPECTED_SLOTS = [
     {
         "name": "Replace excruciator cannons",
         "choices": [
-            {"name": "Two excruciator cannons", "type": "ranged"},
-            {"name": "Two magma cutters", "type": "ranged"},
+            # 2026-08-24: pair wrappers extract as singular + count
+            {"name": "Excruciator cannon", "count": 2, "type": "ranged"},
+            {"name": "Magma cutter", "count": 2, "type": "ranged"},
         ],
     },
 ]
 
 EXPECTED_COMBOS = 4 * 2 * 4 * 2  # 64
-EXPECTED_DPP_CURATED = 0.0760  # hand-curated baseline
+EXPECTED_DPP_CURATED = 0.0849  # 2026-08-24: excruciator cannons are a PAIR (count:2) — wahapedia 'equipped with 2'
 
 # ── Khorne Lord of Skulls ───────────────────────────────────────────────
 
@@ -163,12 +164,14 @@ MF_SLOTS = [
     {
         "name": "Head weapons",
         "choices": [
-            {"name": "2 magma cutters", "type": "ranged"},
+            # 2026-08-24: pair wrapper '2 magma cutters' extracts as catalogue
+            # singular + count (profile stats are per-instance).
+            {"name": "Magma cutter", "count": 2, "type": "ranged"},
             {"name": "Lasher tendrils", "type": "melee"},
         ],
     },
 ]
-MF_DPP_CURATED = 0.0444
+MF_DPP_CURATED = 0.1025  # 2026-08-24: datasheet grants TWO magma cutters (count:2) — pair total, not one profile
 
 # ── Nemesis Dreadknight (Grey Knights — cross-faction proof) ─────────────
 # Golden truth: verified against New Recruit wiki (11e) 2026-08-22.
@@ -617,8 +620,10 @@ class TestBSDataExtractionMF:
     def test_slot_choices(self, mf_extracted_slots):
         got_slot = mf_extracted_slots["slots"][0]
         assert got_slot["name"] == MF_SLOTS[0]["name"]
-        got_choices = [(c["name"], c["type"]) for c in got_slot["choices"]]
-        exp_choices = [(c["name"], c["type"]) for c in MF_SLOTS[0]["choices"]]
+        got_choices = [(c["name"], c.get("count", 1), c["type"])
+                       for c in got_slot["choices"]]
+        exp_choices = [(c["name"], c.get("count", 1), c["type"])
+                       for c in MF_SLOTS[0]["choices"]]
         assert got_choices == exp_choices
 
 

@@ -80,6 +80,28 @@ class TestInquisitorialChimera:
         assert _names(melee) == ["Armoured tracks"]
 
 
+
+class TestCorvusBlackstar:
+    """Golden follow-up (2026-08-24): datasheet grants 2 blackstar rocket
+    launchers, replaceable with 2 stormstrike missile launchers (wahapedia
+    11ed). Literal '2 ...' names were unresolvable and the no-profile wargear
+    slot voided every combo — launchers never resolved."""
+
+    def test_launcher_pair_resolves(self, engine, MEQ):
+        res = engine.resolve_loadout("Corvus Blackstar", MEQ)
+        assert res is not None
+        _pts, ranged, _m, _i, _info = res
+        names = [w.name.lower() for w in ranged]
+        assert names.count("blackstar rocket launcher") == 2 or             names.count("stormstrike missile launcher") == 2, names
+
+    def test_no_single_launcher(self, engine, MEQ):
+        res = engine.resolve_loadout("Corvus Blackstar", MEQ)
+        _pts, ranged, _m, _i, _info = res
+        names = [w.name.lower() for w in ranged]
+        assert names.count("blackstar rocket launcher") != 1
+        assert names.count("stormstrike missile launcher") != 1
+
+
 def test_golden_source_file_exists():
     data = json.loads(GOLDEN.read_text())
     for u in data["units"]:

@@ -2,27 +2,10 @@
   "_note": "space-wolves weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Astraeus": {
-    "pts": 525,
-    "info": {
-      "M": "10\"",
-      "T": 12,
-      "SV": 2,
-      "W": 24,
-      "OC": 8,
-      "INV": 5
-    },
     "builds": [
       {
         "name": "default",
         "fixed": [
-          {
-            "name": "Ironhail Heavy Stubber",
-            "type": "ranged"
-          },
-          {
-            "name": "Storm bolter",
-            "type": "ranged"
-          },
           {
             "name": "Twin macro-accelerator cannon",
             "type": "ranged"
@@ -30,11 +13,19 @@
           {
             "name": "Armoured hull",
             "type": "melee"
+          },
+          {
+            "name": "Ironhail Heavy Stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
           }
         ],
         "slots": [
           {
-            "name": "Ranged weapon 1",
+            "name": "Hull weapon",
             "choices": [
               {
                 "name": "Twin heavy bolter",
@@ -45,13 +36,37 @@
                 "type": "ranged"
               }
             ]
+          },
+          {
+            "name": "Sponson weapons",
+            "choices": [
+              {
+                "name": "Astraeus las-ripper",
+                "type": "ranged",
+                "count": 2
+              },
+              {
+                "name": "Plasma eradicator",
+                "type": "ranged",
+                "count": 2
+              }
+            ]
           }
         ]
       }
-    ]
+    ],
+    "pts": 525,
+    "info": {
+      "M": "10\"",
+      "T": 12,
+      "SV": 2,
+      "W": 24,
+      "OC": 8,
+      "INV": 5
+    },
+    "_note": " | structure adopted from space-marines golden config (shared datasheet, 2026-08-24)"
   },
   "Ballistus Dreadnought": {
-    "pts": 150,
     "info": {
       "M": "8\"",
       "T": 10,
@@ -59,6 +74,7 @@
       "W": 12,
       "OC": 4
     },
+    "pts": 150,
     "builds": [
       {
         "name": "default",
@@ -74,11 +90,16 @@
           {
             "name": "Armoured Feet",
             "type": "melee"
+          },
+          {
+            "name": "twin storm bolter",
+            "type": "ranged"
           }
         ],
         "slots": []
       }
-    ]
+    ],
+    "_note": " | structure adopted from space-marines golden config (shared datasheet, 2026-08-24)"
   },
   "Brutalis Dreadnought": {
     "pts": 150,
@@ -338,13 +359,6 @@
   },
   "Invictor Tactical Warsuit": {
     "pts": 125,
-    "info": {
-      "M": "8\"",
-      "T": 8,
-      "SV": 3,
-      "W": 12,
-      "OC": 4
-    },
     "builds": [
       {
         "name": "default",
@@ -354,21 +368,43 @@
             "type": "ranged"
           },
           {
-            "name": "Heavy Bolter",
+            "name": "heavy bolter",
             "type": "ranged"
           },
           {
-            "name": "Twin Ironhail Heavy Stubber",
-            "type": "ranged"
-          },
-          {
-            "name": "Invictor Fist",
+            "name": "invictor fist",
             "type": "melee"
+          },
+          {
+            "name": "twin ironhail heavy stubber",
+            "type": "ranged"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Weapon",
+            "choices": [
+              {
+                "name": "Incendium cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin ironhail autocannon",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "info": {
+      "M": "8\"",
+      "T": 8,
+      "SV": 3,
+      "W": 12,
+      "OC": 4
+    },
+    "_note": " | structure adopted from space-marines golden config (shared datasheet, 2026-08-24)"
   },
   "Land Raider": {
     "pts": 220,
@@ -525,17 +561,18 @@
   },
   "Predator Annihilator": {
     "pts": 135,
-    "info": {
-      "M": "10",
-      "T": 10,
-      "SV": 3,
-      "W": 11,
-      "OC": 3
-    },
     "builds": [
       {
         "name": "default",
         "fixed": [
+          {
+            "name": "Predator twin lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "ranged"
+          },
           {
             "name": "Hunter-killer missile",
             "type": "ranged"
@@ -543,33 +580,50 @@
           {
             "name": "Storm bolter",
             "type": "ranged"
-          },
-          {
-            "name": "Predator Twin Lascannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Armoured Tracks",
-            "type": "melee"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Sponson weapons",
+            "choices": [
+              {
+                "name": "Lascannon",
+                "type": "ranged",
+                "count": 2
+              },
+              {
+                "name": "Heavy Bolter",
+                "type": "ranged",
+                "count": 2
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "info": {
+      "M": "10",
+      "T": 10,
+      "SV": 3,
+      "W": 11,
+      "OC": 3
+    },
+    "_note": " | structure adopted from space-marines golden config (shared datasheet, 2026-08-24)"
   },
   "Predator Destructor": {
     "pts": 140,
-    "info": {
-      "M": "10",
-      "T": 10,
-      "SV": 3,
-      "W": 11,
-      "OC": 3
-    },
     "builds": [
       {
         "name": "default",
         "fixed": [
+          {
+            "name": "Predator autocannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured tracks",
+            "type": "ranged"
+          },
           {
             "name": "Hunter-killer missile",
             "type": "ranged"
@@ -577,19 +631,35 @@
           {
             "name": "Storm bolter",
             "type": "ranged"
-          },
-          {
-            "name": "Predator Autocannon",
-            "type": "ranged"
-          },
-          {
-            "name": "Armoured Tracks",
-            "type": "melee"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Sponson weapons",
+            "choices": [
+              {
+                "name": "Lascannon",
+                "type": "ranged",
+                "count": 2
+              },
+              {
+                "name": "Heavy Bolter",
+                "type": "ranged",
+                "count": 2
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "info": {
+      "M": "10",
+      "T": 10,
+      "SV": 3,
+      "W": 11,
+      "OC": 3
+    },
+    "_note": " | structure adopted from space-marines golden config (shared datasheet, 2026-08-24)"
   },
   "Razorback": {
     "pts": 85,
@@ -992,6 +1062,70 @@
   },
   "Stormraven Gunship": {
     "pts": 280,
+    "_note": "Golden-verified (wahapedia 11ed): equipped with 2 stormstrike missiles + armoured hull; may ADD 2 hurricane bolters; each base gun swaps one-of (base picks kept in slot lists). | structure adopted from space-marines golden config (shared datasheet, 2026-08-24)",
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Stormstrike missiles",
+            "type": "ranged"
+          },
+          {
+            "name": "Stormstrike missiles",
+            "type": "ranged"
+          },
+          {
+            "name": "Hurricane Bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Hurricane Bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Weapon option 1",
+            "choices": [
+              {
+                "name": "Twin heavy plasma cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin assault cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin lascannon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Weapon option 2",
+            "choices": [
+              {
+                "name": "Typhoon missile launcher",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin heavy bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Twin multi-melta",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "info": {
       "M": "14\"",
       "T": 10,
@@ -999,19 +1133,7 @@
       "W": 14,
       "OC": 0,
       "damage_reduction": 1
-    },
-    "builds": [
-      {
-        "name": "2 Hurricane Bolters",
-        "fixed": [
-          {
-            "name": "Hurricane Bolter",
-            "type": "ranged"
-          }
-        ],
-        "slots": []
-      }
-    ]
+    }
   },
   "Stormtalon Gunship": {
     "pts": 165,
@@ -1061,18 +1183,19 @@
     ]
   },
   "Thunderhawk Gunship": {
-    "pts": 840,
-    "info": {
-      "M": "20+\"",
-      "T": 12,
-      "SV": 2,
-      "W": 30,
-      "OC": 0
-    },
+    "_note": "Golden-verified (BSData/wahapedia 11ed FW datasheet): fixed 2 lascannons + 4 twin heavy bolters + armoured hull. | structure adopted from space-marines golden config (shared datasheet, 2026-08-24)",
     "builds": [
       {
         "name": "default",
         "fixed": [
+          {
+            "name": "Armoured hull",
+            "type": "melee"
+          },
+          {
+            "name": "Lascannon",
+            "type": "ranged"
+          },
           {
             "name": "Lascannon",
             "type": "ranged"
@@ -1082,13 +1205,56 @@
             "type": "ranged"
           },
           {
-            "name": "Armoured hull",
-            "type": "melee"
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
           }
         ],
-        "slots": []
+        "slots": [
+          {
+            "name": "Bombs or missiles",
+            "choices": [
+              {
+                "name": "Thunderhawk cluster bombs",
+                "type": "ranged"
+              },
+              {
+                "name": "Hellstrike missile battery",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Main weapon",
+            "choices": [
+              {
+                "name": "Thunderhawk heavy cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Turbo-laser destructor",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "pts": 840,
+    "info": {
+      "M": "20+\"",
+      "T": 12,
+      "SV": 2,
+      "W": 30,
+      "OC": 0
+    }
   },
   "Venerable Dreadnought": {
     "pts": 125,

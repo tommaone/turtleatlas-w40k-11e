@@ -100,6 +100,48 @@ class TestHelbrute:
         assert len(ranged) >= 1
 
 
+class TestWeaponPairCounts:
+    """Golden follow-up (2026-08-24): 'Two X'/'2 X' choices under-counted.
+
+    BSData models these as N selections of the per-instance profile
+    (min=max=2 constraints on the selection entry), confirmed against
+    wahapedia 11ed unit composition lines ('equipped with 2 ...').
+    Config now uses catalogue-exact singulars + "count": 2.
+    """
+
+    def test_defiler_two_excruciators(self, dg_engine, MEQ):
+        res = dg_engine.resolve_loadout("Defiler", MEQ)
+        assert res is not None
+        _pts, ranged, melee, _i, _info = res
+        assert [w.name for w in ranged].count("Excruciator cannon") == 2
+
+    def test_pbc_sponsons_are_pairs(self, dg_engine, MEQ):
+        res = dg_engine.resolve_loadout("Plagueburst Crawler", MEQ)
+        _pts, ranged, _m, _i, _info = res
+        pairs = {"Entropy cannon": 2, "Plaguespitter": 2}
+        found = {n: [w.name for w in ranged].count(n)
+                 for n in pairs if any(w.name == n for w in ranged)}
+        assert all(v == 2 for v in found.values()), f"sponsons must be pairs, got {found}"
+
+    def test_bloat_drone_spitters_double(self, dg_engine, MEQ):
+        """Plaguespitter branch appends TWO profiles even when Fleshmower wins DPP."""
+        cfg = json.load(open(Path(__file__).resolve().parent.parent
+                             / "data/config/death-guard/weapon_options.json"))
+        import itertools
+        for key in ("Foetid Bloat-Drone", "Foetid Bloat Drone"):
+            build = cfg[key]["builds"][0]
+            hit = False
+            for combo in itertools.product(*[s["choices"] for s in build["slots"]]):
+                names = [c["name"] for c in combo]
+                if "Plaguespitter" not in names:
+                    continue
+                hit = True
+                for c in combo:
+                    p = dg_engine.W(c["name"], unit_name=key, category=c.get("type"))
+                    assert c.get("count") == 2, f"{key}: Plaguespitter choice lacks count=2"
+                    assert p.attacks * 2 == 7.0  # 2 x D6 avg
+            assert hit, f"{key}: plaguespitter branch missing"
+
 def test_golden_source_file_exists():
     data = json.loads(GOLDEN.read_text())
     for u in data["units"]:

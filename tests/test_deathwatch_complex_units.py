@@ -182,3 +182,27 @@ class TestDeathwatchComplexUnits:
         assert _mcount(res, "Power weapon") == 5
         assert len(res["ranged"]) == 5
         assert len(res["melee"]) == 5
+
+
+class TestCorvusBlackstarVehicle:
+    """Golden follow-up (2026-08-24): datasheet grants 2 blackstar rocket
+    launchers, replaceable with 2 stormstrike missile launchers (wahapedia
+    11ed). Literal '2 ...' choice names were unresolvable and the no-profile
+    wargear slot voided every combo — the missile pair never resolved.
+
+    STRUCTURE + COUNT only — no damage numbers."""
+
+    def test_launcher_pair_resolves(self, dw_engine, MEQ):
+        res = dw_engine.resolve_loadout("Corvus Blackstar", MEQ)
+        assert res is not None, "Corvus Blackstar did not resolve"
+        _pts, ranged, _m, _i, _info = res
+        names = [w.name.lower() for w in ranged]
+        assert names.count("blackstar rocket launcher") == 2 or \
+            names.count("stormstrike missile launcher") == 2, names
+
+    def test_no_single_launcher(self, dw_engine, MEQ):
+        res = dw_engine.resolve_loadout("Corvus Blackstar", MEQ)
+        _pts, ranged, _m, _i, _info = res
+        names = [w.name.lower() for w in ranged]
+        assert names.count("blackstar rocket launcher") != 1
+        assert names.count("stormstrike missile launcher") != 1

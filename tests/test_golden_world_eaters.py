@@ -204,6 +204,19 @@ class TestKhorneLordOfSkulls:
         assert len(storm) == 1
 
 
+class TestWeaponPairCounts:
+    """Golden follow-up (2026-08-24): 'Two X'/'2 X' choices under-counted."""
+
+    def test_defiler_two_excruciators(self, we_engine, MEQ):
+        res = we_engine.resolve_loadout("Defiler", MEQ)
+        _pts, ranged, _m, _i, _info = res
+        assert [w.name for w in ranged].count("Excruciator cannon") == 2
+
+    def test_maulerfiend_two_magma_cutters(self, we_engine, MEQ):
+        res = we_engine.resolve_loadout("Maulerfiend", MEQ)
+        _pts, ranged, _m, _i, _info = res
+        assert [w.name for w in ranged].count("Magma cutter") == 2
+
 def test_golden_source_file_exists():
     """The golden corpus must be present and carry sources."""
     data = json.loads(GOLDEN.read_text())

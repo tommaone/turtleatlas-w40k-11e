@@ -1,5 +1,5 @@
 {
-  "_note": "space-marines characters \u2014 generated from BSData + MFM",
+  "_note": "space-marines characters — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Ancient": {
     "pts": 40,
@@ -54,7 +54,7 @@
     "weapon_options": {
       "builds": [
         {
-          "name": "Storm Bolter and Melee Weapon",
+          "name": "default",
           "fixed": [
             {
               "name": "Storm bolter",
@@ -63,18 +63,10 @@
           ],
           "slots": [
             {
-              "name": "Melee weapon 1",
+              "name": "Melee weapon",
               "choices": [
                 {
-                  "name": "Master-crafted power weapon",
-                  "type": "melee"
-                },
-                {
                   "name": "Power fist",
-                  "type": "melee"
-                },
-                {
-                  "name": "Thunder Hammer",
                   "type": "melee"
                 },
                 {
@@ -84,16 +76,34 @@
                 {
                   "name": "Close combat weapon",
                   "type": "melee"
+                },
+                {
+                  "name": "Power weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Thunder Hammer",
+                  "type": "melee"
                 }
               ]
             }
           ]
         },
         {
-          "name": "Thunder Hammer & Terminator Storm Shield",
+          "name": "twin lightning claws",
           "fixed": [
             {
-              "name": "Thunder Hammer",
+              "name": "Twin lightning claws",
+              "type": "melee"
+            }
+          ],
+          "slots": []
+        },
+        {
+          "name": "thunder hammer & terminator storm shield",
+          "fixed": [
+            {
+              "name": "Thunder hammer",
               "type": "melee"
             }
           ],
@@ -983,7 +993,7 @@
       ]
     }
   },
-  "Lion El\u2019Jonson": {
+  "Lion El’Jonson": {
     "pts": 265,
     "info": {
       "T": 9,
@@ -1146,7 +1156,7 @@
               "type": "ranged"
             },
             {
-              "name": "Enmity\u2019s Edge",
+              "name": "Enmity’s Edge",
               "type": "melee"
             }
           ],

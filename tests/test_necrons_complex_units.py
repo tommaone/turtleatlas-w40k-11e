@@ -308,3 +308,42 @@ class TestMeleeReduction:
                 assert len(res["melee"]) == n, (
                     f"{name} {t}: {len(res['melee'])} melee entries for {n} models"
                 )
+
+
+class TestSeraptekHeavyConstruct:
+    """Golden follow-up (2026-08-24): datasheet grants 2 singularity
+    generators, replaceable with 2 synaptic obliterators AND 2 transdimensional
+    projectors (wahapedia 11ed). The old single-slot choices resolved as
+    SINGLE profiles; a 4-weapon bundle cannot be one slot choice, so the
+    mutually exclusive options are modelled as two builds.
+
+    STRUCTURE + COUNT only."""
+
+    def test_default_build_two_generators(self, necrons_engine, MEQ):
+        res = necrons_engine.resolve_loadout("Seraptek Heavy Construct", MEQ,
+                                             mode="default")
+        assert res is not None
+        _pts, ranged, _m, _i, _info = res
+        names = Counter(w.name for w in ranged)
+        assert names["Singularity generator"] == 2, dict(names)
+
+    def test_swap_build_two_plus_two(self, necrons_engine, MEQ):
+        res = necrons_engine.resolve_loadout(
+            "Seraptek Heavy Construct", MEQ,
+            mode="Synaptic obliterators & transdimensional projectors")
+        assert res is not None
+        _pts, ranged, _m, _i, _info = res
+        names = Counter(w.name for w in ranged)
+        assert names["Synaptic obliterator"] == 2, dict(names)
+        assert names["Transdimensional projector"] == 2, dict(names)
+
+    def test_best_of_builds_never_single_profile(self, necrons_engine, MEQ):
+        res = necrons_engine.resolve_loadout("Seraptek Heavy Construct", MEQ)
+        assert res is not None
+        _pts, ranged, _m, _i, _info = res
+        names = Counter(w.name for w in ranged)
+        for n, c in names.items():
+            if "generator" in n.lower():
+                assert c == 2, f"under-counted {n}: {dict(names)}"
+            if "obliterator" in n.lower() or "projector" in n.lower():
+                assert c == 2, f"under-counted {n}: {dict(names)}"

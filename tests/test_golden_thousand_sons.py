@@ -107,6 +107,30 @@ class TestHelbrute:
         assert len(ranged) >= 1
 
 
+class TestWeaponPairCounts:
+    """Golden follow-up (2026-08-24): 'Two X'/'2 X' choices under-counted."""
+
+    def test_defiler_two_excruciators(self, ts_engine, MEQ):
+        res = ts_engine.resolve_loadout("Defiler", MEQ)
+        _pts, ranged, _m, _i, _info = res
+        assert [w.name for w in ranged].count("Excruciator cannon") == 2
+
+    def test_maulerfiend_two_magma_cutters(self, ts_engine, MEQ):
+        res = ts_engine.resolve_loadout("Maulerfiend", MEQ)
+        _pts, ranged, _m, _i, _info = res
+        assert [w.name for w in ranged].count("Magma cutter") == 2
+
+    def test_pyraflux_variant_is_pair(self, ts_engine, MEQ):
+        """TS Defiler's magma-cutter variant is the pyraflux profile."""
+        cfg = json.load(open(Path(__file__).resolve().parent.parent
+                             / "data/config/thousand-sons/weapon_options.json"))
+        b = cfg["Defiler"]["builds"][0]
+        slot = [s for s in b["slots"] if s["name"] == "Excruciator cannons"][0]
+        pyraflux = [c for c in slot["choices"]
+                    if c["name"] == "Pyraflux magma cutter"]
+        assert len(pyraflux) == 1 and pyraflux[0]["count"] == 2
+        ts_engine.W("Pyraflux magma cutter", unit_name="Defiler", category="ranged")
+
 def test_golden_source_file_exists():
     data = json.loads(GOLDEN.read_text())
     for u in data["units"]:

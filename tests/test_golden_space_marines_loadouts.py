@@ -269,3 +269,25 @@ class TestCharactersSingleSwap:
     def test_chaplain_jump_pack(self, sm_engine, MEQ):
         _, melee = _resolved(sm_engine, "Chaplain With Jump Pack", MEQ)
         assert any("crozius" in m.lower() for m in melee), melee
+
+
+class TestImpulsorSponsons:
+    """Golden follow-up (2026-08-24): datasheet grants 2 storm bolters,
+    replaceable with 2 fragstorm grenade launchers (wahapedia 11ed).
+    Literal '2 Storm Bolters' names were unresolvable — sponsons vanished."""
+
+    def test_sponson_pair_resolves(self, sm_engine, MEQ):
+        ranged, _ = _resolved(sm_engine, "Impulsor", MEQ)
+        sponsons = [r for r in ranged
+                    if r.lower() in ("storm bolter", "fragstorm grenade launcher")]
+        assert len(sponsons) == 2, f"sponson pair expected, got {ranged}"
+        assert len(set(sponsons)) == 1, f"both sponsons must match, got {sponsons}"
+
+    def test_choice_entries_carry_count(self, sm_engine):
+        cfg = json.loads((Path(__file__).resolve().parent.parent
+                          / "data/config/space-marines/weapon_options.json").read_text())
+        b = cfg["Impulsor"]["builds"][0]
+        sponsons = [s for s in b["slots"] if s["name"] == "Sponsons"][0]
+        for c in sponsons["choices"]:
+            assert c.get("count") == 2, f"sponson choice {c['name']} lacks count=2"
+            sm_engine.W(c["name"], unit_name="Impulsor", category=c.get("type"))
