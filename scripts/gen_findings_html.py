@@ -74,6 +74,9 @@ INDEX_HEADER = '''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><me
   .tierbar{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
   .tierbtn{padding:6px 14px;background:#161b22;border:1px solid#30363d;border-radius:6px;color:#c9d1d9;font-size:0.85em;cursor:pointer}
   .tierbtn.active{background:#1f6feb;border-color:#1f6feb;color:#fff}
+  .viewtabs{display:flex;gap:6px;margin:0 0 18px}
+  .viewtab{padding:8px 18px;background:#161b22;border:1px solid#30363d;border-radius:6px;color:#c9d1d9;font-size:0.95em;cursor:pointer}
+  .viewtab.active{background:#1f6feb;border-color:#1f6feb;color:#fff}
   .tiergrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}.tiercard{position:relative;display:flex;flex-direction:column;gap:2px;padding:10px 12px 8px 12px;background:#161b22;border:1px solid#30363d;border-radius:8px;text-decoration:none;color:#c9d1d9}.tiercard:hover{border-color:#58a6ff;background:#1c2128}.tc-badge{position:absolute;top:10px;right:10px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:6px;font-weight:700;font-size:0.95em;color:#fff}.tc-rank{font-size:0.7em;color:#6e7681}.tc-name{font-size:0.92em;font-weight:600;color:#e6edf3;padding-right:30px;line-height:1.25}.tc-score{font-size:1.15em;font-weight:700;color:#f0f6fc;margin-top:4px}.tc-units{font-size:0.72em;color:#6e7681}
   .tierrow:hover{border-color:#58a6ff;background:#1c2128;text-decoration:none}
   .tierbadge{flex:0 0 34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:6px;font-weight:700;font-size:1.05em;color:#fff}
@@ -212,9 +215,9 @@ def _tier_of(score, ranked_scores):
 
 
 INDEX_SCRIPT = (
-    'var RAW_BASE="https://raw.githack.com/tommaone/turtleatlas-w40k-11e/main/findings/";'
+    'var RAW_BASE="https://raw.githubusercontent.com/tommaone/turtleatlas-w40k-11e/main/findings/";'
 
-    'function ghFix(){if(window.location.hostname==="github.com"||window.location.href.includes("raw.githack.com")){var els=document.querySelectorAll("a[data-rel]");for(var i=0;i<els.length;i++){var h=els[i].getAttribute("href");if(h.indexOf("http")!==0)els[i].href=RAW_BASE+h}}}'
+    'function ghFix(){if(window.location.hostname==="github.com"){var els=document.querySelectorAll("a[data-rel]");for(var i=0;i<els.length;i++){var h=els[i].getAttribute("href");if(h.indexOf("http")!==0)els[i].href="https://htmlpreview.github.io/?"+RAW_BASE+h}}}'
 
     'function setTierMode(btn,mode){document.querySelectorAll(".tierbar .tierbtn").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");renderTiers(mode)}'
 
@@ -224,8 +227,8 @@ INDEX_SCRIPT = (
 
     'function renderTiers(mode){var key=(mode==="Overall")?null:mode;var rows=[];for(var i=0;i<TIERS.length;i++){var t=TIERS[i];rows.push({fid:t.fid,name:t.name,score:key?t.missions[key]:t.overall,n:t.n_units});}rows.sort(function(a,b){return b.score-a.score});var sorted=rows.map(function(r){return r.score;});var html="";for(var i=0;i<rows.length;i++){var r=rows[i],t=tierOf(r.score,sorted),col=t==="S"?"#d29922":t==="A"?"#3fb950":t==="B"?"#58a6ff":t==="C"?"#bc8cff":"#6e7681";html+=\'<a class="tiercard" data-rel href="\'+r.fid+\'/findings.html">\'+\'<span class="tc-badge" style="background:\'+col+\'">\'+t+\'</span>\'+\'<span class="tc-rank">\'+(i+1)+\'</span>\'+\'<span class="tc-name">\'+esc(r.name)+\'</span>\'+\'<span class="tc-score">\'+r.score.toFixed(1)+\'</span>\'+\'<span class="tc-units">\'+r.n+\' units</span></a>\';}document.getElementById("tierlist").innerHTML=html;ghFix()}'
 
+    'function showView(v,btn){document.querySelectorAll(".viewtab").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");document.getElementById("view-tiers").style.display=v==="tiers"?"":"none";document.getElementById("view-browse").style.display=v==="browse"?"":"none";if(v==="tiers")ghFix()}\n'
     'renderTiers("Overall");ghFix();'
-
 )
 
 
@@ -242,7 +245,7 @@ def render_tier_section(tiers):
         for i, b in enumerate(buttons)
     )
     return (
-        '<div class="section">\n'
+        '<div id="view-tiers">\n<div class="section">\n'
         '  <h2>Army Tier List</h2>\n'
         f'  <p style="color:#8b949e;font-size:0.8em;margin:0 0 10px">'
         f'2000pt matched play · rank-decay roster index · rules-free. '
@@ -250,7 +253,7 @@ def render_tier_section(tiers):
         f'(Key Insights tab) \u2014 deliberately not compared numerically here.</p>\n'
         f'  <div class="tierbar">{btns_html}</div>\n'
         '  <div id="tierlist" class="tiergrid"></div>\n'
-        '</div>\n'
+        '</div>\n</div>\n'
         '<script>\n'
         f'var TIERS={data_js};\n'
         + INDEX_SCRIPT
@@ -304,8 +307,14 @@ def gen_index(tiers=None) -> int:
             + '\n  </div>\n</div>'
         )
 
-    html_out = (INDEX_HEADER + tier_section
-                + '\n'.join(sections_html) + '\n</body></html>\n')
+    tabs_bar = ('<div class="viewtabs">'
+                '<button class="viewtab active" onclick="showView(\'tiers\',this)">Army Tier List</button>'
+                '<button class="viewtab" onclick="showView(\'browse\',this)">Browse Factions</button>'
+                '</div>')
+    browse_div = ('<div id="view-browse" style="display:none">'
+                  + '\n'.join(sections_html) + '\n</div>')
+    html_out = (INDEX_HEADER + tabs_bar + tier_section
+                + browse_div + '\n</body></html>\n')
     out = os.path.join(OUT, 'index.html')
     with open(out, 'w', encoding='utf-8') as f:
         f.write(html_out)
@@ -655,7 +664,7 @@ const FACTORS={factors_json};
 (function(){{
   if(window.location.href.includes('raw.githack.com')){{
     var bl=document.getElementById('back-link');
-    if(bl)bl.href='https://raw.githack.com/tommaone/turtleatlas-w40k-11e/main/findings/index.html';
+    if(bl)bl.href='https://htmlpreview.github.io/?https://raw.githubusercontent.com/tommaone/turtleatlas-w40k-11e/main/findings/index.html';
   }}
 }})();
 
