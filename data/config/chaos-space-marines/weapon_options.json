@@ -314,7 +314,8 @@
               },
               {
                 "name": "Electroscourge",
-                "type": "melee"
+                "type": "melee",
+                "max_count": 1
               }
             ]
           },
@@ -335,15 +336,15 @@
               },
               {
                 "name": "Electroscourge",
-                "type": "melee"
+                "type": "melee",
+                "max_count": 1
               }
             ]
           }
-        ],
-        "no_duplicates": true
+        ]
       }
     ],
-    "_note": "no_duplicates: the two 'Replace X' slots share their option lists (lascannon/reaper/electroscourge); the datasheet permits each swap once, so cross-slot duplicate weapons (2x electroscourge, 2x lascannon, 2x reaper) are illegal."
+    "_note": "Golden-verified (wahapedia 11ed): each arm slot may take electroscourge but the model-wide cap is ONE total (max_count:1). Hades lascannon / heavy reaper autocannon carry no cap — duplicates via both replaced arms are RAW-legal."
   },
   "Forgefiend": {
     "pts": 160,

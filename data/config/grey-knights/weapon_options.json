@@ -206,18 +206,12 @@
   },
   "Nemesis Dreadknight": {
     "pts": 195,
-    "info": {
-      "M": "8\"",
-      "T": 8,
-      "SV": 2,
-      "W": 13,
-      "OC": 4,
-      "INV": 4,
-      "deep_strike": true
-    },
+    "pts_3rd": 210,
+    "_note": "Golden-verified: base 2 dreadfists (replaceable by greatsword/greathammer); may take up to TWO DISTINCT ranged (no duplicates). Slots force the max legal loadout; engine scores best legal.",
     "builds": [
       {
         "name": "default",
+        "no_duplicates": true,
         "fixed": [],
         "slots": [
           {
@@ -238,7 +232,24 @@
             ]
           },
           {
-            "name": "Ranged Weapons",
+            "name": "Ranged 1",
+            "choices": [
+              {
+                "name": "Gatling psilencer",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy psycannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy incinerator",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Ranged 2",
             "choices": [
               {
                 "name": "Gatling psilencer",
@@ -256,8 +267,7 @@
           }
         ]
       }
-    ],
-    "pts_3rd": 210
+    ]
   },
   "Razorback": {
     "pts": 75,
@@ -600,9 +610,12 @@
   },
   "Grand Master In Nemesis Dreadknight": {
     "pts": 200,
+    "pts_3rd": 215,
+    "_note": "Golden-verified (workspace/golden_loadouts/gk-csm-pilot.json, wahapedia 11ed): base dreadfists; replace with one of the melee list; may take up to TWO DISTINCT ranged from the pool (no duplicates); fragstorm grenade launcher is a separate independent entry. no_duplicates enforces ranged distinctness.",
     "builds": [
       {
         "name": "default",
+        "no_duplicates": true,
         "fixed": [
           {
             "name": "Fragstorm grenade launcher",
@@ -636,7 +649,28 @@
             ]
           },
           {
-            "name": "Ranged weapon",
+            "name": "Ranged weapon 1",
+            "choices": [
+              {
+                "name": "Sublimator",
+                "type": "ranged"
+              },
+              {
+                "name": "Gatling psilencer",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy incinerator",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy psycannon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Ranged weapon 2",
             "choices": [
               {
                 "name": "Sublimator",
@@ -658,16 +692,6 @@
           }
         ]
       }
-    ],
-    "info": {
-      "M": "8\"",
-      "T": 8,
-      "SV": 2,
-      "W": 13,
-      "OC": 4,
-      "INV": 4,
-      "deep_strike": true
-    },
-    "pts_3rd": 215
+    ]
   }
 }

@@ -1497,11 +1497,23 @@ class RankingEngine:
             combo_ranged = list(b_ranged)
             combo_melee = list(b_melee)
             skip_combo = False
+            name_counts = {}
             for choice in combo:
                 try:
                     profile = self.W(choice["name"], unit_name=name,
                                      category=choice.get("type"))
                 except KeyError:
+                    skip_combo = True
+                    break
+                # Per-choice datasheet cap: 'max_count' limits how many times
+                # this weapon may appear across ALL slots of the build (e.g.
+                # Defiler's electroscourge is capped at 1 even though both
+                # arm-slot lists offer it). Distinct weapons without a cap
+                # may repeat (2x lascannon on separate arms is legal).
+                nm = choice["name"]
+                name_counts[nm] = name_counts.get(nm, 0) + 1
+                cap = choice.get("max_count")
+                if cap is not None and name_counts[nm] > cap:
                     skip_combo = True
                     break
                 # Choice may carry a count multiplier (e.g. '2 Starcannons' →
