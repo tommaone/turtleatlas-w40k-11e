@@ -1,5 +1,5 @@
 {
-  "_note": "space-marines weapon options \u2014 generated from BSData + MFM",
+  "_note": "space-marines weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Astraeus": {
     "builds": [
@@ -41,19 +41,29 @@
             "name": "Sponson weapons",
             "choices": [
               {
-                "name": "Two Astraeus las-rippers",
-                "type": "ranged"
+                "name": "Astraeus las-ripper",
+                "type": "ranged",
+                "count": 2
               },
               {
-                "name": "Two plasma eradicators",
-                "type": "ranged"
+                "name": "Plasma eradicator",
+                "type": "ranged",
+                "count": 2
               }
             ]
           }
         ]
       }
     ],
-    "pts": 525
+    "pts": 525,
+    "info": {
+      "M": "10\"",
+      "T": 12,
+      "SV": 2,
+      "W": 24,
+      "OC": 8,
+      "INV": 5
+    }
   },
   "Ballistus Dreadnought": {
     "info": {
@@ -129,7 +139,14 @@
         ]
       }
     ],
-    "pts": 150
+    "pts": 150,
+    "info": {
+      "M": "8\"",
+      "T": 10,
+      "SV": 2,
+      "W": 12,
+      "OC": 4
+    }
   },
   "Dreadnought": {
     "pts": 135,
@@ -224,10 +241,6 @@
             "type": "ranged"
           },
           {
-            "name": "Storm bolter",
-            "type": "ranged"
-          },
-          {
             "name": "icarus rocket pod",
             "type": "ranged"
           },
@@ -245,12 +258,14 @@
             "name": "Weapon",
             "choices": [
               {
-                "name": "Two fragstorm grenade launchers",
-                "type": "ranged"
+                "name": "Fragstorm grenade launcher",
+                "type": "ranged",
+                "count": 2
               },
               {
-                "name": "Two storm bolters",
-                "type": "ranged"
+                "name": "Storm bolter",
+                "type": "ranged",
+                "count": 2
               }
             ]
           }
@@ -357,7 +372,7 @@
           },
           {
             "name": "invictor fist",
-            "type": "ranged"
+            "type": "melee"
           },
           {
             "name": "twin ironhail heavy stubber",
@@ -612,12 +627,14 @@
             "name": "Sponson weapons",
             "choices": [
               {
-                "name": "2 lascannons",
-                "type": "ranged"
+                "name": "Lascannon",
+                "type": "ranged",
+                "count": 2
               },
               {
-                "name": "2 heavy bolters",
-                "type": "ranged"
+                "name": "Heavy Bolter",
+                "type": "ranged",
+                "count": 2
               }
             ]
           }
@@ -660,12 +677,14 @@
             "name": "Sponson weapons",
             "choices": [
               {
-                "name": "2 lascannons",
-                "type": "ranged"
+                "name": "Lascannon",
+                "type": "ranged",
+                "count": 2
               },
               {
-                "name": "2 heavy bolters",
-                "type": "ranged"
+                "name": "Heavy Bolter",
+                "type": "ranged",
+                "count": 2
               }
             ]
           }
@@ -1105,6 +1124,7 @@
   },
   "Stormraven Gunship": {
     "pts": 280,
+    "_note": "Golden-verified (wahapedia 11ed): equipped with 2 stormstrike missiles + armoured hull; may ADD 2 hurricane bolters; each base gun swaps one-of (base picks kept in slot lists).",
     "builds": [
       {
         "name": "default",
@@ -1114,8 +1134,20 @@
             "type": "ranged"
           },
           {
-            "name": "Armoured hull",
+            "name": "Stormstrike missiles",
             "type": "ranged"
+          },
+          {
+            "name": "Hurricane Bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Hurricane Bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
           }
         ],
         "slots": [
@@ -1214,6 +1246,7 @@
     ]
   },
   "Thunderhawk Gunship": {
+    "_note": "Golden-verified (BSData/wahapedia 11ed FW datasheet): fixed 2 lascannons + 4 twin heavy bolters + armoured hull.",
     "builds": [
       {
         "name": "default",
@@ -1224,6 +1257,22 @@
           },
           {
             "name": "Lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Lascannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy bolter",
+            "type": "ranged"
+          },
+          {
+            "name": "Twin heavy bolter",
             "type": "ranged"
           },
           {
@@ -1261,7 +1310,14 @@
         ]
       }
     ],
-    "pts": 840
+    "pts": 840,
+    "info": {
+      "M": "20+\"",
+      "T": 12,
+      "SV": 2,
+      "W": 30,
+      "OC": 0
+    }
   },
   "Vindicator": {
     "info": {
@@ -1331,25 +1387,6 @@
       }
     ]
   },
-  "Ancient In Terminator Armor": {
-    "pts": 80,
-    "builds": [
-      {
-        "name": "default",
-        "fixed": [
-          {
-            "name": "Twin lightning claws",
-            "type": "melee"
-          },
-          {
-            "name": "Storm bolter",
-            "type": "ranged"
-          }
-        ],
-        "slots": []
-      }
-    ]
-  },
   "Impulsor": {
     "pts": 70,
     "info": {
@@ -1410,5 +1447,76 @@
         ]
       }
     ]
+  },
+  "Ancient in Terminator Armor": {
+    "pts": 80,
+    "_note": "Golden-verified (workspace/golden_loadouts/space-marines.json, wahapedia 11ed): storm bolter + power fist; fist -> chainfist/CCW/power weapon/Thunder Hammer; OR both replaced by twin lightning claws OR thunder hammer & terminator storm shield. Terminator storm shield grants INV, not damage — not modelled in fixed (catalog has no shield profile).",
+    "builds": [
+      {
+        "name": "default",
+        "fixed": [
+          {
+            "name": "Storm bolter",
+            "type": "ranged"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Melee weapon",
+            "choices": [
+              {
+                "name": "Power fist",
+                "type": "melee"
+              },
+              {
+                "name": "Chainfist",
+                "type": "melee"
+              },
+              {
+                "name": "Close combat weapon",
+                "type": "melee"
+              },
+              {
+                "name": "Power weapon",
+                "type": "melee"
+              },
+              {
+                "name": "Thunder Hammer",
+                "type": "melee"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "twin lightning claws",
+        "fixed": [
+          {
+            "name": "Twin lightning claws",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "thunder hammer & terminator storm shield",
+        "fixed": [
+          {
+            "name": "Thunder hammer",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      }
+    ],
+    "info": {
+      "M": "5\"",
+      "T": 5,
+      "SV": 2,
+      "W": 5,
+      "OC": 1,
+      "INV": 4,
+      "deep_strike": true
+    }
   }
 }

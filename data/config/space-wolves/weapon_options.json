@@ -1,5 +1,5 @@
 {
-  "_note": "space-wolves weapon options \u2014 generated from BSData + MFM",
+  "_note": "space-wolves weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Astraeus": {
     "pts": 525,
@@ -1091,6 +1091,8 @@
     ]
   },
   "Venerable Dreadnought": {
+    "pts": 125,
+    "_note": "Golden-verified vs wahapedia 11ed chapter datasheet (space-marines/Venerable-Dreadnought-1, SPACE WOLVES variant, 2026-08-24): equipped with assault cannon; storm bolter; Dreadnought combat weapon. Options: assault cannon -> helfrost cannon | multi-melta; storm bolter -> heavy flamer; OR assault cannon + storm bolter + combat weapon -> Fenrisian greataxe + blizzard shield + (storm bolter | heavy flamer). The greataxe combo is mutually exclusive with the swap options -> modeled as a second build. NOTE: this is the CHAPTER-LOCAL sheet; the generic SM Venerable Dreadnought (165pts) is a different datasheet.",
     "builds": [
       {
         "name": "default",
@@ -1105,11 +1107,11 @@
             "name": "Replace assault cannon",
             "choices": [
               {
-                "name": "Helfrost cannon",
+                "name": "Assault Cannon",
                 "type": "ranged"
               },
               {
-                "name": "Assault Cannon",
+                "name": "Helfrost cannon",
                 "type": "ranged"
               },
               {
@@ -1117,11 +1119,54 @@
                 "type": "ranged"
               }
             ]
+          },
+          {
+            "name": "Replace storm bolter",
+            "choices": [
+              {
+                "name": "Storm bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy flamer",
+                "type": "ranged"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Fenrisian great axe and blizzard shield",
+        "fixed": [
+          {
+            "name": "Fenrisian great axe and blizzard shield",
+            "type": "melee"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Ranged weapon",
+            "choices": [
+              {
+                "name": "Storm bolter",
+                "type": "ranged"
+              },
+              {
+                "name": "Heavy flamer",
+                "type": "ranged"
+              }
+            ]
           }
         ]
       }
     ],
-    "pts": 125
+    "info": {
+      "M": "8\"",
+      "T": 9,
+      "SV": 2,
+      "W": 8,
+      "OC": 3
+    }
   },
   "Vindicator": {
     "pts": 185,

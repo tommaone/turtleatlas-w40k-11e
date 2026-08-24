@@ -1,5 +1,5 @@
 {
-  "_note": "tyranids weapon options \u2014 builds format (curated); flat entries and v-only vehicles converted to builds, verified vs merged + MFM",
+  "_note": "tyranids weapon options — builds format (curated); flat entries and v-only vehicles converted to builds, verified vs merged + MFM",
   "_source": "BSData 11e + MFM; builds curated (fixed weapons from merged)",
   "Carnifexes": {
     "pts": 90,
@@ -101,20 +101,17 @@
   },
   "Harpy": {
     "pts": 185,
+    "_note": "Golden-verified 2026-08-24 vs wahapedia 11ed (workspace/golden_loadouts/tyranids.json): equipped stinger salvoes; twin stranglethorn cannon; scything wings. Option: twin stranglethorn cannon -> twin heavy venom cannon.",
     "builds": [
       {
         "name": "default",
         "fixed": [
           {
-            "name": "Scything wings",
-            "type": "melee"
-          },
-          {
-            "name": "Spike columns",
+            "name": "Stinger salvoes",
             "type": "ranged"
           },
           {
-            "name": "stinger salvoes",
+            "name": "Scything wings",
             "type": "melee"
           }
         ],
@@ -123,11 +120,11 @@
             "name": "Weapon",
             "choices": [
               {
-                "name": "Twin heavy venom cannon",
+                "name": "Twin stranglethorn cannon",
                 "type": "ranged"
               },
               {
-                "name": "Twin stranglethorn cannon",
+                "name": "Twin heavy venom cannon",
                 "type": "ranged"
               }
             ]
@@ -411,21 +408,19 @@
   },
   "Tyrannofex": {
     "pts": 180,
+    "pts_3rd": 190,
+    "_note": "Golden-verified 2026-08-24 vs wahapedia 11ed (workspace/golden_loadouts/tyranids.json): equipped fleshborer hive; stinger salvoes; powerful limbs. Option: fleshborer hive -> acid spray | rupture cannon. pts_3rd per MFM 3rd+ tier.",
     "builds": [
       {
         "name": "default",
         "fixed": [
           {
-            "name": "Stinger salvo",
+            "name": "Stinger salvoes",
             "type": "ranged"
           },
           {
-            "name": "powerful limbs",
-            "type": "ranged"
-          },
-          {
-            "name": "stinger salvoes",
-            "type": "ranged"
+            "name": "Powerful limbs",
+            "type": "melee"
           }
         ],
         "slots": [
@@ -433,11 +428,11 @@
             "name": "Weapon",
             "choices": [
               {
-                "name": "Acid spray",
+                "name": "Fleshborer hive",
                 "type": "ranged"
               },
               {
-                "name": "Fleshborer hive",
+                "name": "Acid spray",
                 "type": "ranged"
               },
               {
@@ -686,10 +681,6 @@
               {
                 "name": "Monstrous scything talons",
                 "type": "melee"
-              },
-              {
-                "name": "Yrmgarl factors",
-                "type": "melee"
               }
             ]
           },
@@ -701,14 +692,6 @@
                 "type": "ranged"
               },
               {
-                "name": "Venom cannon",
-                "type": "ranged"
-              },
-              {
-                "name": "The Miasma Cannon",
-                "type": "ranged"
-              },
-              {
                 "name": "Heavy venom cannon",
                 "type": "ranged"
               }
@@ -716,7 +699,15 @@
           }
         ]
       }
-    ]
+    ],
+    "info": {
+      "M": "8\"",
+      "T": 10,
+      "SV": 2,
+      "W": 10,
+      "OC": 3,
+      "INV": 4
+    }
   },
   "Tervigon": {
     "pts": 160,
@@ -725,12 +716,8 @@
         "name": "default",
         "fixed": [
           {
-            "name": "Stinger salvo",
+            "name": "Stinger salvoes",
             "type": "ranged"
-          },
-          {
-            "name": "stinger salvoes",
-            "type": "melee"
           }
         ],
         "slots": [
@@ -749,6 +736,13 @@
           }
         ]
       }
-    ]
+    ],
+    "info": {
+      "M": "8\"",
+      "T": 11,
+      "SV": 2,
+      "W": 16,
+      "OC": 5
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "_note": "blood-angels weapon options \u2014 generated from BSData + MFM",
+  "_note": "blood-angels weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Astraeus": {
     "pts": 525,
@@ -52,14 +52,11 @@
   },
   "Baal Predator": {
     "pts": 125,
+    "_note": "Golden-verified vs wahapedia 11ed (2026-08-24): equipped with twin assault cannon; armoured tracks. Options: twin assault cannon -> Baal flamestorm cannon; sponsons one-of 2 heavy bolters / 2 heavy flamers; may ADD storm bolter and hunter-killer missile (forced here per max-legal convention). Spurious fixed Heavy Flamer removed; Armoured tracks is a melee-profile item. Sponsons use count multiplier ('2 heavy bolters' has no catalogue profile).",
     "builds": [
       {
         "name": "default",
         "fixed": [
-          {
-            "name": "Heavy Flamer",
-            "type": "ranged"
-          },
           {
             "name": "Storm bolter",
             "type": "ranged"
@@ -70,7 +67,7 @@
           },
           {
             "name": "Armoured tracks",
-            "type": "ranged"
+            "type": "melee"
           }
         ],
         "slots": [
@@ -91,11 +88,13 @@
             "name": "Sponsons",
             "choices": [
               {
-                "name": "2 heavy bolters",
+                "name": "Heavy bolter",
+                "count": 2,
                 "type": "ranged"
               },
               {
-                "name": "2 heavy flamers",
+                "name": "Heavy flamer",
+                "count": 2,
                 "type": "ranged"
               }
             ]
@@ -253,7 +252,14 @@
         ]
       }
     ],
-    "pts": 150
+    "pts": 150,
+    "info": {
+      "M": "8\"",
+      "T": 10,
+      "SV": 2,
+      "W": 12,
+      "OC": 4
+    }
   },
   "Dreadnought": {
     "pts": 135,

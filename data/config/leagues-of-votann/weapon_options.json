@@ -3,16 +3,21 @@
   "_source": "BSData 11e + MFM (auto-generated)",
   "Hekaton Land Fortress": {
     "pts": 250,
+    "_note": "Golden-verified 2026-08-24 vs wahapedia 11ed (workspace/golden_loadouts/leagues-of-votann.json): default cyclic ion cannon + MATR autocannon + 2 twin bolt cannons + armoured wheels + pan spectral scanner. Options: 2 twin bolt cannons -> any mix with twin ion beamers (TWO independent sponson slots, duplicates legal); cyclic ion cannon -> SP heavy conversion beamer | heavy magna-rail cannon; pan spectral scanner (non-weapon wargear, not modelled) -> 1 Hekaton warhead, forced as fixed max-legal.",
     "builds": [
       {
         "name": "default",
         "fixed": [
           {
             "name": "Armoured wheels",
-            "type": "ranged"
+            "type": "melee"
           },
           {
             "name": "MATR autocannon",
+            "type": "ranged"
+          },
+          {
+            "name": "Hekaton warhead",
             "type": "ranged"
           }
         ],
@@ -35,27 +40,27 @@
             ]
           },
           {
-            "name": "Sponson weapons",
+            "name": "Sponson weapon 1",
             "choices": [
               {
-                "name": "Twin ion beamer",
+                "name": "Twin bolt cannon",
                 "type": "ranged"
               },
               {
-                "name": "Twin bolt cannon",
+                "name": "Twin ion beamer",
                 "type": "ranged"
               }
             ]
           },
           {
-            "name": "Wargear",
+            "name": "Sponson weapon 2",
             "choices": [
               {
-                "name": "Pan spectral scanner",
+                "name": "Twin bolt cannon",
                 "type": "ranged"
               },
               {
-                "name": "Hekaton warhead",
+                "name": "Twin ion beamer",
                 "type": "ranged"
               }
             ]
@@ -216,6 +221,13 @@
         ]
       }
     ],
-    "pts": 65
+    "pts": 65,
+    "info": {
+      "M": "5\"",
+      "T": 5,
+      "SV": 2,
+      "W": 5,
+      "OC": 1
+    }
   }
 }

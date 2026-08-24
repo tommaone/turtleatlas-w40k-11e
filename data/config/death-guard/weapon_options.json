@@ -1,5 +1,5 @@
 {
-  "_note": "death-guard weapon options \u2014 generated from BSData + MFM",
+  "_note": "death-guard weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Chaos Land Raider": {
     "info": {
@@ -85,19 +85,28 @@
             "name": "Sponsons",
             "choices": [
               {
-                "name": "2 heavy bolters",
-                "type": "ranged"
+                "name": "Heavy bolter",
+                "type": "ranged",
+                "count": 2
               },
               {
-                "name": "2 lascannons",
-                "type": "ranged"
+                "name": "Lascannon",
+                "type": "ranged",
+                "count": 2
               }
             ]
           }
         ]
       }
     ],
-    "pts": 135
+    "pts": 135,
+    "info": {
+      "M": "10\"",
+      "T": 10,
+      "SV": 3,
+      "W": 11,
+      "OC": 3
+    }
   },
   "Chaos Predator Destructor": {
     "pts": 145,
@@ -111,7 +120,7 @@
           },
           {
             "name": "Armoured tracks",
-            "type": "ranged"
+            "type": "melee"
           },
           {
             "name": "Havoc launcher",
@@ -123,11 +132,11 @@
             "name": "Pintle weapon",
             "choices": [
               {
-                "name": "Combi bolter",
+                "name": "Combi-bolter",
                 "type": "ranged"
               },
               {
-                "name": "Combi weapon",
+                "name": "Combi-weapon",
                 "type": "ranged"
               }
             ]
@@ -136,12 +145,14 @@
             "name": "Sponsons",
             "choices": [
               {
-                "name": "2 plague heavy bolters",
-                "type": "ranged"
+                "name": "Heavy bolter",
+                "type": "ranged",
+                "count": 2
               },
               {
-                "name": "2 lascannons",
-                "type": "ranged"
+                "name": "Lascannon",
+                "type": "ranged",
+                "count": 2
               }
             ]
           }
@@ -263,7 +274,8 @@
               },
               {
                 "name": "Electroscourge",
-                "type": "melee"
+                "type": "melee",
+                "max_count": 1
               }
             ]
           },
@@ -284,7 +296,8 @@
               },
               {
                 "name": "Electroscourge",
-                "type": "melee"
+                "type": "melee",
+                "max_count": 1
               }
             ]
           }
@@ -319,7 +332,15 @@
         ]
       }
     ],
-    "pts": 100
+    "pts": 100,
+    "info": {
+      "M": "10\"",
+      "T": 9,
+      "SV": 3,
+      "W": 10,
+      "OC": 3,
+      "INV": 5
+    }
   },
   "Helbrute": {
     "builds": [
@@ -404,7 +425,14 @@
           }
         ]
       }
-    ]
+    ],
+    "info": {
+      "M": "7\"",
+      "T": 9,
+      "SV": 2,
+      "W": 8,
+      "OC": 3
+    }
   },
   "Myphitic Blight-hauler": {
     "info": {
@@ -584,7 +612,15 @@
           }
         ]
       }
-    ]
+    ],
+    "info": {
+      "M": "10\"",
+      "T": 9,
+      "SV": 3,
+      "W": 10,
+      "OC": 3,
+      "INV": 5
+    }
   },
   "Foetid Bloat-Drone With Heavy Blight Launcher": {
     "pts": 125,

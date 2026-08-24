@@ -1,8 +1,9 @@
 {
-  "_note": "adeptus-mechanicus weapon options \u2014 generated from BSData + MFM",
+  "_note": "adeptus-mechanicus weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Archaeopter Stratoraptor": {
     "pts": 185,
+    "_note": "Golden-verified vs wahapedia 11ed (Venerable-Dreadnought pattern sweep, 2026-08-24): equipped with 2 cognis heavy stubbers; 2 heavy phosphor blasters; twin cognis lascannon; armoured hull; command uplink. Command uplink may be replaced with chaff launcher (no damage profiles either way — slot kept for datasheet fidelity). Fixed multiplicity = one entry per instance.",
     "builds": [
       {
         "name": "default",
@@ -12,11 +13,15 @@
             "type": "melee"
           },
           {
-            "name": "2 twin ironhail heavy stubbers",
+            "name": "cognis heavy stubber",
             "type": "ranged"
           },
           {
             "name": "cognis heavy stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "heavy phosphor blaster",
             "type": "ranged"
           },
           {
@@ -206,12 +211,21 @@
   },
   "Skorpius Disintegrator": {
     "pts": 160,
+    "_note": "Golden-verified vs wahapedia 11ed (2026-08-24): equipped with belleros energy cannon; 3 cognis heavy stubbers; disruptor missile launcher; armoured hull. Main gun: belleros, replaceable by ferrumite (+10pts per MFM wargear option — not modeled per-choice). Armoured hull is a melee-profile item.",
     "builds": [
       {
         "name": "default",
         "fixed": [
           {
             "name": "Armoured hull",
+            "type": "melee"
+          },
+          {
+            "name": "Cognis heavy stubber",
+            "type": "ranged"
+          },
+          {
+            "name": "Cognis heavy stubber",
             "type": "ranged"
           },
           {
@@ -281,20 +295,17 @@
   },
   "Sydonian Skatros": {
     "pts": 50,
+    "_note": "Golden-verified vs wahapedia 11ed (2026-08-24): equipped with Mechanicus pistol; radium jezzail; Sydonian feet. Radium jezzail replaceable by Skatros transuranic arquebus. Sydonian feet is a melee-profile item; 'Sydonian legs' and BSData's 'TL-409' are not on the datasheet. NOTE: kept in sync with the characters.json entry — this file shadows it in resolve_loadout.",
     "builds": [
       {
         "name": "default",
         "fixed": [
           {
-            "name": "Sydonian legs",
+            "name": "sydonian feet",
             "type": "melee"
           },
           {
             "name": "mechanicus pistol",
-            "type": "ranged"
-          },
-          {
-            "name": "sydonian feet",
             "type": "ranged"
           }
         ],
@@ -314,7 +325,15 @@
           }
         ]
       }
-    ]
+    ],
+    "info": {
+      "M": "8\"",
+      "T": 4,
+      "SV": 4,
+      "W": 4,
+      "OC": 1,
+      "INV": 5
+    }
   },
   "Tech-Priest Manipulus": {
     "pts": 60,
@@ -347,7 +366,15 @@
           }
         ]
       }
-    ]
+    ],
+    "info": {
+      "M": "6\"",
+      "T": 4,
+      "SV": 2,
+      "W": 4,
+      "OC": 1,
+      "INV": 5
+    }
   },
   "Archaeopter Fusilave": {
     "pts": 160,

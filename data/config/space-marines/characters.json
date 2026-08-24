@@ -1,5 +1,5 @@
 {
-  "_note": "space-marines characters \u2014 generated from BSData + MFM",
+  "_note": "space-marines characters — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Ancient": {
     "weapon_options": {
@@ -30,10 +30,78 @@
         }
       ]
     },
-    "pts": 40
+    "pts": 40,
+    "info": {
+      "M": "6\"",
+      "T": 4,
+      "SV": 3,
+      "W": 4,
+      "OC": 1
+    }
   },
   "Ancient in Terminator Armor": {
     "pts": 65,
+    "_note": "Golden-verified (workspace/golden_loadouts/space-marines.json, wahapedia 11ed): storm bolter + power fist; fist -> chainfist/CCW/power weapon/Thunder Hammer; OR both replaced by twin lightning claws OR thunder hammer & terminator storm shield. Terminator storm shield grants INV, not damage — not modelled in fixed (catalog has no shield profile).",
+    "weapon_options": {
+      "builds": [
+        {
+          "name": "default",
+          "fixed": [
+            {
+              "name": "Storm bolter",
+              "type": "ranged"
+            }
+          ],
+          "slots": [
+            {
+              "name": "Melee weapon",
+              "choices": [
+                {
+                  "name": "Power fist",
+                  "type": "melee"
+                },
+                {
+                  "name": "Chainfist",
+                  "type": "melee"
+                },
+                {
+                  "name": "Close combat weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Power weapon",
+                  "type": "melee"
+                },
+                {
+                  "name": "Thunder Hammer",
+                  "type": "melee"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "twin lightning claws",
+          "fixed": [
+            {
+              "name": "Twin lightning claws",
+              "type": "melee"
+            }
+          ],
+          "slots": []
+        },
+        {
+          "name": "thunder hammer & terminator storm shield",
+          "fixed": [
+            {
+              "name": "Thunder hammer",
+              "type": "melee"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    },
     "info": {
       "M": "5\"",
       "T": 5,
@@ -42,24 +110,6 @@
       "OC": 1,
       "INV": 4,
       "deep_strike": true
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Twin lightning claws",
-              "type": "melee"
-            },
-            {
-              "name": "Storm bolter",
-              "type": "ranged"
-            }
-          ],
-          "slots": []
-        }
-      ]
     }
   },
   "Apothecary": {
@@ -1152,11 +1202,11 @@
               "type": "melee"
             },
             {
-              "name": "Storm of the Emperor\u2019s Wrath - Witchfire",
+              "name": "Storm of the Emperor’s Wrath - Witchfire",
               "type": "melee"
             },
             {
-              "name": "Storm of the Emperor\u2019s Wrath - Focused Witchfire",
+              "name": "Storm of the Emperor’s Wrath - Focused Witchfire",
               "type": "melee"
             },
             {
@@ -1256,7 +1306,7 @@
       ]
     }
   },
-  "Kor\u2019Sarro Khan": {
+  "Kor’Sarro Khan": {
     "pts": 55,
     "info": {
       "T": 4,
@@ -1468,7 +1518,7 @@
       ]
     }
   },
-  "Vulkan He\u2019Stan": {
+  "Vulkan He’Stan": {
     "pts": 85,
     "info": {
       "T": 4,

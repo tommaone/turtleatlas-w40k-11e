@@ -1,5 +1,5 @@
 {
-  "_note": "aeldari weapon options \u2014 curated builds (flat ranged/melee lists converted to named modes); INV swept against data/merged/aeldari.json InSv",
+  "_note": "aeldari weapon options — curated builds (flat ranged/melee lists converted to named modes); INV swept against data/merged/aeldari.json InSv",
   "_source": "BSData 11e + MFM (auto-generated, curated)",
   "Crimson Hunter": {
     "pts": 160,
@@ -576,7 +576,24 @@
             ]
           },
           {
-            "name": "Secondary Weapons",
+            "name": "Secondary weapon 1",
+            "choices": [
+              {
+                "name": "Scatter Laser",
+                "type": "ranged"
+              },
+              {
+                "name": "Shuriken Cannon",
+                "type": "ranged"
+              },
+              {
+                "name": "Starcannon",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Secondary weapon 2",
             "choices": [
               {
                 "name": "Scatter Laser",
@@ -594,7 +611,8 @@
           }
         ]
       }
-    ]
+    ],
+    "_note": "Golden-verified 2026-08-24 vs wahapedia 11ed + BSData Aeldari Library (workspace/golden_loadouts/aeldari.json): Left Arm = heavy wraithcannon | scattershield; Right Arm = suncannon | heavy wraithcannon; up to TWO secondary weapons (duplicates legal, BSData group max=2, each option max=2). Scattershield grants a conditional 4+ invulnerable save - static info blocks cannot express loadout-conditional INV (roadmap Known Issues #4), so info carries no INV rather than an unconditional claim."
   },
   "Wraithknight With Ghostglaive": {
     "pts": 380,

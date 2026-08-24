@@ -9,22 +9,18 @@
         "fixed": [
           {
             "name": "Armoured tracks",
-            "type": "ranged"
+            "type": "melee"
           },
           {
             "name": "Havoc launcher",
             "type": "ranged"
           },
           {
-            "name": "Combi bolter",
+            "name": "Soulshatter lascannon",
             "type": "ranged"
           },
           {
-            "name": "Combi bolter",
-            "type": "ranged"
-          },
-          {
-            "name": "soulshatter lascannon",
+            "name": "Soulshatter lascannon",
             "type": "ranged"
           },
           {
@@ -34,14 +30,14 @@
         ],
         "slots": [
           {
-            "name": "Weapon",
+            "name": "Pintle weapon",
             "choices": [
               {
-                "name": "Combi bolter",
+                "name": "Combi-bolter",
                 "type": "ranged"
               },
               {
-                "name": "Combi weapon",
+                "name": "Combi-weapon",
                 "type": "ranged"
               }
             ]
@@ -66,10 +62,10 @@
         "fixed": [
           {
             "name": "Armoured tracks",
-            "type": "ranged"
+            "type": "melee"
           },
           {
-            "name": "Combi bolter",
+            "name": "Combi-bolter",
             "type": "ranged"
           },
           {
@@ -79,14 +75,14 @@
         ],
         "slots": [
           {
-            "name": "Weapon",
+            "name": "Pintle weapon",
             "choices": [
               {
-                "name": "Combi bolter",
+                "name": "Combi-bolter",
                 "type": "ranged"
               },
               {
-                "name": "Combi weapon",
+                "name": "Combi-weapon",
                 "type": "ranged"
               }
             ]
@@ -165,7 +161,8 @@
               },
               {
                 "name": "Electroscourge",
-                "type": "melee"
+                "type": "melee",
+                "max_count": 1
               }
             ]
           },
@@ -186,7 +183,8 @@
               },
               {
                 "name": "Electroscourge",
-                "type": "melee"
+                "type": "melee",
+                "max_count": 1
               }
             ]
           }
@@ -308,7 +306,16 @@
         ]
       }
     ],
-    "pts_3rd": 270
+    "pts_3rd": 270,
+    "info": {
+      "M": "14\"",
+      "T": 10,
+      "SV": 5,
+      "W": 18,
+      "OC": 5,
+      "INV": 4,
+      "deep_strike": true
+    }
   },
   "Lord Kakophonist": {
     "pts": 70,
@@ -341,6 +348,14 @@
           }
         ]
       }
-    ]
+    ],
+    "info": {
+      "M": "6\"",
+      "T": 5,
+      "SV": 2,
+      "W": 6,
+      "OC": 1,
+      "INV": 4
+    }
   }
 }

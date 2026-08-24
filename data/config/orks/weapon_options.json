@@ -68,7 +68,8 @@
       "SV": 3,
       "W": 16,
       "OC": 5
-    }
+    },
+    "_note": "Verified vs wahapedia 11ed 2026-08-24: big gun is pick-one-of-{kannon, killkannon, zzap gun}; deff rolla replaces tracks and wheels; lobba / up to 4 big shootas / 'ard case / grabbin' klaw / wreckin' ball all OPTIONAL. Config pins a legal maximal build: engine has no skip-slot mechanism, so optionals are baked as fixed (all simultaneously equippable — no illegality)."
   },
   "Big Mek Dakkarig": {
     "pts": 115,
@@ -197,7 +198,16 @@
         ]
       }
     ],
-    "pts": 115
+    "pts": 115,
+    "_note": "Verified vs wahapedia 11ed 2026-08-24: twin big shoota + twin supa-shoota + armoured hull fixed; skorcha missile rack optional (modeled as single-choice slot = taken).",
+    "info": {
+      "M": "-",
+      "T": 9,
+      "SV": 3,
+      "W": 12,
+      "OC": 0,
+      "INV": 6
+    }
   },
   "Deff Dread": {
     "pts": 110,
@@ -212,7 +222,82 @@
         ],
         "slots": [
           {
-            "name": "Wargear",
+            "name": "Arm 1",
+            "choices": [
+              {
+                "name": "Dread klaw",
+                "type": "melee"
+              },
+              {
+                "name": "Big shoota",
+                "type": "ranged"
+              },
+              {
+                "name": "Kustom mega-blasta",
+                "type": "ranged"
+              },
+              {
+                "name": "Rokkit launcha",
+                "type": "ranged"
+              },
+              {
+                "name": "Skorcha",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Arm 2",
+            "choices": [
+              {
+                "name": "Dread klaw",
+                "type": "melee"
+              },
+              {
+                "name": "Big shoota",
+                "type": "ranged"
+              },
+              {
+                "name": "Kustom mega-blasta",
+                "type": "ranged"
+              },
+              {
+                "name": "Rokkit launcha",
+                "type": "ranged"
+              },
+              {
+                "name": "Skorcha",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Arm 3",
+            "choices": [
+              {
+                "name": "Dread klaw",
+                "type": "melee"
+              },
+              {
+                "name": "Big shoota",
+                "type": "ranged"
+              },
+              {
+                "name": "Kustom mega-blasta",
+                "type": "ranged"
+              },
+              {
+                "name": "Rokkit launcha",
+                "type": "ranged"
+              },
+              {
+                "name": "Skorcha",
+                "type": "ranged"
+              }
+            ]
+          },
+          {
+            "name": "Arm 4",
             "choices": [
               {
                 "name": "Dread klaw",
@@ -246,7 +331,8 @@
       "W": 8,
       "OC": 3,
       "INV": 6
-    }
+    },
+    "_note": "Verified vs wahapedia 11ed 2026-08-24: equipped with 2 big shootas + 2 dread klaws + stompy feet; EACH weapon can be replaced with one of {dread klaw, kustom-mega blasta, rokkit launcha, skorcha, big shoota}. Modeled as 4 independent pick-1 arm slots (any mix legal). Pre-fix config offered ONE arm total. MFM: 110 (1st-2nd) / 120 (3rd+)."
   },
   "Deffkoptas": {
     "pts": 75,
@@ -318,7 +404,8 @@
       "SV": 3,
       "W": 30,
       "OC": 12
-    }
+    },
+    "_note": "Verified vs wahapedia 11ed 2026-08-24: huge tusks fixed; optional one-of-{kannon, supa-kannon} modeled as pick-1 slot. Kannon resolves its shell/frag dual profile."
   },
   "Gorkanaut": {
     "pts": 255,
@@ -871,7 +958,8 @@
       "SV": 3,
       "W": 12,
       "INV": 6
-    }
+    },
+    "_note": "Verified vs wahapedia 11ed 2026-08-24: smasha gun + twin wazbom mega-kannon + armoured hull fixed; wazbom kannon replaceable with twin tellyport mega-blasta; blastajet force field and twin supa-shoota are INDEPENDENT optional add-ons but share one pick-1 slot here because the force field has no damage profile (unresolvable choice would poison combos). Supa-shoota wins the slot."
   },
   "Dakkajet": {
     "pts": 125,
@@ -880,13 +968,21 @@
         "name": "default",
         "fixed": [
           {
-            "name": "Armoured hull",
+            "name": "Twin supa-shoota",
             "type": "ranged"
+          },
+          {
+            "name": "Twin supa-shoota",
+            "type": "ranged"
+          },
+          {
+            "name": "Armoured hull",
+            "type": "melee"
           }
         ],
         "slots": [
           {
-            "name": "Twin supa-shootas",
+            "name": "Additional twin supa-shoota",
             "choices": [
               {
                 "name": "Twin supa-shoota",
@@ -903,7 +999,8 @@
       "SV": 3,
       "W": 12,
       "INV": 6
-    }
+    },
+    "_note": "Verified vs wahapedia 11ed 2026-08-24: equipped with 2 twin supa-shootas + armoured hull; 'can be equipped with 1 additional twin supa-shoota'. Pre-fix config had only ONE base supa-shoota (under-equipped)."
   },
   "Big Mek in Mega Armour": {
     "pts": 80,
@@ -931,15 +1028,6 @@
             ]
           },
           {
-            "name": "Grot Oiler",
-            "choices": [
-              {
-                "name": "Grot oiler",
-                "type": "ranged"
-              }
-            ]
-          },
-          {
             "name": "Weapon",
             "choices": [
               {
@@ -962,7 +1050,15 @@
           }
         ]
       }
-    ]
+    ],
+    "_note": "Verified vs wahapedia 11ed 2026-08-24: power klaw fixed; kustom-mega blasta replaceable (killsaw/kombi/kustom shoota); optional tellyport blasta OR kustom force field. Grot oiler excluded — support wargear, no damage profile (unresolvable choice skips every combo).",
+    "info": {
+      "M": "5\"",
+      "T": 6,
+      "SV": 2,
+      "W": 5,
+      "OC": 1
+    }
   },
   "Mek": {
     "pts": 55,
@@ -971,11 +1067,7 @@
         "name": "default",
         "fixed": [
           {
-            "name": "Kustom mega-blasta",
-            "type": "ranged"
-          },
-          {
-            "name": "kustom mega slugga",
+            "name": "Kustom mega-slugga",
             "type": "ranged"
           }
         ],
@@ -995,7 +1087,15 @@
           }
         ]
       }
-    ]
+    ],
+    "_note": "Verified vs wahapedia 11ed 2026-08-24: equipped with kustom mega-slugga + wrench; wrench replaceable with 1 killsaw. Phantom kustom mega-blasta removed; catalogue-exact 'Kustom mega-slugga' spelling fixes silent KeyError skip.",
+    "info": {
+      "M": "6\"",
+      "T": 5,
+      "SV": 5,
+      "W": 4,
+      "OC": 1
+    }
   },
   "Painboss": {
     "pts": 70,
@@ -1008,19 +1108,17 @@
             "type": "melee"
           }
         ],
-        "slots": [
-          {
-            "name": "Grot orderly",
-            "choices": [
-              {
-                "name": "Grot orderly",
-                "type": "ranged"
-              }
-            ]
-          }
-        ]
+        "slots": []
       }
-    ]
+    ],
+    "_note": "Verified vs wahapedia 11ed 2026-08-24: equipped with Beast Snagga klaw; grot orderly is optional support wargear with NO damage profile — excluded from weapon slots (an unresolvable choice skips every combo in _resolve_slots_build).",
+    "info": {
+      "M": "6\"",
+      "T": 5,
+      "SV": 4,
+      "W": 4,
+      "OC": 1
+    }
   },
   "Painboy": {
     "pts": 90,
@@ -1029,7 +1127,7 @@
         "name": "default",
         "fixed": [
           {
-            "name": "'Urty syringe",
+            "name": "’Urty syringe",
             "type": "melee"
           },
           {
@@ -1037,19 +1135,17 @@
             "type": "melee"
           }
         ],
-        "slots": [
-          {
-            "name": "Grot orderly",
-            "choices": [
-              {
-                "name": "Grot orderly",
-                "type": "ranged"
-              }
-            ]
-          }
-        ]
+        "slots": []
       }
-    ]
+    ],
+    "_note": "Verified vs wahapedia 11ed 2026-08-24: equipped with power klaw + 'urty syringe; grot orderly is optional support wargear with NO damage profile — excluded from weapon slots (an unresolvable choice skips every combo in _resolve_slots_build).",
+    "info": {
+      "M": "6\"",
+      "T": 5,
+      "SV": 5,
+      "W": 3,
+      "OC": 1
+    }
   },
   "Big Mek with Shokk Attack Gun": {
     "pts": 70,
@@ -1078,7 +1174,14 @@
           }
         ]
       }
-    ]
+    ],
+    "info": {
+      "M": "6\"",
+      "T": 5,
+      "SV": 4,
+      "W": 5,
+      "OC": 1
+    }
   },
   "Warboss": {
     "pts": 85,
@@ -1156,6 +1259,14 @@
           }
         ]
       }
-    ]
+    ],
+    "info": {
+      "M": "6\"",
+      "T": 5,
+      "SV": 4,
+      "W": 6,
+      "OC": 1,
+      "INV": 5
+    }
   }
 }

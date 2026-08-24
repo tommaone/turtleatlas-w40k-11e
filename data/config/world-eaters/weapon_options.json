@@ -61,36 +61,43 @@
           },
           {
             "name": "Armoured tracks",
-            "type": "ranged"
-          },
-          {
-            "name": "Havoc launcher",
-            "type": "ranged"
+            "type": "melee"
           }
         ],
         "slots": [
           {
+            "name": "Sponsons",
+            "choices": [
+              {
+                "name": "Heavy bolter",
+                "type": "ranged",
+                "count": 2
+              },
+              {
+                "name": "Lascannon",
+                "type": "ranged",
+                "count": 2
+              }
+            ]
+          },
+          {
             "name": "Pintle weapon",
             "choices": [
               {
-                "name": "Combi bolter",
+                "name": "Combi-bolter",
                 "type": "ranged"
               },
               {
-                "name": "Combi weapon",
+                "name": "Combi-weapon",
                 "type": "ranged"
               }
             ]
           },
           {
-            "name": "Sponsons",
+            "name": "Havoc launcher",
             "choices": [
               {
-                "name": "2 heavy bolters",
-                "type": "ranged"
-              },
-              {
-                "name": "2 lascannons",
+                "name": "Havoc launcher",
                 "type": "ranged"
               }
             ]
@@ -104,7 +111,8 @@
       "SV": 3,
       "W": 11,
       "OC": 3
-    }
+    },
+    "_note": "Verified vs wahapedia 11ed 2026-08-24: equipped with Predator twin lascannon + armoured tracks; sponsons one-of {2 heavy bolters, 2 lascannons}, havoc launcher and combi pintle each optional. Pre-fix names ('Combi bolter', '2 heavy bolters') did not resolve in the catalogue so every slot combo was skipped and sponson/pintle firepower silently lost."
   },
   "Chaos Predator Destructor": {
     "pts": 130,
@@ -118,36 +126,43 @@
           },
           {
             "name": "Armoured tracks",
-            "type": "ranged"
-          },
-          {
-            "name": "Havoc launcher",
-            "type": "ranged"
+            "type": "melee"
           }
         ],
         "slots": [
           {
+            "name": "Sponsons",
+            "choices": [
+              {
+                "name": "Heavy bolter",
+                "type": "ranged",
+                "count": 2
+              },
+              {
+                "name": "Lascannon",
+                "type": "ranged",
+                "count": 2
+              }
+            ]
+          },
+          {
             "name": "Pintle weapon",
             "choices": [
               {
-                "name": "Combi bolter",
+                "name": "Combi-bolter",
                 "type": "ranged"
               },
               {
-                "name": "Combi weapon",
+                "name": "Combi-weapon",
                 "type": "ranged"
               }
             ]
           },
           {
-            "name": "Sponsons",
+            "name": "Havoc launcher",
             "choices": [
               {
-                "name": "2 heavy bolters",
-                "type": "ranged"
-              },
-              {
-                "name": "2 lascannons",
+                "name": "Havoc launcher",
                 "type": "ranged"
               }
             ]
@@ -161,7 +176,8 @@
       "SV": 3,
       "W": 11,
       "OC": 3
-    }
+    },
+    "_note": "Verified vs wahapedia 11ed 2026-08-24: equipped with Predator autocannon + armoured tracks; sponsons one-of {2 heavy bolters, 2 lascannons}, havoc launcher and combi pintle each optional. Pre-fix names ('Combi bolter', '2 heavy bolters') did not resolve in the catalogue so every slot combo was skipped and sponson/pintle firepower silently lost."
   },
   "Chaos Rhino": {
     "info": {
@@ -270,7 +286,8 @@
               },
               {
                 "name": "Electroscourge",
-                "type": "melee"
+                "type": "melee",
+                "max_count": 1
               }
             ]
           },
@@ -291,13 +308,15 @@
               },
               {
                 "name": "Electroscourge",
-                "type": "melee"
+                "type": "melee",
+                "max_count": 1
               }
             ]
           }
         ]
       }
-    ]
+    ],
+    "_note": "Matches CSM golden verdict (commit ec7b60c, wahapedia 11ed): electroscourge carries an explicit model-wide cap — 'cannot be equipped with more than one' repeated in both arm lists -> max_count:1. Hades lascannon / heavy reaper uncapped (dupes via both arms RAW-legal)."
   },
   "Forgefiend": {
     "pts": 140,
@@ -344,7 +363,8 @@
       "W": 12,
       "OC": 3,
       "INV": 5
-    }
+    },
+    "_note": "Verified vs wahapedia 11ed 2026-08-24: equipped with 2 Hades autocannons + Forgefiend jaws; autocannons replaceable with 2 ectoplasma cannons; jaws replaceable with 1 ectoplasma cannon + 1 Forgefiend claws. Head alternative bundle typed ranged — claws half of the bundle has no separate profile slot in pick-1 format (documented limitation, structure matches source options)."
   },
   "Helbrute": {
     "builds": [
@@ -418,7 +438,15 @@
         ]
       }
     ],
-    "pts": 120
+    "pts": 120,
+    "_note": "Verified vs wahapedia 11ed 2026-08-24: missile launcher -> {Helbrute fist, Helbrute hammer, power scourge}; multi-melta -> {plasma cannon, twin autocannon, twin heavy bolter, twin lascannon, Helbrute fist}; per fist one of {combi-bolter, heavy flamer}. Fist+gun bundles resolve in the WE catalogue; two fists (one per slot) remain legal.",
+    "info": {
+      "M": "9\"",
+      "T": 9,
+      "SV": 2,
+      "W": 8,
+      "OC": 3
+    }
   },
   "Heldrake": {
     "info": {
@@ -500,7 +528,16 @@
         ]
       }
     ],
-    "pts": 505
+    "pts": 505,
+    "_note": "Verified vs wahapedia 11ed 2026-08-24: gorestorm cannon -> {daemongore, ichor}; Hades gatling cannon -> skullhurler; great cleaver of Khorne fixed. Structure unchanged by audit; cleaver strike/sweep collapse into one fixed entry resolving the dual profile.",
+    "info": {
+      "M": "12\"",
+      "T": 13,
+      "SV": 3,
+      "W": 24,
+      "OC": 8,
+      "INV": 5
+    }
   },
   "Maulerfiend": {
     "pts": 140,

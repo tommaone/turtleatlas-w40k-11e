@@ -348,36 +348,59 @@
   },
   "Forgefiend": {
     "pts": 160,
+    "_note": "Golden-verified 2026-08-24 vs wahapedia 11ed (workspace/golden_loadouts/chaos-space-marines.json): equipped 2 hades autocannons; forgefiend jaws. Options: 2 hades <-> 2 ectoplasma (paired arm guns, count:2); forgefiend jaws -> 1 ectoplasma cannon AND 1 armoured limbs. The head swap is a separate BUILD (not a bundle choice) so the armoured-limbs melee profile scores - bundle names resolve to their primary profile only.",
     "builds": [
       {
-        "name": "default",
-        "fixed": [],
+        "name": "forgefiend jaws",
+        "fixed": [
+          {
+            "name": "Forgefiend jaws",
+            "type": "melee"
+          }
+        ],
         "slots": [
           {
             "name": "Arm weapons",
             "choices": [
               {
-                "name": "Ectoplasma cannon",
+                "name": "Hades autocannon",
                 "type": "ranged",
                 "count": 2
               },
               {
-                "name": "Hades autocannon",
+                "name": "Ectoplasma cannon",
                 "type": "ranged",
                 "count": 2
               }
             ]
+          }
+        ]
+      },
+      {
+        "name": "ectoplasma head",
+        "fixed": [
+          {
+            "name": "Ectoplasma cannon",
+            "type": "ranged"
           },
           {
-            "name": "Head weapons",
+            "name": "Armoured limbs",
+            "type": "melee"
+          }
+        ],
+        "slots": [
+          {
+            "name": "Arm weapons",
             "choices": [
               {
-                "name": "Ectoplasma cannon and limbs",
-                "type": "ranged"
+                "name": "Hades autocannon",
+                "type": "ranged",
+                "count": 2
               },
               {
-                "name": "Forgefiend jaws",
-                "type": "melee"
+                "name": "Ectoplasma cannon",
+                "type": "ranged",
+                "count": 2
               }
             ]
           }

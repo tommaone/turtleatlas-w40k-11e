@@ -1,5 +1,5 @@
 {
-  "_note": "chaos-space-marines characters \u2014 generated from BSData + MFM",
+  "_note": "chaos-space-marines characters — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Abaddon The Despoiler": {
     "pts": 295,
@@ -63,7 +63,7 @@
                   "type": "melee"
                 },
                 {
-                  "name": "Astartes chainblade",
+                  "name": "Astartes chainsword",
                   "type": "melee"
                 }
               ]
@@ -169,10 +169,6 @@
                 {
                   "name": "Power fist",
                   "type": "melee"
-                },
-                {
-                  "name": "Twin lightning claws",
-                  "type": "melee"
                 }
               ]
             },
@@ -190,9 +186,20 @@
               ]
             }
           ]
+        },
+        {
+          "name": "twin lightning claws",
+          "fixed": [
+            {
+              "name": "Twin lightning claws",
+              "type": "melee"
+            }
+          ],
+          "slots": []
         }
       ]
-    }
+    },
+    "_note": "Golden-verified 2026-08-24 vs wahapedia 11ed (workspace/golden_loadouts/chaos-space-marines.json): bolt pistol->plasma pistol; accursed weapon->power fist; twin lightning claws replace BOTH bolt pistol AND accursed weapon - modelled as a separate fixed build so the illegal claws+pistol combo can never score."
   },
   "Cultist Firebrand": {
     "pts": 45,

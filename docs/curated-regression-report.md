@@ -6,6 +6,92 @@ flags *change*, not proven damage. Golden-pipeline candidates.
 
 **106 flagged entries.**
 
+## Settled: orks + world-eaters (2026-08-24)
+
+All 18 flagged entries for these factions source-verified against
+wahapedia.ru/wh40k11ed (fetched 2026-08-24). Corpora:
+`workspace/golden_loadouts/orks-golden.json`,
+`workspace/golden_loadouts/world-eaters-golden.json`. Pins:
+`tests/test_golden_orks.py`, `tests/test_golden_world_eaters.py`.
+
+**FIXED (real regressions):**
+- orks Mek — phantom Kustom mega-blasta removed; catalogue-exact
+  `Kustom mega-slugga` spelling (old name KeyError-skipped silently).
+- orks Big Mek In Mega Armour — Grot Oiler slot removed: unresolvable
+  non-weapon choice skipped EVERY combo, scoring the model as bare
+  power klaw.
+- orks Dakkajet — base is TWO twin supa-shootas; was under-equipped
+  with one. Now 2 fixed + 1 additional slot.
+- orks Deff Dread — one pick-1 arm slot → four independent arm slots
+  (2 shootas + 2 klaws, each replaceable).
+- orks Painboy — audit sweep wrote a literal `"` into `'Urty syringe`;
+  lookup silently failed and the weapon vanished from scoring.
+- world-eaters Bloodthirster — 'Axe and flail'/'Axe and lash' bundles
+  retyped ranged→melee (BSData holds melee-only profiles).
+- world-eaters Chaos Predators — 'Combi bolter' / '2 heavy bolters'
+  did not resolve: every slot combo skipped, sponson/pintle firepower
+  silently lost. Catalogue-exact names + count:2 sponsons now.
+- world-eaters Defiler — max_count:1 on Electroscourge was missing
+  (CSM got it in ec7b60c); engine could pick the illegal 2x scourge.
+
+**KEPT + documented (verified correct):** Warboss (3 paired builds),
+Battlewagon (legal-max restructure fixed an old illegality),
+Burna-Bommer, Gargantuan Squiggoth, Wazbom Blastajet (force-field
+exclusivity limitation noted), Painboss, Forgefiend, Helbrute,
+Khorne Lord Of Skulls.
+
+Engine-wide lesson (now encoded in golden tests): an unresolvable
+choice inside `_resolve_slots_build` skips its whole combo silently —
+single-choice slots holding non-weapon wargear poison every combo and
+fall back to bare fixed loadouts.
+
+---
+
+## Verdicts — space-marines + grey-knights (settled 2026-08-24)
+
+Sources: wahapedia.ru 11ed Faction Pack v1.1 datasheets (per-unit URLs in
+`workspace/golden_loadouts/<faction>.json`) cross-checked against local BSData
+catalogue selection-entry-group constraints. Corpus entries carry `_source`.
+
+### grey-knights
+
+| Unit | Verdict | Why |
+|------|---------|-----|
+| Venerable Dreadnought | already-correct (structure) + FIXED (melee loss) | Datasheet: assault cannon (+swaps) + storm bolter→heavy flamer + combat weapon ALWAYS equipped. Two mandatory slots match BSData groups; but combined 'X and Dreadnought combat weapon' entries resolve ranged-only, dropping the melee weapon → added fixed DCW. Validator now flags it EXTRA WEAPON (advisory, deliberate): BSData hides the DCW inside the upgrade entries. |
+| Grand Master In Nemesis Dreadknight | already-correct | Restored in ec7b60c from gk-csm-pilot.json golden corpus; wahapedia re-verified. |
+| Nemesis Dreadknight | already-correct | Same as GMNDK ('Ranged Weapons' slot was split into Ranged 1/2 per golden pilot). |
+| Grey Knights Thunderhawk Gunship | FIXED | Equipped = 2 lascannons + 4 twin heavy bolters + hull (BSData min/max=2/4). Config had collapsed to 1+1. The 5d21b52 state (4x twin HB but 2x hellstrike 'Missile battery' slots) was stale 10e data — cluster bombs are base, ONE battery replaces them. |
+| Stormhawk Interceptor | already-correct | Las-talon/Skyhammer are pick-1 slot options in BSData, not fixed weapons; config matches groups. |
+| Stormtalon Gunship | already-correct | Skyhammer is a slot choice (BSData single group); 'lost fixed' flag was the audit correcting stale data. |
+
+### space-marines
+
+| Unit | Verdict | Why |
+|------|---------|-----|
+| Ancient | already-correct | One pick-1 group {bolt rifle & CCW \| power weapon}, bolt pistol fixed (wahapedia + BSData agree). 5d21b52 separate ranged/melee slots were over-permissive — the audit fix was legitimate. |
+| Ancient in Terminator Armor | FIXED | Base = storm bolter + power fist; fist swaps one-of; twin lightning claws OR thunder hammer + terminator storm shield replace BOTH base weapons. Audit collapse left illegal claws+storm-bolter pairing with no options. Restored as 3 builds. |
+| Chaplain With Jump Pack | already-correct | Current choices match BSData group exactly (10 options incl. power fist melee swap). |
+| Astraeus | FIXED (multiplicity) | Sponson pairs resolved as a single gun ('Two …' names resolve to one profile); switched to count:2 on resolvable names. Slots otherwise match BSData. |
+| Brutalis Dreadnought | already-correct | Bolt rifles are bundled in the combined fists entry per BSData, not separate fixed weapons; both pick-1 groups match. |
+| Dreadnought | already-correct | Arm × heavy all-pairings-legal via 2 slots covers the old 6-build enumeration. |
+| Gladiator Lancer | FIXED (multiplicity + spurious fixed) | Sponsons now count:2 pairs; removed fixed storm bolter not present in BSData wargear links. |
+| Invictor Tactical Warsuit | FIXED (typing) | Invictor Fist is melee, was typed ranged (fist damage counted as shooting). |
+| Predator Annihilator / Destructor | FIXED (multiplicity) | '2 lascannons'/'2 heavy bolters' choice names didn't resolve → sponsons silently dropped; now Lascannon/Heavy Bolter with count:2. |
+| Redemptor Dreadnought | already-correct | 3 pick-1 slots + fist/pod fixed match BSData exactly. |
+| Stormhawk Interceptor | already-correct | Matches BSData groups (same sheet as GK variant). |
+| Stormraven Gunship | FIXED | Hurricane Bolters are an ADDITIVE option (may equip 2) and stormstrike missiles are a PAIR — restored 2x stormstrike + 2x hurricane bolters fixed; swap slots keep base picks. 5d21b52 had 1x hurricane and no stormstrike at all. |
+| Thunderhawk Gunship | FIXED | Same FW datasheet structure as GK: 2 lascannons + 4 twin heavy bolters (BSData min/max), not 1+1 nor the stale 10e loadout. |
+
+Golden structure pins: `tests/test_golden_space_marines_loadouts.py`,
+`tests/test_golden_grey_knights_loadouts.py` (structure/count only).
+
+Validator advisory delta vs HEAD: SM 47→39 issues (net −8); GK 1→2
+(+1 = the deliberate Venerable DCW fixed weapon described above;
+pre-existing 'cluster bombs NOT IN DATA' remains on both Thunderhawks —
+merged catalog lacks that profile entry, engine resolves it fine).
+
+---
+
 - `adepta-sororitas`/characters.json **Canoness**: lost slot choices: ['Melee weapon 1']
 - `adepta-sororitas`/characters.json **Palatine**: lost slot choices: ['Ranged weapon 1']
 - `adepta-sororitas`/weapon_options.json **Castigator**: lost slot choices: ['Ranged weapon 1']

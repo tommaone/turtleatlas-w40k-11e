@@ -186,15 +186,6 @@
               ]
             },
             {
-              "name": "Grot Oiler",
-              "choices": [
-                {
-                  "name": "Grot oiler",
-                  "type": "ranged"
-                }
-              ]
-            },
-            {
               "name": "Weapon",
               "choices": [
                 {
@@ -217,7 +208,8 @@
             }
           ]
         }
-      ]
+      ],
+      "_note": "Verified vs wahapedia 11ed 2026-08-24: power klaw fixed; kustom-mega blasta replaceable (killsaw/kombi/kustom shoota); optional tellyport blasta OR kustom force field. Grot oiler + kustom force field are non-weapon wargear with no damage profiles — excluded from weapon slots (an unresolvable choice skips every combo in _resolve_slots_build). Tellyport blasta kept as slot pick."
     }
   },
   "Big Mek With Shokk Attack Gun": {
@@ -404,11 +396,7 @@
           "name": "default",
           "fixed": [
             {
-              "name": "Kustom mega-blasta",
-              "type": "ranged"
-            },
-            {
-              "name": "kustom mega slugga",
+              "name": "Kustom mega-slugga",
               "type": "ranged"
             }
           ],
@@ -428,7 +416,8 @@
             }
           ]
         }
-      ]
+      ],
+      "_note": "Shadowed by weapon_options.json entry (engine precedence)."
     }
   },
   "Mozrog Skragbad": {
@@ -484,19 +473,10 @@
               "type": "melee"
             }
           ],
-          "slots": [
-            {
-              "name": "Grot orderly",
-              "choices": [
-                {
-                  "name": "Grot orderly",
-                  "type": "ranged"
-                }
-              ]
-            }
-          ]
+          "slots": []
         }
-      ]
+      ],
+      "_note": "Shadowed by weapon_options.json entry (engine precedence). Grot orderly excluded — support wargear, no damage profile."
     }
   },
   "Painboy": {
@@ -515,7 +495,7 @@
           "name": "default",
           "fixed": [
             {
-              "name": "'Urty syringe",
+              "name": "’Urty syringe",
               "type": "melee"
             },
             {
@@ -523,19 +503,10 @@
               "type": "melee"
             }
           ],
-          "slots": [
-            {
-              "name": "Grot orderly",
-              "choices": [
-                {
-                  "name": "Grot orderly",
-                  "type": "ranged"
-                }
-              ]
-            }
-          ]
+          "slots": []
         }
-      ]
+      ],
+      "_note": "Shadowed by weapon_options.json entry (engine precedence). Grot orderly excluded — support wargear, no damage profile."
     }
   },
   "Warboss": {
@@ -617,6 +588,14 @@
           ]
         }
       ]
+    },
+    "info": {
+      "M": "6\"",
+      "T": 5,
+      "SV": 4,
+      "W": 6,
+      "OC": 1,
+      "INV": 5
     }
   },
   "Warboss (Armageddon)": {
