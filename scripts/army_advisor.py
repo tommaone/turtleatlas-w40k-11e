@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Army buy-advisor: long-term trend metrics from engine outputs.
+"""Army advisor: which faction to play, from engine-derived facts.
 
 Modular by design: emits findings/advisor.json (machine-readable, MCP /
 conversational ready) and can render docs/army-choice-guide.md (--guide).
@@ -11,7 +11,7 @@ Metrics per faction (all derived from engine outputs, never re-computed):
 - roster_depth       ranked datasheet count
 - points_churn       MFM changelog mentions since edition start (GW attention)
 
-Buy-signal heuristics are LLM-synthesis tier (🔴 STRATEGY): they combine
+Play-fit heuristics are LLM-synthesis tier (🔴 STRATEGY): they combine
 engine facts with assumptions listed in the output. The `meta_ceiling`
 field stays null until detachment-aware scoring ships (war plan P3).
 
@@ -151,7 +151,8 @@ grounded in the durability facts shown.
   Fragile armies (few wounds per model) punish every positioning error.
   Fragile + expensive + tricky rules = hard mode. Not a first army.
 - **GW attention** — factions whose points changed a lot recently keep
-  changing. Buying one means accepting repricing, up or down.
+  changing. Playing one means accepting that your points and rules
+  will move under you.
 
 """
 
@@ -177,20 +178,20 @@ def guide(data):
              if x["versatility"] >= sorted(y["versatility"] for y in f)[half]]
 
     lines = [
-        "# Choosing Your Army — where each faction's strength actually sits",
+        "# Choosing Your Army — strength, versatility, difficulty",
         "",
         "*Generated 2026-08-23 from engine outputs (rank-decay roster index, "
         "MFM v1.2). Full method + caveats in findings/advisor.json.*",
         "",
-        "> No purchase is safe. This narrows the field — it tells you where "
-        "each faction's strength sits today, not what your local meta will "
-        "do to it next month.",
+        "> This narrows the field — it tells you where each faction's "
+        "strength sits today and what the army demands from you as a "
+        "player. It cannot tell you the future meta.",
         "",
         SIGNALS_DOC,
         "## If this is your first army",
         "",
         "> Start **Durable** and **versatile**. Avoid Fragile bands as a "
-        "first buy: they punish positioning mistakes that experienced "
+        "first army: they punish positioning mistakes that experienced "
         "players stop making around year two.",
         "",
     ]
@@ -204,13 +205,13 @@ def guide(data):
     ]
     lines += [f"- **{x['name']}** — strength {x['overall_index']}, plays all "
               f"missions ({x['difficulty']} models)" for x in foundations]
-    lines += ["", "## Specialist weapons (buy for a plan)", ""]
+    lines += ["", "## Specialist picks (strong in one mission)", ""]
     lines += [f"- **{x['name']}** — shines in {x['best_disposition']}"
               f" ({x['difficulty']} models)" for x in specialists]
     lines += ["", "## Active GW tuning (expect repricing)", ""]
     lines += [f"- **{x['name']}** — {x['points_churn']} MFM changelog entries"
               for x in tuning]
-    lines += ["", "## Value windows (underpriced quality)", ""]
+    lines += ["", "## Underrated right now", ""]
     lines += [f"- **{x['name']}** — overall {x['overall_index']}, versatile "
               f"{x['versatility']}" for x in value]
     lines += [

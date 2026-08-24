@@ -1,8 +1,8 @@
-# Choosing Your Army — where each faction's strength actually sits
+# Choosing Your Army — strength, versatility, difficulty
 
 *Generated 2026-08-23 from engine outputs (rank-decay roster index, MFM v1.2). Full method + caveats in findings/advisor.json.*
 
-> No purchase is safe. This narrows the field — it tells you where each faction's strength sits today, not what your local meta will do to it next month.
+> This narrows the field — it tells you where each faction's strength sits today and what the army demands from you as a player. It cannot tell you the future meta.
 
 ## How to read this (plain words — judgement layer, not engine fact)
 
@@ -19,12 +19,13 @@ grounded in the durability facts shown.
   Fragile armies (few wounds per model) punish every positioning error.
   Fragile + expensive + tricky rules = hard mode. Not a first army.
 - **GW attention** — factions whose points changed a lot recently keep
-  changing. Buying one means accepting repricing, up or down.
+  changing. Playing one means accepting that your points and rules
+  will move under you.
 
 
 ## If this is your first army
 
-> Start **Durable** and **versatile**. Avoid Fragile bands as a first buy: they punish positioning mistakes that experienced players stop making around year two.
+> Start **Durable** and **versatile**. Avoid Fragile bands as a first army: they punish positioning mistakes that experienced players stop making around year two.
 
 - **Chaos Daemons** — durable models, plays all missions
 - **Blood Angels** — durable models, plays all missions
@@ -38,7 +39,7 @@ grounded in the durability facts shown.
 - **Chaos Daemons** — strength 68.4, plays all missions (Durable models)
 - **Blood Angels** — strength 68.2, plays all missions (Durable models)
 
-## Specialist weapons (buy for a plan)
+## Specialist picks (strong in one mission)
 
 - **Dark Angels** — shines in Priority Assets (Durable models)
 - **Space Marines** — shines in Priority Assets (Durable models)
@@ -53,7 +54,7 @@ grounded in the durability facts shown.
 - **Deathwatch** — 57 MFM changelog entries
 - **Astra Militarum** — 57 MFM changelog entries
 
-## Value windows (underpriced quality)
+## Underrated right now
 
 - **Drukhari** — overall 62.4, versatile 90.0
 - **Necrons** — overall 62.2, versatile 86.1
