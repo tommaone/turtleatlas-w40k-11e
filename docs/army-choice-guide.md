@@ -4,30 +4,44 @@
 
 > No purchase is safe. This narrows the field — it tells you where each faction's strength sits today, not what your local meta will do to it next month.
 
-## Signal definitions (heuristic layer — 🔴 STRATEGY, not engine fact)
+## How to read this (plain words — judgement layer, not engine fact)
 
-- **Foundation pick** — top-third overall AND top-half versatility.
-  Statlines carry the army through any mission and most balance passes.
-  Best long-term hold.
-- **Specialist weapon** — top-third ceiling but bottom-half versatility.
-  Buys a tournament edge in one disposition; risky as an only army.
-- **Active tuning** — top-quartile points churn. GW is actively moving
-  this faction's costs; expect swings both ways. Buy cheap-ish now only
-  if you accept repricing.
-- **Value window** — mid index or better but bottom-tier community win
-  rate recently: underlying quality the meta hasn't re-priced. Highest
-  upside, needs patience.
+The engine measures how strong each faction's models are on paper
+(statlines and points). It cannot measure rules packages, skill floor,
+or how punishing an army is to play — those are expert calls below,
+grounded in the durability facts shown.
 
-## Foundation picks (strongest long-term signal)
+- **Strength** — where the faction ranks today on model quality.
+  Changes with balance updates; a strong army can get nerfed.
+- **Versatility** — does it fight well on every mission type, or only
+  one? Versatile armies forgive list-building mistakes.
+- **Difficulty** — Durable armies (big wound pools) survive mistakes;
+  Fragile armies (few wounds per model) punish every positioning error.
+  Fragile + expensive + tricky rules = hard mode. Not a first army.
+- **GW attention** — factions whose points changed a lot recently keep
+  changing. Buying one means accepting repricing, up or down.
 
-- **Aeldari** — overall 68.9, versatility 90.6 (best Purge the Foe)
-- **Chaos Daemons** — overall 68.4, versatility 94.7 (best Purge the Foe)
-- **Blood Angels** — overall 68.2, versatility 85.1 (best Priority Assets)
+
+## If this is your first army
+
+> Start **Durable** and **versatile**. Avoid Fragile bands as a first buy: they punish positioning mistakes that experienced players stop making around year two.
+
+- **Chaos Daemons** — durable models, plays all missions
+- **Blood Angels** — durable models, plays all missions
+- **Necrons** — durable models, plays all missions
+- **Thousand Sons** — durable models, plays all missions
+- **World Eaters** — durable models, plays all missions
+- **T'au Empire** — durable models, plays all missions
+
+## Strongest long-term signal
+- **Aeldari** — strength 68.9, plays all missions (Fragile models)
+- **Chaos Daemons** — strength 68.4, plays all missions (Durable models)
+- **Blood Angels** — strength 68.2, plays all missions (Durable models)
 
 ## Specialist weapons (buy for a plan)
 
-- **Dark Angels** — ceiling 75.0 in Priority Assets
-- **Space Marines** — ceiling 75.4 in Priority Assets
+- **Dark Angels** — shines in Priority Assets (Durable models)
+- **Space Marines** — shines in Priority Assets (Durable models)
 
 ## Active GW tuning (expect repricing)
 

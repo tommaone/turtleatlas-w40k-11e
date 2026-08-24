@@ -23,6 +23,8 @@ import argparse
 import json
 import re
 from pathlib import Path
+import statistics
+import glob
 
 REPO = Path(__file__).resolve().parent.parent
 TIERS = REPO / "findings" / "army_tiers.json"
@@ -42,6 +44,38 @@ CAVEATS = [
     "win-rate correlation is partial: community results include rules "
     "packaging this index deliberately excludes",
 ]
+
+
+def durability_map():
+    """FACT layer: median wounds + share of multi-wound units per faction.
+
+    Grounds the difficulty wording — fragile/durable is derived from
+    statline data, never vibes.
+    """
+    out = {}
+    for f in sorted(glob.glob(str(REPO / "data" / "merged" / "*.json"))):
+        fid = f.split("/")[-1][:-5]
+        d = json.load(open(f))
+        ws = []
+        for u in d.get("units", []):
+            st = (u.get("profile") or {}).get("stats") or {}
+            try:
+                ws.append(int(str(st.get("W", "1"))))
+            except ValueError:
+                ws.append(1)
+        if not ws:
+            continue
+        med = statistics.median(ws)
+        multi = sum(1 for w in ws if w >= 5) / len(ws)
+        if med >= 5 and multi >= 0.5:
+            band = "Durable"
+        elif med <= 4 and multi < 0.45:
+            band = "Fragile"
+        else:
+            band = "Mixed"
+        out[fid] = {"median_w": med, "multi_wound_pct": round(multi * 100),
+                    "band": band}
+    return out
 
 
 def points_churn() -> dict[str, int]:
@@ -102,19 +136,23 @@ def build():
 
 
 SIGNALS_DOC = """\
-## Signal definitions (heuristic layer — 🔴 STRATEGY, not engine fact)
+## How to read this (plain words — judgement layer, not engine fact)
 
-- **Foundation pick** — top-third overall AND top-half versatility.
-  Statlines carry the army through any mission and most balance passes.
-  Best long-term hold.
-- **Specialist weapon** — top-third ceiling but bottom-half versatility.
-  Buys a tournament edge in one disposition; risky as an only army.
-- **Active tuning** — top-quartile points churn. GW is actively moving
-  this faction's costs; expect swings both ways. Buy cheap-ish now only
-  if you accept repricing.
-- **Value window** — mid index or better but bottom-tier community win
-  rate recently: underlying quality the meta hasn't re-priced. Highest
-  upside, needs patience.
+The engine measures how strong each faction's models are on paper
+(statlines and points). It cannot measure rules packages, skill floor,
+or how punishing an army is to play — those are expert calls below,
+grounded in the durability facts shown.
+
+- **Strength** — where the faction ranks today on model quality.
+  Changes with balance updates; a strong army can get nerfed.
+- **Versatility** — does it fight well on every mission type, or only
+  one? Versatile armies forgive list-building mistakes.
+- **Difficulty** — Durable armies (big wound pools) survive mistakes;
+  Fragile armies (few wounds per model) punish every positioning error.
+  Fragile + expensive + tricky rules = hard mode. Not a first army.
+- **GW attention** — factions whose points changed a lot recently keep
+  changing. Buying one means accepting repricing, up or down.
+
 """
 
 
@@ -124,6 +162,9 @@ def guide(data):
     third = max(n // 3, 1)
     half = max(n // 2, 1)
     quart = max(n // 4, 1)
+    dur = durability_map()
+    for x in f:
+        x["difficulty"] = dur.get(x["fid"], {}).get("band", "Mixed")
 
     foundations = [x for x in f[:third]
                    if x["versatility"] >= sorted(y["versatility"] for y in f)[half]]
@@ -146,14 +187,26 @@ def guide(data):
         "do to it next month.",
         "",
         SIGNALS_DOC,
-        "## Foundation picks (strongest long-term signal)",
+        "## If this is your first army",
+        "",
+        "> Start **Durable** and **versatile**. Avoid Fragile bands as a "
+        "first buy: they punish positioning mistakes that experienced "
+        "players stop making around year two.",
         "",
     ]
-    lines += [f"- **{x['name']}** — overall {x['overall_index']}, versatility "
-              f"{x['versatility']} (best {x['best_disposition']})" for x in foundations]
+    forgiving = [x for x in f if x["difficulty"] == "Durable"
+                 and x["versatility"] >= sorted(y["versatility"] for y in f)[half]]
+    lines += [f"- **{x['name']}** — durable models, plays all missions"
+              for x in forgiving[:6]] or ["- (none clear the bar this pass)"]
+    lines += [
+        "",
+        "## Strongest long-term signal",
+    ]
+    lines += [f"- **{x['name']}** — strength {x['overall_index']}, plays all "
+              f"missions ({x['difficulty']} models)" for x in foundations]
     lines += ["", "## Specialist weapons (buy for a plan)", ""]
-    lines += [f"- **{x['name']}** — ceiling {x['ceiling']} in {x['best_disposition']}"
-              for x in specialists]
+    lines += [f"- **{x['name']}** — shines in {x['best_disposition']}"
+              f" ({x['difficulty']} models)" for x in specialists]
     lines += ["", "## Active GW tuning (expect repricing)", ""]
     lines += [f"- **{x['name']}** — {x['points_churn']} MFM changelog entries"
               for x in tuning]
