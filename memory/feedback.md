@@ -856,3 +856,23 @@ htmlpreview now returns its input form for every URL (backend gone).
 Landing/faction page GitHub-view detection uses raw.githack.com
 (CDN, correct text/html content-type — verified 200). githack URL form:
 https://raw.githack.com/<user>/<repo>/<branch>/<path> — NO ? prefix.
+
+## HEADS-UP (user, 2026-08-24): fleet-wide changes incoming — preparedness status
+GW will change STATLINES ACROSS THE BOARD and add many DUAL-PROFILE weapons.
+
+**Statlines**: pipeline = BSData update → adapter/merge.py → configs. GAP FOUND
+AND CLOSED: config `info` blocks are hand-copied statlines with NO auto-sync —
+70 drifted fields found and synced (scripts/sync_config_info.py, added).
+Guard: tests/test_config_info_sync.py fails on drift; fix is mechanical.
+When statlines change: refresh bsdata/ + mfm/ submodules → adapter/merge.py
+--all → sync_config_info.py → recapture goldens where DPP shifts → regen
+findings → full suite.
+
+**Dual profiles**: ALREADY SUPPORTED end-to-end — WeaponProfile.variants with
+max-over-group semantics (frag/krak, standard/supercharge, strike/sweep all
+work), category routing on fixed/slot entries, count multiplicity. New
+dual-profile weapons arrive via BSData → merged regen automatically. Remaining
+watch-outs: (1) bundle names that resolve to primary profile only (Knight arm
+bundle lesson) — new bundles need splitting or loader work; (2) weapon RENAMES
+break config lookups silently — rerun the unresolvable-names audit
+(workspace/ has the pattern) after any data refresh.
