@@ -480,6 +480,7 @@
       "INV": 5,
       "deep_strike": true
     },
+    "_note": "Alloc-pool form: 4 Scourges each take one heavy weapon from the shared list (any mix legal; engine greedily maximises), Solarite keeps shardcarbine/pistol options.",
     "builds": [
       {
         "name": "Default",
@@ -487,65 +488,68 @@
           {
             "name": "Scourge with Heavy Weapon",
             "count": 4,
-            "melee": "Close combat weapon",
-            "slots": [
+            "alloc": [
               {
-                "name": "Ranged Weapon",
-                "choices": [
-                  {
-                    "name": "Blaster",
-                    "ranged": "Blaster"
-                  },
-                  {
-                    "name": "Heat Lance",
-                    "ranged": "Heat Lance"
-                  },
-                  {
-                    "name": "Splinter Cannon",
-                    "ranged": "Splinter Cannon",
-                    "default": true
-                  },
-                  {
-                    "name": "Shredder",
-                    "ranged": "Shredder"
-                  },
-                  {
-                    "name": "Dark Lance",
-                    "ranged": "Dark Lance"
-                  },
-                  {
-                    "name": "Haywire Blaster",
-                    "ranged": "Haywire Blaster"
-                  }
-                ]
+                "name": "Scourge w/ Dark Lance",
+                "min": 0,
+                "max": 4,
+                "ranged": "Dark Lance",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Scourge w/ Disintegrator Cannon",
+                "min": 0,
+                "max": 4,
+                "ranged": "Disintegrator Cannon",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Scourge w/ Haywire Blaster",
+                "min": 0,
+                "max": 4,
+                "ranged": "Haywire Blaster",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Scourge w/ Heat Lance",
+                "min": 0,
+                "max": 4,
+                "ranged": "Heat Lance",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Scourge w/ Shredder",
+                "min": 0,
+                "max": 4,
+                "ranged": "Shredder",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Scourge w/ Splinter Cannon",
+                "min": 0,
+                "max": 4,
+                "ranged": "Splinter Cannon",
+                "melee": "Close combat weapon"
+              },
+              {
+                "name": "Scourge",
+                "min": 0,
+                "max": 4,
+                "ranged": "Splinter cannon",
+                "melee": "Close combat weapon"
               }
             ]
           },
           {
             "name": "Solarite",
             "count": 1,
-            "melee": "Close combat weapon",
-            "slots": [
-              {
-                "name": "Weapon Option",
-                "choices": [
-                  {
-                    "name": "Shardcarbine",
-                    "ranged": "Shardcarbine",
-                    "default": true
-                  },
-                  {
-                    "name": "1 Blast pistol and 1 Power weapon",
-                    "ranged": "Blast Pistol",
-                    "melee": "Power Weapon"
-                  },
-                  {
-                    "name": "1 Splinter pistol and 1 Power weapon",
-                    "ranged": "Splinter Pistol",
-                    "melee": "Power Weapon"
-                  }
-                ]
-              }
+            "ranged": [
+              "Splinter pistol",
+              "Shardcarbine"
+            ],
+            "melee": [
+              "Power weapon",
+              "Close combat weapon"
             ]
           }
         ]
