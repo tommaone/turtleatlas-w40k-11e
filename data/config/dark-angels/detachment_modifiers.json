@@ -1,163 +1,224 @@
 {
-  "_note": "Dark Angels detachment modifiers — 11e MFM",
-  "_source": "mfm/data/dark-angels.yaml",
+  "_note": "Dark Angels detachment modifiers — game mechanics only. Rebuilt from workspace/detachment_research/dark-angels.json corpus (2026-08-23, saved Wahapedia 11e page); previous entries carried fabricated enhancement effects as detachment rules and were fully replaced.",
+  "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
   "_inherits": "space-marines",
   "detachments": {
+    "1ST COMPANY TASK FORCE": {
+      "dp_cost": 2,
+      "objective": "PURGE THE FOE",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). Once per battle, in your Command phase, activate: until your next Command phase, models with Oath of Moment may also re-roll Wound rolls when attacking the declared Oath of Moment target. Not modelled: Once-per-battle trigger; Wound reroll applies only vs the single Oath of Moment target for one round",
+      "choices": []
+    },
+    "ANVIL SIEGE FORCE": {
+      "dp_cost": 2,
+      "objective": "TAKE AND HOLD",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). All ranged weapons gain HEAVY; a HEAVY ranged weapon that already had it gains +1 to Wound rolls if the attacking unit Remained Stationary that turn. Not modelled: +1 to wound only when unit remained stationary (conditional); Gaining HEAVY imposes -1 to hit on turns the unit moved — net effect depends on playstyle and cannot be expressed as an always-on bonus",
+      "choices": []
+    },
+    "ARMOURED SPEARTIP": {
+      "dp_cost": 3,
+      "objective": "TAKE AND HOLD",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). Units disembarking from a TRANSPORT (no FLY) that made a Normal or Advance move this phase may make a free Normal move of D6\" (D3+3\" from HEAVY TRANSPORTS, i.e. non-FLY transports with 14+ wounds). Not from Strategic Reserves. Not modelled: Free post-disembark move is random/transport-dependent; Requires transport to have moved; no direct dpp/surv/mob modifier",
+      "choices": []
+    },
+    "BASTION TASK FORCE": {
+      "dp_cost": 2,
+      "objective": "TAKE AND HOLD",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). BATTLELINE units can shoot/charge/start Actions in a turn they Advanced or Fell Back. After BATTLELINE units attack, one enemy unit hit becomes auspex scanned: all ADEPTUS ASTARTES models re-roll Hit rolls of 1 against it until end of turn. Corpus models advance_and_charge restricted to BATTLELINE units. Fall-back eligibility and auspex-scan reroll 1s not expressible.",
+      "choices": [
+        {
+          "name": "Bastion Battleline Advance",
+          "affects": "mob",
+          "advance_and_charge": true,
+          "unit_filter": [
+            "BATTLELINE"
+          ],
+          "condition": "BATTLELINE units only; also grants shoot/Action eligibility after Advancing or Falling Back (not modelled)",
+          "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+          "_engine_note": "Corpus models advance_and_charge restricted to BATTLELINE units. Fall-back eligibility and auspex-scan reroll 1s not expressible."
+        }
+      ]
+    },
+    "CERAMITE SENTINELS": {
+      "dp_cost": 3,
+      "objective": "TAKE AND HOLD",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). Models in a terrain feature re-roll Hit rolls of 1 and Wound rolls of 1. Units fully within terrain, not set up this turn, having moved no more than 3\", gain ENTRENCHED (defensive terrain benefit). Not modelled: Hit/wound rerolls of 1 conditional on being within a terrain feature; ENTRENCHED keyword effect is positional/behavioural, not a numeric stat modifier",
+      "choices": []
+    },
     "COMPANY OF HUNTERS": {
       "dp_cost": 2,
       "objective": "DISRUPTION",
-      "_source": "Dark Angels specific — Ravenwing-focused",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). All units: ranged weapons gain ASSAULT and can shoot after Falling Back. MOUNTED units additionally can charge after Advancing, and can both shoot and charge after Falling Back. OUTRIDER SQUADS gain BATTLELINE. Corpus models advance_and_charge restricted to MOUNTED units. ASSAULT grant and fall-back shoot/charge eligibility not expressible.",
       "choices": [
         {
-          "name": "Mounted Advance",
+          "name": "Hunter Advance",
           "affects": "mob",
-          "_source": "Company of Hunters detachment rule",
-          "description": "Mounted units get +2\" move and advance"
-        },
-        {
-          "name": "Hunter's Instincts",
-          "affects": "surv",
-          "_source": "Company of Hunters enhancement",
-          "description": "Mounted units get Stealth"
+          "advance_and_charge": true,
+          "unit_filter": [
+            "MOUNTED"
+          ],
+          "condition": "MOUNTED units only; army-wide ASSAULT + fall-back shooting also granted but not modelled",
+          "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+          "_engine_note": "Corpus models advance_and_charge restricted to MOUNTED units. ASSAULT grant and fall-back shoot/charge eligibility not expressible."
         }
       ]
     },
     "DARK AGE ARSENAL": {
       "dp_cost": 1,
       "objective": "PRIORITY ASSETS",
-      "_source": "Dark Angels specific — weapon-focused",
-      "choices": [
-        {
-          "name": "Entreaty of Perpetual Ardour",
-          "affects": "dpp",
-          "_source": "Dark Age Arsenal enhancement",
-          "description": "Ranged attacks get +1 S"
-        },
-        {
-          "name": "Petition of Stability",
-          "affects": "surv",
-          "_source": "Dark Age Arsenal enhancement",
-          "description": "6+ FNP against mortal wounds"
-        }
-      ]
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). All Plasma weapon profiles in the army get +1 Strength. No other army-wide effect. Not modelled: +1 Strength affects wound rolls probabilistically but only for plasma weapons — no strength modifier key exists and it cannot be honestly expressed as plus1_to_wound across the army",
+      "choices": []
     },
     "DARKFLIGHT PURSUIT": {
       "dp_cost": 1,
       "objective": "RECONNAISSANCE",
-      "_source": "Dark Angels specific — flyer-focused",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). Friendly RAVENWING FLY units' ranged attacks gain IGNORES COVER. Corpus models ignore_cover for RAVENWING FLY ranged attacks.",
       "choices": [
         {
-          "name": "Nightforged Battery",
+          "name": "Ignored Cover",
           "affects": "dpp",
-          "_source": "Darkflight Pursuit enhancement",
-          "description": "Flyer reroll 1s to hit"
-        },
-        {
-          "name": "Thundercowl Turbines",
-          "affects": "mob",
-          "_source": "Darkflight Pursuit enhancement",
-          "description": "Flyers get +6\" move"
+          "ignore_cover": true,
+          "unit_filter": [
+            "RAVENWING",
+            "FLY"
+          ],
+          "condition": "RAVENWING FLY units' ranged attacks only",
+          "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+          "_engine_note": "Corpus models ignore_cover for RAVENWING FLY ranged attacks."
         }
       ]
+    },
+    "FIRESTORM ASSAULT FORCE": {
+      "dp_cost": 2,
+      "objective": "PRIORITY ASSETS",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). All ranged weapons gain ASSAULT; ranged attacks targeting a unit within 12\" get +1 Strength. Not modelled: +1 Strength at short range improves wounding but is profile-dependent — not expressible as a universal wound modifier; ASSAULT keyword not numerically modelable",
+      "choices": []
+    },
+    "FULGURIS TASK FORCE": {
+      "dp_cost": 1,
+      "objective": "RECONNAISSANCE",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). Land Speeder and Storm Speeder variants gain SPEEDER keyword; friendly SPEEDER units can make an ingress move in the first Movement phase. Not modelled: First-turn ingress move only, limited unit types — deployment positioning benefit not expressible as movement_bonus",
+      "choices": []
+    },
+    "GLADIUS TASK FORCE": {
+      "dp_cost": 3,
+      "objective": "PRIORITY ASSETS",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). At each Command phase select one Combat Doctrine (each once per battle) affecting all ADEPTUS ASTARTES units: Devastating Doctrine = shoot after Advance; Tactical Doctrine = shoot and charge after Fall Back; Assault Doctrine = charge after Advance. Not modelled: Rotational doctrine system — player selects one of three per battle round, each usable once; Devastator Doctrine: shoot after Advance; Tactical Doctrine: shoot and charge after Fall Back; Assault Doctrine: charge after Advance",
+      "choices": []
+    },
+    "HEADHUNTER TASK FORCE": {
+      "dp_cost": 2,
+      "objective": "PRIORITY ASSETS",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). Non-FORTIFICATION, non-DROP POD, non-WALKER, non-FLY VEHICLES are TANK ACEs; up to three become CHARACTERS. TANK ACEs add a fixed 6\" when Advancing; if they did not Advance, they can re-roll Damage rolls when shooting. Not modelled: Fixed 6\" advance applies to vehicle units only; Damage reroll conditional on not advancing; unit-restricted",
+      "choices": []
     },
     "INNER CIRCLE TASK FORCE": {
       "dp_cost": 2,
       "objective": "PRIORITY ASSETS",
-      "_source": "Dark Angels specific — Deathwing-focused",
-      "choices": [
-        {
-          "name": "Deathwing Assault",
-          "affects": "dpp",
-          "_source": "Inner Circle Task Force enhancement",
-          "reroll_hits": "all",
-          "description": "Deathwing units re-roll Hit rolls after Deep Strike"
-        },
-        {
-          "name": "Champion of the Deathwing",
-          "affects": "dpp",
-          "_source": "Inner Circle Task Force enhancement",
-          "hit_modifier": 1,
-          "description": "Deathwing character gets +1 to hit"
-        }
-      ]
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). Each Movement phase declare Defensive Footing (one objective you control) or Aggressive Push (one or more objectives you don't control) as Vowed objectives. DEATHWING INFANTRY attacks gain +1 to Wound vs targets within range of a Vowed objective. Not modelled: +1 to wound conditional on Deathwing Infantry attacking targets near Vowed objectives; Objective declaration choice is tactical, not numeric",
+      "choices": []
     },
     "INTERROGATION CONCLAVE": {
       "dp_cost": 1,
+      "objective": "TAKE AND HOLD",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). CHAPLAIN units have a 6\" aura imposing -1 Ld on enemy units. When a CHAPLAIN unit destroys an enemy unit in the Fight phase, enemy units within 6\" must take a Battle-shock test. Not modelled: -1 Ld aura affects battle-shock tests, not directly expressible in dpp/surv/mob/obj vocabulary; Battle-shock cascade on Chaplain kills is situational",
+      "choices": []
+    },
+    "IRONSTORM SPEARHEAD": {
+      "dp_cost": 2,
+      "objective": "TAKE AND HOLD",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). Once per phase for each unit, you may re-roll one Hit roll, one Wound roll or one Damage roll made for a model in that unit. Not modelled: Single-die reroll per phase per unit is materially weaker than blanket reroll 1s — not representable without overstating the effect",
+      "choices": []
+    },
+    "LIBRARIUS CONCLAVE": {
+      "dp_cost": 1,
+      "objective": "RECONNAISSANCE",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). Each battle round, pick one Psychic Discipline for all PSYKER units: Biomancy +2\" M; Divination re-roll hit/wound rolls of 1; Pyromancy +1 AP ranged within 12\"; Telekinesis -1 S vs incoming ranged; Telepathy ignore BS/WS/hit modifiers. Not modelled: Rotational discipline selection changes every battle round; Biomancy: +2\" M to psykers; Divination: reroll hit/wound 1s to psykers; Pyromancy: +1 AP ranged within 12\"; Telekinesis: -1 S vs incoming ranged attacks; Telepathy: ignore hit modifiers; Applies to PSYKER units only",
+      "choices": []
+    },
+    "LION’S BLADE TASK FORCE": {
+      "dp_cost": 2,
       "objective": "PURGE THE FOE",
-      "_source": "Dark Angels specific — chaplain/psychic focused",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). Enemy non-MONSTER/non-VEHICLE units Falling Back within Engagement Range of RAVENWING units take Desperate Escape tests (-1 if Battle-shocked). DEATHWING units charging targets within Engagement Range of RAVENWING units add 2 to the Charge roll. Not modelled: +2 charge roll requires DEATHWING charging targets pinned by RAVENWING (cross-unit condition); Desperate Escape tax on falling back is attritional, not expressible in vocabulary",
+      "choices": []
+    },
+    "ORBITAL ASSAULT FORCE": {
+      "dp_cost": 2,
+      "objective": "TAKE AND HOLD",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). Pre-game, selected units (2-4 depending on battle size, non-TITANIC) gain Deep Strike. Attacks by models set up this turn re-roll Wound rolls of 1; models disembarking from DROP PODS this turn also re-roll Hit rolls of 1. Not modelled: Rerolls apply only on the turn a unit arrives (turn-1/2 dependent); Deep Strike grant is a deployment option, not a stat modifier",
+      "choices": []
+    },
+    "STORMLANCE TASK FORCE": {
+      "dp_cost": 3,
+      "objective": "DISRUPTION",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). All ADEPTUS ASTARTES units are eligible to declare a charge in a turn they Advanced or Fell Back. Corpus models advance_and_charge army-wide.",
       "choices": [
         {
-          "name": "Psychic Interrogation",
-          "affects": "dpp",
-          "_source": "Interrogation Conclave detachment rule",
-          "description": "Psychic attacks get +1 AP"
-        },
-        {
-          "name": "Chaplain's Blessing",
-          "affects": "surv",
-          "_source": "Interrogation Conclave enhancement",
-          "description": "Chaplain units get 5+ FNP"
+          "name": "Lightning Assault",
+          "affects": "mob",
+          "advance_and_charge": true,
+          "unit_filter": [
+            "ADEPTUS ASTARTES"
+          ],
+          "condition": "all ADEPTUS ASTARTES units; also permits charge after Fall Back (same key covers qualitatively)",
+          "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+          "_engine_note": "Corpus models advance_and_charge army-wide."
         }
       ]
     },
-    "LION'S BLADE TASK FORCE": {
-      "dp_cost": 2,
-      "objective": "PURGE THE FOE",
-      "_source": "Dark Angels specific — Lion El'Jonson focused",
-      "choices": [
-        {
-          "name": "Primarch's Presence",
-          "affects": "dpp",
-          "_source": "Lion's Blade Task Force rule",
-          "reroll_hits": "ones",
-          "description": "Friendly DA units within 6\" of Lion El'Jonson re-roll 1s to hit"
-        },
-        {
-          "name": "Dark Angels Honour",
-          "affects": "surv",
-          "_source": "Lion's Blade Task Force enhancement",
-          "description": "Deathwing units get +1 save"
-        }
-      ]
+    "SUBVERSION ASSETS": {
+      "dp_cost": 1,
+      "objective": "DISRUPTION",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). Friendly PHOBOS and SCOUT SQUAD units can mark one visible enemy unit within 12\" in Shooting phase as detected; detected units have +3\" detection range (easier to target via detection mechanics). Not modelled: Detection-range mechanic has no representation in the modifier vocabulary; Applies only to PHOBOS/SCOUT SQUAD units and requires line of sight",
+      "choices": []
     },
     "UNFORGIVEN TASK FORCE": {
       "dp_cost": 2,
       "objective": "TAKE AND HOLD",
-      "_source": "Dark Angels specific — objective-focused",
-      "choices": [
-        {
-          "name": "Unforgiven Fury",
-          "affects": "dpp",
-          "_source": "Unforgiven Task Force rule",
-          "description": "When below starting strength, +1 to wound"
-        },
-        {
-          "name": "Deathwing Obstinacy",
-          "affects": "surv",
-          "_source": "Unforgiven Task Force enhancement",
-          "description": "Deathwing units count as 2 models for objective control"
-        }
-      ]
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). Battle-shocked units have Objective Control of 1 instead of 0. In your Command phase, pick one unit: it gains +1 OC until your next Command phase. Not modelled: +1 OC each Command phase is a selectable single-unit buff, not army-wide — cannot be honestly expressed as oc_boost; Battle-shocked units retain OC 1 instead of 0 (defensive floor, situational)",
+      "choices": []
+    },
+    "VANGUARD SPEARHEAD": {
+      "dp_cost": 2,
+      "objective": "RECONNAISSANCE",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). Ranged attacks targeting your units from beyond 12\" grant the target Benefit of Cover (improved save against long-range fire). Not modelled: Defensive cover benefit vs ranged >12\" has no dedicated vocabulary key (ignore_cover is offensive-only); approximating as stealth would be wrong",
+      "choices": []
+    },
+    "VENGEFUL HOSTS": {
+      "dp_cost": 1,
+      "objective": "TAKE AND HOLD",
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). In a turn a friendly FLY INFANTRY unit made an ingress or charge move, its attacks can re-roll Hit rolls of 1. Not modelled: Reroll hit 1s conditional on the unit having made an ingress or charge move that turn; Restricted to FLY INFANTRY units",
+      "choices": []
     },
     "WRATH OF THE ROCK": {
       "dp_cost": 3,
       "objective": "PRIORITY ASSETS",
-      "_source": "Dark Angels specific — Deathwing heavy",
-      "choices": [
-        {
-          "name": "Deathwing Wrath",
-          "affects": "dpp",
-          "_source": "Wrath of the Rock rule",
-          "reroll_hits": "all",
-          "description": "Deathwing units re-roll Hit rolls"
-        },
-        {
-          "name": "Rock's Endurance",
-          "affects": "surv",
-          "_source": "Wrath of the Rock enhancement",
-          "description": "Deathwing units get 5+ FNP"
-        }
-      ]
+      "_source": "https://wahapedia.ru/wh40k11ed/factions/space-marines/",
+      "_engine_note": "Verified from corpus (2026-08-23). Attacks targeting your INFANTRY or MOUNTED units subtract 1 from the Wound roll when the attacker's Strength exceeds the unit's Toughness. Not modelled: -1 to be wounded only applies when attacker S > unit T — conditional, no defensive wound-modifier key exists",
+      "choices": []
     }
   }
 }
