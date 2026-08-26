@@ -1,30 +1,49 @@
 # turtleatlas-w40k-11e
 
-Warhammer 40,000 **11th Edition** knowledge base — merges BSData 10e datasheet profiles with official GW Munitorum Field Manual points for 11e.
+Warhammer 40,000 **11th Edition** knowledge base — DPP (Damage Per Point) engine that ranks every unit across 30 factions, 5 missions, and multiple meta compositions.
+
+**[Live Rankings →](https://tommaone.github.io/turtleatlas-w40k-11e/findings/)**
+
+## What it does
+
+- **1,234 units** scored across **30 factions** and **5 missions** (Take and Hold, Purge the Foe, Reconnaissance, Priority Assets, Disruption)
+- Loadout-aware: resolves wargear choices, alloc pools, squad composition, dual-profile weapons, and per-model limits from datasheets
+- Meta presets per faction (competitive, anti-horde, infantry-heavy, vehicle-heavy, all-comers)
+- Expert assessment layer: detachment ratings, army-rule synergy, playstyle guidance per faction
+- Auto-detected army-wide rerolls, conditional rerolls (Surge of Wrath class), and damage boosts (Rend and Tear class)
 
 ## Architecture
 
 ```
 turtleatlas-w40k-11e/
-├── bsdata/        ← git submodule → https://github.com/BSData/wh40k-10e
-│                     10e unit profiles (stats, weapons, abilities) — still valid in 11e
-├── mfm/           ← git submodule → https://github.com/BSData/wh40k-11e-mfm
-│                     11e points, detachments, enhancements (YAML)
+├── bsdata/        ← git submodule → BSData/wh40k-10e (unit profiles)
+├── mfm/           ← git submodule → BSData/wh40k-11e-mfm (11e points, detachments)
 ├── adapter/
 │   └── merge.py   ← Merges BSData profiles + MFM points → unified JSON
-├── engine/        ← DPP computation for 11e (WIP)
-├── mcp-server/    ← MCP tools (WIP)
+├── engine/
+│   ├── ranking.py ← 3-vector scoring: DPP (damage) + SURV (durability) + MOB (mobility)
+│   ├── dpp.py     ← Core DPP engine, weapon resolution, target profiles
+│   └── reroll_detect.py ← Auto-detect conditional rerolls from datasheet text
+├── data/config/   ← Per-faction loadout configs (squads, characters, vehicles, detachments)
+├── resources/
+│   └── experts/   ← Detachment assessments + army-rule synergy per faction
+├── scripts/
+│   ├── gen_findings_html.py ← Generates all findings pages + landing index
+│   └── army_advisor.py      ← Army choice guide generator
+├── findings/      ← Generated HTML (GitHub Pages)
 └── tests/
 ```
 
-## Why two submodules?
+## Data pipeline
 
-| Data | Source | Format | What |
-|------|--------|--------|------|
-| Unit profiles (M/T/SV/W, S/AP/D, abilities) | `bsdata/` (wh40k-10e) | XML `.cat` | 10e datasheets — mostly unchanged in 11e |
-| Points, detachments, enhancements | `mfm/` (wh40k-11e-mfm) | YAML | 11e official MFM scraped from GW's site |
-
-The **adapter** merges them by unit name: 10e profile + 11e pricing.
+| Step | What | Source |
+|------|------|--------|
+| 1. BSData | Unit profiles (M/T/SV/W, S/AP/D, abilities, weapons) | `bsdata/` submodule |
+| 2. MFM | Points, detachments, enhancements | `mfm/` submodule |
+| 3. Merge | Unified JSON per faction | `adapter/merge.py` |
+| 4. Configs | Loadout configs (builds, slots, alloc pools, info blocks) | `data/config/` |
+| 5. Engine | DPP/SURV/MOB scoring per unit vs target profiles | `engine/` |
+| 6. Findings | Generated HTML per faction + landing page | `scripts/gen_findings_html.py` |
 
 ## Quick start
 
@@ -32,58 +51,28 @@ The **adapter** merges them by unit name: 10e profile + 11e pricing.
 # Init submodules
 git submodule update --init --recursive
 
-# Install Python deps
-pip install pyyaml
-
-# Merge one faction
-python3 adapter/merge.py --faction grey-knights
-
 # Merge all factions
 python3 adapter/merge.py --all --output data/merged
+
+# Generate findings
+PYTHONHASHSEED=1 python3 scripts/gen_findings_html.py --all --index
+
+# Run tests
+PYTHONHASHSEED=1 python3 -m pytest tests/ -q
 ```
 
-## Merged output
+## Engine output (3-vector scoring)
 
-```json
-{
-  "faction": "Grey Knights",
-  "slug": "grey-knights",
-  "detachments": [
-    {
-      "name": "Warpbane Task Force",
-      "dp": 3,
-      "objective": "PURGE THE FOE",
-      "enhancements": [
-        { "name": "Mandulian Reliquary", "points": 20 }
-      ]
-    }
-  ],
-  "units": [
-    {
-      "name": "Brotherhood Terminator Squad",
-      "profile": {
-        "M": "5\"", "T": "5", "SV": "2+", "W": "3", "Ld": "6+", "OC": "1",
-        "weapons": [
-          { "name": "Storm bolter", "range": "24\"", "S": "4", "AP": "0", "D": "1" }
-        ],
-        "abilities": [
-          { "name": "Teleport Assault", "description": "..." }
-        ]
-      },
-      "pricing": [
-        { "range": "[1,3]", "costs": [
-          { "models": 4, "points": 140 },
-          { "models": 5, "points": 175 }
-        ]}
-      ],
-      "wargear_options": [
-        { "item": "Psycannon", "points": 5 }
-      ]
-    }
-  ]
-}
-```
+Every unit is scored on three dimensions against configurable target profiles:
 
-## MCP Server (planned)
+| Vector | What it measures | Key factors |
+|--------|-----------------|-------------|
+| **DPP** | Damage Per Point | BS, S vs T, AP vs save, weapon damage, alloc count |
+| **SURV** | Survivability per point | T, W, Sv, Invuln, FNP, model count |
+| **MOB** | Mobility score | Movement, OC, deep strike, advance/charge abilities |
 
-Will expose tools matching turtleatlas-w40k (13 tools), but pointing at 11e data.
+DPP is computed against 5 meta presets per faction (competitive all-comers, anti-horde, infantry-heavy, vehicle-heavy, elite-heavy) with per-mission weighting.
+
+## Not affiliated with Games Workshop
+
+Warhammer 40,000 is a registered trademark of Games Workshop Limited. This is an unofficial, non-commercial fan project. All game mechanics data is community-maintained (BSData); no GW copyrighted text or images are included.
