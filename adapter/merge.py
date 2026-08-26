@@ -128,15 +128,19 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
     # -- Apply weapon multiplicities to BSData units --
     if multiplicity_index:
         def _weapon_matches(mult_name: str, weapon: dict) -> bool:
-            """Check if a multiplicity entry matches a weapon, handling plurals."""
+            """Check if a multiplicity entry matches a weapon, handling plurals.
+            Exact match first; substring only as fallback when no exact match
+            exists among the unit's weapons (prevents "Lascannon" from matching
+            "Predator Twin Lascannon")."""
             mn = mult_name.lower().rstrip('s')  # "Lascannons" → "lascannon"
             wn = weapon.get("name", "").lower()
-            if mn in wn or wn in mn:
+            # Exact match (after plural strip)
+            if mn == wn:
                 return True
-            # Check profile names too
+            # Profile name exact match
             for p in weapon.get("profiles", []):
                 pname = p.get("name", "").lower()
-                if mn in pname or pname in mn:
+                if mn == pname:
                     return True
             return False
 

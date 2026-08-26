@@ -897,3 +897,29 @@ estimates. DPP numbers come from engine/ranking.py, never hand-computed.
 Expert assessments paraphrase rule text mechanically, never fabricate mechanics.
 _source fields name the human artifact, not the AI that read it. If a number
 cannot be traced to BSData/MFM/Wahapedia/engine-output, it does not ship.
+
+## BSData dual-mounted weapon count — two patterns, adapter extracts both (2026-08-27)
+BSData encodes dual-mounted weapons in TWO ways:
+
+1. **Naming pattern**: "2× Weapon Name" (e.g. "2 Lascannons") — caught by
+   `build_multiplicity_index()` in the adapter; applied in merge.py with exact
+   name matching.
+2. **Constraint pattern**: entryLink/SE has `min=2, max=2, field="selections",
+   scope="parent"` (e.g. Land Raider Godhammer Lascannon, LR Crusader Hurricane
+   Bolter) — extracted by `_count_from_constraints()` in `_make_weapon()`.
+
+The adapter MUST handle both. merge.py's `_weapon_matches()` uses **exact matching**
+(not substring) to prevent "Lascannon" from matching "Predator Twin Lascannon".
+
+Weapons found through multiple traversal paths (entryLinks + SEs) can produce
+duplicates — dedup in `extract_units` merges by (name, profile_stats) keeping the
+highest count.
+
+**Why:** the Land Raider/LR Crusader/LR Redeemer/Predator Annihilator all had
+wrong weapon counts. Godhammer Lascannon was count=1 (should be 2), Hurricane
+Bolter was count=1 (should be 2), Predator Twin Lascannon was count=2 (should
+be 1, it's twin-linked not dual-mounted), and Lascannon appeared as two duplicate
+entries.
+**How:** `_count_from_constraints()` on the adapter side, exact-match on merge.py
+side, dedup for traversal-path duplicates. Guard test in
+`test_weapon_count_constraints.py`.

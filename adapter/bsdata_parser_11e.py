@@ -747,12 +747,33 @@ class BSDataParser11e:
             # -- Weapons --
             weapons: list[dict] = []
 
-            def _make_weapon(entry_name: str, profiles: list[dict]) -> dict:
-                """Build a weapon dict, extracting multiplicity from BSData names.
+            def _count_from_constraints(obj: dict) -> int:
+                """Extract weapon count from BSData selectionEntry/entryLink constraints.
 
-                BSData encodes weapon counts in selection entry names like
-                "2 Lascannons", "2 Hurricane Bolters", etc. The count is the
-                leading number; the rest is the base weapon name.
+                BSData encodes weapon multiplicity via constraints on the parent
+                entryLink or selectionEntry:
+                  - min/max = 2, field = "selections", scope = "parent" → 2× weapon
+                  - e.g. Land Raider's Hurricane Bolter (min=2, max=2)
+
+                Returns 1 when no multiplicity constraint found.
+                """
+                for c in obj.get("constraints", []):
+                    if (c.get("type") == "min"
+                            and c.get("field") == "selections"
+                            and c.get("scope") == "parent"
+                            and isinstance(c.get("value"), (int, float))
+                            and c["value"] >= 2):
+                        return int(c["value"])
+                return 1
+
+            def _make_weapon(entry_name: str, profiles: list[dict],
+                             constraint_obj: dict | None = None) -> dict:
+                """Build a weapon dict, extracting multiplicity from BSData names or constraints.
+
+                BSData encodes weapon counts in TWO ways:
+                1. Selection entry names like "2 Lascannons" (MULTIPLICITY_RE)
+                2. Constraints on the entryLink/SE: min>=2, field=selections,
+                   scope=parent (e.g. Land Raider's Hurricane Bolter min=2)
 
                 Only apply count when the entry has a single weapon profile
                 (not mixed ranged+melee squad entries like "5 Plasma pistols").
@@ -767,6 +788,18 @@ class BSDataParser11e:
                     # Multi-profile entries (e.g. "5 Plasma pistols" = squad option)
                     # Don't apply count — these are loadout choices, not weapon multiplicities
                     name = m.group(2)
+                # Pattern 2: extract count from BSData constraints (min>=2 on selections)
+                # Only apply to entries with weapon profiles (not upgrade/ability entries
+                # like "Weapon Modifications" which have min>=2 for model count, not weapon count)
+                if count <= 1 and constraint_obj is not None and len(profiles) == 1:
+                    has_weapon_profile = any(
+                        "Weapons" in p.get("typeName", "")
+                        for p in profiles
+                    )
+                    if has_weapon_profile:
+                        constraint_count = _count_from_constraints(constraint_obj)
+                        if constraint_count > 1:
+                            count = constraint_count
                 w = {"name": name, "profiles": profiles}
                 if count > 1:
                     w["count"] = count
@@ -788,7 +821,7 @@ class BSDataParser11e:
                                     continue
                                 wprofs = self._resolve_profiles(sel, entry_index, _cache=_profile_cache)
                                 if wprofs:
-                                    weapons.append(_make_weapon(sel.get("name", ""), wprofs))
+                                    weapons.append(_make_weapon(sel.get("name", ""), wprofs, sel))
                 elif el_type == "selectionEntry":
                     tid = el.get("targetId", "")
                     if tid:
@@ -796,7 +829,7 @@ class BSDataParser11e:
                         if target is not None:
                             wprofs = self._resolve_profiles(target, entry_index, _cache=_profile_cache)
                             if wprofs:
-                                weapons.append(_make_weapon(target.get("name", ""), wprofs))
+                                weapons.append(_make_weapon(target.get("name", ""), wprofs, el))
 
             # 2. SelectionEntryGroups → options with weapons
             #    Recurse into nested groups (some weapons are 3+ levels deep,
@@ -807,12 +840,12 @@ class BSDataParser11e:
                         continue
                     wprofs = self._resolve_profiles(sel, entry_index, _cache=_profile_cache)
                     if wprofs:
-                        weapons.append(_make_weapon(sel.get("name", ""), wprofs))
+                        weapons.append(_make_weapon(sel.get("name", ""), wprofs, sel))
                     # Also recurse into nested selectionEntries
                     for sel2 in sel.get("selectionEntries", []):
                         wprofs2 = self._resolve_profiles(sel2, entry_index, _cache=_profile_cache)
                         if wprofs2:
-                            weapons.append(_make_weapon(sel2.get("name", ""), wprofs2))
+                            weapons.append(_make_weapon(sel2.get("name", ""), wprofs2, sel2))
                     # Recurse into model's own selectionEntryGroups (e.g. Wargear groups
                     # with entryLinks to weapons, as in Deffkoptas, Carnifexes, etc.)
                     for model_sg in sel.get("selectionEntryGroups", []):
@@ -828,7 +861,7 @@ class BSDataParser11e:
                     if target is not None:
                         wprofs = self._resolve_profiles(target, entry_index, _cache=_profile_cache)
                         if wprofs:
-                            weapons.append(_make_weapon(target.get("name", ""), wprofs))
+                            weapons.append(_make_weapon(target.get("name", ""), wprofs, el))
 
                 # Recurse into nested selectionEntryGroups
                 for sub_group in group.get("selectionEntryGroups", []):
@@ -852,7 +885,7 @@ class BSDataParser11e:
                     continue
                 wprofs = self._resolve_profiles(sel, entry_index, _cache=_profile_cache)
                 if wprofs:
-                    weapons.append(_make_weapon(sel.get("name", ""), wprofs))
+                    weapons.append(_make_weapon(sel.get("name", ""), wprofs, sel))
 
             # 4. Parent selectionEntryGroups — weapons stored as siblings
             #    Some models (e.g. Bloodthirster) have weapons defined as
@@ -870,7 +903,31 @@ class BSDataParser11e:
                                 continue
                             wprofs = self._resolve_profiles(sel, entry_index, _cache=_profile_cache)
                             if wprofs:
-                                weapons.append(_make_weapon(sel.get("name", ""), wprofs))
+                                weapons.append(_make_weapon(sel.get("name", ""), wprofs, sel))
+
+            # -- Deduplicate weapons --
+            # The same weapon can be found through multiple traversal paths
+            # (entryLinks + selectionEntryGroups), each adding count from
+            # constraints. Keep the entry with the highest count per
+            # (name, profile_stats) key.
+            if weapons:
+                seen_weapons: dict[str, dict] = {}
+                for w in weapons:
+                    # Build dedup key from name + profile stats
+                    prof_stats = ""
+                    if w.get("profiles"):
+                        prof_stats = str(sorted(
+                            (p.get("stats", {}).items())
+                            for p in w["profiles"]
+                        ))
+                    key = f"{w['name']}|{prof_stats}"
+                    if key in seen_weapons:
+                        existing = seen_weapons[key]
+                        if w.get("count", 1) > existing.get("count", 1):
+                            seen_weapons[key] = w
+                    else:
+                        seen_weapons[key] = w
+                weapons = list(seen_weapons.values())
 
             # -- Rules / infoLinks --
             rules: list[str] = []
