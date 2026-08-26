@@ -923,3 +923,16 @@ entries.
 **How:** `_count_from_constraints()` on the adapter side, exact-match on merge.py
 side, dedup for traversal-path duplicates. Guard test in
 `test_weapon_count_constraints.py`.
+
+## Weapon count double-counting — config expansion vs merged data count
+When the merged data carries `count>1` (from BSData constraints) AND the config
+slot choice also has `count: N` (meaning "pick N of this weapon"), the engine
+was double-counting: N copies × count=N from merged data = N² total.
+
+**Why:** the config's `count` and the merged data's `count` encode the same
+information (weapon multiplicity). The engine must use only one source.
+**How:** slot choice expansion clones profiles with `count=1` so the config
+loop multiplier is the sole source. `_loadout_desc` uses `wp.count` (not object
+count) for display. Fixed entries (no config count) still use merged data count.
+Guard: Predator Annihilator Heavy Bolter shows 2× (not 4×), Land Raider
+Godhammer Lascannon shows 2× (not 1×).
