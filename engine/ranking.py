@@ -1521,14 +1521,22 @@ class RankingEngine:
                     skip_combo = True
                     break
                 # Choice may carry a count multiplier (e.g. '2 Starcannons' →
-                # Starcannon ×2). Append the profile once per count so
-                # multi-weapon options keep their multiplicity.
+                # Starcannon ×2). Clone the profile with count=1 per copy so
+                # the loop multiplier is the sole source of multiplicity —
+                # avoids double-counting when merged data also carries count>1.
                 count = choice.get("count", 1) or 1
                 for _ in range(count):
+                    p = WeaponProfile(
+                        name=profile.name, attacks=profile.attacks,
+                        bs=profile.bs, strength=profile.strength,
+                        ap=profile.ap, damage=profile.damage,
+                        abilities=list(profile.abilities), count=1,
+                        damage_raw=profile.damage_raw,
+                        variants=list(profile.variants))
                     if choice.get("type") == "melee":
-                        combo_melee.append(profile)
+                        combo_melee.append(p)
                     else:
-                        combo_ranged.append(profile)
+                        combo_ranged.append(p)
             if skip_combo:
                 continue
             
@@ -2373,18 +2381,18 @@ class RankingEngine:
         parts = []
         r_counts = {}
         for wp in ranged:
-            r_counts[wp.name] = r_counts.get(wp.name, 0) + 1
+            r_counts[wp.name] = r_counts.get(wp.name, 0) + getattr(wp, 'count', 1)
         if r_counts:
             parts.append("Ranged: " + ", ".join(f"{c}×{n}" for n, c in sorted(r_counts.items())))
         m_counts = {}
         for wp in melee:
-            m_counts[wp.name] = m_counts.get(wp.name, 0) + 1
+            m_counts[wp.name] = m_counts.get(wp.name, 0) + getattr(wp, 'count', 1)
         if m_counts:
             parts.append("Melee: " + ", ".join(f"{c}×{n}" for n, c in sorted(m_counts.items())))
         if innate:
             i_counts = {}
             for wp in innate:
-                i_counts[wp.name] = i_counts.get(wp.name, 0) + 1
+                i_counts[wp.name] = i_counts.get(wp.name, 0) + getattr(wp, 'count', 1)
             parts.append("Innate: " + ", ".join(f"{c}×{n}" for n, c in sorted(i_counts.items())))
         return "; ".join(parts)
 
@@ -2402,12 +2410,12 @@ class RankingEngine:
         profiles = {}
         for wp in ranged:
             key = ("ranged", wp.name)
-            counts[key] += 1
+            counts[key] += getattr(wp, 'count', 1)
             if key not in profiles:
                 profiles[key] = wp
         for wp in melee:
             key = ("melee", wp.name)
-            counts[key] += 1
+            counts[key] += getattr(wp, 'count', 1)
             if key not in profiles:
                 profiles[key] = wp
         for (slot, wname), count in sorted(counts.items()):
