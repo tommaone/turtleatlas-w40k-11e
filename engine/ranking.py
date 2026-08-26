@@ -1565,7 +1565,7 @@ class RankingEngine:
                     kw.append("FLY")
                 if "Terminator" in name:
                     kw.append("TERMINATOR")
-                return kw, info["T"], info["SV"], _safe_int(info["W"], 2), info.get("OC", 0), info.get("invuln") or info.get("INV")
+                return kw, info["T"], info["SV"], _safe_int(info["W"], 2), info.get("OC", 0), _safe_int(info.get("invuln") or info.get("INV"))
 
         # Vehicle info — weapon_options.json is authoritative (matches
         # resolve_loadout precedence); vehicles.json is only a fallback for
@@ -1590,7 +1590,7 @@ class RankingEngine:
             # INV presence — that tags any shielded vehicle (Foetid Bloat-Drone,
             # Plagueburst Crawler) as a walker. Real walkers (Helbrute, Defiler,
             # Dreadnoughts) carry "Walker" in merged profile.keywords.
-            return kw, veh_info["T"], veh_info["SV"], _safe_int(veh_info["W"], 2), veh_info.get("OC", 0), veh_info.get("invuln") or veh_info.get("INV")
+            return kw, veh_info["T"], veh_info["SV"], _safe_int(veh_info["W"], 2), veh_info.get("OC", 0), _safe_int(veh_info.get("invuln") or veh_info.get("INV"))
 
         # Character info
         if name in self.config.characters:
@@ -1606,7 +1606,7 @@ class RankingEngine:
                 kw.extend(self.config.faction_keywords)
                 if t_val >= 5:
                     kw.append("TERMINATOR")
-                return kw, info["T"], info["SV"], _safe_int(info["W"], 2), info.get("OC", 0), info.get("invuln") or info.get("INV")
+                return kw, info["T"], info["SV"], _safe_int(info["W"], 2), info.get("OC", 0), _safe_int(info.get("invuln") or info.get("INV"))
 
         # Fallback: from profile data
         stats = profile_data.get("stats", {})

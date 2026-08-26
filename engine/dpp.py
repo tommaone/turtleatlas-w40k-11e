@@ -109,6 +109,17 @@ class WeaponModifier:
     twin_linked: bool = False
 
 
+def _coerce_save(val):
+    """Coerce a save value (int, '4+', '5++', None) to int or None."""
+    if val is None:
+        return None
+    if isinstance(val, int):
+        return val
+    s = str(val).replace('+', '').replace('*', '').replace('"', '').strip()
+    digits = ''.join(c for c in s if c.isdigit() or c == '-')
+    return int(digits) if digits else None
+
+
 @dataclass
 class DetachmentModifier:
     """Modifiers applied by a detachment rule to DPP/SURV/MOB computation.
@@ -165,8 +176,8 @@ class DetachmentModifier:
             ignore_cover=d.get("ignore_cover", False),
             assault=d.get("assault", False),
             heavy_ignore=d.get("heavy_ignore", False),
-            invulnerable_save=d.get("invulnerable_save"),
-            feel_no_pain=d.get("feel_no_pain"),
+            invulnerable_save=_coerce_save(d.get("invulnerable_save")),
+            feel_no_pain=_coerce_save(d.get("feel_no_pain")),
             stealth=d.get("stealth", False),
             cover_save=d.get("cover_save", False),
             movement_bonus=d.get("movement_bonus", 0),

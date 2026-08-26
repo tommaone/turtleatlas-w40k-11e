@@ -27,22 +27,23 @@ grounded in the durability facts shown.
 
 > Start **Durable** and **versatile**. Avoid Fragile bands as a first army: they punish positioning mistakes that experienced players stop making around year two.
 
-- **Chaos Daemons** — durable models, plays all missions
 - **Blood Angels** — durable models, plays all missions
+- **Chaos Daemons** — durable models, plays all missions
 - **Necrons** — durable models, plays all missions
-- **Thousand Sons** — durable models, plays all missions
 - **World Eaters** — durable models, plays all missions
+- **Thousand Sons** — durable models, plays all missions
 - **T'au Empire** — durable models, plays all missions
 
 ## Strongest long-term signal
 - **Aeldari** — strength 68.9, plays all missions (Fragile models)
+- **Blood Angels** — strength 68.5, plays all missions (Durable models)
 - **Chaos Daemons** — strength 68.4, plays all missions (Durable models)
-- **Blood Angels** — strength 68.2, plays all missions (Durable models)
 
 ## Specialist picks (strong in one mission)
 
-- **Dark Angels** — shines in Priority Assets (Durable models)
 - **Space Marines** — shines in Priority Assets (Durable models)
+- **Dark Angels** — shines in Priority Assets (Durable models)
+- **Black Templars** — shines in Priority Assets (Mixed models)
 
 ## Active GW tuning (expect repricing)
 
@@ -56,12 +57,12 @@ grounded in the durability facts shown.
 
 ## Underrated right now
 
-- **Drukhari** — overall 62.4, versatile 90.0
-- **Necrons** — overall 62.2, versatile 86.1
-- **Thousand Sons** — overall 62.0, versatile 87.4
-- **World Eaters** — overall 61.8, versatile 87.8
-- **T'au Empire** — overall 60.6, versatile 85.7
-- **Emperor's Children** — overall 60.2, versatile 90.3
+- **Drukhari** — overall 62.3, versatile 90.3
+- **Necrons** — overall 62.3, versatile 86.3
+- **World Eaters** — overall 61.3, versatile 89.3
+- **Thousand Sons** — overall 61.1, versatile 88.2
+- **T'au Empire** — overall 60.3, versatile 87.1
+- **Emperor's Children** — overall 60.0, versatile 90.5
 
 ## Honest limitations
 

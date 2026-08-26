@@ -876,3 +876,24 @@ watch-outs: (1) bundle names that resolve to primary profile only (Knight arm
 bundle lesson) — new bundles need splitting or loader work; (2) weapon RENAMES
 break config lookups silently — rerun the unresolvable-names audit
 (workspace/ has the pattern) after any data refresh.
+
+## Data factuality chain — source material only, never AI-distilled (Ableneo, 2026-08-26)
+Never feed AI-generated or AI-distilled data back into knowledge base systems as
+if it were source truth. Every data layer must trace to a human-verified source:
+BSData (community-verified profiles/points), MFM (official GW points), Wahapedia
+(human cross-check). An AI summary of a rule is NOT a rule; an AI computation of
+DPP is NOT a source — it is engine output derived from sources.
+
+**Why:** cascading hallucinations. If the system ingests AI-derived numbers as
+input, errors compound silently — each layer trusts the previous one's fiction.
+The _source chain must end at a human-verified artifact, not at another LLM
+output. "BSData says X" is valid. "The AI calculated X from the datasheet" is
+not a source — it is an interpretation that must be verified against the engine
+or the original text.
+
+**How:** every data path in this project follows Source → Engine → LLM narration.
+Config info blocks sync from merged stats (sync_config_info.py), not from LLM
+estimates. DPP numbers come from engine/ranking.py, never hand-computed.
+Expert assessments paraphrase rule text mechanically, never fabricate mechanics.
+_source fields name the human artifact, not the AI that read it. If a number
+cannot be traced to BSData/MFM/Wahapedia/engine-output, it does not ship.

@@ -544,7 +544,7 @@ def parse_expert_assessment(fid):
         out['disposition_fit'].append({'mission': row[0], 'fit': row[1],
                                        'why': row[2]})
     for blk in re.finditer(
-            r'####\s+(.+?)\s*\((\d+)DP\s*(?:→|->)\s*([A-Z &]+)\)\s*\n(.*?)(?=\n#### |\n### |\Z)',
+            r'####\s+(.+?)\s*\((\d+)DP\s*(?:→|->)\s*([A-Z &]+)\)'r'[^#\n]*\n(.*?)(?=\n#### |\n### |\Z)',
             sec, re.S):
         name, dp, obj, body = blk.group(1), blk.group(2), blk.group(3), blk.group(4)
         rm = re.search(r'\*\*Rating\*\*:?\s*(Strong|Moderate|Situational|Weak)', body)
