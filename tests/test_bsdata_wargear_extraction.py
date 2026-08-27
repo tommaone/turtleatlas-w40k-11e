@@ -171,7 +171,7 @@ MF_SLOTS = [
         ],
     },
 ]
-MF_DPP_CURATED = 0.1025  # 2026-08-24: datasheet grants TWO magma cutters (count:2) — pair total, not one profile
+MF_DPP_CURATED = 0.0683  # 2026-08-27: corrected after fix — config count=2 is sole source of multiplicity (merged count=2 no longer double-counted)
 
 # ── Nemesis Dreadknight (Grey Knights — cross-faction proof) ─────────────
 # Golden truth: verified against New Recruit wiki (11e) 2026-08-22.

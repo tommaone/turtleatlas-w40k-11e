@@ -135,15 +135,17 @@ class TestCsmVehicleCounts:
     def test_land_raider_two_soulshatter(self, csm_engine, MEQ):
         res = csm_engine.resolve_loadout("Chaos Land Raider", MEQ)
         _pts, ranged, _m, _i, _info = res
-        names = [w.name for w in ranged]
-        assert names.count("Soulshatter lascannon") == 2, (
-            f"datasheet: 2 soulshatter lascannons, got {names}")
+        # Datasheet: 2 soulshatter lascannons. Total multiplicity is 2 —
+        # the engine may represent it as one profile with count=2 (merged
+        # BSData count, same as SM Land Raider) OR two count=1 profiles.
+        total = sum(w.count for w in ranged if w.name == "Soulshatter lascannon")
+        assert total == 2, f"datasheet: 2 soulshatter lascannons, got total={total} in {ranged}"
 
     def test_venomcrawler_two_excruciators(self, csm_engine, MEQ):
         res = csm_engine.resolve_loadout("Venomcrawler", MEQ)
         _pts, ranged, _m, _i, _info = res
-        names = [w.name for w in ranged]
-        assert names.count("Excruciator cannon") == 2
+        total = sum(w.count for w in ranged if w.name == "Excruciator cannon")
+        assert total == 2, f"datasheet: 2 excruciator cannons, got total={total}"
 
     def test_predator_sponsons_resolve(self, csm_engine, MEQ):
         """'2 lascannons' literal name was unresolvable — sponsons vanished."""

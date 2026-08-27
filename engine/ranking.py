@@ -1467,6 +1467,16 @@ class RankingEngine:
         fixed_items = build.get("fixed", [])
         b_ranged = []
         b_melee = []
+        # Count how many times each weapon name appears in fixed entries.
+        # When a name appears N>1 times, each copy should get count=1 —
+        # the config already encodes multiplicity by listing N entries.
+        from collections import Counter
+        _fixed_name_counts = Counter(
+            f["name"] for f in fixed_items if f.get("type") != "melee"
+        )
+        _fixed_name_counts.update(
+            f["name"] for f in fixed_items if f.get("type") == "melee"
+        )
         for f in fixed_items:
             try:
                 w = self.W(f["name"], unit_name=name,
@@ -1475,12 +1485,26 @@ class RankingEngine:
                 continue
             # Fixed entries may carry multiplicity ("count": 2 soulshatter
             # lascannons, 2 excruciator cannons) — append per count.
+            # Clone with count=1 when config count > 1 OR when the same
+            # weapon name appears multiple times in fixed entries — the
+            # config already encodes the total multiplicity.
             f_cnt = f.get("count", 1) or 1
+            name_dup = _fixed_name_counts[f["name"]] > 1
             for _ in range(f_cnt):
-                if f.get("type") == "melee":
-                    b_melee.append(w)
+                if f_cnt > 1 or name_dup:
+                    p = WeaponProfile(
+                        name=w.name, attacks=w.attacks,
+                        bs=w.bs, strength=w.strength,
+                        ap=w.ap, damage=w.damage,
+                        abilities=list(w.abilities), count=1,
+                        damage_raw=w.damage_raw,
+                        variants=list(w.variants))
                 else:
-                    b_ranged.append(w)
+                    p = w
+                if f.get("type") == "melee":
+                    b_melee.append(p)
+                else:
+                    b_ranged.append(p)
         
         slot_choice_lists = [s["choices"] for s in slots]
         
@@ -1521,18 +1545,22 @@ class RankingEngine:
                     skip_combo = True
                     break
                 # Choice may carry a count multiplier (e.g. '2 Starcannons' →
-                # Starcannon ×2). Clone the profile with count=1 per copy so
-                # the loop multiplier is the sole source of multiplicity —
-                # avoids double-counting when merged data also carries count>1.
+                # Starcannon ×2). Clone with count=1 per copy when config
+                # count > 1 so the loop multiplier is the sole source of
+                # multiplicity — avoids double-counting when merged data
+                # also carries count>1 from BSData constraints.
                 count = choice.get("count", 1) or 1
                 for _ in range(count):
-                    p = WeaponProfile(
-                        name=profile.name, attacks=profile.attacks,
-                        bs=profile.bs, strength=profile.strength,
-                        ap=profile.ap, damage=profile.damage,
-                        abilities=list(profile.abilities), count=1,
-                        damage_raw=profile.damage_raw,
-                        variants=list(profile.variants))
+                    if count > 1:
+                        p = WeaponProfile(
+                            name=profile.name, attacks=profile.attacks,
+                            bs=profile.bs, strength=profile.strength,
+                            ap=profile.ap, damage=profile.damage,
+                            abilities=list(profile.abilities), count=1,
+                            damage_raw=profile.damage_raw,
+                            variants=list(profile.variants))
+                    else:
+                        p = profile
                     if choice.get("type") == "melee":
                         combo_melee.append(p)
                     else:
@@ -1573,7 +1601,9 @@ class RankingEngine:
                     kw.append("FLY")
                 if "Terminator" in name:
                     kw.append("TERMINATOR")
-                return kw, info["T"], info["SV"], _safe_int(info["W"], 2), info.get("OC", 0), _safe_int(info.get("invuln") or info.get("INV"))
+                inv_raw = info.get("invuln") or info.get("INV")
+                inv_val = _safe_int(inv_raw) if inv_raw else None
+                return kw, info["T"], info["SV"], _safe_int(info["W"], 2), info.get("OC", 0), inv_val
 
         # Vehicle info — weapon_options.json is authoritative (matches
         # resolve_loadout precedence); vehicles.json is only a fallback for
@@ -1598,7 +1628,9 @@ class RankingEngine:
             # INV presence — that tags any shielded vehicle (Foetid Bloat-Drone,
             # Plagueburst Crawler) as a walker. Real walkers (Helbrute, Defiler,
             # Dreadnoughts) carry "Walker" in merged profile.keywords.
-            return kw, veh_info["T"], veh_info["SV"], _safe_int(veh_info["W"], 2), veh_info.get("OC", 0), _safe_int(veh_info.get("invuln") or veh_info.get("INV"))
+            inv_raw = veh_info.get("invuln") or veh_info.get("INV")
+            inv_val = _safe_int(inv_raw) if inv_raw else None
+            return kw, veh_info["T"], veh_info["SV"], _safe_int(veh_info["W"], 2), veh_info.get("OC", 0), inv_val
 
         # Character info
         if name in self.config.characters:
@@ -1614,7 +1646,9 @@ class RankingEngine:
                 kw.extend(self.config.faction_keywords)
                 if t_val >= 5:
                     kw.append("TERMINATOR")
-                return kw, info["T"], info["SV"], _safe_int(info["W"], 2), info.get("OC", 0), _safe_int(info.get("invuln") or info.get("INV"))
+                inv_raw = info.get("invuln") or info.get("INV")
+                inv_val = _safe_int(inv_raw) if inv_raw else None
+                return kw, info["T"], info["SV"], _safe_int(info["W"], 2), info.get("OC", 0), inv_val
 
         # Fallback: from profile data
         stats = profile_data.get("stats", {})
