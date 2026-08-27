@@ -97,9 +97,10 @@ def build():
         ms = t["missions"]
         vals = list(ms.values())
         ceiling, floor = max(vals), min(vals)
-        # meta_ceiling (war plan P3): detachment-aware overall when the
-        # faction carries verified detachment modifiers — engine-computed,
-        # never hand-authored. None = generalist only.
+        # meta_ceiling (semantically retired 2026-08-27): fabrication of a
+        # detached-scores ceiling is no longer produced. Detachment strength is
+        # a heuristic (expert EXPERT.detachments ratings), not an engine number.
+        # meta_ceiling stays null — no fake ceiling.
         det = t.get("det") or {}
         factions.append({
             "fid": fid,

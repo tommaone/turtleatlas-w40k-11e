@@ -42,7 +42,7 @@ def _config_units(faction: str) -> set[str]:
         return names
     for cfg_file in cfg_dir.glob("*.json"):
         if cfg_file.name in ("notes.json", "supported.json", "meta.json",
-                             "detachment_modifiers.json"):
+                             "detachment_modifiers.json", "detachments.json"):
             continue
         with open(cfg_file) as f:
             data = json.load(f)

@@ -510,45 +510,21 @@ class RankingEngine:
     # ── Detachment modifiers ───────────────────────────────────────────
 
     def _load_detachment_modifiers(self) -> dict[str, list[DetachmentModifier]]:
-        """Load detachment modifiers from faction pack JSON.
+        """DEPRECATED: detachment modifiers are no longer applied to scores.
 
-        Returns dict mapping detachment name → list of DetachmentModifier choices.
+        The old mechanical `detachment_modifiers.json` carried fabricated or
+        un-expressible rules (most detachment buffs cannot be modelled as a
+        numeric DPP/SURV/MOB modifier). Per decision 2026-08-27, mechanic-based
+        detachment scoring is retired in favour of heuristic detachment ratings
+        (see `detachments.json`, read elsewhere). `compute_ranking` therefore
+        never applies detachment modifiers — detachment-aware scores equal the
+        generalist baseline.
+
+        This method is retained only so existing call sites (tests, gk_ranking
+        CLI) do not crash. It always returns an empty mapping.
         """
-        if self._detachment_modifiers is not None:
-            return self._detachment_modifiers
-
-        repo_root = Path(__file__).resolve().parent.parent
-
-        # Try config dir first (our own data, no GW IP)
-        config_mod_path = repo_root / "data" / "config" / self.faction_key / "detachment_modifiers.json"
-        if config_mod_path.exists():
-            config_data = json.loads(config_mod_path.read_text())
-            raw = config_data.get("detachments", {})
-            result = {}
-            for det_name, det_data in raw.items():
-                choices = det_data.get("choices", [])
-                if choices:
-                    result[det_name] = [DetachmentModifier.from_dict(c) for c in choices]
-            self._detachment_modifiers = result
-            return result
-
-        # Fallback: old faction-pack JSON location (may not exist after GW IP cleanup)
-        fp_name = f"{self.faction_key}-faction-pack.json"
-        fp_path = repo_root / "data" / fp_name
-        if not fp_path.exists():
-            self._detachment_modifiers = {}
-            return self._detachment_modifiers
-
-        fp = json.loads(fp_path.read_text())
-        result = {}
-        for det in fp.get("detachments", []):
-            mods_data = det.get("modifiers", {})
-            choices = mods_data.get("choices", [])
-            if choices:
-                mods = [DetachmentModifier.from_dict(c) for c in choices]
-                result[det["name"]] = mods
-        self._detachment_modifiers = result
-        return result
+        self._detachment_modifiers = self._detachment_modifiers or {}
+        return self._detachment_modifiers
 
     def get_detachment_modifiers(self, detachment_name: str) -> list[DetachmentModifier]:
         """Get modifier choices for a given detachment."""

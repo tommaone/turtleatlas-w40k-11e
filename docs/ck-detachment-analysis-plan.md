@@ -1,5 +1,7 @@
 # Chaos Knights Detachment Analysis Plan
 
+> **SUPERSEDED (2026-08-27):** Mechanical detachment scoring is retired. Detachment strength is a heuristic (`detachments.json`), never engine DPP/SURV/MOB. This plan is historical reference only — do not re-implement mechanical detachment modifiers.
+
 **Date:** 2026-07-11
 **Author:** Leonardo
 **Scope:** 8 CK detachments x 3 missions (Purge the Foe, Take and Hold, Priority Assets)

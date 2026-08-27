@@ -85,18 +85,20 @@ class TurtleAtlasW40kServer {
       console.error(`Failed to scan merged dir: ${err.message}`);
     }
 
-    // 2. Load config files (detachment_modifiers.json, supported.json) into matching factions
+    // 2. Load config files (detachments.json heuristic ratings, supported.json) into matching factions
     try {
       const configDirs = readdirSync(CONFIG_DIR, { withFileTypes: true })
         .filter(d => d.isDirectory() && !d.name.startsWith("_"))
         .map(d => d.name);
 
       for (const dir of configDirs) {
-        const detPath = join(CONFIG_DIR, dir, "detachment_modifiers.json");
+        const detPath = join(CONFIG_DIR, dir, "detachments.json");
         const supPath = join(CONFIG_DIR, dir, "supported.json");
 
         if (!factions[dir]) factions[dir] = { mergedUnits: null, config: null, detachmentModifiers: null };
 
+        // detachments.json = heuristic ratings (classification: heuristic),
+        // NOT mechanical engine modifiers (which are retired 2026-08-27).
         factions[dir].detachmentModifiers = this.#loadJson(detPath);
         factions[dir].config = this.#loadJson(supPath);
       }
@@ -714,8 +716,13 @@ print(json.dumps(output))
   #handleGetDetachment(args) {
     const fd = this.#getFactionData(args?.faction);
     if (fd.error) return this.#text(fd.error);
-    if (!fd.detachmentModifiers) {
-      return this.#text(`No detachment config data for "${args?.faction || this.defaultFaction}".`);
+    if (!fd.detachmentModifiers || !fd.detachmentModifiers.detachments) {
+      return this.#text(
+        `No detachment ratings for "${args?.faction || this.defaultFaction}". ` +
+        `Mechanical detachment modifiers are retired (2026-08-27) — detachment ` +
+        `strength is a heuristic, not an engine score. See the faction's expert ` +
+        `file for heuristic detachment ratings.`
+      );
     }
     const query = (args?.name || "").toUpperCase().trim();
     const detachments = fd.detachmentModifiers.detachments || {};
@@ -731,37 +738,19 @@ print(json.dumps(output))
 
     const det = detachments[detKey];
     let out = `# ${detKey}\n\n`;
-    out += `**DP Cost:** ${det.dp_cost || "?"}\n`;
-    if (det._source) out += `**Source:** ${det._source}\n`;
-    if (det._engine_note) out += `\n> ${det._engine_note}\n`;
-
-    out += `\n## Engine-Modeled Modifiers\n`;
-    const choices = det.choices || [];
-    if (choices.length === 0) {
-      out += `No engine-modeled modifiers (rules too complex for DPP computation).\n`;
-    } else {
-      for (const c of choices) {
-        out += `\n### ${c.name}\n`;
-        if (c.description) out += `${c.description}\n`;
-        if (c.condition) out += `Condition: ${c.condition}\n`;
-        out += `Affects: ${c.affects || "?"}\n`;
-        // Show numeric modifiers
-        const mods = [];
-        if (c.reroll_hits) mods.push(`Re-roll hits: ${c.reroll_hits}`);
-        if (c.reroll_wounds) mods.push(`Re-roll wounds: ${c.reroll_wounds}`);
-        if (c.hit_modifier) mods.push(`Hit modifier: ${c.hit_modifier > 0 ? "+" : ""}${c.hit_modifier}`);
-        if (c.plus1_to_wound) mods.push("+1 to wound");
-        if (c.sustained_hits_extra) mods.push(`Extra Sustained Hits: +${c.sustained_hits_extra}`);
-        if (c.lethal_hits) mods.push("Lethal Hits");
-        if (c.movement_bonus) mods.push(`Movement: +${c.movement_bonus}"`);
-        if (c.invulnerable_save) mods.push(`Invulnerable: ${c.invulnerable_save}+`);
-        if (c.feel_no_pain) mods.push(`FNP: ${c.feel_no_pain}+`);
-        if (mods.length > 0) out += `Modifiers: ${mods.join(", ")}\n`;
-        if (c.unit_filter) out += `Applies to: ${c.unit_filter.join(", ")}\n`;
-        if (c._engine_note) out += `> ${c._engine_note}\n`;
-        out += `\n`;
-      }
+    out += `> **Classification:** heuristic — base ranking scores below are `;
+    out += `generalist and rules-free. This is interpretation, not engine output.\n\n`;
+    if (det.dp_cost) out += `**DP Cost:** ${det.dp_cost}\n`;
+    if (det.disposition) out += `**Disposition:** ${det.disposition}\n`;
+    if (det.strength) out += `**Strength:** ${det.strength}\n`;
+    if (det.best_for && det.best_for.length) {
+      out += `**Best for:** ${det.best_for.join("; ")}\n`;
     }
+    if (det.strength_notes) out += `\n**Why:** ${det.strength_notes}\n`;
+    if (det.limitations && det.limitations.length) {
+      out += `\n**Limitations:**\n${det.limitations.map(l => `- ${l}`).join("\n")}\n`;
+    }
+    if (det.source) out += `\n**Source:** ${det.source}\n`;
 
     return this.#text(out);
   }

@@ -936,3 +936,18 @@ loop multiplier is the sole source. `_loadout_desc` uses `wp.count` (not object
 count) for display. Fixed entries (no config count) still use merged data count.
 Guard: Predator Annihilator Heavy Bolter shows 2× (not 4×), Land Raider
 Godhammer Lascannon shows 2× (not 1×).
+
+## Mechanical detachment scoring is RETIRED — heuristic only (2026-08-27)
+The DPP engine no longer loads or applies `detachment_modifiers.json`. Detachment
+strength is expert-rated heuristic data (`detachments.json`: dp_cost, disposition,
+strength, best_for, source), never engine DPP/SURV/MOB output. `detachment ==
+generalist` for every faction.
+
+**Why:** most detachment buffs cannot be expressed as numeric DPP/SURV/MOB
+modifiers, and the auto-generated `detachment_modifiers.json` files carried
+fabricated rules — "recommended loadout by detachment" was fake engine output.
+
+**How:** `_load_detachment_modifiers()` returns `{}`; `list_detachments_with_modifiers()`
+returns `[]`; findings detachment view and MCP detachment ratings read the heuristic
+`detachments.json`. Generalist baseline must stay byte-identical. Dispositions
+(supported.json `dispositions`, dp_cost) are legitimate MFM data, kept for now.
