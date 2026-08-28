@@ -387,6 +387,10 @@ class TestL2Enrichment:
                 f"{faction}/{slug}: rule.text must be flagged _paraphrase: true "
                 f"(no verbatim GW rule text — AGENTS.md IP)"
             )
+            assert rule.get("_lang") == "en", (
+                f"{faction}/{slug}: rule.text must be English (_lang: en) "
+                f"— paraphrases are written in English, never GW's phrasing or lore"
+            )
             assert len(text) <= L2_RULE_TEXT_MAX, (
                 f"{faction}/{slug}: rule.text {len(text)} chars > {L2_RULE_TEXT_MAX} "
                 f"— looks like verbatim rule text, needs paraphrase"

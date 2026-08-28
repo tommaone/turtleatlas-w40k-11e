@@ -980,3 +980,11 @@ Enhancements) come from merged `detachments[]` (L0, MFM); heuristic ratings
 (disposition/strength/best_for/… source) come from `detachments.json` (L2).
 The render labels both layers explicitly — never let an LLM present strength
 as engine output.
+
+## L2 rule.text = mechanická parafráza, nie GW text/lore (rozhodnuté 2026-08-28)
+`rule.text` v L2 detachments.json NIKDY nie je verbatím GW pravidla (IP) ani
+lore. Je to KRÁTKA anglická parafráza mechaniky (`_paraphrase: true`,
+`_lang: "en"`, max 600 chars — Tier 5 test). Názvy detachmentov a keywordy
+(„Cabal Of Chaos", „PSYKER", „FACTION: …") sa zachovávajú PRESNE — sú to dáta,
+nie próza. Žiadne GW-specifické frázovanie (vlastné slová, nie GW wording),
+žiadne príbehové vety. Odporúčanie je vždy traceable na L0 `_source`.

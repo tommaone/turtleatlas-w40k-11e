@@ -86,7 +86,7 @@ kríženie medzi detachmentami patria do **L1 (army)**. Detach `combos` v L2 sú
 | Zdroj | Čo dáva | Overenosť | Presun |
 |-------|---------|-----------|--------|
 | **MFM** (`mfm/data/<slug>.yaml` → `data/merged/<slug>.json`) | `detachments[]`: name, dp, objective, enhancements; points | reviewované, community-maintained | `gen_config.py` už mapuje do `supported.json` `dispositions` |
-| **Wahapedia** | detachment rule text (verbatim), ktoré keywords/jednotky ovplyvňuje | golden/cross-check (AGENTS.md: Wahapedia nie je primárny, slúži na validáciu) | nový scrape→`detachment_facts/` vrstva |
+| **Wahapedia** | detachment rule text (parafráza — verbatím text je GW IP, pozri §5/AGENTS.md), ktoré keywords/jednotky ovplyvňuje | golden/cross-check (AGENTS.md: Wahapedia nie je primárny, slúži na validáciu) | nový scrape→`detachment_facts/` vrstva |
 | **NewRecruit** | alternatívny text detachment rules + unit info | 2. overený zdroj | cross-check voči Wahapedia |
 | **BSData** | unit profily, keywords, wargear, squad/vehicle constraints | primárny | už v `data/merged/` |
 
@@ -125,7 +125,9 @@ limitations, source`).
       "objective": "DISRUPTION",
       // ---- ZL2a — čo detachment robí (pravidlo, verbatim z Wahapedia) ----
       "rule": {
-        "text": "<verbatim detachment rule text, overený Wahapedia + NewRecruit>",
+        "text": "<parafrázované pravidlo (mechanika, anglicky; NIKDY verbatím GW text / lore; názvy a keywordy presne)>",
+        "_paraphrase": true,
+        "_lang": "en",
         "_source": ["https://wahapedia.ru/wh40k11ed/factions/...", "https://newrecruit.eu/..."],
         "affects": ["FACTION", "PSYKER", "DAEMON_PRINCE", "KHORNE-exclusion"]
       },
@@ -305,8 +307,9 @@ re-computation, ability chaining certainty, chýbajúca assumption registry.
 
 ## 11. Otvorené otázky
 
-1. Wahapedia v AGENTS.md je "cross-check, nie primárny" — povýšiť na zdroj **verbatim detachment
-   rule text**? (Body ostávajú MFM; pravidlo text môže byť Wahapedia.)
+1. ~~Wahapedia v AGENTS.md je "cross-check, nie primárny" — povýšiť na zdroj **verbatim detachment
+   rule text**?~~ **Rozhodnuté (2026-08-28): NIE.** `rule.text` je parafráza mechaniky
+   (anglicky, bez lore, názvy/keywordy presne) — verbatím pravidiel je GW IP. Body ostávajú MFM.
 2. NewRecruit — verifikovať dostupnosť/scrapovateľnosť detachment rules (licencia/robots).
 3. `get_llm_contract` — kam patriť (mcp-server/index.js), a či sa má líšiť `_classification`
    label schéma od turtle-dojo štandardu.

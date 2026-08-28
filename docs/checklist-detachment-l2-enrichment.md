@@ -57,8 +57,10 @@ Presný zoznam detachmentov na frakciu: `data/config/<frakcia>/detachments.json`
 
 ```
 rule: {
-  text: "<KRÁTKY PARAPHRASE pravidla, 1-3 vety; NIKDY verbatim GW text>",
+  text: "<KRÁTKY PARAPHRASE pravidla (mechanika, 1-3 vety, ANGLICKY);
+         NIKDY verbatím GW text, NIKDY lore>",
   _paraphrase: true,                    // povinné — IP pravidlo
+  _lang: "en",                          // povinné — anglicky
   affects: ["FACTION", "PSYKER", ...],  // kľúčové slová/jednotky, ktoré pravidlo ovplyvňuje
   _source: ["https://wahapedia.ru/...", "https://newrecruit.eu/..."]
 },
@@ -78,21 +80,28 @@ play_style: { summary: "<2-3 vety>", tempo_axis: "infiltration|attrition|stat-au
 - **Situational** — silný len proti konkrétnym buildom; inde ho prekoná iný detachment.
 - **Weak** — všeobecne prekonaný; uviesť v `limitations` prečo.
 
-## IP pravidlo (AGENTS.md — nekompromisné)
+## IP pravidlo + rule.text pravidlá (rozhodnuté 2026-08-28)
+
+`rule.text` je **parafráza mechaniky**, nie GW text a nie lore:
 
 - ⛔ **Žiadny verbatím GW rule text** — detachment pravidlá sú GW IP.
-  `rule.text` = parafráza s `_paraphrase: true`; Tier 5 test to vynucuje
-  (max 600 chars — skutočná parafráza je kratšia, verbatím pravidlá dlhšie).
+  Parafráza bez GW-specifickej formulácie (vlastné slová, nie GW frázovanie).
+- ⛔ **Žiadny lore** — žiadne príbehové/flavour vety („ancient relics of…", „tales of…").
+  Text opisuje IBA mechanické efekty (čo pravidlo robí herne).
+- 🇬🇧 **Anglicky** — `_lang: "en"` (vynútené Tier 5).
+- 🔑 **Názvy detachmentov a keywordy PRESNE** — „Cabal Of Chaos", „PSYKER",
+  „FACTION: …" sa nemenia, neprekladajú, neskracujú. Sú to dáta (identifikátory),
+  nie proza. To isté pre `best_units[].unit`, `affects[]`, `scoring_units` …
 - ✅ Body, objectives, dispositions, enhancements — MFM dáta, komitnuteľné.
 - ✅ Vlastná analýza (rating, best_units why, play_style) — komitnuteľné, s `_source`.
 
-## Otvorený konflikt — rozhodnúť pred prvým review
+## Otvorený konflikt — rozhodnuté
 
-`docs/detachment-info-architecture.md` §5 príklad ukazuje `rule.text: "<verbatim
-detachment rule text, overený Wahapedia + NewRecruit>"` — to **protirečí** AGENTS.md IP
-clause („NO verbatim rule text"). Tento checklist vynucuje parafrázu. Ak chceme verbatím
-text komitnúť, treba to rozhodnúť explicitne (a upraviť architektonický doc + Tier 5 test).
-Dovtedy: **parafráza**.
+`docs/detachment-info-architecture.md` §5 príklad ukazoval `rule.text: "<verbatim
+detachment rule text, overený Wahapedia + NewRecruit>"` — protirečilo AGENTS.md IP
+clause („NO verbatim rule text"). **Rozhodnuté (2026-08-28): parafráza**, anglicky, bez
+lore, názvy/keywordy presne. Architektonický doc už hovorí parafrázu; Tier 5 test
+vynucuje `_paraphrase: true`, `_lang: "en"`, max 600 chars.
 
 ## Review gate (per frakcia)
 
