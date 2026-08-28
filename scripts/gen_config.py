@@ -239,7 +239,12 @@ def gen_supported_json(faction_slug, data):
         det_name = det.get("name", "")
         obj = det.get("objective", "")
         if det_name and obj:
-            det_key = det_name.lower().replace(" ", "-").replace("'", "").replace("'", "")
+            # Strip BOTH straight (') and curly (') apostrophes — merged MFM
+            # names use curly (e.g. "Mont'Ka"); old keys were straight.
+            det_key = (
+                det_name.lower().replace(" ", "-")
+                .replace("'", "").replace("\u2019", "")
+            )
             disp_key = obj.lower().replace(" ", "-")
             dispositions[det_key] = disp_key
 
@@ -254,47 +259,20 @@ def gen_supported_json(faction_slug, data):
     }
 
 
-# Mapping from MFM objective names to engine vector affects
-_OBJECTIVE_AFFECTS = {
-    "TAKE AND HOLD": "obj",
-    "PURGE THE FOE": "dpp",
-    "RECONNAISSANCE": "mob",
-    "PRIORITY ASSETS": "dpp",
-    "DISRUPTION": "mob",
-}
-
 
 def gen_detachment_modifiers(faction_slug, data):
-    """Generate detachment_modifiers.json from MFM detachments.
+    """REMOVED 2026-08-27 — mechanical detachment modifiers are retired.
 
-    Each detachment gets a basic choice reflecting its disposition objective.
-    This gives the engine enough to apply detachment-aware scoring.
+    This generator previously fabricated `detachment_modifiers.json` entries
+    from MFM detachment "objective" fields (e.g. "favours purge the foe play"),
+    which are NOT detachment rules and were never applied as real modifiers.
+    Mechanical detachment scoring is retired in favour of heuristic ratings.
+    Kept as a no-op so old call sites do not crash.
     """
-    faction_name = data.get("faction_name", faction_slug.replace("-", " ").title())
-    detachments = {}
-    for det in data.get("detachments", []):
-        det_name = det.get("name", "")
-        obj = det.get("objective", "")
-        if not det_name:
-            continue
-        affects = _OBJECTIVE_AFFECTS.get(obj.upper(), "dpp") if obj else "dpp"
-        det_entry = {
-            "objective": obj,
-            "_source": "MFM (auto-generated)",
-            "choices": [
-                {
-                    "name": f"{det_name} disposition",
-                    "affects": affects,
-                    "_source": "MFM disposition objective",
-                    "description": f"Detachment favours {obj.lower()} play",
-                }
-            ],
-        }
-        detachments[det_name] = det_entry
     return {
-        "_note": f"{faction_name} detachment modifiers — auto-generated from MFM",
-        "_source": "BSData 11e + MFM (auto-generated)",
-        "detachments": detachments,
+        "_note": "mechanical detachment modifiers retired 2026-08-27",
+        "_source": "retired",
+        "detachments": {},
     }
 
 
@@ -581,13 +559,6 @@ def generate_faction_config(faction_slug, dry_run=False, skip_existing=False):
     notes_path = faction_dir / "notes.json"
     if not notes_path.exists():
         notes_path.write_text("{}\n")
-
-    # detachment_modifiers.json — basic modifiers from MFM detachment objectives
-    dm_path = faction_dir / "detachment_modifiers.json"
-    if not dm_path.exists():
-        dm = gen_detachment_modifiers(faction_slug, data)
-        dm_path.write_text(
-            json.dumps(dm, indent=2, ensure_ascii=False) + "\n")
 
     # supported.json (dispositions, keywords, etc.)
     supported_path = faction_dir / "supported.json"

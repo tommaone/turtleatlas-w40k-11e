@@ -85,18 +85,20 @@ class TurtleAtlasW40kServer {
       console.error(`Failed to scan merged dir: ${err.message}`);
     }
 
-    // 2. Load config files (detachment_modifiers.json, supported.json) into matching factions
+    // 2. Load config files (detachments.json heuristic ratings, supported.json) into matching factions
     try {
       const configDirs = readdirSync(CONFIG_DIR, { withFileTypes: true })
         .filter(d => d.isDirectory() && !d.name.startsWith("_"))
         .map(d => d.name);
 
       for (const dir of configDirs) {
-        const detPath = join(CONFIG_DIR, dir, "detachment_modifiers.json");
+        const detPath = join(CONFIG_DIR, dir, "detachments.json");
         const supPath = join(CONFIG_DIR, dir, "supported.json");
 
         if (!factions[dir]) factions[dir] = { mergedUnits: null, config: null, detachmentModifiers: null };
 
+        // detachments.json = heuristic ratings (classification: heuristic),
+        // NOT mechanical engine modifiers (which are retired 2026-08-27).
         factions[dir].detachmentModifiers = this.#loadJson(detPath);
         factions[dir].config = this.#loadJson(supPath);
       }
@@ -714,54 +716,79 @@ print(json.dumps(output))
   #handleGetDetachment(args) {
     const fd = this.#getFactionData(args?.faction);
     if (fd.error) return this.#text(fd.error);
-    if (!fd.detachmentModifiers) {
-      return this.#text(`No detachment config data for "${args?.faction || this.defaultFaction}".`);
-    }
-    const query = (args?.name || "").toUpperCase().trim();
-    const detachments = fd.detachmentModifiers.detachments || {};
 
-    // Find matching detachment
-    const detKey = Object.keys(detachments).find(k =>
-      k.toUpperCase().includes(query) || query.includes(k.toUpperCase())
+    const query = (args?.name || "").trim().toUpperCase();
+
+    // Verified basics come from MFM merged detachments[] (L0).
+    // Heuristic ratings come from detachments.json (L2, interpretation).
+    const mergedDets = fd.mergedUnits?.detachments || [];
+    const heuristic = fd.detachmentModifiers?.detachments || {};
+
+    const slugify = (s) => (s || "").trim().toLowerCase()
+      .replace(/ /g, "-").replace(/['\u2019]/g, "");
+    // Query normalisation: strip spaces, hyphens AND apostrophes so
+    // "Cabal Of Chaos", "cabal-of-chaos", "Mont’ka" and "CABAL" all match.
+    const norm = (s) => (s || "").toUpperCase().replace(/[\s-'\u2019]/g, "");
+    const nQuery = norm(query);
+
+    const mergedByKey = {};
+    for (const d of mergedDets) mergedByKey[slugify(d.name)] = d;
+
+    // Match heuristic key first, then merged slug / merged name substring.
+    const hKey = Object.keys(heuristic).find(k =>
+      norm(k) === nQuery || norm(k).includes(nQuery) || nQuery.includes(norm(k))
     );
-    if (!detKey) {
-      const names = Object.keys(detachments).join(", ");
-      return this.#text(`Detachment not found. Available: ${names}`);
+    const mergedMatch = mergedDets.find(d =>
+      norm(d.name).includes(nQuery) || nQuery.includes(norm(d.name))
+    );
+    const mKey = Object.keys(mergedByKey).find(k =>
+      norm(k) === nQuery || norm(k).includes(nQuery) || nQuery.includes(norm(k))
+    );
+    const merged = mergedByKey[mKey] || mergedMatch || null;
+
+    if (!hKey && !merged) {
+      const names = [...new Set([
+        ...Object.keys(heuristic),
+        ...mergedDets.map(d => slugify(d.name)),
+      ])].sort().join(", ");
+      return this.#text(
+        `Detachment not found. Available (${names.split(", ").length}): ${names}`
+      );
     }
 
-    const det = detachments[detKey];
-    let out = `# ${detKey}\n\n`;
-    out += `**DP Cost:** ${det.dp_cost || "?"}\n`;
-    if (det._source) out += `**Source:** ${det._source}\n`;
-    if (det._engine_note) out += `\n> ${det._engine_note}\n`;
+    const det = heuristic[hKey] || {};
+    const title = det.name || (merged && merged.name) || hKey
+      || (merged && slugify(merged.name));
+    let out = `# ${title}\n\n`;
 
-    out += `\n## Engine-Modeled Modifiers\n`;
-    const choices = det.choices || [];
-    if (choices.length === 0) {
-      out += `No engine-modeled modifiers (rules too complex for DPP computation).\n`;
-    } else {
-      for (const c of choices) {
-        out += `\n### ${c.name}\n`;
-        if (c.description) out += `${c.description}\n`;
-        if (c.condition) out += `Condition: ${c.condition}\n`;
-        out += `Affects: ${c.affects || "?"}\n`;
-        // Show numeric modifiers
-        const mods = [];
-        if (c.reroll_hits) mods.push(`Re-roll hits: ${c.reroll_hits}`);
-        if (c.reroll_wounds) mods.push(`Re-roll wounds: ${c.reroll_wounds}`);
-        if (c.hit_modifier) mods.push(`Hit modifier: ${c.hit_modifier > 0 ? "+" : ""}${c.hit_modifier}`);
-        if (c.plus1_to_wound) mods.push("+1 to wound");
-        if (c.sustained_hits_extra) mods.push(`Extra Sustained Hits: +${c.sustained_hits_extra}`);
-        if (c.lethal_hits) mods.push("Lethal Hits");
-        if (c.movement_bonus) mods.push(`Movement: +${c.movement_bonus}"`);
-        if (c.invulnerable_save) mods.push(`Invulnerable: ${c.invulnerable_save}+`);
-        if (c.feel_no_pain) mods.push(`FNP: ${c.feel_no_pain}+`);
-        if (mods.length > 0) out += `Modifiers: ${mods.join(", ")}\n`;
-        if (c.unit_filter) out += `Applies to: ${c.unit_filter.join(", ")}\n`;
-        if (c._engine_note) out += `> ${c._engine_note}\n`;
-        out += `\n`;
-      }
+    // Verified basics (MFM / engine data — L0). Community-maintained points
+    // and objective, NOT rule text.
+    out += `> **Verified basics (MFM data):** points, objective and enhancements `;
+    out += `below are L0 community data, not engine scores.\n`;
+    out += `> **Heuristic ratings (interpretation):** strength/disposition fields `;
+    out += `are expert interpretation; mechanical detachment modifiers are retired `;
+    out += `(2026-08-27) — base ranking stays generalist and rules-free.\n\n`;
+
+    const dp = (merged && merged.dp) || det.dp_cost;
+    if (dp) out += `**DP Cost:** ${dp}\n`;
+    if (merged && merged.objective) out += `**Objective:** ${merged.objective}\n`;
+    if (merged && merged.enhancements && merged.enhancements.length) {
+      const enh = merged.enhancements
+        .map(e => `${e.name} (${e.points}pts)`)
+        .join("; ");
+      out += `**Enhancements:** ${enh}\n`;
     }
+
+    const hFields = [];
+    if (det.disposition) hFields.push(`**Disposition:** ${det.disposition}`);
+    if (det.strength) hFields.push(`**Strength:** ${det.strength}`);
+    if (det.best_for && det.best_for.length) hFields.push(`**Best for:** ${det.best_for.join("; ")}`);
+    if (hFields.length) out += `\n${hFields.join("\n")}\n`;
+    if (det.strength_notes) out += `\n**Why:** ${det.strength_notes}\n`;
+    if (det.limitations && det.limitations.length) {
+      out += `\n**Limitations:**\n${det.limitations.map(l => `- ${l}`).join("\n")}\n`;
+    }
+    if (det.source) out += `\n**Source:** ${det.source}\n`;
 
     return this.#text(out);
   }

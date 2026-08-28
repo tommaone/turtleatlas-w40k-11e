@@ -697,71 +697,26 @@ class TestChoiceProfileMaxOver:
 class TestDetachmentModifiers:
     """Detachment modifiers must load and have expected structure."""
 
-    def test_gk_all_9_detachments_have_modifiers(self):
-        """GK should have all 9 detachments with modifier choices.
-
-        Note: AUGURIUM TASK FORCE has empty choices (no engine-modelable modifiers)
-        so it is correctly excluded from the list.
-        """
-        from ranking import RankingEngine
-        eng = RankingEngine('grey-knights')
-        dets = eng.list_detachments_with_modifiers()
-        expected = {
-            'ARGENT ASSAULT', 'BANISHERS',
-            'BROTHERHOOD STRIKE', 'FIRES OF PURGATION', 'HALLOWED CONCLAVE',
-            'IMMATERIAL INTERDICTION', 'SANCTIC SPEARHEAD', 'WARPBANE TASK FORCE',
-        }
-        assert set(dets) == expected, f"GK detachments mismatch: missing={expected - set(dets)}, extra={set(dets) - expected}"
-
-    def test_ck_all_8_detachments_have_modifiers(self):
-        """CK should have all 8 detachments with modifier choices."""
-        from ranking import RankingEngine
-        eng = RankingEngine('chaos-knights')
-        dets = eng.list_detachments_with_modifiers()
-        expected = {
-            'BASTIONS OF TYRANNY', 'HUNTING WARPACK', 'ICONOCLAST FIEFDOM',
-            'HELHUNT LANCE', 'HOUNDPACK LANCE', 'LORDS OF DREAD',
-            'TRAITORIS LANCE', 'INFERNAL LANCE',
-        }
-        assert set(dets) == expected, f"CK detachments mismatch: missing={expected - set(dets)}, extra={set(dets) - expected}"
-
-    def test_daemon_all_9_detachments_have_modifiers(self):
-        """Daemons should have all 9 detachments with modifier choices."""
-        from ranking import RankingEngine
-        eng = RankingEngine('chaos-daemons')
-        dets = eng.list_detachments_with_modifiers()
-        expected = {
-            'DAEMONIC INCURSION', 'SHADOW LEGION', 'CAVALCADE OF CHAOS',
-            'LORDS OF THE WARP', 'WARPTIDE', 'BLOOD LEGION',
-            'SCINTILLATING LEGION', 'PLAGUE LEGION', 'LEGION OF EXCESS',
-        }
-        assert set(dets) == expected, f"Daemon detachments mismatch: missing={expected - set(dets)}, extra={set(dets) - expected}"
-
-    def test_sm_detachments_have_modifiers(self):
-        """SM should have 12 detachments with modifier choices."""
-        from ranking import RankingEngine
-        eng = RankingEngine('space-marines')
-        dets = eng.list_detachments_with_modifiers()
-        assert len(dets) >= 12, f"Expected at least 12 SM detachments with modifiers, got {len(dets)}: {dets}"
-
-    def test_each_detachment_has_at_least_one_choice(self):
-        """Every detachment must have at least one modifier choice."""
+    def test_mechanical_detachment_modifiers_retired(self):
+        """Mechanical detachment modifiers are retired — detachment == generalist."""
         from ranking import RankingEngine
         for faction in ['grey-knights', 'chaos-knights', 'chaos-daemons', 'space-marines']:
             eng = RankingEngine(faction)
-            for det in eng.list_detachments_with_modifiers():
-                mods = eng.get_detachment_modifiers(det)
-                assert len(mods) >= 1, f"{faction}/{det} has no choices"
-
-    def test_detachment_choices_have_valid_affects(self):
-        """Each modifier must affect 'dpp', 'surv', or 'mob'."""
-        from ranking import RankingEngine
-        valid = {'dpp', 'surv', 'mob'}
-        for faction in ['grey-knights', 'chaos-knights', 'chaos-daemons']:
-            eng = RankingEngine(faction)
-            for det in eng.list_detachments_with_modifiers():
-                for mod in eng.get_detachment_modifiers(det):
-                    assert mod.affects in valid, f"{faction}/{det}/{mod.name}: affects={mod.affects}"
+            # list_detachments_with_modifiers is a retired API: no mechanical mods
+            assert eng.list_detachments_with_modifiers() == [], (
+                f"{faction}: mechanical detachment modifiers must be retired"
+            )
+            # Applying a disposition-named detachment must not change DPP
+            if eng.config.dispositions:
+                det = next(iter(eng.config.dispositions))
+                base = eng.compute_ranking()
+                with_det = eng.compute_ranking(detachment=det)
+                base_fp = [(r["name"], round(r["dpp"], 6)) for r in base]
+                det_fp = [(r["name"], round(r["dpp"], 6)) for r in with_det]
+                assert det_fp == base_fp, (
+                    f"{faction}/{det}: detachment changed DPP — mechanical "
+                    f"modifiers must be retired (2026-08-27)"
+                )
 
 
 # ---------------------------------------------------------------------------

@@ -29,7 +29,7 @@ This is an unofficial, non-commercial fan project. Warhammer 40,000 is a registe
 
 | Subfolder | What it is | See |
 |-----------|-----------|-----|
-| `data/config/` | Detachment modifiers per faction | `data/config/AGENTS.md` |
+| `data/config/` | Faction configs (supported, meta profiles, dispositions — detachment modifiers RETIRED) | `data/config/AGENTS.md` |
 | `engine/` | DPP engine, ranking, weapon loader | `engine/AGENTS.md` |
 | `resources/` | Guardrails, experts, non-DPP value | `resources/AGENTS.md` |
 | `adapter/` | BSData / MFM parsers | *code comments* |

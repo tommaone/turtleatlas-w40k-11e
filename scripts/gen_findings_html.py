@@ -150,52 +150,19 @@ def compute_tiers_entry(fname, data, n_units):
 
 
 def detachment_view(fid, max_points=2000):
-    """Best-detachment roster index per disposition (war plan P3 dual view).
+    """DEPRECATED — heuristically superseded.
 
-    For each configured detachment: full ranking pass, roster index per
-    mission; keep the BEST detachment per mission. Returns None when the
-    faction has no detachment_modifiers.json (generalist-only view).
+    Mechanical best-detachment scoring is retired (decision 2026-08-27): most
+    detachment buffs cannot be modelled as numeric DPP/SURV/MOB modifiers, and
+    the mechanical `detachment_modifiers.json` carried fabricated rules.
+    Detachment strength is now captured as heuristic expert ratings (parsed in
+    `parse_expert` → EXPERT.detachments, sorted Strong/Moderate/Situational/
+    Weak), never as a fake engine score.
 
-    Returns {'missions': {m: score}, 'overall': x,
-             'best': {m: detachment_name}} — engine-derived numbers only.
+    Retained only for backward-compatible call sites; always returns None so
+    army tiers stay generalist (rules-free).
     """
-    det_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-                            'data', 'config', fid, 'detachment_modifiers.json')
-    if not os.path.isfile(det_path):
-        return None
-    with open(det_path, encoding='utf-8') as f:
-        dets = json.load(f).get('detachments') or {}
-    # Verified-sources gate (war plan P3): auto-generated MFM stubs carry
-    # placeholder no-op modifiers — they are NOT detachment rules. A faction
-    # whose every entry is auto-generated stays generalist-only.
-    if dets and all(
-        'auto-generated' in str(d.get('_source', '')).lower()
-        for d in dets.values()
-    ):
-        return None
-    best = None
-    for det_name in sorted(dets):
-        try:
-            data, _n = build_data(fid, max_points=max_points,
-                                  detachment=det_name)
-            scores = extract_army_scores(data)
-        except Exception as e:
-            print(f'  ! detachment {det_name} failed for {fid}: {e}')
-            continue
-        if best is None:
-            best = {m: (s, det_name) for m, s in scores.items()}
-            continue
-        for m, s in scores.items():
-            if s > best[m][0]:
-                best[m] = (s, det_name)
-    if best is None:
-        return None
-    missions = {m: round(s, 1) for m, (s, _) in best.items()}
-    return {
-        'missions': missions,
-        'overall': round(sum(s for s, _ in best.values()) / len(best), 1),
-        'best': {m: d for m, (_, d) in best.items()},
-    }
+    return None
 
 
 def _tier_of(score, ranked_scores):
@@ -436,9 +403,10 @@ def _meta_weights_display(supported_configs, slug):
 def build_data(faction, max_points=2000, detachment=None):
     """Compute rankings per meta preset for a faction.
 
-    detachment: optional detachment name — when set, the faction's
-    detachment_modifiers.json entry is applied to every ranking pass
-    (war plan P3 detachment-aware view). None = rules-free generalist view.
+    detachment: optional detachment name — when set, the ranking pass is
+    run with that detachment's disposition filter. Mechanical detachment
+    modifiers are retired (2026-08-27), so detachment-aware ranks equal the
+    generalist baseline. None = rules-free generalist view.
 
     Returns (DATA, n_ranked_units) where DATA['meta'][meta][mission] = [unit,...]
     and DATA['meta_info'] lists each preset's slug, display label, and the
@@ -734,9 +702,10 @@ if __name__ == '__main__':
         if not args.faction and fid not in EXCLUDE_FROM_TIERS:
             tiers = tiers or {}
             entry = compute_tiers_entry(fname, data, n_units)
-            # Detachment-aware dual view (war plan P3): engine-computed
-            # best-detachment scores. Only for factions with verified
-            # detachment_modifiers.json; generalist fields stay untouched.
+            # Detachment strength is captured heuristically in expert files
+            # (SEE EXPERT.detachments, sorted Strong/Moderate/Situational/Weak),
+            # NOT as a fabricated engine score. Army tiers stay generalist /
+            # rules-free. detachment_view() always returns None (retired).
             det = detachment_view(fid, max_points=max_pts)
             if det is not None:
                 entry['det'] = det
