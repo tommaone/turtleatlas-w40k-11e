@@ -988,3 +988,14 @@ lore. Je to KRÁTKA anglická parafráza mechaniky (`_paraphrase: true`,
 („Cabal Of Chaos", „PSYKER", „FACTION: …") sa zachovávajú PRESNE — sú to dáta,
 nie próza. Žiadne GW-specifické frázovanie (vlastné slová, nie GW wording),
 žiadne príbehové vety. Odporúčanie je vždy traceable na L0 `_source`.
+
+## L2 review workbook je HTML; generuje sa deterministicky (2026-08-28)
+Užívateľ číta HTML, nie markdown ("ostatne formaty sa nahovno citaju"). Review
+podklad pre L2 je JEDEN self-contained súbor `docs/detachment-l2-review.html`
+(28 frakcií, 346 kariet, enhancements z merged MFM, L2 polia prázdne do review).
+Generátor: `scripts/gen_detach_review_html.py` — `render()` je čistá funkcia
+repo dát (deterministická; Tier 6 test drží commited HTML == render()+newline,
+takže sa nesmie editovať ručne). JSON súbory ostávajú source of truth.
+Slugs: HTML generátor IMPORTUJE `slugify` z generate_detachments_heuristic.py
+(jediný zdroj) — len tests/test_detachment_validation.py má ešte vlastnú kópiu
+(prípadná konsolidácia = samostatný ticket).

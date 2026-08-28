@@ -21,6 +21,7 @@ from pathlib import Path
 import pytest
 
 from engine.ranking import RankingEngine
+from scripts.gen_detach_review_html import OUT_PATH, render
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 CONFIG_DIR = REPO_ROOT / "data" / "config"
@@ -441,3 +442,40 @@ class TestL2Enrichment:
             assert entry.get("rule"), (
                 f"{faction}/{slug}: reviewed entry missing rule"
             )
+
+# ═══════════════════════════════════════════════════════════════════════
+# TIER 6: HTML REVIEW WORKBOOK (browser-readable view of the review state)
+# ═══════════════════════════════════════════════════════════════════════
+
+class TestL2ReviewHtml:
+    """docs/detachment-l2-review.html is generated, deterministic, complete.
+
+    The JSON files remain the source of truth; the HTML is the browser view
+    the human reviewer reads. Regenerate with
+    `python3 scripts/gen_detach_review_html.py`.
+    """
+
+    def test_workbook_is_current(self):
+        """Committed HTML must equal render() output — no hand edits."""
+        assert OUT_PATH.exists()
+        assert OUT_PATH.read_text() == render() + "\n", (
+            "detachment-l2-review.html is stale — run "
+            "python3 scripts/gen_detach_review_html.py"
+        )
+
+    def test_workbook_is_deterministic(self):
+        """Two renders are byte-identical."""
+        assert render() == render()
+
+    def test_workbook_covers_all_detachments(self):
+        """Every faction section and every detachment card is present."""
+        doc = render()
+        for faction in FACTIONS:
+            dets = _heuristic_detachments(faction)
+            if not dets:
+                continue
+            assert f"<section id='{faction}'>" in doc, f"{faction}: section missing"
+            for slug in dets:
+                assert f"id='{faction}-{slug}'" in doc, (
+                    f"{faction}/{slug}: card missing from workbook"
+                )

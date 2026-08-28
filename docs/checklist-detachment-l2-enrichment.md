@@ -1,9 +1,12 @@
 # Checklist — L2 Detachment Expert Review (346 detachmentov, 28 frakcií)
 
+> **Browser view:** `docs/detachment-l2-review.html` (generuje
+> `scripts/gen_detach_review_html.py`, Tier 6 test drží current).
 > **Účel:** podklad pre ľudský review gate (turtle-dojo / Marcel rule: každý kompilát
 > overí človek). Keď je frakcia odsúhlasená, reviewner otočí `_meta.human_reviewed: true`.
 > Automatické zámky: `tests/test_detachment_validation.py` — Tier 4 (scaffold L0-traceable)
-> + Tier 5 (L2 enrichment gate). Zelená sada = skeleton; review je ľudská robota.
+> + Tier 5 (L2 enrichment gate) + Tier 6 (HTML workbook current). Zelená sada = skeleton;
+> review je ľudská robota.
 
 ## Ako použiť tento dokument
 
