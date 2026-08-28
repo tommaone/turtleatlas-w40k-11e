@@ -305,6 +305,14 @@ L2_RULE_TEXT_MAX = 600
 L2_SOURCE_TOKENS = ("wahapedia", "newrecruit", "mfm", "merged", "battle report")
 
 
+def _traces_to_source(notes: str) -> bool:
+    """Traceable = cites an L0/analyst source: a URL or a known token."""
+    lowered = notes.lower()
+    return "http://" in lowered or "https://" in lowered or any(
+        t in lowered for t in L2_SOURCE_TOKENS
+    )
+
+
 def _meta(faction: str) -> dict:
     p = CONFIG_DIR / faction / "detachments.json"
     if not p.exists():
@@ -368,12 +376,13 @@ class TestL2Enrichment:
     @pytest.mark.parametrize("faction", FACTIONS)
     def test_strength_notes_traceable(self, faction):
         for slug, entry in _heuristic_detachments(faction).items():
-            notes = (entry.get("strength_notes") or "").lower()
+            notes = entry.get("strength_notes") or ""
             if not notes:
                 continue
-            assert any(t in notes for t in L2_SOURCE_TOKENS), (
+            assert _traces_to_source(notes), (
                 f"{faction}/{slug}: strength_notes must reference an L0 source "
-                f"(one of {L2_SOURCE_TOKENS}) — opinion without source is fabrication"
+                f"(URL or one of {L2_SOURCE_TOKENS}) — opinion without source "
+                f"is fabrication"
             )
 
     @pytest.mark.parametrize("faction", FACTIONS)

@@ -999,3 +999,15 @@ takže sa nesmie editovať ručne). JSON súbory ostávajú source of truth.
 Slugs: HTML generátor IMPORTUJE `slugify` z generate_detachments_heuristic.py
 (jediný zdroj) — len tests/test_detachment_validation.py má ešte vlastnú kópiu
 (prípadná konsolidácia = samostatný ticket).
+
+## L2 draft = workspace scratch, nikdy nie ako commited data (2026-08-28)
+LLM drafty pre L2 review (parafrázy, strength proposal) patria do
+`workspace/detachment-drafts/` (gitignored, L4-ekvivalent) s hlavičkou
+`status: LLM DRAFT — NOT human-verified`. Do `data/config/*/detachments.json`
+sa dostanú AŽ po ľudskom overení s `human_reviewed: true` (Tier 5 atomický
+gate). Traceability strength_notes: povoľuje URL ALEBO token
+(wahapedia/newrecruit/mfm/merged/battle report) — `_traces_to_source()`.
+Potvrdené L0 zdroje pre 11e detachment pravidlá: newrecruit.eu wiki (verbatím),
+40k.app (cross-check), tabletopbattles.com/goonhammer (expert analýza).
+Pozor: staršie community zdroje (wargamer 2026-06) môžu mať stale disposície —
+NewRecruit 40k.app + MFM vyhrali (Infernal Lance = PRIORITY ASSETS).
