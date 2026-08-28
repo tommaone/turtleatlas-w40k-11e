@@ -716,36 +716,74 @@ print(json.dumps(output))
   #handleGetDetachment(args) {
     const fd = this.#getFactionData(args?.faction);
     if (fd.error) return this.#text(fd.error);
-    if (!fd.detachmentModifiers || !fd.detachmentModifiers.detachments) {
+
+    const query = (args?.name || "").trim().toUpperCase();
+
+    // Verified basics come from MFM merged detachments[] (L0).
+    // Heuristic ratings come from detachments.json (L2, interpretation).
+    const mergedDets = fd.mergedUnits?.detachments || [];
+    const heuristic = fd.detachmentModifiers?.detachments || {};
+
+    const slugify = (s) => (s || "").trim().toLowerCase()
+      .replace(/ /g, "-").replace(/['\u2019]/g, "");
+    // Query normalisation: strip spaces, hyphens AND apostrophes so
+    // "Cabal Of Chaos", "cabal-of-chaos", "Mont’ka" and "CABAL" all match.
+    const norm = (s) => (s || "").toUpperCase().replace(/[\s-'\u2019]/g, "");
+    const nQuery = norm(query);
+
+    const mergedByKey = {};
+    for (const d of mergedDets) mergedByKey[slugify(d.name)] = d;
+
+    // Match heuristic key first, then merged slug / merged name substring.
+    const hKey = Object.keys(heuristic).find(k =>
+      norm(k) === nQuery || norm(k).includes(nQuery) || nQuery.includes(norm(k))
+    );
+    const mergedMatch = mergedDets.find(d =>
+      norm(d.name).includes(nQuery) || nQuery.includes(norm(d.name))
+    );
+    const mKey = Object.keys(mergedByKey).find(k =>
+      norm(k) === nQuery || norm(k).includes(nQuery) || nQuery.includes(norm(k))
+    );
+    const merged = mergedByKey[mKey] || mergedMatch || null;
+
+    if (!hKey && !merged) {
+      const names = [...new Set([
+        ...Object.keys(heuristic),
+        ...mergedDets.map(d => slugify(d.name)),
+      ])].sort().join(", ");
       return this.#text(
-        `No detachment ratings for "${args?.faction || this.defaultFaction}". ` +
-        `Mechanical detachment modifiers are retired (2026-08-27) — detachment ` +
-        `strength is a heuristic, not an engine score. See the faction's expert ` +
-        `file for heuristic detachment ratings.`
+        `Detachment not found. Available (${names.split(", ").length}): ${names}`
       );
     }
-    const query = (args?.name || "").toUpperCase().trim();
-    const detachments = fd.detachmentModifiers.detachments || {};
 
-    // Find matching detachment
-    const detKey = Object.keys(detachments).find(k =>
-      k.toUpperCase().includes(query) || query.includes(k.toUpperCase())
-    );
-    if (!detKey) {
-      const names = Object.keys(detachments).join(", ");
-      return this.#text(`Detachment not found. Available: ${names}`);
+    const det = heuristic[hKey] || {};
+    const title = det.name || (merged && merged.name) || hKey
+      || (merged && slugify(merged.name));
+    let out = `# ${title}\n\n`;
+
+    // Verified basics (MFM / engine data — L0). Community-maintained points
+    // and objective, NOT rule text.
+    out += `> **Verified basics (MFM data):** points, objective and enhancements `;
+    out += `below are L0 community data, not engine scores.\n`;
+    out += `> **Heuristic ratings (interpretation):** strength/disposition fields `;
+    out += `are expert interpretation; mechanical detachment modifiers are retired `;
+    out += `(2026-08-27) — base ranking stays generalist and rules-free.\n\n`;
+
+    const dp = (merged && merged.dp) || det.dp_cost;
+    if (dp) out += `**DP Cost:** ${dp}\n`;
+    if (merged && merged.objective) out += `**Objective:** ${merged.objective}\n`;
+    if (merged && merged.enhancements && merged.enhancements.length) {
+      const enh = merged.enhancements
+        .map(e => `${e.name} (${e.points}pts)`)
+        .join("; ");
+      out += `**Enhancements:** ${enh}\n`;
     }
 
-    const det = detachments[detKey];
-    let out = `# ${detKey}\n\n`;
-    out += `> **Classification:** heuristic — base ranking scores below are `;
-    out += `generalist and rules-free. This is interpretation, not engine output.\n\n`;
-    if (det.dp_cost) out += `**DP Cost:** ${det.dp_cost}\n`;
-    if (det.disposition) out += `**Disposition:** ${det.disposition}\n`;
-    if (det.strength) out += `**Strength:** ${det.strength}\n`;
-    if (det.best_for && det.best_for.length) {
-      out += `**Best for:** ${det.best_for.join("; ")}\n`;
-    }
+    const hFields = [];
+    if (det.disposition) hFields.push(`**Disposition:** ${det.disposition}`);
+    if (det.strength) hFields.push(`**Strength:** ${det.strength}`);
+    if (det.best_for && det.best_for.length) hFields.push(`**Best for:** ${det.best_for.join("; ")}`);
+    if (hFields.length) out += `\n${hFields.join("\n")}\n`;
     if (det.strength_notes) out += `\n**Why:** ${det.strength_notes}\n`;
     if (det.limitations && det.limitations.length) {
       out += `\n**Limitations:**\n${det.limitations.map(l => `- ${l}`).join("\n")}\n`;
