@@ -488,3 +488,50 @@ class TestL2ReviewHtml:
                 assert f"id='{faction}-{slug}'" in doc, (
                     f"{faction}/{slug}: card missing from workbook"
                 )
+
+    def test_drafts_overlay_existing_slugs_only(self):
+        """LLM drafts (workspace/, gitignored) may only overlay scaffold slugs.
+
+        A draft that invents a detachment slug would corrupt the review state.
+        Gracefully passes when no drafts exist yet.
+        """
+        for faction in FACTIONS:
+            p = REPO_ROOT / "workspace" / "detachment-drafts" / f"{faction}.draft.json"
+            if not p.exists():
+                continue
+            scaffold = _heuristic_detachments(faction)
+            draft = json.loads(p.read_text()).get("detachments", {})
+            unknown = set(draft) - set(scaffold)
+            assert not unknown, (
+                f"{faction}: draft invents slugs not in scaffold: {sorted(unknown)}"
+            )
+
+    def test_draft_l2_fields_match_scaffold(self):
+        """Draft entries carry only L2 expert fields on top of scaffold keys
+        (plus `rule` with `_paraphrase`/`_lang`), and rule.text <= 600 chars."""
+        from scripts.gen_detach_review_html import L2_EXPERT_FIELDS, DRAFT_DIR
+
+        for p in sorted(DRAFT_DIR.glob("*.draft.json")) if DRAFT_DIR.exists() else []:
+            faction = p.name.removesuffix(".draft.json")
+            scaffold = _heuristic_detachments(faction)
+            if not scaffold:
+                continue
+            data = json.loads(p.read_text())
+            allowed = {"_slug", "name", "dp_cost", "disposition", "objective", "source"} | L2_EXPERT_FIELDS
+            for slug, entry in data.get("detachments", {}).items():
+                assert slug in scaffold, f"{faction}/{slug}: not in scaffold"
+                unknown = set(entry) - allowed
+                assert not unknown, (
+                    f"{faction}/{slug}: draft field outside scaffold+L2: {sorted(unknown)}"
+                )
+                rule = entry.get("rule", {})
+                if rule:
+                    assert rule.get("_paraphrase") is True, (
+                        f"{faction}/{slug}: draft rule must flag _paraphrase"
+                    )
+                    assert rule.get("_lang") == "en", (
+                        f"{faction}/{slug}: draft rule must be _lang 'en'"
+                    )
+                    assert len(rule.get("text", "")) <= 600, (
+                        f"{faction}/{slug}: draft rule.text > 600 chars"
+                    )

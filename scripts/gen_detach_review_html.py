@@ -29,6 +29,7 @@ from scripts.generate_detachments_heuristic import slugify
 
 CONFIG_DIR = REPO_ROOT / "data" / "config"
 MERGED_DIR = REPO_ROOT / "data" / "merged"
+DRAFT_DIR = REPO_ROOT / "workspace" / "detachment-drafts"
 OUT_PATH = REPO_ROOT / "docs" / "detachment-l2-review.html"
 
 L2_STRENGTHS = {"Strong", "Moderate", "Situational", "Weak"}
@@ -46,6 +47,7 @@ _CSS = """
   .badge.disp{color:#7ee787}
   .badge.done{color:#fff;background:#238636;border-color:#238636}
   .badge.pending{color:#d29922;border-color:#d29922}
+  .badge.draft{color:#a371f7;border-color:#a371f7;background:#2a1f47}
   .card{padding:14px 16px;background:#161b22;border:1px solid #30363d;border-radius:8px;margin:10px 0}
   .cardhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
   .slug{font-family:ui-monospace,SFMono-Regular,monospace;font-size:.8em;color:#8b949e}
@@ -179,6 +181,9 @@ L2_FIELDS = [
 ]
 
 
+L2_EXPERT_FIELDS = {f for f, _ in L2_FIELDS}
+
+
 def _enhancements_for(faction: str, slug: str) -> list[dict]:
     merged_path = MERGED_DIR / f"{faction}.json"
     if not merged_path.exists():
@@ -189,12 +194,29 @@ def _enhancements_for(faction: str, slug: str) -> list[dict]:
     return []
 
 
+def _draft_for(faction: str) -> dict:
+    """L2 drafts from workspace (gitignored, LLM drafts — never committed data).
+
+    Returns {slug: entry}. Drafts must only overlay L2 fields over the
+    committed scaffold; they may not invent detachments (Tier-6 lock)."""
+    p = DRAFT_DIR / f"{faction}.draft.json"
+    if not p.exists():
+        return {}
+    return json.loads(p.read_text()).get("detachments", {})
+
+
+def _drafted_count(draft: dict) -> int:
+    return sum(1 for e in draft.values() if any(f in e for f in L2_EXPERT_FIELDS))
+
+
 def render() -> str:
     factions = sorted(p.name for p in CONFIG_DIR.iterdir()
                       if p.is_dir() and (p / "detachments.json").exists())
     total_dets = 0
     total_reviewed_dets = 0
+    total_drafted_dets = 0
     reviewed_factions = 0
+    drafted_factions = 0
     sections = []
     matrix_rows = []
 
@@ -205,28 +227,40 @@ def render() -> str:
         faction_reviewed = bool(meta.get("human_reviewed"))
         if faction_reviewed:
             reviewed_factions += 1
+        draft = _draft_for(faction)
+        faction_drafted = bool(draft) and not faction_reviewed
+        if faction_drafted:
+            drafted_factions += 1
 
         det_cards = []
         for slug in sorted(entries, key=lambda s: (entries[s].get("dp_cost") or 99, s)):
             entry = entries[slug]
+            # L2 overlay from the workspace draft (never committed data)
+            display = {**entry, **draft.get(slug, {})}
             total_dets += 1
             entry_reviewed = faction_reviewed
             if entry_reviewed:
                 total_reviewed_dets += 1
+            elif slug in draft:
+                total_drafted_dets += 1
 
             badges = [
                 f"<span class='badge dp'>dp {entry.get('dp_cost')}</span>",
                 f"<span class='badge disp'>{_esc(entry.get('disposition', ''))}</span>",
             ]
-            badges.append(
-                "<span class='badge done'>✓ human-reviewed</span>" if entry_reviewed
-                else "<span class='badge pending'>pending review</span>"
-            )
+            if entry_reviewed:
+                badges.append("<span class='badge done'>✓ human-reviewed</span>")
+            elif slug in draft:
+                badges.append("<span class='badge draft'>DRAFT (unverified)</span>")
+            else:
+                badges.append("<span class='badge pending'>pending</span>")
 
             dl_rows = [
-                (f"objective", _esc(entry.get("objective", ""))),
-                ("source (L0)", _esc(entry.get("source", ""))),
+                (f"objective", _esc(display.get("objective", ""))),
+                ("source (L0)", _esc(display.get("source", ""))),
             ]
+            if slug in draft:
+                dl_rows.append(("draft", "<span class='badge draft'>workspace draft — verify before promoting</span>"))
             enh = _enhancements_for(faction, slug)
             if enh:
                 enh_html = " ".join(
@@ -235,16 +269,16 @@ def render() -> str:
                 )
                 dl_rows.append(("enhancements (MFM)", enh_html))
             for field, label in L2_FIELDS:
-                val = render_l2_field(entry, field)
+                val = render_l2_field(display, field)
                 if val:
                     dl_rows.append((label, val))
                 else:
-                    dl_rows.append((label, "<span class='pending'>— pending draft/review —</span>"))
+                    dl_rows.append((label, "<span class='pending'>— pending —</span>"))
 
             dl = "".join(f"<dt>{_esc(label)}</dt><dd>{value}</dd>" for label, value in dl_rows)
             det_cards.append(
                 f"<article class='card' id='{_esc(faction)}-{_esc(slug)}'>"
-                f"<div class='cardhead'><h3>{_esc(entry.get('name', slug))}</h3>"
+                f"<div class='cardhead'><h3>{_esc(display.get('name', slug))}</h3>"
                 f"<div class='badges'>{''.join(badges)}</div></div>"
                 f"<div class='slug'>{_esc(slug)}</div>"
                 f"<dl>{dl}</dl></article>"
@@ -252,18 +286,25 @@ def render() -> str:
 
         idx = _esc(meta.get("index", faction))
         anchor = faction
+        status_cell = "✓" if faction_reviewed else f"{_drafted_count(draft)}/{len(entries)}" if draft else "✗"
         matrix_rows.append(
             f"<tr><td><a href='#{anchor}'>{_esc(faction)}</a></td>"
             f"<td>{len(entries)}</td>"
-            f"<td>{'✓' if faction_reviewed else '✗'}</td></tr>"
+            f"<td>{status_cell}</td></tr>"
         )
-        reviewed_marker = " <b style='color:#7ee787'>reviewed</b>" if faction_reviewed else ""
+        reviewed_marker = " <b style='color:#7ee787'>reviewed</b>" if faction_reviewed else (
+            f" <span class='meta'>{_drafted_count(draft)}/ drafty</span>" if draft else ""
+        )
         sections.append(
             f"<section id='{anchor}'><h2>{_esc(faction)} "
             f"<span class='meta'>({len(entries)} detachments{reviewed_marker})</span></h2>"
             + "".join(det_cards) + "</section>"
         )
 
+    drafted_note = (
+        f" · {total_drafted_dets} drafted (<span class='badge draft'>DRAFT</span> = "
+        f"workspace, unverified)" if total_drafted_dets else ""
+    )
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -275,7 +316,7 @@ def render() -> str:
 <body>
 <header>
 <h1>Detachment L2 Review Workbook</h1>
-<p class="meta">generated {date.today().isoformat()} · {len(factions)} factions · {total_dets} detachments · {total_reviewed_dets} reviewed · source: scripts/gen_detach_review_html.py · JSON files remain the source of truth</p>
+<p class="meta">generated {date.today().isoformat()} · {len(factions)} factions · {total_dets} detachments · {total_reviewed_dets} reviewed{drafted_note} · source: scripts/gen_detach_review_html.py · JSON files remain the source of truth; drafts live in workspace/ (gitignored)</p>
 </header>
 
 <details open>
@@ -283,17 +324,17 @@ def render() -> str:
 <ul>
 <li>EN paraphrase of mechanics, <b>no verbatim GW rule text</b>, <b>no lore</b> — `rule.text` flags `_paraphrase: true`, `_lang: "en"` (&le;600 chars).</li>
 <li>Detachment names and keywords stay <b>exact</b> (&ldquo;Cabal Of Chaos&rdquo;, PSYKER, FACTION:&hellip;).</li>
-<li>Every fact traces to L0 <code>_source</code> (MFM / Wahapedia / NewRecruit) — no opinions without source.</li>
+<li>Every fact traces to L0 <code>_source</code> (MFM / Wahapedia / NewRecruit / analyst) — no opinions without source.</li>
 <li>strength: Strong / Moderate / Situational / Weak, always with `strength_notes` + `limitations`.</li>
-<li>Flip <code>_meta.human_reviewed: true</code> only after the whole faction file was checked; commit per faction.</li>
+<li><span class='badge draft'>DRAFT</span> = LLM draft from workspace (unverified). Verify, then promote into <code>data/config/&lt;faction&gt;/detachments.json</code> and flip <code>_meta.human_reviewed: true</code> — commit per faction.</li>
 </ul>
 </details>
 
 <h2>Status</h2>
 <table>
-<tr><th>faction</th><th>detachments</th><th>reviewed</th></tr>
+<tr><th>faction</th><th>detachments</th><th>reviewed / drafted</th></tr>
 {''.join(matrix_rows)}
-<tr><td><b>total</b></td><td><b>{total_dets}</b></td><td><b>{total_reviewed_dets}</b></td></tr>
+<tr><td><b>total</b></td><td><b>{total_dets}</b></td><td><b>{total_reviewed_dets} reviewed · {total_drafted_dets} drafted</b></td></tr>
 </table>
 
 {''.join(sections)}
