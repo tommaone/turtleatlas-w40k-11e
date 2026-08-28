@@ -1149,17 +1149,19 @@ look like facts.
       return this.#text(`Failed to read findings HTML for "${faction}".`);
     }
 
-    // Extract const DATA = {...} from script tag
-    const dataMatch = html.match(/const\s+DATA\s*=\s*(\{[\s\S]+?\});\s*const\s+WEIGHTS/);
+    // Extract const DATA = {...} from script tag. The DATA block is
+    // followed immediately by const EXPERT (not const WEIGHTS — matching
+    // WEIGHTS greedily captured DATA+EXPERT and broke JSON.parse).
+    const dataMatch = html.match(/const\s+DATA\s*=\s*(\{[\s\S]+?\});\s*const\s+EXPERT/);
     if (!dataMatch) {
       return this.#text(`Failed to parse findings HTML for "${faction}" — DATA object not found.`);
     }
 
     let data;
     try {
-      data = eval("(" + dataMatch[1] + ")");
+      data = JSON.parse(dataMatch[1]);
     } catch {
-      return this.#text(`Failed to evaluate findings data for "${faction}".`);
+      return this.#text(`Failed to evaluate findings data for "${faction}" — DATA object is not valid JSON.`);
     }
 
     if (!data || !data.meta) {
