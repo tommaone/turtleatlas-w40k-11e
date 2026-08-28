@@ -951,3 +951,32 @@ fabricated rules — "recommended loadout by detachment" was fake engine output.
 returns `[]`; findings detachment view and MCP detachment ratings read the heuristic
 `detachments.json`. Generalist baseline must stay byte-identical. Dispositions
 (supported.json `dispositions`, dp_cost) are legitimate MFM data, kept for now.
+
+## Detachment scaffold: dispositions are objective-derived, slugs strip ALL apostrophes (2026-08-28)
+`data/config/<faction>/detachments.json` (L2 heuristic scaffold) is generated
+by `scripts/generate_detachments_heuristic.py` from VERIFIED L0 only: name,
+dp_cost, objective, disposition, source. It carries NO strength/best_for until
+an expert review pass adds them with Wahapedia/NewRecruit sources (lock:
+`test_heuristic_entries_are_l0_traceable`).
+
+**Dispositions are objective-derived, not curated.** `supported.json
+dispositions` values come from the merged MFM detachment `objective`
+(`gen_config.py`: `obj.lower().replace(' ', '-')`). 41 stale hand-curated
+values drifted from the MFM revision (e.g. CK infernal-lance was "purge-the-
+foe", MFM says PRIORITY ASSETS → "priority-assets"). Lock:
+`test_dispositions_are_objective_derived` asserts every disposition equals the
+merged objective. Never hand-edit a disposition value — regenerate from MFM.
+
+**Canonical slug normalisation strips BOTH apostrophes.** Merged detachment
+names use curly U+2019 ("Mont’Ka"); the test slugifier and the MCP
+`get_detachment` query normaliser strip straight AND curly (`['\u2019]`).
+Keys are `montka`, `hurons-marauders` — not `mont’ka`. The old
+`test_disposition_keys_match_merged_detachments` advisory-skip for "known
+normalisation drift" was WRONG: the drift was a real key mismatch (curly
+apostrophe survived slugify) and is now a hard assert.
+
+**MCP `get_detachment` reads two layers.** Verified basics (DP Cost, Objective,
+Enhancements) come from merged `detachments[]` (L0, MFM); heuristic ratings
+(disposition/strength/best_for/… source) come from `detachments.json` (L2).
+The render labels both layers explicitly — never let an LLM present strength
+as engine output.
