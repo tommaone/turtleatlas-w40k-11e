@@ -283,3 +283,157 @@ class TestHeuristicScaffold:
             assert "best_for" not in entry, (
                 f"{faction}/{slug}: scaffold must not carry expert best_for"
             )
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# TIER 5: L2 ENRICHMENT (EXPERT REVIEW) GATE
+# ═══════════════════════════════════════════════════════════════════════
+
+L2_STRENGTHS = {"Strong", "Moderate", "Situational", "Weak"}
+L2_TEMPO_AXES = {"infiltration", "attrition", "stat-augment", "castle", "rush"}
+L2_SCAFFOLD_FIELDS = {
+    "_id", "_slug", "name", "dp_cost", "disposition", "objective", "source",
+}
+L2_EXPERT_FIELDS = {
+    "rule", "best_units", "scoring_units", "support_units", "hammer_units",
+    "spam", "combos", "strength", "strength_notes", "limitations", "play_style",
+}
+# Paraphrase cannot quote the (GW-copyrighted) rule text; 600 chars is more
+# than a real summary needs and far less than verbatim detachment rules.
+L2_RULE_TEXT_MAX = 600
+L2_SOURCE_TOKENS = ("wahapedia", "newrecruit", "mfm", "merged", "battle report")
+
+
+def _meta(faction: str) -> dict:
+    p = CONFIG_DIR / faction / "detachments.json"
+    if not p.exists():
+        return {}
+    return json.loads(p.read_text()).get("_meta", {})
+
+
+class TestL2Enrichment:
+    """Expert L2 fields follow the schema; reviewed files are complete.
+
+    Rules (docs/detachment-info-architecture.md §5 + AGENTS.md IP):
+      - `rule.text` is a short PARAPHRASE flagged `_paraphrase: true` — never
+        verbatim GW rule text (copyright). `affects` lists keywords/units.
+      - `strength` ∈ {Strong, Moderate, Situational, Weak} and ALWAYS ships
+        with `strength_notes` (traceable) + `limitations`.
+      - `_meta.human_reviewed: true` flips the review gate: the file must be
+        COMPLETE — every entry rated, sourced, with play_style. No partial
+        enrichment: an unreviewed file may carry no expert fields at all.
+      - best_units[].why and every `_source` must reference an L0 source.
+    """
+
+    @pytest.mark.parametrize("faction", FACTIONS)
+    def test_no_unknown_fields(self, faction):
+        allowed = L2_SCAFFOLD_FIELDS | L2_EXPERT_FIELDS
+        for slug, entry in _heuristic_detachments(faction).items():
+            unknown = set(entry) - allowed
+            assert not unknown, f"{faction}/{slug}: unknown fields {sorted(unknown)}"
+
+    @pytest.mark.parametrize("faction", FACTIONS)
+    def test_scaffold_entries_stay_l0_clean(self, faction):
+        """Unreviewed files carry scaffold fields ONLY — no half-done ratings."""
+        if _meta(faction).get("human_reviewed"):
+            return
+        for slug, entry in _heuristic_detachments(faction).items():
+            extra = set(entry) - L2_SCAFFOLD_FIELDS
+            assert not extra, (
+                f"{faction}/{slug}: unreviewed entry has L2 fields {sorted(extra)} "
+                f"— commit reviews atomically with human_reviewed=true"
+            )
+
+    @pytest.mark.parametrize("faction", FACTIONS)
+    def test_strength_requires_justification(self, faction):
+        for slug, entry in _heuristic_detachments(faction).items():
+            if "strength" not in entry:
+                continue
+            assert entry["strength"] in L2_STRENGTHS, (
+                f"{faction}/{slug}: strength {entry['strength']!r} not in {L2_STRENGTHS}"
+            )
+            notes = (entry.get("strength_notes") or "").strip()
+            assert len(notes) >= 20, (
+                f"{faction}/{slug}: strength without a real strength_notes justification"
+            )
+            lims = entry.get("limitations")
+            assert isinstance(lims, list) and lims, (
+                f"{faction}/{slug}: strength requires non-empty limitations"
+            )
+            assert all(str(l).strip() for l in lims), (
+                f"{faction}/{slug}: limitations entries must be non-empty"
+            )
+
+    @pytest.mark.parametrize("faction", FACTIONS)
+    def test_strength_notes_traceable(self, faction):
+        for slug, entry in _heuristic_detachments(faction).items():
+            notes = (entry.get("strength_notes") or "").lower()
+            if not notes:
+                continue
+            assert any(t in notes for t in L2_SOURCE_TOKENS), (
+                f"{faction}/{slug}: strength_notes must reference an L0 source "
+                f"(one of {L2_SOURCE_TOKENS}) — opinion without source is fabrication"
+            )
+
+    @pytest.mark.parametrize("faction", FACTIONS)
+    def test_rule_is_paraphrase_not_verbatim(self, faction):
+        for slug, entry in _heuristic_detachments(faction).items():
+            rule = entry.get("rule")
+            if not rule:
+                continue
+            text = (rule.get("text") or "").strip()
+            assert text, f"{faction}/{slug}: rule.text is empty"
+            assert rule.get("_paraphrase") is True, (
+                f"{faction}/{slug}: rule.text must be flagged _paraphrase: true "
+                f"(no verbatim GW rule text — AGENTS.md IP)"
+            )
+            assert len(text) <= L2_RULE_TEXT_MAX, (
+                f"{faction}/{slug}: rule.text {len(text)} chars > {L2_RULE_TEXT_MAX} "
+                f"— looks like verbatim rule text, needs paraphrase"
+            )
+            affects = rule.get("affects")
+            assert isinstance(affects, list) and affects, (
+                f"{faction}/{slug}: rule.affects must list keywords/units"
+            )
+            src = rule.get("_source")
+            assert isinstance(src, list) and src and all(s.strip() for s in src), (
+                f"{faction}/{slug}: rule._source must list L0 source URLs"
+            )
+
+    @pytest.mark.parametrize("faction", FACTIONS)
+    def test_best_units_carry_sources(self, faction):
+        for slug, entry in _heuristic_detachments(faction).items():
+            for bu in entry.get("best_units", []):
+                assert bu.get("unit"), f"{faction}/{slug}: best_units[].unit missing"
+                assert bu.get("why"), f"{faction}/{slug}: best_units[].why missing"
+                src = bu.get("_source")
+                assert isinstance(src, list) and src and all(s.strip() for s in src), (
+                    f"{faction}/{slug}: best_units[]._source missing"
+                )
+
+    @pytest.mark.parametrize("faction", FACTIONS)
+    def test_reviewed_file_is_complete(self, faction):
+        if not _meta(faction).get("human_reviewed"):
+            pytest.skip(f"{faction}: not yet human-reviewed")
+        for slug, entry in _heuristic_detachments(faction).items():
+            assert entry.get("strength"), f"{faction}/{slug}: reviewed entry unrated"
+            assert (entry.get("strength_notes") or "").strip(), (
+                f"{faction}/{slug}: reviewed entry missing strength_notes"
+            )
+            assert entry.get("limitations"), (
+                f"{faction}/{slug}: reviewed entry missing limitations"
+            )
+            assert entry.get("best_units"), (
+                f"{faction}/{slug}: reviewed entry missing best_units"
+            )
+            ps = entry.get("play_style") or {}
+            assert (ps.get("summary") or "").strip(), (
+                f"{faction}/{slug}: reviewed entry missing play_style.summary"
+            )
+            assert ps.get("tempo_axis") in L2_TEMPO_AXES, (
+                f"{faction}/{slug}: tempo_axis {ps.get('tempo_axis')!r} "
+                f"not in {L2_TEMPO_AXES}"
+            )
+            assert entry.get("rule"), (
+                f"{faction}/{slug}: reviewed entry missing rule"
+            )
