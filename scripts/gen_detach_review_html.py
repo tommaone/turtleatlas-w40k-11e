@@ -33,7 +33,6 @@ DRAFT_DIR = REPO_ROOT / "workspace" / "detachment-drafts"
 OUT_PATH = REPO_ROOT / "docs" / "detachment-l2-review.html"
 
 L2_STRENGTHS = {"Strong", "Moderate", "Situational", "Weak"}
-L2_TEMPO_AXES = {"infiltration", "attrition", "stat-augment", "castle", "rush"}
 
 _CSS = """
   body{font-family:system-ui,-apple-system,sans-serif;max-width:1100px;margin:0 auto;padding:30px 20px;background:#0d1117;color:#c9d1d9;line-height:1.5}
@@ -93,91 +92,26 @@ def render_rule(entry: dict) -> str:
     return "<br>".join(parts)
 
 
-def render_best_units(entry: dict) -> str:
-    items = entry.get("best_units", [])
-    if not items:
-        return ""
-    lines = []
-    for bu in items:
-        why = bu.get("why", "")
-        src = bu.get("_source") or []
-        srcs = ", ".join(_esc(s) for s in src)
-        lines.append(
-            f"<b>{_esc(bu.get('unit', '?'))}</b>{' — ' + _esc(why) if why else ''}"
-            f"{' <span class=\'meta\'>[' + srcs + ']</span>' if srcs else ''}"
-        )
-    return "<br>".join(lines)
-
-
-def render_spam(entry: dict) -> str:
-    items = entry.get("spam", [])
-    if not items:
-        return ""
-    lines = []
-    for sp in items:
-        why = sp.get("why", "")
-        lines.append(
-            f"{_esc(sp.get('count', ''))}× <b>{_esc(sp.get('unit', '?'))}</b>"
-            f"{' with ' + _esc(sp.get('with', '')) if sp.get('with') else ''}"
-            f"{' — ' + _esc(why) if why else ''}"
-        )
-    return "<br>".join(lines)
-
-
-def render_combos(entry: dict) -> str:
-    items = entry.get("combos", [])
-    if not items:
-        return ""
-    lines = []
-    for cb in items:
-        effects = cb.get("effects", "")
-        lines.append(
-            f"<b>{_esc(cb.get('combo', ''))}</b>"
-            f"{' — ' + _esc(effects) if effects else ''}"
-        )
-    return "<br>".join(lines)
-
-
 def render_l2_field(entry: dict, field: str) -> str:
     """Render one L2 field's value for an entry; '' means not present."""
     if field == "rule":
         return render_rule(entry)
-    if field == "best_units":
-        return render_best_units(entry)
-    if field == "spam":
-        return render_spam(entry)
-    if field == "combos":
-        return render_combos(entry)
     val = entry.get(field)
     if val is None:
         return ""
     if isinstance(val, list):
         return _fmt_list(val)
-    if isinstance(val, dict):
-        if field == "play_style":
-            parts = []
-            if val.get("summary"):
-                parts.append(_esc(val["summary"]))
-            if val.get("tempo_axis"):
-                parts.append(f"<span class='meta'>tempo: {_esc(val['tempo_axis'])}</span>")
-            return "<br>".join(parts)
-        return _esc(json.dumps(val, ensure_ascii=False))
     return _esc(val)
 
 
-# canonical L2 field order + human labels
+# canonical L2 field order + human labels — STATIC FACTS only (lego bricks).
+# Unit roles, combos, play_style, army tips are composed LIVE by the LLM from
+# L0-L3 at query time; they are never stored in L2 (distillate-of-distillate).
 L2_FIELDS = [
     ("rule", "Rule (paraphrase)"),
-    ("best_units", "Best units"),
-    ("scoring_units", "Scoring units"),
-    ("support_units", "Support units"),
-    ("hammer_units", "Hammer units"),
-    ("spam", "Spam / leaders"),
-    ("combos", "Combos (internal)"),
     ("strength", "Strength"),
     ("strength_notes", "Strength notes"),
     ("limitations", "Limitations"),
-    ("play_style", "Play style"),
 ]
 
 

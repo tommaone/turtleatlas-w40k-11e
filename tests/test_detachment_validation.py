@@ -291,13 +291,14 @@ class TestHeuristicScaffold:
 # ═══════════════════════════════════════════════════════════════════════
 
 L2_STRENGTHS = {"Strong", "Moderate", "Situational", "Weak"}
-L2_TEMPO_AXES = {"infiltration", "attrition", "stat-augment", "castle", "rush"}
 L2_SCAFFOLD_FIELDS = {
     "_id", "_slug", "name", "dp_cost", "disposition", "objective", "source",
 }
 L2_EXPERT_FIELDS = {
-    "rule", "best_units", "scoring_units", "support_units", "hammer_units",
-    "spam", "combos", "strength", "strength_notes", "limitations", "play_style",
+    # Static L2 facts only (lego bricks). Unit roles, combos, play_style and
+    # army tips are composed LIVE from L0-L3 at query time — never stored here
+    # (distillate-of-distillate = knowledge base poison).
+    "rule", "strength", "strength_notes", "limitations",
 }
 # Paraphrase cannot quote the (GW-copyrighted) rule text; 600 chars is more
 # than a real summary needs and far less than verbatim detachment rules.
@@ -329,9 +330,11 @@ class TestL2Enrichment:
       - `strength` ∈ {Strong, Moderate, Situational, Weak} and ALWAYS ships
         with `strength_notes` (traceable) + `limitations`.
       - `_meta.human_reviewed: true` flips the review gate: the file must be
-        COMPLETE — every entry rated, sourced, with play_style. No partial
-        enrichment: an unreviewed file may carry no expert fields at all.
-      - best_units[].why and every `_source` must reference an L0 source.
+        COMPLETE — every entry rated and sourced. No partial enrichment: an
+        unreviewed file may carry no expert fields at all.
+      - L2 is static FACTS only. Unit roles/combos/play_style (best_units,
+        scoring_units, support_units, hammer_units, spam, combos, play_style)
+        are NOT stored — the LLM composes them live from L0-L3 bricks.
     """
 
     @pytest.mark.parametrize("faction", FACTIONS)
@@ -415,17 +418,6 @@ class TestL2Enrichment:
             )
 
     @pytest.mark.parametrize("faction", FACTIONS)
-    def test_best_units_carry_sources(self, faction):
-        for slug, entry in _heuristic_detachments(faction).items():
-            for bu in entry.get("best_units", []):
-                assert bu.get("unit"), f"{faction}/{slug}: best_units[].unit missing"
-                assert bu.get("why"), f"{faction}/{slug}: best_units[].why missing"
-                src = bu.get("_source")
-                assert isinstance(src, list) and src and all(s.strip() for s in src), (
-                    f"{faction}/{slug}: best_units[]._source missing"
-                )
-
-    @pytest.mark.parametrize("faction", FACTIONS)
     def test_reviewed_file_is_complete(self, faction):
         if not _meta(faction).get("human_reviewed"):
             pytest.skip(f"{faction}: not yet human-reviewed")
@@ -436,17 +428,6 @@ class TestL2Enrichment:
             )
             assert entry.get("limitations"), (
                 f"{faction}/{slug}: reviewed entry missing limitations"
-            )
-            assert entry.get("best_units"), (
-                f"{faction}/{slug}: reviewed entry missing best_units"
-            )
-            ps = entry.get("play_style") or {}
-            assert (ps.get("summary") or "").strip(), (
-                f"{faction}/{slug}: reviewed entry missing play_style.summary"
-            )
-            assert ps.get("tempo_axis") in L2_TEMPO_AXES, (
-                f"{faction}/{slug}: tempo_axis {ps.get('tempo_axis')!r} "
-                f"not in {L2_TEMPO_AXES}"
             )
             assert entry.get("rule"), (
                 f"{faction}/{slug}: reviewed entry missing rule"
