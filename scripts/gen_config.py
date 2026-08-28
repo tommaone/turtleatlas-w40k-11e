@@ -239,7 +239,12 @@ def gen_supported_json(faction_slug, data):
         det_name = det.get("name", "")
         obj = det.get("objective", "")
         if det_name and obj:
-            det_key = det_name.lower().replace(" ", "-").replace("'", "").replace("'", "")
+            # Strip BOTH straight (') and curly (') apostrophes — merged MFM
+            # names use curly (e.g. "Mont'Ka"); old keys were straight.
+            det_key = (
+                det_name.lower().replace(" ", "-")
+                .replace("'", "").replace("\u2019", "")
+            )
             disp_key = obj.lower().replace(" ", "-")
             dispositions[det_key] = disp_key
 
