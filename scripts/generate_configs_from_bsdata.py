@@ -11,6 +11,7 @@ Usage:
 """
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -72,10 +73,18 @@ DECORATIVE_PREFIXES = [
 
 def strip_bsdata_prefixes(name: str) -> str:
     """Strip BSData cosmetic prefixes from weapon names.
-    
+
     Handles:
     - Count prefixes: "Two X", "2 X", "3 X" etc. → "X"
     - Decorative keywords: "Plague heavy bolter" → "heavy bolter" (Death Guard)
+
+    NOTE: Striping a 'plague ' prefix from 'Plague flail' is WRONG for the
+    Great Unclean One — 'Plague flail' IS the real catalog weapon there,
+    and the stripped 'flail' silently resolves to the WRONG profile
+    ('Bloodflail' in chaos-daemons, 'Flail of corruption' in death-guard).
+    Callers that know the unit's merged weapons MUST use
+    normalize_for_catalog(), which gates the decorative strip on whether
+    the full name already matches a merged weapon.
     """
     n = name.strip()
     if n.lower().startswith("two "):
@@ -111,11 +120,34 @@ def expand_two_prefix(weapons: list[str], merged_weapons: dict[str, set[str]] | 
 
 def normalize_for_catalog(name: str, merged_weapons: dict[str, set[str]] | None = None) -> str:
     """Normalize a weapon name for engine lookup.
-    
+
     Strips 'Two ' prefix, profile suffixes, and plural 's' if singular exists.
     Result matches catalog keys.
+
+    Decorative prefixes are stripped ONLY when the full name is NOT itself a
+    merged weapon of the unit. 'Plague flail' (Great Unclean One) survives
+    intact; a purely cosmetic 'Plague heavy bolter' still normalizes to
+    'heavy bolter'. Without the gate, 'Plague flail' → 'flail' resolves to a
+    different real weapon ('Bloodflail', 'Flail of corruption').
     """
-    n = strip_bsdata_prefixes(name)
+    n = name.strip()
+    # Count prefixes first — these are wrappers with wrong stats, ALWAYS strip.
+    n = re.sub(r'^\d+\s+', '', n)
+    if n.lower().startswith("two "):
+        n = n[4:]
+    # Decorative prefixes: gate on the unit's merged weapons.
+    if merged_weapons is not None:
+        all_weapons = {w.lower()
+                       for w in merged_weapons.get("ranged", set())
+                       | merged_weapons.get("melee", set())}
+        n_lower = n.lower()
+        for prefix in DECORATIVE_PREFIXES:
+            pfx = prefix + " "
+            if n_lower.startswith(pfx):
+                if all_weapons and n_lower in all_weapons:
+                    break  # 'Plague flail' is the real weapon — keep it.
+                n = n[len(pfx):].strip()
+                break  # only strip one level
     n = normalize_weapon_name(n)
     # BSData uses "cannons" but catalog has "cannon" — strip trailing 's' ONLY
     # when the singular form is an exact catalog weapon name. A loose substring
@@ -274,44 +306,32 @@ def generate_character_config(unit_name: str, bsdata_constraint: dict,
     for build in builds:
         fixed_r = expand_two_prefix(list(build.get("fixed_ranged", [])), merged_weapons)
         fixed_m = expand_two_prefix(list(build.get("fixed_melee", [])), merged_weapons)
-        rc_groups = build.get("ranged_choices", [])
-        mc_groups = build.get("melee_choices", [])
-        
-        # Keep groups intact — each group is an independent SLOT
-        all_ranged_choices = []
-        all_melee_choices = []
-        
-        for rc in rc_groups:
-            all_ranged_choices.append(normalize_choice_group(rc, merged_weapons))
-        
-        for mc in mc_groups:
-            all_melee_choices.append(normalize_choice_group(mc, merged_weapons))
-        
-        # max_ranged/max_melee = null → engine uses product semantics
-        # (picks 1 from each group independently). This is the slot model.
-        # New format: untyped fixed weapons with types
+
+        # Canonical character build format: untyped fixed weapons (typed
+        # ranged/melee) + untyped slots (independent 1-per-slot choice
+        # groups). The legacy ranged/melee/ranged_choices/melee_choices/
+        # max_* keys are FORBIDDEN — see
+        # tests/test_characters_builds_format.py:test_every_build_has_slots_schema
+        # and scripts/migrate_characters_to_slots.py. The parser now emits
+        # slots directly, so no fallback to choice groups is needed.
         fixed = []
         fixed.extend({"name": n, "type": "ranged"} for n in fixed_r)
         fixed.extend({"name": n, "type": "melee"} for n in fixed_m)
-        
+
         raw_slots = build.get("slots", [])
         slots = []
         for slot in raw_slots:
             choices = []
             for c in slot.get("choices", []):
                 clean_name = normalize_for_catalog(c["name"], merged_weapons)
-                choices.append({"name": clean_name, "type": c.get("type", "ranged")})
+                choice = {"name": clean_name, "type": c.get("type", "ranged")}
+                if c.get("count", 1) > 1:
+                    choice["count"] = c["count"]
+                choices.append(choice)
             slots.append({"name": slot.get("name", ""), "choices": choices})
-        
+
         generated_builds.append({
             "name": build.get("name", "default"),
-            "ranged": fixed_r,
-            "melee": fixed_m,
-            "ranged_choices": all_ranged_choices,
-            "melee_choices": all_melee_choices,
-            "max_ranged": None,
-            "max_melee": None,
-            # New format: untyped slots + typed choices
             "fixed": fixed,
             "slots": slots,
         })
@@ -323,6 +343,14 @@ def generate_character_config(unit_name: str, bsdata_constraint: dict,
             "builds": generated_builds
         }
     }
+    # Carry non-build provenance keys from the existing weapon_options
+    # (e.g. '_note' on the hand-verified WE Bloodthirster). Regeneration must
+    # not silently erase a verified comment — the note is the audit trail.
+    if existing:
+        ew = existing.get("weapon_options") or {}
+        for k, v in ew.items():
+            if k != "builds" and k not in result["weapon_options"]:
+                result["weapon_options"][k] = v
     if pts_3rd is not None:
         result["pts_3rd"] = pts_3rd
     return result

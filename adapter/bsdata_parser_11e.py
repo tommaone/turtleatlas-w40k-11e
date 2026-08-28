@@ -1297,9 +1297,15 @@ class BSDataParser11e:
         elif name.lower().startswith("two "):
             count = 2
             name = name[4:]
-        # Only descend to nested selectionEntries when the option has no own
-        # profile (e.g. '2 Starcannons' wrapper). Otherwise keep its display name.
-        if self._weapon_category(se) == "ability":
+        # Only descend to nested selectionEntries for COUNT WRAPPERS — options
+        # whose display name carries a multiplicity ('2 Starcannons', 'Two
+        # magma cutters') and nests the real weapon one level down. Named
+        # composite bundles ('Axe and flail', 'Axe and lash') keep their own
+        # name: the bundle IS a catalog weapon (dual-profile in merged data),
+        # and flattening it to the first nested weapon silently rewrites the
+        # choice and loses the other components (Bloodthirster 'Axe and flail'
+        # -> 'Bloodflail', the ranged-only half).
+        if count > 1 and self._weapon_category(se) == "ability":
             def find_nested_name(entry: dict, depth: int = 0) -> str | None:
                 if depth > 4:
                     return None
@@ -1370,6 +1376,15 @@ class BSDataParser11e:
             resolved_name, _ = self._resolve_choice_option(se)
             if se_name != choice_name and resolved_name != choice_name:
                 continue
+            # Named composite bundles ('Axe and flail') keep their own name
+            # and carry multiple component weapons. Classifying by the FIRST
+            # nested profile is order-dependent and reads the wrong component
+            # (Bloodthirster 'Axe and flail' -> 'Bloodflail' as ranged, when
+            # the bundle is primarily the melee axe). Fall through to the
+            # group/name keyword heuristic below so the bundle keeps its
+            # primary type. Count wrappers still classify from their profile.
+            if se.get("selectionEntries"):
+                break
             cat = self._weapon_category_deep(se)
             if cat != "ability":
                 return cat
@@ -1927,6 +1942,19 @@ class BSDataParser11e:
             key = self._norm_name(uname)
             mw = merged_map.get(key)
             if not mw:
+                continue
+            # Units whose BSData build already carries BOTH fixed weapons AND
+            # slots are fully modeled — never collapse. The merged unit weapon
+            # list includes bundle COMPONENTS (Bloodthirster's 'Bloodflail',
+            # 'Lash of Khorne' inside the 'Axe and flail'/'Axe and lash'
+            # choices) as separate entries; the subset check below cannot see
+            # them inside a bundle choice name and would wrongly collapse the
+            # build into an all-fixed default (the Bloodthirster bug).
+            builds = udata.get("builds", [])
+            has_fixed = any(b.get("fixed") or b.get("fixed_ranged") or b.get("fixed_melee")
+                            for b in builds)
+            has_slots = any(b.get("slots") for b in builds)
+            if has_fixed and has_slots:
                 continue
             merged_names = {self._norm_name(x)
                             for x in mw["fixed_ranged"] + mw["fixed_melee"]}
