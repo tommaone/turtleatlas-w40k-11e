@@ -1,8 +1,8 @@
 """Golden structure locks — daemon big-character wargear.
 
-Pins the 16 regenerated character entries (chaos-daemons, thousand-sons,
+Pins the regenerated daemon character entries (chaos-daemons, thousand-sons,
 world-eaters, emperors-children, death-guard) against the failure modes
-fixed in commit 2909092:
+fixed in commits 2909092 + follow-up EC Keeper fix:
 
 - bundle choices ('Axe and flail', 'Axe and lash') must stay WHOLE — never
   flattened to their first nested component ('Bloodflail', 'Lash of Khorne')
@@ -41,7 +41,7 @@ TARGETS = {
     "thousand-sons": ["Lord Of Change", "Daemon Prince Of Tzeentch",
                       "Daemon Prince Of Tzeentch With Wings"],
     "world-eaters": ["Daemon Prince Of Khorne", "Daemon Prince Of Khorne With Wings"],
-    "emperors-children": ["Daemon Prince Of Slaanesh", "Daemon Prince Of Slaanesh With Wings"],
+    "emperors-children": ["Daemon Prince Of Slaanesh", "Daemon Prince Of Slaanesh With Wings", "Keeper Of Secrets"],
     "death-guard": ["Great Unclean One", "Daemon Prince Of Nurgle",
                     "Daemon Prince Of Nurgle With Wings"],
 }
@@ -139,10 +139,17 @@ class TestLordOfChange:
 
 
 class TestKeeper:
-    """Fixed witchfire + claws + sword; Wargear whip/knife slot."""
+    """Fixed witchfire + claws + sword; Wargear whip/knife slot.
 
-    def test_fixed_and_slot(self):
-        b = _builds("chaos-daemons", "Keeper Of Secrets")[0]
+    Both chaos-daemons and emperors-children. The EC entry was shadowed by a
+    stale weapon_options.json duplicate (with a non-weapon 'Shining aegis'
+    choice and mis-typed 'Living whip') — the duplicate is gone and the
+    engine MUST resolve the characters.json entry.
+    """
+
+    @pytest.mark.parametrize("faction", ["chaos-daemons", "emperors-children"])
+    def test_fixed_and_slot(self, faction):
+        b = _builds(faction, "Keeper Of Secrets")[0]
         fixed = {(f["name"], f["type"]) for f in b["fixed"]}
         assert fixed == {("Phantasmagoria", "ranged"),
                          ("Snapping claws", "melee"),
@@ -151,12 +158,20 @@ class TestKeeper:
         # Living whip is Ranged Weapons in the catalog (11ed whip attack).
         assert choices == {("Living whip", "ranged"), ("Ritual knife", "melee")}
 
-    def test_resolves_pools(self, engines, MEQ):
-        _pts, ranged, melee, _i, info = _resolve(engines["chaos-daemons"], "Keeper Of Secrets", MEQ)
+    @pytest.mark.parametrize("faction", ["chaos-daemons", "emperors-children"])
+    def test_resolves_pools(self, engines, MEQ, faction):
+        _pts, ranged, melee, _i, info = _resolve(engines[faction], "Keeper Of Secrets", MEQ)
         assert any("Phantasmagoria" in w.name for w in ranged)
         for melee_name in ("Snapping claws", "Witstealer sword"):
             assert any(w.name == melee_name for w in melee), melee_name
         assert info.get("_n_combos", 0) >= 1
+
+    def test_no_stale_weapon_options_shadow(self):
+        """Engine dispatches weapon_options BEFORE characters — a stale Keeper
+        entry there would shadow the regenerated characters.json build."""
+        with open(REPO / "data" / "config" / "emperors-children" / "weapon_options.json") as f:
+            wo = json.load(f)
+        assert "Keeper Of Secrets" not in wo
 
 
 class TestGreatUncleanOne:
