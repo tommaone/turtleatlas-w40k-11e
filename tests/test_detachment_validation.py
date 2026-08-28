@@ -106,14 +106,14 @@ class TestForceDispositions:
         assert len(_dispositions(faction)) > 0, f"{faction}: dispositions empty"
 
     def test_ck_disposition_spot_checks(self):
-        """Spot-check each CK detachment maps to the right disposition."""
+        """Spot-check each CK detachment maps to its MFM objective disposition."""
         disp = _dispositions("chaos-knights")
         expected = {
-            "infernal-lance": "purge-the-foe",
+            "infernal-lance": "priority-assets",
             "iconoclast-fiefdom": "take-and-hold",
-            "bastions-of-tyranny": "disruption",
+            "bastions-of-tyranny": "priority-assets",
             "hunting-warpack": "reconnaissance",
-            "lords-of-dread": "priority-assets",
+            "lords-of-dread": "take-and-hold",
             "traitoris-lance": "purge-the-foe",
             "helhunt-lance": "disruption",
             "houndpack-lance": "reconnaissance",
@@ -122,29 +122,29 @@ class TestForceDispositions:
             assert disp.get(det) == exp, f"{det}: expected '{exp}', got '{disp.get(det)}'"
 
     def test_get_detachments_for_disposition(self):
-        """Supported map is consistent: purge-the-foe returns infernal + traitoris lance."""
+        """Supported map is consistent: purge-the-foe returns only traitoris lance."""
         eng = RankingEngine("chaos-knights")
         assert set(eng.config.get_detachments_for_disposition("purge-the-foe")) == {
-            "infernal-lance", "traitoris-lance",
+            "traitoris-lance",
         }
 
     def test_can_detachment_play_disposition(self):
         """can_detachment_play_disposition handles kebab + space-separated names."""
         eng = RankingEngine("chaos-knights")
-        assert eng.config.can_detachment_play_disposition("infernal-lance", "purge-the-foe")
-        assert eng.config.can_detachment_play_disposition("INFERNAL LANCE", "purge-the-foe")
-        assert not eng.config.can_detachment_play_disposition("infernal-lance", "take-and-hold")
+        assert eng.config.can_detachment_play_disposition("infernal-lance", "priority-assets")
+        assert eng.config.can_detachment_play_disposition("INFERNAL LANCE", "priority-assets")
+        assert not eng.config.can_detachment_play_disposition("infernal-lance", "purge-the-foe")
 
     def test_invalid_disposition_raises(self):
         """A detachment that can't play the given disposition must raise."""
         eng = RankingEngine("chaos-knights")
         with pytest.raises(ValueError, match="cannot be used"):
-            eng.compute_ranking(detachment="INFERNAL LANCE", disposition="take-and-hold")
+            eng.compute_ranking(detachment="INFERNAL LANCE", disposition="purge-the-foe")
 
     def test_valid_disposition_succeeds(self):
         """A valid detachment+disposition combo must rank fine."""
         eng = RankingEngine("chaos-knights")
-        results = eng.compute_ranking(detachment="INFERNAL LANCE", disposition="purge-the-foe")
+        results = eng.compute_ranking(detachment="TRAITORIS LANCE", disposition="purge-the-foe")
         assert isinstance(results, list) and len(results) > 0
 
 
@@ -162,15 +162,20 @@ class TestDispositionConsistency:
         if not disp:
             pytest.skip(f"{faction}: no dispositions to check")
         merged = _merged_detachments(faction)
+        if not merged:
+            pytest.skip(f"{faction}: no merged detachments to check")
         merged_keys = {
-            d.get("name", "").strip().lower().replace(" ", "-").replace("'", "")
+            d.get("name", "").strip().lower().replace(" ", "-")
+            .replace("'", "").replace("\u2019", "")
             for d in merged
         }
         for det_key in disp:
             # det_key is already kebab-normalised e.g. "the-phaerons-armoury"
-            if merged_keys and det_key not in merged_keys:
-                # tolerate known normalisation drift — report only as advisory
-                pytest.skip(f"{faction}/{det_key}: not in merged detachment keys")
+            # (apostrophes stripped — straight AND curly)
+            assert det_key in merged_keys, (
+                f"{faction}/{det_key}: disposition key has no merged detachment "
+                f"(derived from normalize-for-catalog; update key or merged data)"
+            )
 
     @pytest.mark.parametrize("faction", FACTIONS)
     def test_merged_dp_costs_are_valid(self, faction):
@@ -179,3 +184,102 @@ class TestDispositionConsistency:
             dp = d.get("dp_cost") or d.get("dp")
             if dp is not None and int(dp) not in VALID_DP_COST:
                 pytest.fail(f"{faction}/{d.get('name')}: invalid dp_cost {dp}")
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# TIER 4: HEURISTIC DETACHMENT SCAFFOLD — detachments.json (L2)
+# ═══════════════════════════════════════════════════════════════════════
+
+def _slugify(name: str) -> str:
+    """Kebab slug matching scripts/generate_detachments_heuristic.py (apostrophes
+    stripped — straight AND curly)."""
+    return (
+        name.strip().lower().replace(" ", "-")
+        .replace("'", "").replace("\u2019", "")
+    )
+
+
+def _heuristic_detachments(faction: str) -> dict:
+    p = CONFIG_DIR / faction / "detachments.json"
+    if not p.exists():
+        return {}
+    data = json.loads(p.read_text())
+    return data.get("detachments", {})
+
+
+class TestHeuristicScaffold:
+    """detachments.json (L2 heuristic scaffold) must be complete & L0-traceable."""
+
+    @pytest.mark.parametrize("faction", FACTIONS)
+    def test_heuristic_file_exists_when_merged_detachments(self, faction):
+        """Every faction with merged detachments ships a detachments.json."""
+        if _merged_detachments(faction):
+            assert (CONFIG_DIR / faction / "detachments.json").exists(), (
+                f"{faction}: merged detachments present but no detachments.json"
+            )
+
+    @pytest.mark.parametrize("faction", FACTIONS)
+    def test_heuristic_entries_match_merged(self, faction):
+        """Every heuristic entry maps 1:1 to a merged detachment (slug + dp_cost)."""
+        merged = {_slugify(d.get("name", "")): d for d in _merged_detachments(faction)}
+        heur = _heuristic_detachments(faction)
+        for slug, entry in heur.items():
+            assert slug in merged, (
+                f"{faction}/{slug}: heuristic entry has no merged detachment"
+            )
+            mdp = merged[slug].get("dp") or merged[slug].get("dp_cost")
+            assert entry.get("dp_cost") == int(mdp), (
+                f"{faction}/{slug}: dp_cost {entry.get('dp_cost')} != merged {mdp}"
+            )
+
+    @pytest.mark.parametrize("faction", FACTIONS)
+    def test_every_merged_detachment_has_heuristic_entry(self, faction):
+        """No merged detachment may be missing from the heuristic scaffold."""
+        merged = {_slugify(d.get("name", "")) for d in _merged_detachments(faction)}
+        heur = set(_heuristic_detachments(faction))
+        missing = merged - heur
+        assert not missing, f"{faction}: merged detachments missing from scaffold: {sorted(missing)}"
+
+    @pytest.mark.parametrize("faction", FACTIONS)
+    def test_heuristic_dispositions_valid_and_consistent(self, faction):
+        """Heuristic disposition must be valid and match supported.json map."""
+        for slug, entry in _heuristic_detachments(faction).items():
+            disp = entry.get("disposition")
+            assert disp in VALID_DISPOSITION_IDS, (
+                f"{faction}/{slug}: invalid heuristic disposition {disp!r}"
+            )
+            sup_disp = _dispositions(faction).get(slug)
+            assert disp == sup_disp, (
+                f"{faction}/{slug}: heuristic disposition {disp!r} != "
+                f"supported.json {sup_disp!r}"
+            )
+
+    @pytest.mark.parametrize("faction", FACTIONS)
+    def test_dispositions_are_objective_derived(self, faction):
+        """supported.json dispositions must equal the merged MFM objective
+        (gen_config.py derives them: objective lower -> kebab). Stale curated
+        values drift from the MFM revision — lock them to truth."""
+        disp = _dispositions(faction)
+        if not disp:
+            pytest.skip(f"{faction}: no dispositions to check")
+        for det in _merged_detachments(faction):
+            slug = _slugify(det.get("name", ""))
+            obj = (det.get("objective") or "").strip().lower().replace(" ", "-")
+            if not obj:
+                continue
+            assert disp.get(slug) == obj, (
+                f"{faction}/{slug}: supported disposition {disp.get(slug)!r} != "
+                f"merged objective-derived {obj!r}"
+            )
+
+    @pytest.mark.parametrize("faction", FACTIONS)
+    def test_heuristic_entries_are_l0_traceable(self, faction):
+        """Every heuristic entry names its L0 source; scaffold is not expert."""
+        for slug, entry in _heuristic_detachments(faction).items():
+            assert entry.get("source"), f"{faction}/{slug}: missing L0 source"
+            assert "strength" not in entry, (
+                f"{faction}/{slug}: scaffold must not carry expert strength ratings"
+            )
+            assert "best_for" not in entry, (
+                f"{faction}/{slug}: scaffold must not carry expert best_for"
+            )
