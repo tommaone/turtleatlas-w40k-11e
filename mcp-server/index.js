@@ -307,6 +307,15 @@ print(json.dumps(output))
     server.setRequestHandler(ListToolsRequestSchema, async () => ({
       tools: [
         {
+          name: "get_llm_contract",
+          description:
+            "LLM boundary contract — call BEFORE any other tool. Defines truth vs interpretation: engine_output (computed, never re-derived), heuristic (L2 ratings, traceable, AI-labeled), verbatim (L0 sources). Never strip _classification labels, never re-compute engine numbers, never paraphrase rules as authoritative, never assert combos as guarantees. Every recommendation carries context + assumption registry.",
+          inputSchema: {
+            type: "object",
+            properties: {},
+          },
+        },
+        {
           name: "list_factions",
           description:
             "List available factions with loaded data status.",
@@ -345,7 +354,7 @@ print(json.dumps(output))
         {
           name: "get_detachment",
           description:
-            "Get detachment engine-modeled modifiers (DPP/SURV buffs) for a named detachment. Reads from config files.",
+            "Get detachment info: verified MFM basics (dp, objective, enhancements — L0) + L2 static facts (rule paraphrase, strength rating, limitations). Mechanical engine modifiers are RETIRED (2026-08-27) — no DPP/SURV detachment buffs exist anymore.",
           inputSchema: {
             type: "object",
             properties: {
@@ -591,6 +600,8 @@ print(json.dumps(output))
     server.setRequestHandler(CallToolRequestSchema, async (request) => {
       const { name, arguments: args } = request.params;
       switch (name) {
+        case "get_llm_contract":
+          return this.#handleGetLlmContract();
         case "list_factions":
           return this.#handleListFactions();
         case "get_core_rules":
@@ -713,6 +724,43 @@ print(json.dumps(output))
 
   // -------- Detachment lookup ---------------------------------------------
 
+  #handleGetLlmContract() {
+    const contract = `# LLM Boundary Contract (turtle-dojo mandate)
+
+Call this tool FIRST, before any other tool in this server. It defines the
+line between truth (engine/tool output) and interpretation (what the LLM
+says about it). Violations produce fabricated or compressed beliefs that
+look like facts.
+
+## Classification labels (never strip, never omit)
+- **engine_output** — engine-computed numbers (DPP/SURV/MOB, rankings).
+  Authoritative for numbers. NEVER re-compute, derive, or estimate these
+  yourself from raw data; the engine computes, the LLM narrates.
+- **heuristic** — L2 detachment ratings (strength, disposition, rule
+  paraphrase). Traceable to _source URLs. AI-labeled; not human-verified
+  unless _meta.human_reviewed: true is set in the config.
+- **verbatim** — L0 source data (MFM points, objective, enhancements).
+  Cite as-is.
+
+## Rules
+1. Every response that interprets data self-labels: raw tool output carries
+   its _classification; do not strip it, do not present heuristic ratings
+   as engine facts.
+2. No re-computation: never answer "how many wounds does X deal to Y" by
+   doing the math yourself. Call compute_dpp / compute_surv / compute_mob.
+3. No rule rewriting: never present a paraphrased rule as authoritative GW
+   text. Quote verbatim (L0) or label your summary as "interpretation".
+4. No ability-chaining certainty: frame combos as possibilities ("can",
+   "may"), never guarantees ("will", "always").
+5. No "best" without context: always give target type, range context,
+   detachment modifier, and points efficiency. Frame as "favored when...",
+   not "the best".
+6. Every recommendation ships four parts: Context (assumptions), Answer
+   (the recommendation), Why (stat/keyword basis), Limitation (when it
+   fails or what counters it).`;
+    return this.#text(contract);
+  }
+
   #handleGetDetachment(args) {
     const fd = this.#getFactionData(args?.faction);
     if (fd.error) return this.#text(fd.error);
@@ -765,9 +813,10 @@ print(json.dumps(output))
     // and objective, NOT rule text.
     out += `> **Verified basics (MFM data):** points, objective and enhancements `;
     out += `below are L0 community data, not engine scores.\n`;
-    out += `> **Heuristic ratings (interpretation):** strength/disposition fields `;
-    out += `are expert interpretation; mechanical detachment modifiers are retired `;
-    out += `(2026-08-27) — base ranking stays generalist and rules-free.\n\n`;
+    out += `> **Heuristic ratings (interpretation):** rule/strength/disposition `;
+    out += `fields are L2 facts (rule = EN mechanical paraphrase, not verbatim GW `;
+    out += `text); mechanical detachment modifiers are retired (2026-08-27) — `;
+    out += `base ranking stays generalist and rules-free.\n\n`;
 
     const dp = (merged && merged.dp) || det.dp_cost;
     if (dp) out += `**DP Cost:** ${dp}\n`;
@@ -779,10 +828,22 @@ print(json.dumps(output))
       out += `**Enhancements:** ${enh}\n`;
     }
 
+    // L2 static fact: detachment rule as EN mechanical paraphrase (never
+    // verbatim GW rule text — IP). Always carries _source when present.
+    const rule = det.rule || {};
+    if (rule.text) {
+      out += `\n**Rule (paraphrase, ${rule._lang || "en"}):** ${rule.text}\n`;
+      if (rule.affects && rule.affects.length) {
+        out += `**Affects:** ${rule.affects.join("; ")}\n`;
+      }
+      if (rule._source && rule._source.length) {
+        out += `**Rule source:** ${rule._source.join("; ")}\n`;
+      }
+    }
+
     const hFields = [];
     if (det.disposition) hFields.push(`**Disposition:** ${det.disposition}`);
     if (det.strength) hFields.push(`**Strength:** ${det.strength}`);
-    if (det.best_for && det.best_for.length) hFields.push(`**Best for:** ${det.best_for.join("; ")}`);
     if (hFields.length) out += `\n${hFields.join("\n")}\n`;
     if (det.strength_notes) out += `\n**Why:** ${det.strength_notes}\n`;
     if (det.limitations && det.limitations.length) {
@@ -1188,7 +1249,7 @@ print(json.dumps(output))
     }
 
     if (results.length === 0) {
-      return this.#text(`Stratagem "${query}" not found.\n\nCore stratagems available: Command Reroll, Battle Shock Stratagem, Inspired Leadership.\n\nNote: Full stratagem text requires GW faction pack PDFs (not yet parsed). For faction-specific stratagems, see the detachment modifiers via get_detachment.`);
+      return this.#text(`Stratagem "${query}" not found.\n\nCore stratagems available: Command Reroll, Battle Shock Stratagem, Inspired Leadership.\n\nNote: Full stratagem text requires GW faction pack PDFs (not yet parsed). For faction-specific stratagems, see the L2 rule/strength facts via get_detachment.`);
     }
 
     let out = "";
