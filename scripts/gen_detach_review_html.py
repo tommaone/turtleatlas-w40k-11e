@@ -1,23 +1,28 @@
-"""Generate docs/detachment-l2-review.html — human-readable L2 review workbook.
+"""Generate docs/detachment-atlas/ — per-army, layer-separated (L0-L4) HTML.
 
-Renders EVERY faction's detachments.json scaffold + merged MFM enhancements +
-L2 expert fields (when present) into ONE self-contained HTML file in the repo's
-findings style. The user reviews detachment ratings in the browser — the JSON
-files stay the source of truth; this page is a read/annotate view.
+One self-contained page PER FACTION (docs/detachment-atlas/<faction>.html)
+plus an index page. Each army page renders the layers separately:
 
-Deterministic: render() is a pure function of repo data (factions sorted,
-detachments sorted by dp_cost then name). Run `python3 scripts/
-gen_detach_review_html.py` to regenerate (commit the output together with any
-reviewed JSON, so the browser view and the data never drift).
+  L0  PRVO-ZDROJE   - MFM facts (dp, objective, enhancements) + dispositions
+                      + L0 source references (merged/config JSON paths)
+  L1  ARMY (live)   - no static file exists (lego model, 2026-08-28):
+                      army-level interpretation is composed live by the LLM
+  L2  DETACHMENT    - static facts: rule paraphrase + strength/strength_notes
+                      + limitations (committed data + workspace draft overlay)
+  L3  ENGINE        - link to findings/<faction>/findings.html (engine output)
+  L4  EXPERT CACHE  - link to resources/experts/<faction>.md (NL cache)
 
-Slugs use the canonical generator slugify (apostrophes stripped, straight and
-curly) — imported, never re-implemented.
+The JSON files stay the source of truth; pages are a read/annotate view.
+Deterministic: all render_* functions are pure functions of repo data.
+Slugs use the canonical generator slugify (apostrophes stripped, straight
+and curly) — imported, never re-implemented.
 """
 
 from __future__ import annotations
 
 import html
 import json
+import os
 import sys
 from datetime import date
 from pathlib import Path
@@ -30,9 +35,19 @@ from scripts.generate_detachments_heuristic import slugify
 CONFIG_DIR = REPO_ROOT / "data" / "config"
 MERGED_DIR = REPO_ROOT / "data" / "merged"
 DRAFT_DIR = REPO_ROOT / "workspace" / "detachment-drafts"
-OUT_PATH = REPO_ROOT / "docs" / "detachment-l2-review.html"
+FINDINGS_DIR = REPO_ROOT / "findings"
+EXPERTS_DIR = REPO_ROOT / "resources" / "experts"
+ATLAS_DIR = REPO_ROOT / "docs" / "detachment-atlas"
 
 L2_STRENGTHS = {"Strong", "Moderate", "Situational", "Weak"}
+L2_SOURCE_LABELS = {
+    "wahapedia": "Wahapedia",
+    "newrecruit": "NewRecruit",
+    "40k.app": "40k.app",
+    "tabletopbattles": "Goonhammer (tabletopbattles)",
+    "mfm": "MFM",
+    "bsdata": "BSData",
+}
 
 _CSS = """
   body{font-family:system-ui,-apple-system,sans-serif;max-width:1100px;margin:0 auto;padding:30px 20px;background:#0d1117;color:#c9d1d9;line-height:1.5}
@@ -47,7 +62,13 @@ _CSS = """
   .badge.done{color:#fff;background:#238636;border-color:#238636}
   .badge.pending{color:#d29922;border-color:#d29922}
   .badge.draft{color:#a371f7;border-color:#a371f7;background:#2a1f47}
-  .card{padding:14px 16px;background:#161b22;border:1px solid #30363d;border-radius:8px;margin:10px 0}
+  .layer{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:12px 16px;margin:12px 0}
+  .layer.l0{border-color:#1f6feb}
+  .layer.l2{border-color:#a371f7}
+  .layer.l3{border-color:#7ee787}
+  .layer.l4{border-color:#d29922}
+  .layer h3{margin-bottom:4px}
+  .card{padding:14px 16px;background:#0d1117;border:1px solid #30363d;border-radius:8px;margin:10px 0}
   .cardhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
   .slug{font-family:ui-monospace,SFMono-Regular,monospace;font-size:.8em;color:#8b949e}
   dl{margin:10px 0 0;display:grid;grid-template-columns:190px 1fr;gap:4px 14px;font-size:.9em}
@@ -72,6 +93,16 @@ def _esc(s) -> str:
 
 def _fmt_list(items) -> str:
     return ", ".join(_esc(i) for i in items)
+
+
+def _rel(from_file: Path, to: Path) -> str:
+    """Relative URL from a generated page to a repo path (../-aware)."""
+    return os.path.relpath(to, from_file.parent).replace(os.sep, "/")
+
+
+def _has_valid_source(draft_rule: dict) -> bool:
+    """A draft rule is only worth showing when it carries an L0 source."""
+    return bool(draft_rule and draft_rule.get("_source"))
 
 
 def render_rule(entry: dict) -> str:
@@ -143,144 +174,248 @@ def _drafted_count(draft: dict) -> int:
     return sum(1 for e in draft.values() if any(f in e for f in L2_EXPERT_FIELDS))
 
 
-def render() -> str:
-    factions = sorted(p.name for p in CONFIG_DIR.iterdir()
-                      if p.is_dir() and (p / "detachments.json").exists())
-    total_dets = 0
-    total_reviewed_dets = 0
-    total_drafted_dets = 0
-    reviewed_factions = 0
-    drafted_factions = 0
-    sections = []
-    matrix_rows = []
-
-    for faction in factions:
-        data = json.loads((CONFIG_DIR / faction / "detachments.json").read_text())
-        meta = data.get("_meta", {})
-        entries = data.get("detachments", {})
-        faction_reviewed = bool(meta.get("human_reviewed"))
-        if faction_reviewed:
-            reviewed_factions += 1
-        draft = _draft_for(faction)
-        faction_drafted = bool(draft) and not faction_reviewed
-        if faction_drafted:
-            drafted_factions += 1
-
-        det_cards = []
-        for slug in sorted(entries, key=lambda s: (entries[s].get("dp_cost") or 99, s)):
-            entry = entries[slug]
-            # L2 overlay from the workspace draft (never committed data)
-            display = {**entry, **draft.get(slug, {})}
-            total_dets += 1
-            entry_reviewed = faction_reviewed
-            if entry_reviewed:
-                total_reviewed_dets += 1
-            elif slug in draft:
-                total_drafted_dets += 1
-
-            badges = [
-                f"<span class='badge dp'>dp {entry.get('dp_cost')}</span>",
-                f"<span class='badge disp'>{_esc(entry.get('disposition', ''))}</span>",
-            ]
-            if entry_reviewed:
-                badges.append("<span class='badge done'>✓ human-reviewed</span>")
-            elif slug in draft:
-                badges.append("<span class='badge draft'>DRAFT (unverified)</span>")
-            else:
-                badges.append("<span class='badge pending'>pending</span>")
-
-            dl_rows = [
-                (f"objective", _esc(display.get("objective", ""))),
-                ("source (L0)", _esc(display.get("source", ""))),
-            ]
-            if slug in draft:
-                dl_rows.append(("draft", "<span class='badge draft'>workspace draft — verify before promoting</span>"))
-            enh = _enhancements_for(faction, slug)
-            if enh:
-                enh_html = " ".join(
-                    f"<span class='enh'>{_esc(e['name'])} <b>{e.get('points', '')} pts</b></span>"
-                    for e in enh
-                )
-                dl_rows.append(("enhancements (MFM)", enh_html))
-            for field, label in L2_FIELDS:
-                val = render_l2_field(display, field)
-                if val:
-                    dl_rows.append((label, val))
-                else:
-                    dl_rows.append((label, "<span class='pending'>— pending —</span>"))
-
-            dl = "".join(f"<dt>{_esc(label)}</dt><dd>{value}</dd>" for label, value in dl_rows)
-            det_cards.append(
-                f"<article class='card' id='{_esc(faction)}-{_esc(slug)}'>"
-                f"<div class='cardhead'><h3>{_esc(display.get('name', slug))}</h3>"
-                f"<div class='badges'>{''.join(badges)}</div></div>"
-                f"<div class='slug'>{_esc(slug)}</div>"
-                f"<dl>{dl}</dl></article>"
-            )
-
-        idx = _esc(meta.get("index", faction))
-        anchor = faction
-        status_cell = "✓" if faction_reviewed else f"{_drafted_count(draft)}/{len(entries)}" if draft else "✗"
-        matrix_rows.append(
-            f"<tr><td><a href='#{anchor}'>{_esc(faction)}</a></td>"
-            f"<td>{len(entries)}</td>"
-            f"<td>{status_cell}</td></tr>"
+def _l0_section(faction: str, meta: dict, entries: dict) -> str:
+    """L0 prvo-zdroje: overené dáta (MFM detachments, dispositions, zdroje)."""
+    merged = json.loads((MERGED_DIR / f"{faction}.json").read_text())
+    merged_dets = merged.get("detachments", [])
+    rows = []
+    for det in merged_dets:
+        slug = slugify(det.get("name", ""))
+        entry = entries.get(slug, {})
+        enh = det.get("enhancements", [])
+        enh_html = " ".join(
+            f"<span class='enh'>{_esc(e.get('name',''))} <b>{e.get('points','')} pts</b></span>"
+            for e in enh
         )
-        reviewed_marker = " <b style='color:#7ee787'>reviewed</b>" if faction_reviewed else (
-            f" <span class='meta'>{_drafted_count(draft)}/ drafty</span>" if draft else ""
+        rows.append(
+            f"<tr><td><a href='#l2-{_esc(slug)}'>{_esc(det.get('name',''))}</a></td>"
+            f"<td>{det.get('dp','')}</td>"
+            f"<td>{_esc(entry.get('disposition',''))}</td>"
+            f"<td>{_esc(det.get('objective',''))}</td>"
+            f"<td>{enh_html}</td></tr>"
         )
-        sections.append(
-            f"<section id='{anchor}'><h2>{_esc(faction)} "
-            f"<span class='meta'>({len(entries)} detachments{reviewed_marker})</span></h2>"
-            + "".join(det_cards) + "</section>"
-        )
-
-    drafted_note = (
-        f" · {total_drafted_dets} drafted (<span class='badge draft'>DRAFT</span> = "
-        f"workspace, unverified)" if total_drafted_dets else ""
+    merged_url = _rel(ATLAS_DIR / f"{faction}.html", MERGED_DIR / f"{faction}.json")
+    config_url = _rel(ATLAS_DIR / f"{faction}.html", CONFIG_DIR / faction / "detachments.json")
+    return (
+        "<div class='layer l0'><h3>L0 — Prvo-zdroje (overené dáta)</h3>"
+        "<p class='meta'>MFM: body, detachmenty (dp, objective), enhancements · "
+        f"config: dispositions. Zdrojové súbory: "
+        f"<a href='{merged_url}'>{_esc(faction)}.json (merged)</a> · "
+        f"<a href='{config_url}'>config detachments.json</a></p>"
+        "<table><tr><th>detachment</th><th>dp</th><th>disposition</th>"
+        "<th>objective</th><th>enhancements (MFM)</th></tr>"
+        + "".join(rows) + "</table></div>"
     )
+
+
+def _l1_section() -> str:
+    """L1 army vrstva — neexistuje žiadny statický súbor (lego model)."""
+    return (
+        "<div class='layer'><h3>L1 — Army vrstva (neexistuje ako súbor)</h3>"
+        "<p class='meta'>Lego model (2026-08-28): army-level interpretácia (ktorý "
+        "detachment s ktorým, archetypy, 3DP combos, herný štýl) sa skladá NAŽIVO "
+        "LLM-om z L0 + L2 + L3 + kontext otázky. `army_profile.json` bol REJECTED — "
+        "perzistovať kompozíciu = destilát destilátu.</p></div>"
+    )
+
+
+def _l2_section(faction: str, meta: dict, entries: dict, draft: dict) -> str:
+    """L2 detachment fakty: rule parafráza + strength (draft overlay)."""
+    faction_reviewed = bool(meta.get("human_reviewed"))
+    cards = []
+    for slug in sorted(entries, key=lambda s: (entries[s].get("dp_cost") or 99, s)):
+        entry = entries[slug]
+        # L2 overlay from the workspace draft (never committed data)
+        display = {**entry, **draft.get(slug, {})}
+        badges = [
+            f"<span class='badge dp'>dp {entry.get('dp_cost')}</span>",
+            f"<span class='badge disp'>{_esc(entry.get('disposition', ''))}</span>",
+        ]
+        if faction_reviewed:
+            badges.append("<span class='badge done'>✓ human-reviewed</span>")
+        elif slug in draft:
+            badges.append("<span class='badge draft'>DRAFT (unverified)</span>")
+        else:
+            badges.append("<span class='badge pending'>pending</span>")
+
+        dl_rows = [
+            ("objective", _esc(display.get("objective", ""))),
+            ("source (L0)", _esc(display.get("source", ""))),
+        ]
+        if slug in draft:
+            dl_rows.append(("draft", "<span class='badge draft'>workspace draft — verify before promoting</span>"))
+        enh = _enhancements_for(faction, slug)
+        if enh:
+            enh_html = " ".join(
+                f"<span class='enh'>{_esc(e['name'])} <b>{e.get('points', '')} pts</b></span>"
+                for e in enh
+            )
+            dl_rows.append(("enhancements (MFM)", enh_html))
+        for field, label in L2_FIELDS:
+            val = render_l2_field(display, field)
+            if val:
+                dl_rows.append((label, val))
+            else:
+                dl_rows.append((label, "<span class='pending'>— pending —</span>"))
+
+        dl = "".join(f"<dt>{_esc(label)}</dt><dd>{value}</dd>" for label, value in dl_rows)
+        cards.append(
+            f"<article class='card' id='l2-{_esc(slug)}'>"
+            f"<div class='cardhead'><h3>{_esc(display.get('name', slug))}</h3>"
+            f"<div class='badges'>{''.join(badges)}</div></div>"
+            f"<div class='slug'>{_esc(slug)}</div>"
+            f"<dl>{dl}</dl></article>"
+        )
+    reviewed_marker = " <b style='color:#7ee787'>reviewed</b>" if faction_reviewed else (
+        f" <span class='meta'>{_drafted_count(draft)}/{len(entries)} drafted</span>" if draft else ""
+    )
+    return (
+        f"<div class='layer l2'><h3>L2 — Detachment info (statické fakty)</h3>"
+        f"<p class='meta'>{len(entries)} detachments{reviewed_marker} · rule = EN parafráza "
+        f"mechaniky (nie GW text, nie lore) · strength = AI rating (traceable) · "
+        f"unit roles/combos/play_style sa neukladajú — skladajú naživo</p>"
+        + "".join(cards) + "</div>"
+    )
+
+
+def _l3_section(faction: str) -> str:
+    p = FINDINGS_DIR / faction / "findings.html"
+    if not p.exists():
+        return (
+            "<div class='layer l3'><h3>L3 — Engine ranking</h3>"
+            "<p class='meta'>findings pre túto frakciu zatiaľ neboli vygenerované "
+            "(scripts/gen_findings_html.py)</p></div>"
+        )
+    url = _rel(ATLAS_DIR / f"{faction}.html", p)
+    return (
+        "<div class='layer l3'><h3>L3 — Engine ranking (kalkulovaný výstup)</h3>"
+        f"<p class='meta'>Ranking jednotiek (DPP/SURV/MOB) podľa engine — generalist, "
+        f"best gear. <a href='{url}'>otvoriť findings/{_esc(faction)}/findings.html</a></p></div>"
+    )
+
+
+def _l4_section(faction: str) -> str:
+    p = EXPERTS_DIR / f"{faction}.md"
+    if not p.exists():
+        return (
+            "<div class='layer l4'><h3>L4 — Expert analysis (cache)</h3>"
+            "<p class='meta'>expert file pre túto frakciu neexistuje</p></div>"
+        )
+    url = _rel(ATLAS_DIR / f"{faction}.html", p)
+    return (
+        "<div class='layer l4'><h3>L4 — Expert analysis (cache, nie zdroj)</h3>"
+        f"<p class='meta'>LLM reasoning cache platný k danému dátumu — NIE je zdrojom "
+        f"pipeline. <a href='{url}'>otvoriť experts/{_esc(faction)}.md</a></p></div>"
+    )
+
+
+def render_faction(faction: str) -> str:
+    data = json.loads((CONFIG_DIR / faction / "detachments.json").read_text())
+    meta = data.get("_meta", {})
+    entries = data.get("detachments", {})
+    draft = _draft_for(faction)
     return f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Detachment L2 Review Workbook — turtleatlas</title>
+<title>Detachment Atlas — {_esc(faction)} (L0-L4)</title>
 <style>{_CSS}</style>
 </head>
 <body>
 <header>
-<h1>Detachment L2 Review Workbook</h1>
-<p class="meta">generated {date.today().isoformat()} · {len(factions)} factions · {total_dets} detachments · {total_reviewed_dets} reviewed{drafted_note} · source: scripts/gen_detach_review_html.py · JSON files remain the source of truth; drafts live in workspace/ (gitignored)</p>
+<p class="meta"><a href="index.html">← index</a></p>
+<h1>{_esc(meta.get("index", faction))} <span class="meta">({_esc(faction)})</span></h1>
+<p class="meta">generated {date.today().isoformat()} · vrstvy L0-L4 oddelené · JSON files remain the source of truth; drafts live in workspace/ (gitignored)</p>
+</header>
+
+{_l0_section(faction, meta, entries)}
+{_l1_section()}
+{_l2_section(faction, meta, entries, draft)}
+{_l3_section(faction)}
+{_l4_section(faction)}
+</body>
+</html>
+"""
+
+
+def render_index() -> str:
+    factions = sorted(p.name for p in CONFIG_DIR.iterdir()
+                      if p.is_dir() and (p / "detachments.json").exists())
+    total_dets = 0
+    total_reviewed = 0
+    total_drafted = 0
+    rows = []
+    for faction in factions:
+        data = json.loads((CONFIG_DIR / faction / "detachments.json").read_text())
+        meta = data.get("_meta", {})
+        entries = data.get("detachments", {})
+        draft = _draft_for(faction)
+        faction_reviewed = bool(meta.get("human_reviewed"))
+        n = len(entries)
+        total_dets += n
+        drafted = _drafted_count(draft)
+        if faction_reviewed:
+            total_reviewed += n
+        else:
+            total_drafted += drafted
+        status = "✓ reviewed" if faction_reviewed else (
+            f"{drafted}/{n} drafted" if draft else "✗ pending"
+        )
+        rows.append(
+            f"<tr><td><a href='{_esc(faction)}.html'>{_esc(faction)}</a></td>"
+            f"<td>{n}</td><td>{_esc(status)}</td></tr>"
+        )
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Detachment Atlas — {len(factions)} armies (L0-L4)</title>
+<style>{_CSS}</style>
+</head>
+<body>
+<header>
+<h1>Detachment Atlas</h1>
+<p class="meta">generated {date.today().isoformat()} · per-army, layer-separated (L0-L4) · {len(factions)} factions · {total_dets} detachments · {total_reviewed} reviewed · {total_drafted} drafted · source: scripts/gen_detach_review_html.py · JSON files remain the source of truth; drafts live in workspace/ (gitignored)</p>
 </header>
 
 <details open>
-<summary>Review rules (rule.text = mechanical paraphrase)</summary>
+<summary>Vrstvy (per army)</summary>
 <ul>
-<li>EN paraphrase of mechanics, <b>no verbatim GW rule text</b>, <b>no lore</b> — `rule.text` flags `_paraphrase: true`, `_lang: "en"` (&le;600 chars).</li>
-<li>Detachment names and keywords stay <b>exact</b> (&ldquo;Cabal Of Chaos&rdquo;, PSYKER, FACTION:&hellip;).</li>
-<li>Every fact traces to L0 <code>_source</code> (MFM / Wahapedia / NewRecruit / analyst) — no opinions without source.</li>
-<li>strength: Strong / Moderate / Situational / Weak, always with `strength_notes` + `limitations`.</li>
-<li><span class='badge draft'>DRAFT</span> = LLM draft from workspace (unverified). Verify, then promote into <code>data/config/&lt;faction&gt;/detachments.json</code> and flip <code>_meta.human_reviewed: true</code> — commit per faction.</li>
+<li><b>L0</b> — prvo-zdroje: MFM fakty (dp, objective, enhancements), dispositions, zdrojové súbory.</li>
+<li><b>L1</b> — army vrstva: žiaden statický súbor (lego model 2026-08-28). Interpretácia sa skladá NAŽIVO.</li>
+<li><b>L2</b> — detachment fakty: rule parafráza (<code>_paraphrase: true</code>, &le;600 chars) + strength (AI rating, traceable) + limitations.</li>
+<li><b>L3</b> — engine ranking: <code>findings/&lt;faction&gt;/findings.html</code> (DPP/SURV/MOB).</li>
+<li><b>L4</b> — expert cache: <code>resources/experts/&lt;faction&gt;.md</code> (nie zdroj pipeline).</li>
 </ul>
 </details>
 
 <h2>Status</h2>
 <table>
 <tr><th>faction</th><th>detachments</th><th>reviewed / drafted</th></tr>
-{''.join(matrix_rows)}
-<tr><td><b>total</b></td><td><b>{total_dets}</b></td><td><b>{total_reviewed_dets} reviewed · {total_drafted_dets} drafted</b></td></tr>
+{''.join(rows)}
+<tr><td><b>total</b></td><td><b>{total_dets}</b></td><td><b>{total_reviewed} reviewed · {total_drafted} drafted</b></td></tr>
 </table>
-
-{''.join(sections)}
 </body>
 </html>
 """
 
 
+FACTIONS = sorted(
+    p.name for p in CONFIG_DIR.iterdir()
+    if p.is_dir() and (p / "detachments.json").exists()
+)
+
+
 def main() -> None:
-    OUT_PATH.write_text(render() + "\n")
-    print(f"{OUT_PATH.relative_to(REPO_ROOT)} written "
-          f"({len(render().splitlines())} lines)")
+    ATLAS_DIR.mkdir(parents=True, exist_ok=True)
+    (ATLAS_DIR / "index.html").write_text(render_index() + "\n")
+    n = 1
+    for faction in FACTIONS:
+        (ATLAS_DIR / f"{faction}.html").write_text(render_faction(faction) + "\n")
+        n += 1
+    print(f"{ATLAS_DIR.relative_to(REPO_ROOT)} written ({n} pages)")
 
 
 if __name__ == "__main__":

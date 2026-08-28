@@ -21,7 +21,9 @@ from pathlib import Path
 import pytest
 
 from engine.ranking import RankingEngine
-from scripts.gen_detach_review_html import OUT_PATH, render
+from scripts.gen_detach_review_html import (
+    ATLAS_DIR, FACTIONS as ATLAS_FACTIONS, render_faction, render_index,
+)
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 CONFIG_DIR = REPO_ROOT / "data" / "config"
@@ -438,36 +440,44 @@ class TestL2Enrichment:
 # ═══════════════════════════════════════════════════════════════════════
 
 class TestL2ReviewHtml:
-    """docs/detachment-l2-review.html is generated, deterministic, complete.
+    """docs/detachment-atlas/ is generated, deterministic, complete.
 
-    The JSON files remain the source of truth; the HTML is the browser view
-    the human reviewer reads. Regenerate with
+    Per-army pages (docs/detachment-atlas/<faction>.html) separate the
+    L0-L4 layers; the JSON files remain the source of truth; the HTML is
+    the browser view the human reviewer reads. Regenerate with
     `python3 scripts/gen_detach_review_html.py`.
     """
 
-    def test_workbook_is_current(self):
-        """Committed HTML must equal render() output — no hand edits."""
-        assert OUT_PATH.exists()
-        assert OUT_PATH.read_text() == render() + "\n", (
-            "detachment-l2-review.html is stale — run "
-            "python3 scripts/gen_detach_review_html.py"
-        )
+    def test_atlas_is_current(self):
+        """Committed HTML must equal render output — no hand edits.
 
-    def test_workbook_is_deterministic(self):
-        """Two renders are byte-identical."""
-        assert render() == render()
+        Index page plus one page per faction, all byte-identical to the
+        pure render functions (no drift between generator + committed HTML).
+        """
+        assert (ATLAS_DIR / "index.html").read_text() == render_index() + "\n"
+        assert ATLAS_FACTIONS, "no factions found"
+        for faction in ATLAS_FACTIONS:
+            p = ATLAS_DIR / f"{faction}.html"
+            assert p.exists(), f"{p}: per-army page missing — run gen script"
+            assert p.read_text() == render_faction(faction) + "\n", (
+                f"{p}: stale — run python3 scripts/gen_detach_review_html.py"
+            )
 
-    def test_workbook_covers_all_detachments(self):
-        """Every faction section and every detachment card is present."""
-        doc = render()
-        for faction in FACTIONS:
+    def test_atlas_is_deterministic(self):
+        """Two renders are byte-identical (per faction + index)."""
+        assert render_index() == render_index()
+        for faction in ATLAS_FACTIONS:
+            assert render_faction(faction) == render_faction(faction)
+
+    def test_atlas_covers_all_detachments(self):
+        """Every faction page lists every detachment card from the config."""
+        for faction in ATLAS_FACTIONS:
+            doc = render_faction(faction)
             dets = _heuristic_detachments(faction)
-            if not dets:
-                continue
-            assert f"<section id='{faction}'>" in doc, f"{faction}: section missing"
+            assert dets, f"{faction}: no detachments in scaffold"
             for slug in dets:
-                assert f"id='{faction}-{slug}'" in doc, (
-                    f"{faction}/{slug}: card missing from workbook"
+                assert f"id='l2-{slug}'" in doc, (
+                    f"{faction}/{slug}: card missing from atlas page"
                 )
 
     def test_drafts_overlay_existing_slugs_only(self):

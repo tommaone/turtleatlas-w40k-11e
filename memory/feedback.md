@@ -989,13 +989,21 @@ lore. Je to KRÁTKA anglická parafráza mechaniky (`_paraphrase: true`,
 nie próza. Žiadne GW-specifické frázovanie (vlastné slová, nie GW wording),
 žiadne príbehové vety. Odporúčanie je vždy traceable na L0 `_source`.
 
-## L2 review workbook je HTML; generuje sa deterministicky (2026-08-28)
+## L2 review atlas je HTML, per-army, s oddelenými vrstvami L0-L4 (2026-08-28)
 Užívateľ číta HTML, nie markdown ("ostatne formaty sa nahovno citaju"). Review
-podklad pre L2 je JEDEN self-contained súbor `docs/detachment-l2-review.html`
-(28 frakcií, 346 kariet, enhancements z merged MFM, L2 polia prázdne do review).
-Generátor: `scripts/gen_detach_review_html.py` — `render()` je čistá funkcia
-repo dát (deterministická; Tier 6 test drží commited HTML == render()+newline,
-takže sa nesmie editovať ručne). JSON súbory ostávajú source of truth.
+podklad pre L2 je `docs/detachment-atlas/` — samostatná page na frakciu
+(`<faction>.html`, 30 pages) + `index.html` s maticou statusu. Každá page má
+vnútri oddelené vrstvy: **L0** prvo-zdroje (MFM fakty, dispositions, zdrojové
+súbory), **L1** army (žiadny statický súbor — lego model), **L2** detachment
+fakty (rule/strength/limitations s draft overlay), **L3** engine ranking
+(link na `findings/<faction>/findings.html`), **L4** expert cache (link na
+`resources/experts/<faction>.md`). JEDEN spoločný workbook
+`docs/detachment-l2-review.html` už NEEXISTUJE — user ho zrušil
+(2026-08-28, "tento 1 file nema existovat").
+Generátor: `scripts/gen_detach_review_html.py` — `render_faction(faction)` +
+`render_index()` sú čisté funkcie repo dát (deterministické; Tier 6 test drží
+commited pages == render+newline, takže sa nesmú editovať ručne). JSON súbory
+ostávajú source of truth.
 Slugs: HTML generátor IMPORTUJE `slugify` z generate_detachments_heuristic.py
 (jediný zdroj) — len tests/test_detachment_validation.py má ešte vlastnú kópiu
 (prípadná konsolidácia = samostatný ticket).
