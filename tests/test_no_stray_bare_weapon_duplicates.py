@@ -26,19 +26,8 @@ SUFFIX_RE = re.compile(
     re.I,
 )
 
-# Fixed on fix/daemon-character-wargear (regenerated configs, single
-# "Hellforged weapons" base name). Remove this exemption once that branch
-# merges and the old suffixed+bare pair is gone from these units.
-DAEMON_PRINCE_EXEMPT = {
-    ("death-guard", "Daemon Prince Of Nurgle"),
-    ("death-guard", "Daemon Prince Of Nurgle With Wings"),
-    ("emperors-children", "Daemon Prince Of Slaanesh"),
-    ("emperors-children", "Daemon Prince Of Slaanesh With Wings"),
-    ("thousand-sons", "Daemon Prince Of Tzeentch"),
-    ("thousand-sons", "Daemon Prince Of Tzeentch With Wings"),
-    ("world-eaters", "Daemon Prince Of Khorne"),
-    ("world-eaters", "Daemon Prince Of Khorne With Wings"),
-}
+# (no daemon-prince exemption: fix/daemon-character-wargear is merged into
+# main — those configs carry the single "Hellforged weapons" base name)
 
 
 def _exact_profile_names(faction: str) -> set[str]:
@@ -75,8 +64,6 @@ def _violations():
     """Return remaining (faction, unit, name, base) violations."""
     found = []
     for faction, unit, bi, names in _iter_fixed_entries():
-        if (faction, unit) in DAEMON_PRINCE_EXEMPT:
-            continue
         exact = _exact_profile_names(faction)
         for name in names:
             match = SUFFIX_RE.match(name)
