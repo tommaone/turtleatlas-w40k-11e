@@ -65,23 +65,26 @@ rule: {
   _paraphrase: true,                    // povinné — IP pravidlo
   _lang: "en",                          // povinné — anglicky
   affects: ["FACTION", "PSYKER", ...],  // kľúčové slová/jednotky, ktoré pravidlo ovplyvňuje
-  _source: ["https://wahapedia.ru/...", "https://newrecruit.eu/..."]
+  _source: ["https://www.40k.app/factions/..."]
 },
-best_units: [ { unit, why, _source: [...] } ],   // prečo koreluje s pravidlom → traceable
-scoring_units / support_units / hammer_units: ["<názvy>"],
-spam: [ { unit, count, with, why, _source } ],   // čo stavať, s ktorým leaderom
-combos: [ { combo, effects, _source } ],          // LEN interné (v rámci detachmentu)
 strength: "Strong|Moderate|Situational|Weak",
-strength_notes: "<traceable na L0 — nebezpečná formulka bez zdroja je fabrikácia>",
-limitations: ["<čo detachment nerobí>"],
-play_style: { summary: "<2-3 vety>", tempo_axis: "infiltration|attrition|stat-augment|castle|rush" }
+strength_notes: "<traceable na L0/11e analytika — nebezpečná formulka bez zdroja je fabrikácia>",
+limitations: ["<čo detachment nerobí>"]
 ```
 
-**Význam `strength` (orientačne, nie dogma):**
+> **LEGO PRAVIDLO (2026-08-28):** L2 = statické fakty len. `best_units`,
+> `scoring_units`/`support_units`/`hammer_units`, `spam`, `combos`, `play_style`
+> NIE SÚ v L2 — LLM ich skladá **naživo** z `rule.affects` + L0 datasheetov + L3
+> rankov. Persistovať ich = destilát destilátu = KB poison (Tier 5/6 to vynucuje).
+
+**Význam `strength` (AI rating, nie human-verifikovaný fakt):**
 - **Strong** — flexibilný naprieč väčšinou matchupov, jasný best-in-slot pre svoju obj.
 - **Moderate** — konkurencieschopný v rámci svojej obj, má slabé miesta.
 - **Situational** — silný len proti konkrétnym buildom; inde ho prekoná iný detachment.
 - **Weak** — všeobecne prekonaný; uviesť v `limitations` prečo.
+
+> **11e cutoff (2026-08-28):** `strength_notes` sa opierajú o články z 11th edition
+> (≥ 2026-06-01). 10e články = historické, flagované, nikdy autorita pre strength.
 
 ## IP pravidlo + rule.text pravidlá (rozhodnuté 2026-08-28)
 
@@ -94,9 +97,9 @@ play_style: { summary: "<2-3 vety>", tempo_axis: "infiltration|attrition|stat-au
 - 🇬🇧 **Anglicky** — `_lang: "en"` (vynútené Tier 5).
 - 🔑 **Názvy detachmentov a keywordy PRESNE** — „Cabal Of Chaos", „PSYKER",
   „FACTION: …" sa nemenia, neprekladajú, neskracujú. Sú to dáta (identifikátory),
-  nie proza. To isté pre `best_units[].unit`, `affects[]`, `scoring_units` …
+  nie proza. To isté pre `rule.affects[]`.
 - ✅ Body, objectives, dispositions, enhancements — MFM dáta, komitnuteľné.
-- ✅ Vlastná analýza (rating, best_units why, play_style) — komitnuteľné, s `_source`.
+- ✅ Vlastná analýza (`strength`/`strength_notes`) — komitnuteľné, s `_source`.
 
 ## Otvorený konflikt — rozhodnuté
 

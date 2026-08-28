@@ -1,6 +1,8 @@
 # Detachment Info Architecture — izolované vrstvy, žiadny kompilát kompilátu
 
-> **Status:** Návrh (2026-08-27). Nadväzuje na retire mechanical detachment modifiers.
+> **Status:** platný (2026-08-28), revidovaný na **lego-kockový model** —
+> docs sú STATICKÉ kocky, LLM skladá interpretácie NAŽIVO z L0–L3.
+> Nadväzuje na retire mechanical detachment modifiers.
 > **Zásada (Marcel Klimo):** *všetky kompiláty musí overiť človek.* Expert file je **persistovaný
 > LLM reasoning, platný v danom čase** — je to cache/výstup, NIKDY zdroj. AI si detach znalosť
 > musí zlepiť z **overených 1-kompilovaných zdrojov** (Wahapedia, NewRecruit, MFM).
@@ -23,21 +25,20 @@ Preto: **zdrojmi pravdy sú iba 1-kompilované, overené dáta**; expert file je
 **Vrstvy sú side by side**, nie striktne hierarchické. Army rule je **fundamentálna** (definuje
 herný štýl celej armády), detachmenty sa **nasadzujú na ňu** v konkrétnom kontexte a detach
 **vie o army rule** (príklad: každý CSM detachment keyuje na úspešné Dark Pacts). Miešanie
-army + detachments sa deje **až v konkrétnom kontexte** (archetype / roster), nie v surových vrstvách.
+army + detachments sa deje **až v konkrétnom kontexte** (archetype / roster) — a to výhradne
+**naživo v LLM odpovedi**, nie v žiadnom statickom súbore.
 
 ```
 L4  EXPERT FILE (cache / výstup, NIE zdroj)
       resources/experts/<faction>.md  →  human-readable summary, "platný k <dátum>"
-      │  ↑ LLM zlepí L1 + L2 + L3 + kontext, človek overí, uloží ako orientáciu budúcich session
+      │  ↑ LLM zlepí L0 + L2 + L3 + kontext, človek overí, uloží ako orientáciu budúcich session
       │
 L3  KALKULOVANÝ RANKING (engine output — generalist, best gear)
       │  ↑ rank_units / get_findings / compute_dpp / compute_surv / compute_mob
       │    (už existujú, engine = jediné miesto výpočtu)
       │
-L1  ARMY VRSTVA (fundamentálna) — Army Rule + DISPOSITION + herný štýl armády
-      │  ↑ armáda je základ; detachmenty (L2) sa hrajú V RÁMCI army rule, nie mimo neho
-      │
-L2  DETACHMENT VRSTVA (nasadzovaná, S VEDOMÍM O ARMY RULE) — per-detachment info
+L2  DETACHMENT VRSTVA (STATICKÉ FAKTY, nasadzovaná) — per-detachment info:
+      rule (parafráza, affects, _source) + strength/strength_notes/limitations (AI rating)
       │  ↑ detach sa vyhodnocuje v kontexte army rule svojej frakcie; každý fakt má _source
       │
 L0  PRVO-ZDROJE (overené, 1-kompilované, machine-readable)
@@ -45,22 +46,24 @@ L0  PRVO-ZDROJE (overené, 1-kompilované, machine-readable)
       • Wahapedia  → detachment rule text (verbatim), unit datasheets
       • NewRecruit → 2. overený zdroj (cross-check detachment/unit info)
       • BSData     → unit profily, keywords, wargear constraints
+      • 40k.app    → funkcionálny cross-check detachment rules (Wahapedia 403 na botov)
 ```
 
 **Jednosmerná závislosť (žiadne cykly):**
 
 ```
-L0 ──▶ L1 (army) ──┐
-L0 ──▶ L2 (detach) ─┤──▶ kontext (archetype/roster) ──▶ L4 (expert)
-L0 ──▶ L3 (engine) ─┘        ↑                                 │
-L1 ───▶ L2 (detach vie o army rule)                            │
-                                               human review gate ◀┘
+L0 ──▶ L2 (detach) ──▶ kontext (archetype/roster) ──▶ L4 (expert)
+L0 ──▶ L3 (engine) ──┘        ↑        │
+                                  LLM (NAŽIVO) ◀─┘
+                               human review gate ◀─┘
 ```
 
 **NIKDY:**
 - ❌ L1/L2 vygenerované z L4 (expert file) — to je kompilát kompilátu
 - ❌ L3 (engine) poháňaný z L1/L2/L4 — engine zostáva čistý generalist + best gear
 - ❌ army-level dáta (disposition/army rule/3DP combos) vlezené do L2 — izolácia vrstiev
+- ❌ unit roles / combos / play_style / "best units" uložené ako statické dáta — interpretácie
+  (destilát destilátu) sa skladajú NAŽIVO LLM-om z L0–L3, nikdy sa nepersistujú
 - ❌ detach pred armádou: L2 (detach) vždy odkazuje na L1 (army rule) ako svoj kontext
 
 ---
@@ -69,15 +72,17 @@ L1 ───▶ L2 (detach vie o army rule)                            │
 
 Hráč / agent sa pýta na **dve rôzne veci**, ktoré sa nesmú miešať:
 
-| Vrstva | Otázka, na ktorú odpovedá |
-|--------|---------------------------|
-| **L1 Army** | *"Ako sa hrá CELÁ armáda? Aký je Army Rule a herný štýl (disposition)? Ktoré detachments sa dajú nasadiť a ako tvoria kontext (3DP combos)?*" |
-| **L2 Detachment** | *"Čo TENTO detachment robí — v rámci svojej frakcie? Na aké unity bonusy najlepšie platí? Kto je scoring / support? Aký spam ktorej unity s ktorým leaderom? Ako sa hrá, keď je nasadený na army rule?"* |
+| Vrstva | Čo je staticky uložené | Čo odpovedá NAŽIVO |
+|--------|------------------------|--------------------|
+| **L0 prvo-zdroje** | fakty (body, pravidlo, datasheety) | — |
+| **L2 Detachment** | STATICKÉ FAKTY: `rule` (parafráza + affects + _source), `strength`/`strength_notes`/`limitations` (AI rating, traceable) | "Čo TENTO detachment robí?" |
+| **LLM (naživo)** | — | "Na aké unity bonus najlepšie platí? Kto je scoring/support?" — **skladá z L0+L2+L3**, nič neukladá |
 
 **Detachment info = izolovaná vrstva (L2), ale nie ignorantská.** Detachment neobsahuje army
 rule mechanicky — má naň **odkaz ako na svoj kontext** (`_meta.army_rule_ref`). Army rule a
-kríženie medzi detachmentami patria do **L1 (army)**. Detach `combos` v L2 sú len **interné**
-(v rámci jedného detachmentu); 3DP combos (kríženie detachmentov) patria do L1 kontextu.
+kríženie medzi detachmentami (3DP combos) sú v L0/L2 datasetoch; ich **interpretácia** (ktorý
+detachment s ktorým, archetypy) je výhradne **naživo v LLM odpovedi** — nikdy sa nepersistuje
+(combos = destilát destilátu = KB poison).
 
 ---
 
@@ -86,9 +91,15 @@ kríženie medzi detachmentami patria do **L1 (army)**. Detach `combos` v L2 sú
 | Zdroj | Čo dáva | Overenosť | Presun |
 |-------|---------|-----------|--------|
 | **MFM** (`mfm/data/<slug>.yaml` → `data/merged/<slug>.json`) | `detachments[]`: name, dp, objective, enhancements; points | reviewované, community-maintained | `gen_config.py` už mapuje do `supported.json` `dispositions` |
-| **Wahapedia** | detachment rule text (parafráza — verbatím text je GW IP, pozri §5/AGENTS.md), ktoré keywords/jednotky ovplyvňuje | golden/cross-check (AGENTS.md: Wahapedia nie je primárny, slúži na validáciu) | nový scrape→`detachment_facts/` vrstva |
+| **Wahapedia** | detachment rule text (parafráza — verbatím text je GW IP, pozri §5/AGENTS.md), ktoré keywords/jednotky ovplyvňuje | golden/cross-check (AGENTS.md: Wahapedia nie je primárny, slúži na validáciu) — ale 403 na botov | nový scrape→`detachment_facts/` vrstva |
 | **NewRecruit** | alternatívny text detachment rules + unit info | 2. overený zdroj | cross-check voči Wahapedia |
+| **40k.app** | detachment rules (funkcionálne znenie) | cross-check, keď Wahapedia blokuje botov | používa sa v draftoch ako `_source` |
+| **Goonhammer (tabletopbattles)** | analytické hodnotenia detachmentov/armád | analytik — **LEN 11e články** (cutoff: 11e launch jún 2026) sú autoritou pre strength; 10e články = historické, flagované, nikdy nie autorita | citácie v `strength_notes` |
 | **BSData** | unit profily, keywords, wargear, squad/vehicle constraints | primárny | už v `data/merged/` |
+
+> **11e cutoff pravidlo (2026-08-28):** analysis/strength/meta tvrdenia sa opierajú VÝHRADNE o
+> články z 11th edition (vydané ≥ 2026-06-01). 10e články sa smú použiť len na mechanickú
+> cross-check pravidiel, ktoré prežili nezmenené — nikdy ako autorita na strength/GT claim v 11e.
 
 **Kľúč: `data/merged/<faction>.json` už niesie `detachments[]` z MFM** (name/dp/objective/
 enhancements) — MCP `get_detachment` a `list_factions` ho dnes **nečítajú**. To je najlacnejší
@@ -96,21 +107,25 @@ overený základ L0, len ho treba sprístupniť.
 
 ---
 
-## 5. TEMPLATE L2 — Detachment info (nasadzovaná vrstva, vie o army rule)
+## 5. TEMPLATE L2 — Detachment info (statické fakty, vie o army rule)
 
 Schéma `data/config/<faction>/detachments.json` (jeden detachment). MCP `get_detachment`
 render už túto schému anticipuje (`dp_cost, disposition, strength, best_for, strength_notes,
 limitations, source`).
 
 > **Každý fakt musí byť traceable na L0.** Matematika/body → MFM. Pravidlo text → Wahapedia
-> verbatim + NewRecruit cross-check. Žiadny odkaz na expert file.
+> verbatim + NewRecruit cross-check + 40k.app. Žiadny odkaz na expert file.
+>
+> **LEGO PRAVIDLO (2026-08-28):** L2 obsahuje LEN statické fakty (to, čo reviewner overí)
+> + AI rating. **Unit roles, combos, spam, play_style, best units NIE SÚ v L2** — skladajú sa
+> naživo LLM-om z L0+L2+L3 pri odpovedi. Ukladať ich = destilát destilátu = KB poison.
 
 ```jsonc
 {
   "_meta": {
     "faction": "chaos-space-marines",
     "layer": "L2-detachment",
-    "generated_from": ["mfm", "wahapedia", "newrecruit"],
+    "generated_from": ["mfm", "wahapedia", "newrecruit", "40k.app"],
     "generated": "2026-08-27",
     "human_reviewed": false,          // ← review gate, pozri §9
     "army_rule_ref": "dark-pacts"     // ← detach VIE o army rule (L1) ako o svojom kontexte
@@ -123,116 +138,53 @@ limitations, source`).
       "disposition": "disruption",
       "name": "Cabal Of Chaos",
       "objective": "DISRUPTION",
-      // ---- ZL2a — čo detachment robí (pravidlo, verbatim z Wahapedia) ----
+      // ---- ZL2a — čo detachment robí (pravidlo, overené parafrázou) ----
       "rule": {
         "text": "<parafrázované pravidlo (mechanika, anglicky; NIKDY verbatím GW text / lore; názvy a keywordy presne)>",
         "_paraphrase": true,
         "_lang": "en",
-        "_source": ["https://wahapedia.ru/wh40k11ed/factions/...", "https://newrecruit.eu/..."],
+        "_source": ["https://www.40k.app/factions/chaos-knights/detachments/..."],
         "affects": ["FACTION", "PSYKER", "DAEMON_PRINCE", "KHORNE-exclusion"]
       },
-      // ---- ZL2b — na aké unity bonusy najlepšie platí (synergia) ----
-      "best_units": [
-        {
-          "unit": "Exalted Sorcerer",
-          "why": "<traceable na L0: s akým bonusom pravidla koreluje, nie subjektívny dojem>",
-          "_source": "..."
-        }
-      ],
-      // ---- ZL2c — úloha v armáde v rámci tohto detachmentu ----
-      "scoring_units": ["<názvy>"],
-      "support_units": ["<názvy>"],
-      "hammer_units": ["<názvy>"],
-      // ---- ZL2d — spam + leaders (čo stavať, v čom) ----
-      "spam": [
-        {
-          "unit": "...",
-          "count": "3×",
-          "with": "Leader X",
-          "why": "<L0-odvodené>",
-          "_source": "..."
-        }
-      ],
-      // ---- ZL2e — komba V RÁMCI tohto detachmentu (nie kríženie detachmentov) ----
-      "combos": [
-        {
-          "combo": "<A + B>",
-          "effects": "<ako sa vzájomne podporujú v hernom štýle tohto detachmentu>",
-          "_source": "..."
-        }
-      ],
-      // ---- hodnotenie (len L2 záleží) ----
+      // ---- hodnotenie (AI rating — user ho neoveruje, verí mu; traceable) ----
       "strength": "Moderate",            // Strong/Moderate/Situational/Weak
-      "strength_notes": "<traceable na L0>",
-      "limitations": ["<čo detachment nerobí>"],
-      "play_style": {
-        "summary": "<ako sa v ňom hrá — 2-3 vety, L0-odvodené>",
-        "tempo_axis": "infiltration | attrition | stat-augment | castle | rush"
-      }
+      "strength_notes": "<traceable na L0/analytika — 11e zdroje>",
+      "limitations": ["<čo detachment nerobí>"]
     }
   }
 }
 ```
 
-### Polia = odpovede na "čo hráčov zaujíma"
+### Čo L2 odpovedá (a čo NIE)
 
-| Hráč sa pýta | Pole v L2 |
-|--------------|-----------|
-| Ako sa to hrá? | `play_style.summary`, `play_style.tempo_axis` |
-| Na aké unity bonus najviac sadne? | `best_units[]` (s `why` traceable) |
-| Kto je scoring / support / hammer? | `scoring_units / support_units / hammer_units` |
-| Aký spam ktorej unity s ktorým leaderom? | `spam[]` (unit, count, with, why) |
-| Aké komba v rámci detachmentu? | `combos[]` |
-| Má to detach vôbec cenu? | `strength`, `strength_notes`, `limitations` |
+| Hráč sa pýta | Odkiaľ odpoveď |
+|--------------|---------------|
+| Čo TENTO detachment robí? | L2 `rule` (statický fakt) |
+| Má to detach vôbec cenu? | L2 `strength`, `strength_notes`, `limitations` (AI rating) |
+| Na aké unity bonus najlepšie sadne? Kto je scoring/support/hammer? Čo stavať? Ako sa hrá? | **NAŽIVO** — LLM skladá z `rule.affects` + L0 datasheetov + L3 rankov; NIKDY nie zo statického súboru |
 
 ---
 
-## 6. TEMPLATE L1 — Army profile (fundamentálna vrstva)
+## 6. L1 Army vrstva — ŽIADNY statický súbor (rozhodnuté 2026-08-28)
 
-Styl hrania = **ARMY RULE + DISPOSITION** + **3DP combos** (kontext). Odvodené z L0 + L2, nie z expert.
+**`army_profile.json` (archetypes, 3DP combos, play_style armády) je ZRUŠENÝ.** Pokus:
+"L2 detached facts + L1 army profile = kompletný expert model" — REJECTED userom.
 
-```jsonc
-{
-  "_meta": {
-    "faction": "chaos-space-marines",
-    "layer": "L1-army",
-    "generated_from": ["mfm", "supported.json", "detachments.json(L2)", "wahapedia", "newrecruit"],
-    "human_reviewed": false
-  },
-  "army_rule": {
-    "name": "Dark Pacts",
-    "text": "<verbatim>",
-    "_source": ["wahapedia", "newrecruit"]
-  },
-  "archetypes": [
-    {
-      "id": "disruption-infiltration",
-      "disposition": "disruption",
-      "play_style": "<ako hrá ako CELÁ armáda — tempo/osobitosti>",
-      "core_detachments": ["deceptors", "nightmare-hunt", "cabal-of-chaos"],  // → L2 _id
-      // ---- 3DP combos: max 3 detachments na 2000p (kontext, nie L2) ----
-      "combos": [
-        {
-          "dp": 3,
-          "roster": [
-            { "det": "deceptors", "dp": 1, "role": "board-presence" },
-            { "det": "nightmare-hunt", "dp": 1, "role": "attrition" },
-            { "det": "cabal-of-chaos", "dp": 1, "role": "psyker-hammer" }
-          ],
-          "why": "<ako sa vzájomne podporujú — kríženie medzi detachmentami patrí TU (L1), nie do L2>",
-          "synergy_notes": "<L0/L2-odvodené, v kontexte army rule>"
-        }
-      ],
-      "net_list_priorities": ["infiltration pressure", "battle-shock attrition"],
-      "scoring_hint": "<ktoré formácie držia objekty>"
-    }
-  ]
-}
-```
+Dôvod: 3DP combos a army archetypy sú **kompozícia** (A + B + army rule → herný štýl).
+Ak ich LLM zapíše do súboru, vzniká statická odvodenina, ktorú:
+- človek neoveril (combine facts sa nedajú "reviewovať" izolovane),
+- LLM neskôr bude citovať ako fakty (destilát destilátu = KB poison),
+- vrstvy sa začnú navzájom inšpirovať (L2 inšpirované L1 inšpirovaným L2).
 
-> **Leak guard:** 3DP combos = kríženie detachmentov → **patria do L1 (army kontext)**, NIE do L2.
-> L2 `combos` sú len interné (v rámci jedného detachmentu). Ak by sa objavili v L1 combos
-> per-detachment detaily, je to leak a Shredder to chytí.
+**Namiesto súboru:** army rule + dispositions sú L0 dáta (MFM/BSData). Odpoveď na
+"Ako sa hrá celá armáda / ktorý detach s ktorým?" skladá LLM **naživo** z:
+- L0: army rule, dispositions, detachment constrainy (dp, tagy)
+- L2: statické fakty o detachmentoch
+- L3: engine ranky
+- kontext otázky (roster, súper, detach point budget)
+
+Toto je LEGO model: kocky sú statické a overené, kompozícia je vždy čerstvá a
+kontextová. Skladanie je LLM silná stránka; ukladanie kompozície je jeho slabina.
 
 ---
 
@@ -245,15 +197,12 @@ Môže zostať v súčasnom formáte (parse_expert ho už číta), ale musí by�
 ```markdown
 # <Faction> — Expert Assessment (LLM reasoning cache)
 
-> **PLATNÝ K:** 2026-08-27   |   **ZDROJE:** MFM, Wahapedia, NewRecruit, BSData
+> **PLATNÝ K:** 2026-08-27   |   **ZDROJE:** MFM, Wahapedia, NewRecruit, 40k.app, BSData
 > **STATUS:** LLM reasoning, overený človekom ✓/✗. NIE je zdrojom pipeline.
-> Vzhľad na detachment dáta: `get_detachment` (L1) — nie z tohto súboru.
-
-## Army Rules & Detachments — Expert Assessment
-<existujúci formát; všetky fakty traceable na L0 _source>
+> Vzhľad na detachment dáta: `get_detachment` (L2) — nie z tohto súboru.
 ```
 
-**Pravidlo:** tento súbor sa NIKDY nečítalo pipeline-om na generovanie L1/L2. Ak áno — bug.
+**Pravidlo:** tento súbor sa NIKDY nečítal pipeline-om na generovanie L2. Ak áno — bug.
 
 ---
 
@@ -261,32 +210,39 @@ Môže zostať v súčasnom formáte (parse_expert ho už číta), ale musí by�
 
 | Existujúci tool | Zmena / nové |
 |-----------------|--------------|
-| `get_detachment` | ✅ už číta `detachments.json` (L1) — schéma sedí. Rozšíriť: čítať aj MFM `detachments[]` z `data/merged` (name/dp/objective/enhancements = overené základy). |
-| `list_factions` | vypísať aj počet detachmentov z L1 + z MFM array |
+| `get_detachment` | ✅ už číta `detachments.json` (L2) — schéma sedí. Rozšíriť: čítať aj MFM `detachments[]` z `data/merged` (name/dp/objective/enhancements = overené základy). |
+| `list_factions` | vypísať aj počet detachmentov z L2 + z MFM array |
 | **`get_llm_contract` (NOVÉ)** | turtle-dojo mandát. Prvý tool. Definuje hranicu truth vs interpretation, `_classification: engine_output|heuristic|verbatim`, `_source` povinnosť. |
-| **`get_army_profile` (NOVÉ, alebo rozšíriť get_detachment)** | číta L2 `army_profile.json` — styl, archetypes, 3DP combos. |
 | `rank_units` / `get_findings` / `compute_*` | bez zmeny — čistý engine (generalist, best gear). |
-| `get_stratagem` | detachment param už prijíma; presmerovať na L1 detached facts (ak budú). |
+| `get_stratagem` | detachment param už prijíma; presmerovať na L2 detached facts (ak budú). |
 
-**Dôležité:** L1/L2 sú **heuristic/verbatim** dáta s `_source` a `classification`. Engine (L3)
-je `engine_output` a sám sa nikdy neriadi L1/L2. MCP nesmie kombinovať detach dáta do engine
-rankov — to je tá stará chyba.
+**Dôležité:** L2 sú **heuristic/verbatim** dáta s `_source` a `classification`. Engine (L3)
+je `engine_output` a sám sa nikdy neriadi L2. MCP nesmie kombinovať detach dáta do engine
+rankov — to je tá stará chyba. **Žiadny tool neukladá army tips / combos / play_style** — LLM
+ich skladá naživo pri odpovedi a označuje ako interpretation (turtle-dojo output tiering).
 
 ---
 
 ## 9. Review gate — človek overí každý kompilát (Marcel rule)
 
-Vrstvy L1/L2/L4 sú **kompiláty** → musia prejsť ľudským overením pred tým, než sa považujú za
+Vrstvy L2/L4 sú **kompiláty** → musia prejsť ľudským overením pred tým, než sa považujú za
 podklad pre odporúčanie. Pipeline:
 
 ```
-1. generovať L0 fakty (MFM + Wahapedia verbatim + NewRecruit cross-check)
-2. AI zlepí L1 (detach info) a L2 (army profile) — každý fakt s _source
-3. HUMAN REVIEW: človek prejde L1/L2, opraví/odsúhlasí  →  _meta.human_reviewed=true
+1. generovať L0 fakty (MFM + Wahapedia verbatim + NewRecruit/40k.app cross-check)
+2. AI zlepí L2 (detach info) — každý fakt s _source; rule = overiteľný fakt,
+   strength = AI rating (traceable na 11e analytika; človek ho NEoveruje — verí mu)
+3. HUMAN REVIEW: človek prejde L2 → overí rule parafrázu voči L0 → _meta.human_reviewed=true
 4. Engine L3 beží nezávisle (generalist, best gear)
-5. L4 expert file = merge L1+L2+L3, tiež human review
+5. L4 expert file = merge L0+L2+L3, tiež human review
 6. Odsúhlasené vrstvy → odkazy budúcich session cez MCP
 ```
+
+**Hranica review:** človek overuje **fakty** (rule parafráza, affects, _source, body).
+**strength/strength_notes/limitations = AI rating** — user sa vyjadril (2026-08-28): *"ja neviem
+urcit strength detachmentu... budem musiet tomu verit"*. Rating sa commitne ako AI-heuristika
+s traceable source, NIE ako human-verified fakt. Z toho dôvodu Tier-5 gate nevyžaduje
+best_units/play_style pre `human_reviewed` — tie sú live kompozícia a v L2 vôbec nežijú.
 
 **Shredder gate (turtle-dojo):** každý výstup ktorý interpretuje dáta prejde shredder review —
 kontrola: "best" bez kontextu, implicitné role z keywordu, epistemic collapse, absent `_source`,
@@ -298,9 +254,9 @@ re-computation, ability chaining certainty, chýbajúca assumption registry.
 
 - **Engine** (L3) ostáva čistý generalist + best gear. Žiadne detachment modifikátory.
 - **Dispositions** (`supported.json`) ostávajú — legit MFM dáta.
-- **`workspace/detachment_research/`** (Faction Pack corpus) je gitignored scratch —
+- **`workspace/detachment_drafts/`** (gitignored LLM drafts) je pracovný index —
   nemožno ho považovať za overený zdroj pravdy; ide o L4-ekvivalent.
-- Pipeline implementácia (scrape Wahapedia/NewRecruit, generátory L1/L2) je **ďalší krok**
+- Pipeline implementácia (scrape Wahapedia/NewRecruit/40k.app, generátory L2) je **ďalší krok**
   — tento dokument fixuje architektúru a template.
 
 ---
@@ -310,9 +266,11 @@ re-computation, ability chaining certainty, chýbajúca assumption registry.
 1. ~~Wahapedia v AGENTS.md je "cross-check, nie primárny" — povýšiť na zdroj **verbatim detachment
    rule text**?~~ **Rozhodnuté (2026-08-28): NIE.** `rule.text` je parafráza mechaniky
    (anglicky, bez lore, názvy/keywordy presne) — verbatím pravidiel je GW IP. Body ostávajú MFM.
-2. NewRecruit — verifikovať dostupnosť/scrapovateľnosť detachment rules (licencia/robots).
+2. NewRecruit — verifikovať dostupnosť/scrapovateľnosť detachment rules (licencia/robots);
+   Wahapedia zatiaľ 403 na botov → drafty používajú **40k.app** ako funkcionálny cross-check.
 3. `get_llm_contract` — kam patriť (mcp-server/index.js), a či sa má líšiť `_classification`
    label schéma od turtle-dojo štandardu.
-4. `detachments.json` L1 file — generovať do `data/config/<faction>/` (gitignored scratch) alebo
+4. `detachments.json` L2 file — generovať do `data/config/<faction>/` (gitignored scratch) alebo
    commitnúť? (Odporúčanie: scratch + human review, commit až po odsúhlasení.)
-5. Ako sa L2 `army_profile.json` napája na findings gen / MCP bez leakov do L1.
+5. ~~Ako sa L2 `army_profile.json` napája na findings gen / MCP bez leakov do L1.~~
+   **ZRUŠENÉ (2026-08-28):** armáda sa nepersistuje; kompozícia je naživo v LLM.

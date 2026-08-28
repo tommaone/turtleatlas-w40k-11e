@@ -1011,3 +1011,35 @@ Potvrdené L0 zdroje pre 11e detachment pravidlá: newrecruit.eu wiki (verbatím
 40k.app (cross-check), tabletopbattles.com/goonhammer (expert analýza).
 Pozor: staršie community zdroje (wargamer 2026-06) môžu mať stale disposície —
 NewRecruit 40k.app + MFM vyhrali (Infernal Lance = PRIORITY ASSETS).
+
+## Lego model: kompozícia NAŽIVO, nie statické army tips (2026-08-28)
+Unit roles (best_units/scoring/support/hammer), spam, combos (aj 3DP),
+play_style a "army tips" NIE SÚ polia L2. Sú to interpretácie
+("destilát destilátu") — ak ich LLM persistuje, stávajú sa statickou
+odvodeninou, ktorú nikto nereviewoval a ktorá otrávi KB. LLM ich skladá
+**naživo** pri odpovedi z kociek L0 (rule text, datasheety, keywords) + L2
+(rule parafráza, affects, strength) + L3 (ranky) + kontext otázky. Kocky sú
+statické a overené; kompozícia je vždy čerstvá. `army_profile.json`
+(archetypes + 3DP combos + army play_style) bol navrhnutý a **REJECTED**
+userom. Tier 5/6 vynucujú L2_EXPERT_FIELDS = {rule, strength,
+strength_notes, limitations} — best_units/scoring/support/hammer/spam/
+combos/play_style sú unknown fields.
+
+## 11e cutoff: strength zdroje len z 11th edition (2026-08-28)
+`strength_notes` a meta-olaimy sa opierajú VÝHRADNE o články z 11e
+(vydané ≥ 2026-06-01; 11e launch jún 2026, Armageddon box 20.6.). 10e
+články (napr. Goonhammer Detachment Focus: Infernal Lance 2025-11-18)
+sú historické — smú sa použiť len na mechanický cross-check pravidiel,
+ktoré prežili nezmenené; nikdy nie ako autorita na strength/GT claim v 11e.
+Zdroje: Goonhammer 11e Faction Pack Review (tabletopbattles.com/
+40k-11th-edition-faction-pack-review-chaos-knights/, 2026-06-10) —
+Houndpack "best primed", Iconoclast Fiefdom "go to soup", Lords of Dread
+"still kinda bad", Bastions rule "pretty damn bad", Despoilers risky.
+
+## strength = AI rating, nie human-verifikovaný fakt (2026-08-28)
+User nemôže určiť strength detachmentu ("ja neviem urcit strength
+detachmentu... budem musiet tomu verit"). Preto je `strength` v L2 AI
+heuristika s traceable `strength_notes` + `limitations` — reviewner overí
+`rule` (fakt), strength berie ako dôveryhodný AI odhad. Tier 5 preto
+NEpožaduje best_units/play_style pre `human_reviewed: true` (tie sú live
+kompozícia); reviewed file = rule + strength + notes + limitations.
