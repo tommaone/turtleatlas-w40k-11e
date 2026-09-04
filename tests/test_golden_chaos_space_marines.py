@@ -1,6 +1,6 @@
 """Golden loadout locks — chaos-space-marines (regression sweep units).
 
-Source of truth: workspace/golden_loadouts/chaos-space-marines.json
+Source of truth: tests/golden_loadouts/chaos-space-marines.json
 (Wahapedia 11ed, fetched 2026-08-24, confidence high).
 
 Verdicts applied (regression report lines 25-28):
@@ -33,7 +33,7 @@ def _base(name):
     """Strip choice-profile suffixes ('... - strike'/' - standard') for identity."""
     return name.split(" - ")[0]
 
-GOLDEN = Path(__file__).resolve().parent.parent / "workspace" / "golden_loadouts" / "chaos-space-marines.json"
+GOLDEN = Path(__file__).resolve().parent / "golden_loadouts" / "chaos-space-marines.json"
 
 
 @pytest.fixture(scope="module")

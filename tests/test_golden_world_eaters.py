@@ -1,6 +1,6 @@
 """Golden loadout locks — World Eaters datasheet-verified equipment structures.
 
-Source of truth: workspace/golden_loadouts/world-eaters-golden.json
+Source of truth: tests/golden_loadouts/world-eaters-golden.json
 (wahapedia 11ed, fetched 2026-08-24, confidence high). The Defiler pins
 mirror the CSM golden verdict from tests/test_golden_loadouts.py
 (commit ec7b60c).
@@ -20,7 +20,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "engine"))
 
 from engine.ranking import RankingEngine
 
-GOLDEN = Path(__file__).resolve().parent.parent / "workspace" / "golden_loadouts" / "world-eaters-golden.json"
+GOLDEN = Path(__file__).resolve().parent / "golden_loadouts" / "world-eaters-golden.json"
 CHARACTERS = Path(__file__).resolve().parent.parent / "data" / "config" / "world-eaters" / "characters.json"
 WEAPON_OPTIONS = Path(__file__).resolve().parent.parent / "data" / "config" / "world-eaters" / "weapon_options.json"
 

@@ -13,7 +13,11 @@ plus an index page. Each army page renders the layers separately:
   L4  EXPERT CACHE  - link to resources/experts/<faction>.md (NL cache)
 
 The JSON files stay the source of truth; pages are a read/annotate view.
-Deterministic: all render_* functions are pure functions of repo data.
+Deterministic: all render_* functions are pure functions of COMMITTED repo
+data. Workspace drafts (gitignored, unverified LLM L2 overlay) are NEVER
+part of the committed render — the test suite locks byte-identity, so any
+gitignored input would make the suite red on clean checkouts. Draft overlay
+is available opt-in via `--with-drafts` for local review workbooks.
 Slugs use the canonical generator slugify (apostrophes stripped, straight
 and curly) — imported, never re-implemented.
 """
@@ -24,7 +28,6 @@ import html
 import json
 import os
 import sys
-from datetime import date
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -309,11 +312,13 @@ def _l4_section(faction: str) -> str:
     )
 
 
-def render_faction(faction: str) -> str:
+def render_faction(faction: str, with_drafts: bool = False) -> str:
     data = json.loads((CONFIG_DIR / faction / "detachments.json").read_text())
     meta = data.get("_meta", {})
     entries = data.get("detachments", {})
-    draft = _draft_for(faction)
+    # gitignored workspace drafts are opt-in (local review workbooks only);
+    # the committed render must never depend on them (determinism lock).
+    draft = _draft_for(faction) if with_drafts else {}
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -326,7 +331,7 @@ def render_faction(faction: str) -> str:
 <header>
 <p class="meta"><a href="index.html">← index</a></p>
 <h1>{_esc(meta.get("index", faction))} <span class="meta">({_esc(faction)})</span></h1>
-<p class="meta">generated {date.today().isoformat()} · vrstvy L0-L4 oddelené · JSON files remain the source of truth; drafts live in workspace/ (gitignored)</p>
+<p class="meta">vrstvy L0-L4 oddelené · JSON files remain the source of truth; workspace drafts are NOT part of the committed render</p>
 </header>
 
 {_l0_section(faction, meta, entries)}
@@ -339,7 +344,7 @@ def render_faction(faction: str) -> str:
 """
 
 
-def render_index() -> str:
+def render_index(with_drafts: bool = False) -> str:
     factions = sorted(p.name for p in CONFIG_DIR.iterdir()
                       if p.is_dir() and (p / "detachments.json").exists())
     total_dets = 0
@@ -350,7 +355,7 @@ def render_index() -> str:
         data = json.loads((CONFIG_DIR / faction / "detachments.json").read_text())
         meta = data.get("_meta", {})
         entries = data.get("detachments", {})
-        draft = _draft_for(faction)
+        draft = _draft_for(faction) if with_drafts else {}
         faction_reviewed = bool(meta.get("human_reviewed"))
         n = len(entries)
         total_dets += n
@@ -377,7 +382,7 @@ def render_index() -> str:
 <body>
 <header>
 <h1>Detachment Atlas</h1>
-<p class="meta">generated {date.today().isoformat()} · per-army, layer-separated (L0-L4) · {len(factions)} factions · {total_dets} detachments · {total_reviewed} reviewed · {total_drafted} drafted · source: scripts/gen_detach_review_html.py · JSON files remain the source of truth; drafts live in workspace/ (gitignored)</p>
+<p class="meta">per-army, layer-separated (L0-L4) · {len(factions)} factions · {total_dets} detachments · {total_reviewed} reviewed · {total_drafted} drafted · source: scripts/gen_detach_review_html.py · JSON files remain the source of truth; workspace drafts are NOT part of the committed render</p>
 </header>
 
 <details open>
@@ -409,11 +414,22 @@ FACTIONS = sorted(
 
 
 def main() -> None:
+    import argparse
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--with-drafts", action="store_true",
+        help="overlay gitignored workspace L2 drafts (local review workbook; "
+             "NOT for committed output — breaks the determinism lock)",
+    )
+    args = parser.parse_args()
     ATLAS_DIR.mkdir(parents=True, exist_ok=True)
-    (ATLAS_DIR / "index.html").write_text(render_index() + "\n")
+    (ATLAS_DIR / "index.html").write_text(render_index(with_drafts=args.with_drafts) + "\n")
     n = 1
     for faction in FACTIONS:
-        (ATLAS_DIR / f"{faction}.html").write_text(render_faction(faction) + "\n")
+        (ATLAS_DIR / f"{faction}.html").write_text(
+            render_faction(faction, with_drafts=args.with_drafts) + "\n"
+        )
         n += 1
     print(f"{ATLAS_DIR.relative_to(REPO_ROOT)} written ({n} pages)")
 

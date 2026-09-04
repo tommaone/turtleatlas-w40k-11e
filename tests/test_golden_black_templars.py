@@ -1,6 +1,6 @@
 """Golden loadout locks — black-templars.
 
-Source of truth: workspace/golden_loadouts/black-templars.json
+Source of truth: tests/golden_loadouts/black-templars.json
 (Wahapedia 11ed, fetched 2026-08-24, confidence high).
 
 Verdicts applied (regression report lines 20-21):
@@ -24,7 +24,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "engine"))
 
 from engine.ranking import RankingEngine
 
-GOLDEN = Path(__file__).resolve().parent.parent / "workspace" / "golden_loadouts" / "black-templars.json"
+GOLDEN = Path(__file__).resolve().parent / "golden_loadouts" / "black-templars.json"
 
 
 def _base(name):

@@ -1,6 +1,6 @@
 """Golden loadout locks — death-guard datasheet-verified structures.
 
-Source of truth: workspace/golden_loadouts/death-guard.json
+Source of truth: tests/golden_loadouts/death-guard.json
 (BSData wh40k-11e catalogue + wahapedia.ru 11ed cross-check, 2026-08-24).
 
 Regression context: the curated-sheet audit sweep flattened these entries.
@@ -27,7 +27,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "engine"))
 
 from engine.ranking import RankingEngine
 
-GOLDEN = Path(__file__).resolve().parent.parent / "workspace" / "golden_loadouts" / "death-guard.json"
+GOLDEN = Path(__file__).resolve().parent / "golden_loadouts" / "death-guard.json"
 
 
 @pytest.fixture(scope="module")

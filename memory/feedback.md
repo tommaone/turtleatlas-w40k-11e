@@ -1051,3 +1051,27 @@ heuristika s traceable `strength_notes` + `limitations` — reviewner overí
 `rule` (fakt), strength berie ako dôveryhodný AI odhad. Tier 5 preto
 NEpožaduje best_units/play_style pre `human_reviewed: true` (tie sú live
 kompozícia); reviewed file = rule + strength + notes + limitations.
+
+## Golden corpus files must live in committed tests/golden_loadouts/ (2026-09-04)
+The golden loadout tests point at `workspace/golden_loadouts/*.json` — but
+`workspace/` is gitignored, so the corpus never existed in git and the whole
+`test_golden_*` tier failed on every clean checkout (20 failures + 2 errors,
+"pre-existing on main" = still red). Moved the corpus to
+`tests/golden_loadouts/` (committed, regenerable via
+`scripts/gen_golden_corpus.py` — reads pinned units straight out of each
+test file and verifies Wahapedia source URLs).
+
+**Why:** a test that reads gitignored scratch is permanently red for anyone who clones.
+**How:** golden corpus = registry of pinned units + `_source` (Wahapedia URL, verified live); the real STRUCTURE+COUNT locks run against the engine and don't need the file beyond presence+source.
+
+## Atlas render must be a pure function of committed data (2026-09-04)
+`scripts/gen_detach_review_html.py` overlaid gitignored
+`workspace/detachment-drafts/*.draft.json` onto the L2 sections and stamped
+`generated {date.today()}` into every page. Byte-identity
+(`render == committed HTML`) then depended on scratch + the calendar —
+`test_atlas_is_current` failed on every clean clone and re-broke on any
+draft edit. Draft overlay is now opt-in (`--with-drafts`, local review
+workbooks only); committed output is seconds-stable and checkout-agnostic.
+
+**Why:** the drafts' own `_meta` says "never commit this file; promote ONLY after human verification" — committing/baking them would be premature; baking gitignored inputs into committed docs breaks the determinism lock by design.
+**How:** `render_faction`/`render_index` default `with_drafts=False`; keep L2 review content flowing through committed `data/config/<faction>/detachments.json` (promoted entries), not the render path.

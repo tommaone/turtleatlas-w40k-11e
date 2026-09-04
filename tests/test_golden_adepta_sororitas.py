@@ -1,6 +1,6 @@
 """Golden loadout locks — adepta-sororitas datasheet-verified structures.
 
-Source of truth: workspace/golden_loadouts/adepta-sororitas.json
+Source of truth: tests/golden_loadouts/adepta-sororitas.json
 (BSData wh40k-11e catalogue + wahapedia.ru 11ed cross-check, 2026-08-24).
 
 Regression context: the curated-sheet audit sweep flattened/restructured
@@ -24,7 +24,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "engine"))
 
 from engine.ranking import RankingEngine
 
-GOLDEN = Path(__file__).resolve().parent.parent / "workspace" / "golden_loadouts" / "adepta-sororitas.json"
+GOLDEN = Path(__file__).resolve().parent / "golden_loadouts" / "adepta-sororitas.json"
 
 
 @pytest.fixture(scope="module")

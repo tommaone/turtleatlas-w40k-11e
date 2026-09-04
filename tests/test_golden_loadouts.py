@@ -1,6 +1,6 @@
 """Golden loadout locks — datasheet-verified equipment structures.
 
-Source of truth: workspace/golden_loadouts/gk-csm-pilot.json
+Source of truth: tests/golden_loadouts/gk-csm-pilot.json
 (Wahapedia 11ed, fetched 2026-08-24, confidence high).
 
 These pins exist because curated multi-build configs were silently
@@ -22,7 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "engine"))
 
 from engine.ranking import RankingEngine
 
-GOLDEN = Path(__file__).resolve().parent.parent / "workspace" / "golden_loadouts" / "gk-csm-pilot.json"
+GOLDEN = Path(__file__).resolve().parent / "golden_loadouts" / "gk-csm-pilot.json"
 
 
 @pytest.fixture(scope="module")

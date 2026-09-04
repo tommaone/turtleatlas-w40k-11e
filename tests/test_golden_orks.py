@@ -1,6 +1,6 @@
 """Golden loadout locks — Orks datasheet-verified equipment structures.
 
-Source of truth: workspace/golden_loadouts/orks-golden.json
+Source of truth: tests/golden_loadouts/orks-golden.json
 (wahapedia 11ed, fetched 2026-08-24, confidence high).
 
 Companion to the GK/CSM pilot (tests/test_golden_loadouts.py, commit
@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "engine"))
 
 from engine.ranking import RankingEngine
 
-GOLDEN = Path(__file__).resolve().parent.parent / "workspace" / "golden_loadouts" / "orks-golden.json"
+GOLDEN = Path(__file__).resolve().parent / "golden_loadouts" / "orks-golden.json"
 CHARACTERS = Path(__file__).resolve().parent.parent / "data" / "config" / "orks" / "characters.json"
 WEAPON_OPTIONS = Path(__file__).resolve().parent.parent / "data" / "config" / "orks" / "weapon_options.json"
 

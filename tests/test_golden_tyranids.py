@@ -1,6 +1,6 @@
 """Golden loadout locks — tyranids.
 
-Source of truth: workspace/golden_loadouts/tyranids.json
+Source of truth: tests/golden_loadouts/tyranids.json
 (Wahapedia 11ed, fetched 2026-08-24, confidence high).
 
 Verdicts applied (regression report lines 104-107):
@@ -36,7 +36,7 @@ def _base(name):
     """Strip choice-profile suffixes ('... - strike') for identity."""
     return name.split(" - ")[0]
 
-GOLDEN = Path(__file__).resolve().parent.parent / "workspace" / "golden_loadouts" / "tyranids.json"
+GOLDEN = Path(__file__).resolve().parent / "golden_loadouts" / "tyranids.json"
 
 
 @pytest.fixture(scope="module")

@@ -1,6 +1,6 @@
 """Golden loadout locks — aeldari Wraithknight.
 
-Source of truth: workspace/golden_loadouts/aeldari.json
+Source of truth: tests/golden_loadouts/aeldari.json
 (Wahapedia 11ed + BSData Aeldari Library, fetched 2026-08-24, high confidence).
 
 Verdict applied (regression report line 19): the 5d21b52 single 'Primary Arm'
@@ -32,7 +32,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "engine"))
 
 from engine.ranking import RankingEngine
 
-GOLDEN = Path(__file__).resolve().parent.parent / "workspace" / "golden_loadouts" / "aeldari.json"
+GOLDEN = Path(__file__).resolve().parent / "golden_loadouts" / "aeldari.json"
 
 
 @pytest.fixture(scope="module")

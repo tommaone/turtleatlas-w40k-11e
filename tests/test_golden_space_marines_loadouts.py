@@ -1,6 +1,6 @@
 """Golden loadout locks — space-marines, datasheet-verified structures.
 
-Source of truth: workspace/golden_loadouts/space-marines.json
+Source of truth: tests/golden_loadouts/space-marines.json
 (wahapedia 11ed Faction Pack v1.1 + local BSData catalogue, fetched 2026-08-24,
 confidence high). Units not listed there are pinned against BSData
 selection-entry-group structure only.
@@ -20,9 +20,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "engine"))
 from engine.ranking import RankingEngine
 
 GOLDEN = (
-    Path(__file__).resolve().parent.parent
-    / "workspace"
-    / "golden_loadouts"
+    Path(__file__).resolve().parent / "golden_loadouts"
     / "space-marines.json"
 )
 

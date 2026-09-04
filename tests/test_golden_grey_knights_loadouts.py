@@ -1,6 +1,6 @@
 """Golden loadout locks — grey-knights, datasheet-verified structures.
 
-Source of truth: workspace/golden_loadouts/grey-knights.json
+Source of truth: tests/golden_loadouts/grey-knights.json
 (wahapedia 11ed Faction Pack v1.1 + local BSData catalogue, fetched 2026-08-24,
 confidence high). NDK/GMNDK pins live in test_golden_loadouts.py (pilot corpus).
 
@@ -19,9 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "engine"))
 from engine.ranking import RankingEngine
 
 GOLDEN = (
-    Path(__file__).resolve().parent.parent
-    / "workspace"
-    / "golden_loadouts"
+    Path(__file__).resolve().parent / "golden_loadouts"
     / "grey-knights.json"
 )
 

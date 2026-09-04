@@ -1,6 +1,6 @@
 """Golden loadout locks — imperial-agents datasheet-verified structures.
 
-Source of truth: workspace/golden_loadouts/imperial-agents.json
+Source of truth: tests/golden_loadouts/imperial-agents.json
 (Wahapedia 11ed, fetched 2026-08-24, confidence high; Inquisitor points
 flagged low-confidence — wahapedia live 55 vs MFM snapshot 65).
 
@@ -20,8 +20,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "engine"))
 from engine.ranking import RankingEngine
 
 GOLDEN = (
-    Path(__file__).resolve().parent.parent
-    / "workspace" / "golden_loadouts" / "imperial-agents.json"
+    Path(__file__).resolve().parent / "golden_loadouts" / "imperial-agents.json"
 )
 
 

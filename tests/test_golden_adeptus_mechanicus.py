@@ -1,6 +1,6 @@
 """Golden loadout locks — adeptus-mechanicus datasheet-verified structures.
 
-Source of truth: workspace/golden_loadouts/adeptus-mechanicus.json
+Source of truth: tests/golden_loadouts/adeptus-mechanicus.json
 (Wahapedia 11ed, fetched 2026-08-24, confidence high).
 
 Covers the curated-regression flags for Stratoraptor / Skorpius
@@ -20,8 +20,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "engine"))
 from engine.ranking import RankingEngine
 
 GOLDEN = (
-    Path(__file__).resolve().parent.parent
-    / "workspace" / "golden_loadouts" / "adeptus-mechanicus.json"
+    Path(__file__).resolve().parent / "golden_loadouts" / "adeptus-mechanicus.json"
 )
 
 

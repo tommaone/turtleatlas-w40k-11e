@@ -1,6 +1,6 @@
 """Golden loadout locks — leagues-of-votann.
 
-Source of truth: workspace/golden_loadouts/leagues-of-votann.json
+Source of truth: tests/golden_loadouts/leagues-of-votann.json
 (Wahapedia 11ed, fetched 2026-08-24, confidence high).
 
 Verdicts applied (regression report lines 50-52):
@@ -27,7 +27,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "engine"))
 
 from engine.ranking import RankingEngine
 
-GOLDEN = Path(__file__).resolve().parent.parent / "workspace" / "golden_loadouts" / "leagues-of-votann.json"
+GOLDEN = Path(__file__).resolve().parent / "golden_loadouts" / "leagues-of-votann.json"
 
 
 @pytest.fixture(scope="module")

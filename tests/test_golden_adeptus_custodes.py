@@ -1,6 +1,6 @@
 """Golden loadout locks — adeptus-custodes.
 
-Source of truth: workspace/golden_loadouts/adeptus-custodes.json
+Source of truth: tests/golden_loadouts/adeptus-custodes.json
 (Wahapedia 11ed, fetched 2026-08-24, confidence high).
 
 Verdicts applied (regression report lines 14-15): the 5d21b52 configs were
@@ -22,7 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "engine"))
 
 from engine.ranking import RankingEngine
 
-GOLDEN = Path(__file__).resolve().parent.parent / "workspace" / "golden_loadouts" / "adeptus-custodes.json"
+GOLDEN = Path(__file__).resolve().parent / "golden_loadouts" / "adeptus-custodes.json"
 
 
 @pytest.fixture(scope="module")
