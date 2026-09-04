@@ -1,13 +1,15 @@
 {
   "faction": "Tyranids",
   "slug": "tyranids",
-  "version": "1.2",
-  "firstSeen": "2026-08-05",
+  "version": "1.4",
+  "firstSeen": "2026-09-02",
   "detachments": [
     {
       "name": "Ambush Predators",
       "dp": 1,
-      "objective": "DISRUPTION",
+      "objectives": [
+        "DISRUPTION"
+      ],
       "enhancements": [
         {
           "name": "Cryptophotaic Camouflage (Upgrade)",
@@ -22,7 +24,9 @@
     {
       "name": "Assimilation Swarm",
       "dp": 2,
-      "objective": "PRIORITY ASSETS",
+      "objectives": [
+        "PRIORITY ASSETS"
+      ],
       "enhancements": [
         {
           "name": "Biophagic Flow",
@@ -45,7 +49,9 @@
     {
       "name": "Crusher Stampede",
       "dp": 2,
-      "objective": "PURGE THE FOE",
+      "objectives": [
+        "PURGE THE FOE"
+      ],
       "enhancements": [
         {
           "name": "Enraged Reserves",
@@ -68,7 +74,9 @@
     {
       "name": "Invasion Fleet",
       "dp": 3,
-      "objective": "TAKE AND HOLD",
+      "objectives": [
+        "TAKE AND HOLD"
+      ],
       "enhancements": [
         {
           "name": "Adaptive Biology",
@@ -91,7 +99,9 @@
     {
       "name": "Subterranean Assault",
       "dp": 3,
-      "objective": "DISRUPTION",
+      "objectives": [
+        "DISRUPTION"
+      ],
       "enhancements": [
         {
           "name": "Synaptic Strategy",
@@ -114,7 +124,9 @@
     {
       "name": "Synaptic Nexus",
       "dp": 2,
-      "objective": "DISRUPTION",
+      "objectives": [
+        "DISRUPTION"
+      ],
       "enhancements": [
         {
           "name": "Power of the Hive Mind",
@@ -137,7 +149,9 @@
     {
       "name": "Talons Of The Norn Queen",
       "dp": 1,
-      "objective": "TAKE AND HOLD",
+      "objectives": [
+        "TAKE AND HOLD"
+      ],
       "enhancements": [
         {
           "name": "Destabilising Predation (Upgrade)",
@@ -145,14 +159,16 @@
         },
         {
           "name": "Synaptoprescience (Upgrade)",
-          "points": 25
+          "points": 30
         }
       ]
     },
     {
       "name": "Unending Swarm",
       "dp": 2,
-      "objective": "TAKE AND HOLD",
+      "objectives": [
+        "TAKE AND HOLD"
+      ],
       "enhancements": [
         {
           "name": "Adrenalised Onslaught",
@@ -175,7 +191,9 @@
     {
       "name": "Vanguard Onslaught",
       "dp": 2,
-      "objective": "RECONNAISSANCE",
+      "objectives": [
+        "RECONNAISSANCE"
+      ],
       "enhancements": [
         {
           "name": "Chameleonic",
@@ -198,7 +216,9 @@
     {
       "name": "Warrior Bioform Onslaught",
       "dp": 1,
-      "objective": "TAKE AND HOLD",
+      "objectives": [
+        "TAKE AND HOLD"
+      ],
       "enhancements": [
         {
           "name": "Elevated Might",
@@ -544,10 +564,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Genestealers"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -1052,7 +1070,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Exocrine",
-        "points": 140,
+        "points": 135,
         "stats": {
           "M": "8\"",
           "T": "10",
@@ -1125,7 +1143,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 140
+              "points": 135
             }
           ]
         },
@@ -1135,7 +1153,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 150
+              "points": 145
             }
           ]
         }
@@ -2335,10 +2353,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Tyrant Guard"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -2595,10 +2611,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Raveners"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -2686,7 +2700,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Maleceptor",
-        "points": 190,
+        "points": 180,
         "stats": {
           "M": "8\"",
           "T": "11",
@@ -2775,7 +2789,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 190
+              "points": 180
             }
           ]
         },
@@ -2785,7 +2799,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 200
+              "points": 190
             }
           ]
         }
@@ -3231,12 +3245,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Neurogaunts",
-        "Tyrant Guard",
-        "Zoanthropes"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -3593,10 +3603,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Carnifexes"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -3803,7 +3811,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Pyrovores",
-        "points": 45,
+        "points": 40,
         "stats": {
           "M": "5\"",
           "T": "6",
@@ -3889,15 +3897,15 @@
           "costs": [
             {
               "models": 1,
-              "points": 45
+              "points": 40
             },
             {
               "models": 2,
-              "points": 65
+              "points": 70
             },
             {
               "models": 3,
-              "points": 95
+              "points": 100
             }
           ]
         },
@@ -3907,15 +3915,15 @@
           "costs": [
             {
               "models": 1,
-              "points": 55
+              "points": 50
             },
             {
               "models": 2,
-              "points": 75
+              "points": 80
             },
             {
               "models": 3,
-              "points": 105
+              "points": 110
             }
           ]
         }
@@ -5029,10 +5037,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Tyrant Guard"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -5331,13 +5337,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Hormagaunts",
-        "Termagants",
-        "Tyranid Warriors With Melee Bio-Weapons",
-        "Tyranid Warriors With Ranged Bio-Weapons"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -5864,7 +5865,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Tyrannofex",
-        "points": 180,
+        "points": 170,
         "stats": {
           "M": "9\"",
           "T": "12",
@@ -5991,7 +5992,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 180
+              "points": 170
             }
           ]
         },
@@ -6001,7 +6002,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 190
+              "points": 180
             }
           ]
         }
@@ -6164,7 +6165,7 @@
             },
             {
               "models": 6,
-              "points": 160
+              "points": 170
             }
           ]
         }
@@ -6599,12 +6600,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Gargoyles",
-        "Tyranid Warriors With Melee Bio-Weapons",
-        "Tyranid Warriors With Ranged Bio-Weapons"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -6750,7 +6747,7 @@
             },
             {
               "models": 6,
-              "points": 200
+              "points": 190
             }
           ]
         }

@@ -1,13 +1,15 @@
 {
   "faction": "T’au Empire",
   "slug": "tau-empire",
-  "version": "1.2",
-  "firstSeen": "2026-08-05",
+  "version": "1.4",
+  "firstSeen": "2026-09-02",
   "detachments": [
     {
       "name": "Advanced Acquisition Cadre",
       "dp": 1,
-      "objective": "RECONNAISSANCE",
+      "objectives": [
+        "RECONNAISSANCE"
+      ],
       "enhancements": [
         {
           "name": "Negation Emitters (Upgrade)",
@@ -22,7 +24,9 @@
     {
       "name": "Auxiliary Cadre",
       "dp": 1,
-      "objective": "DISRUPTION",
+      "objectives": [
+        "DISRUPTION"
+      ],
       "unique": "Auxiliary",
       "enhancements": [
         {
@@ -38,7 +42,9 @@
     {
       "name": "Experimental Prototype Cadre",
       "dp": 1,
-      "objective": "PRIORITY ASSETS",
+      "objectives": [
+        "PRIORITY ASSETS"
+      ],
       "unique": "Battlesuit",
       "enhancements": [
         {
@@ -58,7 +64,9 @@
     {
       "name": "Kauyon",
       "dp": 2,
-      "objective": "RECONNAISSANCE",
+      "objectives": [
+        "RECONNAISSANCE"
+      ],
       "enhancements": [
         {
           "name": "Exemplar of the Kauyon",
@@ -81,7 +89,9 @@
     {
       "name": "Kroot Hunting Pack",
       "dp": 2,
-      "objective": "TAKE AND HOLD",
+      "objectives": [
+        "TAKE AND HOLD"
+      ],
       "unique": "Auxiliary",
       "enhancements": [
         {
@@ -105,7 +115,9 @@
     {
       "name": "Mont’Ka",
       "dp": 3,
-      "objective": "PRIORITY ASSETS",
+      "objectives": [
+        "PRIORITY ASSETS"
+      ],
       "enhancements": [
         {
           "name": "Coordinated Exploitation",
@@ -121,14 +133,16 @@
         },
         {
           "name": "Strike Swiftly",
-          "points": 35
+          "points": 45
         }
       ]
     },
     {
       "name": "Retaliation Cadre",
       "dp": 3,
-      "objective": "PURGE THE FOE",
+      "objectives": [
+        "PURGE THE FOE"
+      ],
       "unique": "Battlesuit",
       "enhancements": [
         {
@@ -1199,11 +1213,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Breacher Team",
-        "Strike Team"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -1319,13 +1330,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Crisis Battlesuits",
-        "Crisis Fireknife Battlesuits",
-        "Crisis Starscythe Battlesuits",
-        "Crisis Sunforge Battlesuits"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -1594,13 +1600,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Crisis Battlesuits",
-        "Crisis Fireknife Battlesuits",
-        "Crisis Starscythe Battlesuits",
-        "Crisis Sunforge Battlesuits"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -1850,13 +1851,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Crisis Battlesuits",
-        "Crisis Fireknife Battlesuits",
-        "Crisis Starscythe Battlesuits",
-        "Crisis Sunforge Battlesuits"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -2334,7 +2330,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Crisis Starscythe Battlesuits",
-        "points": 90,
+        "points": 100,
         "stats": {
           "M": "10\"",
           "T": "5",
@@ -2603,7 +2599,7 @@
           "costs": [
             {
               "models": 3,
-              "points": 90
+              "points": 100
             }
           ]
         },
@@ -2613,7 +2609,7 @@
           "costs": [
             {
               "models": 3,
-              "points": 100
+              "points": 110
             }
           ]
         }
@@ -2975,10 +2971,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Pathfinder Team"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -3248,11 +3242,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Breacher Team",
-        "Strike Team"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -4493,11 +4484,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Kroot Carnivores",
-        "Kroot Farstalkers"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -4861,11 +4849,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Kroot Carnivores",
-        "Kroot Farstalkers"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -5000,11 +4985,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Kroot Carnivores",
-        "Kroot Farstalkers"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -8257,7 +8239,7 @@
       "deep_strike": true,
       "profile": {
         "name": "The Twin Lance",
-        "points": 220,
+        "points": 230,
         "stats": {
           "M": "10\"",
           "T": "6",
@@ -8488,7 +8470,7 @@
           "costs": [
             {
               "models": 2,
-              "points": 220
+              "points": 230
             }
           ]
         }
@@ -8712,7 +8694,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Tiger Shark",
-        "points": 375,
+        "points": 395,
         "stats": {
           "M": "-",
           "T": "11",
@@ -8976,7 +8958,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 375
+              "points": 395
             }
           ]
         },
@@ -8986,7 +8968,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 425
+              "points": 445
             }
           ]
         }

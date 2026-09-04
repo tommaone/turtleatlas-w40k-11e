@@ -271,18 +271,8 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
                     mu["in_bsdata"] = True
                     print(f"  [SINGULAR] {mu['name']} ← '{alt_norm}' (profile from BSData)", file=sys.stderr)
                     continue
-            # Try substring match: MFM name is a substring of a BSData entry
-            # (handles "Soul Grinder" → "Khorne Soul Grinder")
-            if not mu.get("profile"):
-                for bs_norm, bs_u in bsdata_unit_map.items():
-                    if not bs_u.get("stats"):
-                        continue
-                    if mfm_norm in bs_norm or bs_norm in mfm_norm:
-                        mu["profile"] = bs_u
-                        mu["in_bsdata"] = True
-                        print(f"  [SUBSTR] {mu['name']} ← '{bs_norm}' (profile from BSData)", file=sys.stderr)
-                        break
-            # Also try shared name components:
+            # Try shared name components (word-level match — semantically safer
+            # than substring, which catches "trukk" inside "rukkatrukk"):
             if not mu.get("profile"):
                 mfm_words = set(mfm_norm.split())
                 best_bs = None
@@ -299,6 +289,17 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
                     mu["profile"] = best_bs[1]
                     mu["in_bsdata"] = True
                     print(f"  [WORDS] {mu['name']} ← '{best_bs[0]}' (profile from BSData, {best_overlap} shared words)", file=sys.stderr)
+            # Fall back to substring match: MFM name is a substring of a BSData entry
+            # (handles "Soul Grinder" → "Khorne Soul Grinder" when WORDS doesn't)
+            if not mu.get("profile"):
+                for bs_norm, bs_u in bsdata_unit_map.items():
+                    if not bs_u.get("stats"):
+                        continue
+                    if mfm_norm in bs_norm or bs_norm in mfm_norm:
+                        mu["profile"] = bs_u
+                        mu["in_bsdata"] = True
+                        print(f"  [SUBSTR] {mu['name']} ← '{bs_norm}' (profile from BSData)", file=sys.stderr)
+                        break
 
     if unmatched_mfm:
         print(f"  [WARN] {len(unmatched_mfm)} MFM units unmatched:", file=sys.stderr)

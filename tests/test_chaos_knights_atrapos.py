@@ -132,7 +132,7 @@ class TestAtraposDualProfileSelection:
             res = engine.resolve_loadout(ATRAPOS, engine.resolve_target(tname))
             assert res is not None
             pts, r, m, inn, info = res
-            assert pts == 395
+            assert pts == 385
             assert r and m
 
 

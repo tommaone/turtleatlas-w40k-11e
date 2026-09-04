@@ -1,14 +1,15 @@
 {
   "faction": "Death Guard",
   "slug": "death-guard",
-  "version": "1.2",
-  "firstSeen": "2026-08-05",
+  "version": "1.4",
+  "firstSeen": "2026-09-02",
   "detachments": [
     {
       "name": "Champions Of Contagion",
       "dp": 2,
-      "objective": "TAKE AND HOLD",
-      "unique": "Flyblown",
+      "objectives": [
+        "TAKE AND HOLD"
+      ],
       "enhancements": [
         {
           "name": "Cornucophagus",
@@ -31,8 +32,9 @@
     {
       "name": "Contagion Engines",
       "dp": 1,
-      "objective": "RECONNAISSANCE",
-      "unique": "Engines",
+      "objectives": [
+        "RECONNAISSANCE"
+      ],
       "enhancements": [
         {
           "name": "Lancet of the Worldsore (Upgrade)",
@@ -47,7 +49,9 @@
     {
       "name": "Death Lord’S Chosen",
       "dp": 2,
-      "objective": "PRIORITY ASSETS",
+      "objectives": [
+        "PRIORITY ASSETS"
+      ],
       "enhancements": [
         {
           "name": "Face of Death",
@@ -70,8 +74,9 @@
     {
       "name": "Flyblown Host",
       "dp": 1,
-      "objective": "RECONNAISSANCE",
-      "unique": "Flyblown",
+      "objectives": [
+        "RECONNAISSANCE"
+      ],
       "enhancements": [
         {
           "name": "Insectile Murmuration (Upgrade)",
@@ -86,8 +91,9 @@
     {
       "name": "Mortarion’S Hammer",
       "dp": 2,
-      "objective": "PURGE THE FOE",
-      "unique": "Engines",
+      "objectives": [
+        "PURGE THE FOE"
+      ],
       "enhancements": [
         {
           "name": "Bilemaw Blight",
@@ -110,7 +116,9 @@
     {
       "name": "Paragons Of Putrescence",
       "dp": 1,
-      "objective": "PRIORITY ASSETS",
+      "objectives": [
+        "PRIORITY ASSETS"
+      ],
       "enhancements": [
         {
           "name": "Host of the Hybridised Pox",
@@ -125,7 +133,9 @@
     {
       "name": "Shamblerot Vectorium",
       "dp": 2,
-      "objective": "DISRUPTION",
+      "objectives": [
+        "DISRUPTION"
+      ],
       "enhancements": [
         {
           "name": "Lord of the Walking Pox",
@@ -148,7 +158,9 @@
     {
       "name": "Tallyband Summoners",
       "dp": 2,
-      "objective": "DISRUPTION",
+      "objectives": [
+        "DISRUPTION"
+      ],
       "enhancements": [
         {
           "name": "Beckoning Blight",
@@ -171,7 +183,9 @@
     {
       "name": "Virulent Vectorium",
       "dp": 3,
-      "objective": "TAKE AND HOLD",
+      "objectives": [
+        "TAKE AND HOLD"
+      ],
       "enhancements": [
         {
           "name": "Arch Contaminator",
@@ -384,10 +398,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Plague Marines"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -760,11 +772,11 @@
             },
             {
               "models": 5,
-              "points": 185
+              "points": 180
             },
             {
               "models": 10,
-              "points": 370
+              "points": 360
             }
           ]
         }
@@ -2331,7 +2343,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 340
+              "points": 350
             }
           ]
         }
@@ -2677,7 +2689,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Foul Blightspawn",
-        "points": 65,
+        "points": 60,
         "stats": {
           "M": "5\"",
           "T": "6",
@@ -2758,15 +2770,13 @@
           "costs": [
             {
               "models": 1,
-              "points": 65
+              "points": 60
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Plague Marines"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -3258,11 +3268,11 @@
               "name": "Replace helbrute fist",
               "choices": [
                 {
-                  "name": "Helbrute fist",
+                  "name": "Helbrute fist with combi-bolter",
                   "type": "ranged"
                 },
                 {
-                  "name": "Helbrute fist",
+                  "name": "Helbrute fist with heavy flamer",
                   "type": "ranged"
                 },
                 {
@@ -3291,11 +3301,11 @@
                   "type": "ranged"
                 },
                 {
-                  "name": "Helbrute fist",
+                  "name": "Helbrute fist with heavy flamer",
                   "type": "ranged"
                 },
                 {
-                  "name": "Helbrute fist",
+                  "name": "Helbrute fist with combi-bolter",
                   "type": "ranged"
                 },
                 {
@@ -3354,11 +3364,11 @@
             "name": "Replace helbrute fist",
             "choices": [
               {
-                "name": "Helbrute fist",
+                "name": "Helbrute fist with combi-bolter",
                 "type": "ranged"
               },
               {
-                "name": "Helbrute fist",
+                "name": "Helbrute fist with heavy flamer",
                 "type": "ranged"
               },
               {
@@ -3387,11 +3397,11 @@
                 "type": "ranged"
               },
               {
-                "name": "Helbrute fist",
+                "name": "Helbrute fist with heavy flamer",
                 "type": "ranged"
               },
               {
-                "name": "Helbrute fist",
+                "name": "Helbrute fist with combi-bolter",
                 "type": "ranged"
               },
               {
@@ -3515,10 +3525,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Plague Marines"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -3615,11 +3623,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Blightlord Terminators",
-        "Deathshroud Terminators"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -3732,10 +3737,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Plague Marines"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -3836,11 +3839,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Blightlord Terminators",
-        "Deathshroud Terminators"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -3971,11 +3971,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Plague Marines",
-        "Poxwalkers"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -4068,7 +4065,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Mortarion",
-        "points": 390,
+        "points": 375,
         "stats": {
           "M": "10\"",
           "T": "12",
@@ -4189,7 +4186,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 390
+              "points": 375
             }
           ]
         }
@@ -4206,7 +4203,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Myphitic Blight-hauler",
-        "points": 100,
+        "points": 95,
         "stats": {
           "M": "10\"",
           "T": "9",
@@ -4400,11 +4397,11 @@
           "costs": [
             {
               "models": 1,
-              "points": 100
+              "points": 95
             },
             {
               "models": 2,
-              "points": 200
+              "points": 190
             }
           ]
         }
@@ -4421,7 +4418,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Noxious Blightbringer",
-        "points": 60,
+        "points": 50,
         "stats": {
           "M": "5\"",
           "T": "6",
@@ -4517,16 +4514,13 @@
           "costs": [
             {
               "models": 1,
-              "points": 60
+              "points": 50
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Plague Marines",
-        "Poxwalkers"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -5380,10 +5374,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Plague Marines"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -5487,7 +5479,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Plagueburst Crawler",
-        "points": 185,
+        "points": 170,
         "stats": {
           "M": "10\"",
           "T": "10",
@@ -5637,7 +5629,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 185
+              "points": 170
             }
           ]
         },
@@ -5647,7 +5639,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 210
+              "points": 200
             }
           ]
         }
@@ -5975,10 +5967,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Plague Marines"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -6076,12 +6066,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Blightlord Terminators",
-        "Deathshroud Terminators",
-        "Poxwalkers"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     }

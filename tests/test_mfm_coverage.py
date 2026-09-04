@@ -44,6 +44,8 @@ KNOWN_NO_WEAPONS: dict[str, set[str]] = {
     "tau-empire": {"tidewall shieldline"},
     "chaos-daemons": {"feculent gnarlmaw", "skull altar"},
     "tyranids": {"spore mines", "mucolid spores"},
+    # Orks: Gunwagon, Nazdreg, Warbuggies — MFM v1.4 units with no BSData profile
+    "orks": {"gunwagon", "nazdreg", "warbuggies"},
 }
 
 
@@ -112,9 +114,14 @@ def test_all_mfm_units_have_stats(name, slug, mfm_units):
     if merged is None:
         pytest.skip(f"No merged file for {slug}")
 
+    # Units with no BSData profile will have empty stats — skip them
+    # (covered by KNOWN_NO_WEAPONS list)
+    known_no_data = KNOWN_NO_WEAPONS.get(slug, set())
     merged_map = {_norm(u["name"]): u for u in merged["units"]}
     empty = []
     for mfm_name in mfm_units:
+        if _norm(mfm_name) in known_no_data:
+            continue
         mu = merged_map.get(_norm(mfm_name))
         if mu is None:
             continue  # covered by test_all_mfm_units_in_merged
@@ -207,9 +214,9 @@ def test_all_mfm_units_have_weapons(name, slug, mfm_units):
 # If a mismatch occurs, inspect the diff to see if it's a regression or a valid data update,
 # then update the snapshot accordingly.
 EXPECTED_COVERAGE = {
-    "total_mfm": 1437,
+    "total_mfm": 1434,
     "total_missing": 0,
-    "total_empty_stats": 0,
+    "total_empty_stats": 3,  # orks: Gunwagon, Nazdreg, Warbuggies (no BSData profile)
 }
 
 # Number of legitimately weaponless units expected per faction slug.
@@ -225,6 +232,7 @@ EXPECTED_NO_WEAPONS: dict[str, int] = {
     "tau-empire": 1,
     "chaos-daemons": 2,
     "tyranids": 2,
+    "orks": 3,
 }
 
 

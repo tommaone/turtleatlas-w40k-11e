@@ -1,13 +1,15 @@
 {
   "faction": "Adeptus Mechanicus",
   "slug": "adeptus-mechanicus",
-  "version": "1.2",
-  "firstSeen": "2026-08-05",
+  "version": "1.4",
+  "firstSeen": "2026-09-02",
   "detachments": [
     {
       "name": "Cohort Acquisitus",
       "dp": 1,
-      "objective": "RECONNAISSANCE",
+      "objectives": [
+        "RECONNAISSANCE"
+      ],
       "enhancements": [
         {
           "name": "Explorator Dispensation",
@@ -22,7 +24,9 @@
     {
       "name": "Cohort Cybernetica",
       "dp": 2,
-      "objective": "TAKE AND HOLD",
+      "objectives": [
+        "TAKE AND HOLD"
+      ],
       "enhancements": [
         {
           "name": "Arch-negator",
@@ -45,7 +49,9 @@
     {
       "name": "Data-Psalm Conclave",
       "dp": 2,
-      "objective": "DISRUPTION",
+      "objectives": [
+        "DISRUPTION"
+      ],
       "unique": "Data-Psalm",
       "enhancements": [
         {
@@ -69,7 +75,9 @@
     {
       "name": "Eradication Cohort",
       "dp": 3,
-      "objective": "PURGE THE FOE",
+      "objectives": [
+        "PURGE THE FOE"
+      ],
       "enhancements": [
         {
           "name": "Belicosa-class Capacitor Vanes",
@@ -92,7 +100,9 @@
     {
       "name": "Explorator Maniple",
       "dp": 2,
-      "objective": "PRIORITY ASSETS",
+      "objectives": [
+        "PRIORITY ASSETS"
+      ],
       "enhancements": [
         {
           "name": "Artisan",
@@ -115,7 +125,9 @@
     {
       "name": "Haloscreed Battle Clade",
       "dp": 3,
-      "objective": "PRIORITY ASSETS",
+      "objectives": [
+        "PRIORITY ASSETS"
+      ],
       "enhancements": [
         {
           "name": "Cognitive Reinforcement",
@@ -138,7 +150,9 @@
     {
       "name": "Lords Of The Forge",
       "dp": 1,
-      "objective": "PRIORITY ASSETS",
+      "objectives": [
+        "PRIORITY ASSETS"
+      ],
       "enhancements": [
         {
           "name": "TL-4ø9",
@@ -153,7 +167,9 @@
     {
       "name": "Luminen Auto-Choir",
       "dp": 1,
-      "objective": "DISRUPTION",
+      "objectives": [
+        "DISRUPTION"
+      ],
       "unique": "Data-Psalm",
       "enhancements": [
         {
@@ -169,7 +185,9 @@
     {
       "name": "Rad-Zone Corps",
       "dp": 2,
-      "objective": "TAKE AND HOLD",
+      "objectives": [
+        "TAKE AND HOLD"
+      ],
       "enhancements": [
         {
           "name": "Autoclavic Denunciation",
@@ -192,7 +210,9 @@
     {
       "name": "Skitarii Hunter Cohort",
       "dp": 2,
-      "objective": "RECONNAISSANCE",
+      "objectives": [
+        "RECONNAISSANCE"
+      ],
       "enhancements": [
         {
           "name": "Battle-sphere Uplink",
@@ -878,10 +898,8 @@
           ]
         }
       ],
-      "role": "support",
-      "attachTo": [
-        "Kastelan Robots"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -1521,7 +1539,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Kastelan Robots",
-        "points": 160,
+        "points": 150,
         "stats": {
           "M": "6\"",
           "T": "9",
@@ -1847,11 +1865,11 @@
           "costs": [
             {
               "models": 2,
-              "points": 160
+              "points": 150
             },
             {
               "models": 4,
-              "points": 320
+              "points": 300
             }
           ]
         },
@@ -1865,7 +1883,7 @@
             },
             {
               "models": 4,
-              "points": 340
+              "points": 330
             }
           ]
         }
@@ -2591,7 +2609,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Pteraxii Skystalkers",
-        "points": 80,
+        "points": 75,
         "stats": {
           "M": "12\"",
           "T": "4",
@@ -2695,7 +2713,7 @@
           "costs": [
             {
               "models": 5,
-              "points": 80
+              "points": 75
             },
             {
               "models": 10,
@@ -2709,7 +2727,7 @@
           "costs": [
             {
               "models": 5,
-              "points": 90
+              "points": 85
             },
             {
               "models": 10,
@@ -2730,7 +2748,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Pteraxii Sterylizors",
-        "points": 80,
+        "points": 75,
         "stats": {
           "M": "12\"",
           "T": "4",
@@ -2846,11 +2864,11 @@
           "costs": [
             {
               "models": 5,
-              "points": 80
+              "points": 75
             },
             {
               "models": 10,
-              "points": 160
+              "points": 150
             }
           ]
         },
@@ -2860,11 +2878,11 @@
           "costs": [
             {
               "models": 5,
-              "points": 90
+              "points": 85
             },
             {
               "models": 10,
-              "points": 170
+              "points": 160
             }
           ]
         }
@@ -3631,12 +3649,22 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 9,
               "points": 65
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 9,
+              "points": 75
             }
           ]
         }
@@ -4230,15 +4258,8 @@
           ]
         }
       ],
-      "role": "support",
-      "attachTo": [
-        "Hastarii Exterminators",
-        "Hastarii Fusiliers",
-        "Secutarii Hoplites",
-        "Secutarii Peltasts",
-        "Skitarii Rangers",
-        "Skitarii Vanguard"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -5768,7 +5789,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Tech-Priest Dominus",
-        "points": 65,
+        "points": 60,
         "stats": {
           "M": "6\"",
           "T": "4",
@@ -5938,25 +5959,13 @@
           "costs": [
             {
               "models": 1,
-              "points": 65
+              "points": 60
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Corpuscarii Electro-Priests",
-        "Fulgurite Electro-Priests",
-        "Hastarii Exterminators",
-        "Hastarii Fusiliers",
-        "Kataphron Breachers",
-        "Kataphron Destroyers",
-        "Secutarii Hoplites",
-        "Secutarii Peltasts",
-        "Servitor Battleclade",
-        "Skitarii Rangers",
-        "Skitarii Vanguard"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -6097,17 +6106,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Corpuscarii Electro-Priests",
-        "Fulgurite Electro-Priests",
-        "Kataphron Breachers",
-        "Kataphron Destroyers",
-        "Secutarii Hoplites",
-        "Secutarii Peltasts",
-        "Skitarii Rangers",
-        "Skitarii Vanguard"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -6244,20 +6244,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Corpuscarii Electro-Priests",
-        "Fulgurite Electro-Priests",
-        "Hastarii Exterminators",
-        "Hastarii Fusiliers",
-        "Kataphron Breachers",
-        "Kataphron Destroyers",
-        "Secutarii Hoplites",
-        "Secutarii Peltasts",
-        "Servitor Battleclade",
-        "Skitarii Rangers",
-        "Skitarii Vanguard"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -6376,20 +6364,8 @@
           ]
         }
       ],
-      "role": "support",
-      "attachTo": [
-        "Corpuscarii Electro-Priests",
-        "Fulgurite Electro-Priests",
-        "Hastarii Exterminators",
-        "Hastarii Fusiliers",
-        "Kataphron Breachers",
-        "Kataphron Destroyers",
-        "Secutarii Hoplites",
-        "Secutarii Peltasts",
-        "Servitor Battleclade",
-        "Skitarii Rangers",
-        "Skitarii Vanguard"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },

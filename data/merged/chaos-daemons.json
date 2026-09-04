@@ -1,13 +1,15 @@
 {
   "faction": "Chaos Daemons",
   "slug": "chaos-daemons",
-  "version": "1.2",
-  "firstSeen": "2026-08-05",
+  "version": "1.4",
+  "firstSeen": "2026-09-02",
   "detachments": [
     {
       "name": "Blood Legion",
       "dp": 2,
-      "objective": "PURGE THE FOE",
+      "objectives": [
+        "PURGE THE FOE"
+      ],
       "enhancements": [
         {
           "name": "Brazenmaw",
@@ -30,7 +32,9 @@
     {
       "name": "Cavalcade Of Chaos",
       "dp": 1,
-      "objective": "DISRUPTION",
+      "objectives": [
+        "DISRUPTION"
+      ],
       "enhancements": [
         {
           "name": "Apocalyptic Steeds (Upgrade)",
@@ -45,7 +49,9 @@
     {
       "name": "Daemonic Incursion",
       "dp": 3,
-      "objective": "TAKE AND HOLD",
+      "objectives": [
+        "TAKE AND HOLD"
+      ],
       "enhancements": [
         {
           "name": "A’rgath, The King of Blades",
@@ -68,7 +74,9 @@
     {
       "name": "Legion Of Excess",
       "dp": 2,
-      "objective": "PRIORITY ASSETS",
+      "objectives": [
+        "PRIORITY ASSETS"
+      ],
       "enhancements": [
         {
           "name": "Avatar of Perfection",
@@ -91,7 +99,9 @@
     {
       "name": "Lords Of The Warp",
       "dp": 1,
-      "objective": "TAKE AND HOLD",
+      "objectives": [
+        "TAKE AND HOLD"
+      ],
       "enhancements": [
         {
           "name": "Swollen with Power (Upgrade)",
@@ -102,7 +112,9 @@
     {
       "name": "Plague Legion",
       "dp": 2,
-      "objective": "TAKE AND HOLD",
+      "objectives": [
+        "TAKE AND HOLD"
+      ],
       "enhancements": [
         {
           "name": "Cankerblight",
@@ -125,7 +137,9 @@
     {
       "name": "Scintillating Legion",
       "dp": 2,
-      "objective": "PRIORITY ASSETS",
+      "objectives": [
+        "PRIORITY ASSETS"
+      ],
       "enhancements": [
         {
           "name": "Improbable Shield",
@@ -148,7 +162,9 @@
     {
       "name": "Shadow Legion",
       "dp": 2,
-      "objective": "PURGE THE FOE",
+      "objectives": [
+        "PURGE THE FOE"
+      ],
       "enhancements": [
         {
           "name": "Fade to Darkness",
@@ -171,7 +187,9 @@
     {
       "name": "Warptide",
       "dp": 1,
-      "objective": "RECONNAISSANCE",
+      "objectives": [
+        "RECONNAISSANCE"
+      ],
       "enhancements": [
         {
           "name": "Bane-forged Weapons (Upgrade)",
@@ -323,7 +341,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Beasts of Nurgle",
-        "points": 75,
+        "points": 80,
         "stats": {
           "M": "6\"",
           "T": "9",
@@ -385,11 +403,11 @@
           "costs": [
             {
               "models": 1,
-              "points": 75
+              "points": 80
             },
             {
               "models": 2,
-              "points": 140
+              "points": 150
             }
           ]
         }
@@ -514,7 +532,7 @@
             },
             {
               "models": 6,
-              "points": 190
+              "points": 200
             }
           ]
         },
@@ -524,11 +542,11 @@
           "costs": [
             {
               "models": 3,
-              "points": 115
+              "points": 135
             },
             {
               "models": 6,
-              "points": 210
+              "points": 240
             }
           ]
         }
@@ -718,10 +736,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Bloodletters"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -1351,11 +1367,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Blue Horrors",
-        "Pink Horrors"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -1366,7 +1379,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Contorted Epitome",
-        "points": 100,
+        "points": 115,
         "stats": {
           "M": "9\"",
           "T": "6",
@@ -1452,20 +1465,28 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 1,
-              "points": 100
+              "points": 115
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 125
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Daemonettes"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -1701,7 +1722,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Daemonettes",
-        "points": 90,
+        "points": 100,
         "stats": {
           "M": "9\"",
           "T": "3",
@@ -1783,7 +1804,7 @@
           "costs": [
             {
               "models": 10,
-              "points": 90
+              "points": 100
             }
           ]
         }
@@ -1875,10 +1896,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Plaguebearers"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -2002,10 +2021,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Flamers"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -2144,10 +2161,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Screamers"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -2279,8 +2294,8 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 3,
@@ -2288,7 +2303,21 @@
             },
             {
               "models": 6,
-              "points": 180
+              "points": 190
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 3,
+              "points": 105
+            },
+            {
+              "models": 6,
+              "points": 205
             }
           ]
         }
@@ -2673,11 +2702,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Blue Horrors",
-        "Pink Horrors"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -3084,12 +3110,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Beasts Of Nurgle",
-        "Plague Toads",
-        "Pox Riders"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -3209,10 +3231,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Daemonettes"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -3433,10 +3453,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Flesh Hounds"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -3447,7 +3465,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Keeper of Secrets",
-        "points": 255,
+        "points": 265,
         "stats": {
           "M": "14\"",
           "T": "10",
@@ -3602,7 +3620,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 255
+              "points": 265
             }
           ]
         },
@@ -3612,7 +3630,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 270
+              "points": 280
             }
           ]
         }
@@ -4222,7 +4240,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Poxbringer",
-        "points": 55,
+        "points": 60,
         "stats": {
           "M": "5\"",
           "T": "5",
@@ -4290,20 +4308,28 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 1,
-              "points": 55
+              "points": 60
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 70
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Plaguebearers"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -4314,7 +4340,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Rendmaster on Blood Throne",
-        "points": 150,
+        "points": 160,
         "stats": {
           "M": "8\"",
           "T": "9",
@@ -4398,7 +4424,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 150
+              "points": 160
             }
           ]
         },
@@ -4408,7 +4434,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 170
+              "points": 180
             }
           ]
         }
@@ -4626,7 +4652,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Seekers",
-        "points": 80,
+        "points": 85,
         "stats": {
           "M": "14\"",
           "T": "4",
@@ -4732,7 +4758,7 @@
           "costs": [
             {
               "models": 5,
-              "points": 80
+              "points": 85
             },
             {
               "models": 10,
@@ -5087,7 +5113,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Skull Cannon",
-        "points": 90,
+        "points": 100,
         "stats": {
           "M": "8\"",
           "T": "9",
@@ -5183,7 +5209,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 90
+              "points": 100
             }
           ]
         }
@@ -5294,10 +5320,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Bloodcrushers"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -5383,10 +5407,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Bloodletters"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -5473,10 +5495,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Plaguebearers"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -5735,10 +5755,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Plaguebearers"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -5887,10 +5905,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Daemonettes"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -6314,10 +6330,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Hellflayers"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -6407,10 +6421,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Daemonettes"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     }

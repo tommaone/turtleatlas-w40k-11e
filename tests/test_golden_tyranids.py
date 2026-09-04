@@ -146,8 +146,8 @@ class TestTyrannofex:
     def test_pts_3rd_restored(self):
         cfg = json.loads((Path(__file__).resolve().parent.parent
                           / "data/config/tyranids/weapon_options.json").read_text())
-        assert cfg["Tyrannofex"]["pts"] == 180
-        assert cfg["Tyrannofex"]["pts_3rd"] == 190
+        assert cfg["Tyrannofex"]["pts"] == 170
+        assert cfg["Tyrannofex"]["pts_3rd"] == 180
 
 
 def test_golden_source_file_exists():

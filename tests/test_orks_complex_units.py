@@ -16,11 +16,14 @@ Regenerated squads (10):
   Breaka Boyz, Kommandos, Meganobz, Nobz, Tankbustas, Warbikers, Boyz)
 - per-model slots with default choices (Boss Nob Wargear Options)
 
-Kept squads (7, no BSData composition — curated manually):
-- Burna Boyz (Burna + Cuttin' flames), Squighog Boyz (Squig jaws),
+Kept squads (5, no BSData composition — curated manually):
+- Squighog Boyz (Squig jaws),
   Boyz (Armageddon) (Shoota/Kombi variants), Gretchin (Slugga +
-  Grot-smacka), Gretchin (Armageddon) (Grot blasta), Lootas (Deffgun),
+  Grot-smacka), Gretchin (Armageddon) (Grot blasta),
   Wartrakk (Rokkit launcha + Choppas)
+
+Note: Burna Boyz and Lootas are now Legends in MFM v1.4 and removed from
+config (weapon refs Cuttin' flames / Deffgun no longer in merged data).
 
 STRUCTURE ONLY — no damage values. The engine is the single source of
 computation; this test locks the config shape and resolvability, not math.
@@ -45,12 +48,10 @@ TARGET_SAMPLES = ["GEQ", "MEQ", "TEQ"]
 
 # Kept units and their canonical first-model weapons (must NOT be overwritten)
 KEPT_UNITS = {
-    "Burna Boyz": ("Burna", "Cuttin\u2019 flames"),
     "Squighog Boyz": ("Squig jaws", "Slugga"),
     "Boyz (Armageddon)": ("Shoota", "Choppa"),
     "Gretchin": ("Slugga", "Grot-smacka"),
     "Gretchin (Armageddon)": ("Grot blasta", "Close combat weapon"),
-    "Lootas": ("Deffgun", "Close combat weapon"),
     "Wartrakk": ("Rokkit launcha", "Choppas"),
 }
 
@@ -84,7 +85,7 @@ class TestKeptUnits:
         assert ranged_ok, f"{unit}: ranged={ranged}, expected {expect_ranged}"
         assert m.get("melee") == expect_melee, f"{unit}: {m.get('melee')}"
 
-    @pytest.mark.parametrize("unit", ["Burna Boyz", "Squighog Boyz", "Boyz (Armageddon)"])
+    @pytest.mark.parametrize("unit", ["Squighog Boyz", "Boyz (Armageddon)"])
     def test_variant_not_boyz_payload(self, squads, unit):
         """The generator-fix protection: these must NOT carry the base Boyz
         Melee build (Slugga/Choppa) — each keeps its own ranged identity."""

@@ -1,113 +1,302 @@
 {
   "faction": "Orks",
   "slug": "orks",
-  "version": "1.2",
-  "firstSeen": "2026-08-05",
+  "version": "1.4",
+  "firstSeen": "2026-09-02",
   "detachments": [
     {
-      "key": "war-horde",
-      "name": "War Horde",
-      "dp_cost": 3,
-      "disposition": "take-and-hold",
-      "source": "MFM v1.4"
-    },
-    {
-      "key": "blitz-brigade",
       "name": "Blitz Brigade",
-      "dp_cost": 1,
-      "disposition": "take-and-hold",
-      "source": "MFM v1.4"
+      "dp": 1,
+      "objectives": [
+        "TAKE AND HOLD"
+      ],
+      "enhancements": [
+        {
+          "name": "Boss Boomer (Upgrade)",
+          "points": 10
+        },
+        {
+          "name": "Targetin’ Gizmos (Upgrade)",
+          "points": 10
+        }
+      ]
     },
     {
-      "key": "bully-boyz",
-      "name": "Bully Boyz",
-      "dp_cost": 1,
-      "disposition": "purge-the-foe",
-      "source": "MFM v1.4"
-    },
-    {
-      "key": "da-big-hunt",
-      "name": "Da Big Hunt",
-      "dp_cost": 1,
-      "disposition": "purge-the-foe",
-      "source": "MFM v1.4"
-    },
-    {
-      "key": "dread-mob",
-      "name": "Dread Mob",
-      "dp_cost": 1,
-      "disposition": "purge-the-foe",
-      "source": "MFM v1.4"
-    },
-    {
-      "key": "green-tide",
-      "name": "Green Tide",
-      "dp_cost": 1,
-      "disposition": "take-and-hold",
-      "source": "MFM v1.4"
-    },
-    {
-      "key": "kult-of-speed",
-      "name": "Kult Of Speed",
-      "dp_cost": 1,
-      "disposition": "reconnaissance",
-      "source": "MFM v1.4"
-    },
-    {
-      "key": "taktikal-brigade",
-      "name": "Taktikal Brigade",
-      "dp_cost": 1,
-      "disposition": "take-and-hold",
-      "source": "MFM v1.4"
-    },
-    {
-      "key": "brute-bosses",
       "name": "Brute Bosses",
-      "dp_cost": 1,
-      "disposition": "purge-the-foe",
-      "source": "MFM v1.4 + BSData Codex-Orks"
+      "dp": 1,
+      "objectives": [
+        "PURGE THE FOE"
+      ],
+      "enhancements": [
+        {
+          "name": "Blitzboss",
+          "points": 20
+        },
+        {
+          "name": "Brutal But Kunnin’",
+          "points": 30
+        },
+        {
+          "name": "Da Gobshot Thunderbuss",
+          "points": 20
+        },
+        {
+          "name": "Morgog’s Finkin’ Cap",
+          "points": 50
+        },
+        {
+          "name": "Proper Killy",
+          "points": 15
+        },
+        {
+          "name": "Surly as a Squiggoth",
+          "points": 25
+        }
+      ]
     },
     {
-      "key": "flyboyz",
+      "name": "Bully Boyz",
+      "dp": 1,
+      "objectives": [
+        "PURGE THE FOE"
+      ],
+      "enhancements": [
+        {
+          "name": "Tellyporta Boss",
+          "points": 20
+        },
+        {
+          "name": "Wimp-kickaz (Upgrade)",
+          "points": 15
+        }
+      ]
+    },
+    {
+      "name": "Da Big Hunt",
+      "dp": 1,
+      "objectives": [
+        "PURGE THE FOE"
+      ],
+      "enhancements": [
+        {
+          "name": "Glory Hog",
+          "points": 25
+        },
+        {
+          "name": "It Came from da Drops",
+          "points": 20
+        }
+      ]
+    },
+    {
+      "name": "Dread Mob",
+      "dp": 1,
+      "objectives": [
+        "PURGE THE FOE"
+      ],
+      "enhancements": [
+        {
+          "name": "Cybork Boosta",
+          "points": 10
+        },
+        {
+          "name": "Dreadherder",
+          "points": 20
+        }
+      ]
+    },
+    {
       "name": "Flyboyz",
-      "dp_cost": 1,
-      "disposition": "reconnaissance",
-      "source": "MFM v1.4 + BSData Codex-Orks"
+      "dp": 1,
+      "objectives": [
+        "RECONNAISSANCE"
+      ],
+      "enhancements": [
+        {
+          "name": "Flyboss (Upgrade)",
+          "points": 20
+        },
+        {
+          "name": "Impulsive Recon (Upgrade)",
+          "points": 15
+        }
+      ]
     },
     {
-      "key": "madcap-meks",
+      "name": "Green Tide",
+      "dp": 1,
+      "objectives": [
+        "TAKE AND HOLD"
+      ],
+      "enhancements": [
+        {
+          "name": "'Ardboyz (Upgrade)",
+          "points": 25
+        },
+        {
+          "name": "Ferocious Show Off",
+          "points": 15
+        }
+      ]
+    },
+    {
+      "name": "Kult Of Speed",
+      "dp": 1,
+      "objectives": [
+        "RECONNAISSANCE"
+      ],
+      "enhancements": [
+        {
+          "name": "Competitive Streak",
+          "points": 15
+        },
+        {
+          "name": "Smoky Gubbinz (Upgrade)",
+          "points": 10
+        }
+      ]
+    },
+    {
       "name": "Madcap Meks",
-      "dp_cost": 1,
-      "disposition": "disruption",
-      "source": "MFM v1.4 + BSData Codex-Orks"
+      "dp": 1,
+      "objectives": [
+        "DISRUPTION"
+      ],
+      "enhancements": [
+        {
+          "name": "Enhanced Runt-maw (Upgrade)",
+          "points": 10
+        },
+        {
+          "name": "Mekwaaagh! Mastermind",
+          "points": 30
+        },
+        {
+          "name": "Temperamental Shokka (Upgrade)",
+          "points": 20
+        }
+      ]
     },
     {
-      "key": "runt-swarm",
       "name": "Runt Swarm",
-      "dp_cost": 1,
-      "disposition": "priority-assets",
-      "source": "MFM v1.4 + BSData Codex-Orks"
+      "dp": 1,
+      "objectives": [
+        "PRIORITY ASSETS"
+      ],
+      "enhancements": [
+        {
+          "name": "Extra Sneaky (Upgrade)",
+          "points": 10
+        },
+        {
+          "name": "Minefield Detail (Upgrade)",
+          "points": 10
+        }
+      ]
     },
     {
-      "key": "shoota-boyz",
       "name": "Shoota Boyz",
-      "dp_cost": 1,
-      "disposition": "purge-the-foe",
-      "source": "MFM v1.4 + BSData Codex-Orks"
+      "dp": 1,
+      "objectives": [
+        "PURGE THE FOE"
+      ],
+      "enhancements": [
+        {
+          "name": "Supa-glowy Fing",
+          "points": 25
+        },
+        {
+          "name": "Targetin' Squigs",
+          "points": 20
+        }
+      ]
     },
     {
-      "key": "wreckas",
+      "name": "Taktikal Brigade",
+      "dp": 1,
+      "objectives": [
+        "TAKE AND HOLD"
+      ],
+      "enhancements": [
+        {
+          "name": "Kill Kommanda",
+          "points": 20,
+          "leaderTo": [
+            "Kommandos"
+          ]
+        },
+        {
+          "name": "Throat-slittas (Upgrade)",
+          "points": 15
+        }
+      ]
+    },
+    {
+      "name": "War Horde",
+      "dp": 3,
+      "objectives": [
+        "TAKE AND HOLD",
+        "PURGE THE FOE"
+      ],
+      "enhancements": [
+        {
+          "name": "Da Boss is Watchin'",
+          "points": 25
+        },
+        {
+          "name": "Follow Me Ladz",
+          "points": 20
+        },
+        {
+          "name": "Headwoppa’s Killchoppa",
+          "points": 15
+        },
+        {
+          "name": "Kunnin’ But Brutal",
+          "points": 20
+        }
+      ]
+    },
+    {
       "name": "Wreckas",
-      "dp_cost": 1,
-      "disposition": "priority-assets",
-      "source": "MFM v1.4 + BSData Codex-Orks"
+      "dp": 1,
+      "objectives": [
+        "PRIORITY ASSETS"
+      ],
+      "enhancements": [
+        {
+          "name": "Kaptin's Hat",
+          "points": 25,
+          "leaderTo": [
+            "Flash Gitz"
+          ]
+        },
+        {
+          "name": "Supa-snazz Dakka (Upgrade)",
+          "points": 20
+        }
+      ]
     },
     {
-      "key": "wurrband",
       "name": "Wurrband",
-      "dp_cost": 1,
-      "disposition": "disruption",
-      "source": "MFM v1.4 + BSData Codex-Orks"
+      "dp": 1,
+      "objectives": [
+        "DISRUPTION"
+      ],
+      "enhancements": [
+        {
+          "name": "'Eadbanger",
+          "points": 15
+        },
+        {
+          "name": "Da Krunch",
+          "points": 10
+        },
+        {
+          "name": "Warphead",
+          "points": 25
+        }
+      ]
     }
   ],
   "units": [
@@ -118,7 +307,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Bannernob",
-        "points": 50,
+        "points": 35,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -195,21 +384,13 @@
           "costs": [
             {
               "models": 1,
-              "points": 50
+              "points": 35
             }
           ]
         }
       ],
-      "role": "support",
-      "attachTo": [
-        "Boyz",
-        "Breaka Boyz",
-        "Burna Boyz",
-        "Flash Gitz",
-        "Lootas",
-        "Nobz",
-        "Tankbustas"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -220,7 +401,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Battlewagon",
-        "points": 145,
+        "points": 150,
         "stats": {
           "M": "10\"",
           "T": "10",
@@ -429,24 +610,29 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 1,
-              "points": 145
+              "points": 150
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 160
             }
           ]
         }
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": [
-        {
-          "item": "ard case",
-          "points": 15
-        }
-      ],
+      "wargear_options": null,
       "wargear_slots": null
     },
     {
@@ -456,7 +642,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Beast Snagga Boyz",
-        "points": 90,
+        "points": 85,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -636,16 +822,30 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,3]",
+          "label": "Your 1st To 3rd Units Cost",
           "costs": [
             {
               "models": 10,
-              "points": 90
+              "points": 85
             },
             {
               "models": 20,
               "points": 170
+            }
+          ]
+        },
+        {
+          "range": "[4,)",
+          "label": "Your 4th + Unit Costs",
+          "costs": [
+            {
+              "models": 10,
+              "points": 95
+            },
+            {
+              "models": 20,
+              "points": 180
             }
           ]
         }
@@ -662,7 +862,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Beastboss",
-        "points": 80,
+        "points": 85,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -765,15 +965,13 @@
           "costs": [
             {
               "models": 1,
-              "points": 80
+              "points": 85
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Beast Snagga Boyz"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -784,7 +982,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Beastboss on Squigosaur",
-        "points": 95,
+        "points": 140,
         "stats": {
           "M": "10\"",
           "T": "8",
@@ -899,20 +1097,28 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 1,
-              "points": 95
+              "points": 140
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 155
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Squighog Boyz"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -923,7 +1129,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Big Mek",
-        "points": 70,
+        "points": 85,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -1037,25 +1243,28 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 1,
-              "points": 70
+              "points": 85
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 95
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Boyz",
-        "Breaka Boyz",
-        "Lootas",
-        "Mek Gunz",
-        "Nobz",
-        "Tankbustas"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -1066,7 +1275,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Big Mek Dakkarig",
-        "points": 115,
+        "points": 135,
         "stats": {
           "M": "8\"",
           "T": "8",
@@ -1151,12 +1360,22 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 1,
-              "points": 115
+              "points": 135
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 145
             }
           ]
         }
@@ -1173,7 +1392,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Big Mek in Mega Armour",
-        "points": 80,
+        "points": 90,
         "stats": {
           "M": "5\"",
           "T": "6",
@@ -1323,15 +1542,13 @@
           "costs": [
             {
               "models": 1,
-              "points": 80
+              "points": 90
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Meganobz"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -1342,7 +1559,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Big Mek with Shokk Attack Gun",
-        "points": 70,
+        "points": 95,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -1425,7 +1642,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 70
+              "points": 95
             }
           ]
         },
@@ -1435,20 +1652,13 @@
           "costs": [
             {
               "models": 1,
-              "points": 80
+              "points": 105
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Boyz",
-        "Breaka Boyz",
-        "Lootas",
-        "Mek Gunz",
-        "Nobz",
-        "Tankbustas"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -1568,7 +1778,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Bigboss",
-        "points": 55,
+        "points": 50,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -1650,17 +1860,13 @@
           "costs": [
             {
               "models": 1,
-              "points": 55
+              "points": 50
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Boyz",
-        "Breaka Boyz",
-        "Nobz"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -1671,7 +1877,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Blitza-bommer",
-        "points": 105,
+        "points": 115,
         "stats": {
           "M": "-",
           "T": "9",
@@ -1764,133 +1970,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 105
-            }
-          ]
-        }
-      ],
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null,
-      "wargear_slots": null
-    },
-    {
-      "name": "Boomdakka Snazzwagon",
-      "in_bsdata": true,
-      "in_mfm": true,
-      "deep_strike": false,
-      "profile": {
-        "name": "Boomdakka Snazzwagon",
-        "points": 70,
-        "stats": {
-          "M": "12\"",
-          "T": "7",
-          "Sv": "4+",
-          "W": "9",
-          "LD": "7+",
-          "OC": "3",
-          "InSv": "6+"
-        },
-        "keywords": [
-          "Vehicle",
-          "Grenades",
-          "Boomdakka Snazzwagon",
-          "Faction: Orks",
-          "Speed Freeks"
-        ],
-        "abilities": [
-          {
-            "name": "Billowing Fumes (Aura)",
-            "description": "While an enemy unit (excluding **MONSTER/VEHICLE** units) is within 6\" of this unit, when that enemy unit is **selected to shoot**, that unit’s targets have the **benefit of cover** until that unit has shot."
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Mek speshul",
-            "profiles": [
-              {
-                "name": "Mek speshul",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "12",
-                  "BS": "5+",
-                  "S": "5",
-                  "AP": "-1",
-                  "D": "1",
-                  "Keywords": "Assault, Rapid Fire 4, Sustained Hits 1"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Big shoota",
-            "profiles": [
-              {
-                "name": "Big shoota",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "5+",
-                  "S": "5",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Rapid Fire 2"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Grot blasta",
-            "profiles": [
-              {
-                "name": "Grot blasta",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "4+",
-                  "S": "3",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Pistol"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Spiked wheels",
-            "profiles": [
-              {
-                "name": "Spiked wheels",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "4+",
-                  "S": "7",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": ""
-                }
-              }
-            ]
-          }
-        ],
-        "rules": [
-          "Deadly Demise",
-          "Waaagh!"
-        ]
-      },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 70
+              "points": 115
             }
           ]
         }
@@ -1907,7 +1987,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Boss Snikrot",
-        "points": 75,
+        "points": 80,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -1994,15 +2074,13 @@
           "costs": [
             {
               "models": 1,
-              "points": 75
+              "points": 80
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Kommandos"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -2013,7 +2091,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Boyz",
-        "points": 75,
+        "points": 90,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -2574,11 +2652,11 @@
           "costs": [
             {
               "models": 10,
-              "points": 75
+              "points": 90
             },
             {
               "models": 20,
-              "points": 160
+              "points": 180
             }
           ]
         },
@@ -2588,11 +2666,11 @@
           "costs": [
             {
               "models": 10,
-              "points": 85
+              "points": 100
             },
             {
               "models": 20,
-              "points": 170
+              "points": 190
             }
           ]
         }
@@ -2609,7 +2687,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Breaka Boyz",
-        "points": 125,
+        "points": 135,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -2821,7 +2899,7 @@
           "costs": [
             {
               "models": 6,
-              "points": 125
+              "points": 135
             }
           ]
         },
@@ -2831,229 +2909,7 @@
           "costs": [
             {
               "models": 6,
-              "points": 135
-            }
-          ]
-        }
-      ],
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null,
-      "wargear_slots": null
-    },
-    {
-      "name": "Burna Boyz",
-      "in_bsdata": true,
-      "in_mfm": true,
-      "deep_strike": false,
-      "profile": {
-        "name": "Burna Boyz",
-        "points": 60,
-        "stats": {
-          "M": "6\"",
-          "T": "5",
-          "Sv": "5+",
-          "W": "1",
-          "LD": "7+",
-          "OC": "1",
-          "InSv": ""
-        },
-        "keywords": [
-          "Infantry",
-          "Burna Boyz",
-          "Faction: Orks"
-        ],
-        "abilities": [
-          {
-            "name": "Pyromaniaks",
-            "description": "Each time a model in this unit makes a ranged attack with a burna that targets an enemy unit within 6\", re-roll a Wound roll of 1. If the target of that attack is also within range of an objective marker, you can re-roll the Wound roll instead."
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Spanner and 4 Burna Boyz",
-            "profiles": [
-              {
-                "name": "Burna",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "D6",
-                  "BS": "N/A",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Ignores Cover, Torrent"
-                }
-              },
-              {
-                "name": "Cuttin’ flames",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "4+",
-                  "S": "4",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": ""
-                }
-              },
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": ""
-                }
-              },
-              {
-                "name": "Big shoota",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "5+",
-                  "S": "5",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Rapid Fire 2"
-                }
-              },
-              {
-                "name": "Kustom mega-blasta",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "3",
-                  "BS": "5+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "D6",
-                  "Keywords": "Hazardous"
-                }
-              },
-              {
-                "name": "Rokkit launcha",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "D3",
-                  "BS": "5+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "3",
-                  "Keywords": "Blast"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Spanners and 8 Burna Boyz",
-            "profiles": [
-              {
-                "name": "Burna",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "D6",
-                  "BS": "N/A",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Ignores Cover, Torrent"
-                }
-              },
-              {
-                "name": "Cuttin’ flames",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "4+",
-                  "S": "4",
-                  "AP": "-2",
-                  "D": "1",
-                  "Keywords": ""
-                }
-              },
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": ""
-                }
-              },
-              {
-                "name": "Big shoota",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "5+",
-                  "S": "5",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Rapid Fire 2"
-                }
-              },
-              {
-                "name": "Kustom mega-blasta",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "3",
-                  "BS": "5+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "D6",
-                  "Keywords": "Hazardous"
-                }
-              },
-              {
-                "name": "Rokkit launcha",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "D3",
-                  "BS": "5+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "3",
-                  "Keywords": "Blast"
-                }
-              }
-            ],
-            "count": 2
-          }
-        ],
-        "rules": [
-          "Waaagh!"
-        ]
-      },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 5,
-              "points": 60
-            },
-            {
-              "models": 10,
-              "points": 120
+              "points": 145
             }
           ]
         }
@@ -3070,7 +2926,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Burna-bommer",
-        "points": 115,
+        "points": 125,
         "stats": {
           "M": "-",
           "T": "9",
@@ -3181,7 +3037,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 115
+              "points": 125
             }
           ]
         }
@@ -3291,7 +3147,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Deff Dread",
-        "points": 110,
+        "points": 130,
         "stats": {
           "M": "8\"",
           "T": "9",
@@ -3437,7 +3293,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 110
+              "points": 130
             }
           ]
         },
@@ -3447,7 +3303,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 120
+              "points": 140
             }
           ]
         }
@@ -3464,7 +3320,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Deffkilla Wartrike",
-        "points": 70,
+        "points": 80,
         "stats": {
           "M": "12\"",
           "T": "6",
@@ -3579,18 +3435,13 @@
           "costs": [
             {
               "models": 1,
-              "points": 70
+              "points": 80
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Nobz On Warbikes",
-        "Skorchas",
-        "Warbikers",
-        "Warbuggies"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -3601,7 +3452,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Deffkoptas",
-        "points": 75,
+        "points": 80,
         "stats": {
           "M": "12\"",
           "T": "6",
@@ -3794,16 +3645,30 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 3,
-              "points": 75
+              "points": 80
             },
             {
               "models": 6,
-              "points": 140
+              "points": 160
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 3,
+              "points": 90
+            },
+            {
+              "models": 6,
+              "points": 170
             }
           ]
         }
@@ -3820,7 +3685,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Flash Gitz",
-        "points": 75,
+        "points": 105,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -3917,11 +3782,11 @@
           "costs": [
             {
               "models": 5,
-              "points": 75
+              "points": 105
             },
             {
               "models": 10,
-              "points": 150
+              "points": 210
             }
           ]
         },
@@ -3931,11 +3796,11 @@
           "costs": [
             {
               "models": 5,
-              "points": 85
+              "points": 135
             },
             {
               "models": 10,
-              "points": 160
+              "points": 240
             }
           ]
         }
@@ -3952,7 +3817,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Gargantuan Squiggoth",
-        "points": 440,
+        "points": 500,
         "stats": {
           "M": "10\"",
           "T": "13",
@@ -4080,7 +3945,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 440
+              "points": 500
             }
           ]
         },
@@ -4090,7 +3955,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 490
+              "points": 550
             }
           ]
         }
@@ -4107,7 +3972,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Ghazghkull Thraka",
-        "points": 235,
+        "points": 300,
         "stats": {
           "M": "5\"",
           "T": "6",
@@ -4218,19 +4083,14 @@
           "label": "Your Unit Costs",
           "costs": [
             {
-              "models": 2,
-              "points": 235
+              "models": 1,
+              "points": 300
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Boyz",
-        "Breaka Boyz",
-        "Meganobz",
-        "Nobz"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -4241,7 +4101,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Gorkanaut",
-        "points": 255,
+        "points": 325,
         "stats": {
           "M": "8\"",
           "T": "12",
@@ -4390,7 +4250,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 255
+              "points": 325
             }
           ]
         },
@@ -4400,7 +4260,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 275
+              "points": 355
             }
           ]
         }
@@ -4608,24 +4468,9 @@
               "desc": "10 Gretchin"
             },
             {
-              "models": 11,
-              "points": 45,
-              "desc": "1 Runtherd, 10 Gretchin"
-            },
-            {
               "models": 20,
               "points": 80,
               "desc": "20 Gretchin"
-            },
-            {
-              "models": 21,
-              "points": 85,
-              "desc": "1 Runtherd, 20 Gretchin"
-            },
-            {
-              "models": 22,
-              "points": 90,
-              "desc": "2 Runtherd, 20 Gretchin"
             }
           ]
         }
@@ -4636,13 +4481,51 @@
       "wargear_slots": null
     },
     {
+      "name": "Gunwagon",
+      "in_bsdata": false,
+      "in_mfm": true,
+      "deep_strike": false,
+      "profile": null,
+      "pricing": [
+        {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 150
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 160
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": [
+        {
+          "item": "Zzap Gun",
+          "points": 10
+        }
+      ],
+      "wargear_slots": null
+    },
+    {
       "name": "Hunta Rig",
       "in_bsdata": true,
       "in_mfm": true,
       "deep_strike": false,
       "profile": {
         "name": "Hunta Rig",
-        "points": 125,
+        "points": 165,
         "stats": {
           "M": "10\"",
           "T": "10",
@@ -4767,12 +4650,22 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 1,
-              "points": 125
+              "points": 165
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 175
             }
           ]
         }
@@ -4789,7 +4682,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Kill Rig",
-        "points": 145,
+        "points": 175,
         "stats": {
           "M": "10\"",
           "T": "10",
@@ -4927,12 +4820,22 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 1,
-              "points": 145
+              "points": 175
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 185
             }
           ]
         }
@@ -4949,7 +4852,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Killa Kans",
-        "points": 120,
+        "points": 130,
         "stats": {
           "M": "6\"",
           "T": "6",
@@ -5200,11 +5103,11 @@
           "costs": [
             {
               "models": 3,
-              "points": 120
+              "points": 130
             },
             {
               "models": 6,
-              "points": 240
+              "points": 260
             }
           ]
         },
@@ -5214,11 +5117,11 @@
           "costs": [
             {
               "models": 3,
-              "points": 130
+              "points": 150
             },
             {
               "models": 6,
-              "points": 250
+              "points": 280
             }
           ]
         }
@@ -5235,7 +5138,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Kommandos",
-        "points": 120,
+        "points": 125,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -5548,368 +5451,7 @@
           "costs": [
             {
               "models": 10,
-              "points": 120
-            }
-          ]
-        }
-      ],
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null,
-      "wargear_slots": null
-    },
-    {
-      "name": "Kustom Boosta-Blasta",
-      "in_bsdata": true,
-      "in_mfm": true,
-      "deep_strike": false,
-      "profile": {
-        "name": "Kustom Boosta-blasta",
-        "points": 70,
-        "stats": {
-          "M": "12\"",
-          "T": "7",
-          "Sv": "4+",
-          "W": "9",
-          "LD": "7+",
-          "OC": "3",
-          "InSv": "6+"
-        },
-        "keywords": [
-          "Vehicle",
-          "Kustom Boosta-blasta",
-          "Faction: Orks",
-          "Grenades",
-          "Speed Freeks"
-        ],
-        "abilities": [
-          {
-            "name": "Rivetin’ Dakka",
-            "description": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks made with a rivet kannon. Until the start of your next turn, that enemy unit is suppressed. While a unit is suppressed, each time a model in that unit makes a ranged attack, subtract 1 from the Hit roll."
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Burna exhausts",
-            "profiles": [
-              {
-                "name": "Burna exhausts",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "6\"",
-                  "A": "2D6",
-                  "BS": "N/A",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Ignores Cover, Torrent, Twin-linked"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Rivet kannon",
-            "profiles": [
-              {
-                "name": "Rivet kannon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "6",
-                  "BS": "5+",
-                  "S": "8",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Assault, Rapid Fire 3"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Grot blasta",
-            "profiles": [
-              {
-                "name": "Grot blasta",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "12\"",
-                  "A": "1",
-                  "BS": "4+",
-                  "S": "3",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Pistol"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Spiked wheels",
-            "profiles": [
-              {
-                "name": "Spiked wheels",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "4+",
-                  "S": "7",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": ""
-                }
-              }
-            ]
-          }
-        ],
-        "rules": [
-          "Deadly Demise",
-          "Waaagh!"
-        ]
-      },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 70
-            }
-          ]
-        }
-      ],
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null,
-      "wargear_slots": null
-    },
-    {
-      "name": "Lootas",
-      "in_bsdata": true,
-      "in_mfm": true,
-      "deep_strike": false,
-      "profile": {
-        "name": "Lootas",
-        "points": 50,
-        "stats": {
-          "M": "6\"",
-          "T": "5",
-          "Sv": "5+",
-          "W": "1",
-          "LD": "7+",
-          "OC": "1",
-          "InSv": ""
-        },
-        "keywords": [
-          "Infantry",
-          "Lootas",
-          "Faction: Orks"
-        ],
-        "abilities": [
-          {
-            "name": "Dat’s Our Loot!",
-            "description": "Each time a model in this unit makes a ranged attack, re-roll a Hit roll of 1. If that attack targets a unit that is within range of an objective marker, you can re-roll the Hit roll instead."
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Spanners and 8 Lootas",
-            "profiles": [
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": ""
-                }
-              },
-              {
-                "name": "Big shoota",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "5+",
-                  "S": "5",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Rapid Fire 2"
-                }
-              },
-              {
-                "name": "Kustom mega-blasta",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "3",
-                  "BS": "5+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "D6",
-                  "Keywords": "Hazardous"
-                }
-              },
-              {
-                "name": "Rokkit launcha",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "D3",
-                  "BS": "5+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "3",
-                  "Keywords": "Blast"
-                }
-              },
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": ""
-                }
-              },
-              {
-                "name": "Deffgun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "2",
-                  "BS": "6+",
-                  "S": "8",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Heavy, Rapid Fire 1"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Spanner and 4 Lootas",
-            "profiles": [
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": ""
-                }
-              },
-              {
-                "name": "Big shoota",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "5+",
-                  "S": "5",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Rapid Fire 2"
-                }
-              },
-              {
-                "name": "Kustom mega-blasta",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "3",
-                  "BS": "5+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "D6",
-                  "Keywords": "Hazardous"
-                }
-              },
-              {
-                "name": "Rokkit launcha",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "D3",
-                  "BS": "5+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "3",
-                  "Keywords": "Blast"
-                }
-              },
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "2",
-                  "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": ""
-                }
-              },
-              {
-                "name": "Deffgun",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "48\"",
-                  "A": "2",
-                  "BS": "6+",
-                  "S": "8",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": "Heavy, Rapid Fire 1"
-                }
-              }
-            ]
-          }
-        ],
-        "rules": [
-          "Waaagh!"
-        ]
-      },
-      "pricing": [
-        {
-          "range": "[1,2]",
-          "label": "Your 1st To 2nd Units Cost",
-          "costs": [
-            {
-              "models": 5,
-              "points": 50
-            },
-            {
-              "models": 10,
-              "points": 100
-            }
-          ]
-        },
-        {
-          "range": "[3,)",
-          "label": "Your 3rd + Unit Costs",
-          "costs": [
-            {
-              "models": 5,
-              "points": 60
-            },
-            {
-              "models": 10,
-              "points": 110
+              "points": 125
             }
           ]
         }
@@ -5926,7 +5468,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Meganobz",
-        "points": 60,
+        "points": 75,
         "stats": {
           "M": "5\"",
           "T": "6",
@@ -6153,19 +5695,19 @@
           "costs": [
             {
               "models": 2,
-              "points": 60
+              "points": 75
             },
             {
               "models": 3,
-              "points": 90
+              "points": 110
             },
             {
               "models": 5,
-              "points": 150
+              "points": 185
             },
             {
               "models": 6,
-              "points": 180
+              "points": 225
             }
           ]
         },
@@ -6175,152 +5717,35 @@
           "costs": [
             {
               "models": 2,
-              "points": 80
+              "points": 115
             },
             {
               "models": 3,
-              "points": 110
+              "points": 150
             },
             {
               "models": 5,
-              "points": 170
+              "points": 225
             },
             {
               "models": 6,
-              "points": 200
+              "points": 265
             }
           ]
         }
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null,
-      "wargear_slots": null
-    },
-    {
-      "name": "Megatrakk Scrapjet",
-      "in_bsdata": true,
-      "in_mfm": true,
-      "deep_strike": false,
-      "profile": {
-        "name": "Megatrakk Scrapjet",
-        "points": 75,
-        "stats": {
-          "M": "12\"",
-          "T": "7",
-          "Sv": "4+",
-          "W": "9",
-          "LD": "7+",
-          "OC": "3",
-          "InSv": "6+"
-        },
-        "keywords": [
-          "Vehicle",
-          "Megatrakk Scrapjet",
-          "Faction: Orks",
-          "Speed Freeks"
-        ],
-        "abilities": [
-          {
-            "name": "Drill Through",
-            "description": "Each time this model ends a Charge move, select one enemy unit within Engagement Range of it and roll one D6: on a 2-5, that enemy unit suffers D3 mortal wounds; on a 6, that enemy unit suffers 3 mortal wounds."
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Nose drill",
-            "profiles": [
-              {
-                "name": "Nose drill",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "4",
-                  "WS": "4+",
-                  "S": "8",
-                  "AP": "-1",
-                  "D": "2",
-                  "Keywords": ""
-                }
-              }
-            ]
-          },
-          {
-            "name": "Rokkit cannon",
-            "profiles": [
-              {
-                "name": "Rokkit cannon",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "D6+1",
-                  "BS": "5+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "3",
-                  "Keywords": "Blast"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Wing missiles",
-            "profiles": [
-              {
-                "name": "Wing missiles",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "1",
-                  "BS": "5+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "3",
-                  "Keywords": ""
-                }
-              }
-            ]
-          },
-          {
-            "name": "Twin big shoota",
-            "profiles": [
-              {
-                "name": "Twin big shoota",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "36\"",
-                  "A": "3",
-                  "BS": "5+",
-                  "S": "5",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Rapid Fire 2, Twin-linked"
-                }
-              }
-            ],
-            "count": 2
-          }
-        ],
-        "rules": [
-          "Deadly Demise",
-          "Waaagh!"
-        ]
-      },
-      "pricing": [
+      "wargear_options": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 75
-            }
-          ]
+          "item": "Twin Killsaws",
+          "points": 5
+        },
+        {
+          "item": "Killsaw",
+          "points": 5
         }
       ],
-      "role": null,
-      "attachTo": null,
-      "wargear_options": null,
       "wargear_slots": null
     },
     {
@@ -6330,7 +5755,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Mek",
-        "points": 55,
+        "points": 45,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -6429,19 +5854,13 @@
           "costs": [
             {
               "models": 1,
-              "points": 55
+              "points": 45
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Boyz",
-        "Lootas",
-        "Mek Gunz",
-        "Nobz",
-        "Tankbustas"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -6452,7 +5871,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Mek Gunz",
-        "points": 45,
+        "points": 55,
         "stats": {
           "M": "3\"",
           "T": "5",
@@ -6753,15 +6172,15 @@
           "costs": [
             {
               "models": 1,
-              "points": 45
+              "points": 55
             },
             {
               "models": 2,
-              "points": 90
+              "points": 110
             },
             {
               "models": 3,
-              "points": 135
+              "points": 165
             }
           ]
         },
@@ -6771,15 +6190,15 @@
           "costs": [
             {
               "models": 1,
-              "points": 55
+              "points": 65
             },
             {
               "models": 2,
-              "points": 100
+              "points": 120
             },
             {
               "models": 3,
-              "points": 145
+              "points": 175
             }
           ]
         }
@@ -6796,7 +6215,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Morkanaut",
-        "points": 270,
+        "points": 345,
         "stats": {
           "M": "8\"",
           "T": "12",
@@ -6945,7 +6364,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 270
+              "points": 345
             }
           ]
         },
@@ -6955,7 +6374,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 290
+              "points": 375
             }
           ]
         }
@@ -6972,7 +6391,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Mozrog Skragbad",
-        "points": 125,
+        "points": 170,
         "stats": {
           "M": "10\"",
           "T": "8",
@@ -7075,15 +6494,36 @@
           "costs": [
             {
               "models": 1,
-              "points": 125
+              "points": 170
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Squighog Boyz"
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null,
+      "wargear_slots": null
+    },
+    {
+      "name": "Nazdreg",
+      "in_bsdata": false,
+      "in_mfm": true,
+      "deep_strike": false,
+      "profile": null,
+      "pricing": [
+        {
+          "range": "[1,)",
+          "label": "Your Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 175
+            }
+          ]
+        }
       ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -7094,7 +6534,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Nobz",
-        "points": 105,
+        "points": 125,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -7399,11 +6839,11 @@
           "costs": [
             {
               "models": 5,
-              "points": 105
+              "points": 125
             },
             {
               "models": 10,
-              "points": 210
+              "points": 250
             }
           ]
         },
@@ -7413,18 +6853,23 @@
           "costs": [
             {
               "models": 5,
-              "points": 115
+              "points": 155
             },
             {
               "models": 10,
-              "points": 220
+              "points": 280
             }
           ]
         }
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null,
+      "wargear_options": [
+        {
+          "item": "Paired Krumpas",
+          "points": 5
+        }
+      ],
       "wargear_slots": null
     },
     {
@@ -7434,7 +6879,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Painboss",
-        "points": 70,
+        "points": 60,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -7494,8 +6939,18 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 60
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -7504,10 +6959,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Beast Snagga Boyz"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -7518,7 +6971,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Painboy",
-        "points": 90,
+        "points": 45,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -7599,25 +7052,18 @@
           "costs": [
             {
               "models": 1,
-              "points": 90
+              "points": 45
             }
           ]
         }
       ],
-      "role": "support",
-      "attachTo": [
-        "Boyz",
-        "Breaka Boyz",
-        "Burna Boyz",
-        "Lootas",
-        "Nobz",
-        "Tankbustas"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
     {
-      "name": "Rukkatrukk Squigbuggy",
+      "name": "Rukkatrukk Squigbuggies",
       "in_bsdata": true,
       "in_mfm": true,
       "deep_strike": false,
@@ -7718,6 +7164,10 @@
             {
               "models": 1,
               "points": 85
+            },
+            {
+              "models": 2,
+              "points": 160
             }
           ]
         }
@@ -7728,94 +7178,65 @@
       "wargear_slots": null
     },
     {
-      "name": "Shokkjump Dragsta",
+      "name": "Runtherd",
       "in_bsdata": true,
       "in_mfm": true,
       "deep_strike": false,
       "profile": {
-        "name": "Shokkjump Dragsta",
-        "points": 70,
+        "name": "Runtherd",
+        "points": 10,
         "stats": {
-          "M": "12\"",
-          "T": "7",
-          "Sv": "4+",
-          "W": "9",
+          "M": "6\"",
+          "T": "5",
+          "Sv": "5+",
+          "W": "2",
           "LD": "7+",
-          "OC": "3",
-          "InSv": "6+"
+          "OC": "1",
+          "InSv": ""
         },
         "keywords": [
-          "Vehicle",
-          "Shokkjump Dragsta",
-          "Faction: Orks",
-          "Speed Freeks"
+          "Faction: Orks"
         ],
-        "abilities": [
-          {
-            "name": "Shokk Tunnel",
-            "description": "In your Movement phase, when this unit is selected to make an **advance move**, you can use this ability. If you do:\n- That move has no **maximum distance**.\n- This unit can move through all types of model (including enemy models and **MONSTER/VEHICLE** models).\n- After moving, your unit must be more than 8\" horizontally from all enemy units."
-          }
-        ],
+        "abilities": [],
         "weapons": [
           {
-            "name": "Kustom shokk rifle",
+            "name": "Slugga",
             "profiles": [
               {
-                "name": "Kustom shokk rifle",
+                "name": "Slugga",
                 "typeName": "Ranged Weapons",
                 "stats": {
-                  "Range": "24\"",
+                  "Range": "12\"",
                   "A": "1",
-                  "BS": "3+",
-                  "S": "8",
-                  "AP": "-2",
-                  "D": "D6+1",
-                  "Keywords": "Devastating Wounds, Hazardous, Precision"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Rokkit launcha",
-            "profiles": [
-              {
-                "name": "Rokkit launcha",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "D3",
                   "BS": "5+",
-                  "S": "9",
-                  "AP": "-2",
-                  "D": "3",
-                  "Keywords": "Blast"
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Close-quarters"
                 }
               }
             ]
           },
           {
-            "name": "Saw blades",
+            "name": "Grot-smacka",
             "profiles": [
               {
-                "name": "Saw blades",
+                "name": "Grot-smacka",
                 "typeName": "Melee Weapons",
                 "stats": {
                   "Range": "Melee",
-                  "A": "4",
-                  "WS": "4+",
-                  "S": "7",
-                  "AP": "-1",
-                  "D": "2",
+                  "A": "3",
+                  "WS": "3+",
+                  "S": "5",
+                  "AP": "0",
+                  "D": "1",
                   "Keywords": ""
                 }
               }
             ]
           }
         ],
-        "rules": [
-          "Deadly Demise",
-          "Waaagh!"
-        ]
+        "rules": []
       },
       "pricing": [
         {
@@ -7824,7 +7245,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 70
+              "points": 10
             }
           ]
         }
@@ -8066,8 +7487,8 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 4,
@@ -8075,7 +7496,21 @@
             },
             {
               "models": 8,
-              "points": 270
+              "points": 280
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 4,
+              "points": 160
+            },
+            {
+              "models": 8,
+              "points": 300
             }
           ]
         }
@@ -8092,7 +7527,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Stompa",
-        "points": 600,
+        "points": 700,
         "stats": {
           "M": "10\"",
           "T": "14",
@@ -8280,7 +7715,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 600
+              "points": 700
             }
           ]
         },
@@ -8290,7 +7725,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 700
+              "points": 800
             }
           ]
         }
@@ -8307,7 +7742,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Stormboyz",
-        "points": 65,
+        "points": 70,
         "stats": {
           "M": "12\"",
           "T": "5",
@@ -8456,11 +7891,11 @@
           "costs": [
             {
               "models": 5,
-              "points": 65
+              "points": 70
             },
             {
               "models": 10,
-              "points": 130
+              "points": 140
             }
           ]
         }
@@ -8477,7 +7912,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Tankbustas",
-        "points": 125,
+        "points": 145,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -8690,7 +8125,7 @@
           "costs": [
             {
               "models": 6,
-              "points": 125
+              "points": 145
             }
           ]
         },
@@ -8700,7 +8135,7 @@
           "costs": [
             {
               "models": 6,
-              "points": 135
+              "points": 155
             }
           ]
         }
@@ -8717,7 +8152,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Trukk",
-        "points": 55,
+        "points": 60,
         "stats": {
           "M": "12\"",
           "T": "8",
@@ -8810,7 +8245,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 55
+              "points": 60
             }
           ]
         },
@@ -8820,7 +8255,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 65
+              "points": 70
             }
           ]
         }
@@ -8837,7 +8272,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Warbikers",
-        "points": 60,
+        "points": 75,
         "stats": {
           "M": "12\"",
           "T": "6",
@@ -9116,11 +8551,11 @@
           "costs": [
             {
               "models": 3,
-              "points": 60
+              "points": 75
             },
             {
               "models": 6,
-              "points": 120
+              "points": 140
             }
           ]
         }
@@ -9137,7 +8572,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Warboss",
-        "points": 85,
+        "points": 100,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -9356,17 +8791,13 @@
           "costs": [
             {
               "models": 1,
-              "points": 85
+              "points": 100
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Boyz",
-        "Breaka Boyz",
-        "Nobz"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -9377,7 +8808,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Warboss in Mega Armour",
-        "points": 80,
+        "points": 125,
         "stats": {
           "M": "5\"",
           "T": "6",
@@ -9455,31 +8886,66 @@
       },
       "pricing": [
         {
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
+          "costs": [
+            {
+              "models": 1,
+              "points": 125
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 140
+            }
+          ]
+        }
+      ],
+      "role": null,
+      "attachTo": null,
+      "wargear_options": null,
+      "wargear_slots": null
+    },
+    {
+      "name": "Warbuggies",
+      "in_bsdata": false,
+      "in_mfm": true,
+      "deep_strike": false,
+      "profile": null,
+      "pricing": [
+        {
           "range": "[1,)",
           "label": "Your Unit Costs",
           "costs": [
             {
               "models": 1,
-              "points": 80
+              "points": 70
+            },
+            {
+              "models": 2,
+              "points": 130
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Meganobz"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
     {
-      "name": "Wartrakk",
+      "name": "Wartrakks",
       "in_bsdata": true,
       "in_mfm": true,
       "deep_strike": false,
       "profile": {
         "name": "Wartrakk",
-        "points": 60,
+        "points": 70,
         "stats": {
           "M": "12\"",
           "T": "6",
@@ -9568,7 +9034,11 @@
           "costs": [
             {
               "models": 1,
-              "points": 60
+              "points": 70
+            },
+            {
+              "models": 2,
+              "points": 130
             }
           ]
         }
@@ -9585,7 +9055,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Wazbom Blastajet",
-        "points": 165,
+        "points": 215,
         "stats": {
           "M": "-",
           "T": "9",
@@ -9710,12 +9180,22 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 1,
-              "points": 165
+              "points": 215
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 1,
+              "points": 235
             }
           ]
         }
@@ -9732,7 +9212,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Wazdakka Gutsmek",
-        "points": 175,
+        "points": 200,
         "stats": {
           "M": "14\"",
           "T": "8",
@@ -9867,7 +9347,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 175
+              "points": 200
             }
           ]
         }
@@ -9973,116 +9453,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Boyz",
-        "Breaka Boyz"
-      ],
-      "wargear_options": null,
-      "wargear_slots": null
-    },
-    {
-      "name": "Wurrboy",
-      "in_bsdata": true,
-      "in_mfm": true,
-      "deep_strike": false,
-      "profile": {
-        "name": "Wurrboy",
-        "points": 60,
-        "stats": {
-          "M": "6\"",
-          "T": "5",
-          "Sv": "5+",
-          "W": "4",
-          "LD": "7+",
-          "OC": "1",
-          "InSv": ""
-        },
-        "keywords": [
-          "Character",
-          "Infantry",
-          "Wurrboy",
-          "Psyker",
-          "Beast Snagga",
-          "Faction: Orks",
-          "Leader"
-        ],
-        "abilities": [
-          {
-            "name": "Roar of Mork (Psychic)",
-            "description": "In your opponent’s Command phase, you can select one enemy unit within 18\" of and visible to this **^^Psyker^^** and roll one D6: on a 1, this **^^Psyker^^**’s unit suffers D3 mortal wounds; on a 2+, until the start of your opponent’s next Command phase, that enemy unit is confrazzled. While a unit is confrazzled, each time a Battle-shock or Leadership test is taken for it, subtract 2 from that test."
-          },
-          {
-            "name": "Unstable Oracle",
-            "description": "While this model is leading a unit, add 2 to the Attacks characteristic of this model’s Eyez of Mork weapon for every 5 models in that unit (rounding down), but while that unit contains 10 or more models, that weapon has the [HAZARDOUS] ability."
-          },
-          {
-            "name": "Leader",
-            "description": "This model can be attached to the following unit:\n- **^^Beast Snagga Boyz^^**"
-          }
-        ],
-        "weapons": [
-          {
-            "name": "Eyez of Mork",
-            "profiles": [
-              {
-                "name": "Eyez of Mork",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "D6",
-                  "BS": "5+",
-                  "S": "8",
-                  "AP": "-3",
-                  "D": "2",
-                  "Keywords": "Psychic"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Close combat weapon",
-            "profiles": [
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "3",
-                  "WS": "3+",
-                  "S": "5",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": ""
-                }
-              }
-            ]
-          }
-        ],
-        "rules": [
-          "Deadly Demise",
-          "Feel No Pain",
-          "Waaagh!",
-          "Hazardous",
-          "Leader"
-        ]
-      },
-      "pricing": [
-        {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
-          "costs": [
-            {
-              "models": 1,
-              "points": 60
-            }
-          ]
-        }
-      ],
-      "role": "leader",
-      "attachTo": [
-        "Beast Snagga Boyz"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -10093,7 +9465,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Zodgrod Wortsnagga",
-        "points": 80,
+        "points": 50,
         "stats": {
           "M": "6\"",
           "T": "5",
@@ -10177,15 +9549,13 @@
           "costs": [
             {
               "models": 1,
-              "points": 80
+              "points": 50
             }
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Gretchin"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     }
@@ -10194,7 +9564,7 @@
     "bsdata_faction": "Xenos - Orks",
     "bsdata_revision": 2,
     "bsdata_units": 70,
-    "mfm_units": 58,
-    "merged_units": 58
+    "mfm_units": 55,
+    "merged_units": 55
   }
 }

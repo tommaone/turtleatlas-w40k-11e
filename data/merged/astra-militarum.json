@@ -1,13 +1,15 @@
 {
   "faction": "Astra Militarum",
   "slug": "astra-militarum",
-  "version": "1.2",
-  "firstSeen": "2026-08-05",
+  "version": "1.4",
+  "firstSeen": "2026-09-02",
   "detachments": [
     {
       "name": "Abhuman Auxiliaries",
       "dp": 1,
-      "objective": "TAKE AND HOLD",
+      "objectives": [
+        "TAKE AND HOLD"
+      ],
       "unique": "Abhuman",
       "enhancements": [
         {
@@ -27,7 +29,9 @@
     {
       "name": "Armoured Infantry",
       "dp": 2,
-      "objective": "TAKE AND HOLD",
+      "objectives": [
+        "TAKE AND HOLD"
+      ],
       "enhancements": [
         {
           "name": "Exemplary Officer",
@@ -50,7 +54,9 @@
     {
       "name": "Bridgehead Strike",
       "dp": 1,
-      "objective": "PRIORITY ASSETS",
+      "objectives": [
+        "PRIORITY ASSETS"
+      ],
       "enhancements": [
         {
           "name": "Bombast-class Vox-array",
@@ -65,7 +71,9 @@
     {
       "name": "Combined Arms",
       "dp": 2,
-      "objective": "TAKE AND HOLD",
+      "objectives": [
+        "TAKE AND HOLD"
+      ],
       "enhancements": [
         {
           "name": "Death Mask of Ollanius",
@@ -88,7 +96,9 @@
     {
       "name": "Designation Force",
       "dp": 1,
-      "objective": "RECONNAISSANCE",
+      "objectives": [
+        "RECONNAISSANCE"
+      ],
       "unique": "Recon",
       "enhancements": [
         {
@@ -104,7 +114,9 @@
     {
       "name": "Grizzled Company",
       "dp": 3,
-      "objective": "PRIORITY ASSETS",
+      "objectives": [
+        "PRIORITY ASSETS"
+      ],
       "unique": "Abhuman",
       "enhancements": [
         {
@@ -132,7 +144,9 @@
     {
       "name": "Hammer Of The Emperor",
       "dp": 2,
-      "objective": "PURGE THE FOE",
+      "objectives": [
+        "PURGE THE FOE"
+      ],
       "enhancements": [
         {
           "name": "Calm Under Fire",
@@ -155,7 +169,9 @@
     {
       "name": "Mechanised Assault",
       "dp": 2,
-      "objective": "RECONNAISSANCE",
+      "objectives": [
+        "RECONNAISSANCE"
+      ],
       "enhancements": [
         {
           "name": "Bold Leadership",
@@ -178,7 +194,9 @@
     {
       "name": "Recon Element",
       "dp": 2,
-      "objective": "RECONNAISSANCE",
+      "objectives": [
+        "RECONNAISSANCE"
+      ],
       "unique": "Recon",
       "enhancements": [
         {
@@ -197,13 +215,14 @@
           "name": "Tripwires",
           "points": 20
         }
-      ],
-      "dp_cost": 2
+      ]
     },
     {
       "name": "Siege Regiment",
       "dp": 2,
-      "objective": "DISRUPTION",
+      "objectives": [
+        "DISRUPTION"
+      ],
       "enhancements": [
         {
           "name": "Eager Advance",
@@ -226,7 +245,9 @@
     {
       "name": "Steel Hammer",
       "dp": 2,
-      "objective": "PURGE THE FOE",
+      "objectives": [
+        "PURGE THE FOE"
+      ],
       "enhancements": [
         {
           "name": "Assault Hatches",
@@ -2639,11 +2660,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Cadian Shock Troops",
-        "Kasrkin"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -3584,10 +3602,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Cadian Shock Troops"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -4361,7 +4377,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Cadian Shock Troops",
-        "points": 75,
+        "points": 70,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -5128,7 +5144,7 @@
           "costs": [
             {
               "models": 10,
-              "points": 75
+              "points": 70
             },
             {
               "models": 20,
@@ -5946,10 +5962,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Catachan Jungle Fighters"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -5960,7 +5974,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Catachan Heavy Weapons Squad",
-        "points": 65,
+        "points": 70,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -6231,7 +6245,7 @@
           "costs": [
             {
               "models": 3,
-              "points": 65
+              "points": 70
             }
           ]
         }
@@ -6248,7 +6262,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Catachan Jungle Fighters",
-        "points": 75,
+        "points": 70,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -6630,11 +6644,11 @@
           "costs": [
             {
               "models": 10,
-              "points": 75
+              "points": 70
             },
             {
               "models": 20,
-              "points": 145
+              "points": 135
             }
           ]
         }
@@ -7103,16 +7117,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Cadian Shock Troops",
-        "Catachan Jungle Fighters",
-        "Death Korps Grenadier Squad",
-        "Death Korps Of Krieg",
-        "Kasrkin",
-        "Krieg Combat Engineers",
-        "Tempestus Scions"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -7371,16 +7377,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Cadian Shock Troops",
-        "Catachan Jungle Fighters",
-        "Death Korps Grenadier Squad",
-        "Death Korps Of Krieg",
-        "Kasrkin",
-        "Krieg Combat Engineers",
-        "Tempestus Scions"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -7534,16 +7532,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Cadian Shock Troops",
-        "Catachan Jungle Fighters",
-        "Death Korps Grenadier Squad",
-        "Death Korps Of Krieg",
-        "Kasrkin",
-        "Krieg Combat Engineers",
-        "Tempestus Scions"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -7624,7 +7614,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Death Korps of Krieg",
-        "points": 75,
+        "points": 70,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -8632,11 +8622,11 @@
           "costs": [
             {
               "models": 10,
-              "points": 75
+              "points": 70
             },
             {
               "models": 20,
-              "points": 145
+              "points": 135
             }
           ]
         }
@@ -12505,12 +12495,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Death Korps Grenadier Squad",
-        "Death Korps Of Krieg",
-        "Krieg Combat Engineers"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -12521,7 +12507,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Krieg Heavy Weapons Squad",
-        "points": 60,
+        "points": 70,
         "stats": {
           "M": "4\"",
           "T": "3",
@@ -12759,7 +12745,7 @@
           "costs": [
             {
               "models": 4,
-              "points": 60
+              "points": 70
             }
           ]
         }
@@ -12781,7 +12767,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Leman Russ Battle Tank",
-        "points": 185,
+        "points": 160,
         "stats": {
           "M": "10\"",
           "T": "11",
@@ -13005,7 +12991,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 185
+              "points": 160
             }
           ]
         },
@@ -13015,14 +13001,27 @@
           "costs": [
             {
               "models": 1,
-              "points": 195
+              "points": 175
             }
           ]
         }
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null,
+      "wargear_options": [
+        {
+          "item": "Multi-melta",
+          "points": 5
+        },
+        {
+          "item": "Lascannon",
+          "points": 5
+        },
+        {
+          "item": "Plasma cannon",
+          "points": 5
+        }
+      ],
       "wargear_slots": null
     },
     {
@@ -13032,7 +13031,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Leman Russ Commander",
-        "points": 215,
+        "points": 195,
         "stats": {
           "M": "10\"",
           "T": "11",
@@ -13395,7 +13394,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 215
+              "points": 195
             }
           ]
         },
@@ -13405,7 +13404,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 230
+              "points": 210
             }
           ]
         }
@@ -13416,6 +13415,18 @@
         {
           "item": "Demolisher battle cannon",
           "points": 15
+        },
+        {
+          "item": "Multi-melta",
+          "points": 5
+        },
+        {
+          "item": "Lascannon",
+          "points": 5
+        },
+        {
+          "item": "Plasma cannon",
+          "points": 5
         }
       ],
       "wargear_slots": null
@@ -13427,7 +13438,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Leman Russ Demolisher",
-        "points": 180,
+        "points": 160,
         "stats": {
           "M": "10\"",
           "T": "11",
@@ -13651,7 +13662,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 180
+              "points": 160
             }
           ]
         },
@@ -13661,14 +13672,27 @@
           "costs": [
             {
               "models": 1,
-              "points": 190
+              "points": 175
             }
           ]
         }
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null,
+      "wargear_options": [
+        {
+          "item": "Multi-melta",
+          "points": 5
+        },
+        {
+          "item": "Lascannon",
+          "points": 5
+        },
+        {
+          "item": "Plasma cannon",
+          "points": 5
+        }
+      ],
       "wargear_slots": null
     },
     {
@@ -13678,7 +13702,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Leman Russ Eradicator",
-        "points": 170,
+        "points": 145,
         "stats": {
           "M": "10\"",
           "T": "11",
@@ -13902,7 +13926,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 170
+              "points": 145
             }
           ]
         },
@@ -13912,14 +13936,27 @@
           "costs": [
             {
               "models": 1,
-              "points": 180
+              "points": 160
             }
           ]
         }
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null,
+      "wargear_options": [
+        {
+          "item": "Multi-melta",
+          "points": 5
+        },
+        {
+          "item": "Lascannon",
+          "points": 5
+        },
+        {
+          "item": "Plasma cannon",
+          "points": 5
+        }
+      ],
       "wargear_slots": null
     },
     {
@@ -13929,7 +13966,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Leman Russ Executioner",
-        "points": 170,
+        "points": 145,
         "stats": {
           "M": "10\"",
           "T": "11",
@@ -14166,7 +14203,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 170
+              "points": 145
             }
           ]
         },
@@ -14176,14 +14213,27 @@
           "costs": [
             {
               "models": 1,
-              "points": 180
+              "points": 160
             }
           ]
         }
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null,
+      "wargear_options": [
+        {
+          "item": "Multi-melta",
+          "points": 5
+        },
+        {
+          "item": "Lascannon",
+          "points": 5
+        },
+        {
+          "item": "Plasma cannon",
+          "points": 5
+        }
+      ],
       "wargear_slots": null
     },
     {
@@ -14193,7 +14243,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Leman Russ Exterminator",
-        "points": 180,
+        "points": 160,
         "stats": {
           "M": "10\"",
           "T": "11",
@@ -14417,7 +14467,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 180
+              "points": 160
             }
           ]
         },
@@ -14427,14 +14477,27 @@
           "costs": [
             {
               "models": 1,
-              "points": 190
+              "points": 175
             }
           ]
         }
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null,
+      "wargear_options": [
+        {
+          "item": "Multi-melta",
+          "points": 5
+        },
+        {
+          "item": "Lascannon",
+          "points": 5
+        },
+        {
+          "item": "Plasma cannon",
+          "points": 5
+        }
+      ],
       "wargear_slots": null
     },
     {
@@ -14444,7 +14507,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Leman Russ Punisher",
-        "points": 150,
+        "points": 130,
         "stats": {
           "M": "10\"",
           "T": "11",
@@ -14663,7 +14726,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 150
+              "points": 130
             }
           ]
         },
@@ -14673,14 +14736,27 @@
           "costs": [
             {
               "models": 1,
-              "points": 160
+              "points": 145
             }
           ]
         }
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null,
+      "wargear_options": [
+        {
+          "item": "Multi-melta",
+          "points": 5
+        },
+        {
+          "item": "Lascannon",
+          "points": 5
+        },
+        {
+          "item": "Plasma cannon",
+          "points": 5
+        }
+      ],
       "wargear_slots": null
     },
     {
@@ -14690,7 +14766,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Leman Russ Vanquisher",
-        "points": 150,
+        "points": 130,
         "stats": {
           "M": "10\"",
           "T": "11",
@@ -14914,7 +14990,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 150
+              "points": 130
             }
           ]
         },
@@ -14924,14 +15000,27 @@
           "costs": [
             {
               "models": 1,
-              "points": 160
+              "points": 145
             }
           ]
         }
       ],
       "role": null,
       "attachTo": null,
-      "wargear_options": null,
+      "wargear_options": [
+        {
+          "item": "Multi-melta",
+          "points": 5
+        },
+        {
+          "item": "Lascannon",
+          "points": 5
+        },
+        {
+          "item": "Plasma cannon",
+          "points": 5
+        }
+      ],
       "wargear_slots": null
     },
     {
@@ -15051,10 +15140,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Death Riders"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -15176,17 +15263,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Attilan Rough Riders",
-        "Cadian Shock Troops",
-        "Catachan Jungle Fighters",
-        "Death Korps Grenadier Squad",
-        "Death Korps Of Krieg",
-        "Death Riders",
-        "Kasrkin",
-        "Krieg Combat Engineers"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -15891,10 +15969,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Tempestus Scions"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -16055,16 +16131,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Cadian Shock Troops",
-        "Catachan Jungle Fighters",
-        "Death Korps Grenadier Squad",
-        "Death Korps Of Krieg",
-        "Kasrkin",
-        "Krieg Combat Engineers",
-        "Tempestus Scions"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -16572,16 +16640,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Cadian Shock Troops",
-        "Catachan Jungle Fighters",
-        "Death Korps Grenadier Squad",
-        "Death Korps Of Krieg",
-        "Kasrkin",
-        "Krieg Combat Engineers",
-        "Tempestus Scions"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -18861,14 +18921,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Cadian Shock Troops",
-        "Catachan Jungle Fighters",
-        "Death Korps Of Krieg",
-        "Kasrkin",
-        "Krieg Combat Engineers"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
@@ -20116,11 +20170,8 @@
           ]
         }
       ],
-      "role": "leader",
-      "attachTo": [
-        "Cadian Shock Troops",
-        "Kasrkin"
-      ],
+      "role": null,
+      "attachTo": null,
       "wargear_options": null,
       "wargear_slots": null
     },
