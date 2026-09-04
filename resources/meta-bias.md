@@ -13,6 +13,10 @@ In 11th Edition, only **two mission types** are competitively viable:
 
 The other three mission types (Reconnaissance, Priority Assets, Disruption) are **effectively dead** unless GW revises the GT pack.
 
+## Codex-generation skew (2026-09-05)
+
+11th edition currently runs on **10th edition codexes** — there is no 11e index tier in play; 11e MFM points sit on top of 10e-era books. Faction comparisons are therefore skewed by codex vintage: fresh 10e books outperform stale ones regardless of faction design. Factor book generation into any faction-vs-faction read; this expires as 11e codexes replace the 10e books.
+
 ## Impact on Ranking
 
 When computing rankings without explicit mission flag, use **Purge the Foe** as the default (DPS-weighted). This reflects the real competitive meta.

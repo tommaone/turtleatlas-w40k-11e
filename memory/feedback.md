@@ -1075,3 +1075,20 @@ workbooks only); committed output is seconds-stable and checkout-agnostic.
 
 **Why:** the drafts' own `_meta` says "never commit this file; promote ONLY after human verification" — committing/baking them would be premature; baking gitignored inputs into committed docs breaks the determinism lock by design.
 **How:** `render_faction`/`render_index` default `with_drafts=False`; keep L2 review content flowing through committed `data/config/<faction>/detachments.json` (promoted entries), not the render path.
+
+## 11th edition runs on 10th edition codexes — not 11e indexes (2026-09-05)
+The game is 11th edition, but every faction is still governed by its **10th
+edition codex**. There is no 11e index tier in play: MFM (11e) supplies the
+points on top of 10e-era books, and profiles/army rules are the 10e ones
+(the orks expert cache already flags this as "10e-derived profiles" — it's
+the general state, not an Orks quirk).
+
+**Why:** cross-faction comparisons are skewed by codex vintage. A faction
+on a fresh late-10e book has a modern power budget; a faction on an old
+book or stale index plays with older math. Ranking "best faction" without
+naming book generation confuses design quality with release timing — this
+is the "skews the game a lot" factor.
+**How:** whenever comparing factions (engine talk, meta notes, DPP
+conversations), state which codex generation each is on and treat the gap
+as partly codex-vintage. Re-verify after each new 11e faction book — the
+skew decays as books catch up.
