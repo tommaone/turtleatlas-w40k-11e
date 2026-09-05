@@ -228,12 +228,44 @@ def render_tier_section(tiers):
     )
 
 
+def _count_ranked_units(html: str) -> int | None:
+    """Unique unit names across all metas in the embedded `const DATA=...;`.
+
+    Parses the DATA JSON the faction page actually renders (raw_decode — no
+    naive `.*?` regex, which would break on braces inside strings). The old
+    count regexed the whole HTML and over-matched weapon profile names
+    (e.g. 'Great cleaver of Khorne - sweep') and detachment names, inflating
+    index card counts beyond the ranked roster (which already excludes
+    legends). Returns None when the DATA blob is unparseable.
+    """
+    marker = 'const DATA='
+    idx = html.find(marker)
+    if idx == -1:
+        return None
+    idx += len(marker)
+    try:
+        data, _ = json.JSONDecoder().raw_decode(html, idx)
+    except json.JSONDecodeError:
+        return None
+    names = set()
+    for meta in data.get('meta_info', []):
+        slug = meta.get('slug')
+        missions = data.get('meta', {}).get(slug, {})
+        for lst in missions.values():
+            for u in lst:
+                names.add(u.get('name'))
+    return len(names)
+
+
 def gen_index(tiers=None) -> int:
     """Rebuild findings/index.html from the per-faction findings.html files.
 
-    Count = unique unit names across all missions, matching the faction page
-    subtitle (build_data's n_units). Factions with a missing findings.html
-    are skipped with a warning — never rendered as a fake "0 units" card.
+    Count = unique ranked unit names parsed from each faction page's embedded
+    DATA JSON, matching the faction page subtitle (build_data's n_units).
+    Legends units (already filtered out of the faction pages by the engine)
+    never appear in the count. Factions with a missing findings.html or an
+    unparseable DATA blob are skipped with a warning — never rendered as a
+    fake "0 units" card.
 
     tiers: {fid: entry} from compute_tiers_entry — renders the army tier list.
     Loaded from findings/army_tiers.json when not provided (--index path).
@@ -243,8 +275,11 @@ def gen_index(tiers=None) -> int:
         p = os.path.join(OUT, fid, 'findings.html')
         if not os.path.isfile(p):
             continue
-        names = set(re.findall(r'\{"name": "([^"]+)"', open(p, encoding='utf-8').read()))
-        counts[fid] = len(names)
+        n_units = _count_ranked_units(open(p, encoding='utf-8').read())
+        if n_units is None:
+            print(f'WARNING: {fid} findings.html has no parseable DATA — card skipped')
+            continue
+        counts[fid] = n_units
 
     tier_section = ''
     if tiers is None and os.path.isfile(TIERS_FILE):

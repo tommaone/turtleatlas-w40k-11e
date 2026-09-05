@@ -9,6 +9,7 @@ Ensures every faction's build_data() output is consistent:
 """
 
 import math
+import re
 import sys
 from pathlib import Path
 
@@ -17,8 +18,11 @@ import pytest
 # Add project root to path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from scripts.gen_findings_html import FACTIONS, MISSIONS, build_data
+from scripts.gen_findings_html import FACTIONS, MISSIONS, build_data, _count_ranked_units
 from engine.ranking import RankingEngine
+
+ROOT = Path(__file__).resolve().parent.parent
+FINDINGS_ROOT = ROOT / "findings"
 
 
 # ---------------------------------------------------------------------------
@@ -138,6 +142,48 @@ class TestFindingsConsistency:
                 assert not name.startswith("_"), (
                     f"{faction_id}/meta '{_meta_name}/{mission}': metadata key '{name}' appears as a unit"
                 )
+
+
+class TestIndexCountMatchesPage:
+    """findings/index.html card counts must equal the faction page roster.
+
+    Regression for the old gen_index() regex that skimmed every
+    `{"name": "..."}` string in the HTML — it also matched weapon profile
+    names (e.g. 'Great cleaver of Khorne - sweep') and detachment names
+    (e.g. 'Berzerker Warband'), inflating the index counts beyond the
+    ranked roster (which already excludes legends).
+    """
+
+    def test_index_card_matches_page_roster(self, faction_id):
+        """Index card count == unique units in the page's embedded DATA."""
+        idx = (FINDINGS_ROOT / "index.html").read_text(encoding="utf-8")
+        m = re.search(
+            rf'href="{faction_id}/findings\.html"[^>]*>\s*'
+            rf'<span class="fname">[^<]+</span>\s*'
+            rf'<span class="fmeta">(\d+) units',
+            idx,
+        )
+        assert m, f"{faction_id}: card missing from findings/index.html"
+        page = FINDINGS_ROOT / faction_id / "findings.html"
+        roster = _count_ranked_units(page.read_text(encoding="utf-8"))
+        assert roster is not None, f"{faction_id}: page DATA unparseable"
+        assert int(m.group(1)) == roster, (
+            f"{faction_id}: index card says {m.group(1)} units "
+            f"but the page renders {roster}"
+        )
+
+    def test_page_subtitle_matches_roster(self, faction_id):
+        """Page subtitle (build_data's n_units) == embedded DATA roster."""
+        page = FINDINGS_ROOT / faction_id / "findings.html"
+        txt = page.read_text(encoding="utf-8")
+        m = re.search(r'<div class="subtitle">(\d+) datasheets', txt)
+        assert m, f"{faction_id}: no subtitle found"
+        roster = _count_ranked_units(txt)
+        assert roster is not None, f"{faction_id}: page DATA unparseable"
+        assert int(m.group(1)) == roster, (
+            f"{faction_id}: subtitle says {m.group(1)} datasheets "
+            f"but the page renders {roster}"
+        )
 
 
 # ---------------------------------------------------------------------------
