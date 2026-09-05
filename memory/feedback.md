@@ -1120,3 +1120,10 @@ The standard-vs-density question resolved by player/TO experience + structural a
 - Implemented in gen_findings_html.py: mult_m = 1 + fit_m + army_rule_rating + det_upside, dets keyed by their own disposition, positive fits gated to 0 when no targeting det (event lock), DET_DECAY 0.6 / DET_SCALE 0.045, ARMY_RULE_VAL +/-0.12/0.04/0/-0.12, MULT_MIN/MAX 0.80/1.35, h_mult + per-mission point deltas base*(mult-1).
 - Source of truth: Army Rule Rating line in resources/experts/*.md (parser regex). Only GK rated so far (Weak) - absent line = neutral 0, NEVER invented.
 - Observed behavior: GK drops to #27 of 28 (x0.968, flagship Warpbane TF compensates T&H +8.7); SM/GK gap now 82.7 vs 56.1 in rules-aware view; Orks 59.5 -> 66.9 (+7.4) lifted but not invented; EC Purge suite +13.9. Top chapters dominate (SM/BA/DA ~x1.20) because fits+dets carry them - they have no army-rule rating yet. Tuning knob: rate chapter army rules or cool the fit scale if the top looks too hot.
+
+## 2026-09-05 - Gate: no multipliers until ratings are REAL
+
+- CORRECTION to the same-day multiplicative pivot. User: "nobody should have calculated multipliers. not even GK..." — the GK Army Rule Rating line was MY overreach (I attached it to a user domain report that was an example, not a rating). Revoked.
+- The multiplicative machinery stays in code behind a DEAD-MAN GATE: attach_heuristics activates only when >=1 expert file carries a real Army Rule Rating line. With zero ratings the layer is dormant — every faction x1.00, no delta chips, no "Rules x" tooltip (army/flagship labels still shown; they are informational, not calculated).
+- Rule: never invent or pre-compute multipliers from example attribution. A rating line only enters an expert file when the user sources it explicitly.
+- Tooltip shows "Rules xN" only when mult != 1.00; header explainer says the layer is "dormant until army-rule ratings are sourced".

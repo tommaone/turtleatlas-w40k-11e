@@ -266,8 +266,10 @@ class TestTierList:
                 assert m in t["h_missions"], f"{t['fid']} missing {m}"
             assert "**" not in t["h_army"], f"{t['fid']} markdown leaked: {t['h_army']!r}"
             assert isinstance(t["h_army"], str) and isinstance(t["h_top"], str)
-        assert any(t["h_overall"] != 0 for t in tiers), (
-            "heuristic layer produced no opinions at all"
+        # Dormancy gate (2026-09-05): no sourced army-rule ratings exist, so
+        # no faction may carry a calculated delta — labels only, no numbers.
+        assert all(t["h_overall"] == 0 for t in tiers), (
+            "multipliers calculated while the ratings gate is closed"
         )
 
     def test_army_tiers_json_stays_pure_engine(self):
@@ -295,26 +297,37 @@ class TestTierList:
             assert rendered[fid]["h_mult"] == f["h_mult"], fid
             assert rendered[fid]["h_rule"] == f["h_rule"], fid
 
-    def test_army_rule_ratings_are_directional(self):
-        """Weak-rated army rules must drag below neutral; strong rules lift."""
+    def test_no_calculated_multipliers_without_ratings(self):
+        """The multiplier layer is dormant until army-rule ratings are real.
+
+        User gate (2026-09-05): nobody should have a calculated multiplier —
+        not even GK, whose rating line was revoked. Until expert files carry
+        sourced 'Army Rule Rating' lines, every faction renders neutral x1.00
+        with zero deltas; the tooltip must not show a 'Rules x' value.
+        """
         tiers = json.loads(
             (FINDINGS_ROOT / "army_tiers.json").read_text(encoding="utf-8")
         )
         fresh = attach_heuristics(json.loads(json.dumps(tiers)))
-        # GK: army rule rated Weak (screened deep-strike delivery, user domain
-        # report 2026-09-05) — flagship T&H det compensates one mission but the
-        # overall multiplier stays below 1.0 (the drag bleeds everywhere).
-        gk = fresh["grey-knights"]
-        assert gk["h_rule"] == "Weak"
-        assert gk["h_mult"] < 1.0, f"GK army-rule drag missing: {gk['h_mult']}"
-        assert gk["h_missions"]["Take and Hold"] > 0, (
-            "flagship T&H detachment should outweight the rule on its mission"
-        )
-        # Orks: strong disposition package, no army-rule rating — still lifts.
-        assert fresh["orks"]["h_mult"] > 1.0
+        experts_root = ROOT / "resources" / "experts"
+        for fid, f in fresh.items():
+            assert f["h_mult"] == 1.0, f"{fid} multiplier calculated: {f['h_mult']}"
+            assert f["h_rule"] == "", f"{fid} carries an army-rule rating"
+            assert f["h_overall"] == 0.0, f"{fid} overall delta calculated"
+            assert all(v == 0.0 for v in f["h_missions"].values()), f"{fid} mission deltas"
+            assert "Army Rule Rating" not in (
+                experts_root / f"{fid}.md"
+            ).read_text(encoding="utf-8"), f"{fid} expert file still rates the army rule"
 
     def test_rules_heuristics_shift_order(self):
-        """With heuristics ON the army order must differ from L0 order."""
+        """Dormant layer: with the ratings gate closed, ON order == L0 order.
+
+        The gate (2026-09-05) forbids calculated multipliers until expert
+        files carry sourced Army Rule Ratings. While dormant every faction is
+        x1.00, so the rules toggle must NOT reorder the army list. The moment
+        a real rating lands in any expert file, this test flips to asserting
+        an order change — until then, dormancy is the contract.
+        """
         tiers = json.loads(
             (FINDINGS_ROOT / "army_tiers.json").read_text(encoding="utf-8")
         )
@@ -324,8 +337,8 @@ class TestTierList:
             tiers,
             key=lambda fid: -(tiers[fid]["overall"] + fresh[fid]["h_overall"]),
         )
-        assert [fid for fid in l0] != [fid for fid in adj], (
-            "rules heuristics made zero difference to army order"
+        assert [fid for fid in l0] == [fid for fid in adj], (
+            "rules heuristics reordered the army list while the ratings gate is closed"
         )
 
 
