@@ -1103,3 +1103,12 @@ Source: Event Companion v1.1 + GW terrain reveals (2026): https://www.warhammer-
 - Cover = -1 to opponent's Ballistic Skill (hit penalty), NOT a save modifier. (Already in guardrails.md.)
 
 **Correction:** do NOT claim 11e is "more terrain-dense" than 10e — the sources show standardization + shape variety + per-mission map triples, not a proven density increase. "Maps are way more" = three layouts per pairing, not denser tables.
+
+## 11e terrain density — community reports LESS dense (2026-09-05, supersedes above)
+
+The standard-vs-density question resolved by player/TO experience + structural analysis (user report; BoLS/Goatboy <https://www.belloflostsouls.net/2026/04/warhammer-40k-11th-edition-terrain-is-gonna-be-deadly.html>; Tabletop Battles deep-dive <https://www.tabletopbattles.com/11th-edition-40k-rules-deep-dive-terrain-and-objectives>):
+- Footprint AREAS are bigger per piece but generate LESS true LoS blocking (no full wall stands across a footprint; "mini-L" corners; many maps 24/45 have one central 10x10 ruin that opens sightlines once touched).
+- Old WTC/UKTC sets don't fit the new footprints (UKTC transition note) — the retired packs were the dense baseline.
+- Goonhammer's read ("more dense") refers to MORE FOOTPRINTS per set (16), not more blocking.
+
+**Rule of thumb:** say "standardized 16-footprint layouts, players/TOs report tables play more open / less LoS-dense than retireed dense packs" — attribute to community, never assert as rulebook fact. Keep "more varied maps (3 per mission pairing)".
