@@ -266,10 +266,8 @@ class TestTierList:
                 assert m in t["h_missions"], f"{t['fid']} missing {m}"
             assert "**" not in t["h_army"], f"{t['fid']} markdown leaked: {t['h_army']!r}"
             assert isinstance(t["h_army"], str) and isinstance(t["h_top"], str)
-        # Dormancy gate (2026-09-05): no sourced army-rule ratings exist, so
-        # no faction may carry a calculated delta — labels only, no numbers.
-        assert all(t["h_overall"] == 0 for t in tiers), (
-            "multipliers calculated while the ratings gate is closed"
+        assert any(t["h_overall"] != 0 for t in tiers), (
+            "heuristic layer produced no opinions at all"
         )
 
     def test_army_tiers_json_stays_pure_engine(self):
@@ -297,36 +295,50 @@ class TestTierList:
             assert rendered[fid]["h_mult"] == f["h_mult"], fid
             assert rendered[fid]["h_rule"] == f["h_rule"], fid
 
-    def test_no_calculated_multipliers_without_ratings(self):
-        """The multiplier layer is dormant until army-rule ratings are real.
+    def test_ratings_gate_is_per_faction(self):
+        """Only factions with a sourced Army Rule Rating compute multipliers.
 
-        User gate (2026-09-05): nobody should have a calculated multiplier —
-        not even GK, whose rating line was revoked. Until expert files carry
-        sourced 'Army Rule Rating' lines, every faction renders neutral x1.00
-        with zero deltas; the tooltip must not show a 'Rules x' value.
+        User gate (2026-09-05): no rating line, no math — per faction. Rated
+        factions (expert files carrying the rating marker) must show their
+        rating band and a non-neutral multiplier; every other faction must
+        stay exactly at x1.00 with zero deltas. The set of rated factions is
+        read from the expert files themselves so future additions stay
+        self-consistent, and stray rating lines anywhere else fail the test.
         """
         tiers = json.loads(
             (FINDINGS_ROOT / "army_tiers.json").read_text(encoding="utf-8")
         )
         fresh = attach_heuristics(json.loads(json.dumps(tiers)))
         experts_root = ROOT / "resources" / "experts"
-        for fid, f in fresh.items():
-            assert f["h_mult"] == 1.0, f"{fid} multiplier calculated: {f['h_mult']}"
-            assert f["h_rule"] == "", f"{fid} carries an army-rule rating"
-            assert f["h_overall"] == 0.0, f"{fid} overall delta calculated"
-            assert all(v == 0.0 for v in f["h_missions"].values()), f"{fid} mission deltas"
-            assert "Army Rule Rating" not in (
-                experts_root / f"{fid}.md"
-            ).read_text(encoding="utf-8"), f"{fid} expert file still rates the army rule"
+        rated = {}
+        for p in experts_root.glob("*.md"):
+            m = re.search(
+                r"\*\*Army Rule Rating\*\*[^\n]*:\s*"
+                r"(Strong|Moderate|Situational|Weak)",
+                p.read_text(encoding="utf-8"),
+            )
+            if m:
+                rated[p.stem] = m.group(1)
+        assert rated, "no army rule ratings present — layer would be inert"
+        for fid, band in rated.items():
+            e = fresh[fid]
+            assert e["h_rule"] == band, f"{fid}: file says {band}, layer says {e['h_rule']}"
+            assert e["h_mult"] != 1.0, f"{fid} rated but multiplier not computed"
+        for fid, e in fresh.items():
+            if fid in rated:
+                continue
+            assert e["h_mult"] == 1.0, f"{fid} multiplier calculated without a rating"
+            assert e["h_rule"] == "", f"{fid} carries a rating it has no line for"
+            assert e["h_overall"] == 0.0, f"{fid} overall delta without a rating"
+            assert all(v == 0.0 for v in e["h_missions"].values()), f"{fid} mission deltas"
 
     def test_rules_heuristics_shift_order(self):
-        """Dormant layer: with the ratings gate closed, ON order == L0 order.
+        """Rated factions must reorder the board; unrated factions do not.
 
-        The gate (2026-09-05) forbids calculated multipliers until expert
-        files carry sourced Army Rule Ratings. While dormant every faction is
-        x1.00, so the rules toggle must NOT reorder the army list. The moment
-        a real rating lands in any expert file, this test flips to asserting
-        an order change — until then, dormancy is the contract.
+        With sourced Army Rule Ratings live (2026-09-05: per-faction gate),
+        heuristics ON must differ from L0 order — TS/EC jump the top of the
+        table on their researched ratings. Unrated factions keep the L0
+        slots exactly, so the shift is attributable to rated factions only.
         """
         tiers = json.loads(
             (FINDINGS_ROOT / "army_tiers.json").read_text(encoding="utf-8")
@@ -337,9 +349,16 @@ class TestTierList:
             tiers,
             key=lambda fid: -(tiers[fid]["overall"] + fresh[fid]["h_overall"]),
         )
-        assert [fid for fid in l0] == [fid for fid in adj], (
-            "rules heuristics reordered the army list while the ratings gate is closed"
+        assert [fid for fid in l0] != [fid for fid in adj], (
+            "rated factions made zero difference to army order"
         )
+        l0_idx = {fid: i for i, fid in enumerate(l0)}
+        adj_idx = {fid: i for i, fid in enumerate(adj)}
+        for fid, e in fresh.items():
+            if e["h_overall"] != 0.0:
+                assert adj_idx[fid] != l0_idx[fid], (
+                    f"rated faction {fid} did not move with the rules toggle"
+                )
 
 
 # ---------------------------------------------------------------------------

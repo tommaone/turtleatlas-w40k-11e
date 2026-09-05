@@ -24,6 +24,7 @@
 **Research basis**: workspace/detachment_research/thousand-sons.json (2026-08-23, packs v1.1).
 
 ### Army Rule
+- **Army Rule Rating**: Strong — the Cabal of Sorcerers ritual economy is the army's win condition and the meta's most driven rules package: Destiny's Ruin alone hands Thousand Sons an Oath-of-Moment-grade target debuff, and the whole package (Doombolt MW, Twist of Fate +2 AP, rerolls) stacks on top of otherwise mid datasheets. Sourced: spikeybits.com/best-worst-meta-armies/ 2026-07-14 ("brutal 59% win rate and an event win... the real problem child"); prismnews.com 2026-07-10 (Sam Nash 7-0 Birmingham Super Major, 100/100/97/95/100/97/100); listhammer.info/factions/thousand-sons (52.8% 4-week WR); tabletopbattles.com/10th-edition-competitive-faction-focus-thousand-sons ("more or less your version of Oath of Moment").
 - **Rituals (Cabal economy)**: Thousand Sons Psyker units take psychic tests at the start of the Shooting phase to manifest Rituals; effects scale with manifestation success. Detachments add Ritual-adjacent payoffs (healing, aura-granted access for daemons).
 - **Play pattern** *(interpretation)*: The army sequences Ritual manifestations around shooting phases — every Psyker is both a gun and a resource engine. List construction pushes Psyker density because most detachment buffs key on Psychic weapons or Psyker proximity; non-Psyker units need explicit detachment support to keep pace.
 

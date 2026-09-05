@@ -1127,3 +1127,11 @@ The standard-vs-density question resolved by player/TO experience + structural a
 - The multiplicative machinery stays in code behind a DEAD-MAN GATE: attach_heuristics activates only when >=1 expert file carries a real Army Rule Rating line. With zero ratings the layer is dormant — every faction x1.00, no delta chips, no "Rules x" tooltip (army/flagship labels still shown; they are informational, not calculated).
 - Rule: never invent or pre-compute multipliers from example attribution. A rating line only enters an expert file when the user sources it explicitly.
 - Tooltip shows "Rules xN" only when mult != 1.00; header explainer says the layer is "dormant until army-rule ratings are sourced".
+
+## 2026-09-05 - Ratings are my research job, user is referee
+
+- User: "why do I personally rate all armies? ... you are the LLM which has the power to understand all sources from the internet." Correct division: I research + cite; user reviews. NO more invented ratings, ever. Each Army Rule Rating line must carry a Sources trail (URL + date + verbatim quote).
+- Per-faction activation implemented (option A): only expert files carrying the "Army Rule Rating" marker compute multipliers; everyone else x1.00. Test reads rated set from files (self-consistent).
+- Freshness rule (user directive): ratings use ONLY last-month data (window 2026-08-06 -> 2026-09-05) or continuously-updated live stat pages (listhammer.info/factions/<fid>, uktc.events); historic material is NOT a rating basis. Thin current evidence -> Situational or no rating, never padded.
+- Pilot ratified: thousand-sons Strong (59% WR problem child, Birmingham 7-0), emperors-children Strong (ITT 59.47%, Goonhammer "one of the strongest army rules"), grey-knights Moderate (S-tier, Edmonton 7-1) — the old GK "dead weight / screened DS" read was a 10th-index relic, retired on sourced evidence.
+- Pilot output: TS 62.1 -> 75.5 (#2), EC 61.1 -> 76.0 (#1), GK 58.0 -> 65.4 (#11); 25 inert factions untouched.

@@ -312,6 +312,7 @@
 packs v1.1).
 
 ### Army Rule
+- **Army Rule Rating**: Moderate — the codex-era Gate of Infinity package is a real, tournament-proven mobility scalpel (S-tier broad-meta ranking, event win, Warpbane 7-1 at Edmonton) but pilot-dependent: elite, timing-heavy play rewards skilled hands and punishes misreads; ITT 2026 landed ~50%. The old "dead weight / screened deep strike" read applied to the 10th-index rule, not this codex — retired 2026-09-05 on sourced evidence. Sourced: spikeybits.com/best-worst-meta-armies/ 2026-07-14 ("Grey Knights are the scarier broad-meta problem... taking down an event"); spikeybits.com/top-40k-tournament-army-lists-warhammer-open-edmonton/ 2026-06-25 (David Coren 7-1 Warpbane Task Force, 2nd of 262); uktc.events/post/the-summer-i-t-t-2026-winrates-and-rankings-impact 2026-08-12 (~50%).
 - **Gate of Infinity**: faction-wide mobility rule — Grey Knights units can arrive via Deep Strike and teleport around the board; the research corpus references a per-turn/unit-count cap on its use ([unverified] exact cap not detailed in corpus).
 - **Play pattern** *(interpretation)*: an elite army that ignores deployment distance entirely. Every unit arriving where it is needed each turn compresses the game into short, decisive engagements — list construction favours few, hard-hitting units over bodies.
 

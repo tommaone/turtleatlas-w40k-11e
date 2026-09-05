@@ -255,13 +255,11 @@ def attach_heuristics(tiers):
     output — this mutates the in-memory render copy only.
     """
     parsed = {fid: parse_expert_assessment(fid) for fid in tiers}
-    # Dead-man gate: multipliers are only calculated when the corpus actually
-    # contains sourced Army Rule Ratings. Without them nobody — not even a
-    # faction whose file carries a stray rating line — gets a multiplier,
-    # delta chips, or a "Rules x" tooltip. The layer is dormant until real
-    # ratings exist (user gate 2026-09-05: don't calculate multipliers yet).
-    active = any((parsed[fid] or {}).get('army_rule_rating', '')
-                 in ARMY_RULE_VAL for fid in tiers)
+    # Per-faction activation: a faction only gets a calculated multiplier
+    # when ITS expert file carries a sourced Army Rule Rating. Unrated
+    # factions stay at x1.00 (keyed-zero deltas, no "Rules x" tooltip) —
+    # no rating, no math (user gate 2026-09-05). Ratings are the researched
+    # verdicts living in resources/experts/*.md with a Sources trail.
     for fid, entry in tiers.items():
         entry['h_mult'] = 1.0
         entry['h_missions'] = {m: 0.0 for m in MISSIONS}
@@ -272,7 +270,7 @@ def attach_heuristics(tiers):
         exp = parsed[fid]
         if not exp:
             continue
-        if active:
+        if exp.get('army_rule_rating', '') in ARMY_RULE_VAL:
             arr = ARMY_RULE_VAL.get(exp.get('army_rule_rating', ''), 0.0)
             entry['h_rule'] = exp.get('army_rule_rating', '') or ''
 
@@ -369,8 +367,9 @@ def render_tier_section(tiers):
         '  </div>\n'
         '  <p style="color:#8b949e;font-size:0.8em;margin:0 0 10px">Datasheet base = engine '
         'output. Rules shift = multiplier on the L0 score (army rule + detachment + '
-        'disposition fit \u2014 expert-rated guesswork; dormant until army-rule ratings are '
-        'sourced). Shown only when the rules toggle is on.</p>\n'
+        'disposition fit \u2014 expert-rated guesswork with a sources trail; applied only to '
+        'factions with a sourced army-rule rating, unrated factions stay at L0). '
+        'Shown only when the rules toggle is on.</p>\n'
         f'  <div class="tierbar">'
         f'<button class="hbtn" data-on="0" onclick="setTierHeuristic(false)">L0 datasheets only</button>'
         f'<button class="hbtn active" data-on="1" onclick="setTierHeuristic(true)">+ rules heuristics &#9888; STRATEGY</button>'

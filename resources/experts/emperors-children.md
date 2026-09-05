@@ -20,6 +20,7 @@
 (2026-08-23, packs v1.1). 10 detachments, all faction-specific.
 
 ### Army Rule
+- **Army Rule Rating**: Strong — Thrill Seekers (shoot/charge after Advance or Fall Back) dictates the whole army's tempo identity and is tournament-proven: the most-played faction at Summer ITT 2026 at 59.47% (26 players), 56.5% current majors win rate, and Goonhammer's codex verdict that the rule is "one of the strongest army rules in the game". Sourced: uktc.events/post/the-summer-i-t-t-2026-winrates-and-rankings-impact 2026-08-12; listhammer.info/factions/emperors-children (56.5%, 216 games, 11th ed); goonhammer.com/goonhammer-review-codex-emperors-children-10th-edition.
 - **Advance-and-act framework**: the corpus documents that the faction army rule interacts with Advance moves (Mercurial Host's Advance-reroll "stacks with the faction's advance-and-act army rule"); the rule's exact text is not restated anywhere in the research files [unverified].
 - **Play pattern** *(interpretation)*: fast melee/flavour army built on charge-triggered buffs — nearly every detachment pays out on the turn a unit charges, disembarks, or advances, so list construction revolves around delivering the right unit into combat on round 2-3.
 
