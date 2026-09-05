@@ -244,6 +244,7 @@ class TestTierList:
             "not a win-rate model",
             "L0 datasheets only",
             "+ rules heuristics",
+            "multiplier on the L0 score",
             "STRATEGY",
         ):
             assert phrase in idx, f"tier header missing: {phrase!r}"
@@ -258,6 +259,9 @@ class TestTierList:
         for t in tiers:
             assert isinstance(t["h_overall"], (int, float)), t["fid"]
             assert math.isfinite(t["h_overall"]), t["fid"]
+            assert isinstance(t["h_mult"], (int, float)), t["fid"]
+            assert math.isfinite(t["h_mult"]), t["fid"]
+            assert isinstance(t["h_rule"], str), t["fid"]
             for m in MISSIONS:
                 assert m in t["h_missions"], f"{t['fid']} missing {m}"
             assert "**" not in t["h_army"], f"{t['fid']} markdown leaked: {t['h_army']!r}"
@@ -288,6 +292,26 @@ class TestTierList:
             assert rendered[fid]["h_overall"] == f["h_overall"], fid
             assert rendered[fid]["h_missions"] == f["h_missions"], fid
             assert rendered[fid]["h_top"] == f["h_top"], fid
+            assert rendered[fid]["h_mult"] == f["h_mult"], fid
+            assert rendered[fid]["h_rule"] == f["h_rule"], fid
+
+    def test_army_rule_ratings_are_directional(self):
+        """Weak-rated army rules must drag below neutral; strong rules lift."""
+        tiers = json.loads(
+            (FINDINGS_ROOT / "army_tiers.json").read_text(encoding="utf-8")
+        )
+        fresh = attach_heuristics(json.loads(json.dumps(tiers)))
+        # GK: army rule rated Weak (screened deep-strike delivery, user domain
+        # report 2026-09-05) — flagship T&H det compensates one mission but the
+        # overall multiplier stays below 1.0 (the drag bleeds everywhere).
+        gk = fresh["grey-knights"]
+        assert gk["h_rule"] == "Weak"
+        assert gk["h_mult"] < 1.0, f"GK army-rule drag missing: {gk['h_mult']}"
+        assert gk["h_missions"]["Take and Hold"] > 0, (
+            "flagship T&H detachment should outweight the rule on its mission"
+        )
+        # Orks: strong disposition package, no army-rule rating — still lifts.
+        assert fresh["orks"]["h_mult"] > 1.0
 
     def test_rules_heuristics_shift_order(self):
         """With heuristics ON the army order must differ from L0 order."""

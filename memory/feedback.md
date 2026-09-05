@@ -1112,3 +1112,11 @@ The standard-vs-density question resolved by player/TO experience + structural a
 - Goonhammer's read ("more dense") refers to MORE FOOTPRINTS per set (16), not more blocking.
 
 **Rule of thumb:** say "standardized 16-footprint layouts, players/TOs report tables play more open / less LoS-dense than retireed dense packs" — attribute to community, never assert as rulebook fact. Keep "more varied maps (3 per mission pairing)".
+
+## 2026-09-05 - Heuristic model pivot: additive -> multiplicative
+
+- User domain directive: army rules make/break armies. EC rule dictates whole playstyle; GK 10th army rule was dead weight (9" deep-strike screened), the perennial GK-vs-SM handicap. Expert rules must MULTIPLY the L0 score, not add.
+- Refined spec: detachments (a few) CAN outweigh a shit army rule; lean into the toppest detachment (rank-decay weighting); per-disposition gating (cannot queue Purge the Foe with a Take-and-Hold det); strip still exists via the existing L0-only toggle.
+- Implemented in gen_findings_html.py: mult_m = 1 + fit_m + army_rule_rating + det_upside, dets keyed by their own disposition, positive fits gated to 0 when no targeting det (event lock), DET_DECAY 0.6 / DET_SCALE 0.045, ARMY_RULE_VAL +/-0.12/0.04/0/-0.12, MULT_MIN/MAX 0.80/1.35, h_mult + per-mission point deltas base*(mult-1).
+- Source of truth: Army Rule Rating line in resources/experts/*.md (parser regex). Only GK rated so far (Weak) - absent line = neutral 0, NEVER invented.
+- Observed behavior: GK drops to #27 of 28 (x0.968, flagship Warpbane TF compensates T&H +8.7); SM/GK gap now 82.7 vs 56.1 in rules-aware view; Orks 59.5 -> 66.9 (+7.4) lifted but not invented; EC Purge suite +13.9. Top chapters dominate (SM/BA/DA ~x1.20) because fits+dets carry them - they have no army-rule rating yet. Tuning knob: rate chapter army rules or cool the fit scale if the top looks too hot.

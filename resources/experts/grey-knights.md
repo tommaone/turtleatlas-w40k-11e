@@ -312,6 +312,7 @@
 packs v1.1).
 
 ### Army Rule
+- **Army Rule Rating**: Weak — dead-weight delivery: the rule's whole premium is deep-strike placement, and 9" deep strikes are screened to near-unusability in matched play, so the army rule taxes GK without paying out. That gap vs Space Marines' faction rules is the perennial GK handicap. (User domain report, 2026-09-05.)
 - **Gate of Infinity**: faction-wide mobility rule — Grey Knights units can arrive via Deep Strike and teleport around the board; the research corpus references a per-turn/unit-count cap on its use ([unverified] exact cap not detailed in corpus).
 - **Play pattern** *(interpretation)*: an elite army that ignores deployment distance entirely. Every unit arriving where it is needed each turn compresses the game into short, decisive engagements — list construction favours few, hard-hitting units over bodies.
 

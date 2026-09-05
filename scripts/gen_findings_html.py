@@ -198,54 +198,118 @@ INDEX_SCRIPT = (
 
     'function hval(t,key){var hm=(t.h_missions||{});return key?((hm[key]||0)):(t.h_overall||0)}'
 
-    'function renderTiers(){var key=(tierMode==="Overall")?null:tierMode;var rows=[];for(var i=0;i<TIERS.length;i++){var t=TIERS[i];rows.push({fid:t.fid,name:t.name,base:key?t.missions[key]:t.overall,h:TIER_H?hval(t,key):0,n:t.n_units,army:t.h_army||"",top:t.h_top||""});}rows.sort(function(a,b){return (b.base+b.h)-(a.base+a.h)});var sorted=rows.map(function(r){return r.base+r.h});var html="";for(var i=0;i<rows.length;i++){var r=rows[i],t=tierOf(r.base+r.h,sorted),col=t==="S"?"#d29922":t==="A"?"#3fb950":t==="B"?"#58a6ff":t==="C"?"#bc8cff":"#6e7681";var tip=r.army?("Army rule: "+r.army+(r.top?" | Flagship: "+r.top:"")):"";html+=\'<a class="tiercard" data-rel href="\'+r.fid+\'/findings.html" title="\'+esc(tip)+\'">\'+\'<span class="tc-badge" style="background:\'+col+\'">\'+t+\'</span>\'+\'<span class="tc-rank">\'+(i+1)+\'</span>\'+\'<span class="tc-name">\'+esc(r.name)+\'</span>\'+\'<span class="tc-score">\'+(r.base+r.h).toFixed(1)+\'</span>\'+(TIER_H&&r.h?(r.h>0?\'<span class="tc-h up">+\'+r.h.toFixed(1)+\'</span>\':\'<span class="tc-h dn">\'+r.h.toFixed(1)+\'</span>\'):"")+\'<span class="tc-units">\'+r.n+\' units</span></a>\';}document.getElementById("tierlist").innerHTML=html;ghFix()}'
+    'function renderTiers(){var key=(tierMode==="Overall")?null:tierMode;var rows=[];for(var i=0;i<TIERS.length;i++){var t=TIERS[i];rows.push({fid:t.fid,name:t.name,base:key?t.missions[key]:t.overall,h:TIER_H?hval(t,key):0,n:t.n_units,army:t.h_army||"",top:t.h_top||"",mult:(t.h_mult||1).toFixed(2)});}rows.sort(function(a,b){return (b.base+b.h)-(a.base+a.h)});var sorted=rows.map(function(r){return r.base+r.h});var html="";for(var i=0;i<rows.length;i++){var r=rows[i],t=tierOf(r.base+r.h,sorted),col=t==="S"?"#d29922":t==="A"?"#3fb950":t==="B"?"#58a6ff":t==="C"?"#bc8cff":"#6e7681";var tip=r.army?("Army rule: "+r.army+(r.top?" | Flagship: "+r.top:"")+" | Rules \u00d7"+r.mult):"Rules \u00d7"+r.mult;html+=\'<a class="tiercard" data-rel href="\'+r.fid+\'/findings.html" title="\'+esc(tip)+\'">\'+\'<span class="tc-badge" style="background:\'+col+\'">\'+t+\'</span>\'+\'<span class="tc-rank">\'+(i+1)+\'</span>\'+\'<span class="tc-name">\'+esc(r.name)+\'</span>\'+\'<span class="tc-score">\'+(r.base+r.h).toFixed(1)+\'</span>\'+(TIER_H&&r.h?(r.h>0?\'<span class="tc-h up">+\'+r.h.toFixed(1)+\'</span>\':\'<span class="tc-h dn">\'+r.h.toFixed(1)+\'</span>\'):"")+\'<span class="tc-units">\'+r.n+\' units</span></a>\';}document.getElementById("tierlist").innerHTML=html;ghFix()}'
 
     'function showView(v,btn){document.querySelectorAll(".viewtab").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");document.getElementById("view-tiers").style.display=v==="tiers"?"":"none";document.getElementById("view-browse").style.display=v==="browse"?"":"none";if(v==="tiers")ghFix()}\n'
     'renderTiers();ghFix();'
 )
 
 
-FIT_VAL = {'Strong': 1.5, 'Moderate': 0.5, 'Situational': 0.0, 'Weak': -0.5}
-DET_VAL = {'Strong': 0.8, 'Moderate': 0.3, 'Situational': 0.0, 'Weak': -0.3}
+# STRATEGY-tier heuristic weights (hand-tuned domain judgement, NOT derived).
+# Model: army rules MULTIPLY the L0 score (not add) - a rule amplifies or
+# taxes everything the roster does (GK's screened deep-strike rule bled the
+# whole army; Waaagh! compounds Orks' tempo). Per mission:
+#   mult_m = 1 + fit_m  + army_rule_rating  + detachment_upside
+#   fit_m             : expert disposition fit (can be NEGATIVE; punished
+#                       missions drag, they never get "unplayed")
+#   army_rule_rating  : faction army rule band (Strong .. Weak); absent = 0
+#                       (no opinion never invents a rating)
+#   detachment_upside : rank-decayed, "leaned into the toppest" - dets are
+#                       keyed by their OWN disposition (you can't queue Purge
+#                       with a Take-and-Hold det; event disposition lock), so
+#                       each mission only credits dets that target it. A
+#                       flagship 3DP Strong det (~+14%) can outweight a Weak
+#                       army rule (-12%). Dets provide upside only; fits
+#                       carry the downside.
+# GATING: a positive fit on a mission with NO targeting detachment is
+# demoted to 0 - you cannot play a disposition you cannot queue.
+# Landing always shows the pure L0 base (L0 toggle strips ALL of this).
+FIT_VAL = {'Strong': 0.10, 'Moderate': 0.05, 'Situational': 0.0, 'Weak': -0.05}
+DET_RATING_VAL = {'Strong': 1.0, 'Moderate': 0.5, 'Situational': 0.25,
+                  'Weak': 0.0, 'Unrated': 0.0}
+ARMY_RULE_VAL = {'Strong': 0.12, 'Moderate': 0.04,
+                 'Situational': 0.0, 'Weak': -0.12}
+DET_DECAY = 0.6
+DET_SCALE = 0.045
+DET_CLAMP = 12.0   # clamps the raw top-weighted det sum (pre-scale)
+MULT_MIN, MULT_MAX = 0.80, 1.35
+DISP_OBJ = {
+    'TAKE AND HOLD': 'Take and Hold', 'PURGE THE FOE': 'Purge the Foe',
+    'RECONNAISSANCE': 'Reconnaissance', 'PRIORITY ASSETS': 'Priority Assets',
+    'DISRUPTION': 'Disruption',
+}
 
 
 def attach_heuristics(tiers):
-    """Layer expert-rated rule heuristics onto tier entries (STRATEGY tier).
+    """Multiplicative expert-rated rules layer (STRATEGY tier, NOT engine).
 
-    NOT engine output. Reads resources/experts/<fid>.md via
-    parse_expert_assessment(): army rule label, detachment ratings
-    (Strong/Moderate/Situational/Weak weighted by DP) and per-disposition
-    fit ratings. Produces per-mission deltas (h_missions) and an overall
-    delta (h_overall) that shift the L0 numeric score — so users can see how
-    rule packages move the army order even when datasheet scores rank alike.
+    mult_m = 1 + fit_m + army_rule_rating + detachment_upside per mission,
+    where detachments are keyed by their OWN disposition (event lock: you
+    cannot queue a disposition you have no detachment for) and weighted
+    rank-decay style — leaned into the toppest. Positive fits with no
+    targeting detachment are gated to 0. A Weak army rule bleeds everywhere
+    but flagship Strong detachments can outweigh it on their missions.
 
-    Zero = no expert file / no opinion (never fabricated). Mutates the
-    in-memory dict only — army_tiers.json on disk stays pure engine output.
+    Produces per-mission and overall POINT deltas (base x (mult-1)) plus an
+    h_mult for the tooltip. army_tiers.json on disk stays pure engine
+    output — this mutates the in-memory render copy only.
     """
     for fid, entry in tiers.items():
+        entry['h_mult'] = 1.0
         entry.setdefault('h_missions', {})
         entry['h_overall'] = 0.0
         entry['h_army'] = ''
         entry['h_top'] = ''
+        entry['h_rule'] = ''
         exp = parse_expert_assessment(fid)
         if not exp:
             continue
+        arr = ARMY_RULE_VAL.get(exp.get('army_rule_rating', ''), 0.0)
+        entry['h_rule'] = exp.get('army_rule_rating', '') or ''
+
+        # detachments: upside keyed by the disposition they actually target
+        det_by_m = {}
+        for m in MISSIONS:
+            det_by_m[m] = []
+        for d in exp.get('detachments', []):
+            m = DISP_OBJ.get((d.get('objective') or '').strip().upper())
+            if m:
+                det_by_m[m].append(
+                    DET_RATING_VAL.get(d.get('rating', ''), 0.0) * d.get('dp', 1))
+        for m in MISSIONS:
+            det_by_m[m].sort(reverse=True)
+
+        # expert disposition fits, gated by detachment availability
+        fits = {m: 0.0 for m in MISSIONS}
         for row in exp.get('disposition_fit', []):
-            entry['h_missions'][row['mission']] = FIT_VAL.get(row['fit'], 0.0)
-        det_sum = sum(DET_VAL.get(d.get('rating', ''), 0.0) * d.get('dp', 1)
-                      for d in exp.get('detachments', []))
-        det_sum = max(-1.2, min(1.2, det_sum))
-        entry['h_overall'] = round(sum(entry['h_missions'].values()) / 5
-                                   + 0.5 * det_sum, 2)
+            if row['mission'] in fits:
+                fits[row['mission']] = FIT_VAL.get(row['fit'], 0.0)
+
+        mults = {}
+        for m in MISSIONS:
+            if fits[m] > 0 and not det_by_m[m]:
+                fits[m] = 0.0  # disposition lock: no det to queue it with
+            up = sum(v * (DET_DECAY ** i) for i, v in enumerate(det_by_m[m]))
+            up = min(DET_CLAMP, up) * DET_SCALE
+            mults[m] = min(MULT_MAX, max(MULT_MIN, 1.0 + fits[m] + arr + up))
+
+        mean_mult = sum(mults.values()) / len(mults)
+        entry['h_mult'] = round(mean_mult, 3)
+        entry['h_overall'] = round(entry['overall'] * (mean_mult - 1), 2)
+        for m, mm in mults.items():
+            entry['h_missions'][m] = round(entry['missions'][m] * (mm - 1), 2)
+
         am = exp.get('army_rule', '').strip()
+        am = '\n'.join(l for l in am.splitlines()
+                       if 'Army Rule Rating' not in l).strip()
         if am.startswith('- '):
             am = am[2:]
         entry['h_army'] = am.replace('**', '').split(':', 1)[0].strip()[:60] if am else ''
-        ratings = [d for d in exp.get('detachments', [])
-                   if d.get('rating') in ('Strong', 'Moderate')]
-        ratings.sort(key=lambda d: (-DET_VAL.get(d.get('rating', ''), 0.0),
-                                    -d.get('dp', 1)))
-        entry['h_top'] = ratings[0]['name'] if ratings else ''
+        rated = [d for d in exp.get('detachments', [])
+                 if d.get('rating') != 'Unrated']
+        rated.sort(key=lambda d: -DET_RATING_VAL.get(d.get('rating', ''), 0.0)
+                   * d.get('dp', 1))
+        entry['h_top'] = rated[0]['name'] if rated else ''
     return tiers
 
 
@@ -293,8 +357,9 @@ def render_tier_section(tiers):
         '    </ul>\n'
         '  </div>\n'
         '  <p style="color:#8b949e;font-size:0.8em;margin:0 0 10px">Datasheet base = engine '
-        'output. Rules shift (\u00b1X.X) = expert-rated guesswork, shown only when the rules '
-        'toggle is on.</p>\n'
+        'output. Rules shift = multiplier on the L0 score (e.g. \u00d71.12 \u2248 +6 pts) '
+        'from army rule + detachment + disposition fit \u2014 expert-rated guesswork, shown '
+        'only when the rules toggle is on.</p>\n'
         f'  <div class="tierbar">'
         f'<button class="hbtn" data-on="0" onclick="setTierHeuristic(false)">L0 datasheets only</button>'
         f'<button class="hbtn active" data-on="1" onclick="setTierHeuristic(true)">+ rules heuristics &#9888; STRATEGY</button>'
@@ -616,10 +681,14 @@ def parse_expert_assessment(fid):
     sec = m.group(1)
 
     out = {'disposition_fit': [], 'detachments': [], 'army_rule': '',
-           'play_pattern': ''}
+           'army_rule_rating': '', 'play_pattern': ''}
     am = re.search(r'### Army Rule\s*\n(.*?)(?=\n### |\Z)', sec, re.S)
     if am:
         out['army_rule'] = am.group(1).strip()
+        rm2 = re.search(
+            r'\*\*Army Rule Rating\*\*[^\n]*:\s*(Strong|Moderate|Situational|Weak)',
+            out['army_rule'])
+        out['army_rule_rating'] = rm2.group(1) if rm2 else ''
     for row in re.findall(
             r'^\|\s*(Take and Hold|Purge the Foe|Reconnaissance|Priority Assets|Disruption)'
             r'\s*\|\s*(Strong|Moderate|Situational|Weak)\s*\|\s*(.+?)\s*\|\s*$',
