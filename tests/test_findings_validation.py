@@ -8,6 +8,7 @@ Ensures every faction's build_data() output is consistent:
 - Metadata keys never appear as unit names
 """
 
+import json
 import math
 import re
 import sys
@@ -18,7 +19,13 @@ import pytest
 # Add project root to path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from scripts.gen_findings_html import FACTIONS, MISSIONS, build_data, _count_ranked_units
+from scripts.gen_findings_html import (
+    FACTIONS,
+    MISSIONS,
+    build_data,
+    _count_ranked_units,
+    attach_heuristics,
+)
 from engine.ranking import RankingEngine
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -183,6 +190,113 @@ class TestIndexCountMatchesPage:
         assert int(m.group(1)) == roster, (
             f"{faction_id}: subtitle says {m.group(1)} datasheets "
             f"but the page renders {roster}"
+        )
+
+
+def _extract_tiers(html: str) -> list:
+    """Parse the `var TIERS=...;` payload from findings/index.html."""
+    marker = "var TIERS="
+    idx = html.find(marker)
+    assert idx != -1, "no TIERS payload in index.html"
+    return json.JSONDecoder().raw_decode(html, idx + len(marker))[0]
+
+
+class TestTierList:
+    """Army Tier List tab: explainer, tab order, heuristic layer integrity.
+
+    The tier list carries two explicitly-separated layers:
+    - L0 numeric (engine output, rules-free) from findings/army_tiers.json
+    - STRATEGY-tier heuristics (expert-rated guesswork, NOT engine output)
+      attached at render time from resources/experts/<fid>.md
+    These tests guard the separation: army_tiers.json stays pure engine
+    output, the rendered page carries the labelled heuristic deltas, and the
+    tab structure explains why the list is not exact.
+    """
+
+    def test_tabs_browse_first(self):
+        """Browse Factions is the first (default) tab; tiers second."""
+        idx = (FINDINGS_ROOT / "index.html").read_text(encoding="utf-8")
+        tabs = re.findall(r'<button class="viewtab[^"]*"[^>]*>([^<]+)</button>', idx)
+        assert len(tabs) == 2, f"expected 2 tabs, got {tabs}"
+        assert tabs[0] == "Browse Factions", f"Browse must be first, got {tabs}"
+        assert tabs[1] == "Army Tier List"
+        m = re.search(r'<button class="viewtab active"[^>]*>([^<]+)</button>', idx)
+        assert m and m.group(1) == "Browse Factions", (
+            "Browse Factions must be the active default tab"
+        )
+        assert 'id="view-browse"' in idx and 'id="view-tiers" style="display:none"' in idx
+
+    def test_tier_header_explains_limits(self):
+        """Header explains what the list is and why it is not exact."""
+        idx = (FINDINGS_ROOT / "index.html").read_text(encoding="utf-8")
+        for phrase in (
+            "What this is",
+            "Why it is not exact",
+            "L0 datasheet score",
+            "11e core-rules fact",
+            "BS +1",
+            "not</strong> modify saves",
+            "asymmetric mission cards",
+            "Codex-vintage skew",
+            "not a win-rate model",
+            "L0 datasheets only",
+            "+ rules heuristics",
+            "STRATEGY",
+        ):
+            assert phrase in idx, f"tier header missing: {phrase!r}"
+
+    def test_tiers_payload_heuristics_shape(self):
+        """Every tier entry carries the labelled heuristic layer."""
+        idx = (FINDINGS_ROOT / "index.html").read_text(encoding="utf-8")
+        tiers = _extract_tiers(idx)
+        assert tiers, "TIERS payload empty"
+        for t in tiers:
+            assert isinstance(t["h_overall"], (int, float)), t["fid"]
+            assert math.isfinite(t["h_overall"]), t["fid"]
+            for m in MISSIONS:
+                assert m in t["h_missions"], f"{t['fid']} missing {m}"
+            assert "**" not in t["h_army"], f"{t['fid']} markdown leaked: {t['h_army']!r}"
+            assert isinstance(t["h_army"], str) and isinstance(t["h_top"], str)
+        assert any(t["h_overall"] != 0 for t in tiers), (
+            "heuristic layer produced no opinions at all"
+        )
+
+    def test_army_tiers_json_stays_pure_engine(self):
+        """findings/army_tiers.json must not carry heuristic (h_*) fields."""
+        tiers = json.loads(
+            (FINDINGS_ROOT / "army_tiers.json").read_text(encoding="utf-8")
+        )
+        assert tiers
+        for fid, entry in tiers.items():
+            hkeys = [k for k in entry if k.startswith("h_")]
+            assert not hkeys, f"{fid}: heuristic fields leaked into engine file: {hkeys}"
+
+    def test_rendered_heuristics_match_fresh_attach(self):
+        """Page TIERS == attach_heuristics result (one source, one formula)."""
+        tiers = json.loads(
+            (FINDINGS_ROOT / "army_tiers.json").read_text(encoding="utf-8")
+        )
+        fresh = attach_heuristics(json.loads(json.dumps(tiers)))
+        idx = (FINDINGS_ROOT / "index.html").read_text(encoding="utf-8")
+        rendered = {t["fid"]: t for t in _extract_tiers(idx)}
+        for fid, f in fresh.items():
+            assert rendered[fid]["h_overall"] == f["h_overall"], fid
+            assert rendered[fid]["h_missions"] == f["h_missions"], fid
+            assert rendered[fid]["h_top"] == f["h_top"], fid
+
+    def test_rules_heuristics_shift_order(self):
+        """With heuristics ON the army order must differ from L0 order."""
+        tiers = json.loads(
+            (FINDINGS_ROOT / "army_tiers.json").read_text(encoding="utf-8")
+        )
+        fresh = attach_heuristics(json.loads(json.dumps(tiers)))
+        l0 = sorted(tiers, key=lambda fid: -tiers[fid]["overall"])
+        adj = sorted(
+            tiers,
+            key=lambda fid: -(tiers[fid]["overall"] + fresh[fid]["h_overall"]),
+        )
+        assert [fid for fid in l0] != [fid for fid in adj], (
+            "rules heuristics made zero difference to army order"
         )
 
 

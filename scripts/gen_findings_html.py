@@ -77,7 +77,7 @@ INDEX_HEADER = '''<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><me
   .viewtabs{display:flex;gap:6px;margin:0 0 18px}
   .viewtab{padding:8px 18px;background:#161b22;border:1px solid#30363d;border-radius:6px;color:#c9d1d9;font-size:0.95em;cursor:pointer}
   .viewtab.active{background:#1f6feb;border-color:#1f6feb;color:#fff}
-  .tiergrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}.tiercard{position:relative;display:flex;flex-direction:column;gap:2px;padding:10px 12px 8px 12px;background:#161b22;border:1px solid#30363d;border-radius:8px;text-decoration:none;color:#c9d1d9}.tiercard:hover{border-color:#58a6ff;background:#1c2128}.tc-badge{position:absolute;top:10px;right:10px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:6px;font-weight:700;font-size:0.95em;color:#fff}.tc-rank{font-size:0.7em;color:#6e7681}.tc-name{font-size:0.92em;font-weight:600;color:#e6edf3;padding-right:30px;line-height:1.25}.tc-score{font-size:1.15em;font-weight:700;color:#f0f6fc;margin-top:4px}.tc-units{font-size:0.72em;color:#6e7681}
+  .tiergrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}.tiercard{position:relative;display:flex;flex-direction:column;gap:2px;padding:10px 12px 8px 12px;background:#161b22;border:1px solid#30363d;border-radius:8px;text-decoration:none;color:#c9d1d9}.tiercard:hover{border-color:#58a6ff;background:#1c2128}.tc-badge{position:absolute;top:10px;right:10px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:6px;font-weight:700;font-size:0.95em;color:#fff}.tc-rank{font-size:0.7em;color:#6e7681}.tc-name{font-size:0.92em;font-weight:600;color:#e6edf3;padding-right:30px;line-height:1.25}.tc-score{font-size:1.15em;font-weight:700;color:#f0f6fc;margin-top:4px}.tc-units{font-size:0.72em;color:#6e7681}.hbtn{background:#161b22;border:1px solid #30363d;color:#8b949e;border-radius:6px;padding:4px 10px;font-size:0.8em;cursor:pointer}.hbtn.active{background:#1c2128;border-color:#58a6ff;color:#e6edf3}.tier-about{margin:0 0 8px;color:#c9d1d9;font-size:0.9em}.tier-notes{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:10px 14px;margin:0 0 12px;font-size:0.85em;color:#8b949e}.tier-notes p{margin:0 0 4px}.tier-notes ul{margin:0;padding-left:18px}.tier-notes li{margin:2px 0}.tier-notes strong{color:#e6edf3}.tc-h{display:inline-block;font-size:0.72em;font-weight:600;margin:-2px 0 0 6px}.tc-h.up{color:#3fb950}.tc-h.dn{color:#f85149}
   .tierrow:hover{border-color:#58a6ff;background:#1c2128;text-decoration:none}
   .tierbadge{flex:0 0 34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:6px;font-weight:700;font-size:1.05em;color:#fff}
   .t-S{background:#d29922}.t-A{background:#3fb950}.t-B{background:#58a6ff}.t-C{background:#bc8cff}.t-D{background:#6e7681}
@@ -186,22 +186,78 @@ INDEX_SCRIPT = (
 
     'function ghFix(){if(window.location.hostname==="github.com"){var els=document.querySelectorAll("a[data-rel]");for(var i=0;i<els.length;i++){var h=els[i].getAttribute("href");if(h.indexOf("http")!==0)els[i].href="https://htmlpreview.github.io/?"+RAW_BASE+h}}}'
 
-    'function setTierMode(btn,mode){document.querySelectorAll(".tierbar .tierbtn").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");renderTiers(mode)}'
+    'var tierMode="Overall",TIER_H=true;'
+
+    'function setTierMode(btn,mode){tierMode=mode;document.querySelectorAll(".tierbar .tierbtn").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");renderTiers()}'
+
+    'function setTierHeuristic(on){TIER_H=!!on;document.querySelectorAll(".hbtn").forEach(function(b){b.classList.toggle("active",b.getAttribute("data-on")==String(on?1:0))});renderTiers()}'
 
     'function tierOf(score,sorted){var r=sorted.indexOf(score);var p=r/Math.max(sorted.length-1,1);return p<0.15?"S":p<0.35?"A":p<0.65?"B":p<0.85?"C":"D"}'
 
-    'function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}'
+    'function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}'
 
-    'function renderTiers(mode){var key=(mode==="Overall")?null:mode;var rows=[];for(var i=0;i<TIERS.length;i++){var t=TIERS[i];rows.push({fid:t.fid,name:t.name,score:key?t.missions[key]:t.overall,n:t.n_units});}rows.sort(function(a,b){return b.score-a.score});var sorted=rows.map(function(r){return r.score;});var html="";for(var i=0;i<rows.length;i++){var r=rows[i],t=tierOf(r.score,sorted),col=t==="S"?"#d29922":t==="A"?"#3fb950":t==="B"?"#58a6ff":t==="C"?"#bc8cff":"#6e7681";html+=\'<a class="tiercard" data-rel href="\'+r.fid+\'/findings.html">\'+\'<span class="tc-badge" style="background:\'+col+\'">\'+t+\'</span>\'+\'<span class="tc-rank">\'+(i+1)+\'</span>\'+\'<span class="tc-name">\'+esc(r.name)+\'</span>\'+\'<span class="tc-score">\'+r.score.toFixed(1)+\'</span>\'+\'<span class="tc-units">\'+r.n+\' units</span></a>\';}document.getElementById("tierlist").innerHTML=html;ghFix()}'
+    'function hval(t,key){var hm=(t.h_missions||{});return key?((hm[key]||0)):(t.h_overall||0)}'
+
+    'function renderTiers(){var key=(tierMode==="Overall")?null:tierMode;var rows=[];for(var i=0;i<TIERS.length;i++){var t=TIERS[i];rows.push({fid:t.fid,name:t.name,base:key?t.missions[key]:t.overall,h:TIER_H?hval(t,key):0,n:t.n_units,army:t.h_army||"",top:t.h_top||""});}rows.sort(function(a,b){return (b.base+b.h)-(a.base+a.h)});var sorted=rows.map(function(r){return r.base+r.h});var html="";for(var i=0;i<rows.length;i++){var r=rows[i],t=tierOf(r.base+r.h,sorted),col=t==="S"?"#d29922":t==="A"?"#3fb950":t==="B"?"#58a6ff":t==="C"?"#bc8cff":"#6e7681";var tip=r.army?("Army rule: "+r.army+(r.top?" | Flagship: "+r.top:"")):"";html+=\'<a class="tiercard" data-rel href="\'+r.fid+\'/findings.html" title="\'+esc(tip)+\'">\'+\'<span class="tc-badge" style="background:\'+col+\'">\'+t+\'</span>\'+\'<span class="tc-rank">\'+(i+1)+\'</span>\'+\'<span class="tc-name">\'+esc(r.name)+\'</span>\'+\'<span class="tc-score">\'+(r.base+r.h).toFixed(1)+\'</span>\'+(TIER_H&&r.h?(r.h>0?\'<span class="tc-h up">+\'+r.h.toFixed(1)+\'</span>\':\'<span class="tc-h dn">\'+r.h.toFixed(1)+\'</span>\'):"")+\'<span class="tc-units">\'+r.n+\' units</span></a>\';}document.getElementById("tierlist").innerHTML=html;ghFix()}'
 
     'function showView(v,btn){document.querySelectorAll(".viewtab").forEach(function(b){b.classList.remove("active")});btn.classList.add("active");document.getElementById("view-tiers").style.display=v==="tiers"?"":"none";document.getElementById("view-browse").style.display=v==="browse"?"":"none";if(v==="tiers")ghFix()}\n'
-    'renderTiers("Overall");ghFix();'
+    'renderTiers();ghFix();'
 )
 
 
+FIT_VAL = {'Strong': 1.5, 'Moderate': 0.5, 'Situational': 0.0, 'Weak': -0.5}
+DET_VAL = {'Strong': 0.8, 'Moderate': 0.3, 'Situational': 0.0, 'Weak': -0.3}
+
+
+def attach_heuristics(tiers):
+    """Layer expert-rated rule heuristics onto tier entries (STRATEGY tier).
+
+    NOT engine output. Reads resources/experts/<fid>.md via
+    parse_expert_assessment(): army rule label, detachment ratings
+    (Strong/Moderate/Situational/Weak weighted by DP) and per-disposition
+    fit ratings. Produces per-mission deltas (h_missions) and an overall
+    delta (h_overall) that shift the L0 numeric score — so users can see how
+    rule packages move the army order even when datasheet scores rank alike.
+
+    Zero = no expert file / no opinion (never fabricated). Mutates the
+    in-memory dict only — army_tiers.json on disk stays pure engine output.
+    """
+    for fid, entry in tiers.items():
+        entry.setdefault('h_missions', {})
+        entry['h_overall'] = 0.0
+        entry['h_army'] = ''
+        entry['h_top'] = ''
+        exp = parse_expert_assessment(fid)
+        if not exp:
+            continue
+        for row in exp.get('disposition_fit', []):
+            entry['h_missions'][row['mission']] = FIT_VAL.get(row['fit'], 0.0)
+        det_sum = sum(DET_VAL.get(d.get('rating', ''), 0.0) * d.get('dp', 1)
+                      for d in exp.get('detachments', []))
+        det_sum = max(-1.2, min(1.2, det_sum))
+        entry['h_overall'] = round(sum(entry['h_missions'].values()) / 5
+                                   + 0.5 * det_sum, 2)
+        am = exp.get('army_rule', '').strip()
+        if am.startswith('- '):
+            am = am[2:]
+        entry['h_army'] = am.replace('**', '').split(':', 1)[0].strip()[:60] if am else ''
+        ratings = [d for d in exp.get('detachments', [])
+                   if d.get('rating') in ('Strong', 'Moderate')]
+        ratings.sort(key=lambda d: (-DET_VAL.get(d.get('rating', ''), 0.0),
+                                    -d.get('dp', 1)))
+        entry['h_top'] = ratings[0]['name'] if ratings else ''
+    return tiers
+
+
 def render_tier_section(tiers):
-    """Landing-page army tier list — dense grid, top of page."""
+    """Landing-page army tier list — dense grid, top of page.
+
+    Two clearly-separated layers: L0 numeric (engine, rules-free) from
+    army_tiers.json, plus a STRATEGY-tier expert-heuristic layer attached at
+    render time (attach_heuristics) — labeled guesswork, never engine output.
+    """
     import json as _json
+    attach_heuristics(tiers)
     payload = [{'fid': fid, **t} for fid, t in tiers.items()]
     data_js = _json.dumps(payload, ensure_ascii=False)
 
@@ -212,13 +268,35 @@ def render_tier_section(tiers):
         for i, b in enumerate(buttons)
     )
     return (
-        '<div id="view-tiers">\n<div class="section">\n'
+        '<div id="view-tiers" style="display:none">\n<div class="section">\n'
         '  <h2>Army Tier List</h2>\n'
-        f'  <p style="color:#8b949e;font-size:0.8em;margin:0 0 10px">'
-        f'2000pt matched play · rank-decay roster index · rules-free. '
-        f'Rules packages are assessed per faction inside each faction page '
-        f'(Key Insights tab) \u2014 deliberately not compared numerically here.</p>\n'
-        f'  <div class="tierbar">{btns_html}</div>\n'
+        '  <p class="tier-about"><strong>What this is:</strong> the engine\u2019s '
+        '<strong>L0 datasheet score</strong> \u2014 generalist, 2000pt, rank-decay roster '
+        'index. <strong>No army rules, no detachments, no meta.</strong></p>\n'
+        '  <div class="tier-notes">\n'
+        '    <p><strong>Why it is not exact:</strong></p>\n'
+        '    <ul>\n'
+        '      <li>The engine never compares rule packages numerically \u2014 they\u2019re '
+        'assessed qualitatively per faction in <em>Key Insights</em> (expert files). The '
+        '<strong>+ rules heuristics</strong> toggle layers that assessment on top as '
+        '<em>labeled guesswork (STRATEGY tier)</em>, not engine output.</li>\n'
+        '      <li><strong>11e core-rules fact:</strong> cover worsens the attacker\u2019s hit '
+        'roll (BS +1), it does <strong>not</strong> modify saves. This view assumes no cover '
+        'and average dice.</li>\n'
+        '      <li>Matched play now runs more terrain-dense, asymmetric mission cards; map and '
+        'board-state factors are not modeled.</li>\n'
+        '      <li>Codex-vintage skew: 11e is played on 10e codexes \u2014 a fresher book rates '
+        'higher regardless of design intent.</li>\n'
+        '      <li>DPP is expected value, not a win-rate model.</li>\n'
+        '    </ul>\n'
+        '  </div>\n'
+        '  <p style="color:#8b949e;font-size:0.8em;margin:0 0 10px">Datasheet base = engine '
+        'output. Rules shift (\u00b1X.X) = expert-rated guesswork, shown only when the rules '
+        'toggle is on.</p>\n'
+        f'  <div class="tierbar">'
+        f'<button class="hbtn" data-on="0" onclick="setTierHeuristic(false)">L0 datasheets only</button>'
+        f'<button class="hbtn active" data-on="1" onclick="setTierHeuristic(true)">+ rules heuristics &#9888; STRATEGY</button>'
+        f'{btns_html}</div>\n'
         '  <div id="tierlist" class="tiergrid"></div>\n'
         '</div>\n</div>\n'
         '<script>\n'
@@ -310,13 +388,13 @@ def gen_index(tiers=None) -> int:
         )
 
     tabs_bar = ('<div class="viewtabs">'
-                '<button class="viewtab active" onclick="showView(\'tiers\',this)">Army Tier List</button>'
-                '<button class="viewtab" onclick="showView(\'browse\',this)">Browse Factions</button>'
+                '<button class="viewtab active" onclick="showView(\'browse\',this)">Browse Factions</button>'
+                '<button class="viewtab" onclick="showView(\'tiers\',this)">Army Tier List</button>'
                 '</div>')
-    browse_div = ('<div id="view-browse" style="display:none">'
+    browse_div = ('<div id="view-browse">'
                   + '\n'.join(sections_html) + '\n</div>')
-    html_out = (INDEX_HEADER + tabs_bar + tier_section
-                + browse_div + '\n</body></html>\n')
+    html_out = (INDEX_HEADER + tabs_bar + browse_div
+                + tier_section + '\n</body></html>\n')
     out = os.path.join(OUT, 'index.html')
     with open(out, 'w', encoding='utf-8') as f:
         f.write(html_out)
