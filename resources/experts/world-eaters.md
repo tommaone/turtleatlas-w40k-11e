@@ -21,6 +21,7 @@
 packs v1.1). Edition snapshot date mandatory on this section.
 
 ### Army Rule
+- **Army Rule Rating**: Moderate — Blessings of Khorne (8-dice blessing roll, pick two) continuing into 11th; top-table skew — four X-1 finishes at majors in the last month but zero X-0s and 0 event wins — sits mid-pack on field-wide rate. Sourced: listhammer.info/factions/world-eaters 2026-09-05 (4 X-1s, 0 X-0s); tabletopbattles.com 2026-08-26 (Berzerkers points drop).
 - **Blessings of Khorne**: an army-wide dice pool is rolled at the start of each battle round; triple results activate Blessings that buff units for that round (the research corpus records the pool being rolled for Butchers Of Khorne's extra Blessing; merged data shows Angron spending a triple 6 on Reborn in Blood and Khorne Lord Of Skulls adding a die to the roll).
 - **Play pattern**: interpretation — every non-daemon datasheet carries Blessings of Khorne in merged data, so list construction revolves around delivering melee units into combat by battle round 2 and keeping enough units alive/on-board to feed the dice pool. The random activation makes the army swingy; lists mitigate with volume of eligible units rather than relying on any one Blessing.
 

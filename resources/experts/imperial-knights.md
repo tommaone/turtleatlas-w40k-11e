@@ -21,6 +21,7 @@
 packs v1.1). Edition snapshot date mandatory on this section.
 
 ### Army Rule
+- **Army Rule Rating**: Situational — Code Chivalric (Oath = one Deed + one Quality); underwater 45.3-47.6% in every last-month window but with recurring event spikes (Manchester 6-1, Lone Star 6-0) — ceiling-driven, pilot-dependent. Sourced: infinitearchive.org 2026-09-02 (45.3%, N=253); spikeybits.com 2026-09-02 (46.4%).
 - **Code Chivalric**: an Oath system — Deeds are fulfilled during play, granting rewards and Honoured (or Debasing) states; Qualities grant ongoing benefits. Questoris Companions' rule (research) confirms the structure: fulfilling an Oath determines a new one from unused Deeds/Qualities, fulfilled Qualities stack for the rest of the game, later Deeds reward 1CP.
 - **Play pattern**: interpretation — list construction is a small number of huge multi-wound blocks plus Armiger support wings; the Oath system rewards playing actively (fulfilling Deeds mid-battle) rather than castling. Bondsman links between big Knights and Armigers are the faction's force-projection mechanic and two detachments key directly off them.
 

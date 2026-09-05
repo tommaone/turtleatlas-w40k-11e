@@ -20,6 +20,7 @@
 **Research basis**: workspace/detachment_research/necrons.json (2026-08-23, packs v1.1). Army rule paraphrase grounded in bsdata/Necrons.json.
 
 ### Army Rule
+- **Army Rule Rating**: Strong — Reanimation Protocols (Command-phase D3 heal then model return) held 52-55% at high volume all month (55.2% / 116 games / 5 X-1s this weekend) despite back-to-back August nerfs aimed at the durability core. Sourced: listhammer.info/factions/necrons 2026-09-05 (55.2%); warpfriends.wordpress.com 2026-08-12 (52.1%); techtimes.com 2026-08-27 (second consecutive nerf wave).
 - **Reanimation Protocols**: end of your Command phase, every on-board unit with the ability heals D3 wounds. (This assessment covers only the army-rule baseline as grounded in BSData; datasheet-level modifiers to the roll are out of scope here.)
 - **Play pattern** *(interpretation)*: passive attrition baked into every list — opponents must overkill units to remove them, which inflates the effective durability of cheap battleline. Detachments that add positioning tricks (Hypercrypt) or hit buffs (Awakened Dynasty) layer on top of a faction that already wins long games.
 

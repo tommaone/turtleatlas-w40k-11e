@@ -24,7 +24,8 @@ detachments exist in 11e. Two named formations on Wahapedia (Voidship's Company,
 Interdiction Team) belong to Boarding Actions and are excluded from matched play.
 
 ### Army Rule
-- **None (datasheet-level faction)**: no army-wide combat rule appears in the research corpus or merged data; every unit runs on its own datasheet abilities (assassin once-per-battle abilities such as Overkill/Soulless Horror/Shieldbreaker per research, Inquisitor leader rules, Deathwatch deep strike, etc.).
+- **Army Rule Rating**: Weak — effectively no army rule for mono-Agents (Assigned Agents lends units to other Imperium armies only); last-month 42.9% (3 players) and 41.2% (3 players), ~0.3% field share, zero balance attention. Sourced: listhammer.info/factions/imperial-agents 2026-09-05 (42.9%); warpfriends.wordpress.com 2026-08-12 (41.2%).
+- **Assigned Agents (none for mono-Agents armies)**: no army-wide combat rule appears in the research corpus or merged data; every unit runs on its own datasheet abilities (assassin once-per-battle abilities such as Overkill/Soulless Horror/Shieldbreaker per research, Inquisitor leader rules, Deathwatch deep strike, etc.).
 - **Play pattern**: interpretation — this is a toolbox faction. The list is assembled around a few high-leverage specialists (assassins, named Inquisitors) supported by cheap Arbites/Navy scoring bodies; the detachment chosen decides which sub-keyword group actually gets buffs. Expect it played most often as a secondary/ally-flavoured primary rather than a grind-it-out battleline army.
 
 ### Disposition Fit (current meta verdict)

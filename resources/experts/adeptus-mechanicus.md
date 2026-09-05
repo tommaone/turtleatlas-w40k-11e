@@ -24,6 +24,7 @@
 **Research basis**: workspace/detachment_research/adeptus-mechanicus.json (2026-08-23, packs v1.1).
 
 ### Army Rule
+- **Army Rule Rating**: Moderate — Doctrina Imperatives (Protector/Conqueror stance toggle); raw ~44-49% most of the month but converting events consistently (Skitarii Hunter Cohort 8-0 at Newport) — mid-pack and pilot-dependent. Sourced: infinitearchive.org 2026-09-02 (59.7%, N=69, read with care); spikeybits.com 2026-09-02 (49.2%, two event wins); listhammer.info/factions/adeptus-mechanicus 2026-09-05 (42.9%).
 - **Doctrina Imperatives**: Exactly one imperative is active each battle round — Protector or Conqueror. Detachments such as Eradication Cohort convert the active imperative into rerolls for Skitarii attacks.
 - **Play pattern**: *(interpretation)* The toggle forces sequencing decisions: shoot-oriented turns want Protector, melee/pressure turns want Conqueror. Lists built around Skitarii shooting get the most from the cycle; pure Kataphron/Kastelan builds interact with it only through specific detachments.
 

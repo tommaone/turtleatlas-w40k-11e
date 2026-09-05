@@ -509,6 +509,7 @@ This is a mobility advantage not reflected in base MOB scoring.
 packs v1.1).
 
 ### Army Rule
+- **Army Rule Rating**: Strong — Shadow of Chaos zone control; top-2 much of the month (55.1% / 89 games, 8-1 at the 578-player WTC Warmaster) and the 26-Aug patch spent points across all four best detachments — a nerf that confirms strength direction. Sourced: listhammer.info/factions/chaos-daemons 2026-09-05 (55.1%); techtimes.com 2026-08-27 (nerf wave); warpfriends.wordpress.com 2026-08-12 (51.2%).
 - **Shadow of Chaos**: an area associated with the army that interacts with enemy units and deployment rules — referenced by Daemonic Incursion (Deep Strike wholly within it) and Plague Legion (Nurgle aura extends it by 9"). Exact full rule text not in corpus [unverified].
 - **Daemonic Terror**: per the Plague Legion research notes, failed enemy battleshock interacts with healing for the army [unverified] — interaction flagged as unmodeled in the corpus.
 - **Play pattern** *(interpretation)*: a keyword-driven army where god-specific sub-rules mean list construction is "pick your god (or Be'lakor) and lean in" — mixed-god lists dilute most detachment value.

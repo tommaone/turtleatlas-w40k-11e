@@ -24,6 +24,7 @@
 **Research basis**: workspace/detachment_research/astra-militarum.json (2026-08-23, packs v1.1).
 
 ### Army Rule
+- **Army Rule Rating**: Weak — Voice of Command orders tree; worst sustained numbers of the set — 35-45% in every last-month window (edition lifetime 40.1%), sharpest -14.7pp weekly drop in W35. Sourced: infinitearchive.org 2026-09-02 (35.1%, N=143); spikeybits.com 2026-09-02 (45.6%).
 - **Orders system**: Officers issue Orders that modify how infantry (and in some detachments vehicles) act — accuracy, run-and-shoot, reactive moves. Detachment rules consistently gate their buffs on a unit being "affected by an Order" (e.g. Grizzled Company's re-roll hit rolls of 1).
 - **Play pattern**: *(interpretation)* The army lives and dies on Order economy: every Officer is an accuracy multiplier, so list construction pushes toward cheap Officers spread across many infantry blocks plus a vehicle wing. Units that can't receive Orders get proportionally less from the faction's best detachments.
 

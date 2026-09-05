@@ -209,6 +209,7 @@ warns several dispositions in the faction JSON contradict official sources
 Company Task Force's disposition — treat affected labels as provisional.
 
 ### Army Rule
+- **Army Rule Rating**: Moderate — Oath of Moment is verified current in 11th (Combat Doctrines/deployment modes moved into the Gladius detachment); the largest player base ran ~50% through August before a soft 3-8 Sep weekend (38.9% on 167 games, 0 event wins). Sourced: listhammer.info/factions/space-marines 2026-09-05 (38.9%, 0 X-0s); warpfriends.wordpress.com 2026-08-12 (50.0%, X-0/X-1 15.4%).
 - **Oath of Moment**: Adeptus Astartes army rule — units designate an Oath target and gain reroll benefits against it; multiple detachments extend wound re-rolls to the Oath target. Per this expert file: Oath is per-model (a leader and their squad each benefit). Exact 11e timing wording not restated in the corpus [unverified].
 - **Play pattern** *(interpretation)*: the most detachment-diverse faction in the game — every playstyle (gunline, armour column, drop assault, battleline flood, jump infantry) has a dedicated detachment, so list identity starts with the DP choice.
 

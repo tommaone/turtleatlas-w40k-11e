@@ -20,6 +20,7 @@
 **Research basis**: workspace/detachment_research/aeldari.json (2026-08-23, packs v1.1).
 
 ### Army Rule
+- **Army Rule Rating**: Weak — Battle Focus token economy (Agile Manoeuvres) with last-month 39.1% (23 players) and 41.5%, zero event wins even after GW's 26-Aug targeted points reductions; lone 5-0 was Aspect Host at Disruption. Sourced: listhammer.info/factions/aeldari 2026-09-05 (39.1%, 0 event wins); warpfriends.wordpress.com 2026-08-12 (41.5%).
 - **Battle Focus**: token-based manoeuvre economy. Tokens enable moves such as Fade Back and Swift as the Wind (+2" Move) and Agile Manoeuvre rolls (research corpus references these by name in the Warhost, Spirit Conclave and Devoted of Ynnead entries; the corpus does NOT reproduce the full army-rule text — treat token generation/spend details as partially unverified here).
 - **Play pattern** *(interpretation)*: token economy rewards constant repositioning — lists that spend tokens every turn on threat-range extension and objective dips. Detachments that add tokens (Warhost) or extend Battle Focus access to new units (Spirit Conclave) compound the economy.
 

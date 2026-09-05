@@ -22,7 +22,8 @@ Force), 16 inherited from the Space Marines codex pack (rated here in
 Deathwatch context, not re-assessed).
 
 ### Army Rule
-- **Adeptus Astartes framework**: the corpus confirms Oath-of-Moment-referencing detachments (1st Company Task Force) available to Deathwatch armies. No chapter-specific army rule is documented in this research file — claims about a unique faction rule are unsupported here.
+- **Army Rule Rating**: Strong — Oath of Moment + Kill Teams (popular-T8 rule for mixed units; Mission Tactics lives in the Black Spear Task Force detachment): 55.2% weekend, 58.8% Aug-17 week, 6-0 at a Worlds Qualifier; results ahead of reputation, season 49% over 335 games. Sourced: listhammer.info/factions/deathwatch 2026-09-05 (55.2%); warpfriends.wordpress.com 2026-08-19 (58.8%); infinitearchive.org 2026-09-05 (50.9% week / 51.8% patch).
+- **Oath of Moment + Kill Teams (Mission Tactics in detachment)**: the corpus confirms Oath-of-Moment-referencing detachments (1st Company Task Force) available to Deathwatch armies. No chapter-specific army rule is documented in this research file — claims about a unique faction rule are unsupported here.
 - **Play pattern** *(interpretation)*: elite mixed-specialist shooting army; the detachment choice mostly decides which inherited generic package wraps around Black Spear-style veteran units.
 
 ### Disposition Fit (current meta verdict)

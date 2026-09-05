@@ -22,7 +22,8 @@ _space-marines-shared.json (2026-08-23, packs v1.1). 24 detachments total:
 (rated here in Blood Angels context, not re-assessed).
 
 ### Army Rule
-- **Adeptus Astartes framework**: the shared-codex detachments available to Blood Angels reference Oath of Moment targeting (e.g. 1st Company Task Force wound re-rolls vs the Oath target), confirming the standard Adeptus Astartes army-rule baseline applies. No separate Blood Angels army-rule text exists in the research corpus.
+- **Army Rule Rating**: Weak — no BA-specific army rule in 11th — BA inherit the Oath of Moment reroll-Hits clause only (the +1-to-wound claw is void for keyword units) and ran 41.9-48.4% all month with 0 event wins. Sourced: listhammer.info/factions/blood-angels 2026-09-05 (43.5% weekend, 69 games); warpfriends.wordpress.com 2026-08-12 (41.9%).
+- **Oath of Moment (reroll-Hits clause only — BA units void +1w)**: the shared-codex detachments available to Blood Angels reference Oath of Moment targeting (e.g. 1st Company Task Force wound re-rolls vs the Oath target), confirming the standard Adeptus Astartes army-rule baseline applies. No separate Blood Angels army-rule text exists in the research corpus.
 - **Play pattern** *(interpretation)*: the detachment roster pushes hard toward melee tempo — jump-pack density (Sanguinary Guard, Death Company, Vanguard Veterans With Jump Packs) converts into army-wide charge buffs in three different chapter-specific detachments.
 
 ### Disposition Fit (current meta verdict)

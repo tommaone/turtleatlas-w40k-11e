@@ -20,6 +20,7 @@
 **Research basis**: workspace/detachment_research/drukhari.json (2026-08-23, packs v1.1).
 
 ### Army Rule
+- **Army Rule Rating**: Situational — Power from Pain token economy with extreme variance (27.8% 10-Aug vs 53.5% 3-8 Sep); all competitive output sits in specialist Skysplinter Assault/Exhibition of Slaughter Reconnaissance builds. Sourced: listhammer.info/factions/drukhari 2026-09-05 (53.5%, 2 X-1s); warpfriends.wordpress.com 2026-08-12 (27.8%).
 - **Power from Pain**: Pain tokens accrue over the battle and Empower the faction's unit-level Pain abilities (research corpus states the mechanism and that Realspace Raiders grants up to 6 starting tokens via pairings). The corpus does NOT enumerate each Empowered tier effect — treat specific tier payoffs as outside this assessment.
 - **Play pattern** *(interpretation)*: list construction is a token-engine design problem. Pairings (Archon+Kabalite Warriors, Succubus+Wyches, Haemonculus+Wracks) convert characters from tax into acceleration, and detachments are judged partly by how fast they prime the economy.
 

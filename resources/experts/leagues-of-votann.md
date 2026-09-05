@@ -24,7 +24,8 @@
 **Research basis**: workspace/detachment_research/leagues-of-votann.json (2026-08-23, packs v1.1).
 
 ### Army Rule
-- **Yield Points + mode switch**: The army accumulates Yield Points from game events; at a 7+ YP threshold it switches from Hostile Acquisition (offensive mode, objective-linked accuracy) to Fortify Takeover (defensive mode). Detachments add YP sources/spends or manual mode control.
+- **Army Rule Rating**: Strong — Prioritised Efficiency (Yield Points economy; <7 YPs Hostile Acquisition, >=7 YPs Fortify Takeover mode switch): 58.3% week / 52.6% patch, rank #8 of 28, 6-0 Lone Star Open win; results ahead of reputation, engine-driven (Farseekers + Oathband). Sourced: infinitearchive.org 2026-09-05 (58.3%); listhammer.info/factions/leagues-of-votann 2026-09-05 (56.6%); spikeybits.com 2026-08-06 (Lone Star 6-0).
+- **Prioritised Efficiency (Yield Point economy; mode switch)**: The army accumulates Yield Points from game events; at a 7+ YP threshold it switches from Hostile Acquisition (offensive mode, objective-linked accuracy) to Fortify Takeover (defensive mode). Detachments add YP sources/spends or manual mode control.
 - **Play pattern** *(interpretation)*: Votann lists plan around which mode they want active in which battle round — aggressive early pushes under Hostile Acquisition, then a defensive end-state under Fortify Takeover. YP-generating detachments accelerate that timeline; mode value is always conditional on game state, never assumed on.
 
 ### Disposition Fit (current meta verdict)

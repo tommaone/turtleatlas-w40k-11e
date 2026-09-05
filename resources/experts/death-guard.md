@@ -21,6 +21,7 @@ packs v1.1). 9 detachments, all chapter-specific (no SM codex inheritance —
 Death Guard is not an Astartes successor pack).
 
 ### Army Rule
+- **Army Rule Rating**: Weak — Nurgle's Gift contagion aura; worst of the five chaos books all month (36.4% 3-8 Sep over 113 games; ~40-43% August slates) with zero competitive detachments charting; 26-Aug buffs called insufficient. Sourced: listhammer.info/factions/death-guard 2026-09-05 (36.4%); techtimes.com 2026-08-27 (buffs); tabletopbattles.com 2026-08-26 (Skullsquirm nerf).
 - **Nurgle's Gift**: enemy units within Contagion Range are Afflicted; Affliction applies one of several plague effects (save penalty / melee hit penalty / movement-OC-leadership penalty per the corpus). Detachments extend reach (Paragons, Tallyband), bypass proximity (Mortarion's Hammer), or exploit the Afflicted state (Death Lord's Chosen mortal wounds).
 - **Play pattern** *(interpretation)*: attrition army — durable infantry walk the Contagion aura forward while debuffs degrade whatever comes close; detachment choice decides whether you hold ground, flood the board, or reach out and afflict from range.
 

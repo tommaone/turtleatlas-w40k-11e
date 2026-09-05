@@ -20,6 +20,7 @@
 **Research basis**: workspace/detachment_research/orks.json (2026-08-23, packs v1.1). Army rule paraphrase grounded in bsdata/Orks.json.
 
 ### Army Rule
+- **Army Rule Rating**: Strong — the Waaagh! package converted 57-60% all month (59.84% Summer ITT; 57.1% weekend with the only >20% X-0/X-1 rate among major factions) and the 14-Aug riled-up Waaagh! (advance rerolls, charge-after-advance, 5+ invuln, Assault); the new codex landed 05-Sep so the fresh rule has zero competitive sample yet. Sourced: uktc.events 2026-08-12 (59.84%); listhammer.info/factions/orks 2026-09-05 (57.1%); warhammer-community.com 2026-08-14 (riled-up Waaagh!).
 - **Waaagh!**: once per battle burst window. While active: Advance-and-Charge eligibility, +1S/+1A on melee weapons, and a 5+ invulnerable save across units with the ability.
 - **Play pattern** *(interpretation)*: the whole faction plans around a single turn of supercharged melee. Detachments that extend or amplify the window (Bully Boyz second Waaagh!) or reward being mid-Waaagh! (More Dakka!'s Sustained Hits gate) change WHEN you want to press, not WHETHER the plan is a timed assault.
 

@@ -447,7 +447,8 @@ is theoretical — real output depends on delivery.
 packs v1.1).
 
 ### Army Rule
-- **Dread abilities**: the army selects Dread abilities before battle (Traitoris Lance grants a second selection); research corpus describes them as individually conditional army-wide effects (battleshock pressure, Stealth-type effects) [unverified] — full list of Dread abilities not present in the corpus.
+- **Army Rule Rating**: Weak — Harbingers of Dread (Dread ability economy; Deathly Terror active from the start, additional abilities at rounds 1/3/5); every last-month reading at or below ~46% (Infinite Archive 42.2% week / 42.1% patch; SpikeyBits 40.9% "the true basement") — reputation ahead of results. Sourced: infinitearchive.org 2026-09-05 (42.2%); spikeybits.com 2026-09-02 (40.9%); listhammer.info/factions/chaos-knights 2026-09-05 (46%).
+- **Harbingers of Dread (Dread ability economy; Deathly Terror)**: the army selects Dread abilities before battle (Traitoris Lance grants a second selection); research corpus describes them as individually conditional army-wide effects (battleshock pressure, Stealth-type effects) [unverified] — full list of Dread abilities not present in the corpus.
 - **Play pattern** *(interpretation)*: a low-model-count army of huge, expensive hulls whose rules lean on battleshock interaction and pre-game choices rather than always-on combat math.
 
 ### Disposition Fit (current meta verdict)

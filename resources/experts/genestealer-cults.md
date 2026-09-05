@@ -21,6 +21,7 @@
 packs v1.1). Edition snapshot date mandatory on this section.
 
 ### Army Rule
+- **Army Rule Rating**: Moderate — Cult Ambush resurgence economy (Resurgence points, 8-inch markers, non-character units only); patch-level even (48.6% patch / 48.2% season over 610 games) with best-in-field consistency (+2.12 sigma) and a 56.1% weekend spike. Sourced: infinitearchive.org 2026-09-05 (48.6%); listhammer.info/factions/genestealer-cult 2026-09-05 (56.1%); spikeybits.com 2026-09-02 (48.8%).
 - **Cult Ambush**: units with the Cult Ambush ability deploy and can be set back up via Cult Ambush markers instead of normal deployment; markers are removed if an opponent moves too close. Unit-level interactions in merged data: Nexos moves an unmoved marker up to 6" in each Command phase; Acolyte Iconward's Summon the Cult relocates a marker once per battle rather than losing it; Atalan Jackals re-enter from marker within 9" of a battlefield edge. Research notes a v1.1 errata reducing the marker setup distance from 9" to 8".
 - **Play pattern**: interpretation — the army wants to arrive from unexpected angles mid-game, contest early with cheap Neophyte/Hybrid bodies, and mass reserves for a decisive wave. List construction rewards many small Cult Ambush-capable units over few durable ones.
 

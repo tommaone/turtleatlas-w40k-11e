@@ -195,6 +195,7 @@ file inherits silently — see per-detachment ⚠️ flags below; treat affected
 disposition labels as provisional until the faction file is corrected.
 
 ### Army Rule
+- **Army Rule Rating**: Strong — Oath of Moment reroll-Hits clause plus a detachment package that dominated the month: 53.5% -> 63.3% (166 games, 1.77x overrep) and a 7-0 at Warhammer Open Newport; first Astartes variant to claw the +1-to-wound back. Sourced: listhammer.info/factions/dark-angels 2026-09-05 (63.3%); warpfriends.wordpress.com 2026-08-12 (53.5%).
 - **Oath of Moment**: Adeptus Astartes army rule referenced throughout the research corpus — units declare an Oath of Moment enemy target and gain targeting-reroll benefits against it [unverified: the base Oath benefit itself is not stated in the corpus; only detachment extensions to it are documented]. Several detachments add wound re-rolls vs the Oath target. Exact per-unit timing/scope not detailed in the DA corpus.
 - **Play pattern** *(interpretation)*: a mid-range shooting army with three internal toolkits (Deathwing elite terminators, Ravenwing fast bikes, Greenwing massed marines); detachments decide which wing leads.
 

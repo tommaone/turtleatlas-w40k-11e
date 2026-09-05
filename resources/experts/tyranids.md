@@ -20,6 +20,7 @@
 **Research basis**: workspace/detachment_research/tyranids.json (2026-08-23, packs v1.1).
 
 ### Army Rule
+- **Army Rule Rating**: Moderate — Synapse (battle-shock on 3D6, +1 S in melee) + Shadow in the Warp (once-per-battle enemy shock); high variance — 61.4% vs 47.2% across consecutive weekends, 0 event wins, season ~48.6% over 2359 games. Sourced: listhammer.info/factions/tyranids 2026-09-05 (61.4%); infinitearchive.org 2026-09-05 (49.1% patch); spikeybits.com 2026-09-02 (51.4%, biggest riser).
 - **Synapse Range**: the corpus grounds this as a gating condition — detachment benefits (Synaptic Nexus imperatives) require units within Synapse Range. Units outside Synapse lose access to those buffs.
 - **Play pattern** *(interpretation)*: list construction clusters scoring and melee units around synapse creatures; anything operating independently must be worth its points WITHOUT detachment buffs. The corpus does not cover the rest of the army rule — no claims made about it here.
 

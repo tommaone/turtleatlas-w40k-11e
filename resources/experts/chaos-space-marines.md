@@ -21,6 +21,7 @@
 inheritance).
 
 ### Army Rule
+- **Army Rule Rating**: Moderate — Dark Pacts (Lethal/Sustained choice after a Leadership test); 44.8% -> 47.1% across the month, zero X-0s, carried by the Defiler/Lord Discordant shell and dragged by monthly nerfs. Sourced: listhammer.info/factions/chaos-space-marines 2026-09-05 (47.1%); warpfriends.wordpress.com 2026-08-12 (44.8%).
 - **Dark Pacts**: units take a pact for phase benefits at Leadership-test risk; multiple detachments key bonuses off *successful* pacts (Cabal Of Chaos, Soulforged Warpack, Pactbound Zealots).
 - **Play pattern** *(interpretation)*: the detachment choice sets the army's tempo axis — infiltration pressure (Deceptors), battle-shock attrition (Nightmare Hunt/Dread Talons), or blanket stat augmentation (Creations Of Bile); several detachments trade away Dark Pacts entirely, which is itself a list-building cost.
 

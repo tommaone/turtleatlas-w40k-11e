@@ -24,6 +24,7 @@
 **Research basis**: workspace/detachment_research/adeptus-custodes.json (2026-08-23, packs v1.1).
 
 ### Army Rule
+- **Army Rule Rating**: Strong — Martial Ka'tah per-unit stances (Martial Mastery sits in the Shield Host detachment); held 51.5-53.6% across every last-month window (6.8% field share, 29% top-3, 58.7% Summer ITT) — the most consistent army in the set. Sourced: infinitearchive.org 2026-09-02 (52.5%, N=382); spikeybits.com 2026-09-02 (53.6%).
 - **Martial Ka'tah**: Frontline Custodes models fight with selectable melee stances; some stances grant Sustained/Lethal-style critical-hit interactions that detachments like Shield Host amplify.
 - **Play pattern**: *(interpretation)* Custodes is a low-model-count elite army: each unit must be individually durable and multi-role. Detachment choice mostly decides which narrow condition set (lone operation, vehicle damage states, deep-strike timing) the elite core operates under — the faction has few broad always-on buffs.
 

@@ -337,8 +337,9 @@ class TestTierList:
 
         With sourced Army Rule Ratings live (2026-09-05: per-faction gate),
         heuristics ON must differ from L0 order — TS/EC jump the top of the
-        table on their researched ratings. Unrated factions keep the L0
-        slots exactly, so the shift is attributable to rated factions only.
+        table on their researched ratings, and at least one rated faction
+        changes rank. Unrated factions keep h_overall == 0, so the shift is
+        attributable to rated factions only.
         """
         tiers = json.loads(
             (FINDINGS_ROOT / "army_tiers.json").read_text(encoding="utf-8")
@@ -354,11 +355,15 @@ class TestTierList:
         )
         l0_idx = {fid: i for i, fid in enumerate(l0)}
         adj_idx = {fid: i for i, fid in enumerate(adj)}
-        for fid, e in fresh.items():
-            if e["h_overall"] != 0.0:
-                assert adj_idx[fid] != l0_idx[fid], (
-                    f"rated faction {fid} did not move with the rules toggle"
-                )
+        # Aggregate property (per-rank assertions are brittle: a rated faction
+        # can legitimately keep any L0 slot when neighbour adjusted scores
+        # sandwich it — e.g. aeldari (Weak) sinking lets space-marines hold
+        # #2 while dark-angels vaults to #1).
+        moved = [fid for fid, e in fresh.items()
+                 if e["h_overall"] != 0.0 and adj_idx[fid] != l0_idx[fid]]
+        assert moved, (
+            "no rated faction changed rank under the rules toggle"
+        )
 
 
 # ---------------------------------------------------------------------------

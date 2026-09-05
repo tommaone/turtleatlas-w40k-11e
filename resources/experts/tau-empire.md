@@ -20,7 +20,8 @@
 **Research basis**: workspace/detachment_research/tau-empire.json (2026-08-23, packs v1.1).
 
 ### Army Rule
-- **Observer/Guided (Spotted)**: units act as Observers for paired units; the Guided unit gains benefits against its Spotted unit (Kauyon's ignore-modifiers clause and Mont'Ka's Lethal Hits clause are both explicitly gated on "Guided units shooting their Spotted target"). The corpus does NOT reproduce the full army-rule text — treat the complete Guided benefit list as partially unverified here.
+- **Army Rule Rating**: Strong — For the Greater Good (Observer/Guided; Markerlight Observers add Ignores Cover): 59% weekend (139 games, 2 X-0s, 5 X-1s — highest of the well-represented factions) plus undefeated majors in August, mildly dented by the Starscythes points bump. Sourced: listhammer.info/factions/tau-empire 2026-09-05 (59%); techtimes.com 2026-08-27 (points bump).
+- **For the Greater Good (Observer/Guided)**: units act as Observers for paired units; the Guided unit gains benefits against its Spotted unit (Kauyon's ignore-modifiers clause and Mont'Ka's Lethal Hits clause are both explicitly gated on "Guided units shooting their Spotted target"). The corpus does NOT reproduce the full army-rule text — treat the complete Guided benefit list as partially unverified here.
 - **Play pattern** *(interpretation)*: shooting is built in pairs — every damage unit wants an Observation partner, which taxes list slots and rewards tight unit counts of high-quality shooters over spam.
 
 ### Disposition Fit (current meta verdict)

@@ -22,6 +22,7 @@ _space-marines-shared.json (2026-08-23, packs v1.1). 20 detachments total:
 (rated here in Black Templars context, not re-assessed).
 
 ### Army Rule
+- **Army Rule Rating**: Weak — substantive August readings were poor (34.0% 10-Aug, 31.4% 17-Aug) on tiny samples; the 3-8 Sep spike (54.8%, 8 players) is statistical noise. Sourced: warpfriends.wordpress.com 2026-08-12 (34.0%); warpfriends.wordpress.com 2026-08-19 (31.4%); listhammer.info/factions/black-templars 2026-09-05 (54.8%, N=8).
 - **Templar Vows**: per the Warhammer Community article ("Black Templars forget Oaths of Moment, swear a Templar Vow today"), the chapter swaps Oath of Moment for vows chosen at army construction. The corpus does not document individual Vow effects — treat any specific vow claim as unverified.
 - **Play pattern** *(interpretation)*: the chapter-specific suite is built around Crusader Squad / Sword Brethren bodies pushing forward — advance/charge reliability, transport assault, and Chaplain-fuelled melee pressure.
 
