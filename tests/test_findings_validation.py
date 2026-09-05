@@ -236,7 +236,10 @@ class TestTierList:
             "11e core-rules fact",
             "BS +1",
             "not</strong> modify saves",
-            "asymmetric mission cards",
+            "16-footprint terrain layouts",
+            "three mission maps (A/B/C)",
+            "asymmetric",
+            "more varied and asymmetric",
             "Codex-vintage skew",
             "not a win-rate model",
             "L0 datasheets only",
@@ -244,6 +247,8 @@ class TestTierList:
             "STRATEGY",
         ):
             assert phrase in idx, f"tier header missing: {phrase!r}"
+        # dojo: never ship the unverifiable "more terrain-dense" claim again
+        assert "more terrain-dense" not in idx, "unverifiable density claim is back"
 
     def test_tiers_payload_heuristics_shape(self):
         """Every tier entry carries the labelled heuristic layer."""

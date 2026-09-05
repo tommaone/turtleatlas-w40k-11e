@@ -1092,3 +1092,14 @@ is the "skews the game a lot" factor.
 conversations), state which codex generation each is on and treat the gap
 as partly codex-vintage. Re-verify after each new 11e faction book — the
 skew decays as books catch up.
+
+## 11e terrain fact — standardized footprints, 3 maps per mission (2026-09-05)
+
+Source: Event Companion v1.1 + GW terrain reveals (2026): https://www.warhammer-community.com/en-gb/articles/xlppkx5s/new40k-take-cover-with-updated-terrain-rules/ , spikeybits.com Event Companion guide (2026-07-22), wargamer.com terrain rules (2026-04-09).
+
+**Facts (verbatim-ish, sourced):**
+- Official matched layouts = 16 standardized terrain footprints: four 7×11.5", two 8×11.5" right-angle triangles, four 6×4", two 10×2.5" lines, four 6×2" lines → 608 sq in total.
+- Each primary-mission pairing has three layouts (A/B/C); deployment shape, objective placement and dense/light terrain mix change per letter. The footprint SET is constant across missions; only placement differs.
+- Cover = -1 to opponent's Ballistic Skill (hit penalty), NOT a save modifier. (Already in guardrails.md.)
+
+**Correction:** do NOT claim 11e is "more terrain-dense" than 10e — the sources show standardization + shape variety + per-mission map triples, not a proven density increase. "Maps are way more" = three layouts per pairing, not denser tables.
