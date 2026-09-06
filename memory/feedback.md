@@ -1228,3 +1228,17 @@ Wargear slot limits per data sheet, mechanics only:
 - Engine scoring (project formula, Scout weapons vs MEQ/GEQ/Veh): HB best anti-infantry upgrade (1.33 MEQ); ML flexible horde+chip (1.22 GEQ / 0.39 veh); sniper weakest (0.44 MEQ, Precision unmodeled); shotgun == boltgun damage but Assault; chainsword best melee (0.67 MEQ); knives good chaff (1.11 GEQ). Oath reroll-hits lifts all ranged equally, order unchanged.
 
 `Valid as of: 2026-09-06` (40k.app datasheets, verbatim legality mapping in-session; engine numbers from project formula). Re-check when a dataslate touches SM wargear — the two-slot Scout budget and the "not same model" Infiltrator rule are exactly the kind of thing that gets reworked.
+
+## Intercessor Squad & Impulsor 11e — sticky + payload-swap facts (validated 2026-09-06)
+- **Intercessor Squad** (5 = 80, 10 = 150; Battleline OC2): has **Objective Secured sticky** (objective stays yours after they leave, while opponent's Level of Control is not greater) + Hail of Bolts (+2 A for Bolt Rifle at one target, only that unit). Bolt rifle now Assault+Heavy. This powers the "sticky home then leave" play.
+- **Impulsor** (70; 4th+ unit 80): T9 3+ **W11 → NOT a Heavy Transport** (14+W threshold) — no Rapid Embarkation / D3+3" disembark / Machine Wrath for it. **Transport cap 7 TACTICUS/PHOBOS** (no JUMP PACK) — a 5-for-5 payload swap works, never both 5-packs inside. **Shield Dome = 5+ invuln** (not 4+). Assault Vehicle: disembark after Advance counts as Normal, no charge. Wargear: stubber; 2 storm bolters → 2 fragstorms; one of bellicatus/skytalon/orbital comms/shield dome. Strictly a utility/mobility box — give it Intercessors or a bubble reposition, never a bounce trick.
+- **Screening value note:** Omni-scramblers' 12" deny bubble earns most FORWARD (protecting the LR/Executioner alpha lane), not at home — home-holding sells the bubble short; the Impulsor lets you reposition it on demand.
+
+`Valid as of: 2026-09-06` (40k.app datasheets in-session). Re-check when a dataslate touches vehicle transports or Intercessor abilities.
+
+## 2026-09-06 — Phobos fit decision tree (OPEN, deferred: paint first)
+User's plan to fit Infiltrators (110) + Scouts (65) + Liberator (15) = 190 into the exact-2000 list:
+- **A: Redeemer (260) → Impulsor (70)** → fits exactly 2000. Impulsor rides Intercessors (sticky home swap trick); Capt+Heroes bounce moves to the Executioner (must NOT ride the Impulsor — not Heavy).
+- **B: keep Redeemer, kick Techmarine (55)** → +135 over as-is; doesn't fit without another ~135 cut. Parked.
+- **C: kick Lion (265)** → frees lots but changes the army's identity ("too many vehicles") — parked.
+- **DECISION: paint Scouts + Infiltrators first** (user's call; universal units — useful in any SM/DA list, zero sunk-cost risk regardless of the cut chosen). Cut decision re-opens after painting.
