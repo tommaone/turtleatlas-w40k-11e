@@ -1162,6 +1162,8 @@ Reroll-Hits = baseline army rule for all ADEPTUS ASTARTES. The +1-to-Wound claw 
 **Why:** a paraphrase ("clawed the +1-to-wound back") was written as DA's rating basis and contradicted the rule text — quote-claims about a mechanic must cite the actual text, verbatim.
 **How:** any Astartes army-rule claim states which Oath version applies: divergent chapters run reroll-Hits-only; vanilla SM keeps +1w while the army stays keyword-free. Never re-derive the claw from "they have a detachment that fixes it" — check the detachment keyword requirement first.
 
+`Valid as of: 2026-09-06` (40k.app, verbatim). Re-verify when a Balance Dataslate or Codex FAQ touches Oath of Moment.
+
 ## Statline bulk is NOT a skill-floor signal — match the metric's population to its claim
 A "does this army forgive mistakes" band must be computed over what a beginner actually plays, and named for what it measures. Median W across the WHOLE roster (vehicles, monsters, daemon engines included) says "the book contains big models", not "the core survives mistakes".
 
@@ -1203,3 +1205,16 @@ A list's play profile is set by its detachment tricks (enhancements, stratagems,
 
 **Why:** user corrected a rating: (1) Libby TDA + DWK both Deep Strike → the whole brick is an off-board turn-2 delivery vector; (2) Rapid Embarkation (Armoured Speartip wargear strat, 1CP, end of Fight phase, Heavy Transport within 6", NO "disembarked this turn" rider) → Company Heroes + Captain bounce out / act / back in, a near-unkillable scoring unit; (3) Tip of the Spear gives the bearer's transport Scouts 6" → 19-25" turn-1 threat lane (Goonhammer); Armoured Commander brings a reserve Heavy Transport one round early (Executioner turn-1 flank alpha).
 **How:** before asserting "no early presence / thin scoring / everything rides X", enumerate the detachment's enhancements + stratagems + unit abilities (DS flags live in merged data; strat text from the official faction-pack PDF, verbatim). When the user asserts a rule interaction, verify it against sources before conceding — a DS pair is legal when every model has DS; the "disembarked from a TRANSPORT this turn" phrase belongs to Purgation Doctrine's bonus targeting, not Rapid Embarkation's restriction (snippet garble).
+
+`Valid as of: 2026-09-06` (official SM Faction Pack PDF — warhammer-community.com, April 2026 — plus merged-data DS flags; Goonhammer/1d6chan describe the bounce loop). Re-check Rapid Embarkation / Tip of the Spear / Armoured Commander when a dataslate lands — the bounce dies the day a "disembarked this turn" rider appears.
+
+## Game-rule memories carry "Valid as of" stamps; engineering memories don't
+Game rules rot (dataslates, FAQs, editions). Process lessons (generators, gates, test hygiene) don't. Memory entries that state WHAT THE RULES SAY get a `Valid as of: YYYY-MM-DD` stamp plus a named invalidation trigger; engineering entries stay unstamped — stamping them is noise.
+
+**Why:** the user asked for timestamps "at least for game rules" — the Oath fact and the Speartip strat texts are only true until a dataslate touches them; the compute/writer split is true forever.
+**How:** rule-fact entries end with `Valid as of: <date>` + "re-check when <trigger>". Hybrid entries (process lesson citing rules) stamp only the cited facts. Memory updates happen at every session boundary or right after a rating/review verdict lands — no waiting to be asked. Newest at the bottom, this file's convention.
+
+## 2026-09-06 — Starter-list review: user-built DA Speartip (A-tier), next 10 models defined
+- User built the 2000pt Armoured Speartip list entirely from their own head; the double Land Raider spine exists because both LRs were painted back in the GK era (ease-of-paint driver, not meta-chasing).
+- Rating corrected in-session from B+ → A after the user's rules catches (Libby+DWK DS brick, Rapid Embarkation bounce) — see the detachment-mechanics rule above.
+- Next 10 models (user's call): 5× Infiltrator Squad (screening bubble — Deep Strike denial) + 5× Scout Squad (early presence). Both verified in mfm (M6" W2 OC1).
