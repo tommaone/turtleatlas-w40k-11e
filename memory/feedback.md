@@ -1292,3 +1292,9 @@ User's pivot ("this is actually take and hold — so who takes and holds?"). Eng
 - **October codex storm (watched):** SM codex lands Oct 2026 — preview shows S5 basic weapons, bolt rifles S5/S6, TACTICUS → T5, points rise (armies shrink). Every SM statline in this session's analysis is pre-codex; DPP engine + findings need a refresh run when it drops.
 
 `Valid as of: 2026-09-06` (engine findings HTML + warhammer-community.com / SpikeyBits / BoLS 2026-08-24 codex preview). Re-check when the October SM codex lands — the whole SM data layer changes.
+
+## 2026-09-06 — User owns the full pool; codex churn = rotation, not purchase regret
+User confirmed: **all models in play are already owned/painted** (DA Speartip spine + Phobos + Gravis + the Sternguard/Hellblaster options under discussion). Implications for planning:
+- No purchase gating anywhere in the fit-tree/rework math — cuts and variants are model-allocation decisions, not wallet decisions.
+- October codex points inflation → armies shrink → **more list variants per painted model count** (same pool covers more lists). That's the upside of the additive plan.
+- The real sting is collection devaluation (bench-warmers when points rise / rosters rotate), not lost utility — plan around variant flexibility, never around "meta-proof builds".
