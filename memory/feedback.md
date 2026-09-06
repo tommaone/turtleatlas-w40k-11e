@@ -1197,3 +1197,9 @@ Faction pages, index, the army-choice guide, and advisor.json are produced by se
 
 **Why:** script sprawl creates a silent staleness gap; a page that visually promises a data version it doesn't carry misleads readers into trusting old math.
 **How:** after any change to engine/tiers/ratings/points: `gen_findings_html.py --all` (pages+index) AND `army_advisor.py --guide` (advisor.json+guide+HTML). Sweep the file tree for "Generated <old-date>" strings before committing.
+
+## Before rating a list, enumerate the detachment's mechanics — tempo claims need the grenade in the hand
+A list's play profile is set by its detachment tricks (enhancements, stratagems, wargear, unit abilities), not just its statlines. Rating a Speartip DA army as a "slow castle" because the models ride boxes missed three real attack layers and flipped B+ → A.
+
+**Why:** user corrected a rating: (1) Libby TDA + DWK both Deep Strike → the whole brick is an off-board turn-2 delivery vector; (2) Rapid Embarkation (Armoured Speartip wargear strat, 1CP, end of Fight phase, Heavy Transport within 6", NO "disembarked this turn" rider) → Company Heroes + Captain bounce out / act / back in, a near-unkillable scoring unit; (3) Tip of the Spear gives the bearer's transport Scouts 6" → 19-25" turn-1 threat lane (Goonhammer); Armoured Commander brings a reserve Heavy Transport one round early (Executioner turn-1 flank alpha).
+**How:** before asserting "no early presence / thin scoring / everything rides X", enumerate the detachment's enhancements + stratagems + unit abilities (DS flags live in merged data; strat text from the official faction-pack PDF, verbatim). When the user asserts a rule interaction, verify it against sources before conceding — a DS pair is legal when every model has DS; the "disembarked from a TRANSPORT this turn" phrase belongs to Purgation Doctrine's bonus targeting, not Rapid Embarkation's restriction (snippet garble).
