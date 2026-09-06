@@ -1144,3 +1144,56 @@ The standard-vs-density question resolved by player/TO experience + structural a
 - Meta picture: Strong set = the hype armies of the month; Weak set = DG/AM/CK/Eldar all genuinely struggling. Orks caveat: new codex landed 05-Sep, rating rests on pre-codex Waaagh! package (57-60%) + riled-up Waaagh! confirmed as upgrade — zero competitive sample of the new rule yet.
 - TEST FIX: test_rules_heuristics_shift_order asserted every rated faction must change rank — WRONG because a rated faction can legitimately hold any L0 slot when neighbours' adjusted scores sandwich it (space-marines held #2 while aeldari (Weak) sank and dark-angels vaulted to #1). Rewrote to the aggregate property: board order differs AND >=1 rated faction moves. Full suite still 4587 passed / 68 skipped / 1 xfailed.
 - 9f0e258 (pilot foundation) + this sprint = local main; origin/main still at c75f72c — push pending user word.
+
+## 2026-09-06 - Ratings shipped; army-choice-guide first-army fix (statline bulk ≠ skill floor)
+
+- Push landed: origin/main b9674fc (regen pages) → f69ab83 (Oath correction) → a49b21f (guide fix). Full suite 4593 passed / 68 skipped / 1 xfailed (6 new advisor tests).
+- OATH OF MOMENT VERIFIED (40k.app, 2026-09-06): reroll-Hits is the baseline for ALL ADEPTUS ASTARTES; the +1-to-Wound claw applies ONLY under a Codex: SM detachment with NO BLACK TEMPLARS / BLOOD ANGELS / DARK ANGELS / DEATHWATCH / SPACE WOLVES keyword units. Divergent chapters void the claw permanently; vanilla SM keeps it only while pure vanilla. My earlier DA line "clawed the +1-to-wound back" was a FABRICATION from a paraphrase — scrubbed in f69ab83. DA Strong (now #1 rules-aware) rests on detachment depth (six 1DP dets) + month evidence, on the divergent reroll-Hits-only Oath.
+- ARMY-CHOICE-GUIDE BUG (user-caught): "If this is your first army" listed World Eaters. Cause: the durability band = median W ≥5 AND ≥50% roster units W ≥5 computed over the WHOLE ROSTER INCLUDING VEHICLES — world-eaters median W = 8 (11 infantry of 30 entries) → "Durable". The metric measured "army book contains big models", not forgiving play. Fix (a49b21f):
+  - `### First-Army Fit` (Great/Good/Demanding/Bad) authored in resources/experts/<fid>.md WITH source trails — incl. "user domain call <date>" as a legitimate labeled source (the maintainer IS the domain expert/referee). Unrated factions are excluded from first-army picks — the engine cannot certify noob-friendliness.
+  - First-army gate = fit **Great**, or **Good** + versatility above the bottom-quartile. Statline bulk stays in advisor.json as `statline_band` (engine fact) explicitly NOT a skill-floor signal.
+  - DA was previously excluded by a 0.5-point boundary (versatility 81.4 vs 81.9 cutoff) — noise, not one-trick play. The expert Great rating outranks the coarse engine heuristic at the boundary.
+  - New first-army list: DA, Necrons, T'au, Custodes, Death Guard (WE/BA/TS/Daemons/IK out; Orks just under the vers gate — "maybe now", not certified).
+  - Regression tests tests/test_army_advisor.py (6) run pure compute()/guide_lines() — no artifact writes in tests.
+
+## Oath of Moment (11e) — verified fact, 40k.app 2026-09-06
+Reroll-Hits = baseline army rule for all ADEPTUS ASTARTES. The +1-to-Wound claw is conditional: Codex: SM detachment AND no BLACK TEMPLARS/BLOOD ANGELS/DARK ANGELS/DEATHWATCH/SPACE WOLVES keyword units.
+
+**Why:** a paraphrase ("clawed the +1-to-wound back") was written as DA's rating basis and contradicted the rule text — quote-claims about a mechanic must cite the actual text, verbatim.
+**How:** any Astartes army-rule claim states which Oath version applies: divergent chapters run reroll-Hits-only; vanilla SM keeps +1w while the army stays keyword-free. Never re-derive the claw from "they have a detachment that fixes it" — check the detachment keyword requirement first.
+
+## Statline bulk is NOT a skill-floor signal — match the metric's population to its claim
+A "does this army forgive mistakes" band must be computed over what a beginner actually plays, and named for what it measures. Median W across the WHOLE roster (vehicles, monsters, daemon engines included) says "the book contains big models", not "the core survives mistakes".
+
+**Why:** world-eaters med W=8 (11 infantry of 30 entries) banded "Durable" while the 2W melee core dies crossing the board — the user caught it in the first-army list.
+**How:** when a band/heuristic claims to measure play-friendliness, define the population first (core infantry/melee statline), validate against domain knowledge (DA durable, WE fragile, DG/Custodes durable), and label the raw statline fact separately (`statline_band` in advisor.json). An engine fact that feeds a recommendation is only as good as the population it aggregates.
+
+## When a doc promises "expert calls", ship the expert layer
+The guide's disclaimer said "skill floor… those are expert calls" — but no expert layer existed, so a proxy (statline bulk) silently stood in. Same trap as the old fabricated detachment "strength": a justified disclaimer without the promised content becomes a license for the wrong number.
+
+**Why:** the first-army list was engine-only + a crude durability band; the one page promising expert judgement had none.
+**How:** per-faction judgements live in resources/experts/<fid>.md with a source trail; the generator reads ONLY those files (single source of truth), never a hardcoded map in the script. Add a marker-driven gate test when the layer matters (like the Army Rule Rating dead-man gate). If a doc says "those are expert calls" and no expert rating exists for a faction, the output must say "not rated", not guess.
+
+## "user domain call <date>" is a valid source label
+The maintainer is the domain expert AND the referee for this project; their explicit play-fit calls are data with a trail, exactly like a URL. Label them `Sourced: user domain call 2026-09-06` so the chain stays traceable and re-auditable.
+
+**Why:** DA first-army Great, DG/Custodes durability, WE staging-skill fragility, IK "lol" were user calls in-session; they became the acceptance criteria for the fix.
+**How:** a user statement that shapes a rating/band becomes an expert-file line with the date; never re-word a user opinion into an unattributed claim, and never extend it to factions the user didn't touch (unrated ≠ free to guess).
+
+## Gate thresholds on continuous signals — check the boundary against the candidate cluster
+A pass/fail boundary drawn through continuous data separates neighbours that differ by noise. DA versatility 81.4 missed the 81.9 bottom-quartile gate by 0.5 — excluded from a recommendation it deserved.
+
+**Why:** the gate was meant to filter one-trick armies; DA is the opposite (mid-range floor, not a specialist), and the boundary fell exactly on it.
+**How:** before trusting a filter, compute where the unlucky losers sit relative to the boundary and to the gate's INTENT. When a coarse engine heuristic and a stronger expert signal disagree within noise, the expert signal wins (Great-fit exemption). State the exemption in the docs, don't hide it.
+
+## Generator scripts: split pure compute() from file writers; write-once entry scripts fail loudly on re-run
+`compute()`/`guide_lines()` return data; `build()`/`guide()` write files. Tests exercise the pure layer — suite runs never mutate tracked artifacts. Data-entry scripts (apply_ratings.py, apply_fit.py) guard with ALREADY RATED / LABEL MISMATCH / NO Army Rule section and RAISE instead of silently overwriting.
+
+**Why:** a test suite that regenerates committed artifacts on every run (a) dirties the tree, (b) can't be a check on the committed state; a write-once script that re-runs silently either double-appends lines or clobbers a previous rating.
+**How:** keep the writer as a thin wrapper over the pure functions; make entry scripts idempotent-with-loud-failure. Same precedent as the atlas pure-render rule — apply it to every generator.
+
+## After any world-change sprint, regenerate EVERY generated artifact
+Faction pages, index, the army-choice guide, and advisor.json are produced by separate scripts. A sprint that regenerates only the artifacts the ticket names leaves the rest stale — the guide still claimed "Generated 2026-08-23 … MFM v1.2" after the ratings sprint.
+
+**Why:** script sprawl creates a silent staleness gap; a page that visually promises a data version it doesn't carry misleads readers into trusting old math.
+**How:** after any change to engine/tiers/ratings/points: `gen_findings_html.py --all` (pages+index) AND `army_advisor.py --guide` (advisor.json+guide+HTML). Sweep the file tree for "Generated <old-date>" strings before committing.
