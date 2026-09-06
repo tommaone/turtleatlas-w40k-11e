@@ -1218,3 +1218,13 @@ Game rules rot (dataslates, FAQs, editions). Process lessons (generators, gates,
 - User built the 2000pt Armoured Speartip list entirely from their own head; the double Land Raider spine exists because both LRs were painted back in the GK era (ease-of-paint driver, not meta-chasing).
 - Rating corrected in-session from B+ → A after the user's rules catches (Libby+DWK DS brick, Rapid Embarkation bounce) — see the detachment-mechanics rule above.
 - Next 10 models (user's call): 5× Infiltrator Squad (screening bubble — Deep Strike denial) + 5× Scout Squad (early presence). Both verified in mfm (M6" W2 OC1).
+- Loadout legality for both datasheets verified 2026-09-06 (40k.app): user's modeled 2×5 Scout Squads (sgt-shotgun+3SG+HB / sgt-chainsword+2knife+ML+sniper) and the 5-man Infiltrators (helix + comms on separate models) are all legal — details in the Scout/Infiltrator rule below.
+- **OPEN decision (deferred, no action yet):** fitting Infiltrators (110) + Scouts (65) = 175 into the exact-2000 list. User's candidate: cut one Land Raider-class box (frees 220–260, ~45–85 spare). Painted models first, then cut.
+
+## Scout Squad & Infiltrator Squad 11e — loadout slot budget (validated 2026-09-06)
+Wargear slot limits per data sheet, mechanics only:
+- **Scout Squad** (5 = 65, 10 = 120; 3rd+ unit +10): two INDEPENDENT per-5 slots — (1) 1× sniper rifle; (2) 1× heavy weapon chosen as **HB OR missile launcher (they compete within a squad — never field both in a 5-man)**. Unlimited shotgun/combat-knife swaps for any model incl. sergeant; sergeant's boltgun → chainsword (one). Sgt can instead take shotgun/knife (no chainsword then).
+- **Infiltrator Squad** (5 = 110, 10 = 180; 3rd+ +10): 1× helix gauntlet AND 1× comms array allowed per squad, **not on the same model**; sergeant keeps marksman bolt carbine (no swap). Omni-scramblers = 12" Reserves-denial bubble (the screening piece; this is the unit's job in the list — Scouts do NOT screen, they harass/guerrilla).
+- Engine scoring (project formula, Scout weapons vs MEQ/GEQ/Veh): HB best anti-infantry upgrade (1.33 MEQ); ML flexible horde+chip (1.22 GEQ / 0.39 veh); sniper weakest (0.44 MEQ, Precision unmodeled); shotgun == boltgun damage but Assault; chainsword best melee (0.67 MEQ); knives good chaff (1.11 GEQ). Oath reroll-hits lifts all ranged equally, order unchanged.
+
+`Valid as of: 2026-09-06` (40k.app datasheets, verbatim legality mapping in-session; engine numbers from project formula). Re-check when a dataslate touches SM wargear — the two-slot Scout budget and the "not same model" Infiltrator rule are exactly the kind of thing that gets reworked.
