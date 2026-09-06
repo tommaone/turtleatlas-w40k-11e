@@ -1242,3 +1242,12 @@ User's plan to fit Infiltrators (110) + Scouts (65) + Liberator (15) = 190 into 
 - **B: keep Redeemer, kick Techmarine (55)** → +135 over as-is; doesn't fit without another ~135 cut. Parked.
 - **C: kick Lion (265)** → frees lots but changes the army's identity ("too many vehicles") — parked.
 - **DECISION: paint Scouts + Infiltrators first** (user's call; universal units — useful in any SM/DA list, zero sunk-cost risk regardless of the cut chosen). Cut decision re-opens after painting.
+
+## 2026-09-06 — Gravis mainstay path (user concept, OPEN)
+User's next focus after Phobos: make Gravis (owned: 5 Heavy Intercessors, 6 Eradicators, 1 Apothecary Biologis) "the mainstay on top of DWK". Verified facts feeding the eventual rework:
+- **Eradicators (11e):** melta rifles baseline (18" A1 S9 AP-4 D6, Heavy Melta 2); 1/3 → multi-melta. **NO heavy bolter option** — the user's six must read as melta rifles. 3 = 90, 6 = 180. Total Obliteration = re-roll hit/wound/damage vs MONSTER/VEHICLE.
+- **Heavy Intercessors:** T6 W3 OC2 Battleline; heavy bolt rifle (30" A2 S5 AP-1 D2); 1/5 → HB; Unyielding = +1 armour save vs D1 on owned objectives. 5 = 100.
+- **Biologis (70):** Supports HI/Aggressors/Eradicators; LETHAL HITS while leading. **Shock Deployment** enhancement (+20, Gravis/Terminator only): bearer's unit gets SUSTAINED HITS 1 the turn it disembarks → the Sustained+Lethal hammer turn. Nuance: lethal auto-wounds skip the wound roll, so Total Obliteration wound-rerolls apply only to the extra Sustained hits.
+- **Transport cap math (11e):** GRAVIS/TERMINATOR = 2 slots. LR cap 12 = **6 GRAVIS max**; Executioner cap 7 = **3 GRAVIS max**. The 12-model Gravis blob (24 slots) fits NO single box.
+- **Structural conclusion:** one LR-class box fits exactly one 6-GRAVIS unit. The "DWK main + Gravis main" hybrid needs **LR (Erad Hammer) + Redeemer (Chaplain+DWK1) + Executioner (Capt+Heroes bounce)** with DWK2+Libby DS — the Redeemer re-enters through the Gravis door (variant B re-opens). Cull candidates when reworking: a DWK brick (-240), Techmarine (-55), enhancement shuffle (3 slots full), or a 5-man.
+- Full list rework deferred; method = additive from the painted pool, paint-first order unchanged (Phobos → Gravis).
