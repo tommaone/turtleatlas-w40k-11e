@@ -118,3 +118,6 @@ Assumptions:
 - Ritual manifestation assumed probabilistic (2D6 test), never assumed auto-success
 - Flow of Magic extension assumed contested (requires holding half the objectives)
 - no CP economy modeling for stratagems
+
+### First-Army Fit
+- **First-Army Fit**: Demanding — Cabal ritual economy plus a fragile-ish core; sequencing mistakes cost games. Sourced: user domain call 2026-09-06.

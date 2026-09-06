@@ -127,3 +127,6 @@
 ---
 
 **Overall army play pattern** *(interpretation)*: Necron assessments start from free durability: Reanimation Protocols heals every protocol-bearing unit D3 at the end of each Command phase before any detachment rule is counted, so the faction's baseline expectation is winning wars of attrition and grinding objectives. On top of that floor, the corpus shows two viable spines. The leader-based spine (Awakened Dynasty) trades 3DP for an effectively always-on +1 to hit across leader-built combat blocks — simple, robust, and the closest thing the faction has to unconditional power. The zone-based spine (Canoptek Court, Starshatter Arsenal) ties buffs to board position, which rewards good play but introduces failure loops where losing the board removes the buffs needed to retake it. Everything else in the corpus is scoped utility: Destroyer Cult damage packages, Hypercrypt dodging, single-mark focus fire. The consistent limitation is that nearly every offensive rule is conditional (position, leadership, target selection), so raw engine numbers systematically overstate what a careless Necron list actually outputs.
+
+### First-Army Fit
+- **First-Army Fit**: Good — Reanimation Protocols literally undo mistakes; warrior bricks plus durable monsters forgive positioning errors. Sourced: user domain call 2026-09-06; 40k.app 2026-09-06.

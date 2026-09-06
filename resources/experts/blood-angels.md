@@ -185,3 +185,6 @@ _space-marines-shared.json (2026-08-23, packs v1.1). 24 detachments total:
 
 ### Overall Army Play Pattern
 *(interpretation)* Blood Angels win by converting movement into melee: the chapter-specific suite (Liberator Assault Group, Rage-Cursed Onslaught, Stormlance at a discounted 2DP, The Angelic Host) all reward a jump-pack-heavy roster that Advances, charges, and fights before the opponent can disengage. The correct default is a 3DP melee detachment matched to the mission pair — Liberator for objective defence, Rage-Cursed for kill missions — with a 1DP add-on (Encarmine Speartip, Wrath Of The Doomed) layered on top when the list leans into Sanguinary Guard or Death Company. Shooting and gunline detachments (Anvil, Ironstorm, Ceramite) actively fight the army's strengths; Reconnaissance remains the structural weak spot since no chapter-specific detachment generates scoring actions.
+
+### First-Army Fit
+- **First-Army Fit**: Demanding — fast melee tempo on a fragile 2W core; staging and threat-timing punish early mistakes (same fragility class as World Eaters). Sourced: user domain call 2026-09-06.

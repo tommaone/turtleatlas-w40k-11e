@@ -105,3 +105,6 @@ Death Guard is not an Astartes successor pack).
 
 ### Overall Army Play Pattern
 *(interpretation)* Death Guard wins by making the board itself hostile: Nurgle's Gift degrades everything near the line of advancing Plague Marines, and the best detachments amplify that axis directly — Virulent Vectorium converts held objectives into permanent contagion zones, Champions Of Contagion retunes the debuff every round, and Mortarion's Hammer projects Affliction beyond the aura's reach. Expect a mid-tempo attrition game: take ground early with Flyblown-infiltrated Plague Marines, anchor it, and let sticky objectives plus passive debuffs out-score faster armies. The weaknesses are structural — Priority Assets has no real tool, and every offensive-leaning detachment is dice- or condition-gated, so games that demand burst damage find the faction playing its worst plan.
+
+### First-Army Fit
+- **First-Army Fit**: Great — T5 infantry, contagion aura, and -1D make mistakes survivable; damage arrives from statlines, not combos. Sourced: user domain call 2026-09-06.

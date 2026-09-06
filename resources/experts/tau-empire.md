@@ -95,3 +95,6 @@
 ---
 
 **Overall army play pattern** *(interpretation)*: The grounded T'au assessment is a study in windows and pairings. Every damage detachment ties its payoff to either a clock (Kauyon rounds 3–5, Mont'Ka rounds 1–3) or a bracket (Retaliation Cadre's 12"/8" rings), and the army rule itself imposes a pairing tax — Guided benefits exist only against Spotted targets with an Observer invested. That produces two coherent builds: the front-loaded battlesuit blitz (Mont'Ka or Retaliation Cadre, accepting 8"-range risk to end games before the window closes), and the patient late-game gunline (Kauyon, surviving rounds 1–2 with zero offensive detachment support to harvest modifier-proof Sustained Hits fire). The auxiliary/detection detachments form a third, matchup-dependent lane whose real power lives in 11e hidden rules outside the modeled vocabulary — treat those ratings as the least certain in this file. Notably absent from the corpus: any defensive mechanic protecting the famously fragile shooting units, which caps how aggressively either build can position.
+
+### First-Army Fit
+- **First-Army Fit**: Good — castle-and-shoot with durable suits; minimal melee exposure if you keep range. Sourced: user domain call 2026-09-06.

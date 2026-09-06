@@ -1,65 +1,69 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Choosing Your Army</title><style>body{font-family:system-ui,sans-serif;max-width:860px;margin:0 auto;padding:30px 20px;background:#0d1117;color:#c9d1d9;line-height:1.6}h1{color:#f0f6fc}h2{color:#58a6ff;border-bottom:1px solid #21262d;padding-bottom:6px;margin-top:28px}blockquote{border-left:3px solid #bc8cff;margin:12px 0;padding:6px 14px;color:#d2a8ff;background:#161b22;border-radius:0 6px 6px 0}li{margin:4px 0}strong{color:#f0f6fc}.back{font-size:13px;margin-bottom:20px}.back a{color:#4fc3f7;text-decoration:none}</style></head><body>
 <div class="back"><a href="index.html">&larr; All Factions</a></div>
-<h1>Choosing Your Army — strength, versatility, difficulty</h1>
-<p>*Generated 2026-08-23 from engine outputs (rank-decay roster index, MFM v1.2). Full method + caveats in findings/advisor.json.*</p>
+<h1>Choosing Your Army — strength, versatility, fit</h1>
+<p>*Generated 2026-09-06 from engine outputs (rank-decay roster index, MFM v1.4) + expert first-army-fit ratings. Full method + caveats in findings/advisor.json.*</p>
 <blockquote>This narrows the field — it tells you where each faction's strength sits today and what the army demands from you as a player. It cannot tell you the future meta.</blockquote>
 <h2>How to read this (plain words — judgement layer, not engine fact)
 
 The engine measures how strong each faction's models are on paper
 (statlines and points). It cannot measure rules packages, skill floor,
-or how punishing an army is to play — those are expert calls below,
-grounded in the durability facts shown.
+or how punishing an army is to play — those are the expert calls below,
+each carrying a source trail in the faction's expert file.
 
 - Strength — where the faction ranks today on model quality.
   Changes with balance updates; a strong army can get nerfed.
 - Versatility — does it fight well on every mission type, or only
   one? Versatile armies forgive list-building mistakes.
-- Difficulty — Durable armies (big wound pools) survive mistakes;
-  Fragile armies (few wounds per model) punish every positioning error.
-  Fragile + expensive + tricky rules = hard mode. Not a first army.
+- First-army fit — expert-rated Great / Good / Demanding / Bad,
+  authored in resources/experts/<faction>.md. This is a skill-floor
+  judgement, NOT engine fact. Engine "statline bulk" (median wounds
+  across the whole roster, vehicles included) is listed in
+  findings/advisor.json as reference only — it is NOT a first-army
+  signal: World Eaters read "Durable" off a vehicle-inflated median
+  while their 2W melee core punishes every positioning error.
 - GW attention — factions whose points changed a lot recently keep
   changing. Playing one means accepting that your points and rules
   will move under you.</h2>
 <h2>If this is your first army</h2>
-<blockquote>Start <strong>Durable</strong> and <strong>versatile</strong>. Avoid Fragile bands as a first army: they punish positioning mistakes that experienced players stop making around year two.</blockquote>
+<blockquote>Start with a faction expert-rated <strong>Great</strong> (or <strong>Good</strong> with versatility above the bottom quarter). Statline bulk (big wound pools) is an engine fact, NOT a skill-floor signal — World Eaters read 'Durable' off a vehicle-inflated wound median while their 2W melee core punishes every positioning error.</blockquote>
+<blockquote>Factions not listed have no expert first-army-fit rating yet: their engine strength is shown below, but the guide cannot certify them as forgiving.</blockquote>
 <ul>
-<li><strong>Blood Angels</strong> — durable models, plays all missions</li>
-<li><strong>Chaos Daemons</strong> — durable models, plays all missions</li>
-<li><strong>Necrons</strong> — durable models, plays all missions</li>
-<li><strong>World Eaters</strong> — durable models, plays all missions</li>
-<li><strong>Thousand Sons</strong> — durable models, plays all missions</li>
-<li><strong>T'au Empire</strong> — durable models, plays all missions</li>
+<li><strong>Dark Angels</strong> — deep durable bench (Deathwing terminator core), straightforward mid-range shooting, and six 1DP detachments forgive list-building; the classic forgiving first army.</li>
+<li><strong>Necrons</strong> — Reanimation Protocols literally undo mistakes; warrior bricks plus durable monsters forgive positioning errors.</li>
+<li><strong>T'au Empire</strong> — castle-and-shoot with durable suits; minimal melee exposure if you keep range.</li>
+<li><strong>Adeptus Custodes</strong> — W3-4 baseline with a near-universal 4+ invuln and tiny model count; positioning is forgiving.</li>
+<li><strong>Death Guard</strong> — T5 infantry, contagion aura, and -1D make mistakes survivable; damage arrives from statlines, not combos.</li>
 </ul>
 <h2>Strongest long-term signal</h2>
 <ul>
-<li><strong>Aeldari</strong> — strength 68.9, plays all missions (Fragile models)</li>
-<li><strong>Blood Angels</strong> — strength 68.5, plays all missions (Durable models)</li>
-<li><strong>Chaos Daemons</strong> — strength 68.4, plays all missions (Durable models)</li>
+<li><strong>Aeldari</strong> — strength 69.0, plays all missions (Unrated first-army fit)</li>
+<li><strong>Blood Angels</strong> — strength 68.6, plays all missions (Demanding first-army fit)</li>
+<li><strong>Chaos Daemons</strong> — strength 68.4, plays all missions (Demanding first-army fit)</li>
 </ul>
 <h2>Specialist picks (strong in one mission)</h2>
 <ul>
-<li><strong>Space Marines</strong> — shines in Priority Assets (Durable models)</li>
-<li><strong>Dark Angels</strong> — shines in Priority Assets (Durable models)</li>
-<li><strong>Black Templars</strong> — shines in Priority Assets (Mixed models)</li>
+<li><strong>Space Marines</strong> — shines in Priority Assets (Unrated first-army fit)</li>
+<li><strong>Dark Angels</strong> — shines in Priority Assets (Great first-army fit)</li>
+<li><strong>Black Templars</strong> — shines in Priority Assets (Unrated first-army fit)</li>
 </ul>
 <h2>Active GW tuning (expect repricing)</h2>
 <ul>
-<li><strong>Dark Angels</strong> — 79 MFM changelog entries</li>
-<li><strong>Space Wolves</strong> — 79 MFM changelog entries</li>
-<li><strong>Space Marines</strong> — 72 MFM changelog entries</li>
-<li><strong>Black Templars</strong> — 62 MFM changelog entries</li>
-<li><strong>Blood Angels</strong> — 59 MFM changelog entries</li>
-<li><strong>Deathwatch</strong> — 57 MFM changelog entries</li>
-<li><strong>Astra Militarum</strong> — 57 MFM changelog entries</li>
+<li><strong>Orks</strong> — 245 MFM changelog entries</li>
+<li><strong>Astra Militarum</strong> — 108 MFM changelog entries</li>
+<li><strong>Dark Angels</strong> — 94 MFM changelog entries</li>
+<li><strong>Space Wolves</strong> — 91 MFM changelog entries</li>
+<li><strong>Space Marines</strong> — 82 MFM changelog entries</li>
+<li><strong>Aeldari</strong> — 76 MFM changelog entries</li>
+<li><strong>Black Templars</strong> — 74 MFM changelog entries</li>
 </ul>
 <h2>Underrated right now</h2>
 <ul>
+<li><strong>Necrons</strong> — overall 62.7, versatile 86.0</li>
 <li><strong>Drukhari</strong> — overall 62.3, versatile 90.3</li>
-<li><strong>Necrons</strong> — overall 62.3, versatile 86.3</li>
-<li><strong>World Eaters</strong> — overall 61.3, versatile 89.3</li>
-<li><strong>Thousand Sons</strong> — overall 61.1, versatile 88.2</li>
+<li><strong>Thousand Sons</strong> — overall 62.1, versatile 87.3</li>
+<li><strong>World Eaters</strong> — overall 62.0, versatile 88.5</li>
+<li><strong>Emperor's Children</strong> — overall 61.1, versatile 90.9</li>
 <li><strong>T'au Empire</strong> — overall 60.3, versatile 87.1</li>
-<li><strong>Emperor's Children</strong> — overall 60.0, versatile 90.5</li>
 </ul>
 <h2>Honest limitations</h2>
 <ul>
@@ -67,5 +71,6 @@ grounded in the durability facts shown.
 <li>statline quality persists across balance patches; rules packages do not</li>
 <li>points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted</li>
 <li>win-rate correlation is partial: community results include rules packaging this index deliberately excludes</li>
+<li>first-army-fit is an expert judgement (user-domain + rule-text sourced per faction in resources/experts) — re-audit when the meta or play preferences shift</li>
 </ul>
 </body></html>

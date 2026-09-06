@@ -134,3 +134,6 @@
 ---
 
 **Overall army play pattern** *(interpretation)*: Every grounded Orks detachment reads as a variation on one theme — deliver a critical mass of bodies into melee and make the trade math obscene. The two 3DP anchors define the poles: War Horde makes the whole army's melee permanently better (unconditional Sustained Hits 1), Green Tide makes the bodies themselves stubbornly hard to clear (scaling invulns). Around them, the 2DP options are delivery and focus tools whose value hinges on conditions the opponent can see coming — Prey nomination, loot objectives, transport timings, the second Waaagh!'s elite-only window. The honest weaknesses in the corpus: nearly every non-anchor rule is keyword-scoped or turn-gated, the action-support detachments (Taktikal Brigade) push toward activities this project rates poorly in 11e, and the Waaagh! itself is once-per-battle — after it's spent, the army's ceiling drops sharply unless Bully Boyz kept an elite reserve window in the tank.
+
+### First-Army Fit
+- **First-Army Fit**: Good — riled-up Waaagh! and massed mobs reward volume play; fight-phase pressure needs far less staging precision than elite melee. Sourced: user domain call 2026-09-06; warhammer-community.com 2026-08-14.

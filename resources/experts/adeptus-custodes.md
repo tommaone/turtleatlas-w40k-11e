@@ -117,3 +117,6 @@ Assumptions:
 - no cover factored beyond what detachment rules state
 - Ka'tah stance selection assumed optimal per round (upper-bound usage of Shield Host)
 - no CP economy modeling for stratagems
+
+### First-Army Fit
+- **First-Army Fit**: Great — W3-4 baseline with a near-universal 4+ invuln and tiny model count; positioning is forgiving. Sourced: user domain call 2026-09-06.

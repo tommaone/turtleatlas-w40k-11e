@@ -384,3 +384,6 @@ disposition labels as provisional until the faction file is corrected.
 
 ### Overall Army Play Pattern
 *(interpretation)* Dark Angels are a chapter-scheme of the Adeptus Astartes chassis that wins through detachment choice more than army rule: pick Inner Circle Task Force or Wrath Of The Rock to make the Deathwall grind onto Priority Assets, Company Of Hunters/Darkflight Pursuit for a Ravenwing mobility game, or default to Gladius-style flexibility. Because Oath of Moment provides only modest targeted rerolls, the army's identity comes from durable mid-board bodies (T5 Deathwing, massed 3+ saves) that score while trading inefficiently for the opponent — strongest where objectives reward standing still (Priority Assets, Take and Hold) and weakest in pure disruption where its tools are once-per-game or cross-unit conditional.
+
+### First-Army Fit
+- **First-Army Fit**: Great — deep durable bench (Deathwing terminator core), straightforward mid-range shooting, and six 1DP detachments forgive list-building; the classic forgiving first army. Sourced: user domain call 2026-09-06.

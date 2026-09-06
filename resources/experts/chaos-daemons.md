@@ -594,3 +594,6 @@ packs v1.1).
 
 ### Overall Army Play Pattern
 *(interpretation)* Chaos Daemons play as a set of god-specific sub-armies wearing one codex: nearly every detachment rule is keyword-filtered, so the army wants to commit to Khorne melee pressure (Blood Legion), Nurgle morale/board control (Plague Legion), Slaanesh mobility tricks (Legion Of Excess) or Tzeentch reroll economy (Scintillating Legion) rather than split gods. The best general-purpose picks are the ones that ignore god lines — Warptide's battleline advance-and-charge and Shadow Legion's Be'lakor bundle — which is why the faction's fit concentrates in Purge the Foe and Reconnaissance while its Take and Hold options are morale tools whose value never shows up in raw damage math.
+
+### First-Army Fit
+- **First-Army Fit**: Demanding — positioning and zone-control heavy; the durability lives in a few monsters you must not feed. Sourced: user domain call 2026-09-06.

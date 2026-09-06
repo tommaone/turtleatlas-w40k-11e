@@ -43,14 +43,21 @@ CAVEATS = [
     "so their churn is partially double-counted",
     "win-rate correlation is partial: community results include rules "
     "packaging this index deliberately excludes",
+    "first-army-fit is an expert judgement (user-domain + rule-text "
+    "sourced per faction in resources/experts) — re-audit when the meta "
+    "or play preferences shift",
 ]
 
 
 def durability_map():
     """FACT layer: median wounds + share of multi-wound units per faction.
 
-    Grounds the difficulty wording — fragile/durable is derived from
-    statline data, never vibes.
+    Statline bulk FACT — NOT a skill-floor / first-army signal. The band
+    reads the whole roster INCLUDING vehicles, so a faction with a fragile
+    2W infantry core plus a few Land Raiders medians out as "Durable".
+    Example: world-eaters median W = 8 (11 infantry entries out of 30).
+    Use this only to describe model bulk in advisor.json; first-army
+    recommendations come from expert first-army-fit ratings instead.
     """
     out = {}
     for f in sorted(glob.glob(str(REPO / "data" / "merged" / "*.json"))):
@@ -74,7 +81,31 @@ def durability_map():
         else:
             band = "Mixed"
         out[fid] = {"median_w": med, "multi_wound_pct": round(multi * 100),
-                    "band": band}
+                    "statline_band": band}
+    return out
+
+
+FIT_ORDER = {"Great": 4, "Good": 3, "Demanding": 2, "Bad": 1, "Unrated": 0}
+
+
+def first_army_fit_map() -> dict[str, dict]:
+    """EXPERT layer: first-army-fit band per faction from expert files.
+
+    Single source of truth: resources/experts/<fid>.md — the `### First-Army
+    Fit` bullet is authored there WITH a source trail and is never re-derived
+    here. Factions without the line rate Unrated and are excluded from
+    first-army recommendations (the engine cannot certify noob-friendliness).
+    """
+    out = {}
+    for path in sorted((REPO / "resources" / "experts").glob("*.md")):
+        m = re.search(
+            r"\*\*First-Army Fit\*\*:\s*(Great|Good|Demanding|Bad|Unrated)"
+            r"\s*—\s*(.+)",
+            path.read_text())
+        if not m:
+            out[path.stem] = {"band": "Unrated", "why": ""}
+            continue
+        out[path.stem] = {"band": m.group(1), "why": m.group(2).strip()}
     return out
 
 
@@ -89,9 +120,11 @@ def points_churn() -> dict[str, int]:
     return counts
 
 
-def build():
+def compute():
+    """Pure computation: returns the advisor dict without writing files."""
     tiers = json.loads(TIERS.read_text())
     churn = points_churn()
+    fit = first_army_fit_map()
     factions = []
     for fid, t in tiers.items():
         ms = t["missions"]
@@ -113,6 +146,8 @@ def build():
             "best_disposition": max(ms, key=ms.get),
             "worst_disposition": min(ms, key=ms.get),
             "points_churn": churn.get(t["name"], 0),
+            "first_army_fit": fit.get(fid, {}).get("band", "Unrated"),
+            "first_army_fit_why": fit.get(fid, {}).get("why", ""),
             "meta_ceiling": det.get("overall"),
             "meta_ceiling_best_detachment": (det.get("best") or {}).get(
                 max(ms, key=ms.get)),
@@ -128,11 +163,17 @@ def build():
             "unit_score": "engine _mission_score (quad-vector percentile composite)",
             "not_modeled": CAVEATS,
         },
-        "generated": "2026-08-23",
+        "generated": "2026-09-06",
         "factions": factions,
     }
+    return out
+
+
+def build():
+    """compute() + write advisor.json (the CLI path)."""
+    out = compute()
     ADVISOR_OUT.write_text(json.dumps(out, indent=1, ensure_ascii=False))
-    print(f"wrote {ADVISOR_OUT} ({len(factions)} factions)")
+    print(f"wrote {ADVISOR_OUT} ({len(out['factions'])} factions)")
     return out
 
 
@@ -141,16 +182,20 @@ SIGNALS_DOC = """\
 
 The engine measures how strong each faction's models are on paper
 (statlines and points). It cannot measure rules packages, skill floor,
-or how punishing an army is to play — those are expert calls below,
-grounded in the durability facts shown.
+or how punishing an army is to play — those are the expert calls below,
+each carrying a source trail in the faction's expert file.
 
 - **Strength** — where the faction ranks today on model quality.
   Changes with balance updates; a strong army can get nerfed.
 - **Versatility** — does it fight well on every mission type, or only
   one? Versatile armies forgive list-building mistakes.
-- **Difficulty** — Durable armies (big wound pools) survive mistakes;
-  Fragile armies (few wounds per model) punish every positioning error.
-  Fragile + expensive + tricky rules = hard mode. Not a first army.
+- **First-army fit** — expert-rated Great / Good / Demanding / Bad,
+  authored in resources/experts/<faction>.md. This is a skill-floor
+  judgement, NOT engine fact. Engine "statline bulk" (median wounds
+  across the whole roster, vehicles included) is listed in
+  findings/advisor.json as reference only — it is NOT a first-army
+  signal: World Eaters read "Durable" off a vehicle-inflated median
+  while their 2W melee core punishes every positioning error.
 - **GW attention** — factions whose points changed a lot recently keep
   changing. Playing one means accepting that your points and rules
   will move under you.
@@ -158,31 +203,37 @@ grounded in the durability facts shown.
 """
 
 
-def guide(data):
+def guide_lines(data):
+    """Build the markdown lines for the army-choice guide (no file writes).
+
+    Testable: the regression tests assert on these lines without touching
+    generated artifacts.
+    """
     f = data["factions"]
     n = len(f)
     third = max(n // 3, 1)
     half = max(n // 2, 1)
     quart = max(n // 4, 1)
-    dur = durability_map()
+    fit = first_army_fit_map()
     for x in f:
-        x["difficulty"] = dur.get(x["fid"], {}).get("band", "Mixed")
+        x["difficulty"] = fit.get(x["fid"], {}).get("band", "Unrated")
+        x["fit_why"] = fit.get(x["fid"], {}).get("why", "")
 
-    foundations = [x for x in f[:third]
-                   if x["versatility"] >= sorted(y["versatility"] for y in f)[half]]
-    low_vers = sorted(y["versatility"] for y in f)[quart]  # bottom quartile
+    vers = sorted(y["versatility"] for y in f)
+    foundations = [x for x in f[:third] if x["versatility"] >= vers[half]]
+    low_vers = vers[quart]  # bottom quartile — first-army needs >= this
     specialists = [x for x in f
                    if x["ceiling"] >= f[0]["ceiling"] - 3
                    and x["versatility"] <= low_vers][:6]
     tuning = sorted(f, key=lambda x: -x["points_churn"])[:quart]
-    value = [x for x in f[third:2 * third]
-             if x["versatility"] >= sorted(y["versatility"] for y in f)[half]]
+    value = [x for x in f[third:2 * third] if x["versatility"] >= vers[half]]
 
     lines = [
-        "# Choosing Your Army — strength, versatility, difficulty",
+        "# Choosing Your Army — strength, versatility, fit",
         "",
-        "*Generated 2026-08-23 from engine outputs (rank-decay roster index, "
-        "MFM v1.2). Full method + caveats in findings/advisor.json.*",
+        "*Generated 2026-09-06 from engine outputs (rank-decay roster index, "
+        "MFM v1.4) + expert first-army-fit ratings. Full method + caveats in "
+        "findings/advisor.json.*",
         "",
         "> This narrows the field — it tells you where each faction's "
         "strength sits today and what the army demands from you as a "
@@ -191,24 +242,34 @@ def guide(data):
         SIGNALS_DOC,
         "## If this is your first army",
         "",
-        "> Start **Durable** and **versatile**. Avoid Fragile bands as a "
-        "first army: they punish positioning mistakes that experienced "
-        "players stop making around year two.",
+        "> Start with a faction expert-rated **Great** (or **Good** with "
+        "versatility above the bottom quarter). "
+        "Statline bulk (big wound pools) is an engine fact, NOT a skill-"
+        "floor signal — World Eaters read 'Durable' off a vehicle-inflated "
+        "wound median while their 2W melee core punishes every positioning "
+        "error.",
+        "",
+        "> Factions not listed have no expert first-army-fit rating yet: "
+        "their engine strength is shown below, but the guide cannot "
+        "certify them as forgiving.",
         "",
     ]
-    forgiving = [x for x in f if x["difficulty"] == "Durable"
-                 and x["versatility"] >= sorted(y["versatility"] for y in f)[half]]
-    lines += [f"- **{x['name']}** — durable models, plays all missions"
+    forgiving = [x for x in f
+                 if FIT_ORDER.get(x["difficulty"], 0) >= FIT_ORDER["Good"]
+                 and (x["difficulty"] == "Great"
+                      or x["versatility"] >= low_vers)]
+    lines += [f"- **{x['name']}** — {x['fit_why'].split(' Sourced:')[0]}"
               for x in forgiving[:6]] or ["- (none clear the bar this pass)"]
     lines += [
         "",
         "## Strongest long-term signal",
     ]
     lines += [f"- **{x['name']}** — strength {x['overall_index']}, plays all "
-              f"missions ({x['difficulty']} models)" for x in foundations]
+              f"missions ({x['difficulty']} first-army fit)"
+              for x in foundations]
     lines += ["", "## Specialist picks (strong in one mission)", ""]
     lines += [f"- **{x['name']}** — shines in {x['best_disposition']}"
-              f" ({x['difficulty']} models)" for x in specialists]
+              f" ({x['difficulty']} first-army fit)" for x in specialists]
     lines += ["", "## Active GW tuning (expect repricing)", ""]
     lines += [f"- **{x['name']}** — {x['points_churn']} MFM changelog entries"
               for x in tuning]
@@ -220,6 +281,11 @@ def guide(data):
         "## Honest limitations",
         "",
     ] + [f"- {c}" for c in CAVEATS]
+    return lines
+
+
+def guide(data):
+    lines = guide_lines(data)
     GUIDE_OUT.write_text("\n".join(lines) + "\n")
     print(f"wrote {GUIDE_OUT}")
 
