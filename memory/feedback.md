@@ -1282,3 +1282,13 @@ User's self-correction ("maybe I meant Sternguard") — CORRECT, verified:
 - **Data gap:** repo merged data has NO Sternguard profiles (grep hit zero) — profiles were hand-fed to the engine from verified 40k.app text for this run; loader should get them for future DPP.
 
 `Valid as of: 2026-09-06` (40k.app / wahapedia / newrecruit fetches; engine-native findings + supplementary hand-fed run in-session; Sternguard 10-man price 190↔200 discrepancy flagged). Re-check on any SM dataslate; loader data confirmed present in dark-angels.json (my earlier "data gap" claim was a grep-scope error — see lesson above).
+
+## 2026-09-06 — Who takes and holds: DA engine verdict (Take and Hold disposition)
+User's pivot ("this is actually take and hold — so who takes and holds?"). Engine-native `findings/dark-angels/findings.html` Take and Hold array (98 units):
+- **#1 Tactical Squad (86.6) = RED HERRING — leaving the codex Oct 2026** (GW 2026-08-24 preview: Tactical → Legendary Proxy "counts as Intercessor Squad"; Devastator → Desolation proxy; 16 SM units cut, 11 to Legends incl. Razorback/Predators/Vindicators; Legends only legal if the event says so). Never build on that #1 slot.
+- **The real holder spine is ALREADY in the list:** Company Heroes **#2 (85.1)** (bounce unit), Deathwing Knights **#4 (83.5, surv 9.0 — the anchor)**, Heavy Intercessors **#10 (75.0)** + Biologis wall, Intercessors **#13 (73.7 + sticky)**, Lion **#16 (71.7 — deterrent, not scorer)**.
+- **The shooters grade out as support on this disposition:** Hellblasters **#20 (69.9)**, Sternguard **#21 (69.8)** — they clear zones, they do NOT hold. Tank payload = clearing support; the holder spine is battleline/DWK/Heroes.
+- **Cull-guard rail:** DWK was on the cut-candidate list to fund the shooter package. Take-and-Hold weighting says trading the #4 anchor for a #20/#21 shooter is a bad trade — cut elsewhere (Techmarine 55, enhancement shuffle).
+- **October codex storm (watched):** SM codex lands Oct 2026 — preview shows S5 basic weapons, bolt rifles S5/S6, TACTICUS → T5, points rise (armies shrink). Every SM statline in this session's analysis is pre-codex; DPP engine + findings need a refresh run when it drops.
+
+`Valid as of: 2026-09-06` (engine findings HTML + warhammer-community.com / SpikeyBits / BoLS 2026-08-24 codex preview). Re-check when the October SM codex lands — the whole SM data layer changes.
