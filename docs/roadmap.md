@@ -25,6 +25,24 @@ and recommend detachments/units based on mission and meta.
 | BSData audit | **0 findings, 0 guilty units — ALL CLEAN (2026-08-22)** |
 | Last change | NO_CURATED unblocked: 18 configs generated from BSData fallback, 0 audit findings |
 
+### Direction (2026-09)
+
+Activity has shifted from engine-feature bursts to **user-journey research sessions**
+(list construction, datasheet verification) **plus memory-led verification sessions** —
+the recent commits (2026-09-06) are largely `memory/feedback.md` entries (datasheet
+verifications, rule verdicts, lessons), not engine features. Personal army-planning notes
+are kept OUT of this repo by policy (see below); only engineering lessons and
+repo-relevant facts are committed here.
+
+The maintainer's personal army journey (fit trees, paint order, list verdicts, ownership)
+lives in a PRIVATE ledger — `~/turtle-army/army-ledger.md`, private repo
+`tommaone/turtle-army-ledger`. Rule: personal list content never enters this public repo.
+
+Engine-side open items surfaced by this session:
+- **Executioner Heavy-Transport status UNVERIFIED** — gates fit-A (if nothing else is Heavy, cutting the Redeemer kills Rapid Deployment / Rapid Embarkation bounce / Machine Wrath).
+- **Backlog "Transport support" is now the live gap** — 11e GRAVIS×2 slot rules, LR 12 / Impulsor 7 / Exec 7 caps, and Heavy-Transport-gated detachment tricks drove this session's entire analysis.
+- **October SM codex = scheduled full refresh** — S5 basic weapons, bolt rifles S5/S6, TACTICUS → T5, points rise (armies shrink). Rerun merge + findings + SM/DA re-rank; every current SM statline is pre-codex.
+
 ---
 
 ## Done ✅
@@ -289,7 +307,10 @@ and recommend detachments/units based on mission and meta.
 - [ ] **Detachment points budget** — DP cost (1-3 DP), detachment recommendation
 - [ ] **Disposition matching** — map detachments to Force Dispositions
 - [ ] **Requisition thresholds** — 3rd+ copies cost more (11e)
-- [ ] **Transport support** — model unit delivery (Rhino, Impulsor, Land Raider)
+- [ ] **Transport support — NOW LIVE (2026-09-06)** — model unit delivery (Rhino,
+  Impulsor, Land Raider); 11e GRAVIS×2 slot rules + LR/Impulsor/Executioner caps +
+  Heavy-Transport tricks drove the DA Speartip fit-tree session. Highest-value
+  engine gap for the current user journey.
 - [ ] **Multi-unit synergies** — character auras, buff stacking
 - [ ] **Unit role tags** — objective holder, support, damage dealer
 - [ ] **Variance bands** — ±1σ range instead of average dice
@@ -332,6 +353,12 @@ and recommend detachments/units based on mission and meta.
 
 ## Corrections Log 📝
 
+- **2026-09-06**: Roadmap prose ("list building" as the engine's goal) vs actual
+  activity (painted-pool list construction + memory-led verification sessions).
+  Also: my "Sternguard not in the engine" claim was WRONG — grep was scoped to
+  `space-marines.json`; the faction's own merged file (`dark-angels.json`,
+  line ~18072) carries them. Rule: consult the faction file + findings pipeline
+  before claiming a data gap.
 - **2026-08-23**: Roadmap prose claimed ~14 factions lacked squad alloc.
   Scripted inventory (`grep alloc/group_max` over squads.json) shows
   **25/30 have the complex layer**; only chaos-daemons + 4 knight/titan
@@ -359,4 +386,4 @@ and recommend detachments/units based on mission and meta.
 
 ---
 
-*Last updated: 2026-08-22 (audit ALL CLEAN — 0 findings, NO_CURATED unblocked)*
+*Last updated: 2026-09-06 (direction shift — painted-pool list construction + memory-led sessions; October SM codex refresh scheduled)*

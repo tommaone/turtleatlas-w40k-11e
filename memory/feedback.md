@@ -1214,87 +1214,27 @@ Game rules rot (dataslates, FAQs, editions). Process lessons (generators, gates,
 **Why:** the user asked for timestamps "at least for game rules" — the Oath fact and the Speartip strat texts are only true until a dataslate touches them; the compute/writer split is true forever.
 **How:** rule-fact entries end with `Valid as of: <date>` + "re-check when <trigger>". Hybrid entries (process lesson citing rules) stamp only the cited facts. Memory updates happen at every session boundary or right after a rating/review verdict lands — no waiting to be asked. Newest at the bottom, this file's convention.
 
-## 2026-09-06 — Starter-list review: user-built DA Speartip (A-tier), next 10 models defined
-- User built the 2000pt Armoured Speartip list entirely from their own head; the double Land Raider spine exists because both LRs were painted back in the GK era (ease-of-paint driver, not meta-chasing).
-- Rating corrected in-session from B+ → A after the user's rules catches (Libby+DWK DS brick, Rapid Embarkation bounce) — see the detachment-mechanics rule above.
-- Next 10 models (user's call): 5× Infiltrator Squad (screening bubble — Deep Strike denial) + 5× Scout Squad (early presence). Both verified in mfm (M6" W2 OC1).
-- Loadout legality for both datasheets verified 2026-09-06 (40k.app): user's modeled 2×5 Scout Squads (sgt-shotgun+3SG+HB / sgt-chainsword+2knife+ML+sniper) and the 5-man Infiltrators (helix + comms on separate models) are all legal — details in the Scout/Infiltrator rule below.
-- **OPEN decision (deferred, no action yet):** fitting Infiltrators (110) + Scouts (65) = 175 into the exact-2000 list. User's candidate: cut one Land Raider-class box (frees 220–260, ~45–85 spare). Painted models first, then cut.
+## Faction data-gap claims: grep the FACTION's merged file, then the findings pipeline
+Before claiming "unit X is missing from the engine", grep `data/merged/<faction>.json`
+(not just a parent faction's file) and consult `findings/<faction>/findings.html` +
+`advisor.json`. The per-faction merged files carry that faction's units; the canonical
+rankings already answer most "is X ranked?" questions.
 
-## Scout Squad & Infiltrator Squad 11e — loadout slot budget (validated 2026-09-06)
-Wargear slot limits per data sheet, mechanics only:
-- **Scout Squad** (5 = 65, 10 = 120; 3rd+ unit +10): two INDEPENDENT per-5 slots — (1) 1× sniper rifle; (2) 1× heavy weapon chosen as **HB OR missile launcher (they compete within a squad — never field both in a 5-man)**. Unlimited shotgun/combat-knife swaps for any model incl. sergeant; sergeant's boltgun → chainsword (one). Sgt can instead take shotgun/knife (no chainsword then).
-- **Infiltrator Squad** (5 = 110, 10 = 180; 3rd+ +10): 1× helix gauntlet AND 1× comms array allowed per squad, **not on the same model**; sergeant keeps marksman bolt carbine (no swap). Omni-scramblers = 12" Reserves-denial bubble (the screening piece; this is the unit's job in the list — Scouts do NOT screen, they harass/guerrilla).
-- Engine scoring (project formula, Scout weapons vs MEQ/GEQ/Veh): HB best anti-infantry upgrade (1.33 MEQ); ML flexible horde+chip (1.22 GEQ / 0.39 veh); sniper weakest (0.44 MEQ, Precision unmodeled); shotgun == boltgun damage but Assault; chainsword best melee (0.67 MEQ); knives good chaff (1.11 GEQ). Oath reroll-hits lifts all ranged equally, order unchanged.
+**Why:** a Sternguard grep scoped to `space-marines.json` produced a "data gap" claim that
+was WRONG — Sternguard lives in `dark-angels.json` (line ~18072, in_bsdata/in_mfm true,
+full profiles + Sternguard Focus). Hand-feeding `compute_weapon_dpp` duplicated work the
+findings pipeline already does with disposition weights + SURV/MOB.
+**How:** faction file + faction findings page first; hand-fed `compute_weapon_dpp` only as a
+supplementary probe with the same verified-source discipline. Same class as this session's
+datasheet-name lesson — "Eradicator Squad with Heavy Bolters" is a SEPARATE 11e datasheet
+(3=80, horde-deletion, not a melta-Eradicators loadout); verify the exact catalog/datasheet
+name before asserting anything about it.
 
-`Valid as of: 2026-09-06` (40k.app datasheets, verbatim legality mapping in-session; engine numbers from project formula). Re-check when a dataslate touches SM wargear — the two-slot Scout budget and the "not same model" Infiltrator rule are exactly the kind of thing that gets reworked.
+## Personal army-planning content lives in the PRIVATE ledger, never this repo
+The maintainer's own army content (fit trees, paint orders, list verdicts, ownership facts,
+personal datasheet research) belongs in a private army ledger — `~/turtle-army/army-ledger.md`,
+private repo `tommaone/turtle-army-ledger`. This repo is PUBLIC; anything committed here is
+publishable. A memory entry about the user's *list* gets moved there, not appended here.
+Engine lessons and repo-relevant facts (datasheet availability, data gaps, pipeline rules)
+stay in this file.
 
-## Intercessor Squad & Impulsor 11e — sticky + payload-swap facts (validated 2026-09-06)
-- **Intercessor Squad** (5 = 80, 10 = 150; Battleline OC2): has **Objective Secured sticky** (objective stays yours after they leave, while opponent's Level of Control is not greater) + Hail of Bolts (+2 A for Bolt Rifle at one target, only that unit). Bolt rifle now Assault+Heavy. This powers the "sticky home then leave" play.
-- **Impulsor** (70; 4th+ unit 80): T9 3+ **W11 → NOT a Heavy Transport** (14+W threshold) — no Rapid Embarkation / D3+3" disembark / Machine Wrath for it. **Transport cap 7 TACTICUS/PHOBOS** (no JUMP PACK) — a 5-for-5 payload swap works, never both 5-packs inside. **Shield Dome = 5+ invuln** (not 4+). Assault Vehicle: disembark after Advance counts as Normal, no charge. Wargear: stubber; 2 storm bolters → 2 fragstorms; one of bellicatus/skytalon/orbital comms/shield dome. Strictly a utility/mobility box — give it Intercessors or a bubble reposition, never a bounce trick.
-- **Screening value note:** Omni-scramblers' 12" deny bubble earns most FORWARD (protecting the LR/Executioner alpha lane), not at home — home-holding sells the bubble short; the Impulsor lets you reposition it on demand.
-
-`Valid as of: 2026-09-06` (40k.app datasheets in-session). Re-check when a dataslate touches vehicle transports or Intercessor abilities.
-
-## 2026-09-06 — Phobos fit decision tree (OPEN, deferred: paint first)
-User's plan to fit Infiltrators (110) + Scouts (65) + Liberator (15) = 190 into the exact-2000 list:
-- **A: Redeemer (260) → Impulsor (70)** → fits exactly 2000. Impulsor rides Intercessors (sticky home swap trick); Capt+Heroes bounce moves to the Executioner (must NOT ride the Impulsor — not Heavy).
-- **B: keep Redeemer, kick Techmarine (55)** → +135 over as-is; doesn't fit without another ~135 cut. Parked.
-- **C: kick Lion (265)** → frees lots but changes the army's identity ("too many vehicles") — parked.
-- **DECISION: paint Scouts + Infiltrators first** (user's call; universal units — useful in any SM/DA list, zero sunk-cost risk regardless of the cut chosen). Cut decision re-opens after painting.
-
-## 2026-09-06 — Gravis mainstay path (user concept, OPEN)
-User's next focus after Phobos: make Gravis (owned: 5 Heavy Intercessors, 6 Eradicators, 1 Apothecary Biologis) "the mainstay on top of DWK". Verified facts feeding the eventual rework:
-- **Eradicators (11e) — TWO DISTINCT DATASHEETS:** (1) **Eradicator Squad** = melta rifles baseline (18" A1 S9 AP-4 D6, Heavy Melta 2); 1/3 → multi-melta. 3 = 90, 6 = 180. Total Obliteration = re-roll hit/wound/damage vs MONSTER/VEHICLE. (2) **Eradicator Squad with Heavy Bolters** (Armageddon wave, SEPARATE new unit, can't join the melta squad) = every model carries a heavy bolter (36" A3 S5 AP-1 D2, HEAVY, SUSTAINED HITS 1 baked), 3 = 80 (reinforced-6 price not yet on 40k.app — verify before list build), Overlapping Detonations = pick one visible non-MONSTER/VEHICLE unit, heavy bolters gain BLAST 1 that turn. Role: horde-deletion, NOT anti-tank. Pairs with melta-Erads (crack transport → delete passengers). NOTE: Sustained HITS 1 already on the gun → Shock Deployment's Sustained is REDUNDANT here (sustained doesn't stack); the Biologis LETHAL HITS is the meaningful add and belongs on this unit only if it fits the box.
-- **Heavy Intercessors:** T6 W3 OC2 Battleline; heavy bolt rifle (30" A2 S5 AP-1 D2); 1/5 → HB; Unyielding = +1 armour save vs D1 on owned objectives. 5 = 100.
-- **Biologis (70):** Supports HI/Aggressors/Eradicators; LETHAL HITS while leading. **Shock Deployment** enhancement (+20, Gravis/Terminator only): bearer's unit gets SUSTAINED HITS 1 the turn it disembarks → the Sustained+Lethal hammer turn. Nuance: lethal auto-wounds skip the wound roll, so Total Obliteration wound-rerolls apply only to the extra Sustained hits.
-- **Transport cap math (11e):** GRAVIS/TERMINATOR = 2 slots. LR cap 12 = **6 GRAVIS max**; Executioner cap 7 = **3 GRAVIS max**. The 12-model Gravis blob (24 slots) fits NO single box.
-- **Structural conclusion:** one LR-class box fits exactly one 6-GRAVIS unit. The "DWK main + Gravis main" hybrid needs **LR (Erad Hammer) + Redeemer (Chaplain+DWK1) + Executioner (Capt+Heroes bounce)** with DWK2+Libby DS — the Redeemer re-enters through the Gravis door (variant B re-opens). Cull candidates when reworking: a DWK brick (-240), Techmarine (-55), enhancement shuffle (3 slots full), or a 5-man.
-- Full list rework deferred; method = additive from the painted pool, paint-first order unchanged (Phobos → Gravis).
-
-## 2026-09-06 — Gravis-in-tank hammer DEAD; Hellblasters + Azrael + Impulsor package (user verdict)
-User's verdict after the transport math: "whoever hides in a tank must be a point-effective DPP shooter, not a tank unit itself", and the HB-Erads don't get the jumpity/shock trick. Confirmed correct on the mechanics:
-- **HB-Erads as truck payload REJECTED:** (1) Sustained Hits 1 already baked on the heavy bolters → Shock Deployment's Sustained is REDUNDANT (sustained doesn't stack, highest wins); (2) GRAVIS + no Deep Strike → no jumpity delivery; (3) HEAVY on their guns wants them STATIONARY (+1 to hit) and Overlapping Detonations/Blast scale with enemy squad size, not position → real home = static horde-gate on an objective, not a truck; (4) caps: 6 HB-Erads = exactly 12/12 LR ✓; 6 + Biologis = 14 → fits NO box owned (LR 12, Exec 7; **no Land Raider variant is 14** — LR/Redeemer 12, Crusader 16; the 14-slot hull is the non-Executioner Repulsor, not a Land Raider).
-- **Vanguard Veterans 11e = MELEE hammer, NOT a shooter (corrected):** M12" T4 3+ 2W FLY DS; master-crafted power weapon A3 WS3+ S5 AP-2 D2; Vanguard Assault = melee LETHAL HITS on charge turn; swaps are plasma pistol / heavy bolt pistol only. **NO boltgun / Devastating-Wounds shooty build exists on any SM datasheet** — the "jump-pack shooty DW boltgun" idea has no home (closest: Inceptors, Gravis jump plasma — different problem).
-- **Hellblaster Squad 11e** (40k.app/wahapedia): TACTICUS (rides Impulsor), 5 = 110. Plasma incinerator 24" A2 BS3+ S7 AP-2 D1 [ASSAULT, HEAVY] standard / S8 AP-3 D2 [ASSAULT, HAZARDOUS, HEAVY] supercharge.
-- **Azrael 11e** (40k.app): 140 pts, Epic Hero, TACTICUS. **Supreme Grand Master = while leading, his unit's weapons get [SUSTAINED HITS 1]** (the shooting buff); Lion Helm = bearer's unit 4+ invuln + once/battle FNP 4+ vs mortals; Masterful Tactician = +1CP per Command phase (CP battery for Speartip strats); Lion's Wrath = 24" A2 BS2+ S8 AP-3 D2 Anti-infantry 4+ DW Rapid Fire. Leads Hellblaster Squad ✓ (also Intercessors/Sternguard/Tactical/Bladeguard/ICC/Infernus/Assault Intercessors).
-- **Package fit:** 5 Hellblasters (5) + Azrael (1) = 6/7 Impulsor ✓; Assault Vehicle = disembark-after-move and shoot; plasma [ASSAULT] = no -1 to hit while riding hot.
-- **Engine DPP** (5-man 110 pts, 10 shots, BS3+, no cover/heavy-stationary/Oath/detach; formula: hits × wounds × (1-save) × D / 110):
-  - MEQ T4 3+ (2W): std 2.96 | sup 9.26 | sup+Azrael SH1 10.00
-  - TEQ T5 2+ 4++ (3W): std 2.22 | sup 5.93 | sup+Azrael 7.41
-  - Horde T4 5+ (1W×20): std 4.44 | sup 5.56 | sup+Azrael 6.94
-  - Chaff T3 5+ (1W×20): std 5.56 | sup 5.56 | sup+Azrael 6.94
-  - NOT modeled: hazardous self-deaths, FNP, cover, heavy-stationary, Oath, detachment strats.
-- **Fit-tree relevance:** fit A (Redeemer → Impulsor + Liberator = exact 2000) was computed WITHOUT Hellblasters → adding 110 needs an ~110 cut (Techmarine 55 + something, DWK brick, or enhancement shuffle — already on the block). Azrael is already priced into the 2000, he just re-seats; when reworking, verify his current seat doesn't leave Company Heroes leaderless.
-- **UNVERIFIED next check:** does the Executioner carry the Heavy Transport badge in 11e? If not, cutting the Redeemer deletes every Heavy-Transport-gated Speartip trick (Rapid Deployment D3+3", Rapid Embarkation bounce, Machine Wrath) — fit A dies unless another owned box is Heavy.
-
-`Valid as of: 2026-09-06` (40k.app / wahapedia / newrecruit-wiki fetches; engine DPP run in-session). Re-check Hellblaster / Azrael / VV profiles and the Executioner Heavy-Transport status when a dataslate lands.
-
-## 2026-09-06 — Sternguard ARE the DW shooty squad; Lion 11e = MONSTER (no LR), DS-able bodyguard deterrent
-User's self-correction ("maybe I meant Sternguard") — CORRECT, verified:
-- **Sternguard Veteran Squad 11e** (40k.app): 5 = 100 / 10 = 200 (ONE archive revision of the page showed 190 — reflag at build). TACTICUS (rides Impulsor). Every model: bolt pistol + **Sternguard bolt rifle (24" A2 BS3+ S4 AP-1 D1, [ASSAULT, DEVASTATING WOUNDS, HEAVY, RAPID FIRE 1])** + CCW. DW is NATIVE on every gun: bolt pistol (DW), combi-weapon (24" A1 BS4+ S4 AP0 D1, ANTI-INFANTRY 4+, DW, RF1 — ANY model may swap), **Sternguard heavy bolter (36" A3 BS4+ S5 AP-1 D2, [DW, HEAVY, SUSTAINED HITS 1 baked] — 1 per 5 models)**, pyrecannon (12" D6+1 auto-hit S6 AP-1 D1, TORRENT, IGNORES COVER — 1 per 5). Sgt swaps: chainsword / combi / power weapon / fist (may keep bolt rifle). **Sternguard Focus = re-roll wound rolls vs the Oath of Moment target.**
-- **Azrael+Sternguard mechanism (precise, no collapse):** Azrael does NOT grant DW — Supreme Grand Master grants [SUSTAINED HITS 1] only; DW is baked on their guns. The "multiplier" is REAL but via volume: SH1 → more hits → more wound rolls → more DW 6s; Sternguard Focus → wound re-rolls vs Oath → more DW 6s. Sustained feeds DW; it does not double it.
-- **Engine-native verdict — DA Purge the Foe (findings/dark-angels/findings.html, canonical):** Sternguard **#5 (75.9, dpp 0.066)**; Hellblasters **#4 (77.0, dpp 0.0679)**. Full top 5: VV w/JP 84.8, Ravenwing Black Knights 81.0, Company Heroes 78.5, Hellblasters 77.0, Sternguard 75.9. Engine puts BOTH shooters at the top; Hellblasters edge Sternguard slightly on disposition scoring.
-- **Supplementary hand-fed DPP (2026-09-06, profiles from 40k.app, Oath target, both + Azrael SH1):** MEQ: SG10+2×HB 10.27 vs HB5 sup 10.00; TEQ T5 2+ 4++: 7.88 vs 7.41; Horde T4 5+ (20): 11.59 vs 6.94; Chaff T3 5+: 14.48 vs 6.94. Same direction as the canonical ranking (different absolute dpp — no disposition weights/SURV/MOB). Differentiators: Sternguard = 10-model brick + DW-mortals ignoring invulns + 11/12 LR fit; Hellblasters = cheaper, higher per-point MEQ efficiency. Both legal, different roles.
-- **Lesson (my miss twice):** (1) Sternguard IS in `data/merged/dark-angels.json` (in_bsdata/in_mfm true, full profiles, Sternguard Focus) — my "grep hit zero" was scoped to `space-marines.json` only. Rule: grep the FACTION's merged file before claiming a data gap. (2) Check the canonical findings ranking (advisor.json + findings/<faction>/findings.html) BEFORE hand-feeding profiles into `compute_weapon_dpp` — the project pipeline (disposition weights + SURV/MOB 3-vector) is the engine's own answer and the safe source for numbers.
-- **Lion 11e** (40k.app / wahapedia / newrecruit): **KEYWORD MONSTER — NOT INFANTRY → CANNOT ride a Land Raider** (user was 100% right; Land Raider only carries INFANTRY). CORE: **Deep Strike** + Fights First; MOBILE. **Dark Angels Bodyguard = Lone Operative while within 3" of a friendly ADEPTUS ASTARTES INFANTRY unit** — the "bodyguard deterrent" is literal on the datasheet. Primarch of the First Legion = pick TWO auras per Command phase (options incl. Martial Exemplar: within 6" melee re-roll hit/wound 1s; No Hiding From The Watchers: FNP 4+ vs mortals within 6"; Mist-wreathed Shadow Realms: remove to SR at end of opponent's turn, ingress next Movement incl. turn 1). Emperor's Shield: -1 to Wound vs S>T attacks. Must be Warlord.
-- **Deployment picture (crystallizing):** tank = the point-effective DPP shooter — 10 Sternguard + Azrael = 11/12 Land Raider EXACT fit (keeps every Heavy-Transport trick), or 5 Hellblasters + Azrael = 6/12 LR / 6/7 Impulsor; Lion = off-board DS/ingress Lone-Operative bodyguard next to the DWK brick (his auras: melee rerolls + FNP4+ vs mortals protect the landing); HB-Erads = static horde-gate; HI wall + Biologis = home.
-- **Data gap:** repo merged data has NO Sternguard profiles (grep hit zero) — profiles were hand-fed to the engine from verified 40k.app text for this run; loader should get them for future DPP.
-
-`Valid as of: 2026-09-06` (40k.app / wahapedia / newrecruit fetches; engine-native findings + supplementary hand-fed run in-session; Sternguard 10-man price 190↔200 discrepancy flagged). Re-check on any SM dataslate; loader data confirmed present in dark-angels.json (my earlier "data gap" claim was a grep-scope error — see lesson above).
-
-## 2026-09-06 — Who takes and holds: DA engine verdict (Take and Hold disposition)
-User's pivot ("this is actually take and hold — so who takes and holds?"). Engine-native `findings/dark-angels/findings.html` Take and Hold array (98 units):
-- **#1 Tactical Squad (86.6) = RED HERRING — leaving the codex Oct 2026** (GW 2026-08-24 preview: Tactical → Legendary Proxy "counts as Intercessor Squad"; Devastator → Desolation proxy; 16 SM units cut, 11 to Legends incl. Razorback/Predators/Vindicators; Legends only legal if the event says so). Never build on that #1 slot.
-- **The real holder spine is ALREADY in the list:** Company Heroes **#2 (85.1)** (bounce unit), Deathwing Knights **#4 (83.5, surv 9.0 — the anchor)**, Heavy Intercessors **#10 (75.0)** + Biologis wall, Intercessors **#13 (73.7 + sticky)**, Lion **#16 (71.7 — deterrent, not scorer)**.
-- **The shooters grade out as support on this disposition:** Hellblasters **#20 (69.9)**, Sternguard **#21 (69.8)** — they clear zones, they do NOT hold. Tank payload = clearing support; the holder spine is battleline/DWK/Heroes.
-- **Cull-guard rail:** DWK was on the cut-candidate list to fund the shooter package. Take-and-Hold weighting says trading the #4 anchor for a #20/#21 shooter is a bad trade — cut elsewhere (Techmarine 55, enhancement shuffle).
-- **October codex storm (watched):** SM codex lands Oct 2026 — preview shows S5 basic weapons, bolt rifles S5/S6, TACTICUS → T5, points rise (armies shrink). Every SM statline in this session's analysis is pre-codex; DPP engine + findings need a refresh run when it drops.
-
-`Valid as of: 2026-09-06` (engine findings HTML + warhammer-community.com / SpikeyBits / BoLS 2026-08-24 codex preview). Re-check when the October SM codex lands — the whole SM data layer changes.
-
-## 2026-09-06 — User owns the full pool; codex churn = rotation, not purchase regret
-User confirmed: **all models in play are already owned/painted** (DA Speartip spine + Phobos + Gravis + the Sternguard/Hellblaster options under discussion). Implications for planning:
-- No purchase gating anywhere in the fit-tree/rework math — cuts and variants are model-allocation decisions, not wallet decisions.
-- October codex points inflation → armies shrink → **more list variants per painted model count** (same pool covers more lists). That's the upside of the additive plan.
-- The real sting is collection devaluation (bench-warmers when points rise / rosters rotate), not lost utility — plan around variant flexibility, never around "meta-proof builds".
