@@ -35,8 +35,9 @@ are kept OUT of this repo by policy (see below); only engineering lessons and
 repo-relevant facts are committed here.
 
 The maintainer's personal army journey (fit trees, paint order, list verdicts, ownership)
-lives in a PRIVATE ledger — `/home/tomec/repos/turtle-army-ledger/army-ledger.md`, private repo
-`tommaone/turtle-army-ledger`. Rule: personal list content never enters this public repo.
+lives in a PRIVATE ledger — `/home/tomec/repos/turtle-army-ledger/` (folder per army,
+files per focus; private repo `tommaone/turtle-army-ledger`). Rule: personal list
+content never enters this public repo.
 
 Engine-side open items surfaced by this session:
 - **Executioner Heavy-Transport status UNVERIFIED** — gates fit-A (if nothing else is Heavy, cutting the Redeemer kills Rapid Deployment / Rapid Embarkation bounce / Machine Wrath).
