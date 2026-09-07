@@ -354,6 +354,12 @@ Engine-side open items surfaced by this session:
 
 ## Corrections Log 📝
 
+- **2026-09-07**: Em dash (—, U+2014) in findings `<title>` — `gen_findings_html.py`
+  uses `{fname} — Findings` is an **intentional display style** (matches model
+  generated prose; the AI writes long hyphens, not dashes). DO NOT "fix" it to
+  hyphen-minus. Filenames/slugs stay strictly ASCII U+002D — verified: 0
+  non-ASCII filenames (except the `.venv/bin/𝜋thon` joke symlink), all
+  detachment slugs ASCII.
 - **2026-09-06**: Roadmap prose ("list building" as the engine's goal) vs actual
   activity (painted-pool list construction + memory-led verification sessions).
   Also: my "Sternguard not in the engine" claim was WRONG — grep was scoped to
