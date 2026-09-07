@@ -1232,7 +1232,7 @@ name before asserting anything about it.
 
 ## Personal army-planning content lives in the PRIVATE ledger, never this repo
 The maintainer's own army content (fit trees, paint orders, list verdicts, ownership facts,
-personal datasheet research) belongs in a private army ledger — `~/turtle-army/army-ledger.md`,
+personal datasheet research) belongs in a private army ledger — `/home/tomec/repos/turtle-army-ledger/army-ledger.md`,
 private repo `tommaone/turtle-army-ledger`. This repo is PUBLIC; anything committed here is
 publishable. A memory entry about the user's *list* gets moved there, not appended here.
 Engine lessons and repo-relevant facts (datasheet availability, data gaps, pipeline rules)

@@ -35,7 +35,7 @@ are kept OUT of this repo by policy (see below); only engineering lessons and
 repo-relevant facts are committed here.
 
 The maintainer's personal army journey (fit trees, paint order, list verdicts, ownership)
-lives in a PRIVATE ledger — `~/turtle-army/army-ledger.md`, private repo
+lives in a PRIVATE ledger — `/home/tomec/repos/turtle-army-ledger/army-ledger.md`, private repo
 `tommaone/turtle-army-ledger`. Rule: personal list content never enters this public repo.
 
 Engine-side open items surfaced by this session:
