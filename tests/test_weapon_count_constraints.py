@@ -213,15 +213,15 @@ class TestAeldariStarweaver:
 # ── Orks (slot choice count=3 + merged count) ──────────────────────────
 
 class TestOrksDeffDread:
-    """Skorcha: slot choice count=3."""
+    """Kustom Mega-blasta: slot choice count=3 (11e profile beats Skorcha vs MEQ)."""
 
     def test_loadout_shows_3x(self, meq):
         ld, _, _ = _loadout("orks", "Deff Dread", meq)
-        assert "3×Skorcha" in ld
+        assert "3×Kustom Mega-blasta" in ld
 
     def test_weapon_count_3(self, meq):
         wc = _weapon_counts("orks", "Deff Dread", meq)
-        assert wc.get("Skorcha") == 3
+        assert wc.get("Kustom Mega-blasta") == 3
 
 
 # ── Necrons (merged count=2, no config count) ──────────────────────────

@@ -238,15 +238,20 @@ def test_substring_is_one_way_variants_kept(gen, ork_composition):
 
     The old code also matched the reverse direction ('Boyz' in 'Burna Boyz'),
     silently writing the base Boyz payload onto units whose names are MORE
-    specific than any BSData entry: Burna Boyz (Burna weapons), Squighog Boyz
-    (Squig jaws), Boyz (Armageddon) (Shoota/Kombi variants). All three have
-    correct distinct builds in squads.json — they must be KEPT (no match),
-    never overwritten. Same class as the Eradicator fix, one layer deeper.
+    specific than any BSData entry: Burna Boyz (Burna weapons),
+    Boyz (Armageddon) (Shoota/Kombi variants). Both have correct distinct
+    builds in squads.json — they must be KEPT (no match), never overwritten.
+    Squighog Boyz now HAS a real 11e composition and is regenerated instead.
+    Same class as the Eradicator fix, one layer deeper.
     """
-    for name in ("Burna Boyz", "Squighog Boyz", "Boyz (Armageddon)"):
+    for name in ("Burna Boyz", "Boyz (Armageddon)"):
         assert gen.fuzzy_find_composition(ork_composition, name) is None, (
             f"{name} must be kept (no composition), not matched to base 'Boyz'"
         )
+
+    # Squighog Boyz gained a real composition in the updated catalogue — it
+    # must now resolve (and be regenerated), not stay a curated kept unit.
+    assert gen.fuzzy_find_composition(ork_composition, "Squighog Boyz") is not None
 
 
 def test_substring_one_way_keeps_valid_base_matches(gen, ork_composition):

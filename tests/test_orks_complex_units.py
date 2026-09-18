@@ -7,23 +7,24 @@ Generator fix (this iteration):
 - fuzzy_find_composition substring is now ONE-WAY (config name inside
   BSData name). The old reverse direction ('Boyz' in 'Burna Boyz') silently
   matched variant squads to the BASE Boyz composition and would have
-  overwritten correct distinct builds. Burna Boyz, Squighog Boyz and
-  Boyz (Armageddon) are now KEPT, not rewritten. (Regression tests in
+  overwritten correct distinct builds. Burna Boyz and Boyz (Armageddon)
+  are now KEPT, not rewritten. (Regression tests in
   test_gen_squad_composition.py::test_substring_is_one_way_variants_kept)
 
-Regenerated squads (10):
+Regenerated squads (11, BSData composition found):
 - alloc pools with min/max + typed weapon payloads (Beast Snagga Boyz,
-  Breaka Boyz, Kommandos, Meganobz, Nobz, Tankbustas, Warbikers, Boyz)
+  Breaka Boyz, Kommandos, Meganobz, Nobz, Tankbustas, Warbikers, Boyz,
+  Squighog Boyz)
 - per-model slots with default choices (Boss Nob Wargear Options)
 
-Kept squads (5, no BSData composition — curated manually):
-- Squighog Boyz (Squig jaws),
-  Boyz (Armageddon) (Shoota/Kombi variants), Gretchin (Slugga +
-  Grot-smacka), Gretchin (Armageddon) (Grot blasta),
-  Wartrakk (Rokkit launcha + Choppas)
+Kept squads (3, no BSData composition — curated manually):
+- Boyz (Armageddon) (Shoota/Kombi variants),
+  Gretchin (Slugga + Grot-smacka), Gretchin (Armageddon) (Grot blasta)
 
 Note: Burna Boyz and Lootas are now Legends in MFM v1.4 and removed from
 config (weapon refs Cuttin' flames / Deffgun no longer in merged data).
+Wartrakk was dropped by BSData from the 11e catalogue (unit absent from
+merged data) and removed from config the same way.
 
 STRUCTURE ONLY — no damage values. The engine is the single source of
 computation; this test locks the config shape and resolvability, not math.
@@ -48,11 +49,9 @@ TARGET_SAMPLES = ["GEQ", "MEQ", "TEQ"]
 
 # Kept units and their canonical first-model weapons (must NOT be overwritten)
 KEPT_UNITS = {
-    "Squighog Boyz": ("Squig jaws", "Slugga"),
     "Boyz (Armageddon)": ("Shoota", "Choppa"),
-    "Gretchin": ("Slugga", "Grot-smacka"),
-    "Gretchin (Armageddon)": ("Grot blasta", "Close combat weapon"),
-    "Wartrakk": ("Rokkit launcha", "Choppas"),
+    "Gretchin": ("Grot Blasta", "Scavenged Shivs"),
+    "Gretchin (Armageddon)": ("Grot Blasta", "Scavenged Shivs"),
 }
 
 
@@ -72,7 +71,7 @@ def _model(squads, unit, model_name) -> dict:
 
 
 class TestKeptUnits:
-    """The 7 no-composition units keep their curated builds."""
+    """The 3 no-composition units keep their curated builds."""
 
     @pytest.mark.parametrize("unit", list(KEPT_UNITS))
     def test_first_model_weapons(self, squads, unit):
@@ -85,7 +84,7 @@ class TestKeptUnits:
         assert ranged_ok, f"{unit}: ranged={ranged}, expected {expect_ranged}"
         assert m.get("melee") == expect_melee, f"{unit}: {m.get('melee')}"
 
-    @pytest.mark.parametrize("unit", ["Squighog Boyz", "Boyz (Armageddon)"])
+    @pytest.mark.parametrize("unit", ["Boyz (Armageddon)"])
     def test_variant_not_boyz_payload(self, squads, unit):
         """The generator-fix protection: these must NOT carry the base Boyz
         Melee build (Slugga/Choppa) — each keeps its own ranged identity."""
@@ -97,12 +96,23 @@ class TestKeptUnits:
 
 
 class TestRegeneratedSquads:
+    def test_squighog_boyz_alloc(self, squads):
+        m = _model(squads, "Squighog Boyz", "Squighog Boy")
+        assert m["count"] == 4
+        alloc = {a["name"]: a for a in m["alloc"]}
+        # 11e: 1 Nob on Smasha Squig + 3-4 Squighog Boyz.
+        assert alloc["Nob on Smasha Squig"]["min"] == 1
+        assert alloc["Nob on Smasha Squig"]["max"] == 1
+        assert alloc["Squighog Boy"]["min"] == 3
+        assert alloc["Squighog Boy"]["max"] == 4
+
     def test_beast_snagga_boyz_alloc(self, squads):
         m = _model(squads, "Beast Snagga Boyz", "Beast Snagga Boy")
-        assert m["count"] == 9
+        assert m["count"] == 10
         alloc = {a["name"]: a for a in m["alloc"]}
         assert alloc["Beast Snagga Boy w/ Thump gun"]["max"] == 1
         assert alloc["Beast Snagga Boy"]["min"] == 8
+        assert alloc["Nob"]["min"] == 1
 
     def test_breaka_boyz_alloc(self, squads):
         m = _model(squads, "Breaka Boyz", "Breaka Boy")
@@ -120,22 +130,27 @@ class TestRegeneratedSquads:
     def test_tankbustas_alloc(self, squads):
         m = _model(squads, "Tankbustas", "Tankbusta")
         alloc = {a["name"]: a for a in m["alloc"]}
-        assert alloc["Tankbusta w/ Rokkit launcha"]["min"] == 4
-        assert alloc["Tankbusta w/ Two rokkit launchas"]["max"] == 1
+        assert alloc["Tankbusta w/ Busta Rokkit Launcha"]["min"] == 4
+        assert alloc["Tankbusta w/ Two Busta Rokkit Launchas"]["max"] == 1
 
     def test_boyz_alloc(self, squads):
         m = _model(squads, "Boyz", "Boy")
         alloc = {a["name"]: a for a in m["alloc"]}
-        # Big shoota and rokkit launcha share a single 1-per-10 budget.
-        assert alloc["Boy w/ Big shoota"]["max"] == 1
-        assert alloc["Boy w/ Rokkit launcha"]["max"] == 1
-        assert alloc["Boy"]["min"] == 0
+        # Big shoota, rokkit launcha and burna share a single 2-per-10 budget
+        # (11e: up to two of those options, still one Nob).
+        assert alloc["Boy w/ Big shoota"]["max"] == 2
+        assert alloc["Boy w/ Rokkit launcha"]["max"] == 2
+        assert alloc["Boy"]["min"] == 6
+        assert alloc["Nob"]["min"] == 1
 
-    def test_boss_nob_slots(self, squads):
-        m = _model(squads, "Nobz", "Boss Nob")
-        names = {c["name"] for c in m["slots"][0]["choices"]}
-        assert "Slugga and big choppa" in names
-        assert "Kombi-weapon" in names
+    def test_nobz_alloc(self, squads):
+        """11e: Boss Nob is folded into the Nob alloc pool — no separate
+        Boss Nob model with Wargear slots. Lock the new pool instead."""
+        m = _model(squads, "Nobz", "Nob")
+        alloc = {a["name"]: a for a in m["alloc"]}
+        assert "Nob w/ Kustom Shoota and Kustom Krumpa" in alloc
+        assert "Nob w/ Kombi-rokkit and Kustom Krumpa" in alloc
+        assert alloc["Nob w/ Big Choppa"]["max"] == 1
 
 
 class TestAllSquadsResolve:

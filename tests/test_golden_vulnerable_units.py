@@ -176,11 +176,16 @@ class TestNameNormalizationGoldens:
         assert not any(n.startswith("2 ") or n.startswith("two ")
                        for n in names), names
 
-    def test_warboss_has_attack_squig_slot(self):
+    def test_warboss_has_no_attack_squig_slot(self):
+        """11e Warboss (verified 2026-09-19 vs 40k.app) has NO Attack Squig —
+        the 10e Attack Squig wargear was dropped. Six legal fixed-pair builds
+        (Kustom Choppa/Power Klaw x Kustom Shoota/Kombi-rokkit/Kombi-skorcha)."""
         data = json.loads((CONFIG / "orks" / "characters.json").read_text())
         wb = data["Warboss"]["weapon_options"]["builds"][0]
         slot_names = {s["name"] for s in wb["slots"]}
-        assert any("squig" in n.lower() for n in slot_names), slot_names
+        assert not any("squig" in n.lower() for n in slot_names), slot_names
+        # The 11e build set is fixed-pair — no Attack Squig wargear slot.
+        assert len(data["Warboss"]["weapon_options"]["builds"]) == 6
 
     def test_dc_dread_blood_talons_in_melee_slot(self):
         data = json.loads((CONFIG / "blood-angels" / "weapon_options.json").read_text())

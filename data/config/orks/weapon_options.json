@@ -1,5 +1,5 @@
 {
-  "_note": "orks weapon options \u2014 generated from BSData + MFM",
+  "_note": "orks weapon options — generated from BSData + MFM",
   "_source": "BSData 11e + MFM (auto-generated)",
   "Battlewagon": {
     "pts": 150,
@@ -8,69 +8,34 @@
         "name": "default",
         "fixed": [
           {
-            "name": "'Ard case",
+            "name": "Big Shoota",
             "type": "ranged"
           },
           {
-            "name": "Lobba",
-            "type": "ranged"
-          },
-          {
-            "name": "Wreckin' ball",
+            "name": "Crushin' Bulk",
             "type": "melee"
           },
           {
-            "name": "Grabbin' klaw",
-            "type": "ranged"
+            "name": "Grabbin' Klaw",
+            "type": "melee"
           },
           {
-            "name": "Big shoota",
-            "type": "ranged"
+            "name": "Wreckin' Ball",
+            "type": "melee"
           }
         ],
-        "slots": [
-          {
-            "name": "Big gun",
-            "choices": [
-              {
-                "name": "Killkannon",
-                "type": "ranged"
-              },
-              {
-                "name": "Zzap gun",
-                "type": "ranged"
-              },
-              {
-                "name": "Kannon",
-                "type": "ranged"
-              }
-            ]
-          },
-          {
-            "name": "Tracks and wheels",
-            "choices": [
-              {
-                "name": "Deff rolla",
-                "type": "melee"
-              },
-              {
-                "name": "Tracks and wheels",
-                "type": "ranged"
-              }
-            ]
-          }
-        ]
+        "slots": []
       }
     ],
     "info": {
       "M": "10\"",
-      "T": 10,
+      "T": 11,
       "SV": 3,
       "W": 16,
       "OC": 5,
       "INV": 6
     },
-    "_note": "Verified vs wahapedia 11ed 2026-08-24: big gun is pick-one-of-{kannon, killkannon, zzap gun}; deff rolla replaces tracks and wheels; lobba / up to 4 big shootas / 'ard case / grabbin' klaw / wreckin' ball all OPTIONAL. Config pins a legal maximal build: engine has no skip-slot mechanism, so optionals are baked as fixed (all simultaneously equippable \u2014 no illegality).",
+    "_note": "Re-curated from BSData rev-3 (2026-09): new catalogue lists only Big Shoota / Crushin' Bulk / Grabbin' Klaw / Wreckin' Ball. NOTE: GW app (40k.app) still shows big gun {kannon, killkannon, zzap gun}, lobba, deff rolla, tracks and wheels — upstream discrepancy.Config follows the project primary source (BSData).",
     "pts_3rd": 160
   },
   "Big Mek Dakkarig": {
@@ -123,11 +88,11 @@
             "type": "ranged"
           },
           {
-            "name": "Twin supa-shoota",
+            "name": "Dual Supa-shoota",
             "type": "ranged"
           },
           {
-            "name": "Armoured hull",
+            "name": "Armoured Impact",
             "type": "melee"
           }
         ],
@@ -176,15 +141,15 @@
         "name": "default",
         "fixed": [
           {
-            "name": "Twin big shoota",
+            "name": "Dual big shoota",
             "type": "ranged"
           },
           {
-            "name": "Twin supa-shoota",
+            "name": "Dual Supa-shoota",
             "type": "ranged"
           },
           {
-            "name": "Armoured hull",
+            "name": "Armoured Impact",
             "type": "melee"
           }
         ],
@@ -228,7 +193,7 @@
             "name": "Arm 1",
             "choices": [
               {
-                "name": "Dread klaw",
+                "name": "Dread Klaws",
                 "type": "melee"
               },
               {
@@ -253,7 +218,7 @@
             "name": "Arm 2",
             "choices": [
               {
-                "name": "Dread klaw",
+                "name": "Dread Klaws",
                 "type": "melee"
               },
               {
@@ -278,7 +243,7 @@
             "name": "Arm 3",
             "choices": [
               {
-                "name": "Dread klaw",
+                "name": "Dread Klaws",
                 "type": "melee"
               },
               {
@@ -303,7 +268,7 @@
             "name": "Arm 4",
             "choices": [
               {
-                "name": "Dread klaw",
+                "name": "Dread Klaws",
                 "type": "melee"
               },
               {
@@ -351,10 +316,10 @@
     },
     "builds": [
       {
-        "name": "Kopta rokkits",
+        "name": "Rokkit Launcha",
         "fixed": [
           {
-            "name": "Kopta rokkits",
+            "name": "Rokkit Launcha",
             "type": "ranged"
           },
           {
@@ -366,7 +331,7 @@
             "type": "ranged"
           },
           {
-            "name": "Spinnin\u2019 blades",
+            "name": "Spinnin’ blades",
             "type": "melee"
           }
         ],
@@ -417,7 +382,7 @@
     "info": {
       "M": "8\"",
       "T": 12,
-      "SV": 3,
+      "SV": 2,
       "W": 20,
       "OC": 8,
       "INV": 6
@@ -467,14 +432,15 @@
       "T": 10,
       "SV": 3,
       "W": 16,
-      "OC": 5
+      "OC": 5,
+      "INV": 6
     },
     "builds": [
       {
         "name": "Stikka kannon + Butcha boyz",
         "fixed": [
           {
-            "name": "\u2019Eavy lobba",
+            "name": "’Eavy lobba",
             "type": "ranged"
           },
           {
@@ -506,7 +472,8 @@
       "T": 10,
       "SV": 3,
       "W": 16,
-      "OC": 5
+      "OC": 5,
+      "INV": 6
     },
     "builds": [
       {
@@ -517,7 +484,7 @@
             "type": "ranged"
           },
           {
-            "name": "\u2019Eavy lobba",
+            "name": "’Eavy lobba",
             "type": "ranged"
           },
           {
@@ -546,7 +513,7 @@
     "pts": 130,
     "info": {
       "M": "6\"",
-      "T": 6,
+      "T": 7,
       "SV": 3,
       "W": 5,
       "OC": 2,
@@ -554,27 +521,15 @@
     },
     "builds": [
       {
-        "name": "Kan klaw + Rokkit",
+        "name": "Kan Klaw + Kan Blasta",
         "fixed": [
           {
-            "name": "Kan shoota",
-            "type": "ranged"
-          },
-          {
-            "name": "Grotzooka",
-            "type": "ranged"
-          },
-          {
-            "name": "Rokkit launcha",
-            "type": "ranged"
-          },
-          {
-            "name": "Skorcha",
-            "type": "ranged"
-          },
-          {
-            "name": "Kan klaw",
+            "name": "Kan Klaw",
             "type": "melee"
+          },
+          {
+            "name": "Kan Blasta",
+            "type": "ranged"
           }
         ],
         "slots": []
@@ -656,8 +611,8 @@
     "pts": 55,
     "info": {
       "M": "3\"",
-      "T": 5,
-      "SV": 5,
+      "T": 6,
+      "SV": 4,
       "W": 6,
       "OC": 2,
       "INV": 6
@@ -671,7 +626,7 @@
             "type": "ranged"
           },
           {
-            "name": "Grot crew",
+            "name": "Scavenged Shivs",
             "type": "melee"
           }
         ],
@@ -685,7 +640,7 @@
             "type": "ranged"
           },
           {
-            "name": "Grot crew",
+            "name": "Scavenged Shivs",
             "type": "melee"
           }
         ],
@@ -699,7 +654,7 @@
             "type": "ranged"
           },
           {
-            "name": "Grot crew",
+            "name": "Scavenged Shivs",
             "type": "melee"
           }
         ],
@@ -713,7 +668,7 @@
             "type": "ranged"
           },
           {
-            "name": "Grot crew",
+            "name": "Scavenged Shivs",
             "type": "melee"
           }
         ],
@@ -727,7 +682,7 @@
     "info": {
       "M": "8\"",
       "T": 12,
-      "SV": 3,
+      "SV": 2,
       "W": 20,
       "OC": 8,
       "INV": 5
@@ -840,22 +795,18 @@
       "SV": 2,
       "W": 30,
       "OC": 12,
-      "INV": 6
+      "INV": 5
     },
     "builds": [
       {
         "name": "Mega-choppa + Deffkannon",
         "fixed": [
           {
-            "name": "Deffkannon",
+            "name": "Deffkannon and Supa-rokkits",
             "type": "ranged"
           },
           {
             "name": "Supa-gatler",
-            "type": "ranged"
-          },
-          {
-            "name": "Supa-rokkits",
             "type": "ranged"
           },
           {
@@ -910,7 +861,7 @@
             "type": "melee"
           },
           {
-            "name": "Spiked wheel",
+            "name": "Spiked Ram",
             "type": "melee"
           }
         ],
@@ -929,7 +880,7 @@
             "type": "ranged"
           },
           {
-            "name": "Armoured hull",
+            "name": "Armoured Impact",
             "type": "ranged"
           }
         ],
@@ -938,11 +889,11 @@
             "name": "Main weapon",
             "choices": [
               {
-                "name": "Twin wazbom mega-kannon",
+                "name": "Dual Wazbom Mega-kannon",
                 "type": "ranged"
               },
               {
-                "name": "Twin tellyport mega-blasta",
+                "name": "Dual Tellyport Mega-blasta",
                 "type": "ranged"
               }
             ]
@@ -955,7 +906,7 @@
                 "type": "ranged"
               },
               {
-                "name": "Twin supa-shoota",
+                "name": "Dual Supa-shoota",
                 "type": "ranged"
               }
             ]
@@ -980,15 +931,15 @@
         "name": "default",
         "fixed": [
           {
-            "name": "Twin supa-shoota",
+            "name": "Dual Supa-shoota",
             "type": "ranged"
           },
           {
-            "name": "Twin supa-shoota",
+            "name": "Dual Supa-shoota",
             "type": "ranged"
           },
           {
-            "name": "Armoured hull",
+            "name": "Armoured Impact",
             "type": "melee"
           }
         ],
@@ -997,7 +948,7 @@
             "name": "Additional twin supa-shoota",
             "choices": [
               {
-                "name": "Twin supa-shoota",
+                "name": "Dual Supa-shoota",
                 "type": "ranged"
               }
             ]
@@ -1063,7 +1014,7 @@
         ]
       }
     ],
-    "_note": "Verified vs wahapedia 11ed 2026-08-24: power klaw fixed; kustom-mega blasta replaceable (killsaw/kombi/kustom shoota); optional tellyport blasta OR kustom force field. Grot oiler excluded \u2014 support wargear, no damage profile (unresolvable choice skips every combo).",
+    "_note": "Verified vs wahapedia 11ed 2026-08-24: power klaw fixed; kustom-mega blasta replaceable (killsaw/kombi/kustom shoota); optional tellyport blasta OR kustom force field. Grot oiler excluded — support wargear, no damage profile (unresolvable choice skips every combo).",
     "info": {
       "M": "5\"",
       "T": 6,
@@ -1092,7 +1043,7 @@
                 "type": "melee"
               },
               {
-                "name": "Wrench",
+                "name": "Mek's Toolz",
                 "type": "melee"
               }
             ]
@@ -1123,13 +1074,14 @@
         "slots": []
       }
     ],
-    "_note": "Verified vs wahapedia 11ed 2026-08-24: equipped with Beast Snagga klaw; grot orderly is optional support wargear with NO damage profile \u2014 excluded from weapon slots (an unresolvable choice skips every combo in _resolve_slots_build).",
+    "_note": "Verified vs wahapedia 11ed 2026-08-24: equipped with Beast Snagga klaw; grot orderly is optional support wargear with NO damage profile — excluded from weapon slots (an unresolvable choice skips every combo in _resolve_slots_build).",
     "info": {
       "M": "6\"",
       "T": 5,
       "SV": 4,
       "W": 4,
-      "OC": 1
+      "OC": 1,
+      "INV": 6
     },
     "pts_3rd": 70
   },
@@ -1140,7 +1092,7 @@
         "name": "default",
         "fixed": [
           {
-            "name": "\u2019Urty syringe",
+            "name": "’Urty syringe",
             "type": "melee"
           },
           {
@@ -1151,7 +1103,7 @@
         "slots": []
       }
     ],
-    "_note": "Verified vs wahapedia 11ed 2026-08-24: equipped with power klaw + 'urty syringe; grot orderly is optional support wargear with NO damage profile \u2014 excluded from weapon slots (an unresolvable choice skips every combo in _resolve_slots_build).",
+    "_note": "Verified vs wahapedia 11ed 2026-08-24: equipped with power klaw + 'urty syringe; grot orderly is optional support wargear with NO damage profile — excluded from weapon slots (an unresolvable choice skips every combo in _resolve_slots_build).",
     "info": {
       "M": "6\"",
       "T": 5,
@@ -1167,7 +1119,7 @@
         "name": "default",
         "fixed": [
           {
-            "name": "Close combat weapon",
+            "name": "Big Mek's Toolz",
             "type": "melee"
           },
           {
@@ -1198,84 +1150,96 @@
   },
   "Warboss": {
     "pts": 100,
-    "_note": "Warboss wargear is datasheet-paired: kombi+twin sluggas pairs with big choppa OR power klaw; kustom shoota pairs ONLY with kustom choppa. Modeled as three fixed-pair builds so no illegal cross combo scores. Bundle name resolves both profiles via declared type (Chainsabres precedent).",
+    "_note": "Warboss 11e (GW app): equipped Kustom Choppa + Kustom Shoota; choppa may be replaced with Power Klaw, shoota with Kombi-rokkit or Kombi-skorcha. No skip-slot mechanism -> six fixed-pair builds cover all legal combos. Attack Squig no longer on Warboss datasheet (11e).",
     "builds": [
-      {
-        "name": "default",
-        "fixed": [
-          {
-            "name": "Kombi-weapon, twin sluggas and big choppa",
-            "type": "ranged"
-          },
-          {
-            "name": "Kombi-weapon, twin sluggas and big choppa",
-            "type": "melee"
-          }
-        ],
-        "slots": [
-          {
-            "name": "Attack Squig",
-            "choices": [
-              {
-                "name": "Attack squig",
-                "type": "melee"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "name": "kombi-powerklaw",
-        "fixed": [
-          {
-            "name": "Kombi-weapon",
-            "type": "ranged"
-          },
-          {
-            "name": "Power klaw",
-            "type": "melee"
-          }
-        ],
-        "slots": [
-          {
-            "name": "Attack Squig",
-            "choices": [
-              {
-                "name": "Attack squig",
-                "type": "melee"
-              }
-            ]
-          }
-        ]
-      },
       {
         "name": "shoota-choppa",
         "fixed": [
           {
-            "name": "Kustom shoota",
+            "name": "Kustom Shoota",
             "type": "ranged"
           },
           {
-            "name": "Kustom choppa",
+            "name": "Kustom Choppa",
             "type": "melee"
           }
         ],
-        "slots": [
+        "slots": []
+      },
+      {
+        "name": "kombi-rokkit-choppa",
+        "fixed": [
           {
-            "name": "Attack Squig",
-            "choices": [
-              {
-                "name": "Attack squig",
-                "type": "melee"
-              }
-            ]
+            "name": "Kombi-rokkit",
+            "type": "ranged"
+          },
+          {
+            "name": "Kustom Choppa",
+            "type": "melee"
           }
-        ]
+        ],
+        "slots": []
+      },
+      {
+        "name": "kombi-skorcha-choppa",
+        "fixed": [
+          {
+            "name": "Kombi-skorcha",
+            "type": "ranged"
+          },
+          {
+            "name": "Kustom Choppa",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "shoota-klaw",
+        "fixed": [
+          {
+            "name": "Kustom Shoota",
+            "type": "ranged"
+          },
+          {
+            "name": "Power Klaw",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "kombi-rokkit-klaw",
+        "fixed": [
+          {
+            "name": "Kombi-rokkit",
+            "type": "ranged"
+          },
+          {
+            "name": "Power Klaw",
+            "type": "melee"
+          }
+        ],
+        "slots": []
+      },
+      {
+        "name": "kombi-skorcha-klaw",
+        "fixed": [
+          {
+            "name": "Kombi-skorcha",
+            "type": "ranged"
+          },
+          {
+            "name": "Power Klaw",
+            "type": "melee"
+          }
+        ],
+        "slots": []
       }
     ],
     "info": {
       "M": "6\"",
-      "T": 5,
+      "T": 6,
       "SV": 4,
       "W": 6,
       "OC": 1,

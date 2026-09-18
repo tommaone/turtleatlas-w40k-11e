@@ -803,16 +803,16 @@
         "keywords": [
           "Cybernetica Datasmith",
           "Tech-Priest",
-          "Infantry",
           "Character",
           "Imperium",
           "Faction: Adeptus Mechanicus",
-          "Legio Cybernetica"
+          "Legio Cybernetica",
+          "Vehicle"
         ],
         "abilities": [
           {
             "name": "Support",
-            "description": "This model must be attached to the following unit:\n- ^^**Kastelan Robots^^**\n\nYou must attach this model to a **^^Kastelan Robots^^** unit, even if one or more other **^^Cybernetica Datasmith^^** models have already been attached to it. In such cases, if that bodyguard unit is destroyed, the Leader units attached to it become separate units with their original Starting Strengths. If you cannot attach this model to a ^^**Kastelan Robots^^** unit, this model cannot be deployed and counts as having been destroyed during the first battle round. While attached to a ^^**Kastelan Robots^^** unit, this model loses the INFANTRY keyword."
+            "description": "This model must be attached to the following unit: KASTELAN ROBOTS"
           },
           {
             "name": "Battle Protocols",
@@ -2424,7 +2424,7 @@
                   "Range": "36\"",
                   "A": "3D3",
                   "BS": "4+",
-                  "S": "10",
+                  "S": "9",
                   "AP": "-2",
                   "D": "2",
                   "Keywords": "Blast, Sustained Hits 1"
@@ -4172,7 +4172,7 @@
         "abilities": [
           {
             "name": "Support",
-            "description": "This model can be attached to the following units:\n**HASTARII EXTERMINATORS, HASTARII FUSILIERS, SECUTARII HOPLITES, SECUTARII PELTASTS, SKITARII RANGERS, SKITARII VANGUARD**"
+            "description": "This model can be attached to the following units: HASTARII EXTERMINATORS, HASTARII FUSILIERS, SECUTARII HOPLITES, SECUTARII PELTASTS, SKITARII RANGERS, SKITARII VANGUARD"
           },
           {
             "name": "Control Edict",
@@ -4470,7 +4470,7 @@
             ]
           },
           {
-            "name": "Skitarii Ranger w/ galvanic rifle",
+            "name": "Skitarii Ranger w/ data-tether",
             "profiles": [
               {
                 "name": "Close combat weapon",
@@ -4503,37 +4503,6 @@
           {
             "name": "Galvanic rifle",
             "profiles": [
-              {
-                "name": "Galvanic rifle",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "30\"",
-                  "A": "2",
-                  "BS": "4+",
-                  "S": "4",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": ""
-                }
-              }
-            ]
-          },
-          {
-            "name": "Skitarii Ranger w/ data-tether",
-            "profiles": [
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "1",
-                  "WS": "4+",
-                  "S": "3",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": ""
-                }
-              },
               {
                 "name": "Galvanic rifle",
                 "typeName": "Ranged Weapons",
@@ -4620,6 +4589,37 @@
                   "AP": "-1",
                   "D": "1",
                   "Keywords": "Devastating Wounds, Pistol"
+                }
+              },
+              {
+                "name": "Galvanic rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "30\"",
+                  "A": "2",
+                  "BS": "4+",
+                  "S": "4",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": ""
+                }
+              }
+            ]
+          },
+          {
+            "name": "Skitarii Ranger w/ galvanic rifle",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": ""
                 }
               },
               {
@@ -4867,7 +4867,7 @@
             ]
           },
           {
-            "name": "Skitarii Vanguard w/ radium carbine",
+            "name": "Skitarii Vanguard w/ omnispex",
             "profiles": [
               {
                 "name": "Close combat weapon",
@@ -4947,37 +4947,6 @@
             ]
           },
           {
-            "name": "Skitarii Vanguard w/ omnispex",
-            "profiles": [
-              {
-                "name": "Close combat weapon",
-                "typeName": "Melee Weapons",
-                "stats": {
-                  "Range": "Melee",
-                  "A": "1",
-                  "WS": "4+",
-                  "S": "3",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": ""
-                }
-              },
-              {
-                "name": "Radium carbine",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "3",
-                  "BS": "4+",
-                  "S": "3",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Anti-Infantry 4+"
-                }
-              }
-            ]
-          },
-          {
             "name": "Skitarii Vanguard Alpha",
             "profiles": [
               {
@@ -5017,6 +4986,37 @@
                   "AP": "-1",
                   "D": "1",
                   "Keywords": "Devastating Wounds, Pistol"
+                }
+              },
+              {
+                "name": "Radium carbine",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "3",
+                  "BS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 4+"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Skitarii Vanguard w/ radium carbine",
+            "profiles": [
+              {
+                "name": "Close combat weapon",
+                "typeName": "Melee Weapons",
+                "stats": {
+                  "Range": "Melee",
+                  "A": "1",
+                  "WS": "4+",
+                  "S": "3",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": ""
                 }
               },
               {
@@ -5811,7 +5811,7 @@
         "abilities": [
           {
             "name": "Leader",
-            "description": "This model can be attached to the following units:\n**CORPUSCARII ELECTRO-PRIESTS, FULGURITE ELECTRO-PRIESTS, HASTARII EXTERMINATORS, HASTARII FUSILIERS, KATAPHRON BREACHERS, KATAPHRON DESTROYERS, SECUTARII HOPLITES, SECUTARII PELTASTS, SERVITOR BATTLECLADE, SKITARII RANGERS, SKITARII VANGUARD**"
+            "description": "This model can be attached to the following units: CORPUSCARII ELECTRO-PRIESTS, FULGURITE ELECTRO-PRIESTS, HASTARII EXTERMINATORS, HASTARII FUSILIERS, KATAPHRON BREACHERS, KATAPHRON DESTROYERS, SECUTARII HOPLITES, SECUTARII PELTASTS, SERVITOR BATTLECLADE, SKITARII RANGERS, SKITARII VANGUARD"
           },
           {
             "name": "Lord of the Machine Cult",
@@ -6010,7 +6010,7 @@
           },
           {
             "name": "Leader",
-            "description": "This model can be attached to the following units:\n**CORPUSCARII ELECTRO-PRIESTS, FULGURITE ELECTRO-PRIESTS, KATAPHRON BREACHERS, KATAPHRON DESTROYERS, SECUTARII HOPLITES, SECUTARII PELTASTS, SKITARII RANGERS, SKITARII VANGUARD**"
+            "description": "This model can be attached to the following units: CORPUSCARII ELECTRO-PRIESTS, FULGURITE ELECTRO-PRIESTS, KATAPHRON BREACHERS, KATAPHRON DESTROYERS, SECUTARII HOPLITES, SECUTARII PELTASTS, SKITARII RANGERS, SKITARII VANGUARD"
           }
         ],
         "weapons": [
@@ -6140,7 +6140,7 @@
         "abilities": [
           {
             "name": "Leader",
-            "description": "This model can be attached to the following units:\n**CORPUSCARII ELECTRO-PRIESTS, FULGURITE ELECTRO-PRIESTS, HASTARII EXTERMINATORS, HASTARII FUSILIERS, KATAPHRON BREACHERS, KATAPHRON DESTROYERS, SECUTARII HOPLITES, SECUTARII PELTASTS, SERVITOR BATTLECLADE, SKITARII RANGERS, SKITARII VANGUARD**"
+            "description": "This model can be attached to the following units: CORPUSCARII ELECTRO-PRIESTS, FULGURITE ELECTRO-PRIESTS, HASTARII EXTERMINATORS, HASTARII FUSILIERS, KATAPHRON BREACHERS, KATAPHRON DESTROYERS, SECUTARII HOPLITES, SECUTARII PELTASTS, SERVITOR BATTLECLADE, SKITARII RANGERS, SKITARII VANGUARD"
           },
           {
             "name": "Galvanic Field",
@@ -6286,7 +6286,7 @@
           },
           {
             "name": "Support",
-            "description": "This model can be attached to the following units:\n**CORPUSCARII ELECTRO-PRIESTS, FULGURITE ELECTRO-PRIESTS, HASTARII EXTERMINATORS, HASTARII FUSILIERS, KATAPHRON BREACHERS, KATAPHRON DESTROYERS, SECUTARII HOPLITES, SECUTARII PELTASTS, SERVITOR BATTLECLADE, SKITARII RANGERS, SKITARII VANGUARD**"
+            "description": "This model can be attached to the following units: CORPUSCARII ELECTRO-PRIESTS, FULGURITE ELECTRO-PRIESTS, HASTARII EXTERMINATORS, HASTARII FUSILIERS, KATAPHRON BREACHERS, KATAPHRON DESTROYERS, SECUTARII HOPLITES, SECUTARII PELTASTS, SERVITOR BATTLECLADE, SKITARII RANGERS, SKITARII VANGUARD"
           }
         ],
         "weapons": [
@@ -6509,7 +6509,7 @@
   ],
   "_meta": {
     "bsdata_faction": "Imperium - Adeptus Mechanicus",
-    "bsdata_revision": 10,
+    "bsdata_revision": 16,
     "bsdata_units": 101,
     "mfm_units": 34,
     "merged_units": 34

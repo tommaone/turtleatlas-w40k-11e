@@ -44,8 +44,6 @@ KNOWN_NO_WEAPONS: dict[str, set[str]] = {
     "tau-empire": {"tidewall shieldline"},
     "chaos-daemons": {"feculent gnarlmaw", "skull altar"},
     "tyranids": {"spore mines", "mucolid spores"},
-    # Orks: Gunwagon, Nazdreg, Warbuggies — MFM v1.4 units with no BSData profile
-    "orks": {"gunwagon", "nazdreg", "warbuggies"},
 }
 
 
@@ -216,7 +214,7 @@ def test_all_mfm_units_have_weapons(name, slug, mfm_units):
 EXPECTED_COVERAGE = {
     "total_mfm": 1434,
     "total_missing": 0,
-    "total_empty_stats": 3,  # orks: Gunwagon, Nazdreg, Warbuggies (no BSData profile)
+    "total_empty_stats": 0,
 }
 
 # Number of legitimately weaponless units expected per faction slug.
@@ -232,7 +230,7 @@ EXPECTED_NO_WEAPONS: dict[str, int] = {
     "tau-empire": 1,
     "chaos-daemons": 2,
     "tyranids": 2,
-    "orks": 3,
+    "orks": 0,
 }
 
 

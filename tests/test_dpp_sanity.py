@@ -59,6 +59,9 @@ NO_WEAPONS_WHITELIST = {
     "Desolation Squad", "Devastator Squad", "Centurion Devastator Squad",
     "Tervigon", "Leman Russ Punisher", "Wyvern", "Centaur Rsv",
     "Telemon Heavy Dreadnought",
+    # Weak artillery / support gun — Gaze of Gork profiles carry low
+    # anti-MEQ output at 135 pts (11e rebaseline, 2026-09-19).
+    "Big’Ed Bossbunka",
     # Necron gimmick / huge
     "Tesseract Vault", "Obelisk",
     # Config bugs (known)

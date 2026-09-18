@@ -41,20 +41,33 @@ def _resolve(engine, name, MEQ):
 
 
 class TestWarboss:
-    """Golden: three paired builds — no illegal cross combos."""
+    """Golden: six paired builds — every legal 11e combo, no cross combos."""
 
-    def test_three_builds_exist(self):
+    def test_six_builds_exist(self):
         d = json.loads(WEAPON_OPTIONS.read_text())
         names = [b["name"] for b in d["Warboss"]["builds"]]
-        assert names == ["default", "kombi-powerklaw", "shoota-choppa"]
+        assert names == [
+            "shoota-choppa",
+            "kombi-rokkit-choppa",
+            "kombi-skorcha-choppa",
+            "shoota-klaw",
+            "kombi-rokkit-klaw",
+            "kombi-skorcha-klaw",
+        ]
 
-    def test_shoota_only_pairs_with_kustom_choppa(self):
+    def test_every_build_is_a_legal_pair(self):
         d = json.loads(WEAPON_OPTIONS.read_text())
+        ranged = {"Kustom Shoota", "Kombi-rokkit", "Kombi-skorcha"}
+        melee = {"Kustom Choppa", "Power Klaw"}
         for b in d["Warboss"]["builds"]:
             all_names = [f["name"] for f in b.get("fixed", [])]
-            if "Kustom shoota" in all_names:
-                assert "Kustom choppa" in all_names
-                assert "Big choppa" not in all_names and "Power klaw" not in all_names
+            r = [n for n in all_names if n in ranged]
+            m = [n for n in all_names if n in melee]
+            assert len(r) == 1, f"{b['name']}: expected exactly one ranged, got {r}"
+            assert len(m) == 1, f"{b['name']}: expected exactly one melee, got {m}"
+            # 11e: shoota/kombi ranger pairs with EITHER choppa or klaw.
+            # The old 10e 'Big choppa' is not a Warboss option anymore.
+            assert "Big Choppa" not in all_names, f"{b['name']}: stale 10e weapon"
 
 
 class TestBigMekInMegaArmour:
@@ -65,7 +78,7 @@ class TestBigMekInMegaArmour:
         # Regression: pre-fix the Grot Oiler slot poisoned every combo -> bare fixed.
         assert info.get("_n_combos", 0) > 0
         # Tellyport blasta combo must be reachable (best loadout takes it vs MEQ).
-        assert "Tellyport blasta" in [w.name for w in ranged]
+        assert "Tellyport Blasta" in [w.name for w in ranged]
 
     def test_weapon_slot_types(self):
         d = json.loads(CHARACTERS.read_text())
@@ -87,7 +100,7 @@ class TestMek:
     def test_single_ranged_mega_slugga(self, orks_engine, MEQ):
         _pts, ranged, _melee, _i, _info = _resolve(orks_engine, "Mek", MEQ)
         names = [w.name for w in ranged]
-        assert names == ["Kustom mega-slugga"], f"expected exactly one mega-slugga, got {names}"
+        assert names == ["Kustom Mega-slugga"], f"expected exactly one mega-slugga, got {names}"
 
     def test_melee_swap_options(self, orks_engine, MEQ):
         res = orks_engine.resolve_loadout("Mek", MEQ)
@@ -98,7 +111,7 @@ class TestPainboss:
     def test_base_claw_only(self, orks_engine, MEQ):
         _pts, ranged, melee, _i, _info = _resolve(orks_engine, "Painboss", MEQ)
         assert ranged == []
-        assert [w.name for w in melee] == ["Beast Snagga klaw"]
+        assert [w.name for w in melee] == ["Beast Snagga Klaw"]
 
     def test_no_grot_orderly(self, orks_engine, MEQ):
         res = orks_engine.resolve_loadout("Painboss", MEQ)
@@ -114,7 +127,7 @@ class TestPainboy:
         # Regression: audit sweep wrote a literal '"' into the name and used an
         # ASCII apostrophe — catalogue name carries U+2019. Lookup silently
         # KeyError'd and the syringe vanished from scoring.
-        assert names == ["Power klaw", "\u2019Urty syringe"]
+        assert names == ["Power Klaw", "\u2019Urty syringe"]
 
 
 # ---------------------------------------------------------------------------
@@ -141,24 +154,24 @@ class TestBurnaBommer:
     def test_base_guns_and_optional_skorcha(self, orks_engine, MEQ):
         _pts, ranged, _melee, _i, _info = _resolve(orks_engine, "Burna-Bommer", MEQ)
         names = [w.name for w in ranged]
-        assert names.count("Twin big shoota") >= 1
-        assert names.count("Twin supa-shoota") >= 1
-        assert names.count("Skorcha missile rack") <= 1
+        assert names.count("Dual Big Shoota") >= 1
+        assert names.count("Dual Supa-shoota") >= 1
+        assert names.count("Skorcha Missile Rack") <= 1
 
 
 class TestDakkajet:
-    """Golden: TWO base twin supa-shootas + up to ONE additional (max 3)."""
+    """Golden: TWO base dual supa-shootas + up to ONE additional (max 3)."""
 
     def test_two_to_three_supa_shootas(self, orks_engine, MEQ):
         _pts, ranged, _melee, _i, _info = _resolve(orks_engine, "Dakkajet", MEQ)
-        n = [w.name for w in ranged].count("Twin supa-shoota")
-        assert 2 <= n <= 3, f"expected 2-3 twin supa-shootas, got {n}"
+        n = [w.name for w in ranged].count("Dual Supa-shoota")
+        assert 2 <= n <= 3, f"expected 2-3 dual supa-shootas, got {n}"
 
 
 class TestDeffDread:
     """Golden: FOUR arm slots over the union pool; stompy feet always present."""
 
-    POOL = {"Dread klaw", "Big shoota", "Kustom mega-blasta", "Rokkit launcha", "Skorcha"}
+    POOL = {"Dread Klaws", "Big Shoota", "Kustom Mega-blasta", "Rokkit Launcha", "Skorcha"}
 
     def test_four_arm_weapons(self, orks_engine, MEQ):
         _pts, ranged, melee, _i, _info = _resolve(orks_engine, "Deff Dread", MEQ)
@@ -167,7 +180,7 @@ class TestDeffDread:
 
     def test_stompy_feet_fixed(self, orks_engine, MEQ):
         _pts, _r, melee, _i, _info = _resolve(orks_engine, "Deff Dread", MEQ)
-        assert "Stompy feet" in [w.name for w in melee]
+        assert "Stompy Feet" in [w.name for w in melee]
 
     def test_all_choices_resolve(self, orks_engine, MEQ):
         """No unresolvable choice may silently skip combos."""
@@ -187,10 +200,10 @@ class TestWazbomBlastajet:
     def test_main_weapon_exactly_one(self, orks_engine, MEQ):
         _pts, ranged, _melee, _i, _info = _resolve(orks_engine, "Wazbom Blastajet", MEQ)
         names = [w.name for w in ranged]
-        main = [n for n in names if n in ("Twin wazbom mega-kannon", "Twin tellyport mega-blasta")]
+        main = [n for n in names if n in ("Dual Wazbom Mega-kannon", "Dual Tellyport Mega-blasta")]
         assert len(main) == 1
-        assert names.count("Smasha gun") == 1
-        assert names.count("Twin supa-shoota") <= 1
+        assert names.count("Smasha Gun") == 1
+        assert names.count("Dual Supa-shoota") <= 1
 
 
 def test_golden_source_file_exists():

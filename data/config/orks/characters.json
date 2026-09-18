@@ -1,789 +1,803 @@
 {
-  "_note": "orks characters \u2014 generated from BSData + MFM",
-  "_source": "BSData 11e + MFM (auto-generated)",
-  "Bannernob": {
-    "pts": 35,
-    "info": {
-      "M": "6\"",
-      "T": 5,
-      "SV": 4,
-      "W": 4,
-      "OC": 6,
-      "INV": 5
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Shoota",
-              "type": "ranged"
-            },
-            {
-              "name": "Choppa",
-              "type": "melee"
-            }
-          ],
-          "slots": []
-        }
-      ]
+ "_note": "orks characters — generated from BSData + MFM",
+ "_source": "BSData 11e + MFM (auto-generated)",
+ "Bannernob": {
+  "pts": 35,
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 4,
+   "W": 4,
+   "OC": 3,
+   "INV": 5
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+       "name": "Shoota",
+       "type": "ranged"
+      },
+      {
+       "name": "Choppa",
+       "type": "melee"
+      }
+     ],
+     "slots": []
     }
-  },
-  "Beastboss": {
-    "pts": 85,
-    "info": {
-      "M": "6\"",
-      "T": 5,
-      "SV": 4,
-      "W": 6,
-      "OC": 1,
-      "INV": 5
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Shoota",
-              "type": "ranged"
-            },
-            {
-              "name": "Beastchoppa",
-              "type": "melee"
-            },
-            {
-              "name": "Beast Snagga klaw",
-              "type": "melee"
-            }
-          ],
-          "slots": []
-        }
-      ]
-    }
-  },
-  "Beastboss On Squigosaur": {
-    "pts": 140,
-    "info": {
-      "M": "10\"",
-      "T": 8,
-      "SV": 3,
-      "W": 8,
-      "OC": 3,
-      "INV": 5
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Slugga",
-              "type": "ranged"
-            },
-            {
-              "name": "Beastchoppa",
-              "type": "melee"
-            },
-            {
-              "name": "Squigosaur\u2019s jaws",
-              "type": "melee"
-            }
-          ],
-          "slots": [
-            {
-              "name": "Ranged weapon 1",
-              "choices": [
-                {
-                  "name": "Thump gun",
-                  "type": "ranged"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    "pts_3rd": 155
-  },
-  "Big Mek": {
-    "pts": 85,
-    "info": {
-      "M": "6\"",
-      "T": 5,
-      "SV": 3,
-      "W": 6,
-      "OC": 1
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [],
-          "slots": [
-            {
-              "name": "Ranged weapon 1",
-              "choices": [
-                {
-                  "name": "Traktor blasta",
-                  "type": "ranged"
-                },
-                {
-                  "name": "Kustom mega-blasta",
-                  "type": "ranged"
-                }
-              ]
-            },
-            {
-              "name": "Melee weapon 1",
-              "choices": [
-                {
-                  "name": "Drilla",
-                  "type": "melee"
-                },
-                {
-                  "name": "Power klaw",
-                  "type": "melee"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    "pts_3rd": 95
-  },
-  "Big Mek In Mega Armour": {
-    "pts": 90,
-    "info": {
-      "M": "5\"",
-      "T": 6,
-      "SV": 2,
-      "W": 5,
-      "OC": 1
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Power klaw",
-              "type": "melee"
-            }
-          ],
-          "slots": [
-            {
-              "name": "Additional Options",
-              "choices": [
-                {
-                  "name": "Tellyport blasta",
-                  "type": "ranged"
-                },
-                {
-                  "name": "Kustom force field",
-                  "type": "ranged"
-                }
-              ]
-            },
-            {
-              "name": "Weapon",
-              "choices": [
-                {
-                  "name": "Kustom mega-blasta",
-                  "type": "ranged"
-                },
-                {
-                  "name": "Kustom shoota",
-                  "type": "ranged"
-                },
-                {
-                  "name": "Kombi-weapon",
-                  "type": "ranged"
-                },
-                {
-                  "name": "Killsaw",
-                  "type": "melee"
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "_note": "Verified vs wahapedia 11ed 2026-08-24: power klaw fixed; kustom-mega blasta replaceable (killsaw/kombi/kustom shoota); optional tellyport blasta OR kustom force field. Grot oiler + kustom force field are non-weapon wargear with no damage profiles \u2014 excluded from weapon slots (an unresolvable choice skips every combo in _resolve_slots_build). Tellyport blasta kept as slot pick."
-    }
-  },
-  "Big Mek With Shokk Attack Gun": {
-    "pts": 95,
-    "info": {
-      "M": "6\"",
-      "T": 5,
-      "SV": 4,
-      "W": 5,
-      "OC": 1
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Close combat weapon",
-              "type": "melee"
-            },
-            {
-              "name": "Shokk attack gun",
-              "type": "ranged"
-            }
-          ],
-          "slots": [
-            {
-              "name": "Grot assistant",
-              "choices": [
-                {
-                  "name": "Grot assistant",
-                  "type": "ranged"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  },
-  "Bigboss": {
-    "pts": 50,
-    "info": {
-      "M": "6\"",
-      "T": 5,
-      "SV": 4,
-      "W": 5,
-      "OC": 1
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Slugga",
-              "type": "ranged"
-            },
-            {
-              "name": "Two-handed big choppa",
-              "type": "melee"
-            }
-          ],
-          "slots": []
-        }
-      ]
-    }
-  },
-  "Boss Snikrot": {
-    "pts": 80,
-    "info": {
-      "M": "6\"",
-      "T": 5,
-      "SV": 5,
-      "W": 6,
-      "OC": 1,
-      "INV": 5
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Slugga",
-              "type": "ranged"
-            },
-            {
-              "name": "Mork\u2019s Teeth",
-              "type": "melee"
-            }
-          ],
-          "slots": []
-        }
-      ]
-    }
-  },
-  "Deffkilla Wartrike": {
-    "pts": 80,
-    "info": {
-      "M": "12\"",
-      "T": 6,
-      "SV": 4,
-      "W": 9,
-      "OC": 3,
-      "INV": 5
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Deffkilla boomstikks",
-              "type": "ranged"
-            },
-            {
-              "name": "Killa jet - burna",
-              "type": "ranged"
-            },
-            {
-              "name": "Snagga klaw",
-              "type": "melee"
-            },
-            {
-              "name": "killa jet",
-              "type": "ranged"
-            }
-          ],
-          "slots": []
-        }
-      ]
-    }
-  },
-  "Ghazghkull Thraka": {
-    "pts": 300,
-    "info": {
-      "M": "5\"",
-      "T": 6,
-      "SV": 2,
-      "W": 10,
-      "OC": 4,
-      "INV": 4
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Mork\u2019s Roar",
-              "type": "ranged"
-            },
-            {
-              "name": "Gork\u2019s Klaw - strike",
-              "type": "melee"
-            },
-            {
-              "name": "Gork\u2019s Klaw - sweep",
-              "type": "melee"
-            },
-            {
-              "name": "Makari\u2019s stabba",
-              "type": "melee"
-            }
-          ],
-          "slots": []
-        }
-      ]
-    }
-  },
-  "Mek": {
-    "pts": 45,
-    "info": {
-      "M": "6\"",
-      "T": 5,
-      "SV": 5,
-      "W": 4,
-      "OC": 1
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Kustom mega-slugga",
-              "type": "ranged"
-            }
-          ],
-          "slots": [
-            {
-              "name": "Weapon",
-              "choices": [
-                {
-                  "name": "Killsaw",
-                  "type": "melee"
-                },
-                {
-                  "name": "Wrench",
-                  "type": "melee"
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "_note": "Shadowed by weapon_options.json entry (engine precedence)."
-    }
-  },
-  "Mozrog Skragbad": {
-    "pts": 170,
-    "info": {
-      "M": "10\"",
-      "T": 8,
-      "SV": 3,
-      "W": 8,
-      "OC": 3,
-      "INV": 4
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Thump gun",
-              "type": "ranged"
-            },
-            {
-              "name": "Big Chompa\u2019s jaws",
-              "type": "melee"
-            },
-            {
-              "name": "Gutrippa",
-              "type": "melee"
-            }
-          ],
-          "slots": []
-        }
-      ]
-    }
-  },
-  "Painboss": {
-    "pts": 60,
-    "info": {
-      "M": "6\"",
-      "T": 5,
-      "SV": 4,
-      "W": 4,
-      "OC": 1,
-      "FNP": 5
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Beast snagga klaw",
-              "type": "melee"
-            }
-          ],
-          "slots": []
-        }
-      ],
-      "_note": "Shadowed by weapon_options.json entry (engine precedence). Grot orderly excluded \u2014 support wargear, no damage profile."
-    },
-    "pts_3rd": 70
-  },
-  "Painboy": {
-    "pts": 45,
-    "info": {
-      "M": "6\"",
-      "T": 5,
-      "SV": 5,
-      "W": 3,
-      "OC": 1,
-      "FNP": 5
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "\u2019Urty syringe",
-              "type": "melee"
-            },
-            {
-              "name": "Power klaw",
-              "type": "melee"
-            }
-          ],
-          "slots": []
-        }
-      ],
-      "_note": "Shadowed by weapon_options.json entry (engine precedence). Grot orderly excluded \u2014 support wargear, no damage profile."
-    }
-  },
-  "Warboss": {
-    "pts": 100,
-    "weapon_options": {
-      "pts": 85,
-      "_note": "Warboss wargear is datasheet-paired: kombi+twin sluggas pairs with big choppa OR power klaw; kustom shoota pairs ONLY with kustom choppa. Modeled as three fixed-pair builds so no illegal cross combo scores. Bundle name resolves both profiles via declared type (Chainsabres precedent).",
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Kombi-weapon, twin sluggas and big choppa",
-              "type": "ranged"
-            },
-            {
-              "name": "Kombi-weapon, twin sluggas and big choppa",
-              "type": "melee"
-            }
-          ],
-          "slots": [
-            {
-              "name": "Attack Squig",
-              "choices": [
-                {
-                  "name": "Attack squig",
-                  "type": "melee"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "kombi-powerklaw",
-          "fixed": [
-            {
-              "name": "Kombi-weapon",
-              "type": "ranged"
-            },
-            {
-              "name": "Power klaw",
-              "type": "melee"
-            }
-          ],
-          "slots": [
-            {
-              "name": "Attack Squig",
-              "choices": [
-                {
-                  "name": "Attack squig",
-                  "type": "melee"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "shoota-choppa",
-          "fixed": [
-            {
-              "name": "Kustom shoota",
-              "type": "ranged"
-            },
-            {
-              "name": "Kustom choppa",
-              "type": "melee"
-            }
-          ],
-          "slots": [
-            {
-              "name": "Attack Squig",
-              "choices": [
-                {
-                  "name": "Attack squig",
-                  "type": "melee"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    "info": {
-      "M": "6\"",
-      "T": 5,
-      "SV": 4,
-      "W": 6,
-      "OC": 1,
-      "INV": 5
-    }
-  },
-  "Warboss (Armageddon)": {
-    "pts": 75,
-    "info": {
-      "M": "6\"",
-      "T": 5,
-      "SV": 4,
-      "W": 6,
-      "OC": 1,
-      "INV": 5
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Kustom shoota",
-              "type": "ranged"
-            },
-            {
-              "name": "Kustom choppa",
-              "type": "melee"
-            }
-          ],
-          "slots": []
-        }
-      ]
-    }
-  },
-  "Warboss In Mega Armour": {
-    "pts": 125,
-    "info": {
-      "M": "5\"",
-      "T": 6,
-      "SV": 2,
-      "W": 7,
-      "OC": 1,
-      "INV": 5
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Big shoota",
-              "type": "ranged"
-            },
-            {
-              "name": "\u2019Uge choppa",
-              "type": "melee"
-            }
-          ],
-          "slots": []
-        }
-      ]
-    },
-    "pts_3rd": 140
-  },
-  "Wazdakka Gutsmek": {
-    "pts": 200,
-    "info": {
-      "M": "14\"",
-      "T": 8,
-      "SV": 3,
-      "W": 10,
-      "OC": 3,
-      "INV": 4,
-      "deep_strike": true
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Psyko-gatler",
-              "type": "ranged"
-            },
-            {
-              "name": "Grabba dragga",
-              "type": "ranged"
-            },
-            {
-              "name": "Fixit's wrench",
-              "type": "melee"
-            },
-            {
-              "name": "Grabba dragga",
-              "type": "melee"
-            },
-            {
-              "name": "Speeding bulk and flaming exhaust",
-              "type": "melee"
-            }
-          ],
-          "slots": []
-        }
-      ]
-    }
-  },
-  "Weirdboy": {
-    "pts": 65,
-    "info": {
-      "M": "6\"",
-      "T": 5,
-      "SV": 5,
-      "W": 4,
-      "OC": 1
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "\u2019Eadbanger",
-              "type": "ranged"
-            },
-            {
-              "name": "Weirdboy staff",
-              "type": "melee"
-            }
-          ],
-          "slots": []
-        }
-      ]
-    }
-  },
-  "Wurrboy": {
-    "pts": 60,
-    "info": {
-      "M": "6\"",
-      "T": 5,
-      "SV": 5,
-      "W": 4,
-      "OC": 1
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Eyez of Mork",
-              "type": "ranged"
-            },
-            {
-              "name": "Close combat weapon",
-              "type": "melee"
-            }
-          ],
-          "slots": []
-        }
-      ]
-    }
-  },
-  "Zodgrod Wortsnagga": {
-    "pts": 50,
-    "info": {
-      "M": "6\"",
-      "T": 5,
-      "SV": 5,
-      "W": 5,
-      "OC": 1
-    },
-    "weapon_options": {
-      "builds": [
-        {
-          "name": "default",
-          "fixed": [
-            {
-              "name": "Squigstoppa",
-              "type": "ranged"
-            },
-            {
-              "name": "Da Grabzappa",
-              "type": "melee"
-            }
-          ],
-          "slots": []
-        }
-      ]
-    }
+   ]
   }
+ },
+ "Beastboss": {
+  "pts": 85,
+  "info": {
+   "M": "6\"",
+   "T": 6,
+   "SV": 4,
+   "W": 6,
+   "OC": 1,
+   "INV": 5
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+       "name": "Shoota",
+       "type": "ranged"
+      },
+      {
+       "name": "Beastchoppa",
+       "type": "melee"
+      },
+      {
+       "name": "Beast Snagga klaw",
+       "type": "melee"
+      }
+     ],
+     "slots": []
+    }
+   ]
+  }
+ },
+ "Beastboss On Squigosaur": {
+  "pts": 140,
+  "info": {
+   "M": "10\"",
+   "T": 9,
+   "SV": 3,
+   "W": 10,
+   "OC": 3,
+   "INV": 5
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+       "name": "Slugga",
+       "type": "ranged"
+      },
+      {
+       "name": "Beastchoppa",
+       "type": "melee"
+      },
+      {
+       "name": "Squigosaur’s jaws",
+       "type": "melee"
+      }
+     ],
+     "slots": [
+      {
+       "name": "Ranged weapon 1",
+       "choices": [
+        {
+         "name": "Thump gun",
+         "type": "ranged"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "pts_3rd": 155
+ },
+ "Big Mek": {
+  "pts": 85,
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 3,
+   "W": 6,
+   "OC": 1
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [],
+     "slots": [
+      {
+       "name": "Ranged weapon 1",
+       "choices": [
+        {
+         "name": "Traktor blasta",
+         "type": "ranged"
+        },
+        {
+         "name": "Kustom mega-blasta",
+         "type": "ranged"
+        }
+       ]
+      },
+      {
+       "name": "Melee weapon 1",
+       "choices": [
+        {
+         "name": "Drilla",
+         "type": "melee"
+        },
+        {
+         "name": "Power klaw",
+         "type": "melee"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "pts_3rd": 95
+ },
+ "Big Mek In Mega Armour": {
+  "pts": 90,
+  "info": {
+   "M": "5\"",
+   "T": 6,
+   "SV": 2,
+   "W": 5,
+   "OC": 1
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+       "name": "Power klaw",
+       "type": "melee"
+      }
+     ],
+     "slots": [
+      {
+       "name": "Additional Options",
+       "choices": [
+        {
+         "name": "Tellyport blasta",
+         "type": "ranged"
+        },
+        {
+         "name": "Kustom force field",
+         "type": "ranged"
+        }
+       ]
+      },
+      {
+       "name": "Weapon",
+       "choices": [
+        {
+         "name": "Kustom mega-blasta",
+         "type": "ranged"
+        },
+        {
+         "name": "Kustom shoota",
+         "type": "ranged"
+        },
+        {
+         "name": "Kombi-weapon",
+         "type": "ranged"
+        },
+        {
+         "name": "Killsaw",
+         "type": "melee"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "_note": "Verified vs wahapedia 11ed 2026-08-24: power klaw fixed; kustom-mega blasta replaceable (killsaw/kombi/kustom shoota); optional tellyport blasta OR kustom force field. Grot oiler + kustom force field are non-weapon wargear with no damage profiles — excluded from weapon slots (an unresolvable choice skips every combo in _resolve_slots_build). Tellyport blasta kept as slot pick."
+  }
+ },
+ "Big Mek With Shokk Attack Gun": {
+  "pts": 95,
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 4,
+   "W": 5,
+   "OC": 1
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+       "name": "Big Mek's Toolz",
+       "type": "melee"
+      },
+      {
+       "name": "Shokk attack gun",
+       "type": "ranged"
+      }
+     ],
+     "slots": [
+      {
+       "name": "Grot assistant",
+       "choices": [
+        {
+         "name": "Grot assistant",
+         "type": "ranged"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "Bigboss": {
+  "pts": 50,
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 4,
+   "W": 5,
+   "OC": 1
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+       "name": "Slugga",
+       "type": "ranged"
+      },
+      {
+"name": "Big Choppa",
+        "type": "melee"
+      }
+     ],
+     "slots": []
+    }
+   ]
+  }
+ },
+ "Boss Snikrot": {
+  "pts": 80,
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 5,
+   "W": 6,
+   "OC": 1,
+   "INV": 5
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+       "name": "Slugga",
+       "type": "ranged"
+      },
+      {
+"name": "Mork’s Teef",
+        "type": "melee"
+      }
+     ],
+     "slots": []
+    }
+   ]
+  }
+ },
+ "Deffkilla Wartrike": {
+  "pts": 80,
+  "info": {
+   "M": "12\"",
+   "T": 6,
+   "SV": 4,
+   "W": 9,
+   "OC": 3,
+   "INV": 5
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+       "name": "Deffkilla boomstikks",
+       "type": "ranged"
+      },
+      {
+       "name": "Killa jet - burna",
+       "type": "ranged"
+      },
+      {
+       "name": "Snagga klaw",
+       "type": "melee"
+      },
+      {
+       "name": "killa jet",
+       "type": "ranged"
+      }
+     ],
+     "slots": []
+    }
+   ]
+  }
+ },
+ "Ghazghkull Thraka": {
+  "pts": 300,
+  "info": {
+   "M": "5\"",
+   "T": 10,
+   "SV": 2,
+   "W": 16,
+   "OC": 4,
+   "INV": 4
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+       "name": "Mork’s Roar",
+       "type": "ranged"
+      },
+      {
+       "name": "Gork’s Klaw - strike",
+       "type": "melee"
+      },
+      {
+       "name": "Gork’s Klaw - sweep",
+       "type": "melee"
+      },
+      {
+       "name": "Makari’s stabba",
+       "type": "melee"
+      }
+     ],
+     "slots": []
+    }
+   ]
+  }
+ },
+ "Mek": {
+  "pts": 45,
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 5,
+   "W": 4,
+   "OC": 1
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+       "name": "Kustom mega-slugga",
+       "type": "ranged"
+      }
+     ],
+     "slots": [
+      {
+       "name": "Weapon",
+       "choices": [
+        {
+         "name": "Killsaw",
+         "type": "melee"
+        },
+        {
+         "name": "Mek's Toolz",
+         "type": "melee"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "_note": "Shadowed by weapon_options.json entry (engine precedence)."
+  }
+ },
+ "Mozrog Skragbad": {
+  "pts": 170,
+  "info": {
+   "M": "10\"",
+   "T": 9,
+   "SV": 3,
+   "W": 10,
+   "OC": 3,
+   "INV": 4
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+       "name": "Thump gun",
+       "type": "ranged"
+      },
+      {
+       "name": "Big Chompa’s jaws",
+       "type": "melee"
+      },
+      {
+       "name": "Gutrippa",
+       "type": "melee"
+      }
+     ],
+     "slots": []
+    }
+   ]
+  }
+ },
+ "Painboss": {
+  "pts": 60,
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 4,
+   "W": 4,
+   "OC": 1,
+   "FNP": 5,
+   "INV": 6
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+       "name": "Beast snagga klaw",
+       "type": "melee"
+      }
+     ],
+     "slots": []
+    }
+   ],
+   "_note": "Shadowed by weapon_options.json entry (engine precedence). Grot orderly excluded — support wargear, no damage profile."
+  },
+  "pts_3rd": 70
+ },
+ "Painboy": {
+  "pts": 45,
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 5,
+   "W": 3,
+   "OC": 1,
+   "FNP": 5
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+       "name": "’Urty syringe",
+       "type": "melee"
+      },
+      {
+       "name": "Power klaw",
+       "type": "melee"
+      }
+     ],
+     "slots": []
+    }
+   ],
+   "_note": "Shadowed by weapon_options.json entry (engine precedence). Grot orderly excluded — support wargear, no damage profile."
+  }
+ },
+ "Warboss": {
+  "pts": 100,
+  "weapon_options": {
+   "pts": 85,
+   "_note": "Warboss wargear is datasheet-paired (11e, verified 2026-09-19 vs 40k.app): Kustom Choppa can be replaced by Power Klaw; Kustom Shoota by Kombi-rokkit or Kombi-skorcha. All six legal pairs modeled as fixed builds so no illegal cross combo scores. Shadowed by weapon_options.json.",
+   "builds": [
+    {
+     "name": "shoota-choppa",
+     "fixed": [
+      {
+       "name": "Kustom Shoota",
+       "type": "ranged"
+      },
+      {
+       "name": "Kustom Choppa",
+       "type": "melee"
+      }
+     ],
+     "slots": []
+    },
+    {
+     "name": "kombi-rokkit-choppa",
+     "fixed": [
+      {
+       "name": "Kombi-rokkit",
+       "type": "ranged"
+      },
+      {
+       "name": "Kustom Choppa",
+       "type": "melee"
+      }
+     ],
+     "slots": []
+    },
+    {
+     "name": "kombi-skorcha-choppa",
+     "fixed": [
+      {
+       "name": "Kombi-skorcha",
+       "type": "ranged"
+      },
+      {
+       "name": "Kustom Choppa",
+       "type": "melee"
+      }
+     ],
+     "slots": []
+    },
+    {
+     "name": "shoota-klaw",
+     "fixed": [
+      {
+       "name": "Kustom Shoota",
+       "type": "ranged"
+      },
+      {
+       "name": "Power Klaw",
+       "type": "melee"
+      }
+     ],
+     "slots": []
+    },
+    {
+     "name": "kombi-rokkit-klaw",
+     "fixed": [
+      {
+       "name": "Kombi-rokkit",
+       "type": "ranged"
+      },
+      {
+       "name": "Power Klaw",
+       "type": "melee"
+      }
+     ],
+     "slots": []
+    },
+    {
+     "name": "kombi-skorcha-klaw",
+     "fixed": [
+      {
+       "name": "Kombi-skorcha",
+       "type": "ranged"
+      },
+      {
+       "name": "Power Klaw",
+       "type": "melee"
+      }
+     ],
+     "slots": []
+    }
+   ]
+  },
+  "info": {
+   "M": "6\"",
+   "T": 6,
+   "SV": 4,
+   "W": 6,
+   "OC": 1,
+   "INV": 5
+  }
+ },
+ "Warboss (Armageddon)": {
+  "pts": 75,
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 4,
+   "W": 6,
+   "OC": 1,
+   "INV": 5
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+       "name": "Kustom shoota",
+       "type": "ranged"
+      },
+      {
+       "name": "Kustom choppa",
+       "type": "melee"
+      }
+     ],
+     "slots": []
+    }
+   ]
+  }
+ },
+ "Warboss In Mega Armour": {
+  "pts": 125,
+  "info": {
+   "M": "5\"",
+   "T": 7,
+   "SV": 2,
+   "W": 7,
+   "OC": 1,
+   "INV": 5
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+       "name": "Big shoota",
+       "type": "ranged"
+      },
+      {
+       "name": "’Uge choppa",
+       "type": "melee"
+      }
+     ],
+     "slots": []
+    }
+   ]
+  },
+  "pts_3rd": 140
+ },
+ "Wazdakka Gutsmek": {
+  "pts": 200,
+  "info": {
+   "M": "14\"",
+   "T": 8,
+   "SV": 3,
+   "W": 10,
+   "OC": 3,
+   "INV": 4,
+   "deep_strike": true
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+       "name": "Psyko-gatler",
+       "type": "ranged"
+      },
+      {
+       "name": "Grabba dragga",
+       "type": "ranged"
+      },
+      {
+       "name": "Fixit's wrench",
+       "type": "melee"
+      },
+      {
+       "name": "Grabba dragga",
+       "type": "melee"
+      },
+      {
+       "name": "Speeding bulk and flaming exhaust",
+       "type": "melee"
+      }
+     ],
+     "slots": []
+    }
+   ]
+  }
+ },
+ "Weirdboy": {
+  "pts": 65,
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 5,
+   "W": 4,
+   "OC": 1
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+"name": "Power Vomit",
+        "type": "ranged"
+       },
+       {
+        "name": "Copper Staff",
+        "type": "melee"
+      }
+     ],
+     "slots": []
+    }
+   ]
+  }
+ },
+ "Wurrboy": {
+  "pts": 60,
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 5,
+   "W": 4,
+   "OC": 1
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+       "name": "Eyez of Mork",
+       "type": "ranged"
+      },
+      {
+       "name": "Close combat weapon",
+       "type": "melee"
+      }
+     ],
+     "slots": []
+    }
+   ]
+  }
+ },
+ "Zodgrod Wortsnagga": {
+  "pts": 50,
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 5,
+   "W": 5,
+   "OC": 1,
+   "INV": 6
+  },
+  "weapon_options": {
+   "builds": [
+    {
+     "name": "default",
+     "fixed": [
+      {
+       "name": "Squigstoppa",
+       "type": "ranged"
+      },
+      {
+       "name": "Da Grabzappa",
+       "type": "melee"
+      }
+     ],
+     "slots": []
+    }
+   ]
+  }
+ }
 }
