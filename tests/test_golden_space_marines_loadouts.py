@@ -47,7 +47,7 @@ def _resolved(engine, name, MEQ):
 
 class TestGoldenCorpus:
     def test_corpus_exists_with_sources(self, golden_units):
-        assert "Ancient in Terminator Armor" in golden_units
+        assert "Ancient In Terminator Armour" in golden_units
         assert "Stormraven Gunship" in golden_units
         assert "Thunderhawk Gunship" in golden_units
 
@@ -57,21 +57,21 @@ class TestAncientInTerminatorArmor:
     hammer+storm-shield replace BOTH base weapons (separate builds)."""
 
     def test_default_build_has_melee_choice(self, sm_engine, MEQ):
-        _, melee = _resolved(sm_engine, "Ancient in Terminator Armor", MEQ)
+        _, melee = _resolved(sm_engine, "Ancient In Terminator Armour", MEQ)
         assert len(melee) == 1, f"exactly one melee weapon, got {melee}"
 
     def test_storm_bolter_kept_in_default(self, sm_engine, MEQ):
-        ranged, _ = _resolved(sm_engine, "Ancient in Terminator Armor", MEQ)
+        ranged, _ = _resolved(sm_engine, "Ancient In Terminator Armour", MEQ)
         # best legal build may be claws/hammer builds (no storm bolter) —
         # but whichever build wins must NOT pair claws with a storm bolter.
-        if any("claws" in m.lower() for m in _resolved(sm_engine, "Ancient in Terminator Armor", MEQ)[1]):
+        if any("claws" in m.lower() for m in _resolved(sm_engine, "Ancient In Terminator Armour", MEQ)[1]):
             assert not ranged, "claws replace the storm bolter too"
 
     def test_three_builds_in_config(self):
         cfg = json.loads(
             (Path(__file__).resolve().parent.parent / "data/config/space-marines/characters.json").read_text()
         )
-        wo = cfg["Ancient in Terminator Armor"]["weapon_options"]
+        wo = cfg["Ancient In Terminator Armour"]["weapon_options"]
         names = {b["name"] for b in wo["builds"]}
         assert {
             "default",
@@ -84,7 +84,7 @@ class TestAncientInTerminatorArmor:
         cfg = json.loads(
             (Path(__file__).resolve().parent.parent / "data/config/space-marines/characters.json").read_text()
         )
-        wo = cfg["Ancient in Terminator Armor"]["weapon_options"]
+        wo = cfg["Ancient In Terminator Armour"]["weapon_options"]
         choices = [
             c["name"]
             for b in wo["builds"]

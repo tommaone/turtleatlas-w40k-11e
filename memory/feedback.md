@@ -1239,3 +1239,29 @@ publishable. A memory entry about the user's *list* gets moved there, not append
 Engine lessons and repo-relevant facts (datasheet availability, data gaps, pipeline rules)
 stay in this file.
 
+
+## MFM-coverage tests must check engine visibility, not just merged presence
+A unit present in MFM + merged data is NOT automatically ranked — `compute_ranking` filters
+on `config.known_units` (engine/ranking.py:1766), which is built from the config JSON keys
+(squads/characters/vehicles/weapon_options.json, ranking.py:73-84). A "coverage" test that
+only asserts the unit exists in merged JSON proves nothing about whether users see it.
+The 2026-09 session's gap: Nazdreg (and Gunwagon, Runtherd, Warbuggies, Wartrakks,
+Rukkatrukk Squigbuggies, aeldari Vyper, SM Ancient) were all MFM-priced yet absent from
+rankings/findings because their config entries were missing or stale — and the MFM-coverage
+test suite passed the whole time.
+
+**Why:** the per-faction coverage gates derived their unit list from merged BSData and never
+cross-checked the CONFIG side. The merged data was complete; the config (which the engine
+actually ranks from) was not. "The data has it" ≠ "the engine can see it".
+**How:** `tests/test_mfm_coverage.py::test_mfm_weaponed_units_are_configured` (Test 7) —
+for every merged unit with MFM pricing + weapons, assert `_norm(unit_name) in
+_load_known_units(slug)` (non-`_` keys of the faction's squads/characters/vehicles/
+weapon_options.json). FORTIFICATION-keyword units are policy-skipped (gen_config.py
+"Skip Fortifications" line ~498) and counted, not failed. Renames that change canonical
+spelling (e.g. `Ancient in Terminator Armor` US → `Ancient In Terminator Armour` UK,
+`Vypers` → `Vyper`, `Rukkatrukk Squigbuggy` sg → plural) must update BOTH the config AND
+every test fixture holding the old name (golden_loadouts corpus, KEPT_UNITS, etc.) — grep
+for the old string repo-wide before committing.
+`Valid as of: 2026-09-19` (config keys for orks/aeldari/SM/DA/BT/BA/DW/SW updated to 11e
+rev-3 names; stale 10e entries — e.g. "(Armageddon)" squads, Wurrboy, rev-1 buggies — were
+removed from config and their regression tests re-pointed at surviving units).

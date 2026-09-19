@@ -364,3 +364,88 @@ def test_mfm_coverage_summary(capsys):
 
     capsys.readouterr()  # clear
     print("\n".join(lines))
+
+
+# ── Test 7: Every MFM-priced weaponed unit must be configured ─────────
+# The findings pipeline ranks a unit only if its name exists in the engine
+# configs (squads/characters/vehicles/weapon_options → known_units). A unit
+# can be listed in MFM AND present in merged with full stats+weapons, yet be
+# invisible in rankings/findings because its config entry is missing or its
+# name no longer matches merged (UK/US spelling, renamed datasheets — e.g.
+# 'Ancient In Terminator Armour' vs 'Ancient in Terminator Armor', orks
+# rev-3 buggy renames). This is the "nobody cross-checks with mfm anymore"
+# gap: coverage tests 1-5 prove merged completeness, this test proves the
+# unit actually reaches the user.
+#
+# Fortifications are intentionally excluded from ranking — see
+# scripts/gen_config.py "Skip Fortifications" (static terrain, no movement).
+# They are skipped here, not flagged.
+
+CONFIG_FILES = ("squads.json", "characters.json", "vehicles.json",
+                "weapon_options.json")
+
+
+def _load_known_units(slug: str) -> set[str]:
+    """Normalized names of all units configured for a faction."""
+    cfg_dir = ROOT / "data" / "config" / slug
+    known = set()
+    if not cfg_dir.exists():
+        return known
+    for fname in CONFIG_FILES:
+        path = cfg_dir / fname
+        if not path.exists():
+            continue
+        data = json.loads(path.read_text())
+        known.update(_norm(k) for k in data if not k.startswith("_"))
+    return known
+
+
+@pytest.mark.parametrize("name,slug,mfm_units", FACTIONS,
+                         ids=[f[0] for f in FACTIONS])
+def test_mfm_weaponed_units_are_configured(name, slug, mfm_units):
+    """Every MFM-priced unit with weapons must have an engine config entry
+    (normalized name match). Missing config → unit absent from rankings and
+    findings despite being priced and fully statted."""
+    merged = _load_merged(slug)
+    if merged is None:
+        pytest.skip(f"No merged file for {slug}")
+
+    known = _load_known_units(slug)
+    missing = []
+    skipped_forts = []
+
+    for u in merged["units"]:
+        if not u.get("in_mfm"):
+            continue
+        profile = u.get("profile") or {}
+        weapons = profile.get("weapons") or []
+        if not weapons:
+            continue  # weaponless units can't be ranked (no DPP signal)
+        kw_upper = [k.upper() for k in profile.get("keywords", [])]
+        if "FORTIFICATION" in kw_upper:
+            skipped_forts.append(u["name"])
+            continue  # intentionally excluded from ranking
+        if _norm(u["name"]) not in known:
+            missing.append(u["name"])
+
+    msg = ""
+    if missing:
+        msg += (
+            f"{name}: {len(missing)} MFM-priced weaponed units have no engine config — "
+            f"they are priced but never reach rankings/findings.\n"
+            f"  Add a config entry (squads/characters/vehicles/weapon_options.json) "
+            f"whose normalized name matches the merged datasheet name.\n"
+            + "\n".join(f"  - {m}" for m in sorted(missing)[:20])
+        )
+    if skipped_forts:
+        msg += "\n" if msg else ""
+        msg += (
+            f"{name}: {len(skipped_forts)} fortifications skipped by policy "
+            f"(gen_config.py 'Skip Fortifications'): {sorted(skipped_forts)[:6]}"
+        )
+
+    assert not missing, msg
+    # Fortifications are policy-excluded — print the count so a change of
+    # policy (ranking forts) shows up as a deliberate, documented delta.
+    if skipped_forts:
+        print(f"  [{name}] policy-skipped fortifications: {len(skipped_forts)}")

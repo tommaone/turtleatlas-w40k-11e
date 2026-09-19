@@ -17,14 +17,19 @@ Regenerated squads (11, BSData composition found):
   Squighog Boyz)
 - per-model slots with default choices (Boss Nob Wargear Options)
 
-Kept squads (3, no BSData composition — curated manually):
-- Boyz (Armageddon) (Shoota/Kombi variants),
-  Gretchin (Slugga + Grot-smacka), Gretchin (Armageddon) (Grot blasta)
+Kept squads (1, no BSData composition — curated manually):
+- Gretchin (Slugga + Grot-smacka)
 
 Note: Burna Boyz and Lootas are now Legends in MFM v1.4 and removed from
 config (weapon refs Cuttin' flames / Deffgun no longer in merged data).
 Wartrakk was dropped by BSData from the 11e catalogue (unit absent from
 merged data) and removed from config the same way.
+Note (MFM cross-check, 2026-09-19): the (Armageddon) variant squads
+(Boyz, Gretchin, Warboss) and old rev-1 buggy datasheets were dropped by
+the 11e Orks catalogue rewrite — they no longer exist in MFM or merged,
+so their stale config entries were removed. Wartrakks returned in BSData
+rev-3 as a Mounted squadron (added to config with Kustom Shoota /
+Multi-busta Launcha builds).
 
 STRUCTURE ONLY — no damage values. The engine is the single source of
 computation; this test locks the config shape and resolvability, not math.
@@ -49,9 +54,7 @@ TARGET_SAMPLES = ["GEQ", "MEQ", "TEQ"]
 
 # Kept units and their canonical first-model weapons (must NOT be overwritten)
 KEPT_UNITS = {
-    "Boyz (Armageddon)": ("Shoota", "Choppa"),
     "Gretchin": ("Grot Blasta", "Scavenged Shivs"),
-    "Gretchin (Armageddon)": ("Grot Blasta", "Scavenged Shivs"),
 }
 
 
@@ -71,7 +74,7 @@ def _model(squads, unit, model_name) -> dict:
 
 
 class TestKeptUnits:
-    """The 3 no-composition units keep their curated builds."""
+    """The no-composition unit keeps its curated build."""
 
     @pytest.mark.parametrize("unit", list(KEPT_UNITS))
     def test_first_model_weapons(self, squads, unit):
@@ -83,16 +86,6 @@ class TestKeptUnits:
         )
         assert ranged_ok, f"{unit}: ranged={ranged}, expected {expect_ranged}"
         assert m.get("melee") == expect_melee, f"{unit}: {m.get('melee')}"
-
-    @pytest.mark.parametrize("unit", ["Boyz (Armageddon)"])
-    def test_variant_not_boyz_payload(self, squads, unit):
-        """The generator-fix protection: these must NOT carry the base Boyz
-        Melee build (Slugga/Choppa) — each keeps its own ranged identity."""
-        m = squads[unit]["builds"][0]["models"][0]
-        ranged = m.get("ranged")
-        if isinstance(ranged, list):
-            ranged = " ".join(ranged)
-        assert ranged != "Slugga", f"{unit}: leaked base Boyz payload ({ranged})"
 
 
 class TestRegeneratedSquads:
