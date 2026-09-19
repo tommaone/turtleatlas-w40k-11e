@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """Generate findings.html for each faction from engine rankings."""
-import sys, json, os, html, re
+import sys, json, os, html, re, time
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from engine.ranking import RankingEngine
+
+# One timestamp per generation run — faction pages and the index share it.
+GEN_TS = time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime())
 
 FACTIONS = {
     'adepta-sororitas': 'Adepta Sororitas',
@@ -470,8 +473,11 @@ def gen_index(tiers=None) -> int:
                 '</div>')
     browse_div = ('<div id="view-browse">'
                   + '\n'.join(sections_html) + '\n</div>')
+    gen_line = (f'<footer style="font-size:12px;opacity:.7;margin-top:28px;'
+                f'color:#8b949e;text-align:center">'
+                f'generated {GEN_TS} · deterministic DPP rankings · turtleatlas-w40k-11e</footer>\n')
     html_out = (INDEX_HEADER + tabs_bar + browse_div
-                + tier_section + '\n</body></html>\n')
+                + tier_section + gen_line + '</body></html>\n')
     out = os.path.join(OUT, 'index.html')
     with open(out, 'w', encoding='utf-8') as f:
         f.write(html_out)
@@ -812,7 +818,7 @@ tr:hover{{background:#141c28}}tr.top3{{background:#0d2137}}
 .preset-note{{font-size:11px;color:#546e7a;width:100%}}</style></head><body>
 <div class="back"><a href="../index.html" id="back-link">&larr; All Factions</a></div>
 <h1>{fname}</h1>
-<div class="subtitle">{n_units} datasheets · {len(MISSIONS)} missions · Quad-vector (DPP + SURV + OBJ + MOB)</div>
+<div class="subtitle">{n_units} datasheets · {len(MISSIONS)} missions · Quad-vector (DPP + SURV + OBJ + MOB)<br><span class="gen-time" style="font-size:12px;opacity:.7">generated {GEN_TS}</span></div>
 <div class="preset-banner" id="preset-banner"></div>
 <div class="tabs"><div class="tab active" onclick="showTab('missions')">Mission Rankings</div><div class="tab" onclick="showTab('top10')">Top 20 Summary</div><div class="tab" onclick="showTab('insights')">Key Insights</div></div>
 <div id="missions" class="tab-content active"></div>
