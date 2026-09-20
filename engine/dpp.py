@@ -829,15 +829,36 @@ def parse_transport_capacity(transport_capacity: Optional[str]) -> Optional[int]
     Returns the first integer after 'transport capacity of N' — the headline
     capacity (models) of the datasheet. None when absent or unparseable.
 
-    Source: merged BSData Transport ability prose (Encoding A factions).
-    Encoding-B factions (no prose in merged) return None by design.
+    The link between 'capacity' and 'of' tolerates BSData inline markup in the
+    prose (e.g. Orks write '**transport capacity** of 12') — all observed 11e
+    shapes match.
+
+    Source: merged BSData Transport ability prose (both encodings
+    normalized to a "Transport" ability by the adapter). Units whose merged
+    entry carries no parseable model-count prose (e.g. the Manta's
+    list-format "of all of the following", or a unit-count such as the
+    Night Scythe's "1 NECRONS INFANTRY unit") return None by design.
     """
     if not transport_capacity:
         return None
-    m = re.search(r"transport capacity of (\d+)", transport_capacity, re.IGNORECASE)
-    if m:
-        return int(m.group(1))
-    return None
+    m = re.search(
+        r"transport\s+capacity[^\w\s]{0,8}\s+of\s+(\d+)",
+        transport_capacity,
+        re.IGNORECASE,
+    )
+    if not m:
+        return None
+    cap = int(m.group(1))
+    # Guard against unit-count capacities (e.g. the Night Scythe: "capacity
+    # of 1 NECRONS INFANTRY unit") — such prose counts UNITS, not models.
+    # Feeding "1 model" into the delivery metric would be a false number;
+    # return None so the unit stays keyword-tier (bonus 0) instead.
+    window = transport_capacity[m.end():m.end() + 120]
+    if re.search(r"\bunit\b", window, re.IGNORECASE) and not re.search(
+        r"\bmodels?\b", window, re.IGNORECASE
+    ):
+        return None
+    return cap
 
 
 def compute_mob(

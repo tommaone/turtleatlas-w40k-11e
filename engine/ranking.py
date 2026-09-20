@@ -2278,9 +2278,11 @@ class RankingEngine:
 
         Heuristic, not an 11e rule: constants are tuned to the current roster scale
         (base 5.0, per-body 0.75 capped at 9.0, speed 0.03 per M). Recalibrate if
-        the roster scale changes. Real-data max ~16 (Stormraven/Corvus M14 with
-        12-capacity); the formula ceiling ~20 would need M24+, which no capacity
-        transport in the current merged data reaches.
+        the roster scale changes. Real-data max ~18.9 (GK Thunderhawk M20 × cap 30);
+        the ~20 formula ceiling needs M24+, only reachable by exotic hulls.
+        NOTE: the per-body cap flattens most of the roster — Stormlord (cap 40)
+        and Rhino (cap 12) both land on 15.54. Capacity discrimination is real
+        only below cap 12; recalibration tracked in roadmap backlog.
         """
         keywords_upper = [k.upper() for k in mob.get("keywords", [])]
         if "TRANSPORT" not in keywords_upper:
