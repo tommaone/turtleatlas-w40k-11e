@@ -14,7 +14,7 @@ and recommend detachments/units based on mission and meta.
 |--------|-------|
 | Factions ranked | 30/30 |
 | Units ranked | ~1500 |
-| Tests | 616/617 passing (1 pre-existing Wraithknight invuln) |
+| Tests | 4634 passed / 68 skipped / 1 xfailed (2026-09-20, PYTHONHASHSEED=1) |
 | HTML findings | 30 factions, mobile-friendly |
 | Detachment modifiers | 26 (Grey Knights 9 + Chaos Knights 8 + Daemons 9) |
 | Characters | 511 on slots schema (all 30 factions, 2026-08-11) |
@@ -40,8 +40,8 @@ files per focus; private repo `tommaone/turtle-army-ledger`). Rule: personal lis
 content never enters this public repo.
 
 Engine-side open items surfaced by this session:
-- **Executioner Heavy-Transport status UNVERIFIED** — gates fit-A (if nothing else is Heavy, cutting the Redeemer kills Rapid Deployment / Rapid Embarkation bounce / Machine Wrath).
-- **Backlog "Transport support" is now the live gap** — 11e GRAVIS×2 slot rules, LR 12 / Impulsor 7 / Exec 7 caps, and Heavy-Transport-gated detachment tricks drove this session's entire analysis.
+- **Executioner Heavy-Transport status UNVERIFIED** — gates fit-A (if nothing else is Heavy, cutting the Redeemer kills Rapid Deployment / Rapid Embarkation bounce / Machine Wrath). Confirmed 2026-09-20: HEAVY TRANSPORT is not a static BSData keyword (conditional Armoured-Speartip modifier vs conflicting Legends W14+ prose) — engine does NOT hardcode it.
+- **Transport delivery scoring SHIPPED (2026-09-20)** — 11e GRAVIS×2 prose, LR 12 / Impulsor 7 / Exec 7 caps verified from merged BSData and now feeding MOB delivery. Remaining open: Encoding-B capacity extraction (adapter follow-up), payload slot math, unit-pairing "rides in" scoring (army-list scope).
 - **October SM codex = scheduled full refresh** — S5 basic weapons, bolt rifles S5/S6, TACTICUS → T5, points rise (armies shrink). Rerun merge + findings + SM/DA re-rank; every current SM statline is pre-codex.
 
 ---
@@ -308,10 +308,27 @@ Engine-side open items surfaced by this session:
 - [ ] **Detachment points budget** — DP cost (1-3 DP), detachment recommendation
 - [ ] **Disposition matching** — map detachments to Force Dispositions
 - [ ] **Requisition thresholds** — 3rd+ copies cost more (11e)
-- [ ] **Transport support — NOW LIVE (2026-09-06)** — model unit delivery (Rhino,
-  Impulsor, Land Raider); 11e GRAVIS×2 slot rules + LR/Impulsor/Executioner caps +
-  Heavy-Transport tricks drove the DA Speartip fit-tree session. Highest-value
-  engine gap for the current user journey.
+- [ ] **Transport support — engine delivery scoring SHIPPED (2026-09-20, PARTIAL)** — transport
+  datasheets now score their delivery potential in MOB via `delivery_bonus` (capacity × speed,
+  heuristic — see heuristic-calibration note in `RankingEngine.delivery_bonus` docstring).
+  Capacity comes from merged BSData "Transport" ability prose (Encoding A: SM family + Sororitas),
+  wired at ranking call site; `transport_capacity`/`transport_capacity_n`/`is_transport` exposed
+  on every mob dict (`is_transport` = TRANSPORT keyword present, NOT "delivery-capable" — a
+  Thunderhawk has the keyword but no capacity prose, so its bonus is 0). 11e slot caps verified
+  from merged prose: LR 12, Crusader 16, Redeemer 14, Repulsor 14, Rhino 12, Impulsor 7, Exec 7,
+  Stormraven 12+Dread, Razorback 6, Drop Pod 12 (+ DW-unique Corvus Blackstar 12, Sororitas
+  Immolator 6 + Sororitas Rhino 12). One-shot arrival platforms (DEEP STRIKE + TRANSPORT — the
+  Drop Pod in all 6 SM-family factions) deliver at the static floor: capacity credit without the
+  movement-speed term, because a pod arrives once and does not shuttle.
+  GRAVIS×2 / terminator×2 / centurion×3 slot prose verified but NOT modeled numerically (payload
+  math = follow-up). **PARTIAL because:** Encoding-B factions (GK/Orks/Necrons/Tau/Aeldari/Astra
+  Militarum/etc.) have no capacity in merged (adapter drops `typeName: "Transport"` profiles —
+  follow-up ticket; AM is named explicitly because its Chimera/Taurox transports are the faction's
+  backbone and currently score zero); "transport = scoring unit post-disembark" is unit-pairing
+  (army-list) scope, out. Heavy
+  Transport keyword + detachment tricks (Rapid Embarkation, Machine Wrath, Speartip) stay OUT of
+  the engine: HEAVY TRANSPORT is not a static BSData keyword (conditional + conflicting sources,
+  roadmap UNVERIFIED status confirmed); tricks are detachment-gated Astartes rules (expert scope).
 - [ ] **Multi-unit synergies** — character auras, buff stacking
 - [ ] **Unit role tags** — objective holder, support, damage dealer
 - [ ] **Variance bands** — ±1σ range instead of average dice
@@ -354,6 +371,11 @@ Engine-side open items surfaced by this session:
 
 ## Corrections Log 📝
 
+- **2026-09-20**: Transport-backlog claim "engine already has transport_capacity in output"
+  was HALF TRUE — the `compute_mob` parameter existed (dpp.py:832) but had NO producer; every
+  ranked unit carried None. The gap was the missing data wire, not the missing parameter.
+  Verified capacities differ from the session brief: Razorback 6 (not 12), Drop Pod 12 (not 6) —
+  merged BSData is the truth (profile-level, not unit-level, keywords).
 - **2026-09-07**: Em dash (—, U+2014) in findings `<title>` — `gen_findings_html.py`
   uses `{fname} — Findings` is an **intentional display style** (matches model
   generated prose; the AI writes long hyphens, not dashes). DO NOT "fix" it to
@@ -390,6 +412,11 @@ Engine-side open items surfaced by this session:
 10. **No GW IP** — mechanics-only config, no copyrighted text
 11. **Wahapedia** — cross-check source, not primary data source
 12. **Main branch only** — no feature branches
+13. **Transport delivery scoring reads merged Transport-ability prose, not config** — the
+    headline capacity is parsed from the merged BSData "Transport" ability description at
+    ranking time (single source: engine helper `parse_transport_capacity`). No config field,
+    no hand-copied capacity numbers. Encoding-B factions (capacity on a `typeName: "Transport"`
+    profile the adapter drops) get keyword-tier only — bonus 0 — and are labeled, not faked.
 
 ---
 

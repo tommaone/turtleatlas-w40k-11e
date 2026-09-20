@@ -1265,3 +1265,54 @@ for the old string repo-wide before committing.
 `Valid as of: 2026-09-19` (config keys for orks/aeldari/SM/DA/BT/BA/DW/SW updated to 11e
 rev-3 names; stale 10e entries — e.g. "(Armageddon)" squads, Wurrboy, rev-1 buggies — were
 removed from config and their regression tests re-pointed at surviving units).
+
+## Transport delivery scoring — capacity lives in merged ability prose, not config (2026-09-20)
+Engine `compute_mob` had a `transport_capacity` parameter (dpp.py:832) but NO producer — every
+ranked unit carried None. Transport capacities are NOT numeric fields anywhere in BSData; they
+are prose in the unit's Transport ability description ("This model has a transport capacity of N
+..."), extracted by the 11e parser only when the profile's `typeName` is "Abilities"/"Ability"
+(adapter/bsdata_parser_11e.py filter). That Encoding-A path covers the SM family + Sororitas;
+GK/Orks/Necrons/Tau/Aeldari/etc. encode capacity on a `typeName: "Transport"` profile the
+filter DROPS → merged carries the keyword but no prose.
+
+**Why:** delivery scoring needed the headline number; trying to store capacities in config would
+create a second hand-copied truth (drift risk, MFM/BSData-is-truth rule). The merged Transport
+ability is the single source.
+**How:** `parse_transport_capacity()` (engine/dpp.py) regexes `transport capacity of N` from the
+merged ability at ranking time; `compute_mob` returns `transport_capacity_n` + `is_transport`;
+`RankingEngine.delivery_bonus(mob)` adds a keyword-gated (TRANSPORT AND cap>0) capacity×speed
+component inside `mob_score`. Non-transport units byte-identical (verified per-faction: files
+for Encoding-B factions show zero score change; changed = 63 units across 7 factions —
+SM-family 10-11 each incl DW's Corvus Blackstar, Sororitas 2). **When quoting blast radius,
+name every changed faction — "SM" alone hides 5 brother-chapters + DW + Sororitas.**
+Encoding-B extraction = follow-up ticket (adapter filter + merge regen = wide
+blast radius, never fold into an engine commit).
+
+## One-shot arrival transports get static delivery, not shuttle credit (2026-09-20, Shredder)
+The first delivery scoring shipped with `capacity × movement` for every transport. The Drop Pod
+(TRANSPORT + DEEP STRIKE, 6 SM-family factions) was credited a 13.02 bonus driven by its
+movement even though it arrives once and never shuttles bodies across the board — movement it
+never meaningfully uses for delivery.
+
+**Why:** "faster hull shuttles more trips" is true for Rhinos/Land Raiders, not for pods. The
+movement term must describe sustained delivery, or one-shot platforms over-score.
+**How:** `delivery_bonus` now checks `mob.get("deep_strike")` first — one-shot arrival
+platforms get the capacity credit at the static floor (`× 0.75`, no `0.03 × movement` term).
+Verified blast radius = only Drop Pods (6 factions, oldest 13.02 → 10.50); Corvus Blackstar and
+Stormraven have no Deep Strike in merged and remain full-speed. Magic tuning constants in
+`delivery_bonus` are a labeled heuristic — recalibrate with roster data, never present them as
+an 11e rule.
+
+## Verify transport-capacity claims at PROFILE level before asserting (2026-09-20)
+My session brief claimed "Razorback 12, Drop Pod 6". The implementation turtle walked the merged
+units and corrected: Razorback 6, Drop Pod 12. My grep failed because merged schema keys are
+`unit.profile` (singular) with keywords/abilities inside — I checked unit-level keys which don't
+exist, got empty results, and asserted from memory instead of the data.
+
+**Why:** capacity claims drove the ticket's caps list; a wrong headline number in docs would
+poison every downstream reader.
+**How:** inventory transports via `d['units'][i]['profile']['keywords']` (TRANSPORT) +
+`profile['abilities']` (name == "Transport") + regex on description. When a claim and the data
+disagree, the data wins — update the claim, never "fix" the data. Track the corrected numbers:
+LR 12, Crusader 16, Redeemer 14, Repulsor 14, Rhino 12, Impulsor 7, Executioner 7, Stormraven
+12+Dread, Razorback 6, Drop Pod 12 (SM merged, 2026-09-20).

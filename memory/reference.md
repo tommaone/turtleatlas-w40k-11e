@@ -54,6 +54,24 @@ node mcp-server/index.js --port 3456
 
 MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rules` before answering domain questions. `turtleatlas-mcp` is the knowledge server.
 
+## 2026-09-20 transport-delivery state
+
+- **Transport delivery scoring SHIPPED** — `parse_transport_capacity` + `compute_mob`
+  `transport_capacity_n`/`is_transport` + `RankingEngine.delivery_bonus` gated on
+  TRANSPORT+cap>0 (capacity × speed, ~+5..20 on MOB's 0-100). Capacity from merged
+  Transport-ability prose (Encoding-A factions: SM family + Sororitas); Encoding-B
+  (GK/Orks/Necrons/Tau/Aeldari/AM/...) stays keyword-only, bonus 0 — adapter follow-up.
+  **DEEP STRIKE + TRANSPORT = one-shot arrival (Drop Pod ×6 SM-family factions): delivery
+  capped at the static floor (no movement-speed term) — a pod delivers once, it does not
+  shuttle.** Tests: `tests/test_transport_delivery.py` (currently 24 — grew with DS-gate
+  coverage; check with `pytest --collect-only` before quoting a count).
+  Full suite **4634 passed / 68 skipped / 1 xfailed**; findings regen seeded; per-faction
+  byte-identity verified (non-capacity factions zero change; **changed = 63 units across
+  7 factions**: SM-family 10 caps each + DW's extra Corvus Blackstar (11) + Sororitas
+  Immolator/Sororitas Rhino (2)).
+- Export source of truth for capacities: `data/merged/*.json` `unit.profile.abilities`
+  (name == "Transport") — NEVER hand-copy into config.
+
 ## Current state (2026-08-15)
 
 - **Head of main:** `3370194` — caps sweep on the 9 alloc-layer factions
@@ -121,7 +139,10 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
 3. Detachment modifiers for SM, DA, all others — **BLOCKED (2026-08-10 decision):
    not until every army is on the slot setup.** A detachment bonus over an
    imaginary loadout is a lie; calculations must be determined by real gear first.
-4. Engine gaps: T3 primary metric, concentrated fire, pistol/two-handed restriction, transport support
+4. Engine gaps: T3 primary metric, concentrated fire, pistol/two-handed restriction,
+   ~~transport support~~ **transport delivery scoring SHIPPED 2026-09-20** (MOB delivery
+   component from merged Transport-ability prose; Encoding-B capacity extraction = follow-up
+   adapter ticket)
 
 ## Credentials
 
