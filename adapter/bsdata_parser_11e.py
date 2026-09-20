@@ -716,14 +716,44 @@ class BSDataParser11e:
 
             # -- Abilities --
             abilities: list[dict] = []
-            for p in entry.get("profiles", []):
-                if p.get("typeName", "") in ("Abilities", "Ability"):
+
+            def _append_profile_ability(p: dict) -> None:
+                """Append one profile as an ability.
+
+                BSData 11e ships transport capacity in TWO shapes and both must
+                land in merged as an ability named "Transport":
+                  - typeName "Abilities", name "Transport" (SM family, Sororitas)
+                  - typeName "Transport" profile whose "Capacity" characteristic
+                    holds the prose (Grey Knights, Orks, Necrons, Tau, AM, ...).
+                A later duplicate "Transport" is dropped so merged has one entry.
+                """
+                t = p.get("typeName", "")
+                if t in ("Abilities", "Ability"):
                     chars = self._get_chars_dict(p)
                     desc = chars.get("Description", "")
-                    abilities.append({
-                        "name": p.get("name", ""),
-                        "description": desc,
-                    })
+                    name = p.get("name", "")
+                    # Some factions (AM Banehammer) author the transport
+                    # ability under the UNIT name, not "Transport". If the
+                    # prose reads like a Transport ability, normalize the name
+                    # so merged has ONE canonical shape for the engine gate.
+                    if re.search(
+                        r"transport\s+capacity[^\w\s]{0,8}\s+of\s+\d+",
+                        desc,
+                        re.IGNORECASE,
+                    ):
+                        name = "Transport"
+                elif t == "Transport":
+                    chars = self._get_chars_dict(p)
+                    desc = chars.get("Capacity", "")
+                    name = "Transport"
+                else:
+                    return
+                if name == "Transport" and any(a.get("name") == "Transport" for a in abilities):
+                    return
+                abilities.append({"name": name, "description": desc})
+
+            for p in entry.get("profiles", []):
+                _append_profile_ability(p)
 
             # -- Resolve profile entryLinks (e.g. Invulnerable Save) --
             for el in entry.get("entryLinks", []):
@@ -736,13 +766,7 @@ class BSDataParser11e:
                         target = self._resolve_entry(tid, entry_index)
                         if target is not None:
                             for p in target.get("profiles", []):
-                                if p.get("typeName", "") in ("Abilities", "Ability"):
-                                    chars = self._get_chars_dict(p)
-                                    desc = chars.get("Description", "")
-                                    abilities.append({
-                                        "name": p.get("name", ""),
-                                        "description": desc,
-                                    })
+                                _append_profile_ability(p)
 
             # -- Weapons --
             weapons: list[dict] = []
