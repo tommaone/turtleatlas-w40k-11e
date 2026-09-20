@@ -823,6 +823,23 @@ def compute_surv(
     }
 
 
+def parse_transport_capacity(transport_capacity: Optional[str]) -> Optional[int]:
+    """Extract numeric capacity from a merged 'Transport' ability description.
+
+    Returns the first integer after 'transport capacity of N' — the headline
+    capacity (models) of the datasheet. None when absent or unparseable.
+
+    Source: merged BSData Transport ability prose (Encoding A factions).
+    Encoding-B factions (no prose in merged) return None by design.
+    """
+    if not transport_capacity:
+        return None
+    m = re.search(r"transport capacity of (\d+)", transport_capacity, re.IGNORECASE)
+    if m:
+        return int(m.group(1))
+    return None
+
+
 def compute_mob(
     movement: int = 6,
     fly: bool = False,
@@ -846,7 +863,10 @@ def compute_mob(
         deep_strike: has Deep Strike ability
         oc: Objective Control characteristic
         keywords: list of keywords
-        transport_capacity: e.g. "6 INFANTRY"
+        transport_capacity: merged "Transport" ability description (full prose —
+            "This model has a transport capacity of 12 …"), or None. The headline
+            number is parsed by parse_transport_capacity() — never hand-copy a
+            number into config; the prose is the single source.
         abilities: list of relevant mobility abilities
         gate_of_infinity: has Gate of Infinity army rule (GK redeploy per turn)
         no_t1_reinforcements: 11e rule — no reserves on T1 (reduces DS value)
@@ -944,6 +964,8 @@ def compute_mob(
         "is_terminator": is_terminator,
         "is_character": is_character,
         "transport_capacity": transport_capacity,
+        "transport_capacity_n": parse_transport_capacity(transport_capacity),
+        "is_transport": has_transport,
         "mobility_tier": mob_tier,
         "effective_tier": effective_tier,
         "no_t1_reinforcements": no_t1_reinforcements,

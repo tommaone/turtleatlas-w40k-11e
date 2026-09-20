@@ -517,7 +517,7 @@ print(json.dumps(output))
                 items: { type: "string" },
                 description: "Unit keywords",
               },
-              transport_capacity: { type: "string", description: "Transport capacity (e.g. '6 INFANTRY')" },
+              transport_capacity: { type: "string", description: "Merged BSData Transport ability prose, or null — parsed headline capacity is transport_capacity_n (e.g. 12, not '6 INFANTRY')" },
               abilities: {
                 type: "array",
                 items: { type: "string" },

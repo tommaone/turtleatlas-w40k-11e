@@ -2014,6 +2014,15 @@ class RankingEngine:
             # Detect terrain traversal abilities (Titanic Strides, Scuttling Walker, etc.)
             has_terrain = _has_terrain_ability(profile)
 
+            # Extract the Transport ability description (if any) — feeds the
+            # mobility delivery component. Same per-ability loop pattern as the
+            # reroll/boost auto-detect above.
+            transport_capacity = None
+            for _ab in profile.get("abilities", []) or []:
+                if isinstance(_ab, dict) and str(_ab.get("name", "")).upper() == "TRANSPORT":
+                    transport_capacity = _ab.get("description")
+                    break
+
             mob = compute_mob(
                 movement=m_val,
                 fly=has_fly,
@@ -2023,6 +2032,7 @@ class RankingEngine:
                 gate_of_infinity=has_gate,
                 no_t1_reinforcements=self.no_t1_reinforcements,
                 has_terrain_ability=has_terrain,
+                transport_capacity=transport_capacity,
             )
 
             notes = self.config.notes.get(name, "")
@@ -2255,6 +2265,42 @@ class RankingEngine:
         return min(round(raw / 144 * 100), 100)
 
     @staticmethod
+    def delivery_bonus(mob) -> float:
+        """Delivery component for TRANSPORT units: what the hull can put on a point.
+
+        Gate: TRANSPORT keyword AND numeric capacity > 0. Non-transport → 0.
+        Scaled by capacity (more bodies per trip) and by movement (faster delivery).
+
+        DEEP STRIKE transports (Drop Pods, etc.) deliver ONCE at the arrival point:
+        the capacity credit stands but the movement-speed term is dropped — a
+        one-shot arrival platform does not shuttle bodies over multiple turns and
+        must not be credited a sustained delivery speed it never uses.
+
+        Heuristic, not an 11e rule: constants are tuned to the current roster scale
+        (base 5.0, per-body 0.75 capped at 9.0, speed 0.03 per M). Recalibrate if
+        the roster scale changes. Real-data max ~16 (Stormraven/Corvus M14 with
+        12-capacity); the formula ceiling ~20 would need M24+, which no capacity
+        transport in the current merged data reaches.
+        """
+        keywords_upper = [k.upper() for k in mob.get("keywords", [])]
+        if "TRANSPORT" not in keywords_upper:
+            return 0.0
+        cap = mob.get("transport_capacity_n")
+        if not cap or cap <= 0:
+            return 0.0
+        delivery = 5.0 + min(cap * 0.75, 9.0)
+        if mob.get("deep_strike"):
+            # One-shot arrival platform: static delivery, no shuttle-speed credit.
+            return delivery * 0.75
+        m_str = mob.get("movement", '6"')
+        try:
+            movement = int(str(m_str).replace('"', "").replace("'", ""))
+        except (ValueError, AttributeError):
+            movement = 6
+        delivery *= (0.75 + 0.03 * movement)
+        return delivery
+
+    @staticmethod
     def mob_score(mob):
         """Pure mobility score 0-100.
 
@@ -2382,6 +2428,10 @@ class RankingEngine:
         # Gate of Infinity: unlimited redeploy
         if has_goi:
             movement_score = max(movement_score, 85)
+
+        # Delivery component: TRANSPORT units get credit for what the hull
+        # can put on a point (capacity × speed). Zero for non-transports.
+        movement_score += RankingEngine.delivery_bonus(mob)
 
         return min(max(int(movement_score), 0), 100)
 
