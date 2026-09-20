@@ -14,7 +14,7 @@ and recommend detachments/units based on mission and meta.
 |--------|-------|
 | Factions ranked | 30/30 |
 | Units ranked | ~1500 |
-| Tests | 4634 passed / 68 skipped / 1 xfailed (2026-09-20, PYTHONHASHSEED=1) |
+| Tests | 4637 passed / 68 skipped / 1 xfailed (2026-09-20, PYTHONHASHSEED=1) |
 | HTML findings | 30 factions, mobile-friendly |
 | Detachment modifiers | 26 (Grey Knights 9 + Chaos Knights 8 + Daemons 9) |
 | Characters | 511 on slots schema (all 30 factions, 2026-08-11) |
@@ -41,7 +41,7 @@ content never enters this public repo.
 
 Engine-side open items surfaced by this session:
 - **Executioner Heavy-Transport status UNVERIFIED** — gates fit-A (if nothing else is Heavy, cutting the Redeemer kills Rapid Deployment / Rapid Embarkation bounce / Machine Wrath). Confirmed 2026-09-20: HEAVY TRANSPORT is not a static BSData keyword (conditional Armoured-Speartip modifier vs conflicting Legends W14+ prose) — engine does NOT hardcode it.
-- **Transport delivery scoring SHIPPED (2026-09-20)** — 11e GRAVIS×2 prose, LR 12 / Impulsor 7 / Exec 7 caps verified from merged BSData and now feeding MOB delivery. Remaining open: Encoding-B capacity extraction (adapter follow-up), payload slot math, unit-pairing "rides in" scoring (army-list scope).
+- **Transport delivery scoring SHIPPED (2026-09-20)** — 11e GRAVIS×2 prose, LR 12 / Impulsor 7 / Exec 7 caps verified from merged BSData and now feeding MOB delivery. Adapter normalization SHIPPED same day — both BSData transport encodings land in merged as one "Transport" ability shape (134 capacity transports / 25 factions, non-fortification set). Remaining open: payload slot math, unit-pairing "rides in" scoring (army-list scope).
 - **October SM codex = scheduled full refresh** — S5 basic weapons, bolt rifles S5/S6, TACTICUS → T5, points rise (armies shrink). Rerun merge + findings + SM/DA re-rank; every current SM statline is pre-codex.
 
 ---
@@ -308,27 +308,39 @@ Engine-side open items surfaced by this session:
 - [ ] **Detachment points budget** — DP cost (1-3 DP), detachment recommendation
 - [ ] **Disposition matching** — map detachments to Force Dispositions
 - [ ] **Requisition thresholds** — 3rd+ copies cost more (11e)
-- [ ] **Transport support — engine delivery scoring SHIPPED (2026-09-20, PARTIAL)** — transport
+- [ ] **Transport support — engine delivery scoring SHIPPED (2026-09-20)** — transport
   datasheets now score their delivery potential in MOB via `delivery_bonus` (capacity × speed,
   heuristic — see heuristic-calibration note in `RankingEngine.delivery_bonus` docstring).
-  Capacity comes from merged BSData "Transport" ability prose (Encoding A: SM family + Sororitas),
-  wired at ranking call site; `transport_capacity`/`transport_capacity_n`/`is_transport` exposed
-  on every mob dict (`is_transport` = TRANSPORT keyword present, NOT "delivery-capable" — a
-  Thunderhawk has the keyword but no capacity prose, so its bonus is 0). 11e slot caps verified
-  from merged prose: LR 12, Crusader 16, Redeemer 14, Repulsor 14, Rhino 12, Impulsor 7, Exec 7,
-  Stormraven 12+Dread, Razorback 6, Drop Pod 12 (+ DW-unique Corvus Blackstar 12, Sororitas
-  Immolator 6 + Sororitas Rhino 12). One-shot arrival platforms (DEEP STRIKE + TRANSPORT — the
-  Drop Pod in all 6 SM-family factions) deliver at the static floor: capacity credit without the
-  movement-speed term, because a pod arrives once and does not shuttle.
+  Capacity comes from merged BSData "Transport" ability prose, normalized to ONE shape by the
+  adapter (2026-09-20): "Abilities" profile named "Transport" (SM family, Sororitas), a
+  `typeName: "Transport"` profile with a Capacity characteristic (GK, Orks, Necrons, Tau, AM,
+  ...), and unit-named abilities that read as transport prose (AM Banehammer) all land as a
+  "Transport" ability. 134 capacity-bearing transports across 25 of 30 factions (5 without:
+  daemons + both knight families + both titan legions). This is DATA-reach — the delivery
+  bonus applies to the non-fortification set (Tidewall Shieldline/Droneport/Gunrig + Big'Ed
+  Bossbunka parse a capacity but mob_score early-returns 0 for FORTIFICATION). Wired at ranking call site;
+  `transport_capacity`/`transport_capacity_n`/`is_transport` exposed on every mob dict
+  (`is_transport` = TRANSPORT keyword present, NOT "delivery-capable" — a Manta has the keyword
+  but list-format, unranked prose, so its bonus is 0). 11e slot caps verified from merged prose:
+  LR 12, Crusader 16, Redeemer 14, Repulsor 14, Rhino 12, Impulsor 7, Exec 7, Stormraven 12+Dread,
+  Razorback 6, Drop Pod 12, Thunderhawk 30, Corvus Blackstar 12, Sororitas Immolator 6 +
+  Sororitas Rhino 12, Inquisitorial Chimera 13. One-shot arrival platforms (DEEP STRIKE +
+  TRANSPORT — the Drop Pod in all 6 SM-family factions and Tyrannocyte) deliver at the static
+  floor: capacity credit without the movement-speed term, because a pod arrives once and does
+  not shuttle. Unit-count capacities (Necron Night Scythe: "1 NECRONS INFANTRY **unit**") are
+  refused by the parser — a unit-count is not 1 model, the unit stays keyword-tier.
   GRAVIS×2 / terminator×2 / centurion×3 slot prose verified but NOT modeled numerically (payload
-  math = follow-up). **PARTIAL because:** Encoding-B factions (GK/Orks/Necrons/Tau/Aeldari/Astra
-  Militarum/etc.) have no capacity in merged (adapter drops `typeName: "Transport"` profiles —
-  follow-up ticket; AM is named explicitly because its Chimera/Taurox transports are the faction's
-  backbone and currently score zero); "transport = scoring unit post-disembark" is unit-pairing
-  (army-list) scope, out. Heavy
+  math = follow-up). **PARTIAL because:** "transport = scoring unit post-disembark" is
+  unit-pairing (army-list) scope, out. Heavy
   Transport keyword + detachment tricks (Rapid Embarkation, Machine Wrath, Speartip) stay OUT of
   the engine: HEAVY TRANSPORT is not a static BSData keyword (conditional + conflicting sources,
   roadmap UNVERIFIED status confirmed); tricks are detachment-gated Astartes rules (expert scope).
+- [ ] **Transport delivery recalibration (follow-up from 2026-09-20 arc)** — the per-body cap
+  (0.75/cap capped at 9.0) flattens 96/134 transports: Stormlord (cap 40) and Rhino (cap 12)
+  score identically (15.54). Capacity discrimination is real only below cap 12. Options: lower
+  per-body rate, sqrt curve, or split shuttling/DS bins — MUST keep byte-stable for non-capacity
+  units and stay a labeled heuristic. Also re-examine compound capacities (first-component
+  convention) if the scale changes.
 - [ ] **Multi-unit synergies** — character auras, buff stacking
 - [ ] **Unit role tags** — objective holder, support, damage dealer
 - [ ] **Variance bands** — ±1σ range instead of average dice
@@ -371,6 +383,11 @@ Engine-side open items surfaced by this session:
 
 ## Corrections Log 📝
 
+- **2026-09-20 (2nd)**: "Thunderhawk has the keyword but no capacity prose" was an artifact of
+  the dropped `typeName: "Transport"` profile, not real absent data — the adapter fix surfaced
+  its genuine capacity: Thunderhawk Gunship 30 (SM family + GK). Also: engine parse refused the
+  Night Scythe's "1 NECRONS INFANTRY **unit**" as a false 1-model capacity (unit-count, not
+  model-count — stays keyword-tier, bonus 0).
 - **2026-09-20**: Transport-backlog claim "engine already has transport_capacity in output"
   was HALF TRUE — the `compute_mob` parameter existed (dpp.py:832) but had NO producer; every
   ranked unit carried None. The gap was the missing data wire, not the missing parameter.
@@ -415,8 +432,11 @@ Engine-side open items surfaced by this session:
 13. **Transport delivery scoring reads merged Transport-ability prose, not config** — the
     headline capacity is parsed from the merged BSData "Transport" ability description at
     ranking time (single source: engine helper `parse_transport_capacity`). No config field,
-    no hand-copied capacity numbers. Encoding-B factions (capacity on a `typeName: "Transport"`
-    profile the adapter drops) get keyword-tier only — bonus 0 — and are labeled, not faked.
+    no hand-copied capacity numbers. The adapter normalizes every BSData encoding (Abilities
+    profile named "Transport", `typeName: "Transport"` profile with a Capacity characteristic,
+    unit-named abilities that read as transport prose) to one "Transport" ability shape; units
+    with genuinely no single headline number (Manta list-format, unranked) get keyword-tier
+    only — bonus 0, labeled, not faked.
 
 ---
 

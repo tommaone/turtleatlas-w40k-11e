@@ -59,16 +59,31 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
 - **Transport delivery scoring SHIPPED** — `parse_transport_capacity` + `compute_mob`
   `transport_capacity_n`/`is_transport` + `RankingEngine.delivery_bonus` gated on
   TRANSPORT+cap>0 (capacity × speed, ~+5..20 on MOB's 0-100). Capacity from merged
-  Transport-ability prose (Encoding-A factions: SM family + Sororitas); Encoding-B
-  (GK/Orks/Necrons/Tau/Aeldari/AM/...) stays keyword-only, bonus 0 — adapter follow-up.
-  **DEEP STRIKE + TRANSPORT = one-shot arrival (Drop Pod ×6 SM-family factions): delivery
+  Transport-ability prose, normalized to ONE shape by the adapter (2026-09-20 2nd arc):
+  "Abilities"-named "Transport", `typeName:"Transport"` profiles (Capacity char), and
+  unit-named abilities that read as transport prose (AM Banehammer) all arrive as a
+  "Transport" ability. **134 capacity transports across 25/30 factions** (no transports in:
+  daemons, knights ×2, titans ×2). Unit-count prose (Night Scythe "1 NECRONS INFANTRY unit")
+  is refused by the parser — not 1 model, keyword-tier bonus 0. Manta: TRANSPORT keyword but
+  list-format unranked prose — keyword-tier, labeled. Thunderhawk Gunship: capacity 30 (SM
+  family + GK) — earlier "no prose" claim was a parser-drop artifact, corrected in docs.
+  **DEEP STRIKE + TRANSPORT = one-shot arrival (Drop Pod ×6 SM-family, Tyrannocyte): delivery
   capped at the static floor (no movement-speed term) — a pod delivers once, it does not
-  shuttle.** Tests: `tests/test_transport_delivery.py` (currently 24 — grew with DS-gate
-  coverage; check with `pytest --collect-only` before quoting a count).
-  Full suite **4634 passed / 68 skipped / 1 xfailed**; findings regen seeded; per-faction
-  byte-identity verified (non-capacity factions zero change; **changed = 63 units across
-  7 factions**: SM-family 10 caps each + DW's extra Corvus Blackstar (11) + Sororitas
-  Immolator/Sororitas Rhino (2)).
+  shuttle.** Tests: `tests/test_transport_delivery.py` (27 — grew with adapter-shape and
+  unit-count-guard coverage; check with `pytest --collect-only` before quoting a count).
+  Full suite **4637 passed / 68 skipped / 1 xfailed**; findings regen seeded; per-faction
+  byte-identity verified twice (pre-fix 63/7/23 → post-fix 130 units changed vs original
+  baseline, every one a capacity transport, zero violations).
+- **COMPOUND capacities parse the first headline component only**: Harridan
+  "20 GARGOYLES models and 1 WINGED TYRANID PRIME" → capacity 20 (true total 21);
+  Stormraven 12 (true 13 with the Dreadnought); Ghost Ark 10 (true 11). Conservative
+  undercount, score-neutral today, documented convention — do not "fix" to a sum
+  without a recalibration ticket (see roadmap backlog).
+- **Fortification caveat**: Tidewall Shieldline/Droneport/Gunrig + Big'Ed Bossbunka
+  carry the TRANSPORT keyword and parse a numeric capacity, but `mob_score`
+  early-returns 0 for FORTIFICATION — their bonus never applies. "134 capacity
+  transports / 25 factions" is DATA-reach, not bonus-reach; the delivery bonus
+  applies to the non-fortification set.
 - Export source of truth for capacities: `data/merged/*.json` `unit.profile.abilities`
   (name == "Transport") — NEVER hand-copy into config.
 

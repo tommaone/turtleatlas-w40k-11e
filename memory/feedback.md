@@ -1282,11 +1282,28 @@ ability is the single source.
 merged ability at ranking time; `compute_mob` returns `transport_capacity_n` + `is_transport`;
 `RankingEngine.delivery_bonus(mob)` adds a keyword-gated (TRANSPORT AND cap>0) capacity×speed
 component inside `mob_score`. Non-transport units byte-identical (verified per-faction: files
-for Encoding-B factions show zero score change; changed = 63 units across 7 factions —
-SM-family 10-11 each incl DW's Corvus Blackstar, Sororitas 2). **When quoting blast radius,
-name every changed faction — "SM" alone hides 5 brother-chapters + DW + Sororitas.**
+for Encoding-B factions show zero score change; changed = 63 units across
+7 factions — SM-family 10-11 each incl DW's Corvus Blackstar, Sororitas 2). **When quoting blast
+radius, name every changed faction — "SM" alone hides 5 brother-chapters + DW + Sororitas.**
 Encoding-B extraction = follow-up ticket (adapter filter + merge regen = wide
 blast radius, never fold into an engine commit).
+
+## Encoding-B extraction DONE — adapter normalizes three transport shapes (2026-09-20, 2nd)
+The "follow-up" above shipped the same day. 11e BSData authors capacity in THREE ways, all now
+normalized to one named ability in merged by `_append_profile_ability` (adapter/bsdata_parser_11e.py):
+1. Abilities profile named "Transport" (SM family, Sororitas);
+2. typeName="Transport" profile, Capacity characteristic (GK/Orks/Necrons/Tau/AM/Custodes/...);
+3. unit-named ability whose description matches the transport-capacity regex (AM Banehammer,
+   named after itself, not "Transport").
+
+**Why:** the engine gates delivery on name=="Transport"; without normalization the same datasheet
+scored differently purely by which author style BSData used. "normalize, don't fake" — the new
+name is a canonical mapping; the prose is copied verbatim.
+**How:** the parser helper maps all three shapes to `{"name": "Transport", "description": <prose>}`
+and drops a later duplicate so merged yields exactly one entry. Post-fix merged carries 134
+capacity transports across 25 of 30 factions; the 5 without (daemons, knights ×2, titans ×2)
+have no transport datasheets at all. Isolation re-run: every change is a capacity transport,
+zero violations.
 
 ## One-shot arrival transports get static delivery, not shuttle credit (2026-09-20, Shredder)
 The first delivery scoring shipped with `capacity × movement` for every transport. The Drop Pod
@@ -1315,4 +1332,19 @@ poison every downstream reader.
 `profile['abilities']` (name == "Transport") + regex on description. When a claim and the data
 disagree, the data wins — update the claim, never "fix" the data. Track the corrected numbers:
 LR 12, Crusader 16, Redeemer 14, Repulsor 14, Rhino 12, Impulsor 7, Executioner 7, Stormraven
-12+Dread, Razorback 6, Drop Pod 12 (SM merged, 2026-09-20).
+12+Dread, Razorback 6, Drop Pod 12, Thunderhawk 30, Corvus Blackstar 12, Immolator 6,
+Inquisitorial Chimera 13 (merged, 2026-09-20).
+
+## Unit-count capacity is not 1 model — parse guard (2026-09-20, 2nd)
+The Night Scythe's Transport ability reads "This model has a transport capacity of 1 NECRONS
+INFANTRY **unit**." — it carries A unit of any size, NOT one model. The first pass regex
+returned 1, which would have awarded a 1-capacity delivery bonus (a false number).
+
+**Why:** the delivery metric is model-count ("bodies per trip"); a unit-count phrasing must not
+be coerced into a single model. This is the Thunderhawk-class trap reversed: absence of prose
+we silently zeroed, but a NUMBER that means "one unit" would have been silently believed.
+**How:** `parse_transport_capacity` (engine/dpp.py) looks 120 chars past the captured number;
+if the window says "unit" and no "model(s)", it returns None → keyword-tier, bonus 0. Regression
+tests lock the exact merged prose (NIGHT_SCYTHE_PROSE + a model-word negative case so the guard
+is not over-broad). Same scan surfaced "Thunderhawk has no prose" as FALSE — its profile had
+been dropped wholesale by the old parser filter; post-fix it parses 30. "
