@@ -16,8 +16,11 @@ Covers the min-viable delivery scoring for TRANSPORT datasheets:
   pins here — byte-stability is verified by the full suite + findings diff.
 
 All Transport prose strings are copied verbatim from
-data/merged/space-marines.json (Encoding A factions). Encoding-B factions
-have no capacity prose in merged and stay None by design — labelled, not faked.
+data/merged/space-marines.json and data/merged/necrons.json (SM and Necron
+merged files). Encoding-B factions were normalized to the same "Transport"
+ability shape by the adapter (2026-09-20) — the test for the Night Scythe
+locks the unit-count guard that keeps "1 NECRONS INFANTRY unit" from being
+misread as a 1-model capacity.
 
 IP note (2026-09-20, Shredder): these fixtures quote the Transport ability
 description verbatim. They are treated as game-mechanics data — capacity
@@ -74,6 +77,10 @@ DROP_POD_PROSE = (
     "This model has a transport capacity of 12 Adeptus Astartes\xa0Infantry models. "
     "It cannot transport Jump Pack, Wulfen,\xa0Gravis, Centurion or Terminator models."
 )
+# Necron Night Scythe: unit-count capacity (verbatim from merged necrons.json).
+# The transport carries ONE unit, not "1 model" — the parser must refuse the
+# number so the delivery metric is not fed a false 1-model capacity.
+NIGHT_SCYTHE_PROSE = "This model has a transport capacity of 1 NECRONS INFANTRY\xa0unit."
 # Non-transport ability description (same file) — must yield None, not a number.
 UNTO_THE_ANVIL_PROSE = (
     "While this model is leading a unit, each time a\xa0model in that unit makes a "
@@ -114,6 +121,19 @@ class TestParseTransportCapacity:
 
     def test_no_prose_string(self):
         assert parse_transport_capacity("no capacity prose here") is None
+
+    def test_unit_count_capacity_is_refused(self):
+        """Night Scythe carries ONE UNIT, not one model — a unit-count capacity
+        must not be fed into a model-count metric as a false '1'."""
+        assert parse_transport_capacity(NIGHT_SCYTHE_PROSE) is None
+
+    def test_unit_count_capacity_with_model_word_still_parses(self):
+        """Guard must not reject prose that legitimately counts models after
+        the number even if 'unit' appears elsewhere."""
+        assert parse_transport_capacity(
+            "This model has a transport capacity of 12 Foo models which you "
+            "can keep inside one unit."
+        ) == 12
 
 
 class TestComputeMobTransportKeys:
@@ -162,6 +182,17 @@ class TestDeliveryBonus:
     def test_transport_with_null_capacity_zero(self):
         mob = compute_mob(movement=10, fly=False, deep_strike=False, oc=1,
                           keywords=["Vehicle", "Transport"])
+        assert RankingEngine.delivery_bonus(mob) == 0.0
+
+    def test_unit_count_capacity_unit_stays_keyword_tier(self):
+        """Night Scythe: '1 NECRONS INFANTRY unit' is not 1 model — the parsed
+        capacity stays None and the unit gets no false delivery bonus."""
+        mob = compute_mob(
+            movement=10, fly=False, deep_strike=False, oc=1,
+            keywords=["Vehicle", "Transport", "Fly"],
+            transport_capacity=NIGHT_SCYTHE_PROSE,
+        )
+        assert mob["transport_capacity_n"] is None
         assert RankingEngine.delivery_bonus(mob) == 0.0
 
     def test_old_style_dict_without_key_zero(self):
