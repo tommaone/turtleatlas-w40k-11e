@@ -14,7 +14,7 @@ and recommend detachments/units based on mission and meta.
 |--------|-------|
 | Factions ranked | 30/30 |
 | Units ranked | ~1500 |
-| Tests | 4637 passed / 68 skipped / 1 xfailed (2026-09-20, PYTHONHASHSEED=1) |
+| Tests | 4638 passed / 68 skipped / 0 xfailed (2026-09-23, PYTHONHASHSEED=1) |
 | HTML findings | 30 factions, mobile-friendly |
 | Detachment modifiers | 26 (Grey Knights 9 + Chaos Knights 8 + Daemons 9) |
 | Characters | 511 on slots schema (all 30 factions, 2026-08-11) |
@@ -341,6 +341,13 @@ Engine-side open items surfaced by this session:
   per-body rate, sqrt curve, or split shuttling/DS bins — MUST keep byte-stable for non-capacity
   units and stay a labeled heuristic. Also re-examine compound capacities (first-component
   convention) if the scale changes.
+- [ ] **Loadout-aware invuln (2026-09-23, from retired xfail)** — Scattershield (4+ invuln upgrade)
+  never wins the DPP race, so the Wraithknight's resolved build is always shield-less and the info
+  block correctly reports no INV. Honest feature: (1) carry upgrade ability text onto wargear
+  choices (merged Scattershield has `abilities: []` today — the parser drops the raw upgrade
+  profile), (2) add a survivability term to loadout selection so a shield can be preferred, (3)
+  derive info INV from the resolved build's abilities. Without (1)+(2), any "INV via shield" test
+  would be a fake green.
 - [ ] **Multi-unit synergies** — character auras, buff stacking
 - [ ] **Unit role tags** — objective holder, support, damage dealer
 - [ ] **Variance bands** — ±1σ range instead of average dice
@@ -383,6 +390,15 @@ Engine-side open items surfaced by this session:
 
 ## Corrections Log 📝
 
+- **2026-09-23**: The last xfail is gone — `test_weapon_options_fixes.py::test_invuln_present`
+  (Wraithknight 4+ invuln) asserted a false premise. Scattershield is a loadout upgrade
+  ("The bearer has a 4+ invulnerable save"), the DPP-optimal MEQ build is Heavy Wraithcannon +
+  Suncannon with NO shield, and the merged Unit profile has `InSv=''` — so `INV == 4` was simply
+  wrong for the resolved build. Rewritten as `test_no_invuln_without_scattershield` (structural:
+  optimal build must not contain the shield → info INV None). Ghostglaive's static INV 4 stays —
+  that variant is fixed Scattershield per BSData. The underlying engine gap (shield never wins
+  the DPP race; survivability-aware loadout selection + upgrade ability text on wargear choices)
+  is a real feature → backlog.
 - **2026-09-20 (2nd)**: "Thunderhawk has the keyword but no capacity prose" was an artifact of
   the dropped `typeName: "Transport"` profile, not real absent data — the adapter fix surfaced
   its genuine capacity: Thunderhawk Gunship 30 (SM family + GK). Also: engine parse refused the

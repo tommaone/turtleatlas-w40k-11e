@@ -1348,3 +1348,20 @@ if the window says "unit" and no "model(s)", it returns None → keyword-tier, b
 tests lock the exact merged prose (NIGHT_SCYTHE_PROSE + a model-word negative case so the guard
 is not over-broad). Same scan surfaced "Thunderhawk has no prose" as FALSE — its profile had
 been dropped wholesale by the old parser filter; post-fix it parses 30. "
+
+## A permanent xfail can be a false premise, not an engine gap (2026-09-23)
+The suite's last xfail — Wraithknight "should have 4+ invuln" — was marked
+loadout-conditional and carried for weeks. It was wrong: Scattershield (the 4+
+invuln upgrade) sits in the Left Arm slot but never wins the DPP race, so the
+resolved optimum is Heavy Wraithcannon + Suncannon with NO shield, and the merged
+Unit profile has InSv=''. The built unit genuinely has no save.
+
+**Why:** a long-lived xfail gets treated as "known gap, fine" and starts asserting a
+fixed expectation that no resolved build satisfies — the test pins a belief, not a
+contract.
+**How:** retire xfails by testing the truthful structural property (here: optimal build
+must not contain the shield → info INV None), correct the class docstring that claimed
+"Scattershield as default", and file the REAL feature separately (loadout-aware invuln =
+upgrade ability text on wargear choices + survivability term in the selector — roadmap
+backlog). Ghostglaive's static INV 4 stayed: that variant is fixed Scattershield per
+BSData — static is correct exactly when the loadout is fixed.

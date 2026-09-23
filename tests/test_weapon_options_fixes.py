@@ -95,10 +95,13 @@ def _melee(res):
 
 class TestWraithknight:
     """Wraithknight: Suncannon OR Heavy Wraithcannon (Primary Arm slot),
-    up to 2 secondary weapons, Scattershield (4+ invuln) as default.
+    up to 2 secondary weapons. Scattershield (4+ invuln) sits in the Left
+    Arm slot but never wins the DPP race, so the resolved build is
+    shield-less and carries no invuln.
 
-    Known limitation: Scattershield→Heavy Wraithcannon replacement (loses
-    INV4) is not modeled — niche option.
+    Loadout-aware invuln (survivability term in the selector + carrying
+    upgrade ability text onto wargear choices) is a backlog feature:
+    docs/roadmap.md.
     """
 
     def test_primary_arm_has_choice(self, aeldari_engine, MEQ):
@@ -120,14 +123,21 @@ class TestWraithknight:
         res = _build(aeldari_engine, "Wraithknight", MEQ)
         assert _mcount(res, "Titanic Feet") == 1
 
-    @pytest.mark.xfail(reason="INV is loadout-conditional (Scattershield is a "
-                       "Left Arm choice per BSData); engine info block is "
-                       "static. Needs loadout-dependent invuln feature.",
-                       strict=False)
-    def test_invuln_present(self, aeldari_engine, MEQ):
-        """Scattershield provides 4+ invuln."""
+    def test_no_invuln_without_scattershield(self, aeldari_engine, MEQ):
+        """Scattershield is arm-conditional (raw upgrade: 'The bearer has a
+        4+ invulnerable save'). The optimal MEQ build takes Heavy
+        Wraithcannon + Suncannon — no shield — so the info block must report
+        no invuln.
+
+        Replaced the old fixed INV==4 expectation, which was false for the
+        resolved build (see roadmap backlog: loadout-aware invuln feature).
+        """
         res = _build(aeldari_engine, "Wraithknight", MEQ)
-        assert res[4].get("INV") == 4, "Wraithknight should have 4+ invuln"
+        arms = [w.name for w in _ranged(res)]
+        assert "Scattershield" not in arms, (
+            f"Optimal MEQ build unexpectedly took the shield: {arms}"
+        )
+        assert res[4].get("INV") is None
 
 
 class TestWraithknightGhostglaive:
