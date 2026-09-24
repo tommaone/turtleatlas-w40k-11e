@@ -2271,18 +2271,26 @@ class RankingEngine:
         Gate: TRANSPORT keyword AND numeric capacity > 0. Non-transport → 0.
         Scaled by capacity (more bodies per trip) and by movement (faster delivery).
 
+        Capacity credit: 9.0 × sqrt(cap / 12). Anchored so a 12-body hold keeps the
+        original 9.0 credit (SM-family reference: Rhino/Land Raider/Drop Pod scores
+        are unchanged by the recalibration); larger holds scale by sqrt — diminishing
+        but NEVER flat. Replaced the min(0.75*cap, 9.0) plateau that flattened
+        96/134 transports: Stormlord (cap 40) and Rhino (cap 12) previously scored
+        identically; at the capacity-COMPONENT level cap 40 now out-credits cap 12
+        by ~1.83× (full delivery incl. base+speed: Stormlord 23.79 vs Rhino 15.54,
+        ~1.53×). Sub-12 holds also gain credit (cap 5–11, 38 hulls, up to ~+24%) —
+        intended: small hulls carry more of their volume as hold; nothing on this
+        curve loses credit, and the cap-12 anchor moves nothing.
+
         DEEP STRIKE transports (Drop Pods, etc.) deliver ONCE at the arrival point:
         the capacity credit stands but the movement-speed term is dropped — a
         one-shot arrival platform does not shuttle bodies over multiple turns and
         must not be credited a sustained delivery speed it never uses.
 
         Heuristic, not an 11e rule: constants are tuned to the current roster scale
-        (base 5.0, per-body 0.75 capped at 9.0, speed 0.03 per M). Recalibrate if
-        the roster scale changes. Real-data max ~18.9 (GK Thunderhawk M20 × cap 30);
-        the ~20 formula ceiling needs M24+, only reachable by exotic hulls.
-        NOTE: the per-body cap flattens most of the roster — Stormlord (cap 40)
-        and Rhino (cap 12) both land on 15.54. Capacity discrimination is real
-        only below cap 12; recalibration tracked in roadmap backlog.
+        (base 5.0, sqrt credit anchored at 9.0 for cap 12, speed 0.03 per M).
+        Recalibrate if the roster scale changes. Real-data range is computed from
+        the merged roster and stated in docs/roadmap.md (2026-09-23 recalibration).
         """
         keywords_upper = [k.upper() for k in mob.get("keywords", [])]
         if "TRANSPORT" not in keywords_upper:
@@ -2290,7 +2298,7 @@ class RankingEngine:
         cap = mob.get("transport_capacity_n")
         if not cap or cap <= 0:
             return 0.0
-        delivery = 5.0 + min(cap * 0.75, 9.0)
+        delivery = 5.0 + 9.0 * (cap / 12.0) ** 0.5
         if mob.get("deep_strike"):
             # One-shot arrival platform: static delivery, no shuttle-speed credit.
             return delivery * 0.75

@@ -77,6 +77,14 @@ DROP_POD_PROSE = (
     "This model has a transport capacity of 12 Adeptus Astartes\xa0Infantry models. "
     "It cannot transport Jump Pack, Wulfen,\xa0Gravis, Centurion or Terminator models."
 )
+# Astra Militarum Stormlord — the roster's biggest hold (verbatim from
+# merged astra-militarum.json). Pins the recalibration: cap 40 must out-credit
+# cap 12 (old min(0.75*cap, 9.0) flattened them onto the same 9.0).
+STORMLORD_PROSE = (
+    "This model has a transport capacity of 40 **^^Astra Militarum\xa0Infantry^^** "
+    "models. Each **^^Ogryn^^** model takes up the space of 3 models. It\xa0cannot "
+    "transport **^^Artillery^^** models."
+)
 # Necron Night Scythe: unit-count capacity (verbatim from merged necrons.json).
 # The transport carries ONE unit, not "1 model" — the parser must refuse the
 # number so the delivery metric is not fed a false 1-model capacity.
@@ -246,6 +254,60 @@ class TestDeliveryBonus:
             keywords=["Vehicle", "Transport"], transport_capacity=RHINO_PROSE,
         )
         assert RankingEngine.delivery_bonus(rhino) > RankingEngine.delivery_bonus(pod)
+
+    def test_recalibration_cap12_anchor_unchanged(self):
+        """Calibration anchor (2026-09-23): a 12-body hold at M12 must keep
+        the original 15.54 delivery — 54 roster hulls (Rhino/Land Raider/Drop
+        Pod class) stay byte-identical through the recalibration. Constant
+        lock, not re-implemented math: value came from the engine."""
+        rhino = compute_mob(
+            movement=12, fly=False, deep_strike=False, oc=1,
+            keywords=["Vehicle", "Transport"], transport_capacity=RHINO_PROSE,
+        )
+        assert (RankingEngine.delivery_bonus(rhino)
+                == pytest.approx(15.54, abs=1e-2))
+
+    def test_recalibration_cap40_outcredits_cap12(self):
+        """Plateau killer (roadmap ticket, 2026-09-23): the old
+        min(0.75*cap, 9.0) flattened everything at cap>=12 — Stormlord 40
+        scored IDENTICAL to Rhino 12. The sqrt curve must never be flat."""
+        stormlord = compute_mob(
+            movement=12, fly=False, deep_strike=False, oc=1,
+            keywords=["Vehicle", "Transport"], transport_capacity=STORMLORD_PROSE,
+        )
+        rhino = compute_mob(
+            movement=12, fly=False, deep_strike=False, oc=1,
+            keywords=["Vehicle", "Transport"], transport_capacity=RHINO_PROSE,
+        )
+        assert (RankingEngine.delivery_bonus(stormlord)
+                > RankingEngine.delivery_bonus(rhino))
+
+    def test_recalibration_monotonic_diminishing(self):
+        """Credit strictly increases with capacity and per-body returns
+        diminish: the rate per body over 6→12 must exceed the rate over
+        20→40. Synthetic prose is intentional — this tests the CURVE, not
+        the parser (parsing is covered by the real-prose fixtures above)."""
+
+        def credit(cap):
+            mob = compute_mob(
+                movement=12, fly=False, deep_strike=False, oc=1,
+                keywords=["Vehicle", "Transport"],
+                transport_capacity=(
+                    f"The model has a transport capacity of {cap} models."
+                ),
+            )
+            return RankingEngine.delivery_bonus(mob)
+
+        caps = [6, 7, 12, 14, 16, 20, 26, 30, 40]
+        values = [credit(c) for c in caps]
+        assert all(values[i] < values[i + 1] for i in range(len(values) - 1)), (
+            f"credit must be strictly increasing, got {values}"
+        )
+        rate_6_12 = (values[caps.index(12)] - values[caps.index(6)]) / 6
+        rate_20_40 = (values[caps.index(40)] - values[caps.index(20)]) / 20
+        assert rate_6_12 > rate_20_40, (
+            f"per-body rate must diminish: 6→12 {rate_6_12:.3f}, 20→40 {rate_20_40:.3f}"
+        )
 
 
 class TestMobScoreIntegration:

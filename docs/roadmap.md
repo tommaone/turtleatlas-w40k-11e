@@ -14,7 +14,7 @@ and recommend detachments/units based on mission and meta.
 |--------|-------|
 | Factions ranked | 30/30 |
 | Units ranked | ~1500 |
-| Tests | 4638 passed / 68 skipped / 0 xfailed (2026-09-23, PYTHONHASHSEED=1) |
+| Tests | 4641 passed / 68 skipped / 0 xfailed (2026-09-23, PYTHONHASHSEED=1) |
 | HTML findings | 30 factions, mobile-friendly |
 | Detachment modifiers | 26 (Grey Knights 9 + Chaos Knights 8 + Daemons 9) |
 | Characters | 511 on slots schema (all 30 factions, 2026-08-11) |
@@ -335,12 +335,21 @@ Engine-side open items surfaced by this session:
   Transport keyword + detachment tricks (Rapid Embarkation, Machine Wrath, Speartip) stay OUT of
   the engine: HEAVY TRANSPORT is not a static BSData keyword (conditional + conflicting sources,
   roadmap UNVERIFIED status confirmed); tricks are detachment-gated Astartes rules (expert scope).
-- [ ] **Transport delivery recalibration (follow-up from 2026-09-20 arc)** — the per-body cap
-  (0.75/cap capped at 9.0) flattens 96/134 transports: Stormlord (cap 40) and Rhino (cap 12)
-  score identically (15.54). Capacity discrimination is real only below cap 12. Options: lower
-  per-body rate, sqrt curve, or split shuttling/DS bins — MUST keep byte-stable for non-capacity
-  units and stay a labeled heuristic. Also re-examine compound capacities (first-component
-  convention) if the scale changes.
+- [x] **Transport delivery recalibration SHIPPED (2026-09-23)** — the per-body cap
+  (0.75/cap capped at 9.0) flattened 96/134 transports: Stormlord (cap 40) and Rhino (cap 12)
+  scored identically (15.54). Replaced with the sqrt curve, anchored: credit = 9.0 × sqrt(cap/12),
+  base 5.0, speed 0.03/M, DS static floor unchanged. Cap 12 keeps EXACTLY the old 9.0 credit —
+  54 anchor hulls (Rhino/Land Raider/Drop Pod class) byte-identical; cap 40 out-credits cap 12
+  by ~1.83× at component level (full delivery incl. base+speed: Stormlord 23.79 vs Rhino 15.54,
+  ~1.53×). Sub-12 holds (cap 5–11, 38 hulls) also gain up to ~+24% credit; nothing loses credit —
+  intended, small hulls carry more of their volume as hold. Verification: full seeded suite 4641
+  passed / 68 skipped / 0 xfailed; delivery-level replay across 1415 ranked units — 79 credit
+  values changed, ALL cap ∉ {None,12}; score-level (mob_score): 54 units move; 4 FORTIFICATION
+  cap-11 hulls (Tidewall Droneport/Gunrig/Shieldline, Big'Ed Bossbunka) hold changed credit in
+  data but mob_score zeroes them pre-delivery — bonus-reach excludes them; non-capacity units
+  byte-stable. Real-data range now min 8.52 (Ynnari Venom, cap 6, DS) / max 25.96 (Thunderhawk,
+  cap 30, M20). DS hulls with cap ≠ 12 moved too (Venom DS 7.13 → 8.52) — expected. Compound
+  capacities (first-component convention) unchanged, parked with the payload-math follow-up.
 - [ ] **Loadout-aware invuln (2026-09-23, from retired xfail)** — Scattershield (4+ invuln upgrade)
   never wins the DPP race, so the Wraithknight's resolved build is always shield-less and the info
   block correctly reports no INV. Honest feature: (1) carry upgrade ability text onto wargear
@@ -390,6 +399,14 @@ Engine-side open items surfaced by this session:
 
 ## Corrections Log 📝
 
+- **2026-09-23 (2nd)**: Delivery recalibration sweep had two sloppy claims fixed before
+  ship: (a) "96/135 flattened" → 96/134 (the 135th was the unit-count Night Scythe, refused
+  by the guard, not a numeric-capacity transport); (b) "79 changed / zero violations" was a
+  DELIVERY-level replay, not score-level — mob_score re-normalization washes 25 of the 79
+  changes out, so 54 units actually move on boards, and 4 FORTIFICATION cap-11 hulls
+  (Tidewall Droneport/Gunrig/Shieldline, Big'Ed Bossbunka) carry changed credit in data but
+  are zeroed pre-delivery at score level. Docstring also claimed roadmap support before the
+  roadmap was edited — now shipped in the same commit (Shredder gate).
 - **2026-09-23**: The last xfail is gone — `test_weapon_options_fixes.py::test_invuln_present`
   (Wraithknight 4+ invuln) asserted a false premise. Scattershield is a loadout upgrade
   ("The bearer has a 4+ invulnerable save"), the DPP-optimal MEQ build is Heavy Wraithcannon +
