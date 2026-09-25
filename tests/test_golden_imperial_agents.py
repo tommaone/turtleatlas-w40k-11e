@@ -52,12 +52,18 @@ class TestInquisitor:
         assert "Psychic Shock Wave" in _names(res[1])
 
     def test_points_match_mfm_snapshot(self, engine):
-        """Repo convention: MFM is points truth. Wahapedia live shows 55 —
-        flagged for next MFM sync; this pin documents the current snapshot."""
+        """Repo convention: MFM is points truth.
+
+        MFM lists the Inquisitor twice: a plain entry at 55 and a
+        groupTitle ("Every Model Has The Imperium Keyword") entry at 65. The
+        config previously held 65 — the opt-in group rate — because the MFM
+        map was last-wins. Now resolved to the plain 55, which matches
+        Wahapedia. See tests/test_merge_mfm_pricing_tiers.py.
+        """
         ch_path = (Path(__file__).resolve().parent.parent
                    / "data" / "config" / "imperial-agents" / "characters.json")
         ch = json.loads(ch_path.read_text())
-        assert ch["Inquisitor"]["pts"] == 65
+        assert ch["Inquisitor"]["pts"] == 55
 
 
 class TestInquisitorialChimera:

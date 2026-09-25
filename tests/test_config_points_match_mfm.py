@@ -34,16 +34,32 @@ def _norm(s):
 
 
 def _mfm_base_points(faction_yaml):
-    """name(norm) -> (models_of_cheapest_tier, points) or absent."""
+    """name(norm) -> (models_of_cheapest_tier, points) or absent.
+
+    Duplicate unit names are pricing tiers, not separate units:
+    imperial-agents lists 29 units twice, the second carrying groupTitle
+    ("Every Model Has The Imperium Keyword") at a different rate. Prefer the
+    plain entry — mirrors adapter/merge.py so config, merged and this guard
+    all read the same base price. Falls back to a groupTitle entry when a unit
+    has no plain one.
+    """
     out = {}
+    group = {}
     for u in faction_yaml.get("units", []):
         costs = []
         for pr in u.get("pricing", []):
             for c in pr.get("costs", []):
                 if c.get("points") is not None:
                     costs.append((c.get("models", 1), int(c["points"])))
-        if costs:
-            out[_norm(u.get("name", ""))] = min(costs)
+        if not costs:
+            continue
+        name = _norm(u.get("name", ""))
+        if u.get("groupTitle"):
+            group.setdefault(name, min(costs))
+        else:
+            out[name] = min(costs)
+    for name, costs in group.items():
+        out.setdefault(name, costs)
     return out
 
 

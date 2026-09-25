@@ -1365,3 +1365,154 @@ must not contain the shield → info INV None), correct the class docstring that
 upgrade ability text on wargear choices + survivability term in the selector — roadmap
 backlog). Ghostglaive's static INV 4 stayed: that variant is fixed Scattershield per
 BSData — static is correct exactly when the loadout is fixed.
+
+## Data claims are only as current as the submodule pin (2026-09-25)
+A "the data says X" verdict is worthless if `bsdata/` is pinned weeks back. Both
+data submodules sit on detached HEAD and drift silently: at bump time bsdata was 9
+commits behind (2026-09-17 → 2026-09-25) while mfm was current (v1.4). Nothing in
+the repo flagged it.
+
+**Why:** submodule pins are a pointer with no drift alarm, and a verdict traced to a
+pinned hash looks exactly like a verdict traced to HEAD until someone checks.
+**How:** before any claim sourced from merged/bsdata/mfm, run
+`git -C <sub> rev-parse HEAD` vs `origin/HEAD` and date both. A count of
+[Legends]-named entries dumped from a whole raw file is NOT evidence about a specific
+unit — section-level name matches and sibling-entry `legends:` lines both produce false
+hits (Tarantula's flag read as Tactical Squad's). Walk the ancestor chain to the
+unit node, never scan the file. And never write a bare count into this file: if the
+number cannot be reproduced by a named file plus a named method, it is folklore.
+
+## A "0 findings" row that today's command cannot reproduce is a bug, not history
+The roadmap claimed "BSData audit: 0 findings, 0 guilty units — ALL CLEAN
+(2026-08-22)". `validate_configs_vs_bsdata.py --all` reports 433 issues / 68 HIGH —
+identically at the old pin and the new one, so this was never caused by a bump.
+
+**Why:** a green status row that no command reproduces is a compressed belief: it
+launders an old scope, a different script version, or a remembered session into a
+present-tense fact. The dangerous part is that it makes a data bump look risk-free
+for the wrong reason.
+**How:** before trusting any status row, re-run its command and paste the count.
+When a bump touches the subject, always A/B the audit against the old pin
+(`git -C bsdata checkout <old>` → run → `checkout <new>`) so "the bump caused it"
+and "it was already there" are separable facts. Correct the row to the reproducible
+number, keeping the severity split (68 HIGH ≠ 433 benign).
+
+## A data bump that moves only metadata must be proven to move nothing else
+The 9-commit bsdata bump landed as: 4× `bsdata_revision` counters + one
+`Mortal Sorcery (Aura)` link on TS. AM/Orks/Tyranids raw files changed but merged
+did not — the roster comes from `mfm_unit_map`, and although the Library /
+enhancement files ARE parsed and feed `multiplicity_index` and the cross-catalogue
+`global_index` fallback (`adapter/merge.py:107,113,115-117,152-157,172-178`), this
+merge produced no net change from them. A 164-line raw diff CAN be a zero-line
+merged diff — but "no net change on this merge" is the claim, not "they do not feed it".
+
+**How:** regenerate merged, then read the diff by hand. A `bsdata_revision` bump is
+not a data change. Prove "no score movement" by stripping the volatile gen-time
+stamp from the findings HTML and diffing the remainder (expect byte-identical),
+plus `army_tiers.json` unchanged — a grep for a number shape proves only that the
+shape is absent, and misses integers and values inside attributes.
+
+## `data/config/` does NOT stay in sync with a bsdata bump — and its regen is destructive
+`memory/feedback.md:48` mandates `generate_configs_from_bsdata.py` → `validate_configs_vs_bsdata.py`
+→ pytest. That first step is not optional on a bump and it is NOT a no-op. Both config
+scripts read the submodule DIRECTLY (`gen_squad_composition.py:311`,
+`generate_configs_from_bsdata.py:21,165`), never through `data/merged/`, so
+`merge.py` alone leaves configs stale while merged looks clean.
+
+Measured on the 2026-09-25 bump: `merge.py --all` → 4 files, 11 changed lines.
+`generate_configs_from_bsdata.py --all` → **96 files, +18,158/−32,769 lines**, 11 new
+untracked 2-byte `vehicles.json` stubs, and it drops curated entries it labels
+"shadowed" (Gladiator Lancer/Valiant, Impulsor, Repulsor).
+
+**Why:** a bump therefore has two very different footprints, and the small one is the
+one that looks reassuring. Shipping only the small one commits a pointer move while
+the derived config surface silently drifts.
+**How:** `--dry-run` prints counts, NOT a diff — it cannot tell you whether disk
+matches, so it does not discharge this step. Measure with a real run, then
+`git status data/config/`; if the diff is destructive, roll back with
+`git checkout -- data/config/` AND `git clean -f data/config/` (the generator leaves
+untracked stubs that checkout will NOT remove — check both). Deciding whether the
+generator may overwrite curated content is its own ticket, not a data bump.
+
+## Correcting a status row means naming which tool produced which number
+The roadmap's "0 findings, 0 guilty units — ALL CLEAN" is the literal output template
+of `audit_curated_vs_bsdata.py:199`. That tool today prints
+`AUDIT: 30 factions, 114 findings, 65 guilty units` — identically at both pins. A
+first pass "corrected" the row using `validate_configs_vs_bsdata.py --all` instead
+(433 / 68 HIGH) and never mentioned the tool that owned the original claim.
+
+**Why:** swapping the metric under a claim while keeping its authority launders the
+claim instead of correcting it. The old tool's real number disappearing from the
+record is the tell.
+**How:** when a status row's number is wrong, first find the tool whose output
+template the wording matches, re-run THAT tool, and record both tools and both
+numbers with the row. Then annotate the older superseded claims in place
+(roadmap history entries, other docs) so no reader meets "NOT clean" and
+"ALL CLEAN" in the same file. Watch for the tracked artifact that asserts the stale
+number (`audit_findings.json` = 0 entries vs its producer's 114).
+
+## Reading pytest artifacts: near-simultaneous mtimes can mean the run FINISHED
+Shredder read `reports/crossfaction_truth_report.json` and
+`.pytest_cache/v/cache/nodeids` being 1.1s apart as evidence that no 9-minute suite
+had run. The opposite was true. Pytest writes the nodeids cache at session END, and
+the truth report is written by a test in the final seconds — so a 1.1s gap is
+evidence a long run COMPLETED, not that it was skipped.
+
+**How:** corroborate with what a run cannot fake: `--collect-only` totals
+(4709 = 4641 passed + 68 skipped), the reported wall-clock duration, and mtimes that
+ADVANCE when you re-run. Prefer leaving a dated log artifact
+(`workspace/pytest-<date>-<slug>.log`, `workspace/` is gitignored) over asserting a
+count from memory. Do not "fix" a correct claim just because a reviewer inferred
+badly — verify the premise, then keep the true value.
+
+## MFM duplicate names are pricing TIERS, not units — and `min(costs)` cannot resolve them
+`mfm/data/imperial-agents.yaml` lists 29 units TWICE: a plain entry and a second
+entry carrying `groupTitle: "Every Model Has The Imperium Keyword"` at a
+different rate (14 of them diverge, one negatively: Exaction Squad 90 plain / 85
+group). A `name -> unit` dict built with plain last-wins charges the opt-in
+group rate as the base price. That silently overstated points and understated
+DPP-per-point for 14 units.
+
+Two traps compounded it, both worth internalising:
+
+1. **Last-wins is the whole cause — `min(costs)` was a bystander.** The guard
+   oracle in `tests/test_config_points_match_mfm.py` also did last-wins, and
+   that is what actually picked 65/85/105: every one of these entries has a
+   SINGLE cost row, so `min()` was the identity on both the plain and the
+   group entry. It reads like a plausible cause, which is exactly why it is
+   worth writing down — tracing it against real data showed `min` never chose
+   anything. `min` was a heuristic for `[2,)` requisition surcharges
+   ("[1,1] first unit" is cheapest) and is vestigial in the guard's live
+   scope. Do not "fix" a dedup bug by reasoning about price ordering; trace
+   the actual data shape.
+2. **A golden pin can freeze the bug.** `test_golden_imperial_agents.py` asserted
+   `Inquisitor.pts == 65` (the group rate) with a comment noting "Wahapedia live
+   shows 55 — flagged for next MFM sync". A pin that cites the contradicting
+   source and defers the fix is a documented bug, not a safety net.
+
+**How:** the "prefer plain, fall back to groupTitle" rule now lives in FOUR
+places and they must never diverge — `adapter/merge.py` (the map),
+`tests/test_config_points_match_mfm.py` (the oracle),
+`scripts/sync_config_pts.py` (the sanctioned writer), and
+`tests/test_merge_mfm_pricing_tiers.py` (pins the data shape + merged result).
+Changing one without the others is how this recurs. Two process rules that
+would have caught it on day one: run `scripts/sync_config_pts.py --dry-run`
+after ANY submodule bump (it is the sanctioned writer — hand-patching points
+violates the MFM-is-truth rule even when the hand value is correct), and treat
+a golden pin that names a contradicting source as a work item, not
+documentation.
+
+**The `groupTitle` fallback is load-bearing, not defensive padding.** 11 other
+factions list 459 units that are group-ONLY — the successors' 399 "Space
+Marines", plus Ynnari, Harlequins, Chaos. imperial-agents is the only file where
+BOTH a plain and a group entry exist. Delete the fallback and blood-angels
+collapses 99 -> 15 units while 35 successor tests still pass against the
+committed JSON. Guard it with a test, not a comment.
+
+**How to test a fix like this:** restore the bug and re-run before believing
+the new test guards it. A test that reads a committed artifact
+(`data/merged/imperial-agents.json`) cannot fail against a code regression — the
+first version of this test passed with `merge.py` reverted, exactly like the
+golden pin it replaced. `tests/test_merge_mfm_pricing_tiers.py` calls
+`merge_faction()` live for this reason; verified red with the bug restored,
+green with the fix.

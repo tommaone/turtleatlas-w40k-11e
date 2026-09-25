@@ -14,7 +14,7 @@ and recommend detachments/units based on mission and meta.
 |--------|-------|
 | Factions ranked | 30/30 |
 | Units ranked | ~1500 |
-| Tests | 4641 passed / 68 skipped / 0 xfailed (2026-09-23, PYTHONHASHSEED=1) |
+| Tests | 4645 passed / 68 skipped / 0 xfailed (2026-09-25, PYTHONHASHSEED=1) |
 | HTML findings | 30 factions, mobile-friendly |
 | Detachment modifiers | 26 (Grey Knights 9 + Chaos Knights 8 + Daemons 9) |
 | Characters | 511 on slots schema (all 30 factions, 2026-08-11) |
@@ -22,8 +22,10 @@ and recommend detachments/units based on mission and meta.
 | Weapon_options on slots | **ALL 30/30 factions** (Wave 3+4, 2026-08-19) |
 | Reroll abilities auto-detected | 24 datasheets across 15 factions |
 | Complex-layer squads | Aeldari, GK, SM, DA, SW, BA, BT, DW, Chaos Daemons, CSM, EC, Orks (11 with alloc/slots) + 9-faction caps sweep (2026-08-15) |
-| BSData audit | **0 findings, 0 guilty units — ALL CLEAN (2026-08-22)** |
-| Last change | NO_CURATED unblocked: 18 configs generated from BSData fallback, 0 audit findings |
+| BSData audit | **NOT clean** (re-measured 2026-09-25, post-AoI pricing fix): `audit_curated_vs_bsdata.py` → **111 findings / 62 guilty units** (was 114/65 — all 3 `POINTS_DRIFT` resolved); `validate_configs_vs_bsdata.py --all` → **433 issues / 68 HIGH**. The remaining drift predates this branch and is byte-identical at both pins (b074700 / 6fca2d1) — not bump fallout, root cause still undiagnosed |
+| bsdata pin | `6fca2d1` (2026-09-25, Fixes #2039) — bumped from `b074700` (2026-09-17) |
+| mfm pin | `61a687e` (MFM v1.4, 2026-09-03) — current, no change |
+| Last change | **AoI MFM duplicate-pricing fix**: MFM lists 29 imperial-agents units twice, the second carrying `groupTitle` ("Every Model Has The Imperium Keyword") at a different rate. The merge map was last-wins, so the opt-in group rate became the base price for 14 units. Merge map + config `pts` + guard oracle + sync tool now all prefer the plain entry. Verified: `army_tiers` imperial-agents overall unchanged (55.9), Purge the Foe 60.1→60.2; 3 findings files / 6 lines moved, all other 28 factions byte-identical. Also on this branch: bsdata bump 4 merged files (4× `bsdata_revision`; TS also +`Mortal Sorcery (Aura)` link), 0 score movement. `data/config/` wholesale regen **deliberately NOT included** — see bullet |
 
 ### Direction (2026-09)
 
@@ -40,6 +42,9 @@ files per focus; private repo `tommaone/turtle-army-ledger`). Rule: personal lis
 content never enters this public repo.
 
 Engine-side open items surfaced by this session:
+- **bsdata bumped 2026-09-25** `b074700` → `6fca2d1` (9 upstream commits, 7 files). Merged regen is metadata-only in effect: 4× `bsdata_revision` bump + one `Mortal Sorcery (Aura)` link on TS; findings diff is gen-time stamps only, `army_tiers.json` byte-identical, no score movement. Suite re-run twice (4641 passed / 68 skipped, log `workspace/pytest-2026-09-25-bump.log`).
+- **`data/config/` regen is NOT part of a data bump — blocked pending review (2026-09-25).** `generate_configs_from_bsdata.py --all` rewrites **96 files, +18,158/−32,769 lines**, emits 11 new untracked `vehicles.json` stubs, and drops curated entries it calls "shadowed" (Gladiator Lancer/Valiant, Impulsor, Repulsor). Configs read the submodule directly (`gen_squad_composition.py:311`, `generate_configs_from_bsdata.py:21,165`), so they do NOT stay in sync via `merge.py` alone. Needs its own ticket: decide whether the generator may overwrite curated content before any regen lands.
+- **BSData audit is NOT clean (re-measured 2026-09-25)** — `audit_curated_vs_bsdata.py` 114 findings / 65 guilty units, `validate_configs_vs_bsdata.py --all` 433 / 68 HIGH, byte-identical at both pins. Tracked `audit_findings.json` still holds `0 entries` from commit `bbc7678`. Root cause undiagnosed — the 2026-08-22 "ALL CLEAN" history entries below are superseded.
 - **Executioner Heavy-Transport status UNVERIFIED** — gates fit-A (if nothing else is Heavy, cutting the Redeemer kills Rapid Deployment / Rapid Embarkation bounce / Machine Wrath). Confirmed 2026-09-20: HEAVY TRANSPORT is not a static BSData keyword (conditional Armoured-Speartip modifier vs conflicting Legends W14+ prose) — engine does NOT hardcode it.
 - **Transport delivery scoring SHIPPED (2026-09-20)** — 11e GRAVIS×2 prose, LR 12 / Impulsor 7 / Exec 7 caps verified from merged BSData and now feeding MOB delivery. Adapter normalization SHIPPED same day — both BSData transport encodings land in merged as one "Transport" ability shape (134 capacity transports / 25 factions, non-fortification set). Remaining open: payload slot math, unit-pairing "rides in" scoring (army-list scope).
 - **October SM codex = scheduled full refresh** — S5 basic weapons, bolt rifles S5/S6, TACTICUS → T5, points rise (armies shrink). Rerun merge + findings + SM/DA re-rank; every current SM statline is pre-codex.
@@ -179,7 +184,8 @@ Engine-side open items surfaced by this session:
   - 17 dual-entry configs synced (characters.json ↔ weapon_options.json overwrite bug)
   - Audit: 209 findings, 163 guilty units, 1 COMBO gap (DC Dread — deliberate)
   - 616/617 tests pass, 152/152 findings validation pass
-- **Audit grind COMPLETE (2026-08-22)** — 209 → 22 findings, 0 actionable:
+- **Audit grind COMPLETE (2026-08-22)** — 209 → 22 findings, 0 actionable
+  (SUPERSEDED 2026-09-25: same tool now reports 114 findings / 65 guilty units — see Current State)
   - 32 units rebuilt from BSData slot structure (Castigator split to 2 slots,
     Thunderhawks restructured, Warboss/DC Dread/Brutalis/Astraeus/etc.)
   - ~20 name normalizations ('Plasma pistol - standard' → 'Plasma pistol',
@@ -196,7 +202,8 @@ Engine-side open items surfaced by this session:
     Tesseract Vault, Venomcrawler, Galatus, Pallas, Skorpius Dunerider,
     Bloat-drone variant). Blocked on merged-data profiles — adding configs
     crashes the engine (units unrankable). Revisit when merged data regenerates.
-- **NO_CURATED UNBLOCKED — audit ALL CLEAN (2026-08-22)** — 0 findings:
+- **NO_CURATED UNBLOCKED — audit ALL CLEAN (2026-08-22)** — 0 findings
+  (SUPERSEDED 2026-09-25: `audit_curated_vs_bsdata.py` now reports 114 findings / 65 guilty units; tracked `audit_findings.json` still says 0 — see Current State):
   - Diagnosis correction: the "empty stats" units were never a parser gap.
     Stats always extracted to `merged.profile.stats`; the earlier check read
     the wrong dict level. Real blocker: no curated config + engine

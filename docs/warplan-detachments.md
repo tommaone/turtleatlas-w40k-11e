@@ -19,8 +19,8 @@ separate view).
 
 ## Starting Position (verified 2026-08-23)
 
-- Audit: 0 findings. Points: MFM v1.2 synced, drift test-gated.
-- Tests: ~645 green, 1 pre-existing Wraithknight fail.
+- Audit: 0 findings *(as of 2026-08-23; SUPERSEDED — re-measured 2026-09-25 at 114 findings / 65 guilty units by `audit_curated_vs_bsdata.py`)*. Points: MFM v1.2 synced, drift test-gated *(MFM now v1.4)*.
+- Tests: ~645 green, 1 pre-existing Wraithknight fail *(now 4641 passed / 68 skipped; Wraithknight xfail retired 2026-09-23)*.
 - Detachment modifier system exists (GK 9, CK 8, Daemons 9 configured).
 - Complex/alloc squad layer live on 12 factions; ~14–18 remain.
 - Tooling in repo: `audit_curated_vs_bsdata.py`, `sync_config_pts.py`,

@@ -44,6 +44,7 @@ def _mfm_pricing(faction_yaml):
     config unit's own model count `n`.
     """
     out = {}
+    group = {}
     for u in faction_yaml.get("units", []):
         pricing = u.get("pricing") or []
         if not pricing:
@@ -57,7 +58,17 @@ def _mfm_pricing(faction_yaml):
                 third = [(c.get("models", 1), int(c["points"]))
                          for c in pr.get("costs", []) if c.get("points") is not None]
                 break
-        out[_norm(u.get("name", ""))] = {"pts": first, "pts_3rd": third}
+        name = _norm(u.get("name", ""))
+        if u.get("groupTitle"):
+            # Pricing tier, not the unit's base price (imperial-agents lists 29
+            # units twice under "Every Model Has The Imperium Keyword"). Keep
+            # the plain entry when there is one — same rule as merge.py and
+            # tests/test_config_points_match_mfm.py.
+            group[name] = {"pts": first, "pts_3rd": third}
+        else:
+            out[name] = {"pts": first, "pts_3rd": third}
+    for name, tiers in group.items():
+        out.setdefault(name, tiers)
     return out
 
 

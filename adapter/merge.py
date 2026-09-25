@@ -122,8 +122,18 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
         if u.get("legends") and not with_legends:
             continue
         n = norm(u["name"])
-        mfm_unit_map[n] = u
-        mfm_orig_names[n] = u["name"]
+        # Duplicate names are pricing tiers, not separate units: imperial-agents
+        # lists 29 of its units twice, the second carrying groupTitle ("Every
+        # Model Has The Imperium Keyword"). Last-wins charged that opt-in group
+        # rate as the base price for 14 of them. Prefer the plain entry, and fall
+        # back to a groupTitle entry only when the unit has no plain one.
+        # The fallback is load-bearing, not padding: 11 other factions list 459
+        # group-ONLY units (the successors' "Space Marines", Ynnari, Harlequins).
+        # Removing it collapses blood-angels from 99 to 15 units.
+        prev = mfm_unit_map.get(n)
+        if prev is None or (prev.get("groupTitle") and not u.get("groupTitle")):
+            mfm_unit_map[n] = u
+            mfm_orig_names[n] = u["name"]
 
     # -- Apply weapon multiplicities to BSData units --
     if multiplicity_index:
