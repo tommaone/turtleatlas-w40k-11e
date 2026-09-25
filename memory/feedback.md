@@ -1516,3 +1516,33 @@ first version of this test passed with `merge.py` reverted, exactly like the
 golden pin it replaced. `tests/test_merge_mfm_pricing_tiers.py` calls
 `merge_faction()` live for this reason; verified red with the bug restored,
 green with the fix.
+
+## The audit graded points against BSData. Only the points column was wrong.
+`scripts/audit_curated_vs_bsdata.py` read `pts` from BSData's
+`sharedSelectionEntry` costs and compared config prices against it. MFM is
+points truth (AGENTS.md); BSData is the wargear/stats source. The wargear
+comparison was always correct — only `POINTS_DRIFT` was measuring the wrong
+thing, and the imperial-agents findings it produced were an artefact of MFM's
+groupTitle tiers, not config error.
+
+**Honest result: the headline count barely moved** (111 -> 112 findings, 62
+guilty units both times). The 41 `MISSING_CHOICES` / 28 `SLOT_COUNT` /
+25 `COMBOS` / 17 `MISSING_FIXED` bulk is genuine wargear curation backlog
+against BSData and was always correctly measured. Do not predict an audit
+number will move because you found its oracle wrong — the value of fixing an
+oracle is that the number becomes *true*, not that it becomes small. Say so
+plainly instead of implying a win.
+
+The one new finding is a real name mismatch worth keeping:
+black-templars config says `Emperor's Champion (Anointed)`, MFM says
+`Emperor’S Champion` — a real capital-S scraping artifact upstream. A
+`NO_MFM_POINTS` finding now names the nearest candidate, because "no MFM
+entry" alone is a dead end for whoever has to judge it.
+
+**How:** the plain-over-groupTitle rule now has ONE implementation in
+`adapter/mfm_pricing.py` (`iter_base_entries`, `base_points`, `tier_costs`).
+Consumers call it instead of each re-deriving the rule — that duplication was
+itself a finding. Note the audit's `_norm` differs from `adapter/merge.py`'s
+`norm_name` (apostrophe-stripping vs `armour`->`armor` folding); each caller
+normalises with its own, so `mfm_pricing` keys on the original MFM name. Do
+not "unify" those two norms casually — it would change finding counts.

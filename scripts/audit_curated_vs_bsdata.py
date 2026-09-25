@@ -2,17 +2,36 @@
 """Audit curated weapon configs against BSData wargear structure.
 
 Usage: python3 audit_curated_vs_bsdata.py [--faction SLUG]
+
+Points are compared against MFM, not BSData. Repo convention (AGENTS.md /
+memory/feedback.md): MFM is points truth, BSData is the wargear/stats
+source. This script used to read `pts` from BSData's sharedSelectionEntry
+costs, grading configs against the wrong instrument and reporting
+imperial-agents pricing drift that did not exist. Wargear structure is
+still compared against BSData — that part was right.
 """
 import json, sys
 from pathlib import Path
 from collections import defaultdict
 
+import yaml
+
 PROJ = Path("/home/tomecka/turtleatlas-w40k-11e")
 sys.path.insert(0, str(PROJ))
 from adapter.bsdata_parser_11e import BSDataParser11e
+from adapter.mfm_pricing import base_points
 
 def _norm(s):
     return s.lower().replace("'", "").replace("\u2019", "").replace("-", " ").replace("  "," ").strip()
+
+def load_mfm_points(slug):
+    """norm name -> MFM base points. Empty if the faction has no MFM file."""
+    yml = PROJ / "mfm" / "data" / f"{slug}.yaml"
+    if not yml.exists():
+        return {}
+    with open(yml) as f:
+        data = yaml.safe_load(f)
+    return {_norm(name): pts for name, pts in base_points(data.get("units")).items()}
 
 def load_curated(slug):
     cfg_dir = PROJ / "data" / "config" / slug
@@ -96,7 +115,20 @@ def _num_slots(builds):
             seen.add(_norm(slot["name"]))
     return len(seen)
 
-def compare(name, curated, bsdata):
+def _nearest_mfm(name, mfm_pts):
+    """Single containment match for a curated name MFM does not carry.
+
+    MFM names are the datasheet name; a curated config may add a qualifier
+    ("Emperor's Champion (Anointed)" vs MFM's "Emperor’s Champion" — which
+    also carries a capital S scraping artifact). Naming the candidate makes
+    the finding actionable instead of a dead end. Returns None unless
+    exactly one candidate matches, so this never guesses.
+    """
+    hits = [k for k in mfm_pts
+            if k.startswith(name) or name.startswith(k)]
+    return hits[0] if len(hits) == 1 else None
+
+def compare(name, curated, bsdata, mfm_pts=None):
     f = []
     if not curated:
         if bsdata:
@@ -141,12 +173,19 @@ def compare(name, curated, bsdata):
         f.append({"unit": name, "type": "SLOT_COUNT",
                   "detail": f"Curated {cs} slots, BSData {bs} slots"})
 
-    # Points
+    # Points — MFM is the oracle, not BSData.
     cp = curated.get("pts")
-    bp_ = bsdata.get("pts")
-    if cp and bp_ and cp != bp_:
+    mp = mfm_pts.get(name) if mfm_pts is not None else None
+    if cp and mfm_pts is None:
+        pass  # no MFM file for this faction: nothing to compare against
+    elif cp and mp is None:
+        near = _nearest_mfm(name, mfm_pts)
+        hint = f" (nearest MFM: '{near}' @ {mfm_pts[near]})" if near else ""
+        f.append({"unit": name, "type": "NO_MFM_POINTS",
+                  "detail": f"Curated={cp} pts, MFM has no '{name}' entry{hint}"})
+    elif cp and cp != mp:
         f.append({"unit": name, "type": "POINTS_DRIFT",
-                  "detail": f"Curated={cp} pts, BSData={bp_} pts"})
+                  "detail": f"Curated={cp} pts, MFM={mp} pts"})
 
     # Combos
     cc_n = 1
@@ -182,11 +221,12 @@ def main():
             continue
         curated, covered = load_curated(bsdata_slug := slug)
         bsdata = extract_wargear(bp, fn)
+        mfm_pts = load_mfm_points(slug) if (PROJ/"mfm"/"data"/f"{slug}.yaml").exists() else None
         # Units covered by a config but not comparable (squad models-schema)
         # are deliberately excluded from wargear comparison entirely.
         names = (set(covered) | set(bsdata)) - (covered - set(curated))
         for n in sorted(names):
-            findings = compare(n, curated.get(n), bsdata.get(n))
+            findings = compare(n, curated.get(n), bsdata.get(n), mfm_pts)
             for finding in findings:
                 finding["slug"] = slug
                 finding["faction"] = fn

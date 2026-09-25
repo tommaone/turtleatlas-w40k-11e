@@ -14,7 +14,7 @@ and recommend detachments/units based on mission and meta.
 |--------|-------|
 | Factions ranked | 30/30 |
 | Units ranked | ~1500 |
-| Tests | 4645 passed / 68 skipped / 0 xfailed (2026-09-25, PYTHONHASHSEED=1) |
+| Tests | 4650 passed / 68 skipped / 0 xfailed (2026-09-25, PYTHONHASHSEED=1) |
 | HTML findings | 30 factions, mobile-friendly |
 | Detachment modifiers | 26 (Grey Knights 9 + Chaos Knights 8 + Daemons 9) |
 | Characters | 511 on slots schema (all 30 factions, 2026-08-11) |
@@ -22,7 +22,7 @@ and recommend detachments/units based on mission and meta.
 | Weapon_options on slots | **ALL 30/30 factions** (Wave 3+4, 2026-08-19) |
 | Reroll abilities auto-detected | 24 datasheets across 15 factions |
 | Complex-layer squads | Aeldari, GK, SM, DA, SW, BA, BT, DW, Chaos Daemons, CSM, EC, Orks (11 with alloc/slots) + 9-faction caps sweep (2026-08-15) |
-| BSData audit | **NOT clean** (re-measured 2026-09-25, post-AoI pricing fix): `audit_curated_vs_bsdata.py` → **111 findings / 62 guilty units** (was 114/65 — all 3 `POINTS_DRIFT` resolved); `validate_configs_vs_bsdata.py --all` → **433 issues / 68 HIGH**. The remaining drift predates this branch and is byte-identical at both pins (b074700 / 6fca2d1) — not bump fallout, root cause still undiagnosed |
+| BSData audit | **NOT clean** (re-measured 2026-09-25, MFM oracle): `audit_curated_vs_bsdata.py` → **112 findings / 62 guilty units**; `validate_configs_vs_bsdata.py --all` → **433 issues / 68 HIGH**. Points now graded against **MFM** (was BSData — the wrong instrument). Breakdown: 41 `MISSING_CHOICES`, 28 `SLOT_COUNT`, 25 `COMBOS`, 17 `MISSING_FIXED`, 1 `NO_MFM_POINTS`, **0 `POINTS_DRIFT`**. The remainder is wargear-structure curation backlog vs BSData, byte-identical at both pins (b074700 / 6fca2d1) — not bump fallout |
 | bsdata pin | `6fca2d1` (2026-09-25, Fixes #2039) — bumped from `b074700` (2026-09-17) |
 | mfm pin | `61a687e` (MFM v1.4, 2026-09-03) — current, no change |
 | Last change | **AoI MFM duplicate-pricing fix**: MFM lists 29 imperial-agents units twice, the second carrying `groupTitle` ("Every Model Has The Imperium Keyword") at a different rate. The merge map was last-wins, so the opt-in group rate became the base price for 14 units. Merge map + config `pts` + guard oracle + sync tool now all prefer the plain entry. Verified: `army_tiers` imperial-agents overall unchanged (55.9), Purge the Foe 60.1→60.2; 3 findings files / 6 lines moved, all other 28 factions byte-identical. Also on this branch: bsdata bump 4 merged files (4× `bsdata_revision`; TS also +`Mortal Sorcery (Aura)` link), 0 score movement. `data/config/` wholesale regen **deliberately NOT included** — see bullet |
