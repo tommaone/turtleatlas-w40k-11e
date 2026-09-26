@@ -1038,7 +1038,10 @@ look like facts.
     if (prof.abilities?.length) {
       out += `\n## Abilities\n\n`;
       for (const a of prof.abilities) {
-        out += `- ${a}\n`;
+        // merged/ stores abilities as {name, description}; description is
+        // verbatim rule text, so only the machine-readable name is served.
+        // Previously `- ${a}` stringified these to "[object Object]".
+        out += `- ${typeof a === "string" ? a : a?.name || "?"}\n`;
       }
     }
     return this.#text(out);

@@ -1546,3 +1546,36 @@ itself a finding. Note the audit's `_norm` differs from `adapter/merge.py`'s
 `norm_name` (apostrophe-stripping vs `armour`->`armor` folding); each caller
 normalises with its own, so `mfm_pricing` keys on the original MFM name. Do
 not "unify" those two norms casually — it would change finding counts.
+
+## "The data is correct" and "the server serves the correct data" are different claims
+The imperial-agents pricing fix was verified against the engine, the pytest
+suite and the findings HTML, and the MCP server was only ever READ. An LLM
+consuming this server sees only what its tools return, so the last mile was
+unverified. `scripts/mcp_smoke_test.py` now exercises a live server:
+initialize -> `get_llm_contract` -> `get_unit` x14 -> `list_units` ->
+`rank_units` -> `get_findings`, and exits non-zero on any mismatch.
+
+Run it with a server up:
+    setsid nohup node mcp-server/index.js --port=3456 &
+    python3 scripts/mcp_smoke_test.py --port 3456
+
+Not in the pytest suite on purpose: it needs a live node process and a free
+port, and the suite is already 9 minutes. Three things it caught that unit
+tests did not:
+
+1. **`get_unit` rendered every ability as `- [object Object]`.** merged/
+   stores abilities as `{name, description}`; the template did
+   `- ${a}`. Every ability lookup returned nothing usable. Fixed to serve
+   the name only — `description` is verbatim rule text and the repo does not
+   serve it. (Note: those descriptions ARE already committed in
+   `data/merged/*.json`. That is a pre-existing IP exposure, flagged, not
+   silently changed — the engine needs the machine-readable parts.)
+2. **The SSE transport is `data: {json}`, not bare `{json}`.** A curl-based
+   probe needs `sed 's/^data: //'`; urllib code that scans for lines
+   starting with `{` silently gets nothing and looks like a server failure.
+3. **`rank_units` and `get_findings` rank differently and both are right.**
+   `rank_units` is raw DPP vs a target with no mission penalties;
+   `get_findings` is the pre-computed competition table with penalties.
+   Grey Knights Terminator is #1 in findings and outside the rank_units top
+   8. Asserting it in both is a broken test, not a server bug — check which
+   table a claim belongs to before pinning it.
