@@ -30,7 +30,9 @@ python3 scripts/gen_findings_html.py --all                   # regen all faction
 python3 scripts/gen_squad_composition.py                     # regen squad composition configs (Aeldari pilot)
 python3 scripts/validate_configs_vs_bsdata.py                # config ↔ catalog validation
 python3 scripts/validate_squad_configs.py                    # squad config validation
-python3 -m adversarial.deterministic_check --faction <faction>   # deterministic data checks
+# adversarial/deterministic_check asserts the derived ability fields, not prose:
+# 52 INFO corpus-wide, 0 ability MAJOR. Mutation-tested in
+# tests/test_deterministic_check_ability_fields.py. It can return 0 MAJOR.
 python3 -m pytest tests/test_findings_validation.py          # findings integrity
 ```
 
@@ -58,13 +60,16 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
 
 - **Transport delivery scoring SHIPPED** — `parse_transport_capacity` + `compute_mob`
   `transport_capacity_n`/`is_transport` + `RankingEngine.delivery_bonus` gated on
-  TRANSPORT+cap>0 (capacity × speed, ~+5..20 on MOB's 0-100). Capacity from merged
-  Transport-ability prose, normalized to ONE shape by the adapter (2026-09-20 2nd arc):
+  TRANSPORT+cap>0 (capacity × speed, ~+5..20 on MOB's 0-100). Capacity is a derived
+  int field on the merged "Transport" ability, written by `adapter/merge.py` while the
+  BSData text was still in hand; `dpp.resolve_transport_capacity` reads the field and
+  still parses prose for hand-built dicts. Normalized to ONE shape by the adapter
+  (2026-09-20 2nd arc):
   "Abilities"-named "Transport", `typeName:"Transport"` profiles (Capacity char), and
   unit-named abilities that read as transport prose (AM Banehammer) all arrive as a
   "Transport" ability. **134 capacity transports across 25/30 factions** (no transports in:
   daemons, knights ×2, titans ×2). Unit-count prose (Night Scythe "1 NECRONS INFANTRY unit")
-  is refused by the parser — not 1 model, keyword-tier bonus 0. Manta: TRANSPORT keyword but
+  yields no capacity at parse time — not 1 model, keyword-tier bonus 0. Manta: TRANSPORT keyword but
   list-format unranked prose — keyword-tier, labeled. Thunderhawk Gunship: capacity 30 (SM
   family + GK) — earlier "no prose" claim was a parser-drop artifact, corrected in docs.
   **DEEP STRIKE + TRANSPORT = one-shot arrival (Drop Pod ×6 SM-family, Tyrannocyte): delivery
@@ -84,8 +89,11 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
   early-returns 0 for FORTIFICATION — their bonus never applies. "134 capacity
   transports / 25 factions" is DATA-reach, not bonus-reach; the delivery bonus
   applies to the non-fortification set.
-- Export source of truth for capacities: `data/merged/*.json` `unit.profile.abilities`
-  (name == "Transport") — NEVER hand-copy into config.
+- Export source of truth for capacities: the `transport_capacity` int on the
+  `data/merged/*.json` ability named "Transport" — NEVER hand-copy into config, and never
+  read the prose (it is not committed). Regenerate with `python3 adapter/merge.py --all`;
+  a single `--faction` run drops abilities on cross-faction fallback units (space-marines:
+  17 units, pre-existing) so `--all` is the only correct regeneration path.
 
 ## Current state (2026-08-15)
 
@@ -156,8 +164,8 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
    imaginary loadout is a lie; calculations must be determined by real gear first.
 4. Engine gaps: T3 primary metric, concentrated fire, pistol/two-handed restriction,
    ~~transport support~~ **transport delivery scoring SHIPPED 2026-09-20** (MOB delivery
-   component from merged Transport-ability prose; Encoding-B capacity extraction = follow-up
-   adapter ticket)
+   component from the derived `transport_capacity` field; Encoding-B capacity extraction =
+   follow-up adapter ticket)
 
 ## Credentials
 

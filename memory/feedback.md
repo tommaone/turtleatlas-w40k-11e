@@ -1725,3 +1725,42 @@ the suite red.
 Generalisation: "refuse unless forced" only holds if the unknown state is treated
 as populated. Any counting helper feeding a destructive guard must default to
 refusing on error, never to proceeding.
+
+## Derive the rule text into a field at merge time, then delete the text
+`AGENTS.md` forbids committing GW rule text, and `data/merged/` carried a
+`description` on all 2,706 abilities (~530KB, public repo). The 2,364 nobody
+read were dead weight; the 342 that drove `detect_reroll_ability`,
+`detect_army_wide_reroll`, `detect_damage_boost`, `parse_transport_capacity` or
+the FNP parse in `gen_config.py` were "load-bearing" — and load-bearing is not
+the same as unavoidable. Those
+detectors already *return* machine-readable specs (`reroll_hits`, `amount`,
+`targets`, `phase`). The only reason they read prose was that nobody stored the
+result. So `adapter/merge.py` now calls them at merge time — while the BSData
+text is still in hand — writes the spec onto the ability, and drops the prose.
+
+**Merge is the single decision point, and it must be unconditional.** The first
+cut only deleted the description when a field had been derived, which meant a
+fresh `merge.py --all` happily restored the 2,364 dead ones (caught by diffing
+pipeline output against the committed tree: 1,331 units' abilities differed).
+A conditional strip cannot enforce a "none" invariant; only an unconditional
+one can. `bsdata` bump can no longer reintroduce prose.
+
+**Never persist the spec's `raw` key.** It *is* the rule text, so storing the
+detector's return value verbatim smuggles the prose straight back in under a
+different key. Drop `raw` and `ability_name` on the way through — no consumer
+reads either (verified by grep before dropping them).
+
+**Two things I got wrong, both caught by testing the thing rather than reading it:**
+- I first put a refusal at the write site *and* in the pre-flight, making the
+  write-site layer dead code that returned normally — a fail-open guard.
+- I narrowed the MCP `transport_capacity` input schema from `string` to
+  `["integer","null"]` when the function still accepts legacy prose. Checking
+  what the schema *meant* (input, not output) was the fix; the live query
+  disproved my first attempt.
+
+**How to prove a data change is behaviour-preserving when the data was the
+input:** capture the derived values for every affected record *before* touching
+anything, then diff after. Plus regenerate the tree with the real pipeline and
+diff against the committed files — that is what caught the conditional-strip
+bug, and it doubles as proof the committed data is still reproducible
+(30/30 byte-identical here).

@@ -43,6 +43,39 @@ content never enters this public repo.
 
 Engine-side open items surfaced by this session:
 - **bsdata bumped 2026-09-25** `b074700` → `6fca2d1` (9 upstream commits, 7 files). Merged regen is metadata-only in effect: 4× `bsdata_revision` bump + one `Mortal Sorcery (Aura)` link on TS; findings diff is gen-time stamps only, `army_tiers.json` byte-identical, no score movement. Suite re-run twice (4641 passed / 68 skipped, log `workspace/pytest-2026-09-25-bump.log`).
+- **Ability rule text is out of `data/merged/` (2026-09-25).** `AGENTS.md` forbids committing
+  verbatim rule text, and the corpus carried a `description` on all 2,706 abilities — ~530KB of
+  Games Workshop prose in a public repo. Removed in two steps: `strip_ability_prose.py` dropped
+  the 2,364 descriptions nothing read, then `adapter/merge.py` began deriving the 342 that
+  did drive something into machine-readable fields and dropping their prose too. The merge
+  is now the single decision point — it derives, then **always** removes the description — so a
+  `bsdata` bump cannot reintroduce rule text, which the old conditional strip could not
+  guarantee. Fields: `reroll` (32), `army_wide_reroll` (128), `damage_boost` (1),
+  `transport_capacity` (134), `fnp` (47). `fnp` came out of a second pass: `gen_config.py`
+  derives config `info.FNP` from ability text, so dropping the prose without it would make a
+  config regeneration silently lose 44 of the 46 values.
+  `scripts/strip_ability_prose.py` is deleted; the invariant is asserted absolutely (zero
+  descriptions) in `tests/test_no_dead_ability_prose.py`, which regenerates grey-knights +
+  genestealer-cults for a real diff. Derived values are deliberately not fingerprinted per
+  faction: a hash over the committed artifact duplicates `git diff`, cannot say what moved,
+  and goes stale on every bsdata bump. Coverage is held by the derived field counts and
+  correctness by `merge.py --all` reproducing its own committed output.
+  Verified: `python3 adapter/merge.py --all` reproduces all 30 committed files byte-identically
+  with 0 descriptions, the crossfaction truth report is unchanged, and every derived value
+  matches the pre-change prose-detector output exactly (0 differences over all 342).
+  **Same class. Items 1, 2 and 4 are still present; item 3 is fixed by this change:**
+  1. `adapter/faction_pack_parser.py:695-808` — five GREY KNIGHTS codex detachment
+     rule/enhancement descriptions hardcoded in Python source.
+  2. `adapter/core_rules_parser.py` — extracts rulebook PDF prose into its artifact.
+  3. `data/config/space-marines/notes.json` (`dark-angels/notes.json` is a symlink to it)
+     carried the Oath of Moment rule text in `army_rule_description`. Fixed here — that key
+     has no consumer anywhere in the repo, and it is now a paraphrase.
+  4. Test fixtures in `tests/test_transport_delivery.py`, `tests/test_reroll_detect.py`,
+     `tests/test_army_wide_rerolls.py` and `tests/test_damage_boost_detect.py` still hold
+     verbatim BSData ability prose. Rewriting them needs the detectors re-validated against
+     paraphrased shapes, so it is its own ticket.
+  None of these reach `data/merged/`, but all are committed rule text.
+
 - **`data/config/` regen is NOT part of a data bump — now enforced in code (2026-09-25).** `generate_configs_from_bsdata.py` overwrites curated config: it rebuilds from BSData constraints, which are thinner than what curation added, and its stale-entry pruning can delete a curated unit outright. A prior `--all` run changed 96 files (+18,158/−32,769 lines); it would write 112 files today (4 per faction × 28 generatable slugs, 12 of which do not yet exist). The open question of whether it may overwrite curated content is **answered and enforced**: the script refuses (exit 3) when a target `data/config/<slug>/` holds unit-shaped keys, listing per-faction counts (**1,446 units across 28 of the 30 config dirs**; `chaos-titan-legions` and `titan-legions` are not in `SLUG_TO_BSDATA_CAT` so `--all` never targets them) before any file is written. The check is a **pre-flight over all target slugs**, deliberately not a per-faction check: the generator writes as it walks, so a check at the write site would arrive after earlier factions were already overwritten. `--dry-run` still works for review, but it prints counts and removals, **not a diff** — the real check is `git diff` after a `--force` run. Uncountable configs (unparseable, or not a flat `{unit: {...}}` mapping) are refused too, and reported separately, because unknown is not the same as empty. Covered by `tests/test_config_generator_guard.py`, mutation-checked: deleting the pre-flight, ignoring `--force`, treating uncountable as empty, dropping the `_`-metadata filter, or letting `--dry-run` write each turn the suite red.
 
 ---
@@ -324,7 +357,7 @@ Engine-side open items surfaced by this session:
   Bossbunka parse a capacity but mob_score early-returns 0 for FORTIFICATION). Wired at ranking call site;
   `transport_capacity`/`transport_capacity_n`/`is_transport` exposed on every mob dict
   (`is_transport` = TRANSPORT keyword present, NOT "delivery-capable" — a Manta has the keyword
-  but list-format, unranked prose, so its bonus is 0). 11e slot caps verified from merged prose:
+  but list-format, unranked prose, so its bonus is 0). 11e slot caps verified against the datasheet (merged prose is not committed):
   LR 12, Crusader 16, Redeemer 14, Repulsor 14, Rhino 12, Impulsor 7, Exec 7, Stormraven 12+Dread,
   Razorback 6, Drop Pod 12, Thunderhawk 30, Corvus Blackstar 12, Sororitas Immolator 6 +
   Sororitas Rhino 12, Inquisitorial Chimera 13. One-shot arrival platforms (DEEP STRIKE +
@@ -465,14 +498,18 @@ Engine-side open items surfaced by this session:
 10. **No GW IP** — mechanics-only config, no copyrighted text
 11. **Wahapedia** — cross-check source, not primary data source
 12. **Main branch only** — no feature branches
-13. **Transport delivery scoring reads merged Transport-ability prose, not config** — the
-    headline capacity is parsed from the merged BSData "Transport" ability description at
-    ranking time (single source: engine helper `parse_transport_capacity`). No config field,
-    no hand-copied capacity numbers. The adapter normalizes every BSData encoding (Abilities
-    profile named "Transport", `typeName: "Transport"` profile with a Capacity characteristic,
-    unit-named abilities that read as transport prose) to one "Transport" ability shape; units
-    with genuinely no single headline number (Manta list-format, unranked) get keyword-tier
-    only — bonus 0, labeled, not faked.
+13. **Transport delivery scoring reads a derived capacity field, not config** — the
+    headline capacity is derived from the BSData "Transport" ability **at merge time** by
+    the engine helper `parse_transport_capacity` and stored as an int on the ability
+    (`transport_capacity`); ranking time reads that field (single source: `dpp.
+    resolve_transport_capacity`, which still parses a prose string for hand-built dicts).
+    No config field, no hand-copied capacity numbers. The adapter normalizes every BSData
+    encoding (Abilities profile named "Transport", `typeName: "Transport"` profile with a
+    Capacity characteristic, unit-named abilities that read as transport prose) to one
+    "Transport" ability shape; units with genuinely no single headline number (Manta
+    list-format, unranked) get keyword-tier only — bonus 0, labeled, not faked.
+    Superseded 2026-09-25: this used to say the merged *prose* was the source, which meant
+    ~134 Transport ability descriptions of rule text were committed to satisfy it.
 
 ---
 
