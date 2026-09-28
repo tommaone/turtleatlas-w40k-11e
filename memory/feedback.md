@@ -1631,3 +1631,27 @@ the defect looks like a repo bug.
 source and confirm it exists before calling it a defect — `grep` the raw JSON,
 not a regex over your own parse output. When reporting a count, re-derive it
 with an anchored pattern and say how many unique items it collapses to.
+
+## Measure whether prose is load-bearing before you strip it
+`data/merged/*.json` carried `description` on all 2706 abilities (~530KB of
+verbatim prose) against an AGENTS.md that forbids rule text. Tempting to just
+delete the field. It is load-bearing: `engine/reroll_detect.py`,
+`engine/damage_boost_detect.py` and `dpp.parse_transport_capacity` all regex the
+prose, and the last one extracts a Transport's capacity number out of a sentence.
+Stripping blind breaks reroll detection, damage-boost detection and transport
+scoring.
+
+**How:** don't argue about the rule, measure the dependency. Run every detector
+over the corpus and count what actually fires — 295 of 2706, i.e. 89% of the
+prose is dead weight. Keep only what a detector consumes
+(`scripts/strip_ability_prose.py`), then prove it: probe all 2704 abilities
+before and after and diff the detector outputs. Zero changes is the bar; a
+passing test suite alone would not have been enough, because the suite's own
+fixtures construct synthetic ability dicts and never load merged prose.
+
+Two things this repo taught: writing JSON back must reproduce the existing file
+byte-for-byte (indent=2, `ensure_ascii=False`, **no** trailing newline) or the
+diff fills with reformat noise; and a stripped artifact cannot prove its own
+completeness — "nothing needed was stripped" is only checkable against the
+source, so pin the aggregate detection counts in a test and say in the failure
+message that a `bsdata` bump requires updating them.
