@@ -1655,3 +1655,23 @@ diff fills with reformat noise; and a stripped artifact cannot prove its own
 completeness — "nothing needed was stripped" is only checkable against the
 source, so pin the aggregate detection counts in a test and say in the failure
 message that a `bsdata` bump requires updating them.
+
+## An empty lookup result is not a verdict
+Triaging the 8 remaining `NOT IN DATA` findings, a BSData constraint probe
+returned "0 weapon names" for several units. The tempting read is "the weapon is
+absent, so the config is wrong." That conclusion came from a probe that had not
+actually walked the build structure — the empty list was the *probe's* gap. This
+is the `Fleshmetal weapons` mistake again in a new costume: a lookup that finds
+nothing has not established that nothing is there.
+
+**How:** only act on a name mismatch when the reference set is demonstrably
+non-empty and the match criterion is one the tool actually implements. In this
+repo the trustworthy reference is each faction's **own merged weapon set**, which
+is populated and already normalised; BSData constraint extraction is not. Note
+that `Armoured Tracks` (6 factions) and `Armoured tracks` (10 factions) are both
+correct spellings in different merged files, so a "fix the name" edit must match
+that faction's own corpus, not a global spelling.
+
+Fixed 2 of 10, both proven: `Armoured track` → `Armoured tracks` (grey-knights,
+5 sites) and `Deffkilla boomstikks` → `Boomstikks` (orks). The other 8 are
+documented in docs/roadmap.md as unclassified on purpose.
