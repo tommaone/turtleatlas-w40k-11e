@@ -98,12 +98,21 @@ Rules:
 - Run the generator ONLY as a first pass on legacy/flat configs
 - NEVER re-run it on a faction that has curated builds — back it up
   first, and diff the result before accepting
+- Since 2026-09-25 a *populated* config dir is refused outright, including a
+  flat legacy one: "populated" means the generator-owned files hold unit-shaped
+  keys, not "curated by a human". A legitimate first-pass regen of a flat
+  config therefore needs `--force`. Empty or unseeded dirs are not affected
 - Always cross-check generated builds against the merged weapon list
   (the merged data has ALL weapons; the constraints do not)
 
 ```bash
+mkdir -p data/config/<slug>                                    # the generator never creates this
 python3 scripts/generate_configs_from_bsdata.py --faction <slug> --dry-run   # review
-python3 scripts/generate_configs_from_bsdata.py --faction <slug>             # apply (seed only)
+python3 scripts/generate_configs_from_bsdata.py --faction <slug>             # apply
+
+# A POPULATED data/config/<slug>/ is refused (exit 3) unless --force is given.
+# --dry-run prints counts and removals — it does NOT produce a diff.
+# The real check is `git diff data/config/` after the write.
 ```
 
 Then migrate flat vehicle configs to builds:
@@ -341,3 +350,24 @@ touches them, the playbook must be re-verified:
    Purifier's Purifying Flame) lose them when converted to builds format.
    Known gap from the GK conversion; fix the engine to carry
    `cfg["innate"]` through before converting such squads
+
+### Overwriting a populated config
+
+`data/config/` is **curated**, not generated. The generator refuses to write into
+a directory that already holds curated units, because it cannot rebuild curated
+content — it drops entries it labels "shadowed" (Gladiator Lancer, Impulsor,
+Repulsor) and has no way to recover them.
+
+    python3 scripts/generate_configs_from_bsdata.py --faction <slug> --dry-run   # review
+    python3 scripts/generate_configs_from_bsdata.py --faction <slug> --force     # deliberate overwrite
+
+`--force` is the only way through, and it is a blunt instrument. You do **not**
+need it to seed a new faction — an unseeded directory counts as empty, so the
+guard never fires there. You do need it (and `mkdir -p` first, since the
+generator never creates the directory) when re-running over a flat legacy config
+that is already populated.
+
+What you lose with `--force` is curation the generator cannot rebuild: entries
+get replaced by the thinner BSData constraints, and stale-entry pruning can
+delete a curated unit outright. To add or fix a single unit, edit
+`data/config/<slug>/*.json` by hand instead.

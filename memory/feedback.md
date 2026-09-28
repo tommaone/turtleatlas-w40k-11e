@@ -45,7 +45,10 @@ A choice weapon is ONE weapon with multiple profiles; the shooter picks ONE prof
 **How:** after any config/engine change that affects rankings, regenerate findings AND the index, then run `tests/test_findings_validation.py`.
 
 ## Config regeneration pipeline order
-`gen_squad_composition.py` (or `generate_configs_from_bsdata.py`) → `validate_configs_vs_bsdata.py` → full pytest before commit.
+`gen_squad_composition.py` (or `generate_configs_from_bsdata.py --force`) → `validate_configs_vs_bsdata.py` → full pytest before commit.
+(Updated 2026-09-25: bare `generate_configs_from_bsdata.py` now exits 3 on a
+populated config dir, so in an `&&` chain it silently no-ops the rest. Add
+`--force`, or skip the generator entirely and hand-edit the config.)
 
 **Why:** config and catalog names must align exactly; a KeyError in the validator means the config references a weapon/category missing from the merged catalog.
 **How:** run in order, fix forward in the parser/engine — never patch the generated config by hand.
@@ -1434,8 +1437,11 @@ the derived config surface silently drifts.
 matches, so it does not discharge this step. Measure with a real run, then
 `git status data/config/`; if the diff is destructive, roll back with
 `git checkout -- data/config/` AND `git clean -f data/config/` (the generator leaves
-untracked stubs that checkout will NOT remove — check both). Deciding whether the
-generator may overwrite curated content is its own ticket, not a data bump.
+untracked stubs that checkout will NOT remove — check both). **SUPERSEDED
+2026-09-25:** the question of whether the generator may overwrite curated content
+is now decided and enforced in code, not deferred to a ticket — see
+`docs/roadmap.md`. It refuses (exit 3) on a populated config dir unless
+`--force`, and the check is a pre-flight over all target slugs.
 
 ## Correcting a status row means naming which tool produced which number
 The roadmap's "0 findings, 0 guilty units — ALL CLEAN" is the literal output template
@@ -1675,3 +1681,47 @@ that faction's own corpus, not a global spelling.
 Fixed 2 of 10, both proven: `Armoured track` → `Armoured tracks` (grey-knights,
 5 sites) and `Deffkilla boomstikks` → `Boomstikks` (orks). The other 8 are
 documented in docs/roadmap.md as unclassified on purpose.
+
+## A tool that cannot rebuild what it overwrites must refuse by default
+`data/config/` is curated by hand. `generate_configs_from_bsdata.py` writes into
+it and has no way to recover curated content: it rebuilds from BSData
+constraints, which are thinner than what curation added, and its stale-entry
+pruning can delete a curated unit outright. Once measured at +18,158/-32,769
+lines across 96 changed files. Until now the only thing preventing `--all` from
+being run casually was a comment in the playbook.
+
+It now refuses (exit 3) on a populated config dir unless `--force`. Three things
+only surfaced once the guard had tests:
+
+1. **Refuse before the first write, not at the write site.** The generator walks
+   slugs and writes each as it goes, so a check at the write site arrives after
+   earlier factions are already overwritten. The pre-flight scans every target
+   slug up front. Test: `--all` must produce zero `GENERATING` banners, not
+   merely a non-zero exit.
+2. **Unknown is not empty.** A first cut counted only successfully-parsed units,
+   so a *corrupt* config counted as 0 and waved through the guard into an
+   overwrite — the one case where losing data is worst. Unparseable files, and
+   files that parse to something other than a flat `{unit: {...}}` mapping, are
+   now refused. But the fix must not overshoot: mapping "unknown" to 1 broke the
+   legitimate seed flow, because a genuinely *empty* dir then counted as
+   populated. Correct shape is `1 if n == UNKNOWN else n` — unknown is 1, empty
+   is 0.
+3. **The escape hatch needs more tests than the refusal.** `--force` is the half
+   that does the damage, and testing only the half that prevents deletion is
+   testing the cheap direction. A no-op `--force` bricks the tool with the suite
+   still green.
+
+**A guard placed after the check that consumes its condition is a comment, not
+defence in depth.** The first cut had a refusal at the write site *and* the
+pre-flight; the pre-flight always fired first, so the write-site guard was
+unreachable — and worse, it `return`ed normally, so a library caller got
+"generated 53 units" in its return value and exit 0 while nothing was written.
+A fail-open guard is worse than no guard, because it looks like a guard. Delete
+the unreachable layer rather than claiming it, and mutation-check whatever
+remains: deleting the pre-flight, ignoring `--force`, treating uncountable as
+empty, dropping the `_`-metadata filter, and letting `--dry-run` write each turn
+the suite red.
+
+Generalisation: "refuse unless forced" only holds if the unknown state is treated
+as populated. Any counting helper feeding a destructive guard must default to
+refusing on error, never to proceeding.

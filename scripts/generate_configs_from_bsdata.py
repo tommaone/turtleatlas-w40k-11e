@@ -20,6 +20,17 @@ sys.path.insert(0, str(REPO_ROOT))
 
 from adapter.bsdata_parser_11e import BSDataParser11e
 
+# The per-faction config files this generator owns.
+CONFIG_FILES = ("characters.json", "squads.json", "vehicles.json", "weapon_options.json")
+
+# Exit code for "refused to write", kept distinct from argparse's usage error (2
+# is argparse's own, so a caller cannot tell a refusal from a typo).
+REFUSAL_EXIT = 3
+
+# A parsed value whose shape we do not recognise (-1 in populated_units). Treat
+# as populated: we cannot prove the file is unseeded, so we must not overwrite.
+UNKNOWN_SHAPE = -1
+
 # ── Slug → BSData catalogue name mapping ───────────────────────────
 SLUG_TO_BSDATA_CAT = {
     "chaos-space-marines": "Chaos - Chaos Space Marines",
@@ -525,6 +536,55 @@ def classify_unit_type(unit_name: str, merged_data: dict) -> str:
     return "squad"
 
 
+def populated_units(config_dir: Path) -> dict[str, int]:
+    """Count curated units per config file in a directory.
+
+    `UNKNOWN_SHAPE` (-1) marks a file that exists but cannot be counted: it
+    failed to parse, or parsed to something other than the flat
+    `{unit_name: {…}}` mapping a config file is. Both are unknown, not empty —
+    counting them as 0 would hand a corrupt or hand-mangled config straight to
+    the generator and destroy the only copy of its curation.
+    """
+    counts: dict[str, int] = {}
+    for fname in CONFIG_FILES:
+        fpath = config_dir / fname
+        if not fpath.exists():
+            continue
+        try:
+            with open(fpath, encoding="utf-8-sig") as f:
+                data = json.load(f)
+        except (OSError, json.JSONDecodeError):
+            counts[fname] = UNKNOWN_SHAPE
+            continue
+        if not isinstance(data, dict):
+            counts[fname] = UNKNOWN_SHAPE
+            continue
+        # Config files are flat: top-level keys are unit names. Keys starting
+        # with "_" are metadata (_note, _source), not units.
+        counts[fname] = sum(
+            1 for k, v in data.items()
+            if not k.startswith("_") and isinstance(v, dict)
+        )
+    return counts
+
+
+def unparseable_files(config_dir: Path) -> list[str]:
+    """Config files whose contents we could not count, for an honest message."""
+    return sorted(f for f, n in populated_units(config_dir).items() if n == UNKNOWN_SHAPE)
+
+
+def curated_units_in(config_dir: Path) -> int:
+    """Total curated units in a config directory, or 0 if it is empty/unseeded.
+
+    An uncountable file contributes 1, not 0, so the guard refuses. That 1 is a
+    stand-in for "unknown", so the refusal message reports such files
+    separately rather than folding them into a unit count. A genuinely empty
+    file stays 0: an empty dir is a legitimate seed target, not a hazard.
+    """
+    return sum(1 if n == UNKNOWN_SHAPE else n
+               for n in populated_units(config_dir).values())
+
+
 def generate_configs_for_faction(slug: str, bsdata_parser: BSDataParser11e,
                                   dry_run: bool = False) -> tuple[int, list[str]]:
     """Generate configs for all units in a faction.
@@ -648,7 +708,13 @@ def generate_configs_for_faction(slug: str, bsdata_parser: BSDataParser11e,
             del vehicles[k]
     
     # Write configs
-    if not dry_run and config_dir.exists():
+    #
+    # data/config/ is CURATED, not generated, and this function cannot rebuild
+    # curated content. The refusal lives in main()'s pre-flight, not here: this
+    # function writes as it walks, so a check at this point would arrive after
+    # earlier factions were already overwritten. This is not a public API — do
+    # not call it directly; go through main() so the guard runs.
+    if not dry_run:
         for fname, data in [("characters.json", characters), ("squads.json", squads),
                             ("vehicles.json", vehicles), ("weapon_options.json", weapon_options)]:
             fpath = config_dir / fname
@@ -664,6 +730,8 @@ def main():
     parser.add_argument("--faction", "-f", help="Generate for one faction (slug)")
     parser.add_argument("--all", "-a", action="store_true", help="Generate for all factions")
     parser.add_argument("--dry-run", "-d", action="store_true", help="Don't write files")
+    parser.add_argument("--force", action="store_true",
+                        help="Overwrite populated curated config dirs (destructive)")
     args = parser.parse_args()
     
     bsdata_parser = BSDataParser11e(str(REPO_ROOT / "bsdata"))
@@ -675,6 +743,38 @@ def main():
     else:
         print("Usage: python3 generate_configs_from_bsdata.py --faction <slug> | --all")
         sys.exit(1)
+
+    # Pre-flight, before ANY write. Generating per-faction as it goes means a
+    # refusal discovered mid-run would leave the tree half-regenerated.
+    if not args.dry_run and not args.force:
+        populated = []
+        uncountable = []
+        for slug in slugs:
+            config_dir = REPO_ROOT / "data" / "config" / slug
+            n = curated_units_in(config_dir)
+            if n:
+                populated.append((slug, n))
+            uncountable += [f"{slug}/{f}" for f in unparseable_files(config_dir)]
+        if populated:
+            total = sum(n for _, n in populated)
+            print(f"\n{'='*60}")
+            print("REFUSING: data/config/ holds curated content "
+                  f"({len(slugs)} of {len(list(SLUG_TO_BSDATA_CAT))} generatable slugs scanned)")
+            print(f"{'='*60}")
+            for slug, n in sorted(populated, key=lambda x: -x[1]):
+                print(f"  {slug:<32} {n:>4} curated unit(s)")
+            print(f"\n{total} curated units across {len(populated)} faction(s) would be")
+            print("overwritten. This generator cannot rebuild curated content:")
+            print("  - it rebuilds from BSData constraints, which are thinner than")
+            print("    what curation added, so curated entries get replaced by emptier ones;")
+            print("  - its stale-entry pruning can delete a curated unit outright;")
+            print("  - a vehicles.json entry shadowed by weapon_options is dropped, so")
+            print("    that unit survives only in the other file.")
+            if uncountable:
+                print(f"\nUncountable (refusing regardless): {', '.join(uncountable)}")
+            print("\nCheck first:  ... --dry-run   (reports removals, NOT a diff)")
+            print("Then decide:  ... --force     (overwrites; verify with git diff)")
+            sys.exit(REFUSAL_EXIT)
     
     total = 0
     for slug in slugs:
