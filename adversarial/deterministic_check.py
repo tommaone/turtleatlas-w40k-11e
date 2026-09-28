@@ -200,21 +200,65 @@ def check_weapons(unit: dict, profile: dict, findings: list[Finding]):
                                         f"Weapon \"{pname}\" missing Keywords field"))
 
 
+# The five fields merge.py derives from BSData rule text before dropping it, with
+# one implementation each: engine/reroll_detect.py, engine/damage_boost_detect.py
+# and engine/fnp_detect.py. This check asserts the shape of what replaced the prose
+# and deliberately re-derives nothing: the rule text it would need is no longer
+# committed, and a second detector here would be a second source of truth.
+DERIVED_INT_FIELDS = ("fnp", "transport_capacity")
+DERIVED_SPEC_FIELDS = ("reroll", "army_wide_reroll", "damage_boost")
+REROLL_KEYS = ("reroll_hits", "reroll_wounds", "reroll_damage")
+
+
 def check_abilities(unit: dict, profile: dict, findings: list[Finding]):
-    """Check that abilities have names."""
+    """Check that abilities are named, carry no rule text, and that any
+    derived field they do carry is well-formed.
+
+    The prose is gone by design, so a "missing description" check can only ever
+    report that change as data loss — it cannot tell prose deliberately removed
+    from prose lost. What is still checkable is the field that replaced it: an
+    int capacity that is not a bool, a spec dict that carries a reroll, and no
+    spec that smuggles the rule text back under "raw". Value drift is caught by
+    regenerating with adapter/merge.py, not by re-reading the committed artifact.
+    """
     name = unit.get("name", "?")
     abilities = profile.get("abilities", [])
     if not abilities:
         findings.append(Finding(name, "ability", "all", "INFO",
                                 "No abilities (verify — may be correct)"))
-    else:
-        for a in abilities:
-            if not a.get("name"):
-                findings.append(Finding(name, "ability", "name", "MAJOR",
-                                        "Ability missing name"))
-            if not a.get("description"):
-                findings.append(Finding(name, "ability", a.get("name", "?"), "MINOR",
-                                        f"Ability \"{a.get('name', '?')}\" missing description"))
+        return
+    for a in abilities:
+        aname = a.get("name")
+        if not aname:
+            findings.append(Finding(name, "ability", "name", "MAJOR",
+                                    "Ability missing name"))
+            continue
+        if a.get("description"):
+            findings.append(Finding(name, "ability", aname, "MAJOR",
+                                    f"Ability \"{aname}\" still carries rule text"))
+        for field in DERIVED_INT_FIELDS:
+            value = a.get(field)
+            if value is None:
+                continue
+            # bool is an int subclass and True is not a capacity of one model.
+            if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+                findings.append(Finding(name, "ability", aname, "MAJOR",
+                                        f"{field} is not a non-negative int: {value!r}"))
+        for field in DERIVED_SPEC_FIELDS:
+            spec = a.get(field)
+            if spec is None:
+                continue
+            if not isinstance(spec, dict):
+                findings.append(Finding(name, "ability", aname, "MAJOR",
+                                        f"{field} is not a spec dict: {spec!r}"))
+                continue
+            if "raw" in spec:
+                findings.append(Finding(name, "ability", aname, "MAJOR",
+                                        f"{field} embeds rule text under 'raw'"))
+            is_reroll = field in ("reroll", "army_wide_reroll")
+            if is_reroll and all(spec.get(k) is None for k in REROLL_KEYS):
+                findings.append(Finding(name, "ability", aname, "MAJOR",
+                                        f"{field} is present but sets no reroll value"))
 
 
 def check_rules(unit: dict, profile: dict, findings: list[Finding]):
