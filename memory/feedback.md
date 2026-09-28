@@ -1386,6 +1386,9 @@ number cannot be reproduced by a named file plus a named method, it is folklore.
 The roadmap claimed "BSData audit: 0 findings, 0 guilty units — ALL CLEAN
 (2026-08-22)". `validate_configs_vs_bsdata.py --all` reports 433 issues / 68 HIGH —
 identically at the old pin and the new one, so this was never caused by a bump.
+(Superseded 2026-09-25: that figure mixed occurrences with unique counts, and the
+matcher hid false negatives. Like-for-like it was 68 HIGH occurrences / 45 HIGH
+unique. See "Report a status number under one metric, never two" below.)
 
 **Why:** a green status row that no command reproduces is a compressed belief: it
 launders an old scope, a different script version, or a remembered session into a
@@ -1579,3 +1582,52 @@ tests did not:
    Grey Knights Terminator is #1 in findings and outside the rank_units top
    8. Asserting it in both is a broken test, not a server bug — check which
    table a claim belongs to before pinning it.
+
+## A fuzzy matcher must not be punctuation-blind
+`validate_configs_vs_bsdata.py` graded config weapons against merged data with
+`any(w_lower in m or m in w_lower ...)`. Substring matching is blind to hyphens,
+so `'Combi weapon' in 'Combi-weapon'` is False and real weapons sitting in the
+corpus under a hyphen were reported `HIGH NOT IN DATA`. The last rung is now
+squashed *equality* (`re.sub(r'[^a-z0-9]+','',name).lower()`), which is case and
+punctuation insensitive and nothing more.
+
+**Why:** containment is the wrong operator here. It lets any catalog name vouch
+for any longer config name, so the generic entry `weapons` cleared
+`Fleshmetal weapons` and `Bane` cleared `Baneblade` — the tool reported a green
+light on names that do not exist. Equality fixes both directions at once and
+needs no length guard, no direction symmetry, and no empty-string hole
+(`'' in anything` is True in Python, and `squash('\u2014') == ''`).
+**How:** prefer the weakest operator that solves the actual problem. Equality
+fixed all 5 real cases; containment fixed none of them and caused 10 false
+negatives. If a name really is a variant (`Cyclone missile launcher` vs catalog
+`Cyclone missile`), let the validator *report* it and have a human triage —
+a validator's job is to surface, not to guess.
+
+## Report a status number under one metric, never two
+I wrote "68 HIGH \u2192 43 HIGH" for a change that was 68 occurrences \u2192 50 unique.
+The only arithmetic that produces 43 is subtracting a unique count from an
+occurrence count. The real movement was +5 unique problems: 5 false positives
+resolved and 10 real findings surfaced, i.e. the fix made the metric *worse*
+because the metric had been lying. I then had to retract it twice.
+
+**Why:** a mixed-metric delta manufactures a fix five times larger than reality
+and hides a regression, and a reader cannot detect it because both endpoints
+look like plausible counts.
+**How:** when a headline changes, quote old and new under the *same* metric, and
+diff the actual finding sets (`comm` on normalised messages) rather than
+subtracting totals. If the honest answer is "the number got worse because the
+tool was wrong", say that — a health metric that only improves when you relax the
+check is not a health metric.
+
+## Never claim a tool is broken from its output alone
+Two bad calls this session, both mine: I reported an "XSS sink at
+`gen_findings_html.py:735`" twice without reading the line (it is
+`json.dumps`), and I reported a junk weapon named `'C'` that was really
+`"C'tan Powers"` truncated by my own `'(.*?)'` regex stopping at the apostrophe.
+The second is the dangerous shape: a sloppy extractor fabricates a defect, and
+the defect looks like a repo bug.
+
+**How:** when a finding names a specific string, print that string from the real
+source and confirm it exists before calling it a defect — `grep` the raw JSON,
+not a regex over your own parse output. When reporting a count, re-derive it
+with an anchored pattern and say how many unique items it collapses to.

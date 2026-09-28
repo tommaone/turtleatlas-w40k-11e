@@ -21,6 +21,7 @@ Usage:
 """
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -116,6 +117,27 @@ def canonical_weapon(name: str, catalog_lower: set[str]) -> str:
         if singular in catalog_lower:
             return singular
     return n
+
+
+def squash(name: str) -> str:
+    """Alphanumeric-only lowercase form, for punctuation-insensitive matching."""
+    return re.sub(r"[^a-z0-9]+", "", name.lower())
+
+
+def dedupe_issues(issues: list[tuple[str, str]]) -> list[tuple[str, str]]:
+    """Collapse identical messages, keeping first-seen order.
+
+    A config weapon listed in several slots of one unit yields the same finding
+    several times. One defect should be one finding.
+    """
+    seen: set[str] = set()
+    out: list[tuple[str, str]] = []
+    for severity, msg in issues:
+        if msg in seen:
+            continue
+        seen.add(msg)
+        out.append((severity, msg))
+    return out
 
 
 def load_merged_weapons(merged_path: Path) -> dict[str, list[dict]]:
@@ -343,14 +365,22 @@ def validate_unit(unit_name: str, unit_cfg: dict, merged_weapons: list[dict],
         norm = normalize_weapon_name(w).lower()
         if norm in real_weapon_names or norm in merged_names:
             continue
-        # Try fuzzy: substring match against the faction-wide set
-        fuzzy = any(w_lower in m or m in w_lower for m in real_weapon_names if m)
+        # Last rung: squashed equality against the faction-wide set, so case
+        # and punctuation differences resolve. 'Combi weapon' is 'Combi-weapon',
+        # 'hunter slayer missile' is 'Hunter-slayer missile'. Deliberately
+        # equality and not substring: a substring match lets any catalog name
+        # vouch for any longer config name, so the generic catalog entry
+        # 'weapons' silently cleared 'Fleshmetal weapons', and 'Bane' cleared
+        # 'Baneblade'. A name the corpus does not contain is a real finding to
+        # triage, not noise to be guessed away.
+        w_sq = squash(w_lower)
+        fuzzy = any(squash(m) == w_sq for m in real_weapon_names if m)
         if not fuzzy:
             issues.append(("HIGH", f"NOT IN DATA: '{w}'"))
 
     # ── 2. BSData constraints check ────────────────────────────────
     if not bsdata_constraints:
-        return issues
+        return dedupe_issues(issues)
 
     builds = bsdata_constraints.get("builds", [])
     for build in builds:
@@ -445,7 +475,7 @@ def validate_unit(unit_name: str, unit_cfg: dict, merged_weapons: list[dict],
         max_melee = build.get("max_melee")
         # (no validation needed here — engine handles selection)
 
-    return issues
+    return dedupe_issues(issues)
 
 
 def check_alloc_caps(unit_name: str, unit_cfg: dict, comp: dict,
@@ -490,15 +520,23 @@ def check_alloc_caps(unit_name: str, unit_cfg: dict, comp: dict,
                 issues.append(("HIGH",
                                f"GROUP CAP '{ev_name}': config group_max={av.get('group_max')} "
                                f"!= expected {ev.get('group_max')}"))
-    return issues
+    return dedupe_issues(issues)
 
 
-def validate_faction(slug: str, bsdata_parser: BSDataParser11e, verbose: bool = False) -> tuple[int, list[str]]:
-    """Validate all configs for one faction. Returns (issue_count, lines)."""
+def validate_faction(slug: str, bsdata_parser: BSDataParser11e, verbose: bool = False) -> tuple[int, list[str], dict[str, str]]:
+    """Validate all configs for one faction.
+
+    Returns (issue_count, lines, unique_issues) where unique_issues maps a
+    squashed message to its severity, so findings differing only in case count
+    once. issue_count is occurrences: the same defect referenced by three units
+    counts three times, which is correct for per-unit reporting but misleading
+    as a headline number.
+    """
     lines = []
+    unique: dict[str, str] = {}
     cat_name = SLUG_TO_BSDATA_CAT.get(slug)
     if not cat_name:
-        return 0, [f"  Unknown slug: {slug}"]
+        return 0, [f"  Unknown slug: {slug}"], unique
 
     # Load BSData constraints
     bsdata_constraints = bsdata_parser.extract_wargear_constraints(cat_name)
@@ -506,7 +544,7 @@ def validate_faction(slug: str, bsdata_parser: BSDataParser11e, verbose: bool = 
     # Load merged data
     merged_path = REPO_ROOT / "data" / "merged" / f"{slug}.json"
     if not merged_path.exists():
-        return 0, [f"  Merged data not found: {merged_path}"]
+        return 0, [f"  Merged data not found: {merged_path}"], unique
     merged_weapons = load_merged_weapons(merged_path)
 
     # Faction-wide weapon name set — shared choice groups (e.g. War Walker
@@ -520,7 +558,7 @@ def validate_faction(slug: str, bsdata_parser: BSDataParser11e, verbose: bool = 
     # Load config
     config_dir = REPO_ROOT / "data" / "config" / slug
     if not config_dir.exists():
-        return 0, [f"  Config dir not found: {config_dir}"]
+        return 0, [f"  Config dir not found: {config_dir}"], unique
     config = load_config(config_dir)
 
     # BSData squad composition — source of truth for alloc cap checks.
@@ -561,11 +599,13 @@ def validate_faction(slug: str, bsdata_parser: BSDataParser11e, verbose: bool = 
 
             if unit_errors:
                 total_issues += len(unit_errors)
+                for severity, msg in unit_errors:
+                    unique.setdefault(squash(msg), severity)
                 lines.append(f"\n  {unit_name} ({unit_type}):")
                 for severity, msg in unit_errors:
                     lines.append(f"  [{severity}] {msg}")
 
-    return total_issues, lines
+    return total_issues, lines, unique
 
 
 def main():
@@ -587,19 +627,31 @@ def main():
 
     grand_total = 0
     factions_with_issues = 0
+    all_unique: dict[str, str] = {}
     for slug in slugs:
-        issues, lines = validate_faction(slug, bsdata_parser, args.verbose)
+        issues, lines, unique = validate_faction(slug, bsdata_parser, args.verbose)
         if issues > 0:
             factions_with_issues += 1
             grand_total += issues
+            all_unique.update(unique)
             print(f"\n{'='*60}")
             print(f"{slug} — {issues} issue(s)")
             print(f"{'='*60}")
             for line in lines:
                 print(line)
 
+    # Headline is unique problems, not occurrences. The same weapon referenced
+    # by four Titans is one defect reported four times.
+    by_severity: dict[str, int] = {}
+    for severity in all_unique.values():
+        by_severity[severity] = by_severity.get(severity, 0) + 1
     print(f"\n{'='*60}")
-    print(f"SUMMARY: {grand_total} issues across {factions_with_issues}/{len(slugs)} factions")
+    print(f"SUMMARY: {len(all_unique)} unique problem(s), "
+          f"{grand_total} unit-level occurrence(s), "
+          f"across {factions_with_issues}/{len(slugs)} factions")
+    for severity in ("HIGH", "MEDIUM", "LOW"):
+        if by_severity.get(severity):
+            print(f"  {by_severity[severity]:>4} {severity}")
     print(f"{'='*60}")
 
 

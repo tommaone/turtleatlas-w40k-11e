@@ -16,7 +16,7 @@ from collections import defaultdict
 
 import yaml
 
-PROJ = Path("/home/tomecka/turtleatlas-w40k-11e")
+PROJ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJ))
 from adapter.bsdata_parser_11e import BSDataParser11e
 from adapter.mfm_pricing import base_points
