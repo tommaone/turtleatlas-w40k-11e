@@ -1764,3 +1764,29 @@ anything, then diff after. Plus regenerate the tree with the real pipeline and
 diff against the committed files — that is what caught the conditional-strip
 bug, and it doubles as proof the committed data is still reproducible
 (30/30 byte-identical here).
+
+## Committed derived artifacts decay silently — check them in CI
+
+`data/merged/` and `findings/` are committed build output. The test suite
+reads them back instead of regenerating, so when the engine, a parser, or the
+BSData/MFM submodules change, the committed files go stale and **the suite
+still passes**. That is worse than a red test: a green build proving nothing.
+
+The Orks findings page shipped missing the Deffkilla Wartrike's `Boomstikks`.
+`d772cab` added the weapon; `34db41e` later rewrote the page without it. Nine
+days, no failing test, no validator complaint.
+
+Two rules follow:
+
+1. **Generation must be idempotent.** A generation timestamp in the output
+   makes `git diff --exit-code` useless -- it reports all 30 pages every run.
+   `_write_if_changed` compares with the timestamp masked and leaves the file
+   alone when only the clock moved, so drift detection stays meaningful.
+2. **Regenerate-and-diff belongs in CI,** not in someone's session:
+   `scripts/check_artifacts_current.py` runs `merge.py --all` then
+   `gen_findings_html.py --all` and fails on any tracked difference under
+   `data/merged/` or `findings/`. Wired to `.github/workflows/artifact-drift.yml`.
+
+Corollary: **verify a guard can fail.** Prove it by reintroducing the real
+defect (here: the pre-fix page from git history) and confirming the check names
+it. A check only ever observed passing is not evidence of anything.

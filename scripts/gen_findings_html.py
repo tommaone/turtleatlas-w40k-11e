@@ -7,6 +7,36 @@ from engine.ranking import RankingEngine
 # One timestamp per generation run — faction pages and the index share it.
 GEN_TS = time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime())
 
+_TS_RE = re.compile(r'generated \d{4}-\d{2}-\d{2} \d{2}:\d{2} UTC')
+
+
+def _mask_ts(text):
+    """Blank the generation timestamp so content can be compared without it."""
+    return _TS_RE.sub('generated <TS>', text)
+
+
+def _write_if_changed(path, content):
+    """Write only when the rendered content actually changed.
+
+    The footer carries a generation timestamp, so a byte comparison would
+    rewrite all 30 pages on every run and bury real drift under timestamp
+    noise. Compare with the timestamp masked, and leave the file alone when
+    only the clock moved — a page whose content is unchanged keeps the
+    timestamp of the run that actually produced it.
+
+    Returns True when the file was written.
+    """
+    try:
+        with open(path, encoding='utf-8') as f:
+            existing = f.read()
+    except FileNotFoundError:
+        existing = None
+    if existing is not None and _mask_ts(existing) == _mask_ts(content):
+        return False
+    with open(path, 'w', encoding='utf-8') as f:
+        f.write(content)
+    return True
+
 FACTIONS = {
     'adepta-sororitas': 'Adepta Sororitas',
     'adeptus-custodes': 'Adeptus Custodes',
@@ -479,9 +509,8 @@ def gen_index(tiers=None) -> int:
     html_out = (INDEX_HEADER + tabs_bar + browse_div
                 + tier_section + gen_line + '</body></html>\n')
     out = os.path.join(OUT, 'index.html')
-    with open(out, 'w', encoding='utf-8') as f:
-        f.write(html_out)
-    print(f'index.html written ({len(counts)} factions)')
+    wrote = _write_if_changed(out, html_out)
+    print(f'index.html {"written" if wrote else "unchanged"} ({len(counts)} factions)')
     return len(counts)
 MISSIONS = ['Take and Hold', 'Purge the Foe', 'Reconnaissance', 'Priority Assets', 'Disruption']
 WEIGHTS = {
@@ -895,9 +924,10 @@ if __name__ == '__main__':
         html = gen_html(fname, data, n_units, fid=fid)
         out_dir = os.path.join(OUT, fid)
         os.makedirs(out_dir, exist_ok=True)
-        with open(os.path.join(out_dir, 'findings.html'), 'w') as f:
-            f.write(html)
-        print(f'{fname}: {n_units} units, written to {out_dir}/findings.html')
+        out_path = os.path.join(out_dir, 'findings.html')
+        wrote = _write_if_changed(out_path, html)
+        print(f'{fname}: {n_units} units, '
+              f'{"written to" if wrote else "unchanged at"} {out_dir}/findings.html')
         # Army tier list — only meaningful when generating the full faction set
         if not args.faction and fid not in EXCLUDE_FROM_TIERS:
             tiers = tiers or {}
@@ -910,8 +940,9 @@ if __name__ == '__main__':
             if det is not None:
                 entry['det'] = det
             tiers[fid] = entry
-            with open(tiers_path, 'w', encoding='utf-8') as f:
-                json.dump(tiers, f, indent=1, ensure_ascii=False)
+            _write_if_changed(
+                tiers_path,
+                json.dumps(tiers, indent=1, ensure_ascii=False))
 
     # --all regenerates the landing page too, so counts can't drift
     if args.all:
