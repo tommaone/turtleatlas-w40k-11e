@@ -823,6 +823,39 @@ def compute_surv(
     }
 
 
+def resolve_transport_capacity(value: Optional[int | str]) -> Optional[int]:
+    """Resolve a transport capacity from either a derived int or legacy prose.
+
+    data/merged/ stores `transport_capacity` as an int, derived at merge time by
+    parse_transport_capacity() while the rule text was still available. Callers
+    that still hold prose (hand-built ability dicts, curated config) are parsed
+    here, so there is one extraction rule and one source per input shape.
+    """
+    if isinstance(value, bool):          # bool is an int subclass, never a capacity
+        return None
+    if isinstance(value, int):
+        return value
+    if not isinstance(value, str):
+        # A float, list or dict from a hand-built dict would otherwise raise
+        # inside the regex, and the MCP server hands that traceback to the
+        # client as tool output. Unparseable means no capacity, not an error.
+        return None
+    if value.strip().isdigit():
+        # A bare "12" is not the datasheet prose shape, but it is an obvious
+        # thing for a caller to send when the schema says int or string. Silently
+        # returning None for it reads as "this unit has no transport".
+        return int(value.strip())
+    return parse_transport_capacity(value)
+
+
+def transport_capacity_of(ability: dict) -> Optional[int]:
+    """Capacity for a TRANSPORT ability dict, preferring the derived field."""
+    derived = ability.get("transport_capacity")
+    if derived is not None:
+        return resolve_transport_capacity(derived)
+    return parse_transport_capacity(ability.get("description"))
+
+
 def parse_transport_capacity(transport_capacity: Optional[str]) -> Optional[int]:
     """Extract numeric capacity from a merged 'Transport' ability description.
 
@@ -867,7 +900,7 @@ def compute_mob(
     deep_strike: bool = False,
     oc: int = 1,
     keywords: Optional[list[str]] = None,
-    transport_capacity: Optional[str] = None,
+    transport_capacity: Optional[int | str] = None,
     abilities: Optional[list[str]] = None,
     gate_of_infinity: bool = False,
     no_t1_reinforcements: bool = True,
@@ -884,10 +917,12 @@ def compute_mob(
         deep_strike: has Deep Strike ability
         oc: Objective Control characteristic
         keywords: list of keywords
-        transport_capacity: merged "Transport" ability description (full prose —
-            "This model has a transport capacity of 12 …"), or None. The headline
-            number is parsed by parse_transport_capacity() — never hand-copy a
-            number into config; the prose is the single source.
+        transport_capacity: capacity as an int, or a merged "Transport" ability
+            description (legacy prose — "transport capacity of 12"), or None.
+            Accepts both because data/merged/ now carries the derived int while
+            hand-built ability dicts still carry prose; resolve_transport_capacity()
+            normalises them. Never hand-copy a number into config: the derived
+            field (or the prose it replaces) is the single source.
         abilities: list of relevant mobility abilities
         gate_of_infinity: has Gate of Infinity army rule (GK redeploy per turn)
         no_t1_reinforcements: 11e rule — no reserves on T1 (reduces DS value)
@@ -984,8 +1019,12 @@ def compute_mob(
         "is_vehicle": is_vehicle,
         "is_terminator": is_terminator,
         "is_character": is_character,
-        "transport_capacity": transport_capacity,
-        "transport_capacity_n": parse_transport_capacity(transport_capacity),
+        # Resolved, not raw: the raw input is either a merged rule-text string
+        # (which must never be echoed) or a non-numeric value like True, and
+        # callers — including the MCP renderer — read this key. The _n alias
+        # below is kept for the existing consumer in ranking.py.
+        "transport_capacity": resolve_transport_capacity(transport_capacity),
+        "transport_capacity_n": resolve_transport_capacity(transport_capacity),
         "is_transport": has_transport,
         "mobility_tier": mob_tier,
         "effective_tier": effective_tier,

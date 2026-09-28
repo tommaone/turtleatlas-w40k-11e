@@ -251,7 +251,16 @@
           },
           {
             "name": "Hatred Eternal (Pain)",
-            "description": "In your Shooting or the Fight phase, when you select this model's unit to shoot or fight, you can spend 1 Pain token to Empower that unit. While that unit is Empowered, each time a model in that unit makes an attack, you can re-roll the Hit roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -550,7 +559,16 @@
           },
           {
             "name": "Silent Executioner",
-            "description": "Each time this model make an attack that targets a unit that is below its Starting Strength, you can re-roll the Hit roll. If that target is Below Half-Strength, you can re-roll the Wound roll as well."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -1987,7 +2005,16 @@
           },
           {
             "name": "Sadistic Raiders (Pain)",
-            "description": "In your Shooting phase or the Fight phase, when you select this unit to shoot or fight, you can spend 1 Pain token to Empower this unit. While Empowered, each time a model in this unit makes an attack, re-roll a Wound roll of 1. If the target is within range of an objective marker, you can re-roll the Wound roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -2806,11 +2833,20 @@
         "abilities": [
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 11 ^^**Drukhari Infantry **^^ models (excluding ^^**Jump Pack**^^ models)."
+            "transport_capacity": 11
           },
           {
             "name": "Splinter Racks (Pain)",
-            "description": "In your Shooting phase, when you select this model to shoot, you can spend 1 Pain token to Empower this model. While Empowered, if one or more units are embarked within this model, each time this model makes an attack with a ranged weapon that has the ^^**Anti**^^ ability, you can re-roll the Hit roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Vanguard of the Dark City"
@@ -2938,7 +2974,16 @@
           },
           {
             "name": "Eradicate the Foe",
-            "description": "Each time this model makes an attack that targets an enemy unit that is at its Starting Strength, you can re-roll the Hit roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Agonising Suppression (Pain)"
@@ -3658,7 +3703,16 @@
           },
           {
             "name": "Winged Strike (Pain)",
-            "description": "In your Shooting phase, when you select this unit to shoot, you can spend 1 Pain token to Empower this unit. While Empowered, each time a model in this unit makes a range attack, you can re-roll the Hit roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -4610,7 +4664,15 @@
           },
           {
             "name": "Bloody Spectacle",
-            "description": "Each time this model makes a melee attack that targets a ^^**Character**^^ unit, you can re-roll the Hit roll and you can re-roll the Wound roll. Each time this model's unit destroys a ^^**Character**^^ model, you gain 1CP."
+            "reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "melee",
+              "targets": [
+                "CHARACTER"
+              ]
+            }
           }
         ],
         "weapons": [
@@ -5068,7 +5130,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 6 **DRUKHARI INFANTRY** models (excluding **JUMP PACK** models).\n\nBefore the battle, at the start of the Declare Battle Formations step, you can select one **KABALITE WARRIORS**, **HAND OF THE ARCHON** or **WYCHES** unit from your army that has not already been split. If you do, that unit is split into two units, each containing as equal a number of models as possible (when splitting a unit in this way, make a note of which models form each of the two new units). One of these units must start the battle embarked within this model; the other can start the battle embarked within another **TRANSPORT**, or it can be deployed as a separate unit."
+            "transport_capacity": 6
           },
           {
             "name": "Rapid Deployment (Pain)"

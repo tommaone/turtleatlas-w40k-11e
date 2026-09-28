@@ -486,7 +486,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 11 ^^**Skitarii Infantry**^^ or **^^Tech-priest Infantry**^^ models. It cannot transport ^^**Jump Pack, Kataphron**^^ or ^^**Sydonian Skatros**^^ models."
+            "transport_capacity": 11
           }
         ],
         "weapons": [
@@ -1545,7 +1545,8 @@
         ],
         "abilities": [
           {
-            "name": "Robotic Bodyguard"
+            "name": "Robotic Bodyguard",
+            "fnp": 4
           },
           {
             "name": "Repulsor Grid"
@@ -1905,7 +1906,16 @@
         "abilities": [
           {
             "name": "Breaching Command",
-            "description": "Each time a model in this unit makes an attack, re-roll a Hit roll of 1. While this unit is within 6” of one or more friendly ^^**Adeptus Mechanicus Battleline^^** units, you can re-roll the Hit roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -2751,7 +2761,16 @@
         "abilities": [
           {
             "name": "Searing Conflagaration",
-            "description": "Each time a model in this unit makes an attack with a phosphor torch that targets an enemy unit within range of an objective marker, re-roll a Wound roll of 1. If this unit is also within 6\" of one or more friendly ^^**Adeptus Mechanicus Battleline^^** units, each time such an attack targets such a unit, you can re-roll the Wound roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -4148,7 +4167,16 @@
           },
           {
             "name": "Control Edict",
-            "description": "While this model is leading a unit, each time a model in that unit makes an attack, you can re-roll the Hit roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Servo-skull Uplink"
@@ -5217,11 +5245,20 @@
           },
           {
             "name": "Fire Support",
-            "description": "In your Shooting phase, after this model has shot, select one enemy unit it scored one or more hits against this phase. Until the end of the phase, each time a friendly model that disembarked from this ^^**Transport^^** this turn makes an attack that targets that enemy unit, you can re-roll the Wound roll."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 ^^**Adeptus Mechanicus Infantry**^^ models. It cannot transport ^^**Jump Pack, Kataphron**^^ or ^^**Sydonian Skatros**^^ models."
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -5325,7 +5362,16 @@
         "abilities": [
           {
             "name": "Focused Hunters",
-            "description": "At the start of the battle, select one unit from your opponent’s army. Until the end of the battle, each time a model in this unit makes an attack that targets that unit, you can re-roll the Hit roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Broad Spectrum Data-tether"
@@ -5777,7 +5823,8 @@
             "name": "Leader"
           },
           {
-            "name": "Lord of the Machine Cult"
+            "name": "Lord of the Machine Cult",
+            "fnp": 5
           },
           {
             "name": "Data-spike"
@@ -5961,7 +6008,8 @@
             "name": "Enginseer"
           },
           {
-            "name": "Omnissiah's Blessing"
+            "name": "Omnissiah's Blessing",
+            "fnp": 5
           },
           {
             "name": "Vengeance for the Omnissiah"

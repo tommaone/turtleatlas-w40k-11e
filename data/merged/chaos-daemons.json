@@ -1386,7 +1386,8 @@
         ],
         "abilities": [
           {
-            "name": "Swallow Energy (Psychic)"
+            "name": "Swallow Energy (Psychic)",
+            "fnp": 4
           },
           {
             "name": "Horrible Fascination (Psychic)"
@@ -3333,7 +3334,16 @@
           },
           {
             "name": "Prey of the Blood God",
-            "description": "At the start of the first battle round, select one enemy unit to be this model’s prey. Each time a model in this model’s unit makes a melee attack that targets its prey, you can re-roll the Wound roll. Each time this model’s prey is destroyed, select one new enemy unit to be this model’s prey."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "melee",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Leader"
@@ -3951,7 +3961,16 @@
         "abilities": [
           {
             "name": "Death’s Heads",
-            "description": "In your Shooting phase, after this unit has shot, select one enemy unit hit by one or more of those attacks. Until the end of the turn, each time a friendly NURGLE LEGIONES DAEMONICA unit makes an attack that targets that unit, you can re-roll the Wound roll."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -4300,7 +4319,16 @@
           },
           {
             "name": "Champion Slayer",
-            "description": "Each time this model makes a melee attack that targets a CHARACTER or MONSTER unit, you can re-roll the Wound roll. Each time this model destroys an enemy CHARACTER or MONSTER unit, this model regains up to D6 lost wounds."
+            "reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "melee",
+              "targets": [
+                "MONSTER",
+                "CHARACTER"
+              ]
+            }
           }
         ],
         "weapons": [
@@ -4734,7 +4762,16 @@
           },
           {
             "name": "Monarch of the Hunt",
-            "description": "At the start of the first battle round, select one enemy unit to be this model’s quarry. Each time this model makes a melee attack that targets its quarry, you can re-roll the Hit roll and you can re-roll the Wound roll. Each time this model’s quarry is destroyed, select one new enemy unit to be this model’s quarry."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "melee",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -5277,7 +5314,15 @@
           },
           {
             "name": "Skulls for Khorne",
-            "description": "Each time this model makes an attack that targets a ^^Character^^ unit, you can re-roll the Hit roll and you can re-roll the Wound roll. Each time this model destroys an enemy ^^Character ^^unit, you gain 1CP."
+            "reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "CHARACTER"
+              ]
+            }
           },
           {
             "name": "Leader"
@@ -6265,11 +6310,29 @@
         "abilities": [
           {
             "name": "Tranceweaver",
-            "description": "Each time a model in this unit makes an attack, re-roll a Hit roll of 1. If the target of that attack is within range of an objective marker, you can re-roll the Hit roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Symphony of Pain (Psychic)",
-            "description": "At the end of your Movement phase, you can select one enemy unit that is Battle-shocked and within 12\" of this model. Until the end of the turn, each time a SLAANESH LEGIONES DAEMONICA model from your army makes an attack that targets that enemy unit, you can re-roll the Hit roll and you can re-roll the Wound roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Leader"

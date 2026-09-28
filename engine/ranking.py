@@ -25,6 +25,7 @@ from engine.dpp import (
     WeaponProfile, TargetProfile, WeaponModifier,
     compute_weapon_dpp, HitMode,
     UnitDefense, compute_surv, compute_mob,
+    transport_capacity_of,
     DetachmentModifier,
     merge_weapon_modifiers, merge_detachment_modifiers,
 )
@@ -435,7 +436,7 @@ def _has_terrain_ability(profile: dict) -> bool:
     "Clankin' Forward" etc. live in abilities[].
     """
     profile = profile or {}
-    # Check abilities (named abilities with descriptions)
+    # Check abilities (name-matched; the text is not committed, the field is)
     for ability in profile.get("abilities") or []:
         desc = (ability.get("description") or "").lower()
         name = (ability.get("name") or "").lower()
@@ -2017,10 +2018,12 @@ class RankingEngine:
             # Extract the Transport ability description (if any) — feeds the
             # mobility delivery component. Same per-ability loop pattern as the
             # reroll/boost auto-detect above.
+            # transport_capacity_of resolves the derived int, falling back to
+            # prose for dicts built by hand. One implementation, not two.
             transport_capacity = None
             for _ab in profile.get("abilities", []) or []:
                 if isinstance(_ab, dict) and str(_ab.get("name", "")).upper() == "TRANSPORT":
-                    transport_capacity = _ab.get("description")
+                    transport_capacity = transport_capacity_of(_ab)
                     break
 
             mob = compute_mob(

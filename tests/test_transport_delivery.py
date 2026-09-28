@@ -154,8 +154,9 @@ class TestComputeMobTransportKeys:
         )
         assert mob["transport_capacity_n"] == 12
         assert mob["is_transport"] is True
-        # Raw prose preserved for callers that want the full text.
-        assert mob["transport_capacity"] == LAND_RAIDER_PROSE
+        # Resolved, not raw: the raw input is rule text and must never be echoed
+        # back out of the engine (the MCP server renders this key).
+        assert mob["transport_capacity"] == 12
 
     def test_no_capacity_stays_none(self):
         mob = compute_mob(movement=10, fly=False, deep_strike=False, oc=1,
@@ -345,14 +346,17 @@ class TestRankingIntegration:
         lr = next((r for r in results if r["name"] == "Land Raider"), None)
         assert lr is not None, "Land Raider must be in space-marines ranking"
         mob = lr["mob"]
-        assert isinstance(mob.get("transport_capacity"), str)
-        assert mob["transport_capacity"].strip() != ""
+        # data/merged/ carries a derived int, not the ability's rule text, so
+        # both the raw passthrough and the parsed capacity are the number.
+        assert mob["transport_capacity"] == 12
+        assert isinstance(mob["transport_capacity_n"], int)
         assert mob["transport_capacity_n"] == 12
         assert mob["is_transport"] is True
 
     def test_all_keyworded_transports_carry_the_flags(self):
-        """Every TRANSPORT-keyword unit exposes is_transport and a raw
-        transport_capacity field (None when prose absent — Encoding B gap)."""
+        """Every TRANSPORT-keyword unit exposes is_transport and a
+        transport_capacity field (None when the datasheet states no model
+        count — Encoding B gap)."""
         engine = RankingEngine("space-marines")
         meq = engine.config.target_profiles["MEQ"]
         results = engine.compute_ranking(target=meq)

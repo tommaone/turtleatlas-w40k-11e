@@ -1699,7 +1699,16 @@
         "abilities": [
           {
             "name": "Taskmaster (Aura)",
-            "description": "While a friendly ^^**War Dog^^** model is within 9\" of this model, each time that ^^**War Dog^^** model makes a ranged attack, re-roll a Hit roll of 1."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Obsessive Ruthlessness"
@@ -2205,7 +2214,16 @@
         "abilities": [
           {
             "name": "Frenzied Rampage (Aura)",
-            "description": "While a friendly ^^**War Dog^^** model is within 9\" of this model, each time that ^^**War Dog^^** model makes a melee attack, re-roll a Hit roll of 1."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "melee",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Bloodlust"
@@ -2361,7 +2379,16 @@
         "abilities": [
           {
             "name": "Methodical Destruction",
-            "description": "At the start of the first battle round, select one unit from your opponent's army to be this model's victim. Each time this model makes an attack that targets its victim, you can re-roll the Wound roll. Each time this model's victim is destroyed, select one new enemy unit to be this model's victim."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Close-range Killers (Aura)"
@@ -3106,7 +3133,16 @@
         "abilities": [
           {
             "name": "Huntsman",
-            "description": "Each time this model makes an attack that targets a ^^**Monster^^** or ^^**Vehicle^^** unit, you can re-roll the Wound roll."
+            "reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "MONSTER",
+                "VEHICLE"
+              ]
+            }
           }
         ],
         "weapons": [

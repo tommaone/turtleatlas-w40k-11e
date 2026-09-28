@@ -821,7 +821,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 14 ^^**World Eaters Infantry^^** models. Each ^^**Possessed^^** and ^^**Terminator^^** model takes up the space of 2 models."
+            "transport_capacity": 14
           }
         ],
         "weapons": [
@@ -997,7 +997,16 @@
         "abilities": [
           {
             "name": "Blood-hungry Annihilator",
-            "description": "Each time this model makes a ranged attack that targets the closest eligible ^^**Monster^^** or ^^**Vehicle^^** target within 18\", you can re-roll the Wound roll and you can re-roll the Damage roll."
+            "reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": "all",
+              "phase": "ranged",
+              "targets": [
+                "MONSTER",
+                "VEHICLE"
+              ]
+            }
           }
         ],
         "weapons": [
@@ -1391,7 +1400,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 ^^**World Eaters Infantry**^^ models. It cannot transport ^^**Possessed^^** or ^^**Terminator^^** models."
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -1602,7 +1611,16 @@
         "abilities": [
           {
             "name": "Bloody Fury",
-            "description": "- This unit’s ranged attacks that target the closest eligible target can re-roll **hit rolls**.\n- When this unit **declares a charge**, you can use this part of this ability. \nIf you do: \n-- This unit can re-roll that **charge roll**.\n-- This unit must end that **charge move engaged** with the closest **charge target**."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -3027,7 +3045,14 @@
         "abilities": [
           {
             "name": "Rend and Tear",
-            "description": "Each time a model in this unit makes a melee attack that targets a ^^**Monster^^** or ^^**Vehicle^^** unit, until the end of the phase, improve the Damage characteristic of that attack by 1."
+            "damage_boost": {
+              "amount": 1,
+              "targets": [
+                "MONSTER",
+                "VEHICLE"
+              ],
+              "phase": "melee"
+            }
           }
         ],
         "weapons": [
@@ -3265,7 +3290,16 @@
         "abilities": [
           {
             "name": "Furious Onslaught",
-            "description": "Each time this model makes a ranged attack that targets the closest eligible target within 18\", you can re-roll the Hit roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -5170,7 +5204,16 @@
         "abilities": [
           {
             "name": "Legendary Killer",
-            "description": "While this model is leading a unit, each time a model in that unit makes a melee attack, re-roll a Hit roll of 1 and re-roll a Wound roll of 1."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "melee",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "The Betrayer"
@@ -5530,7 +5573,15 @@
           },
           {
             "name": "A Worthy Skull",
-            "description": "Each time this model makes a melee attack that targets a ^^**Character^^** unit, you can re-roll the Hit roll and you can re-roll the Wound roll. Each time this model's unit destroys a ^^**Character^^** model, you gain 1CP."
+            "reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "melee",
+              "targets": [
+                "CHARACTER"
+              ]
+            }
           },
           {
             "name": "Forwards, For Blood!"

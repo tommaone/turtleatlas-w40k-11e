@@ -815,7 +815,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 14 ^^**Death Guard Infantry^^** models. Each ^^**Terminator^^** model takes up the space of 2 models."
+            "transport_capacity": 14
           }
         ],
         "weapons": [
@@ -1381,11 +1381,20 @@
         "abilities": [
           {
             "name": "Fire Support",
-            "description": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. Until the end of the phase, each time a friendly model that disembarked from this ^^**Transport**^^ this turn makes an attack that targets that unit, you can re-roll the Wound roll."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 ^^**Death Guard Infantry**^^ models. It cannot transport ^^**Terminator**^^ models."
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -1815,7 +1824,8 @@
         ],
         "abilities": [
           {
-            "name": "Silent Bodyguard"
+            "name": "Silent Bodyguard",
+            "fnp": 4
           },
           {
             "name": "Death Approaches"
@@ -3746,11 +3756,29 @@
         "abilities": [
           {
             "name": "Virulent Aura",
-            "description": "While this model is leading a unit, each time a model in that unit makes a ranged attack, you can re-roll the Wound roll."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Blight Bombardment",
-            "description": "At the start of your Shooting phase, select one enemy unit within 30\" of and visible to this model. Until the end of the phase, each time a friendly ^^**Death Guard^^** unit makes a ranged attack that targets that unit, re-roll a Hit roll of 1 (if that attack is made with a Blast weapon, you can re-roll the Hit roll instead)."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Leader"
@@ -4592,7 +4620,16 @@
         "abilities": [
           {
             "name": "Death’s Heads",
-            "description": "In your Shooting phase, after this unit has shot, select one enemy unit hit by one or more of those attacks. Until the end of the turn, each time a friendly NURGLE LEGIONES DAEMONICA unit makes an attack that targets that unit, you can re-roll the Wound roll."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [

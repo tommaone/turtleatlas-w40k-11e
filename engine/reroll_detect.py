@@ -144,6 +144,13 @@ _RE_OTHER_SUBJECT = re.compile(
 
 def detect_reroll_ability(ability: dict) -> dict | None:
     """Parse one ability dict from merged data into a reroll spec (or None)."""
+    # data/merged/ stores the parsed spec, not the rule text it came from.
+    # adapter/merge.py derives it with this very function at merge time, so the
+    # field and the prose path cannot disagree. A hand-built ability dict (tests,
+    # curated config) has no field and still parses its own text.
+    precomputed = ability.get("reroll")
+    if precomputed is not None:
+        return precomputed
     name = ability.get("name", "")
     desc = ability.get("description", "") or ""
     if not desc or not _RE_HAS_TARGET.search(desc):
@@ -286,6 +293,13 @@ def detect_army_wide_reroll(ability: dict) -> dict | None:
                              must NOT apply the spec always-on in that case.
     Returns None when the text is not a clean unconditional attack reroll.
     """
+    # data/merged/ stores the parsed spec, not the rule text it came from.
+    # adapter/merge.py derives it with this very function at merge time, so the
+    # field and the prose path cannot disagree. A hand-built ability dict (tests,
+    # curated config) has no field and still parses its own text.
+    precomputed = ability.get("army_wide_reroll")
+    if precomputed is not None:
+        return precomputed
     name = ability.get("name", "")
     desc = ability.get("description", "") or ""
     if not desc or not _RE_REROLL_VERB.search(desc):

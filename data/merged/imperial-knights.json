@@ -1722,7 +1722,16 @@
         "abilities": [
           {
             "name": "Titan Hunter",
-            "description": "Each time a ranged attack made by this model is allocated to a **^^Monster^^** or **^^Vehicle^^** model, you can re-roll the Damage roll."
+            "reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": null,
+              "reroll_damage": "all",
+              "phase": "ranged",
+              "targets": [
+                "MONSTER",
+                "VEHICLE"
+              ]
+            }
           }
         ],
         "weapons": [
@@ -3241,7 +3250,16 @@
         "abilities": [
           {
             "name": "Exemplar of the Code",
-            "description": "At the start of the battle, select one unit from your opponent’s army to be this model's quarry. Each time this model makes an attack that targets its quarry, you can re-roll the Wound roll. Each time this model's quarry is destroyed, you can select a new unit from your opponent's army to be its quarry."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [

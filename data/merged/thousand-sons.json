@@ -459,7 +459,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 ^^**Thousand Sons Infantry^^** models. Each ^^**Terminator^^** model takes up the space of 2 models."
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -635,7 +635,16 @@
         "abilities": [
           {
             "name": "Ensorcelled Annihilation",
-            "description": "Each time this model makes a ranged attack that targets a ^^**Monster^^** or ^^**Vehicle^^** unit that was hit by one or more Psychic attacks made by a ^^**Thousand Sons Psyker^^** unit from your army this turn, you can re-roll the Hit roll and you can re-roll the Damage roll."
+            "reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": "all",
+              "phase": "ranged",
+              "targets": [
+                "MONSTER",
+                "VEHICLE"
+              ]
+            }
           }
         ],
         "weapons": [
@@ -1029,7 +1038,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 ^^**Thousand Sons Infantry^^** models (excluding ^^**Terminator^^** models)."
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -1532,7 +1541,15 @@
           },
           {
             "name": "Hunter of Souls",
-            "description": "Each time this model makes an attack that targets a ^^**Character^^** unit, re-roll a Hit roll of 1 and re-roll a Wound roll of 1 (if that attack targets a ^^**Psyker Character^^** unit, you can re-roll the Hit roll and you can re-roll the Wound roll instead). Each time this model destroys a ^^**Character^^** unit, this model regains up to D3 lost wounds (if that ^^**Character^^** unit was a ^^**Psyker^^**, this model regains up to 3 lost wounds instead)."
+            "reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "CHARACTER"
+              ]
+            }
           }
         ],
         "weapons": [
@@ -4224,7 +4241,16 @@
         "abilities": [
           {
             "name": "Bringers of Change",
-            "description": "Each time a model in this unit makes a ranged attack, re-roll a Wound roll of 1. If the attack targets a unit within range of an objective marker you do not control, you can re-roll the Wound roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [

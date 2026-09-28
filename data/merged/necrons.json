@@ -2116,7 +2116,8 @@
         ],
         "abilities": [
           {
-            "name": "Reanimation Nodes (Aura)"
+            "name": "Reanimation Nodes (Aura)",
+            "fnp": 6
           },
           {
             "name": "Ancient Cover"
@@ -2201,7 +2202,8 @@
         ],
         "abilities": [
           {
-            "name": "Bound Creation"
+            "name": "Bound Creation",
+            "fnp": 4
           },
           {
             "name": "Systematic Vigour"
@@ -2868,7 +2870,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 10 NECRON WARRIOR models and 1 NECRONS INFANTRY CHARACTER model."
+            "transport_capacity": 10
           }
         ],
         "weapons": [
@@ -3163,7 +3165,16 @@
         "abilities": [
           {
             "name": "Implacable Eradication",
-            "description": "Each time a model in this unit makes an attack, re-roll a Wound roll of 1. If the target of that attack is an enemy unit within range of an objective marker, you can re-roll the Wound roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -3432,7 +3443,16 @@
         "abilities": [
           {
             "name": "Hard-wired for Destruction",
-            "description": "Each time a model in this unit makes a ranged attack that targets the closest eligible enemy unit, re-roll a Hit roll of 1. If the target of that attack is within range of an objective marker your opponent controls, you can re-roll the Hit roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -3588,7 +3608,16 @@
         "abilities": [
           {
             "name": "Optimised for Slaughter",
-            "description": "Each time a model in this unit makes an attack with an enmitic exterminator that targets a unit (excluding MONSTERS and VEHICLES), re-roll a Wound roll of 1. Each time a model in this unit makes an attack with a gauss destructor against a MONSTER or VEHICLE unit, re-roll a Wound roll of 1."
+            "reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "MONSTER",
+                "VEHICLE"
+              ]
+            }
           }
         ],
         "weapons": [
@@ -3775,7 +3804,16 @@
           },
           {
             "name": "Driven by Hatred",
-            "description": "Each time this model makes an attack that targets an enemy unit that is Below Half-strength, you can re-roll the Hit roll and you can re-roll the Wound roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -5573,7 +5611,16 @@
         "abilities": [
           {
             "name": "Whirling Onslaught",
-            "description": "Each time a model in this unit makes a melee attack, re-roll a Hit roll of 1. If this unit made a Charge move this turn, you can re-roll the Hit roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "melee",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -5812,7 +5859,8 @@
             "name": "Support"
           },
           {
-            "name": "Rites of Reanimation"
+            "name": "Rites of Reanimation",
+            "fnp": 5
           },
           {
             "name": "Technomancer"

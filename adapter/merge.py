@@ -27,6 +27,80 @@ if str(REPO_ROOT) not in sys.path:
 
 from adapter.bsdata_parser_11e import BSDataParser11e
 
+# The engine's prose detectors. Merging is the one moment the BSData rule text
+# is still in hand, so this is where its machine-readable equivalent is derived;
+# the text itself is then dropped and never committed. engine/ does not import
+# adapter/, so this one-way dependency introduces no cycle.
+if str(REPO_ROOT / "engine") not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT / "engine"))
+from damage_boost_detect import detect_damage_boost  # noqa: E402
+from dpp import parse_transport_capacity  # noqa: E402
+from fnp_detect import detect_fnp  # noqa: E402
+from reroll_detect import detect_army_wide_reroll, detect_reroll_ability  # noqa: E402
+
+# Keys a detector emits that must not be persisted: `raw` is the rule text
+# itself, and `ability_name` duplicates the ability's own name.
+_SPEC_KEYS_TO_DROP = ("raw", "ability_name")
+
+
+def _persistable(spec: dict | None) -> dict | None:
+    """A detector spec with the rule text removed, or None if there was none."""
+    if spec is None:
+        return None
+    return {k: v for k, v in spec.items() if k not in _SPEC_KEYS_TO_DROP}
+
+
+def derive_ability_fields(ability: dict) -> list[str]:
+    """Replace an ability's rule text with the fields the engine reads.
+
+    AGENTS.md forbids committing verbatim rule text, and the engine only ever
+    needed four things out of an ability description: a reroll spec, a damage
+    boost spec, a Feel No Pain threshold, and a transport capacity. So parse once
+    here — while the BSData text is still available — and store only the result.
+
+    Returns the field names written. The description is removed unconditionally:
+    abilities the detectors do not consume carry nothing the engine needs, and the
+    ones they do now have a field, so the prose is dead in every case.
+    """
+    if not isinstance(ability, dict):
+        return []
+    written: list[str] = []
+    for key, detect in (("reroll", detect_reroll_ability),
+                        ("army_wide_reroll", detect_army_wide_reroll),
+                        ("damage_boost", detect_damage_boost)):
+        spec = _persistable(detect(ability))
+        if spec is not None:
+            ability[key] = spec
+            written.append(key)
+    # Only "Transport" abilities carry a headline capacity, and that is the only
+    # name the engine reads one from. Unlike the engine's read path, this runs
+    # against freshly parsed BSData, so there is no stored field to staleness-guard.
+    if str(ability.get("name", "")).upper() == "TRANSPORT" and "transport_capacity" not in ability:
+        capacity = parse_transport_capacity(ability.get("description"))
+        if capacity is not None:
+            ability["transport_capacity"] = capacity
+            written.append("transport_capacity")
+    fnp = detect_fnp(ability)
+    if fnp is not None and "fnp" not in ability:
+        ability["fnp"] = fnp
+        written.append("fnp")
+    # Always drop the rule text, derived or not. Abilities the detectors do not
+    # consume (2411 of them) carry nothing the engine needs, and abilities they
+    # do consume now have a field — so in every case the prose is dead once this
+    # function has run. Keeping it conditionally would mean a bsdata bump
+    # quietly restores ~530KB of copyrighted text.
+    if ability.get("description"):
+        del ability["description"]
+    return written
+
+
+def derive_unit_ability_fields(unit: dict) -> list[str]:
+    """Derive fields for every ability on one merged unit profile, in place."""
+    written: list[str] = []
+    for ability in ((unit.get("profile") or {}).get("abilities") or []):
+        written += derive_ability_fields(ability)
+    return written
+
 
 # -- MFM (11e points / detachments) -----------------------------------------
 
@@ -447,6 +521,15 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
                     profile["stats"][corr_key] = corr_val
                     print(f"  [CORR] {corr_name}.{corr_key}: {old_val} → {corr_val}", file=sys.stderr)
                     break
+
+    # Last step: swap each ability's rule text for the machine-readable fields
+    # the engine reads. Runs after every profile assignment (including the
+    # cross-faction fallback) so no ability keeps text it no longer needs.
+    derived = 0
+    for mu in merged_units:
+        derived += len(derive_unit_ability_fields(mu))
+    if derived:
+        print(f"  [PROSE] derived {derived} ability field(s); rule text dropped", file=sys.stderr)
 
     return {
         "faction": mfm_data.get("name", slug),

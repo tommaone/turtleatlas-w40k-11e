@@ -423,7 +423,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a **transport capacity** of 22 **ORKS INFANTRY** models. Each **MEGA ARMOUR/JUMP PACK** model takes up the space of 2 models. Each **GHAZGHKULL THRAKA** model takes up the space of 4 models."
+            "transport_capacity": 22
           }
         ],
         "weapons": [
@@ -1613,7 +1613,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a **transport capacity** of 11 **ORKS INFANTRY* models. It cannot transport **GHAZGHKULL THRAKA** models. Each **MEGA ARMOUR/JUMP PACK** model takes up the space of 2 models."
+            "transport_capacity": 11
           },
           {
             "name": "Ramshackle Cover"
@@ -3942,7 +3942,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 20 ORKS INFANTRY models. Each MEGA ARMOUR or JUMP PACK model takes up the space of 2 models. GHAZGHKULL THRAKA takes up the space of 18 models. If this model is equipped with a supa-kannon, it has a transport capacity of 15 ORKS INFANTRY models."
+            "transport_capacity": 20
           }
         ],
         "weapons": [
@@ -4220,11 +4220,20 @@
         "abilities": [
           {
             "name": "Big an’ Stompy",
-            "description": "This unit's melee attacks can re-roll **hit rolls** of 1."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "melee",
+              "targets": [
+                "ALL"
+              ],
+              "positional": false
+            }
           },
           {
             "name": "Transport",
-            "description": "This model has a **transport capacity** of 12 **ORKS INFANTRY** models It cannot transport **GHAZGHKULL THRAKA** models. Each **MEGA ARMOUR/JUMP PACK** model takes up the space of 2 models."
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -4520,11 +4529,20 @@
         "abilities": [
           {
             "name": "Mobile Arsenal",
-            "description": "In your Shooting phase, this unit's ranged attacks can re-roll **hit rolls** of 1."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": false
+            }
           },
           {
             "name": "Transport",
-            "description": "This model has a **transport capacity** of 12 **ORKS INFANTRY** models. Each **MEGA ARMOUR/JUMP PACK** model takes up the space of 2 models. Each **GHAZGHKULL THRAKA** model takes up the space of 4 models."
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -4755,7 +4773,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a **transport capacity** of 22 **BEAST SNAGGAS INFANTRY** models."
+            "transport_capacity": 22
           },
           {
             "name": "Fully Loaded Butchery"
@@ -4917,7 +4935,7 @@
         "abilities": [
           {
             "name": "Transport",
-            "description": "This model has a **transport capacity** of 12 **BEAST SNAGGAS INFANTRY** models."
+            "transport_capacity": 12
           },
           {
             "name": "Wurrboy (psyker level 1)"
@@ -6410,11 +6428,20 @@
         "abilities": [
           {
             "name": "Big an’ Shooty",
-            "description": "In your Shooting phase, this unit's ranged attacks can re-roll **hit rolls** of 1."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": false
+            }
           },
           {
             "name": "Transport",
-            "description": "This model has a **transport capacity** of 12 **ORKS INFANTRY** models. In cannot transport **GHAZGHKULL THRAKA** models. Each **MEGA ARMOUR/JUMP PACK** model takes up the space of 2 models."
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -7820,7 +7847,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a **transport capacity** of 22 **ORKS INFANTRY** models. Each **MEGA ARMOUR/JUMP PACK** model takes up the space of 2 models. Each **GHAZGHKULL THRAKA** model takes up the space of 4 models."
+            "transport_capacity": 22
           }
         ],
         "weapons": [
@@ -8482,7 +8509,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a **transport capacity** of 12 **ORKS INFANTRY** models. It cannot transport **GHAZGHKULL THRAKA/JUMP PACK** models. Each **MEGA ARMOUR** model takes up the space of 2 models."
+            "transport_capacity": 12
           }
         ],
         "weapons": [

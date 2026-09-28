@@ -735,7 +735,8 @@
         ],
         "abilities": [
           {
-            "name": "Unbreakable Duty"
+            "name": "Unbreakable Duty",
+            "fnp": 4
           },
           {
             "name": "Support"
@@ -1348,7 +1349,16 @@
         "abilities": [
           {
             "name": "Shock Assault",
-            "description": "Each time a model in this unit targets an enemy unit with a melee attack, re-roll a Wound roll of 1. If that enemy unit is within range of an objective marker, you can re-roll the Wound roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "melee",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -2256,7 +2266,16 @@
         "abilities": [
           {
             "name": "Ballistus Strike",
-            "description": "Each time this model makes a ranged attack that targets a unit that is not Below Half-strength, you can re-roll the Hit roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -4130,7 +4149,16 @@
           },
           {
             "name": "Vehement Aggression",
-            "description": "While this model is leading a unit, each time that unit is selected to fight, take a Leadership test for that unit: if passed, until the end of the phase, each time a model in that unit makes an attack, you can re-roll the Hit roll; if failed, until the end of the phase, each time a model in that unit makes an attack, re-roll a Hit roll of 1"
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "melee",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Prioritised Eradication"
@@ -4489,7 +4517,16 @@
         "abilities": [
           {
             "name": "Decimator Protocols",
-            "description": "Each time a model in this unit makes a ranged attack, re-roll a Hit roll of 1. If the target of that attack is an enemy unit within range of an objective marker, you can re-roll the Hit roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -4910,7 +4947,16 @@
         "abilities": [
           {
             "name": "Litanies of the Devout",
-            "description": "While this unit is leading a unit and contains a Chaplain Grimaldus model, each time a model in that unit makes a melee attack, you can re-roll the Hit roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "melee",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Temple Relics"
@@ -5037,7 +5083,8 @@
         ],
         "abilities": [
           {
-            "name": "Recitation of Faith"
+            "name": "Recitation of Faith",
+            "fnp": 4
           },
           {
             "name": "Leader"
@@ -7616,7 +7663,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 Adeptus Astartes Infantry models. It cannot transport Jump Pack, Wulfen, Gravis, Centurion or Terminator models."
+            "transport_capacity": 12
           },
           {
             "name": "Combat Disembarkation"
@@ -8030,7 +8077,16 @@
         "abilities": [
           {
             "name": "Total Obliteration",
-            "description": "Each time a ranged attack made by a model in this unit targets a Monster or Vehicle model, you can re-roll the Hit roll, you can re-roll the Wound roll and you can re-roll the Damage roll."
+            "reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": "all",
+              "reroll_damage": "all",
+              "phase": "ranged",
+              "targets": [
+                "MONSTER",
+                "VEHICLE"
+              ]
+            }
           }
         ],
         "weapons": [
@@ -9909,7 +9965,7 @@
         "abilities": [
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 7 TACTICUS or PHOBOS INFANTRY models. It cannot transport JUMP PACK models."
+            "transport_capacity": 7
           },
           {
             "name": "Assault Vehicle"
@@ -11887,7 +11943,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 Adeptus Astartes Infantry models. Each Jump Pack, Wulfen, Gravis or Terminator model takes up the space of 2 models and each Centurion model takes up the space of 3 models."
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -12067,14 +12123,23 @@
         "abilities": [
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 16 Adeptus Astartes Infantry models. Each Jump Pack, Wulfen, Gravis or Terminator model takes up the space of 2 models and each Centurion model takes up the space of 3 models."
+            "transport_capacity": 16
           },
           {
             "name": "Assault Ramp"
           },
           {
             "name": "Legacy of Jerulas",
-            "description": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. Until the end of the turn, each time a friendly model that disembarked from this TRANSPORT this turn makes an attack that targets that enemy unit, re-roll a Hit roll of 1 and a re-roll a Wound roll of 1"
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -12252,7 +12317,7 @@
         "abilities": [
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 14 Adeptus Astartes Infantry models. Each Jump Pack, Wulfen, Gravis or Terminator model takes up the space of 2 models and each Centurion model takes up the space of 3 models."
+            "transport_capacity": 14
           },
           {
             "name": "Assault Ramp"
@@ -13972,11 +14037,20 @@
         "abilities": [
           {
             "name": "Fire Support",
-            "description": "In your Shooting phase, after this model has  shot, select one enemy unit it scored one or more hits against this phase. Until the end of the phase, each time a friendly model that disembarked from this Transport this turn makes an attack that targets that enemy unit, you can re-roll the Wound roll."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 6 Adeptus Astartes Infantry models.  It cannot transport JUMP PACK, WULFEN, PHOBOS, GRAVIS, CENTURION, TERMINATOR or TACTICUS models (excluding TACTICUS CHARACTER models that began the battle attached to a non-TACTICUS unit)"
+            "transport_capacity": 6
           }
         ],
         "weapons": [
@@ -14672,7 +14746,7 @@
         "abilities": [
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 14 ADEPTUS ASTARTES INFANTRY models. Each JUMP PACK, GRAVIS or TERMINATOR model takes up the space of 2 models and each CENTURION model takes up the space of 3 models."
+            "transport_capacity": 14
           },
           {
             "name": "Stabilised Disembarkation"
@@ -14887,11 +14961,20 @@
         "abilities": [
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 7 Adeptus Astartes Infantry models. Each Jump Pack, Wulfen, Gravis or Terminator model takes up the space of 2 models and each Centurion model takes up the space of 3 models."
+            "transport_capacity": 7
           },
           {
             "name": "Interception Strike",
-            "description": "Each time this model makes a ranged attack that targets a unit that is within 12\" of one or more ADEPTUS ASTARTES units from your army, you can re-roll the Hit roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -15160,7 +15243,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 ADEPTUS ASTARTES INFANTRY models. It cannot transport JUMP PACK, WULFEN, PHOBOS, GRAVIS, CENTURION, TERMINATOR or TACTICUS models (excluding TACTICUS CHARACTER models that began the battle attached to a non-TACTICUS unit)"
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -15823,7 +15906,16 @@
         "abilities": [
           {
             "name": "Vitruous Onslaught",
-            "description": "Each time a model in this unit makes an attack that targets the closest eligible target, you can re-roll a Wound roll of 1."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -16862,7 +16954,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 Adeptus Astartes Infantry models and 1 Dreadnought model. Each Jump Pack, Wulfen, Gravis or Terminator model takes up the space of 2 models and each Centurion model takes up the space of 3 models."
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -19529,7 +19621,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 30 ADEPTUS ASTARTES INFANTRY or ADEPTUS ASTARTES MOUNTED models. Each JUMP PACK, WULFEN, GRAVIS or TERMINATOR model takes up the space of 2 models. Each CENTURION model takes up the space of 3 models. Each MOUNTED model takes up the space of 4 models."
+            "transport_capacity": 30
           }
         ],
         "weapons": [

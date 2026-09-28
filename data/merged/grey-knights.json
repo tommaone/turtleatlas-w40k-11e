@@ -243,7 +243,16 @@
           },
           {
             "name": "Eye of Judgement (Psychic)",
-            "description": "Each time this model makes an attack, you can re-roll the Wound roll."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": false
+            }
           }
         ],
         "weapons": [
@@ -591,7 +600,8 @@
             "name": "Leader"
           },
           {
-            "name": "Sanctic Hood"
+            "name": "Sanctic Hood",
+            "fnp": 4
           }
         ],
         "weapons": [
@@ -1223,7 +1233,15 @@
           },
           {
             "name": "Foesight (Psychic)",
-            "description": "Each time this model makes an attack that targets a ^^**Character^^** unit, you can re-roll the Hit roll."
+            "reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "CHARACTER"
+              ]
+            }
           },
           {
             "name": "Leader"
@@ -1489,7 +1507,16 @@
         "abilities": [
           {
             "name": "Surge of Wrath (Psychic)",
-            "description": "Each time this model makes a melee attack that targets a **^^Monster^^** or **^^Vehicle^^** unit, you can re-roll the Hit roll, you can re-roll the Wound roll and you can re-roll the Damage roll."
+            "reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": "all",
+              "reroll_damage": "all",
+              "phase": "melee",
+              "targets": [
+                "MONSTER",
+                "VEHICLE"
+              ]
+            }
           }
         ],
         "weapons": [
@@ -1878,7 +1905,7 @@
         "abilities": [
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 30 ^^**Grey Knights Infantry^^** models. Each ^^**Terminator^^** model takes up the space of 2 models."
+            "transport_capacity": 30
           },
           {
             "name": "Damaged: 1-10 Wounds Remaining"
@@ -2291,7 +2318,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 ^^**Grey Knights Infantry^^** models. Each ^^**Terminator^^** model takes up the space of 2 models."
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -2470,7 +2497,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 16 ^^**Grey Knights Infantry^^** models. Each ^^**Terminator^^** model takes up the space of 2 models."
+            "transport_capacity": 16
           }
         ],
         "weapons": [
@@ -2646,7 +2673,7 @@
         "abilities": [
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 14 ^^**Grey Knights Infantry^^** models. Each ^^**Terminator^^** model takes up the space of 2 models"
+            "transport_capacity": 14
           },
           {
             "name": "Assault Ramp"
@@ -3697,7 +3724,16 @@
         "abilities": [
           {
             "name": "Sanctity of Purpose",
-            "description": "Each time a model in this unit makes an attack, re-roll a Wound roll of 1. If the target is within range of an objective marker, you can re-roll the Wound roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -3992,7 +4028,7 @@
         "abilities": [
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 6 ^^**Grey Knights Infantry^^** models. It cannot transport ^^**Terminator^^** models."
+            "transport_capacity": 6
           },
           {
             "name": "Fire Focus"
@@ -4152,10 +4188,11 @@
         "abilities": [
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 ^^**Grey Knights Infantry^^** models. It cannot transport ^^**Terminator^^** models."
+            "transport_capacity": 12
           },
           {
-            "name": "Truesilver Aegis (Psychic)"
+            "name": "Truesilver Aegis (Psychic)",
+            "fnp": 6
           }
         ],
         "weapons": [
@@ -4470,7 +4507,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 ^^**Grey Knights Infantry^^** models and 1 ^^**Grey Knights Venerable Dreadnought^^** model. Each ^^**Terminator^^** model takes up the space of 2 models."
+            "transport_capacity": 12
           }
         ],
         "weapons": [

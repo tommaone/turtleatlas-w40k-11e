@@ -1288,7 +1288,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 ^^**Heretic Astartes Infantry**^^ (excluding ^^**Obliterator^^** and ^^**Jump Pack^^** models). Each ^^**Possessed, Mutilators^^** and ^^**Terminator^^** model takes up the space of 2 models."
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -2036,7 +2036,16 @@
         "abilities": [
           {
             "name": "Annihilator",
-            "description": "Each time a ranged attack made by this model is allocated to a **^^Monster^^** or **^^Vehicle^^** model, you can re-roll the Damage roll."
+            "reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": null,
+              "reroll_damage": "all",
+              "phase": "ranged",
+              "targets": [
+                "MONSTER",
+                "VEHICLE"
+              ]
+            }
           }
         ],
         "weapons": [
@@ -2428,7 +2437,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 ^^**Heretic Astartes Infantry**^^ models. It cannot transport ^^**Terminator, Jump Pack, Mutilators, Obliterators**^^ or ^^**Possessed**^^ models."
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -2636,7 +2645,16 @@
         "abilities": [
           {
             "name": "Despoilers",
-            "description": "Each time this unit makes a Dark Pact, until the end of the phase, each time a model in this unit makes an attack, you can re-roll the Hit roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -5005,7 +5023,16 @@
           },
           {
             "name": "Daemonforge",
-            "description": "Each time this unit makes a Dark Pact, until the end of the phase, each time this model makes an attack, re-roll a Wound roll of 1."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -7824,7 +7851,16 @@
           },
           {
             "name": "Architect of Ruin",
-            "description": "At the start of the battle, select one unit in your opponent’s army to be this model’s hated foe. Each time this model makes an attack that targets its hated foe, you can re-roll the Wound roll. Each time this model’s hated foe is destroyed, you can select a new unit from your opponent’s army to be its hated foe."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Leader"
@@ -7955,7 +7991,16 @@
         "abilities": [
           {
             "name": "Veterans of the Long War",
-            "description": "Each time a model in this unit targets an enemy unit with a melee attack, re-roll a Wound roll of 1. If that enemy unit is within range of an objective marker, you can re-roll the Wound roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "melee",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -8816,7 +8861,15 @@
           },
           {
             "name": "Spirit Thief",
-            "description": "At the start of your Shooting phase, select one visible enemy ^^**Vehicle^^** unit. Until the end of the phase, each time a friendly ^^**Heretic Astartes^^** model makes an attack that targets that unit, re-roll a Wound roll of 1."
+            "reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "VEHICLE"
+              ]
+            }
           }
         ],
         "weapons": [
@@ -9087,7 +9140,16 @@
           },
           {
             "name": "Warp-sighted Butcher",
-            "description": "While this model is leading a unit, each time a model in that unit makes a melee attack that targets a unit that is below its Starting Strength, you can re-roll the Hit roll. If that unit is Below Half-strength, you can re-roll the Wound roll as well."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "melee",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Trophy Taker"
@@ -12089,7 +12151,8 @@
             "name": "Brutal Example"
           },
           {
-            "name": "Mutated Bodyguard"
+            "name": "Mutated Bodyguard",
+            "fnp": 4
           }
         ],
         "weapons": [

@@ -162,7 +162,16 @@
         "abilities": [
           {
             "name": "Death to the Alien",
-            "description": "Each time a model in this unit makes an attack, re-roll a Hit roll of 1. If the target of that attack does not have the ^^**Imperium^^** or ^^**Chaos^^** keywords, you can re-roll the Hit roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Attached Unit"
@@ -994,7 +1003,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 DEATHWATCH INFANTRY models."
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -1161,7 +1170,8 @@
         ],
         "abilities": [
           {
-            "name": "Abomination"
+            "name": "Abomination",
+            "fnp": 2
           },
           {
             "name": "Soulless Horror"
@@ -1264,7 +1274,16 @@
         "abilities": [
           {
             "name": "Death to the Alien",
-            "description": "Each time a model in this unit makes an attack, re-roll a Hit roll of 1. If the target of that attack does not have the IMPERIUM or CHAOS keywords, you can re-roll the Hit roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -3048,7 +3067,16 @@
         "abilities": [
           {
             "name": "Breaching Team",
-            "description": "Each time a model in this unit makes an attack, re-roll a Wound roll of 1. If the target of that attack is an enemy unit within range of an objective marker, you can re-roll the Wound roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Gheistskull"
@@ -3586,7 +3614,7 @@
         "abilities": [
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 AGENTS OF THE IMPERIUM INFANTRY models. It cannot transport TERMINATOR or OFFICIO ASSASSINORUM models."
+            "transport_capacity": 12
           },
           {
             "name": "Self-repair"
@@ -4810,7 +4838,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 13 INQUISITOR INFANTRY and INQUISITORIAL AGENT models. It cannot transport TERMINATOR models."
+            "transport_capacity": 13
           }
         ],
         "weapons": [
@@ -5872,7 +5900,7 @@
         "abilities": [
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 6 ORDO HERETICUS INFANTRY models.\n\nAt the start of the Declare Battle Formations step, you can select one SISTERS OF BATTLE SQUAD from your army. If you do, that unit is split into two units, each containing as equal a number of models as possible (when splitting a unit in this way, make a note of which models form each of the two new units). One of these units must start the battle embarked within this TRANSPORT; the other can start the battle embarked within another TRANSPORT, or it can be deployed as a separate unit."
+            "transport_capacity": 6
           },
           {
             "name": "Purge and Cleanse"

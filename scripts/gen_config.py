@@ -31,6 +31,10 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 MERGED_DIR = REPO_ROOT / "data" / "merged"
 CONFIG_DIR = REPO_ROOT / "data" / "config"
 
+if str(REPO_ROOT / "engine") not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT / "engine"))
+from fnp_detect import detect_fnp_from_abilities, parse_fnp_source  # noqa: E402
+
 
 def parse_stat(val):
     """Parse a stat value: strip quotes, plus signs, asterisks, convert to int where possible."""
@@ -65,29 +69,17 @@ def parse_inv_from_rules(rules, stats):
 
 
 def parse_fnp_from_rules(rules, abilities):
-    """Extract Feel No Pain value from rules or abilities."""
-    sources = []
-    if isinstance(rules, list):
-        sources.extend(rules)
-    if isinstance(abilities, list):
-        for a in abilities:
-            if isinstance(a, dict):
-                sources.append(a.get("name", "") + " " + a.get("description", ""))
-            elif isinstance(a, str):
-                sources.append(a)
+    """Extract Feel No Pain value from rules or abilities.
 
-    for src in sources:
-        if not isinstance(src, str):
-            continue
-        src_lower = src.lower()
-        # Match "Feel No Pain X+" or "FNP X+" or "Disgustingly Resilient X+"
-        if any(kw in src_lower for kw in ("feel no pain", "fnp", "disgusting resilience", "nurgling resilience")):
-            m = re.search(r'(\d)\+', src)
-            if m:
-                val = int(m.group(1))
-                if 2 <= val <= 6:
-                    return val
-    return None
+    The regex lives in engine/fnp_detect.py because merge.py needs the same one
+    to derive the `fnp` field while the rule text is still in hand. Calling it
+    from here is what keeps a config regeneration reading the field rather than
+    prose that no longer exists in data/merged/.
+    """
+    for rule in (rules or []):
+        if isinstance(rule, str) and (val := parse_fnp_source(rule)) is not None:
+            return val
+    return detect_fnp_from_abilities(abilities)
 
 
 def extract_info(profile):

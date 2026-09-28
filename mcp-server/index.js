@@ -517,7 +517,7 @@ print(json.dumps(output))
                 items: { type: "string" },
                 description: "Unit keywords",
               },
-              transport_capacity: { type: "string", description: "Merged BSData Transport ability prose, or null — parsed headline capacity is transport_capacity_n (e.g. 12, not '6 INFANTRY')" },
+              transport_capacity: { type: ["integer", "string", "null"], description: "Transport capacity in models (e.g. 12). Accepts an int, a numeric string, or a legacy BSData 'Transport' ability prose string, which is parsed. Pass null when the datasheet states no model count." },
               abilities: {
                 type: "array",
                 items: { type: "string" },
@@ -1038,9 +1038,10 @@ look like facts.
     if (prof.abilities?.length) {
       out += `\n## Abilities\n\n`;
       for (const a of prof.abilities) {
-        // merged/ stores abilities as {name, description}; description is
-        // verbatim rule text, so only the machine-readable name is served.
-        // Previously `- ${a}` stringified these to "[object Object]".
+        // merged/ stores abilities as {name, <derived field>}; any description
+        // was verbatim rule text and is dropped at merge time, so only the
+        // machine-readable name is served. Previously `- ${a}` stringified these
+        // to "[object Object]".
         out += `- ${typeof a === "string" ? a : a?.name || "?"}\n`;
       }
     }

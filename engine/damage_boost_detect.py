@@ -78,6 +78,11 @@ def _amount(desc: str) -> int | None:
 
 def detect_damage_boost(ability: dict) -> dict | None:
     """Parse one ability dict from merged data into a damage-boost spec (or None)."""
+    # See reroll_detect.detect_reroll_ability: data/merged/ stores the parsed
+    # spec, derived at merge time by this function, not the rule text.
+    precomputed = ability.get("damage_boost")
+    if precomputed is not None:
+        return precomputed
     name = ability.get("name", "")
     desc = ability.get("description", "") or ""
     if not desc or not _RE_HAS_DAMAGE.search(desc):

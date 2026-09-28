@@ -550,7 +550,17 @@
         "abilities": [
           {
             "name": "Slayers of Tyrants",
-            "description": "Each time a model in this unit makes an attack that targets a ^^Character, Monster^^ or ^^Vehicle^^ unit, you can re-roll the Wound roll."
+            "reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "MONSTER",
+                "VEHICLE",
+                "CHARACTER"
+              ]
+            }
           },
           {
             "name": "From Golden Light"
@@ -848,7 +858,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 ANATHEMA PSYKANA INFANTRY models."
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -970,7 +980,16 @@
         "abilities": [
           {
             "name": "Heavy Assault Infantry",
-            "description": "Each time a model in this unit makes a ranged attack that targets the closest eligible target, re-roll a Wound roll of 1."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "From Golden Light"
@@ -1850,14 +1869,23 @@
         "abilities": [
           {
             "name": "Fire Support",
-            "description": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. Until the end of the phase, each time a friendly model that disembarked from this ^^Transport^^ this turn makes an attack that targets that enemy unit, you can re-roll the Wound roll."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Damaged: 1-5 wounds remaining"
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 8 ^^Adeptus Custodes Infantry^^ models."
+            "transport_capacity": 8
           }
         ],
         "weapons": [
@@ -1976,7 +2004,16 @@
         "abilities": [
           {
             "name": "Stand Vigil",
-            "description": "Each time a model in this unit makes an attack, re-roll a Wound roll of 1. While this unit is within range of an objective marker you control, you can re-roll the Wound roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Sentinel Storm"
@@ -2211,7 +2248,16 @@
         "abilities": [
           {
             "name": "Stand Vigil",
-            "description": "Each time a model in this unit makes an attack, re-roll a Wound roll of 1. While this unit is within range of an objective marker you control, you can re-roll the Wound roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "No Foe Shall Stand"
@@ -2404,7 +2450,8 @@
             "name": "Resolute Will"
           },
           {
-            "name": "Living Fortress"
+            "name": "Living Fortress",
+            "fnp": 4
           }
         ],
         "weapons": [
@@ -2847,7 +2894,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 ADEPTUS CUSTODES INFANTRY models. This model can also transport 1 VENERABLE CONTEMPTOR DREADNOUGHT, 1 CONTEMPTOR-ACHILLUS DREADNOUGHT or 1 CONTEMPTOR GALATUS-DREADNOUGHT; while doing so, its transport capacity is reduced to 6 ADEPTUS CUSTODES INFANTRY models."
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -4013,7 +4060,8 @@
         ],
         "abilities": [
           {
-            "name": "Feel No Pain"
+            "name": "Feel No Pain",
+            "fnp": 5
           },
           {
             "name": "Leader"
@@ -4566,7 +4614,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 6 ADEPTUS CUSTODES INFANTRY models."
+            "transport_capacity": 6
           }
         ],
         "weapons": [

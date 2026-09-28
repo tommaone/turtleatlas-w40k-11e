@@ -384,7 +384,16 @@
         "abilities": [
           {
             "name": "Breach and Clear",
-            "description": "Each time a model in this unit makes a ranged attack that targets an enemy unit within range of an objective marker, you can re-roll the Wound roll."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "DS8 Support Turret"
@@ -670,7 +679,8 @@
         ],
         "abilities": [
           {
-            "name": "Advanced Armour"
+            "name": "Advanced Armour",
+            "fnp": 4
           }
         ],
         "weapons": [
@@ -1876,7 +1886,16 @@
           },
           {
             "name": "Hero of the Empire (Aura)",
-            "description": "While a friendly **^^T’au Empire^^** unit is within 6\" of this model, each time a model in that unit makes a ranged attack, re-roll a Hit roll of 1."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Advanced Guardian Drone"
@@ -2035,7 +2054,16 @@
         "abilities": [
           {
             "name": "Fireknife",
-            "description": "Each time a model in this unit makes a ranged attack, re-roll a Hit roll of 1. If that attack targets a unit that is at its Starting Strength, you can re-roll the Hit roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Weapon Support System"
@@ -2634,7 +2662,16 @@
         "abilities": [
           {
             "name": "Sunforge",
-            "description": "Each time a model in this unit makes a ranged attack that targets a **MONSTER** or **VEHICLE** unit, you can re-roll the Wound roll and you can re-roll the Damage roll."
+            "reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": "all",
+              "phase": "ranged",
+              "targets": [
+                "MONSTER",
+                "VEHICLE"
+              ]
+            }
           }
         ],
         "weapons": [
@@ -2986,7 +3023,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 T’AU EMPIRE INFANTRY models. It cannot transport BATTLESUIT, KROOT or VESPID STINGWINGS models."
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -3148,7 +3185,8 @@
             "name": "Leader"
           },
           {
-            "name": "Failure Is Not an Option"
+            "name": "Failure Is Not an Option",
+            "fnp": 5
           }
         ],
         "weapons": [
@@ -3252,7 +3290,16 @@
         "abilities": [
           {
             "name": "Precise Targeting",
-            "description": "Each time a model in this unit makes an attack that targets a Spotted unit, you can re-roll the Hit roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -4389,7 +4436,8 @@
             "name": "Leader"
           },
           {
-            "name": "Rites of Feasting"
+            "name": "Rites of Feasting",
+            "fnp": 6
           },
           {
             "name": "Ritual Butchery"
@@ -4586,7 +4634,16 @@
           },
           {
             "name": "Advanced Scouting",
-            "description": "Each time this model makes a ranged attack that hits an enemy unit, until the end of the turn, each time another KROOT model from your army makes an attack that targets that enemy unit, you can re-roll the Hit roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -5302,7 +5359,16 @@
         "abilities": [
           {
             "name": "Aggressive Deployment",
-            "description": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. Until the end of the phase, each time a friendly model that disembarked from this TRANSPORT this turn makes an attack that targets that enemy unit, you can re-roll the Wound roll."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Air Caste Colossus"
@@ -6702,7 +6768,16 @@
         "abilities": [
           {
             "name": "Velocity Tracker",
-            "description": "Each time this model makes an attack with a ranged weapon that targets a unit that can FLY, you can re-roll the Hit roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -6854,7 +6929,16 @@
         "abilities": [
           {
             "name": "Forward Observers",
-            "description": "Each time this unit is an Observer unit, until the end of the phase, each time a ranged attack is made by a model in a Guided unit that targets their Spotted unit, re-roll a Hit roll of 1 and re-roll a Wound roll of 1."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -7179,7 +7263,15 @@
           },
           {
             "name": "Titan-killer",
-            "description": "Each time this model makes a ranged attack that targets a TITANIC or TOWERING unit, you can re-roll the Hit roll."
+            "reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "TITANIC"
+              ]
+            }
           }
         ],
         "weapons": [
@@ -7931,7 +8023,16 @@
         "abilities": [
           {
             "name": "Coordinated Strike",
-            "description": "While this model is a Guided unit, each time it makes an attack that targets its Spotted unit, re-roll a Hit roll of 1."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Damaged: 1-10 Wounds Remaining"
@@ -8460,7 +8561,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 11 T’AU EMPIRE INFANTRY models. It cannot transport BATTLESUIT, KROOT or VESPID STINGWINGS models."
+            "transport_capacity": 11
           }
         ],
         "weapons": [
@@ -8537,7 +8638,7 @@
         "abilities": [
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 11 T’AU EMPIRE INFANTRY models. It cannot transport BATTLESUIT, KROOT or VESPID STINGWINGS models."
+            "transport_capacity": 11
           }
         ],
         "weapons": [
@@ -8613,7 +8714,7 @@
         "abilities": [
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 11 T’AU EMPIRE INFANTRY models. It cannot transport BATTLESUIT, KROOT or VESPID STINGWINGS models. If this model is equipped with a Tidewall defence platform, it has a transport capacity of 22 T’AU INFANTRY models instead."
+            "transport_capacity": 11
           }
         ],
         "weapons": [],

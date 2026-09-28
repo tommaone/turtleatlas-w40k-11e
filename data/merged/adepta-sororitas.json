@@ -1516,7 +1516,8 @@
         ],
         "abilities": [
           {
-            "name": "Rituale Nullificatus"
+            "name": "Rituale Nullificatus",
+            "fnp": 4
           },
           {
             "name": "Virtue of Intolerance"
@@ -2953,7 +2954,8 @@
         ],
         "abilities": [
           {
-            "name": "Medicus Ministorum"
+            "name": "Medicus Ministorum",
+            "fnp": 5
           },
           {
             "name": "Sacred Healing"
@@ -3177,7 +3179,7 @@
         "abilities": [
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 6 ADEPTA SORORITAS INFANTRY models. It cannot transport JUMP PACK models or the Triumph of Saint Katherine.\n\nAt the start of the Declare Battle Formations step, you can select one BATTLE SISTERS SQUAD, DOMINION SQUAD or SISTERS NOVITIATE SQUAD from your army. If you do, that unit is split into two units, each containing as equal a number of models as possible (when splitting a unit in this way, make a note of which models form each of the two new units. If you are splitting a unit that has the Cherub ability, only one of the new units can use that ability during the battle – make a note of which of the new units this will be). One of these units must start the battle embarked within this TRANSPORT; the other can start the battle embarked within another TRANSPORT, or it can be deployed as a separate unit."
+            "transport_capacity": 6
           },
           {
             "name": "Purge and Cleanse"
@@ -4117,7 +4119,16 @@
         "abilities": [
           {
             "name": "Abbess Sanctorum",
-            "description": "While this model is leading a unit, each time a model in that unit makes an attack, you can re-roll the Hit roll and you can re-roll the Wound roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Righteous Repugnance"
@@ -5064,7 +5075,16 @@
         "abilities": [
           {
             "name": "Overseer of Redemption",
-            "description": "While this unit contains a Repentia Superior model, each time a Sisters Repentia model in this unit makes a melee attack, you can re-roll the Hit roll and you can re-roll the Wound roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "melee",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -5532,7 +5552,8 @@
             "name": "Healing Tears"
           },
           {
-            "name": "Lifewards"
+            "name": "Lifewards",
+            "fnp": 4
           },
           {
             "name": "Miraculous Intervention"
@@ -6520,7 +6541,16 @@
         "abilities": [
           {
             "name": "Impetuous Fervour",
-            "description": "Impetuous Fervour: Each time a model in this unit makes an attack, re-roll a Hit roll of 1. If the target of that attack is an enemy unit within range of an objective marker, you can re-roll the Hit roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -6872,7 +6902,7 @@
         "abilities": [
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 ADEPTA SORORITAS INFANTRY models. It cannot transport JUMP PACK models or the TRIUMPH OF SAINT KATHERINE."
+            "transport_capacity": 12
           },
           {
             "name": "Self Repair"
@@ -7013,10 +7043,20 @@
           },
           {
             "name": "Relic of the Matriarch - Simulacrum of the Argent Shroud (Aura)",
-            "description": "While a friendly Adepta Sororitas unit is within 6\" of this model, each time a model in that unit makes a ranged attack, re-roll a Wound roll of 1."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
-            "name": "Relic of the Matriarch - Icon of the Valorous Heart (Aura)"
+            "name": "Relic of the Matriarch - Icon of the Valorous Heart (Aura)",
+            "fnp": 6
           },
           {
             "name": "Relic of the Matriarch - Petals of the Bloody Rose (Aura)"

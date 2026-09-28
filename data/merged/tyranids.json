@@ -1081,7 +1081,16 @@
         "abilities": [
           {
             "name": "Symbiotic Targeting",
-            "description": "In your Shooting phase, after this model has shot, select one enemy unit hit by one or more of those attacks. Until the end of the phase, each time a friendly TYRANIDS model makes an attack that targets that unit, re-roll a Hit roll of 1."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -1310,7 +1319,16 @@
         "abilities": [
           {
             "name": "Vanguard Predator",
-            "description": "Each time a model in this unit makes an attack, re-roll a Hit roll of 1. If the target is within range of one or more objective markers, re-roll a Wound roll 1 as well."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -1556,7 +1574,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 20 GARGOYLES models and 1 WINGED TYRANID PRIME model."
+            "transport_capacity": 20
           }
         ],
         "weapons": [
@@ -1788,7 +1806,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 20 TYRANIDS INFANTRY models. Each model with a Wounds characteristic of more than 1 takes up the space of 3 models. This model cannot transport models that can FLY."
+            "transport_capacity": 20
           }
         ],
         "weapons": [
@@ -3512,7 +3530,16 @@
         "abilities": [
           {
             "name": "Alpha Leader",
-            "description": "While this model is leading a unit, each time a model in that unit makes an attack, you can re-roll the Hit roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Unstoppable Monster"
@@ -5730,7 +5757,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 20 TYRANIDS INFANTRY models, or 1 TYRANIDS MONSTER model with a Wounds characteristic of 12 or less. Each INFANTRY model with a Wounds characteristic of more than 1 takes up the space of 3 models."
+            "transport_capacity": 20
           }
         ],
         "weapons": [
@@ -5991,7 +6018,8 @@
         ],
         "abilities": [
           {
-            "name": "Guardian Organism"
+            "name": "Guardian Organism",
+            "fnp": 5
           }
         ],
         "weapons": [

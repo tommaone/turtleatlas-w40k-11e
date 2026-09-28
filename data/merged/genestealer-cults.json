@@ -236,7 +236,8 @@
         ],
         "abilities": [
           {
-            "name": "Feel No Pain 5+"
+            "name": "Feel No Pain 5+",
+            "fnp": 5
           },
           {
             "name": "Hulking Bodyguards"
@@ -349,7 +350,8 @@
         ],
         "abilities": [
           {
-            "name": "Feel No Pain 5+"
+            "name": "Feel No Pain 5+",
+            "fnp": 5
           },
           {
             "name": "The Chosen One"
@@ -902,7 +904,16 @@
         "abilities": [
           {
             "name": "Industrialised Destruction",
-            "description": "Each time a model in this unit makes an attack, re-roll a Wound Roll of 1. If the target of that attack is an enemy unit within range of an objective marker, you can re-roll the wound roll."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -1139,7 +1150,8 @@
         ],
         "abilities": [
           {
-            "name": "Nexus of Devotion"
+            "name": "Nexus of Devotion",
+            "fnp": 5
           },
           {
             "name": "Summon the Cult"
@@ -1922,7 +1934,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 6 GENESTEALER CULTS INFANTRY models."
+            "transport_capacity": 6
           }
         ],
         "weapons": [
@@ -2097,11 +2109,20 @@
         "abilities": [
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 GENESTEALER CULTS INFANTRY models."
+            "transport_capacity": 12
           },
           {
             "name": "Fire Support",
-            "description": "In your Shooting phase, after this model has shot, select one enemy unit it scored one or more hits against this phase. Until the end of the phase, each time a friendly model that disembarked from this TRANSPORT this turn makes an attack that targets that enemy unit, you can re-roll the Wound roll."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -2529,7 +2550,16 @@
         "abilities": [
           {
             "name": "Priority Target",
-            "description": "In your Shooting phase, after this model's unit has shot, select one enemy unit hit by one or more of those attacks made with a cult sniper rifle. Until the end of the phase, each time a friendly **^^Genestealer Cults^^** model makes an attack that targets that enemy unit, re-roll a Hit roll of 1."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Master Outrider"
@@ -2735,7 +2765,8 @@
             "name": "Sudden Assault"
           },
           {
-            "name": "Bodyguard"
+            "name": "Bodyguard",
+            "fnp": 4
           },
           {
             "name": "Leader"
@@ -4154,7 +4185,16 @@
           },
           {
             "name": "Psychic Spoor",
-            "description": "At the start of the first battle round, select one enemy unit to be this model’s prey. Each time this model makes an attack that targets its prey, you can re-roll the Hit roll and you can re-roll the Wound roll."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Cloaked Assassin"

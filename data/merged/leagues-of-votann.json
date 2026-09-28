@@ -490,7 +490,16 @@
         "abilities": [
           {
             "name": "Multi-spectral visor",
-            "description": "Each time a model in this unit makes a ranged attack, re-roll a Wound roll of 1."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": false
+            }
           },
           {
             "name": "Brôkhyr Guild Support"
@@ -1544,7 +1553,16 @@
         "abilities": [
           {
             "name": "Decisive Destruction",
-            "description": "Each time a model in this unit makes a ranged attack that targets the closest eligible target, re-roll a Hit roll of 1."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -1860,7 +1878,8 @@
             "name": "Leader"
           },
           {
-            "name": "Fortify (Psychic)"
+            "name": "Fortify (Psychic)",
+            "fnp": 5
           },
           {
             "name": "Grimnyr's Regard"
@@ -2048,7 +2067,16 @@
           },
           {
             "name": "Pan-spectral Scanning",
-            "description": "Each time a model in this unit makes a ranged attack, re-roll a Hit roll of 1."
+            "army_wide_reroll": {
+              "reroll_hits": "1s",
+              "reroll_wounds": null,
+              "reroll_damage": null,
+              "phase": "ranged",
+              "targets": [
+                "ALL"
+              ],
+              "positional": false
+            }
           }
         ],
         "weapons": [
@@ -2732,7 +2760,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 14 **LEAGUES OF VOTANN INFANTRY **models. Each **EXOARMOUR, EXOFRAME** or **IRONKIN STEELJACKS** model takes up the space of 2 models. It cannot transport **ARTILLERY** models."
+            "transport_capacity": 14
           }
         ],
         "weapons": [
@@ -4092,7 +4120,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 5 ^^**Hernkyn Yaegir**^^ models.\n\nAt the start of the Declare Battle Formations step, you can select one ^^**Hernkyn Yaegir^^** unit from your army that has not been split. If you do, that unit is split into two units, each containing as equal a number of models as possible (when splitting a unit in this way, make a note of which models form each of the two new units). One of these units must start the battle embarked within this ^^**Transport^^**; the other can start the battle embarked within another ^^**Transport^^**, or it can be deployed as a separate unit."
+            "transport_capacity": 5
           }
         ],
         "weapons": [
@@ -4649,7 +4677,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 6 **LEAGUES OF VOTANN INFANTRY **models. It cannot transport **ARTILLERY, EXOARMOUR, EXOFRAME** or **IRONKIN STEELJACKS** models.\n\nAt the start of the Declare Battle Formations step, you can select one ^^**Hearthkyn Warriors^^** unit from your army that has not been split. If you do, that unit is split into two units, each containing as equal a number of models as possible (when splitting a unit in this way, make a note of which models form each of the two new units). One of these units must start the battle embarked within this ^^**Transport^^**; the other can start the battle embarked within another ^^**Transport^^**, or it can be deployed as a separate unit."
+            "transport_capacity": 6
           }
         ],
         "weapons": [

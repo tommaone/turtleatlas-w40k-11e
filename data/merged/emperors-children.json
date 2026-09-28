@@ -268,7 +268,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 14 **^^Emperor's Children Infantry^^** models. Each **^^Terminator^^** and ^^**Flawless Blade^^** model takes up the space of 2 models."
+            "transport_capacity": 14
           },
           {
             "name": "Damaged: 1-5 wounds remaining"
@@ -451,7 +451,7 @@
           },
           {
             "name": "Transport",
-            "description": "This model has a transport capacity of 12 **^^Emperor's Children Infantry^^**models (excluding ^^**Terminator**^^ and ^^**Flawless Blade**^^ models)."
+            "transport_capacity": 12
           }
         ],
         "weapons": [
@@ -2500,7 +2500,16 @@
         "abilities": [
           {
             "name": "Excessive Assault",
-            "description": "Each time a model in this unit targets an enemy unit with a melee attack, re-roll a Wound roll of 1. If that enemy unit is within range of an objective marker, you can re-roll the Wound roll instead."
+            "army_wide_reroll": {
+              "reroll_hits": null,
+              "reroll_wounds": "1s",
+              "reroll_damage": null,
+              "phase": "melee",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           }
         ],
         "weapons": [
@@ -3240,7 +3249,17 @@
           },
           {
             "name": "A Challenge Worthy of Skill",
-            "description": "Each time this model makes an attack that targets a **^^Character, Monster^^** or **^^Walker^^** unit, you can re-roll the Hit roll and re-roll the Wound roll."
+            "reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "both",
+              "targets": [
+                "MONSTER",
+                "CHARACTER",
+                "WALKER"
+              ]
+            }
           }
         ],
         "weapons": [
@@ -3853,7 +3872,16 @@
           },
           {
             "name": "Monarch of the Hunt",
-            "description": "At the start of the first battle round, select one enemy unit to be this model's quarry. Each time this model makes a melee attack that targets its quarry, you can re-roll the Hit roll and you can re-roll the Wound roll. Each time this model's quarry is destroyed, select one new enemy unit to be this model's quarry."
+            "army_wide_reroll": {
+              "reroll_hits": "all",
+              "reroll_wounds": "all",
+              "reroll_damage": null,
+              "phase": "melee",
+              "targets": [
+                "ALL"
+              ],
+              "positional": true
+            }
           },
           {
             "name": "Damaged: 1-7 wounds remaining"
