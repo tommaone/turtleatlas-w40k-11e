@@ -1045,7 +1045,8 @@ def compute_weapon_dpp(weapon: WeaponProfile,
                        unit_points: float = 1.0,
                        melta_active: bool = False,
                        heavy_stationary: bool = False,
-                       damage_boost: Optional[dict] = None) -> dict:
+                       damage_boost: Optional[dict] = None,
+                       apply_unit_cap: bool = True) -> dict:
     """
     Compute expected damage per point for a single weapon against a target.
 
@@ -1252,8 +1253,16 @@ def compute_weapon_dpp(weapon: WeaponProfile,
 
     # Unit overkill cap — total damage can't exceed the wounds the unit has
     # (e.g. 5x D6+2 shots vs a 5-model MEQ squad cap at 10, not 27.5)
+    #
+    # The pool is a property of the TARGET, not of one weapon, so it can only
+    # be applied once to the sum of all weapons. compute_weapon_dpp caps its
+    # own result by default (correct for a single-weapon question);
+    # compute_unit_dpp passes apply_unit_cap=False and caps the total itself,
+    # otherwise two weapons that each hit the cap would report double the
+    # target's actual wounds.
     unit_wounds = max(1, target.model_count * max(target.wounds_per_model, 1))
-    total_damage = min(total_damage, unit_wounds)
+    if apply_unit_cap:
+        total_damage = min(total_damage, unit_wounds)
 
     dpp = total_damage / unit_points if unit_points > 0 else 0
 
@@ -1303,14 +1312,23 @@ def compute_unit_dpp(weapons: list[WeaponProfile],
         modifiers = [WeaponModifier()] * len(weapons)
 
     results = []
-    total_damage = 0
+    uncapped_damage = 0.0
     for i, wp in enumerate(weapons):
         mod = modifiers[i] if i < len(modifiers) else WeaponModifier()
+        # apply_unit_cap=False: the overkill cap belongs to the target, so it
+        # is applied once to the summed total below. Capping each weapon here
+        # would let a multi-weapon unit report N x the target's wound pool.
         r = compute_weapon_dpp(wp, target, mod, hit_mode, points,
                                melta_active=melta_active,
-                               heavy_stationary=heavy_stationary)
+                               heavy_stationary=heavy_stationary,
+                               apply_unit_cap=False)
         results.append(r)
-        total_damage += r["total_damage"]
+        uncapped_damage += r["total_damage"]
+
+    # One cap, on the sum.
+    unit_wounds = max(1, target.model_count * max(target.wounds_per_model, 1))
+    total_damage = min(uncapped_damage, unit_wounds)
+    overkill_capped = total_damage < uncapped_damage
 
     return {
         "target": {
@@ -1320,8 +1338,11 @@ def compute_unit_dpp(weapons: list[WeaponProfile],
         },
         "hit_mode": hit_mode.value,
         "unit_points": points,
+        "unit_wounds": unit_wounds,
+        "uncapped_total_damage": round(uncapped_damage, 2),
         "total_damage": round(total_damage, 2),
         "total_dpp": round(total_damage / points if points > 0 else 0, 4),
+        "overkill_capped": overkill_capped,
         "weapons": results,
     }
 

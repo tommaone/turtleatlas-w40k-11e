@@ -30,6 +30,15 @@ const DATA_DIR = join(BASE_DIR, "data");
 const MERGED_DIR = join(DATA_DIR, "merged");
 const CONFIG_DIR = join(DATA_DIR, "config");
 const FINDINGS_DIR = join(BASE_DIR, "findings");
+const ADVISOR_FILE = join(FINDINGS_DIR, "advisor.json");
+const TIERS_FILE = join(FINDINGS_DIR, "army_tiers.json");
+const MISSIONS = [
+  "Take and Hold",
+  "Purge the Foe",
+  "Reconnaissance",
+  "Priority Assets",
+  "Disruption",
+];
 
 class TurtleAtlasW40kServer {
   constructor() {
@@ -148,31 +157,117 @@ class TurtleAtlasW40kServer {
    */
   #runDppEngine(args) {
     const code = `
-import sys, json
+import sys, json, re
 sys.path.insert(0, ${JSON.stringify(BASE_DIR)})
 from engine.dpp import compute_weapon_dpp, WeaponProfile, TargetProfile, HitMode, WeaponModifier
+from engine.weapon_loader import _parse_attacks
 
 a = json.loads(sys.stdin.read())
 
+# data/merged stores A and D as display strings: "4", "D6", "2D6", "D6+1".
+# The engine already has the canonical flattener (_parse_attacks: D6->3.5,
+# 2D6->7.0, "3"->3.0). Reuse it rather than hand-rolling a second parser, so
+# the MCP surface and the loader can never disagree about what "D6" means.
+def as_number(v):
+    if isinstance(v, bool):
+        raise ValueError("boolean is not a number")
+    if isinstance(v, (int, float)):
+        return float(v)
+    return _parse_attacks(str(v))
+
+def as_bs(v):
+    # BS/WS render as "3+"; Torrent weapons carry "N/A" and skip the hit roll
+    # entirely (dpp.py), so 0.0 is a safe, never-used placeholder for them.
+    if isinstance(v, bool):
+        raise ValueError("boolean is not a number")
+    if isinstance(v, (int, float)):
+        return float(v)
+    m = re.match(r"^\\s*(\\d+)", str(v or ""))
+    return float(m.group(1)) if m else 0.0
+
+raw_damage = a["damage"] if isinstance(a["damage"], str) else None
+
 wp = WeaponProfile(
     name=a.get("weapon_name", "Custom"),
-    attacks=a["attacks"],
-    bs=a["bs"],
+    attacks=as_number(a["attacks"]),
+    bs=as_bs(a["bs"]),
     strength=a["strength"],
     ap=a["ap"],
-    damage=a["damage"],
+    damage=as_number(a["damage"]),
+    damage_raw=raw_damage,
     abilities=[x.strip() for x in a.get("abilities", "").split(",") if x.strip()],
 )
 target = TargetProfile(
     toughness=a["target_toughness"],
     save=a["target_save"],
     invuln=a.get("target_invuln"),
+    wounds_per_model=a.get("wounds_per_model", 1),
+    model_count=a.get("model_count", 1),
 )
 mode_map = {"normal": HitMode.NORMAL, "cover": HitMode.COVER, "plunging_fire": HitMode.PLUNGING_FIRE}
 mode = mode_map.get(a.get("hit_mode", "normal"), HitMode.NORMAL)
 points = a.get("unit_points", 1)
 
 r = compute_weapon_dpp(wp, target, unit_points=points, hit_mode=mode)
+print(json.dumps(r))
+`;
+    return this.#runPython(code, args);
+  }
+
+  /**
+   * Call compute_unit_dpp: every weapon of a unit, one shared points cost,
+   * with the overkill cap applied ONCE to the summed total.
+   */
+  #runUnitDppEngine(args) {
+    const code = `
+import sys, json, re
+sys.path.insert(0, ${JSON.stringify(BASE_DIR)})
+from engine.dpp import compute_unit_dpp, WeaponProfile, TargetProfile, HitMode
+from engine.weapon_loader import _parse_attacks
+
+a = json.loads(sys.stdin.read())
+
+def as_number(v):
+    if isinstance(v, bool):
+        raise ValueError("boolean is not a number")
+    if isinstance(v, (int, float)):
+        return float(v)
+    return _parse_attacks(str(v))
+
+def as_bs(v):
+    if isinstance(v, bool):
+        raise ValueError("boolean is not a number")
+    if isinstance(v, (int, float)):
+        return float(v)
+    m = re.match(r"^\\s*(\\d+)", str(v or ""))
+    return float(m.group(1)) if m else 0.0
+
+weapons = []
+for w in a["weapons"]:
+    raw_damage = w["damage"] if isinstance(w["damage"], str) else None
+    weapons.append(WeaponProfile(
+        name=w.get("weapon_name", "Custom"),
+        attacks=as_number(w["attacks"]),
+        bs=as_bs(w["bs"]),
+        strength=w["strength"],
+        ap=w["ap"],
+        damage=as_number(w["damage"]),
+        damage_raw=raw_damage,
+        count=w.get("count", 1),
+        abilities=[x.strip() for x in (w.get("abilities") or "").split(",") if x.strip()],
+    ))
+
+target = TargetProfile(
+    toughness=a["target_toughness"],
+    save=a["target_save"],
+    invuln=a.get("target_invuln"),
+    wounds_per_model=a.get("wounds_per_model", 1),
+    model_count=a.get("model_count", 1),
+)
+mode_map = {"normal": HitMode.NORMAL, "cover": HitMode.COVER, "plunging_fire": HitMode.PLUNGING_FIRE}
+mode = mode_map.get(a.get("hit_mode", "normal"), HitMode.NORMAL)
+
+r = compute_unit_dpp(weapons, target, points=a.get("unit_points", 1), hit_mode=mode)
 print(json.dumps(r))
 `;
     return this.#runPython(code, args);
@@ -371,6 +466,79 @@ print(json.dumps(output))
           },
         },
         {
+          name: "compute_unit_dpp",
+          description:
+            "Compute expected damage per point for a WHOLE UNIT (all weapons combined) against one target, sharing a single points cost. Use this instead of compute_dpp when the question is about a squad or multi-weapon unit — summing several compute_dpp results yourself is exactly the arithmetic this contract forbids, and per-weapon overkill caps must not be added. The target's wound pool caps the SUMMED total once. Weapons accept datasheet strings verbatim (\"D6\", \"2D6\", \"3+\", \"N/A\").",
+          inputSchema: {
+            type: "object",
+            properties: {
+              unit_name: { type: "string", description: "Unit label" },
+              weapons: {
+                type: "array",
+                minItems: 1,
+                description:
+                  "Every weapon the unit fires. One entry per weapon option; repeat an entry (or set count) for multiple of the same weapon.",
+                items: {
+                  type: "object",
+                  properties: {
+                    weapon_name: { type: "string", description: "Weapon name label" },
+                    attacks: {
+                      type: ["number", "string"],
+                      description: "Number of attacks, or the datasheet dice expression verbatim (\"D6\", \"2D6\", 4).",
+                    },
+                    bs: {
+                      type: ["number", "string"],
+                      description: "Ballistic Skill as a number, or verbatim (\"3+\", \"N/A\").",
+                    },
+                    strength: { type: "number", description: "Weapon Strength" },
+                    ap: { type: "number", description: "Weapon AP" },
+                    damage: {
+                      type: ["number", "string"],
+                      description: "Damage per wound, or the dice expression verbatim (\"D6\", \"D6+1\", 2).",
+                    },
+                    count: {
+                      type: "number",
+                      description: "How many models carry this weapon (default 1).",
+                    },
+                    abilities: {
+                      type: "string",
+                      description:
+                        "Comma-separated ability keywords, verbatim from get_unit. Torrent, Psychic, Sustained Hits, Lethal Hits, ANTI, Ignore Cover, Melta 2, Rapid Fire 2.",
+                    },
+                  },
+                  required: ["attacks", "bs", "strength", "ap", "damage"],
+                },
+              },
+              target_toughness: { type: "number", description: "Target toughness" },
+              target_save: { type: "number", description: "Target save (e.g. 3 for 3+)" },
+              target_invuln: {
+                type: "number",
+                description: "Target invulnerable save (e.g. 4 for 4+), if any",
+              },
+              wounds_per_model: {
+                type: "number",
+                minimum: 1,
+                description: "Wounds per model on the target. Multiplies the pool. Defaults to 1.",
+              },
+              model_count: {
+                type: "number",
+                minimum: 1,
+                description: "Models in the target unit. Multiplies the pool. Defaults to 1.",
+              },
+              hit_mode: {
+                type: "string",
+                enum: ["normal", "cover", "plunging_fire"],
+                description: "normal / cover / plunging_fire",
+              },
+              unit_points: {
+                type: "number",
+                description: "Total points for the WHOLE unit (the shared denominator)",
+              },
+            },
+            required: ["weapons", "target_toughness", "target_save"],
+          },
+        },
+        {
           name: "compute_dpp",
           description:
             "Compute expected damage per point for a weapon profile vs a target. Supports 11e Cover (worsens BS) and Plunging Fire. MANDATORY: You MUST call this tool for all DPP values. NEVER compute, derive, estimate, or fabricate DPP numbers yourself — the engine applies the 11e wound table, Cover, Plunging Fire, abilities, and target profiles. Only this tool's output is authoritative. Violation produces unreliable results.",
@@ -379,19 +547,23 @@ print(json.dumps(output))
             properties: {
               weapon_name: { type: "string", description: "Weapon name label" },
               attacks: {
-                type: "number",
-                description: "Number of attacks",
+                type: ["number", "string"],
+                description: "Number of attacks, or the datasheet dice expression verbatim (e.g. 4, \"D6\", \"2D6\", \"D6+1\"). Strings are flattened by the engine's own _parse_attacks (D6 -> 3.5, 2D6 -> 7.0) so MCP and the loader can never disagree. Pass the value exactly as get_unit reports it.",
               },
               bs: {
-                type: "number",
-                description: "Ballistic Skill (e.g. 3 for 3+)",
+                type: ["number", "string"],
+                description: "Ballistic Skill as a number (3 for 3+) or verbatim (\"3+\", \"N/A\"). Torrent weapons report \"N/A\" and bypass the hit roll entirely; Psycannon-style weapons override BS via Psychic.",
               },
               strength: { type: "number", description: "Strength" },
               ap: {
                 type: "number",
                 description: "Armor Penetration (e.g. -1)",
               },
-              damage: { type: "number", description: "Damage per wound" },
+              damage: {
+                type: ["number", "string"],
+                description:
+                  "Damage per wound, or the dice expression verbatim (e.g. 2, \"D6\", \"2D6\"). Strings are flattened via the engine's _parse_attacks and the raw expression is retained for honest damage-reroll math.",
+              },
               abilities: {
                 type: "string",
                 description:
@@ -405,6 +577,18 @@ print(json.dumps(output))
               target_invuln: {
                 type: "number",
                 description: "Target Invuln save (e.g. 4 for 4++)",
+              },
+              wounds_per_model: {
+                type: "number",
+                minimum: 1,
+                description:
+                  "Whole number >= 1. Wounds per model on the target. Total damage is capped by wounds_per_model x model_count, so omitting this under-reports damage vs multi-wound or multi-model units. Defaults to 1. Check get_unit for the real value.",
+              },
+              model_count: {
+                type: "number",
+                minimum: 1,
+                description:
+                  "Whole number >= 1. Models in the target unit (squad size). Multiplies the wound pool for the damage cap. Defaults to 1.",
               },
               hit_mode: {
                 type: "string",
@@ -594,6 +778,78 @@ print(json.dumps(output))
             required: ["faction"],
           },
         },
+        {
+          name: "get_army_index",
+          description:
+            "Army-level meta index from findings/advisor.json: overall_index, ceiling, floor, versatility, roster_depth, best/worst disposition, points_churn, first_army_fit, and meta_ceiling. Use for 'how strong is this army' and 'what should I play first'. MANDATORY: NEVER compute or estimate an index yourself — the numbers are a rank-decay weighted mean of engine mission scores and are only authoritative from this tool. Note _classification on every row: some fields are engine output, others (first_army_fit) are expert judgement.",
+          inputSchema: {
+            type: "object",
+            properties: {
+              faction: {
+                type: "string",
+                description:
+                  "Faction key (e.g. grey-knights). Omit to return every rated faction ranked by overall_index.",
+              },
+              limit: {
+                type: "number",
+                description:
+                  "Max rows when listing all factions. Default: 30.",
+              },
+            },
+          },
+        },
+        {
+          name: "compare_factions",
+          description:
+            "Side-by-side comparison of 2-5 factions: per-mission scores from findings/army_tiers.json plus the advisor indices. Use for 'X vs Y'. MANDATORY: NEVER compute the comparison yourself — call this tool. The two sources rank differently on purpose: army_tiers is the rules-free generalist index, advisor carries rules-aware adjustment, so a gap between them is signal, not error.",
+          inputSchema: {
+            type: "object",
+            properties: {
+              factions: {
+                type: "array",
+                items: { type: "string" },
+                description:
+                  "2-5 faction keys (e.g. [\"grey-knights\",\"orks\"]).",
+              },
+            },
+            required: ["factions"],
+          },
+        },
+        {
+          name: "get_faction_tiers",
+          description:
+            "Factions ranked by score for a single mission, from findings/army_tiers.json. Use for 'which armies suit Purge the Foe'. MANDATORY: NEVER fabricate a mission score — only this tool's output is authoritative. Set by_rank to false for a compact full table instead of a top-N cut.",
+          inputSchema: {
+            type: "object",
+            properties: {
+              mission: {
+                type: "string",
+                enum: ["Take and Hold", "Purge the Foe", "Reconnaissance", "Priority Assets", "Disruption", "overall"],
+                description:
+                  "Mission to rank by, or 'overall'. Omit for overall.",
+              },
+              top_n: {
+                type: "number",
+                description: "Rows to return. Default: 10.",
+              },
+            },
+          },
+        },
+        {
+          name: "list_findings_topics",
+          description:
+            "List the committed per-faction analysis reports under findings/, including one-off topic reports beyond findings.html (e.g. dark-angels/take-and-hold-trivector.html). Use to discover what written analysis exists before claiming nothing is on file. This tool lists filenames only — it does not summarise the reports, and no numeric claim may be sourced from it.",
+          inputSchema: {
+            type: "object",
+            properties: {
+              faction: {
+                type: "string",
+                description:
+                  "Faction key to list topics for. Omit to list every faction's topics.",
+              },
+            },
+          },
+        },
       ],
     }));
 
@@ -612,6 +868,8 @@ print(json.dumps(output))
           return this.#handleGetDetachment(args);
         case "compute_dpp":
           return this.#handleComputeDpp(args);
+        case "compute_unit_dpp":
+          return this.#handleComputeUnitDpp(args);
         case "list_units":
           return this.#handleListUnits(args);
         case "get_unit":
@@ -626,6 +884,14 @@ print(json.dumps(output))
           return this.#handleRankUnits(args);
         case "get_findings":
           return this.#handleGetFindings(args);
+        case "get_army_index":
+          return this.#handleGetArmyIndex(args);
+        case "compare_factions":
+          return this.#handleCompareFactions(args);
+        case "get_faction_tiers":
+          return this.#handleGetFactionTiers(args);
+        case "list_findings_topics":
+          return this.#handleListFindingsTopics(args);
         default:
           throw new McpError(
             ErrorCode.MethodNotFound,
@@ -856,6 +1122,25 @@ look like facts.
 
   // -------- DPP engine ----------------------------------------------------
 
+  // wounds_per_model and model_count are counts: positive whole numbers. The
+// engine clamps defensively, but a clamped value and a printed value that
+// disagree is a false contract line, so refuse instead.
+#validatePool(args) {
+    for (const field of ["wounds_per_model", "model_count"]) {
+      const v = args[field];
+      if (v === undefined || v === null) continue; // defaults to 1 downstream
+      if (typeof v !== "number" || !Number.isFinite(v)) {
+        return `${field} must be a finite number (got ${JSON.stringify(v)}).`;
+      }
+      if (!Number.isInteger(v) || v < 1) {
+        return `${field} must be a whole number >= 1 — it counts ${
+          field === "wounds_per_model" ? "wounds per model" : "models in the unit"
+        } (got ${v}). Omit it to use the 1 default.`;
+      }
+    }
+    return null;
+  }
+
   #handleComputeDpp(args) {
     if (!args) {
       return this.#text("Missing arguments.");
@@ -868,16 +1153,31 @@ look like facts.
       }
     }
 
+    // The wound pool drives the damage cap AND the disclosure line. A 0,
+    // negative, NaN or fractional value makes the printed "wound pool N"
+    // disagree with what the engine actually applied, which is worse than
+    // refusing: it is a confidently wrong contract line. Both are counts.
+    const poolErr = this.#validatePool(args);
+    if (poolErr) return this.#text(poolErr);
+
     const result = this.#runDppEngine(args);
     if (result.error) {
       return this.#text(`Engine error: ${result.error}`);
     }
 
     const data = result;
+    // Profile line renders from `args` — the values actually handed to the
+    // engine — because the engine's return echoes toughness/save but NOT
+    // wounds_per_model/model_count. Reading invuln from args also fixes it
+    // never being shown: it is absent from the return too.
+    const wpm = args.wounds_per_model ?? 1;
+    const models = args.model_count ?? 1;
     let out = `# DPP Calculation\n\n`;
     out += `**Weapon:** ${data.weapon}\n`;
     out += `**Target:** T${data.target_toughness} ${data.target_save}+`;
-    out += data.target_invuln ? ` ${data.target_invuln}++` : "";
+    if (args.target_invuln) out += ` ${args.target_invuln}++`;
+    out += ` — ${wpm}W x ${models} model${models === 1 ? "" : "s"}`;
+    out += ` (wound pool ${wpm * models})`;
     out += `\n**Condition:** on ${data.conditions?.hit_mode || "normal"}\n\n`;
     out += `| Metric | Value |\n|--------|-------|\n`;
     out += `| Expected Hits | ${data.expected_hits} |\n`;
@@ -891,6 +1191,83 @@ look like facts.
     out += `**Formula:** DPP = expected_total_damage / unit_points\n`;
     out += `**Modeled:** Cover = +1BS (worsen), Plunging Fire = -1BS (improve), Torrent=auto-hit, Sustained Hits, Lethal Hits, Devastating Wounds, Twin-Linked, ANTI, Lance, Ignore Cover\n`;
     out += `**Not modeled:** detachment buffs, stratagems, command rerolls, cover modifiers on saves, FNP, melta range\n`;
+    out += `**Wound pool cap:** total damage is capped at ${wpm} x ${models} = ${wpm * models}`;
+    out +=
+      wpm * models > 1
+        ? ".\n"
+        : " — wounds_per_model/model_count were not passed, so this is a single 1W model. Against multi-wound or multi-model targets, pass the real values or damage is understated.\n";
+
+    return this.#text(out);
+  }
+
+  // -------- unit-level DPP (compute_unit_dpp) -----------------------------
+
+  #handleComputeUnitDpp(args) {
+    if (!args) return this.#text("Missing arguments.");
+    const weapons = args.weapons;
+    if (!Array.isArray(weapons) || weapons.length === 0) {
+      return this.#text(
+        "Missing required field: weapons (a non-empty array of weapon objects)."
+      );
+    }
+    const weaponRequired = ["attacks", "bs", "strength", "ap", "damage"];
+    for (let i = 0; i < weapons.length; i++) {
+      const w = weapons[i] || {};
+      for (const field of weaponRequired) {
+        if (w[field] === undefined || w[field] === null) {
+          return this.#text(`weapons[${i}] is missing required field: ${field}`);
+        }
+      }
+    }
+    for (const field of ["target_toughness", "target_save"]) {
+      if (args[field] === undefined || args[field] === null) {
+        return this.#text(`Missing required field: ${field}`);
+      }
+    }
+    const poolErr = this.#validatePool(args);
+    if (poolErr) return this.#text(poolErr);
+
+    const result = this.#runUnitDppEngine(args);
+    if (result.error) {
+      return this.#text(`Engine error: ${result.error}`);
+    }
+
+    const d = result;
+    const wpm = args.wounds_per_model ?? 1;
+    const models = args.model_count ?? 1;
+
+    let out = `# Unit DPP Calculation\n\n`;
+    out += `**Weapons:** ${weapons.length} | **Target:** T${d.target.toughness} ${
+      d.target.save
+    }${d.target.invuln ? " INV " + d.target.invuln : ""} \u2014 ${wpm}W x ${models} models (wound pool ${
+      wpm * models
+    })\n`;
+    out += `**Condition:** ${d.hit_mode}\n\n`;
+    out += `| Metric | Value |\n|--------|-------|\n`;
+    out += `| Unit Points | ${d.unit_points} |\n`;
+    out += `| Target Wound Pool | ${d.unit_wounds} |\n`;
+    out += `| Damage Before Cap | ${d.uncapped_total_damage} |\n`;
+    out += `| **Total Damage (capped)** | **${d.total_damage}** |\n`;
+    out += `| **Damage Per Point** | **${d.total_dpp}** |\n`;
+    out += `| Overkill Cap Applied | ${d.overkill_capped ? "yes" : "no"} |\n\n`;
+
+    out += `## Per-weapon\n\n`;
+    out += `| Weapon | Hits | Reg Wounds | Damage (pre-cap) |\n`;
+    out += `|--------|------|------------|------------------|\n`;
+    for (const w of d.weapons || []) {
+      out += `| ${w.weapon} | ${w.expected_hits} | ${w.regular_wounds} | ${w.total_damage} |\n`;
+    }
+    out += `\nThe per-weapon column sums to **Damage Before Cap**. The cap is applied once, to the summed total \u2014 a target cannot be dealt more wounds than it has.\n`;
+
+    out += `\n---\n`;
+    out += `**Formula:** total_damage = min(sum(per-weapon expected damage), wounds_per_model x model_count); total_dpp = total_damage / unit_points\n`;
+    out += `**Modeled:** Cover, Plunging Fire, Torrent, Psychic, Sustained Hits, Lethal Hits, ANTI, Lance, Ignore Cover, Blast, Rapid Fire, Melta, Heavy\n`;
+    out += `**Not modeled:** detachment buffs, stratagems, command rerolls, cover on saves, FNP\n`;
+    out += `**Wound pool cap:** ${wpm} x ${models} = ${wpm * models}`;
+    out +=
+      wpm * models > 1
+        ? ".\n"
+        : " \u2014 wounds_per_model/model_count were not passed, so this is a single 1W model. Pass the real values or damage is understated.\n";
 
     return this.#text(out);
   }
@@ -991,9 +1368,12 @@ look like facts.
     if (fd.error) return this.#text(fd.error);
     const search = (args?.search || "").toLowerCase();
     let out = `# Units (${fd.mergedUnits.units.length} total)\n\n`;
-    out += `| Name | Points | Role |\n|------|--------|------|\n`;
+    out += `| Name | Points (from) | Role |\n|------|---------------|------|\n`;
     for (const u of fd.mergedUnits.units) {
       if (search && !u.name.toLowerCase().includes(search)) continue;
+      // Smallest entry in the ladder. For a 1-model unit that IS the price; for
+      // a multi-model squad it is the smallest model's cost, which is why the
+      // column says "from". get_unit serves the full ladder.
       const pricing = u.pricing?.[0]?.costs?.[0]?.points || "-";
       out += `| ${u.name} | ${pricing} | ${u.role || ""} |\n`;
     }
@@ -1005,16 +1385,68 @@ look like facts.
   #handleGetUnit(args) {
     const fd = this.#getFactionData(args?.faction);
     if (fd.error) return this.#text(fd.error);
-    const query = (args?.name || "").toLowerCase();
-    const unit = fd.mergedUnits.units.find((u) =>
-      u.name.toLowerCase().includes(query),
-    );
-    if (!unit) {
-      return this.#text(`Unit not found matching "${query}".`);
+
+    // Fail closed. This used to fall through to `includes("")`, which is true
+    // for every unit — so `{}` or a wrong parameter name returned the first
+    // roster entry as a confident, well-formatted answer. For an agent that
+    // trusts tool output, a plausible wrong unit is the worst failure mode in
+    // the stack.
+    const raw = (args?.name ?? "").toString().trim();
+    if (!raw) {
+      let hint = `Missing required parameter: name.`;
+      if (args?.unit) {
+        hint += `\nYou passed "unit" — the parameter is "name".`;
+      }
+      return this.#text(
+        `${hint}\nAn empty name would otherwise match the first unit in the roster. ` +
+          `Use list_units (faction: "${args?.faction || "?"}") to see valid names.`,
+      );
     }
+
+    const query = raw.toLowerCase();
+    const units = fd.mergedUnits.units;
+    const exact = units.find((u) => u.name.toLowerCase() === query);
+    const matches = exact
+      ? [exact]
+      : units.filter((u) => u.name.toLowerCase().includes(query));
+
+    if (matches.length === 0) {
+      return this.#text(
+        `No unit in "${args?.faction || "?"}" matches "${raw}".\n` +
+          `Use list_units to see valid names.`,
+      );
+    }
+    if (matches.length > 1) {
+      // Partial match is ambiguous. Say so rather than picking one and letting
+      // the caller believe it asked for that unit.
+      return this.#text(
+        `"${raw}" matches ${matches.length} units in "${args?.faction || "?"}". ` +
+          `Re-query with the full name:\n` +
+          matches
+            .slice(0, 12)
+            .map((u) => `- ${u.name}`)
+            .join("\n"),
+      );
+    }
+    const unit = matches[0];
+
     const prof = unit.profile || {};
-    const pricing = unit.pricing?.[0]?.costs?.[0]?.points || "?";
-    let out = `# ${unit.name} (${pricing} pts)\n\n`;
+    // pricing[0].costs is a LADDER: costs[0] is the smallest model count, not
+    // the squad. Quoting it alone understated a 5-model Paladin Squad as the
+    // 4-model price (170, not 215).
+    const ladder = (unit.pricing?.[0]?.costs || []).filter(
+      (c) => c && c.points !== undefined,
+    );
+    const base = ladder[0];
+    const headline = base
+      ? `${base.points} pts @ ${base.models} model${base.models === 1 ? "" : "s"}`
+      : "?";
+    let out = `# ${unit.name} (${headline})\n\n`;
+    if (ladder.length > 1) {
+      out += `**Points ladder:** ${ladder
+        .map((c) => `${c.points} @ ${c.models}`)
+        .join(", ")}\n\n`;
+    }
     out += `**Role:** ${unit.role || "N/A"}\n\n`;
     if (prof.keywords) {
       out += `**Keywords:** ${
@@ -1023,7 +1455,13 @@ look like facts.
     }
     if (prof.stats) {
       const s = prof.stats;
-      out += `**Stats:** M=${s.M || "?"} T=${s.T || "?"} SV=${s.SV || "?"} W=${s.W || "?"} LD=${s.LD || "?"} OC=${s.OC || "?"}\n\n`;
+      // merged stores the save as `Sv`, not `SV` — the old `s.SV` read missed
+      // every time and printed SV=? for every unit in the game. InSv (the
+      // defensive stat DPP questions turn on) was never rendered at all.
+      const sv = s.Sv ?? s.SV ?? "?";
+      out += `**Stats:** M=${s.M || "?"} T=${s.T || "?"} SV=${sv} W=${s.W || "?"} LD=${s.LD || "?"} OC=${s.OC || "?"}`;
+      if (s.InSv) out += ` INV=${s.InSv}`;
+      out += `\n\n`;
     }
 
     if (prof.weapons?.length) {
@@ -1122,54 +1560,46 @@ look like facts.
       return this.#text(`Invalid faction key "${faction}".`);
     }
 
-    // Look for HTML findings file
-    const htmlPath = join(FINDINGS_DIR, faction, "findings.html");
-    if (!existsSync(htmlPath)) {
-      // Discover which factions have HTML findings
+    // Read the JSON sidecar, not the report. This used to regex a
+    // `const DATA = {...}` blob out of findings.html, which coupled a data
+    // tool to the presentation's markup and broke on any restyle. gen_findings_html.py
+    // writes the same payload to findings/<fid>/data.json.
+    const dataPath = join(FINDINGS_DIR, faction, "data.json");
+    if (!existsSync(dataPath)) {
       let available = [];
       try {
         const dirs = readdirSync(FINDINGS_DIR, { withFileTypes: true })
           .filter(d => d.isDirectory() && !d.name.startsWith("_"));
         for (const d of dirs) {
-          if (existsSync(join(FINDINGS_DIR, d.name, "findings.html"))) {
+          if (existsSync(join(FINDINGS_DIR, d.name, "data.json"))) {
             available.push(d.name);
           }
         }
       } catch { /* ignore */ }
 
       if (available.length === 0) {
-        return this.#text(`No findings data available yet.`);
+        return this.#text(
+          `No findings sidecars found (findings/*/data.json). Regenerate with:\n` +
+            `  python3 scripts/gen_findings_html.py --all`,
+        );
       }
       return this.#text(
-        `No findings for faction "${faction}".\n\nFactions with findings: ${available.join(", ")}`
+        `No findings for faction "${faction}".\n\n` +
+          `Factions with findings: ${available.join(", ")}\n\n` +
+          `If "${faction}" has a findings.html but no data.json, the sidecar is from an older generator run — regenerate with:\n` +
+          `  python3 scripts/gen_findings_html.py --all`,
       );
-    }
-
-    // Parse HTML to extract DATA object
-    let html;
-    try {
-      html = readFileSync(htmlPath, "utf-8");
-    } catch {
-      return this.#text(`Failed to read findings HTML for "${faction}".`);
-    }
-
-    // Extract const DATA = {...} from script tag. The DATA block is
-    // followed immediately by const EXPERT (not const WEIGHTS — matching
-    // WEIGHTS greedily captured DATA+EXPERT and broke JSON.parse).
-    const dataMatch = html.match(/const\s+DATA\s*=\s*(\{[\s\S]+?\});\s*const\s+EXPERT/);
-    if (!dataMatch) {
-      return this.#text(`Failed to parse findings HTML for "${faction}" — DATA object not found.`);
     }
 
     let data;
     try {
-      data = JSON.parse(dataMatch[1]);
+      data = JSON.parse(readFileSync(dataPath, "utf-8"));
     } catch {
-      return this.#text(`Failed to evaluate findings data for "${faction}" — DATA object is not valid JSON.`);
+      return this.#text(`Failed to parse findings data for "${faction}" — data.json is not valid JSON.`);
     }
 
     if (!data || !data.meta) {
-      return this.#text(`Findings data for "${faction}" is malformed.`);
+      return this.#text(`Findings sidecar for "${faction}" is malformed (no meta key).`);
     }
 
     // Default to first meta (competitive) unless specified
@@ -1196,7 +1626,7 @@ look like facts.
       : 10;
 
     let out = `# Findings: ${faction} (${metaSlug})\n\n`;
-    out += `*Source: findings.html - pre-computed with penalties (FLYCOST, OC0, etc.).*\n\n`;
+    out += `*Source: findings/${faction}/data.json - pre-computed with penalties (FLYCOST, OC0, etc.).*\n\n`;
 
     for (const mission of missions) {
       const units = metaData[mission];
@@ -1231,6 +1661,234 @@ look like facts.
     out += `**Penalties applied:** FLYCOST (aircraft OC0), cost efficiency, objective penalty for OC0 units.\n`;
     out += `**Not modeled:** detachment buffs, stratagems, command rerolls.\n`;
 
+    return this.#text(out);
+  }
+
+  // -------- Army-level indices (findings/advisor.json, army_tiers.json) ---
+
+  #advisorByFid() {
+    const a = this.#loadJson(ADVISOR_FILE);
+    if (!a || !Array.isArray(a.factions)) return null;
+    return new Map(a.factions.map((f) => [f.fid, f]));
+  }
+
+  #handleGetArmyIndex(args) {
+    const advisor = this.#loadJson(ADVISOR_FILE);
+    if (!advisor || !Array.isArray(advisor.factions) || advisor.factions.length === 0) {
+      return this.#text(
+        `advisor.json not found or empty at ${ADVISOR_FILE}. Regenerate with:\n` +
+          `  python3 scripts/army_advisor.py --guide`,
+      );
+    }
+
+    const rows = [...advisor.factions].sort(
+      (a, b) => (b.overall_index ?? 0) - (a.overall_index ?? 0),
+    );
+    const wanted = (args?.faction || "").toLowerCase().trim();
+
+    let out;
+    if (wanted) {
+      const row = rows.find((f) => f.fid === wanted);
+      if (!row) {
+        return this.#text(
+          `No advisor entry for "${wanted}". Rated factions: ${rows
+            .map((f) => f.fid)
+            .join(", ")}`,
+        );
+      }
+      out = `# Army Index: ${row.name}\n\n`;
+      out += `| Field | Value |\n|-------|-------|\n`;
+      out += `| Overall index | ${row.overall_index} |\n`;
+      out += `| Ceiling | ${row.ceiling} |\n`;
+      out += `| Floor | ${row.floor} |\n`;
+      out += `| Versatility | ${row.versatility} |\n`;
+      out += `| Roster depth | ${row.roster_depth} |\n`;
+      out += `| Best disposition | ${row.best_disposition} |\n`;
+      out += `| Worst disposition | ${row.worst_disposition} |\n`;
+      out += `| Points churn | ${row.points_churn} |\n`;
+      out += `| First-army fit | ${row.first_army_fit}${
+        row.first_army_fit_why ? ` — ${row.first_army_fit_why}` : ""
+      }\n`;
+      out += `| Meta ceiling | ${
+        row.meta_ceiling ?? "not computed"
+      }${row.meta_ceiling_best_detachment ? ` (${row.meta_ceiling_best_detachment})` : ""} |\n`;
+    } else {
+      const limit = args?.limit ? Math.floor(args.limit) : 30;
+      out = `# Army Index — all rated factions\n\n`;
+      out += `Ranked by overall_index. ${rows.length} factions rated.\n\n`;
+      out += `| # | Faction | Index | Ceiling | Floor | Vers | Depth | First army |\n`;
+      out += `|---|---------|-------|---------|-------|------|-------|-------------|\n`;
+      rows.slice(0, limit).forEach((f, i) => {
+        out += `| ${i + 1} | ${f.name} | ${f.overall_index} | ${f.ceiling} | ${f.floor} | ${f.versatility} | ${f.roster_depth} | ${f.first_army_fit} |\n`;
+      });
+    }
+
+    // Contract block. The row mixes engine output with expert judgement, so
+    // the split has to travel with the numbers or an LLM reads first_army_fit
+    // as an engine fact.
+    out += `\n---\n`;
+    out += `**Generated:** ${advisor.generated} (from findings/advisor.json)\n`;
+    out += `**Formula:** overall_index = ${advisor._formula?.overall_index ?? "unrecorded"}\n`;
+    out += `**unit_score:** ${advisor._formula?.unit_score ?? "unrecorded"}\n`;
+    out += `**Not modeled:**\n`;
+    for (const n of advisor._formula?.not_modeled ?? []) out += `- ${n}\n`;
+
+    return this.#text(out);
+  }
+
+  #handleCompareFactions(args) {
+    const list = Array.isArray(args?.factions) ? args.factions : [];
+    if (list.length < 2) {
+      return this.#text(`Provide 2-5 factions in "factions" to compare.`);
+    }
+    if (list.length > 5) {
+      return this.#text(`Too many factions (${list.length}). Compare 2-5 at a time.`);
+    }
+    const fids = list.map((f) => String(f).toLowerCase().trim());
+    for (const f of fids) {
+      if (!/^[a-z0-9-]+$/.test(f)) return this.#text(`Invalid faction key "${f}".`);
+    }
+
+    const tiers = this.#loadJson(TIERS_FILE);
+    const advisor = this.#advisorByFid();
+    if (!tiers) {
+      return this.#text(
+        `army_tiers.json not found at ${TIERS_FILE}. Regenerate with:\n` +
+          `  python3 scripts/gen_findings_html.py --all`,
+      );
+    }
+
+    const cols = MISSIONS.concat(["overall"]);
+    let out = `# Comparison\n\n`;
+    out += `**army_tiers.json — rules-free generalist index**\n\n`;
+    out += `| Faction | ${cols.join(" | ")} |\n`;
+    out += `|---------|${cols.map(() => "-------").join("|")}|\n`;
+    for (const fid of fids) {
+      const t = tiers[fid];
+      // fid is rendered alongside the display name so a caller can chain this
+      // result straight into get_findings/get_army_index without re-guessing
+      // the slug.
+      if (!t) {
+        out += `| ${fid} |`;
+        out += `${cols.map(() => "_not rated_").join(" | ")} |\n`;
+        continue;
+      }
+      const cells = cols.map((m) =>
+        m === "overall" ? t.overall : (t.missions?.[m] ?? "—"),
+      );
+      out += `| ${t.name ?? fid} \`${fid}\` (${t.n_units} units) | ${cells.join(" | ")} |\n`;
+    }
+
+    const rated = fids.map((f) => advisor?.get(f)).filter(Boolean);
+    if (rated.length > 0) {
+      out += `\n**advisor.json — rules-aware**\n\n`;
+      out += `| Faction | Index | Ceiling | Floor | Vers | Meta ceiling | First army |\n`;
+      out += `|---------|-------|---------|-------|------|--------------|-------------|\n`;
+      for (const r of rated) {
+        out += `| ${r.name} \`${r.fid}\` | ${r.overall_index} | ${r.ceiling} | ${r.floor} | ${r.versatility} | ${r.meta_ceiling ?? "not computed"} | ${r.first_army_fit} |\n`;
+      }
+    } else {
+      out += `\n_Advisor: no rated entry for any of these factions._\n`;
+    }
+
+    out += `\n---\n`;
+    out += `The two tables rank differently on purpose. army_tiers is rules-free and generalist; advisor applies the rules-aware rating from resources/experts. A faction that climbs between them is being lifted by army rules, not statlines.\n`;
+    out += `**Not modeled:** see get_army_index for advisor.json's full not-modeled list.\n`;
+    return this.#text(out);
+  }
+
+  #handleGetFactionTiers(args) {
+    const tiers = this.#loadJson(TIERS_FILE);
+    if (!tiers) {
+      return this.#text(
+        `army_tiers.json not found at ${TIERS_FILE}. Regenerate with:\n` +
+          `  python3 scripts/gen_findings_html.py --all`,
+      );
+    }
+
+    const mission = args?.mission || "overall";
+    const valid = MISSIONS.concat(["overall"]);
+    if (!valid.includes(mission)) {
+      return this.#text(
+        `Unknown mission "${mission}". Valid: ${valid.join(", ")}`,
+      );
+    }
+
+    const topN = args?.top_n !== undefined ? Math.floor(args.top_n) : 10;
+    const pick = (t) =>
+      mission === "overall" ? t.overall : (t.missions?.[mission] ?? null);
+
+    const rows = Object.entries(tiers)
+      .map(([fid, t]) => ({ fid, t, v: pick(t) }))
+      .filter((r) => r.v !== null && r.v !== undefined)
+      .sort((a, b) => b.v - a.v);
+
+    let out = `# Faction tiers by ${mission}\n\n`;
+    out += `${rows.length} factions scored.\n\n`;
+    out += `| # | Faction | ${mission} | Units |\n`;
+    out += `|---|---------|${"-".repeat(mission.length + 2)}|-------|\n`;
+    const shown = topN > 0 ? rows.slice(0, topN) : rows;
+    shown.forEach((r, i) => {
+      out += `| ${i + 1} | ${r.t.name ?? r.fid} | ${r.v} | ${r.t.n_units ?? "—"} |\n`;
+    });
+
+    out += `\n---\n`;
+    out += `**Source:** findings/army_tiers.json (engine mission scores).\n`;
+    out += `**Formula:** mission score = DPP/SURV/OBJ/MOB composite weighted per mission.\n`;
+    out += `**Not modeled:** detachment buffs, stratagems, command rerolls, rules-aware adjustment. Use get_army_index for the rules-aware view.\n`;
+    return this.#text(out);
+  }
+
+  #handleListFindingsTopics(args) {
+    const wanted = (args?.faction || "").toLowerCase().trim();
+    if (wanted && !/^[a-z0-9-]+$/.test(wanted)) {
+      return this.#text(`Invalid faction key "${wanted}".`);
+    }
+    if (!existsSync(FINDINGS_DIR)) {
+      return this.#text(`findings/ not found at ${FINDINGS_DIR}.`);
+    }
+
+    let dirs;
+    try {
+      dirs = readdirSync(FINDINGS_DIR, { withFileTypes: true })
+        .filter((d) => d.isDirectory() && !d.name.startsWith("_"))
+        .map((d) => d.name)
+        .sort();
+    } catch {
+      return this.#text(`Could not read ${FINDINGS_DIR}.`);
+    }
+    if (wanted) dirs = dirs.filter((d) => d === wanted);
+
+    let out = `# Findings reports\n\n`;
+    if (dirs.length === 0) {
+      return this.#text(
+        wanted
+          ? `No findings directory for "${wanted}".`
+          : `No findings directories found.`,
+      );
+    }
+
+    let total = 0;
+    for (const d of dirs) {
+      let topics = [];
+      try {
+        topics = readdirSync(join(FINDINGS_DIR, d))
+          .filter((f) => f.endsWith(".html"))
+          .sort();
+      } catch {
+        continue;
+      }
+      if (topics.length === 0) continue;
+      total += topics.length;
+      const extra = topics.filter((t) => t !== "findings.html");
+      out += `**${d}** — ${topics.join(", ")}`;
+      if (extra.length > 0) out += ` _(extra: ${extra.join(", ")})_`;
+      out += `\n`;
+    }
+
+    out += `\n${total} reports across ${dirs.length} factions.\n`;
+    out += `---\n`;
+    out += `Filenames only. This tool summarises nothing — no numeric claim may be sourced from it. Use get_findings for the per-unit competition table, get_army_index for the meta indices.\n`;
     return this.#text(out);
   }
 

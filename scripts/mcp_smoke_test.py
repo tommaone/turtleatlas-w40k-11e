@@ -17,10 +17,29 @@ the suite is already 9 minutes.
 """
 import argparse
 import json
+import os
+import re
 import subprocess
 import sys
 import urllib.error
 import urllib.request
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SERVER_JS = os.path.join(ROOT, "mcp-server", "index.js")
+FINDINGS = os.path.join(ROOT, "findings")
+ADVISOR_JSON = os.path.join(FINDINGS, "advisor.json")
+TIERS_JSON = os.path.join(FINDINGS, "army_tiers.json")
+SIDECAR = os.path.join(FINDINGS, "imperial-agents", "data.json")
+
+# Display labels #handleGetArmyIndex renders, keyed by advisor.json field name.
+FIELD_LABELS = {
+    "overall_index": "Overall index",
+    "ceiling": "Ceiling",
+    "floor": "Floor",
+    "versatility": "Versatility",
+    "roster_depth": "Roster depth",
+    "points_churn": "Points churn",
+}
 
 # Points the server must serve for imperial-agents. These are MFM base rates
 # (mfm/data/imperial-agents.yaml), the entry WITHOUT groupTitle. Before the
@@ -104,7 +123,10 @@ def main():
     for name, want in EXPECTED_IA_POINTS.items():
         out = m.call("get_unit", {"name": name, "faction": "imperial-agents"})
         head = out.splitlines()[0] if out else ""
-        got = head.rsplit("(", 1)[-1].split(" pts")[0] if " pts)" in head else None
+        # Headline is "(N pts @ M models)" — match the number, not the shape.
+        # A literal " pts)" check breaks the day the label changes.
+        m_pts = re.search(r"\((\d+) pts", head)
+        got = m_pts.group(1) if m_pts else None
         if got != str(want):
             failures.append(f"get_unit {name}: served {got!r}, want {want}")
 
@@ -121,7 +143,6 @@ def main():
         print(f"  ok   all {len(EXPECTED_IA_POINTS)} imperial-agents prices served correctly "
               f"(get_unit + list_units)")
 
-    # The engine path, not just the stored number.
     # The engine path, not just the stored number. rank_units is raw DPP vs a
     # target with no mission penalties, so it surfaces a different set than
     # get_findings (the pre-computed competition table) — Grey Knights
@@ -147,6 +168,174 @@ def main():
 
     if "[object Object]" in m.call("get_unit", {"name": "Inquisitor", "faction": "imperial-agents"}):
         failures.append("get_unit still renders abilities as [object Object]")
+
+    # ---- get_unit must fail closed, and must serve the real stats ----------
+    # Three separate ways this tool used to answer confidently and wrongly:
+    # an empty name matched the first roster entry via includes(""), the save
+    # was read as s.SV while merged stores Sv (so every unit printed SV=?),
+    # and the headline quoted costs[0] — the smallest model count, not the
+    # squad (a 5-model Paladin Squad priced as its 4-model cost).
+    empty = m.call("get_unit", {"faction": "grey-knights"})
+    if "Missing required parameter: name" not in empty:
+        failures.append("get_unit: an empty name did not fail closed")
+    if "Grey Knights Terminator" in empty or "# " in empty.split("\n")[0]:
+        failures.append("get_unit: an empty name still returned a unit")
+    wrongkey = m.call("get_unit", {"faction": "grey-knights", "unit": "Paladin Squad"})
+    if 'the parameter is "name"' not in wrongkey:
+        failures.append("get_unit: passing 'unit' instead of 'name' is not diagnosed")
+
+    pal = m.call("get_unit", {"faction": "grey-knights", "name": "Paladin Squad"})
+    if "SV=?" in pal:
+        failures.append("get_unit: save still renders as SV=? (merged stores Sv)")
+    if "INV=4+" not in pal:
+        failures.append("get_unit: invuln (InSv) is not rendered")
+    if "215 @ 5" not in pal:
+        failures.append("get_unit: points ladder missing the 5-model cost (215 @ 5)")
+    if not any(f.startswith("get_unit") for f in failures):
+        print("  ok   get_unit fails closed, serves Sv/InSv and the points ladder")
+
+    # ---- compute_dpp wound pool -------------------------------------------
+    # The tool used to hardcode TargetProfile defaults, so a caller could not
+    # model a multi-wound or multi-model target and the output silently
+    # under-reported. Assert the cap is both applied AND disclosed.
+    base = dict(weapon_name="Incinerator", attacks=10, bs=3, strength=6, ap=-1,
+                damage=2, target_toughness=4, target_save=3, unit_points=100)
+    flat = m.call("compute_dpp", dict(base))
+    deep = m.call("compute_dpp", dict(base, wounds_per_model=2, model_count=5))
+
+    def dpp_of(text):
+        for ln in text.splitlines():
+            if "Damage Per Point" in ln:
+                return ln.split("**")[-2].strip()
+        return None
+
+    if "wound pool 1" not in flat:
+        failures.append("compute_dpp: omitted pool does not disclose 'wound pool 1'")
+    if "wound pool 10" not in deep:
+        failures.append("compute_dpp: 2x5 pool does not disclose 'wound pool 10'")
+    if dpp_of(flat) != "0.01":
+        failures.append(f"compute_dpp 1W pool: dpp {dpp_of(flat)!r}, want '0.01'")
+    if dpp_of(deep) != "0.0444":
+        failures.append(f"compute_dpp 2x5 pool: dpp {dpp_of(deep)!r}, want '0.0444'")
+    if not any(f.startswith("compute_dpp") for f in failures):
+        print("  ok   compute_dpp exposes the wound pool and caps damage by it")
+
+    # A 0/negative/fractional pool would print a "wound pool N" line that
+    # disagrees with what the engine clamped to. Must refuse, not coerce.
+    # NaN is not sent: it is not valid JSON, so the transport 400s before any
+    # handler runs. A JSON *string* is the reachable coercion path instead.
+    for bad in (0, -1, 2.5, "2", "abc", True):
+        out = m.call("compute_dpp", dict(base, wounds_per_model=bad))
+        if "must be a whole number >= 1" not in out and "must be a finite number" not in out:
+            failures.append(f"compute_dpp: wounds_per_model={bad!r} was not rejected")
+    if not any("wounds_per_model" in f for f in failures):
+        print("  ok   compute_dpp rejects invalid wound-pool values")
+
+    # Datasheet strings must flatten via the engine's own _parse_attacks and
+    # land on exactly the same number as the equivalent flat value.
+    flat = dict(base, bs="3+", attacks=4, damage=1)
+    def hits_of(**kw):
+        o = m.call("compute_dpp", dict(flat, **kw))
+        for line in o.splitlines():
+            if "Expected Hits" in line:
+                return line.split("|")[2].strip()
+        return "?"
+
+    for expr, equivalent in [("D6", 3.5), ("2D6", 7.0), ("D3", 2.0)]:
+        if hits_of(attacks=expr) != hits_of(attacks=equivalent):
+            failures.append(
+                f"compute_dpp: attacks {expr!r} != flat {equivalent}"
+            )
+    if not any("attacks" in f for f in failures):
+        print("  ok   compute_dpp flattens dice attacks via the engine parser")
+
+    # Multi-weapon: the wound pool caps the SUM once. Two weapons that each
+    # exceed the pool must not report double the target's wounds.
+    heavy = [
+        {"weapon_name": "heavy A", "attacks": 20, "bs": "3+", "strength": 8, "ap": -2, "damage": 6},
+        {"weapon_name": "heavy B", "attacks": 20, "bs": "3+", "strength": 8, "ap": -2, "damage": 6},
+    ]
+    unit = m.call(
+        "compute_unit_dpp",
+        dict(weapons=heavy, unit_points=100, target_toughness=4, target_save=3,
+             wounds_per_model=2, model_count=5),
+    )
+    m2 = re.search(r"Total Damage \(capped\).*?\*\*(\d+\.?\d*)\*\*", unit)
+    if not m2 or float(m2.group(1)) != 10.0:
+        failures.append(
+            f"compute_unit_dpp: summed damage must cap at the 10-wound pool, got "
+            f"{m2.group(1) if m2 else unit[:80]}"
+        )
+    if "Damage Before Cap" not in unit:
+        failures.append("compute_unit_dpp: missing uncapped disclosure")
+    if not any("compute_unit_dpp" in f for f in failures):
+        print("  ok   compute_unit_dpp caps the summed total at the wound pool")
+
+    # ---- get_findings reads the JSON sidecar, not the report ---------------
+    # Decoupling proof, two halves. The structural half asserts the scraper is
+    # gone from the source; the data half asserts a served row matches the
+    # sidecar on disk. A future restyle of the HTML cannot fail either.
+    server_src = open(SERVER_JS, encoding="utf-8").read()
+    if "const\\s+DATA\\s*=" in server_src:
+        failures.append("get_findings: the findings.html DATA regex is back in index.js")
+    sidecar = json.load(open(SIDECAR, encoding="utf-8"))
+    served = sidecar["meta"]["competitive"]["Take and Hold"]
+    probe = served[0]
+    row = f"| {probe['pts']} | {probe['score']} | {probe['dpp']} |"
+    if row not in findings:
+        failures.append(f"get_findings: sidecar row not served verbatim ({row!r})")
+    if not any(f.startswith("get_findings") for f in failures):
+        print("  ok   get_findings serves the data.json sidecar (HTML scraper gone)")
+
+    # ---- army-level indices -----------------------------------------------
+    idx = m.call("get_army_index", {"faction": "grey-knights"})
+    advisor = json.load(open(ADVISOR_JSON, encoding="utf-8"))
+    gk = next(f for f in advisor["factions"] if f["fid"] == "grey-knights")
+    # Compare numerically: advisor.json holds 58.0, the server renders 58, and
+    # a substring check on the raw float fails on formatting alone.
+    served_fields = {}
+    for ln in idx.splitlines():
+        if ln.startswith("| ") and " | " in ln:
+            cells = [c.strip() for c in ln.strip("|").split("|")]
+            if len(cells) == 2:
+                served_fields[cells[0]] = cells[1]
+    for field in ("overall_index", "ceiling", "versatility", "roster_depth"):
+        # Server renders display labels; advisor.json uses snake_case keys.
+        label = FIELD_LABELS.get(field, field)
+        want, got = gk[field], served_fields.get(label)
+        try:
+            ok = got is not None and abs(float(got) - float(want)) < 1e-9
+        except (TypeError, ValueError):
+            ok = False
+        if not ok:
+            failures.append(f"get_army_index: {field} served {got!r}, want {want}")
+    if "Not modeled" not in idx:
+        failures.append("get_army_index: missing the not-modeled contract block")
+    if not any(f.startswith("get_army_index") for f in failures):
+        print("  ok   get_army_index serves advisor.json fields + contract block")
+
+    tiers = json.load(open(TIERS_JSON, encoding="utf-8"))
+    ranked = m.call("get_faction_tiers", {"mission": "Purge the Foe", "top_n": 5})
+    best = max(tiers.items(), key=lambda kv: kv[1]["missions"]["Purge the Foe"])
+    if str(best[1]["missions"]["Purge the Foe"]) not in ranked:
+        failures.append("get_faction_tiers: top mission score not served")
+    if not any(f.startswith("get_faction_tiers") for f in failures):
+        print("  ok   get_faction_tiers ranks by mission from army_tiers.json")
+
+    cmp_out = m.call("compare_factions", {"factions": ["grey-knights", "orks"]})
+    for fid in ("grey-knights", "orks"):
+        if fid not in cmp_out:
+            failures.append(f"compare_factions: {fid} absent")
+    if "rules-free" not in cmp_out or "rules-aware" not in cmp_out:
+        failures.append("compare_factions: missing the two-source distinction")
+    if not any(f.startswith("compare_factions") for f in failures):
+        print("  ok   compare_factions serves both source tables")
+
+    topics = m.call("list_findings_topics", {"faction": "dark-angels"})
+    if "take-and-hold-trivector.html" not in topics:
+        failures.append("list_findings_topics: misses the dark-angels topic report")
+    if not any(f.startswith("list_findings_topics") for f in failures):
+        print("  ok   list_findings_topics surfaces the extra topic report")
 
     print()
     if failures:

@@ -14,7 +14,7 @@ and recommend detachments/units based on mission and meta.
 |--------|-------|
 | Factions ranked | 30/30 |
 | Units ranked | ~1500 |
-| Tests | 4650 passed / 68 skipped / 0 xfailed (2026-09-25, PYTHONHASHSEED=1) |
+| Tests | 4722 passed / 68 skipped / 0 xfailed (2026-10-04, branch `mcp-surface-catches-up-to-data`); targeted re-run: `tests/test_dpp.py` 73/73 in 0.44s, `scripts/mcp_smoke_test.py` PASS |
 | HTML findings | 30 factions, mobile-friendly |
 | Detachment modifiers | 26 (Grey Knights 9 + Chaos Knights 8 + Daemons 9) |
 | Characters | 511 on slots schema (all 30 factions, 2026-08-11) |
@@ -25,7 +25,7 @@ and recommend detachments/units based on mission and meta.
 | BSData audit | **NOT clean** (re-measured 2026-09-25, MFM oracle): `audit_curated_vs_bsdata.py` → **112 findings / 62 guilty units**; `validate_configs_vs_bsdata.py --all` → **246 unique problems / 442 unit-level occurrences / 50 HIGH unique**. The previously quoted "433 issues / 68 HIGH" compared occurrences against unique counts and hid false negatives. Measured like-for-like: 5 unique findings were the same weapon as the merged entry, differing only in case or punctuation (`Combi weapon` vs `Combi-weapon`), and the old substring matcher let any catalog name vouch for a longer config name — the generic entry `weapons` cleared `Fleshmetal weapons`, `Bane` cleared `Baneblade`. Removing that branch **surfaced 10 real naming-variance findings and resolved 5**, so HIGH rose 45→50 unique. The matcher is now stricter, not worse; the 10 new findings need triage. Points now graded against **MFM** (was BSData — the wrong instrument). Breakdown: 41 `MISSING_CHOICES`, 28 `SLOT_COUNT`, 25 `COMBOS`, 17 `MISSING_FIXED`, 1 `NO_MFM_POINTS`, **0 `POINTS_DRIFT`**. The remainder is wargear-structure curation backlog vs BSData, byte-identical at both pins (b074700 / 6fca2d1) — not bump fallout |
 | bsdata pin | `6fca2d1` (2026-09-25, Fixes #2039) — bumped from `b074700` (2026-09-17) |
 | mfm pin | `61a687e` (MFM v1.4, 2026-09-03) — current, no change |
-| Last change | **AoI MFM duplicate-pricing fix**: MFM lists 29 imperial-agents units twice, the second carrying `groupTitle` ("Every Model Has The Imperium Keyword") at a different rate. The merge map was last-wins, so the opt-in group rate became the base price for 14 units. Merge map + config `pts` + guard oracle + sync tool now all prefer the plain entry. Verified: `army_tiers` imperial-agents overall unchanged (55.9), Purge the Foe 60.1→60.2; 3 findings files / 6 lines moved, all other 28 factions byte-identical. Also on this branch: bsdata bump 4 merged files (4× `bsdata_revision`; TS also +`Mortal Sorcery (Aura)` link), 0 score movement. `data/config/` wholesale regen **deliberately NOT included** — see bullet |
+| Last change | **MCP surface catches up to data (2026-10-04, branch `mcp-surface-catches-up-to-data`)**: `compute_unit_dpp` MCP tool (squad question now engine-answerable: `weapons[]` + one shared points cost); overkill pool now caps **once on the summed total** instead of per weapon (was double-capping — reported 20 against a pool of 10; `uncapped_total_damage` + `overkill_capped` exposed so the arithmetic stays auditable); `wounds_per_model`/`model_count` validated as positive whole numbers at the MCP boundary (`#validatePool` — closes the Shredder BLOCK where 0/-1/NaN/Inf survived `??`); `attacks`/`bs`/`damage` accept dice strings (`"2D6"`, `"3+"`, `"N/A"`) routed through the engine's own `_parse_attacks`, so MCP and loader cannot disagree; `voldus.md` worked example corrected to the real Incinerator profile (S6, AP-1, D1, Torrent, Ignores Cover — old table claimed D2); `get_findings` now serves the `data.json` sidecar (HTML scraper gone) and all 30 faction sidecars are committed; `engine/AGENTS.md` step 5 no longer advises the per-weapon-sum that produced the bug. 4 new overkill tests, red-tested by removing the outer cap. Full suite 4722/68/0; smoke PASS end-to-end |
 
 ### Direction (2026-09)
 
@@ -293,6 +293,7 @@ Engine-side open items surfaced by this session:
   Shredder gates. Phases: P0 inventory/baseline → P1 reroll engine core
   (serial, heavy) → P2 squad alloc ×3 waves → P3 modifier configs +
   dual-view tier list → P4 invuln footnote cleanup.
+- **MCP surface catches up to data (2026-10-04, branch `mcp-surface-catches-up-to-data`, pending merge).** The MCP server's answers now come from the engine and the committed artifacts, not from hand-shaped defaults: unit-level DPP exposed as a tool, wound-pool overkill capped on the sum, dice expressions parsed by the engine's own loader, and findings served from the `data.json` sidecars instead of scraping HTML. Local gate before push: `tests/test_dpp.py` + `scripts/mcp_smoke_test.py` (seconds); the full suite runs in CI.
 - **Detachment modifiers UNBLOCKED for weapon_options** — all 30 factions now
   have slots schema on characters + weapon_options. Remaining blocker:
   squad composition (alloc pools) on ~14 factions. Once squads are on slots,
@@ -407,7 +408,7 @@ Engine-side open items surfaced by this session:
 - [ ] Points efficiency ranking across all factions
 
 ### Infrastructure
-- [ ] MCP server integration for live queries
+- [ ] MCP server integration for live queries — **shipped on `mcp-surface-catches-up-to-data` (2026-10-04)**: `compute_unit_dpp`, validated `wounds_per_model`/`model_count`, dice-string inputs, `get_findings` from `data.json` sidecars; smoke PASS. Merge pending.
 - [ ] CI/CD pipeline (automated tests on push)
 - [ ] Web dashboard for rankings (nice-to-have)
 
@@ -516,4 +517,4 @@ Engine-side open items surfaced by this session:
 
 ---
 
-*Last updated: 2026-09-06 (direction shift — painted-pool list construction + memory-led sessions; October SM codex refresh scheduled)*
+*Last updated: 2026-10-04 (MCP surface catches up to data — unit DPP tool, wound-pool cap fix, validated counts, findings sidecars; full suite 4722/68/0)*

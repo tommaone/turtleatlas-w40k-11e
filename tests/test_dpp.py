@@ -955,3 +955,65 @@ class TestInvulnSave:
         kw, t, sv, w, oc, inv = engine.get_unit_info('Nemesis Dreadknight', None)
         assert inv == 4, f"Expected INV=4 for Nemesis Dreadknight, got {inv}"
 
+
+
+# ---------------------------------------------------------------------------
+# compute_unit_dpp — overkill cap applies once, to the sum
+# ---------------------------------------------------------------------------
+
+class TestUnitOverkillCap:
+    """The wound pool belongs to the TARGET, so it caps the sum of all
+    weapons once — not each weapon separately.
+
+    Regression: each weapon used to be capped individually at the target's
+    wound pool and then summed, so a 2-weapon unit against a 10-wound squad
+    reported total_damage 20 for a target that only has 10 wounds.
+    """
+
+    def _heavy(self, name):
+        return WeaponProfile(
+            name=name, attacks=20, bs=3, strength=8, ap=-2, damage=6,
+        )
+
+    def test_two_weapons_do_not_double_the_wound_pool(self):
+        from dpp import compute_unit_dpp
+        meq = TargetProfile(toughness=4, save=3, wounds_per_model=2, model_count=5)
+        assert meq.model_count * meq.wounds_per_model == 10
+        r = compute_unit_dpp([self._heavy("heavy A"), self._heavy("heavy B")],
+                             meq, points=100)
+        assert r["unit_wounds"] == 10
+        assert r["uncapped_total_damage"] > 10, "test needs overkill to bind"
+        assert r["total_damage"] == 10, (
+            f"summed damage must cap at the target's 10 wounds, "
+            f"got {r['total_damage']}"
+        )
+        assert r["overkill_capped"] is True
+
+    def test_per_weapon_breakdown_sums_to_uncapped_total(self):
+        """The breakdown stays auditable: it must reconcile with the
+        uncapped sum rather than showing two separately-capped numbers."""
+        from dpp import compute_unit_dpp
+        meq = TargetProfile(toughness=4, save=3, wounds_per_model=2, model_count=5)
+        r = compute_unit_dpp([self._heavy("heavy A"), self._heavy("heavy B")],
+                             meq, points=100)
+        breakdown = sum(w["total_damage"] for w in r["weapons"])
+        assert abs(breakdown - r["uncapped_total_damage"]) < 0.01, (
+            f"breakdown {breakdown} != uncapped {r['uncapped_total_damage']}"
+        )
+        assert r["total_dpp"] == round(r["total_damage"] / 100, 4)
+
+    def test_uncapped_when_pool_does_not_bind(self):
+        from dpp import compute_unit_dpp
+        big = TargetProfile(toughness=4, save=3, wounds_per_model=2, model_count=10)
+        r = compute_unit_dpp([self._heavy("heavy A")], big, points=100)
+        assert r["overkill_capped"] is False
+        assert r["total_damage"] == r["uncapped_total_damage"]
+
+    def test_single_weapon_path_still_caps(self):
+        """compute_weapon_dpp keeps its own cap (correct for a one-weapon
+        question) — the unit-level change must not have removed it."""
+        meq = TargetProfile(toughness=4, save=3, wounds_per_model=2, model_count=5)
+        wp = WeaponProfile(name="ordinal", attacks=20, bs=3, strength=10,
+                           ap=-4, damage=6)
+        r = compute_weapon_dpp(wp, meq, unit_points=100)
+        assert r["total_damage"] == 10

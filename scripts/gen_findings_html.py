@@ -577,6 +577,18 @@ MISSION_FACTORS = {
 }
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'findings')
 
+# Projection of `data` written to findings/<fid>/data.json for the MCP server's
+# get_findings tool: exactly the fields that tool renders, nothing more. The
+# full DATA blob is ~0.85MB per faction because it carries the report's own
+# client-side recompute fields; measured with `du -ch findings/*/data.json`
+# this slice is 7.7MB across 30 factions, against ~30MB of committed HTML.
+# Derived in the same pass from the same `data`, so there is no second
+# computation to drift. Serving a new field means adding it here.
+MCP_FINDINGS_FIELDS = (
+    'name', 'pts', 'score', 'dpp', 'dpp_pct', 'surv_turns',
+    'obj_pct', 'mob_pct', 'ds', 'fly', 'inv', 'fnp', 'oc', 'cost_eff',
+)
+
 
 # Canonical target-mix scenarios. Every faction exposes these presets via
 # config meta_profiles (base defines them; curated factions override with the
@@ -928,6 +940,26 @@ if __name__ == '__main__':
         wrote = _write_if_changed(out_path, html)
         print(f'{fname}: {n_units} units, '
               f'{"written to" if wrote else "unchanged at"} {out_dir}/findings.html')
+        # Machine-readable sidecar for the MCP server. It reads this instead of
+        # regexing a `const DATA = {...}` blob out of findings.html, so a
+        # restyle of the report can't break the tool. Compact separators: this
+        # is read by a machine, not a human. No timestamp, so it stays
+        # diff-clean for check_artifacts_current.py.
+        sidecar = {
+            'meta': {
+                slug: {
+                    mission: [{k: u[k] for k in MCP_FINDINGS_FIELDS if k in u}
+                              for u in units]
+                    for mission, units in missions.items()
+                }
+                for slug, missions in data.get('meta', {}).items()
+            },
+            'meta_info': data.get('meta_info', []),
+        }
+        _write_if_changed(
+            os.path.join(out_dir, 'data.json'),
+            json.dumps(sidecar, ensure_ascii=False, default=str,
+                       separators=(',', ':')))
         # Army tier list — only meaningful when generating the full faction set
         if not args.faction and fid not in EXCLUDE_FROM_TIERS:
             tiers = tiers or {}
