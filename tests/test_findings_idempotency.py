@@ -48,3 +48,34 @@ def test_write_creates_missing_file(tmp_path):
     path = tmp_path / 'new.html'
     assert gen._write_if_changed(str(path), FOOTER) is True
     assert path.read_text(encoding='utf-8') == FOOTER
+
+
+def test_classify_separates_content_drift_from_timestamp_only(tmp_path,
+                                                             monkeypatch):
+    """The guard must tell apart 'commit this' from 'revert this'."""
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        'chk', os.path.join(ROOT, 'scripts', 'check_artifacts_current.py'))
+    chk = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(chk)
+
+    head_ts = 'generated 2026-09-28 19:39 UTC'
+    work_ts = head_ts.replace('19:39', '20:00')
+    head = {
+        'real.html': head_ts + '<p>Boomstikks</p>',
+        'clock.html': head_ts + '<p>same</p>',
+    }
+    work = {
+        'real.html': work_ts + '<p>Boomstikks removed</p>',  # clock + content
+        'clock.html': work_ts + '<p>same</p>',               # clock only
+    }
+    for rel, text in work.items():
+        (tmp_path / rel).write_text(text, encoding='utf-8')
+
+    monkeypatch.setattr(chk, 'ROOT', str(tmp_path))
+    monkeypatch.setattr(chk, '_head_version', lambda rel: head[rel])
+
+    content, ts_only = chk.classify(sorted(work))
+    assert content == ['real.html'], 'changed content must be flagged as real'
+    assert ts_only == ['clock.html'], 'clock-only change must not look like drift'

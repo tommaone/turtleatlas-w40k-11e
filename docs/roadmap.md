@@ -53,7 +53,10 @@ Engine-side open items surfaced by this session:
   guarantee. Fields: `reroll` (32), `army_wide_reroll` (128), `damage_boost` (1),
   `transport_capacity` (134), `fnp` (47). `fnp` came out of a second pass: `gen_config.py`
   derives config `info.FNP` from ability text, so dropping the prose without it would make a
-  config regeneration silently lose 44 of the 46 values.
+  config regeneration silently lose all 44 curated values (30 factions). The two counts are
+  different populations — 47 merged abilities carry a derived `fnp`, 44 curated units carry
+  `info.FNP` — and `detect_fnp_from_abilities` reads either the derived field or the prose,
+  which is why the derivation has to happen before the prose is discarded.
   `scripts/strip_ability_prose.py` is deleted; the invariant is asserted absolutely (zero
   descriptions) in `tests/test_no_dead_ability_prose.py`, which regenerates grey-knights +
   genestealer-cults for a real diff. Derived values are deliberately not fingerprinted per
