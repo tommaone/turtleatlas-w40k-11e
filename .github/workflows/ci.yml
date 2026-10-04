@@ -1,0 +1,47 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  # data/merged/ and findings/ are committed build output. The test suite reads
+  # them back rather than regenerating, so a stale artifact yields a green build
+  # that proves nothing. This job regenerates and fails on any difference.
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+
+      - run: pip install -r requirements.txt
+
+      - name: Regenerate artifacts and fail on drift
+        run: python3 scripts/check_artifacts_current.py
+
+  # PYTHONHASHSEED is pinned because the suite asserts derived field counts and
+  # ordering that depend on dict/set iteration order.
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+
+      - run: pip install -r requirements.txt pytest
+
+      - name: Full suite
+        env:
+          PYTHONHASHSEED: '1'
+        run: python3 -m pytest tests/ -q
