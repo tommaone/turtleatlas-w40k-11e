@@ -219,10 +219,19 @@ def test_case_insensitive_exact_match_heavy_bolters(gen, sm_composition):
 
 
 def test_case_insensitive_exact_match_keeps_base(gen, sm_composition):
-    """The base 'Eradicator Squad' still resolves to its own melta entry."""
-    base = gen.fuzzy_find_composition(sm_composition, "Eradicator Squad")
-    assert base is not None
-    assert "Heavy Bolter" not in json.dumps(base)
+    """The melta variant must NOT be substring-matched onto the Heavy Bolters
+    composition.
+
+    MFM v1.5 renamed the base Eradicator Squad to 'Eradicator Squad With Melta
+    Rifles', and BSData carries no melta composition — only 'Eradicator Squad
+    with Heavy Bolters'. fuzzy_find_composition must therefore return None, so
+    the hand-authored melta build in squads.json is KEPT rather than overwritten
+    with the heavy-bolter payload (same one-way-substring class as the Ork test).
+    """
+    assert (
+        gen.fuzzy_find_composition(sm_composition, "Eradicator Squad With Melta Rifles")
+        is None
+    )
 
 
 @pytest.fixture(scope="module")

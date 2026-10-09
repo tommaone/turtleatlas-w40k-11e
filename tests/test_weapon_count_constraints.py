@@ -96,50 +96,13 @@ class TestSMLandRaiderRedeemer:
         assert wc.get("Flamestorm Cannon") == 2
 
 
-# ── SM Predator Annihilator (slot choice count=2 + merged count=2) ──────
-
-class TestSMPredatorAnnihilator:
-    """Sponson weapons: config slot choice count=2, merged data count=2.
-    Engine must NOT double-count (4× → correct 2×)."""
-
-    def test_loadout_shows_2x_heavy_bolter(self, meq):
-        ld, _, _ = _loadout("space-marines", "Predator Annihilator", meq)
-        assert "2×Heavy Bolter" in ld
-
-    def test_twin_lascannon_count_1(self, meq):
-        """Twin-linked turret: count=1 (not 2)."""
-        wc = _weapon_counts("space-marines", "Predator Annihilator", meq)
-        assert wc.get("Predator Twin Lascannon") == 1
-
-    def test_sponson_heavy_bolter_count_2(self, meq):
-        wc = _weapon_counts("space-marines", "Predator Annihilator", meq)
-        assert wc.get("Heavy Bolter") == 2
-
-
-# ── SM Stormraven (duplicate fixed entries + merged count=2) ────────────
-
-class TestSMStormraven:
-    """Hurricane Bolter + Stormstrike: config lists 2 duplicate fixed entries,
-    merged data has count=2. Engine must use duplicate detection to avoid 4×."""
-
-    def test_loadout_shows_2x_hurricane(self, meq):
-        ld, _, _ = _loadout("space-marines", "Stormraven Gunship", meq)
-        assert "2×Hurricane Bolter" in ld
-
-    def test_loadout_shows_2x_stormstrike(self, meq):
-        ld, _, _ = _loadout("space-marines", "Stormraven Gunship", meq)
-        assert "2×Stormstrike" in ld
-
-    def test_hurricane_count_2(self, meq):
-        wc = _weapon_counts("space-marines", "Stormraven Gunship", meq)
-        assert wc.get("Hurricane Bolter") == 2
-
-    def test_stormstrike_count_2(self, meq):
-        wc = _weapon_counts("space-marines", "Stormraven Gunship", meq)
-        # Name may vary — check prefix
-        stormstrike = sum(v for k, v in wc.items() if "Stormstrike" in k)
-        assert stormstrike == 2
-
+# ── SM Predator Annihilator / Stormraven (RETIRED in MFM v1.5) ──────────
+#
+# MFM v1.5 reclassified the Predator Annihilator (slot choice count=2 +
+# merged count=2) and Stormraven Gunship (duplicate fixed entries + merged
+# count=2) as Legends; adapter/merge.py drops legends, so they no longer
+# resolve. The no-double-count guard they exercised is still covered by the
+# CSM Land Raider / Venomcrawler / Defiler classes below.
 
 # ── CSM Chaos Land Raider (fixed count=2 + merged count=2) ─────────────
 

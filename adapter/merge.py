@@ -370,16 +370,29 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
                         best_overlap = overlap
                         best_bs = (bs_norm, bs_u)
                 if best_bs and best_overlap >= max(1, len(mfm_words) - 1):
-                    mu["profile"] = best_bs[1]
-                    mu["in_bsdata"] = True
-                    print(f"  [WORDS] {mu['name']} ← '{best_bs[0]}' (profile from BSData, {best_overlap} shared words)", file=sys.stderr)
+                    # Only borrow the profile when one name's word set is a
+                    # subset of the other's. Otherwise generic shared words
+                    # cause wrong matches (e.g. "Captain On Bike" borrowed
+                    # "Chaplain on Bike" sharing only "on bike").
+                    bs_words = set(best_bs[0].split())
+                    if mfm_words <= bs_words or bs_words <= mfm_words:
+                        mu["profile"] = best_bs[1]
+                        mu["in_bsdata"] = True
+                        print(f"  [WORDS] {mu['name']} ← '{best_bs[0]}' (profile from BSData, {best_overlap} shared words)", file=sys.stderr)
             # Fall back to substring match: MFM name is a substring of a BSData entry
             # (handles "Soul Grinder" → "Khorne Soul Grinder" when WORDS doesn't)
             if not mu.get("profile"):
                 for bs_norm, bs_u in bsdata_unit_map.items():
                     if not bs_u.get("stats"):
                         continue
-                    if mfm_norm in bs_norm or bs_norm in mfm_norm:
+                    # MFM name contained in a longer BSData name (e.g.
+                    # "Soul Grinder" → "Khorne Soul Grinder"), or a *multi-word*
+                    # BSData name contained in the MFM name (e.g. "Eradicator
+                    # Squad With Melta Rifles" ← "eradicator squad"). A single
+                    # generic word must never match (e.g. "captain").
+                    if mfm_norm in bs_norm or (
+                        bs_norm in mfm_norm and len(bs_norm.split()) >= 2
+                    ):
                         mu["profile"] = bs_u
                         mu["in_bsdata"] = True
                         print(f"  [SUBSTR] {mu['name']} ← '{bs_norm}' (profile from BSData)", file=sys.stderr)

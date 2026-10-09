@@ -50,7 +50,7 @@ SQUADS_PATH = CONFIG_DIR / "chaos-space-marines" / "squads.json"
 TARGET_SAMPLES = ["GEQ", "MEQ", "TEQ"]
 
 # ── Fabius Bile (2-model character unit) ────────────────────────────────
-FABIUS_PTS = 100
+FABIUS_PTS = 110  # MFM v1.5 rebalanced (was 100)
 FABIUS_WEAPONS = {
     "Xyclos needler", "The Chirurgeon", "Rod of Torment",
     "Surgeon Acolyte's tools",

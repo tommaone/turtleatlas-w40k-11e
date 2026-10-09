@@ -167,6 +167,27 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
    component from the derived `transport_capacity` field; Encoding-B capacity extraction =
    follow-up adapter ticket)
 
+## 2026-10-09 MFM v1.5 submodule bump state
+
+- **Submodule pins:** `bsdata` `cc58ee3` (2026-10-09), `mfm` `8e0e635`
+  (2026-10-01, MFM v1.5 "2026-09-30"). Bumped on branch
+  `chore/bump-submodules-2026-10-09`; tag `pre-mfm-v1.5-migration` marks the
+  pre-migration commit. Backup tag exists before any history rewrite.
+- **What v1.5 changed:** SM units +5/−69, many reclassified `legends: true`
+  (dropped by `merge.py`), wholesale detachment restructure, points rebalance
+  across all factions. Configs were pruned/renamed by hand (legends/removed
+  units deleted; `sync_config_pts.py` + `sync_config_info.py` re-priced the rest);
+  `supported.json` dispositions + `detachments.json` regenerated per faction.
+- **Test posture:** full seeded suite **4589 passed / 68 skipped**
+  (`PYTHONHASHSEED=1 python3 -m pytest tests/`). Legacy-legend/removed unit pins
+  retired across the golden/complex-unit files; points rebaselines + coverage
+  allowlists + `FIELD_BASELINE` updated in the same commit.
+- **Artifacts:** `data/merged/*.json`, `findings/*`, `docs/detachment-atlas/*`
+  and `reports/crossfaction_truth_report.json` regenerated. Drift gate:
+  `python3 scripts/check_artifacts_current.py` (exit 0 once committed).
+- See `memory/feedback.md` "An MFM major-version bump reclassifies units" for the
+  prune procedure.
+
 ## Credentials
 
 None. Public repo — mechanics and commands only. Credential loading goes through `$ENV_VAR` references, never hardcoded values.

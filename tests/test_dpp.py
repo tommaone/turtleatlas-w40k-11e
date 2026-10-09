@@ -563,7 +563,7 @@ class TestWeaponSlots:
         resolved = engine.resolve_loadout('Knight Tyrant', comp_meta)
         assert resolved is not None
         pts, ranged, melee, innate, info = resolved
-        assert pts == 400
+        assert pts == 390  # MFM v1.5 rebalanced (was 400)
         names = [w.name for w in ranged + melee]
         # Fixed weapons always present
         assert 'Twin daemonbreath meltagun' in names

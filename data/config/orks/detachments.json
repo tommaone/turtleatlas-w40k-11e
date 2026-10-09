@@ -10,23 +10,23 @@
     "human_reviewed": false
   },
   "detachments": {
-    "war-horde": {
-      "_id": "war-horde",
-      "_slug": "war-horde",
-      "name": "War Horde",
-      "dp_cost": 3,
-      "disposition": "take-and-hold",
-      "objective": "TAKE AND HOLD",
-      "source": "MFM v1.4"
-    },
     "blitz-brigade": {
       "_id": "blitz-brigade",
       "_slug": "blitz-brigade",
       "name": "Blitz Brigade",
       "dp_cost": 1,
       "disposition": "take-and-hold",
-      "objective": "RECONNAISSANCE",
-      "source": "MFM v1.4"
+      "objective": null,
+      "source": "MFM (data/merged/orks.json, verified L0)"
+    },
+    "brute-bosses": {
+      "_id": "brute-bosses",
+      "_slug": "brute-bosses",
+      "name": "Brute Bosses",
+      "dp_cost": 1,
+      "disposition": "purge-the-foe",
+      "objective": null,
+      "source": "MFM (data/merged/orks.json, verified L0)"
     },
     "bully-boyz": {
       "_id": "bully-boyz",
@@ -34,8 +34,8 @@
       "name": "Bully Boyz",
       "dp_cost": 1,
       "disposition": "purge-the-foe",
-      "objective": "PURGE THE FOE",
-      "source": "MFM v1.4"
+      "objective": null,
+      "source": "MFM (data/merged/orks.json, verified L0)"
     },
     "da-big-hunt": {
       "_id": "da-big-hunt",
@@ -43,8 +43,8 @@
       "name": "Da Big Hunt",
       "dp_cost": 1,
       "disposition": "purge-the-foe",
-      "objective": "PURGE THE FOE",
-      "source": "MFM v1.4"
+      "objective": null,
+      "source": "MFM (data/merged/orks.json, verified L0)"
     },
     "dread-mob": {
       "_id": "dread-mob",
@@ -52,8 +52,17 @@
       "name": "Dread Mob",
       "dp_cost": 1,
       "disposition": "purge-the-foe",
-      "objective": "PRIORITY ASSETS",
-      "source": "MFM v1.4"
+      "objective": null,
+      "source": "MFM (data/merged/orks.json, verified L0)"
+    },
+    "flyboyz": {
+      "_id": "flyboyz",
+      "_slug": "flyboyz",
+      "name": "Flyboyz",
+      "dp_cost": 1,
+      "disposition": "reconnaissance",
+      "objective": null,
+      "source": "MFM (data/merged/orks.json, verified L0)"
     },
     "green-tide": {
       "_id": "green-tide",
@@ -61,8 +70,8 @@
       "name": "Green Tide",
       "dp_cost": 1,
       "disposition": "take-and-hold",
-      "objective": "TAKE AND HOLD",
-      "source": "MFM v1.4"
+      "objective": null,
+      "source": "MFM (data/merged/orks.json, verified L0)"
     },
     "kult-of-speed": {
       "_id": "kult-of-speed",
@@ -70,8 +79,35 @@
       "name": "Kult Of Speed",
       "dp_cost": 1,
       "disposition": "reconnaissance",
-      "objective": "DISRUPTION",
-      "source": "MFM v1.4"
+      "objective": null,
+      "source": "MFM (data/merged/orks.json, verified L0)"
+    },
+    "madcap-meks": {
+      "_id": "madcap-meks",
+      "_slug": "madcap-meks",
+      "name": "Madcap Meks",
+      "dp_cost": 1,
+      "disposition": "disruption",
+      "objective": null,
+      "source": "MFM (data/merged/orks.json, verified L0)"
+    },
+    "runt-swarm": {
+      "_id": "runt-swarm",
+      "_slug": "runt-swarm",
+      "name": "Runt Swarm",
+      "dp_cost": 1,
+      "disposition": "priority-assets",
+      "objective": null,
+      "source": "MFM (data/merged/orks.json, verified L0)"
+    },
+    "shoota-boyz": {
+      "_id": "shoota-boyz",
+      "_slug": "shoota-boyz",
+      "name": "Shoota Boyz",
+      "dp_cost": 1,
+      "disposition": "purge-the-foe",
+      "objective": null,
+      "source": "MFM (data/merged/orks.json, verified L0)"
     },
     "taktikal-brigade": {
       "_id": "taktikal-brigade",
@@ -79,43 +115,35 @@
       "name": "Taktikal Brigade",
       "dp_cost": 1,
       "disposition": "take-and-hold",
-      "objective": "RECONNAISSANCE",
-      "source": "MFM v1.4"
+      "objective": null,
+      "source": "MFM (data/merged/orks.json, verified L0)"
     },
-    "brute-bosses": {
-      "dp_cost": 1,
-      "disposition": "purge-the-foe",
-      "source": "MFM v1.4 + BSData Codex-Orks"
-    },
-    "flyboyz": {
-      "dp_cost": 1,
-      "disposition": "reconnaissance",
-      "source": "MFM v1.4 + BSData Codex-Orks"
-    },
-    "madcap-meks": {
-      "dp_cost": 1,
-      "disposition": "disruption",
-      "source": "MFM v1.4 + BSData Codex-Orks"
-    },
-    "runt-swarm": {
-      "dp_cost": 1,
-      "disposition": "priority-assets",
-      "source": "MFM v1.4 + BSData Codex-Orks"
-    },
-    "shoota-boyz": {
-      "dp_cost": 1,
-      "disposition": "purge-the-foe",
-      "source": "MFM v1.4 + BSData Codex-Orks"
+    "war-horde": {
+      "_id": "war-horde",
+      "_slug": "war-horde",
+      "name": "War Horde",
+      "dp_cost": 3,
+      "disposition": "take-and-hold",
+      "objective": null,
+      "source": "MFM (data/merged/orks.json, verified L0)"
     },
     "wreckas": {
+      "_id": "wreckas",
+      "_slug": "wreckas",
+      "name": "Wreckas",
       "dp_cost": 1,
       "disposition": "priority-assets",
-      "source": "MFM v1.4 + BSData Codex-Orks"
+      "objective": null,
+      "source": "MFM (data/merged/orks.json, verified L0)"
     },
     "wurrband": {
+      "_id": "wurrband",
+      "_slug": "wurrband",
+      "name": "Wurrband",
       "dp_cost": 1,
       "disposition": "disruption",
-      "source": "MFM v1.4 + BSData Codex-Orks"
+      "objective": null,
+      "source": "MFM (data/merged/orks.json, verified L0)"
     }
   }
 }
