@@ -5,21 +5,24 @@ Modular by design: emits findings/advisor.json (machine-readable, MCP /
 conversational ready) and can render docs/army-choice-guide.md (--guide).
 
 Metrics per faction (all derived from engine outputs, never re-computed):
-- overall_index      mean rank-decay score across the 5 dispositions
+- overall_index      rank-decay score across the 5 dispositions (copied
+                     verbatim from findings/army_tiers.json `overall`)
 - floor / ceiling    worst / best disposition score
 - versatility        100 - (ceiling-floor) spread; high = plays every mission
 - roster_depth       ranked datasheet count
 - points_churn       MFM changelog mentions since edition start (GW attention)
 
 Play-fit heuristics are LLM-synthesis tier (🔴 STRATEGY): they combine
-engine facts with assumptions listed in the output. The `meta_ceiling`
-field stays null until detachment-aware scoring ships (war plan P3).
+engine facts with assumptions listed in the output. `meta_ceiling` and
+`meta_ceiling_best_detachment` are RETIRED (2026-08-27) and always null:
+detachment-aware scoring was cancelled, not pending.
 
 Usage:
     python3 scripts/army_advisor.py            # writes findings/advisor.json
     python3 scripts/army_advisor.py --guide    # also renders the markdown guide
 """
 import argparse
+from datetime import date
 import json
 import re
 from pathlib import Path
@@ -28,15 +31,52 @@ import glob
 
 REPO = Path(__file__).resolve().parent.parent
 TIERS = REPO / "findings" / "army_tiers.json"
-CHANGELOG = REPO / "mfm" / "DATA-CHANGELOG.md"
+CHANGELOG_DIR = REPO / "mfm" / "changelog"
+GENERATED = date.today().isoformat()  # real generation stamp, not a frozen one
+
+
+_VERSION_RE = re.compile(r"v(\d+)\.(\d+)")
+
+
+def _version_files() -> list:
+    """Changelog version files, parsed and sorted ascending by (major, minor).
+
+    One predicate shared by mfm_version() and points_churn(), so a stray
+    v1.5-draft.md cannot be counted by the churn tally while being ignored by
+    the version claim (or vice versa).
+    """
+    if not CHANGELOG_DIR.is_dir():
+        raise FileNotFoundError(
+            f"changelog directory missing: {CHANGELOG_DIR}. The MFM submodule "
+            "may not be initialised."
+        )
+    out = []
+    for path in CHANGELOG_DIR.glob("v*.md"):
+        m = _VERSION_RE.fullmatch(path.stem)
+        if m:
+            out.append(((int(m.group(1)), int(m.group(2))), path))
+    if not out:
+        raise FileNotFoundError(f"no version files under {CHANGELOG_DIR}")
+    return sorted(out, key=lambda t: t[0])
+
+
+def mfm_version() -> str:
+    """Latest MFM version present in the changelog dir, e.g. 'v1.5'.
+
+    Derived rather than hardcoded: the header once said 'MFM v1.4' while the
+    data underneath was already v1.5.
+    """
+    (major, minor), _ = _version_files()[-1]
+    return f"v{major}.{minor}"
+
 ADVISOR_OUT = REPO / "findings" / "advisor.json"
 GUIDE_OUT = REPO / "docs" / "army-choice-guide.md"
 
 CAVEATS = [
-    "meta_ceiling is engine-computed only for factions with VERIFIED "
-    "detachment data (grey-knights, chaos-knights, chaos-daemons, "
-    "dark-angels, space-marines); null = generalist index is the ceiling "
-    "proxy (auto-generated MFM stubs are not detachment rules)",
+    "meta_ceiling and meta_ceiling_best_detachment are RETIRED (2026-08-27) "
+    "and null for every faction: detachment strength is an expert heuristic, "
+    "not an engine number, so no detached-scores ceiling is produced. Use "
+    "overall_index / ceiling / floor, which are engine output",
     "statline quality persists across balance patches; rules packages do not",
     "points churn counts changelog mentions since edition start - a proxy "
     "for GW attention, not a prediction; Astartes flavours share one codex "
@@ -109,14 +149,40 @@ def first_army_fit_map() -> dict[str, dict]:
     return out
 
 
+def _norm_name(s: str) -> str:
+    """Normalise a faction display name for matching.
+
+    The changelog uses typographic apostrophes (Emperor\u2019s Children,
+    T\u2019au Empire); the tiers table uses ASCII ones. Case varies too.
+    """
+    return (
+        s.replace("\u2019", "'").replace("\u2018", "'").strip().lower()
+    )
+
+
 def points_churn() -> dict[str, int]:
-    """Count changelog bullet mentions per faction display name."""
-    text = CHANGELOG.read_text()
-    # Faction names appear as '**Aeldari**:' bullets
+    """Count changelog mentions per faction, as a proxy for GW attention.
+
+    The MFM submodule restructured this file (2026-09): DATA-CHANGELOG.md
+    became a pointer and the entries moved to changelog/v<X.Y>.md. The old
+    parser read only DATA-CHANGELOG.md and silently returned {} after the
+    bump, which zeroed points_churn for all 28 factions.
+
+    Two formats coexist and must both be counted:
+      v1.0-v1.4  '- **Faction**: ...' bullets (many per faction)
+      v1.5+      '### Faction  _(v1.4 -> v1.5)_' sections (one per faction)
+    They do not overlap - v1.5 has zero bullets and older files zero tables -
+    so summing both cannot double-count.
+    """
     counts: dict[str, int] = {}
-    for m in re.finditer(r"\*\*([A-Z][^*]+?)\*\*", text):
-        name = m.group(1).strip()
-        counts[name] = counts.get(name, 0) + 1
+    for _, path in _version_files():
+        text = path.read_text(encoding="utf-8")
+        names = re.findall(r"^- \*\*([^*]+?)\*\*:", text, re.M)
+        names += [n.strip() for n in re.findall(r"^### ([^_]+?)\s*_\(.*?\)", text, re.M)]
+        for raw in names:
+            key = _norm_name(raw)
+            if key:
+                counts[key] = counts.get(key, 0) + 1
     return counts
 
 
@@ -145,7 +211,7 @@ def compute():
             "roster_depth": t["n_units"],
             "best_disposition": max(ms, key=ms.get),
             "worst_disposition": min(ms, key=ms.get),
-            "points_churn": churn.get(t["name"], 0),
+            "points_churn": churn.get(_norm_name(t["name"]), 0),
             "first_army_fit": fit.get(fid, {}).get("band", "Unrated"),
             "first_army_fit_why": fit.get(fid, {}).get("why", ""),
             "meta_ceiling": det.get("overall"),
@@ -163,7 +229,7 @@ def compute():
             "unit_score": "engine _mission_score (quad-vector percentile composite)",
             "not_modeled": CAVEATS,
         },
-        "generated": "2026-09-06",
+        "generated": GENERATED,
         "factions": factions,
     }
     return out
@@ -231,9 +297,9 @@ def guide_lines(data):
     lines = [
         "# Choosing Your Army — strength, versatility, fit",
         "",
-        "*Generated 2026-09-06 from engine outputs (rank-decay roster index, "
-        "MFM v1.4) + expert first-army-fit ratings. Full method + caveats in "
-        "findings/advisor.json.*",
+        f"*Generated {GENERATED} from engine outputs (rank-decay roster "
+        f"index, MFM {mfm_version()}) + expert first-army-fit ratings. Full "
+        f"method + caveats in findings/advisor.json.*",
         "",
         "> This narrows the field — it tells you where each faction's "
         "strength sits today and what the army demands from you as a "

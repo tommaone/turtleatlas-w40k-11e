@@ -7,11 +7,20 @@ from engine.ranking import RankingEngine
 # One timestamp per generation run — faction pages and the index share it.
 GEN_TS = time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime())
 
-_TS_RE = re.compile(r'generated \d{4}-\d{2}-\d{2} \d{2}:\d{2} UTC')
+_TS_RE = re.compile(
+    r'(?i)generated\D{0,6}\d{4}-\d{2}-\d{2}(?: \d{2}:\d{2} UTC)?')
 
 
 def _mask_ts(text):
-    """Blank the generation timestamp so content can be compared without it."""
+    """Blank the generation stamp so content can be compared without it.
+
+    Covers the faction-page footer ('generated 2026-10-15 09:41 UTC'), the
+    army-choice-guide header ('Generated 2026-10-15') and advisor.json
+    ('"generated": "2026-10-15"'). Without the last two a date-only
+    regeneration of the advisor artifacts is misclassified as content drift
+    ("commit it") while the identical act on a faction page is a timestamp
+    bump ("revert it") — opposite advice for the same intent.
+    """
     return _TS_RE.sub('generated <TS>', text)
 
 

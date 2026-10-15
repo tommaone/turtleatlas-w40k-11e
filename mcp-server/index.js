@@ -724,7 +724,7 @@ print(json.dumps(output))
         {
           name: "rank_units",
           description:
-            "Compute three-vector (DPS/SURV/MOB) ranking for all units in a faction. Supports target profile, mission weighting, pricing tier, meta profile, and detachment modifiers. MANDATORY: You MUST call this tool for all ranking output. NEVER fabricate, approximate, or re-compute DPP/SURV/MOB values yourself. The engine configures loadouts, applies detachment modifiers, and computes all three vectors. Only this tool's output is authoritative for ranking analysis. Violation: if you present numbers not from this tool's output, the analysis is unreliable.",
+            "Compute three-vector (DPS/SURV/MOB) ranking for all units in a faction. Supports target profile, mission weighting, pricing tier and meta profile. Detachment modifiers are RETIRED (2026-08-27): the engine never applies them, so the `detachment` / `detachment_choice` arguments are accepted for backward compatibility but have no effect — detachment-aware scores equal the generalist baseline. MANDATORY: You MUST call this tool for all ranking output. NEVER fabricate, approximate, or re-compute DPP/SURV/MOB values yourself. The engine configures loadouts and computes all three vectors. Only this tool's output is authoritative for ranking analysis. Violation: if you present numbers not from this tool's output, the analysis is unreliable.",
           inputSchema: {
             type: "object",
             properties: {
@@ -751,11 +751,11 @@ print(json.dumps(output))
               },
               detachment: {
                 type: "string",
-                description: "Detachment name to apply modifiers from (e.g. Infernal Lance, Warpbane Task Force)",
+                description: "DEPRECATED (modifiers retired 2026-08-27) — accepted but ignored; no modifiers are applied.",
               },
               detachment_choice: {
                 type: "number",
-                description: "Index of modifier choice (0-based). Default: 0",
+                description: "DEPRECATED (modifiers retired 2026-08-27) — accepted but ignored.",
               },
               top_n: {
                 type: "number",
@@ -791,7 +791,7 @@ print(json.dumps(output))
         {
           name: "get_army_index",
           description:
-            "Army-level meta index from findings/advisor.json: overall_index, ceiling, floor, versatility, roster_depth, best/worst disposition, points_churn, first_army_fit, and meta_ceiling. Use for 'how strong is this army' and 'what should I play first'. MANDATORY: NEVER compute or estimate an index yourself — the numbers are a rank-decay weighted mean of engine mission scores and are only authoritative from this tool. Note _classification on every row: some fields are engine output, others (first_army_fit) are expert judgement.",
+            "Army-level meta index from findings/advisor.json: overall_index, ceiling, floor, versatility, roster_depth, best/worst disposition, points_churn, first_army_fit. Use for 'how strong is this army' and 'what should I play first'. meta_ceiling is RETIRED (2026-08-27) and null for every faction — do not present it. MANDATORY: NEVER compute or estimate an index yourself — overall_index is a rank-decay weighted mean of engine mission scores; ceiling/floor are the per-mission max/min and versatility their spread; roster_depth is a datasheet count. Only this tool's values are authoritative. Note _classification on every row: some fields are engine output, others (first_army_fit) are expert judgement.",
           inputSchema: {
             type: "object",
             properties: {
@@ -811,7 +811,7 @@ print(json.dumps(output))
         {
           name: "compare_factions",
           description:
-            "Side-by-side comparison of 2-5 factions: per-mission scores from findings/army_tiers.json plus the advisor indices. Use for 'X vs Y'. MANDATORY: NEVER compute the comparison yourself — call this tool. The two sources rank differently on purpose: army_tiers is the rules-free generalist index, advisor carries rules-aware adjustment, so a gap between them is signal, not error.",
+            "Side-by-side comparison of 2-5 factions: per-mission scores from findings/army_tiers.json plus the advisor indices. Use for 'X vs Y'. MANDATORY: NEVER compute the comparison yourself — call this tool. advisor.overall_index is copied from army_tiers.overall, so the two overall figures always agree; a difference there is a bug, not signal.",
           inputSchema: {
             type: "object",
             properties: {
@@ -1029,8 +1029,8 @@ look like facts.
 4. No ability-chaining certainty: frame combos as possibilities ("can",
    "may"), never guarantees ("will", "always").
 5. No "best" without context: always give target type, range context,
-   detachment modifier, and points efficiency. Frame as "favored when...",
-   not "the best".
+   mission/disposition context, and points efficiency. Frame as "favored
+   when...", not "the best".
 6. Every recommendation ships four parts: Context (assumptions), Answer
    (the recommendation), Why (stat/keyword basis), Limitation (when it
    fails or what counters it).`;
@@ -1566,7 +1566,7 @@ look like facts.
     out += `\n---\n`;
     out += `**Context:** target=${target}, mission=${mission || "none"}, tier=${tier}, detachment=${det || "none"}\n`;
     out += `**Formula:** DPP = total_damage / points. SURV = effective wound pool at AP0/AP2/AP4. MOB = mobility tier (static/slow/standard/cavalry/fast/very_fast/skyborne).\n`;
-    out += `**Limitation:** Does not model stratagems, command rerolls, or conditional buffs beyond selected detachment modifier.\n`;
+    out += `**Limitation:** Does not model stratagems, command rerolls, or conditional buffs beyond the datasheet abilities supplied.\n`;
 
     return this.#text(out);
   }
@@ -1733,9 +1733,6 @@ look like facts.
       out += `| First-army fit | ${row.first_army_fit}${
         row.first_army_fit_why ? ` — ${row.first_army_fit_why}` : ""
       }\n`;
-      out += `| Meta ceiling | ${
-        row.meta_ceiling ?? "not computed"
-      }${row.meta_ceiling_best_detachment ? ` (${row.meta_ceiling_best_detachment})` : ""} |\n`;
     } else {
       const limit = args?.limit ? Math.floor(args.limit) : 30;
       out = `# Army Index — all rated factions\n\n`;
@@ -1805,18 +1802,18 @@ look like facts.
 
     const rated = fids.map((f) => advisor?.get(f)).filter(Boolean);
     if (rated.length > 0) {
-      out += `\n**advisor.json — rules-aware**\n\n`;
-      out += `| Faction | Index | Ceiling | Floor | Vers | Meta ceiling | First army |\n`;
-      out += `|---------|-------|---------|-------|------|--------------|-------------|\n`;
+      out += `\n**advisor.json — army index**\n\n`;
+      out += `| Faction | Index | Ceiling | Floor | Vers | First army |\n`;
+      out += `|---------|-------|---------|-------|------|-------------|\n`;
       for (const r of rated) {
-        out += `| ${r.name} \`${r.fid}\` | ${r.overall_index} | ${r.ceiling} | ${r.floor} | ${r.versatility} | ${r.meta_ceiling ?? "not computed"} | ${r.first_army_fit} |\n`;
+        out += `| ${r.name} \`${r.fid}\` | ${r.overall_index} | ${r.ceiling} | ${r.floor} | ${r.versatility} | ${r.first_army_fit} |\n`;
       }
     } else {
       out += `\n_Advisor: no rated entry for any of these factions._\n`;
     }
 
     out += `\n---\n`;
-    out += `The two tables rank differently on purpose. army_tiers is rules-free and generalist; advisor applies the rules-aware rating from resources/experts. A faction that climbs between them is being lifted by army rules, not statlines.\n`;
+    out += `The two tables do not rank differently. advisor.overall_index is copied from army_tiers.overall, and no rules-aware adjustment is applied (detachment modifiers were retired 2026-08-27). advisor adds ceiling/floor/versatility (engine, the per-mission spread) and first_army_fit (expert judgement from resources/experts).\n`;
     out += `**Not modeled:** see get_army_index for advisor.json's full not-modeled list.\n`;
     return this.#text(out);
   }
@@ -1859,7 +1856,7 @@ look like facts.
     out += `\n---\n`;
     out += `**Source:** findings/army_tiers.json (engine mission scores).\n`;
     out += `**Formula:** mission score = DPP/SURV/OBJ/MOB composite weighted per mission.\n`;
-    out += `**Not modeled:** detachment buffs, stratagems, command rerolls, rules-aware adjustment. Use get_army_index for the rules-aware view.\n`;
+    out += `**Not modeled:** detachment buffs, stratagems, command rerolls, rules-aware adjustment (detachment modifiers retired 2026-08-27).\n`;
     return this.#text(out);
   }
 

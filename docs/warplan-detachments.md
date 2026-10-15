@@ -1,6 +1,13 @@
 # War Plan — Detachment Modifiers & Army Rules Coverage
 
-Status: IN PROGRESS — deep-work session 2026-08-23 delivered baseline
+> **SUPERSEDED / CANCELLED (2026-08-27).** Detachment modifiers were retired:
+> detachment strength is an expert heuristic, not an engine number, and no
+> detached-scores ceiling is produced. `meta_ceiling` and
+> `meta_ceiling_best_detachment` are null for every faction, and the
+> "remaining" modifier authoring below is cancelled — do not resume it as a
+> scoring feature. Kept as a historical record only.
+
+Status: CANCELLED — deep-work session 2026-08-23 delivered baseline
 repair, chaos-daemons migration, P1 engine core (shipped), P3 capability +
 5 verified factions. Remaining: verified modifier authoring for 25 factions
 (see Handover Notes bottom).

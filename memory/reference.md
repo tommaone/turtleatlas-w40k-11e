@@ -207,12 +207,14 @@ None. Public repo — mechanics and commands only. Credential loading goes throu
   4 datasheet abilities after honest gating (Troupe Master, Brother-Captain,
   Iron-Master visor, Hearthkyn Pan-spectral Scanning); 127 conditional ones
   flagged positional and NOT applied.
-- P3 dual view SHIPPED (capability + verified factions): landing page
-  Generalist ↔ With Detachments toggle; `detachment_view()` computes
-  best-detachment roster index per disposition — gated on VERIFIED sources
-  only (GK/CK/CD/DA/SM pass; auto-generated MFM stubs are excluded).
-  meta_ceiling filled in findings/advisor.json + buy guide for those 5.
-- REMAINING for P3 DoD: author verified detachment modifiers for the other
-  25 factions (research per faction from 40k.app/Goonhammer/Warhammer
-  Community; every modifier needs `_source`). The stub configs list each
-  faction's detachment names + DP costs already.
+- P3 dual view shipped then RETIRED (2026-08-27): detachment modifiers are
+  no longer applied. The landing-page Generalist ↔ With Detachments toggle is
+  gone; `detachment_view()` remains in `scripts/gen_findings_html.py` but
+  always returns None. `meta_ceiling` and `meta_ceiling_best_detachment` are
+  null for every faction — detachment strength is an expert heuristic, not an
+  engine number, and no detached ceiling is fabricated. Use `overall_index` /
+  `ceiling` / `floor` (engine output). `docs/warplan-detachments.md` is marked
+  SUPERSEDED / CANCELLED (2026-08-27): treat it as a historical plan, not a
+  live spec.
+- CANCELLED with the retirement: authoring verified detachment modifiers for
+  the other 25 factions. Do not resume it as a scoring feature.

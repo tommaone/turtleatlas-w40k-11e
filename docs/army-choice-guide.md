@@ -1,6 +1,6 @@
 # Choosing Your Army — strength, versatility, fit
 
-*Generated 2026-09-06 from engine outputs (rank-decay roster index, MFM v1.4) + expert first-army-fit ratings. Full method + caveats in findings/advisor.json.*
+*Generated 2026-10-15 from engine outputs (rank-decay roster index, MFM v1.5) + expert first-army-fit ratings. Full method + caveats in findings/advisor.json.*
 
 > This narrows the field — it tells you where each faction's strength sits today and what the army demands from you as a player. It cannot tell you the future meta.
 
@@ -35,43 +35,43 @@ each carrying a source trail in the faction's expert file.
 
 - **Dark Angels** — deep durable bench (Deathwing terminator core), straightforward mid-range shooting, and six 1DP detachments forgive list-building; the classic forgiving first army.
 - **Necrons** — Reanimation Protocols literally undo mistakes; warrior bricks plus durable monsters forgive positioning errors.
+- **Orks** — riled-up Waaagh! and massed mobs reward volume play; fight-phase pressure needs far less staging precision than elite melee.
 - **T'au Empire** — castle-and-shoot with durable suits; minimal melee exposure if you keep range.
 - **Adeptus Custodes** — W3-4 baseline with a near-universal 4+ invuln and tiny model count; positioning is forgiving.
 - **Death Guard** — T5 infantry, contagion aura, and -1D make mistakes survivable; damage arrives from statlines, not combos.
 
 ## Strongest long-term signal
-- **Aeldari** — strength 69.0, plays all missions (Unrated first-army fit)
-- **Blood Angels** — strength 68.6, plays all missions (Demanding first-army fit)
-- **Chaos Daemons** — strength 68.4, plays all missions (Demanding first-army fit)
+- **Aeldari** — strength 69.5, plays all missions (Unrated first-army fit)
+- **Chaos Daemons** — strength 68.3, plays all missions (Demanding first-army fit)
+- **Blood Angels** — strength 67.8, plays all missions (Demanding first-army fit)
 
 ## Specialist picks (strong in one mission)
 
 - **Space Marines** — shines in Priority Assets (Unrated first-army fit)
 - **Dark Angels** — shines in Priority Assets (Great first-army fit)
-- **Black Templars** — shines in Priority Assets (Unrated first-army fit)
 
 ## Active GW tuning (expect repricing)
 
-- **Orks** — 245 MFM changelog entries
-- **Astra Militarum** — 108 MFM changelog entries
-- **Dark Angels** — 94 MFM changelog entries
-- **Space Wolves** — 91 MFM changelog entries
-- **Space Marines** — 82 MFM changelog entries
-- **Aeldari** — 76 MFM changelog entries
-- **Black Templars** — 74 MFM changelog entries
+- **Orks** — 246 MFM changelog entries
+- **Astra Militarum** — 109 MFM changelog entries
+- **Dark Angels** — 95 MFM changelog entries
+- **Space Wolves** — 92 MFM changelog entries
+- **Space Marines** — 83 MFM changelog entries
+- **Aeldari** — 77 MFM changelog entries
+- **Black Templars** — 75 MFM changelog entries
 
 ## Underrated right now
 
-- **Necrons** — overall 62.7, versatile 86.0
-- **Drukhari** — overall 62.3, versatile 90.3
-- **Thousand Sons** — overall 62.1, versatile 87.3
-- **World Eaters** — overall 62.0, versatile 88.5
-- **Emperor's Children** — overall 61.1, versatile 90.9
-- **T'au Empire** — overall 60.3, versatile 87.1
+- **Necrons** — overall 62.9, versatile 86.3
+- **Drukhari** — overall 62.6, versatile 90.7
+- **World Eaters** — overall 62.3, versatile 88.7
+- **Thousand Sons** — overall 62.1, versatile 87.6
+- **Emperor's Children** — overall 61.5, versatile 91.3
+- **T'au Empire** — overall 60.4, versatile 87.5
 
 ## Honest limitations
 
-- meta_ceiling is engine-computed only for factions with VERIFIED detachment data (grey-knights, chaos-knights, chaos-daemons, dark-angels, space-marines); null = generalist index is the ceiling proxy (auto-generated MFM stubs are not detachment rules)
+- meta_ceiling and meta_ceiling_best_detachment are RETIRED (2026-08-27) and null for every faction: detachment strength is an expert heuristic, not an engine number, so no detached-scores ceiling is produced. Use overall_index / ceiling / floor, which are engine output
 - statline quality persists across balance patches; rules packages do not
 - points churn counts changelog mentions since edition start - a proxy for GW attention, not a prediction; Astartes flavours share one codex so their churn is partially double-counted
 - win-rate correlation is partial: community results include rules packaging this index deliberately excludes

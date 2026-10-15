@@ -432,8 +432,10 @@ def main():
     for fid in ("grey-knights", "orks"):
         if fid not in cmp_out:
             failures.append(f"compare_factions: {fid} absent")
-    if "rules-free" not in cmp_out or "rules-aware" not in cmp_out:
-        failures.append("compare_factions: missing the two-source distinction")
+    if "copied from army_tiers.overall" not in cmp_out:
+        failures.append("compare_factions: must state advisor.overall_index is copied from army_tiers.overall")
+    if "rank differently on purpose" in cmp_out:
+        failures.append("compare_factions: still claims the two sources rank differently (retired 2026-08-27)")
     if not any(f.startswith("compare_factions") for f in failures):
         print("  ok   compare_factions serves both source tables")
 

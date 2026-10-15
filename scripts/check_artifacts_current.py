@@ -18,7 +18,7 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'scripts'))
-WATCHED = ('data/merged', 'findings')
+WATCHED = ('data/merged', 'findings', 'docs/army-choice-guide.md')
 SUBMODULES = ('bsdata', 'mfm')
 
 
@@ -73,6 +73,10 @@ def main():
 
     run(sys.executable, 'adapter/merge.py', '--all')
     run(sys.executable, 'scripts/gen_findings_html.py', '--all')
+    # advisor.json and army-choice-guide.{md,html} live in the watched trees
+    # but no other generator writes them, so without this they drift silently:
+    # the diff stays empty and the check reports OK on stale output.
+    run(sys.executable, 'scripts/army_advisor.py', '--guide')
 
     diff = subprocess.run(
         ['git', 'diff', '--name-only', 'HEAD', '--', *WATCHED],
@@ -80,7 +84,7 @@ def main():
     stale = [line for line in diff.splitlines() if line.strip()]
 
     if not stale:
-        print(f'\nOK: {len(WATCHED)} artifact trees match HEAD.')
+        print(f'\nOK: all {len(WATCHED)} watched artifacts match HEAD.')
         return 0
 
     content, ts_only = classify(stale)

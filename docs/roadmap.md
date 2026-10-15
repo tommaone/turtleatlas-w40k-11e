@@ -24,8 +24,8 @@ and recommend detachments/units based on mission and meta.
 | Complex-layer squads | Aeldari, GK, SM, DA, SW, BA, BT, DW, Chaos Daemons, CSM, EC, Orks (11 with alloc/slots) + 9-faction caps sweep (2026-08-15) |
 | BSData audit | **NOT clean** (re-measured 2026-09-25, MFM oracle): `audit_curated_vs_bsdata.py` → **112 findings / 62 guilty units**; `validate_configs_vs_bsdata.py --all` → **246 unique problems / 442 unit-level occurrences / 50 HIGH unique**. The previously quoted "433 issues / 68 HIGH" compared occurrences against unique counts and hid false negatives. Measured like-for-like: 5 unique findings were the same weapon as the merged entry, differing only in case or punctuation (`Combi weapon` vs `Combi-weapon`), and the old substring matcher let any catalog name vouch for a longer config name — the generic entry `weapons` cleared `Fleshmetal weapons`, `Bane` cleared `Baneblade`. Removing that branch **surfaced 10 real naming-variance findings and resolved 5**, so HIGH rose 45→50 unique. The matcher is now stricter, not worse; the 10 new findings need triage. Points now graded against **MFM** (was BSData — the wrong instrument). Breakdown: 41 `MISSING_CHOICES`, 28 `SLOT_COUNT`, 25 `COMBOS`, 17 `MISSING_FIXED`, 1 `NO_MFM_POINTS`, **0 `POINTS_DRIFT`**. The remainder is wargear-structure curation backlog vs BSData, byte-identical at both pins (b074700 / 6fca2d1) — not bump fallout |
 | bsdata pin | `6fca2d1` (2026-09-25, Fixes #2039) — bumped from `b074700` (2026-09-17) |
-| mfm pin | `61a687e` (MFM v1.4, 2026-09-03) — current, no change |
-| Last change | **MCP surface catches up to data (2026-10-04, branch `mcp-surface-catches-up-to-data`)**: `compute_unit_dpp` MCP tool (squad question now engine-answerable: `weapons[]` + one shared points cost); overkill pool now caps **once on the summed total** instead of per weapon (was double-capping — reported 20 against a pool of 10; `uncapped_total_damage` + `overkill_capped` exposed so the arithmetic stays auditable); `wounds_per_model`/`model_count` validated as positive whole numbers at the MCP boundary (`#validatePool` — closes the Shredder BLOCK where 0/-1/NaN/Inf survived `??`); `attacks`/`bs`/`damage` accept dice strings (`"2D6"`, `"3+"`, `"N/A"`) routed through the engine's own `_parse_attacks`, so MCP and loader cannot disagree; `voldus.md` worked example corrected to the real Incinerator profile (S6, AP-1, D1, Torrent, Ignores Cover — old table claimed D2); `get_findings` now serves the `data.json` sidecar (HTML scraper gone) and all 30 faction sidecars are committed; `engine/AGENTS.md` step 5 no longer advises the per-weapon-sum that produced the bug. 4 new overkill tests, red-tested by removing the outer cap. Full suite 4722/68/0; smoke PASS end-to-end |
+| mfm pin | `8e0e635` (MFM v1.5, 2026-09-30) — bumped from `61a687e` (MFM v1.4, 2026-09-03) |
+| Last change | **MCP surface catches up to data (2026-10-04, branch `mcp-surface-catches-up-to-data`)**: `compute_unit_dpp` MCP tool (squad question now engine-answerable: `weapons[]` + one shared points cost); overkill pool now caps **once on the summed total** instead of per weapon (was double-capping — reported 20 against a pool of 10; `uncapped_total_damage` + `overkill_capped` exposed so the arithmetic stays auditable); `wounds_per_model`/`model_count` validated as positive whole numbers at the MCP boundary (`#validatePool` — closes the Shredder BLOCK where 0/-1/NaN/Inf survived `??`); `attacks`/`bs`/`damage` accept dice strings (`"2D6"`, `"3+"`, `"N/A"`) routed through the engine's own `_parse_attacks`, so MCP and loader cannot disagree; `voldus.md` worked example corrected to the real Incinerator profile (S6, AP-1, D1, Torrent, Ignores Cover — old table claimed D2); `get_findings` now serves the `data.json` sidecar (HTML scraper gone) and all 30 faction sidecars are committed; `engine/AGENTS.md` step 5 no longer advises the per-weapon-sum that produced the bug. 4 new overkill tests, red-tested by removing the outer cap. Full suite 4598/68/0; smoke PASS end-to-end. Follow-up on the same branch (2026-10-15): `points_churn` restored — the MFM submodule moved entries to `changelog/v<X.Y>.md`, the parser still read the now-pointer `DATA-CHANGELOG.md` and silently zeroed churn for all 28 factions (verified against the pre-restructure numbers); stale "rules-aware adjustment" claims removed from the MCP surface (`advisor.overall_index` is a copy of `army_tiers.overall` — they cannot disagree); the retired `meta_ceiling` caveat corrected; guide header derives the MFM version instead of hardcoding v1.4; `army_advisor.py --guide` added to `check_artifacts_current.py`, which previously watched `findings/` but never regenerated advisor.json, so it drifted silently |
 
 ### Direction (2026-09)
 
@@ -288,16 +288,17 @@ Engine-side open items surfaced by this session:
 
 ## In Progress 🔄
 
-- **WAR PLAN: docs/warplan-detachments.md** — detachment modifiers for all
-  30 factions + army-wide rerolls, executed via Splinter fan-out with
-  Shredder gates. Phases: P0 inventory/baseline → P1 reroll engine core
-  (serial, heavy) → P2 squad alloc ×3 waves → P3 modifier configs +
-  dual-view tier list → P4 invuln footnote cleanup.
 - **MCP surface catches up to data (2026-10-04, branch `mcp-surface-catches-up-to-data`, pending merge).** The MCP server's answers now come from the engine and the committed artifacts, not from hand-shaped defaults: unit-level DPP exposed as a tool, wound-pool overkill capped on the sum, dice expressions parsed by the engine's own loader, and findings served from the `data.json` sidecars instead of scraping HTML. Local gate before push: `tests/test_dpp.py` + `scripts/mcp_smoke_test.py` (seconds); the full suite runs in CI.
-- **Detachment modifiers UNBLOCKED for weapon_options** — all 30 factions now
-  have slots schema on characters + weapon_options. Remaining blocker:
-  squad composition (alloc pools) on ~14 factions. Once squads are on slots,
-  detachment modifiers can be added for any faction.
+
+## Cancelled ⛔
+
+- **WAR PLAN: docs/warplan-detachments.md — detachment modifiers (cancelled 2026-08-27).**
+  Detachment modifiers are retired: detachment strength is an expert heuristic,
+  not an engine number, so no detached-scores ceiling is produced.
+  `meta_ceiling` / `meta_ceiling_best_detachment` are null for every faction and
+  `detachment_view()` returns None. The "squad composition / weapon_options"
+  blocker listed here previously is moot — detachment modifiers will not be
+  added for any faction. See `docs/warplan-detachments.md` (historical).
 
 ---
 
@@ -482,9 +483,9 @@ Engine-side open items surfaced by this session:
   Scripted inventory (`grep alloc/group_max` over squads.json) shows
   **25/30 have the complex layer**; only chaos-daemons + 4 knight/titan
   single-model armies remain. Phase 2 of the war plan is nearly moot;
-  detachment modifier work (Phase 3) unblocks immediately after
-  chaos-daemons migration. Lesson: roadmap prose rots — inventory must
-  be scripted (now part of scripts/p0_snapshot.py workflow).
+  detachment modifier work (Phase 3) was cancelled 2026-08-27. Lesson:
+  roadmap prose rots — inventory must be scripted (now part of
+  scripts/p0_snapshot.py workflow).
 
 ---
 
