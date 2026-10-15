@@ -245,15 +245,25 @@ def as_bs(v):
 weapons = []
 for w in a["weapons"]:
     raw_damage = w["damage"] if isinstance(w["damage"], str) else None
+    # Expand count into attacks HERE rather than passing count="N". The engine
+    # applies count only as total_damage *= count, so expected_hits and
+    # regular_wounds are reported for a SINGLE weapon while damage is scaled —
+    # a per-weapon table would show "3x Paladin: 3.33 hits" next to tripled
+    # damage. Multiplying attacks scales hits, wounds and damage together.
+    count = w.get("count", 1)
+    if not isinstance(count, (int, float)) or isinstance(count, bool) or count < 1:
+        raise ValueError(f"count must be a number >= 1, got {count!r}")
+    label = w.get("weapon_name", "Custom")
+    if count != 1:
+        label = f"{count}x {label}"
     weapons.append(WeaponProfile(
-        name=w.get("weapon_name", "Custom"),
-        attacks=as_number(w["attacks"]),
+        name=label,
+        attacks=as_number(w["attacks"]) * count,
         bs=as_bs(w["bs"]),
         strength=w["strength"],
         ap=w["ap"],
         damage=as_number(w["damage"]),
         damage_raw=raw_damage,
-        count=w.get("count", 1),
         abilities=[x.strip() for x in (w.get("abilities") or "").split(",") if x.strip()],
     ))
 
@@ -498,7 +508,7 @@ print(json.dumps(output))
                     },
                     count: {
                       type: "number",
-                      description: "How many models carry this weapon (default 1).",
+                      description: "How many models carry this weapon (default 1). Expanded into the attack count, so hits, wounds and damage all scale together.",
                     },
                     abilities: {
                       type: "string",
@@ -1216,6 +1226,20 @@ look like facts.
       for (const field of weaponRequired) {
         if (w[field] === undefined || w[field] === null) {
           return this.#text(`weapons[${i}] is missing required field: ${field}`);
+        }
+      }
+      if (w.count !== undefined) {
+        if (
+          typeof w.count !== "number" ||
+          !Number.isFinite(w.count) ||
+          !Number.isInteger(w.count) ||
+          w.count < 1
+        ) {
+          return this.#text(
+            `weapons[${i}].count must be a whole number >= 1 — it is how many ` +
+              `models carry this weapon (got ${JSON.stringify(w.count)}). ` +
+              `Omit it for a single copy.`,
+          );
         }
       }
     }

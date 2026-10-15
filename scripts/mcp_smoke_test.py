@@ -41,26 +41,79 @@ FIELD_LABELS = {
     "points_churn": "Points churn",
 }
 
-# Points the server must serve for imperial-agents. These are MFM base rates
-# (mfm/data/imperial-agents.yaml), the entry WITHOUT groupTitle. Before the
-# fix the server returned the "Every Model Has The Imperium Keyword" tier:
-# 65/95/110/60/105/110/100/90/175/105/100/85/125/70 respectively.
-EXPECTED_IA_POINTS = {
-    "Inquisitor": 55,
-    "Exaction Squad": 90,
-    "Grey Knights Terminator Squad": 175,
-    "Navigator": 60,
-    "Vindicare Assassin": 110,
-    "Inquisitor Coteaz": 75,
-    "Sisters Of Battle Squad": 100,
-    "Subductor Squad": 85,
-    "Eversor Assassin": 100,
-    "Rogue Trader Entourage": 75,
-    "Inquisitor Draxus": 75,
-    "Inquisitorial Agents": 50,
-    "Sisters Of Battle Immolator": 90,
-    "Voidsmen-At-Arms": 50,
-}
+# Points the server must serve for imperial-agents.
+#
+# These used to be hardcoded MFM literals and broke on every points rebalance
+# (MFM v1.5 did exactly that). Derive them from data/merged instead, using an
+# INDEPENDENT copy of the rule the server must apply: pricing[0].costs[0] —
+# the smallest rung of the first ladder, never a later tier. The server's own
+# bug was serving the "Every Model Has The Imperium Keyword" tier instead.
+# Reimplementing the rule here (rather than calling the server's helper) keeps
+# that regression catchable while the list survives a rebalance.
+def _expected_ia_points() -> dict:
+    path = os.path.join(ROOT, "data", "merged", "imperial-agents.json")
+    with open(path, encoding="utf-8") as fh:
+        merged = json.load(fh)
+    out = {}
+    for unit in merged.get("units", []):
+        name = unit.get("name")
+        ladder = [
+            c for c in ((unit.get("pricing") or [{}])[0].get("costs") or [])
+            if c and c.get("points") is not None
+        ]
+        if name and ladder:
+            out[name] = ladder[0]["points"]
+    if not out:
+        raise AssertionError(f"no prices parsed from {path} — merged schema changed")
+    return out
+
+
+EXPECTED_IA_POINTS = _expected_ia_points()
+
+# A fixed subset: enough to prove the tier-selection rule across a spread of
+# units, stable across rebalances because membership is by name not value.
+def _merged_ladder(faction: str, unit_name: str) -> list:
+    """Return pricing[0].costs for a unit in data/merged — independently of
+    the server's own loader, so a tier-selection regression still fails."""
+    path = os.path.join(ROOT, "data", "merged", f"{faction}.json")
+    with open(path, encoding="utf-8") as fh:
+        merged = json.load(fh)
+    for unit in merged.get("units", []):
+        if unit.get("name") == unit_name:
+            return [
+                c for c in ((unit.get("pricing") or [{}])[0].get("costs") or [])
+                if c and c.get("points") is not None
+            ]
+    raise AssertionError(f"{unit_name} not found in {path}")
+
+
+def _sidecar_row(faction: str, unit_name: str) -> dict:
+    """First competitive/Take and Hold row for a unit in the findings sidecar."""
+    path = os.path.join(FINDINGS, faction, "data.json")
+    with open(path, encoding="utf-8") as fh:
+        data = json.load(fh)
+    for row in data.get("meta", {}).get("competitive", {}).get("Take and Hold") or []:
+        if row.get("name") == unit_name:
+            return row
+    raise AssertionError(f"{unit_name} not in competitive/Take and Hold of {path}")
+
+
+CHECKED_IA_UNITS = [
+    "Inquisitor",
+    "Exaction Squad",
+    "Grey Knights Terminator Squad",
+    "Navigator",
+    "Vindicare Assassin",
+    "Inquisitor Coteaz",
+    "Sisters Of Battle Squad",
+    "Subductor Squad",
+    "Eversor Assassin",
+    "Rogue Trader Entourage",
+    "Inquisitor Draxus",
+    "Inquisitorial Agents",
+    "Sisters Of Battle Immolator",
+    "Voidsmen-At-Arms",
+]
 
 
 class MCP:
@@ -120,7 +173,8 @@ def main():
         failures.append("get_llm_contract missing the engine_output classification")
 
     # Points, via two independent tools.
-    for name, want in EXPECTED_IA_POINTS.items():
+    for name in CHECKED_IA_UNITS:
+        want = EXPECTED_IA_POINTS[name]
         out = m.call("get_unit", {"name": name, "faction": "imperial-agents"})
         head = out.splitlines()[0] if out else ""
         # Headline is "(N pts @ M models)" — match the number, not the shape.
@@ -131,7 +185,8 @@ def main():
             failures.append(f"get_unit {name}: served {got!r}, want {want}")
 
     listing = m.call("list_units", {"faction": "imperial-agents"})
-    for name, want in EXPECTED_IA_POINTS.items():
+    for name in CHECKED_IA_UNITS:
+        want = EXPECTED_IA_POINTS[name]
         row = [ln for ln in listing.splitlines() if ln.startswith(f"| {name} |")]
         if not row:
             failures.append(f"list_units: {name} missing")
@@ -140,7 +195,7 @@ def main():
         if got != str(want):
             failures.append(f"list_units {name}: served {got!r}, want {want}")
     if not any(f.startswith("list_units") for f in failures):
-        print(f"  ok   all {len(EXPECTED_IA_POINTS)} imperial-agents prices served correctly "
+        print(f"  ok   all {len(CHECKED_IA_UNITS)} imperial-agents prices served correctly "
               f"(get_unit + list_units)")
 
     # The engine path, not just the stored number. rank_units is raw DPP vs a
@@ -160,11 +215,25 @@ def main():
     if not any(f.startswith("rank_units") for f in failures):
         print("  ok   rank_units engine path serves corrected points")
 
+    # Compare against the sidecar on disk rather than literals: MFM v1.5
+    # rebalanced scores (81.5 -> 82.6) and every points rebalance would re-break
+    # a hardcoded expectation. This still catches the historical failure —
+    # the server serving a stale report instead of the current sidecar.
+    gk_row = _sidecar_row("imperial-agents", "Grey Knights Terminator Squad")
     findings = m.call("get_findings", {"faction": "imperial-agents"})
-    if "175" in findings and "81.5" in findings:
-        print("  ok   get_findings reflects the recalculated imperial-agents table")
+    missing = [
+        f"{k}={gk_row[k]}" for k in ("pts", "score")
+        if str(gk_row[k]) not in findings
+    ]
+    if missing:
+        failures.append(
+            "get_findings stale vs sidecar: missing " + ", ".join(missing)
+        )
     else:
-        failures.append("get_findings does not show the corrected GK Terminator row (175/81.5)")
+        print(
+            f"  ok   get_findings serves the current sidecar row "
+            f"(pts={gk_row['pts']}, score={gk_row['score']})"
+        )
 
     if "[object Object]" in m.call("get_unit", {"name": "Inquisitor", "faction": "imperial-agents"}):
         failures.append("get_unit still renders abilities as [object Object]")
@@ -189,8 +258,15 @@ def main():
         failures.append("get_unit: save still renders as SV=? (merged stores Sv)")
     if "INV=4+" not in pal:
         failures.append("get_unit: invuln (InSv) is not rendered")
-    if "215 @ 5" not in pal:
-        failures.append("get_unit: points ladder missing the 5-model cost (215 @ 5)")
+    ladder = _merged_ladder("grey-knights", "Paladin Squad")
+    five = next((c for c in ladder if c.get("models") == 5), None)
+    if five is None:
+        failures.append("data/merged grey-knights Paladin Squad has no 5-model rung")
+    elif f"{five['points']} @ 5" not in pal:
+        failures.append(
+            f"get_unit: points ladder missing the 5-model cost "
+            f"({five['points']} @ 5)"
+        )
     if not any(f.startswith("get_unit") for f in failures):
         print("  ok   get_unit fails closed, serves Sv/InSv and the points ladder")
 
@@ -270,6 +346,36 @@ def main():
         failures.append("compute_unit_dpp: missing uncapped disclosure")
     if not any("compute_unit_dpp" in f for f in failures):
         print("  ok   compute_unit_dpp caps the summed total at the wound pool")
+
+    # count must expand into attacks so hits/wounds/damage scale TOGETHER —
+    # the engine's own count only scales total_damage, which would print
+    # "3x Paladin: 3.33 hits" beside tripled damage.
+    pal = m.call(
+        "compute_unit_dpp",
+        dict(unit_points=230, target_toughness=4, target_save=3,
+             wounds_per_model=2, model_count=5,
+             weapons=[{"weapon_name": "Paladin", "attacks": 4, "bs": "2+",
+                       "strength": 6, "ap": -2, "damage": 2,
+                       "abilities": "Psychic", "count": 3}]),
+    )
+    pal_hits = re.search(r"\| 3x Paladin \| (\d+\.?\d*) \|", pal)
+    if not pal_hits or float(pal_hits.group(1)) != 10.0:
+        failures.append(
+            f"compute_unit_dpp: count=3 must scale hits to 10, got "
+            f"{pal_hits.group(1) if pal_hits else pal[:80]}"
+        )
+    for bad_count in (0, -1, 1.5, "2"):
+        o = m.call(
+            "compute_unit_dpp",
+            dict(unit_points=100, target_toughness=4, target_save=3,
+                 weapons=[{"weapon_name": "P", "attacks": 4, "bs": "2+",
+                           "strength": 6, "ap": -2, "damage": 2,
+                           "count": bad_count}]),
+        )
+        if "count must be a whole number >= 1" not in o:
+            failures.append(f"compute_unit_dpp: count={bad_count!r} not rejected")
+    if not any("count" in f for f in failures):
+        print("  ok   compute_unit_dpp expands count and rejects invalid counts")
 
     # ---- get_findings reads the JSON sidecar, not the report ---------------
     # Decoupling proof, two halves. The structural half asserts the scraper is
