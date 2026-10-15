@@ -54,9 +54,8 @@ def test_audit_points_oracle_is_mfm_not_bsdata():
 def test_audit_reports_missing_mfm_entry_with_nearest_match():
     """A curated name MFM does not carry is unverifiable, not silently clean.
 
-    black-templars config says "Emperor's Champion (Anointed)"; MFM says
-    "Emperor’S Champion" (capital S is a real scraping artifact upstream).
-    The finding must name the candidate so it can be judged.
+    A stale "(Anointed)" suffix must still report the nearest MFM candidate so
+    a human can judge whether it is the same datasheet.
     """
     audit = _load_audit()
     mfm = audit.load_mfm_points("black-templars")
@@ -65,7 +64,8 @@ def test_audit_reports_missing_mfm_entry_with_nearest_match():
 
     found = audit.compare("emperors champion (anointed)", curated, bsdata, mfm)
     assert [x["type"] for x in found] == ["NO_MFM_POINTS"], found
-    assert "nearest MFM" in found[0]["detail"] and "90" in found[0]["detail"], found[0]
+    # The candidate must be named, not just the fact that a match was missing.
+    assert "nearest MFM: 'emperors champion'" in found[0]["detail"], found[0]
 
 
 def test_audit_skips_points_when_faction_has_no_mfm_file():

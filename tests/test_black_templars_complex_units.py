@@ -104,14 +104,14 @@ class TestBlackTemplarsCharacters:
     """Character resolution pins — Grimaldus after the squads→characters move."""
 
     def test_grimaldus_resolves_from_characters(self, bt_engine, MEQ):
-        """Chaplain Grimaldus (100 pts) now lives in characters.json with the
+        """Chaplain Grimaldus (120 pts) now lives in characters.json with the
         weapon_options.builds schema: one build, bare 'Plasma Pistol' ranged +
         Artificer Crozius melee. The bare plasma resolves to the standard
         profile in the BT catalogue (standard-first profile order)."""
         res = bt_engine.resolve_loadout("Chaplain Grimaldus", MEQ)
         assert res is not None
         pts, ranged, melee, innate, info = res
-        assert pts == 100
+        assert pts == 120  # MFM v1.5 rebalanced (was 100)
         assert Counter(w.name for w in ranged) == {"Plasma pistol - standard": 1}
         assert Counter(w.name for w in melee) == {"Artificer Crozius": 1}
 
@@ -121,7 +121,7 @@ class TestBlackTemplarsCharacters:
         res = bt_engine.resolve_loadout("High Marshal Helbrecht", MEQ)
         assert res is not None
         pts, ranged, melee, innate, info = res
-        assert pts == 110  # MFM v1.2 truth (was 120 pre-refresh)
+        assert pts == 125  # MFM v1.5 rebalanced (was 110)
         assert Counter(w.name for w in ranged) == {"Ferocity": 1}
         assert Counter(w.name for w in melee) == {
             "Sword of the High Marshals - Sweep": 1,
@@ -134,6 +134,6 @@ class TestBlackTemplarsCharacters:
         res = bt_engine.resolve_loadout("Castellan", MEQ)
         assert res is not None
         pts, ranged, melee, innate, info = res
-        assert pts == 70
+        assert pts == 75  # MFM v1.5 rebalanced (was 70)
         assert Counter(w.name for w in ranged) == {"Combi-weapon": 1}
         assert Counter(w.name for w in melee) == {"Master-crafted Power Weapon": 1}

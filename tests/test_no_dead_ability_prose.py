@@ -45,25 +45,29 @@ MERGED = REPO_ROOT / "data" / "merged"
 # The fields adapter/merge.py derives, in the order it derives them.
 DERIVED_FIELDS = ("reroll", "army_wide_reroll", "damage_boost", "transport_capacity", "fnp")
 
-# Recorded 2026-09-28 from a bsdata 6fca2d1 / mfm 61a687e corpus, immediately
-# before the descriptions were replaced by these fields. This pins the *count*
-# per field, which catches an ability that should have gained a field and
-# didn't. It does not catch a value drifting, and it does not catch a field
+# Recorded 2026-10-09 from a bsdata cc58ee3 / mfm 8e0e635 corpus (MFM v1.5),
+# immediately before the descriptions were replaced by these fields. This pins
+# the *count* per field, which catches an ability that should have gained a field
+# and didn't. It does not catch a value drifting, and it does not catch a field
 # moving from one ability to another — the count is an aggregate. Value drift is
 # covered by the reproducibility test below, on the sampled factions.
+#
+# The v1.5 delta is corpus shrink, not detector regression: army_wide_reroll and
+# transport_capacity each fell by 12 with the units reclassified as Legends or
+# removed; fnp rose by 1.
 FIELD_BASELINE = {
     "reroll": 32,
-    "army_wide_reroll": 128,
+    "army_wide_reroll": 116,
     "damage_boost": 1,
-    "transport_capacity": 134,
-    "fnp": 47,
+    "transport_capacity": 122,
+    "fnp": 48,
 }
 
 # Transport abilities, and how many resolve a headline number. Two legitimately
 # carry none (the Manta's "of all of the following", the Night Scythe's unit
 # count), so this is an exact pair rather than a majority threshold.
-TRANSPORT_TOTAL = 136
-TRANSPORT_WITH_CAPACITY = 134
+TRANSPORT_TOTAL = 124
+TRANSPORT_WITH_CAPACITY = 122
 
 # Factions regenerated end-to-end and compared to the committed file, chosen to
 # cover every derived field: grey-knights has transports + rerolls + fnp,

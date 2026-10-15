@@ -1,8 +1,8 @@
 {
   "faction": "T’au Empire",
   "slug": "tau-empire",
-  "version": "1.4",
-  "firstSeen": "2026-09-02",
+  "version": "1.5",
+  "firstSeen": "2026-09-30",
   "detachments": [
     {
       "name": "Advanced Acquisition Cadre",
@@ -116,6 +116,7 @@
       "name": "Mont’Ka",
       "dp": 3,
       "objectives": [
+        "TAKE AND HOLD",
         "PRIORITY ASSETS"
       ],
       "enhancements": [
@@ -141,7 +142,8 @@
       "name": "Retaliation Cadre",
       "dp": 3,
       "objectives": [
-        "PURGE THE FOE"
+        "PURGE THE FOE",
+        "RECONNAISSANCE"
       ],
       "unique": "Battlesuit",
       "enhancements": [
@@ -361,7 +363,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Breacher Team",
-        "points": 90,
+        "points": 80,
         "stats": {
           "M": "6\"",
           "T": "3",
@@ -642,7 +644,7 @@
           "costs": [
             {
               "models": 10,
-              "points": 90
+              "points": 80
             }
           ]
         }
@@ -1088,7 +1090,7 @@
       "attachTo": null,
       "wargear_options": [
         {
-          "item": "High-yield missile pods",
+          "item": "High-yield Missile Pods",
           "points": 5
         }
       ],
@@ -6119,7 +6121,7 @@
       "attachTo": null,
       "wargear_options": [
         {
-          "item": "Ion rifle",
+          "item": "Ion Rifle",
           "points": 5
         }
       ],
@@ -6733,7 +6735,7 @@
       "attachTo": null,
       "wargear_options": [
         {
-          "item": "Ion accelerator",
+          "item": "Ion Accelerator",
           "points": 25
         }
       ],
@@ -8290,7 +8292,7 @@
       "deep_strike": true,
       "profile": {
         "name": "The Twin Lance",
-        "points": 230,
+        "points": 240,
         "stats": {
           "M": "10\"",
           "T": "6",
@@ -8518,7 +8520,7 @@
           "costs": [
             {
               "models": 2,
-              "points": 230
+              "points": 240
             }
           ]
         }
@@ -9325,7 +9327,7 @@
   ],
   "_meta": {
     "bsdata_faction": "Xenos - T'au Empire",
-    "bsdata_revision": 3,
+    "bsdata_revision": 5,
     "bsdata_units": 49,
     "mfm_units": 43,
     "merged_units": 43

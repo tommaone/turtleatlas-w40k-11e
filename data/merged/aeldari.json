@@ -1,8 +1,8 @@
 {
   "faction": "Aeldari",
   "slug": "aeldari",
-  "version": "1.4",
-  "firstSeen": "2026-09-02",
+  "version": "1.5",
+  "firstSeen": "2026-09-30",
   "detachments": [
     {
       "name": "Armoured Warhost",
@@ -25,7 +25,8 @@
       "name": "Aspect Host",
       "dp": 3,
       "objectives": [
-        "PRIORITY ASSETS"
+        "PRIORITY ASSETS",
+        "RECONNAISSANCE"
       ],
       "enhancements": [
         {
@@ -303,7 +304,7 @@
     },
     {
       "name": "Warhost",
-      "dp": 3,
+      "dp": 2,
       "objectives": [
         "RECONNAISSANCE"
       ],
@@ -460,7 +461,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Autarch",
-        "points": 75,
+        "points": 70,
         "stats": {
           "M": "7\"",
           "T": "3",
@@ -669,7 +670,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 75
+              "points": 70
             }
           ]
         }
@@ -3162,8 +3163,8 @@
       },
       "pricing": [
         {
-          "range": "[1,1]",
-          "label": "Your 1st Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 1,
@@ -3172,12 +3173,12 @@
           ]
         },
         {
-          "range": "[2,)",
-          "label": "Your 2nd + Unit Costs",
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
           "costs": [
             {
               "models": 1,
-              "points": 125
+              "points": 130
             }
           ]
         }
@@ -3507,7 +3508,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Death Jester",
-        "points": 70,
+        "points": 65,
         "stats": {
           "M": "8\"",
           "T": "3",
@@ -3587,7 +3588,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 70
+              "points": 65
             }
           ]
         }
@@ -3985,7 +3986,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Dragon Knights",
-        "points": 90,
+        "points": 85,
         "stats": {
           "M": "10\"",
           "T": "5",
@@ -4136,16 +4137,30 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 3,
-              "points": 90
+              "points": 85
             },
             {
               "models": 6,
               "points": 180
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 3,
+              "points": 95
+            },
+            {
+              "models": 6,
+              "points": 190
             }
           ]
         }
@@ -4508,7 +4523,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Farseer",
-        "points": 65,
+        "points": 60,
         "stats": {
           "M": "7\"",
           "T": "3",
@@ -4638,7 +4653,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 65
+              "points": 60
             }
           ]
         }
@@ -4822,7 +4837,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Fire Dragons",
-        "points": 120,
+        "points": 110,
         "stats": {
           "M": "7\"",
           "T": "3",
@@ -5140,7 +5155,7 @@
           "costs": [
             {
               "models": 5,
-              "points": 120
+              "points": 110
             },
             {
               "models": 10,
@@ -5154,7 +5169,7 @@
           "costs": [
             {
               "models": 5,
-              "points": 130
+              "points": 120
             },
             {
               "models": 10,
@@ -6212,7 +6227,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Kharseth",
-        "points": 85,
+        "points": 80,
         "stats": {
           "M": "7\"",
           "T": "3",
@@ -6295,7 +6310,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 85
+              "points": 80
             }
           ]
         }
@@ -6312,7 +6327,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Leystalker",
-        "points": 80,
+        "points": 75,
         "stats": {
           "M": "10\"",
           "T": "5",
@@ -6407,7 +6422,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 80
+              "points": 75
             }
           ]
         }
@@ -6638,7 +6653,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Night Spinner",
-        "points": 170,
+        "points": 165,
         "stats": {
           "M": "14\"",
           "T": "9",
@@ -6745,22 +6760,22 @@
       },
       "pricing": [
         {
-          "range": "[1,1]",
-          "label": "Your 1st Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 1,
-              "points": 170
+              "points": 165
             }
           ]
         },
         {
-          "range": "[2,)",
-          "label": "Your 2nd + Unit Costs",
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
           "costs": [
             {
               "models": 1,
-              "points": 190
+              "points": 195
             }
           ]
         }
@@ -8103,7 +8118,7 @@
             },
             {
               "models": 6,
-              "points": 175
+              "points": 165
             }
           ]
         }
@@ -8120,7 +8135,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Skyweavers",
-        "points": 95,
+        "points": 90,
         "stats": {
           "M": "14\"",
           "T": "4",
@@ -8302,11 +8317,11 @@
           "costs": [
             {
               "models": 2,
-              "points": 95
+              "points": 90
             },
             {
               "models": 4,
-              "points": 190
+              "points": 180
             }
           ]
         }
@@ -8323,7 +8338,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Solitaire",
-        "points": 115,
+        "points": 105,
         "stats": {
           "M": "12\"",
           "T": "3",
@@ -8387,7 +8402,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 115
+              "points": 105
             }
           ]
         }
@@ -8771,7 +8786,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Stonesinger",
-        "points": 60,
+        "points": 55,
         "stats": {
           "M": "10\"",
           "T": "5",
@@ -8905,7 +8920,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 60
+              "points": 55
             }
           ]
         }
@@ -10008,7 +10023,7 @@
       "deep_strike": true,
       "profile": {
         "name": "The Yncarne",
-        "points": 245,
+        "points": 230,
         "stats": {
           "M": "10\"",
           "T": "10",
@@ -10105,7 +10120,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 245
+              "points": 230
             }
           ]
         }
@@ -11835,7 +11850,7 @@
             },
             {
               "models": 4,
-              "points": 120
+              "points": 110
             }
           ]
         }
@@ -15668,7 +15683,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Yvraine",
-        "points": 100,
+        "points": 90,
         "stats": {
           "M": "8\"",
           "T": "3",
@@ -15754,7 +15769,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 100
+              "points": 90
             }
           ]
         }

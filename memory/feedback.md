@@ -1790,3 +1790,49 @@ Two rules follow:
 Corollary: **verify a guard can fail.** Prove it by reintroducing the real
 defect (here: the pre-fix page from git history) and confirming the check names
 it. A check only ever observed passing is not evidence of anything.
+
+## An MFM major-version bump reclassifies units — configs must be PRUNED, not just re-priced (2026-10-09)
+MFM v1.5 (2026-09-30) did more than move numbers: it moved a large block of
+Space Marine vehicles/units to `legends: true` (Predator Annihilator/Destructor,
+Dreadnought, Venerable Dreadnought, Stormraven, Stormhawk/Stormtalon, Whirlwind,
+Vindicator, Centurion Assault/Devastator, Razorback) and dropped others outright
+(Tactical Squad, Devastator Squad; BA Death Company Intercessors and Death
+Company Marines With Bolt Rifles). `adapter/merge.py` drops legends
+(`with_legends=False`), so those units simply vanish from `data/merged/`.
+
+**Why the sanctioned writers are not enough:** `sync_config_pts.py` and
+`sync_config_info.py` only re-price/refresh units that still merge — they cannot
+delete a config unit whose MFM entry became legends/removed. The config is left
+listing roster entries that no longer resolve, and
+`tests/test_strict_engine_invariants.py::test_every_known_unit_resolves` starts
+failing ("N known units resolve"). `generate_configs_from_bsdata.py` refuses on a
+populated config dir (exit 3, by design), so the prune is a deliberate reviewed
+edit, not a generator run.
+
+**How:**
+1. Classify every SM-chapter config key against the new MFM: present / renamed /
+   legends / removed. Prune legends+removed; follow renames
+   (`Invader Atv`→`Invader Atvs`, `Eradicator Squad`→`Eradicator Squad With Melta
+   Rifles`, `Marneus Calgar In Armour Of Antilochus`→`Marneus Calgar`).
+2. Guard the merge fuzzy-matcher *narrowly*. A `[WORDS]` fallback borrowing a
+   sibling's profile (`Captain On Bike` ← `Chaplain On Bike`) needed a
+   token-subset guard, and `[SUBSTR]` in the reverse direction needs the BSData
+   name to be multi-word. Legitimate remaining fallbacks (Melta-Rifles variant,
+   Chaos Titans, Vyper) must still fire.
+3. Update every aggregate baseline in the same commit, with the delta recorded as
+   corpus shrink — `test_mfm_coverage` (`total_mfm 1434→1346`, `total_missing 0`,
+   `KNOWN_NO_WEAPONS` + Captain On Bike / Kaius Konorius),
+   `test_unit_coverage_guard` `KNOWN_MISSING`, and `test_no_dead_ability_prose`
+   (`FIELD_BASELINE` army_wide_reroll 128→116 / transport_capacity 134→122 /
+   fnp 47→48; `TRANSPORT_TOTAL` 136→124). Those drops are removals, not detector
+   regression.
+4. Retire curated golden tests that pin a now-Legends/removed unit, with a comment
+   naming the v1.5 reclassification — do not leave them red or re-point them at an
+   unrelated unit. Re-pin genuine points rebaselines (Fabius Bile 100→110, Knight
+   Tyrant 400→390, BT Grimaldus 100→120 / Helbrecht 110→125 / Castellan 70→75).
+
+**Whole-corpus bump inverts the single-faction report rule.**
+`reports/crossfaction_truth_report.json`'s "commit only the migrated faction's
+blocks" rule is for one-faction migrations. v1.5 changed every faction's data, so
+the correct commit is a full `PYTHONHASHSEED=1` regen (that seed is the
+truth-report stability seed) — there is no subset to isolate when everything moved.

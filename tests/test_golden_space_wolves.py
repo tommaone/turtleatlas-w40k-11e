@@ -4,7 +4,8 @@ Source of truth: tests/golden_loadouts/space-wolves.json
 (Wahapedia 11ed, fetched 2026-08-24, confidence high).
 
 The Venerable Dreadnought pins target the CHAPTER-LOCAL datasheet
-(wahapedia 'Venerable-Dreadnought-1', 125pts) — NOT the generic SM one.
+(wahapedia 'Venerable-Dreadnought-1'; MFM v1.5 rebalanced it to 165pts) —
+NOT the generic SM one (which v1.5 moved to Legends).
 STRUCTURE + COUNT assertions only — damage values stay engine-derived.
 """
 
@@ -67,7 +68,7 @@ class TestVenerableDreadnought:
         all_w = _names(res[1]) + _names(res[2])
         assert not any("inferno" in n.lower() for n in all_w), f"got {all_w}"
         pts = res[0]
-        assert pts == 125, f"SW chapter points, got {pts}"
+        assert pts == 165, f"SW chapter points, got {pts}"
 
 
 class TestWolfGuardBattleLeader:

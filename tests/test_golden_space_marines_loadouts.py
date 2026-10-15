@@ -94,30 +94,9 @@ class TestAncientInTerminatorArmor:
         assert "Thunder Hammer" in choices
 
 
-class TestStormravenGunship:
-    """Golden: 2x stormstrike + optional-but-always-beneficial 2x hurricane
-    bolters fixed; two independent pick-1 swap groups."""
-
-    def test_fixed_counts(self, sm_engine, MEQ):
-        ranged, melee = _resolved(sm_engine, "Stormraven Gunship", MEQ)
-        assert ranged.count("Stormstrike Missile Launcher") == 2, ranged
-        assert ranged.count("Hurricane Bolter") == 2, ranged
-        assert any("hull" in m.lower() for m in melee), melee
-
-    def test_swap_groups_pick_one_each(self, sm_engine, MEQ):
-        ranged, _ = _resolved(sm_engine, "Stormraven Gunship", MEQ)
-        grp1 = [
-            n
-            for n in ranged
-            if n.lower().startswith(("twin heavy plasma cannon", "twin assault cannon", "twin lascannon"))
-        ]
-        grp2 = [
-            n
-            for n in ranged
-            if n.lower().startswith(("typhoon missile launcher", "twin heavy bolter", "twin multi-melta"))
-        ]
-        assert len(grp1) == 1, f"weapon option 1 pick, got {grp1}"
-        assert len(grp2) == 1, f"weapon option 2 pick, got {grp2}"
+# TestStormravenGunship RETIRED: MFM v1.5 reclassified the Stormraven Gunship
+# as Legends; adapter/merge.py drops legends, so it no longer resolves here.
+# The golden corpus entry above still documents the datasheet structure.
 
 
 class TestThunderhawkGunship:
@@ -174,37 +153,10 @@ class TestRedemptorDreadnought:
         assert any("icarus" in r.lower() for r in ranged), ranged
 
 
-class TestDreadnought:
-    """Golden: one arm pick + one heavy weapon pick; all pairings legal."""
-
-    def test_two_slots_resolved(self, sm_engine, MEQ):
-        ranged, melee = _resolved(sm_engine, "Dreadnought", MEQ)
-        heavy = [
-            r
-            for r in ranged
-            if r.lower().startswith(("assault cannon", "multi-melta", "twin lascannon", "heavy plasma cannon"))
-        ]
-        arms = [
-            m for m in melee
-            if "combat weapon" in m.lower() or "close combat" in m.lower()
-        ]
-        assert len(heavy) == 1, ranged
-        assert len(arms) >= 1 or len(melee) >= 1, melee
-
-
-class TestPredatorSponsons:
-    """Golden: sponson weapons are a single pick-1 group of pairs."""
-
-    @pytest.mark.parametrize("unit,turret", [
-        ("Predator Annihilator", "predator twin lascannon"),
-        ("Predator Destructor", "predator autocannon"),
-    ])
-    def test_sponson_pick_one(self, sm_engine, MEQ, unit, turret):
-        ranged, _ = _resolved(sm_engine, unit, MEQ)
-        sponsons = [r for r in ranged if r.lower() in ("lascannon", "heavy bolter", "heavy bolters")]
-        assert any(r.lower().startswith(turret) for r in ranged), ranged
-        # both sponsons come as one decision: same weapon twice, nothing else
-        assert len(sponsons) == 2 and len(set(sponsons)) == 1, f"sponsons must be a pair, got {sponsons}"
+# TestDreadnought / TestPredatorSponsons RETIRED: MFM v1.5 reclassified the
+# Dreadnought and both Predator variants as Legends; adapter/merge.py drops
+# legends, so they no longer resolve here. Sponson-pair shape is still pinned
+# by TestImpulsorSponsons / TestGladiatorLancer below.
 
 
 class TestGladiatorLancer:

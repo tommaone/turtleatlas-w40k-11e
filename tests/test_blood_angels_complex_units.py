@@ -11,8 +11,7 @@ This iteration migrated blood-angels squads to the complex layer:
 - Death Company alloc pools (Eviscerator cap, alternate-weapons slots,
   Jump Pack variants)
 - parallel-variant alloc for shared SM squads (Intercessor grenade
-  launcher, Devastator heavy weapons, Terminator heavy weapon, Sternguard
-  special weapon)
+  launcher, Terminator heavy weapon, Sternguard special weapon)
 - Outrider alloc pool with the Invader ATV slot-choice variant (the ATV
   itself has no top-level composition entry — kept curated)
 
@@ -128,38 +127,11 @@ class TestBloodAngelsComplexUnits:
         assert _mcount(res_geq, "Astartes Chainsword") == 2
         assert _mcount(res_geq, "Power weapon") == 3
 
-    def test_death_company_intercessors_alloc(self, ba_engine, MEQ):
-        """Death Company Intercessors n=5: 3 base Death Company Intercessors
-        (slot flips to Astartes Chainsword & Heavy Bolt Pistol vs MEQ),
-        1 melee-weapon Intercessor (Power fist), 1 alternate-pistol
-        Intercessor (Plasma pistol — scores its supercharge profile)."""
-        res = _build(ba_engine, "Death Company Intercessors", MEQ)
-        assert _alloc(res) == {
-            "Death Company Intercessor": 3,
-            "Intercessor w/ melee weapon": 1,
-            "Intercessor w/ alternate pistol": 1,
-        }
-        assert _rcount(res, "Heavy Bolt Pistol") == 4
-        assert _rcount(res, "Plasma pistol - standard") == 1
-        assert _mcount(res, "Astartes Chainsword") == 4
-        assert _mcount(res, "Power fist") == 1
-        assert len(res["melee"]) == 5
-
-    def test_death_company_marines_bolt_rifles_alloc(self, ba_engine, MEQ):
-        """Death Company Marines With Bolt Rifles n=5: 2 Bolt Rifle marines,
-        1 Eviscerator (cap), 2 alternate-weapons marines (Inferno Pistol +
-        Power Fist vs MEQ)."""
-        res = _build(ba_engine, "Death Company Marines With Bolt Rifles", MEQ)
-        assert _alloc(res) == {
-            "Death Company Marine w/Bolt Rifle": 2,
-            "Death Company Marine w/Eviscerator": 1,
-            "Death Company Marine w/ alternate weapons": 2,
-        }
-        assert _rcount(res, "Bolt Rifle") == 2
-        assert _rcount(res, "Inferno Pistol") == 2
-        assert _mcount(res, "Eviscerator") == 1
-        assert _mcount(res, "Power Fist") == 2
-        assert len(res["melee"]) == 5
+    # test_death_company_intercessors_alloc /
+    # test_death_company_marines_bolt_rifles_alloc RETIRED: MFM v1.5 removed
+    # Death Company Intercessors and Death Company Marines With Bolt Rifles
+    # from the BA roster. The alloc-pool guard is still covered by
+    # Death Company Marines / ...With Jump Packs above.
 
     def test_vanguard_veterans_alloc(self, ba_engine, MEQ):
         """Vanguard Veteran Squad With Jump Packs n=5: 3 base Vanguard
@@ -191,16 +163,8 @@ class TestBloodAngelsComplexUnits:
         assert _mcount(res, "Power fist") == 5
         assert len(res["melee"]) == 5
 
-    def test_devastator_squad_alloc(self, ba_engine, MEQ):
-        """Devastator Squad n=5: the heavy-weapon variant (max 4) takes the
-        whole 4-model budget vs MEQ and its slot picks Plasma cannon (the
-        supercharge choice profile beats Multi-melta vs 2W MEQ); the
-        sergeant keeps Close combat weapon."""
-        res = _build(ba_engine, "Devastator Squad", MEQ)
-        assert _alloc(res) == {"Devastator Marine w/ Heavy Weapon": 4}
-        assert _rcount(res, "Plasma cannon - standard") == 4
-        assert _mcount(res, "Close combat weapon") == 5
-        assert len(res["melee"]) == 5
+    # test_devastator_squad_alloc RETIRED: MFM v1.5 removed Devastator Squad
+    # from the BA roster.
 
     def test_stern_guard_alloc(self, ba_engine, MEQ):
         """Sternguard Veteran Squad n=5: 3 Bolt Rifle veterans + 1 Special
@@ -235,7 +199,7 @@ class TestBloodAngelsComplexUnits:
             (Path(__file__).resolve().parent.parent
              / "data/config/blood-angels/squads.json").read_text(encoding="utf-8")
         )
-        builds = cfg["Invader Atv"]["builds"]
+        builds = cfg["Invader Atvs"]["builds"]  # MFM v1.5 pluralises the name
         assert builds[0]["name"] == "Melee"
         assert any(b["name"] == "Multi-melta" for b in builds)
         assert not any("alloc" in m for b in builds for m in b["models"])

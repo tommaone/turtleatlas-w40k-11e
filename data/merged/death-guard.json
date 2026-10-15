@@ -1,8 +1,8 @@
 {
   "faction": "Death Guard",
   "slug": "death-guard",
-  "version": "1.4",
-  "firstSeen": "2026-09-02",
+  "version": "1.5",
+  "firstSeen": "2026-09-30",
   "detachments": [
     {
       "name": "Champions Of Contagion",
@@ -184,7 +184,8 @@
       "name": "Virulent Vectorium",
       "dp": 3,
       "objectives": [
-        "TAKE AND HOLD"
+        "TAKE AND HOLD",
+        "PURGE THE FOE"
       ],
       "enhancements": [
         {
@@ -367,8 +368,8 @@
                   "Range": "Melee",
                   "A": "4",
                   "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits"
                 }
@@ -454,8 +455,8 @@
                   "Range": "24\"",
                   "A": "2",
                   "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits, Rapid Fire 2"
                 }
@@ -472,8 +473,8 @@
                   "Range": "24\"",
                   "A": "2",
                   "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits, Rapid Fire 2"
                 }
@@ -503,8 +504,8 @@
                   "Range": "24\"",
                   "A": "1",
                   "BS": "4+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Anti-INFANTRY 4+, Devastating Wounds, Rapid Fire 1"
                 }
@@ -534,7 +535,7 @@
                   "Range": "Melee",
                   "A": "3",
                   "WS": "3+",
-                  "S": "4",
+                  "S": "5",
                   "AP": "0",
                   "D": "1",
                   "Keywords": ""
@@ -552,7 +553,7 @@
                   "Range": "Melee",
                   "A": "3",
                   "WS": "3+",
-                  "S": "4",
+                  "S": "5",
                   "AP": "0",
                   "D": "1",
                   "Keywords": ""
@@ -730,8 +731,8 @@
                   "Range": "24\"",
                   "A": "1",
                   "BS": "4+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Anti-INFANTRY 4+, Devastating Wounds, Rapid Fire 1"
                 }
@@ -743,8 +744,8 @@
                   "Range": "24\"",
                   "A": "2",
                   "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits, Rapid Fire 2"
                 }
@@ -759,8 +760,8 @@
       },
       "pricing": [
         {
-          "range": "[1,)",
-          "label": "Your Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 3,
@@ -768,11 +769,29 @@
             },
             {
               "models": 5,
-              "points": 180
+              "points": 185
             },
             {
               "models": 10,
-              "points": 360
+              "points": 370
+            }
+          ]
+        },
+        {
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
+          "costs": [
+            {
+              "models": 3,
+              "points": 145
+            },
+            {
+              "models": 5,
+              "points": 215
+            },
+            {
+              "models": 10,
+              "points": 400
             }
           ]
         }
@@ -902,8 +921,8 @@
                   "Range": "24\"",
                   "A": "2",
                   "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits, Rapid Fire 2"
                 }
@@ -920,8 +939,8 @@
                   "Range": "24\"",
                   "A": "1",
                   "BS": "4+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Anti-INFANTRY 4+, Devastating Wounds, Rapid Fire 1"
                 }
@@ -969,7 +988,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Chaos Predator Annihilator",
-        "points": 135,
+        "points": 130,
         "stats": {
           "M": "10\"",
           "T": "10",
@@ -1058,8 +1077,8 @@
                   "Range": "24\"",
                   "A": "2",
                   "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits, Rapid Fire 2"
                 }
@@ -1076,8 +1095,8 @@
                   "Range": "24\"",
                   "A": "1",
                   "BS": "4+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Anti-INFANTRY 4+, Devastating Wounds, Rapid Fire 1"
                 }
@@ -1136,7 +1155,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 135
+              "points": 130
             }
           ]
         },
@@ -1146,7 +1165,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 145
+              "points": 140
             }
           ]
         }
@@ -1163,7 +1182,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Chaos Predator Destructor",
-        "points": 145,
+        "points": 140,
         "stats": {
           "M": "10\"",
           "T": "10",
@@ -1252,8 +1271,8 @@
                   "Range": "24\"",
                   "A": "2",
                   "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits, Rapid Fire 2"
                 }
@@ -1270,8 +1289,8 @@
                   "Range": "24\"",
                   "A": "1",
                   "BS": "4+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Anti-INFANTRY 4+, Devastating Wounds, Rapid Fire 1"
                 }
@@ -1330,7 +1349,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 145
+              "points": 140
             }
           ]
         },
@@ -1340,7 +1359,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 155
+              "points": 150
             }
           ]
         }
@@ -1426,8 +1445,8 @@
                   "Range": "24\"",
                   "A": "2",
                   "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits, Rapid Fire 2"
                 }
@@ -1462,8 +1481,8 @@
                   "Range": "24\"",
                   "A": "1",
                   "BS": "4+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Anti-INFANTRY 4+, Devastating Wounds, Rapid Fire 1"
                 }
@@ -1585,7 +1604,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Daemon Prince of Nurgle",
-        "points": 195,
+        "points": 185,
         "stats": {
           "M": "8\"",
           "T": "12",
@@ -1678,7 +1697,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 195
+              "points": 185
             }
           ]
         }
@@ -1695,7 +1714,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Daemon Prince of Nurgle with wings",
-        "points": 170,
+        "points": 160,
         "stats": {
           "M": "12\"",
           "T": "11",
@@ -1787,7 +1806,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 170
+              "points": 160
             }
           ]
         }
@@ -1804,7 +1823,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Deathshroud Terminators",
-        "points": 160,
+        "points": 150,
         "stats": {
           "M": "5\"",
           "T": "7",
@@ -1933,7 +1952,7 @@
           "costs": [
             {
               "models": 3,
-              "points": 160
+              "points": 150
             },
             {
               "models": 6,
@@ -1947,7 +1966,7 @@
           "costs": [
             {
               "models": 3,
-              "points": 170
+              "points": 160
             },
             {
               "models": 6,
@@ -2353,11 +2372,11 @@
       "attachTo": null,
       "wargear_options": [
         {
-          "item": "Heavy reaper autocannon",
+          "item": "Heavy Reaper Autocannon",
           "points": 15
         },
         {
-          "item": "Hades lascannon",
+          "item": "Hades Lascannon",
           "points": 15
         }
       ],
@@ -2727,7 +2746,7 @@
                   "Range": "Melee",
                   "A": "4",
                   "WS": "3+",
-                  "S": "4",
+                  "S": "5",
                   "AP": "0",
                   "D": "1",
                   "Keywords": ""
@@ -2961,7 +2980,7 @@
       "deep_strike": false,
       "profile": {
         "name": "Helbrute",
-        "points": 110,
+        "points": 105,
         "stats": {
           "M": "7\"",
           "T": "9",
@@ -3016,8 +3035,8 @@
                   "Range": "24\"",
                   "A": "2",
                   "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits, Rapid Fire 2"
                 }
@@ -3336,7 +3355,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 110
+              "points": 105
             }
           ]
         }
@@ -3470,8 +3489,8 @@
                   "Range": "Melee",
                   "A": "4",
                   "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits"
                 }
@@ -3488,8 +3507,8 @@
                   "Range": "24\"",
                   "A": "2",
                   "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits"
                 }
@@ -3527,7 +3546,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Lord of Contagion",
-        "points": 120,
+        "points": 110,
         "stats": {
           "M": "5\"",
           "T": "7",
@@ -3605,7 +3624,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 120
+              "points": 110
             }
           ]
         }
@@ -3733,7 +3752,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Lord of Virulence",
-        "points": 100,
+        "points": 90,
         "stats": {
           "M": "5\"",
           "T": "7",
@@ -3835,7 +3854,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 100
+              "points": 90
             }
           ]
         }
@@ -3943,8 +3962,8 @@
                   "Range": "12\"",
                   "A": "1",
                   "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits, Pistol"
                 }
@@ -4789,8 +4808,8 @@
                   "Range": "Melee",
                   "A": "3",
                   "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits"
                 }
@@ -4820,8 +4839,8 @@
                   "Range": "Melee",
                   "A": "3",
                   "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits"
                 }
@@ -4869,8 +4888,8 @@
                   "Range": "Melee",
                   "A": "3",
                   "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits"
                 }
@@ -4900,8 +4919,8 @@
                   "Range": "Melee",
                   "A": "3",
                   "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits"
                 }
@@ -4913,8 +4932,8 @@
                   "Range": "24\"",
                   "A": "2",
                   "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits"
                 }
@@ -4931,8 +4950,8 @@
                   "Range": "Melee",
                   "A": "3",
                   "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits"
                 }
@@ -4962,8 +4981,8 @@
                   "Range": "Melee",
                   "A": "3",
                   "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits"
                 }
@@ -4975,8 +4994,8 @@
                   "Range": "24\"",
                   "A": "2",
                   "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits"
                 }
@@ -4993,8 +5012,8 @@
                   "Range": "Melee",
                   "A": "3",
                   "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits"
                 }
@@ -5042,8 +5061,8 @@
                   "Range": "Melee",
                   "A": "3",
                   "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits"
                 }
@@ -5086,8 +5105,8 @@
                   "Range": "Melee",
                   "A": "3",
                   "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits"
                 }
@@ -5135,8 +5154,8 @@
                   "Range": "Melee",
                   "A": "3",
                   "WS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits"
                 }
@@ -5174,8 +5193,8 @@
                   "Range": "12\"",
                   "A": "1",
                   "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits, Pistol"
                 }
@@ -5187,8 +5206,8 @@
                   "Range": "24\"",
                   "A": "2",
                   "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits"
                 }
@@ -5267,7 +5286,7 @@
             },
             {
               "models": 10,
-              "points": 180
+              "points": 175
             }
           ]
         }
@@ -5340,8 +5359,8 @@
                   "Range": "12\"",
                   "A": "1",
                   "BS": "3+",
-                  "S": "4",
-                  "AP": "0",
+                  "S": "5",
+                  "AP": "-1",
                   "D": "1",
                   "Keywords": "Lethal Hits, Pistol"
                 }
@@ -5615,8 +5634,8 @@
       },
       "pricing": [
         {
-          "range": "[1,1]",
-          "label": "Your 1st Unit Costs",
+          "range": "[1,2]",
+          "label": "Your 1st To 2nd Units Cost",
           "costs": [
             {
               "models": 1,
@@ -5625,8 +5644,8 @@
           ]
         },
         {
-          "range": "[2,)",
-          "label": "Your 2nd + Unit Costs",
+          "range": "[3,)",
+          "label": "Your 3rd + Unit Costs",
           "costs": [
             {
               "models": 1,
@@ -5894,7 +5913,7 @@
                   "Range": "Melee",
                   "A": "4",
                   "WS": "3+",
-                  "S": "4",
+                  "S": "5",
                   "AP": "0",
                   "D": "1",
                   "Keywords": ""
@@ -5964,7 +5983,7 @@
       "deep_strike": true,
       "profile": {
         "name": "Typhus",
-        "points": 100,
+        "points": 90,
         "stats": {
           "M": "5\"",
           "T": "7",
@@ -6043,7 +6062,7 @@
           "costs": [
             {
               "models": 1,
-              "points": 100
+              "points": 90
             }
           ]
         }
@@ -6056,7 +6075,7 @@
   ],
   "_meta": {
     "bsdata_faction": "Chaos - Death Guard",
-    "bsdata_revision": 14,
+    "bsdata_revision": 18,
     "bsdata_units": 119,
     "mfm_units": 36,
     "merged_units": 36

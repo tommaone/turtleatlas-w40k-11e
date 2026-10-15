@@ -118,7 +118,7 @@ LD_SLOTS = [
         ],
     },
 ]
-LD_DPP_CURATED = 0.0891
+LD_DPP_CURATED = 0.0929  # MFM v1.5 points rebalance
 
 # ── Helbrute ─────────────────────────────────────────────────────────────
 # Golden truth: verified against New Recruit wiki (11e) 2026-08-22.
@@ -151,7 +151,7 @@ HB_SLOTS = [
         ],
     },
 ]
-HB_DPP_CURATED = 0.0488
+HB_DPP_CURATED = 0.0507  # MFM v1.5 points rebalance
 
 # ── Maulerfiend ──────────────────────────────────────────────────────────
 # Golden truth: verified against New Recruit wiki (11e) + Goonhammer 2026-08-22.
@@ -171,7 +171,7 @@ MF_SLOTS = [
         ],
     },
 ]
-MF_DPP_CURATED = 0.0683  # 2026-08-27: corrected after fix — config count=2 is sole source of multiplicity (merged count=2 no longer double-counted)
+MF_DPP_CURATED = 0.0710  # MFM v1.5 points rebalance (was 0.0683)
 
 # ── Nemesis Dreadknight (Grey Knights — cross-faction proof) ─────────────
 # Golden truth: verified against New Recruit wiki (11e) 2026-08-22.
@@ -239,7 +239,7 @@ RD_SLOTS = [
         ],
     },
 ]
-RD_DPP_CURATED = 0.0690
+RD_DPP_CURATED = 0.0747  # MFM v1.5 points rebalance
 
 # ── Wraithknight (Aeldari) ───────────────────────────────────────────────
 # Golden truth: verified against New Recruit wiki (11e) 2026-08-22.
