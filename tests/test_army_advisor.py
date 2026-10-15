@@ -172,3 +172,20 @@ def test_mfm_version_matches_the_loaded_data():
     v1.6 claim over v1.5 data, with a green check."""
     merged = json.loads((aa.REPO / "data" / "merged" / "aeldari.json").read_text())
     assert aa.mfm_version().lstrip("v") == merged["version"], merged.get("version")
+
+
+def test_guide_html_escapes_interpolated_text():
+    """The guide page interpolates expert why-text and faction names. A stray
+    < or & must be escaped, or the page breaks — or worse, runs script."""
+    page = aa.render_guide_html([
+        "# Choosing",
+        "- **Orks** — if x < y & z <script>alert(1)</script>",
+        "> a > b",
+    ])
+    # data text neutralised
+    assert "<script>" not in page
+    assert "&lt;script&gt;alert(1)&lt;/script&gt;" in page
+    assert "x &lt; y &amp; z" in page
+    assert "<blockquote>a &gt; b</blockquote>" in page
+    # our own markup still renders (escape must not eat the <strong> we add)
+    assert "<strong>Orks</strong>" in page

@@ -28,6 +28,7 @@ import re
 from pathlib import Path
 import statistics
 import glob
+from html import escape as _html_escape
 
 REPO = Path(__file__).resolve().parent.parent
 TIERS = REPO / "findings" / "army_tiers.json"
@@ -36,6 +37,15 @@ GENERATED = date.today().isoformat()  # real generation stamp, not a frozen one
 
 
 _VERSION_RE = re.compile(r"v(\d+)\.(\d+)")
+
+
+def _esc(text: str) -> str:
+    """HTML-escape for text content: & < > only.
+
+    Quotes stay literal — every interpolation sits between tags, not in an
+    attribute, so escaping them only churns the output.
+    """
+    return _html_escape(text, quote=False)
 
 
 def _version_files() -> list:
@@ -350,13 +360,13 @@ def guide_lines(data):
     return lines
 
 
-def guide(data):
-    lines = guide_lines(data)
-    GUIDE_OUT.write_text("\n".join(lines) + "\n")
-    print(f"wrote {GUIDE_OUT}")
+def render_guide_html(lines):
+    """Render the guide's markdown subset to a standalone HTML page.
 
-    # findings/army-choice-guide.html — same content, rendered for the
-    # landing-page link (a raw .md URL is not user-friendly anywhere).
+    Everything interpolated here descends from expert files and engine
+    output, so each field is HTML-escaped before it is wrapped in a tag —
+    a stray & or < in a faction's why-text must not reach the page raw.
+    """
     import re as _re
     html = ["<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\">"
             "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
@@ -371,6 +381,12 @@ def guide(data):
             ".back a{color:#4fc3f7;text-decoration:none}</style></head><body>"]
     html.append('<div class="back"><a href="index.html">&larr; All Factions</a></div>')
     inlist = False
+
+    def _bold(t):
+        # Escape first, then promote **md** to <strong> (our own markup, so
+        # it must survive the escape that precedes it).
+        return _re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", _esc(t))
+
     for ln in lines:
         s = ln.strip()
         if not s:
@@ -378,31 +394,40 @@ def guide(data):
                 html.append("</ul>")
                 inlist = False
             continue
-        bold = _re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
-        if bold.startswith("# "):
-            html.append(f"<h1>{bold[2:]}</h1>")
-        elif bold.startswith("## "):
+        if s.startswith("## "):
             if inlist:
                 html.append("</ul>")
                 inlist = False
-            html.append(f"<h2>{_re.sub(r'</?strong>', '', bold[3:])}</h2>")
-        elif bold.startswith(">"):
-            html.append(f"<blockquote>{bold.lstrip('> ')}</blockquote>")
-        elif bold.startswith("- "):
+            html.append(f"<h2>{_re.sub(r'</?strong>', '', _bold(s[3:]))}</h2>")
+        elif s.startswith("# "):
+            html.append(f"<h1>{_bold(s[2:])}</h1>")
+        elif s.startswith(">"):
+            html.append(f"<blockquote>{_bold(s.lstrip('> '))}</blockquote>")
+        elif s.startswith("- "):
             if not inlist:
                 html.append("<ul>")
                 inlist = True
-            html.append(f"<li>{bold[2:]}</li>")
+            html.append(f"<li>{_bold(s[2:])}</li>")
         else:
             if inlist:
                 html.append("</ul>")
                 inlist = False
-            html.append(f"<p>{bold}</p>")
+            html.append(f"<p>{_bold(s)}</p>")
     if inlist:
         html.append("</ul>")
     html.append("</body></html>")
+    return "\n".join(html) + "\n"
+
+
+def guide(data):
+    lines = guide_lines(data)
+    GUIDE_OUT.write_text("\n".join(lines) + "\n")
+    print(f"wrote {GUIDE_OUT}")
+
+    # findings/army-choice-guide.html — same content, rendered for the
+    # landing-page link (a raw .md URL is not user-friendly anywhere).
     guide_html = GUIDE_OUT.parent.parent / "findings" / "army-choice-guide.html"
-    guide_html.write_text("\n".join(html) + "\n", encoding="utf-8")
+    guide_html.write_text(render_guide_html(lines), encoding="utf-8")
     print(f"wrote {guide_html}")
 
 

@@ -27,7 +27,6 @@ from engine.dpp import (
     UnitDefense, compute_surv, compute_mob,
     transport_capacity_of,
     DetachmentModifier,
-    merge_weapon_modifiers, merge_detachment_modifiers,
 )
 from engine.weapon_loader import WeaponCatalog
 
@@ -1676,11 +1675,14 @@ class RankingEngine:
             mission: Mission profile name.
             meta_name: Meta profile name — loadouts optimised for weighted mix.
             tier: Pricing tier — '1st' (default) or '3rd' (3rd+ unit pricing).
-            detachment: Single detachment name (backward compat).
-            detachment_choice: Index of the modifier choice (backward compat).
-            detachments: List of (detachment_name, choice_index) for multi-detachment.
-                        Overrides detachment/detachment_choice if set.
-            disposition: Mission disposition ID — validates at least one detachment is playable.
+            detachment: Single detachment name — used only to validate it can
+                        play `disposition`; no modifier is applied.
+            detachment_choice: Retired (index of an old modifier choice).
+                        Accepted for backward compatibility; has no effect.
+            detachments: List of (detachment_name, choice_index) — each name is
+                        validated against `disposition`; no modifier is applied.
+            disposition: Mission disposition ID — a detachment that cannot play
+                        it raises ValueError.
             melta_active: assume ≤ half range for Melta bonus.
             heavy_stationary: assume the unit remained stationary for Heavy bonus.
             plunging: auto-apply Plunging Fire (+1 BS) for TOWERING units (default True).
@@ -1691,17 +1693,15 @@ class RankingEngine:
         """
         target = target or self.config.target_profiles.get("MEQ")
 
-        # ── Resolve detachment modifiers (single or multi) ────────────
-        detachment_pairs: list[tuple[DetachmentModifier, WeaponModifier]] = []
-
+        # ── Validate the disposition pair (single or multi) ───────────
+        # Detachment modifiers were retired 2026-08-27 (see
+        # _load_detachment_modifiers): no mechanical modifier is ever produced,
+        # so there is nothing to resolve or merge here. The disposition check
+        # stays — it is a rules-level guard on the arguments, not a scoring
+        # input, and it must still reject a detachment that cannot play the
+        # chosen mission.
         if detachments is not None:
             # Multi-detachment mode
-            for det_name, choice_idx in detachments:
-                choices = self.get_detachment_modifiers(det_name)
-                if 0 <= choice_idx < len(choices):
-                    mod = choices[choice_idx]
-                    detachment_pairs.append((mod, mod.to_weapon_modifier()))
-            # Validate disposition against at least one detachment
             if disposition and self.config.dispositions:
                 any_valid = any(
                     self.config.can_detachment_play_disposition(d, disposition)
@@ -1722,28 +1722,6 @@ class RankingEngine:
                         f"Detachment '{detachment}' cannot be used in '{disposition}' mission. "
                         f"Valid detachments: {valid}"
                     )
-            choices = self.get_detachment_modifiers(detachment)
-            if choices:
-                choice_idx = detachment_choice if detachment_choice is not None else 0
-                if 0 <= choice_idx < len(choices):
-                    mod = choices[choice_idx]
-                    detachment_pairs.append((mod, mod.to_weapon_modifier()))
-
-        def _modifier_applies(mod: Optional[DetachmentModifier], unit_name: str, unit_kw: list[str]) -> bool:
-            """Check if a detachment modifier applies to a given unit.
-
-            Matches unit_filter against both unit name and keywords.
-            """
-            if mod is None:
-                return False
-            if not mod.unit_filter:
-                return True  # no filter = applies to all
-            upper_name = unit_name.upper()
-            upper_kw = [k.upper() for k in unit_kw]
-            return any(
-                f.upper() in upper_name or f.upper() in upper_kw
-                for f in mod.unit_filter
-            )
 
         # Resolve meta
         meta_targets = None
@@ -1857,23 +1835,11 @@ class RankingEngine:
             if info and info.get("save_bonus"):
                 sv_val = max(2, sv_val - info["save_bonus"])
 
-            # Per-unit multi-detachment modifier merge
-            # Collect applicable modifiers from all selected detachments
-            applicable_dms = [dm for dm, _ in detachment_pairs if _modifier_applies(dm, name, kw_list)]
-            applicable_wms = [wm for dm, wm in detachment_pairs if _modifier_applies(dm, name, kw_list)]
-
-            if applicable_wms:
-                unit_weapon_mod = merge_weapon_modifiers(applicable_wms)
-            else:
-                unit_weapon_mod = None
-
-            merged_surv = merge_detachment_modifiers(applicable_dms) if applicable_dms else None
-            merged_mob = merge_detachment_modifiers(applicable_dms) if applicable_dms else None
-
-            # SURV modifier: only applies if at least one has `affects == "surv"`
-            unit_surv_mod = merged_surv if (merged_surv and any(dm.affects == "surv" for dm in applicable_dms)) else None
-            # MOB modifier: only applies if at least one has `affects == "mob"`
-            unit_mob_mod = merged_mob if (merged_mob and any(dm.affects == "mob" for dm in applicable_dms)) else None
+            # Detachment modifiers are retired (2026-08-27): the machinery that
+            # built these was removed, so every unit scores at its generalist
+            # baseline. unit_weapon_mod stays an explicit None — the DPP calls
+            # below take it as an optional modifier argument.
+            unit_weapon_mod = None
 
             n_models = 1
             if name in self.config.squads:
@@ -1888,7 +1854,7 @@ class RankingEngine:
                 ph = boost_spec["phase"]
                 return boost_spec if (ph == "both" or ph == phase) else None
 
-            # DPP (with optional detachment modifier)
+            # DPP
             if reroll_spec is not None:
                 dmg_ranged = _ld_dmg_conditional(ranged_profiles, [], [], actual_target, unit_weapon_mod,
                                                  reroll_spec, "ranged",
@@ -1960,15 +1926,11 @@ class RankingEngine:
 
             is_infantry = "INFANTRY" in kw_list
 
-            # SURV (with optional detachment modifier)
-            # Note: unit_surv_mod is already gated on original DM having affects=="surv" above
-            if unit_surv_mod:
-                final_invuln = inv_val or unit_surv_mod.invulnerable_save
-                final_fnp = unit_surv_mod.feel_no_pain
-            else:
-                final_invuln = inv_val
-                # FNP only if the unit/config explicitly has it — NOT a default for infantry
-                final_fnp = info.get("fnp", info.get("FNP", info.get("feel_no_pain", None))) if info else None
+            # SURV — detachment modifiers are retired (2026-08-27); the branch
+            # that used to read unit_surv_mod is gone, so this is unconditional.
+            final_invuln = inv_val
+            # FNP only if the unit/config explicitly has it — NOT a default for infantry
+            final_fnp = info.get("fnp", info.get("FNP", info.get("feel_no_pain", None))) if info else None
 
             # Conditional FNP (e.g. vs Psychic) — informational only, NOT in SURV scoring
             cond_fnp = info.get("conditional_fnp", None) if info else None
@@ -1985,7 +1947,7 @@ class RankingEngine:
             )
             surv = compute_surv(defense, pts)
 
-            # MOB (with optional detachment modifier)
+            # MOB
             m_val = 6
             if info:
                 m_m = re.search(r'(\d+)', str(info.get("M", '6"')))
@@ -1998,11 +1960,6 @@ class RankingEngine:
                 m_m = re.search(r'(\d+)', str(m_str))
                 if m_m:
                     m_val = int(m_m.group(1))
-
-            # Apply movement bonus from detachment
-            # Note: unit_mob_mod is already gated on original DM having affects=="mob" above
-            if unit_mob_mod:
-                m_val += unit_mob_mod.movement_bonus
 
             has_fly = "FLY" in kw_list
             has_deep_strike = "DEEP STRIKE" in kw_list

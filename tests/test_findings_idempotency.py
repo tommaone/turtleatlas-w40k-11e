@@ -79,3 +79,43 @@ def test_classify_separates_content_drift_from_timestamp_only(tmp_path,
     content, ts_only = chk.classify(sorted(work))
     assert content == ['real.html'], 'changed content must be flagged as real'
     assert ts_only == ['clock.html'], 'clock-only change must not look like drift'
+
+
+def test_stale_paths_flags_untracked_artifacts(tmp_path, monkeypatch):
+    """A brand-new artifact is untracked, so `git diff` cannot see it. The
+    guard must still catch it, or a newly generated file drifts unnoticed."""
+    import importlib.util
+    import subprocess
+
+    spec = importlib.util.spec_from_file_location(
+        'chk', os.path.join(ROOT, 'scripts', 'check_artifacts_current.py'))
+    chk = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(chk)
+
+    def git(*a):
+        subprocess.run(['git', *a], cwd=tmp_path, check=True,
+                       capture_output=True, text=True)
+
+    git('init', '-q')
+    git('config', 'user.email', 't@t.t')
+    git('config', 'user.name', 't')
+    (tmp_path / 'findings').mkdir()
+    (tmp_path / 'findings' / 'old.json').write_text('{"a":1}', encoding='utf-8')
+    git('add', 'findings/old.json')
+    git('commit', '-qm', 'init')
+    (tmp_path / 'findings' / 'old.json').write_text('{"a":2}', encoding='utf-8')
+    (tmp_path / 'findings' / 'new.json').write_text('{"b":1}', encoding='utf-8')
+
+    monkeypatch.setattr(chk, 'ROOT', str(tmp_path))
+    monkeypatch.setattr(chk, 'WATCHED', ('findings',))
+
+    stale = chk._stale_paths()
+    assert 'findings/old.json' in stale, 'modified tracked file missed'
+    assert 'findings/new.json' in stale, 'untracked artifact must be flagged'
+
+    # classify() must route the untracked file to content drift, not crash:
+    # `git show HEAD:findings/new.json` fails, and the OSError/CalledProcessError
+    # branch is what keeps a brand-new artifact from being silently dropped.
+    content, ts_only = chk.classify(stale)
+    assert 'findings/new.json' in content, 'untracked artifact must be content drift'
+    assert 'findings/new.json' not in ts_only, 'untracked file is not a timestamp bump'

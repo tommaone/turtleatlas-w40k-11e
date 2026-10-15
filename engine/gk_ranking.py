@@ -100,10 +100,10 @@ def main():
                         choices=list(metas.keys()),
                         help="Multi-target meta profile (loadouts optimised for weighted mix)")
     parser.add_argument("--detachment", "-d", default=None,
-                        choices=eng.list_detachments_with_modifiers() or None,
-                        help="Detachment name to apply modifiers from")
+                        help="Detachment name — validated against the mission's "
+                             "disposition (modifiers are retired: no score change)")
     parser.add_argument("--detachment-choice", "-dc", type=int, default=None,
-                        help="Index of modifier choice (0-based, default 0)")
+                        help="Accepted for backward compatibility — no effect (retired)")
     parser.add_argument("--list-detachments", action="store_true",
                         help="List detachments with defined modifiers and exit")
     parser.add_argument("--melta", action="store_true",

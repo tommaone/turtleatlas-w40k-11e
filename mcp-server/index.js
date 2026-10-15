@@ -74,6 +74,12 @@ class TurtleAtlasW40kServer {
     }
   }
 
+  // A literal pipe or newline in data-derived cell text breaks the whole
+  // markdown table, so escape it before the cell is joined.
+  #mdCell(v) {
+    return String(v ?? "").replace(/\|/g, "\\|").replace(/[\r\n]+/g, " ");
+  }
+
   /**
    * Auto-discover factions from data/merged/*.json and data/config/
    * Each faction gets: mergedUnits (from merged) + config (from config)
@@ -1279,7 +1285,7 @@ look like facts.
     out += `| Weapon | Hits | Reg Wounds | Damage (pre-cap) |\n`;
     out += `|--------|------|------------|------------------|\n`;
     for (const w of d.weapons || []) {
-      out += `| ${w.weapon} | ${w.expected_hits} | ${w.regular_wounds} | ${w.total_damage} |\n`;
+      out += `| ${this.#mdCell(w.weapon)} | ${w.expected_hits} | ${w.regular_wounds} | ${w.total_damage} |\n`;
     }
     out += `\nThe per-weapon column sums to **Damage Before Cap**. The cap is applied once, to the summed total \u2014 a target cannot be dealt more wounds than it has.\n`;
 
@@ -1344,7 +1350,7 @@ look like facts.
     out += `| Deep Strike | ${r.deep_strike} |\n`;
     out += `| Gate of Infinity | ${r.gate_of_infinity} |\n`;
     out += `| Objective Control | ${r.objective_control} |\n`;
-    out += `| Mobility Tier | ${r.mobility_tier} |\n`;
+    out += `| Mobility Tier | ${this.#mdCell(r.mobility_tier)} |\n`;
     out += `| Infantry | ${r.is_infantry} |\n`;
     out += `| Vehicle | ${r.is_vehicle} |\n`;
     out += `| Terminator | ${r.is_terminator} |\n`;
@@ -1399,7 +1405,7 @@ look like facts.
       // a multi-model squad it is the smallest model's cost, which is why the
       // column says "from". get_unit serves the full ladder.
       const pricing = u.pricing?.[0]?.costs?.[0]?.points || "-";
-      out += `| ${u.name} | ${pricing} | ${u.role || ""} |\n`;
+      out += `| ${this.#mdCell(u.name)} | ${pricing} | ${this.#mdCell(u.role || "")} |\n`;
     }
     return this.#text(out);
   }
@@ -1494,7 +1500,7 @@ look like facts.
       out += `|------|---|---|---|---|---|-----------|\n`;
       for (const w of prof.weapons) {
         const s = w.profiles?.[0]?.stats || {};
-        out += `| ${w.name} | ${s.A || "-"} | ${s.BS || s.WS || "-"} | ${s.S || "-"} | ${s.AP || "-"} | ${s.D || "-"} | ${s.Keywords || ""} |\n`;
+        out += `| ${this.#mdCell(w.name)} | ${this.#mdCell(s.A || "-")} | ${this.#mdCell(s.BS || s.WS || "-")} | ${this.#mdCell(s.S || "-")} | ${this.#mdCell(s.AP || "-")} | ${this.#mdCell(s.D || "-")} | ${this.#mdCell(s.Keywords || "")} |\n`;
       }
     }
     if (prof.abilities?.length) {
@@ -1552,14 +1558,14 @@ look like facts.
       out += `|---|------|-----|-----|-----|-----------|-----|-------|\n`;
       for (let i = 0; i < data.length; i++) {
         const r = data[i];
-        out += `| ${i + 1} | ${r.name} | ${r.points} | ${r.dpp.toFixed(4)} | ${r.total_damage.toFixed(2)} | ${r.surv_ew_ap0} | ${r.mob_tier} | ${r.mission_score?.toFixed(0) || "-"} |\n`;
+        out += `| ${i + 1} | ${this.#mdCell(r.name)} | ${r.points} | ${r.dpp.toFixed(4)} | ${r.total_damage.toFixed(2)} | ${r.surv_ew_ap0} | ${this.#mdCell(r.mob_tier)} | ${r.mission_score?.toFixed(0) || "-"} |\n`;
       }
     } else {
       out += `| # | Unit | Pts | DPP | Dmg | Surv(AP0) | Mob Tier |\n`;
       out += `|---|------|-----|-----|-----|-----------|----------|\n`;
       for (let i = 0; i < data.length; i++) {
         const r = data[i];
-        out += `| ${i + 1} | ${r.name} | ${r.points} | ${r.dpp.toFixed(4)} | ${r.total_damage.toFixed(2)} | ${r.surv_ew_ap0} | ${r.mob_tier} |\n`;
+        out += `| ${i + 1} | ${this.#mdCell(r.name)} | ${r.points} | ${r.dpp.toFixed(4)} | ${r.total_damage.toFixed(2)} | ${r.surv_ew_ap0} | ${this.#mdCell(r.mob_tier)} |\n`;
       }
     }
 
@@ -1675,7 +1681,7 @@ look like facts.
         if (u.oc === 0) tags.push("OC0");
         if (u.cost_eff !== null && u.cost_eff !== undefined) tags.push(`COST${u.cost_eff}`);
 
-        out += `| ${i + 1} | ${u.name} | ${u.pts} | ${u.score} | ${u.dpp} | ${u.dpp_pct}% | ${u.surv_turns}t | ${u.obj_pct}% | ${u.mob_pct}% | ${tags.join(" ")} |\n`;
+        out += `| ${i + 1} | ${this.#mdCell(u.name)} | ${u.pts} | ${u.score} | ${u.dpp} | ${u.dpp_pct}% | ${u.surv_turns}t | ${u.obj_pct}% | ${u.mob_pct}% | ${this.#mdCell(tags.join(" "))} |\n`;
       }
       out += `\n`;
     }
@@ -1727,12 +1733,13 @@ look like facts.
       out += `| Floor | ${row.floor} |\n`;
       out += `| Versatility | ${row.versatility} |\n`;
       out += `| Roster depth | ${row.roster_depth} |\n`;
-      out += `| Best disposition | ${row.best_disposition} |\n`;
-      out += `| Worst disposition | ${row.worst_disposition} |\n`;
+      out += `| Best disposition | ${this.#mdCell(row.best_disposition)} |\n`;
+      out += `| Worst disposition | ${this.#mdCell(row.worst_disposition)} |\n`;
       out += `| Points churn | ${row.points_churn} |\n`;
-      out += `| First-army fit | ${row.first_army_fit}${
-        row.first_army_fit_why ? ` — ${row.first_army_fit_why}` : ""
-      }\n`;
+      out += `| First-army fit | ${this.#mdCell(
+        row.first_army_fit +
+          (row.first_army_fit_why ? ` — ${row.first_army_fit_why}` : ""),
+      )}\n`;
     } else {
       const limit = args?.limit ? Math.floor(args.limit) : 30;
       out = `# Army Index — all rated factions\n\n`;
@@ -1740,7 +1747,7 @@ look like facts.
       out += `| # | Faction | Index | Ceiling | Floor | Vers | Depth | First army |\n`;
       out += `|---|---------|-------|---------|-------|------|-------|-------------|\n`;
       rows.slice(0, limit).forEach((f, i) => {
-        out += `| ${i + 1} | ${f.name} | ${f.overall_index} | ${f.ceiling} | ${f.floor} | ${f.versatility} | ${f.roster_depth} | ${f.first_army_fit} |\n`;
+        out += `| ${i + 1} | ${this.#mdCell(f.name)} | ${f.overall_index} | ${f.ceiling} | ${f.floor} | ${f.versatility} | ${f.roster_depth} | ${this.#mdCell(f.first_army_fit)} |\n`;
       });
     }
 
@@ -1790,14 +1797,14 @@ look like facts.
       // result straight into get_findings/get_army_index without re-guessing
       // the slug.
       if (!t) {
-        out += `| ${fid} |`;
+        out += `| ${this.#mdCell(fid)} |`;
         out += `${cols.map(() => "_not rated_").join(" | ")} |\n`;
         continue;
       }
       const cells = cols.map((m) =>
         m === "overall" ? t.overall : (t.missions?.[m] ?? "—"),
       );
-      out += `| ${t.name ?? fid} \`${fid}\` (${t.n_units} units) | ${cells.join(" | ")} |\n`;
+      out += `| ${this.#mdCell(t.name ?? fid)} \`${fid}\` (${t.n_units} units) | ${cells.map((c) => this.#mdCell(c)).join(" | ")} |\n`;
     }
 
     const rated = fids.map((f) => advisor?.get(f)).filter(Boolean);
@@ -1806,7 +1813,7 @@ look like facts.
       out += `| Faction | Index | Ceiling | Floor | Vers | First army |\n`;
       out += `|---------|-------|---------|-------|------|-------------|\n`;
       for (const r of rated) {
-        out += `| ${r.name} \`${r.fid}\` | ${r.overall_index} | ${r.ceiling} | ${r.floor} | ${r.versatility} | ${r.first_army_fit} |\n`;
+        out += `| ${this.#mdCell(r.name)} \`${r.fid}\` | ${r.overall_index} | ${r.ceiling} | ${r.floor} | ${r.versatility} | ${this.#mdCell(r.first_army_fit)} |\n`;
       }
     } else {
       out += `\n_Advisor: no rated entry for any of these factions._\n`;
@@ -1850,7 +1857,7 @@ look like facts.
     out += `|---|---------|${"-".repeat(mission.length + 2)}|-------|\n`;
     const shown = topN > 0 ? rows.slice(0, topN) : rows;
     shown.forEach((r, i) => {
-      out += `| ${i + 1} | ${r.t.name ?? r.fid} | ${r.v} | ${r.t.n_units ?? "—"} |\n`;
+      out += `| ${i + 1} | ${this.#mdCell(r.t.name ?? r.fid)} | ${r.v} | ${r.t.n_units ?? "—"} |\n`;
     });
 
     out += `\n---\n`;

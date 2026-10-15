@@ -7,7 +7,8 @@ else notices, because the test suite reads the committed files back. A stale
 artifact therefore makes the suite pass against outdated data, which is worse
 than a failing test: it is a green build that proves nothing.
 
-Regenerate everything, then report any tracked file that differs from HEAD.
+Regenerate everything, then report any watched file that differs from HEAD or
+is untracked (`git diff` alone cannot see a newly-created artifact).
 
 Exit codes: 0 clean, 1 drift (re-run the generators and commit), 2 setup
 problem (submodules not initialised).
@@ -62,6 +63,31 @@ def _populated(path):
     return os.path.isdir(path) and bool(os.listdir(path))
 
 
+def _stale_paths():
+    """Watched paths that differ from HEAD or are untracked, deduped.
+
+    `git diff HEAD` alone is blind to untracked files, so a brand-new artifact
+    (a new faction's data.json, a new findings report) regenerated into an
+    uncommitted path would slip past the check entirely. Untracked files are
+    pulled in from `ls-files --others` (gitignore still applies) and reported
+    as real content drift by classify().
+    """
+    def git(*args):
+        return subprocess.run(['git', *args], cwd=ROOT, check=True,
+                              capture_output=True, text=True).stdout
+
+    lines = git('diff', '--name-only', 'HEAD', '--', *WATCHED).splitlines()
+    lines += git('ls-files', '--others', '--exclude-standard',
+                 '--', *WATCHED).splitlines()
+    seen, out = set(), []
+    for line in lines:
+        rel = line.strip()
+        if rel and rel not in seen:
+            seen.add(rel)
+            out.append(rel)
+    return out
+
+
 def main():
     missing = [name for name in SUBMODULES
                if not _populated(os.path.join(ROOT, name))]
@@ -78,10 +104,7 @@ def main():
     # the diff stays empty and the check reports OK on stale output.
     run(sys.executable, 'scripts/army_advisor.py', '--guide')
 
-    diff = subprocess.run(
-        ['git', 'diff', '--name-only', 'HEAD', '--', *WATCHED],
-        cwd=ROOT, check=True, capture_output=True, text=True).stdout
-    stale = [line for line in diff.splitlines() if line.strip()]
+    stale = _stale_paths()
 
     if not stale:
         print(f'\nOK: all {len(WATCHED)} watched artifacts match HEAD.')
@@ -89,12 +112,13 @@ def main():
 
     content, ts_only = classify(stale)
 
-    print(f'\nSTALE: {len(stale)} committed artifact(s) do not match the '
-          f'current code and data.', file=sys.stderr)
+    print(f'\nSTALE: {len(stale)} watched artifact(s) do not match HEAD.',
+          file=sys.stderr)
     if content:
         print(f'\n  Real content drift ({len(content)}) — the working tree now '
-              f'holds the regenerated output. Commit it; the generators are '
-              f'the source of truth:', file=sys.stderr)
+              f'holds regenerated output, or a newly-appeared file. Commit the '
+              f'generated output; revert or ignore anything else. The '
+              f'generators are the source of truth:', file=sys.stderr)
         for path in content:
             print(f'    {path}', file=sys.stderr)
     if ts_only:
