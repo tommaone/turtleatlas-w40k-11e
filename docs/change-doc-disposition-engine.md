@@ -24,21 +24,21 @@ This doc was written at design time (2026-07-05) and describes the full intended
 |----------|--------|-------|
 | `data/dispositions.json` — `dispositions[].profile`, `dp_budget`, `rules`, `mission_alignment`, `meta_bias` | **PARKED** | Not loaded by any `.py`/`.js`/script/test. Header `_note` added 2026-10-16. |
 | `data/config/chaos-knights/disposition_ranking.md` | **PARKED** | Referenced by no code or doc-and-tool path. Header note added 2026-10-16. |
-| `RankingConfig.compute_disposition_ranking()` (`engine/ranking.py:2157`) | **PARKED** | Defined but called by no MCP tool, script or test. Only its helper `get_detachments_for_disposition` is live (inside the function and via the guard). |
+| `RankingConfig.compute_disposition_ranking()` (`engine/ranking.py:2167`) | **PARKED** | Defined but called by no MCP tool, script or test. Only its helper `get_detachments_for_disposition` is live (inside the function and via the guard). |
 
-### 🔴 Third, divergent weight model
+### 🔴 Divergent weight model
 
-`data/dispositions.json` `dispositions[].profile` is a **third, independent DPS/SURV/MOB weighting** that contradicts BOTH live weight models. It has no `obj` term and disagrees with the engine:
+`data/dispositions.json` `dispositions[].profile` is an independent DPS/SURV/MOB weighting that contradicts the live weight model. It has no `obj` term and disagrees with the engine:
 
-| Disposition | `dispositions.json` profile (dps/surv/mob) | engine `_base.json` mission_profiles (dps/surv/obj/mob) | findings-HTML `WEIGHTS` (dps/surv/obj/mob) |
-|---|---|---|---|
-| Purge the Foe | 0.70 / 0.20 / 0.10 | 0.60 / 0.15 / 0.05 / 0.20 | 60 / 15 / 5 / 20 |
-| Take and Hold | 0.20 / 0.50 / 0.30 | 0.15 / 0.35 / 0.40 / 0.10 | 20 / 30 / 35 / 15 |
-| Reconnaissance | 0.15 / 0.25 / 0.60 | 0.10 / 0.10 / 0.20 / 0.60 | 10 / 10 / 20 / 60 |
-| Priority Assets | 0.50 / 0.30 / 0.20 | 0.40 / 0.20 / 0.30 / 0.10 | 40 / 20 / 30 / 10 |
-| Disruption | 0.35 / 0.35 / 0.30 | 0.25 / 0.15 / 0.25 / 0.35 | 25 / 15 / 25 / 35 |
+| Disposition | `dispositions.json` profile (dps/surv/mob) | engine `_base.json` mission_profiles (dps/surv/obj/mob) |
+|---|---|---|
+| Purge the Foe | 0.70 / 0.20 / 0.10 | 0.60 / 0.15 / 0.05 / 0.20 |
+| Take and Hold | 0.20 / 0.50 / 0.30 | 0.15 / 0.35 / 0.40 / 0.10 |
+| Reconnaissance | 0.15 / 0.25 / 0.60 | 0.10 / 0.10 / 0.20 / 0.60 |
+| Priority Assets | 0.50 / 0.30 / 0.20 | 0.40 / 0.20 / 0.30 / 0.10 |
+| Disruption | 0.35 / 0.35 / 0.30 | 0.25 / 0.15 / 0.25 / 0.35 |
 
-The engine (`_base.json`) and findings-HTML (`WEIGHTS`) models agree with each other on 4 of 5 dispositions (they differ only on Take and Hold). The `dispositions.json` model agrees with neither. It is not consumed anywhere, so it is a dormant third source of truth — a trap for anyone who reads it and believes it.
+There is now a **single live weight model**: the engine's `_base.json` `mission_profiles`. The findings-HTML page derives its per-page weights from that config at generation time (`scripts/gen_findings_html.py:~699`, since the T1 single-source change), so the two can no longer diverge. (Before T1 the page carried a hardcoded copy that was wrong for Take and Hold — 20/30/35/15 — and was corrected to 15/35/40/10.) `dispositions.json` agrees with neither the shape nor the values of the live model, and is not consumed anywhere — a dormant divergent source of truth, a trap for anyone who reads it and believes it.
 
 Note also internal inconsistency in `dispositions.json`: it marks Reconnaissance/Priority/Disruption `"live": true` while `mission_alignment` marks those same three `"viable": false`, and the design-time schema below shows them `"live": false`. Another reason not to trust the file.
 
@@ -46,9 +46,9 @@ Note also internal inconsistency in `dispositions.json`: it marks Reconnaissance
 
 | Artefact | Recommendation | One-line rationale |
 |----------|----------------|--------------------|
-| `data/dispositions.json` | **DELETE** (after BA/PO sign-off) | Nothing reads it; its divergent third weight model is a false-truth hazard, not an asset. Any future DP-budget feature should build on `supported.json` + MFM. |
+| `data/dispositions.json` | **DELETE** (after BA/PO sign-off) | Nothing reads it; its divergent weight model is a false-truth hazard, not an asset. Any future DP-budget feature should build on `supported.json` + MFM. |
 | `data/config/chaos-knights/disposition_ranking.md` | **DELETE** (after BA/PO sign-off) | Hand-written expert tier list, wired to nothing; its content is a snapshot that will silently rot. Keep the reasoning in an expert file (`resources/experts/`) if it is still wanted. |
-| `compute_disposition_ranking()` (`engine/ranking.py:2157`) | **WIRE or DELETE** | Either expose it via an MCP tool if per-disposition detachment ranking is a wanted feature, or remove it as dead code. Do not leave it parked. |
+| `compute_disposition_ranking()` (`engine/ranking.py:2167`) | **WIRE or DELETE** | Either expose it via an MCP tool if per-disposition detachment ranking is a wanted feature, or remove it as dead code. Do not leave it parked. |
 
 Explicitly NOT done here: no file was deleted, no code was changed. This is a park + document action only, so it is trivially reversible.
 
