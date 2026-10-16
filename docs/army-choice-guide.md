@@ -1,6 +1,6 @@
 # Choosing Your Army — strength, versatility, fit
 
-*Generated 2026-10-15 from engine outputs (rank-decay roster index, MFM v1.5) + expert first-army-fit ratings. Full method + caveats in findings/advisor.json.*
+*Generated 2026-10-16 from engine outputs (rank-decay roster index, MFM v1.5) + expert first-army-fit ratings. Full method + caveats in findings/advisor.json.*
 
 > This narrows the field — it tells you where each faction's strength sits today and what the army demands from you as a player. It cannot tell you the future meta.
 
@@ -35,15 +35,14 @@ each carrying a source trail in the faction's expert file.
 
 - **Dark Angels** — deep durable bench (Deathwing terminator core), straightforward mid-range shooting, and six 1DP detachments forgive list-building; the classic forgiving first army.
 - **Necrons** — Reanimation Protocols literally undo mistakes; warrior bricks plus durable monsters forgive positioning errors.
-- **Orks** — riled-up Waaagh! and massed mobs reward volume play; fight-phase pressure needs far less staging precision than elite melee.
 - **T'au Empire** — castle-and-shoot with durable suits; minimal melee exposure if you keep range.
 - **Adeptus Custodes** — W3-4 baseline with a near-universal 4+ invuln and tiny model count; positioning is forgiving.
 - **Death Guard** — T5 infantry, contagion aura, and -1D make mistakes survivable; damage arrives from statlines, not combos.
 
 ## Strongest long-term signal
-- **Aeldari** — strength 69.5, plays all missions (Unrated first-army fit)
-- **Chaos Daemons** — strength 68.3, plays all missions (Demanding first-army fit)
-- **Blood Angels** — strength 67.8, plays all missions (Demanding first-army fit)
+- **Aeldari** — strength 68.2, plays all missions (Unrated first-army fit)
+- **Blood Angels** — strength 65.6, plays all missions (Demanding first-army fit)
+- **Chaos Daemons** — strength 65.4, plays all missions (Demanding first-army fit)
 
 ## Specialist picks (strong in one mission)
 
@@ -62,12 +61,12 @@ each carrying a source trail in the faction's expert file.
 
 ## Underrated right now
 
-- **Necrons** — overall 62.9, versatile 86.3
-- **Drukhari** — overall 62.6, versatile 90.7
-- **World Eaters** — overall 62.3, versatile 88.7
-- **Thousand Sons** — overall 62.1, versatile 87.6
-- **Emperor's Children** — overall 61.5, versatile 91.3
-- **T'au Empire** — overall 60.4, versatile 87.5
+- **Drukhari** — overall 60.7, versatile 89.3
+- **Necrons** — overall 60.4, versatile 84.5
+- **Thousand Sons** — overall 59.0, versatile 86.9
+- **T'au Empire** — overall 58.5, versatile 86.3
+- **Emperor's Children** — overall 58.1, versatile 89.1
+- **World Eaters** — overall 58.0, versatile 87.9
 
 ## Honest limitations
 
