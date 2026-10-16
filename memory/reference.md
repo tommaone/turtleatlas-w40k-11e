@@ -92,8 +92,11 @@ MCP Bootstrap Protocol: `list_experts` + `get_expert(<faction>)` + `get_sql_rule
 - Export source of truth for capacities: the `transport_capacity` int on the
   `data/merged/*.json` ability named "Transport" — NEVER hand-copy into config, and never
   read the prose (it is not committed). Regenerate with `python3 adapter/merge.py --all`;
-  a single `--faction` run drops abilities on cross-faction fallback units (space-marines:
-  17 units, pre-existing) so `--all` is the only correct regeneration path.
+  a single `--faction` run is equally correct — it builds the same global
+  cross-faction index first (since commit `5725a9c`), so its output is
+  byte-identical to the committed artifact, cross-faction fallback units
+  (space-marines: 17) included. Pinned by
+  `tests/test_merge_single_faction_reproducible.py`.
 
 ## Current state (2026-08-15)
 

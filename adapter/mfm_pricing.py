@@ -12,13 +12,14 @@ tier as the base price, which overstates points and understates
 DPP-per-point — and that number reaches MCP answers.
 
 Every consumer that needs "the price of this MFM unit" must go through
-here, or the copies drift apart again. Consumers:
+here, or the copies drift apart again. Routed through this module:
 
 - `adapter/merge.py`                    — the merged dataset
-- `scripts/sync_config_pts.py`          — the sanctioned config writer
-- `scripts/audit_curated_vs_bsdata.py`  — the audit oracle
-- `tests/test_config_points_match_mfm.py` — the config guard
-- `tests/test_merge_mfm_pricing_tiers.py` — pins the shape
+- `scripts/audit_curated_vs_bsdata.py`  — the audit oracle (via `base_points`)
+
+Still carrying their own copy of the rule (same outcome today, but nothing
+keeps it that way): `scripts/sync_config_pts.py` (the sanctioned config
+writer), `tests/test_config_points_match_mfm.py` (the config guard).
 
 Callers normalise names with their own `_norm`, so keying here stays on the
 original MFM name.
@@ -29,9 +30,9 @@ def iter_base_entries(units):
     """Yield (name, unit) once per unit name, preferring the plain entry.
 
     Falls back to a groupTitle entry only when no plain entry exists, which
-    is load-bearing: 11 other factions list 459 group-ONLY units (the
-    successors' 399 "Space Marines", plus Ynnari, Harlequins, Chaos).
-    Dropping the fallback collapses blood-angels from 99 to 15 units.
+    is load-bearing: 11 factions carry 390 entries under a sub-group title
+    ("Space Marines", Ynnari, Harlequins) and no plain entry of their own.
+    Dropping the fallback collapses blood-angels from 83 merged units to 14.
     """
     plain, group = {}, {}
     for u in units or []:

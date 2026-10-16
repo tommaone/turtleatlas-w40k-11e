@@ -73,13 +73,13 @@ TRANSPORT_WITH_CAPACITY = 122
 # cover every derived field: grey-knights has transports + rerolls + fnp,
 # genestealer-cults is fnp-heavy across characters.
 #
-# space-marines is deliberately absent. It is the one faction with cross-faction
-# fallback units, and regenerating it alone silently produces those units with no
-# abilities at all (17 of them, confirmed against merge.py at 834b61e — pre-existing,
-# not something this change introduced). `--all` is the only correct way to
-# regenerate it, which is too slow to run per-test. Until that path is fixed, the
-# reproducibility guarantee is partial and the FIELD_BASELINE count is what covers
-# the other 28 factions.
+# space-marines is deliberately absent: it is the one faction with cross-faction
+# fallback units, and this test calls merge_faction() without a global_index, so
+# those units come back with no abilities at all (17 of them). The CLI builds the
+# index for both selectors, and tests/test_merge_single_faction_reproducible.py
+# covers it end-to-end; `--all` is too slow to run per-test here, so the
+# reproducibility guarantee in this file stays partial and the FIELD_BASELINE
+# count is what covers the other 28 factions.
 REPRODUCED_FACTIONS = ("grey-knights", "genestealer-cults")
 
 # Fictional fixtures in the *shape* BSData uses, so the detectors are exercised
