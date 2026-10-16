@@ -57,8 +57,11 @@ the class of bug, not just this instance.
 - `python3 -m pytest -q` — 4612 passed, 68 skipped.
 - `python3 scripts/check_artifacts_current.py` — clean after committing the
   regenerated findings output.
-- `grep` confirms the only numeric mission-weight definition in shipped
-  code/spec is `data/config/_base.json`.
+- `grep` confirms the only numeric mission-weight definition **used by the
+  runtime/display pipeline** (engine + findings-HTML generation) is
+  `data/config/_base.json` (per-faction effective `mission_profiles`).
+  Parked/unwired design artefacts may still carry other weight models — see
+  `docs/changes/disposition-design-files-parked.md` (separate branch).
 
 ## Impact
 
