@@ -536,51 +536,47 @@ def gen_index(tiers=None) -> int:
     print(f'index.html {"written" if wrote else "unchanged"} ({len(counts)} factions)')
     return len(counts)
 MISSIONS = ['Take and Hold', 'Purge the Foe', 'Reconnaissance', 'Priority Assets', 'Disruption']
-WEIGHTS = {
-    'Take and Hold': {'dps': 20, 'surv': 30, 'obj': 35, 'mob': 15},
-    'Purge the Foe': {'dps': 60, 'surv': 15, 'obj': 5, 'mob': 20},
-    'Reconnaissance': {'dps': 10, 'surv': 10, 'obj': 20, 'mob': 60},
-    'Priority Assets': {'dps': 40, 'surv': 20, 'obj': 30, 'mob': 10},
-    'Disruption': {'dps': 25, 'surv': 15, 'obj': 25, 'mob': 35},
-}
+# Prose templates for the "How this disposition scores" panel. Percentages are
+# placeholders filled from the per-faction engine config at render time, so this
+# prose can never disagree with the weights the engine actually scores with.
 MISSION_FACTORS = {
     'Take and Hold': {
         'playstyle': 'Hold 2-3 objectives for as many turns as possible.',
         'factors': [
-            'High OC units lock down objectives (OBJ 35%)',
-            'Survivability = turns on objective = more VP (SURV 30%)',
-            'DPP matters — you still need to clear the point (DPP 20%)',
-            'Movement helps reposition between objectives (MOB 15%)',
+            'High OC units lock down objectives (OBJ {obj}%)',
+            'Survivability = turns on objective = more VP (SURV {surv}%)',
+            'DPP matters — you still need to clear the point (DPP {dps}%)',
+            'Movement helps reposition between objectives (MOB {mob}%)',
             'OC0 units cannot score (penalised)',
         ],
     },
     'Purge the Foe': {
         'playstyle': 'Destroy enemy units for VP. Kill more than you lose.',
         'factors': [
-            'DPP dominates — raw killing power per point (DPP 60%)',
-            'Survivability keeps your damage on the table (SURV 15%)',
-            'Movement secondary — need to reach targets (MOB 20%)',
-            'OC barely matters — few objectives to hold (OBJ 5%)',
+            'DPP dominates — raw killing power per point (DPP {dps}%)',
+            'Survivability keeps your damage on the table (SURV {surv}%)',
+            'Movement secondary — need to reach targets (MOB {mob}%)',
+            'OC barely matters — few objectives to hold (OBJ {obj}%)',
             'High-AP, high-D weapons favoured',
         ],
     },
     'Reconnaissance': {
         'playstyle': 'Perform actions across the board. Board control wins.',
         'factors': [
-            'Movement dominates — reach actions, score objectives (MOB 60%)',
+            'Movement dominates — reach actions, score objectives (MOB {mob}%)',
             'Cheap units = more actions per 2000pts (cost penalty active)',
             'Deep Strike / Fly = flexible deployment, bypass terrain',
-            'OC matters for holding mid-game objectives (OBJ 20%)',
-            'DPP nearly irrelevant — not a killing mission (DPP 10%)',
+            'OC matters for holding mid-game objectives (OBJ {obj}%)',
+            'DPP nearly irrelevant — not a killing mission (DPP {dps}%)',
             'OC0 units cannot perform actions (penalised)',
         ],
     },
     'Priority Assets': {
         'playstyle': 'Control specific objectives while dealing damage.',
         'factors': [
-            'Balanced damage + objective play (DPP 40%, OBJ 30%)',
-            'Survivability keeps units on objectives (SURV 20%)',
-            'Movement less critical — fight for fixed positions (MOB 10%)',
+            'Balanced damage + objective play (DPP {dps}%, OBJ {obj}%)',
+            'Survivability keeps units on objectives (SURV {surv}%)',
+            'Movement less critical — fight for fixed positions (MOB {mob}%)',
             'INV/FNP valuable — units must survive to hold',
             'Mixed roster: killy units + OC units',
         ],
@@ -588,16 +584,36 @@ MISSION_FACTORS = {
     'Disruption': {
         'playstyle': 'Deny enemy scoring while controlling the board.',
         'factors': [
-            'Movement controls tempo — dictate engagements (MOB 35%)',
+            'Movement controls tempo — dictate engagements (MOB {mob}%)',
             'Balanced: need damage, durability, and board presence',
             'Cheap units = more board coverage (cost penalty active)',
-            'OC matters for contesting enemy objectives (OBJ 25%)',
-            'DPP still relevant — must threaten key targets (DPP 25%)',
+            'OC matters for contesting enemy objectives (OBJ {obj}%)',
+            'DPP still relevant — must threaten key targets (DPP {dps}%)',
             'Deep Strike / Fly for surprise positioning',
             'OC0 units cannot perform actions (penalised)',
         ],
     },
 }
+
+
+def _mission_factors_for(weights):
+    """Fill the MISSION_FACTORS prose percentages from derived mission weights.
+
+    weights maps a mission name to {'dps','surv','obj','mob'} integer percents
+    (derived from e.config.mission_profiles). The prose text is preserved; only
+    the numeric placeholders are substituted, so the panel cannot drift from the
+    engine.
+    """
+    out = {}
+    for m, spec in MISSION_FACTORS.items():
+        w = weights.get(m, {})
+        out[m] = {
+            'playstyle': spec['playstyle'],
+            'factors': [f.format(dps=w.get('dps', 0), surv=w.get('surv', 0),
+                                 obj=w.get('obj', 0), mob=w.get('mob', 0))
+                        for f in spec['factors']],
+        }
+    return out
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'findings')
 
 # Projection of `data` written to findings/<fid>/data.json for the MCP server's
@@ -668,7 +684,7 @@ def build_data(faction, max_points=2000, detachment=None):
     modifiers are retired (2026-08-27), so detachment-aware ranks equal the
     generalist baseline. None = rules-free generalist view.
 
-    Returns (DATA, n_ranked_units) where DATA['meta'][meta][mission] = [unit,...]
+    Returns (DATA, n_ranked_units, mission_weights) where DATA['meta'][meta][mission] = [unit,...]
     and DATA['meta_info'] lists each preset's slug, display label, and the
     target-mix weights (%) it was computed against. n_ranked_units is the count
     of unique unit names across all metas×missions — the source of truth for
@@ -677,6 +693,14 @@ def build_data(faction, max_points=2000, detachment=None):
     faction-keyword mismatch, missing merged data).
     """
     e = RankingEngine(faction)
+    # Single source of truth: derive the displayed percents from the engine's
+    # effective mission profiles (merged via _extends). Iterating MISSIONS keeps
+    # _base.json's extra "Purge (general)" entry off the page.
+    mission_weights = {
+        m: {k: int(round(float(e.config.mission_profiles.get(m, {}).get(k, 0)) * 100))
+            for k in ('dps', 'surv', 'obj', 'mob')}
+        for m in MISSIONS
+    }
     presets = _preset_list(e.config.meta_profiles)
     meta_info = [{
         'slug': slug,
@@ -691,7 +715,7 @@ def build_data(faction, max_points=2000, detachment=None):
         for m in MISSIONS:
             r = e.compute_ranking(mission=m, meta_name=slug, max_points=max_points,
                                   detachment=detachment)
-            w = WEIGHTS[m]
+            w = mission_weights[m]
             units = []
             for u in r:
                 all_unit_names.add(u['name'])
@@ -739,7 +763,7 @@ def build_data(faction, max_points=2000, detachment=None):
                     'ld': u.get('loadout_detail'),
                 })
             data[slug][m] = units
-    return {'meta': data, 'meta_info': meta_info}, len(all_unit_names)
+    return {'meta': data, 'meta_info': meta_info}, len(all_unit_names), mission_weights
 
 
 def parse_expert_assessment(fid):
@@ -789,16 +813,19 @@ def parse_expert_assessment(fid):
     return out if (out['detachments'] or out['disposition_fit']) else None
 
 
-def gen_html(fname, data, n_units, fid=None):
+def gen_html(fname, data, n_units, weights=None, fid=None):
     """Generate the full findings HTML.
 
     data is the {meta, meta_info} structure from build_data. The whole page is
     re-rendered client-side when the target-mix preset changes; the active mix
     is shown in a banner so every DPP number is interpretable.
     """
+    weights = weights or {}
+    mission_factors = _mission_factors_for(weights)
+
     data_json = _js_safe(json.dumps(data, default=str))
-    weights_json = _js_safe(json.dumps(WEIGHTS))
-    factors_json = _js_safe(json.dumps(MISSION_FACTORS))
+    weights_json = _js_safe(json.dumps(weights))
+    factors_json = _js_safe(json.dumps(mission_factors))
     expert_json = _js_safe(json.dumps(parse_expert_assessment(fid) if fid else None,
                                       ensure_ascii=False))
     fname_html = html.escape(fname, quote=False)
@@ -962,8 +989,8 @@ if __name__ == '__main__':
             tiers = json.load(f)
 
     for fid, fname in factions_to_gen.items():
-        data, n_units = build_data(fid, max_points=max_pts)
-        page = gen_html(fname, data, n_units, fid=fid)
+        data, n_units, weights = build_data(fid, max_points=max_pts)
+        page = gen_html(fname, data, n_units, weights=weights, fid=fid)
         out_dir = os.path.join(OUT, fid)
         os.makedirs(out_dir, exist_ok=True)
         out_path = os.path.join(out_dir, 'findings.html')

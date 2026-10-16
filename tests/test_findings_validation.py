@@ -81,7 +81,7 @@ class TestFindingsConsistency:
 
     def test_n_units_matches_build_data(self, faction_id):
         """n_units returned by build_data must equal the number of unique units in output."""
-        data, n_units = build_data(faction_id, max_points=2000)
+        data, n_units, _ = build_data(faction_id, max_points=2000)
         # Per-meta unique set must match n_units (each meta has the same unit roster)
         for meta, missions in _meta_data(data).items():
             unique_names = set()
@@ -96,7 +96,7 @@ class TestFindingsConsistency:
     def test_n_units_matches_ranking(self, faction_id):
         """n_units from build_data must match compute_ranking() output length."""
         e = RankingEngine(faction_id)
-        data, n_units = build_data(faction_id, max_points=2000)
+        data, n_units, _ = build_data(faction_id, max_points=2000)
         # compute_ranking without mission — same filters as build_data
         ranking = e.compute_ranking(max_points=2000)
         assert n_units == len(ranking), (
@@ -105,7 +105,7 @@ class TestFindingsConsistency:
 
     def test_no_zero_or_nan_scores(self, faction_id):
         """No unit in any meta/mission should have a score of 0 or NaN."""
-        data, _ = build_data(faction_id, max_points=2000)
+        data, _, _ = build_data(faction_id, max_points=2000)
         for meta, units in _all_meta_units(data):
             for u in units:
                 score = u["score"]
@@ -121,7 +121,7 @@ class TestFindingsConsistency:
 
     def test_all_missions_same_units(self, faction_id):
         """Every mission must contain the same set of unit names (per meta)."""
-        data, _ = build_data(faction_id, max_points=2000)
+        data, _, _ = build_data(faction_id, max_points=2000)
         for meta_name, missions in _meta_data(data).items():
             mission_names = _mission_unit_names({"meta": {meta_name: missions}})
             if not mission_names:
@@ -142,7 +142,7 @@ class TestFindingsConsistency:
 
     def test_no_metadata_keys_as_units(self, faction_id):
         """Metadata keys (_note, _source, etc.) must never appear as unit names."""
-        data, _ = build_data(faction_id, max_points=2000)
+        data, _, _ = build_data(faction_id, max_points=2000)
         for _meta_name, mission, units in _meta_unit_items(data):
             for u in units:
                 name = u["name"]
@@ -378,7 +378,7 @@ class TestFindingsCrossFaction:
         failures = []
         for fid in sorted(FACTIONS.keys()):
             try:
-                data, n = build_data(fid, max_points=2000)
+                data, n, _ = build_data(fid, max_points=2000)
                 if n == 0:
                     failures.append(f"{fid}: 0 units")
             except Exception as e:
@@ -388,7 +388,7 @@ class TestFindingsCrossFaction:
     def test_all_factions_have_five_missions(self):
         """Every faction must produce data for all 5 missions in every meta."""
         for fid in sorted(FACTIONS.keys()):
-            data, _ = build_data(fid, max_points=2000)
+            data, _, _ = build_data(fid, max_points=2000)
             metas = _meta_data(data)
             assert metas, f"{fid}: no meta presets in build_data output"
             for meta_name, missions in metas.items():

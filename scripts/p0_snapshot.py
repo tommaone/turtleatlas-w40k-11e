@@ -18,7 +18,7 @@ import gen_findings_html as gfh
 def main():
     snap = {"captured": "2026-08-23", "note": "pre-detachment-modifier baseline", "factions": {}}
     for fid, fname in gfh.FACTIONS.items():
-        data, n_units = gfh.build_data(fid)
+        data, n_units, _ = gfh.build_data(fid)
         entry = gfh.compute_tiers_entry(fname, data, n_units)
         snap["factions"][fid] = entry
         print(f"{fname}: overall={entry['overall']}")

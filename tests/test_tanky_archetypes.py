@@ -31,26 +31,11 @@ TANKY_UNITS = {
     ("adeptus-custodes", "Custodian Wardens"),
 }
 
-WEIGHTS = {"dps": 0.15, "surv": 0.35, "obj": 0.40, "mob": 0.10}
-
 # Tanky units must be in top 15% of their faction
 MAX_RANK_PERCENTILE = 0.15
 
-# Minimum total score for Take and Hold
+# Minimum Take and Hold mission score (engine-computed)
 MIN_TOTAL_SCORE = 60.0
-
-
-def _compute_score(eng, unit):
-    """Compute Take and Hold total score for a unit."""
-    vis = eng._surv_visibility_multiplier(unit["mob"])
-    pts = unit["points"]
-    ce = max(0.0, 100.0 * (1.0 - (pts - 50) / 1950.0)) if pts > 50 else 100.0
-    return (
-        WEIGHTS["dps"] * unit["_dps_pct"]
-        + WEIGHTS["surv"] * unit["_surv_pct"] * ce * vis / 100.0
-        + WEIGHTS["obj"] * unit["_obj_pct"] * vis
-        + WEIGHTS["mob"] * unit["_mob_pct"]
-    )
 
 
 def _get_unit(results, name):
@@ -84,9 +69,9 @@ class TestTankyArchetypeRanking:
         results = eng.compute_ranking(mission="Take and Hold")
         unit = _get_unit(results, unit_name)
         assert unit is not None
-        total = _compute_score(eng, unit)
-        assert total >= MIN_TOTAL_SCORE, (
-            f"{unit_name} score {total:.1f} < {MIN_TOTAL_SCORE} minimum"
+        score = unit["_mission_score"]
+        assert score >= MIN_TOTAL_SCORE, (
+            f"{unit_name} score {score:.1f} < {MIN_TOTAL_SCORE} minimum"
         )
 
     def test_has_invuln_save(self, faction, unit_name):
@@ -120,7 +105,7 @@ class TestTankyVsSquishy:
         bullgryn = _get_unit(results, "Bullgryn Squad")
         scions = _get_unit(results, "Tempestus Scions")
         assert bullgryn and scions
-        assert _compute_score(eng, bullgryn) > _compute_score(eng, scions)
+        assert bullgryn["_mission_score"] > scions["_mission_score"]
 
     def test_deathshroud_outscores_poxwalkers(self):
         """Deathshroud (T7/invuln/FNP4+) outscores basic DG infantry."""
@@ -129,7 +114,7 @@ class TestTankyVsSquishy:
         ds = _get_unit(results, "Deathshroud Terminators")
         pw = _get_unit(results, "Poxwalkers")
         assert ds and pw
-        assert _compute_score(eng, ds) > _compute_score(eng, pw)
+        assert ds["_mission_score"] > pw["_mission_score"]
 
     def test_custodian_wardens_outscores_guardians(self):
         """Custodian Wardens (T6/invuln/FNP4+) outscores basic Custodes."""
@@ -138,7 +123,7 @@ class TestTankyVsSquishy:
         cw = _get_unit(results, "Custodian Wardens")
         cg = _get_unit(results, "Custodian Guard")
         assert cw and cg
-        assert _compute_score(eng, cw) > _compute_score(eng, cg)
+        assert cw["_mission_score"] > cg["_mission_score"]
 
     def test_deathwing_knights_outscores_intercessors(self):
         """Deathwing Knights (T5/invuln/DR) outscores basic Marines."""
@@ -147,7 +132,7 @@ class TestTankyVsSquishy:
         dw = _get_unit(results, "Deathwing Knights")
         inter = _get_unit(results, "Intercessor Squad")
         if dw and inter:
-            assert _compute_score(eng, dw) > _compute_score(eng, inter)
+            assert dw["_mission_score"] > inter["_mission_score"]
 
 
 # ═══════════════════════════════════════════════════════════════════════
