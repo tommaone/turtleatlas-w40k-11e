@@ -44,6 +44,12 @@ A choice weapon is ONE weapon with multiple profiles; the shooter picks ONE prof
 **Why:** hand-maintained counts drifted (Aeldari 72 vs 71 after a config rename).
 **How:** after any config/engine change that affects rankings, regenerate findings AND the index, then run `tests/test_findings_validation.py`.
 
+## Generation stamps are CET, not UTC — and only rewrite on content change
+`scripts/gen_findings_html.py` `GEN_TS` reports Central European time via `ZoneInfo('Europe/Bratislava')` + `%Z` (CEST in summer, CET in winter), not UTC. `_TS_RE`/`_mask_ts` accepts any `[A-Z]{2,5}` zone token so drift comparison stays zone-agnostic.
+
+**Why:** readers and whoever regenerates are on CET; a "generated" stamp should read on their wall clock, not UTC.
+**How:** the generator writes a page ONLY when its masked content changes, so a stamp-format change alone rewrites nothing — force it once (`rm findings/*/findings.html findings/index.html`, then `--all` + `--index`). After that, stamps stay stable. A stamp-format change therefore shows as timestamp-only drift in `check_artifacts_current.py` (RC=1, "revert it") until committed — commit it deliberately: it is a one-time format change, not a clock bump.
+
 ## Config regeneration pipeline order
 `gen_squad_composition.py` (or `generate_configs_from_bsdata.py --force`) → `validate_configs_vs_bsdata.py` → full pytest before commit.
 (Updated 2026-09-25: bare `generate_configs_from_bsdata.py` now exits 3 on a
