@@ -5,7 +5,58 @@
 **Ticket:** N/A — foundation work
 **PR:** TBD
 
+---
+
+## ⚠️ Correction — Implementation status (2026-10-16)
+
+This doc was written at design time (2026-07-05) and describes the full intended system. A later audit found that **only part of it was ever wired into the pipeline**. Read this section before trusting anything below.
+
+### ✅ WIRED (live — read by code)
+
+| Artefact | Where it lives | Who reads it |
+|----------|----------------|--------------|
+| Disposition mapping per detachment | `dispositions` map in `data/config/*/supported.json` | `RankingConfig.dispositions` (`engine/ranking.py:104`); MCP `get_detachment`; `scripts/generate_detachments_heuristic.py`; `scripts/gen_config.py` (regenerates the map from MFM) |
+| Detachment↔disposition validation guard | `RankingConfig.can_detachment_play_disposition` / `get_detachments_for_disposition` (`engine/ranking.py:118`, `:125`) | `compute_ranking` dispositions filter (`engine/ranking.py:1705-1720`); `tests/test_detachment_validation.py`; used by the guard inside `compute_disposition_ranking` |
+
+### 🅿️ PARKED (legacy — read by NOTHING)
+
+| Artefact | Status | Notes |
+|----------|--------|-------|
+| `data/dispositions.json` — `dispositions[].profile`, `dp_budget`, `rules`, `mission_alignment`, `meta_bias` | **PARKED** | Not loaded by any `.py`/`.js`/script/test. Header `_note` added 2026-10-16. |
+| `data/config/chaos-knights/disposition_ranking.md` | **PARKED** | Referenced by no code or doc-and-tool path. Header note added 2026-10-16. |
+| `RankingConfig.compute_disposition_ranking()` (`engine/ranking.py:2157`) | **PARKED** | Defined but called by no MCP tool, script or test. Only its helper `get_detachments_for_disposition` is live (inside the function and via the guard). |
+
+### 🔴 Third, divergent weight model
+
+`data/dispositions.json` `dispositions[].profile` is a **third, independent DPS/SURV/MOB weighting** that contradicts BOTH live weight models. It has no `obj` term and disagrees with the engine:
+
+| Disposition | `dispositions.json` profile (dps/surv/mob) | engine `_base.json` mission_profiles (dps/surv/obj/mob) | findings-HTML `WEIGHTS` (dps/surv/obj/mob) |
+|---|---|---|---|
+| Purge the Foe | 0.70 / 0.20 / 0.10 | 0.60 / 0.15 / 0.05 / 0.20 | 60 / 15 / 5 / 20 |
+| Take and Hold | 0.20 / 0.50 / 0.30 | 0.15 / 0.35 / 0.40 / 0.10 | 20 / 30 / 35 / 15 |
+| Reconnaissance | 0.15 / 0.25 / 0.60 | 0.10 / 0.10 / 0.20 / 0.60 | 10 / 10 / 20 / 60 |
+| Priority Assets | 0.50 / 0.30 / 0.20 | 0.40 / 0.20 / 0.30 / 0.10 | 40 / 20 / 30 / 10 |
+| Disruption | 0.35 / 0.35 / 0.30 | 0.25 / 0.15 / 0.25 / 0.35 | 25 / 15 / 25 / 35 |
+
+The engine (`_base.json`) and findings-HTML (`WEIGHTS`) models agree with each other on 4 of 5 dispositions (they differ only on Take and Hold). The `dispositions.json` model agrees with neither. It is not consumed anywhere, so it is a dormant third source of truth — a trap for anyone who reads it and believes it.
+
+Note also internal inconsistency in `dispositions.json`: it marks Reconnaissance/Priority/Disruption `"live": true` while `mission_alignment` marks those same three `"viable": false`, and the design-time schema below shows them `"live": false`. Another reason not to trust the file.
+
+### Recommendation — wire / park / delete
+
+| Artefact | Recommendation | One-line rationale |
+|----------|----------------|--------------------|
+| `data/dispositions.json` | **DELETE** (after BA/PO sign-off) | Nothing reads it; its divergent third weight model is a false-truth hazard, not an asset. Any future DP-budget feature should build on `supported.json` + MFM. |
+| `data/config/chaos-knights/disposition_ranking.md` | **DELETE** (after BA/PO sign-off) | Hand-written expert tier list, wired to nothing; its content is a snapshot that will silently rot. Keep the reasoning in an expert file (`resources/experts/`) if it is still wanted. |
+| `compute_disposition_ranking()` (`engine/ranking.py:2157`) | **WIRE or DELETE** | Either expose it via an MCP tool if per-disposition detachment ranking is a wanted feature, or remove it as dead code. Do not leave it parked. |
+
+Explicitly NOT done here: no file was deleted, no code was changed. This is a park + document action only, so it is trivially reversible.
+
+---
+
 ## What changed
+
+> **Correction (2026-10-16):** the framing below is design-time. Only the `supported.json` `dispositions` map and the `can_detachment_play_disposition` guard were actually wired. `data/dispositions.json` and `compute_disposition_ranking()` are **PARKED** — see the status section above.
 
 The system now understands **five detachment Dispositions** (Purge the Foe, Take and Hold, Reconnaissance, Priority Assets, Disruption) as first-class entities. Each detachment in every faction pack is tagged with its Disposition. A new `data/dispositions.json` provides the machine-readable rules for how Dispositions relate to mission types, how DP budgets work at each game size, and how Strike Force armies combine 2–3 detachments within a 3DP budget.
 
@@ -33,7 +84,7 @@ This work **does not** build a non-DPP value engine — it creates the vocabular
 |------|---------|
 | `resources/disposition-system.md` | Human-readable: 5 Dispositions explained, DP budget tables, Strike Force construction rules, mission alignment guidance |
 | `resources/non-dpp-value.md` | Human-readable: framework for OC, screening, actions, transport, reserves, durability — what each is, how to evaluate it verbally, what NOT to compute |
-| `data/dispositions.json` | Machine-readable: Disposition definitions (name, ID, mission_weights, keywords), DP budget per game size, Strike Force rules, mission alignment table |
+| `data/dispositions.json` | **PARKED (read by nothing).** Design intent: Disposition definitions (name, ID, mission_weights, keywords), DP budget, Strike Force rules, mission alignment. Only the `supported.json` `dispositions` map became live. |
 | `resources/change-doc-disposition-engine.md` | This document |
 
 ### Files modified (3)
@@ -94,7 +145,9 @@ Each detachment's `disposition` field matches one of: `purge-the-foe`, `take-and
 
 ---
 
-## Data: `dispositions.json` Schema (as implemented)
+## Data: `dispositions.json` Schema (design-time — the file is PARKED, not read)
+
+> The schema below is the design-time snapshot. The committed file has since drifted (`live: true` on all five, different descriptions/keywords). Neither version is consumed by the pipeline.
 
 ```json
 {
@@ -243,14 +296,16 @@ engine and MCP tools that don't load the full faction pack.
 Priority matters. The dependency chain is:
 
 ```
-dispositions.json  ─┬─► faction pack JSONs (add disposition field) ──► supported.json (add dispositions map)
-                     │                    │
-                     └─► disposition-system.md (human doc)
-                    
+dispositions.json  ─╳  (PARKED — never read; NOT a live dependency)
+
+faction pack JSONs (add disposition field) ──► supported.json (add dispositions map)
+    │
+    └─► disposition-system.md (human doc)
+
 guardrails.md (expand section 6, generalise pitfalls)
     │
     └─► meta-bias.md (cross-reference)
-    
+
 non-dpp-value.md (independent — no data dependencies)
 ```
 
