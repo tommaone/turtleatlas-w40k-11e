@@ -2083,7 +2083,11 @@ class RankingEngine:
                 base_oc = r["mob"].get("objective_control", 0)
                 boost = r.get("oc_boost", 0)
                 models = r["surv"].get("models", 1)
-                wpm = r["surv"].get("wounds_per_model", 1)
+                # Cap wpm at 3 — MUST match the obj_vals series above, otherwise
+                # a high-W unit is scored on its raw wpm while the distribution
+                # it is percentiled against caps everyone at 3, inflating its
+                # OBJ percentile toward 100.
+                wpm = min(r["surv"].get("wounds_per_model", 1), 3)
                 total_oc = (base_oc + boost) * models * wpm
                 if total_oc == 0:
                     r["_obj_pct"] = 0.0
@@ -2145,7 +2149,13 @@ class RankingEngine:
                 r["_mob_pct"] = self.mob_score(r["mob"])
                 base_oc = r["mob"].get("objective_control", 0)
                 boost = r.get("oc_boost", 0)
-                total_oc = (base_oc + boost) * r["surv"].get("models", 1)
+                # Cap wpm at 3 — MUST match the obj_vals series above so the
+                # unit's value is comparable to the distribution it is
+                # percentiled against. Without this the value fell outside the
+                # series entirely, so `_pct` saw same=0 and drove the percentile
+                # negative (observed -3) for high-W models.
+                wpm = min(r["surv"].get("wounds_per_model", 1), 3)
+                total_oc = (base_oc + boost) * r["surv"].get("models", 1) * wpm
                 if total_oc == 0:
                     r["_obj_pct"] = 0.0
                 else:
