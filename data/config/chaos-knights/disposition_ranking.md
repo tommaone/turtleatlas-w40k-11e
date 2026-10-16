@@ -1,3 +1,12 @@
+> **⚠️ PARKED / LEGACY — NOT read by the pipeline (as of 2026-10-16).**
+> Nothing in `engine/`, `mcp-server/`, `scripts/` or `tests/` references this file. It is a
+> hand-written expert tier list, not a data source and not an engine input. The LIVE
+> disposition wiring is the `supported.json` `dispositions` map
+> (`data/config/*/supported.json`) plus the validation guard
+> `RankingConfig.can_detachment_play_disposition` / `get_detachments_for_disposition`
+> (`engine/ranking.py`). See `docs/changes/disposition-design-files-parked.md` for the
+> wire/park/delete recommendation.
+
 # Chaos Knights — Disposition & Detachment Tier List
 
 **Source:** 40k.app official 11e database + Goonhammer faction pack review.
