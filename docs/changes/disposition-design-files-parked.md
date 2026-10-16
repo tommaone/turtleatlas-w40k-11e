@@ -29,8 +29,20 @@ doc described a complete system, and one parking-lot file (`dispositions.json`)
 holds a **third, divergent weight model** — a set of DPS/SURV/MOB weights that
 contradicts both the engine's real weights and the findings-page display. Left
 unlabelled, that file is a trap: the next person to open it would reasonably
-believe it is the source of truth and build on data that the pipeline never
-reads.
+  believe it is the source of truth and build on data that the pipeline never
+  reads.
+
+## Verification (nothing reads these)
+
+Confirmed by grep on 2026-10-16:
+
+- `grep -rn 'dispositions\.json' engine mcp-server scripts adapter tests` — **no
+  matches**. The file is referenced only from prose docs/resources
+  (`docs/change-doc-disposition-engine.md`, `resources/disposition-system.md`,
+  `resources/guardrails.md`, `resources/meta-bias.md`), never loaded at runtime.
+- `compute_disposition_ranking` appears only at its definition
+  (`engine/ranking.py:2157`) — **no callers** in engine, MCP server, scripts or
+  tests.
 
 ## Impact for BAs / POs
 
