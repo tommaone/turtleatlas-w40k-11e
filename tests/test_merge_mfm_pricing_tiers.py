@@ -109,9 +109,9 @@ def test_live_merge_roster_keeps_every_duplicated_unit(ia_merged_live):
     """The dedup must merge tiers, never drop a unit.
 
     The plain-over-groupTitle fallback is load-bearing beyond this file: 11
-    other factions list 459 units that are group-ONLY (the successors'
-    "Space Marines", Ynnari, Harlequins). Deleting the fallback collapses
-    those rosters — blood-angels dropped 99 -> 15 units.
+    other factions carry 390 entries under a sub-group title ("Space Marines",
+    Ynnari, Harlequins) and no plain entry. Deleting the fallback collapses
+    those rosters — blood-angels drops from 83 merged units to 14.
 
     (merged/ is a BSData roster with MFM points attached, so MFM-only units
     such as the Kill Teams and Daemonhost are legitimately absent. The

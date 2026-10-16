@@ -1,9 +1,13 @@
 """
-turtleatlas-w40k-11e adapter: merges 10e BSData profiles + 11e MFM points.
+turtleatlas-w40k-11e adapter: merges 11e BSData profiles + 11e MFM points.
 
 Architecture:
-  bsdata/  (git submodule -> wh40k-10e)       -> XML catalogue files (.cat)
+  bsdata/  (git submodule -> wh40k-11e)       -> XML catalogue files (.cat)
   mfm/     (git submodule -> wh40k-11e-mfm)   -> YAML faction files
+
+Both submodule pins are tagless SHAs — bsdata cc58ee3, mfm 8e0e635 — neither
+repo carries a tag at the pinned commit. MFM's "v1.5" is a YAML field
+(`mfm/data/meta.yaml` `version: "1.5"`), not a git tag.
 
   merge.py reads both and produces unified JSON per faction:
     units (profile + pricing) + detachments + enhancements
@@ -26,6 +30,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from adapter.bsdata_parser_11e import BSDataParser11e
+from adapter.mfm_pricing import iter_base_entries
 
 # The engine's prose detectors. Merging is the one moment the BSData rule text
 # is still in hand, so this is where its machine-readable equivalent is derived;
@@ -190,24 +195,31 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
                 break
 
     # -- MFM points (filter out legends unless requested) --
+    # Duplicate names are pricing tiers, not separate units: imperial-agents
+    # lists 29 of its units twice, the second carrying groupTitle ("Every
+    # Model Has The Imperium Keyword"), and last-wins charged that opt-in group
+    # rate as the base price for 14 of them. The plain-over-groupTitle rule —
+    # and the group-only fallback, load-bearing for the 11 factions that carry
+    # 390 entries under a sub-group title ("Space Marines", Ynnari, Harlequins) —
+    # is owned by adapter/mfm_pricing.iter_base_entries; without that fallback
+    # blood-angels collapses from 83 merged units to 14.
+    # Reversed: iter_base_entries keeps the LAST entry of an exact name
+    # duplicate, this map has always kept the first — space-wolves lists
+    # "Venerable Dreadnought" twice at different rates (130/140 tiers and a
+    # flat 165), and the committed artifact carries the first.
     mfm_unit_map: dict[str, dict] = {}
     mfm_orig_names: dict[str, str] = {}
-    for u in mfm_data.get("units", []):
-        if u.get("legends") and not with_legends:
-            continue
-        n = norm(u["name"])
-        # Duplicate names are pricing tiers, not separate units: imperial-agents
-        # lists 29 of its units twice, the second carrying groupTitle ("Every
-        # Model Has The Imperium Keyword"). Last-wins charged that opt-in group
-        # rate as the base price for 14 of them. Prefer the plain entry, and fall
-        # back to a groupTitle entry only when the unit has no plain one.
-        # The fallback is load-bearing, not padding: 11 other factions list 459
-        # group-ONLY units (the successors' "Space Marines", Ynnari, Harlequins).
-        # Removing it collapses blood-angels from 99 to 15 units.
+    for orig_name, u in iter_base_entries(
+        reversed([u for u in mfm_data.get("units", [])
+                  if not (u.get("legends") and not with_legends)])
+    ):
+        # Keys are norm_name, which iter_base_entries cannot use (it keys on
+        # the original name) — resolve plain-vs-group again after the norm.
+        n = norm(orig_name)
         prev = mfm_unit_map.get(n)
         if prev is None or (prev.get("groupTitle") and not u.get("groupTitle")):
             mfm_unit_map[n] = u
-            mfm_orig_names[n] = u["name"]
+            mfm_orig_names[n] = orig_name
 
     # -- Apply weapon multiplicities to BSData units --
     if multiplicity_index:
@@ -564,7 +576,7 @@ def merge_faction(slug: str, mfm_data: dict, bsdata_parser: BSDataParser,
 # -- CLI --------------------------------------------------------------------
 
 def main():
-    ap = argparse.ArgumentParser(description="Merge 10e BSData + 11e MFM")
+    ap = argparse.ArgumentParser(description="Merge 11e BSData + 11e MFM")
     ap.add_argument("--faction", type=str, help="Faction slug (e.g. grey-knights)")
     ap.add_argument("--all", action="store_true", help="Merge all factions")
     ap.add_argument("--output", type=str, default="data/merged",
