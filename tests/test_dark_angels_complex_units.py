@@ -78,10 +78,10 @@ class TestDarkAngelsComplexUnits:
             "Deathwing Terminator": 3,
             "Deathwing Terminator w/ Heavy Weapon": 1,
         }
-        assert _rcount(res, "Storm Bolter") == 4
+        assert _rcount(res, "Storm bolter") == 4
         assert _rcount(res, "Plasma cannon - standard") == 1
-        assert _mcount(res, "Power Fist") == 4
-        assert _mcount(res, "Power Weapon") == 1
+        assert _mcount(res, "Power fist") == 3
+        assert _mcount(res, "Chainfist - Standard") == 2
         assert len(res["melee"]) == 5
 
     def test_inner_circle_companions_fixed(self, da_engine, MEQ):
@@ -100,10 +100,10 @@ class TestDarkAngelsComplexUnits:
         weapon)."""
         res = _build(da_engine, "Ravenwing Black Knights", MEQ)
         alloc = dict(res["_alloc_info"][0][1])
-        assert alloc == {"Ravenwing Black Knight": 2}
-        assert _rcount(res, "Plasma talon - Standard") == 3
-        assert _rcount(res, "Bolt Pistol") == 2
-        assert _mcount(res, "Black Knight combat weapon") == 3
+        assert alloc == {"Ravenwing Black Knight w/ Plasma Talon": 2}
+        assert _rcount(res, "Plasma talon - Standard") == 2
+        assert _rcount(res, "Bolt Pistol") == 3
+        assert _mcount(res, "Corvus Hammers") == 3
         assert len(res["melee"]) == 3
 
     def test_no_legends_unit_removed_from_config(self):
@@ -125,6 +125,6 @@ class TestDarkAngelsComplexUnits:
         res = _build(da_engine, "Intercessor Squad", MEQ)
         alloc = dict(res["_alloc_info"][0][1])
         assert alloc == {"Intercessor": 4}
-        assert _rcount(res, "Bolt Rifle") == 4
+        assert _rcount(res, "Bolt Rifle - Focused Fire") == 4
         assert _rcount(res, "Plasma pistol - standard") == 1
         assert _mcount(res, "Power fist") == 1

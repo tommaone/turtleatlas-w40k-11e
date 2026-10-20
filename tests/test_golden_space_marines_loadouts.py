@@ -145,7 +145,7 @@ class TestRedemptorDreadnought:
         ranged, melee = _resolved(sm_engine, "Redemptor Dreadnought", MEQ)
         mains = [r for r in ranged if r.lower().startswith(("macro plasma incinerator", "heavy onslaught gatling cannon"))]
         seconds = [r for r in ranged if r.lower() in ("heavy flamer", "onslaught gatling cannon")]
-        thirds = [r for r in ranged if r.lower().startswith(("twin fragstorm grenade launcher", "twin storm bolter"))]
+        thirds = [r for r in ranged if r.lower().startswith(("twin fragstorm grenade launcher", "twin storm bolter", "storm bolters"))]
         assert len(mains) == 1, ranged
         assert len(seconds) == 1, ranged
         assert len(thirds) == 1, ranged
@@ -189,7 +189,7 @@ class TestInvictorTacticalWarsuit:
         joined = " ".join(ranged).lower()
         assert "fragstorm grenade launcher" in joined, ranged
         assert "heavy bolter" in joined, ranged
-        assert "twin ironhail heavy stubber" in joined, ranged
+        assert "ironhail heavy stubbers" in joined, ranged
 
 
 class TestAstraeus:

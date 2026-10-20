@@ -72,24 +72,26 @@ class TestDeathwatchComplexUnits:
     """Real-config regression pins: exact resolved loadout per complex unit."""
 
     def test_deathwatch_veterans_alloc(self, dw_engine, MEQ):
-        """Deathwatch Veterans n=5: 2 Deathwatch thunder hammers (up-to-2 cap)
+        """Deathwatch Veterans n=5 (2026-10 datasheet): 1 heavy thunder hammer
         + 1 frag cannon + 1 infernus heavy bolter (separate per-5 budgets, so
-        both heavies are legal) + the Watch Sergeant taking the combi-weapon
-        and xenophase blade slots."""
+        both heavies are legal) + 2 Watch Sergeant variants (combi-weapon with
+        power weapon / xenophase blade)."""
         res = _build(dw_engine, "Deathwatch Veterans", MEQ)
         assert res["_alloc_info"] == [
             ("Veteran", [
-                ("Veteran w/ Deathwatch thunder hammer", 2),
+                ("Veteran w/ heavy thunder hammer", 1),
                 ("Veteran w/ frag cannon and CCW", 1),
                 ("Veteran w/ infernus heavy bolter and CCW", 1),
+                ("Sgt w/ combi-weapon and power weapon", 1),
                 ("Sgt w/ combi-weapon and xenophase blade", 1),
             ]),
         ]
         assert _rcount(res, "Frag cannon") == 1
-        assert _rcount(res, "Infernus heavy bolter - heavy bolter") == 1
-        assert _rcount(res, "Combi-weapon") == 1
-        assert _mcount(res, "Deathwatch thunder hammer") == 2
-        assert _mcount(res, "Close combat weapon") == 2
+        assert _rcount(res, "Infernus heavy bolter (Bolt)") == 1
+        assert _rcount(res, "Combi-weapon") == 2
+        assert _mcount(res, "Heavy thunder hammer") == 1
+        assert _mcount(res, "Knives and Fists") == 2
+        assert _mcount(res, "Power weapon") == 1
         assert _mcount(res, "Xenophase blade") == 1
         assert len(res["melee"]) == 5
 
@@ -99,78 +101,83 @@ class TestDeathwatchComplexUnits:
         Regression pin: the base model (min=1, max=9) must NOT be treated as
         a leader — the squad must resolve 5 models, not 2."""
         res = _build(dw_engine, "Deathwatch Terminator Squad", MEQ)
-        assert _rcount(res, "Storm Bolter") == 5
-        assert _mcount(res, "Power Fist") == 5
+        assert _rcount(res, "Storm bolter") == 5
+        assert _mcount(res, "Power fist") == 5
         assert len(res["ranged"]) == 5
         assert len(res["melee"]) == 5
 
     def test_fortis_kill_team_alloc(self, dw_engine, MEQ):
-        """Fortis Kill Team n=10: the Intercessor pool spreads across the
-        incinerator/special variants (group_max respected); the plasma
-        incinerator variant resolves to Plasma Incinerator - Standard in the
-        DW catalogue (standard-first profile order)."""
+        """Fortis Kill Team n=10 (2026-10 datasheet): the Intercessor pool
+        splits into heavy bolt pistol + chainsword (2), pyreblaster (2),
+        bolt pistol + plasma incinerator (2), vengor launcher (1) and bolt
+        rifle (2) bodies (group_max respected); the incinerator resolves to
+        Plasma Incinerator - Standard in the DW catalogue (standard-first
+        profile order)."""
         res = _build(dw_engine, "Fortis Kill Team", MEQ)
         assert res["_alloc_info"] == [
             ("Kill Team Intercessor", [
-                ("Kill Team Intercessor", 2),
-                ("Kill Team Intercessor w/ grenade launcher", 2),
-                ("Kill Team Intercessor w/ plasma pistol and incinerator", 1),
-                ("Kill Team Intercessor w/ bolt pistol and incinerator", 3),
+                ("Kill Team Intercessor w/ heavy bolt pistol and chainsword", 2),
+                ("Kill Team Intercessor w/ pyreblaster", 2),
+                ("Kill Team Intercessor w/ bolt pistol and incinerator", 2),
                 ("Kill Team Intercessor w/ vengor launcher", 1),
+                ("Kill Team Intercessor with bolt rifle", 2),
             ]),
         ]
-        assert _rcount(res, "Deathwatch bolt rifle") == 4
-        assert _rcount(res, "Astartes grenade launcher - frag") == 2
-        assert _rcount(res, "Plasma Incinerator - Standard") == 4
+        assert _rcount(res, "Deathwatch bolt rifle") == 2
+        assert _rcount(res, "Pyreblaster") == 2
+        assert _rcount(res, "Plasma Incinerator - Standard") == 2
         assert _mcount(res, "Power fist") == 1
         assert len(res["melee"]) == 10
 
     def test_indomitor_kill_team_alloc(self, dw_engine, MEQ):
-        """Indomitor Kill Team n=10: 3 flamestorm gauntlet bodies (max), 1
-        heavy bolter (max), 6 base Heavy Intercessors."""
+        """Indomitor Kill Team n=10 (2026-10 datasheet): 3 melta rifle bodies,
+        3 power fists & flamestorm gauntlets bodies, 4 base Heavy
+        Intercessors."""
         res = _build(dw_engine, "Indomitor Kill Team", MEQ)
         assert res["_alloc_info"] == [
             ("Kill Team Heavy Intercessor", [
+                ("Kill Team Heavy Intercessor w/ melta rifle", 3),
                 ("Kill Team Heavy Intercessor w/ power fists & flamestorm gauntlets", 3),
-                ("Kill Team Heavy Intercessor", 6),
-                ("Kill Team Heavy Intercessor w/ heavy bolter", 1),
+                ("Kill Team Heavy Intercessor", 4),
             ]),
         ]
-        assert _rcount(res, "Flamestorm gauntlets") == 3
-        assert _rcount(res, "Deathwatch heavy bolt rifle") == 6
-        assert _rcount(res, "Deathwatch heavy bolter") == 1
+        assert _rcount(res, "Melta Rifle") == 3
+        assert _rcount(res, "Flamestorm gauntlets (Ranged)") == 3
+        assert _rcount(res, "Deathwatch heavy bolt rifle") == 4
         assert _mcount(res, "Twin power fists") == 3
 
     def test_spectrus_kill_team_alloc(self, dw_engine, MEQ):
-        """Spectrus Kill Team n=10: 4 occulus bolt carbines, 3 las fusils,
-        3 base Infiltrators (marksman carbines)."""
+        """Spectrus Kill Team n=10 (2026-10 datasheet): 4 marksman carbines,
+        2 occulus bolt carbines, 2 combat knives, 2 bolt sniper rifles."""
         res = _build(dw_engine, "Spectrus Kill Team", MEQ)
         assert res["_alloc_info"] == [
             ("Kill Team Infiltrator", [
-                ("Kill Team Infiltrator", 3),
-                ("Kill Team Infiltrator w/ occulus bolt carbine", 4),
-                ("Kill Team Infiltrator w/ las fusil", 3),
+                ("Kill Team Infiltrator w/ Marksman Bolt Carbine", 4),
+                ("Kill Team Infiltrator w/ occulus bolt carbine", 2),
+                ("Kill Team Infiltrator w/ combat knife", 2),
+                ("Kill Team Infiltrator w/ bolt sniper rifle", 2),
             ]),
         ]
-        assert _rcount(res, "Deathwatch marksman bolt carbine") == 3
-        assert _rcount(res, "Deathwatch occulus bolt carbine") == 4
-        assert _rcount(res, "Las fusil") == 3
+        assert _rcount(res, "Deathwatch marksman bolt carbine") == 4
+        assert _rcount(res, "Deathwatch occulus bolt carbine") == 2
+        assert _rcount(res, "Bolt sniper rifle") == 2
+        assert _mcount(res, "Combat knife") == 2
 
     def test_talonstrike_kill_team_alloc(self, dw_engine, MEQ):
-        """Talonstrike Kill Team n=10: 5 Heavy Intercessor jump bodies
-        (assault bolters), 4 Intercessor jump bodies (chainswords), 1
-        Plasma pistol - standard (sergeant slot)."""
+        """Talonstrike Kill Team n=10 (2026-10 datasheet): 4 Heavy Intercessor
+        bodies with assault bolters, 5 Intercessor jump bodies with heavy bolt
+        pistol + chainsword, 1 sergeant slot (Plasma pistol - standard)."""
         res = _build(dw_engine, "Talonstrike Kill Team", MEQ)
         assert res["_alloc_info"] == [
             ("Intercessor", [
-                ("Intercessor w/ heavy bolt pistol and Jump Pack", 4),
-                ("Heavy Intercessor w/ Jump Pack", 5),
+                ("Heavy Intercessor w/ assault bolter", 4),
+                ("Intercessor w/ heavy bolt pistol and Jump Pack", 5),
             ]),
         ]
-        assert _rcount(res, "Assault bolters") == 5
-        assert _rcount(res, "Heavy Bolt Pistol") == 4
+        assert _rcount(res, "Assault bolters") == 4
+        assert _rcount(res, "Heavy Bolt Pistol") == 5
         assert _rcount(res, "Plasma pistol - standard") == 1
-        assert _mcount(res, "Astartes Chainsword") == 4
+        assert _mcount(res, "Chainsword") == 5
 
     def test_decimus_kill_team_curated(self, dw_engine, MEQ):
         """Decimus Kill Team n=5: kept (no BSData composition), curated build

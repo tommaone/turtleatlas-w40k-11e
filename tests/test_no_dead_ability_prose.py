@@ -56,11 +56,11 @@ DERIVED_FIELDS = ("reroll", "army_wide_reroll", "damage_boost", "transport_capac
 # transport_capacity each fell by 12 with the units reclassified as Legends or
 # removed; fnp rose by 1.
 FIELD_BASELINE = {
-    "reroll": 32,
-    "army_wide_reroll": 116,
+    "reroll": 35,
+    "army_wide_reroll": 123,
     "damage_boost": 1,
     "transport_capacity": 122,
-    "fnp": 48,
+    "fnp": 43,
 }
 
 # Transport abilities, and how many resolve a headline number. Two legitimately

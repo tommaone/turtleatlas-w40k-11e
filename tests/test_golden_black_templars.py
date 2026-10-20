@@ -63,7 +63,7 @@ class TestRepulsorExecutioner:
         assert res is not None
         _pts, ranged, _m, _i, _info = res
         names = [w.name.lower() for w in ranged]
-        assert "repulsor executioner defensive array" in names
+        assert "defensive array" in names
 
     def test_gatling_and_hull_fixed(self, engine, MEQ):
         res = engine.resolve_loadout("Repulsor Executioner", MEQ)

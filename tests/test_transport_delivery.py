@@ -49,7 +49,7 @@ from ranking import RankingEngine
 # space present in the source data and part of the exact prose.
 
 LAND_RAIDER_PROSE = (
-    "This model has a transport capacity of 12 Adeptus Astartes\xa0Infantry models. "
+    "This model has a transport capacity of 14 Adeptus Astartes\xa0Infantry models. "
     "Each Jump Pack, Wulfen, Gravis or\xa0Terminator model takes up the space of 2 models "
     "and each\xa0Centurion model takes up the space of 3 models."
 )
@@ -63,18 +63,18 @@ REPULSOR_EXECUTIONER_PROSE = (
     "and each\xa0Centurion model takes up the space of 3 models."
 )
 STORMRAVEN_GUNSHIP_PROSE = (
-    "This model has a transport capacity of 12 Adeptus Astartes Infantry models and 1 "
+    "This model has a transport capacity of 14 Adeptus Astartes Infantry models and 1 "
     "Dreadnought model. Each Jump\xa0Pack, Wulfen, Gravis or Terminator model takes up "
     "the\xa0space of 2 models and each Centurion model takes up the\xa0space of 3 models."
 )
 RHINO_PROSE = (
-    "This model has a transport capacity of 12 ADEPTUS ASTARTES INFANTRY models. "
+    "This model has a transport capacity of 14 ADEPTUS ASTARTES INFANTRY models. "
     "It cannot transport JUMP PACK, WULFEN, PHOBOS, GRAVIS, CENTURION, TERMINATOR or "
     "TACTICUS models (excluding TACTICUS CHARACTER models that began the battle attached "
     "to a non-TACTICUS unit)"
 )
 DROP_POD_PROSE = (
-    "This model has a transport capacity of 12 Adeptus Astartes\xa0Infantry models. "
+    "This model has a transport capacity of 14 Adeptus Astartes\xa0Infantry models. "
     "It cannot transport Jump Pack, Wulfen,\xa0Gravis, Centurion or Terminator models."
 )
 # Astra Militarum Stormlord — the roster's biggest hold (verbatim from
@@ -104,11 +104,11 @@ class TestParseTransportCapacity:
     """
 
     @pytest.mark.parametrize("prose, expected", [
-        (LAND_RAIDER_PROSE, 12),
+        (LAND_RAIDER_PROSE, 14),
         (IMPULSOR_PROSE, 7),
         (REPULSOR_EXECUTIONER_PROSE, 7),
-        (STORMRAVEN_GUNSHIP_PROSE, 12),
-        (RHINO_PROSE, 12),
+        (STORMRAVEN_GUNSHIP_PROSE, 14),
+        (RHINO_PROSE, 14),
     ])
     def test_real_merged_prose(self, prose, expected):
         assert parse_transport_capacity(prose) == expected
@@ -116,7 +116,7 @@ class TestParseTransportCapacity:
     def test_stormraven_first_number_after_of(self):
         """Stormraven prose leads with '12 ... Infantry models and 1 Dreadnought'
         — the headline capacity is the first number after 'transport capacity of'."""
-        assert parse_transport_capacity(STORMRAVEN_GUNSHIP_PROSE) == 12
+        assert parse_transport_capacity(STORMRAVEN_GUNSHIP_PROSE) == 14
 
     def test_none_input(self):
         assert parse_transport_capacity(None) is None
@@ -152,11 +152,11 @@ class TestComputeMobTransportKeys:
             movement=10, fly=False, deep_strike=False, oc=1,
             keywords=["Vehicle", "Transport"], transport_capacity=LAND_RAIDER_PROSE,
         )
-        assert mob["transport_capacity_n"] == 12
+        assert mob["transport_capacity_n"] == 14
         assert mob["is_transport"] is True
         # Resolved, not raw: the raw input is rule text and must never be echoed
         # back out of the engine (the MCP server renders this key).
-        assert mob["transport_capacity"] == 12
+        assert mob["transport_capacity"] == 14
 
     def test_no_capacity_stays_none(self):
         mob = compute_mob(movement=10, fly=False, deep_strike=False, oc=1,
@@ -263,7 +263,7 @@ class TestDeliveryBonus:
         lock, not re-implemented math: value came from the engine."""
         rhino = compute_mob(
             movement=12, fly=False, deep_strike=False, oc=1,
-            keywords=["Vehicle", "Transport"], transport_capacity=RHINO_PROSE,
+            keywords=["Vehicle", "Transport"], transport_capacity=12,
         )
         assert (RankingEngine.delivery_bonus(rhino)
                 == pytest.approx(15.54, abs=1e-2))
@@ -348,9 +348,9 @@ class TestRankingIntegration:
         mob = lr["mob"]
         # data/merged/ carries a derived int, not the ability's rule text, so
         # both the raw passthrough and the parsed capacity are the number.
-        assert mob["transport_capacity"] == 12
+        assert mob["transport_capacity"] == 14
         assert isinstance(mob["transport_capacity_n"], int)
-        assert mob["transport_capacity_n"] == 12
+        assert mob["transport_capacity_n"] == 14
         assert mob["is_transport"] is True
 
     def test_all_keyworded_transports_carry_the_flags(self):
