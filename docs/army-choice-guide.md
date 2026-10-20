@@ -1,6 +1,6 @@
 # Choosing Your Army — strength, versatility, fit
 
-*Generated 2026-10-16 from engine outputs (rank-decay roster index, MFM v1.5) + expert first-army-fit ratings. Full method + caveats in findings/advisor.json.*
+*Generated 2026-10-20 from engine outputs (rank-decay roster index, MFM v1.5) + expert first-army-fit ratings. Full method + caveats in findings/advisor.json.*
 
 > This narrows the field — it tells you where each faction's strength sits today and what the army demands from you as a player. It cannot tell you the future meta.
 
@@ -40,7 +40,7 @@ each carrying a source trail in the faction's expert file.
 - **Death Guard** — T5 infantry, contagion aura, and -1D make mistakes survivable; damage arrives from statlines, not combos.
 
 ## Strongest long-term signal
-- **Aeldari** — strength 68.2, plays all missions (Unrated first-army fit)
+- **Aeldari** — strength 68.1, plays all missions (Unrated first-army fit)
 - **Blood Angels** — strength 65.6, plays all missions (Demanding first-army fit)
 - **Chaos Daemons** — strength 65.4, plays all missions (Demanding first-army fit)
 
@@ -48,6 +48,8 @@ each carrying a source trail in the faction's expert file.
 
 - **Space Marines** — shines in Priority Assets (Unrated first-army fit)
 - **Dark Angels** — shines in Priority Assets (Great first-army fit)
+- **Space Wolves** — shines in Priority Assets (Unrated first-army fit)
+- **Black Templars** — shines in Priority Assets (Unrated first-army fit)
 
 ## Active GW tuning (expect repricing)
 
@@ -61,11 +63,11 @@ each carrying a source trail in the faction's expert file.
 
 ## Underrated right now
 
-- **Drukhari** — overall 60.7, versatile 89.3
+- **Drukhari** — overall 60.7, versatile 89.4
 - **Necrons** — overall 60.4, versatile 84.5
-- **Thousand Sons** — overall 59.0, versatile 86.9
+- **Thousand Sons** — overall 58.9, versatile 86.9
 - **T'au Empire** — overall 58.5, versatile 86.3
-- **Emperor's Children** — overall 58.1, versatile 89.1
+- **Emperor's Children** — overall 58.1, versatile 89.0
 - **World Eaters** — overall 58.0, versatile 87.9
 
 ## Honest limitations
