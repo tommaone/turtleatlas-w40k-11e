@@ -41,7 +41,9 @@ def main():
     drift = fixed = checked = 0
     missed = []
     for p in sorted(glob.glob(str(REPO / "data/config/*/weapon_options.json"))) + \
-             sorted(glob.glob(str(REPO / "data/config/*/characters.json"))):
+             sorted(glob.glob(str(REPO / "data/config/*/characters.json"))) + \
+             sorted(glob.glob(str(REPO / "data/config/*/squads.json"))) + \
+             sorted(glob.glob(str(REPO / "data/config/*/vehicles.json"))):
         fid = Path(p).parts[-2]
         mfile = REPO / "data" / "merged" / f"{fid}.json"
         if not mfile.exists():

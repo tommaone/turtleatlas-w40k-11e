@@ -254,7 +254,7 @@ class TestDeathCompanyDreadnought:
 
     def test_blood_talons_is_fixed(self, ba_engine, MEQ):
         res = _build(ba_engine, "Death Company Dreadnought", MEQ)
-        assert _mcount(res, "Blood Talons - Strike") >= 1
+        assert _mcount(res, "Blood Talons") >= 1
 
     def test_resolves_without_error(self, ba_engine, MEQ):
         """Smoke test: the unit resolves without engine errors."""

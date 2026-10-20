@@ -81,11 +81,11 @@ class TestSpaceWolvesComplexUnits:
         assert res["_alloc_info"] == [
             ("Intercessor", [("Intercessor", 4)]),
         ]
-        assert _rcount(res, "Bolt Rifle") == 4
+        assert _rcount(res, "Bolt Rifle - Focused Fire") == 4
         assert _rcount(res, "Bolt pistol") == 4
         assert _rcount(res, "Plasma pistol - standard") == 1
         assert len(res["ranged"]) == 9
-        assert _mcount(res, "Close combat weapon") == 4
+        assert _mcount(res, "Knives and Fists") == 4
         assert _mcount(res, "Power fist") == 1
         assert len(res["melee"]) == 5
 
@@ -97,7 +97,7 @@ class TestSpaceWolvesComplexUnits:
         assert _rcount(res, "Bolt pistol") == 9
         assert _rcount(res, "Plasma pistol - standard") == 1
         assert len(res["ranged"]) == 10
-        assert _mcount(res, "Astartes Chainsword") == 9
+        assert _mcount(res, "Chainsword") == 9  # renamed from Astartes Chainsword (2026-10 datasheet)
         assert _mcount(res, "Power weapon") == 1
         assert len(res["melee"]) == 10
 
@@ -110,7 +110,7 @@ class TestSpaceWolvesComplexUnits:
         assert _rcount(res, "Bolt Carbine") == 9
         assert _rcount(res, "Bolt pistol") == 9
         assert _rcount(res, "Plasma pistol - standard") == 1
-        assert _mcount(res, "Astartes Chainsword") == 9
+        assert _mcount(res, "Chainsword") == 9  # renamed from Astartes Chainsword (2026-10 datasheet)
         assert _mcount(res, "Power fist") == 1
         assert len(res["melee"]) == 10
 
@@ -125,11 +125,10 @@ class TestSpaceWolvesComplexUnits:
                 ("Wolf Guard Terminator w/ Assault Cannon", 1),
             ]),
         ]
-        assert _rcount(res, "Storm Bolter") == 3
+        assert _rcount(res, "Storm bolter") == 4
         assert _rcount(res, "Assault Cannon") == 1
-        assert _mcount(res, "Master-crafted Power Weapon") == 3
+        assert _mcount(res, "Master-crafted power weapon") == 4
         assert _mcount(res, "Power fist") == 1
-        assert _mcount(res, "Twin lightning claws") == 1
         assert len(res["melee"]) == 5
 
     def test_wulfen_alloc_all_auto_launcher(self, sw_engine, MEQ):
@@ -161,11 +160,11 @@ class TestSpaceWolvesComplexUnits:
         assert res["_alloc_info"] == [
             ("Thunderwolf", [
                 ("Thunderwolf w/ plasma pistol", 1),
-                ("Thunderwolf w/ boltgun", 2),
+                ("Thunderwolf w/ boltgun and storm shield", 2),
             ]),
         ]
         assert _rcount(res, "Plasma pistol - standard") == 1
         assert _rcount(res, "Boltgun") == 2
         assert _mcount(res, "Wolf Guard Weapon") == 3
-        assert _mcount(res, "Crushing teeth and claws") == 3
+        assert _mcount(res, "Teeth and claws") == 3
         assert len(res["melee"]) == 6

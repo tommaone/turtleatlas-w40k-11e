@@ -63,11 +63,11 @@ class TestSpaceMarinesComplexUnits:
         assert res["_alloc_info"] == [
             ("Intercessor", [("Intercessor", 4)]),
         ]
-        assert _rcount(res, "Bolt Rifle") == 4
+        assert _rcount(res, "Bolt Rifle - Focused Fire") == 4
         assert _rcount(res, "Bolt pistol") == 4
         assert _rcount(res, "Plasma pistol - standard") == 1
         assert len(res["ranged"]) == 9
-        assert _mcount(res, "Close combat weapon") == 4
+        assert _mcount(res, "Knives and Fists") == 4
         assert _mcount(res, "Power fist") == 1
         assert len(res["melee"]) == 5
 
@@ -88,7 +88,8 @@ class TestSpaceMarinesComplexUnits:
         }
         assert _rcount(res, "Storm bolter") == 4
         assert _rcount(res, "Assault Cannon") == 1
-        assert _mcount(res, "Power fist") == 5  # 3 + sgt (heavy keeps fist?)
+        assert _mcount(res, "Power fist") == 3
+        assert _mcount(res, "Chainfist - Standard") == 2
         assert len(res["melee"]) == 5
 
     def test_terminator_assault_all_thunder_hammer(self, sm_engine, MEQ):
@@ -105,16 +106,19 @@ class TestSpaceMarinesComplexUnits:
         assert len(res["melee"]) == 5
 
     def test_eradicator_heavy_bolters_flat(self, sm_engine, MEQ):
-        """Eradicator Squad With Heavy Bolters n=3: FLAT (no alloc) — every
-        model carries Heavy Bolter + Bolt pistol. Regression: this unit used
-        to resolve to the base Eradicator melta payload via substring."""
+        """Eradicator Squad With Heavy Bolters n=3: FLAT (no alloc) — 2
+        Eradicators carry Heavy Bolter + Bolt pistol; the Sergeant carries
+        Bolt pistol only. All melee is Ceramite Fists (2026-10 datasheet).
+        Regression: this unit used to resolve to the base Eradicator melta
+        payload via substring."""
         res = _build(sm_engine, "Eradicator Squad With Heavy Bolters", MEQ)
         assert res.get("_alloc_info") is None
-        assert _rcount(res, "Heavy Bolter") == 3
+        assert _rcount(res, "Heavy Bolter") == 2
+        assert _rcount(res, "Bolt pistol") == 3
         assert _rcount(res, "Melta rifle") == 0
         assert _rcount(res, "Multi-melta") == 0
-        assert len(res["ranged"]) == 6
-        assert _mcount(res, "Close combat weapon") == 3
+        assert len(res["ranged"]) == 5
+        assert _mcount(res, "Ceramite Fists") == 3
 
     def test_eradicator_melta_rifles_has_melta(self, sm_engine, MEQ):
         """MFM v1.5 renamed the base Eradicator Squad to 'Eradicator Squad
@@ -126,13 +130,15 @@ class TestSpaceMarinesComplexUnits:
             "Eradicator": 1,
             "Eradicator with Multi-melta": 1,
         }
-        assert _rcount(res, "Melta rifle") == 2
+        assert _rcount(res, "Melta Rifle") == 2
         assert _rcount(res, "Multi-melta") == 1
         assert _rcount(res, "Bolt pistol") == 3  # 2 eradicators + sergeant
 
     def test_heavy_intercessor_heavy_bolter(self, sm_engine, MEQ):
         """Heavy Intercessor Squad n=5: base 3-9 pool + 1 Heavy Bolter
-        specialist; Sergeant fires Heavy Bolt Rifle + Bolt pistol."""
+        specialist; Sergeant fires Heavy Bolt Rifle + Bolt pistol. Melee
+        split (2026-10 datasheet): base + Sergeant = Ceramite Fists (4),
+        the Heavy Bolter specialist keeps Close combat weapon (1)."""
         res = _build(sm_engine, "Heavy Intercessor Squad", MEQ)
         alloc = dict(res["_alloc_info"][0][1])
         assert alloc["Heavy Intercessors"] == 3
@@ -140,7 +146,8 @@ class TestSpaceMarinesComplexUnits:
         assert _rcount(res, "Heavy Bolt Rifle") == 4
         assert _rcount(res, "Heavy Bolter") == 1
         assert _rcount(res, "Bolt pistol") == 5  # 4 base pool + sergeant
-        assert _mcount(res, "Close combat weapon") == 5
+        assert _mcount(res, "Ceramite Fists") == 4
+        assert _mcount(res, "Close combat weapon") == 1
 
     def test_hard_pool_min_uses_base(self, sm_engine, MEQ):
         """Heavy Intercessor Squad n=8: base pool must fill to 8, the
@@ -230,9 +237,9 @@ class TestSpaceMarinesComplexUnits:
         # vs MEQ: Power Fist (no Anti-INFANTRY — nothing punches down to T4).
         # vs heavy: every model swaps to the Chain Fist (Anti-VEHICLE 3+
         # wounds T10 on 3+ not 5+); the uncapped datasheet allows all 5.
-        # Weapon profiles resolve to canonical names: "Power fist"/"Chainfist".
+        # Weapon profiles resolve to canonical names: "Power fist"/"Chainfist - Standard".
         assert vs_meq["_alloc_info"] != vs_heavy["_alloc_info"]
-        assert _mcount(vs_meq, "Power fist") == 5
-        assert _mcount(vs_meq, "Chainfist") == 0
-        assert _mcount(vs_heavy, "Chainfist") == 5
+        assert _mcount(vs_meq, "Power fist") == 3
+        assert _mcount(vs_meq, "Chainfist - Standard") == 2
+        assert _mcount(vs_heavy, "Chainfist - Standard") == 5
         assert _mcount(vs_heavy, "Power fist") == 0

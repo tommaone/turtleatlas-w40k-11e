@@ -75,15 +75,14 @@ class TestBlackTemplarsComplexUnits:
         res = _build(bt_engine, "Crusader Squad", MEQ)
         assert res["_alloc_info"] == [
             ("Initiate", [
-                ("Initiate w/Chainsword & Heavy Bolt Pistol", 1),
-                ("Initiate w/Power Fist & Heavy Bolt Pistol", 2),
-                ("Initiate w/Pyreblaster", 2),
-                ("Neophyte w/ Astartes Chainsword", 4),
+                ("Initiate w/Chainsword & Heavy Bolt Pistol", 5),
+                ("Neophyte w/ Chainsword", 4),
             ]),
         ]
-        assert _rcount(res, "Pyreblaster") == 2
-        assert _rcount(res, "Pyre Pistol") == 1
-        assert _mcount(res, "Power fist") == 2
+        assert _rcount(res, "Heavy Bolt Pistol") == 5
+        assert _rcount(res, "Bolt pistol") == 9
+        assert _mcount(res, "Initiate Chainsword") == 5
+        assert _mcount(res, "Neophyte Chainsword") == 4
         assert _mcount(res, "Master-crafted Power Weapon") == 1
         assert len(res["melee"]) == 10
 
@@ -135,5 +134,5 @@ class TestBlackTemplarsCharacters:
         assert res is not None
         pts, ranged, melee, innate, info = res
         assert pts == 75  # MFM v1.5 rebalanced (was 70)
-        assert Counter(w.name for w in ranged) == {"Combi-weapon": 1}
+        assert Counter(w.name for w in ranged) == {"Combi-weapon - Infernus": 1}
         assert Counter(w.name for w in melee) == {"Master-crafted Power Weapon": 1}

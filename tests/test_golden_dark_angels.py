@@ -44,9 +44,9 @@ class TestLandSpeederVengeance:
         # not two weapons — the pre-sweep config double-counted them)
         assert r.count("Plasma storm battery - standard") <= 1
         assert not any("supercharge" in n for n in r), f"got {r}"
-        nose = [n for n in r if n in ("Assault cannon", "Heavy bolter")]
+        nose = [n for n in r if n in ("Assault cannon", "Heavy Bolter")]
         assert len(nose) == 1, f"one nose gun, got {r}"
-        assert _names(melee) == ["Close Combat Weapon"]
+        assert _names(melee) == ["Armoured Hull"]
 
 
 class TestNephilimJetfighter:
@@ -73,7 +73,7 @@ class TestNephilimJetfighter:
 
     def test_missiles_not_melee(self, engine, MEQ):
         res = engine.resolve_loadout("Nephilim Jetfighter", MEQ)
-        assert _names(res[2]) == ["Armoured hull"]
+        assert _names(res[2]) == ["Armoured Hull"]
 
 
 class TestRavenwingDarkshroud:
@@ -84,8 +84,8 @@ class TestRavenwingDarkshroud:
         _pts, ranged, melee, _i, _info = res
         r = _names(ranged)
         assert len(r) == 1
-        assert r[0] in ("Heavy bolter", "Assault cannon"), f"got {r}"
-        assert _names(melee) == ["Close Combat Weapon"]
+        assert r[0] in ("Heavy Bolter", "Assault cannon"), f"got {r}"
+        assert _names(melee) == ["Armoured Hull"]
         assert "Infernum halo launcher" not in r
 
 

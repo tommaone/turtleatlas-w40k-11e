@@ -37,7 +37,8 @@ KNOWN_MISSING: dict[str, list[str]] = {
     'genestealer-cults': ['Centaur RSV', 'Commissar Graves on Foot', 'Death Korps of Krieg', 'Gaunt’s Ghosts', 'Hippogriff AFV', 'Parasite of Mortrex', "Von Ryan's Leapers"],
     'imperial-knights': ['Sydonian Dragoons with radium jezzails', 'Sydonian Dragoons with taser lances'],
     'orks': ['Burna Boy', 'Loota', 'Nob on Smasha Squig', 'Spanner', 'Squighog Boy'],
-    'space-marines': ['Kaius Konorius'],
+    'space-marines': [],
+
     'space-wolves': ['Hunting Wolves', 'Wolf Scout', 'Wolf Scout Pack Leader', 'Wolf Scout w/ haywire mine', 'Wolf Scout w/ plasma gun', 'Wolf Scout w/ runic stave and Thunderclap'],
     'tau-empire': ['Tidewall Shieldline'],
 }

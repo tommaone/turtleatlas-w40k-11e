@@ -41,7 +41,7 @@ class TestVenerableDreadnought:
         res = engine.resolve_loadout("Venerable Dreadnought", MEQ)
         _pts, ranged, melee, _i, _info = res
         r = _names(ranged)
-        hull = [n for n in r if n.startswith(("Assault cannon", "Helfrost cannon",
+        hull = [n for n in r if n.startswith(("Assault Cannon", "Helfrost cannon",
                                               "Multi-melta"))]
         assert len(hull) == 1, f"one hull gun pick, got {r}"
         front = [n for n in r if n in ("Storm bolter", "Heavy Flamer")]
