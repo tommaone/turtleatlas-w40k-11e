@@ -229,7 +229,8 @@
           "W": "4",
           "LD": "6+",
           "OC": "1",
-          "InSv": "2+*"
+          "InSv": "2+*",
+          "Base": "32mm"
         },
         "keywords": [
           "Character",
@@ -394,7 +395,8 @@
           "W": "7",
           "LD": "7+",
           "OC": "2",
-          "InSv": "6+"
+          "InSv": "6+",
+          "Base": "60mm Flying"
         },
         "keywords": [
           "Cronos",
@@ -536,7 +538,8 @@
           "W": "5",
           "LD": "6+",
           "OC": "1",
-          "InSv": "4+"
+          "InSv": "4+",
+          "Base": "40mm"
         },
         "keywords": [
           "Epic Hero",
@@ -642,7 +645,8 @@
           "W": "5",
           "LD": "7+",
           "OC": "1",
-          "InSv": "6+"
+          "InSv": "6+",
+          "Base": "25mm"
         },
         "keywords": [
           "Haemonculus",
@@ -743,7 +747,8 @@
           "W": "1",
           "LD": "7+",
           "OC": "1",
-          "InSv": "6+"
+          "InSv": "6+",
+          "Base": "25mm"
         },
         "keywords": [
           "Infantry",
@@ -1412,7 +1417,8 @@
           "W": "2",
           "LD": "7+",
           "OC": "1",
-          "InSv": "6+"
+          "InSv": "6+",
+          "Base": "32mm Flying"
         },
         "keywords": [
           "Hellions",
@@ -1805,7 +1811,8 @@
           "W": "1",
           "LD": "6+",
           "OC": "1",
-          "InSv": "5+"
+          "InSv": "5+",
+          "Base": "28.5mm"
         },
         "keywords": [
           "Incubi",
@@ -1990,7 +1997,8 @@
           "W": "1",
           "LD": "7+",
           "OC": "2",
-          "InSv": "6+"
+          "InSv": "6+",
+          "Base": "25mm"
         },
         "keywords": [
           "Kabalite Warriors",
@@ -2461,7 +2469,8 @@
           "W": "5",
           "LD": "6+",
           "OC": "2",
-          "InSv": "4+"
+          "InSv": "4+",
+          "Base": "32mm"
         },
         "keywords": [
           "Infantry",
@@ -2560,7 +2569,8 @@
           "W": "4",
           "LD": "6+",
           "OC": "1",
-          "InSv": "4+"
+          "InSv": "4+",
+          "Base": "32mm"
         },
         "keywords": [
           "Lelith Hesperax",
@@ -2645,7 +2655,8 @@
           "W": "1",
           "LD": "7+",
           "OC": "1",
-          "InSv": "5+"
+          "InSv": "5+",
+          "Base": "28.5mm"
         },
         "keywords": [
           "Mandrakes",
@@ -2819,7 +2830,8 @@
           "W": "10",
           "LD": "7+",
           "OC": "2",
-          "InSv": "6+"
+          "InSv": "6+",
+          "Base": "60mm Flying"
         },
         "keywords": [
           "Raider",
@@ -2958,7 +2970,8 @@
           "W": "11",
           "LD": "7+",
           "OC": "3",
-          "InSv": "6+"
+          "InSv": "6+",
+          "Base": "60mm Flying"
         },
         "keywords": [
           "Ravager",
@@ -3089,7 +3102,8 @@
           "W": "10",
           "LD": "7+",
           "OC": "-",
-          "InSv": "6+"
+          "InSv": "6+",
+          "Base": "120x92mm"
         },
         "keywords": [
           "Razorwing Jetfighter",
@@ -3319,7 +3333,8 @@
           "W": "2",
           "LD": "7+",
           "OC": "2",
-          "InSv": "6+"
+          "InSv": "6+",
+          "Base": "32mm Flying"
         },
         "keywords": [
           "Reavers",
@@ -3481,26 +3496,21 @@
             ]
           },
           {
-            "name": "Blaster",
+            "name": "Reaver with Heat Lance",
             "profiles": [
               {
-                "name": "Blaster",
+                "name": "Heat Lance",
                 "typeName": "Ranged Weapons",
                 "stats": {
                   "Range": "18\"",
                   "A": "1",
                   "BS": "3+",
-                  "S": "8",
+                  "S": "14",
                   "AP": "-4",
-                  "D": "D6+1",
-                  "Keywords": "Assault"
+                  "D": "D6",
+                  "Keywords": "Assault, Melta 3"
                 }
-              }
-            ]
-          },
-          {
-            "name": "Reaver with Heat Lance",
-            "profiles": [
+              },
               {
                 "name": "Splinter Pistol",
                 "typeName": "Ranged Weapons",
@@ -3515,19 +3525,6 @@
                 }
               },
               {
-                "name": "Heat Lance",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "14",
-                  "AP": "-4",
-                  "D": "D6",
-                  "Keywords": "Assault, Melta 3"
-                }
-              },
-              {
                 "name": "Bladevanes",
                 "typeName": "Melee Weapons",
                 "stats": {
@@ -3538,24 +3535,6 @@
                   "AP": "-1",
                   "D": "1",
                   "Keywords": "Lance"
-                }
-              }
-            ]
-          },
-          {
-            "name": "Heat Lance",
-            "profiles": [
-              {
-                "name": "Heat Lance",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "18\"",
-                  "A": "1",
-                  "BS": "3+",
-                  "S": "14",
-                  "AP": "-4",
-                  "D": "D6",
-                  "Keywords": "Assault, Melta 3"
                 }
               }
             ]
@@ -3590,19 +3569,6 @@
                 }
               },
               {
-                "name": "Splinter Rifle",
-                "typeName": "Ranged Weapons",
-                "stats": {
-                  "Range": "24\"",
-                  "A": "2",
-                  "BS": "3+",
-                  "S": "2",
-                  "AP": "0",
-                  "D": "1",
-                  "Keywords": "Anti-Infantry 3+, Assault"
-                }
-              },
-              {
                 "name": "Blaster",
                 "typeName": "Ranged Weapons",
                 "stats": {
@@ -3615,6 +3581,55 @@
                   "Keywords": "Assault"
                 }
               },
+              {
+                "name": "Heat Lance",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "14",
+                  "AP": "-4",
+                  "D": "D6",
+                  "Keywords": "Assault, Melta 3"
+                }
+              },
+              {
+                "name": "Splinter Rifle",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "24\"",
+                  "A": "2",
+                  "BS": "3+",
+                  "S": "2",
+                  "AP": "0",
+                  "D": "1",
+                  "Keywords": "Anti-Infantry 3+, Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Blaster",
+            "profiles": [
+              {
+                "name": "Blaster",
+                "typeName": "Ranged Weapons",
+                "stats": {
+                  "Range": "18\"",
+                  "A": "1",
+                  "BS": "3+",
+                  "S": "8",
+                  "AP": "-4",
+                  "D": "D6+1",
+                  "Keywords": "Assault"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Heat Lance",
+            "profiles": [
               {
                 "name": "Heat Lance",
                 "typeName": "Ranged Weapons",
@@ -3685,7 +3700,8 @@
           "W": "1",
           "LD": "7+",
           "OC": "1",
-          "InSv": "5+"
+          "InSv": "5+",
+          "Base": "32mm"
         },
         "keywords": [
           "Scourges",
@@ -4213,7 +4229,8 @@
           "W": "1",
           "LD": "7+",
           "OC": "1",
-          "InSv": "5+"
+          "InSv": "5+",
+          "Base": "32mm"
         },
         "keywords": [
           "Scourges",
@@ -4642,7 +4659,8 @@
           "W": "4",
           "LD": "7+",
           "OC": "1",
-          "InSv": "4+"
+          "InSv": "4+",
+          "Base": "25mm"
         },
         "keywords": [
           "Succubus",
@@ -4732,7 +4750,8 @@
           "W": "7",
           "LD": "7+",
           "OC": "2",
-          "InSv": "6+"
+          "InSv": "6+",
+          "Base": "60mm Flying"
         },
         "keywords": [
           "Talos",
@@ -5113,7 +5132,8 @@
           "W": "6",
           "LD": "7+",
           "OC": "1",
-          "InSv": "6+"
+          "InSv": "6+",
+          "Base": "60mm Flying"
         },
         "keywords": [
           "Venom",
@@ -5243,7 +5263,8 @@
           "W": "12",
           "LD": "7+",
           "OC": "-",
-          "InSv": "6+"
+          "InSv": "6+",
+          "Base": "120x92mm"
         },
         "keywords": [
           "Voidraven",
@@ -5391,7 +5412,8 @@
           "W": "2",
           "LD": "7+",
           "OC": "2",
-          "InSv": "6+"
+          "InSv": "6+",
+          "Base": "25mm"
         },
         "keywords": [
           "Wracks",
@@ -5832,7 +5854,8 @@
           "W": "1",
           "LD": "7+",
           "OC": "2",
-          "InSv": "4+* / 6+"
+          "InSv": "4+* / 6+",
+          "Base": "25mm"
         },
         "keywords": [
           "Wyches",

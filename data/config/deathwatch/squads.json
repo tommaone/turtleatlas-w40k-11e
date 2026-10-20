@@ -1,2039 +1,1995 @@
 {
-  "_note": "deathwatch squads \u2014 generated from BSData + MFM",
-  "_source": "BSData 11e + MFM (auto-generated)",
-  "Aggressor Squad": {
-    "n": 3,
-    "pts": 90,
-    "innate": [],
-    "info": {
-      "M": "5\"",
-      "T": 6,
-      "SV": 3,
-      "W": 3,
-      "OC": 1
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Aggressors",
-            "count": 2,
-            "melee": "Twin power fist",
-            "slots": [
-              {
-                "name": "Weapon Option",
-                "choices": [
-                  {
-                    "name": "Auto Boltstorm Gauntlets & Fragstorm Grenade Launcher",
-                    "ranged": "Auto Boltstorm Gauntlets"
-                  },
-                  {
-                    "name": "Flamestorm Gauntlets",
-                    "ranged": "Flamestorm Gauntlets",
-                    "default": true
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "name": "Aggressor Sergeant",
-            "count": 1,
-            "melee": "Twin power fist",
-            "slots": [
-              {
-                "name": "Weapon Option",
-                "choices": [
-                  {
-                    "name": "Auto Boltstorm Gauntlets & Fragstorm Grenade Launcher",
-                    "ranged": "Auto Boltstorm Gauntlets"
-                  },
-                  {
-                    "name": "Flamestorm Gauntlets",
-                    "ranged": "Flamestorm Gauntlets",
-                    "default": true
-                  }
-                ]
-              }
-            ]
-          }
+ "_note": "deathwatch squads — generated from BSData + MFM",
+ "_source": "BSData 11e + MFM (auto-generated)",
+ "Aggressor Squad": {
+  "n": 3,
+  "pts": 90,
+  "innate": [],
+  "info": {
+   "M": "5\"",
+   "T": 6,
+   "SV": 3,
+   "W": 3,
+   "OC": 1
+  },
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Aggressors",
+      "count": 2,
+      "melee": "Twin power fist",
+      "slots": [
+       {
+        "name": "Weapon Option",
+        "choices": [
+         {
+          "name": "Auto Boltstorm Gauntlets & Fragstorm Grenade Launcher",
+          "ranged": "Fragstorm grenade launcher"
+         },
+         {
+          "name": "Flamestorm Gauntlets",
+          "ranged": "Flamestorm Gauntlets - Close-quarters",
+          "default": true
+         }
         ]
-      }
+       }
+      ]
+     },
+     {
+      "name": "Aggressor Sergeant",
+      "count": 1,
+      "melee": "Twin power fist",
+      "slots": [
+       {
+        "name": "Weapon Option",
+        "choices": [
+         {
+          "name": "Auto Boltstorm Gauntlets & Fragstorm Grenade Launcher",
+          "ranged": "Fragstorm grenade launcher"
+         },
+         {
+          "name": "Flamestorm Gauntlets",
+          "ranged": "Flamestorm Gauntlets",
+          "default": true
+         }
+        ]
+       }
+      ]
+     }
     ]
+   }
+  ]
+ },
+ "Assault Intercessor Squad": {
+  "n": 5,
+  "pts": 90,
+  "innate": [],
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 3,
+   "W": 2,
+   "OC": 2
   },
-  "Assault Intercessor Squad": {
-    "n": 5,
-    "pts": 90,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 2
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Assault Intercessors",
-            "count": 4,
-            "ranged": "Heavy Bolt Pistol",
-            "melee": "Astartes Chainsword"
-          },
-          {
-            "name": "Assault Intercessor Sergeant",
-            "count": 1,
-            "slots": [
-              {
-                "name": "Weapon 1",
-                "choices": [
-                  {
-                    "name": "Hand flamer",
-                    "ranged": "Hand flamer"
-                  },
-                  {
-                    "name": "Plasma pistol",
-                    "ranged": "Plasma pistol"
-                  },
-                  {
-                    "name": "Heavy Bolt Pistol",
-                    "ranged": "Heavy Bolt Pistol"
-                  }
-                ]
-              },
-              {
-                "name": "Weapon 2",
-                "choices": [
-                  {
-                    "name": "Astartes Chainsword",
-                    "melee": "Astartes Chainsword"
-                  },
-                  {
-                    "name": "Power weapon",
-                    "melee": "Power weapon"
-                  },
-                  {
-                    "name": "Power fist",
-                    "melee": "Power fist"
-                  },
-                  {
-                    "name": "Thunder Hammer",
-                    "melee": "Thunder Hammer"
-                  }
-                ]
-              }
-            ]
-          }
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Assault Intercessors",
+      "count": 4,
+      "ranged": "Heavy Bolt Pistol",
+      "melee": "Chainsword"
+     },
+     {
+      "name": "Assault Intercessor Sergeant",
+      "count": 1,
+      "slots": [
+       {
+        "name": "Weapon 1",
+        "choices": [
+         {
+          "name": "Hand flamer",
+          "ranged": "Hand flamer"
+         },
+         {
+          "name": "Plasma pistol",
+          "ranged": "Plasma pistol"
+         },
+         {
+          "name": "Heavy Bolt Pistol",
+          "ranged": "Heavy Bolt Pistol"
+         }
         ]
-      }
+       },
+       {
+        "name": "Weapon 2",
+        "choices": [
+         {
+          "name": "Chainsword",
+          "melee": "Chainsword"
+         },
+         {
+          "name": "Power weapon",
+          "melee": "Power weapon"
+         },
+         {
+          "name": "Power fist",
+          "melee": "Power fist"
+         },
+         {
+          "name": "Thunder Hammer",
+          "melee": "Thunder Hammer"
+         }
+        ]
+       }
+      ]
+     }
     ]
+   }
+  ]
+ },
+ "Assault Intercessors With Jump Packs": {
+  "n": 5,
+  "pts": 100,
+  "innate": [],
+  "info": {
+   "M": "12\"",
+   "T": 5,
+   "SV": 3,
+   "W": 2,
+   "OC": 1,
+   "deep_strike": true
   },
-  "Assault Intercessors With Jump Packs": {
-    "n": 5,
-    "pts": 100,
-    "innate": [],
-    "info": {
-      "M": "12\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 1,
-      "deep_strike": true
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Assault Intercessors",
-            "count": 4,
-            "alloc": [
-              {
-                "name": "Assault Intercessors with Jump Pack",
-                "min": 4,
-                "max": 4,
-                "ranged": "Heavy Bolt Pistol",
-                "melee": "Astartes Chainsword"
-              },
-              {
-                "name": "Assault Intercessors with Jump Pack w/ Plasma Pistol",
-                "min": 0,
-                "max": 1,
-                "ranged": "Plasma pistol",
-                "melee": "Astartes Chainsword"
-              }
-            ]
-          },
-          {
-            "name": "Assault Intercessor Sergeant with Jump Pack",
-            "count": 1,
-            "slots": [
-              {
-                "name": "Weapon 1",
-                "choices": [
-                  {
-                    "name": "Hand flamer",
-                    "ranged": "Hand flamer"
-                  },
-                  {
-                    "name": "Plasma pistol",
-                    "ranged": "Plasma pistol"
-                  },
-                  {
-                    "name": "Heavy Bolt Pistol",
-                    "ranged": "Heavy Bolt Pistol"
-                  }
-                ]
-              },
-              {
-                "name": "Weapon 2",
-                "choices": [
-                  {
-                    "name": "Astartes Chainsword",
-                    "melee": "Astartes Chainsword"
-                  },
-                  {
-                    "name": "Power weapon",
-                    "melee": "Power weapon"
-                  },
-                  {
-                    "name": "Power fist",
-                    "melee": "Power fist"
-                  }
-                ]
-              }
-            ]
-          }
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Assault Intercessors",
+      "count": 4,
+      "alloc": [
+       {
+        "name": "Assault Intercessors with Jump Pack",
+        "min": 4,
+        "max": 4,
+        "ranged": "Heavy Bolt Pistol",
+        "melee": "Chainsword"
+       },
+       {
+        "name": "Assault Intercessors with Jump Pack w/ Plasma Pistol",
+        "min": 0,
+        "max": 1,
+        "ranged": "Plasma pistol",
+        "melee": "Chainsword"
+       }
+      ]
+     },
+     {
+      "name": "Assault Intercessor Sergeant with Jump Pack",
+      "count": 1,
+      "slots": [
+       {
+        "name": "Weapon 1",
+        "choices": [
+         {
+          "name": "Hand flamer",
+          "ranged": "Hand flamer"
+         },
+         {
+          "name": "Plasma pistol",
+          "ranged": "Plasma pistol"
+         },
+         {
+          "name": "Heavy Bolt Pistol",
+          "ranged": "Heavy Bolt Pistol"
+         }
         ]
-      }
-    ],
-    "pts_3rd": 110
-  },
-  "Bladeguard Veteran Squad": {
-    "n": 3,
-    "pts": 85,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 3,
-      "OC": 1,
-      "INV": 4
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Bladeguard Veterans",
-            "count": 2,
-            "ranged": "Heavy Bolt Pistol",
-            "melee": "Master-crafted power weapon"
-          },
-          {
-            "name": "Bladeguard Veteran Sergeant",
-            "count": 1,
-            "melee": "Master-crafted power weapon",
-            "slots": [
-              {
-                "name": "Pistol Option",
-                "choices": [
-                  {
-                    "name": "Heavy Bolt Pistol",
-                    "ranged": "Heavy Bolt Pistol"
-                  },
-                  {
-                    "name": "Plasma pistol",
-                    "ranged": "Plasma pistol"
-                  },
-                  {
-                    "name": "Neo-volkite Pistol",
-                    "ranged": "Neo-volkite Pistol"
-                  }
-                ]
-              }
-            ]
-          }
+       },
+       {
+        "name": "Weapon 2",
+        "choices": [
+         {
+          "name": "Chainsword",
+          "melee": "Chainsword"
+         },
+         {
+          "name": "Power weapon",
+          "melee": "Power weapon"
+         },
+         {
+          "name": "Power fist",
+          "melee": "Power fist"
+         }
         ]
-      }
-    ],
-    "pts_3rd": 95
-  },
-  "Company Heroes": {
-    "n": 4,
-    "pts": 135,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 4,
-      "OC": 1
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Ancient",
-            "count": 1,
-            "ranged": [
-              "Bolt Rifle",
-              "Bolt pistol"
-            ],
-            "melee": "Close combat weapon"
-          },
-          {
-            "name": "Company Champion",
-            "count": 1,
-            "ranged": "Bolt pistol",
-            "melee": "Master-crafted Power Weapon"
-          },
-          {
-            "name": "Company Veteran w/ Bolt Rifle",
-            "count": 1,
-            "ranged": [
-              "Master-crafted Bolt Rifle",
-              "Bolt pistol"
-            ],
-            "melee": "Close combat weapon"
-          },
-          {
-            "name": "Company Veteran w/ Heavy Bolter",
-            "count": 1,
-            "ranged": [
-              "Master-crafted Heavy Bolter",
-              "Bolt pistol"
-            ],
-            "melee": "Close combat weapon"
-          }
-        ]
-      }
-    ],
-    "pts_3rd": 150
-  },
-  "Deathwatch Terminator Squad": {
-    "n": 5,
-    "pts": 190,
-    "innate": [],
-    "info": {
-      "M": "5\"",
-      "T": 5,
-      "SV": 2,
-      "W": 3,
-      "OC": 1,
-      "deep_strike": true
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Deathwatch Terminator",
-            "count": 4,
-            "slots": [
-              {
-                "name": "Terminator Weapons",
-                "choices": [
-                  {
-                    "name": "Twin lightning claws",
-                    "melee": "Twin lightning claws"
-                  },
-                  {
-                    "name": "Power Fist & Storm Bolter",
-                    "ranged": "Storm Bolter",
-                    "melee": "Power Fist",
-                    "default": true
-                  },
-                  {
-                    "name": "Storm Bolter & Power Weapon",
-                    "ranged": "Storm Bolter",
-                    "melee": "Power Weapon"
-                  },
-                  {
-                    "name": "Thunder Hammer & Storm Shield",
-                    "melee": "Thunder Hammer"
-                  },
-                  {
-                    "name": "Storm Bolter & Chainfist",
-                    "ranged": "Storm Bolter",
-                    "melee": "Chainfist"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "name": "Deathwatch Terminator Sergeant",
-            "count": 1,
-            "slots": [
-              {
-                "name": "Terminator Weapons",
-                "choices": [
-                  {
-                    "name": "Twin lightning claws",
-                    "melee": "Twin lightning claws"
-                  },
-                  {
-                    "name": "Power Fist & Storm Bolter",
-                    "ranged": "Storm Bolter",
-                    "melee": "Power Fist"
-                  },
-                  {
-                    "name": "Storm Bolter & Power Weapon",
-                    "ranged": "Storm Bolter",
-                    "melee": "Power Weapon"
-                  },
-                  {
-                    "name": "Thunder Hammer & Storm Shield",
-                    "melee": "Thunder Hammer"
-                  },
-                  {
-                    "name": "Storm Bolter & Chainfist",
-                    "ranged": "Storm Bolter",
-                    "melee": "Chainfist"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "pts_3rd": 230
-  },
-  "Deathwatch Veterans": {
-    "n": 5,
-    "pts": 115,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 2
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Veteran",
-            "count": 5,
-            "alloc": [
-              {
-                "name": "Veteran w/ boltgun and power weapon",
-                "min": 0,
-                "max": 5,
-                "ranged": "Boltgun",
-                "melee": "Power weapon"
-              },
-              {
-                "name": "Veteran w/ Deathwatch thunder hammer",
-                "min": 0,
-                "max": 2,
-                "melee": "Deathwatch thunder hammer"
-              },
-              {
-                "name": "Veteran w/ frag cannon and CCW",
-                "min": 0,
-                "max": 1,
-                "ranged": "Frag cannon",
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Veteran w/ infernus heavy bolter and CCW",
-                "min": 0,
-                "max": 1,
-                "ranged": "Infernus heavy bolter",
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Veteran w/ Astartes shield and boltgun",
-                "min": 0,
-                "max": 2,
-                "ranged": "Boltgun",
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Veteran w/ Astartes shield and power weapon",
-                "min": 0,
-                "max": 2,
-                "melee": "Power weapon"
-              },
-              {
-                "name": "Veteran w/ stalker-pattern boltgun and CCW",
-                "min": 0,
-                "max": 1,
-                "ranged": "Stalker-pattern boltgun",
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Veteran w/ Deathwatch shotgun and CCW",
-                "min": 0,
-                "max": 2,
-                "ranged": "Deathwatch shotgun",
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Veteran w/ Black Shield blades",
-                "min": 0,
-                "max": 1,
-                "melee": "Black Shield blades"
-              },
-              {
-                "name": "Sgt w/ Astartes shield and xenophase blade",
-                "min": 0,
-                "max": 1,
-                "melee": "Xenophase blade"
-              },
-              {
-                "name": "Sgt w/ boltgun and xenophase blade",
-                "min": 0,
-                "max": 1,
-                "ranged": "Boltgun",
-                "melee": "Xenophase blade"
-              },
-              {
-                "name": "Sgt w/ combi-weapon and power weapon",
-                "min": 0,
-                "max": 1,
-                "ranged": "Combi-weapon",
-                "melee": "Power weapon"
-              },
-              {
-                "name": "Sgt w/ combi-weapon and xenophase blade",
-                "min": 0,
-                "max": 1,
-                "ranged": "Combi-weapon",
-                "melee": "Xenophase blade"
-              },
-              {
-                "name": "Sgt w/ Astartes shield and combi-weapon",
-                "min": 0,
-                "max": 1,
-                "ranged": "Combi-weapon"
-              }
-            ]
-          }
-        ]
-      }
+       }
+      ]
+     }
     ]
+   }
+  ],
+  "pts_3rd": 110
+ },
+ "Bladeguard Veteran Squad": {
+  "n": 3,
+  "pts": 85,
+  "innate": [],
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 3,
+   "W": 3,
+   "OC": 1,
+   "INV": 4
   },
-  "Desolation Squad": {
-    "n": 5,
-    "pts": 135,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 1
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Desolation Marine",
-            "count": 4,
-            "ranged": [
-              "Bolt pistol",
-              "Castellan Launcher"
-            ],
-            "melee": "Close combat weapon",
-            "slots": [
-              {
-                "name": "Weapon Option",
-                "choices": [
-                  {
-                    "name": "Superfrag Rocket Launcher",
-                    "ranged": "Superfrag Rocket Launcher",
-                    "default": true
-                  },
-                  {
-                    "name": "Superkrak Rocket Launcher",
-                    "ranged": "Superkrak Rocket Launcher"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "name": "Desolation Sergeant",
-            "count": 1,
-            "ranged": [
-              "Bolt pistol",
-              "Castellan Launcher"
-            ],
-            "melee": "Close combat weapon",
-            "slots": [
-              {
-                "name": "Weapon Option",
-                "choices": [
-                  {
-                    "name": "Vengor launcher",
-                    "ranged": "Vengor launcher"
-                  },
-                  {
-                    "name": "Superfrag Rocket Launcher",
-                    "ranged": "Superfrag Rocket Launcher",
-                    "default": true
-                  },
-                  {
-                    "name": "Superkrak Rocket Launcher",
-                    "ranged": "Superkrak Rocket Launcher"
-                  }
-                ]
-              }
-            ]
-          }
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Bladeguard Veterans",
+      "count": 2,
+      "ranged": "Heavy Bolt Pistol",
+      "melee": "Master-crafted power weapon"
+     },
+     {
+      "name": "Bladeguard Veteran Sergeant",
+      "count": 1,
+      "melee": "Master-crafted power weapon",
+      "slots": [
+       {
+        "name": "Pistol Option",
+        "choices": [
+         {
+          "name": "Heavy Bolt Pistol",
+          "ranged": "Heavy Bolt Pistol"
+         },
+         {
+          "name": "Plasma pistol",
+          "ranged": "Plasma pistol"
+         },
+         {
+          "name": "Neo-volkite Pistol",
+          "ranged": "Neo-volkite Pistol"
+         }
         ]
-      }
-    ],
-    "pts_3rd": 145
-  },
-  "Eliminator Squad": {
-    "n": 3,
-    "pts": 85,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 1
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Eliminator",
-            "count": 2,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon",
-            "slots": [
-              {
-                "name": "Weapon Option",
-                "choices": [
-                  {
-                    "name": "Las fusil",
-                    "ranged": "Las fusil"
-                  },
-                  {
-                    "name": "Bolt Sniper Rifle",
-                    "ranged": "Bolt Sniper Rifle",
-                    "default": true
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "name": "Eliminator Sergeant",
-            "count": 1,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon",
-            "slots": [
-              {
-                "name": "Weapon Option",
-                "choices": [
-                  {
-                    "name": "Las fusil",
-                    "ranged": "Las fusil"
-                  },
-                  {
-                    "name": "Instigator Bolt Carbine",
-                    "ranged": "Instigator Bolt Carbine"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+       }
+      ]
+     }
     ]
+   }
+  ],
+  "pts_3rd": 95
+ },
+ "Company Heroes": {
+  "n": 4,
+  "pts": 135,
+  "innate": [],
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 3,
+   "W": 4,
+   "OC": 2
   },
-  "Eradicator Squad With Heavy Bolters": {
-    "n": 3,
-    "pts": 95,
-    "innate": [],
-    "info": {
-      "M": "5\"",
-      "T": 6,
-      "SV": 3,
-      "W": 3,
-      "OC": 1
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Eradicator",
-            "count": 2,
-            "ranged": [
-              "Heavy Bolter",
-              "Bolt pistol"
-            ],
-            "melee": "Close combat weapon"
-          },
-          {
-            "name": "Eradicator Sergeant",
-            "count": 1,
-            "ranged": [
-              "Heavy Bolter",
-              "Bolt pistol"
-            ],
-            "melee": "Close combat weapon"
-          }
-        ]
-      }
-    ],
-    "pts_3rd": 110
-  },
-  "Fortis Kill Team": {
-    "n": 10,
-    "pts": 210,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 2
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Kill Team Intercessor",
-            "count": 9,
-            "alloc": [
-              {
-                "name": "Kill Team Intercessor",
-                "min": 2,
-                "max": 9,
-                "ranged": [
-                  "Bolt pistol",
-                  "Deathwatch bolt rifle"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Kill Team Intercessor w/ grenade launcher",
-                "min": 0,
-                "max": 2,
-                "ranged": [
-                  "Bolt pistol",
-                  "Deathwatch bolt rifle",
-                  "Astartes grenade launcher"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Kill Team Intercessor w/ heavy bolt pistol",
-                "min": 0,
-                "max": 4,
-                "ranged": "Heavy bolt pistol",
-                "melee": "Astartes Chainsword"
-              },
-              {
-                "name": "Kill Team Intercessor w/ pyreblaster",
-                "min": 0,
-                "max": 4,
-                "ranged": [
-                  "Bolt pistol",
-                  "Pyreblaster"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Kill Team Intercessor w/ plasma pistol and incinerator",
-                "min": 0,
-                "max": 1,
-                "group_max": 4,
-                "ranged": [
-                  "Plasma pistol",
-                  "Plasma incinerator"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Kill Team Intercessor w/ bolt pistol and incinerator",
-                "min": 0,
-                "max": 4,
-                "group_max": 4,
-                "ranged": [
-                  "Bolt pistol",
-                  "Plasma incinerator"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Kill Team Intercessor w/ vengor launcher",
-                "min": 0,
-                "max": 1,
-                "group_max": 2,
-                "ranged": [
-                  "Bolt pistol",
-                  "Castellan Launcher",
-                  "Vengor launcher"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Kill Team Intercessor w/ superfrag missile launcher",
-                "min": 0,
-                "max": 2,
-                "group_max": 2,
-                "ranged": [
-                  "Superfrag missile launcher",
-                  "Bolt pistol",
-                  "Castellan Launcher"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Kill Team Intercessor w/ superkrak missile launcher",
-                "min": 0,
-                "max": 2,
-                "group_max": 2,
-                "ranged": [
-                  "Superkrak missile launcher",
-                  "Bolt pistol",
-                  "Castellan Launcher"
-                ],
-                "melee": "Close combat weapon"
-              }
-            ]
-          },
-          {
-            "name": "Kill Team Sergeant",
-            "count": 1,
-            "ranged": [
-              "Astartes grenade launcher",
-              "Bolt pistol"
-            ],
-            "slots": [
-              {
-                "name": "Replace bolt rifle",
-                "choices": [
-                  {
-                    "name": "Astartes Chainsword",
-                    "melee": "Astartes Chainsword"
-                  },
-                  {
-                    "name": "Deathwatch bolt rifle",
-                    "ranged": "Deathwatch bolt rifle"
-                  },
-                  {
-                    "name": "Power weapon",
-                    "melee": "Power weapon"
-                  },
-                  {
-                    "name": "Hand flamer",
-                    "ranged": "Hand flamer"
-                  },
-                  {
-                    "name": "Plasma pistol",
-                    "ranged": "Plasma pistol"
-                  }
-                ]
-              },
-              {
-                "name": "Replace CCW",
-                "choices": [
-                  {
-                    "name": "Close combat weapon",
-                    "melee": "Close combat weapon"
-                  },
-                  {
-                    "name": "Power weapon",
-                    "melee": "Power weapon"
-                  },
-                  {
-                    "name": "Power fist",
-                    "melee": "Power fist"
-                  },
-                  {
-                    "name": "Thunder Hammer",
-                    "melee": "Thunder Hammer"
-                  },
-                  {
-                    "name": "Astartes Chainsword",
-                    "melee": "Astartes Chainsword"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "pts_3rd": 225
-  },
-  "Heavy Intercessor Squad": {
-    "n": 5,
-    "pts": 110,
-    "innate": [],
-    "info": {
-      "M": "5\"",
-      "T": 6,
-      "SV": 3,
-      "W": 3,
-      "OC": 2
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Heavy Intercessor",
-            "count": 4,
-            "alloc": [
-              {
-                "name": "Heavy Intercessors",
-                "min": 3,
-                "max": 4,
-                "ranged": [
-                  "Heavy Bolt Rifle",
-                  "Bolt pistol"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Heavy Intercessor w/Heavy Bolter",
-                "min": 0,
-                "max": 1,
-                "ranged": [
-                  "Heavy Bolter",
-                  "Bolt pistol"
-                ],
-                "melee": "Close combat weapon"
-              }
-            ]
-          },
-          {
-            "name": "Heavy Intercessor Sergeant",
-            "count": 1,
-            "ranged": [
-              "Heavy Bolt Rifle",
-              "Bolt pistol"
-            ],
-            "melee": "Close combat weapon"
-          }
-        ]
-      }
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Ancient",
+      "count": 1,
+      "ranged": [
+       "Master-crafted Bolt Pistol",
+       "Master-crafted Bolt Rifle"
+      ],
+      "melee": "Combat Knife"
+     },
+     {
+      "name": "Company Champion",
+      "count": 1,
+      "ranged": "Master-crafted Bolt Pistol",
+      "melee": "Master-crafted Power Weapon"
+     },
+     {
+      "name": "Company Veteran w/ Bolt Rifle",
+      "count": 1,
+      "ranged": [
+       "Master-crafted Bolt Pistol",
+       "Master-crafted Bolt Rifle"
+      ],
+      "melee": "Combat Knife"
+     },
+     {
+      "name": "Company Veteran w/ Heavy Bolter",
+      "count": 1,
+      "ranged": [
+       "Master-crafted Heavy Bolter",
+       "Master-crafted Bolt Pistol"
+      ],
+      "melee": "Combat Knife"
+     }
     ]
+   }
+  ],
+  "pts_3rd": 150
+ },
+ "Deathwatch Terminator Squad": {
+  "n": 5,
+  "pts": 190,
+  "innate": [],
+  "info": {
+   "M": "5\"",
+   "T": 6,
+   "SV": 2,
+   "W": 3,
+   "OC": 1,
+   "deep_strike": true,
+   "INV": 4
   },
-  "Hellblaster Squad": {
-    "n": 5,
-    "pts": 110,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 1
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Hellblaster",
-            "count": 4,
-            "ranged": [
-              "Plasma Incinerator",
-              "Bolt pistol"
-            ],
-            "melee": "Close combat weapon"
-          },
-          {
-            "name": "Hellblaster Sergeant",
-            "count": 1,
-            "melee": "Close combat weapon",
-            "slots": [
-              {
-                "name": "Pistol Option",
-                "choices": [
-                  {
-                    "name": "Bolt pistol",
-                    "ranged": "Bolt pistol"
-                  },
-                  {
-                    "name": "Plasma pistol",
-                    "ranged": "Plasma pistol"
-                  }
-                ]
-              }
-            ]
-          }
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Deathwatch Terminator",
+      "count": 4,
+      "slots": [
+       {
+        "name": "Terminator Weapons",
+        "choices": [
+         {
+          "name": "Twin lightning claws",
+          "melee": "Twin lightning claws"
+         },
+         {
+          "name": "Power Fist & Storm Bolter",
+          "ranged": "Storm Bolter",
+          "melee": "Power Fist",
+          "default": true
+         },
+         {
+          "name": "Storm Bolter & Power Weapon",
+          "ranged": "Storm Bolter",
+          "melee": "Power Weapon"
+         },
+         {
+          "name": "Thunder Hammer & Storm Shield",
+          "melee": "Thunder Hammer"
+         },
+         {
+          "name": "Storm Bolter & Chainfist",
+          "ranged": "Storm Bolter",
+          "melee": "Chainfist"
+         }
         ]
-      }
-    ],
-    "pts_3rd": 125
-  },
-  "Inceptor Squad": {
-    "n": 3,
-    "pts": 125,
-    "innate": [],
-    "info": {
-      "M": "10\"",
-      "T": 6,
-      "SV": 3,
-      "W": 3,
-      "OC": 1,
-      "deep_strike": true
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Inceptor",
-            "count": 2,
-            "melee": "Close combat weapon",
-            "slots": [
-              {
-                "name": "Weapon Option",
-                "choices": [
-                  {
-                    "name": "Assault Bolters",
-                    "ranged": "Assault Bolters",
-                    "default": true
-                  },
-                  {
-                    "name": "Plasma Exterminators",
-                    "ranged": "Plasma Exterminators"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "name": "Inceptor Sergeant",
-            "count": 1,
-            "melee": "Close combat weapon",
-            "slots": [
-              {
-                "name": "Weapon Option",
-                "choices": [
-                  {
-                    "name": "Assault Bolters",
-                    "ranged": "Assault Bolters"
-                  },
-                  {
-                    "name": "Plasma Exterminators",
-                    "ranged": "Plasma Exterminators"
-                  }
-                ]
-              }
-            ]
-          }
+       }
+      ]
+     },
+     {
+      "name": "Deathwatch Terminator Sergeant",
+      "count": 1,
+      "slots": [
+       {
+        "name": "Terminator Weapons",
+        "choices": [
+         {
+          "name": "Twin lightning claws",
+          "melee": "Twin lightning claws"
+         },
+         {
+          "name": "Power Fist & Storm Bolter",
+          "ranged": "Storm Bolter",
+          "melee": "Power Fist"
+         },
+         {
+          "name": "Storm Bolter & Power Weapon",
+          "ranged": "Storm Bolter",
+          "melee": "Power Weapon"
+         },
+         {
+          "name": "Thunder Hammer & Storm Shield",
+          "melee": "Thunder Hammer"
+         },
+         {
+          "name": "Storm Bolter & Chainfist",
+          "ranged": "Storm Bolter",
+          "melee": "Chainfist"
+         }
         ]
-      }
-    ],
-    "pts_3rd": 140
-  },
-  "Incursor Squad": {
-    "n": 5,
-    "pts": 95,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 1
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Incursor",
-            "count": 4,
-            "ranged": [
-              "Occulus Bolt Carbine",
-              "Bolt pistol"
-            ],
-            "melee": "Paired Combat Blades"
-          },
-          {
-            "name": "Incursor Sergeant",
-            "count": 1,
-            "ranged": [
-              "Occulus Bolt Carbine",
-              "Bolt pistol"
-            ],
-            "melee": "Paired Combat Blades"
-          }
-        ]
-      }
-    ],
-    "pts_3rd": 105
-  },
-  "Infernus Squad": {
-    "n": 5,
-    "pts": 100,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 1
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Infernus Marines",
-            "count": 4,
-            "ranged": [
-              "Pyreblaster",
-              "Bolt pistol"
-            ],
-            "melee": "Close combat weapon"
-          },
-          {
-            "name": "Infernus Sergeant",
-            "count": 1,
-            "ranged": [
-              "Bolt pistol",
-              "Pyreblaster"
-            ],
-            "melee": "Close combat weapon"
-          }
-        ]
-      }
-    ],
-    "pts_3rd": 110
-  },
-  "Infiltrator Squad": {
-    "n": 5,
-    "pts": 80,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 1
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Infiltrator",
-            "count": 4,
-            "ranged": [
-              "Marksman Bolt Carbine",
-              "Bolt pistol"
-            ],
-            "melee": "Close combat weapon"
-          },
-          {
-            "name": "Infiltrator Sergeant",
-            "count": 1,
-            "ranged": [
-              "Marksman Bolt Carbine",
-              "Bolt pistol"
-            ],
-            "melee": "Close combat weapon"
-          }
-        ]
-      }
+       }
+      ]
+     }
     ]
+   }
+  ],
+  "pts_3rd": 230
+ },
+ "Deathwatch Veterans": {
+  "n": 5,
+  "pts": 115,
+  "innate": [],
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 3,
+   "W": 2,
+   "OC": 2
   },
-  "Intercessor Squad": {
-    "n": 5,
-    "pts": 95,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 2
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Intercessor",
-            "count": 4,
-            "alloc": [
-              {
-                "name": "Intercessor",
-                "min": 4,
-                "max": 4,
-                "ranged": [
-                  "Bolt pistol",
-                  "Bolt Rifle"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Intercessor w/ Grenade Launcher",
-                "min": 0,
-                "max": 1,
-                "ranged": [
-                  "Bolt pistol",
-                  "Bolt Rifle",
-                  "Astartes grenade launcher"
-                ],
-                "melee": "Close combat weapon"
-              }
-            ]
-          },
-          {
-            "name": "Intercessor Sergeant",
-            "count": 1,
-            "ranged": "Bolt pistol",
-            "slots": [
-              {
-                "name": "Weapon 1",
-                "choices": [
-                  {
-                    "name": "Hand flamer",
-                    "ranged": "Hand flamer"
-                  },
-                  {
-                    "name": "Power weapon",
-                    "melee": "Power weapon"
-                  },
-                  {
-                    "name": "Plasma pistol",
-                    "ranged": "Plasma pistol"
-                  },
-                  {
-                    "name": "Astartes Chainsword",
-                    "melee": "Astartes Chainsword"
-                  },
-                  {
-                    "name": "Bolt Rifle",
-                    "ranged": "Bolt Rifle"
-                  },
-                  {
-                    "name": "Bolt Rifle w/ Grenade Launcher",
-                    "ranged": "Bolt Rifle"
-                  }
-                ]
-              },
-              {
-                "name": "Weapon 2",
-                "choices": [
-                  {
-                    "name": "Power weapon",
-                    "melee": "Power weapon"
-                  },
-                  {
-                    "name": "Astartes Chainsword",
-                    "melee": "Astartes Chainsword"
-                  },
-                  {
-                    "name": "Power fist",
-                    "melee": "Power fist"
-                  },
-                  {
-                    "name": "Thunder Hammer",
-                    "melee": "Thunder Hammer"
-                  },
-                  {
-                    "name": "Close combat weapon",
-                    "melee": "Close combat weapon"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Veteran",
+      "count": 5,
+      "alloc": [
+       {
+        "name": "Veteran w/ boltgun and power weapon",
+        "min": 0,
+        "max": 5,
+        "ranged": "Boltgun",
+        "melee": "Power weapon"
+       },
+       {
+        "name": "Veteran w/ heavy thunder hammer",
+        "min": 0,
+        "max": 2,
+        "melee": "Heavy thunder hammer"
+       },
+       {
+        "name": "Veteran w/ frag cannon and CCW",
+        "min": 0,
+        "max": 1,
+        "ranged": "Frag cannon",
+        "melee": "Knives and Fists"
+       },
+       {
+        "name": "Veteran w/ infernus heavy bolter and CCW",
+        "min": 0,
+        "max": 1,
+        "ranged": "Infernus heavy bolter",
+        "melee": "Knives and Fists"
+       },
+       {
+        "name": "Veteran w/ Storm shield and boltgun",
+        "min": 0,
+        "max": 2,
+        "ranged": "Boltgun",
+        "melee": "Knives and Fists"
+       },
+       {
+        "name": "Veteran w/ Storm shield and power weapon",
+        "min": 0,
+        "max": 2,
+        "melee": "Power weapon"
+       },
+       {
+        "name": "Veteran w/ stalker-pattern boltgun and CCW",
+        "min": 0,
+        "max": 1,
+        "ranged": "Stalker-pattern boltgun",
+        "melee": "Knives and Fists"
+       },
+       {
+        "name": "Veteran w/ Deathwatch shotgun and CCW",
+        "min": 0,
+        "max": 2,
+        "ranged": "Deathwatch shotgun",
+        "melee": "Knives and Fists"
+       },
+       {
+        "name": "Veteran w/ Black Shield blades",
+        "min": 0,
+        "max": 1,
+        "melee": "Black Shield blades"
+       },
+       {
+        "name": "Sgt w/ Storm shield and xenophase blade",
+        "min": 0,
+        "max": 1,
+        "melee": "Xenophase blade"
+       },
+       {
+        "name": "Sgt w/ boltgun and xenophase blade",
+        "min": 0,
+        "max": 1,
+        "ranged": "Boltgun",
+        "melee": "Xenophase blade"
+       },
+       {
+        "name": "Sgt w/ combi-weapon and power weapon",
+        "min": 0,
+        "max": 1,
+        "ranged": "Combi-weapon",
+        "melee": "Power weapon"
+       },
+       {
+        "name": "Sgt w/ combi-weapon and xenophase blade",
+        "min": 0,
+        "max": 1,
+        "ranged": "Combi-weapon",
+        "melee": "Xenophase blade"
+       },
+       {
+        "name": "Sgt w/ Storm shield and combi-weapon",
+        "min": 0,
+        "max": 1,
+        "ranged": "Combi-weapon"
+       }
+      ]
+     }
     ]
+   }
+  ]
+ },
+ "Desolation Squad": {
+  "n": 5,
+  "pts": 135,
+  "innate": [],
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 3,
+   "W": 2,
+   "OC": 1
   },
-  "Outrider Squad": {
-    "n": 3,
-    "pts": 85,
-    "innate": [],
-    "info": {
-      "M": "12\"",
-      "T": 5,
-      "SV": 3,
-      "W": 4,
-      "OC": 2
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Outrider",
-            "count": 2,
-            "alloc": [
-              {
-                "name": "Outrider",
-                "min": 2,
-                "max": 2,
-                "ranged": [
-                  "Heavy Bolt Pistol",
-                  "Twin bolt rifle"
-                ],
-                "melee": "Astartes Chainsword"
-              },
-              {
-                "name": "Invader ATV",
-                "min": 0,
-                "max": 1,
-                "slots": [
-                  {
-                    "name": "Wargear",
-                    "choices": [
-                      {
-                        "name": "Bolt pistol",
-                        "ranged": "Bolt pistol"
-                      },
-                      {
-                        "name": "Twin bolt rifle",
-                        "ranged": "Twin bolt rifle"
-                      },
-                      {
-                        "name": "Close combat weapon",
-                        "melee": "Close combat weapon"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "name": "Outrider Sergeant",
-            "count": 1,
-            "ranged": [
-              "Heavy Bolt Pistol",
-              "Twin bolt rifle"
-            ],
-            "melee": "Astartes Chainsword"
-          }
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Desolation Marine",
+      "count": 4,
+      "ranged": [
+       "Bolt pistol",
+       "Castellan Launcher"
+      ],
+      "melee": "Ceramite Fists",
+      "slots": [
+       {
+        "name": "Weapon Option",
+        "choices": [
+         {
+          "name": "Superfrag Rocket Launcher",
+          "ranged": "Superfrag Rocket Launcher",
+          "default": true
+         },
+         {
+          "name": "Superkrak Rocket Launcher",
+          "ranged": "Superkrak Rocket Launcher"
+         }
         ]
-      }
+       }
+      ]
+     },
+     {
+      "name": "Desolation Sergeant",
+      "count": 1,
+      "ranged": [
+       "Bolt pistol",
+       "Castellan Launcher"
+      ],
+      "melee": "Ceramite Fists",
+      "slots": [
+       {
+        "name": "Weapon Option",
+        "choices": [
+         {
+          "name": "Vengor launcher",
+          "ranged": "Vengor launcher"
+         },
+         {
+          "name": "Superfrag Rocket Launcher",
+          "ranged": "Superfrag Rocket Launcher",
+          "default": true
+         },
+         {
+          "name": "Superkrak Rocket Launcher",
+          "ranged": "Superkrak Rocket Launcher"
+         }
+        ]
+       }
+      ]
+     }
     ]
+   }
+  ],
+  "pts_3rd": 145
+ },
+ "Eliminator Squad": {
+  "n": 3,
+  "pts": 85,
+  "innate": [],
+  "info": {
+   "M": "6\"",
+   "T": 4,
+   "SV": 3,
+   "W": 2,
+   "OC": 1
   },
-  "Reiver Squad": {
-    "n": 5,
-    "pts": 85,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 1
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Reivers",
-            "count": 5,
-            "ranged": "Special Issue Bolt Pistol",
-            "slots": [
-              {
-                "name": "Weapon Option",
-                "choices": [
-                  {
-                    "name": "Combat Knife",
-                    "melee": "Combat Knife",
-                    "default": true
-                  },
-                  {
-                    "name": "Bolt Carbine and Close Combat Weapon",
-                    "ranged": "Bolt Carbine",
-                    "melee": "Close combat weapon"
-                  }
-                ]
-              }
-            ]
-          }
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Eliminator",
+      "count": 2,
+      "ranged": "Bolt pistol",
+      "melee": "Ceramite Fists",
+      "slots": [
+       {
+        "name": "Weapon Option",
+        "choices": [
+         {
+          "name": "Las fusil",
+          "ranged": "Las fusil"
+         },
+         {
+          "name": "Bolt Sniper Rifle",
+          "ranged": "Bolt Sniper Rifle",
+          "default": true
+         }
         ]
-      }
+       }
+      ]
+     },
+     {
+      "name": "Eliminator Sergeant",
+      "count": 1,
+      "ranged": "Bolt pistol",
+      "melee": "Ceramite Fists",
+      "slots": [
+       {
+        "name": "Weapon Option",
+        "choices": [
+         {
+          "name": "Las fusil",
+          "ranged": "Las fusil"
+         },
+         {
+          "name": "Instigator Bolt Carbine",
+          "ranged": "Instigator Bolt Carbine"
+         }
+        ]
+       }
+      ]
+     }
     ]
+   }
+  ]
+ },
+ "Eradicator Squad With Heavy Bolters": {
+  "n": 3,
+  "pts": 95,
+  "innate": [],
+  "info": {
+   "M": "5\"",
+   "T": 6,
+   "SV": 3,
+   "W": 3,
+   "OC": 1
   },
-  "Spectrus Kill Team": {
-    "n": 10,
-    "pts": 185,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 1
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Kill Team Infiltrator",
-            "count": 10,
-            "alloc": [
-              {
-                "name": "Kill Team Infiltrator",
-                "min": 3,
-                "max": 10,
-                "ranged": [
-                  "Deathwatch marksman bolt carbine",
-                  "Bolt pistol"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Kill Team Infiltrator w/ occulus bolt carbine",
-                "min": 0,
-                "max": 4,
-                "ranged": [
-                  "Deathwatch occulus bolt carbine",
-                  "Bolt pistol"
-                ],
-                "melee": "Paired combat blades"
-              },
-              {
-                "name": "Kill Team Infiltrator w/ wargear",
-                "min": 0,
-                "max": 1,
-                "ranged": [
-                  "Deathwatch marksman bolt carbine",
-                  "Bolt pistol"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Kill Team Infiltrator w/ combat knife",
-                "min": 0,
-                "max": 4,
-                "group_max": 4,
-                "ranged": "Special-issue bolt pistol",
-                "melee": "Combat knife"
-              },
-              {
-                "name": "Kill Team Infiltrator w/ bolt carbine",
-                "min": 0,
-                "max": 4,
-                "group_max": 4,
-                "ranged": [
-                  "Special-issue bolt pistol",
-                  "Deathwatch bolt carbine"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Kill Team Infiltrator w/ instigator bolt carbine",
-                "min": 0,
-                "max": 1,
-                "group_max": 3,
-                "ranged": [
-                  "Instigator bolt carbine",
-                  "Bolt pistol"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Kill Team Infiltrator w/ las fusil",
-                "min": 0,
-                "max": 3,
-                "group_max": 3,
-                "ranged": [
-                  "Bolt pistol",
-                  "Las fusil"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Kill Team Infiltrator w/ bolt sniper rifle",
-                "min": 0,
-                "max": 3,
-                "group_max": 3,
-                "ranged": [
-                  "Bolt sniper rifle",
-                  "Bolt pistol"
-                ],
-                "melee": "Close combat weapon"
-              }
-            ]
-          }
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Eradicator",
+      "count": 2,
+      "ranged": [
+       "Heavy Bolter",
+       "Bolt pistol"
+      ],
+      "melee": "Ceramite Fists"
+     },
+     {
+      "name": "Eradicator Sergeant",
+      "count": 1,
+      "ranged": "Bolt pistol",
+      "melee": "Ceramite Fists"
+     }
+    ]
+   }
+  ],
+  "pts_3rd": 110
+ },
+ "Fortis Kill Team": {
+  "n": 10,
+  "pts": 210,
+  "innate": [],
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 3,
+   "W": 2,
+   "OC": 2
+  },
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Kill Team Intercessor",
+      "count": 9,
+      "alloc": [
+       {
+        "name": "Kill Team Intercessor w/ heavy bolt pistol and chainsword",
+        "min": 2,
+        "max": 2,
+        "ranged": "Heavy Bolt Pistol",
+        "melee": "Chainsword"
+       },
+       {
+        "name": "Kill Team Intercessor w/ pyreblaster",
+        "min": 2,
+        "max": 2,
+        "ranged": [
+         "Bolt pistol",
+         "Pyreblaster"
+        ],
+        "melee": "Knives and Fists"
+       },
+       {
+        "name": "Kill Team Intercessor w/ plasma pistol and incinerator",
+        "min": 0,
+        "max": 1,
+        "pool_min": 2,
+        "group_max": 2,
+        "ranged": [
+         "Plasma pistol",
+         "Plasma incinerator"
+        ],
+        "melee": "Knives and Fists"
+       },
+       {
+        "name": "Kill Team Intercessor w/ bolt pistol and incinerator",
+        "min": 2,
+        "max": 2,
+        "pool_min": 2,
+        "group_max": 2,
+        "ranged": [
+         "Bolt pistol",
+         "Plasma incinerator"
+        ],
+        "melee": "Knives and Fists"
+       },
+       {
+        "name": "Kill Team Intercessor w/ vengor launcher",
+        "min": 0,
+        "max": 1,
+        "pool_min": 1,
+        "group_max": 1,
+        "ranged": [
+         "Bolt pistol",
+         "Castellan Launcher",
+         "Vengor launcher"
+        ],
+        "melee": "Knives and Fists"
+       },
+       {
+        "name": "Kill Team Intercessor w/ superfrag missile launcher",
+        "min": 0,
+        "max": 2,
+        "pool_min": 1,
+        "group_max": 1,
+        "ranged": [
+         "Superfrag missile launcher",
+         "Bolt pistol",
+         "Castellan Launcher"
+        ],
+        "melee": "Knives and Fists"
+       },
+       {
+        "name": "Kill Team Intercessor w/ superkrak missile launcher",
+        "min": 0,
+        "max": 2,
+        "pool_min": 1,
+        "group_max": 1,
+        "ranged": [
+         "Superkrak missile launcher",
+         "Bolt pistol",
+         "Castellan Launcher"
+        ],
+        "melee": "Knives and Fists"
+       },
+       {
+        "name": "Kill Team Intercessor with bolt rifle",
+        "min": 2,
+        "max": 2,
+        "pool_min": 2,
+        "group_max": 2,
+        "ranged": [
+         "Bolt pistol",
+         "Deathwatch bolt rifle"
+        ],
+        "melee": "Knives and Fists"
+       },
+       {
+        "name": "Kill Team Intercessor with bolt rifle and grenade launcher",
+        "min": 0,
+        "max": 2,
+        "pool_min": 2,
+        "group_max": 2,
+        "ranged": [
+         "Bolt pistol",
+         "Deathwatch bolt rifle",
+         "Grenade Launcher"
+        ],
+        "melee": "Knives and Fists"
+       }
+      ]
+     },
+     {
+      "name": "Kill Team Sergeant",
+      "count": 1,
+      "ranged": [
+       "Grenade Launcher",
+       "Bolt pistol"
+      ],
+      "slots": [
+       {
+        "name": "Replace bolt rifle",
+        "choices": [
+         {
+          "name": "Chainsword",
+          "melee": "Chainsword"
+         },
+         {
+          "name": "Deathwatch bolt rifle",
+          "ranged": "Deathwatch bolt rifle"
+         },
+         {
+          "name": "Power weapon",
+          "melee": "Power weapon"
+         },
+         {
+          "name": "Hand flamer",
+          "ranged": "Hand flamer"
+         },
+         {
+          "name": "Plasma pistol",
+          "ranged": "Plasma pistol"
+         }
         ]
-      }
-    ],
-    "pts_3rd": 195
-  },
-  "Sternguard Veteran Squad": {
-    "n": 5,
-    "pts": 105,
-    "innate": [],
-    "info": {
-      "M": "6\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 1
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Sternguard Veteran",
-            "count": 4,
-            "alloc": [
-              {
-                "name": "Sternguard Veteran w/ Bolt Rifle",
-                "min": 0,
-                "max": 4,
-                "ranged": [
-                  "Sternguard Bolt Pistol",
-                  "Sternguard Bolt Rifle"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Sternguard Veteran w/ Special Weapon",
-                "min": 0,
-                "max": 1,
-                "ranged": "Sternguard Bolt Pistol",
-                "melee": "Close combat weapon",
-                "slots": [
-                  {
-                    "name": "Weapon Option",
-                    "choices": [
-                      {
-                        "name": "Sternguard Heavy Bolter",
-                        "ranged": "Sternguard Heavy Bolter"
-                      },
-                      {
-                        "name": "Pyrecannon",
-                        "ranged": "Pyrecannon"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "name": "Sternguard Veteran w/ Combi-weapon",
-                "min": 0,
-                "max": 4,
-                "ranged": [
-                  "Sternguard Bolt Pistol",
-                  "Combi-weapon"
-                ],
-                "melee": "Close combat weapon"
-              }
-            ]
-          },
-          {
-            "name": "Sternguard Veteran Sergeant",
-            "count": 1,
-            "ranged": "Sternguard Bolt Pistol",
-            "melee": "Close combat weapon",
-            "slots": [
-              {
-                "name": "Weapon Option",
-                "choices": [
-                  {
-                    "name": "Combi-weapon",
-                    "ranged": "Combi-weapon"
-                  },
-                  {
-                    "name": "Sternguard Bolt Rifle",
-                    "ranged": "Sternguard Bolt Rifle"
-                  }
-                ]
-              },
-              {
-                "name": "Melee Option",
-                "choices": [
-                  {
-                    "name": "Power weapon",
-                    "melee": "Power weapon"
-                  },
-                  {
-                    "name": "Power fist",
-                    "melee": "Power fist"
-                  },
-                  {
-                    "name": "Astartes Chainsword",
-                    "melee": "Astartes Chainsword"
-                  }
-                ]
-              }
-            ]
-          }
+       },
+       {
+        "name": "Replace knives and fists",
+        "choices": [
+         {
+          "name": "Knives and Fists",
+          "melee": "Knives and Fists"
+         },
+         {
+          "name": "Power weapon",
+          "melee": "Power weapon"
+         },
+         {
+          "name": "Power fist",
+          "melee": "Power fist"
+         },
+         {
+          "name": "Thunder Hammer",
+          "melee": "Thunder Hammer"
+         },
+         {
+          "name": "Chainsword",
+          "melee": "Chainsword"
+         }
         ]
-      }
-    ],
-    "pts_3rd": 115
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "pts_3rd": 225
+ },
+ "Heavy Intercessor Squad": {
+  "n": 5,
+  "pts": 110,
+  "innate": [],
+  "info": {
+   "M": "5\"",
+   "T": 6,
+   "SV": 3,
+   "W": 3,
+   "OC": 2
   },
-  "Talonstrike Kill Team": {
-    "n": 10,
-    "pts": 280,
-    "innate": [],
-    "info": {
-      "M": "12\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 1,
-      "deep_strike": true
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Intercessor",
-            "count": 9,
-            "alloc": [
-              {
-                "name": "Intercessor w/ heavy bolt pistol and Jump Pack",
-                "min": 4,
-                "max": 9,
-                "ranged": "Heavy Bolt Pistol",
-                "melee": "Astartes Chainsword"
-              },
-              {
-                "name": "Heavy Intercessor w/ Jump Pack",
-                "min": 0,
-                "max": 5,
-                "melee": "Close combat weapon",
-                "slots": [
-                  {
-                    "name": "Weapons",
-                    "choices": [
-                      {
-                        "name": "Assault bolters",
-                        "ranged": "Assault bolters",
-                        "default": true
-                      },
-                      {
-                        "name": "Plasma exterminators",
-                        "ranged": "Plasma exterminators"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "name": "Intercessor w/ plasma pistol and Jump Pack",
-                "min": 0,
-                "max": 1,
-                "ranged": "Plasma pistol",
-                "melee": "Astartes Chainsword"
-              }
-            ]
-          },
-          {
-            "name": "Kill Team Sergeant w/ Jump Pack",
-            "count": 1,
-            "slots": [
-              {
-                "name": "Pistol option",
-                "choices": [
-                  {
-                    "name": "Heavy Bolt Pistol",
-                    "ranged": "Heavy Bolt Pistol"
-                  },
-                  {
-                    "name": "Hand flamer",
-                    "ranged": "Hand flamer"
-                  },
-                  {
-                    "name": "Plasma pistol",
-                    "ranged": "Plasma pistol"
-                  }
-                ]
-              },
-              {
-                "name": "Melee option",
-                "choices": [
-                  {
-                    "name": "Astartes Chainsword",
-                    "melee": "Astartes Chainsword"
-                  },
-                  {
-                    "name": "Power fist",
-                    "melee": "Power fist"
-                  },
-                  {
-                    "name": "Power weapon",
-                    "melee": "Power weapon"
-                  }
-                ]
-              }
-            ]
-          }
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Heavy Intercessor",
+      "count": 4,
+      "alloc": [
+       {
+        "name": "Heavy Intercessors",
+        "min": 3,
+        "max": 4,
+        "ranged": [
+         "Heavy Bolt Rifle",
+         "Bolt pistol"
+        ],
+        "melee": "Ceramite Fists"
+       },
+       {
+        "name": "Heavy Intercessor w/Heavy Bolter",
+        "min": 0,
+        "max": 1,
+        "ranged": [
+         "Heavy Bolter",
+         "Bolt pistol"
+        ],
+        "melee": "Close combat weapon"
+       }
+      ]
+     },
+     {
+      "name": "Heavy Intercessor Sergeant",
+      "count": 1,
+      "ranged": [
+       "Heavy Bolt Rifle",
+       "Bolt pistol"
+      ],
+      "melee": "Ceramite Fists"
+     }
+    ]
+   }
+  ]
+ },
+ "Hellblaster Squad": {
+  "n": 5,
+  "pts": 110,
+  "innate": [],
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 3,
+   "W": 2,
+   "OC": 1
+  },
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Hellblaster",
+      "count": 4,
+      "ranged": [
+       "Plasma Incinerator",
+       "Bolt pistol"
+      ],
+      "melee": "Ceramite Fists"
+     },
+     {
+      "name": "Hellblaster Sergeant",
+      "count": 1,
+      "melee": "Close combat weapon",
+      "slots": [
+       {
+        "name": "Pistol Option",
+        "choices": [
+         {
+          "name": "Bolt pistol",
+          "ranged": "Bolt pistol"
+         },
+         {
+          "name": "Plasma pistol",
+          "ranged": "Plasma pistol"
+         }
         ]
-      }
-    ],
-    "pts_3rd": 300
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "pts_3rd": 125
+ },
+ "Inceptor Squad": {
+  "n": 3,
+  "pts": 125,
+  "innate": [],
+  "info": {
+   "M": "10\"",
+   "T": 6,
+   "SV": 3,
+   "W": 3,
+   "OC": 1,
+   "deep_strike": true
   },
-  "Vanguard Veteran Squad With Jump Packs": {
-    "n": 5,
-    "pts": 120,
-    "innate": [],
-    "info": {
-      "M": "12\"",
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 1,
-      "deep_strike": true
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Vanguard Veteran",
-            "count": 4,
-            "alloc": [
-              {
-                "name": "Vanguard Veterans with Jump Packs",
-                "min": 0,
-                "max": 4,
-                "melee": "Vanguard Veteran Weapon",
-                "slots": [
-                  {
-                    "name": "Pistol Option",
-                    "choices": [
-                      {
-                        "name": "Plasma pistol",
-                        "ranged": "Plasma pistol"
-                      },
-                      {
-                        "name": "Inferno Pistol",
-                        "ranged": "Inferno Pistol"
-                      },
-                      {
-                        "name": "Hand flamer",
-                        "ranged": "Hand flamer"
-                      },
-                      {
-                        "name": "Bolt pistol",
-                        "ranged": "Bolt pistol"
-                      },
-                      {
-                        "name": "Grav-pistol",
-                        "ranged": "Grav-pistol"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "name": "Vanguard Veteran w/Master-crafted Power Weapon",
-                "min": 0,
-                "max": 4,
-                "ranged": "Heavy Bolt Pistol",
-                "melee": "Master-crafted Power Weapon"
-              },
-              {
-                "name": "Vanguard Veteran w/Plasma Pistol & Master-crafter Power Weapon",
-                "min": 0,
-                "max": 1,
-                "ranged": "Plasma pistol",
-                "melee": "Master-crafted Power Weapon"
-              }
-            ]
-          },
-          {
-            "name": "Vanguard Veteran Sergeant with Jump Pack",
-            "count": 1,
-            "slots": [
-              {
-                "name": "Pistol Option",
-                "choices": [
-                  {
-                    "name": "Bolt pistol",
-                    "ranged": "Bolt pistol"
-                  },
-                  {
-                    "name": "Plasma pistol",
-                    "ranged": "Plasma pistol"
-                  },
-                  {
-                    "name": "Inferno Pistol",
-                    "ranged": "Inferno Pistol"
-                  },
-                  {
-                    "name": "Hand flamer",
-                    "ranged": "Hand flamer"
-                  },
-                  {
-                    "name": "Grav-pistol",
-                    "ranged": "Grav-pistol"
-                  },
-                  {
-                    "name": "Heavy Bolt Pistol",
-                    "ranged": "Heavy Bolt Pistol"
-                  }
-                ]
-              },
-              {
-                "name": "Melee Weapon",
-                "choices": [
-                  {
-                    "name": "Master-crafted Power Weapon",
-                    "melee": "Master-crafted Power Weapon"
-                  },
-                  {
-                    "name": "Vanguard Veteran Weapon",
-                    "melee": "Vanguard Veteran Weapon"
-                  }
-                ]
-              }
-            ]
-          }
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Inceptor",
+      "count": 2,
+      "melee": "Ceramite Fists",
+      "slots": [
+       {
+        "name": "Weapon Option",
+        "choices": [
+         {
+          "name": "Assault Bolters",
+          "ranged": "Assault Bolters",
+          "default": true
+         },
+         {
+          "name": "Plasma Exterminators",
+          "ranged": "Plasma Exterminators"
+         }
         ]
-      }
-    ],
-    "pts_3rd": 130
+       }
+      ]
+     },
+     {
+      "name": "Inceptor Sergeant",
+      "count": 1,
+      "melee": "Ceramite Fists",
+      "slots": [
+       {
+        "name": "Weapon Option",
+        "choices": [
+         {
+          "name": "Assault Bolters",
+          "ranged": "Assault Bolters"
+         },
+         {
+          "name": "Plasma Exterminators",
+          "ranged": "Plasma Exterminators"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "pts_3rd": 140
+ },
+ "Incursor Squad": {
+  "n": 5,
+  "pts": 95,
+  "innate": [],
+  "info": {
+   "M": "6\"",
+   "T": 4,
+   "SV": 3,
+   "W": 2,
+   "OC": 1
   },
-  "Decimus Kill Team": {
-    "n": 5,
-    "pts": 110,
-    "innate": [],
-    "info": {
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 2
-    },
-    "builds": [
-      {
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Incursor",
+      "count": 4,
+      "ranged": [
+       "Occulus Bolt Carbine",
+       "Bolt pistol"
+      ],
+      "melee": "Paired Combat Blades"
+     },
+     {
+      "name": "Incursor Sergeant",
+      "count": 1,
+      "ranged": [
+       "Occulus Bolt Carbine",
+       "Bolt pistol"
+      ],
+      "melee": "Paired Combat Blades"
+     }
+    ]
+   }
+  ],
+  "pts_3rd": 105
+ },
+ "Infernus Squad": {
+  "n": 5,
+  "pts": 100,
+  "innate": [],
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 3,
+   "W": 2,
+   "OC": 1
+  },
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Infernus Marines",
+      "count": 4,
+      "ranged": [
+       "Pyreblaster",
+       "Bolt pistol"
+      ],
+      "melee": "Ceramite Fists"
+     },
+     {
+      "name": "Infernus Sergeant",
+      "count": 1,
+      "ranged": [
+       "Bolt pistol",
+       "Pyreblaster"
+      ],
+      "melee": "Ceramite Fists"
+     }
+    ]
+   }
+  ],
+  "pts_3rd": 110
+ },
+ "Infiltrator Squad": {
+  "n": 5,
+  "pts": 80,
+  "innate": [],
+  "info": {
+   "M": "6\"",
+   "T": 4,
+   "SV": 3,
+   "W": 2,
+   "OC": 1
+  },
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Infiltrator",
+      "count": 4,
+      "ranged": [
+       "Marksman Bolt Carbine",
+       "Bolt pistol"
+      ],
+      "melee": "Ceramite Fists"
+     },
+     {
+      "name": "Infiltrator Sergeant",
+      "count": 1,
+      "ranged": [
+       "Marksman Bolt Carbine",
+       "Bolt pistol"
+      ],
+      "melee": "Ceramite Fists"
+     }
+    ]
+   }
+  ]
+ },
+ "Intercessor Squad": {
+  "n": 5,
+  "pts": 95,
+  "innate": [],
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 3,
+   "W": 2,
+   "OC": 2
+  },
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Intercessor",
+      "count": 4,
+      "alloc": [
+       {
+        "name": "Intercessor",
+        "min": 4,
+        "max": 4,
+        "ranged": [
+         "Bolt pistol",
+         "Bolt Rifle"
+        ],
+        "melee": "Knives and Fists"
+       },
+       {
+        "name": "Intercessor w/ Grenade Launcher",
+        "min": 0,
+        "max": 1,
+        "ranged": [
+         "Bolt pistol",
+         "Bolt Rifle",
+         "Grenade Launcher"
+        ],
+        "melee": "Knives and Fists"
+       }
+      ]
+     },
+     {
+      "name": "Intercessor Sergeant",
+      "count": 1,
+      "ranged": "Bolt pistol",
+      "slots": [
+       {
+        "name": "Weapon 1",
+        "choices": [
+         {
+          "name": "Hand flamer",
+          "ranged": "Hand flamer"
+         },
+         {
+          "name": "Power weapon",
+          "melee": "Power weapon"
+         },
+         {
+          "name": "Plasma pistol",
+          "ranged": "Plasma pistol"
+         },
+         {
+          "name": "Chainsword",
+          "melee": "Chainsword"
+         },
+         {
+          "name": "Bolt Rifle",
+          "ranged": "Bolt Rifle"
+         },
+         {
+          "name": "Thunder Hammer",
+          "melee": "Thunder Hammer"
+         }
+        ]
+       },
+       {
+        "name": "Weapon 2",
+        "choices": [
+         {
+          "name": "Power weapon",
+          "melee": "Power weapon"
+         },
+         {
+          "name": "Chainsword",
+          "melee": "Chainsword"
+         },
+         {
+          "name": "Power fist",
+          "melee": "Power fist"
+         },
+         {
+          "name": "Thunder Hammer",
+          "melee": "Thunder Hammer"
+         },
+         {
+          "name": "Knives and Fists",
+          "melee": "Knives and Fists"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "Outrider Squad": {
+  "n": 3,
+  "pts": 85,
+  "innate": [],
+  "info": {
+   "M": "12\"",
+   "T": 6,
+   "SV": 3,
+   "W": 4,
+   "OC": 2
+  },
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Outrider",
+      "count": 2,
+      "alloc": [
+       {
+        "name": "Outrider",
+        "min": 1,
+        "max": 2,
+        "ranged": [
+         "Heavy Bolt Pistol",
+         "Twin bolt rifle"
+        ],
+        "melee": "Chainsword"
+       },
+       {
+        "name": "Outrider w/ Plasma Pistol",
+        "min": 0,
+        "max": 1,
+        "ranged": [
+         "Twin bolt rifle",
+         "Plasma pistol"
+        ],
+        "melee": "Chainsword"
+       }
+      ]
+     },
+     {
+      "name": "Outrider Sergeant",
+      "count": 1,
+      "ranged": "Twin bolt rifle",
+      "slots": [
+       {
         "name": "Melee",
-        "models": [
-          {
-            "count": 5,
-            "ranged": "Plasma pistol",
-            "melee": "Power weapon"
-          }
+        "choices": [
+         {
+          "name": "Chainsword",
+          "melee": "Chainsword"
+         },
+         {
+          "name": "Power weapon",
+          "melee": "Power weapon"
+         },
+         {
+          "name": "Thunder Hammer",
+          "melee": "Thunder Hammer"
+         }
         ]
-      }
+       },
+       {
+        "name": "Pistol",
+        "choices": [
+         {
+          "name": "Heavy Bolt Pistol",
+          "ranged": "Heavy Bolt Pistol"
+         },
+         {
+          "name": "Plasma pistol",
+          "ranged": "Plasma pistol"
+         }
+        ]
+       }
+      ]
+     }
     ]
+   }
+  ]
+ },
+ "Reiver Squad": {
+  "n": 5,
+  "pts": 85,
+  "innate": [],
+  "info": {
+   "M": "6\"",
+   "T": 4,
+   "SV": 3,
+   "W": 2,
+   "OC": 1
   },
-  "Indomitor Kill Team": {
-    "n": 10,
-    "pts": 280,
-    "innate": [],
-    "info": {
-      "T": 4,
-      "SV": 3,
-      "W": 2,
-      "OC": 2
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Kill Team Heavy Intercessor",
-            "count": 10,
-            "alloc": [
-              {
-                "name": "Kill Team Heavy Intercessor w/ melta rifle",
-                "min": 0,
-                "max": 3,
-                "group_max": 3,
-                "ranged": [
-                  "Bolt pistol",
-                  "Melta rifle"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Kill Team Heavy Intercessor w/ multi-melta",
-                "min": 0,
-                "max": 1,
-                "group_max": 3,
-                "ranged": [
-                  "Bolt pistol",
-                  "Multi-melta"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Kill Team Heavy Intercessor w/ power fists & auto boltstorm gauntlets",
-                "min": 0,
-                "max": 3,
-                "group_max": 3,
-                "ranged": [
-                  "Auto boltstorm gauntlets",
-                  "Fragstorm grenade launcher"
-                ],
-                "melee": "Twin power fists"
-              },
-              {
-                "name": "Kill Team Heavy Intercessor w/ power fists & flamestorm gauntlets",
-                "min": 0,
-                "max": 3,
-                "group_max": 3,
-                "ranged": "Flamestorm gauntlets",
-                "melee": "Twin power fists"
-              },
-              {
-                "name": "Kill Team Heavy Intercessor",
-                "min": 2,
-                "max": 10,
-                "pool_min": 3,
-                "group_max": 10,
-                "ranged": [
-                  "Deathwatch heavy bolt rifle",
-                  "Bolt pistol"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Kill Team Heavy Intercessor w/ heavy bolter",
-                "min": 0,
-                "max": 1,
-                "pool_min": 3,
-                "group_max": 10,
-                "ranged": [
-                  "Deathwatch heavy bolter",
-                  "Bolt pistol"
-                ],
-                "melee": "Close combat weapon"
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "pts_3rd": 300
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Reivers",
+      "count": 5,
+      "ranged": [
+       "Special Issue Bolt Pistol",
+       "Bolt Carbine"
+      ],
+      "melee": "Monomolecular Combat Knife"
+     }
+    ]
+   }
+  ]
+ },
+ "Spectrus Kill Team": {
+  "n": 10,
+  "pts": 185,
+  "innate": [],
+  "info": {
+   "M": "6\"",
+   "T": 4,
+   "SV": 3,
+   "W": 2,
+   "OC": 1
   },
-  "Eradicator Squad With Melta Rifles": {
-    "n": 3,
-    "pts": 90,
-    "innate": [],
-    "info": {
-      "M": "5\"",
-      "T": 6,
-      "SV": 3,
-      "W": 3,
-      "OC": 1
-    },
-    "builds": [
-      {
-        "name": "Default",
-        "models": [
-          {
-            "name": "Eradicator",
-            "count": 2,
-            "alloc": [
-              {
-                "name": "Eradicator",
-                "min": 0,
-                "max": 2,
-                "ranged": [
-                  "Bolt pistol",
-                  "Melta rifle"
-                ],
-                "melee": "Close combat weapon"
-              },
-              {
-                "name": "Eradicator with Multi-melta",
-                "min": 0,
-                "max": 1,
-                "ranged": [
-                  "Multi-melta",
-                  "Bolt pistol"
-                ],
-                "melee": "Close combat weapon"
-              }
-            ]
-          },
-          {
-            "name": "Eradicator Sergeant",
-            "count": 1,
-            "ranged": [
-              "Bolt pistol",
-              "Melta rifle"
-            ],
-            "melee": "Close combat weapon"
-          }
-        ]
-      }
-    ],
-    "pts_3rd": 105
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Kill Team Infiltrator",
+      "count": 10,
+      "alloc": [
+       {
+        "name": "Kill Team Infiltrator w/ Marksman Bolt Carbine",
+        "min": 4,
+        "max": 4,
+        "ranged": [
+         "Deathwatch marksman bolt carbine",
+         "Bolt pistol"
+        ],
+        "melee": "Ceramite Fists"
+       },
+       {
+        "name": "Kill Team Infiltrator w/ occulus bolt carbine",
+        "min": 2,
+        "max": 2,
+        "ranged": [
+         "Deathwatch occulus bolt carbine",
+         "Bolt pistol"
+        ],
+        "melee": "Paired combat blades"
+       },
+       {
+        "name": "Kill Team Infiltrator w/ helix gauntlet",
+        "min": 0,
+        "max": 1,
+        "ranged": [
+         "Deathwatch marksman bolt carbine",
+         "Bolt pistol"
+        ],
+        "melee": "Ceramite Fists"
+       },
+       {
+        "name": "Kill Team Infiltrator w/ combat knife",
+        "min": 2,
+        "max": 2,
+        "pool_min": 2,
+        "group_max": 2,
+        "ranged": "Special-issue bolt pistol",
+        "melee": "Combat knife"
+       },
+       {
+        "name": "Kill Team Infiltrator w/ bolt carbine",
+        "min": 0,
+        "max": 2,
+        "pool_min": 2,
+        "group_max": 2,
+        "ranged": [
+         "Deathwatch bolt carbine",
+         "Special-issue bolt pistol"
+        ],
+        "melee": "Ceramite Fists"
+       },
+       {
+        "name": "Kill Team Infiltrator w/ instigator bolt carbine",
+        "min": 0,
+        "max": 2,
+        "pool_min": 2,
+        "group_max": 2,
+        "ranged": [
+         "Instigator bolt carbine",
+         "Bolt pistol"
+        ],
+        "melee": "Ceramite Fists"
+       },
+       {
+        "name": "Kill Team Infiltrator w/ las fusil",
+        "min": 0,
+        "max": 2,
+        "pool_min": 2,
+        "group_max": 2,
+        "ranged": [
+         "Bolt pistol",
+         "Las fusil"
+        ],
+        "melee": "Ceramite Fists"
+       },
+       {
+        "name": "Kill Team Infiltrator w/ bolt sniper rifle",
+        "min": 2,
+        "max": 2,
+        "pool_min": 2,
+        "group_max": 2,
+        "ranged": [
+         "Bolt sniper rifle",
+         "Bolt pistol"
+        ],
+        "melee": "Ceramite Fists"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "pts_3rd": 195
+ },
+ "Sternguard Veteran Squad": {
+  "n": 5,
+  "pts": 105,
+  "innate": [],
+  "info": {
+   "M": "6\"",
+   "T": 5,
+   "SV": 3,
+   "W": 2,
+   "OC": 1
   },
-  "Invader Atvs": {
-    "n": 1,
-    "pts": 65,
-    "innate": [],
-    "info": {
-      "M": "12\"",
-      "T": 5,
-      "SV": 3,
-      "W": 8,
-      "OC": 2
-    },
-    "builds": [
-      {
-        "name": "Melee",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Bolt pistol",
-            "melee": "Close combat weapon"
-          }
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Sternguard Veteran",
+      "count": 4,
+      "alloc": [
+       {
+        "name": "Sternguard Veteran w/ Artificer Firearm",
+        "min": 0,
+        "max": 4,
+        "ranged": [
+         "Bolt pistol",
+         "Artificer Firearm"
+        ],
+        "melee": "Ceramite Fists"
+       },
+       {
+        "name": "Sternguard Veteran w/ Special Weapon",
+        "min": 0,
+        "max": 1,
+        "ranged": "Bolt pistol",
+        "melee": "Ceramite Fists",
+        "slots": [
+         {
+          "name": "Weapon Option",
+          "choices": [
+           {
+            "name": "Heavy Bolter",
+            "ranged": "Heavy Bolter"
+           },
+           {
+            "name": "Pyrecannon",
+            "ranged": "Pyrecannon"
+           }
+          ]
+         }
         ]
-      },
-      {
-        "name": "Twin bolt rifle",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Twin bolt rifle",
-            "melee": "Close combat weapon"
-          }
+       }
+      ]
+     },
+     {
+      "name": "Sternguard Veteran Sergeant",
+      "count": 1,
+      "ranged": "Bolt pistol",
+      "slots": [
+       {
+        "name": "Weapon Option",
+        "choices": [
+         {
+          "name": "Combi-weapon",
+          "ranged": "Combi-weapon"
+         },
+         {
+          "name": "Artificer Firearm",
+          "ranged": "Artificer Firearm"
+         }
         ]
-      },
-      {
-        "name": "Onslaught gatling cannon",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Onslaught gatling cannon",
-            "melee": "Close combat weapon"
-          }
+       },
+       {
+        "name": "Melee Option",
+        "choices": [
+         {
+          "name": "Power weapon",
+          "melee": "Power weapon"
+         },
+         {
+          "name": "Power fist",
+          "melee": "Power fist"
+         },
+         {
+          "name": "Astartes Chainsword",
+          "melee": "Astartes Chainsword"
+         }
         ]
-      },
-      {
-        "name": "Multi-melta",
-        "models": [
-          {
-            "count": 1,
-            "ranged": "Multi-melta",
-            "melee": "Close combat weapon"
-          }
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "pts_3rd": 115
+ },
+ "Talonstrike Kill Team": {
+  "n": 10,
+  "pts": 280,
+  "innate": [],
+  "info": {
+   "M": "12\"",
+   "T": 5,
+   "SV": 3,
+   "W": 2,
+   "OC": 1,
+   "deep_strike": true
+  },
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Intercessor",
+      "count": 9,
+      "alloc": [
+       {
+        "name": "Heavy Intercessor w/ assault bolter",
+        "min": 4,
+        "max": 4,
+        "pool_min": 4,
+        "group_max": 4,
+        "ranged": "Assault bolters",
+        "melee": "Ceramite Fists"
+       },
+       {
+        "name": "Heavy Intercessor w/ plasma exterminators",
+        "min": 0,
+        "max": 4,
+        "pool_min": 4,
+        "group_max": 4,
+        "ranged": "Plasma exterminators",
+        "melee": "Ceramite Fists"
+       },
+       {
+        "name": "Intercessor w/ heavy bolt pistol and Jump Pack",
+        "min": 5,
+        "max": 5,
+        "pool_min": 5,
+        "group_max": 5,
+        "ranged": "Heavy Bolt Pistol",
+        "melee": "Chainsword"
+       },
+       {
+        "name": "Intercessor w/ plasma pistol and Jump Pack",
+        "min": 0,
+        "max": 2,
+        "pool_min": 5,
+        "group_max": 5,
+        "ranged": "Plasma pistol",
+        "melee": "Chainsword"
+       }
+      ]
+     },
+     {
+      "name": "Kill Team Sergeant w/ Jump Pack",
+      "count": 1,
+      "slots": [
+       {
+        "name": "Pistol option",
+        "choices": [
+         {
+          "name": "Heavy Bolt Pistol",
+          "ranged": "Heavy Bolt Pistol"
+         },
+         {
+          "name": "Hand flamer",
+          "ranged": "Hand flamer"
+         },
+         {
+          "name": "Plasma pistol",
+          "ranged": "Plasma pistol"
+         }
         ]
-      }
-    ],
-    "pts_3rd": 75
-  }
+       },
+       {
+        "name": "Melee option",
+        "choices": [
+         {
+          "name": "Chainsword",
+          "melee": "Chainsword"
+         },
+         {
+          "name": "Power fist",
+          "melee": "Power fist"
+         },
+         {
+          "name": "Power weapon",
+          "melee": "Power weapon"
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "pts_3rd": 300
+ },
+ "Vanguard Veteran Squad With Jump Packs": {
+  "n": 5,
+  "pts": 120,
+  "innate": [],
+  "info": {
+   "M": "12\"",
+   "T": 5,
+   "SV": 3,
+   "W": 2,
+   "OC": 1,
+   "deep_strike": true
+  },
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Vanguard Veteran",
+      "count": 4,
+      "alloc": [
+       {
+        "name": "Vanguard Veteran with Jump Packs",
+        "min": 0,
+        "max": 4,
+        "ranged": "Heavy Bolt Pistol",
+        "melee": "Master-crafted Power Weapon"
+       },
+       {
+        "name": "Vanguard Veteran with Jump Pack w/ Plasma Pistol",
+        "min": 0,
+        "max": 1,
+        "ranged": "Plasma pistol",
+        "melee": "Master-crafted Power Weapon"
+       },
+       {
+        "name": "Vanguard Veteran wtih Jump Packs w/ Shield",
+        "min": 0,
+        "max": 4,
+        "melee": "Master-crafted Power Weapon"
+       }
+      ]
+     },
+     {
+      "name": "Vanguard Veteran Sergeant with Jump Pack",
+      "count": 1,
+      "slots": [
+       {
+        "name": "Pistol Option",
+        "choices": [
+         {
+          "name": "Plasma pistol",
+          "ranged": "Plasma pistol"
+         },
+         {
+          "name": "Heavy Bolt Pistol",
+          "ranged": "Heavy Bolt Pistol"
+         }
+        ]
+       },
+       {
+        "name": "Melee Weapon",
+        "choices": [
+         {
+          "name": "Power fist",
+          "melee": "Power fist"
+         },
+         {
+          "name": "Thunder Hammer",
+          "melee": "Thunder Hammer"
+         },
+         {
+          "name": "Relic Blade",
+          "melee": "Relic Blade",
+          "default": true
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "pts_3rd": 130
+ },
+ "Decimus Kill Team": {
+  "n": 5,
+  "pts": 110,
+  "innate": [],
+  "info": {
+   "T": 5,
+   "SV": 3,
+   "W": 2,
+   "OC": 2
+  },
+  "builds": [
+   {
+    "name": "Melee",
+    "models": [
+     {
+      "count": 5,
+      "ranged": "Plasma pistol",
+      "melee": "Power weapon"
+     }
+    ]
+   }
+  ]
+ },
+ "Indomitor Kill Team": {
+  "n": 10,
+  "pts": 280,
+  "innate": [],
+  "info": {
+   "T": 5,
+   "SV": 3,
+   "W": 2,
+   "OC": 2
+  },
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Kill Team Heavy Intercessor",
+      "count": 10,
+      "alloc": [
+       {
+        "name": "Kill Team Heavy Intercessor w/ melta rifle",
+        "min": 3,
+        "max": 3,
+        "ranged": [
+         "Bolt pistol",
+         "Melta rifle"
+        ],
+        "melee": "Ceramite Fists"
+       },
+       {
+        "name": "Kill Team Heavy Intercessor w/ multi-melta",
+        "min": 0,
+        "max": 1,
+        "ranged": [
+         "Multi-melta",
+         "Bolt pistol"
+        ],
+        "melee": "Ceramite Fists"
+       },
+       {
+        "name": "Kill Team Heavy Intercessor w/ power fists & auto boltstorm gauntlets",
+        "min": 0,
+        "max": 3,
+        "ranged": [
+         "Auto boltstorm gauntlets",
+         "Fragstorm grenade launcher"
+        ],
+        "melee": "Twin power fists"
+       },
+       {
+        "name": "Kill Team Heavy Intercessor w/ power fists & flamestorm gauntlets",
+        "min": 3,
+        "max": 3,
+        "ranged": "Flamestorm gauntlets",
+        "melee": "Twin power fists"
+       },
+       {
+        "name": "Kill Team Heavy Intercessor",
+        "min": 4,
+        "max": 4,
+        "ranged": [
+         "Deathwatch heavy bolt rifle",
+         "Bolt pistol"
+        ],
+        "melee": "Ceramite Fists"
+       },
+       {
+        "name": "Kill Team Heavy Intercessor w/ heavy bolter",
+        "min": 0,
+        "max": 2,
+        "ranged": [
+         "Deathwatch heavy bolter",
+         "Bolt pistol"
+        ],
+        "melee": "Ceramite Fists"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "pts_3rd": 300
+ },
+ "Eradicator Squad With Melta Rifles": {
+  "n": 3,
+  "pts": 90,
+  "innate": [],
+  "info": {
+   "M": "5\"",
+   "T": 6,
+   "SV": 3,
+   "W": 3,
+   "OC": 1
+  },
+  "builds": [
+   {
+    "name": "Default",
+    "models": [
+     {
+      "name": "Eradicator",
+      "count": 2,
+      "alloc": [
+       {
+        "name": "Eradicator",
+        "min": 0,
+        "max": 2,
+        "ranged": [
+         "Bolt pistol",
+         "Melta rifle"
+        ],
+        "melee": "Ceramite Fists"
+       },
+       {
+        "name": "Eradicator with Multi-melta",
+        "min": 0,
+        "max": 1,
+        "ranged": [
+         "Multi-melta",
+         "Bolt pistol"
+        ],
+        "melee": "Ceramite Fists"
+       }
+      ]
+     },
+     {
+      "name": "Eradicator Sergeant",
+      "count": 1,
+      "ranged": [
+       "Bolt pistol",
+       "Melta rifle"
+      ],
+      "melee": "Ceramite Fists"
+     }
+    ]
+   }
+  ],
+  "pts_3rd": 105
+ },
+ "Invader Atvs": {
+  "n": 1,
+  "pts": 65,
+  "innate": [],
+  "info": {
+   "M": "12\"",
+   "T": 6,
+   "SV": 3,
+   "W": 8,
+   "OC": 2
+  },
+  "builds": [
+   {
+    "name": "Melee",
+    "models": [
+     {
+      "count": 1,
+      "ranged": "Bolt pistol",
+      "melee": "Armoured Impact"
+     }
+    ]
+   },
+   {
+    "name": "Twin bolt rifle",
+    "models": [
+     {
+      "count": 1,
+      "ranged": "Twin bolt rifle",
+      "melee": "Armoured Impact"
+     }
+    ]
+   },
+   {
+    "name": "Onslaught gatling cannon",
+    "models": [
+     {
+      "count": 1,
+      "ranged": "Onslaught gatling cannon",
+      "melee": "Armoured Impact"
+     }
+    ]
+   },
+   {
+    "name": "Multi-melta",
+    "models": [
+     {
+      "count": 1,
+      "ranged": "Multi-melta",
+      "melee": "Armoured Impact"
+     }
+    ]
+   }
+  ],
+  "pts_3rd": 75
+ }
 }
