@@ -234,12 +234,12 @@ RD_SLOTS = [
     {
         "name": "Weapon Option 3",
         "choices": [
-            {"name": "Twin Fragstorm Grenade Launcher", "type": "ranged"},
-            {"name": "Twin Storm Bolter", "type": "ranged"},
+            {"name": "Storm Bolters", "type": "ranged"},
+            {"name": "Fragstorm Grenade Launchers", "type": "ranged"},
         ],
     },
 ]
-RD_DPP_CURATED = 0.0747  # MFM v1.5 points rebalance
+RD_DPP_CURATED = 0.0918  # MFM v1.5 points rebalance (updated for bsdata 9b8207c)
 
 # ── Wraithknight (Aeldari) ───────────────────────────────────────────────
 # Golden truth: verified against New Recruit wiki (11e) 2026-08-22.
