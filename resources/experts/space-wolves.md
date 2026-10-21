@@ -22,8 +22,8 @@ _space-marines-shared.json (2026-08-23, packs v1.1). 23 detachments total:
 (rated here in Space Wolves context, not re-assessed).
 
 ### Army Rule
-- **Army Rule Rating**: Moderate — the divergent Oath of Moment, reroll-Hits clause only (SPACE WOLVES keyword units void the +1-to-wound claw — verified), on top of the divergent SW layer (Curse of the Wulfen +OC, Sagas): 51.5% early August (15.8% X-0/X-1) but 42.4% on 3-8 Sep (0 X-0s) — top tables strong, field mediocre. Sourced: listhammer.info/factions/space-wolves 2026-09-05 (42.4%); warpfriends.wordpress.com 2026-08-12 (51.5%); 40k.app/factions/dark-angels/army-rules 2026-09-06 ("...your army does not include one or more units with the BLACK TEMPLARS, BLOOD ANGELS, DARK ANGELS, DEATHWATCH or SPACE WOLVES keywords..." — the +1-to-wound rider is conditional on no divergent keywords).
-- **Oath of Moment + SW divergent rules (Wulfen, Sagas)**: shared-codex detachments referencing Oath of Moment are available to Space Wolves per the corpus. The research file documents no chapter-specific army-rule replacement — any claim about a unique faction rule is unsupported by this corpus.
+- **Army Rule Rating**: Moderate — Space Wolves use Oath of Moment (reroll hits only); with SPACE WOLVES keyword units the +1-to-wound rider is void (verified). Identity comes from divergent tools (Curse of the Wulfen, Sagas). Sourced: 40k.app/factions/space-wolves/army-rules 2026-09-06.
+- **Oath of Moment (reroll-Hits only — SW keyword units void +1w)**: Shared-codex Oath of Moment applies; no separate SW army-rule replacement is documented. Sagas and Wulfen provide the chapter's identity.
 - **Play pattern** *(interpretation)*: Saga detachments build a mid-battle escalation arc — early rounds the army plays on conditional buffs, late rounds (Saga complete) it plays on near-army-wide bonuses; list construction revolves around which saga completes fastest against the mission pair.
 
 ### Disposition Fit (current meta verdict)
