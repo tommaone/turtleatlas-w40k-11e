@@ -5,7 +5,7 @@
 - **Full name**: Blood Angels (BSData catalogue: "Imperium - Adeptus Astartes - Blood Angels")
 - **Faction keyword**: `Faction: Adeptus Astartes`, `Faction: Blood Angels`
 - **Game edition**: 11th (10e-derived profiles)
-- **Core mechanics**: Adeptus Astartes framework (Oath-of-Moment-referencing detachments confirmed available to all chapters in the shared codex corpus). Chapter identity expresses through melee/jump-pack-oriented detachments whose rules reference the Red Thirst (Liberator Assault Group, Rage-Cursed Onslaught).
+- **Core mechanics**: Adeptus Astartes framework — the shared **Combat Doctrines** army rule (Assault / Devastator / Tactical, one per Command phase, one per battle, one active per unit), no separate chapter army rule. Chapter identity expresses through melee/jump-pack-oriented detachments whose rules reference the Red Thirst (Angelic Inheritors, Encarmine Speartip). Sourced: BSData 9b8207c; GW preview 2026-09-10.
 - **Sub-faction keywords**: `Faction: Blood Angels`
 
 ## Army Rules & Detachments — Expert Assessment
@@ -22,20 +22,24 @@ _space-marines-shared.json (2026-08-23, packs v1.1). 24 detachments total:
 (rated here in Blood Angels context, not re-assessed).
 
 ### Army Rule
-- **Army Rule Rating**: Weak — Blood Angels inherit Oath of Moment (reroll hits only); with BLOOD ANGELS keyword units the +1-to-wound rider is void (verified). No separate BA army rule is documented. Sourced: 40k.app/factions/blood-angels/army-rules 2026-09-06.
-- **Oath of Moment (reroll-Hits only — BA keyword units void +1w)**: Shared-codex Oath of Moment applies; detachments may extend wound re-rolls against the Oath target. No separate BA army-rule text exists in the corpus.
-- **Play pattern** *(interpretation)*: the detachment roster pushes hard toward melee tempo — jump-pack density (Sanguinary Guard, Death Company, Vanguard Veterans With Jump Packs) converts into army-wide charge buffs in three different chapter-specific detachments.
+- **Army Rule Rating**: Weak — Blood Angels use the Astartes Combat Doctrines army rule (one of three doctrines per Command phase, one per battle, one active per unit) with no separate chapter army rule; the chapter's punch comes from detachment tools.
+- **Oath of Moment (RETIRED)**: was the Astartes army rule until Codex: Space Marines (2026-10-03) replaced it with Combat Doctrines. Survives in BSData only as a reference inside the Angels Ascendant character ability. Sourced: BSData 9b8207c; GW preview 2026-09-10.
+- **Play pattern** *(interpretation)*: the detachment roster pushes hard toward melee tempo — jump-pack density (Sanguinary Guard, Death Company, Vanguard Veterans With Jump Packs) converts into doctrine-driven swings in the three chapter-specific detachments (Encarmine Speartip puts Sanguinary Guard on Tactical, Wrath of the Doomed puts Death Company on Assault).
 
 ### Disposition Fit (current meta verdict)
 | Disposition | Fit | Grounded reasoning |
 |-------------|-----|--------------------|
-| Take and Hold | Strong | Liberator Assault Group's charged-unit melee spike defends objectives; inherited Anvil/Bastion/Orbital bench adds depth. |
-| Purge the Foe | Strong | Rage-Cursed Onslaught gives army-wide melee wound-1s rerolls plus charging attack buffs; The Lost Brethren stacks Death Company on top. |
-| Reconnaissance | Moderate | Only inherited tools (Vanguard Spearhead cover, Subversion detection); jump mobility reaches objectives but scoring actions are thin. |
-| Priority Assets | Moderate | Angelic Inheritors is characters-only; Gladius inherited remains the generalist fallback. |
-| Disruption | Strong | The Angelic Host redeploy loop + Encarmine Speartip + Stormlance at its chapter-discounted 2DP suit a jump-pack-heavy roster. |
+| Take and Hold | Strong | Encarmine Speartip and Wrath Of The Doomed convert the chapter's bodies into objective holders — Sanguinary Guard and Death Company ride a doctrine; the inherited bench (Assault Brethren, Gladius Task Force, Gravis Linebreaker/Siege Force, Tacticus Attack Force) adds depth. |
+| Purge the Foe | Strong | Angelic Inheritors (3DP — chapter characters re-roll hits and wounds of 1) with Wrath Of The Doomed (assault doctrine active for Death Company) and Devastator Brethren give both a character-led and a mass-melee answer. |
+| Reconnaissance | Moderate | Only inherited tools (Gauntlet Task Force, Stormlance Task Force); jump mobility reaches objectives but scoring actions are thin. |
+| Priority Assets | Moderate | Angelic Inheritors is characters-only; Gladius Task Force, Ironclad Champions, Terminator Storm Force and Tacticus Firestorm Force (Rapid Fire at full range) are the inherited generalists. |
+| Disruption | Strong | Encarmine Speartip (tactical doctrine active for Sanguinary Guard) plus Phobos Shadow/Shock Force and Deathwatch Support suit a jump-pack-heavy roster; Stormlance Task Force adds mounted reach. |
 
 ### Detachment Assessments
+<!-- Roster source: the 11e detachment roster is rendered from data/merged/<fid>.json (MFM 1.5, 11e);
+     this file supplies the rating only, matched by detachment name. The blocks below are the 10e
+     research record: a name that still exists in 11e carries its rating across, but its prose still
+     describes the 10e rule. Detachments that no longer exist in 11e are dropped at render time. -->
 
 ### Chapter-Specific Detachments
 <!-- ordered by DP -->
@@ -184,7 +188,7 @@ _space-marines-shared.json (2026-08-23, packs v1.1). 24 detachments total:
 - *(Interpretation, restricted to what the research files document)* In Liberator Assault Group, Speed of the Primarch (once-per-battle Fights First) is the named spike tool for a decisive charge turn. In Rage-Cursed Onslaught, the +1S/+1AP-on-charge stratagem (or both halves via voluntary Battle-shock) is the documented burst option. In The Angelic Host, Gleaming Pinions (8" deep strike after errata) tightens the return drop. Inherited Gladius tools (Storm of Fire ignore-cover, Honour the Chapter Lance) remain the CP sink when running doctrines. All CP-gated burst options, not plan-of-record.
 
 ### Overall Army Play Pattern
-*(interpretation)* Blood Angels win by converting movement into melee: the chapter-specific suite (Liberator Assault Group, Rage-Cursed Onslaught, Stormlance at a discounted 2DP, The Angelic Host) all reward a jump-pack-heavy roster that Advances, charges, and fights before the opponent can disengage. The correct default is a 3DP melee detachment matched to the mission pair — Liberator for objective defence, Rage-Cursed for kill missions — with a 1DP add-on (Encarmine Speartip, Wrath Of The Doomed) layered on top when the list leans into Sanguinary Guard or Death Company. Shooting and gunline detachments (Anvil, Ironstorm, Ceramite) actively fight the army's strengths; Reconnaissance remains the structural weak spot since no chapter-specific detachment generates scoring actions.
+*(interpretation)* Blood Angels play on two engines: the inherited Astartes chassis (Gladius Task Force, Ironstorm Spearhead, Tacticus x2, Gauntlet, Stormlance, Phobos x2) and three chapter packages — Angelic Inheritors (3DP, Priority Assets + Purge the Foe), Encarmine Speartip and Wrath Of The Doomed (both 1DP). The chapter identity is in the units and in the detachment rules that hand out a third doctrine (Angelic Inheritors) or point the Sanguinary Guard at a different doctrine (Encarmine Speartip), so the correct default is the 3DP melee package with a 1DP doctrine add-on rather than a gunline. Reconnaissance is the structural weak spot: no chapter package generates scoring actions, and the inherited tools for it (Gauntlet Task Force, Stormlance Task Force) are mobility, not scoring. Shooting detachments actively fight the army's strengths — the chapter has the melee and jump-pack density to convert movement into damage, and the doctrine framework lets it swing with a free doctrine pick.
 
 ### First-Army Fit
 - **First-Army Fit**: Demanding — fast melee tempo on a fragile 2W core; staging and threat-timing punish early mistakes (same fragility class as World Eaters). Sourced: user domain call 2026-09-06.

@@ -5,7 +5,7 @@
 - **Full name**: Space Wolves (BSData catalogue: "Imperium - Adeptus Astartes - Space Wolves")
 - **Faction keyword**: `Faction: Adeptus Astartes`, `Faction: Space Wolves`
 - **Game edition**: 11th (10e-derived profiles)
-- **Core mechanics**: Adeptus Astartes framework with Oath-of-Moment-referencing inherited detachments confirmed available (1st Company Task Force, Gladius). The chapter-specific suite is organised around named Sagas — kill-tally and boast progression systems that escalate army-wide buffs mid-battle. No separate army-rule text exists in the research corpus [unverified whether the chapter replaces Oath of Moment].
+- **Core mechanics**: Adeptus Astartes framework — the shared **Combat Doctrines** army rule (one doctrine per Command phase: Assault, Devastator or Tactical; one selection per battle; one active per unit) plus the chapter rule **Curse of the Wulfen**. The chapter-specific suite is organised around named Sagas — kill-tally and boast progression systems that escalate army-wide buffs mid-battle. Sourced: BSData 9b8207c (SW sharedRules: `Curse of the Wulfen`); GW preview 2026-09-10.
 - **Sub-faction keywords**: `Faction: Space Wolves`
 
 ## Army Rules & Detachments — Expert Assessment
@@ -22,20 +22,24 @@ _space-marines-shared.json (2026-08-23, packs v1.1). 23 detachments total:
 (rated here in Space Wolves context, not re-assessed).
 
 ### Army Rule
-- **Army Rule Rating**: Moderate — Space Wolves use Oath of Moment (reroll hits only); with SPACE WOLVES keyword units the +1-to-wound rider is void (verified). Identity comes from divergent tools (Curse of the Wulfen, Sagas). Sourced: 40k.app/factions/space-wolves/army-rules 2026-09-06.
-- **Oath of Moment (reroll-Hits only — SW keyword units void +1w)**: Shared-codex Oath of Moment applies; no separate SW army-rule replacement is documented. Sagas and Wulfen provide the chapter's identity.
+- **Army Rule Rating**: Moderate — Space Wolves use the Astartes Combat Doctrines army rule (three doctrines, one per Command phase, one per battle, one active per unit) plus the chapter rule Curse of the Wulfen; identity comes from chapter tools (Curse, Sagas).
+- **Oath of Moment (RETIRED)**: was the Astartes army rule until Codex: Space Marines (2026-10-03) replaced it with Combat Doctrines. Sourced: BSData 9b8207c (SW sharedRules: `Curse of the Wulfen`); GW preview 2026-09-10.
 - **Play pattern** *(interpretation)*: Saga detachments build a mid-battle escalation arc — early rounds the army plays on conditional buffs, late rounds (Saga complete) it plays on near-army-wide bonuses; list construction revolves around which saga completes fastest against the mission pair.
 
 ### Disposition Fit (current meta verdict)
 | Disposition | Fit | Grounded reasoning |
 |-------------|-----|--------------------|
-| Take and Hold | Moderate | Saga Of The Great Wolf packs and Legends Of Saga And Song sticky-objective stratagem give tools, but all are once-per-battle or Terminator-gated; inherited bench fills gaps. |
-| Purge the Foe | Strong | Saga Of The Beastslayer grants Lethal Hits vs CHARACTER/MONSTER/VEHICLE (escalating to everything); Saga Of The Hunter adds melee hit/wound bonuses. |
-| Reconnaissance | Moderate | Only inherited Vanguard Spearhead/Subversion plus Wolf Scouts; no chapter-specific recon detachment. |
-| Priority Assets | Moderate | Champions Of Fenris and Saga Of The Bold both hinge on Character units completing reactive objectives first. |
-| Disruption | Strong | Stormlance at full 3DP plus Thunderwolf Cavalry/Outrider mounted units and Saga Of The Hunter pack-tagging melee. |
+| Take and Hold | Moderate | Saga Of The Great Wolf (Master of Wolves — Encircling Jaws on the assault doctrine, +1 advance) and the inherited bench (Assault Brethren, Gladius Task Force, Gravis Linebreaker/Siege Force, Tacticus Attack Force) hold, but the saga tools are doctrine- and unit-gated. |
+| Purge the Foe | Strong | Saga Of The Beastslayer (Legendary Slayers — Lethal Hits against Character/Monster/Vehicle) is the dedicated killer, with Devastator Brethren and Ironstorm Spearhead behind it. |
+| Reconnaissance | Moderate | Only inherited Gauntlet Task Force / Stormlance Task Force plus the Wolf Scouts and Wulfen units; no chapter-specific recon detachment in 11e. |
+| Priority Assets | Moderate | Champions Of Fenris (The Great Wolf Watches — Countercharge for characters) and Saga Of The Great Wolf hinge on Character units completing reactive objectives first; Gladius Task Force, Ironclad Champions, Terminator Storm Force and Tacticus Firestorm Force are the generalists. |
+| Disruption | Strong | Stormlance Task Force (mounted +2" M) plus Thunderwolf Cavalry/Outrider units and Phobos Shadow/Shock Force support the harassment game. |
 
 ### Detachment Assessments
+<!-- Roster source: the 11e detachment roster is rendered from data/merged/<fid>.json (MFM 1.5, 11e);
+     this file supplies the rating only, matched by detachment name. The blocks below are the 10e
+     research record: a name that still exists in 11e carries its rating across, but its prose still
+     describes the 10e rule. Detachments that no longer exist in 11e are dropped at render time. -->
 
 ### Chapter-Specific Detachments
 <!-- ordered by DP -->
@@ -177,4 +181,4 @@ _space-marines-shared.json (2026-08-23, packs v1.1). 23 detachments total:
 - *(Interpretation, restricted to what the research files document)* Champions Of Fenris' Runes of Claiming (sticky objective at end of Movement phase, 1CP) is the named Take-and-Hold scoring tool. Legends Of Saga And Song's Wings of the Blizzard reserve-bounce gives Terminators a redeploy exit. In Saga Of The Great Wolf, Grimnar's Command (activate a pack for one unit only) stretches the once-per-battle packs; Unrelenting Hunters grants fall-back-and-charge (advance-and-charge for Space Wolves units) as a CP burst. All CP-gated, not plan-of-record.
 
 ### Overall Army Play Pattern
-*(interpretation)* Space Wolves play a two-act game: rounds 1-2 the sagas pay out small conditional bonuses while Characters chase Boasts and melee kills fill the Quarry/Beastslayer tallies; once a saga completes, the army-wide escalation (full-category rerolls in Saga Of The Bold, universal Lethal Hits in Beastslayer, wound bonus in Hunter) makes every unit meaningfully better. List construction should pick the saga whose completion condition matches the expected mission pair — kill-heavy pairs favour Beastslayer/Hunter, objective play favours Great Wolf/Bold. Mounted melee (Thunderwolf Cavalry under Stormlance) remains the cleanest Disruption package even at full 3DP. Weak spots: Reconnaissance has no native tool, and every saga payoff is delayed — fast, decisive missions can end before the second act begins.
+*(interpretation)* Space Wolves run a two-act game, but in 11e the acts are shorter and the tools are named: the chapter ships two Sagas — Saga Of The Great Wolf (2DP, Take and Hold) and Saga Of The Beastslayer (1DP, Purge the Foe) — and everything else is inherited Astartes (Gladius Task Force, Terminator Storm Force, Champions Of Fenris, Ironstorm Spearhead, Stormlance, Tacticus x2, Gauntlet, Phobos x2, Devastator/Assault/Tactical Brethren). The army rule layer is the shared Combat Doctrines plus the chapter's Curse of the Wulfen, so the Saga's payoff is what the detachment choice is really buying. The correct pattern is to pick the Saga whose completion condition matches the mission pair, then fill the list with the inherited package that covers the other disposition: kill-heavy pairs take Saga Of The Beastslayer, objective pairs take Saga Of The Great Wolf, and the 1DP doctrine packages (Assault/Devastator/Tactical Brethren) are the cheap way to add a second doctrine without a Saga. Weak spots: Disruption and Reconnaissance run on inherited tools only (Phobos Shadow/Shock Force, Stormlance, Gauntlet), and mounted melee (Thunderwolf Cavalry) is the cleanest melee package without a chapter detachment rule to drive it.

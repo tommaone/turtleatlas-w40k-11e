@@ -772,6 +772,32 @@ def build_data(faction, max_points=2000, detachment=None):
     return {'meta': data, 'meta_info': meta_info}, len(all_unit_names), mission_weights
 
 
+def _norm_det_name(name):
+    """Normalise a detachment name for expert↔data matching.
+
+    MFM spells possessives inconsistently ('Forgefather’S Seekers' vs
+    "Forgefather's Seekers"), so compare on letters and digits only.
+    """
+    return re.sub(r'[^a-z0-9]+', ' ', (name or '').lower()).strip()
+
+
+def _merged_detachments(fid):
+    """Detachment roster from L0 truth (MFM merged data), or [].
+
+    Names, DP cost and objectives come from data/merged/<fid>.json — the
+    same file the roster, the advisor and the MCP server read. The expert
+    file contributes the RATING only; keeping the roster in two places is
+    how a 10e detachment roster survived a bsdata/MFM bump and kept being
+    rendered as current 11e content.
+    """
+    path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                        'data', 'merged', f'{fid}.json')
+    if not os.path.isfile(path):
+        return []
+    with open(path, encoding='utf-8') as f:
+        return json.load(f).get('detachments', []) or []
+
+
 def parse_expert_assessment(fid):
     """Parse the Army Rules & Detachments assessment from the expert file.
 
@@ -779,6 +805,13 @@ def parse_expert_assessment(fid):
     clearly labelled there as NOT engine output), or None when no expert
     file/section exists. Facts inside trace to workspace research corpus;
     ratings are band-scale judgement by design (see resources/experts).
+
+    Split of truth: the detachment ROSTER (names, DP, objectives) is L0
+    engine data from data/merged/<fid>.json; the expert file supplies the
+    rating for a detachment it knows about. Expert blocks naming a
+    detachment that no longer exists are dropped (stale roster) and
+    reported; roster entries with no expert block stay 'Unrated' rather
+    than borrowing a rating from a namesake.
     """
     path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                         'resources', 'experts', f'{fid}.md')
@@ -791,10 +824,15 @@ def parse_expert_assessment(fid):
     sec = m.group(1)
 
     out = {'disposition_fit': [], 'detachments': [], 'army_rule': '',
-           'army_rule_rating': '', 'play_pattern': ''}
+           'army_rule_rating': '', 'play_pattern': '',
+           'stale_expert_detachments': [], 'unrated_detachments': []}
     am = re.search(r'### Army Rule\s*\n(.*?)(?=\n### |\Z)', sec, re.S)
     if am:
-        out['army_rule'] = am.group(1).strip()
+        # The play-pattern bullet has its own card (see below) — drop it
+        # from the army-rule text so it is not rendered twice.
+        out['army_rule'] = re.sub(
+            r'^[ \t]*-[ \t]*\*\*Play pattern\*\*[^\n]*$', '', am.group(1),
+            flags=re.M).strip()
         rm2 = re.search(
             r'\*\*Army Rule Rating\*\*[^\n]*:\s*(Strong|Moderate|Situational|Weak)',
             out['army_rule'])
@@ -805,17 +843,62 @@ def parse_expert_assessment(fid):
             sec, re.M):
         out['disposition_fit'].append({'mission': row[0], 'fit': row[1],
                                        'why': row[2]})
+    # Expert file: detachment name -> rating (judgement layer only).
+    expert_ratings = {}
+    expert_names = {}
     for blk in re.finditer(
             r'####\s+(.+?)\s*\((\d+)DP\s*(?:→|->)\s*([A-Z &]+)\)'r'[^#\n]*\n(.*?)(?=\n#### |\n### |\Z)',
             sec, re.S):
         name, dp, obj, body = blk.group(1), blk.group(2), blk.group(3), blk.group(4)
         rm = re.search(r'\*\*Rating\*\*:?\s*(Strong|Moderate|Situational|Weak)', body)
-        out['detachments'].append({
-            'name': name.strip(), 'dp': int(dp), 'objective': obj.strip(),
-            'rating': rm.group(1) if rm else 'Unrated'})
-    pm = re.search(r'\*\*Overall army play pattern\*\*[^\n]*\n?(.*)', sec)
+        key = _norm_det_name(name)
+        expert_ratings[key] = rm.group(1) if rm else 'Unrated'
+        expert_names[key] = name.strip()
+    # Roster: L0 truth (MFM). Objectives are a list; the first one is the
+    # disposition the detachment queues for (data order, deterministic).
+    merged = _merged_detachments(fid)
+    if merged:
+        for mdet in merged:
+            objs = list(mdet.get('objectives') or [])
+            key = _norm_det_name(mdet.get('name', ''))
+            out['detachments'].append({
+                'name': mdet.get('name', ''), 'dp': mdet.get('dp') or 1,
+                'objective': objs[0] if objs else '', 'objectives': objs,
+                'rating': expert_ratings.get(key, 'Unrated')})
+        known = {_norm_det_name(mdet.get('name', '')) for mdet in merged}
+        out['stale_expert_detachments'] = sorted(
+            expert_names[k] for k in expert_ratings if k not in known)
+        out['unrated_detachments'] = sorted(
+            mdet.get('name', '') for mdet in merged
+            if expert_ratings.get(_norm_det_name(mdet.get('name', ''))) is None)
+    else:
+        # No merged roster (unmapped faction): fall back to the expert file.
+        for blk in re.finditer(
+                r'####\s+(.+?)\s*\((\d+)DP\s*(?:→|->)\s*([A-Z &]+)\)'r'[^#\n]*\n(.*?)(?=\n#### |\n### |\Z)',
+                sec, re.S):
+            name, dp, obj, body = blk.group(1), blk.group(2), blk.group(3), blk.group(4)
+            rm = re.search(r'\*\*Rating\*\*:?\s*(Strong|Moderate|Situational|Weak)', body)
+            out['detachments'].append({
+                'name': name.strip(), 'dp': int(dp), 'objective': obj.strip(),
+                'objectives': [obj.strip()],
+                'rating': rm.group(1) if rm else 'Unrated'})
+    # Play pattern: the corpus uses two marker shapes — a standalone
+    # '**Overall army play pattern** *(interpretation)*:' line and a
+    # '- **Play pattern** *(interpretation)*:' bullet inside ### Army Rule.
+    # The old regex captured the line AFTER the marker, so the "How this
+    # army plays" card never rendered for any faction.
+    pm = re.search(
+        r'Overall army play pattern\**\s*\**\s*\(interpretation\)\**\s*:?\s*(.+)',
+        md)
+    if not pm:
+        pm = re.search(r'^[ \t]*-[ \t]*\*\*Play pattern\*\*[^\n]*?:\s*(.+)',
+                       md, re.M)
     if pm:
-        out['play_pattern'] = pm.group(1).strip()[:1200]
+        pp = pm.group(1).strip()
+        # Both marker shapes exist: '**Play pattern**: *(interpretation)* TEXT'
+        # and '**Play pattern** *(interpretation)*: TEXT'. Drop the tag.
+        pp = re.sub(r'^\*?\(interpretation\)\*?\s*[:—–-]?\s*', '', pp)
+        out['play_pattern'] = pp.strip()[:1200]
     return out if (out['detachments'] or out['disposition_fit']) else None
 
 
@@ -832,8 +915,13 @@ def gen_html(fname, data, n_units, weights=None, fid=None):
     data_json = _js_safe(json.dumps(data, default=str))
     weights_json = _js_safe(json.dumps(weights))
     factors_json = _js_safe(json.dumps(mission_factors))
-    expert_json = _js_safe(json.dumps(parse_expert_assessment(fid) if fid else None,
-                                      ensure_ascii=False))
+    exp = parse_expert_assessment(fid) if fid else None
+    if exp:
+        # Diagnostics stay in the generator log; the page carries the count
+        # only (the roster itself is L0 data, the gap is the judgement).
+        exp = {k: v for k, v in exp.items() if k != 'stale_expert_detachments'}
+        exp['unrated_count'] = len(exp.pop('unrated_detachments', []))
+    expert_json = _js_safe(json.dumps(exp, ensure_ascii=False))
     fname_html = html.escape(fname, quote=False)
     return f'''<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><title>{fname_html} — Findings</title>
@@ -959,7 +1047,7 @@ function renderBanner(){{var b=document.getElementById('preset-banner'),opts=DAT
 function setMeta(slug){{ACTIVE=slug;renderBanner();renderMissions();renderTop10();renderInsights()}}
 function renderMissions(){{var c=document.getElementById('missions'),html='';var meta=ACTIVE===''?DATA.meta_info[0].slug:ACTIVE;for(var mission in DATA.meta[meta]){{var units=DATA.meta[meta][mission],w=WEIGHTS[mission],f=FACTORS[mission]||{{}},mid=mission.replace(/[^a-z]/gi,'');var factorHtml='';if(f.playstyle)factorHtml+='<div class="mission-playstyle">'+f.playstyle+'</div>';if(f.factors)factorHtml+='<ul class="factor-list">'+f.factors.map(function(x){{return '<li>'+x+'</li>'}}).join('')+'</ul>';html+='<div class="mission-card"><div class="mission-header"><div class="mission-name">'+esc(mission)+' <span style="font-size:13px;color:#78909c">('+units.length+' units)</span></div><div class="mission-weights"><span class="weight w-dpp">DPP '+w.dps+'%</span><span class="weight w-surv">SURV '+w.surv+'%</span><span class="weight w-obj">OBJ '+w.obj+'%</span><span class="weight w-mob">MOB '+w.mob+'%</span></div></div>'+(factorHtml?'<details class="mission-factors"><summary>How this disposition scores ▾</summary>'+factorHtml+'</details>':'')+'<div class="search-bar"><input id="search-'+mid+'" type="text" placeholder="Search units..." oninput="filterMission(\\''+mid+'\\')"><span class="count" id="count-'+mid+'">'+units.length+' / '+units.length+' units</span></div><div class="table-scroll"><table id="table-'+mid+'"><tr><th>#</th><th>Unit</th><th>Pts</th><th>Score</th><th>DPP</th><th class="bar-cell"></th><th>SURV</th><th class="bar-cell"></th><th>OBJ</th><th class="bar-cell"></th><th>MOB</th><th class="bar-cell"></th><th>Tags</th><th>Profile</th></tr>';units.forEach(function(u,i){{html+=renderRow(u,i)}});html+='</table></div></div>'}}c.innerHTML=html}}
 function renderTop10(){{var c=document.getElementById('top10'),unitData={{}};var meta=ACTIVE===''?DATA.meta_info[0].slug:ACTIVE;for(var mission in DATA.meta[meta]){{var units=DATA.meta[meta][mission];for(var i=0;i<units.length;i++){{var u=units[i];if(!unitData[u.name])unitData[u.name]={{name:u.name,pts:u.pts,ds:u.ds,fly:u.fly,inv:u.inv,fnp:u.fnp,cfnp:u.cfnp,cfnp_type:u.cfnp_type,oc_boost:u.oc_boost,t:u.t,w:u.w,oc:u.oc,missions:{{}}}};unitData[u.name].missions[mission]={{score:u.score,rank:i+1}}}}}}for(var k in unitData){{var u=unitData[k],scores=Object.values(u.missions).map(function(m){{return m.score}});u.avgScore=Math.round(scores.reduce(function(a,b){{return a+b}},0)/scores.length*10)/10}}var sorted=Object.values(unitData).sort(function(a,b){{return b.avgScore-a.avgScore}}).slice(0,20);var html='<h2>Top 20 Units (Avg Score)</h2>';sorted.forEach(function(u,idx){{var badges=Object.entries(u.missions).sort(function(a,b){{return b[1].score-a[1].score}}).map(function(kv){{var k=kv[0],v=kv[1];return '<span class="mission-badge '+(v.rank===1?'top1':v.rank<=3?'top3':'top5')+'">#'+v.rank+' '+esc(k)+' ('+v.score+')</span>'}}).join(' ');var bc=['#ffd700','#c0c0c0','#cd7f32'];html+='<div class="insight-card" style="border-left-color:'+(idx<3?bc[idx]:'#4fc3f7')+'"><div class="insight-title" style="display:flex;justify-content:space-between"><span>#'+(idx+1)+' '+u.name+'</span><span class="pts">'+u.pts+'pts · avg '+u.avgScore+'</span></div><div style="margin:6px 0">'+(u.ds?'<span class="tag tag-ds">DS</span>':'')+(u.fly?'<span class="tag tag-fly">FLY</span>':'')+(u.inv?'<span class="tag tag-inv">INV '+u.inv+'</span>':'')+(u.fnp?'<span class="tag tag-fnp">FNP '+u.fnp+'</span>':'')+(u.cfnp?'<span class="tag tag-cfnp">CFNP '+u.cfnp+'+ vs '+u.cfnp_type+'</span>':'')+(u.oc_boost?'<span class="tag tag-ocboost">OC+'+u.oc_boost+'/banner</span>':'')+'<span style="font-size:11px;color:#78909c;margin-left:8px">T'+u.t+' W'+u.w+' OC'+u.oc+'</span></div><div>'+badges+'</div></div>'}});c.innerHTML=html}}
-function renderInsights(){{var c=document.getElementById('insights'),html='<h2>Key Insights</h2>';if(EXPERT){{html+='<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #bc8cff;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:11px;color:#8b949e"><b style="color:#bc8cff">Expert assessment</b> — interpretation layer (rules packages are NOT engine numbers). Ratings are band-scale judgement grounded in verified 11e mechanics; DPP/scores below remain generalist and rules-free.</div>';if(EXPERT.play_pattern)html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">How this army plays</div><div class="insight-text">'+EXPERT.play_pattern+'</div></div>';if(EXPERT.army_rule)html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">Army rule</div><div class="insight-text">'+EXPERT.army_rule.replace(/\\n/g,'<br>')+'</div></div>';if(EXPERT.disposition_fit&&EXPERT.disposition_fit.length){{html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">Disposition fit (expert verdict)</div><table style="width:100%;font-size:11px;border-collapse:collapse;margin-top:6px">';EXPERT.disposition_fit.forEach(function(r){{var col=r.fit==="Strong"?"#3fb950":r.fit==="Moderate"?"#58a6ff":r.fit==="Situational"?"#d29922":"#6e7681";html+='<tr><td style="padding:3px 6px;color:#c5cdd9;white-space:nowrap">'+r.mission+'</td><td style="padding:3px 6px;color:'+col+';font-weight:700;white-space:nowrap">'+r.fit+'</td><td style="padding:3px 6px;color:#8b949e">'+r.why+'</td></tr>'}});html+='</table></div>'}}if(EXPERT.detachments&&EXPERT.detachments.length){{var order={{Strong:0,Moderate:1,Situational:2,Weak:3,Unrated:4}};var dets=EXPERT.detachments.slice().sort(function(a,b){{return ((order[a.rating]??9)-(order[b.rating]??9))||(a.dp-b.dp)}});html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">Detachments (all, best first — expert rating)</div><div style="max-height:420px;overflow-y:auto">';dets.forEach(function(d){{var col=d.rating==="Strong"?"#3fb950":d.rating==="Moderate"?"#58a6ff":d.rating==="Situational"?"#d29922":"#6e7681";html+='<div style="display:flex;gap:8px;padding:3px 0;font-size:11px;flex-wrap:wrap"><span style="color:'+col+';font-weight:700;min-width:86px">'+d.rating+'</span><span style="color:#c5cdd9">'+d.name+'</span><span style="color:#78909c">'+d.dp+'DP → '+d.objective+'</span></div>'}});html+='</div></div>'}}}}var meta=ACTIVE===''?DATA.meta_info[0].slug:ACTIVE;for(var mission in DATA.meta[meta]){{var units=DATA.meta[meta][mission];if(units.length>0){{var u=units[0];html+='<div class="insight-card"><div class="insight-title">#1 in '+esc(mission)+': '+u.name+'</div><div class="insight-text">'+u.score+' score · '+u.pts+'pts · '+u.dpp+' DPP · T'+u.t+' W'+u.w+(u.inv?' INV'+u.inv:'')+(u.fnp?' FNP'+u.fnp:'')+(u.cfnp?' CFNP'+u.cfnp+'+'+u.cfnp_type:'')+(u.oc_boost?' OC+'+u.oc_boost+'/banner':'')+(u.ds?' DS':'')+(u.fly?' FLY':'')+' OC'+u.oc+'</div></div>'}}}}c.innerHTML=html}}
+function renderInsights(){{var c=document.getElementById('insights'),html='<h2>Key Insights</h2>';if(EXPERT){{html+='<div style="background:#161b22;border:1px solid #30363d;border-left:3px solid #bc8cff;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:11px;color:#8b949e"><b style="color:#bc8cff">Expert assessment</b> — interpretation layer (rules packages are NOT engine numbers). Ratings are band-scale judgement grounded in verified 11e mechanics; DPP/scores below remain generalist and rules-free.</div>';if(EXPERT.play_pattern)html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">How this army plays</div><div class="insight-text">'+EXPERT.play_pattern+'</div></div>';if(EXPERT.army_rule)html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">Army rule</div><div class="insight-text">'+EXPERT.army_rule.replace(/\\n/g,'<br>')+'</div></div>';if(EXPERT.disposition_fit&&EXPERT.disposition_fit.length){{html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">Disposition fit (expert verdict)</div><table style="width:100%;font-size:11px;border-collapse:collapse;margin-top:6px">';EXPERT.disposition_fit.forEach(function(r){{var col=r.fit==="Strong"?"#3fb950":r.fit==="Moderate"?"#58a6ff":r.fit==="Situational"?"#d29922":"#6e7681";html+='<tr><td style="padding:3px 6px;color:#c5cdd9;white-space:nowrap">'+r.mission+'</td><td style="padding:3px 6px;color:'+col+';font-weight:700;white-space:nowrap">'+r.fit+'</td><td style="padding:3px 6px;color:#8b949e">'+r.why+'</td></tr>'}});html+='</table></div>'}}if(EXPERT.detachments&&EXPERT.detachments.length){{var order={{Strong:0,Moderate:1,Situational:2,Weak:3,Unrated:4}};var dets=EXPERT.detachments.slice().sort(function(a,b){{return ((order[a.rating]??9)-(order[b.rating]??9))||(a.dp-b.dp)}});html+='<div class="insight-card" style="border-left-color:#bc8cff"><div class="insight-title">Detachments (all, best first — expert rating)</div><div style="max-height:420px;overflow-y:auto">';dets.forEach(function(d){{var col=d.rating==="Strong"?"#3fb950":d.rating==="Moderate"?"#58a6ff":d.rating==="Situational"?"#d29922":"#6e7681";html+='<div style="display:flex;gap:8px;padding:3px 0;font-size:11px;flex-wrap:wrap"><span style="color:'+col+';font-weight:700;min-width:86px">'+d.rating+'</span><span style="color:#c5cdd9">'+d.name+'</span><span style="color:#78909c">'+d.dp+'DP → '+(d.objectives&&d.objectives.length?d.objectives.join(' + '):d.objective)+'</span></div>'}});if(EXPERT.unrated_count){{html+='<div style="margin-top:6px;font-size:10px;color:#6e7681">'+'Roster: MFM v1.5 (11e). '+EXPERT.unrated_count+' of '+EXPERT.detachments.length+' detachments have no expert rating yet — roster entry, not a rule claim.</div>'}}html+='</div></div>'}}}}var meta=ACTIVE===''?DATA.meta_info[0].slug:ACTIVE;for(var mission in DATA.meta[meta]){{var units=DATA.meta[meta][mission];if(units.length>0){{var u=units[0];html+='<div class="insight-card"><div class="insight-title">#1 in '+esc(mission)+': '+u.name+'</div><div class="insight-text">'+u.score+' score · '+u.pts+'pts · '+u.dpp+' DPP · T'+u.t+' W'+u.w+(u.inv?' INV'+u.inv:'')+(u.fnp?' FNP'+u.fnp:'')+(u.cfnp?' CFNP'+u.cfnp+'+'+u.cfnp_type:'')+(u.oc_boost?' OC+'+u.oc_boost+'/banner':'')+(u.ds?' DS':'')+(u.fly?' FLY':'')+' OC'+u.oc+'</div></div>'}}}}c.innerHTML=html}}
 renderBanner();renderMissions();renderTop10();renderInsights();
 function _ldHideAll(){{document.querySelectorAll('.ld-cell').forEach(function(c){{if(!c.classList.contains('open'))_ldHidePopup(c)}})}}
 document.addEventListener('mouseover',function(e){{var cell=e.target.closest('.ld-cell');if(cell&&!cell.classList.contains('open')){{_ldHideAll();_ldPosPopup(cell)}}}});
@@ -1003,6 +1091,20 @@ if __name__ == '__main__':
         wrote = _write_if_changed(out_path, page)
         print(f'{fname}: {n_units} units, '
               f'{"written to" if wrote else "unchanged at"} {out_dir}/findings.html')
+        # Expert-file drift: detachment blocks that no longer exist (stale
+        # roster) and roster entries the expert file never rated. Both are
+        # judgement-layer gaps, printed so they cannot hide in a page.
+        exp = parse_expert_assessment(fid)
+        if exp:
+            stale = exp.get('stale_expert_detachments') or []
+            unrated = exp.get('unrated_detachments') or []
+            if stale:
+                print(f'  [expert drift] {fid}: {len(stale)} detachment(s) in the '
+                      f'expert file no longer exist in 11e (dropped): '
+                      f'{", ".join(stale)}')
+            if unrated:
+                print(f'  [expert gap] {fid}: {len(unrated)} detachment(s) have no '
+                      f'expert rating: {", ".join(unrated)}')
         # Machine-readable sidecar for the MCP server. It reads this instead of
         # regexing a `const DATA = {...}` blob out of findings.html, so a
         # restyle of the report can't break the tool. Compact separators: this

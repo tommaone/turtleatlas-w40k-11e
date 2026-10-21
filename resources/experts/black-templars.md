@@ -5,7 +5,7 @@
 - **Full name**: Black Templars (BSData catalogue: "Imperium - Adeptus Astartes - Black Templars")
 - **Faction keyword**: `Faction: Adeptus Astartes`, `Faction: Black Templars`
 - **Game edition**: 11th (10e-derived profiles)
-- **Core mechanics**: Per the Warhammer Community faction-pack article title, Black Templars "forget Oaths of Moment, swear a Templar Vow" — i.e. the chapter replaces the standard Astartes Oath framework with a Vow system. Specific Vow mechanics are NOT documented in the research corpus [unverified]. Detachment roster note: unlike sibling chapters, no Librarius Conclave and no 1st Company Task Force appear in the merged detachment list — consistent with the chapter's no-psyker identity (no Librarian units in data/config).
+- **Core mechanics**: Adeptus Astartes framework with two shared rules — **Combat Doctrines** (Assault / Devastator / Tactical) and **Templar Vows**. The Warhammer Community faction-pack line ("forget Oaths of Moment, swear a Templar Vow") still holds in 11e: the chapter layers a Vow on top of the doctrines rather than replacing them. The Vow is picked at the start of the first battle round and drives how the chapter fights. Sourced: BSData 9b8207c (rule `Templar Vows`, Astartes library); GW faction-pack article.
 - **Sub-faction keywords**: `Faction: Black Templars`
 
 ## Army Rules & Detachments — Expert Assessment
@@ -22,20 +22,24 @@ _space-marines-shared.json (2026-08-23, packs v1.1). 20 detachments total:
 (rated here in Black Templars context, not re-assessed).
 
 ### Army Rule
-- **Army Rule Rating**: Weak — substantive August readings were poor (34.0% 10-Aug, 31.4% 17-Aug) on tiny samples; the 3-8 Sep spike (54.8%, 8 players) is statistical noise. Sourced: warpfriends.wordpress.com 2026-08-12 (34.0%); warpfriends.wordpress.com 2026-08-19 (31.4%); listhammer.info/factions/black-templars 2026-09-05 (54.8%, N=8).
-- **Templar Vows**: Black Templars swap Oath of Moment for Templar Vows chosen at army construction (rerolls/wound/charge effects vary by vow). The corpus does not exhaustively document individual Vow effects — treat specific numeric claims as unverified unless sourced.
-- **Play pattern** *(interpretation)*: the chapter-specific suite is built around Crusader Squad / Sword Brethren bodies pushing forward — advance/charge reliability, transport assault, and Chaplain-fuelled melee pressure.
+- **Army Rule Rating**: Weak — Black Templars use Templar Vows (hidden rule in the Astartes library) alongside the shared Astartes Combat Doctrines army rule; substantive August readings were poor (34.0% 10-Aug, 31.4% 17-Aug) on tiny samples. Sourced: BSData 9b8207c; warpfriends.wordpress.com 2026-08-12 (34.0%); listhammer.info/factions/black-templars 2026-09-05 (54.8%, N=8).
+- **Templar Vows**: Black Templars pick one of four Templar Vows at the start of the first battle round (Adeptus Astartes armies only): a psyker-hunting vow (charge re-rolls + Precision vs Psykers), a low-strength vow (+1 wound on melee), a relentless-pursuit vow (charge after Fall-back + no consolidation constraint), and an honour vow (holds objectives, can perform Actions). Sourced: BSData 9b8207c (rule `Templar Vows`, Astartes library).
+- **Play pattern** *(interpretation)*: the chapter-specific suite is built around Crusader Squad / Sword Brethren bodies pushing forward — advance/charge reliability, transport assault, and Chaplain-fuelled melee pressure — with Templar Vows deciding what the first battle round is for.
 
 ### Disposition Fit (current meta verdict)
 | Disposition | Fit | Grounded reasoning |
 |-------------|-----|--------------------|
-| Take and Hold | Moderate | Vindication Task Force anchors objectives on ANCIENT units; inherited Anvil/Bastion bench exists but Bastion costs BT 3DP (vs 2DP shared). |
-| Purge the Foe | Strong | Companions Of Vehemence rerolls every Advance and Charge army-wide; Godhammer delivers melee via Land Raider; Sword Brethren mortal-wound charges. |
-| Reconnaissance | Moderate | Only inherited tools (Vanguard Spearhead cover, Subversion detection) — no chapter-specific recon piece. |
-| Priority Assets | Moderate | Marshal's Household is Sword Brethren-only; Gladius inherited remains the generalist option. |
-| Disruption | Strong | Companions Of Vehemence mobility plus Wrathful Procession Chaplain pressure; Stormlance available at 2DP as an alternative. |
+| Take and Hold | Moderate | Fist Of The God-Emperor (Crusader Squad surge moves target the closest objective) anchors the chapter; the inherited bench (Assault Brethren, Gravis Linebreaker/Siege Force, Tacticus Attack Force) fills the gap, and Templar Vows (Uphold the Honour) can secure objectives outright. |
+| Purge the Foe | Strong | Vow-Sworn Crusaders (Templar Vows — Accept Any Challenge gives +1 wound against tougher targets) and Devastator Brethren answer it; Sword Brethren mortal-wound charges supply the melee spike. |
+| Reconnaissance | Moderate | Only inherited tools (Gauntlet Task Force, Stormlance Task Force) — no chapter-specific recon piece. |
+| Priority Assets | Moderate | Marshal's Household (Sword Brethren +1A within objective range) is unit-locked; Ironclad Champions, Tactical Brethren, Terminator Storm Force and Tacticus Firestorm Force are the inherited generalists. |
+| Disruption | Strong | Fist Of The God-Emperor's surge economy plus Phobos Shadow/Shock Force and Stormlance Task Force (mounted +2" M) carry the mobility games. |
 
 ### Detachment Assessments
+<!-- Roster source: the 11e detachment roster is rendered from data/merged/<fid>.json (MFM 1.5, 11e);
+     this file supplies the rating only, matched by detachment name. The blocks below are the 10e
+     research record: a name that still exists in 11e carries its rating across, but its prose still
+     describes the 10e rule. Detachments that no longer exist in 11e are dropped at render time. -->
 
 ### Chapter-Specific Detachments
 <!-- ordered by DP -->
@@ -160,4 +164,4 @@ _space-marines-shared.json (2026-08-23, packs v1.1). 20 detachments total:
 - *(Interpretation, restricted to what the research files document)* The Living Miracle's free Guiding Omens pick-3-of-6 does not count against the army enhancement limit — the only documented zero-cost enhancement in the chapter pack, making Emperor's Champion builds efficient. Marshal's Household's Blade of Detestation (D6-per-model mortal wounds on the charge, max 6) is the named burst CP tool for Sword Brethren. Companions Of Vehemence's pile-in/consolidate 6" stratagem extends engagement grinding. All CP/enhancement-gated, not plan-of-record.
 
 ### Overall Army Play Pattern
-*(interpretation)* Black Templars play as a single massed crusade wave: the strongest chapter-specific rules (Companions Of Vehemence advance/charge rerolls, Godhammer transport delivery, Wrathful Procession objective-holding Chaplains) all assume Crusader Squad and Sword Brethren bodies arriving together and staying in combat. The default build is Companions Of Vehemence (or Stormlance at its discounted 2DP) with a 1DP add-on for whichever elite unit needs sharpening. Structural weaknesses are Reconnaissance — no native tool exists — and the premium pricing of inherited defensive detachments (Bastion at 3DP); the Templar Vow system that defines the army rule layer is undocumented in this corpus, so list-building claims involving specific vows are unsupported here.
+*(interpretation)* Black Templars are an Adeptus Astartes army with a vow layer on top: Combat Doctrines for the framework, Templar Vows for the chapter's engine (a Vow is picked at the start of the first battle round and shapes how the army fights). The 11e roster is three chapter packages — Fist Of The God-Emperor (1DP, Take and Hold), Marshal's Household (1DP, Priority Assets), Vow-Sworn Crusaders (2DP, Purge the Foe) — plus fifteen inherited Astartes packages, so the chapter's identity is narrower than the 10e corpus suggested. The correct default is Vow-Sworn Crusaders for the melee trade with a 1DP take-and-hold or asset package layered on, and the army's massed Crusader Squad / Sword Brethren bodies do the scoring and the trading. Weak spots: Reconnaissance is inherited only (Stormlance, Gauntlet), the army has no doctrine-granting package of its own, and any claim about a specific Vow's numbers is unsupported in the corpus — treat vow effects as unverified until the rules text is read.

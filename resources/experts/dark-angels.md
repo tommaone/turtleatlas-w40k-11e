@@ -195,20 +195,24 @@ file inherits silently — see per-detachment ⚠️ flags below; treat affected
 disposition labels as provisional until the faction file is corrected.
 
 ### Army Rule
-- **Army Rule Rating**: Strong — Dark Angels use the Adeptus Astartes Oath of Moment (reroll hits against the Oath target); with DARK ANGELS keyword units, the +1-to-wound rider is void (verified). Recent detachment depth gives strong toolkit coverage. Sourced: 40k.app/factions/dark-angels/army-rules 2026-09-06.
-- **Oath of Moment (reroll-Hits only — DA keyword units void +1w)**: Units declare an Oath of Moment enemy target and gain hit re-rolls against it; several detachments extend wound re-rolls vs the Oath target.
-- **Play pattern** *(interpretation)*: a mid-range shooting army with three internal toolkits (Deathwing elite terminators, Ravenwing fast bikes, Greenwing massed marines); detachments decide which wing leads.
+- **Army Rule Rating**: Strong — Dark Angels share the Astartes Combat Doctrines army rule (one of three doctrines per Command phase, one per battle, one active per unit) and add no chapter-specific army rule of their own; performance rides on the detachment toolkit.
+- **Oath of Moment (RETIRED)**: was the Astartes army rule until Codex: Space Marines (2026-10-03) replaced it with Combat Doctrines. Survives in BSData only as a reference inside the Master of the Deathwing character ability. Sourced: BSData 9b8207c; GW preview 2026-09-10.
+- **Play pattern** *(interpretation)*: a mid-range shooting army with two internal toolkits (Deathwing elite terminators, Ravenwing fast bikes) over a generic Astartes core; detachments decide which wing leads, and the 11e chapter detachments (Darkflight Pursuit, Inner Circle Task Force, Wrath of the Rock) are the wing-specific picks.
 
 ### Disposition Fit (current meta verdict)
 | Disposition | Fit | Grounded reasoning |
 |-------------|-----|--------------------|
-| Take and Hold | Moderate | Deep bench (Anvil Siege Force, Bastion Task Force, Orbital Assault Force) but most options carry positional or behavioural conditions. |
-| Purge the Foe | Moderate | 1st Company Task Force and Lion's Blade Task Force both map here; both are single-target/conditional. |
-| Reconnaissance | Moderate | Vanguard Spearhead's long-range cover benefit and Darkflight Pursuit's ignore-cover give real tools, all keyword/range-scoped. |
-| Priority Assets | Strong | Best depth in the codex: Gladius Task Force, Inner Circle Task Force, Firestorm Assault Force and Wrath Of The Rock. |
-| Disruption | Moderate | Stormlance Task Force is army-wide charge-after-advance/fallback; Company Of Hunters supports mounted harassment. |
+| Take and Hold | Moderate | Deep bench (Assault Brethren, Gladius Task Force, Gravis Linebreaker/Siege Force, Tacticus Attack Force) plus Wrath Of The Rock (Dutiful Tenacity — -1 wound on attacks stronger than the target's toughness), but most options carry positional or behavioural conditions. |
+| Purge the Foe | Moderate | Devastator Brethren (Devastator Mastery) and Ironstorm Spearhead (Ironstorm Auto-Targeters) map here; the chapter's own picks are the Deathwing tools in Inner Circle Task Force rather than a dedicated killer. |
+| Reconnaissance | Moderate | Darkflight Pursuit (Black-winged Vigilance — Ravenwing ignore cover, Outriders Battleline) gives real tools, all keyword/range-scoped; Gauntlet Task Force and Stormlance Task Force add generic movement. |
+| Priority Assets | Strong | Best depth in the codex: Gladius Task Force, Inner Circle Task Force (Vowed Target — Deathwing +1 wound near a vowed objective), Ironclad Champions, Terminator Storm Force and Tacticus Firestorm Force. |
+| Disruption | Moderate | Phobos Shadow/Shock Force and Stormlance Task Force (mounted +2" M) support screening; Deathwatch Support (DISRUPTION) is the one detachment listed here, and it is a support package rather than a denial engine. |
 
 ### Detachment Assessments
+<!-- Roster source: the 11e detachment roster is rendered from data/merged/<fid>.json (MFM 1.5, 11e);
+     this file supplies the rating only, matched by detachment name. The blocks below are the 10e
+     research record: a name that still exists in 11e carries its rating across, but its prose still
+     describes the 10e rule. Detachments that no longer exist in 11e are dropped at render time. -->
 <!-- one block per detachment, ordered by DP -->
 
 #### Dark Age Arsenal (1DP → PRIORITY ASSETS)
@@ -383,7 +387,7 @@ disposition labels as provisional until the faction file is corrected.
 - *(Interpretation — the DA research file names no faction-specific enhancements or stratagems; nothing verifiable to recommend here beyond noting that the shared-codex corpus documents ENTRENCHED-gated stratagems for the equivalent Ceramite Sentinels detachment and doctrine-gated bonuses under Gladius — CP spent there is the documented pattern, but DA-pack-specific stratagems are unverified in this corpus.)*
 
 ### Overall Army Play Pattern
-*(interpretation)* Dark Angels are a chapter-scheme of the Adeptus Astartes chassis that wins through detachment choice more than army rule: pick Inner Circle Task Force or Wrath Of The Rock to make the Deathwall grind onto Priority Assets, Company Of Hunters/Darkflight Pursuit for a Ravenwing mobility game, or default to Gladius-style flexibility. Because Oath of Moment provides only modest targeted rerolls, the army's identity comes from durable mid-board bodies (T5 Deathwing, massed 3+ saves) that score while trading inefficiently for the opponent — strongest where objectives reward standing still (Priority Assets, Take and Hold) and weakest in pure disruption where its tools are once-per-game or cross-unit conditional.
+*(interpretation)* Dark Angels sit on the generic Adeptus Astartes chassis, and the 11e roster says so plainly: of 19 detachments only Wrath Of The Rock, Inner Circle Task Force, Ironclad Champions, Terminator Storm Force, Tacticus Firestorm Force and Darkflight Pursuit are chapter-flavoured, the rest are inherited Astartes packages. That means the list-building decision is a choice between a Terminator wall (Wrath Of The Rock, Terminator Storm Force, Ironclad Champions for Priority Assets), a generic-but-deep 3DP anchor (Gladius Task Force), or a fast bike game (Darkflight Pursuit) — the chapter's 10e Deathwing/Ravenwing identity survives in the units, not in the detachment rules. Because the army rule is the shared Combat Doctrines, the packages that hand out an extra doctrine (Assault Brethren, Devastator Brethren, Tactical Brethren) multiply their value: doctrine choice, not detachment stats, is the tempo dial. Weak spots are Disruption and Reconnaissance, which run entirely on inherited tools (Phobos Shadow/Shock Force, Stormlance, Gauntlet), and the army's mid-board durability (T5 Deathwing, massed 3+ saves) means it scores while trading inefficiently for the opponent.
 
 ### First-Army Fit
 - **First-Army Fit**: Great — deep durable bench (Deathwing terminator core), straightforward mid-range shooting, and six 1DP detachments forgive list-building; the classic forgiving first army. Sourced: user domain call 2026-09-06.

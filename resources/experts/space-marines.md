@@ -1,21 +1,25 @@
 # Space Marines — 11th Edition Expert
 
 The Adeptus Astartes are the Imperium's elite warrior-monks. 11e SM are a flexible, durable
-midrange army with strong melee and shooting. Their army-wide rule **Oath of Moment** gives
-+1 to hit against a designated target, making them consistent damage dealers.
+midrange army with strong melee and shooting. Their army-wide rule **Combat Doctrines**
+gives every unit one of three doctrine states to build its turn around, and most 11e
+detachments are doctrine packages rather than one-off buffs.
 
 ---
 
 ## Critical 11e Rule for SM
 
-**OATH OF MOMENT:** At the start of the Fight phase, select one enemy unit. Until the start
-of your next Fight phase, each time a model with this ability makes an attack that targets
-that unit, add 1 to the Hit roll. +1 to hit is universal and affects ALL weapons.
+**COMBAT DOCTRINES:** At the start of your Command phase you select one doctrine —
+Assault, Devastator or Tactical — and it is active for friendly Astartes units with the
+ability until your next Command phase. Assault lets a unit charge after it Advances;
+Devastator gives its ranged attacks Assault; Tactical lets it shoot and then charge after
+a Fall-back. Each doctrine can be selected once per battle, and only one is active per
+unit. Sourced: BSData 9b8207c (rule `Combat Doctrines`, Astartes library).
 
 This means:
-- SM shooting is reliable — 3+ becomes 2+ against Oath target
-- Melee gets the same +1 to hit bonus
-- The bonus is per-model, not per-unit — Captain's Oath buff stacks with unit's Oath buff
+- The doctrine is chosen once per Command phase — you are picking what the unit does, not buffing a target
+- Most 11e SM detachments are doctrine packages (Codex Discipline, Mastered Doctrines, Assault/Tactical/Devastator Mastery)
+- A unit with no doctrine active plays as a plain marine — plan the Command phase around it
 
 ---
 
@@ -69,8 +73,8 @@ This means:
 ### Gladius Task Force (3DP) — Priority Assets
 *The default SM detachment. Balanced, flexible.*
 
-**Detachment Rule — OATH OF MOMENT**
-Oath of Moment +1 to hit is the army-wide buff. Not a detachment bonus.
+**Detachment Rule — CODEX DISCIPLINE**
+One extra Combat Doctrine selection per battle. Not a doctrine of its own.
 
 ### Stormlance Task Force (3DP) — Disruption
 **Lightning Assault:** Bikers/jump packs get charge bonus + mobility.
@@ -122,7 +126,7 @@ Bastion Task Force, Subversion Assets, Fulguris Task Force, Armoured Speartip.
 | Tier | Disposition | Why |
 |------|-------------|-----|
 | 🟢 **S** | **Purge the Foe** | SM kill things. Dreadnoughts, Devastators, Terminator melee. Natural fit. |
-| 🟢 **A** | **Priority Assets** | Terminators/characters with Oath +1 are great. Protect key units. |
+| 🟢 **A** | **Priority Assets** | Terminators, Dreadnoughts and characters are the army's best assets. Protect key units. |
 | 🟡 **B** | **Take and Hold** | SM have decent OC (Dreadnoughts OC 3-4). Solid but less kill pressure. |
 | 🟠 **C** | **Reconnaissance** | Action-heavy. SM want to push and kill, not sit doing actions. |
 | 🔴 **D** | **Disruption** | Screening/denial. SM lack cheap screening units compared to GK. |
@@ -148,8 +152,10 @@ Bastion Task Force, Subversion Assets, Fulguris Task Force, Armoured Speartip.
 
 ### Key Rules
 
-**Oath of Moment +1 to hit is the best army-wide buff in the game.** Every unit benefits.
-Combined with high-quality weapons (Lascannons, Melta), SM output is consistent and high.
+**Combat Doctrines is the strongest army-wide lever in the game.** Every unit with the
+ability participates, and a detachment that adds doctrine uses (Codex Discipline, Mastered
+Doctrines) turns that into extra swings. Combined with high-quality weapons (Lascannons,
+Melta), SM output is consistent and high.
 
 ---
 
@@ -172,20 +178,20 @@ Combined with high-quality weapons (Lascannons, Melta), SM output is consistent 
 
 ### Turn 2–3 (Strike Window)
 - Deep Strike units arrive. Terminators land on objectives or behind enemy lines.
-- Oath of Moment target: pick the biggest threat each turn.
+- Devastator doctrine on the units that need to shoot and close.
 - Dreadnoughts push up with support.
-- Devastators hold backfield, shoot Oath targets.
+- Devastators hold backfield and shoot.
 
 ### Turn 4–5 (Cleanup)
 - Hold objectives with Terminators/Dreadnoughts.
-- Oath of Moment shifts to late-game targets.
+- Switch the doctrine to match the endgame (Assault for a last-charge turn).
 - Characters support with buffs.
 
 ---
 
 ## Key Gotchas
 
-1. **Oath of Moment is per-model, not per-unit** — Captain + Terminator Squad both get +1 to hit against Oath target
+1. **Combat Doctrines is per-unit, not per-army** — a doctrine is active for units with the ability; a unit without it plays plain
 2. **Terminators have 5+ invuln, not 4+** — Grey Knights have 4+, SM only 5+
 3. **No native FNP on any SM unit** — unlike Grey Knights' Rhino FNP 6+ vs mortals
 4. **Dreadnoughts are the DPP kings** — Multi-melta Dreadnought beats most infantry on DPP
@@ -209,20 +215,24 @@ warns several dispositions in the faction JSON contradict official sources
 Company Task Force's disposition — treat affected labels as provisional.
 
 ### Army Rule
-- **Army Rule Rating**: Moderate — Oath of Moment is the Adeptus Astartes army rule in 11e (reroll hits against the Oath target). Only armies with no BLACK TEMPLARS/BLOOD ANGELS/DARK ANGELS/DEATHWATCH/SPACE WOLVES keyword units gain the additional +1 to wound; divergent chapters lose that rider. Sourced: 40k.app/factions/space-marines/army-rules 2026-09-06.
-- **Oath of Moment**: Units designate an Oath target and gain reroll benefits against it; multiple detachments extend wound re-rolls to the Oath target. Oath is per-model.
-- **Play pattern** *(interpretation)*: the most detachment-diverse faction in the game — every playstyle (gunline, armour column, drop assault, battleline flood, jump infantry) has a dedicated detachment, so list identity starts with the DP choice.
+- **Army Rule Rating**: Moderate — Combat Doctrines is the Adeptus Astartes army rule in 11e: pick one of three doctrines at the start of your Command phase, active for friendly Astartes units with the ability until the next Command phase. Assault Doctrine lets a unit charge after it Advances; Devastator Doctrine gives its ranged attacks Assault; Tactical Doctrine lets it shoot and charge after a Fall-back. Each doctrine can be selected once per battle and only one is active per unit. Sourced: BSData 9b8207c (rule `Combat Doctrines`, Astartes library) + GW Space Marines rules preview 2026-09-10.
+- **Oath of Moment (RETIRED as army rule)**: Oath of Moment was the Astartes army rule through the June/July 2026 11e Faction Packs (re-roll hits against the Oath target, plus +1 wound for pure-vanilla lists). Codex: Space Marines (released 2026-10-03) removed it and replaced it with Combat Doctrines. The term survives only in BSData as a reference inside a few character/campaign entries (e.g. Master of the Deathwing, Chapter Command) — not as a rule entity. Sourced: BSData 9b8207c (no entity named "Oath of Moment" exists; SM army-rule infoLinks are `Combat Doctrines` + `Templar Vows`); GW preview 2026-09-10.
+- **Play pattern** *(interpretation)*: the broadest detachment list in the game (22 packages), but 11e re-cut the roster around generic Astartes packages — Assault/Tactical/Devastator Brethren, Gauntlet, Gladius, Tacticus x2, Terminator Storm Force, Phobos x2, Gravis x2 — plus a few signature ones (Blade of Ultramar, Spearpoint, Shadowmark Talon, Stormlance, Ceramite Sentinels, Forgefather's Seekers, Ironstorm Spearhead). List identity starts with the doctrine/package choice, not with a bespoke detachment per playstyle.
 
 ### Disposition Fit (current meta verdict)
 | Disposition | Fit | Grounded reasoning |
 |-------------|-----|--------------------|
-| Take and Hold | Strong | Deepest bench: Anvil Siege Force, Bastion Task Force, Orbital Assault Force and chapter-locked Reclamation Force all give real objective mechanics. |
-| Purge the Foe | Moderate | Oath-target reroll detachments (1st Company TF, Emperor's Shield, Hammer Of Avernii) are single-target conditional tools. |
-| Reconnaissance | Moderate | Vanguard Spearhead is a solid defensive core; Librarius Conclave and Subversion Assets are psyker/scout-gated extras. |
-| Priority Assets | Strong | Gladius Task Force and Blade Of Ultramar headline; Firestorm Assault Force gives mid-range shooting real teeth. |
-| Disruption | Moderate | Stormlance/Spearpoint advance-and-charge is top-tier for melee lists but Disposition itself remains the niche mission style. |
+| Take and Hold | Strong | Gravis Siege Force (Indomitable Defence — -1 wound on high-S attacks within objective range) and Gravis Linebreaker Force (Walking Fortress — mobile, +1-hit shooting after a move) are the objective anchors; Gladius Task Force (Codex Discipline) and Blade Of Ultramar (Mastered Doctrines) buy extra doctrine uses for the same job, and Ceramite Sentinels (Adaptive Defence) trades movement for terrain-held entrenchment. |
+| Purge the Foe | Moderate | Devastator Brethren (Devastator Mastery) and Ironstorm Spearhead (Ironstorm Auto-Targeters — re-roll a hit and a wound on vehicle fire) are the dedicated killers; Medusa's Wrath gives one reroll per attack across the army. Single-roll rerolls, not the old army-wide target buff. |
+| Reconnaissance | Moderate | Gauntlet Task Force (Combined Deployment — transport disembarks feed Sustained Hits 1) and Spearpoint Task Force (extra assault/tactical doctrine, +1 advance for mounted) are the movement tools; Stormlance Task Force (Lightning-Fast Strike) is the melee-tempo option. |
+| Priority Assets | Strong | Gladius Task Force and Blade Of Ultramar headline, with Forgefather's Seekers (extra devastator doctrine, +1 S within 12"), Ironclad Champions (Dreadnoughts re-roll hits of 1), Terminator Storm Force (+1 charge for Terminators) and Tacticus Firestorm Force (Rapid Fire at full range). |
+| Disruption | Moderate | Phobos Shadow Force / Phobos Shock Force (Vanguard Ambushers — re-roll wound 1 against a hidden Phobos) and Shadowmark Talon (Stealth, -3" detection) are the real screening tools; Stormlance/Spearpoint advance-and-charge fits melee lists, but Disruption itself stays niche. |
 
 ### Detachment Assessments
+<!-- Roster source: the 11e detachment roster is rendered from data/merged/<fid>.json (MFM 1.5, 11e);
+     this file supplies the rating only, matched by detachment name. The blocks below are the 10e
+     research record: a name that still exists in 11e carries its rating across, but its prose still
+     describes the 10e rule. Detachments that no longer exist in 11e are dropped at render time. -->
 <!-- one block per detachment, ordered by DP -->
 
 #### Fulguris Task Force (1DP → RECONNAISSANCE)
@@ -390,4 +400,4 @@ Company Task Force's disposition — treat affected labels as provisional.
 - *(Interpretation, restricted to what the research files document)* Gladius-family stratagem support is the documented CP sink: Storm of Fire (ignore-cover shooting under Devastator Doctrine) and Honour the Chapter (melee Lance under Assault Doctrine) per the shared corpus. Anvil Siege Force's Not One Backwards Step (double OC while stationary near an objective) is the named Take-and-Hold CP tool. Treat all as CP-gated burst options, not plan-of-record.
 
 ### Overall Army Play Pattern
-*(interpretation)* Space Marines win in list-building: with ~20 verified detachments spanning every disposition, the correct pattern is to pick the detachment that matches the mission pair first, then build the list around its conditions — Gladius/Blade Of Ultramar for adaptive Priority Assets control, Anvil/Bastion/Orbital for Take and Hold grinding, Stormlance/Spearpoint when the pair rewards melee tempo. Oath of Moment itself is a modest targeting reroll, so the army leans on durable bodies (Terminators as the SURV wall, Dreadnoughts as damage efficiency) plus the deepest CP toolkit in the game; its weakness is that most detachment rules are conditional or single-target, so mis-matching a detachment to the mission pair leaves you playing vanilla marines.
+*(interpretation)* Space Marines win in list-building: 22 verified 11e detachments span every disposition, and the correct pattern is to pick the detachment that matches the mission pair first, then build the list around its conditions — Gladius Task Force / Blade Of Ultramar for adaptive Priority Assets control, Tacticus Attack Force / Gravis Linebreaker/Siege Force for Take and Hold grinding, Stormlance/Spearpoint when the pair rewards melee tempo. Combat Doctrines is the framework underneath: the detachment decides which doctrine you get, and the doctrine decides what the unit does with the turn. The army leans on durable bodies (Terminators as the SURV wall, Dreadnoughts as damage efficiency) plus the deepest CP toolkit in the game; its weakness is that most detachment rules are conditional or single-target, so mis-matching a detachment to the mission pair leaves you playing vanilla marines.

@@ -5,7 +5,7 @@
 - **Full name**: Orks (BSData catalogue: "Orks")
 - **Faction keyword**: ORKS
 - **Game edition**: 11th (10e-derived profiles)
-- **Core mechanics**: Waaagh! — once per battle, at the start of your Command phase; while active (until your next Command phase): units with the ability may declare charges in a turn they Advanced, melee weapons gain +1 Strength and +1 Attacks, and models gain a 5+ invulnerable save (paraphrased from bsdata/Orks.json army-rule entry)
+- **Core mechanics**: Waaagh! — friendly ORKS with the ability re-roll advance rolls and can become riled up; while riled up the unit has a 5+ invulnerable save, its ranged attacks gain Assault, and an Advance move does not stop it from declaring a charge. The separate **Void Waaagh!** rule is the melee-stacking variant (+1 Strength, +1 Attacks, 5+ invulnerable save, once per battle at the start of a battle round). Sourced: bsdata/Orks.json (rules `Waaagh!` and `Void Waaagh!`)
 - **Keywords every unit should carry**: ORKS
 - **Sub-faction keywords** (per research corpus): MOB, SPEED FREEKS, BEAST SNAGGA, WAGON, BOYZ, WARBOSS/NOBZ/MEGANOBZ, KOMMANDOS, STORMBOYZ, GRETCHIN
 
@@ -20,20 +20,24 @@
 **Research basis**: workspace/detachment_research/orks.json (2026-08-23, packs v1.1). Army rule paraphrase grounded in bsdata/Orks.json.
 
 ### Army Rule
-- **Army Rule Rating**: Strong — Waaagh! is the Orks army rule (once per battle window): while active grants Advance-and-Charge eligibility, +1S/+1A on melee weapons, and a 5+ invulnerable save to units with the ability. Some detachments extend/amplify the window. Sourced: BSData/MFM 11e.
-- **Waaagh!**: once per battle burst window. While active: Advance-and-Charge eligibility, +1S/+1A on melee weapons, and a 5+ invulnerable save across units with the ability.
-- **Play pattern** *(interpretation)*: the whole faction plans around a single turn of supercharged melee. Detachments that extend or amplify the window (Bully Boyz second Waaagh!) or reward being mid-Waaagh! (More Dakka!'s Sustained Hits gate) change WHEN you want to press, not WHETHER the plan is a timed assault.
+- **Army Rule Rating**: Strong — Waaagh! is the Orks army rule in 11e: friendly ORKS with the ability re-roll advance rolls and can become riled up. While riled up a unit has a 5+ invulnerable save, its ranged attacks gain Assault, and an Advance move does not block it from declaring a charge. The separate Void Waaagh! rule is the melee-stacking variant (+1 Strength and +1 Attacks, 5+ invulnerable save, once per battle at the start of a battle round). Sourced: BSData 9b8207c (rules `Waaagh!` and `Void Waaagh!`).
+- **Waaagh!**: re-roll advance rolls, then go riled up — 5+ invulnerable save, ranged attacks gain Assault, Advance does not prevent charging. Units that are riled up are the burst window; the "once per battle" timing sits on the ability/units that grant it, not on a generic army-wide toggle.
+- **Play pattern** *(interpretation)*: the army plays on riled-up windows. War Cry (once per battle, per army) makes every Waaagh!-unit riled up until the end of the next turn — while riled up a unit has 5+ invulnerability, its ranged attacks gain Assault, and an Advance no longer blocks charging. Waaagh! is the always-on half: advance-roll re-rolls plus the riled-up state. The detachment decides which window you spend — War Horde (Sustained Hits 1 on all melee) and Green Tide (Sustained Hits, then Lethal Hits on infantry that charged this turn) for melee; Shoota Boyz (ranged Assault, +3" R while riled up) and Flyboyz for shooting; Kult of Speed and Taktikal Brigade for the advance-and-charge package. Void Waaagh! (once per battle at the start of a battle round) is the melee-stacking variant: +1 Strength, +1 Attacks, 5+ invulnerable save, and it counts as a Waaagh! for datasheet abilities. Sourced: BSData 9b8207c (rules `Waaagh!`, `War Cry`, `Void Waaagh!`; detachment rules for War Horde, Green Tide, Shoota Boyz, Flyboyz, Kult of Speed, Taktikal Brigade).
 
 ### Disposition Fit (current meta verdict)
 | Disposition | Fit | Grounded reasoning |
 |-------------|-----|--------------------|
-| Take and Hold | Strong | Green Tide (Boyz invulns scaling with unit size), War Horde objective tag and Freebooter Krew loot-objective buffs; mass cheap bodies own markers. |
-| Purge the Foe | Strong | War Horde grants unconditional army-wide melee Sustained Hits 1; Waaagh! itself is a damage window; Bully Boyz/Da Big Hunt add targeted kill pressure. |
-| Reconnaissance | Situational | Speedwaaagh!/Blitz Brigade mobility is real but movement ≠ scoring in an action-hostile edition; Taktikal Brigade's action-eligibility fights the meta directly. |
-| Priority Assets | Situational | Rollin' Deff supports vehicle pushes; nothing in corpus preserves characters or key units. |
-| Disruption | Moderate | Equatorial Hordes Scouts redeploy and More Dakka! screening fire; horde bodies naturally clog lanes. |
+| Take and Hold | Strong | Green Tide (Sustained Hits 1 for Boyz melee, Lethal Hits on infantry that charged this turn) and War Horde (Sustained Hits 1 on all Orks melee) make cheap bodies hold markers; Taktikal Brigade (Stormboyz Battleline, fall-back no longer blocks a charge) and Blitz Brigade (wagon charge re-rolls) keep them there. |
+| Purge the Foe | Strong | War Horde grants army-wide melee Sustained Hits 1 and Bully Boyz the same for Meganobz/Nobz; Da Big Hunt (+1 AP against MONSTER/VEHICLE with Beast Snagga) and Dread Mob (walker re-rolls when selected to attack) add targeted kill pressure, Shoota Boyz gives ranged Assault. |
+| Reconnaissance | Situational | Kult Of Speed (Warbikers Battleline, advance unlocks ranged Assault) and Flyboyz (aircraft outside the strategic-reserves count) are real mobility tools — but movement is not scoring in 11e and no Orks detachment targets actions. |
+| Priority Assets | Situational | Wreckas (re-roll hit rolls of 1 near objectives) and Runt Swarm (Gretchin Battleline, advance no longer blocks an action) cover the flanks; nothing in the roster protects characters. |
+| Disruption | Moderate | Madcap Meks (single-target shooting rolls a random effect) and Wurrband (Psyker +1 S, scaling with unit size) are the shooting picks; the army has no native screening or denial rule. |
 
 ### Detachment Assessments
+<!-- Roster source: the 11e detachment roster is rendered from data/merged/<fid>.json (MFM 1.5, 11e);
+     this file supplies the rating only, matched by detachment name. The blocks below are the 10e
+     research record: a name that still exists in 11e carries its rating across, but its prose still
+     describes the 10e rule. Detachments that no longer exist in 11e are dropped at render time. -->
 <!-- one block per detachment, ordered by DP -->
 
 #### Equatorial Hordes (1DP → DISRUPTION)

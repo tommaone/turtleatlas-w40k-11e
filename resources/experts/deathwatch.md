@@ -5,7 +5,7 @@
 - **Full name**: Deathwatch (BSData catalogue: "Imperium - Adeptus Astartes - Deathwatch")
 - **Faction keyword**: `Faction: Adeptus Astartes`, `Faction: Deathwatch`
 - **Game edition**: 11th (10e-derived profiles)
-- **Core mechanics**: Adeptus Astartes framework. The chapter's distinct identity lives almost entirely in Black Spear Task Force (Mission Tactics system + restricted army list) and the Kill Team unit family (Fortis, Spectrus, Talonstrike, Decimus, Indomitor per data/config). No separate army-rule text exists in the research corpus [unverified].
+- **Core mechanics**: Adeptus Astartes framework — the shared **Combat Doctrines** army rule (Assault / Devastator / Tactical, one per Command phase, one per battle, one active per unit) plus the Kill Team unit family (Fortis, Spectrus, Talonstrike, Decimus, Indomitor per data/config). The chapter's distinct identity lives in Black Spear Task Force (Mission Tactics system + restricted army list). Sourced: BSData 9b8207c; GW preview 2026-09-10.
 - **Sub-faction keywords**: `Faction: Deathwatch`
 
 ## Army Rules & Detachments — Expert Assessment
@@ -22,20 +22,24 @@ Force), 16 inherited from the Space Marines codex pack (rated here in
 Deathwatch context, not re-assessed).
 
 ### Army Rule
-- **Army Rule Rating**: Strong — the divergent Adeptus Astartes Oath of Moment (reroll-Hits clause only — DEATHWATCH keyword units void the +1-to-wound claw, verified) plus Kill Teams (popular-T8 rule for mixed units; Mission Tactics lives in the Black Spear Task Force detachment): 55.2% weekend, 58.8% Aug-17 week, 6-0 at a Worlds Qualifier; results ahead of reputation, season 49% over 335 games. Sourced: listhammer.info/factions/deathwatch 2026-09-05 (55.2%); warpfriends.wordpress.com 2026-08-19 (58.8%); infinitearchive.org 2026-09-05 (50.9% week / 51.8% patch); 40k.app/factions/space-marines/army-rules 2026-09-06 ("...your army does not include one or more units with the BLACK TEMPLARS, BLOOD ANGELS, DARK ANGELS, DEATHWATCH or SPACE WOLVES keywords... add 1 to the Wound roll as well.").
-- **Oath of Moment + Kill Teams (Mission Tactics in detachment)**: the corpus confirms Oath-of-Moment-referencing detachments (1st Company Task Force) available to Deathwatch armies. No chapter-specific army rule is documented in this research file — claims about a unique faction rule are unsupported here.
+- **Army Rule Rating**: Strong — Deathwatch use the Astartes Combat Doctrines army rule (one of three doctrines per Command phase, one per battle, one active per unit) plus Kill Teams (mixed-unit rosters; Mission Tactics lives in the Black Spear Task Force detachment).
+- **Oath of Moment (RETIRED) + Kill Teams**: Oath of Moment was the Astartes army rule until Codex: Space Marines (2026-10-03) replaced it with Combat Doctrines. Sourced: BSData 9b8207c (no "Oath of Moment" rule entity; SM army-rule infoLinks = `Combat Doctrines` + `Templar Vows`); GW preview 2026-09-10.
 - **Play pattern** *(interpretation)*: elite mixed-specialist shooting army; the detachment choice mostly decides which inherited generic package wraps around Black Spear-style veteran units.
 
 ### Disposition Fit (current meta verdict)
 | Disposition | Fit | Grounded reasoning |
 |-------------|-----|--------------------|
-| Take and Hold | Moderate | Inherited bench (Anvil/Bastion/Orbital/Ironstorm/Ceramite) is deep but all conditional; no native sticky-objective tool documented. |
-| Purge the Foe | Moderate | Black Spear Task Force rotating Mission Tactics plus inherited 1st Company TF single-target rerolls. |
-| Reconnaissance | Moderate | Vanguard Spearhead cover core + Subversion detection on Spectrus/Infiltrator-type units. |
-| Priority Assets | Moderate | Firestorm/Gladius/Headhunter inherited; nothing chapter-specific outside Black Spear. |
-| Disruption | Situational | Stormlance/Subversion exist but the elite-shooting roster converts poorly into melee tempo or screening denial. |
+| Take and Hold | Moderate | Inherited bench (Assault Brethren, Gladius Task Force, Gravis Linebreaker/Siege Force, Tacticus Attack Force) is deep but all conditional; no native sticky-objective tool documented. |
+| Purge the Foe | Moderate | Black Spear Task Force (3DP — Mission Tactics turns the active doctrine into Sustained Hits, Lethal Hits or Precision for Kill Teams) is the chapter's own answer; Devastator Brethren and Ironstorm Spearhead are the inherited backups. |
+| Reconnaissance | Moderate | Gauntlet Task Force (transport deployment) plus Stormlance Task Force; no chapter-specific recon detachment. |
+| Priority Assets | Moderate | Black Spear Task Force and Gladius Task Force head the list, with Ironclad Champions, Terminator Storm Force and Tacticus Firestorm Force behind them. |
+| Disruption | Situational | Phobos Shadow/Shock Force and Stormlance Task Force exist, but the elite-shooting roster converts poorly into melee tempo or screening denial. |
 
 ### Detachment Assessments
+<!-- Roster source: the 11e detachment roster is rendered from data/merged/<fid>.json (MFM 1.5, 11e);
+     this file supplies the rating only, matched by detachment name. The blocks below are the 10e
+     research record: a name that still exists in 11e carries its rating across, but its prose still
+     describes the 10e rule. Detachments that no longer exist in 11e are dropped at render time. -->
 
 #### Chapter-Specific Detachment
 
@@ -133,4 +137,4 @@ Deathwatch context, not re-assessed).
 - *(Interpretation, restricted to what the research files document)* Black Spear's Adaptive Tactics stratagem is the named force-multiplier — extending Mission Tactics to non-native ADEPTUS ASTARTES units widens the detachment's narrow FAQ scope. Inherited tools worth noting: Gladius Storm of Fire (ignore-cover) under Devastator Doctrine for veteran shooters; Anvil's Not One Backwards Step (double OC stationary near an objective) for gunline scoring. All CP-gated, not plan-of-record.
 
 ### Overall Army Play Pattern
-*(interpretation)* Deathwatch plays as a compact elite shooting force whose actual detachment decision is "Black Spear or which inherited package": the one chapter-specific option trades army-list freedom for round-by-round tactical flexibility, while the sixteen inherited options supply competent-but-generic support. The correct pattern is Black Spear into Purge-oriented pairs with Adaptive Tactics stretching the tactics pool, or Vanguard Spearhead/Anvil into defensive pairs where the small-unit durability does the work. The structural ceiling is breadth: with one bespoke detachment and a roster built around Kill Team specialists rather than massed melee or vehicles, several dispositions rely entirely on inherited tools designed for a different army shape.
+*(interpretation)* Deathwatch is a compact elite shooting force with one bespoke option: Black Spear Task Force (3DP, Priority Assets + Purge the Foe, Mission Tactics and a restricted army list) against fifteen inherited Astartes packages (Gladius, Terminator Storm Force, Ironstorm Spearhead, Tacticus x2, Stormlance, Gauntlet, Phobos x2, doctrine packages). The actual list decision is Black Spear or a chapter-flavoured character package, and the structural ceiling is breadth: the roster is built around Kill Team specialists and characters, not massed melee or vehicles, so the inherited packages that fight a different army shape (Devastator Brethren, Assault Brethren) are the ones that need doctrine support to pay off. The army rule layer is the shared Combat Doctrines with no separate chapter rule, which means every Deathwatch list is a doctrine puzzle: the detachment decides which doctrine you get, and the characters decide what it is spent on.
