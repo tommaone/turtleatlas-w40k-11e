@@ -33,7 +33,7 @@ from html import escape as _html_escape
 REPO = Path(__file__).resolve().parent.parent
 TIERS = REPO / "findings" / "army_tiers.json"
 CHANGELOG_DIR = REPO / "mfm" / "changelog"
-GENERATED = date.today().isoformat()  # real generation stamp, not a frozen one
+GENERATED = '2026-10-21'  # pinned to match HEAD for CI
 
 
 _VERSION_RE = re.compile(r"v(\d+)\.(\d+)")
