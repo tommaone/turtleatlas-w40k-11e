@@ -224,17 +224,19 @@ No direct DPP effect.
 
 ## Detachments
 
+*DP cost and disposition below are the 11e values from `data/merged/chaos-knights.json` (MFM 1.5, 11e); the rule, stratagem and enhancement lines are the research record.*
+
 CK have 8 detachments in 11e. Total DP budget is typically 2-3DP.
 
-### Bastions Of Tyranny (1DP)
+### Bastions Of Tyranny (1DP — Priority Assets)
 **Restriction:** TYRANT-class only.
 Focuses on the Knight Tyrant with buffs specific to Dominus chassis.
 
-### Hunting Warpack (1DP)
+### Hunting Warpack (1DP — Reconnaissance)
 **Restriction:** WAR DOG only.
 Hybrid ranged/melee detachment for War Dogs.
 
-### Iconoclast Fiefdom (1DP)
+### Iconoclast Fiefdom (1DP — Take and Hold)
 Allows DAMNED keyword allies from CSM (Cultists, Traitor Guardsmen, etc.)
 up to 500pt (Incursion) or 1000pt (Strike Force) or 1500pt (Onslaught).
 DAMNED allies get leadership re-roll and become targets for detachment
@@ -244,20 +246,20 @@ auras/stratagems.
 Faction is Heretic Astartes". CK army faction = CHAOS KNIGHTS, condition
 fails. They keep CORE abilities and individual datasheet abilities only.
 
-### Helhunt Lance (2DP)
+### Helhunt Lance (2DP — Disruption)
 All-around detachment. Synergy between War Dogs and big knights.
 
-### Houndpack Lance (2DP)
+### Houndpack Lance (2DP — Reconnaissance)
 **Restriction:** WAR DOG only.
 Buffs for War Dog units in packs.
 
-### Lords Of Dread (2DP)
+### Lords Of Dread (2DP — Take and Hold)
 Objective play detachment. Battleshock synergy, board control.
 
-### Traitoris Lance (2DP)
+### Traitoris Lance (2DP — Purge the Foe)
 Purge detachment. Kill-focused buffs.
 
-### Infernal Lance (3DP)
+### Infernal Lance (3DP — Priority Assets, Purge the Foe)
 **Detachment Rule — Malefic Surge**
 In your Command phase, one or more CHAOS KNIGHTS units can make a Malefic
 Surge. Each that does takes a Leadership test; if failed, suffer D3 mortal

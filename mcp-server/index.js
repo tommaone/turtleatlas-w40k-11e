@@ -1102,7 +1102,14 @@ look like facts.
 
     const dp = (merged && merged.dp) || det.dp_cost;
     if (dp) out += `**DP Cost:** ${dp}\n`;
-    if (merged && merged.objective) out += `**Objective:** ${merged.objective}\n`;
+    if (merged && merged.objectives && merged.objectives.length) {
+      const objs = merged.objectives
+        .map(o => String(o).toLowerCase().replace(/\b\w/g, c => c.toUpperCase()))
+        .join("; ");
+      out += `**Objectives:** ${objs}\n`;
+    } else if (merged && merged.objective) {
+      out += `**Objective:** ${merged.objective}\n`;
+    }
     if (merged && merged.enhancements && merged.enhancements.length) {
       const enh = merged.enhancements
         .map(e => `${e.name} (${e.points}pts)`)

@@ -259,9 +259,11 @@ All values from the 11e Faction Pack PDF.
 
 ## Detachments
 
+*DP cost and disposition below are the 11e values from `data/merged/chaos-daemons.json` (MFM 1.5, 11e); the rule, stratagem and enhancement lines are the research record.*
+
 Daemons have 9 detachments in 11e. DP budget: typically 2-3 DP at 2000pts.
 
-### Daemonic Incursion (1DP)
+### Daemonic Incursion (3DP — Take and Hold, Disruption)
 **Rule — Warp Rifts:** When a unit sets up via Deep Strike wholly within Shadow of
 Chaos and/or within 6" of a matching-god Greater Daemon, it can come in >6"
 instead of >9".
@@ -270,7 +272,7 @@ Denizens of the Warp (1CP), The Realm of Chaos (1CP), Daemonic Invulnerability (
 **Enhancements:** A'rgath (Khorne, +A/S melee), The Everstave (Tzeentch, +S/R),
 The Endless Gift (Nurgle, FNP5+), Soulstealer (Slaanesh, regen on kill)
 
-### Shadow Legion (Be'lakor — 1DP)
+### Shadow Legion (2DP — Purge the Foe)
 **Restriction:** Cannot include Daemon Prince, Daemon Prince with Wings, or any
 other Epic Heroes except Be'lakor.
 **Rule — First Prince of Chaos:** Units gain god-specific keywords and rules:
@@ -286,27 +288,27 @@ Encroaching Darkness (1CP), Shade Path (2CP), Binding Shadow (1CP)
 **Enhancements:** Leaping Shadows (Scouts 9"), Mantle of Gloom (Aura, -1 OC),
 Fade to Darkness (SR after fight), Malice Made Manifest (mortals in fight)
 
-### Cavalcade of Chaos (Mounted focus — 1DP)
+### Cavalcade of Chaos (1DP — Disruption)
 **Rule — Unholy Avalanche:** MOUNTED units that Fall Back can still shoot/charge.
 **Enhancements:** Apocalyptic Steeds (+1" M), Soul-Shattering Charge (pile-in 3")
 **Stratagems:** From Beyond the Veil (1CP, ingress), Warp-Riders (1CP, Mobile),
 Inescapable Manifestations (1CP, desperate escape on fall back)
 
-### Lords of the Warp (Character focus — 1DP)
+### Lords of the Warp (1DP — Take and Hold)
 **Rule — Loci of Power:** CHARACTER non-MONSTER models have +1 LD and +1 OC.
 **Enhancements:** Swollen With Power (+2 W)
 **Stratagems:** Carnival of Excess (1CP, Fights First Slaanesh character),
 Call to Murder (1CP, +1 A Khorne character), Bilious Blessing (1CP, mortals
 Nurgle character), Skirling Magicks (1CP, Lethal Hits Tzeentch character)
 
-### Warptide (Battleline focus — 1DP)
+### Warptide (1DP — Reconnaissance)
 **Rule — Shudderblink:** When BATTLELINE unit Advances, its ranged has [ASSAULT]
 and it can still charge.
 **Enhancements:** Bane-Forged Weapons (+1 S), Soul-Hungry Slaughterers (-1 CP overwatch)
 **Stratagems:** Daemonic Infestation (1CP, heal 3), Soulseeing (1CP, +6" detection),
 Incorporeal Entities (1CP, S > T = -1 to wound for ranged)
 
-### Blood Legion (Khorne — 2DP)
+### Blood Legion (2DP — Purge the Foe)
 **Rule — Murdercall:** When enemy ends move within 8" of a Khorne unit, that unit
 can make D6" surge move. **Blood Tainted:** kill within objective range → sticky
 objective until opponent has higher control.
@@ -318,7 +320,7 @@ hits/wounds, D3+1 mortals), Brazenmaw (+2 charge), Gateway Unto Damnation
 Blood Begets Skulls (1CP, Advance and charge), Fools' Flight (2CP, charge after
 fall back), Sheathed in Brass (1CP, SV 3+)
 
-### Scintillating Legion (Tzeentch — 2DP)
+### Scintillating Legion (2DP — Priority Assets)
 **Rule — Fates in Flux:** Start with 3 Flux tokens. Spend one to re-roll any roll
 for Tzeentch unit. Opponent gains one. Opponent can spend theirs too. Gain 1
 per turn if opponent has any.
@@ -330,7 +332,7 @@ Psychic/mortals)
 (1CP, move through terrain), Ficklefire (1CP, shoot in engagement), Delirium
 Unmade (1CP, remove to SR)
 
-### Plague Legion (Nurgle — 2DP)
+### Plague Legion (2DP — Take and Hold)
 **Rule — Melancholic Miasma:** Enemy within 9" of Nurgle unit is in Shadow of
 Chaos. Each Command phase, pick one enemy in SoC — must take Battle-shock.
 **Enhancements:** Cankerblight (destroy model on failed BS), Maggot Maws (BS +
@@ -339,7 +341,7 @@ D3 mortals), Droning Shroud (18" ranged target only), Font of Spores (+1 AP)
 BS), Foetid Resurgence (2CP, return models/heal), Rot and Renewal (1CP, move
 through terrain), Murkshadows (1CP, +5" M), Plague of Woes (1CP, chain BS)
 
-### Legion of Excess (Slaanesh — 2DP)
+### Legion of Excess (2DP — Priority Assets)
 **Rule — Beguiling Aura:** Slaanesh units can charge after Falling Back.
 **Seductive Gambit:** After charge, can trade Fights First for re-roll all hits
 and re-roll wounds of 1.

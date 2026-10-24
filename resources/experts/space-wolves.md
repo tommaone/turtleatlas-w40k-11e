@@ -37,9 +37,11 @@ _space-marines-shared.json (2026-08-23, packs v1.1). 23 detachments total:
 
 ### Detachment Assessments
 <!-- Roster source: the 11e detachment roster is rendered from data/merged/<fid>.json (MFM 1.5, 11e);
-     this file supplies the rating only, matched by detachment name. The blocks below are the 10e
-     research record: a name that still exists in 11e carries its rating across, but its prose still
-     describes the 10e rule. Detachments that no longer exist in 11e are dropped at render time. -->
+     this file supplies the rating only, matched by detachment name AND by the disposition the
+     rating was judged for ("Strong for Disruption" only applies if the 11e package still queues
+     for Disruption). The blocks below are the 10e research record: a name that still exists in 11e
+     keeps its rating only when that disposition still applies, and its prose still describes the
+     10e rule. Detachments that no longer exist in 11e are dropped at render time. -->
 
 ### Chapter-Specific Detachments
 <!-- ordered by DP -->
@@ -117,7 +119,7 @@ _space-marines-shared.json (2026-08-23, packs v1.1). 23 detachments total:
 - **_source**: inherited:_space-marines-shared.json
 
 #### 1st Company Task Force (2DP → PURGE THE FOE) — *inherited*
-- **Mechanics**: Once-per-battle wound re-rolls vs the Oath target (inherited from SM codex).
+- **Mechanics (10e record)**: Once-per-battle wound re-rolls vs the Oath target (inherited from SM codex).
 - **Rating**: Situational for Purge the Foe — overlaps what the Saga detachments do more often.
 - **_source**: inherited:_space-marines-shared.json
 

@@ -70,56 +70,20 @@ This means:
 
 ## Detachments
 
-### Gladius Task Force (3DP) — Priority Assets
-*The default SM detachment. Balanced, flexible.*
+The 11e roster is engine data, not prose: name, DP cost and the dispositions
+each detachment queues for live in `data/merged/space-marines.json` (MFM 1.5,
+11e) and are what the Key Insights card renders. The 11e roster
+(22 detachments):
 
-**Detachment Rule — CODEX DISCIPLINE**
-One extra Combat Doctrine selection per battle. Not a doctrine of its own.
+- 1DP: Assault Brethren (take and hold); Deathwatch Support (disruption); Devastator Brethren (purge the foe); Gauntlet Task Force (reconnaissance); Gravis Linebreaker Force (take and hold); Gravis Siege Force (take and hold); Ironclad Champions (priority assets); Ironstorm Spearhead (purge the foe); Phobos Shadow Force (disruption); Phobos Shock Force (disruption); Stormlance Task Force (reconnaissance); Tactical Brethren (priority assets); Tacticus Attack Force (take and hold); Tacticus Firestorm Force (priority assets); Terminator Storm Force (priority assets).
+- 2DP: Ceramite Sentinels (take and hold); Forgefather’S Seekers (priority assets); Medusa'S Wrath (purge the foe); Shadowmark Talon (disruption); Spearpoint Task Force (reconnaissance).
+- 3DP: Blade Of Ultramar (take and hold, priority assets); Gladius Task Force (take and hold, priority assets).
 
-### Stormlance Task Force (3DP) — Disruption
-**Lightning Assault:** Bikers/jump packs get charge bonus + mobility.
-
-### Ceramite Sentinels (3DP) — Take and Hold
-**Defensive buffs:** Infantry get defensive bonuses on objectives.
-
-### Blade of Ultramar (3DP) — Priority Assets
-**Ultramarines-specific:** buffs for Ultramarines units.
-
-### Ironstorm Spearhead (2DP) — Purge the Foe
-**Armoured Wrath:** Vehicle-focused detachment with reroll 1s to hit.
-
-### Firestorm Assault Force (2DP) — Purge the Foe
-**Close-Range Eradication:** Short-range weapons get bonus AP.
-
-### Vanguard Spearhead (2DP) — Reconnaissance
-**Shadow Masters:** Phobos/stealth-focused detachment.
-
-### 1st Company Task Force (2DP) — Priority Assets
-**Terminator/elite-focused:** buffs for Terminator-armoured units.
-
-### Anvil Siege Force (2DP) — Take and Hold
-**Shield of the Imperium:** Defensive buffs for stationary units.
-
-### Hammer of Avernii (2DP) — Priority Assets
-**Enhanced Oath of Moment:** Extended Oath buffs.
-
-### Headhunter Task Force (2DP) — Priority Assets
-**Target Sighted:** Vehicle/monster hunting buffs.
-
-### Orbital Assault Force (2DP) — Take and Hold
-**Rapid-Drop:** Deep Strike focused.
-
-### Shadowmark Talon (2DP) — Disruption
-**Masters of Shadow:** Stealth/debuff focused.
-
-### Librarius Conclave (1DP) — Reconnaissance
-**Divination:** Psyker-focused buffs.
-
-### Others (2DP/1DP, no engine-modeled modifiers yet)
-Reclamation Force, Emperor's Shield, Forgefather's Seekers, Spearpoint Task Force,
-Bastion Task Force, Subversion Assets, Fulguris Task Force, Armoured Speartip.
-
----
+Per-detachment expert assessment (rating + research trail) is in "Detachment
+Assessments" below. The blocks there are the 10e research record: a name that
+still exists in 11e keeps its rating only if the 11e package still queues for
+the disposition the rating was judged for, and its prose still describes the
+10e rule.
 
 ## Disposition Ranking
 
@@ -230,9 +194,11 @@ Company Task Force's disposition — treat affected labels as provisional.
 
 ### Detachment Assessments
 <!-- Roster source: the 11e detachment roster is rendered from data/merged/<fid>.json (MFM 1.5, 11e);
-     this file supplies the rating only, matched by detachment name. The blocks below are the 10e
-     research record: a name that still exists in 11e carries its rating across, but its prose still
-     describes the 10e rule. Detachments that no longer exist in 11e are dropped at render time. -->
+     this file supplies the rating only, matched by detachment name AND by the disposition the
+     rating was judged for ("Strong for Disruption" only applies if the 11e package still queues
+     for Disruption). The blocks below are the 10e research record: a name that still exists in 11e
+     keeps its rating only when that disposition still applies, and its prose still describes the
+     10e rule. Detachments that no longer exist in 11e are dropped at render time. -->
 <!-- one block per detachment, ordered by DP -->
 
 #### Fulguris Task Force (1DP → RECONNAISSANCE)
@@ -264,7 +230,7 @@ Company Task Force's disposition — treat affected labels as provisional.
 - **_source**: https://www.tabletopbattles.com/detachment-focus-vengeful-hosts
 
 #### 1st Company Task Force (2DP → PURGE THE FOE)
-- **Mechanics**: Once per battle, activate in a Command phase: models with Oath of Moment also re-roll Wound rolls vs the current Oath target until next Command phase.
+- **Mechanics (10e record)**: Once per battle, activate in a Command phase: models with Oath of Moment also re-roll Wound rolls vs the current Oath target until next Command phase.
 - **Rating**: Situational for Purge the Foe
 - **Synergies**: Terminator-heavy first-company pushes focusing one target.
 - **Limits**: Once-per-battle; single designated target only.
@@ -285,10 +251,10 @@ Company Task Force's disposition — treat affected labels as provisional.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
 
 #### Emperor'S Shield (2DP → PURGE THE FOE)
-- **Mechanics**: Oath of Moment bearers re-roll Wound rolls of 1 vs the Oath target; DARNATH LYSANDER's unit re-rolls ALL Wound rolls vs the Oath target. IMPERIAL FISTS-only.
+- **Mechanics (10e record)**: Oath of Moment bearers re-roll Wound rolls of 1 vs the Oath target; DARNATH LYSANDER's unit re-rolls ALL Wound rolls vs the Oath target. IMPERIAL FISTS-only.
 - **Rating**: Situational for Purge the Foe
 - **Synergies**: Darnath Lysander leading a Terminator Squad into the declared threat.
-- **Limits**: Chapter-locked; wound re-rolls apply only vs the single Oath target; full re-roll needs the specific character (research).
+- **Limits (10e record)**: Chapter-locked; wound re-rolls apply only vs the single Oath target; full re-roll needs the specific character (research).
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
 
 #### Firestorm Assault Force (2DP → PRIORITY ASSETS)
@@ -306,7 +272,7 @@ Company Task Force's disposition — treat affected labels as provisional.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
 
 #### Hammer Of Avernii (2DP → PURGE THE FOE)
-- **Mechanics**: Oath of Moment bearers re-roll Wound rolls of 1 vs the Oath target; once per battle round, if CAANOK VAR is on the field, a new visible enemy becomes the Oath target when the old one dies. IRON HANDS-only.
+- **Mechanics (10e record)**: Oath of Moment bearers re-roll Wound rolls of 1 vs the Oath target; once per battle round, if CAANOK VAR is on the field, a new visible enemy becomes the Oath target when the old one dies. IRON HANDS-only.
 - **Rating**: Situational for Purge the Foe
 - **Synergies**: Caanok Var keeps the reroll engine rolling through a kill turn.
 - **Limits**: Chapter-locked; base effect is reroll-1s-vs-single-target; retarget requires the character and a death trigger (research stale note).
