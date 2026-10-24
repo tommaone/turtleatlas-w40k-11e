@@ -54,12 +54,6 @@
 - **Limits**: Entirely ANATHEMA PSYKANA-scoped — pure-Custodes lists get nothing; detection/nulled mechanic has no vocabulary equivalent.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/adeptus-custodes/
 
-#### Tharanatoi Hammerblow (1DP → PRIORITY ASSETS)
-- **Mechanics**: TERMINATOR-armoured Custodes units that made an ingress (teleport/reserve arrival) move this turn re-roll Charge rolls. LIONS tag restricts pairing.
-- **Rating**: Situational for Priority Assets
-- **Synergies:** Allarus Custodians and Terminator-character bombs arriving from reserve into priority targets.
-- **Limits**: Charge rerolls only on the arrival turn; TERMINATOR units only; reliability tool, not output — no hit/wound/damage effect at all.
-- **_source**: https://wahapedia.ru/wh40k11ed/factions/adeptus-custodes/
 
 #### Auric Champions (2DP → PRIORITY ASSETS)
 - **Mechanics**: Each of your Command phases pick one enemy unit; until your next Command phase all attacks from models in CHARACTER-led Custodes units get +1 to Wound vs that unit only. Bonus ends if the marked CHARACTER-led unit loses its character.
@@ -101,6 +95,14 @@
 - **Rating**: Situational for Take and Hold
 - **Synergies:** Mixed formations where Witchseeker/Prosecutor squads escort Guard blocks — mutual buff zone.
 - **Limits**: Both halves require mixed-army positioning within 6"; FnP covers Psychic Attacks and mortal wounds only; 3DP cost for positioning-dependent protection; pure-Custodes lists pay for a rule they barely trigger.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/adeptus-custodes/
+
+
+#### Tharanatoi Hammerblow (1DP → DISRUPTION)
+- **Mechanics**: Tharanatoi Hammerblow (11e) — elite strike detachment granting bonuses to units that charge or arrive by Deep Strike on the turn they arrive to disrupt key targets.
+- **Rating**: Moderate for Disruption
+- **Synergies**: Allarus Custodians / elite strike elements hitting exposed threats.
+- **Limits**: Low model count, narrow window, benefits partially unmodeled in corpus.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/adeptus-custodes/
 
 ### Enhancements & Stratagems Worth Taking

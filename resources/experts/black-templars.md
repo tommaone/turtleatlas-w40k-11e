@@ -131,11 +131,6 @@ _space-marines-shared.json (2026-08-23, packs v1.1). 20 detachments total:
 - **Rating**: Moderate for Take and Hold — Drop Pod delivery suits the Crusader push.
 - **_source**: inherited:_space-marines-shared.json
 
-#### Stormlance Task Force (2DP → DISRUPTION) — *inherited, discounted DP*
-- **Mechanics**: Lightning Assault — all units charge after Advancing or Falling Back (inherited from SM codex; BT pay 2DP vs 3DP shared cost per merged data).
-- **Rating**: Strong for Disruption — army-wide advance-and-charge at 2DP stacks cleanly with Companions Of Vehemence-style charge reliability if combined across packs is permitted; verify combination legality before planning it.
-- **Limits**: Eligibility ≠ made charges; fall-back-charge unmodeled.
-- **_source**: inherited:_space-marines-shared.json
 
 #### Vanguard Spearhead (2DP → RECONNAISSANCE) — *inherited*
 - **Mechanics**: Benefit of Cover vs ranged attacks from beyond 12" (inherited from SM codex).
@@ -161,6 +156,119 @@ _space-marines-shared.json (2026-08-23, packs v1.1). 20 detachments total:
 - **Mechanics**: Rotating Combat Doctrines, each once per battle (inherited from SM codex).
 - **Rating**: Moderate for Priority Assets — serviceable generalist; Assault Doctrine duplicates what Companions/Stormlance do permanently.
 - **_source**: inherited:_space-marines-shared.json
+
+
+#### Assault Brethren (1DP → TAKE AND HOLD)
+- **Mechanics**: Assault Mastery — select the Assault Doctrine one additional time per battle.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Assault doctrine cycling.
+- **Limits**: Doctrine-gated.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/black-templars/
+
+#### Deathwatch Support (1DP → DISRUPTION)
+- **Mechanics**: Inherited cross-chapter package.
+- **Rating**: Situational for Disruption
+- **Synergies**: Niche.
+- **Limits**: Minimal bespoke rules.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/black-templars/
+
+#### Devastator Brethren (1DP → PURGE THE FOE)
+- **Mechanics**: Devastator Mastery — select the Devastator Doctrine one additional time per battle.
+- **Rating**: Moderate for Purge the Foe
+- **Synergies**: Firepower doctrine cycling.
+- **Limits**: Doctrine-gated.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/black-templars/
+
+#### Fist Of The God-Emperor (1DP → TAKE AND HOLD)
+- **Mechanics**: Inherited/alternate package for Templar play (context-dependent).
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Melee-focused objective play.
+- **Limits**: Package effect details vary; treat as conditional.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/black-templars/
+
+#### Gauntlet Task Force (1DP → RECONNAISSANCE)
+- **Mechanics**: Combined Deployment — transport shoots marks target assailed; disembarked ADEPTUS ASTARTES get [Sustained Hits 1] vs it.
+- **Rating**: Moderate for Reconnaissance
+- **Synergies**: Transport delivery.
+- **Limits**: Conditional timing.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/black-templars/
+
+#### Gravis Linebreaker Force (1DP → TAKE AND HOLD)
+- **Mechanics**: Walking Fortress — Gravis moved Normal: ranged lose [Heavy] and get +1 to hit.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Aggressive Gravis.
+- **Limits**: Gravis-scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/black-templars/
+
+#### Gravis Siege Force (1DP → TAKE AND HOLD)
+- **Mechanics**: Indomitable Defence — while in range of objective, attacks with S>T vs Gravis have -1 to wound.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Gravis anchoring.
+- **Limits**: Objective-range, S>T only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/black-templars/
+
+#### Ironclad Champions (1DP → PRIORITY ASSETS)
+- **Mechanics**: Enduring Vengeance — Dreadnoughts re-roll hit rolls of 1.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Dreadnought lists.
+- **Limits**: Dreadnought-scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/black-templars/
+
+#### Phobos Shadow Force (1DP → DISRUPTION)
+- **Mechanics**: Shadow Masters — Phobos/Scout shoot then don't prevent hidden or make D6" move (no charge until end).
+- **Rating**: Moderate for Disruption
+- **Synergies**: Phobos recon.
+- **Limits**: Scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/black-templars/
+
+#### Phobos Shock Force (1DP → DISRUPTION)
+- **Mechanics**: Vanguard Ambushers — end of Movement if hidden, Phobos attacks re-roll wound rolls of 1 until end of turn.
+- **Rating**: Moderate for Disruption
+- **Synergies**: Hidden Phobos.
+- **Limits**: Requires hidden.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/black-templars/
+
+#### Stormlance Task Force (1DP → RECONNAISSANCE)
+- **Mechanics**: Lightning-Fast Strike — Mounted/Speeder have +2" Move.
+- **Rating**: Moderate for Reconnaissance
+- **Synergies**: Bike/Speeders.
+- **Limits**: Mounted/Speeder only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/black-templars/
+
+#### Tactical Brethren (1DP → PRIORITY ASSETS)
+- **Mechanics**: Tactical Mastery — select Tactical Doctrine one additional time per battle.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Doctrine cycling.
+- **Limits**: Doctrine-gated.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/black-templars/
+
+#### Tacticus Attack Force (1DP → TAKE AND HOLD)
+- **Mechanics**: Wrath of the Chapter — Tacticus units can re-roll advance rolls.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Tacticus advancing.
+- **Limits**: Tacticus-scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/black-templars/
+
+#### Tacticus Firestorm Force (1DP → PRIORITY ASSETS)
+- **Mechanics**: Codex Fire-Patterns — Tacticus [Rapid Fire] at max range count as Rapid Fire.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Tacticus rapid fire.
+- **Limits**: Tacticus/RF only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/black-templars/
+
+#### Terminator Storm Force (1DP → PRIORITY ASSETS)
+- **Mechanics**: Death Blow — Terminator units have +1 to charge rolls.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Terminator assaults.
+- **Limits**: Terminator-scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/black-templars/
+
+#### Vow-Sworn Crusaders (2DP → PURGE THE FOE)
+- **Mechanics**: Templar vows-focused package enhancing crusader melee.
+- **Rating**: Moderate for Purge the Foe
+- **Synergies**: Crusader Squads in melee-focused lists.
+- **Limits**: Vow-dependent, melee-focused.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/black-templars/
 
 ### Enhancements & Stratagems Worth Taking
 - *(Interpretation, restricted to what the research files document)* The Living Miracle's free Guiding Omens pick-3-of-6 does not count against the army enhancement limit — the only documented zero-cost enhancement in the chapter pack, making Emperor's Champion builds efficient. Marshal's Household's Blade of Detestation (D6-per-model mortal wounds on the charge, max 6) is the named burst CP tool for Sword Brethren. Companions Of Vehemence's pile-in/consolidate 6" stratagem extends engagement grinding. All CP/enhancement-gated, not plan-of-record.

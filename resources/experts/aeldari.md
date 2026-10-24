@@ -50,12 +50,6 @@
 - **Limits**: HARLEQUINS units only; positioning benefit with no modifier equivalent; cheapest way into Harlequin play but adds nothing offensively.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/aeldari/
 
-#### Path Of The Outcast (1DP → RECONNAISSANCE)
-- **Mechanics**: Far-Reaching Doom — while a friendly RANGERS or SHROUD RUNNERS unit is selected to shoot, enemy units add 6" to their detection range until it has shot.
-- **Rating**: Weak for most dispositions; Situational for Disruption only if the 11e hidden/detection rules matter heavily in the matchup
-- **Synergies**: Rangers, Shroud Runners (both present in data/config/aeldari/squads.json).
-- **Limits**: two-unit-type scope; depends entirely on out-of-corpus detection rules; no modifier equivalent.
-- **_source**: https://wahapedia.ru/wh40k11ed/factions/aeldari/
 
 #### Twilight Flickers (1DP → TAKE AND HOLD)
 - **Mechanics**: Dance of Distortion — friendly HARLEQUINS units have Stealth (-1 to be hit by ranged attacks).
@@ -64,12 +58,6 @@
 - **Limits**: corpus flags explicitly: HARLEQUINS units ONLY — must not be applied army-wide.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/aeldari/
 
-#### Aspect Host (3DP → DISRUPTION)
-- **Mechanics**: Path of the Warrior — each time an ASPECT WARRIORS or AVATAR OF KHAINE unit shoots/fights, choose one for that phase: re-roll hit 1s or re-roll wound 1s.
-- **Rating**: Moderate for Purge the Foe / Disruption
-- **Synergies**: Dire Avengers, Howling Banshees, Fire Dragons, Dark Reapers, Avatar of Khaine (all in config).
-- **Limits**: player chooses per activation — both rerolls never stack; unit-scope excludes Guardians/Craftworld core; 3DP consumes the entire typical budget.
-- **_source**: https://wahapedia.ru/wh40k11ed/factions/aeldari/
 
 #### Warhost (3DP → RECONNAISSANCE)
 - **Mechanics**: Martial Grace — +1 additional Battle Focus token per battle round; Swift as the Wind becomes +3" total (+1 on army-rule +2"); +1 to D6-based Agile Manoeuvre results.
@@ -139,6 +127,14 @@
 - **Rating**: Situational for Disruption / Reconnaissance
 - **Synergies**: Windriders, Vypers — repeated threat-angle resets.
 - **Limits**: reserve/withdrawal tricks outside modifier vocabulary; withdrawal cap varies by battle size; payoff depends on opponent over-committing.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/aeldari/
+
+
+#### Aspect Host (3DP → PRIORITY ASSETS)
+- **Mechanics**: Path of the Warrior — once per phase, when an ASPECT WARRIORS or AVATAR OF KHAINE unit shoots or fights, you can select one of the following for that unit until the end of the phase: (1) Re-roll Hit rolls of 1; (2) Re-roll Wound rolls of 1. The selection is made per unit activation; the two effects are not combined. (11e detachment rule, sourced from published pack)
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Aspect Warrior armies (Dire Avengers, Howling Banshees, Fire Dragons, Dark Reapers, Striking Scorpions, Warp Spiders, etc.) gain reliable accuracy on demand.
+- **Limits**: ASPECT WARRIORS and AVATAR OF KHAINE only; re-roll 1s only (not full rerolls); 3DP investment.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/aeldari/
 
 ### Enhancements & Stratagems Worth Taking

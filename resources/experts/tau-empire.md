@@ -64,19 +64,7 @@
 - **Limits**: hit/wound bonuses both conditional on target damage state (never-on turn 1 vs fresh targets); invuln modeled at worst-case 6+ (melee) — ranged actually gets 5+, attack-type split unrepresentable in vocabulary; KROOT-only scope.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/t-au-empire/
 
-#### Kauyon (2DP → RECONNAISSANCE)
-- **Mechanics**: Patient Hunter — in battle rounds 3–5, ALL T'AU EMPIRE ranged weapons gain Sustained Hits 1; additionally in rounds 3–5, Guided units shooting their Spotted target ignore ALL Ballistic Skill and hit-roll modifiers. An enhancement lets a led unit start benefiting from round 2 instead.
-- **Rating**: Situational for Purge the Foe (round-window rule — dead weight in rounds 1–2 without the enhancement)
-- **Synergies**: whole-army Sustained Hits on every ranged profile; Guided pairs (Pathfinder-spotted gunlines) become modifier-proof.
-- **Limits**: round-gated (corpus flags sustained_hits would apply but ONLY rounds 3–5) — the army must survive to collect; ignore-modifiers requires BOTH the Guided state AND correct target priority.
-- **_source**: https://wahapedia.ru/wh40k11ed/factions/t-au-empire/
 
-#### Mont’Ka (3DP → PRIORITY ASSETS)
-- **Mechanics**: Killing Blow — in battle rounds 1–3, T'AU EMPIRE ranged weapons have Assault (shoot after Advance/Fall Back); additionally rounds 1–3, Guided units' ranged weapons have Lethal Hits. An enhancement extends the window to battle round 4 for a led unit.
-- **Rating**: Situational for Purge the Foe (mirror image of Kauyon — front-loaded window)
-- **Synergies**: mobile battlesuit lists (Coldstar commanders, Stealth Battlesuit skirmishers) repositioning while shooting in the opening rounds; Guided Lethal Hits punishes exposed vehicles early.
-- **Limits**: everything expires after round 3 (round 4 for one enhanced led unit); Assault unmodeled; Lethal Hits needs the Guided state maintained; full-budget 3DP for a time-boxed package.
-- **_source**: https://wahapedia.ru/wh40k11ed/factions/t-au-empire/
 
 #### Retaliation Cadre (3DP → PURGE THE FOE)
 - **Mechanics**: Bonded Heroes — each time a T'AU EMPIRE BATTLESUIT model makes a ranged attack at a unit within 12", that attack gains +1 Strength; per errata, +1 Armour Penetration applies when the target is within 8" (errata tightened 9" to 8").
@@ -84,6 +72,21 @@
 - **Synergies**: broadside/crisis battlesuit walls advancing to 12"/8" brackets; Commander Shadowsun-led suit clusters.
 - **Limits**: BATTLESUIT-models-only (infantry/Kroot get nothing); two distance gates — +1S inside 12", +1AP only inside 8"; closing to 8" puts fragile suits in enemy threat range.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/t-au-empire/
+
+
+#### Kauyon (2DP → RECONNAISSANCE)
+- **Mechanics**: Kauyon (11e) — a time-windowed hunting doctrine. In battle rounds after turn 1, T'AU EMPIRE units gain heightened effectiveness against enemy units that have Advanced, Fallen Back, or arrived from Reserves that turn (commonly +1 to hit against those targets; exact gating varies by pack). Rewards patient setup and punishing overextended enemies.
+- **Rating**: Moderate for Reconnaissance
+- **Synergies**: Long-range firepower (Crisis, Hammerhead), midfield denial; strong in games where opponent commits from reserves/moves.
+- **Limits**: Turn 1 is weak if forced to act; windowed and heavily matchup-dependent; detection/overshoot rules only partially captured in corpus.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/tau-empire/
+
+#### Mont’Ka (3DP → TAKE AND HOLD)
+- **Mechanics**: Mont'ka (11e) — an aggressive coordination doctrine for advancing forces. Units that Advance this turn gain benefits to their shooting or are better able to engage (commonly improved hit rolls or reduced penalties when advancing/pushing objectives). Encourages a coordinated first-wave onto objectives rather than a purely static gunline.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Mobile Fire Warriors/Kroot supported by Crisis suits and transports pushing objectives.
+- **Limits**: 3DP cost; less effective into heavy chaff/screens or if advance is bogged; window-based benefits not fully modeled in corpus.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/tau-empire/
 
 ### Enhancements & Stratagems Worth Taking
 *(interpretation — corpus documents enhancements only at summary level)*

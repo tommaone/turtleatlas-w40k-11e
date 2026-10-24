@@ -315,12 +315,6 @@ disposition labels as provisional until the faction file is corrected.
 - **Limits**: +1 to wound is conditional on Deathwing Infantry AND target proximity to Vowed objectives (research stale note).
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
 
-#### Ironstorm Spearhead (2DP → TAKE AND HOLD)
-- **Mechanics**: Once per phase per unit, re-roll one Hit roll OR one Wound roll OR one Damage roll for a model in that unit.
-- **Rating**: Weak for Take and Hold
-- **Synergies**: Dreadnought-heavy lists get marginal insurance on key shots.
-- **Limits**: Single-die reroll is materially weaker than blanket rerolls (research wording) — cannot be honestly represented as stronger.
-- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
 
 #### Lion'S Blade Task Force (2DP → PURGE THE FOE)
 - **Mechanics**: Enemy non-MONSTER/non-VEHICLE units Falling Back within Engagement Range of RAVENWING units take Desperate Escape tests (-1 if battle-shocked); DEATHWING units charging targets within Engagement Range of RAVENWING units add 2 to the Charge roll.
@@ -371,19 +365,119 @@ disposition labels as provisional until the faction file is corrected.
 - **Limits**: Each doctrine usable once per battle — sequencing decisions matter; effects are mode-based, never always-on.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
 
-#### Stormlance Task Force (3DP → DISRUPTION)
-- **Mechanics**: All ADEPTUS ASTARTES units may declare charges in turns they Advanced or Fell Back.
-- **Rating**: Strong for Disruption (aggressive/melee lists)
-- **Synergies**: Bladeguard Veteran Squad, Inner Circle Companions and jump units converting every Advance into charge threat.
-- **Limits**: Charge eligibility ≠ charge success — 9" charges remain risky; research notes fall-back-then-charge also granted but unmodeled.
-- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
 
-#### Wrath Of The Rock (3DP → PRIORITY ASSETS)
-- **Mechanics**: Attacks targeting your INFANTRY or MOUNTED units subtract 1 from the Wound roll when attacker Strength exceeds unit Toughness.
+
+#### Assault Brethren (1DP → TAKE AND HOLD)
+- **Mechanics**: Assault Mastery — select the Assault Doctrine one additional time per battle.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Assault-oriented doctrine cycling.
+- **Limits**: Doctrine-gated.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/dark-angels/
+
+#### Deathwatch Support (1DP → DISRUPTION)
+- **Mechanics**: Inherited cross-chapter package.
+- **Rating**: Situational for Disruption
+- **Synergies**: Niche use cases.
+- **Limits**: Minimal bespoke rule surface.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/dark-angels/
+
+#### Devastator Brethren (1DP → PURGE THE FOE)
+- **Mechanics**: Devastator Mastery — select the Devastator Doctrine one additional time per battle.
+- **Rating**: Moderate for Purge the Foe
+- **Synergies**: Firepower lists cycling Devastator Doctrine.
+- **Limits**: Doctrine-gated.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/dark-angels/
+
+#### Gauntlet Task Force (1DP → RECONNAISSANCE)
+- **Mechanics**: Combined Deployment — transport shoots, marks target assailed until end of turn; disembarked ADEPTUS ASTARTES get [Sustained Hits 1] vs it.
+- **Rating**: Moderate for Reconnaissance
+- **Synergies**: Transport-delivered pushes.
+- **Limits**: Conditional on transport+disembark timing.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/dark-angels/
+
+#### Gravis Linebreaker Force (1DP → TAKE AND HOLD)
+- **Mechanics**: Walking Fortress — Gravis unit moved Normal this turn: ranged attacks lose [Heavy] and get +1 to hit.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Aggressive Gravis.
+- **Limits**: Gravis-scoped, Normal-move triggered.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/dark-angels/
+
+#### Gravis Siege Force (1DP → TAKE AND HOLD)
+- **Mechanics**: Indomitable Defence — while within range of objective, attacks vs Gravis with S>T have -1 to wound.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Gravis holding objectives.
+- **Limits**: Objective-range, S>T only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/dark-angels/
+
+#### Ironclad Champions (1DP → PRIORITY ASSETS)
+- **Mechanics**: Enduring Vengeance — ADEPTUS ASTARTES Dreadnought units re-roll hit rolls of 1.
 - **Rating**: Moderate for Priority Assets
-- **Synergies**: Deathwing Knights (T5) and Outrider Squads shrug off lascannon/melta-class fire.
-- **Limits**: Conditional on attacker S > T — does nothing vs S ≤ T volume fire (research stale note); purely defensive, adds no damage.
-- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
+- **Synergies**: Dreadnought lists.
+- **Limits**: Dreadnought-scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/dark-angels/
+
+#### Ironstorm Spearhead (1DP → PURGE THE FOE)
+- **Mechanics**: Ironstorm Auto-Targeters — ADEPTUS ASTARTES Vehicles (excl Walkers) can re-roll one hit and one wound.
+- **Rating**: Moderate for Purge the Foe
+- **Synergies**: Vehicle gunlines.
+- **Limits**: Excludes Walkers, partial re-rolls.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/dark-angels/
+
+#### Phobos Shadow Force (1DP → DISRUPTION)
+- **Mechanics**: Shadow Masters — Phobos/Scout shoot then don't prevent hidden or make D6" move (no charge until end).
+- **Rating**: Moderate for Disruption
+- **Synergies**: Phobos recon.
+- **Limits**: Phobos/Scout scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/dark-angels/
+
+#### Phobos Shock Force (1DP → DISRUPTION)
+- **Mechanics**: Vanguard Ambushers — end of Movement if hidden, Phobos attacks re-roll wound rolls of 1 until end of turn.
+- **Rating**: Moderate for Disruption
+- **Synergies**: Hidden Phobos.
+- **Limits**: Requires hidden, re-roll 1s only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/dark-angels/
+
+#### Stormlance Task Force (1DP → RECONNAISSANCE)
+- **Mechanics**: Lightning-Fast Strike — Mounted/Speeder have +2" Move.
+- **Rating**: Moderate for Reconnaissance
+- **Synergies**: Ravenwing mobility.
+- **Limits**: Mounted/Speeder only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/dark-angels/
+
+#### Tactical Brethren (1DP → PRIORITY ASSETS)
+- **Mechanics**: Tactical Mastery — select Tactical Doctrine one additional time per battle.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Doctrine cycling.
+- **Limits**: Doctrine-gated.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/dark-angels/
+
+#### Tacticus Attack Force (1DP → TAKE AND HOLD)
+- **Mechanics**: Wrath of the Chapter — Tacticus units can re-roll advance rolls.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Tacticus advancing to objectives.
+- **Limits**: Tacticus-scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/dark-angels/
+
+#### Tacticus Firestorm Force (1DP → PRIORITY ASSETS)
+- **Mechanics**: Codex Fire-Patterns — Tacticus [Rapid Fire] benefit from RF at max range.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Tacticus rapid fire.
+- **Limits**: Tacticus/RF only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/dark-angels/
+
+#### Terminator Storm Force (1DP → PRIORITY ASSETS)
+- **Mechanics**: Death Blow — Terminator units have +1 to charge rolls.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Deathwing assaults.
+- **Limits**: Terminator-scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/dark-angels/
+
+#### Wrath Of The Rock (2DP → TAKE AND HOLD)
+- **Mechanics**: Dutiful Tenacity — while this unit is within range of an objective you control, subtract 1 from the wound roll of attacks made with S greater than this unit's T (Unforgiven keyword context).
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Deathwing anchoring objectives against heavy weapons.
+- **Limits**: Objective-range, conditional on S>T, 2DP.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/dark-angels/
 
 ### Enhancements & Stratagems Worth Taking
 - *(Interpretation — the DA research file names no faction-specific enhancements or stratagems; nothing verifiable to recommend here beyond noting that the shared-codex corpus documents ENTRENCHED-gated stratagems for the equivalent Ceramite Sentinels detachment and doctrine-gated bonuses under Gladius — CP spent there is the documented pattern, but DA-pack-specific stratagems are unverified in this corpus.)*

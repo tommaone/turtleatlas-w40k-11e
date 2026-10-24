@@ -153,11 +153,6 @@ _space-marines-shared.json (2026-08-23, packs v1.1). 23 detachments total:
 - **Rating**: Moderate for Take and Hold — Drop Pod/Wolf Guard delivery complements saga pressure.
 - **_source**: inherited:_space-marines-shared.json
 
-#### Stormlance Task Force (3DP → DISRUPTION) — *inherited*
-- **Mechanics**: Lightning Assault — all units charge after Advancing or Falling Back (inherited from SM codex; full shared-codex 3DP price for Space Wolves per merged data).
-- **Rating**: Strong for Disruption — Thunderwolf Cavalry and Outrider Squad mounted lists convert Advances into charge threats army-wide; notably SW pay 3DP while sibling chapters Blood Angels/Black Templars pay 2DP (research delta).
-- **Limits**: Full budget; eligibility ≠ made charges.
-- **_source**: inherited:_space-marines-shared.json
 
 #### Vanguard Spearhead (2DP → RECONNAISSANCE) — *inherited*
 - **Mechanics**: Benefit of Cover vs ranged attacks from beyond 12" (inherited from SM codex).
@@ -178,6 +173,105 @@ _space-marines-shared.json (2026-08-23, packs v1.1). 23 detachments total:
 - **Mechanics**: Rotating Combat Doctrines, each once per battle (inherited from SM codex).
 - **Rating**: Moderate for Priority Assets — generalist fallback; Encircling Jaws-style mobility exists natively in the sagas.
 - **_source**: inherited:_space-marines-shared.json
+
+
+#### Assault Brethren (1DP → TAKE AND HOLD)
+- **Mechanics**: Assault Mastery — select the Assault Doctrine one additional time per battle.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Assault doctrine cycling.
+- **Limits**: Doctrine-gated.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-wolves/
+
+#### Deathwatch Support (1DP → DISRUPTION)
+- **Mechanics**: Inherited cross-chapter package.
+- **Rating**: Situational for Disruption
+- **Synergies**: Niche.
+- **Limits**: Minimal bespoke rules.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-wolves/
+
+#### Devastator Brethren (1DP → PURGE THE FOE)
+- **Mechanics**: Devastator Mastery — select the Devastator Doctrine one additional time per battle.
+- **Rating**: Moderate for Purge the Foe
+- **Synergies**: Firepower doctrine cycling.
+- **Limits**: Doctrine-gated.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-wolves/
+
+#### Gauntlet Task Force (1DP → RECONNAISSANCE)
+- **Mechanics**: Combined Deployment — transport shoots marks target assailed; disembarked ADEPTUS ASTARTES get [Sustained Hits 1] vs it.
+- **Rating**: Moderate for Reconnaissance
+- **Synergies**: Transport delivery.
+- **Limits**: Conditional timing.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-wolves/
+
+#### Gravis Linebreaker Force (1DP → TAKE AND HOLD)
+- **Mechanics**: Walking Fortress — Gravis moved Normal: ranged lose [Heavy] and get +1 to hit.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Aggressive Gravis.
+- **Limits**: Gravis-scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-wolves/
+
+#### Gravis Siege Force (1DP → TAKE AND HOLD)
+- **Mechanics**: Indomitable Defence — while in range of objective, attacks with S>T vs Gravis have -1 to wound.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Gravis anchoring.
+- **Limits**: Objective-range, S>T only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-wolves/
+
+#### Ironclad Champions (1DP → PRIORITY ASSETS)
+- **Mechanics**: Enduring Vengeance — Dreadnoughts re-roll hit rolls of 1.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Dreadnought lists.
+- **Limits**: Dreadnought-scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-wolves/
+
+#### Phobos Shadow Force (1DP → DISRUPTION)
+- **Mechanics**: Shadow Masters — Phobos/Scout shoot then don't prevent hidden or make D6" move (no charge until end).
+- **Rating**: Moderate for Disruption
+- **Synergies**: Phobos recon.
+- **Limits**: Scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-wolves/
+
+#### Phobos Shock Force (1DP → DISRUPTION)
+- **Mechanics**: Vanguard Ambushers — end of Movement if hidden, Phobos attacks re-roll wound rolls of 1 until end of turn.
+- **Rating**: Moderate for Disruption
+- **Synergies**: Hidden Phobos.
+- **Limits**: Requires hidden.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-wolves/
+
+#### Stormlance Task Force (1DP → RECONNAISSANCE)
+- **Mechanics**: Lightning-Fast Strike — Mounted/Speeder have +2" Move.
+- **Rating**: Moderate for Reconnaissance
+- **Synergies**: Bike/Speeders.
+- **Limits**: Mounted/Speeder only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-wolves/
+
+#### Tactical Brethren (1DP → PRIORITY ASSETS)
+- **Mechanics**: Tactical Mastery — select Tactical Doctrine one additional time per battle.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Doctrine cycling.
+- **Limits**: Doctrine-gated.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-wolves/
+
+#### Tacticus Attack Force (1DP → TAKE AND HOLD)
+- **Mechanics**: Wrath of the Chapter — Tacticus units can re-roll advance rolls.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Tacticus advancing.
+- **Limits**: Tacticus-scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-wolves/
+
+#### Tacticus Firestorm Force (1DP → PRIORITY ASSETS)
+- **Mechanics**: Codex Fire-Patterns — Tacticus [Rapid Fire] at max range count as Rapid Fire.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Tacticus rapid fire.
+- **Limits**: Tacticus/RF only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-wolves/
+
+#### Terminator Storm Force (1DP → PRIORITY ASSETS)
+- **Mechanics**: Death Blow — Terminator units have +1 to charge rolls.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Terminator assaults.
+- **Limits**: Terminator-scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-wolves/
 
 ### Enhancements & Stratagems Worth Taking
 - *(Interpretation, restricted to what the research files document)* Champions Of Fenris' Runes of Claiming (sticky objective at end of Movement phase, 1CP) is the named Take-and-Hold scoring tool. Legends Of Saga And Song's Wings of the Blizzard reserve-bounce gives Terminators a redeploy exit. In Saga Of The Great Wolf, Grimnar's Command (activate a pack for one unit only) stretches the once-per-battle packs; Unrelenting Hunters grants fall-back-and-charge (advance-and-charge for Space Wolves units) as a CP burst. All CP-gated, not plan-of-record.

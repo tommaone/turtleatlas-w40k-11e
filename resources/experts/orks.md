@@ -70,12 +70,6 @@
 - **Limits**: action eligibility after moves has no vocabulary key AND actions are structurally weak in this project's 11e read — the headline benefit targets a low-value activity; BATTLELINE grant is list-building only.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/orks/
 
-#### Blitz Brigade (2DP → RECONNAISSANCE)
-- **Mechanics**: Orks units disembarking from a Transport may re-roll their Advance and Charge rolls until end of turn.
-- **Rating**: Situational for Reconnaissance / Purge the Foe
-- **Synergies**: Trukk-delivered Nobz/Kommandos; transports named in Rollin' Deff corpus entry (Battlewagon family).
-- **Limits**: strictly turn-of-disembark conditional; rerolls only — no distance guarantee; requires paying for transports.
-- **_source**: https://wahapedia.ru/wh40k11ed/factions/orks/
 
 #### Bully Boyz (2DP → PURGE THE FOE)
 - **Mechanics**: If a Warboss is on the battlefield, you may call a SECOND Waaagh! in a later turn; that second Waaagh! buffs ONLY Warboss, Nobz and Meganobz units.
@@ -91,12 +85,6 @@
 - **Limits**: +1 AP applies ONLY to the single nominated Prey (corpus flags target-conditional, not global); engagement-forcing clause can drag chargers into bad positions; keyword-scoped to BEAST SNAGGA.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/orks/
 
-#### Dread Mob (2DP → PRIORITY ASSETS)
-- **Mechanics**: Mek, Orks Walker and Grots Vehicle units roll a D6 when selected to shoot/fight for a random phase-long weapon buff (Sustained Hits 1, Lethal Hits, or +2 AP on critical wounds); alternatively pick voluntarily but the unit's weapons become Hazardous. Gretchin gain Battleline (list-building).
-- **Rating**: Weak for most dispositions; Situational for Priority Assets in dedicated kan-wallie builds
-- **Limits**: research confidence MEDIUM on this entry; buff selection random-or-Hazardous — never deterministic; Hazardous self-damage downside unrepresentable; narrow chassis scope.
-- **Synergies**: Mek-led walker spam with Gretchin screens holding back markers.
-- **_source**: https://wahapedia.ru/wh40k11ed/factions/orks/
 
 #### Freebooter Krew (2DP → TAKE AND HOLD)
 - **Mechanics**: Each Command phase nominate one objective marker as your loot objective. Orks Infantry/Mounted/Walker units get Sustained Hits 1 on attacks if either the attacking unit or its target is within range of the loot objective.
@@ -105,12 +93,6 @@
 - **Limits**: Sustained Hits is proximity-gated to ONE nominated marker per turn — off-objective fights get nothing (corpus: never-on otherwise).
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/orks/
 
-#### Kult Of Speed (2DP → DISRUPTION)
-- **Mechanics**: Speed Freeks units remain eligible to shoot and declare a charge in a turn they Advanced or Fell Back.
-- **Rating**: Moderate for Purge the Foe (melee/shooting delivery fix for the fast wing); Situational otherwise
-- **Synergies**: Warbikers, Deffkilla Wartrike, Wazdakka Gutsmek, fast vehicle elements carrying SPEED FREEKS.
-- **Limits**: SPEED FREEKS-keyword scoped only (corpus flags engine understates the Fell Back case if only advance-charge modeled); eligibility ≠ bonus accuracy — shooting after Advance carries its normal penalties.
-- **_source**: https://wahapedia.ru/wh40k11ed/factions/orks/
 
 #### Speedwaaagh! (2DP → RECONNAISSANCE)
 - **Mechanics**: When a Speed Freeks or Trukk unit Advances it may 'turbo': skip the roll, move straight-line at Move 24" that phase; ranged weapons gain Assault until end of turn but the unit cannot declare a charge that turn.
@@ -131,6 +113,77 @@
 - **Rating**: Strong for Purge the Foe / Take and Hold — the only unconditional offensive army-wide buff in the corpus
 - **Synergies**: every melee profile in the book; compounds with Waaagh!'s +1S/+1A into a single overwhelming melee turn.
 - **Limits**: melee weapons ONLY — ranged unaffected (engine must scope sustained_hits_extra to melee profiles, corpus flags); full-budget 3DP cost.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/orks/
+
+
+#### Blitz Brigade (1DP → TAKE AND HOLD)
+- **Mechanics**: Orks units disembarking from a Transport may re-roll their Advance and Charge rolls until end of turn.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Trukk-delivered Boyz/Nobz charges.
+- **Limits**: Turn-of-disembark only, requires transports.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/orks/
+
+#### Brute Bosses (1DP → PURGE THE FOE)
+- **Mechanics**: Focuses on Meganobz/Nobz elite brute units with enhanced melee threat.
+- **Rating**: Moderate for Purge the Foe
+- **Synergies**: Elite brute deathstar-style melee.
+- **Limits**: Narrow unit scope, points heavy.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/orks/
+
+#### Dread Mob (1DP → PURGE THE FOE)
+- **Mechanics**: Walker-focused detachment improving dreadnought/killa kan effectiveness.
+- **Rating**: Moderate for Purge the Foe
+- **Synergies**: Walker heavy lists.
+- **Limits**: Walker-scoped, slower delivery.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/orks/
+
+#### Flyboyz (1DP → RECONNAISSANCE)
+- **Mechanics**: Aircraft-focused with mobility advantages.
+- **Rating**: Moderate for Reconnaissance
+- **Synergies**: Dakkajet/Burna Bomber harassment and objective grabbing.
+- **Limits**: Aircraft-limited model pool, fragile to AA.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/orks/
+
+#### Kult Of Speed (1DP → RECONNAISSANCE)
+- **Mechanics**: Warbikers gain Battleline; advancing unlocks ranged Assault for Warbikers.
+- **Rating**: Moderate for Reconnaissance
+- **Synergies**: Fast objective grabbing and harassing.
+- **Limits**: Biker-scoped mobility focus.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/orks/
+
+#### Madcap Meks (1DP → DISRUPTION)
+- **Mechanics**: Mek-focused with quirky shooting effects.
+- **Rating**: Situational for Disruption
+- **Synergies**: Weirdboy/Mek support lists.
+- **Limits**: Random effects reduce consistency.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/orks/
+
+#### Runt Swarm (1DP → PRIORITY ASSETS)
+- **Mechanics**: Gretchin gain Battleline; advance no longer blocks performing actions.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Action-focused Gretchin screens.
+- **Limits**: Gretchin-scoped, fragile.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/orks/
+
+#### Shoota Boyz (1DP → PURGE THE FOE)
+- **Mechanics**: Enhances shoota boyz with ranged pressure.
+- **Rating**: Moderate for Purge the Foe
+- **Synergies**: Massed shoota boyz.
+- **Limits**: Infantry shooty focus, less melee threat.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/orks/
+
+#### Wreckas (1DP → PRIORITY ASSETS)
+- **Mechanics**: Vehicle/ramming focus near objectives.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Vehicle pushes to contest objectives.
+- **Limits**: Vehicle-scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/orks/
+
+#### Wurrband (1DP → DISRUPTION)
+- **Mechanics**: Psyker-focused buffing.
+- **Rating**: Situational for Disruption
+- **Synergies**: Weirdboy lists.
+- **Limits**: Psyker-scoped and conditional.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/orks/
 
 ### Enhancements & Stratagems Worth Taking

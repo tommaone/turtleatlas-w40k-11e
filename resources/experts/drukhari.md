@@ -36,12 +36,6 @@
 ### Detachment Assessments
 <!-- one block per detachment, ordered by DP -->
 
-#### Exhibition Of Slaughter (1DP → RECONNAISSANCE)
-- **Mechanics**: Exacting Cruelty — all friendly WYCH CULT melee attacks have Lethal Hits, except vs MONSTER and VEHICLE targets. WYCH CULT-tagged; exclusive with other WYCH CULT detachments.
-- **Rating**: Situational for Disruption / Purge the Foe
-- **Synergies**: Wyches, Hellions, Reavers, Lelith Hesperax — volume melee converts Lethal Hits into reliable chip damage.
-- **Limits**: explicitly does nothing vs MONSTER/VEHICLE targets; melee-only; tag exclusivity constrains army building.
-- **_source**: https://wahapedia.ru/wh40k11ed/factions/drukhari/
 
 #### Kabalite Agonysts (1DP → DISRUPTION)
 - **Mechanics**: Contracted Harvest — friendly KABAL and BLADES FOR HIRE ranged attacks gain Sustained Hits 1, except vs MONSTER and VEHICLE targets. KABAL-tagged; exclusive with other KABAL detachments.
@@ -97,6 +91,14 @@
 - **Rating**: Situational for Purge the Foe
 - **Synergies**: entire army benefits; Harlequins inclusion (Solitaire, Troupe) enables mixed lists.
 - **Limits**: reroll value depends on a fluctuating state you partially control but can lose; paradoxically the LOSING state has better rerolls; full-budget 3DP cost.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/drukhari/
+
+
+#### Exhibition Of Slaughter (1DP → RECONNAISSANCE)
+- **Mechanics**: Exhibition of Slaughter (11e) — Wych Cult focused detachment granting bonuses to Wych Cult units (commonly improved hit rolls on the charge or when fighting) to reward aggressive skirmisher play.
+- **Rating**: Moderate for Reconnaissance
+- **Synergies**: Wyches, Succubi-led Wych Cult units for harassment and objective grabs.
+- **Limits**: Wych Cult scoped; fragile; benefits partially unmodeled in corpus.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/drukhari/
 
 ### Enhancements & Stratagems Worth Taking

@@ -285,12 +285,6 @@ Company Task Force's disposition — treat affected labels as provisional.
 - **Limits**: Vehicle-scope; damage reroll lost on advancing turns; CHARACTER grant is muster-time and unlocks enhancements only (research).
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
 
-#### Ironstorm Spearhead (2DP → TAKE AND HOLD)
-- **Mechanics**: Once per phase per unit, re-roll a single Hit roll OR Wound roll OR Damage roll.
-- **Rating**: Weak for Take and Hold
-- **Synergies**: Vehicle/Dreadnought lists get insurance on key single shots.
-- **Limits**: Single-die insurance, explicitly not equivalent to blanket rerolls (research wording). ⚠️ Shared-codex delta: official sources list Ironstorm Spearhead as PURGE THE FOE, not TAKE AND HOLD.
-- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
 
 #### Orbital Assault Force (2DP → TAKE AND HOLD)
 - **Mechanics**: Selected non-TITANIC units (2/3/4 by battle size) gain Deep Strike; models set up this turn re-roll Wound rolls of 1; DROP POD disembarkers that turn also re-roll Hit rolls of 1.
@@ -313,12 +307,6 @@ Company Task Force's disposition — treat affected labels as provisional.
 - **Limits**: Chapter-locked; save-modifier effect with no vocabulary key (research); does nothing vs close-range fire.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
 
-#### Spearpoint Task Force (2DP → DISRUPTION)
-- **Mechanics**: Army-wide: ADEPTUS ASTARTES units may declare charges after Advancing or Falling Back; SUBODEN KHAN's unit may make a 6" Normal move at end of Fight phase after destroying units. WHITE SCARS-only.
-- **Rating**: Strong for Disruption (melee/mounted lists)
-- **Synergies**: Outrider Squad / Kor'Sarro Khan mounted melee waves.
-- **Limits**: Chapter-locked; charge eligibility doesn't guarantee charge distance; Khan move requires kills (research).
-- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
 
 #### Vanguard Spearhead (2DP → RECONNAISSANCE)
 - **Mechanics**: Ranged attacks targeting your ADEPTUS ASTARTES units give the target Benefit of Cover unless the attacking model is within 12".
@@ -355,11 +343,124 @@ Company Task Force's disposition — treat affected labels as provisional.
 - **Limits**: Each doctrine once per battle; mode-based effects never always-on.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
 
-#### Stormlance Task Force (3DP → DISRUPTION)
-- **Mechanics**: Lightning Assault — all ADEPTUS ASTARTES units may declare charges in turns they Advanced or Fell Back.
-- **Rating**: Strong for Disruption
-- **Synergies**: Any melee core (Bladeguard Veteran Squad, Aggressor Squad) converts Advances into charge threats without a chapter lock.
-- **Limits**: Full 3DP; eligibility ≠ auto-success on 8-9" charges; fall-back-then-charge granted but unmodeled (research).
+
+#### Assault Brethren (1DP → TAKE AND HOLD)
+- **Mechanics**: Assault Mastery — you can select the Assault Doctrine one additional time per battle.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Assault-focused lists wanting extra Assault Doctrine activations.
+- **Limits**: Doctrine-based only; 1DP for narrow resource extension.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
+
+#### Deathwatch Support (1DP → DISRUPTION)
+- **Mechanics**: Inherited cross-chapter Astartes detachment package.
+- **Rating**: Situational for Disruption
+- **Synergies**: Niche picks in mixed lists.
+- **Limits**: Minimal bespoke rule surface; often outclassed by dedicated tools.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
+
+#### Devastator Brethren (1DP → PURGE THE FOE)
+- **Mechanics**: Devastator Mastery — you can select the Devastator Doctrine one additional time per battle.
+- **Rating**: Moderate for Purge the Foe
+- **Synergies**: Heavy firepower lists cycling doctrines for longer shooty windows.
+- **Limits**: Narrowly doctrine-gated.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
+
+#### Gauntlet Task Force (1DP → RECONNAISSANCE)
+- **Mechanics**: Combined Deployment — when a friendly Adeptus Astartes Transport shoots, target an enemy unit hit to make it assailed until end of turn; Adeptus Astartes units that disembarked this turn targeting it get [Sustained Hits 1].
+- **Rating**: Moderate for Reconnaissance
+- **Synergies**: Transport-delivered assault pushes.
+- **Limits**: Requires transport shooting then disembarking to same target.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
+
+#### Gravis Linebreaker Force (1DP → TAKE AND HOLD)
+- **Mechanics**: Walking Fortress — in a turn a friendly Gravis unit made a Normal move, ranged attacks do not have [Heavy] and have +1 to hit rolls.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Aggressive Gravis advancing into range.
+- **Limits**: Gravis-scoped, triggers on Normal move turn only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
+
+#### Gravis Siege Force (1DP → TAKE AND HOLD)
+- **Mechanics**: Indomitable Defence — while a friendly Gravis unit is within range of an objective, attacks targeting it with S greater than its T have -1 to wound rolls.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Gravis anchoring objectives against heavier fire.
+- **Limits**: Objective-range conditional, only vs S>T.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
+
+#### Ironclad Champions (1DP → PRIORITY ASSETS)
+- **Mechanics**: Enduring Vengeance — friendly Adeptus Astartes Dreadnought units can re-roll hit rolls of 1.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Dreadnought-heavy lists.
+- **Limits**: Dreadnought-scoped, re-roll 1s to hit only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
+
+#### Ironstorm Spearhead (1DP → PURGE THE FOE)
+- **Mechanics**: Ironstorm Auto-Targeters — friendly Adeptus Astartes Vehicle units (excluding Walkers) ranged attacks can re-roll one hit roll and re-roll one wound roll.
+- **Rating**: Moderate for Purge the Foe
+- **Synergies**: Vehicle gunlines.
+- **Limits**: Excludes Walkers; partial re-rolls only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
+
+#### Medusa'S Wrath (2DP → PURGE THE FOE)
+- **Mechanics**: When shooting/fighting, can re-roll buffs depending on proximity to Cannok Var/Iron Father Feirros (if within 6" can re-roll one hit/wound/damage; else re-roll one of them).
+- **Rating**: Situational for Purge the Foe
+- **Synergies**: Lists built around Feirros/Cannok Var.
+- **Limits**: Heavily character-gated; small rerolls.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
+
+#### Phobos Shadow Force (1DP → DISRUPTION)
+- **Mechanics**: Shadow Masters — when a Phobos or Scout Squad unit has shot, they don't prevent being hidden or can make a D6" move (cannot charge until end of turn).
+- **Rating**: Moderate for Disruption
+- **Synergies**: Phobos infiltration/recon.
+- **Limits**: Phobos/Scout scoped; conditional.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
+
+#### Phobos Shock Force (1DP → DISRUPTION)
+- **Mechanics**: Vanguard Ambushers — at end of Movement phase if a friendly Phobos unit is hidden, its attacks can re-roll wound rolls of 1 until end of turn.
+- **Rating**: Moderate for Disruption
+- **Synergies**: Hidden Phobos strikes.
+- **Limits**: Requires hidden state; re-roll 1s to wound only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
+
+#### Spearpoint Task Force (2DP → RECONNAISSANCE)
+- **Mechanics**: Storm-Swift Onslaught — select Assault or Tactical Doctrine one additional time per battle; Mounted/Speeder get +1 Advance; Suboden Khan gets Wrath of the First Khan mobility.
+- **Rating**: Strong for Reconnaissance
+- **Synergies**: White Scars mounted lists.
+- **Limits**: White Scars-restricted; 2DP.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
+
+#### Stormlance Task Force (1DP → RECONNAISSANCE)
+- **Mechanics**: Lightning-Fast Strike — friendly Adeptus Astartes Mounted/Speeder units have +2" Move.
+- **Rating**: Moderate for Reconnaissance
+- **Synergies**: Bike/Speeders for objective grabs.
+- **Limits**: Mounted/Speeder only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
+
+#### Tactical Brethren (1DP → PRIORITY ASSETS)
+- **Mechanics**: Tactical Mastery — select the Tactical Doctrine one additional time per battle.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Flexible doctrine cycling.
+- **Limits**: Doctrine-gated.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
+
+#### Tacticus Attack Force (1DP → TAKE AND HOLD)
+- **Mechanics**: Wrath of the Chapter — friendly Tacticus units can re-roll advance rolls.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Tacticus infantry advancing onto objectives.
+- **Limits**: Tacticus-scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
+
+#### Tacticus Firestorm Force (1DP → PRIORITY ASSETS)
+- **Mechanics**: Codex Fire-Patterns — friendly Tacticus units' [Rapid Fire] attacks benefit from [Rapid Fire] at maximum range.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Tacticus rapid fire.
+- **Limits**: Tacticus/Rapid Fire only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
+
+#### Terminator Storm Force (1DP → PRIORITY ASSETS)
+- **Mechanics**: Death Blow — friendly Adeptus Astartes Terminator units have +1 to charge rolls.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Terminator assaults.
+- **Limits**: Terminator-scoped.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
 
 ### Enhancements & Stratagems Worth Taking

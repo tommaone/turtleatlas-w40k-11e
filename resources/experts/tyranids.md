@@ -92,18 +92,20 @@
 - **Limits**: Fell Back charging helps only when you're already engaged; Advance-and-Charge is VANGUARD INVADER-keyword scoped; charge distance still rolled normally.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/tyranids/
 
+
+
 #### Invasion Fleet (3DP → TAKE AND HOLD)
-- **Mechanics**: Pick ONE army-wide Hyper-adaptation at battle start: Sustained Hits 1 vs INFANTRY/SWARM targets, Lethal Hits vs MONSTER/VEHICLE targets, or Precision on critical hits vs CHARACTER targets.
-- **Rating**: Moderate for Purge the Foe with Lethal Hits chosen (anti-tank coverage); Situational otherwise — pick-one-of-three means the other two modes are dead weight each game
-- **Synergies**: whole-army scope makes it stack with everything; volume-shooting Termagants or melee Genestealers scale whichever mode is picked.
-- **Limits**: mutually exclusive modes — Sustained Hits mode does nothing vs vehicles, Lethal Hits mode does nothing vs infantry hordes, Precision mode is narrowest of all; none modeled.
+- **Mechanics**: Invasion Fleet (11e) — hyper-adaptation doctrine: select one adaption at start of battle (common options: re-roll hit rolls of 1 for ranged/melee, improved Advance/Charge, or durability buffs). Army-wide but focused tradeoff.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Massed infantry/monsters built around chosen adaption to pressure objectives.
+- **Limits**: 3DP; pick-one; adaptation benefits not fully quantified in corpus.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/tyranids/
 
 #### Subterranean Assault (3DP → DISRUPTION)
-- **Mechanics**: ALL attacks re-roll hit rolls of 1. BURROWER units arriving from Reserves place Tunnel Markers; Reserves units may arrive within 9" of a marker; markers removed if enemies end moves within 3". Mawloc/Trygon gain BURROWER; up to 2 Trygons become CHARACTERS.
-- **Rating**: Strong for Purge the Foe (the army-wide hit-reroll component is unconditional); the tunnel network itself is Situational
-- **Synergies**: entire army gets the reroll; Trygon/Mawloc delivery enables reserve-heavy builds.
-- **Limits**: tunnel markers are destructible-by-proximity and geometry-dependent; Trygon CHARACTER upgrade is list-building; full-budget 3DP cost.
+- **Mechanics**: Subterranean Assault (11e) — tunneling ambush: certain units can arrive from underground (rear/objective threat), often gaining benefits on arrival (e.g. re-roll charges) to disrupt enemy lines.
+- **Rating**: Moderate for Disruption
+- **Synergies**: Trygon/Raveners style units for backfield disruption and objective denial.
+- **Limits**: 3DP; deployment/terrain dependent; limited slots; mechanics partially unmodeled in corpus.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/tyranids/
 
 ### Enhancements & Stratagems Worth Taking

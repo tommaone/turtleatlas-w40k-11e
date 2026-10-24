@@ -100,10 +100,6 @@ Deathwatch context, not re-assessed).
 - **Rating**: Moderate for Take and Hold — Drop Pod-delivered Eradicator alpha suits the elite profile.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
 
-#### Stormlance Task Force (2DP → DISRUPTION) — *inherited*
-- **Mechanics**: All units charge after Advancing or Falling Back (inherited; merged data lists 2DP vs 3DP shared cost — delta unresolved).
-- **Rating**: Situational for Disruption — eligibility exists but the elite-shooting roster has few units that want it.
-- **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
 
 #### Vanguard Spearhead (2DP → RECONNAISSANCE) — *inherited*
 - **Mechanics**: Benefit of Cover vs ranged attacks from beyond 12" (inherited).
@@ -134,6 +130,98 @@ Deathwatch context, not re-assessed).
 - **Mechanics (10e record)**: Once-per-battle wound re-rolls vs the Oath target (inherited).
 - **Rating**: Situational for Purge the Foe — Deathwatch Terminator Squad focus-fire turns.
 - **_source**: https://wahapedia.ru/wh40k11ed/factions/space-marines/
+
+
+#### Assault Brethren (1DP → TAKE AND HOLD)
+- **Mechanics**: Assault Mastery — select the Assault Doctrine one additional time per battle.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Assault doctrine cycling.
+- **Limits**: Doctrine-gated.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/deathwatch/
+
+#### Devastator Brethren (1DP → PURGE THE FOE)
+- **Mechanics**: Devastator Mastery — select the Devastator Doctrine one additional time per battle.
+- **Rating**: Moderate for Purge the Foe
+- **Synergies**: Firepower doctrine cycling.
+- **Limits**: Doctrine-gated.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/deathwatch/
+
+#### Gauntlet Task Force (1DP → RECONNAISSANCE)
+- **Mechanics**: Combined Deployment — transport shoots marks target assailed; disembarked ADEPTUS ASTARTES get [Sustained Hits 1] vs it.
+- **Rating**: Moderate for Reconnaissance
+- **Synergies**: Transport delivery.
+- **Limits**: Conditional timing.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/deathwatch/
+
+#### Gravis Linebreaker Force (1DP → TAKE AND HOLD)
+- **Mechanics**: Walking Fortress — Gravis moved Normal: ranged lose [Heavy] and get +1 to hit.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Aggressive Gravis.
+- **Limits**: Gravis-scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/deathwatch/
+
+#### Gravis Siege Force (1DP → TAKE AND HOLD)
+- **Mechanics**: Indomitable Defence — while in range of objective, attacks with S>T vs Gravis have -1 to wound.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Gravis anchoring.
+- **Limits**: Objective-range, S>T only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/deathwatch/
+
+#### Ironclad Champions (1DP → PRIORITY ASSETS)
+- **Mechanics**: Enduring Vengeance — Dreadnoughts re-roll hit rolls of 1.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Dreadnought lists.
+- **Limits**: Dreadnought-scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/deathwatch/
+
+#### Phobos Shadow Force (1DP → DISRUPTION)
+- **Mechanics**: Shadow Masters — Phobos/Scout shoot then don't prevent hidden or make D6" move (no charge until end).
+- **Rating**: Moderate for Disruption
+- **Synergies**: Phobos recon.
+- **Limits**: Scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/deathwatch/
+
+#### Phobos Shock Force (1DP → DISRUPTION)
+- **Mechanics**: Vanguard Ambushers — end of Movement if hidden, Phobos attacks re-roll wound rolls of 1 until end of turn.
+- **Rating**: Moderate for Disruption
+- **Synergies**: Hidden Phobos.
+- **Limits**: Requires hidden.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/deathwatch/
+
+#### Stormlance Task Force (1DP → RECONNAISSANCE)
+- **Mechanics**: Lightning-Fast Strike — Mounted/Speeder have +2" Move.
+- **Rating**: Moderate for Reconnaissance
+- **Synergies**: Bike/Speeders.
+- **Limits**: Mounted/Speeder only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/deathwatch/
+
+#### Tactical Brethren (1DP → PRIORITY ASSETS)
+- **Mechanics**: Tactical Mastery — select Tactical Doctrine one additional time per battle.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Doctrine cycling.
+- **Limits**: Doctrine-gated.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/deathwatch/
+
+#### Tacticus Attack Force (1DP → TAKE AND HOLD)
+- **Mechanics**: Wrath of the Chapter — Tacticus units can re-roll advance rolls.
+- **Rating**: Moderate for Take and Hold
+- **Synergies**: Tacticus advancing.
+- **Limits**: Tacticus-scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/deathwatch/
+
+#### Tacticus Firestorm Force (1DP → PRIORITY ASSETS)
+- **Mechanics**: Codex Fire-Patterns — Tacticus [Rapid Fire] at max range count as Rapid Fire.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Tacticus rapid fire.
+- **Limits**: Tacticus/RF only.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/deathwatch/
+
+#### Terminator Storm Force (1DP → PRIORITY ASSETS)
+- **Mechanics**: Death Blow — Terminator units have +1 to charge rolls.
+- **Rating**: Moderate for Priority Assets
+- **Synergies**: Terminator assaults.
+- **Limits**: Terminator-scoped.
+- **_source**: https://wahapedia.ru/wh40k11ed/factions/deathwatch/
 
 ### Enhancements & Stratagems Worth Taking
 - *(Interpretation, restricted to what the research files document)* Black Spear's Adaptive Tactics stratagem is the named force-multiplier — extending Mission Tactics to non-native ADEPTUS ASTARTES units widens the detachment's narrow FAQ scope. Inherited tools worth noting: Gladius Storm of Fire (ignore-cover) under Devastator Doctrine for veteran shooters; Anvil's Not One Backwards Step (double OC stationary near an objective) for gunline scoring. All CP-gated, not plan-of-record.
