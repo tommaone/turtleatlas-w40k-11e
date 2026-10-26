@@ -13,19 +13,21 @@ and recommend detachments/units based on mission and meta.
 | Metric | Value |
 |--------|-------|
 | Factions ranked | 30/30 |
-| Units ranked | ~1500 |
-| Tests | 4722 passed / 68 skipped / 0 xfailed (2026-10-04, branch `mcp-surface-catches-up-to-data`); targeted re-run: `tests/test_dpp.py` 73/73 in 0.44s, `scripts/mcp_smoke_test.py` PASS |
-| HTML findings | 30 factions, mobile-friendly |
-| Detachment modifiers | 26 (Grey Knights 9 + Chaos Knights 8 + Daemons 9) |
+| Units ranked | **1,346** in `data/merged/`; **1,333** rendered on the findings pages (13 merged entries not rendered — legends / units with no ranked config) |
+| Detachments | **330** in MFM v1.5 across 28 factions (Chaos Titan Legions + Titan Legions have 0) |
+| Detachment ratings | **329/330** rated and paired to an 11e disposition; **1 gap** (`aeldari` → Path Of The Outcast) |
+| Tests | **5151 passed / 68 skipped / 0 xfailed** (2026-10-26, `main` `59d99f7`, full suite, `PYTHONHASHSEED=1`) |
+| HTML findings | 30 factions + index, mobile-friendly; roster built from `data/merged/`, not from the expert files |
+| Detachment modifiers | **0** — retired 2026-08-27; `data/config/*/detachments.json` carries no `modifiers` key anywhere |
 | Characters | 511 on slots schema (all 30 factions, 2026-08-11) |
 | Vehicles | 126 migrated to builds format |
 | Weapon_options on slots | **ALL 30/30 factions** (Wave 3+4, 2026-08-19) |
 | Reroll abilities auto-detected | 24 datasheets across 15 factions |
 | Complex-layer squads | Aeldari, GK, SM, DA, SW, BA, BT, DW, Chaos Daemons, CSM, EC, Orks (11 with alloc/slots) + 9-faction caps sweep (2026-08-15) |
-| BSData audit | **NOT clean** (re-measured 2026-09-25, MFM oracle): `audit_curated_vs_bsdata.py` → **112 findings / 62 guilty units**; `validate_configs_vs_bsdata.py --all` → **246 unique problems / 442 unit-level occurrences / 50 HIGH unique**. The previously quoted "433 issues / 68 HIGH" compared occurrences against unique counts and hid false negatives. Measured like-for-like: 5 unique findings were the same weapon as the merged entry, differing only in case or punctuation (`Combi weapon` vs `Combi-weapon`), and the old substring matcher let any catalog name vouch for a longer config name — the generic entry `weapons` cleared `Fleshmetal weapons`, `Bane` cleared `Baneblade`. Removing that branch **surfaced 10 real naming-variance findings and resolved 5**, so HIGH rose 45→50 unique. The matcher is now stricter, not worse; the 10 new findings need triage. Points now graded against **MFM** (was BSData — the wrong instrument). Breakdown: 41 `MISSING_CHOICES`, 28 `SLOT_COUNT`, 25 `COMBOS`, 17 `MISSING_FIXED`, 1 `NO_MFM_POINTS`, **0 `POINTS_DRIFT`**. The remainder is wargear-structure curation backlog vs BSData, byte-identical at both pins (b074700 / 6fca2d1) — not bump fallout |
-| bsdata pin | `6fca2d1` (2026-09-25, Fixes #2039) — bumped from `b074700` (2026-09-17) |
-| mfm pin | `8e0e635` (MFM v1.5, 2026-09-30) — bumped from `61a687e` (MFM v1.4, 2026-09-03) |
-| Last change | **MCP surface catches up to data (2026-10-04, branch `mcp-surface-catches-up-to-data`)**: `compute_unit_dpp` MCP tool (squad question now engine-answerable: `weapons[]` + one shared points cost); overkill pool now caps **once on the summed total** instead of per weapon (was double-capping — reported 20 against a pool of 10; `uncapped_total_damage` + `overkill_capped` exposed so the arithmetic stays auditable); `wounds_per_model`/`model_count` validated as positive whole numbers at the MCP boundary (`#validatePool` — closes the Shredder BLOCK where 0/-1/NaN/Inf survived `??`); `attacks`/`bs`/`damage` accept dice strings (`"2D6"`, `"3+"`, `"N/A"`) routed through the engine's own `_parse_attacks`, so MCP and loader cannot disagree; `voldus.md` worked example corrected to the real Incinerator profile (S6, AP-1, D1, Torrent, Ignores Cover — old table claimed D2); `get_findings` now serves the `data.json` sidecar (HTML scraper gone) and all 30 faction sidecars are committed; `engine/AGENTS.md` step 5 no longer advises the per-weapon-sum that produced the bug. 4 new overkill tests, red-tested by removing the outer cap. Full suite 4598/68/0; smoke PASS end-to-end. Follow-up on the same branch (2026-10-15): `points_churn` restored — the MFM submodule moved entries to `changelog/v<X.Y>.md`, the parser still read the now-pointer `DATA-CHANGELOG.md` and silently zeroed churn for all 28 factions (verified against the pre-restructure numbers); stale "rules-aware adjustment" claims removed from the MCP surface (`advisor.overall_index` is a copy of `army_tiers.overall` — they cannot disagree); the retired `meta_ceiling` caveat corrected; guide header derives the MFM version instead of hardcoding v1.4; `army_advisor.py --guide` added to `check_artifacts_current.py`, which previously watched `findings/` but never regenerated advisor.json, so it drifted silently |
+| BSData audit | **NOT clean** (measured 2026-09-25, MFM oracle — **predates the 9b8207c bump, needs re-measuring**): `audit_curated_vs_bsdata.py` → **112 findings / 62 guilty units**; `validate_configs_vs_bsdata.py --all` → **246 unique problems / 442 unit-level occurrences / 50 HIGH unique**. The previously quoted "433 issues / 68 HIGH" compared occurrences against unique counts and hid false negatives. Measured like-for-like: 5 unique findings were the same weapon as the merged entry, differing only in case or punctuation (`Combi weapon` vs `Combi-weapon`), and the old substring matcher let any catalog name vouch for a longer config name — the generic entry `weapons` cleared `Fleshmetal weapons`, `Bane` cleared `Baneblade`. Removing that branch **surfaced 10 real naming-variance findings and resolved 5**, so HIGH rose 45→50 unique. The matcher is now stricter, not worse; the 10 new findings need triage. Points now graded against **MFM** (was BSData — the wrong instrument). Breakdown: 41 `MISSING_CHOICES`, 28 `SLOT_COUNT`, 25 `COMBOS`, 17 `MISSING_FIXED`, 1 `NO_MFM_POINTS`, **0 `POINTS_DRIFT`**. The remainder is wargear-structure curation backlog vs BSData, byte-identical at the pins then in use — not bump fallout |
+| bsdata pin | `9b8207c` (2026-10-20, 11e stat bump) — bumped from `6fca2d1` (2026-09-25). Merged data + findings regenerated in the same bump (`ec93e21` retunes Redemptor wargear order / Eradicator compositions) |
+| mfm pin | `8e0e635` (MFM v1.5, 2026-09-30) — unchanged since the v1.5 migration |
+| Last change | **Detachment truth + CI hardening (2026-10-21 → 2026-10-26)**: the Key Insights block on every findings page now builds its detachment roster from `data/merged/<fid>.json` instead of the expert markdown, so a BSData/MFM bump cannot ship 10e detachments again; every expert rating is paired to the 11e disposition it was judged for (`rating_for`), with a heading fallback and an `[expert mismatch]` log when neither holds; all 108 previously unrated detachments were rated (329/330 now covered). Army rules / play patterns / disposition tables rewritten for the 7 maintained Astartes + Orks factions against 11e truth (the Astartes army rules are `Combat Doctrines` + `Templar Vows`; there is no entity named `Oath of Moment` in the pinned BSData, and its remaining mentions are quarantined as `RETIRED`/10e record). `tests/test_key_insights_source.py` grew to 531 tests (pinned ratings, rating↔disposition validity, merged-sourced dp/objectives, retired-detachment guard, whole-file Oath scan, generated-page script parse). Then CI: `army_advisor.GENERATED` back to `date.today()` (a hardcoded date fails `test_generated_is_a_real_date_not_a_frozen_constant`), artifacts regenerated in the same commit so the drift gate's own regeneration matches HEAD, and `scripts/wait_ci.sh` added to block on a commit's `ci` run. Full suite 5151/68/0; `drift` + `tests` green on `59d99f7` |
 
 ### Direction (2026-09)
 
@@ -84,6 +86,64 @@ Engine-side open items surfaced by this session:
 ---
 
 ## Done ✅
+
+### Key Insights truth + CI hardening (2026-10-21 → 2026-10-26)
+- **Roster is data-driven.** `gen_findings_html.py` builds each faction's
+  detachment list from `data/merged/<fid>.json` (name / dp / objectives),
+  normalises names into keys, detects key clashes, drops stale blocks and keeps
+  unmatched detachments as `Unrated`. The expert markdown is now an *annotation*
+  source, not the roster. This is the structural fix for the recurring "10e
+  detachment survives a data bump" class of bug.
+- **Ratings carry their disposition.** An expert rating is transferred only when
+  its `rating_for` is in the merged 11e `objectives[]` for that detachment;
+  otherwise the heading disposition is used as fallback; otherwise the entry is
+  logged as `[expert mismatch]` and shown Unrated. `renderInsights` displays
+  `band · for <rating_for>` so a rating can never be read against the wrong
+  disposition.
+- **Diagnostics stay off the page.** `stale_expert_detachments` /
+  `mismatched_expert_detachments` are stripped from the rendered payload.
+- **11e rules rewrite** for `space-marines`, `dark-angels`, `blood-angels`,
+  `space-wolves`, `black-templars`, `deathwatch`, `orks`: army rules, play
+  patterns and disposition tables. Astartes army rules are `Combat Doctrines`
+  (30 entity hits) + `Templar Vows` (1) in
+  `bsdata/Library - Astartes Heresy Legends.json` — **the Black Templars
+  catalogue is a thin supplement** (units + shared profiles, no rules), so rules
+  must be read from the shared library, not from `Imperium - Black Templars.json`.
+  Orks: `Waaagh!`, `Void Waaagh!`, `War Cry (Once per battle, per army)`,
+  `Get Stuck In` in `bsdata/Orks.json`. **No entity named `Oath of Moment` exists
+  anywhere in `bsdata/`** (zero `"name"` hits; the phrase survives only as prose
+  inside a few SM character/campaign entries). It is no longer the Astartes army
+  rule, and every remaining mention in the expert files is labelled `RETIRED` /
+  10e record.
+- **Coverage.** All 108 previously unrated detachments rated and paired. 329 of
+  330 are covered; the remaining gap is `aeldari` → Path Of The Outcast.
+- **Guards** — `tests/test_key_insights_source.py`, 531 tests: roster from
+  merged, dp/objectives from merged, `rating_for` ∈ objectives when rated,
+  unrated carries no `rating_for`, pinned ratings per maintained faction,
+  retired detachments never rendered, whole-file Oath scan, generated page
+  script parses, diagnostics not leaked, keys unique after normalisation.
+
+### MCP surface catches up to data (2026-10-04 → 2026-10-15, merged)
+`compute_unit_dpp` MCP tool (squad question is engine-answerable: `weapons[]` +
+one shared points cost); overkill pool caps **once on the summed total** instead
+of per weapon (was double-capping — reported 20 against a pool of 10;
+`uncapped_total_damage` + `overkill_capped` exposed so the arithmetic stays
+auditable); `wounds_per_model`/`model_count` validated as positive whole numbers
+at the MCP boundary (`#validatePool` — closes the Shredder BLOCK where
+0/-1/NaN/Inf survived `??`); `attacks`/`bs`/`damage` accept dice strings
+(`"2D6"`, `"3+"`, `"N/A"`) routed through the engine's own `_parse_attacks`, so
+MCP and loader cannot disagree; `voldus.md` worked example corrected to the real
+Incinerator profile (S6, AP-1, D1, Torrent, Ignores Cover — old table claimed
+D2); `get_findings` serves the `data.json` sidecar (HTML scraper gone) with all
+30 sidecars committed; `engine/AGENTS.md` step 5 no longer advises the
+per-weapon-sum that produced the bug. `points_churn` restored (MFM moved entries
+to `changelog/v<X.Y>.md`; the parser was still reading the now-pointer
+`DATA-CHANGELOG.md` and silently zeroing churn for all 28 factions); stale
+"rules-aware adjustment" claims removed (`advisor.overall_index` is a copy of
+`army_tiers.overall` — they cannot disagree); guide header derives the MFM
+version instead of hardcoding v1.4; `army_advisor.py --guide` added to
+`check_artifacts_current.py`, which previously watched `findings/` but never
+regenerated `advisor.json`.
 
 ### Engine Core
 - DPP engine with **quad-vector ranking** (DPP × SURV × OBJ × MOB)
@@ -269,7 +329,10 @@ Engine-side open items surfaced by this session:
   every faction; truth-report diff confined to in-scope blocks.
 
 ### Tests
-- 3594 passing, 36 skipped, 1 xfailed
+- **5151 passing, 68 skipped, 0 xfailed** (2026-10-26, `PYTHONHASHSEED=1`, full suite)
+- Key Insights guards (`test_key_insights_source.py`, 531 tests) — roster and
+  dp/objectives from merged data, rating↔disposition validity, pinned ratings,
+  retired-detachment guard, Oath scan, generated-page script parse
 - Complex-unit pins (`test_aeldari_complex_units.py`, `test_space_marines_complex_units.py`,
   `test_dark_angels_complex_units.py`, `test_space_wolves_complex_units.py`,
   `test_blood_angels_complex_units.py`, `test_black_templars_complex_units.py`,
@@ -288,7 +351,8 @@ Engine-side open items surfaced by this session:
 
 ## In Progress 🔄
 
-- **MCP surface catches up to data (2026-10-04, branch `mcp-surface-catches-up-to-data`, pending merge).** The MCP server's answers now come from the engine and the committed artifacts, not from hand-shaped defaults: unit-level DPP exposed as a tool, wound-pool overkill capped on the sum, dice expressions parsed by the engine's own loader, and findings served from the `data.json` sidecars instead of scraping HTML. Local gate before push: `tests/test_dpp.py` + `scripts/mcp_smoke_test.py` (seconds); the full suite runs in CI.
+- **None.** The `mcp-surface-catches-up-to-data` branch landed on `main` (see
+  Done). Current work is the backlog below; nothing is mid-flight.
 
 ## Cancelled ⛔
 
@@ -347,7 +411,11 @@ Engine-side open items surfaced by this session:
   incoming-fire model needed
 - [ ] **Mortal wound abilities** — psychic mortals, grenade stratagems
 - [ ] **Detachment points budget** — DP cost (1-3 DP), detachment recommendation
-- [ ] **Disposition matching** — map detachments to Force Dispositions
+- [x] **Disposition matching — data + display done (2026-10-24)** — every merged
+  detachment carries its 11e `objectives[]`, and every expert rating is paired to
+  one of them (`rating_for`), with a heading fallback and an `[expert mismatch]`
+  log. **Not wired into ranking**: the engine does not weight a detachment's
+  score by disposition, so this is truth + presentation, not scoring.
 - [ ] **Requisition thresholds** — 3rd+ copies cost more (11e)
 - [ ] **Transport support — engine delivery scoring SHIPPED (2026-09-20)** — transport
   datasheets now score their delivery potential in MOB via `delivery_bonus` (capacity × speed,
@@ -409,8 +477,18 @@ Engine-side open items surfaced by this session:
 - [ ] Points efficiency ranking across all factions
 
 ### Infrastructure
-- [ ] MCP server integration for live queries — **shipped on `mcp-surface-catches-up-to-data` (2026-10-04)**: `compute_unit_dpp`, validated `wounds_per_model`/`model_count`, dice-string inputs, `get_findings` from `data.json` sidecars; smoke PASS. Merge pending.
-- [ ] CI/CD pipeline (automated tests on push)
+- [x] MCP server integration for live queries — **merged** (2026-10-04/15):
+  `compute_unit_dpp`, validated `wounds_per_model`/`model_count`, dice-string
+  inputs, `get_findings` from `data.json` sidecars; smoke PASS.
+- [x] **CI/CD pipeline (2026-10-26)** — two jobs on push to `main` and every PR:
+  `drift` regenerates `data/merged/` + all 30 findings pages + `army_advisor`
+  and **fails on any difference from HEAD** (`check_artifacts_current.py`);
+  `tests` runs the full suite with `PYTHONHASHSEED=1` pinned (the suite asserts
+  derived counts/order that depend on dict iteration order). `scripts/wait_ci.sh
+  [sha]` blocks on the `ci` run for a commit and exits 0 green / 1 failed /
+  2 no run. **Rule the gate enforces:** a green build must prove the committed
+  artifacts are what the code produces — a stale artifact previously made the
+  suite read back its own stale input and pass.
 - [ ] Web dashboard for rankings (nice-to-have)
 
 ---
@@ -435,10 +513,52 @@ Engine-side open items surfaced by this session:
    army-rule-derived), SM/SW/DW Captains `4+`, Battlewagon/Dark Talon/
    Helbrute. Do NOT mass-add: footnote'd invulns need verified sources
    per no-fabricated-modifiers rule.
+6. **1 detachment unrated (2026-10-26)** — `aeldari` → Path Of The Outcast has
+   no expert rating, so it renders `Unrated` with the standing note. Ratings are
+   owned by the maintainer; do not invent one to clear the `[expert gap]` line.
+7. **14 stale `disposition` values in `data/config/*/detachments.json`
+   (measured 2026-10-26)** — 6 Astartes factions: `black-templars` 2,
+   `blood-angels` 2, `dark-angels` 3, `deathwatch` 2, `space-marines` 3,
+   `space-wolves` 2. Three shapes: `ironstorm-spearhead` says `take-and-hold`
+   where merged says PURGE THE FOE, `stormlance-task-force` says `disruption`
+   where merged says RECONNAISSANCE, DA `wrath-of-the-rock` says
+   `priority-assets` where merged says TAKE AND HOLD. **Not consumed by the
+   findings generator** (it reads `data/merged/`), so nothing renders wrong —
+   but the file is wrong data in the repo and the next consumer will trust it.
+8. **103 retired 10e detachment blocks still in the 7 maintained expert files
+   (measured 2026-10-26)** — BT 17, BA 18, DA 18, DW 13, SM 15, SW 17, Orks 5.
+   The renderer drops them (retired-detachment guard holds), so they cannot
+   reach a page; they remain the source of the `[expert drift]` noise and mean
+   those files no longer describe 11e. Pruning them is a separate ticket — it
+   deletes maintainer-authored content, so it needs sign-off.
+9. **CI runner image migration (flagged 2026-10-26, deliberately deferred)** —
+   `actions/checkout@v4` + `actions/setup-python@v5` run on Node 20 and are
+   being force-migrated to Node 24, and `runs-on: ubuntu-latest` moves to
+   Ubuntu 26 from 2026-10-19 (i.e. now). Either can change the toolchain under
+   the drift gate without a code change. Fix is one commit: bump action majors
+   and pin `runs-on: ubuntu-24.04`.
 
 ---
 
 ## Corrections Log 📝
+
+- **2026-10-26 (CI churn)**: Four pushes were burned solving a conflict between
+  two guards that were both right. `test_generated_is_a_real_date_not_a_frozen_
+  constant` requires `army_advisor.GENERATED == date.today()`; the drift gate
+  requires the committed artifacts to equal a fresh regeneration. Hardcoding the
+  date satisfies the gate and fails the test — the first two "fixes" did exactly
+  that and shipped a knowingly-red suite. The actual answer is neither: keep
+  `date.today()` and commit the regenerated artifacts in the *same* commit.
+  Lesson for the next date-stamped artifact: **a timestamp that changes daily is
+  a drift gate with a 24-hour fuse.** Either regenerate-and-commit as part of
+  the change, or make the stamp injectable (`ARMY_ADVISOR_DATE`) so CI can pin
+  it. Do not "fix" the gate by freezing the clock in code.
+- **2026-10-24 (Key Insights, caught by Shredder)**: five detachments were
+  initially rated with mechanics-flavoured filler (Aeldari Aspect Host / Path of
+  Outcast, T'au Kauyon / Mont'ka, Tyranids Invasion Fleet / Subterranean Assault,
+  Drukhari Exhibition of Slaughter, Adeptus Custodes Tharanatoi Hammerblow).
+  Rewritten to sourced-style mechanical statements or left Unrated. A rating that
+  sounds plausible is still a fabricated rating.
 
 - **2026-09-23 (2nd)**: Delivery recalibration sweep had two sloppy claims fixed before
   ship: (a) "96/135 flattened" → 96/134 (the 135th was the unit-count Night Scythe, refused
@@ -518,4 +638,4 @@ Engine-side open items surfaced by this session:
 
 ---
 
-*Last updated: 2026-10-04 (MCP surface catches up to data — unit DPP tool, wound-pool cap fix, validated counts, findings sidecars; full suite 4722/68/0)*
+*Last updated: 2026-10-26 (Key Insights truth — merged-sourced roster, ratings paired to dispositions, 11e rules rewrite for 7 factions, 329/330 detachments rated; CI drift + tests jobs live, `wait_ci.sh` added; full suite 5151/68/0)*
