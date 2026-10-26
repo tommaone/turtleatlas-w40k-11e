@@ -228,3 +228,6 @@ None. Public repo — mechanics and commands only. Credential loading goes throu
 - **Resolution pattern:** Keep `GENERATED = date.today().isoformat()` (dynamic). When date changes break drift, regenerate `docs/army-choice-guide.md`, `findings/advisor.json`, `findings/army-choice-guide.html` via `python3 scripts/army_advisor.py --guide` and commit them in the same change as the date-dependent regeneration. Never hardcode dates to "match HEAD" — that will fail the test.
 - **Prevention:** After regenerating date-stamped artifacts, run `python3 scripts/check_artifacts_current.py` locally. The checker classifies timestamp-only diffs separately from content diffs; timestamp-only means identical content apart from generation clock and should be regenerated fresh rather than hand-edited.
 - **CI flow:** `drift` job regenerates everything and fails on any diff (exit 1). `tests` job runs full suite with `PYTHONHASHSEED=1`. Both must be green.
+- **Watching CI:** `scripts/wait_ci.sh [sha]` blocks on the `ci` workflow for
+  HEAD or a given commit and exits 0 green / 1 failed / 2 no run. Use it after a
+  push instead of polling the API by hand.
