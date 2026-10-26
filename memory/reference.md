@@ -221,3 +221,10 @@ None. Public repo — mechanics and commands only. Credential loading goes throu
   live spec.
 - CANCELLED with the retirement: authoring verified detachment modifiers for
   the other 25 factions. Do not resume it as a scoring feature.
+
+## 2026-10-26 Army Advisor date/churn handling
+
+- **Test guard:** `tests/test_army_advisor.py::test_generated_is_a_real_date_not_a_frozen_constant` requires `GENERATED = date.today().isoformat()` (no hardcoded dates). The drift checker regenerates artifacts and fails if committed artifacts differ; since `army_advisor.py` uses `date.today()`, regeneration changes timestamps daily.
+- **Resolution pattern:** Keep `GENERATED = date.today().isoformat()` (dynamic). When date changes break drift, regenerate `docs/army-choice-guide.md`, `findings/advisor.json`, `findings/army-choice-guide.html` via `python3 scripts/army_advisor.py --guide` and commit them in the same change as the date-dependent regeneration. Never hardcode dates to "match HEAD" — that will fail the test.
+- **Prevention:** After regenerating date-stamped artifacts, run `python3 scripts/check_artifacts_current.py` locally. The checker classifies timestamp-only diffs separately from content diffs; timestamp-only means identical content apart from generation clock and should be regenerated fresh rather than hand-edited.
+- **CI flow:** `drift` job regenerates everything and fails on any diff (exit 1). `tests` job runs full suite with `PYTHONHASHSEED=1`. Both must be green.

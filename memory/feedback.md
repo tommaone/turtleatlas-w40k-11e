@@ -1842,3 +1842,8 @@ edit, not a generator run.
 blocks" rule is for one-faction migrations. v1.5 changed every faction's data, so
 the correct commit is a full `PYTHONHASHSEED=1` regen (that seed is the
 truth-report stability seed) — there is no subset to isolate when everything moved.
+
+## Army Advisor generated date must track today (2026-10-26)
+- **Mistake:** Tried to hardcode `GENERATED = '2026-10-21'` to make drift check pass against committed artifacts. This breaks `test_generated_is_a_real_date_not_a_frozen_constant` which requires `date.today().isoformat()`.
+- **Correct:** Keep `GENERATED = date.today().isoformat()`. The drift check regenerates everything; if the date changed since last commit, regenerate artifacts with `python3 scripts/army_advisor.py --guide` and commit them. Timestamp-only diffs are expected to be regenerated fresh, not hand-edited.
+- **Tip:** Before pushing, run `python3 scripts/check_artifacts_current.py` to catch drift early.
