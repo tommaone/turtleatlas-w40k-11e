@@ -1,6 +1,6 @@
 # Choosing Your Army — strength, versatility, fit
 
-*Generated 2026-10-21 from engine outputs (rank-decay roster index, MFM v1.5) + expert first-army-fit ratings. Full method + caveats in findings/advisor.json.*
+*Generated 2026-10-26 from engine outputs (rank-decay roster index, MFM v1.5) + expert first-army-fit ratings. Full method + caveats in findings/advisor.json.*
 
 > This narrows the field — it tells you where each faction's strength sits today and what the army demands from you as a player. It cannot tell you the future meta.
 
